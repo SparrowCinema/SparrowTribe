@@ -5,7 +5,7 @@ const toMin = t => { const [h, m] = t.split(':').map(Number); return h * 60 + m;
 const fmt = m => String(Math.floor(m / 60)).padStart(2, '0') + ':' + String(m % 60).padStart(2, '0');
 const keyOf = s => `${s.d}-${s.t}-${s.v}-${s.h}`;
 const showDate = s => { const [m, d] = s.d.split('/').map(Number); const [h, mi] = s.t.split(':').map(Number); return new Date(year(s.d), m - 1, d, h, mi); };
-const POSTERS = 'wild-strawberries dogville sirat swordsman swordsman-2 leningrad-cowboys turin-horse a-better-tomorrow long-live-the-missus bullets-over-broadway green-green-grass blood-simple spring-in-a-small-town mon-oncle where-is-the-friends-house the-sacrifice faces-places kill-bill-whole-bloody-affair the-odyssey linka-linka happy-birthday dune-part-three avengers-doomsday john-wick'.split(' ');
+const POSTERS = 'wild-strawberries dogville sirat swordsman swordsman-2 leningrad-cowboys turin-horse a-better-tomorrow long-live-the-missus bullets-over-broadway green-green-grass blood-simple spring-in-a-small-town mon-oncle where-is-the-friends-house the-sacrifice faces-places kill-bill-whole-bloody-affair the-odyssey linka-linka happy-birthday dune-part-three avengers-doomsday john-wick we-live-in-time for-better-or-worse'.split(' ');
 const poster = f => f.posterUrl || (POSTERS.includes(f.id) ? `/images/posters/${f.id}.jpg` : '');
 const TICKETS = POSTERS.slice(0, 17); // 只有风格万相 17 部有购票码
 const ticket = f => f.ticketUrl || (TICKETS.includes(f.id) ? `/images/tickets/${f.id}.jpg` : '');
