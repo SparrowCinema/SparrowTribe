@@ -1,9 +1,9 @@
 /* 麻雀排片 service worker：页面走“网络优先”（保证排片总是最新），海报、图标等静态资源走“缓存优先”，离线时也能打开上次看过的内容。 */
-const CACHE = "sk-v4";
+const CACHE = "sk-v5";
 const CORE = ["./", "./index.html", "./manifest.webmanifest", "./vendor/qrcode.js", "./icons/icon-192.png", "./icons/apple-touch-icon.png", "./brand/sparrow-movies-sq.png", "./brand/sparrow-tribe-sq.png", "./brand/sparrow-movies-sq-dark.png", "./brand/sparrow-tribe-sq-dark.png"];
 
 self.addEventListener("install", e => {
-  e.waitUntil(caches.open(CACHE).then(c => c.addAll(CORE)).then(() => self.skipWaiting()));
+  e.waitUntil(caches.open(CACHE).then(c => c.addAll(CORE.map(url => new Request(url, {cache:"reload"})))).then(() => self.skipWaiting()));
 });
 
 self.addEventListener("activate", e => {
@@ -18,7 +18,7 @@ self.addEventListener("fetch", e => {
   const isPage = req.mode === "navigate" || url.pathname.endsWith("/") || url.pathname.endsWith(".html");
   if (isPage) {
     e.respondWith(
-      fetch(req).then(res => { const copy = res.clone(); caches.open(CACHE).then(c => c.put(req, copy)); return res; })
+      fetch(req, {cache:"no-store"}).then(res => { if (!res.ok) throw new Error("Page unavailable"); const copy = res.clone(); caches.open(CACHE).then(c => c.put(req, copy)); return res; })
         .catch(() => caches.match(req).then(r => r || caches.match("./index.html")))
     );
     return;

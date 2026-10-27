@@ -1829,7 +1829,14 @@ const ENV=(()=>{const ua=navigator.userAgent||"";const ios=/iPhone|iPad|iPod/i.t
 let installPrompt=null;
 window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();installPrompt=e;if(location.hash==="#install")installPage();});
 window.addEventListener("appinstalled",()=>{installPrompt=null;toast("已添加到手机桌面");if(location.hash==="#install")installPage();});
-if("serviceWorker" in navigator&&location.protocol==="https:"){window.addEventListener("load",()=>{navigator.serviceWorker.register("sw.js").catch(()=>{});});}
+if("serviceWorker" in navigator&&location.protocol==="https:"){
+  const hadController=!!navigator.serviceWorker.controller;let updatingPage=false;
+  navigator.serviceWorker.addEventListener("controllerchange",()=>{if(hadController&&!updatingPage){updatingPage=true;location.reload();}});
+  window.addEventListener("load",()=>{navigator.serviceWorker.register("sw.js",{updateViaCache:"none"}).then(reg=>{
+    const check=()=>{if(document.visibilityState==="visible")reg.update().catch(()=>{});};
+    document.addEventListener("visibilitychange",check);window.addEventListener("pageshow",check);check();
+  }).catch(()=>{});});
+}
 let installTab=null;
 const IIC={
   share:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 15V3M8 7l4-4 4 4"/><path d="M6 11H5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-8a1 1 0 0 0-1-1h-1"/></svg>',
