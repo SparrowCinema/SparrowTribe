@@ -1,0 +1,27 @@
+<view class="wrap">
+  <view class="h2">片目</view>
+  <view class="sub">{{list.length}} 部影片 · 右侧为豆瓣评分</view>
+  <scroll-view wx:if="{{progs.length}}" scroll-x enhanced show-scrollbar="{{false}}" style="white-space:nowrap">
+    <view class="chips">
+      <view class="chip {{pf==='all'?'on':''}}" data-k="all" bindtap="setProg">全部专题</view>
+      <view wx:for="{{progs}}" wx:key="id" class="chip {{pf===item.id?'on':''}}" data-k="{{item.id}}" bindtap="setProg">{{item.name}}</view>
+    </view>
+  </scroll-view>
+  <scroll-view scroll-x enhanced show-scrollbar="{{false}}" style="white-space:nowrap">
+    <view class="chips">
+      <view class="chip {{filt==='all'?'on':''}}" data-k="all" bindtap="setFilt">全部</view>
+      <view wx:for="{{regs}}" wx:key="k" class="chip {{filt===item.k?'on':''}}" data-k="{{item.k}}" bindtap="setFilt">{{item.n}}</view>
+    </view>
+  </scroll-view>
+  <view wx:for="{{list}}" wx:key="id" class="row" data-id="{{item.id}}" bindtap="open">
+    <image wx:if="{{item.poster}}" class="pst" src="{{item.poster}}" mode="aspectFill" lazy-load />
+    <view wx:else class="pst ph" style="background:{{item.color}}">{{item.cn[0]}}</view>
+    <view class="info">
+      <view class="t">{{item.cn}}<text wx:if="{{item.version}}" class="ed">{{item.version}}</text></view>
+      <text class="o">{{item.en}}</text>
+      <text class="d">{{item.dir}} · {{item.c}} · {{item.y}}</text>
+      <text wx:if="{{item.first}}" class="f mono">首场 {{item.first}}</text>
+    </view>
+    <view class="sc"><text class="n mono">{{item.db}}</text><text class="l">豆瓣</text></view>
+  </view>
+</view>

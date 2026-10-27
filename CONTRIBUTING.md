@@ -17,6 +17,7 @@
 - 网站：https://sparrowcinema.github.io/SparrowTribe/（仓库 SparrowCinema/SparrowTribe，原名 style-kaleidoscope；GitHub Pages 不会自动跳转旧网址）
 - 内部标识沿用 style-kaleidoscope：localStorage 键、风格万相专题 id、ICS 事件 UID 后缀，修改会导致已保存排片或日历重复，不要改。
 - 单页静态应用：index.html，内含页面样式、影片和排片数据、路由与交互脚本。
+- 微信小程序：`project.config.json` + `miniprogram/` + `cloudfunctions/`（AppID wx1f3f065d4885ac25，云环境 cloud1-d9gvudh6vc59007ac），说明见 miniprogram/README.md。网站排片数据变更时，同步更新 `miniprogram/data/data.js` 与 `cloudfunctions/seed/data.json`，或直接改云数据库。小程序场次键格式与网站一致。
 - 海报目录：posters/；发布配置：.github/workflows/pages.yml；PWA：manifest.webmanifest、sw.js（替换同名静态文件时需升级缓存名）、icons/。
 - 网站标题：麻雀映画&麻雀部落展映排片表。风格万相是其中一个影展专题，后续会加入院线电影、艺术影院等排片。
 - 专题数据：PROGRAMMES 数组（id、名称、类型、时段、封面、简介）；影片用 prog 字段归属专题，未填写时默认 style-kaleidoscope。专题封面放在 programmes/。

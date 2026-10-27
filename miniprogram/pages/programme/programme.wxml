@@ -1,0 +1,25 @@
+<view wx:if="{{p}}">
+  <image wx:if="{{p.cover}}" class="cover" src="{{p.cover}}" mode="widthFix" />
+  <view class="wrap">
+    <view class="k mono">{{p.en}}</view>
+    <view class="h1">{{p.name}}</view>
+    <view class="sub">{{p.sub}} · {{p.period}}</view>
+    <view class="stats card">
+      <view><text class="n mono">{{stats.f}}</text><text class="l">部影片</text></view>
+      <view><text class="n mono">{{stats.s}}</text><text class="l">场放映</text></view>
+      <view><text class="n mono">{{stats.d}}</text><text class="l">个放映日</text></view>
+      <view><text class="n mono">{{stats.h}}</text><text class="l">个影厅</text></view>
+    </view>
+    <view wx:if="{{p.blurb}}" class="blurb">{{p.blurb}}</view>
+    <view class="btn" bindtap="toSchedule">查看排片</view>
+    <view class="blockh">放映影片 <text class="en">{{films.length}} FILMS</text></view>
+    <view class="grid">
+      <view wx:for="{{films}}" wx:key="id" class="gf" data-id="{{item.id}}" bindtap="open">
+        <image wx:if="{{item.poster}}" src="{{item.poster}}" mode="aspectFill" lazy-load />
+        <view wx:else class="ph" style="background:{{item.color}}">{{item.cn[0]}}</view>
+        <text class="gt">{{item.cn}}</text>
+        <text class="gs mono">{{item.version ? item.version + ' · ' : ''}}{{item.first}}</text>
+      </view>
+    </view>
+  </view>
+</view>

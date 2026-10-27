@@ -1,0 +1,22 @@
+{
+  "description": "麻雀映画 & 麻雀部落展映排片表 微信小程序",
+  "appid": "wx1f3f065d4885ac25",
+  "projectname": "SparrowTribe",
+  "miniprogramRoot": "miniprogram/",
+  "cloudfunctionRoot": "cloudfunctions/",
+  "compileType": "miniprogram",
+  "libVersion": "3.3.4",
+  "packOptions": { "ignore": [], "include": [] },
+  "setting": {
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "minified": true,
+    "urlCheck": true,
+    "compileHotReLoad": true,
+    "packNpmManually": false,
+    "uploadWithSourceMap": true
+  },
+  "condition": {},
+  "editorSetting": { "tabIndent": "insertSpaces", "tabSize": 2 }
+}
