@@ -356,6 +356,125 @@ h2.sec{font-size:26px;letter-spacing:.01em}
   .pitem,.pgap{break-inside:avoid}
 }
 @media (prefers-reduced-motion:reduce){.is-panel{animation:none}}
+
+/* ---- Film detail page (claude/film-detail-redesign) ---- */
+.fd{padding-bottom:28px}
+.fd-hero{position:relative;overflow:hidden;color:#fffaf0;background:#1c1510;isolation:isolate}
+.fd-bg{position:absolute;inset:-40px;width:calc(100% + 80px);height:calc(100% + 80px);max-width:none;object-fit:cover;filter:blur(30px) saturate(1.25);opacity:.85;z-index:-2;transform:scale(1.05)}
+.fd-shade{position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(20,14,10,.35) 0%,rgba(20,14,10,.55) 45%,color-mix(in srgb,var(--fc) 55%,rgba(20,14,10,.92)) 100%)}
+.fd-hin{display:grid;grid-template-columns:116px 1fr;gap:18px;align-items:end;padding-block:28px 24px}
+.fd-poster{width:116px;max-width:100%;aspect-ratio:2/3;object-fit:cover;border-radius:6px;box-shadow:0 14px 34px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.12)}
+.fd-ph{display:grid;place-items:center;background:var(--fc)}
+.fd-ph b{font:900 44px var(--f-display)}
+.fd-title{min-width:0}
+.fd-eyebrow{font:500 11px var(--f-mono);letter-spacing:.08em;opacity:.85;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.fd-reg{font:600 10px var(--f-body);letter-spacing:.1em;padding:2px 7px;border-radius:4px;background:var(--fc);color:#fffaf0}
+.fd-title h1{font:900 32px/1.15 var(--f-display);margin:8px 0 4px;text-wrap:balance;letter-spacing:.01em}
+.fd-orig{font:italic 400 15px/1.35 var(--f-display);opacity:.9}
+.fd-native{font-size:12px;opacity:.7;margin-top:2px}
+.fd-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.fd-chips span{font-size:11px;padding:3px 8px;border-radius:5px;background:rgba(255,250,240,.14);border:1px solid rgba(255,250,240,.22)}
+.fd-chips .fd-ed{background:#fffaf0;color:#2b2117;border-color:#fffaf0;font:700 11px var(--f-mono);letter-spacing:.04em}
+.fd-by{margin-top:10px;font-size:13px;opacity:.85}
+.fd-by b{font-weight:700;opacity:1}
+
+.fd-body{display:flex;flex-direction:column;gap:0}
+.fd-ratings{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));margin:16px 0 0;border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}
+.fd-rt{display:flex;flex-direction:column;align-items:center;gap:4px;padding:12px 4px 12px;min-width:0}
+.fd-rt+.fd-rt{border-left:1px solid var(--line-soft)}
+.fd-rl{font-size:10px;color:var(--muted);letter-spacing:.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.fd-rt b{font:600 19px/1.1 var(--f-mono);font-variant-numeric:tabular-nums}
+.fd-rt.na b{color:var(--muted);font-weight:400}
+.fd-rbar{width:70%;height:3px;border-radius:2px;background:var(--line-soft);overflow:hidden}
+.fd-rbar i{display:block;height:100%;background:var(--fc);border-radius:2px}
+
+.fd-block{margin-top:22px}
+.fd-h{font:700 13px var(--f-body);letter-spacing:.06em;margin:0 0 10px;display:flex;align-items:baseline;gap:8px;color:var(--fg)}
+.fd-h small{font-weight:400;color:var(--muted);font-size:12px}
+.fd-ticket{display:grid;grid-template-columns:76px 1fr;border-radius:12px;background:var(--surface);border:1px solid var(--line);overflow:hidden;position:relative}
+.fd-ticket+.fd-ticket{margin-top:8px}
+.fd-tdate{background:var(--fc);color:#fffaf0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:12px 4px;position:relative}
+.fd-tdate::after{content:"";position:absolute;right:-1px;top:8px;bottom:8px;border-right:2px dashed var(--surface)}
+.fd-tdate small{font-size:11px;opacity:.85}
+.fd-tdate b{font:600 32px/1 var(--f-mono)}
+.fd-tdate span{font-size:12px;margin-top:3px}
+.fd-tbody{padding:12px 14px;display:flex;flex-direction:column;gap:3px;min-width:0}
+.fd-ttime{display:flex;align-items:baseline;gap:6px;font-variant-numeric:tabular-nums}
+.fd-ttime b{font:600 20px var(--f-mono)}
+.fd-ttime .end{color:var(--muted);font-weight:400;font-size:16px}
+.fd-ttime span{color:var(--muted)}
+.fd-tbody>small{font-size:12px;color:var(--teal);font-weight:500}
+.fd-tact{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+.fd-add{height:34px;padding:0 12px;border-radius:8px;background:var(--fc);color:#fffaf0;font-size:13px;font-weight:600}
+.fd-add.on{background:transparent;color:var(--fg);border:1px solid var(--line)}
+.fd-see{height:34px;padding:0 12px;border-radius:8px;border:1px solid var(--line);font-size:13px;color:var(--muted)}
+.fd-see:hover,.fd-add.on:hover{border-color:var(--accent);color:var(--fg)}
+
+.fd-credits{display:grid;grid-template-columns:auto 1fr;gap:0;margin:0;border-top:1px solid var(--line-soft)}
+.fd-credits dt,.fd-credits dd{padding:9px 0;border-bottom:1px solid var(--line-soft);font-size:13px}
+.fd-credits dt{color:var(--muted);padding-right:18px;white-space:nowrap}
+.fd-credits dd{margin:0;min-width:0}
+
+.fd-jump{position:sticky;top:calc(env(safe-area-inset-top,0px) + 61px);z-index:5;display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;margin:22px calc(-1 * max(16px,env(safe-area-inset-left,0px))) 0;padding:8px max(16px,env(safe-area-inset-left,0px));background:color-mix(in srgb,var(--bg) 92%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--line-soft)}
+.fd-jump::-webkit-scrollbar{display:none}
+.fd-jump button{flex:none;font-size:13px;padding:5px 12px;border-radius:99px;color:var(--muted)}
+.fd-jump button:hover{background:var(--chip);color:var(--fg)}
+.fd-sec{padding-top:26px}
+.fd-st{display:flex;align-items:baseline;gap:10px;margin:0 0 12px;padding-bottom:8px;border-bottom:2px solid var(--fg)}
+.fd-st span{font:900 21px var(--f-display)}
+.fd-st small{font:500 10px var(--f-mono);letter-spacing:.18em;color:var(--muted);margin-left:auto}
+.fd-syn p,.fd-dcard p,.fd-ctx p{margin:0 0 12px;max-width:65ch;font-size:15.5px;line-height:1.85}
+.fd-syn>p:first-child::first-letter{font:900 2.6em/1 var(--f-display);float:left;margin:4px 8px 0 0;color:var(--fc)}
+.fd-syn.clamp{max-height:9.5em;overflow:hidden;-webkit-mask-image:linear-gradient(#000 55%,transparent);mask-image:linear-gradient(#000 55%,transparent)}
+.fd-more{font-size:13px;font-weight:600;color:var(--accent);padding:4px 0}
+.fd-watch{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.fd-watch li{display:grid;grid-template-columns:44px 1fr;gap:12px;padding:14px;border-radius:12px;background:var(--surface);border:1px solid var(--line-soft)}
+.fd-watch span{font:900 28px/1 var(--f-display);color:var(--fc)}
+.fd-watch p{margin:0;font-size:15px;line-height:1.75}
+.fd-honors{list-style:none;margin:0;padding:0}
+.fd-honor{display:grid;grid-template-columns:auto 44px 1fr;gap:10px;align-items:baseline;padding:10px 0;border-bottom:1px solid var(--line-soft)}
+.fd-ht{font-size:11px;font-weight:700;padding:1px 7px;border-radius:4px;white-space:nowrap;border:1px solid var(--line);color:var(--muted);min-width:3.4em;text-align:center}
+.fd-honor.win .fd-ht{background:var(--fc);border-color:var(--fc);color:#fffaf0}
+.fd-honor.nom .fd-ht{border-color:var(--fc);color:var(--fc)}
+.fd-honor.list .fd-ht{border-color:var(--teal);color:var(--teal)}
+.fd-hy{font:500 13px var(--f-mono);color:var(--muted)}
+.fd-hb{min-width:0;display:flex;flex-direction:column}
+.fd-hb b{font-size:14px;font-weight:600}
+.fd-hb small{font-size:13px;color:var(--muted)}
+.fd-dcard{padding:16px;border-radius:12px;background:var(--surface);border:1px solid var(--line-soft)}
+.fd-dhead{display:flex;align-items:center;gap:14px;margin-bottom:12px}
+.fd-av{width:52px;height:52px;flex:none;border-radius:50%;display:grid;place-items:center;background:var(--fc);color:#fffaf0;font:900 22px var(--f-display)}
+.fd-dhead b{display:block;font-size:17px}
+.fd-dhead small{display:block;font-size:12px;color:var(--muted)}
+.fd-ctx{margin:0;padding:6px 0 0 22px;border-left:3px solid var(--fc);position:relative}
+.fd-ctx::before{content:"“";position:absolute;left:12px;top:-18px;font:900 54px/1 var(--f-display);color:var(--fc);opacity:.35}
+.fd-nav{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:34px}
+.fd-nb{display:flex;align-items:center;gap:10px;padding:10px;border-radius:12px;border:1px solid var(--line);background:var(--surface);text-align:left;min-width:0}
+.fd-nb:last-child{flex-direction:row-reverse;text-align:right}
+.fd-nb img,.fd-nbs{width:36px;height:54px;border-radius:4px;object-fit:cover;flex:none}
+.fd-nbs{display:grid;place-items:center;color:#fffaf0;font:900 16px var(--f-display)}
+.fd-nb>span{min-width:0;display:flex;flex-direction:column}
+.fd-nb small{font-size:11px;color:var(--muted)}
+.fd-nb b{font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fd-nb:hover{border-color:var(--accent)}
+
+@media (min-width:640px){
+  .fd-hin{grid-template-columns:150px 1fr;gap:26px;padding-block:40px 32px}
+  .fd-poster{width:150px}
+  .fd-title h1{font-size:42px}
+}
+@media (min-width:900px){
+  .fd-hin{grid-template-columns:200px 1fr;gap:36px;padding-block:56px 40px}
+  .fd-poster{width:200px}
+  .fd-title h1{font-size:54px}
+  .fd-orig{font-size:20px}
+  .fd-body{display:grid;grid-template-columns:320px minmax(0,1fr);gap:48px;align-items:start}
+  .fd-side{position:sticky;top:calc(env(safe-area-inset-top,0px) + 76px);padding-bottom:20px}
+  .fd-main{min-width:0}
+  .fd-jump{margin:16px 0 0;padding:8px 0;top:calc(env(safe-area-inset-top,0px) + 61px)}
+  .fd-syn p,.fd-dcard p,.fd-ctx p{font-size:16.5px}
+  .fd-watch{display:grid;grid-template-columns:1fr 1fr}
+}
 </style>
 
 </head>
@@ -1404,32 +1523,52 @@ function films(){
       <span class="score"><b>${f.r[0]??"—"}</b>豆瓣</span></button>`).join("")}</div></section>`;
 }
 
+function honorHTML(x){const i=x.indexOf("｜");const t=i>0?x.slice(0,i):"",rest=i>0?x.slice(i+1):x;const m=rest.match(/^(\d{4})\s*(.*)$/);const yr=m?m[1]:"",body=m?m[2]:rest;const cls=t==="获奖"?"win":t==="提名"?"nom":/评选|入选/.test(t)?"list":"sel";const parts=body.split(" · ");return `<li class="fd-honor ${cls}"><span class="fd-ht">${esc(t||"荣誉")}</span><span class="fd-hy">${esc(yr)}</span><span class="fd-hb"><b>${esc(parts[0])}</b>${parts.length>1?`<small>${esc(parts.slice(1).join(" · "))}</small>`:""}</span></li>`;}
+function ratingsHTML(f){const R=[["豆瓣",10],["IMDb",10],["烂番茄",100],["MTC",100],["Letterboxd",5]];return `<div class="fd-ratings">${f.r.map((v,i)=>{const na=v==null;const shown=na?"—":i===2?v+"%":i===4?v.toFixed(1):(i<2?Number(v).toFixed(1):v);const pct=na?0:Math.max(0,Math.min(100,v/R[i][1]*100));return `<div class="fd-rt${na?" na":""}"><span class="fd-rl">${R[i][0]}</span><b>${shown}</b><span class="fd-rbar"><i style="width:${pct}%"></i></span></div>`;}).join("")}</div>`;}
+function screeningHTML(s,f){const k=keyOf(s),yes=picked.has(k);const [m,d]=s.d.split("/");return `<div class="fd-ticket"><div class="fd-tdate"><small>${m}月</small><b>${d}</b><span>${wk(s.d)}</span></div><div class="fd-tbody"><div class="fd-ttime"><b>${s.t}</b><span>–</span><b class="end">${fmt(toMin(s.t)+f.min)}</b></div><small>${esc(VN[s.v].name)} · ${esc(hallOf(s).name)}</small><div class="fd-tact"><button class="fd-add${yes?" on":""}" data-plan="${esc(k)}" aria-pressed="${yes}">${yes?"✓ 已加入排片":"+ 加入排片"}</button><button class="fd-see" data-jump="${k}">在排片中查看</button></div></div></div>`;}
 function detail(id){
   const f=F[id]; if(!f){ go("films"); return; }
-  const col = REG[f.reg].c;
-  const R = [["豆瓣","/10"],["IMDb","/10"],["烂番茄","新鲜度"],["MTC","/100"],["Letterboxd","/5"]];
-  const rv = (v,i)=> v==null ? `<span class="v na">—</span>` : `<span class="v">${i===2?v+"%":i===4?v.toFixed(1):v}</span>`;
+  const col = REG[f.reg].c, P = pst(id);
   const shows = SH.filter(x=>x.id===id);
   const idx = FILMS.indexOf(f), prev = FILMS[idx-1], next = FILMS[idx+1];
-  topEl.innerHTML = `<div class="row"><button class="back" data-back><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m15 6-6 6 6 6"/></svg>返回</button><span class="sp"></span><span class="pill">${idx+1} / ${FILMS.length}</span></div>`;
-  const P = pst(id);
-  main.innerHTML = `<div class="hero gut${P?" withp":""}" style="background:${col}">${P?`<img class="hero-bg" src="${P}" alt=""><img class="hero-p" src="${P}" alt="${esc(f.cn)} 海报">`:""}<div class="hero-txt">
-      <div class="eyebrow">${f.y} · ${esc(f.c).toUpperCase()} · ${f.min} MIN</div>
-      <h1>${esc(f.cn)}${editionHTML(f)}</h1><div class="orig">${esc(f.en||f.o)}</div>${f.o&&f.o!==f.cn&&f.o!==(f.en||f.o)?`<div class="native">原名 ${esc(f.o)}</div>`:""}
-      <div class="meta"><span>导演 ${esc(f.dir)}</span><span>${REG[f.reg].n}单元</span></div></div></div>
-    <div class="ratings gut">${f.r.map((v,i)=>`<div class="rt"><span class="lbl">${R[i][0]}</span>${rv(v,i)}<span class="u">${R[i][1]}</span></div>`).join("")}</div>
-    <div class="gut">
-    <div class="shows">${shows.map(showChoiceHTML).join("")}</div>
-    <section class="dsec film-facts"><h3>影片信息 <small>FILM INFO</small></h3><dl class="credits-grid">${creditsHTML(f)}</dl></section>
-    <section class="dsec"><h3>剧情简介 <small>SYNOPSIS</small></h3>${paragraphsHTML(f.syn)}</section>
-    <section class="dsec"><h3>观影看点 <small>WHAT TO WATCH</small></h3><ol class="watch-list">${f.highlights.map(x=>`<li>${esc(x)}</li>`).join("")}</ol></section>
-    ${f.honors.length?`<section class="dsec"><h3>影展与荣誉 <small>FESTIVALS & AWARDS</small></h3><ul class="honors-list">${f.honors.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></section>`:""}
-    <section class="dsec"><h3>导演介绍 <small>DIRECTOR</small></h3>
-      <div class="dir-card"><span class="mono-av" style="background:${col}">${esc(f.dir[0])}</span><span><b>${esc(f.dir)}</b><small>${esc(f.dirO)} · ${esc(f.dirLife)}</small></span></div>${paragraphsHTML(f.bio)}</section>
-    <section class="dsec"><h3>创作背景 <small>CONTEXT</small></h3><div class="statement">${paragraphsHTML(f.st)}</div></section>
-    <div class="nav2">${prev?`<button data-film="${prev.id}">‹ 上一部<b>${esc(prev.cn)}</b></button>`:"<span></span>"}${next?`<button data-film="${next.id}">下一部 ›<b>${esc(next.cn)}</b></button>`:"<span></span>"}</div>
-    <div style="height:12px"></div></div>`;
+  topEl.innerHTML = `<div class="row"><button class="back" data-back><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m15 6-6 6 6 6"/></svg>返回</button><span class="sp"></span><span class="pill">${String(idx+1).padStart(2,"0")} / ${FILMS.length}</span></div>`;
+  const syn = String(f.syn||""), long = syn.length > 220;
+  const secs = [["fd-syn","剧情"],["fd-watch","看点"],...(f.honors.length?[["fd-hon","荣誉"]]:[]),["fd-dir","导演"],["fd-ctx","背景"]];
+  const navBtn = (x,lab) => x?`<button class="fd-nb" data-film="${x.id}">${pst(x.id)?`<img src="${pst(x.id)}" alt="">`:`<span class="fd-nbs" style="background:${REG[x.reg].c}">${esc(x.cn[0])}</span>`}<span><small>${lab}</small><b>${esc(x.cn)}</b></span></button>`:"<span></span>";
+  main.innerHTML = `<article class="fd" style="--fc:${col}">
+  <header class="fd-hero">${P?`<img class="fd-bg" src="${P}" alt="">`:""}<div class="fd-shade"></div>
+    <div class="fd-hin gut">
+      ${P?`<img class="fd-poster" src="${P}" alt="${esc(f.cn)} 海报">`:`<div class="fd-poster fd-ph"><b>${esc(f.cn[0])}</b></div>`}
+      <div class="fd-title">
+        <div class="fd-eyebrow"><span class="fd-reg">${REG[f.reg].n}</span>${f.y} · ${esc(f.c)}</div>
+        <h1>${esc(f.cn)}</h1>
+        <div class="fd-orig">${esc(f.en||f.o)}</div>${f.o&&f.o!==f.cn&&f.o!==(f.en||f.o)?`<div class="fd-native">原名 ${esc(f.o)}</div>`:""}
+        <div class="fd-chips">${f.version?`<span class="fd-ed">${esc(f.version)}</span>`:""}<span>${f.min} 分钟</span><span>${esc(f.language)}</span>${f.genre.map(g=>`<span>${esc(g)}</span>`).join("")}</div>
+        <div class="fd-by">导演 <b>${esc(f.dir)}</b>${f.coDirector?` / ${esc(f.coDirector)}`:""}</div>
+      </div>
+    </div>
+  </header>
+  <div class="fd-body gut">
+    <aside class="fd-side">
+      ${ratingsHTML(f)}
+      <section class="fd-block"><h3 class="fd-h">放映场次 <small>${shows.length} 场</small></h3>${shows.map(s=>screeningHTML(s,f)).join("")}</section>
+      <section class="fd-block"><h3 class="fd-h">影片信息</h3><dl class="fd-credits">${creditsHTML(f)}</dl></section>
+    </aside>
+    <div class="fd-main">
+      <nav class="fd-jump" aria-label="页面目录">${secs.map(([a,l])=>`<button data-scroll="${a}">${l}</button>`).join("")}</nav>
+      <section class="fd-sec" id="fd-syn"><h2 class="fd-st"><span>剧情简介</span><small>SYNOPSIS</small></h2><div class="fd-syn${long?" clamp":""}">${paragraphsHTML(syn)}</div>${long?`<button class="fd-more" data-expand>展开全文</button>`:""}</section>
+      <section class="fd-sec" id="fd-watch"><h2 class="fd-st"><span>观影看点</span><small>WHAT TO WATCH</small></h2><ol class="fd-watch">${f.highlights.map((x,i)=>`<li><span>${String(i+1).padStart(2,"0")}</span><p>${esc(x)}</p></li>`).join("")}</ol></section>
+      ${f.honors.length?`<section class="fd-sec" id="fd-hon"><h2 class="fd-st"><span>影展与荣誉</span><small>FESTIVALS & AWARDS</small></h2><ul class="fd-honors">${f.honors.map(honorHTML).join("")}</ul></section>`:""}
+      <section class="fd-sec" id="fd-dir"><h2 class="fd-st"><span>导演介绍</span><small>DIRECTOR</small></h2><div class="fd-dcard"><div class="fd-dhead"><span class="fd-av">${esc(f.dir[0])}</span><span><b>${esc(f.dir)}</b><small>${esc(f.dirO)}</small><small>${esc(f.dirLife)}</small></span></div>${paragraphsHTML(f.bio)}</div></section>
+      <section class="fd-sec" id="fd-ctx"><h2 class="fd-st"><span>创作背景</span><small>CONTEXT</small></h2><blockquote class="fd-ctx">${paragraphsHTML(f.st)}</blockquote></section>
+      <nav class="fd-nav">${navBtn(prev,"上一部")}${navBtn(next,"下一部")}</nav>
+    </div>
+  </div></article>`;
 }
+document.addEventListener("click",e=>{
+  const s=e.target.closest("[data-scroll]");if(s){const t=document.getElementById(s.dataset.scroll);if(t){const top=t.getBoundingClientRect().top+window.scrollY-(document.getElementById("topbar").offsetHeight+12);window.scrollTo({top,behavior:matchMedia("(prefers-reduced-motion:reduce)").matches?"auto":"smooth"});}return;}
+  const x=e.target.closest("[data-expand]");if(x){const b=x.previousElementSibling;b.classList.toggle("clamp");x.textContent=b.classList.contains("clamp")?"展开全文":"收起";}
+});
 
 function about(){
   main.innerHTML = `<section class="view gut about"><h2 class="sec">关于影展</h2>
