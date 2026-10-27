@@ -215,6 +215,147 @@ h2.sec{font-family:var(--f-display);font-weight:900;font-size:22px;margin:0 0 4p
 }
 @media (min-width:1300px){.flist{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* ---- UI polish & personal programme / sharing (claude/ui-polish-share-qr) ---- */
+.topbar{background:color-mix(in srgb,var(--surface) 88%,transparent);-webkit-backdrop-filter:saturate(1.4) blur(14px);backdrop-filter:saturate(1.4) blur(14px)}
+.tabbar{background:color-mix(in srgb,var(--surface) 90%,transparent);-webkit-backdrop-filter:saturate(1.4) blur(14px);backdrop-filter:saturate(1.4) blur(14px)}
+.tab{position:relative;transition:color .15s}
+.tab[aria-current="page"]::before{content:"";position:absolute;top:0;left:50%;width:28px;height:3px;border-radius:0 0 3px 3px;background:var(--accent);transform:translateX(-50%)}
+h2.sec{font-size:26px;letter-spacing:.01em}
+.page-heading small,.my-hero>small{display:block;font:500 10px var(--f-mono);letter-spacing:.2em;color:var(--accent)}
+.primary-button,.secondary-button{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:42px;border-radius:10px;padding:0 16px;font-size:14px;font-weight:600;transition:transform .12s,background .15s,border-color .15s}
+.primary-button{background:var(--accent);color:#fffaf0}
+:root[data-theme="dark"] .primary-button{color:#1b140f}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .primary-button{color:#1b140f}}
+.secondary-button{background:var(--surface);border:1px solid var(--line);color:var(--fg)}
+.secondary-button:hover{border-color:var(--accent)}
+.primary-button:active,.secondary-button:active,.xtile:active{transform:scale(.98)}
+.text-button{color:var(--muted);font-size:13px;padding:8px 4px;text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--line)}
+
+/* stats */
+.pstats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden;margin:18px 0}
+.pstats>div{padding:12px 10px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.pstats>div+div{border-left:1px solid var(--line-soft)}
+.pstats b{font:600 22px/1.1 var(--f-mono);font-variant-numeric:tabular-nums}
+.pstats small{font-size:11px;color:var(--muted);white-space:nowrap}
+.pstats .good b{color:var(--teal)}
+.pstats .bad{background:color-mix(in srgb,#b3261e 10%,var(--surface))}
+.pstats .bad b{color:#c4372d}
+
+/* my page */
+.my-hero{padding:22px 0 8px;border-bottom:0}
+.my-hero h2{font:900 34px/1.25 var(--f-display);margin:8px 0 6px}
+.my-hero p{margin:0;color:var(--muted);font-size:14px}
+.next-up{display:grid;grid-template-columns:auto 40px 1fr;align-items:center;gap:12px;width:100%;text-align:left;padding:12px 14px;border-radius:12px;background:var(--fg);color:var(--bg);margin-bottom:6px}
+.next-up .nu-label{font:500 10px var(--f-mono);letter-spacing:.14em;writing-mode:vertical-rl;opacity:.7}
+.next-up .pthumb{width:40px;height:60px}
+.nu-body{min-width:0;display:flex;flex-direction:column}
+.nu-body b{font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.nu-body small{font-size:12px;opacity:.75}
+.my-menu{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:12px;background:var(--surface);margin-top:18px;overflow:hidden}
+.my-menu .my-entry{display:grid;grid-template-columns:40px 1fr auto;gap:14px;align-items:center;padding:16px;border-bottom:1px solid var(--line-soft);max-width:none}
+.my-menu .my-entry:last-child{border-bottom:0}
+.me-ic{width:40px;height:40px;border-radius:10px;background:var(--bg);display:grid;place-items:center;color:var(--accent)}
+.me-ic svg{width:22px;height:22px}
+.my-entry b{font-size:17px}
+.me-go{font-size:24px;color:var(--muted)}
+
+/* day timeline */
+.plan-toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0 0 18px}
+.plan-toolbar .text-button{margin-left:auto}
+.conflict{border:1px solid #c4372d;background:color-mix(in srgb,#b3261e 8%,var(--surface));color:var(--fg);border-radius:12px;padding:12px 14px;margin-bottom:18px}
+.conflict b{color:#c4372d}
+.plan-days{display:flex;flex-direction:column;gap:22px}
+.pday-h{display:flex;align-items:baseline;gap:8px;padding-bottom:10px;border-bottom:1px solid var(--line);margin-bottom:12px}
+.pday-h b{font:600 22px var(--f-mono);color:var(--accent)}
+.pday-h span{font-weight:700;font-size:14px}
+.pday-h small{margin-left:auto;font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.ptl{list-style:none;margin:0;padding:0}
+.pitem{display:grid;grid-template-columns:52px 1fr;gap:10px;align-items:stretch}
+.ptime{display:flex;flex-direction:column;padding-top:10px;font-variant-numeric:tabular-nums}
+.ptime b{font:600 17px var(--f-mono)}
+.ptime small{font:12px var(--f-mono);color:var(--muted)}
+.pcard{position:relative;display:grid;grid-template-columns:48px 1fr auto;gap:12px;align-items:center;padding:10px 10px 10px 14px;border-radius:12px;background:var(--surface);border:1px solid var(--line-soft);min-width:0}
+.pcard::before{content:"";position:absolute;left:0;top:10px;bottom:10px;width:4px;border-radius:0 3px 3px 0;background:var(--c)}
+.pthumb{width:48px;height:72px;border-radius:5px;object-fit:cover;display:block;max-width:100%}
+.pslate{display:grid;place-items:center;color:#fffaf0;font:900 20px var(--f-display)}
+.pinfo{min-width:0;display:flex;flex-direction:column;gap:1px}
+.ptitle{display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;padding:0;text-align:left}
+.ptitle b{font-size:16px;line-height:1.35}
+.ped{font:600 10px/1.6 var(--f-mono);padding:0 6px;border-radius:4px;border:1px solid var(--accent);color:var(--accent);white-space:nowrap}
+.pinfo small{font-size:12px;color:var(--muted)}
+.pvenue{font-size:12px;color:var(--teal);font-weight:500}
+.premove{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;color:var(--muted);border:1px solid var(--line-soft)}
+.premove:hover{color:#c4372d;border-color:#c4372d}
+.premove svg{width:16px;height:16px}
+.pgap{margin:0 0 0 62px;padding:7px 0 7px 14px;font-size:12px;color:var(--muted);border-left:2px dotted var(--line)}
+.pgap.tight{color:var(--ochre)}
+.pgap.clash{color:#c4372d;border-left:2px solid #c4372d;font-weight:600}
+.pgap.clash span::before{content:"⚠ "}
+
+/* export & share */
+.shared-banner{border-radius:12px;background:var(--fg);color:var(--bg);padding:16px;margin-bottom:16px;display:flex;flex-direction:column;gap:6px;align-items:flex-start}
+.shared-banner p{margin:0 0 6px;font-size:13px;opacity:.8}
+.share-panel{display:grid;grid-template-columns:132px 1fr;gap:16px;align-items:center;padding:16px;border-radius:14px;border:1px solid var(--line);background:var(--surface)}
+.qr-box{background:#fff;border-radius:10px;padding:4px;line-height:0;box-shadow:0 1px 0 var(--line)}
+.qr-box svg{width:100%;height:auto;display:block}
+.share-body{min-width:0;display:flex;flex-direction:column;gap:6px}
+.share-body>b{font-size:16px}
+.share-body>small{font-size:12px;color:var(--muted);line-height:1.6}
+.link-row{display:flex;gap:6px;margin-top:4px}
+.link-row input{flex:1;min-width:0;padding:0 10px;height:42px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--fg);font:12px var(--f-mono)}
+.link-row .secondary-button{flex:none}
+.share-sys{display:inline-flex;align-items:center;gap:6px;align-self:flex-start;text-decoration:none;color:var(--accent);font-weight:600}
+.share-sys svg{width:16px;height:16px}
+@media (max-width:420px){.share-panel{grid-template-columns:1fr}.qr-box{width:168px;margin:0 auto}}
+.export-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:12px 0 28px}
+.xtile{display:flex;flex-direction:column;align-items:flex-start;gap:3px;padding:14px 12px;border-radius:12px;border:1px solid var(--line);background:var(--surface);text-align:left;min-width:0}
+.xtile:hover{border-color:var(--accent)}
+.xt-ic{width:34px;height:34px;border-radius:9px;background:var(--bg);display:grid;place-items:center;color:var(--accent);margin-bottom:6px}
+.xt-ic svg{width:19px;height:19px}
+.xtile b{font-size:14px}
+.xtile small{font-size:11px;color:var(--muted);line-height:1.4}
+.xtile.main{background:var(--accent);border-color:var(--accent);color:#fffaf0}
+.xtile.main small{color:inherit;opacity:.8}
+.xtile.main .xt-ic{background:rgba(255,255,255,.16);color:inherit}
+@media (max-width:400px){.export-grid{grid-template-columns:1fr 1fr}.xtile.main{grid-column:1/-1}}
+
+.share-paper{padding:0;border-radius:14px;overflow:hidden;background:var(--surface);border:1px solid var(--line)}
+.paper-band{background:var(--oxblood);color:#fffaf0;padding:20px 18px 18px;display:flex;flex-direction:column;gap:14px;background-image:repeating-linear-gradient(115deg,transparent 0 22px,rgba(255,255,255,.06) 22px 23px)}
+.paper-band b{font:italic 900 34px/1 var(--f-display);display:block}
+.paper-band span{font:10px var(--f-mono);letter-spacing:.1em;opacity:.85;display:block;margin-top:8px}
+.paper-band em{font-style:normal;font-weight:700;font-size:18px;border-top:2px solid rgba(255,250,240,.7);padding-top:10px;align-self:flex-start}
+.paper-stats{display:flex;gap:22px;padding:14px 18px;border-bottom:1px solid var(--line-soft);font-size:12px;color:var(--muted)}
+.paper-stats b{font:600 20px var(--f-mono);color:var(--fg);margin-right:3px}
+.share-paper .plan-days{padding:16px 18px}
+.share-paper .pcard{background:var(--bg)}
+.share-paper footer{display:flex;align-items:center;gap:16px;margin:0;padding:16px 18px;background:var(--fg);color:var(--bg)}
+.paper-qr{width:92px;flex:none;background:#fff;border-radius:8px;padding:3px;line-height:0}
+.paper-qr svg{width:100%;height:auto}
+.share-paper footer>div{display:flex;flex-direction:column;gap:2px;font-size:11px;opacity:.85}
+.share-paper footer b{font-size:15px;opacity:1}
+
+/* image sheet */
+.img-sheet{position:fixed;inset:0;z-index:200;background:rgba(15,10,6,.62);display:flex;align-items:flex-end;justify-content:center;padding:env(safe-area-inset-top,0px) 0 0}
+.is-panel{background:var(--surface);width:100%;max-width:520px;max-height:92vh;border-radius:18px 18px 0 0;display:flex;flex-direction:column;padding:14px max(16px,env(safe-area-inset-left,0px)) calc(16px + env(safe-area-inset-bottom,0px));animation:sheetUp .22s ease-out}
+@keyframes sheetUp{from{transform:translateY(30px);opacity:.4}}
+.is-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.is-close{width:34px;height:34px;display:grid;place-items:center;border-radius:50%;background:var(--bg)}
+.is-close svg{width:16px;height:16px}
+.is-img{overflow:auto;border-radius:10px;border:1px solid var(--line);background:var(--bg);min-height:0;flex:1}
+.is-img img{display:block;width:100%;height:auto}
+.is-tip{font-size:12px;color:var(--muted);text-align:center;margin:10px 0}
+.is-actions{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:8px}
+@media (min-width:700px){.img-sheet{align-items:center}.is-panel{border-radius:18px}}
+
+@media print{
+  .shared-banner,.share-panel,.export-grid,.export-view .blockh,.img-sheet{display:none!important}
+  .share-paper{border:0!important;border-radius:0}
+  .paper-band{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .share-paper footer{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .pitem,.pgap{break-inside:avoid}
+}
+@media (prefers-reduced-motion:reduce){.is-panel{animation:none}}
 </style>
 
 </head>
@@ -226,9 +367,10 @@ h2.sec{font-family:var(--f-display);font-weight:900;font-size:22px;margin:0 0 4p
 <nav class="tabbar" aria-label="主导航"><div class="in">
   <button class="tab" data-tab="schedule"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="15" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M7 14h5M10 17h7"/></svg>排片</button>
   <button class="tab" data-tab="films"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M4 8h16M4 16h16M8 3v18M16 3v18"/></svg>片目</button>
-  <button class="tab" data-tab="my"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg>我的</button>
+  <button class="tab" data-tab="my"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>我的</button>
 </div></nav>
 
+<script src="vendor/qrcode.js"></script>
 <script>
 const REG = {cn:{n:"华语",c:"var(--oxblood)"},eu:{n:"欧洲",c:"var(--teal)"},us:{n:"美国",c:"var(--ochre)"},as:{n:"伊朗",c:"var(--olive)"}};
 
@@ -1123,9 +1265,9 @@ const FILMS = [
 
 /* 影院与影厅：后续新增影院或影厅，在这里加一项即可 */
 const VENUES = [
-  {id:"premiere", name:"百美汇影城", en:"PREMIERE", halls:[{id:"luxe", name:"LUXE 厅", note:"RealD LUXE 巨幕厅"}]}
+  {id:"premiere", name:"百美汇影城", en:"PREMIERE", halls:[{id:"luxe", name:"LUXE4K激光巨幕厅"}]}
 ];
-/* 排片：日期, 时间, 影片 id, 影院 id, 影厅 id（后两项不写时默认百美汇 LUXE 厅） */
+/* 排片：日期, 时间, 影片 id, 影院 id, 影厅 id（后两项不写时默认百美汇 LUXE4K激光巨幕厅） */
 const SHOWS = [
 ["10/30","19:30","wild-strawberries"],["10/31","12:40","dogville"],["10/31","16:00","sirat"],
 ["11/1","12:40","swordsman"],["11/1","15:10","swordsman-2"],["11/2","19:30","leningrad-cowboys"],
@@ -1308,16 +1450,109 @@ function showDate(s){const md=s.d.split('/').map(Number),tm=s.t.split(':').map(N
 function planToggleHTML(s){const k=keyOf(s),yes=picked.has(k);return '<button class="plan-toggle '+(yes?'selected':'')+'" data-plan="'+esc(k)+'" aria-pressed="'+yes+'" aria-label="'+(yes?'移出排片 ':'加入排片 ')+esc(F[s.id].cn)+' '+esc(s.d)+' '+s.t+'">'+(yes?'✓ 已加入':'+ 加入排片')+'</button>';}
 function showChoiceHTML(s){return '<div class="show-choice"><button class="show" data-jump="'+keyOf(s)+'"><span class="dt">'+s.d+' '+s.t+'</span><span class="x">'+wk(s.d)+' · '+esc(placeOf(s))+' · 散场 '+fmt(toMin(s.t)+F[s.id].min)+'</span><span class="go">查看排片 ›</span></button>'+planToggleHTML(s)+'</div>';}
 function conflicts(list){let out=[];for(let i=0;i<list.length;i++)for(let j=i+1;j<list.length;j++){const a=list[i],b=list[j];if(a.d===b.d&&toMin(a.t)<toMin(b.t)+F[b.id].min&&toMin(b.t)<toMin(a.t)+F[a.id].min)out.push([a,b]);}return out;}
-function planRowsHTML(list,editable){return list.map(s=>'<article class="plan-row"><div class="plan-date">'+s.d+'<small>'+wk(s.d)+'</small></div><div class="plan-info"><button data-film="'+s.id+'"><b>'+esc(F[s.id].cn)+editionHTML(F[s.id])+'</b></button><div class="plan-time">'+s.t+' — '+fmt(toMin(s.t)+F[s.id].min)+'</div><small>'+esc(VN[s.v].name)+' · '+esc(hallOf(s).name)+'</small></div>'+(editable?planToggleHTML(s):'')+'</article>').join('');}
-function myPage(){const list=selectedRows(),minutes=list.reduce((n,s)=>n+F[s.id].min,0);main.innerHTML='<section class="view gut"><div class="my-hero"><small>MY FESTIVAL</small><h2>我的影展</h2><p>把想看的电影，排进自己的日程。</p><div class="my-stats"><span><b>'+list.length+'</b> 场放映</span><span><b>'+new Set(list.map(s=>s.d)).size+'</b> 天行程</span><span><b>'+Math.floor(minutes/60)+'h '+minutes%60+'m</b> 银幕时光</span></div></div><button class="my-entry" data-tab="plan"><span><b>个人排片</b><small>选场次 · 看日程 · 检查时间冲突</small></span><span>↗</span></button><button class="my-entry" data-tab="export"><span><b>导出与分享</b><small>排片长图 · 分享链接 · 日历 · PDF</small></span><span>↗</span></button><p class="local-note">排片保存在当前浏览器。换设备时，可以用分享链接带走日程。</p><details class="about-fold"><summary>关于风格万相</summary><p>中外经典影片展 · 2026.10—2027.01</p><p>由麻雀映画制作。当前场次、影片与影厅以排片页面为准。</p></details></section>';}
-function planPage(){const list=selectedRows(),issues=conflicts(list);main.innerHTML='<section class="view gut"><div class="page-heading"><div><small>MY PROGRAMME</small><h2 class="sec">个人排片</h2><p class="sub">'+list.length+' 场电影，按日期与时间排列</p></div><button class="text-button" data-tab="my">返回我的</button></div><div class="plan-toolbar"><button class="primary-button" data-tab="export" '+(!list.length?'disabled':'')+'>导出分享 ↗</button><button class="secondary-button" data-tab="schedule">继续选片</button>'+(list.length?'<button class="text-button" data-action="clear-plan">清空排片</button>':'')+'</div>'+(issues.length?'<div class="conflict" role="status"><b>有 '+issues.length+' 组时间冲突</b>'+issues.map(([a,b])=>'<p>'+a.d+'《'+esc(F[a.id].cn)+'》与《'+esc(F[b.id].cn)+'》时间重叠。</p>').join('')+'</div>':'')+(list.length?'<div class="plan-list">'+planRowsHTML(list,true)+'</div>':'<div class="empty-plan"><span>＋</span><h3>还没有加入场次</h3><p>在排片表或影片详情里，点击“加入排片”。</p><button class="primary-button" data-tab="schedule">去选电影</button></div>')+'<p class="local-note">散场时间按影片片长计算。跨影院观影请另留交通与入场时间。</p></section>';}
+const regColor = f => ({cn:"#8e2a22",eu:"#2f6f6c",us:"#b26a1f",as:"#5d6b2e"})[f.reg]||"#8e2a22";
+const endMin = s => toMin(s.t)+F[s.id].min;
+const durText = m => m<60 ? m+" 分钟" : Math.floor(m/60)+" 小时"+(m%60?" "+m%60+" 分":"");
+function planStats(list){const minutes=list.reduce((n,s)=>n+F[s.id].min,0);return {n:list.length,days:new Set(list.map(s=>s.d)).size,minutes,hm:Math.floor(minutes/60)+"h"+String(minutes%60).padStart(2,"0"),clash:conflicts(list).length};}
+function byDay(list){const m=new Map();list.forEach(s=>{if(!m.has(s.d))m.set(s.d,[]);m.get(s.d).push(s);});return [...m.entries()];}
+function gapOf(a,b){const g=toMin(b.t)-endMin(a);if(g<0)return {cls:"clash",txt:"与上一场重叠 "+(-g)+" 分钟"};if(g<20)return {cls:"tight",txt:"间隔仅 "+g+" 分钟，留意入场时间"};return {cls:"ok",txt:"间隔 "+durText(g)};}
+function thumbHTML(f){return pst(f.id)?'<img class="pthumb" src="'+pst(f.id)+'" alt="" loading="lazy">':'<span class="pthumb pslate" style="background:'+REG[f.reg].c+'">'+esc(f.cn[0])+'</span>';}
+function planRowsHTML(list,editable){
+  return byDay(list).map(([d,items])=>{
+    const first=items[0],last=items[items.length-1];
+    let body='';
+    items.forEach((s,i)=>{const f=F[s.id];
+      if(i){const g=gapOf(items[i-1],s);body+='<li class="pgap '+g.cls+'"><span>'+g.txt+'</span></li>';}
+      body+='<li class="pitem" style="--c:'+REG[f.reg].c+'"><div class="ptime"><b>'+s.t+'</b><small>'+fmt(endMin(s))+'</small></div><div class="pcard">'+thumbHTML(f)+'<div class="pinfo"><button class="ptitle" data-film="'+s.id+'"><b>'+esc(f.cn)+'</b>'+(f.version?'<span class="ped">'+esc(f.version)+'</span>':'')+'</button><small>'+esc(f.dir)+' · '+f.min+' 分钟</small><span class="pvenue">'+esc(VN[s.v].name)+' · '+esc(hallOf(s).name)+'</span></div>'+(editable?'<button class="premove" data-plan="'+esc(keyOf(s))+'" aria-label="移出排片 '+esc(f.cn)+' '+s.d+' '+s.t+'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6 6 18"/></svg></button>':'')+'</div></li>';
+    });
+    return '<section class="pday"><header class="pday-h"><b>'+d+'</b><span>'+wk(d)+'</span><small>'+items.length+' 场 · '+first.t+' – '+fmt(endMin(last))+'</small></header><ol class="ptl">'+body+'</ol></section>';
+  }).join('');
+}
+function statsHTML(st){return '<div class="pstats"><div><b>'+st.n+'</b><small>场放映</small></div><div><b>'+st.days+'</b><small>天行程</small></div><div><b>'+st.hm+'</b><small>银幕时长</small></div><div class="'+(st.clash?'bad':'good')+'"><b>'+st.clash+'</b><small>时间冲突</small></div></div>';}
+function myPage(){const list=selectedRows(),st=planStats(list),next=list[0];
+  main.innerHTML='<section class="view gut"><div class="my-hero"><small>MY FESTIVAL</small><h2>我的影展</h2><p>把想看的电影排进自己的日程，再分享给一起看的人。</p>'+statsHTML(st)+(next?'<button class="next-up" data-film="'+next.id+'"><span class="nu-label">第一场</span>'+thumbHTML(F[next.id])+'<span class="nu-body"><b>'+esc(F[next.id].cn)+'</b><small>'+next.d+' '+wk(next.d)+' · '+next.t+' · '+esc(placeOf(next))+'</small></span></button>':'')+'</div>'+
+  '<div class="my-menu"><button class="my-entry" data-tab="plan"><span class="me-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="15" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span><span><b>个人排片</b><small>按天查看日程 · 自动检查时间冲突</small></span><span class="me-go">›</span></button><button class="my-entry" data-tab="export"><span class="me-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="4" width="6" height="6"/><rect x="14" y="4" width="6" height="6"/><rect x="4" y="14" width="6" height="6"/><path d="M14 14h2v2h-2zM18 18h2v2h-2zM14 18h2M18 14h2"/></svg></span><span><b>导出与分享</b><small>带二维码的排片长图 · 分享链接 · 日历 · PDF</small></span><span class="me-go">›</span></button></div>'+
+  '<p class="local-note">排片保存在当前浏览器。换设备时，用分享链接或二维码带走日程。</p><details class="about-fold"><summary>关于风格万相</summary><p>中外经典影片展 · 2026.10—2027.01</p><p>由麻雀映画制作。当前场次、影片与影厅以排片页面为准。</p></details></section>';}
+function planPage(){const list=selectedRows(),st=planStats(list);
+  main.innerHTML='<section class="view gut"><div class="page-heading"><div><small>MY PROGRAMME</small><h2 class="sec">个人排片</h2></div><button class="text-button" data-tab="my">返回我的</button></div>'+
+  (list.length?statsHTML(st)+'<div class="plan-toolbar"><button class="primary-button" data-tab="export">导出与分享</button><button class="secondary-button" data-tab="schedule">继续选片</button><button class="text-button" data-action="clear-plan">清空排片</button></div>'+(st.clash?'<div class="conflict" role="status"><b>有 '+st.clash+' 组场次时间重叠</b><p>重叠处已在日程中标红，移出其中一场即可解决。</p></div>':'')+'<div class="plan-days">'+planRowsHTML(list,true)+'</div>'
+  :'<div class="empty-plan"><span>＋</span><h3>还没有加入场次</h3><p>在排片表或影片详情里，点击“加入排片”。</p><button class="primary-button" data-tab="schedule">去选电影</button></div>')+
+  '<p class="local-note">散场时间按影片片长计算，不含映前广告与映后交流。跨影院观影请另留交通时间。</p></section>';}
 function shareURL(list){return location.origin+location.pathname+'#share='+encodeURIComponent(list.map(keyOf).join('~'));}
-function exportPage(shared){let list;if(shared!==undefined){try{const raw=decodeURIComponent(shared);const keys=raw.split('~');if(!keys.length||keys.some(k=>!validKeys.has(k)))throw Error();list=selectedRows(keys);}catch{main.innerHTML='<section class="view gut"><h2 class="sec">这个分享链接无法读取</h2><p>链接可能不完整，或其中场次已更新。</p><button class="primary-button" data-tab="my">打开我的影展</button></section>';currentExport=[];return;}}else list=selectedRows();currentExport=list;const isShared=shared!==undefined;main.innerHTML='<section class="view gut export-view"><div class="page-heading"><div><small>TAKE CINEMA WITH YOU</small><h2 class="sec">'+(isShared?'分享的排片':'导出与分享')+'</h2></div><button class="text-button" data-tab="plan">我的排片</button></div>'+(list.length?'<div class="export-tools"><button class="primary-button" data-action="png">保存排片图片</button><button class="secondary-button" data-action="copy-link">复制分享链接</button><button class="secondary-button" data-action="calendar">导出日历 .ics</button><button class="secondary-button" data-action="print">打印 / 保存 PDF</button>'+(isShared?'<button class="secondary-button" data-action="import-plan">加入我的排片</button>':'')+'</div><div class="share-link-box" hidden><label for="share-url">分享链接</label><input id="share-url" readonly value="'+esc(shareURL(list))+'"><small>复制此链接，朋友无需登录即可查看这份排片。</small></div><div class="share-paper"><div class="paper-brand">风格万相 <span>STYLE KALEIDOSCOPE</span></div><h3>我的观影日程</h3><p class="paper-count">'+list.length+' 场电影 · '+new Set(list.map(s=>s.d)).size+' 天</p>'+planRowsHTML(list,false)+'<footer>中外经典影片展 · 由麻雀映画制作<br>影院、影厅与散场时间随日程一并保存</footer></div><p class="local-note">分享链接保存的是此刻的场次选择，之后修改个人排片不会改变已发出的链接。</p>':'<div class="empty-plan"><h3>先为自己选几场电影</h3><p>加入场次后，就能生成分享日程。</p><button class="primary-button" data-tab="schedule">去选电影</button></div>')+'</section>';}
+function shareURLShort(list){return location.origin+location.pathname+'#share='+list.map(keyOf).join('~');}
+function qrMatrix(text){if(!window.QRCodeLib)return null;try{const {QRCode,ECL}=window.QRCodeLib;const q=new QRCode(-1,ECL.L);q.addData(text);q.make();const n=q.getModuleCount(),m=[];for(let r=0;r<n;r++){m.push([]);for(let c=0;c<n;c++)m[r].push(q.isDark(r,c));}return m;}catch(e){return null;}}
+function qrSVG(text){const m=qrMatrix(text);if(!m)return '';const n=m.length,q=4;let d='';for(let r=0;r<n;r++)for(let c=0;c<n;c++)if(m[r][c])d+='M'+(c+q)+' '+(r+q)+'h1v1h-1z';return '<svg viewBox="0 0 '+(n+2*q)+' '+(n+2*q)+'" role="img" aria-label="分享二维码" shape-rendering="crispEdges"><rect width="100%" height="100%" fill="#fff"/><path d="'+d+'" fill="#1d1712"/></svg>';}
+function exportPage(shared){let list;
+  if(shared!==undefined){try{const raw=decodeURIComponent(shared);const keys=raw.split('~');if(!keys.length||keys.some(k=>!validKeys.has(k)))throw Error();list=selectedRows(keys);}catch{main.innerHTML='<section class="view gut"><h2 class="sec">这个分享链接无法读取</h2><p>链接可能不完整，或其中场次已更新。</p><button class="primary-button" data-tab="my">打开我的影展</button></section>';currentExport=[];return;}}
+  else list=selectedRows();
+  currentExport=list;const isShared=shared!==undefined,st=planStats(list);
+  if(!list.length){main.innerHTML='<section class="view gut export-view"><div class="page-heading"><div><small>TAKE CINEMA WITH YOU</small><h2 class="sec">导出与分享</h2></div><button class="text-button" data-tab="plan">我的排片</button></div><div class="empty-plan"><h3>先为自己选几场电影</h3><p>加入场次后，就能生成带二维码的分享日程。</p><button class="primary-button" data-tab="schedule">去选电影</button></div></section>';return;}
+  const qr=qrSVG(shareURLShort(list)),canShare=!!navigator.share;
+  const tile=(act,ic,t,s,cls='')=>'<button class="xtile '+cls+'" data-action="'+act+'"><span class="xt-ic">'+ic+'</span><b>'+t+'</b><small>'+s+'</small></button>';
+  const IC={img:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-5-5L5 21"/></svg>',cal:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M9 15h6"/></svg>',pdf:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 9V3h12v6M6 18H4v-7h16v7h-2M7 14h10v7H7z"/></svg>',add:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 5v14M5 12h14"/></svg>',share:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/></svg>'};
+  main.innerHTML='<section class="view gut export-view"><div class="page-heading"><div><small>'+(isShared?'SHARED PROGRAMME':'TAKE CINEMA WITH YOU')+'</small><h2 class="sec">'+(isShared?'朋友分享的排片':'导出与分享')+'</h2></div><button class="text-button" data-tab="plan">我的排片</button></div>'+
+  (isShared?'<div class="shared-banner"><b>'+st.n+' 场电影 · '+st.days+' 天</b><p>这是一份别人分享给你的观影日程。加入后会和你自己的排片合并。</p><button class="primary-button" data-action="import-plan">全部加入我的排片</button></div>':'')+
+  '<div class="share-panel">'+(qr?'<div class="qr-box">'+qr+'</div>':'')+'<div class="share-body"><b>扫码打开这份排片</b><small>朋友用手机扫码或点开链接即可查看，无需登录，可一键加入自己的排片。</small><div class="link-row"><input id="share-url" readonly value="'+esc(shareURL(list))+'" aria-label="分享链接"><button class="secondary-button" data-action="copy-link">复制链接</button></div>'+(canShare?'<button class="text-button share-sys" data-action="system-share">'+IC.share+' 通过手机分享…</button>':'')+'</div></div>'+
+  '<div class="export-grid">'+tile('png',IC.img,'排片长图','含海报与二维码 · PNG','main')+tile('calendar',IC.cal,'导入日历','.ics · 手机/电脑日历')+tile('print',IC.pdf,'打印 / PDF','A4 排版')+'</div>'+
+  '<h3 class="blockh">预览 <small>PREVIEW</small></h3><div class="share-paper"><div class="paper-band"><div><b>风格万相</b><span>STYLE KALEIDOSCOPE · 中外经典影片展</span></div><em>'+(isShared?'观影日程':'我的观影日程')+'</em></div><div class="paper-stats"><span><b>'+st.n+'</b>场</span><span><b>'+st.days+'</b>天</span><span><b>'+st.hm+'</b>银幕时长</span></div><div class="plan-days">'+planRowsHTML(list,false)+'</div><footer>'+(qr?'<div class="paper-qr">'+qr+'</div>':'')+'<div><b>扫码查看并加入这份排片</b><span>中外经典影片展 · 2026.10—2027.01</span><span>由麻雀映画制作</span></div></footer></div>'+
+  '<p class="local-note">分享链接与二维码保存的是此刻的场次选择，之后修改个人排片不会改变已发出的内容。</p></section>';}
 function downloadBlob(blob,filename){const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),60000);}
-function wrapCanvas(ctx,text,x,y,maxWidth,lineHeight){let line='';for(const ch of text){if(ctx.measureText(line+ch).width>maxWidth&&line){ctx.fillText(line,x,y);y+=lineHeight;line=ch;}else line+=ch;}if(line)ctx.fillText(line,x,y);return y;}
-function exportPNG(){const list=currentExport;if(!list.length)return;const canvas=document.createElement('canvas');canvas.width=1080;canvas.height=340+list.length*194;const c=canvas.getContext('2d');c.fillStyle='#efe6d4';c.fillRect(0,0,canvas.width,canvas.height);c.fillStyle='#8e2a22';c.font='bold 58px serif';c.fillText('风格万相',64,98);c.fillStyle='#7a6a55';c.font='22px sans-serif';c.fillText('STYLE KALEIDOSCOPE · 我的观影日程',64,144);c.fillText(list.length+' 场电影 / '+new Set(list.map(s=>s.d)).size+' 天',64,192);let y=240;list.forEach(s=>{c.fillStyle='#d8cbb1';c.fillRect(64,y,952,1);c.fillStyle='#8e2a22';c.font='bold 30px sans-serif';c.fillText(s.d,64,y+54);c.font='22px sans-serif';c.fillText(wk(s.d),64,y+92);c.fillStyle='#2b2117';c.font='bold 34px sans-serif';let titleY=wrapCanvas(c,F[s.id].cn+" · "+editionOf(F[s.id]),244,y+52,760,42);c.font='27px sans-serif';c.fillText(s.t+' — '+fmt(toMin(s.t)+F[s.id].min),244,titleY+44);c.fillStyle='#7a6a55';c.font='24px sans-serif';wrapCanvas(c,VN[s.v].name+' · '+hallOf(s).name,244,titleY+86,760,30);y+=194;});c.fillStyle='#7a6a55';c.font='22px sans-serif';c.fillText('中外经典影片展 · 由麻雀映画制作',64,canvas.height-36);canvas.toBlob(blob=>{if(blob){downloadBlob(blob,'风格万相_我的排片.png');toast('排片图片已生成');}else toast('图片生成失败，请使用打印导出');},'image/png');}
+function wrapLines(ctx,text,maxWidth){const out=[];let line='';for(const ch of text){if(ctx.measureText(line+ch).width>maxWidth&&line){out.push(line);line=ch;}else line+=ch;}if(line)out.push(line);return out;}
+function wrapCanvas(ctx,text,x,y,maxWidth,lineHeight){const ls=wrapLines(ctx,text,maxWidth);ls.forEach((l,i)=>ctx.fillText(l,x,y+i*lineHeight));return y+(ls.length-1)*lineHeight;}
+function loadImg(src){return new Promise(r=>{if(!src)return r(null);const im=new Image();im.onload=()=>r(im);im.onerror=()=>r(null);im.src=src;});}
+function rr(c,x,y,w,h,r){c.beginPath();c.moveTo(x+r,y);c.arcTo(x+w,y,x+w,y+h,r);c.arcTo(x+w,y+h,x,y+h,r);c.arcTo(x,y+h,x,y,r);c.arcTo(x,y,x+w,y,r);c.closePath();}
+let pngBusy=false;
+async function exportPNG(){const list=currentExport;if(!list.length||pngBusy)return;pngBusy=true;toast('正在生成排片长图…');
+  try{try{await Promise.all(['900 64px "Noto Serif SC"','700 30px "Noto Sans SC"','500 24px "IBM Plex Mono"'].map(f=>document.fonts.load(f,'风格万相0123')));}catch(e){}
+  const SERIF='"Noto Serif SC","Songti SC",serif',SANS='"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif',MONO='"IBM Plex Mono",Menlo,monospace';
+  const W=1080,P=64,ROW=196,GAP=52,DAYH=104,HEAD=360,STATS=150,FOOT=420;
+  const groups=byDay(list),imgs={};await Promise.all([...new Set(list.map(s=>s.id))].map(async id=>{imgs[id]=await loadImg(pst(id));}));
+  const H=HEAD+STATS+groups.reduce((n,[,it])=>n+DAYH+it.length*ROW+(it.length-1)*GAP+24,0)+FOOT;
+  const cv=document.createElement('canvas'),scale=1;cv.width=W*scale;cv.height=H*scale;const c=cv.getContext('2d');c.scale(scale,scale);c.textBaseline='alphabetic';
+  c.fillStyle='#efe6d4';c.fillRect(0,0,W,H);
+  // header band
+  c.fillStyle='#8e2a22';c.fillRect(0,0,W,HEAD);c.fillStyle='rgba(255,255,255,.06)';for(let x=-HEAD;x<W;x+=46){c.beginPath();c.moveTo(x,HEAD);c.lineTo(x+HEAD*.47,0);c.lineTo(x+HEAD*.47+2,0);c.lineTo(x+2,HEAD);c.fill();}
+  c.fillStyle='#fffaf0';c.font='italic 900 104px '+SERIF;c.fillText('风格万相',P,150);
+  c.font='500 22px '+MONO;c.globalAlpha=.85;c.fillText('STYLE KALEIDOSCOPE · 中外经典影片展 2026.10—2027.01',P,200);c.globalAlpha=1;
+  c.fillStyle='#fffaf0';c.fillRect(P,240,56,3);c.font='700 46px '+SANS;c.fillText(location.hash.startsWith('#share=')?'观影日程':'我的观影日程',P,310);
+  // stats
+  const st=planStats(list);let sx=P;[[st.n,'场放映'],[st.days,'天行程'],[st.hm,'银幕时长']].forEach(([v,l])=>{c.fillStyle='#2b2117';c.font='600 56px '+MONO;c.fillText(String(v),sx,HEAD+92);const w=c.measureText(String(v)).width;c.fillStyle='#7a6a55';c.font='400 24px '+SANS;c.fillText(l,sx+w+10,HEAD+92);sx+=Math.max(250,w+150);});
+  c.fillStyle='#d8cbb1';c.fillRect(P,HEAD+STATS-24,W-2*P,2);
+  let y=HEAD+STATS;
+  groups.forEach(([d,items])=>{
+    c.fillStyle='#8e2a22';c.font='600 44px '+MONO;c.fillText(d,P,y+56);const dw=c.measureText(d).width;c.font='700 26px '+SANS;c.fillText(wk(d),P+dw+16,y+56);
+    c.fillStyle='#7a6a55';c.font='400 22px '+SANS;const meta=items.length+' 场 · '+items[0].t+' – '+fmt(endMin(items[items.length-1]));c.textAlign='right';c.fillText(meta,W-P,y+56);c.textAlign='left';
+    y+=DAYH;
+    items.forEach((s,i)=>{const f=F[s.id];
+      if(i){const g=gapOf(items[i-1],s);c.font='400 22px '+SANS;c.fillStyle=g.cls==='clash'?'#b3261e':g.cls==='tight'?'#b26a1f':'#7a6a55';c.fillText((g.cls==='clash'?'⚠ ':'')+g.txt,P+220,y+GAP/2+6);c.fillStyle='#d8cbb1';c.fillRect(P+180,y-10,2,GAP+20);y+=GAP;}
+      // card
+      c.fillStyle='#f8f2e6';rr(c,P+200,y,W-2*P-200,ROW-20,14);c.fill();c.fillStyle=regColor(f);rr(c,P+200,y,8,ROW-20,4);c.fill();
+      c.fillStyle='#2b2117';c.font='600 40px '+MONO;c.fillText(s.t,P,y+52);c.fillStyle='#7a6a55';c.font='400 26px '+MONO;c.fillText('— '+fmt(endMin(s)),P,y+92);
+      const im=imgs[s.id],tx=P+232,ty=y+18,tw=104,th=ROW-56;
+      if(im){c.save();rr(c,tx,ty,tw,th,6);c.clip();const r=Math.max(tw/im.width,th/im.height),iw=im.width*r,ih=im.height*r;c.drawImage(im,tx+(tw-iw)/2,ty+(th-ih)/2,iw,ih);c.restore();}
+      else{c.fillStyle=regColor(f);rr(c,tx,ty,tw,th,6);c.fill();c.fillStyle='#fffaf0';c.font='900 44px '+SERIF;c.fillText(f.cn[0],tx+30,ty+80);}
+      const ix=tx+tw+24,iw2=W-P-24-ix;c.fillStyle='#2b2117';c.font='700 36px '+SANS;const tl=wrapLines(c,f.cn,iw2-(f.version?110:0));c.fillText(tl[0]+(tl.length>1?'…':''),ix,y+58);
+      if(f.version){const tw2=c.measureText(tl[0]+(tl.length>1?'…':'')).width;c.font='600 20px '+MONO;const vw=c.measureText(f.version).width+18;c.strokeStyle='#8e2a22';c.lineWidth=2;rr(c,ix+tw2+12,y+32,vw,32,6);c.stroke();c.fillStyle='#8e2a22';c.fillText(f.version,ix+tw2+21,y+56);}
+      c.fillStyle='#7a6a55';c.font='400 24px '+SANS;c.fillText(wrapLines(c,f.dir+' · '+f.min+' 分钟',iw2)[0],ix,y+100);
+      c.fillStyle='#2f6f6c';c.font='500 24px '+SANS;c.fillText(wrapLines(c,VN[s.v].name+' · '+hallOf(s).name,iw2)[0],ix,y+140);
+      y+=ROW;});
+    y+=24;});
+  // footer with QR
+  const fy=y+20;c.fillStyle='#2b2117';rr(c,P,fy,W-2*P,FOOT-84,20);c.fill();
+  const m=qrMatrix(shareURLShort(list)),qs=264,qx=P+36,qy=fy+36;
+  if(m){c.fillStyle='#fff';rr(c,qx,qy,qs,qs,10);c.fill();const n=m.length,cell=(qs-24)/n;c.fillStyle='#1d1712';for(let r=0;r<n;r++)for(let k=0;k<n;k++)if(m[r][k])c.fillRect(Math.floor(qx+12+k*cell),Math.floor(qy+12+r*cell),Math.ceil(cell),Math.ceil(cell));}
+  const fx=m?qx+qs+40:P+36;c.fillStyle='#fffaf0';c.font='700 38px '+SANS;c.fillText('扫码查看这份排片',fx,fy+100);c.font='400 24px '+SANS;c.globalAlpha=.8;wrapCanvas(c,'打开后可一键加入你自己的排片',fx,fy+150,W-P-36-fx,34);c.globalAlpha=.6;c.font='400 20px '+MONO;c.fillText(location.host+location.pathname,fx,fy+226);c.globalAlpha=1;
+  c.fillStyle='#e0b9a6';c.font='italic 900 30px '+SERIF;c.fillText('风格万相',fx,fy+280);c.fillStyle='#fffaf0';c.globalAlpha=.7;c.font='400 20px '+SANS;c.fillText('由麻雀映画制作',fx+c.measureText('风格万相').width+80,fy+278);c.globalAlpha=1;
+  const blob=await new Promise(r=>cv.toBlob(r,'image/png'));if(!blob){toast('图片生成失败，请使用打印导出');return;}
+  showImageSheet(blob);}finally{pngBusy=false;}}
+function showImageSheet(blob){const url=URL.createObjectURL(blob),file=new File([blob],'风格万相_我的排片.png',{type:'image/png'});const canFile=!!(navigator.canShare&&navigator.canShare({files:[file]}));
+  let el=document.getElementById('img-sheet');if(el)el.remove();el=document.createElement('div');el.id='img-sheet';el.className='img-sheet';el.setAttribute('role','dialog');el.setAttribute('aria-label','排片长图');
+  el.innerHTML='<div class="is-panel"><div class="is-head"><b>排片长图已生成</b><button class="is-close" aria-label="关闭"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div><div class="is-img"><img src="'+url+'" alt="排片长图预览"></div><p class="is-tip">手机上可长按图片保存到相册</p><div class="is-actions">'+(canFile?'<button class="primary-button" data-is="share">分享图片</button>':'')+'<button class="'+(canFile?'secondary':'primary')+'-button" data-is="save">保存图片</button></div></div>';
+  document.body.appendChild(el);const close=()=>{el.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);};
+  el.addEventListener('click',async e=>{if(e.target===el||e.target.closest('.is-close'))return close();const b=e.target.closest('[data-is]');if(!b)return;if(b.dataset.is==='save'){downloadBlob(blob,'风格万相_我的排片.png');toast('图片已保存');}else{try{await navigator.share({files:[file],title:'风格万相 · 我的观影日程'});}catch(err){}}});
+  document.addEventListener('keydown',function k(e){if(e.key==='Escape'){close();document.removeEventListener('keydown',k);}});}
 function exportCalendar(){if(!currentExport.length)return;const stamp=d=>d.getFullYear()+String(d.getMonth()+1).padStart(2,'0')+String(d.getDate()).padStart(2,'0')+'T'+String(d.getHours()).padStart(2,'0')+String(d.getMinutes()).padStart(2,'0')+'00';const escapeIcs=s=>String(s).replace(/\\/g,'\\\\').replace(/\n/g,'\\n').replace(/,/g,'\\,').replace(/;/g,'\\;');let lines=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//SparrowCinema//Style Kaleidoscope//ZH','CALSCALE:GREGORIAN','X-WR-CALNAME:风格万相·我的排片','X-WR-TIMEZONE:Asia/Shanghai','BEGIN:VTIMEZONE','TZID:Asia/Shanghai','BEGIN:STANDARD','DTSTART:19700101T000000','TZOFFSETFROM:+0800','TZOFFSETTO:+0800','TZNAME:CST','END:STANDARD','END:VTIMEZONE'];for(const s of currentExport){const start=showDate(s),end=new Date(start.getTime()+F[s.id].min*60000);lines.push('BEGIN:VEVENT','UID:'+encodeURIComponent(keyOf(s))+'@style-kaleidoscope','DTSTAMP:'+new Date().toISOString().replace(/[-:]/g,'').replace(/\.\d+Z/,'Z'),'DTSTART;TZID=Asia/Shanghai:'+stamp(start),'DTEND;TZID=Asia/Shanghai:'+stamp(end),'SUMMARY:'+escapeIcs(F[s.id].cn+' · '+editionOf(F[s.id])),'LOCATION:'+escapeIcs(VN[s.v].name+' · '+hallOf(s).name),'DESCRIPTION:'+escapeIcs('风格万相中外经典影片展\n影片片长 '+F[s.id].min+' 分钟'),'END:VEVENT');}lines.push('END:VCALENDAR');downloadBlob(new Blob([lines.join('\r\n')+'\r\n'],{type:'text/calendar;charset=utf-8'}),'风格万相_我的排片.ics');toast('日历文件已生成');}
-document.addEventListener('click',async e=>{const button=e.target.closest('[data-plan],[data-action]');if(!button)return;if(button.dataset.plan){const k=button.dataset.plan;if(!validKeys.has(k))return;if(picked.has(k))picked.delete(k);else picked.add(k);saveSelection();const scroll=window.scrollY;route();window.scrollTo(0,scroll);return;}switch(button.dataset.action){case 'clear-plan':if(confirm('清空当前浏览器保存的个人排片？')){picked.clear();saveSelection();route();}break;case 'png':exportPNG();break;case 'calendar':exportCalendar();break;case 'print':window.print();break;case 'copy-link':{const box=document.querySelector('.share-link-box');box.hidden=false;const input=document.getElementById('share-url');try{await navigator.clipboard.writeText(input.value);toast('分享链接已复制');}catch{input.focus();input.select();toast('请复制已选中的分享链接');}break;}case 'import-plan':currentExport.forEach(s=>picked.add(keyOf(s)));saveSelection();go('plan');break;}});
+document.addEventListener('click',async e=>{const button=e.target.closest('[data-plan],[data-action]');if(!button)return;if(button.dataset.plan){const k=button.dataset.plan;if(!validKeys.has(k))return;if(picked.has(k))picked.delete(k);else picked.add(k);saveSelection();const scroll=window.scrollY;route();window.scrollTo(0,scroll);return;}switch(button.dataset.action){case 'clear-plan':if(confirm('清空当前浏览器保存的个人排片？')){picked.clear();saveSelection();route();}break;case 'png':exportPNG();break;case 'calendar':exportCalendar();break;case 'print':window.print();break;case 'copy-link':{const input=document.getElementById('share-url');if(!input)break;try{await navigator.clipboard.writeText(input.value);toast('分享链接已复制');}catch{input.focus();input.select();toast('请复制已选中的分享链接');}break;}case 'system-share':{try{await navigator.share({title:'风格万相 · 观影日程',text:'我的风格万相观影日程（'+currentExport.length+' 场）',url:shareURL(currentExport)});}catch(err){}break;}case 'import-plan':currentExport.forEach(s=>picked.add(keyOf(s)));saveSelection();go('plan');break;}});
 
 let pendingFlash=null, lastList="schedule";
 function go(h){ location.hash = h; }
