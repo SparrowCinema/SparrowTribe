@@ -12,7 +12,7 @@
         <view wx:if="{{f.o}}" class="native">原名 {{f.o}}</view>
         <view class="tags">
           <text wx:if="{{f.version}}" class="tg ed2">{{f.version}}</text>
-          <text class="tg">{{f.min}} 分钟</text>
+          <text class="tg">{{f.minText}}</text>
           <text class="tg">{{f.lang}}</text>
           <text wx:for="{{f.genre}}" wx:key="*this" class="tg">{{item}}</text>
         </view>
@@ -42,6 +42,7 @@
     </view>
 
     <view class="sec-h">放映场次 <text class="muted small">{{shows.length}} 场</text></view>
+    <view wx:if="{{!shows.length}}" class="noshow card"><text class="b">{{f.release || '上映信息待公布'}}</text><text class="muted small">场次公布后会更新到这里，也可以先在各影院售票平台查看。</text></view>
     <view wx:for="{{shows}}" wx:key="key" class="ticket card">
       <view class="td"><text class="tm">{{item.m}}月</text><text class="tdd mono">{{item.dd}}</text><text class="tw">{{item.wk}}</text></view>
       <view class="tb">
