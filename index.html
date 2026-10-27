@@ -1,0 +1,492 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>风格万相影展</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600;900&family=Noto+Sans+SC:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+/* Layout: a phone app shell — sticky top bar, three tabs (排片 Gantt / 片目 / 影展), full-screen film detail pages. Palette pulled from the poster: sea teal, sand, ochre, oxblood title red. */
+:root{
+  --bg:#efe6d4; --surface:#f8f2e6; --line:#d8cbb1; --line-soft:#e6dcc7;
+  --fg:#2b2117; --muted:#7a6a55;
+  --oxblood:#8e2a22; --teal:#2f6f6c; --ochre:#b26a1f; --olive:#5d6b2e;
+  --accent:#8e2a22; --on-block:#fffaf0; --chip:#e5d8bf;
+  --f-display:"Noto Serif SC","Songti SC","STSong",serif;
+  --f-body:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --px:2px;  /* Gantt scale: 2px per minute */
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#17130f; --surface:#211b15; --line:#3b3128; --line-soft:#2c241d;
+  --fg:#f1e6d3; --muted:#a8977f; --oxblood:#a8382e; --teal:#33807b; --ochre:#b8741f; --olive:#6b7a35;
+  --accent:#e0705e; --on-block:#fff8ec; --chip:#2e261e; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#17130f; --surface:#211b15; --line:#3b3128; --line-soft:#2c241d;
+  --fg:#f1e6d3; --muted:#a8977f; --oxblood:#a8382e; --teal:#33807b; --ochre:#b8741f; --olive:#6b7a35;
+  --accent:#e0705e; --on-block:#fff8ec; --chip:#2e261e; color-scheme:dark}
+
+html,body{height:100%}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--surface)}
+.app{max-width:480px;margin:0 auto;min-height:100%;background:var(--bg);position:relative;padding-bottom:calc(72px + env(safe-area-inset-bottom,0px))}
+@media (min-width:520px){.app{border-left:1px solid var(--line);border-right:1px solid var(--line)}}
+.gut{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* top bar */
+.topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--surface);border-bottom:1px solid var(--line);padding-block:10px}
+.topbar .row{display:flex;align-items:center;gap:12px;min-height:40px}
+.brand{display:flex;flex-direction:column;line-height:1.1;min-width:0}
+.brand b{font-family:var(--f-display);font-weight:900;font-style:italic;font-size:24px;color:var(--oxblood);letter-spacing:.02em}
+.brand small{font-size:11px;color:var(--muted);letter-spacing:.12em}
+.topbar .sp{flex:1}
+.pill{font-family:var(--f-mono);font-size:11px;padding:3px 9px;border:1px solid var(--line);border-radius:99px;color:var(--muted);white-space:nowrap}
+.credit{display:flex;flex-direction:column;align-items:flex-end;gap:3px;flex:none}
+.credit small{font-size:10px;color:var(--muted);letter-spacing:.08em;white-space:nowrap}
+.back{display:flex;align-items:center;gap:4px;font-size:15px;font-weight:500;padding:6px 8px 6px 0;color:var(--accent)}
+.back svg{width:20px;height:20px}
+
+/* tab bar */
+.tabbar{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--surface);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px)}
+.tabbar .in{max-width:480px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);padding-left:max(0px,env(safe-area-inset-left,0px));padding-right:max(0px,env(safe-area-inset-right,0px))}
+.tab{display:flex;flex-direction:column;align-items:center;gap:2px;padding:9px 0 10px;font-size:11px;color:var(--muted)}
+.tab svg{width:22px;height:22px}
+.tab[aria-current="page"]{color:var(--accent);font-weight:700}
+
+.view{padding-block:16px 24px}
+h2.sec{font-family:var(--f-display);font-weight:900;font-size:22px;margin:0 0 4px;text-wrap:balance}
+.sub{color:var(--muted);font-size:13px;margin:0 0 14px}
+
+/* legend + day chips */
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12px;color:var(--muted);margin-bottom:12px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+
+/* Gantt */
+.gantt{position:relative;overflow-x:auto;overflow-y:hidden;border:1px solid var(--line);border-radius:10px;background:var(--surface);-webkit-overflow-scrolling:touch}
+.g-inner{position:relative;display:grid;grid-template-columns:64px auto}
+.g-corner,.g-day{position:sticky;left:0;z-index:3;background:var(--surface);border-right:1px solid var(--line)}
+.g-corner{border-bottom:1px solid var(--line);font-size:10px;color:var(--muted);display:flex;align-items:flex-end;padding:0 0 6px 8px;letter-spacing:.1em}
+.g-ruler{position:relative;height:30px;border-bottom:1px solid var(--line)}
+.g-ruler span{position:absolute;top:8px;font-family:var(--f-mono);font-size:11px;color:var(--muted);transform:translateX(-50%)}
+.g-day{display:flex;flex-direction:column;justify-content:center;padding-left:10px;border-bottom:1px solid var(--line-soft);height:76px;min-width:0}
+.g-day b{font-family:var(--f-mono);font-size:15px;font-weight:600;font-variant-numeric:tabular-nums}
+.g-day small{font-size:11px;color:var(--muted)}
+.g-track{position:relative;height:76px;border-bottom:1px solid var(--line-soft);
+  background-image:repeating-linear-gradient(to right,var(--line-soft) 0 1px,transparent 1px calc(var(--px)*30)),repeating-linear-gradient(to right,var(--line) 0 1px,transparent 1px calc(var(--px)*60))}
+.blk{position:absolute;top:0;bottom:0;display:flex;flex-direction:column;justify-content:space-between;padding:7px 8px;color:var(--on-block);text-align:left;overflow:hidden;border-right:1px solid var(--surface);border-left:1px solid var(--surface);transition:filter .15s}
+.blk:hover{filter:brightness(1.08)}
+.blk .t{font-weight:700;font-size:13.5px;line-height:1.25;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.blk .m{font-family:var(--f-mono);font-size:10.5px;opacity:.9;white-space:nowrap;font-variant-numeric:tabular-nums}
+.blk.flash{animation:flash 1.2s ease 2}
+@keyframes flash{50%{filter:brightness(1.35)}}
+.gantt.compact{cursor:pointer;overflow:hidden}
+.gantt.compact .g-day{padding-left:7px}
+.gantt.compact .g-day b{font-size:12px}
+.gantt.compact .g-ruler{height:22px}
+.gantt.compact .g-ruler span{top:4px;font-size:10px}
+.gantt.compact .blk{padding:4px 3px;justify-content:center}
+.gantt.compact .blk .t{font-size:10.5px;font-weight:700;-webkit-line-clamp:2;line-height:1.15;word-break:break-all}
+.gantt.compact:hover{border-color:var(--accent)}
+.open-full{display:flex;align-items:center;gap:10px;width:100%;margin-top:10px;padding:12px 14px;border-radius:10px;background:var(--fg);color:var(--bg);text-align:left}
+.open-full span{font-weight:700;font-size:15px}
+.open-full small{flex:1;font-size:12px;opacity:.7}
+.open-full svg{width:20px;height:20px;flex:none}
+.full-g .gantt{max-height:none}
+.hint{font-size:12px;color:var(--muted);margin-top:8px;display:flex;align-items:center;gap:6px}
+
+/* agenda list under gantt */
+.g-day .hl{font-size:10px;color:var(--accent);line-height:1.2;margin-top:2px}
+.blockh{font-family:var(--f-display);font-weight:900;font-size:18px;margin:0 0 10px;display:flex;align-items:baseline;gap:8px}
+.blockh small{font-family:var(--f-body);font-weight:400;font-size:11px;color:var(--muted);letter-spacing:.1em}
+.venues{margin-top:26px;display:flex;flex-direction:column;gap:10px}
+.venue{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:14px}
+.vhead{display:flex;align-items:center;gap:12px}
+.vmark{width:40px;height:40px;flex:none;border-radius:8px;background:var(--fg);color:var(--bg);display:grid;place-items:center;font-family:var(--f-display);font-weight:900;font-size:18px}
+.vname{flex:1;min-width:0;display:flex;flex-direction:column;line-height:1.3}
+.vname b{font-size:16px}.vname small{font-size:11px;color:var(--muted);letter-spacing:.14em}
+.vcount{font-size:12px;color:var(--muted);text-align:right}.vcount b{font-family:var(--f-mono);font-size:20px;color:var(--fg);margin-right:2px}
+.halls{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.hall{flex:1 1 140px;border-radius:8px;background:var(--bg);padding:9px 12px;display:flex;flex-direction:column}
+.hall b{font-size:14px}.hall small{font-size:11px;color:var(--muted)}
+.agenda{margin-top:26px;display:flex;flex-direction:column;gap:18px}
+.ag-day h3{font-family:var(--f-mono);font-size:12px;letter-spacing:.12em;color:var(--muted);margin:0 0 6px;font-weight:500}
+.ag-row{display:grid;grid-template-columns:52px 4px 1fr auto;gap:10px;align-items:center;width:100%;padding:10px 0;border-bottom:1px solid var(--line-soft);text-align:left}
+.ag-row .tm{font-family:var(--f-mono);font-weight:600;font-variant-numeric:tabular-nums}
+.ag-row .bar{align-self:stretch;border-radius:2px}
+.ag-row .nm{min-width:0}
+.ag-row .nm b{display:block;font-size:15px}
+.ag-row .nm small{color:var(--muted);font-size:12px}
+.chev{color:var(--muted);width:16px;height:16px}
+
+/* films list */
+.flist{display:flex;flex-direction:column}
+.fcard{display:grid;grid-template-columns:58px 1fr auto;gap:14px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line-soft);text-align:left;width:100%}
+.slate{aspect-ratio:2/3;width:58px;max-width:100%;border-radius:4px;color:var(--on-block);display:flex;flex-direction:column;justify-content:space-between;padding:6px;font-family:var(--f-mono);font-size:10px}
+.slate b{font-family:var(--f-display);font-size:19px;line-height:1;font-weight:900}
+.fcard .info{min-width:0}
+.fcard .info b{font-size:16px;display:block;line-height:1.35}
+.fcard .info .o{font-size:12px;color:var(--muted);display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fcard .info .d{font-size:12px;color:var(--muted)}
+.score{font-family:var(--f-mono);font-size:12px;text-align:right;color:var(--muted);line-height:1.4}
+.score b{font-size:17px;color:var(--fg);display:block}
+.filters{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;margin-bottom:6px;scrollbar-width:none}
+.fchip{flex:none;font-size:13px;padding:5px 12px;border-radius:99px;background:var(--chip);color:var(--fg)}
+.fchip[aria-pressed="true"]{background:var(--fg);color:var(--bg)}
+
+/* detail */
+.hero{color:var(--on-block);padding-block:22px 20px;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(115deg,transparent 0 22px,rgba(255,255,255,.05) 22px 23px);pointer-events:none}
+.slate.has{padding:0;overflow:hidden}
+.slate img{width:100%;height:100%;object-fit:cover;display:block}
+.hero.withp{display:grid;grid-template-columns:118px 1fr;gap:16px;align-items:end}
+.hero-bg{position:absolute;inset:-20px;width:calc(100% + 40px);height:calc(100% + 40px);max-width:none;object-fit:cover;filter:blur(24px) brightness(.55) saturate(1.2);z-index:0}
+.hero-p{position:relative;z-index:1;width:118px;max-width:100%;aspect-ratio:2/3;object-fit:cover;border-radius:6px;box-shadow:0 8px 24px rgba(0,0,0,.4)}
+.hero-txt{position:relative;z-index:1;min-width:0}
+.hero.withp h1{font-size:28px}
+.hero .eyebrow{font-family:var(--f-mono);font-size:11px;letter-spacing:.16em;opacity:.85}
+.hero h1{font-family:var(--f-display);font-weight:900;font-size:36px;line-height:1.15;margin:6px 0 4px;text-wrap:balance}
+.hero .orig{font-size:14px;opacity:.9;font-style:italic}
+.hero .meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.hero .meta span{font-size:12px;padding:3px 9px;border:1px solid rgba(255,250,240,.45);border-radius:99px}
+.ratings{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:-1px;padding-block:14px;background:var(--surface);border-bottom:1px solid var(--line)}
+.rt{display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 2px;border-radius:8px;background:var(--bg);min-width:0}
+.rt .lbl{font-size:10px;letter-spacing:.06em;color:var(--muted);white-space:nowrap}
+.rt .v{font-family:var(--f-mono);font-weight:600;font-size:17px;font-variant-numeric:tabular-nums}
+.rt .v.na{color:var(--muted);font-weight:400}
+.rt .u{font-size:9.5px;color:var(--muted);font-family:var(--f-mono)}
+.rnote{font-size:11px;color:var(--muted);padding-block:6px 0}
+.shows{display:flex;flex-direction:column;gap:8px;margin-top:16px}
+.show{display:flex;align-items:center;gap:12px;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:var(--surface);text-align:left;width:100%}
+.show .dt{font-family:var(--f-mono);font-weight:600;font-size:16px;font-variant-numeric:tabular-nums}
+.show .x{flex:1;font-size:13px;color:var(--muted)}
+.show .go{font-size:12px;color:var(--accent);font-weight:500}
+.dsec{margin-top:26px}
+.dsec h3{font-family:var(--f-display);font-size:18px;font-weight:900;margin:0 0 8px;display:flex;align-items:baseline;gap:8px}
+.dsec h3 small{font-family:var(--f-body);font-weight:400;font-size:11px;color:var(--muted);letter-spacing:.12em}
+.dsec p{margin:0 0 10px;max-width:65ch}
+.dir-card{display:flex;gap:12px;align-items:center;margin-bottom:10px}
+.mono-av{width:44px;height:44px;flex:none;border-radius:50%;display:grid;place-items:center;color:var(--on-block);font-family:var(--f-display);font-weight:900;font-size:18px}
+.dir-card b{display:block}
+.dir-card small{color:var(--muted);font-size:12px}
+.statement{border-left:3px solid var(--line);padding-left:14px;color:var(--fg)}
+.src{font-size:11px;color:var(--muted)}
+.nav2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:30px}
+.nav2 button{border:1px solid var(--line);border-radius:10px;padding:10px 12px;text-align:left;font-size:12px;color:var(--muted);min-width:0}
+.nav2 button b{display:block;color:var(--fg);font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.nav2 button:last-child{text-align:right}
+
+/* about */
+.about p{max-width:65ch}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;font-size:14px;margin:14px 0}
+.kv dt{color:var(--muted)}
+.kv dd{margin:0}
+@media (min-width:900px){
+  .app{max-width:1240px}
+  .tabbar .in{max-width:1240px}
+  .flist{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:28px}
+  .agenda{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 28px}
+  .agenda .blockh{grid-column:1/-1;margin:0}
+  .venues{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr))}
+  .venues .blockh{grid-column:1/-1}
+  .hero.withp{grid-template-columns:180px 1fr;padding-block:36px 30px}
+  .hero-p{width:180px}
+  .hero.withp h1{font-size:40px}
+  .ratings{gap:12px}
+  .dsec p{font-size:16px}
+}
+@media (min-width:1300px){.flist{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<div class="app">
+  <header class="topbar gut" id="topbar"></header>
+  <main id="main"></main>
+</div>
+<nav class="tabbar" aria-label="主导航"><div class="in">
+  <button class="tab" data-tab="schedule"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="15" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M7 14h5M10 17h7"/></svg>排片</button>
+  <button class="tab" data-tab="films"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M4 8h16M4 16h16M8 3v18M16 3v18"/></svg>片目</button>
+  <button class="tab" data-tab="about"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg>影展</button>
+</div></nav>
+
+<script>
+const REG = {cn:{n:"华语",c:"var(--oxblood)"},eu:{n:"欧洲",c:"var(--teal)"},us:{n:"美国",c:"var(--ochre)"},as:{n:"伊朗",c:"var(--olive)"}};
+
+/* r: [豆瓣/10, IMDb/10, 烂番茄新鲜度%, Metacritic/100, Letterboxd/5]; null = 平台暂无评分 */
+const FILMS = [
+{id:"wild-strawberries",cn:"野草莓",o:"Smultronstället",y:1957,c:"瑞典",min:91,reg:"eu",dir:"英格玛·伯格曼",dirO:"Ingmar Bergman",dirLife:"1918–2007 · 瑞典",
+ r:[8.7,8.1,95,88,4.2],
+ syn:"七十八岁的医学教授伊萨克乘车前往隆德大学接受荣誉学位。同行的有儿媳玛丽安，途中又捎上几个年轻搭车客。一路上，他重返童年的避暑老宅，在白日梦与噩梦里与初恋、亡妻和年轻的自己相遇，渐渐看清自己一生的冷漠与孤独。",
+ bio:"瑞典导演、编剧、戏剧导演，以《第七封印》《假面》《呼喊与细语》《芬妮与亚历山大》等作品成为现代电影最重要的作者之一。他的电影长期追问信仰、死亡、婚姻与自我，擅长用特写和梦境呈现人物内心。",
+ st:"伯格曼回忆，这部电影的念头来自一次开车经过乌普萨拉外祖母老宅的经历：他设想推开门，就能回到童年的世界。片中主人公名字的缩写 I.B. 与导演本人相同，他也承认伊萨克身上有自己对父辈、对自身冷漠的审视。老演员维克多·斯约斯特洛姆出演主角，是他特意向这位瑞典默片大师致敬的选择。"},
+{id:"dogville",cn:"狗镇",o:"Dogville",y:2003,c:"丹麦 / 瑞典 / 英国等",min:178,reg:"eu",dir:"拉斯·冯·提尔",dirO:"Lars von Trier",dirLife:"1956– · 丹麦",
+ r:[8.9,8.0,71,61,4.1],
+ syn:"大萧条年代，逃避黑帮追杀的格蕾丝躲进落基山脚下的小镇狗镇。镇民答应收留她，条件是她为大家干活。随着悬赏升高，善意一点点变成剥削与凌辱。整部电影在只用粉笔画出房屋轮廓的摄影棚里拍成，章节体旁白推动着这则关于人性的寓言。",
+ bio:"丹麦导演，“道格玛95”运动发起人之一。代表作《破浪》《黑暗中的舞者》《忧郁症》，曾获戛纳金棕榈。作品风格多变、挑衅性强，常以受难的女性为中心探讨道德、宗教与权力。",
+ st:"冯·提尔说《狗镇》的灵感来自布莱希特《三分钱歌剧》中的歌曲《海盗珍妮》。他把布景缩减为地板上的粉笔线，希望观众不再被写实环境分散注意，而是把精力放在人物与权力关系上。本片是他“美国三部曲”的第一部，而他本人从未去过美国，这一点也常被他拿来回应外界的批评。"},
+{id:"sirat",cn:"接近终点",o:"Sirāt",y:2025,c:"西班牙 / 法国",min:115,reg:"eu",dir:"奥利维尔·拉克谢",dirO:"Oliver Laxe",dirLife:"1982– · 西班牙",
+ r:[7.4,7.0,90,84,null],
+ syn:"父亲路易斯带着年幼的儿子来到摩洛哥南部山区的一场沙漠锐舞派对，寻找几个月前在这类派对中失踪的女儿。线索渺茫，父子跟随一群浪游的锐舞者驶向沙漠深处的最后一场派对，越过战乱边境与危险地带，旅程逐渐脱离控制。",
+ bio:"生于巴黎的加利西亚裔导演，童年回到西班牙西北部成长，长期在摩洛哥生活和拍片。《你们都是队长》《米玛斯》《火将来临》先后在戛纳获奖；《接近终点》获 2025 年戛纳主竞赛评审团奖，并获奥斯卡最佳国际影片与最佳音效提名。",
+ st:"拉克谢解释，片名 Sirāt 在阿拉伯语中有“道路”之意，也指伊斯兰传说中横跨地狱、通往天国的窄桥，所以他把这部电影视为一次通过仪式般的旅程。他坦言阿巴斯·基亚罗斯塔米、尤其是《樱桃的滋味》，影响了他把死亡当作对生命的反思来处理的方式。他也希望这是自己最贴近大众的一部作品。"},
+{id:"swordsman",cn:"笑傲江湖",o:"Swordsman",y:1990,c:"中国香港",min:120,reg:"cn",dir:"胡金铨 / 徐克 等",dirO:"King Hu, Tsui Hark et al.",dirLife:"监制：徐克",
+ r:[8.0,6.9,null,null,3.5],
+ syn:"改编自金庸小说。华山派弟子令狐冲与小师弟奉命护送《葵花宝典》失窃案的线索，卷入东厂、日月神教与各大门派的争夺。在一场场权谋与背叛之后，他见识了所谓名门正派的伪善，也写下“沧海一声笑”式的江湖快意。",
+ bio:"本片由武侠片宗师胡金铨开拍，因与监制徐克理念分歧中途离开，后由徐克、程小东、许鞍华、李惠民等人接手完成。徐克是香港新浪潮代表人物，以《蝶变》《黄飞鸿》系列、《新龙门客栈》重塑了华语武侠与动作类型。",
+ st:"徐克希望借这部电影为八九十年代之交的香港武侠片注入新的速度感和特效语言，同时保留胡金铨式的山水江湖与文人气。影片多人执导的痕迹明显，也被视为新旧两代武侠美学交接的一个现场。"},
+{id:"swordsman-2",cn:"笑傲江湖2：东方不败",o:"Swordsman II",y:1992,c:"中国香港",min:108,reg:"cn",dir:"程小东",dirO:"Ching Siu-tung",dirLife:"监制：徐克",
+ r:[8.5,7.3,89,null,3.8],
+ syn:"令狐冲准备与师门众人退隐江湖，却再度卷入日月神教的权力斗争。教主东方不败为练《葵花宝典》自宫，武功盖世、性别难辨，与令狐冲生出一段错位的情愫。林青霞饰演的东方不败，从此成为华语影史最具魅力的形象之一。",
+ bio:"程小东是香港最重要的武术指导与导演之一，代表作《倩女幽魂》系列、《东方不败之风云再起》，后来担任张艺谋《英雄》《十面埋伏》武术指导。本片由徐克监制并深度参与编剧与构思。",
+ st:"徐克与程小东大胆改写原著，把东方不败交给林青霞来演，让角色在男女之间流动，也让这部武侠片带上了浓重的浪漫与悲剧色彩。影片中关于“江湖”与“天下”的争夺，常被评论者放在九七前香港的语境里解读。"},
+{id:"leningrad-cowboys",cn:"列宁格勒牛仔征美记",o:"Leningrad Cowboys Go America",y:1989,c:"芬兰 / 瑞典",min:78,reg:"eu",dir:"阿基·考里斯马基",dirO:"Aki Kaurismäki",dirLife:"1957– · 芬兰",
+ r:[8.4,6.9,88,null,3.7],
+ syn:"西伯利亚冻原上，一支留着冲天尖发、穿着尖头皮鞋的乐队被告知：他们的音乐在美国才有市场。于是他们带着冻僵的贝斯手（装在棺材里）飞到纽约，再一路开到墨西哥，在一家家小酒吧里演出，搞砸，再出发。",
+ bio:"芬兰导演，作品以冷面幽默、极简对白、怀旧配乐和工人阶级小人物著称。代表作《火柴厂女工》《没有过去的男人》《希望的另一面》《枯叶》，曾获戛纳评审团大奖、柏林最佳导演。",
+ st:"影片的主角“列宁格勒牛仔”由芬兰真实乐队改造而来，考里斯马基把他们包装成“世界上最烂的摇滚乐队”，用一部公路片完成了一次面无表情的美国神话戏仿。他一贯偏爱的冷静构图与无奈的善意，在这部早期作品里已经完整成形。"},
+{id:"turin-horse",cn:"都灵之马",o:"A torinói ló",y:2011,c:"匈牙利 / 法国等",min:146,reg:"eu",dir:"贝拉·塔尔",dirO:"Béla Tarr",dirLife:"1955– · 匈牙利",
+ r:[8.4,7.7,78,80,4.0],
+ syn:"1889 年，尼采在都灵街头抱住一匹被鞭打的马，此后陷入沉默与疯狂。电影追随那匹马和它的主人父女：狂风不止的六天里，他们取水、煮土豆、穿衣、脱衣，井水干涸，灯火熄灭，世界一点点走向黑暗。",
+ bio:"匈牙利导演，以超长镜头、黑白影像和缓慢节奏闻名。与作家克拉斯诺霍尔卡伊·拉斯洛长期合作，代表作《撒旦探戈》《鲸鱼马戏团》。本片获柏林电影节评审团大奖银熊奖。",
+ st:"塔尔说，他关心的是尼采故事之外那个没人追问的问题：那匹马后来怎样了。他把电影看作对存在之沉重的描绘，以六天倒转创世的时间结构，让世界一步步熄灭。他宣布《都灵之马》将是自己的最后一部长片，此后转向教学与装置创作。"},
+{id:"a-better-tomorrow",cn:"英雄本色",o:"A Better Tomorrow",y:1986,c:"中国香港",min:95,reg:"cn",dir:"吴宇森",dirO:"John Woo",dirLife:"1946– · 中国香港",
+ r:[8.7,7.5,100,null,3.8],
+ syn:"伪钞集团的宋子豪在台湾交易时被出卖入狱，好兄弟小马哥为他报仇落下残疾。出狱后的子豪想重新做人，却要面对已成警察、视他为耻的弟弟阿杰，以及步步紧逼的昔日手下。兄弟、义气与尊严，在枪火里一一清算。",
+ bio:"香港导演，“英雄片”类型的开创者。代表作《喋血双雄》《辣手神探》，后赴好莱坞拍摄《变脸》《碟中谍2》。他的双枪、慢镜头与白鸽成为全球动作片的标志性语汇。",
+ st:"《英雄本色》取材自龙刚 1967 年的同名电影，由徐克监制。吴宇森想拍的是对逐渐失落的情义与做人原则的怀念；他把武侠片里的侠义精神搬进现代都市，用枪战代替刀剑。周润发的小马哥造型，也由此成为一个时代的偶像。"},
+{id:"long-live-the-missus",cn:"太太万岁",o:"Long Live the Missus!",y:1947,c:"中国",min:100,reg:"cn",dir:"桑弧",dirO:"Sang Hu",dirLife:"1916–2004 · 中国 · 编剧：张爱玲",
+ r:[8.4,7.0,null,null,3.8],
+ syn:"上海小职员太太陈思珍左右逢源：替丈夫圆谎、给婆婆赔笑、帮弟弟遮掩，靠一个个善意的小谎维持着家的体面。丈夫生意起色后却有了外遇，她终于不得不面对自己苦心经营的这一切。",
+ bio:"桑弧是文华影业公司骨干导演，与张爱玲合作《不了情》《太太万岁》；1949 年后执导中国第一部彩色戏曲片《梁山伯与祝英台》，以及《祝福》等。本片编剧张爱玲为作家，这是她最重要的电影剧本。",
+ st:"编剧张爱玲为本片写过一篇《〈太太万岁〉题记》，大意是她想写一个平凡的太太，没有惊天动地的事迹，只在日常琐碎里周旋与忍耐；她认为这种不彻底、不戏剧化的生活，正是大多数人的真实处境。桑弧以轻快的世态喜剧节奏，托住了这份苍凉。"},
+{id:"bullets-over-broadway",cn:"子弹横飞百老汇",o:"Bullets Over Broadway",y:1994,c:"美国",min:98,reg:"us",dir:"伍迪·艾伦",dirO:"Woody Allen",dirLife:"1935– · 美国",
+ r:[8.4,7.4,94,72,3.7],
+ syn:"1928 年纽约，年轻剧作家大卫终于为自己的严肃戏剧拉到投资，条件是让黑帮老大那位毫无天赋的女友出演角色。贴身保镖奇奇每天坐在排练场，却比所有人都更懂戏，开始动手改剧本，事情一发不可收拾。",
+ bio:"美国导演、编剧、演员，几乎保持一年一部的创作节奏。代表作《安妮·霍尔》《曼哈顿》《汉娜姐妹》《午夜巴黎》，曾多次获得奥斯卡最佳原创剧本。",
+ st:"伍迪·艾伦与道格拉斯·麦格拉斯合写本片，借一出后台喜剧追问艺术家身份：真正的天才究竟属于自命不凡的剧作家，还是一个随手就能写出好台词的打手？影片获七项奥斯卡提名，黛安·韦斯特凭借过气女明星一角获最佳女配角奖。"},
+{id:"green-green-grass",cn:"在那河畔青草青",o:"在那河畔青草青",y:1982,c:"中国台湾",min:91,reg:"cn",dir:"侯孝贤",dirO:"Hou Hsiao-hsien",dirLife:"1947– · 中国台湾",
+ r:[8.2,7.2,null,null,3.8],
+ syn:"台北来的代课老师卢大年到乡下小学任教，带着一群调皮的孩子上课、捉鱼、闯祸。村里有人用电鱼破坏河流，孩子们决定守护这条河。钟镇涛、江玲主演，片中乡野的光线和孩子们的笑闹，已经透露出侯孝贤后来的影像气质。",
+ bio:"台湾新电影代表人物，代表作《童年往事》《悲情城市》《戏梦人生》《刺客聂隐娘》，曾获威尼斯金狮奖、戛纳评审团奖与最佳导演奖。以长镜头、远景和含蓄的叙事闻名。",
+ st:"这是侯孝贤商业片时期的作品之一。他后来谈到，正是在拍摄乡下孩子的过程中，他发现把摄影机放远、让人物自然活动，比刻意调度更能留住真实，这成了他转向《风柜来的人》《童年往事》时期风格的起点。"},
+{id:"blood-simple",cn:"血迷宫",o:"Blood Simple",y:1984,c:"美国",min:99,reg:"us",dir:"乔尔·科恩",dirO:"Joel Coen（与伊桑·科恩合作）",dirLife:"1954– · 美国",
+ r:[7.9,7.5,94,82,3.9],
+ syn:"得州小镇酒吧老板马蒂发现妻子艾比与酒保雷有私情，雇用一名私家侦探杀死两人。侦探却另有打算。一连串误会、误判与无人知晓真相的尸体，让每个人都以为自己知道发生了什么。",
+ bio:"科恩兄弟的长片处女作。兄弟二人此后拍出《冰血暴》《谋杀绿脚趾》《老无所依》《醉乡民谣》等，获戛纳金棕榈与奥斯卡最佳影片。他们擅长黑色幽默与类型戏仿。",
+ st:"科恩兄弟先拍了一段预告片，拿着它挨家挨户向当地投资人筹钱，才凑齐本片预算。片名取自达希尔·哈米特小说《血腥收获》里的说法，指人在暴力里变得迷乱糊涂。他们想做的，是一部以詹姆斯·M.凯恩式黑色小说为底子、却让观众始终比角色知道得多的悬疑片。"},
+{id:"spring-in-a-small-town",cn:"小城之春",o:"小城之春",y:1948,c:"中国",min:93,reg:"cn",dir:"费穆",dirO:"Fei Mu",dirLife:"1906–1951 · 中国",
+ r:[8.5,7.6,null,null,4.0],
+ syn:"战后江南小城，少妇周玉纹与久病的丈夫戴礼言守着一座残破的宅院，日子沉闷。丈夫的老友章志忱来访，竟是玉纹当年的恋人。城墙上的漫步、一场醉酒、一夜未说出口的话，构成一段克制到极点的情感。",
+ bio:"中国电影史上最重要的导演之一，代表作《城市之夜》《天伦》《狼山喋血记》及京剧电影《生死恨》。他倡导电影的“空气”与东方写意，被视为中国诗化电影的开创者。",
+ st:"费穆曾谈到，他想在电影里营造一种“空气”，让观众感受到人物所处的气氛与心境，而不只是看情节。拍摄《小城之春》时，他借中国画和古典诗词的意境组织镜头，用缓慢的移动和叠化写一个旧时代人物的苦闷。影片当年反响冷淡，八十年代后才被重新发现。"},
+{id:"mon-oncle",cn:"我的舅舅",o:"Mon Oncle",y:1958,c:"法国",min:117,reg:"eu",dir:"雅克·塔蒂",dirO:"Jacques Tati",dirLife:"1907–1982 · 法国",
+ r:[8.5,7.6,94,null,4.1],
+ syn:"小男孩杰拉住在父母那座全自动化的摩登住宅里，处处是按钮、喷泉与规矩。他最爱的是住在老城区的舅舅于洛先生：笨拙、自在、总是在制造小麻烦。新旧两个世界在一连串精确设计的视听笑料里撞在一起。",
+ bio:"法国喜剧大师，导演并主演了以于洛先生为主角的系列电影：《于洛先生的假期》《我的舅舅》《玩乐时间》《车车狂想曲》。以几乎无对白、依靠声音设计与画面调度的喜剧闻名。本片获奥斯卡最佳外语片。",
+ st:"塔蒂说，他并不反对现代建筑，而是反对建筑和机器反过来支配人、让人失去个性和交流。阿尔佩尔家那座房子是专门搭建的布景，每一个声音与动作都经过精心设计。于洛先生象征的，是在效率社会里依然慢吞吞、讲人情的那一部分人。"},
+{id:"where-is-the-friends-house",cn:"何处是我朋友的家",o:"Khane-ye doust kodjast?",y:1987,c:"伊朗",min:83,reg:"as",dir:"阿巴斯·基亚罗斯塔米",dirO:"Abbas Kiarostami",dirLife:"1940–2016 · 伊朗",
+ r:[8.8,8.0,100,null,4.1],
+ syn:"八岁的阿哈迈德放学后发现，自己错把同桌的作业本带回了家。老师说过，再不把作业写在本子上就会被开除。为了把本子还给朋友，他瞒着大人跑到邻村，在陌生的街巷与山路间来回奔走，直到天黑。",
+ bio:"伊朗新电影的核心人物，代表作“柯克三部曲”（本片与《生生长流》《橄榄树下的情人》）、《特写》《樱桃的滋味》（戛纳金棕榈）、《随风而逝》。作品模糊纪录与虚构，常用非职业演员。",
+ st:"本片由伊朗儿童与青少年智力发展研究所出品，基亚罗斯塔米长期在这里为儿童拍片。他坚持起用当地孩子，不给他们剧本，而是设置真实情境引出反应。他想让观众站在一个孩子的高度去看成人世界的冷漠，也看一份朴素的责任感。"},
+{id:"the-sacrifice",cn:"牺牲",o:"Offret",y:1986,c:"瑞典 / 英国 / 法国",min:149,reg:"eu",dir:"安德烈·塔可夫斯基",dirO:"Andrei Tarkovsky",dirLife:"1932–1986 · 苏联",
+ r:[8.8,8.0,86,null,4.2],
+ syn:"瑞典海岛上，退休的学者亚历山大与家人朋友庆祝生日。当晚，电视传来核战争爆发的消息。绝望中，从不信神的他向上帝许诺：若能让一切回到从前，他愿意献出所爱的一切，包括家与语言。",
+ bio:"苏联导演，作品仅七部长片：《伊万的童年》《安德烈·卢布廖夫》《飞向太空》《镜子》《潜行者》《乡愁》《牺牲》。著有电影理论随笔《雕刻时光》。他以长镜头、水、火与梦境构造诗意影像。",
+ st:"《牺牲》是塔可夫斯基流亡西方后的最后一部作品，在瑞典拍摄，由伯格曼的长期摄影师斯文·尼克维斯特掌镜。他在《雕刻时光》最后一章专门谈到本片，认为当代人失去了为他人付出的精神能力，而牺牲正是重新找回它的方式。影片完成时他已身患重病，并将本片献给儿子安德留沙。"},
+{id:"faces-places",cn:"脸庞，村庄",o:"Visages Villages",y:2017,c:"法国",min:94,reg:"eu",dir:"阿涅斯·瓦尔达 / JR",dirO:"Agnès Varda, JR",dirLife:"1928–2019 · 法国 ／ 1983– · 法国",
+ r:[8.8,7.9,99,95,4.3],
+ syn:"八十八岁的电影人瓦尔达和三十三岁的街头摄影艺术家 JR，开着一辆能打印巨幅照片的卡车，走遍法国乡村。他们给矿工的女儿、码头工人的妻子、农场主拍照，把巨幅肖像贴上墙、贴上集装箱，也在旅途中谈论衰老、视力与记忆。",
+ bio:"瓦尔达被称为“新浪潮祖母”，代表作《五至七时的克莱奥》《天涯沦落女》《拾穗者》《阿涅斯的海滩》。JR 是法国艺术家，以在公共空间张贴巨幅黑白人像闻名。本片获奥斯卡最佳纪录长片提名。",
+ st:"两位作者把这次合作看作一场关于“看见”的游戏：JR 借照相机放大普通人的面孔，瓦尔达则用电影记下这些相遇。影片里，瓦尔达坦然谈起自己逐渐模糊的视力和衰老，结尾去拜访老友戈达尔却吃了闭门羹，让这部轻盈的公路片落在了一份真实的怅惘上。"}
+];
+
+/* 影院与影厅：后续新增影院或影厅，在这里加一项即可 */
+const VENUES = [
+  {id:"premiere", name:"百美汇影城", en:"PREMIERE", halls:[{id:"luxe", name:"LUXE 厅", note:"RealD LUXE 巨幕厅"}]}
+];
+/* 排片：日期, 时间, 影片 id, 影院 id, 影厅 id（后两项不写时默认百美汇 LUXE 厅） */
+const SHOWS = [
+["10/30","19:30","wild-strawberries"],["10/31","12:40","dogville"],["10/31","16:00","sirat"],
+["11/1","12:40","swordsman"],["11/1","15:10","swordsman-2"],["11/2","19:30","leningrad-cowboys"],
+["11/3","19:30","turin-horse"],["11/4","19:30","a-better-tomorrow"],["11/5","19:30","long-live-the-missus"],
+["11/6","19:30","bullets-over-broadway"],["11/7","12:40","green-green-grass"],["11/7","14:40","blood-simple"],
+["11/7","16:40","spring-in-a-small-town"],["11/7","19:00","mon-oncle"],["11/8","12:40","where-is-the-friends-house"],
+["11/8","14:30","the-sacrifice"],["11/8","17:20","faces-places"]
+];
+
+const SH = SHOWS.map(([d,t,id,v="premiere",h="luxe"])=>({d,t,id,v,h}));
+const VN = Object.fromEntries(VENUES.map(v=>[v.id,v]));
+const hallOf = s => VN[s.v].halls.find(x=>x.id===s.h);
+const placeOf = s => `${VN[s.v].name.replace("影城","")} ${hallOf(s).name}`;
+const keyOf = s => `${s.d}-${s.t}-${s.v}-${s.h}`;
+let vfilt = "all";
+const F = Object.fromEntries(FILMS.map(f=>[f.id,f]));
+const HASP = new Set(["bullets-over-broadway","spring-in-a-small-town","long-live-the-missus","leningrad-cowboys","where-is-the-friends-house","mon-oncle","sirat","green-green-grass","a-better-tomorrow","the-sacrifice","swordsman","turin-horse","wild-strawberries","blood-simple","dogville","faces-places","swordsman-2"]);
+const pst = id => HASP.has(id) ? "posters/"+id+".jpg" : null;
+const slateHTML = f => pst(f.id) ? `<span class="slate has" style="background:${REG[f.reg].c}"><img src="${pst(f.id)}" alt="${esc(f.cn)} 海报" loading="lazy"></span>` : `<span class="slate" style="background:${REG[f.reg].c}"><b>${esc(f.cn[0])}</b><span>${f.y}</span></span>`;
+const WK = ["周日","周一","周二","周三","周四","周五","周六"];
+const year = d => (+d.split("/")[0] >= 10 ? 2026 : 2027);
+const wk = d => { const [m,dd]=d.split("/").map(Number); return WK[new Date(year(d),m-1,dd).getDay()]; };
+const toMin = t => { const [h,m]=t.split(":").map(Number); return h*60+m; };
+const fmt = m => String(Math.floor(m/60)).padStart(2,"0")+":"+String(m%60).padStart(2,"0");
+const esc = s => String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]));
+const days = [...new Set(SH.map(s=>s.d))];
+const chevron = '<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg>';
+const topEl = document.getElementById("topbar"), main = document.getElementById("main");
+
+const brandBar = () => `<div class="row"><div class="brand"><b>风格万相</b><small>STYLE KALEIDOSCOPE · 中外经典影片展</small></div><span class="sp"></span><span class="credit"><small>由麻雀映画制作</small></span></div>`;
+
+function ganttHTML(k, rowH, labW, compact, list){
+  const S = toMin("12:00"), E = toMin("22:30"), W = Math.round((E-S)*k);
+  const allHalls = VENUES.flatMap(v=>v.halls.map(h=>({v:v.id,h:h.id})));
+  const multi = new Set(list.map(x=>x.v+"/"+x.h)).size > 1;
+  const step = k < 1 ? 120 : 60;
+  let ruler = "";
+  for(let m=S+step;m<=E;m+=step) ruler += `<span style="left:${Math.round((m-S)*k)}px">${compact?String(m/60|0):fmt(m)}</span>`;
+  let rows = "";
+  days.forEach(d=>{
+    allHalls.forEach(hh=>{
+      const hs = list.filter(x=>x.d===d && x.v===hh.v && x.h===hh.h);
+      if(!hs.length) return;
+      const lab = multi ? `<small class="hl">${esc(placeOf(hs[0]))}</small>` : "";
+      rows += `<div class="g-day" style="height:${rowH}px"><b>${d}</b>${compact?"":`<small>${wk(d)}</small>`}${lab}</div><div class="g-track" style="width:${W}px;height:${rowH}px">`;
+      hs.forEach(x=>{
+        const f=F[x.id], st=toMin(x.t), en=st+f.min, w=Math.round(f.min*k);
+        const inner = compact
+          ? `<span class="t">${w>=30?esc(f.cn.length>4&&w<60?f.cn.slice(0,3)+"…":f.cn):""}</span>`
+          : `<span class="t">${esc(f.cn)}</span><span class="m">${x.t}–${fmt(en)} · ${f.min}′</span>`;
+        const tag = compact ? "span" : "button";
+        rows += `<${tag} class="blk" ${compact?"":`data-film="${x.id}"`} data-key="${keyOf(x)}" style="left:${Math.round((st-S)*k)}px;width:${w}px;background:${REG[f.reg].c}" aria-label="${d} ${x.t} ${esc(f.cn)}">${inner}</${tag}>`;
+      });
+      rows += `</div>`;
+    });
+  });
+  return `<div class="gantt${compact?" compact":""}" id="gantt" style="--px:${k}px" ${compact?'data-open-gantt role="button" tabindex="0" aria-label="打开完整排片"':""}><div class="g-inner" style="grid-template-columns:${labW}px auto">
+    <div class="g-corner">${compact?"":"日期"}</div><div class="g-ruler" style="width:${W}px">${ruler}</div>${rows}</div></div>`;
+}
+const SPAN = toMin("22:30")-toMin("12:00");
+function fitK(labW){ const app=document.querySelector(".app"); const w=(app?app.clientWidth:window.innerWidth) - 2*Math.max(16,0) - labW - 4; return w/SPAN; }
+
+function schedule(){
+  const list = SH.filter(x=>vfilt==="all"||x.v===vfilt);
+  const kFit = fitK(64);
+  const wide = kFit >= 1.5;
+  const k = wide ? kFit : fitK(46);
+  const gantt = wide ? ganttHTML(kFit, 76, 64, false, list) : ganttHTML(k, 44, 46, true, list);
+  let ag = "";
+  days.forEach(d=>{
+    const ds = list.filter(x=>x.d===d); if(!ds.length) return;
+    ag += `<div class="ag-day"><h3>${d} · ${wk(d)}</h3>`;
+    ds.forEach(x=>{const f=F[x.id];
+      ag += `<button class="ag-row" data-film="${x.id}"><span class="tm">${x.t}</span><span class="bar" style="background:${REG[f.reg].c}"></span><span class="nm"><b>${esc(f.cn)}</b><small>${esc(placeOf(x))} · ${esc(f.dir)} · ${f.min} 分钟</small></span>${chevron}</button>`;});
+    ag += `</div>`;
+  });
+  const allHalls = VENUES.flatMap(v=>v.halls);
+  const vchips = VENUES.length>1 ? `<div class="filters">${[["all","全部影院"],...VENUES.map(v=>[v.id,v.name])].map(([kk,n])=>`<button class="fchip" data-vf="${kk}" aria-pressed="${vfilt===kk}">${esc(n)}</button>`).join("")}</div>` : "";
+  const venues = VENUES.map(v=>{
+    const n = SH.filter(x=>x.v===v.id).length;
+    return `<div class="venue"><div class="vhead"><span class="vmark">${esc(v.en.slice(0,1))}</span><span class="vname"><b>${esc(v.name)}</b><small>${esc(v.en)}</small></span><span class="vcount"><b>${n}</b>场</span></div>
+      <div class="halls">${v.halls.map(h=>{const hn=SH.filter(x=>x.v===v.id&&x.h===h.id).length;return `<div class="hall"><b>${esc(h.name)}</b><small>${esc(h.note||"")}${h.note?" · ":""}${hn} 场</small></div>`}).join("")}</div></div>`;
+  }).join("");
+  main.innerHTML = `<section class="view gut">
+    <h2 class="sec">排片表</h2><p class="sub">2026.10.30 – 11.08 · ${wide?"点击色块看影片":"点击排片图进入详细排片"}</p>
+    ${vchips}
+    <div class="legend">${Object.values(REG).map(r=>`<span><i style="background:${r.c}"></i>${r.n}</span>`).join("")}</div>
+    ${gantt}
+    ${wide?"":`<button class="open-full" data-open-gantt><span>进入详细排片</span><small>左右滑动 · 点击色块看影片</small><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 9V4h5M20 15v5h-5M4 4l6 6M20 20l-6-6"/></svg></button>`}
+    <div class="venues"><h3 class="blockh">影院 <small>VENUES · ${VENUES.length} 家 / ${allHalls.length} 个影厅</small></h3>${venues}</div>
+    <div class="agenda"><h3 class="blockh">逐日场次 <small>DAILY</small></h3>${ag}</div></section>`;
+  if(wide) flashIn(document.getElementById("gantt"));
+}
+
+function ganttFull(){
+  const list = SH.filter(x=>vfilt==="all"||x.v===vfilt);
+  const k = Math.max(2, fitK(64));
+  topEl.innerHTML = `<div class="row"><button class="back" data-back><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m15 6-6 6 6 6"/></svg>返回</button><span class="sp"></span><span class="pill">详细排片</span></div>`;
+  main.innerHTML = `<section class="view gut full-g">
+    <div class="legend">${Object.values(REG).map(r=>`<span><i style="background:${r.c}"></i>${r.n}</span>`).join("")}</div>
+    ${ganttHTML(k, 76, 64, false, list)}
+    <p class="hint"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M15 8l4 4-4 4"/></svg>左右滑动查看全天时段 · 色块长度即片长 · 点击色块看影片</p></section>`;
+  const g = document.getElementById("gantt");
+  if(!flashIn(g)) g.scrollLeft = Math.max(0,(toMin("12:30")-toMin("12:00"))*k);
+}
+function flashIn(g){
+  if(!pendingFlash||!g) return false;
+  const bk=g.querySelector(`[data-key="${pendingFlash}"]`); pendingFlash=null;
+  if(!bk) return false;
+  g.scrollLeft = bk.offsetLeft - 80; bk.scrollIntoView({block:"center"}); bk.classList.add("flash"); return true;
+}
+
+let filt="all";
+function films(){
+  const list = FILMS.filter(f=>filt==="all"||f.reg===filt);
+  main.innerHTML = `<section class="view gut"><h2 class="sec">片目</h2><p class="sub">${FILMS.length} 部影片 · 右侧为豆瓣评分</p>
+    <div class="filters">${[["all","全部"],...Object.entries(REG).map(([k,v])=>[k,v.n])].map(([k,n])=>`<button class="fchip" data-filt="${k}" aria-pressed="${filt===k}">${n}</button>`).join("")}</div>
+    <div class="flist">${list.map(f=>`<button class="fcard" data-film="${f.id}">
+      ${slateHTML(f)}
+      <span class="info"><b>${esc(f.cn)}</b><span class="o">${esc(f.o)}</span><span class="d">${esc(f.dir)} · ${esc(f.c)}</span></span>
+      <span class="score"><b>${f.r[0]??"—"}</b>豆瓣</span></button>`).join("")}</div></section>`;
+}
+
+function detail(id){
+  const f=F[id]; if(!f){ go("films"); return; }
+  const col = REG[f.reg].c;
+  const R = [["豆瓣","/10"],["IMDb","/10"],["烂番茄","新鲜度"],["MTC","/100"],["Letterboxd","/5"]];
+  const rv = (v,i)=> v==null ? `<span class="v na">—</span>` : `<span class="v">${i===2?v+"%":i===4?v.toFixed(1):v}</span>`;
+  const shows = SH.filter(x=>x.id===id);
+  const idx = FILMS.indexOf(f), prev = FILMS[idx-1], next = FILMS[idx+1];
+  topEl.innerHTML = `<div class="row"><button class="back" data-back><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m15 6-6 6 6 6"/></svg>返回</button><span class="sp"></span><span class="pill">${idx+1} / ${FILMS.length}</span></div>`;
+  const P = pst(id);
+  main.innerHTML = `<div class="hero gut${P?" withp":""}" style="background:${col}">${P?`<img class="hero-bg" src="${P}" alt=""><img class="hero-p" src="${P}" alt="${esc(f.cn)} 海报">`:""}<div class="hero-txt">
+      <div class="eyebrow">${f.y} · ${esc(f.c).toUpperCase()} · ${f.min} MIN</div>
+      <h1>${esc(f.cn)}</h1><div class="orig">${esc(f.o)}</div>
+      <div class="meta"><span>导演 ${esc(f.dir)}</span><span>${REG[f.reg].n}单元</span></div></div></div>
+    <div class="ratings gut">${f.r.map((v,i)=>`<div class="rt"><span class="lbl">${R[i][0]}</span>${rv(v,i)}<span class="u">${R[i][1]}</span></div>`).join("")}</div>
+    <div class="gut"><p class="rnote">评分整理于 2026 年 10 月，“—”为该平台暂无评分，请以各平台实时数据为准。</p>
+    <div class="shows">${shows.map(x=>`<button class="show" data-jump="${keyOf(x)}"><span class="dt">${x.d} ${x.t}</span><span class="x">${wk(x.d)} · ${esc(placeOf(x))} · 散场 ${fmt(toMin(x.t)+f.min)}</span><span class="go">在排片中看 ›</span></button>`).join("")}</div>
+    <div class="dsec"><h3>剧情简介 <small>SYNOPSIS</small></h3><p>${esc(f.syn)}</p></div>
+    <div class="dsec"><h3>导演介绍 <small>DIRECTOR</small></h3>
+      <div class="dir-card"><span class="mono-av" style="background:${col}">${esc(f.dir[0])}</span><span><b>${esc(f.dir)}</b><small>${esc(f.dirO)} · ${esc(f.dirLife)}</small></span></div><p>${esc(f.bio)}</p></div>
+    <div class="dsec"><h3>导演阐述 <small>STATEMENT</small></h3><p class="statement">${esc(f.st)}</p><p class="src">据导演访谈、著述及公开资料整理转述，非原文引语。</p></div>
+    <div class="nav2">${prev?`<button data-film="${prev.id}">‹ 上一部<b>${esc(prev.cn)}</b></button>`:"<span></span>"}${next?`<button data-film="${next.id}">下一部 ›<b>${esc(next.cn)}</b></button>`:"<span></span>"}</div>
+    <div style="height:12px"></div></div>`;
+}
+
+function about(){
+  main.innerHTML = `<section class="view gut about"><h2 class="sec">关于影展</h2>
+    <p class="sub">风格万相 · 中外经典影片展</p>
+    <dl class="kv"><dt>展期</dt><dd>2026.10 – 2027.01</dd><dt>影院</dt><dd>${VENUES.map(v=>esc(v.name+"（"+v.halls.map(h=>h.name).join("、")+"）")).join("<br>")}</dd><dt>本页场次</dt><dd>10.30 – 11.08，共 ${SH.length} 场 / ${FILMS.length} 部</dd></dl>
+    <p>从伯格曼的公路回忆到塔可夫斯基的末日祈祷，从费穆的城墙到徐克的江湖，十七部作品横跨 1947 至 2025 年，排在同一块银幕上，恰好是一份关于“风格”的地图。</p>
+    <p class="src">后续场次公布后将补充至排片表。</p></section>`;
+}
+
+let pendingFlash=null, lastList="schedule";
+function go(h){ location.hash = h; }
+function route(){
+  const h = location.hash.slice(1) || "schedule";
+  const tab = (h.startsWith("film-")||h==="gantt") ? null : h;
+  document.querySelectorAll(".tab").forEach(t=>t.setAttribute("aria-current", t.dataset.tab===(tab||lastList)?"page":"false"));
+  if(tab){ lastList = tab; topEl.innerHTML = brandBar(); }
+  if(h.startsWith("film-")) detail(h.slice(5));
+  else if(h==="films") films();
+  else if(h==="about") about();
+  else if(h==="gantt") ganttFull();
+  else schedule();
+  if(!pendingFlash) window.scrollTo(0,0);
+}
+document.addEventListener("click",e=>{
+  const t=e.target.closest("[data-film],[data-tab],[data-filt],[data-vf],[data-back],[data-jump],[data-open-gantt]"); if(!t) return;
+  if(t.dataset.film) go("film-"+t.dataset.film);
+  else if(t.dataset.tab) go(t.dataset.tab);
+  else if(t.dataset.filt){ filt=t.dataset.filt; films(); }
+  else if(t.dataset.vf){ vfilt=t.dataset.vf; schedule(); }
+  else if(t.hasAttribute("data-back")) go(lastList);
+  else if(t.dataset.jump){ pendingFlash=t.dataset.jump; go(fitK(64)>=1.5?"schedule":"gantt"); }
+  else if(t.hasAttribute("data-open-gantt")) go("gantt");
+});
+window.addEventListener("hashchange",route);
+let rz; let lastW=window.innerWidth; window.addEventListener("resize",()=>{clearTimeout(rz);rz=setTimeout(()=>{if(Math.abs(window.innerWidth-lastW)<40)return;lastW=window.innerWidth;const h=location.hash.slice(1)||"schedule";if(h==="schedule")schedule();else if(h==="gantt")ganttFull();},200)});
+route();
+</script>
+
+</body></html>
