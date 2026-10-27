@@ -608,6 +608,12 @@ html.sheet-open,html.sheet-open body{overflow:hidden}
 .pres-x{font:300 18px/1 var(--f-din);color:var(--muted)}
 .pres-d{margin:0;font-size:11px;letter-spacing:.3em;color:var(--muted)}
 @media (min-width:900px){.pres-row{gap:28px}.pres-logo{height:60px}.pres-logo img[src$="sparrow-movies.png"],.pres-logo img[src$="sparrow-movies-dark.png"]{height:60px}.pres-logo img[src$="sparrow-tribe.png"]{height:53px}.pres-logo img[src$="sparrow-tribe-dark.png"]{height:37px}}
+
+/* ---- Square logos (claude/square-logos) ---- */
+.pres-sq{display:block;width:96px;height:96px;flex:none}
+.pres-sq img{width:100%;height:100%;display:block;opacity:.94}
+.pres-row{gap:22px}
+@media (min-width:900px){.pres-sq{width:120px;height:120px}}
 </style>
 
 </head>
@@ -1580,7 +1586,7 @@ const DUO = `<span class="duo" aria-hidden="true"><span class="seal">${logoImg("
 const DUO_PRINT = '<span class="duo" aria-hidden="true"><span class="seal seal-print"><img src="brand/mark-movies.png" alt=""></span><span class="seal seal-print"><img src="brand/mark-tribe.png" alt=""></span></span>';
 const lockup = (k) => { const en = k==="movies" ? "Movies" : "Tribe", cn = k==="movies" ? "麻雀映画" : "麻雀部落"; const txt = `<span class="lk-txt"><span class="lk-en">Sparrow<br>${en}</span><span class="lk-cn">${cn}</span></span>`, mk = `<span class="lk-mark">${logoImg("mark-"+k,"")}</span>`; return `<span class="lk lk-${k}" aria-label="${cn} Sparrow ${en}">${k==="movies"?txt+mk:mk+txt}</span>`; };
 const brandBar = () => `<div class="row lk-row">${lockup("movies")}<span class="lk-x" aria-hidden="true">×</span>${lockup("tribe")}<span class="sp"></span><span class="lk-tag">展映<br>排片表</span></div>`;
-const presentersHTML = () => `<section class="presenters"><p class="pres-k">主办 · PRESENTED BY</p><div class="pres-row"><span class="pres-logo">${logoImg("sparrow-movies","麻雀映画 Sparrow Movies")}</span><span class="pres-x" aria-hidden="true">×</span><span class="pres-logo">${logoImg("sparrow-tribe","麻雀部落 Sparrow Tribe")}</span></div><p class="pres-d">电影放映与策展</p></section>`;
+const presentersHTML = () => `<section class="presenters"><p class="pres-k">制作 · PRODUCED BY</p><div class="pres-row"><span class="pres-sq">${logoImg("sparrow-movies-sq","麻雀映画 Sparrow Movies")}</span><span class="pres-x" aria-hidden="true">×</span><span class="pres-sq">${logoImg("sparrow-tribe-sq","麻雀部落 Sparrow Tribe")}</span></div><p class="pres-d">电影放映与策展</p></section>`;
 
 function ganttHTML(k, rowH, labW, compact, list){
   const S = toMin("12:00"), E = toMin("22:30"), W = Math.round((E-S)*k);
