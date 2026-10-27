@@ -541,12 +541,20 @@ html.sheet-open,html.sheet-open body{overflow:hidden}
 .pg-head h1{font:900 36px/1.15 var(--f-display);margin:6px 0 4px}
 .pg-sub{margin:0;color:var(--muted);font-size:14px}
 .pg-blurb{font-size:15px;line-height:1.85;max-width:65ch;margin:0 0 16px}
-.pg-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px 10px;margin-top:4px}
-.pg-film{display:flex;flex-direction:column;gap:4px;text-align:left;min-width:0}
-.pg-film img,.pg-ph{width:100%;max-width:100%;aspect-ratio:2/3;object-fit:cover;border-radius:6px;display:block;box-shadow:0 2px 8px rgba(0,0,0,.12)}
+.pg-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 14px;margin-top:16px}
+.pg-film{display:flex;flex-direction:column;text-align:left;min-width:0;border-radius:7px;transition:transform .18s ease}
+.pg-film:focus-visible{outline:2px solid var(--accent);outline-offset:6px}
+.pg-film img,.pg-ph{width:100%;max-width:100%;aspect-ratio:2/3;object-fit:cover;border-radius:6px;display:block;box-shadow:0 3px 12px rgba(0,0,0,.12)}
 .pg-ph{display:grid;place-items:center;color:#fffaf0;font:900 28px var(--f-display)}
-.pg-film b{font-size:13px;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.pg-film small{font:11px var(--f-mono);color:var(--muted)}
+.pg-caption{display:flex;flex-direction:column;width:100%;padding:12px 1px 0;min-width:0}
+.pg-film .pg-name{font:800 16px/1.5 var(--f-display);letter-spacing:.01em;min-height:3em;overflow-wrap:anywhere;text-wrap:pretty}
+.pg-edition{align-self:flex-start;font:600 10px/1.5 var(--f-mono);letter-spacing:.04em;color:var(--accent);border:1px solid color-mix(in srgb,var(--accent) 28%,transparent);border-radius:3px;padding:1px 6px;margin:7px 0 10px;background:color-mix(in srgb,var(--accent) 4%,transparent)}
+.pg-slot{display:flex;align-items:baseline;justify-content:space-between;gap:5px;border-top:1px solid var(--line);padding-top:9px;color:var(--muted);font:12px/1.4 var(--f-mono);font-variant-numeric:tabular-nums}
+.pg-slot time:last-child{font-size:17px;font-weight:600;letter-spacing:-.04em;color:var(--fg)}
+.pg-slot.pg-unscheduled{font:11px/1.6 var(--f-body)}
+@media (hover:hover){.pg-film:hover{transform:translateY(-3px)}.pg-film:hover .pg-name,.pg-film:hover .pg-slot time:last-child{color:var(--accent)}}
+@media (prefers-reduced-motion:reduce){.pg-film{transition:none}.pg-film:hover{transform:none}}
+@media (min-width:480px){.pg-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:30px 18px}}
 @media (min-width:640px){.pg-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
 @media (min-width:900px){.pg-grid{grid-template-columns:repeat(6,minmax(0,1fr))}.pg-head h1{font-size:48px}}
 
@@ -1755,7 +1763,7 @@ function progPage(pid){
       ${p.blurb?`<p class="pg-blurb">${esc(p.blurb)}</p>`:""}
       <div class="plan-toolbar"><button class="primary-button" data-prog-sched="${pid}">查看专题排片</button><button class="secondary-button" data-prog-films="${pid}">专题片目</button></div>
       <h3 class="blockh">放映影片 <small>${films.length} FILMS</small></h3>
-      <div class="pg-grid">${films.map(f=>{const first=SH.find(x=>x.id===f.id);return `<button class="pg-film" data-film="${f.id}">${pst(f.id)?`<img src="${pst(f.id)}" alt="" loading="lazy">`:`<span class="pg-ph" style="background:${REG[f.reg].c}">${esc(f.cn[0])}</span>`}<b>${esc(f.cn)}</b><small>${f.version?esc(f.version)+" · ":""}${first?first.d+" "+first.t:""}</small></button>`}).join("")}</div>
+      <div class="pg-grid">${films.map(f=>{const first=SH.find(x=>x.id===f.id);return `<button class="pg-film" data-film="${f.id}">${pst(f.id)?`<img src="${pst(f.id)}" alt="" loading="lazy">`:`<span class="pg-ph" style="background:${REG[f.reg].c}">${esc(f.cn[0])}</span>`}<span class="pg-caption"><b class="pg-name">${esc(f.cn)}</b><span class="pg-edition">${esc(editionOf(f))}</span>${first?`<span class="pg-slot" aria-label="放映时间 ${esc(first.d)} ${esc(first.t)}"><time>${esc(first.d.split("/").map(n=>n.padStart(2,"0")).join("."))}</time><time>${esc(first.t)}</time></span>`:`<span class="pg-slot pg-unscheduled">场次待公布</span>`}</span></button>`}).join("")}</div>
     </div></article>`;
 }
 function about(){
@@ -1981,3 +1989,4 @@ route();
 </script>
 
 </body></html>
+
