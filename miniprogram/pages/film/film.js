@@ -54,7 +54,7 @@ Page({
     const start = Math.floor(U.showDate(s).getTime() / 1000);
     wx.addPhoneCalendar({
       title: `《${f.cn}》${f.version ? ' · ' + f.version : ''}`, startTime: start, endTime: start + f.min * 60,
-      location: idx.venueName(s) + ' · ' + idx.hallName(s), description: '麻雀映画 & 麻雀部落展映排片表', alarm: true, alarmOffset: 3600,
+      location: idx.venueName(s) + ' · ' + idx.hallName(s), description: '麻雀观影护照', alarm: true, alarmOffset: 3600,
       success: () => wx.showToast({ title: '已加入手机日历', icon: 'none' }),
       fail: (err) => { if (!/cancel/.test(err.errMsg || '')) wx.showToast({ title: '未能加入日历', icon: 'none' }); }
     });
@@ -63,6 +63,6 @@ Page({
   openFilm(e) { wx.redirectTo({ url: '/pages/film/film?id=' + e.currentTarget.dataset.id }); },
   openProg() { wx.navigateTo({ url: '/pages/programme/programme?id=' + this.data.f.prog.id }); },
   toSchedule() { wx.switchTab({ url: '/pages/schedule/schedule' }); },
-  onShareAppMessage() { const f = this.data.f || {}; return { title: `《${f.cn}》${f.version ? f.version : ''} · 麻雀排片`, path: '/pages/film/film?id=' + this.id, imageUrl: f.poster || undefined }; },
-  onShareTimeline() { const f = this.data.f || {}; return { title: `《${f.cn}》 · 麻雀映画 & 麻雀部落展映`, query: 'id=' + this.id }; }
+  onShareAppMessage() { const f = this.data.f || {}; return { title: `《${f.cn}》${f.version ? f.version : ''} · 麻雀观影护照`, path: '/pages/film/film?id=' + this.id, imageUrl: f.poster || undefined }; },
+  onShareTimeline() { const f = this.data.f || {}; return { title: `《${f.cn}》 · 麻雀观影护照`, query: 'id=' + this.id }; }
 });

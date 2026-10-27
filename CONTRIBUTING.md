@@ -19,7 +19,7 @@
 - 单页静态应用：index.html，内含页面样式、影片和排片数据、路由与交互脚本。
 - 微信小程序：`project.config.json` + `miniprogram/` + `cloudfunctions/`（AppID wx1f3f065d4885ac25，云环境 cloud1-d9gvudh6vc59007ac），说明见 miniprogram/README.md。网站排片数据变更时，同步更新 `miniprogram/data/data.js` 与 `cloudfunctions/seed/data.json`，或直接改云数据库。小程序场次键格式与网站一致。
 - 海报目录：posters/；发布配置：.github/workflows/pages.yml；PWA：manifest.webmanifest、sw.js（替换同名静态文件时需升级缓存名）、icons/。
-- 网站标题：麻雀映画&麻雀部落展映排片表。风格万相是其中一个影展专题，后续会加入院线电影、艺术影院等排片。
+- 网站与小程序名称：麻雀观影护照（2026-10 起，原名「麻雀映画&麻雀部落展映排片表」），制作设计：麻雀映画 × 麻雀部落。风格万相是其中一个影展专题，后续会加入院线电影、艺术影院等排片。
 - 专题数据：PROGRAMMES 数组（id、名称、类型、时段、封面、简介）；影片用 prog 字段归属专题，未填写时默认 style-kaleidoscope。专题封面放在 programmes/。
 - 主要路由：排片、片目、影片详情、#prog-<专题id>（专题页）、#my（我的）、#plan（个人排片）、#export（导出）、#share=…（分享）、#install（添加到手机）。
 - 个人排片保存在浏览器 localStorage，键为 style-kaleidoscope-plan-v1；没有账号或跨设备自动同步。

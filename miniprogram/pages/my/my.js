@@ -40,6 +40,6 @@ Page({
     if (res.from === 'button' && this.keys && this.keys.length) {
       return { title: `我的观影日程 · ${this.keys.length} 场电影`, path: '/pages/share/share?k=' + encodeURIComponent(this.keys.join('~')) };
     }
-    return { title: '麻雀映画 & 麻雀部落 · 展映排片表', path: '/pages/schedule/schedule' };
+    return { title: '麻雀观影护照 · 影展排片与观影日程', path: '/pages/schedule/schedule' };
   }
 });

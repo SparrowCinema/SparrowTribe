@@ -56,6 +56,6 @@ Page({
     const on = plan.toggle(e.currentTarget.dataset.key);
     wx.showToast({ title: on ? '已加入排片' : '已移出排片', icon: 'none' });
   },
-  onShareAppMessage() { return { title: '麻雀映画 & 麻雀部落 · 展映排片表', path: '/pages/schedule/schedule' }; },
-  onShareTimeline() { return { title: '麻雀映画 & 麻雀部落 · 展映排片表' }; }
+  onShareAppMessage() { return { title: '麻雀观影护照 · 影展排片与观影日程', path: '/pages/schedule/schedule' }; },
+  onShareTimeline() { return { title: '麻雀观影护照 · 影展排片与观影日程' }; }
 });
