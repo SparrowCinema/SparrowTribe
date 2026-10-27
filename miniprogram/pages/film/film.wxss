@@ -80,3 +80,4 @@
 .nbt { min-width: 0; display: flex; flex-direction: column; }
 .nbt .b { font-size: 26rpx; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .share { width: 100%; margin-top: 32rpx !important; }
+.noshow { display: flex; flex-direction: column; gap: 6rpx; padding: 24rpx; border-style: dashed; }

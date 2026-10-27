@@ -37,7 +37,7 @@ Page({
     const para = s => String(s || '').split(/\n{2,}/).filter(Boolean);
     this.setData({
       f: {
-        id: f.id, cn: f.cn, en: f.en || f.o, o: f.o !== f.cn && f.o !== (f.en || f.o) ? f.o : '', y: f.y, c: f.c, min: f.min, lang: f.language,
+        id: f.id, cn: f.cn, en: f.en || f.o, minText: f.min ? f.min + ' 分钟' : '片长待定', release: f.release || '', o: f.o !== f.cn && f.o !== (f.en || f.o) ? f.o : '', y: f.y, c: f.c, min: f.min, lang: f.language,
         version: f.version || '', genre: f.genre || [], dir: f.dir, dirO: f.dirO, dirLife: f.dirLife,
         color: (data.reg[f.reg] || {}).c, reg: (data.reg[f.reg] || {}).n, poster: U.poster(f), ticket: U.ticket(f),
         prog: { id: p.id, name: p.name, kind: p.kind },
