@@ -1,6 +1,6 @@
 /* 麻雀排片 service worker：页面走“网络优先”（保证排片总是最新），海报、图标等静态资源走“缓存优先”，离线时也能打开上次看过的内容。 */
-const CACHE = "sk-v3";
-const CORE = ["./", "./index.html", "./manifest.webmanifest", "./vendor/qrcode.js", "./icons/icon-192.png", "./icons/apple-touch-icon.png", "./brand/mark-movies.png", "./brand/mark-tribe.png", "./brand/mark-movies-dark.png", "./brand/mark-tribe-dark.png"];
+const CACHE = "sk-v4";
+const CORE = ["./", "./index.html", "./manifest.webmanifest", "./vendor/qrcode.js", "./icons/icon-192.png", "./icons/apple-touch-icon.png", "./brand/sparrow-movies-sq.png", "./brand/sparrow-tribe-sq.png", "./brand/sparrow-movies-sq-dark.png", "./brand/sparrow-tribe-sq-dark.png"];
 
 self.addEventListener("install", e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(CORE)).then(() => self.skipWaiting()));

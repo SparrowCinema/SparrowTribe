@@ -614,6 +614,18 @@ html.sheet-open,html.sheet-open body{overflow:hidden}
 .pres-sq img{width:100%;height:100%;display:block;opacity:.94}
 .pres-row{gap:22px}
 @media (min-width:900px){.pres-sq{width:120px;height:120px}}
+
+/* ---- Small square logos (claude/square-logos-small) ---- */
+.sq-row{min-height:40px!important}
+.sq-logos{display:inline-flex;align-items:center;gap:6px;flex:none}
+.sq-logo{display:block;width:38px;height:38px;flex:none}
+.sq-logo img{width:100%;height:100%;display:block}
+.sq-logos .lk-x{font-size:12px;margin:0}
+.pres-sq{width:58px!important;height:58px!important}
+.pres-row{gap:14px!important}
+.pres-x{font-size:13px!important}
+.presenters{gap:10px!important;padding-top:18px!important}
+@media (min-width:900px){.sq-logo{width:44px;height:44px}.pres-sq{width:68px!important;height:68px!important}}
 </style>
 
 </head>
@@ -1585,7 +1597,7 @@ const logoImg = (base, alt, cls="") => `<img class="lg-l ${cls}" src="brand/${ba
 const DUO = `<span class="duo" aria-hidden="true"><span class="seal">${logoImg("mark-movies","")}</span><span class="seal">${logoImg("mark-tribe","")}</span></span>`;
 const DUO_PRINT = '<span class="duo" aria-hidden="true"><span class="seal seal-print"><img src="brand/mark-movies.png" alt=""></span><span class="seal seal-print"><img src="brand/mark-tribe.png" alt=""></span></span>';
 const lockup = (k) => { const en = k==="movies" ? "Movies" : "Tribe", cn = k==="movies" ? "麻雀映画" : "麻雀部落"; const txt = `<span class="lk-txt"><span class="lk-en">Sparrow<br>${en}</span><span class="lk-cn">${cn}</span></span>`, mk = `<span class="lk-mark">${logoImg("mark-"+k,"")}</span>`; return `<span class="lk lk-${k}" aria-label="${cn} Sparrow ${en}">${k==="movies"?txt+mk:mk+txt}</span>`; };
-const brandBar = () => `<div class="row lk-row">${lockup("movies")}<span class="lk-x" aria-hidden="true">×</span>${lockup("tribe")}<span class="sp"></span><span class="lk-tag">展映<br>排片表</span></div>`;
+const brandBar = () => `<div class="row lk-row sq-row"><span class="sq-logos" role="img" aria-label="麻雀映画 × 麻雀部落"><span class="sq-logo">${logoImg("sparrow-movies-sq","")}</span><span class="lk-x" aria-hidden="true">×</span><span class="sq-logo">${logoImg("sparrow-tribe-sq","")}</span></span><span class="sp"></span><span class="lk-tag">展映<br>排片表</span></div>`;
 const presentersHTML = () => `<section class="presenters"><p class="pres-k">制作设计 · PRODUCED &amp; DESIGNED BY</p><div class="pres-row"><span class="pres-sq">${logoImg("sparrow-movies-sq","麻雀映画 Sparrow Movies")}</span><span class="pres-x" aria-hidden="true">×</span><span class="pres-sq">${logoImg("sparrow-tribe-sq","麻雀部落 Sparrow Tribe")}</span></div><p class="pres-d">电影放映与策展</p></section>`;
 
 function ganttHTML(k, rowH, labW, compact, list){
