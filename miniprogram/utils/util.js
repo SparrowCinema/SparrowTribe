@@ -29,7 +29,8 @@ function showView(s, idx, data, picked) {
     cn: f.cn, version: f.version || '', dir: f.dir, min: f.min,
     venue: idx.venueName(s), hall: idx.hallName(s),
     color: (data.reg[f.reg] || {}).c || '#8e2a22',
-    poster: poster(f), picked: picked ? picked.has(keyOf(s)) : false
+    poster: poster(f), picked: picked ? picked.has(keyOf(s)) : false,
+    past: showDate(s).getTime() + f.min * 60000 < Date.now()
   };
 }
 

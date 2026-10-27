@@ -82,12 +82,12 @@
           <view wx:for="{{cols}}" wx:for-item="col" wx:key="key" class="col {{cols.length===1?'solo':''}}">
             <view class="th"><text class="tv">{{col.vn}}</text><text class="thn">{{col.hn}}</text></view>
             <view class="body" style="height:{{H}}rpx">
-              <view wx:for="{{col.blocks}}" wx:key="key" class="blk {{item.picked?'mine':''}}" style="top:{{item.top}}rpx;height:{{item.h}}rpx;background:{{item.color}}" data-id="{{item.id}}" bindtap="openFilm">
+              <view wx:for="{{col.blocks}}" wx:key="key" class="blk {{item.picked?'mine':''}} {{item.past?'past':''}}" style="top:{{item.top}}rpx;height:{{item.h}}rpx;background:{{item.color}}" data-id="{{item.id}}" bindtap="openFilm">
                 <text class="bs mono">{{item.t}}</text>
                 <text class="bn">{{item.cn}}</text>
                 <text wx:if="{{item.version}}" class="bv mono">{{item.version}}</text>
-                <text class="be mono">至 {{item.end}} · {{item.min}}′</text>
-                <view wx:if="{{item.picked}}" class="star">✓</view>
+                <text class="be mono">{{item.past?'已放映':'至 '+item.end+' · '+item.min+'′'}}</text>
+                <view wx:if="{{!item.past||item.picked}}" class="badd {{item.picked?'on':''}}" data-key="{{item.key}}" catchtap="toggle" aria-role="button" aria-label="{{item.picked?'移出排片':'加入排片'}}">{{item.picked?'✓':'+'}}</view>
               </view>
             </view>
           </view>
