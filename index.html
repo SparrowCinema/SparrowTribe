@@ -11,7 +11,7 @@
 <meta name="apple-mobile-web-app-title" content="麻雀排片">
 <meta name="description" content="麻雀映画 & 麻雀部落展映排片表：影展专题、艺术影院与院线放映的排片、片目与个人观影日程。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600;900&family=Noto+Sans+SC:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600;900&family=Noto+Sans+SC:wght@400;500;700;900&family=Barlow:wght@500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
 <style>
 /* Layout: a phone app shell — sticky top bar, three tabs (排片 Gantt / 片目 / 影展), full-screen film detail pages. Palette pulled from the poster: sea teal, sand, ochre, oxblood title red. */
 :root{
@@ -581,6 +581,33 @@ html.sheet-open,html.sheet-open body{overflow:hidden}
 .paper-band .seal{display:grid;margin-top:0;width:46px;height:46px;background:#fffaf0;box-shadow:0 0 0 1.5px rgba(255,250,240,.55)}
 .paper-band .seal+.seal{margin-left:-10px}
 .share-paper .paper-band b{font-size:24px}
+
+/* ---- Header lockup & refined presenters (claude/header-lockup) ---- */
+:root{--f-din:"Barlow","DIN Alternate","DIN Next","Helvetica Neue",Arial,sans-serif;--f-logo-cn:"Noto Sans SC","PingFang SC","Source Han Sans SC","Microsoft YaHei",sans-serif}
+.lk-row{gap:8px!important;min-height:44px}
+.lk{display:inline-flex;align-items:center;gap:6px;flex:none;color:var(--fg)}
+.lk-txt{display:flex;flex-direction:column;justify-content:center;line-height:1}
+.lk-en{font:500 8.5px/1.02 var(--f-din);letter-spacing:-.005em;margin-bottom:2px}
+.lk-cn{font:900 15.5px/1 var(--f-logo-cn);letter-spacing:.02em}
+.lk-mark{display:block;height:34px;flex:none}
+.lk-mark img{height:100%;width:auto;display:block}
+.lk-tribe .lk-mark{height:30px}
+.lk-x{font:300 15px/1 var(--f-din);color:var(--muted);margin:0 2px;flex:none}
+.lk-tag{font:500 10px/1.25 var(--f-logo-cn);letter-spacing:.18em;color:var(--muted);text-align:right;padding-left:10px;border-left:1px solid var(--line);flex:none}
+@media (max-width:370px){.lk-tag{display:none}}
+@media (max-width:340px){.lk-en{display:none}.lk-mark{height:28px}.lk-tribe .lk-mark{height:25px}}
+@media (min-width:900px){.lk-row{min-height:56px}.lk{gap:8px}.lk-en{font-size:11.5px}.lk-cn{font-size:23px}.lk-mark{height:50px}.lk-tribe .lk-mark{height:44px}.lk-x{font-size:20px;margin:0 8px}.lk-tag{font-size:12px}}
+.presenters{margin-top:38px;padding:22px 0 6px;border-top:1px solid var(--line-soft);display:flex;flex-direction:column;align-items:center;gap:12px}
+.pres-k{margin:0;font:500 9.5px var(--f-mono);letter-spacing:.24em;color:var(--muted)}
+.pres-row{display:flex;align-items:center;justify-content:center;gap:18px}
+.pres-logo{display:flex;align-items:center;height:50px}
+.pres-logo img{width:auto;display:block;opacity:.92}
+.pres-logo img[src$="sparrow-movies.png"],.pres-logo img[src$="sparrow-movies-dark.png"]{height:50px}
+.pres-logo img[src$="sparrow-tribe.png"]{height:44px}
+.pres-logo img[src$="sparrow-tribe-dark.png"]{height:31px}
+.pres-x{font:300 18px/1 var(--f-din);color:var(--muted)}
+.pres-d{margin:0;font-size:11px;letter-spacing:.3em;color:var(--muted)}
+@media (min-width:900px){.pres-row{gap:28px}.pres-logo{height:60px}.pres-logo img[src$="sparrow-movies.png"],.pres-logo img[src$="sparrow-movies-dark.png"]{height:60px}.pres-logo img[src$="sparrow-tribe.png"]{height:53px}.pres-logo img[src$="sparrow-tribe-dark.png"]{height:37px}}
 </style>
 
 </head>
@@ -1551,8 +1578,9 @@ const topEl = document.getElementById("topbar"), main = document.getElementById(
 const logoImg = (base, alt, cls="") => `<img class="lg-l ${cls}" src="brand/${base}.png" alt="${alt}"><img class="lg-d ${cls}" src="brand/${base}-dark.png" alt="${alt}">`;
 const DUO = `<span class="duo" aria-hidden="true"><span class="seal">${logoImg("mark-movies","")}</span><span class="seal">${logoImg("mark-tribe","")}</span></span>`;
 const DUO_PRINT = '<span class="duo" aria-hidden="true"><span class="seal seal-print"><img src="brand/mark-movies.png" alt=""></span><span class="seal seal-print"><img src="brand/mark-tribe.png" alt=""></span></span>';
-const brandBar = () => `<div class="row">${DUO}<div class="brand brand-sparrow"><b>麻雀映画<i>&amp;</i>麻雀部落</b><small>展映排片表 · SPARROW SCREENINGS</small></div></div>`;
-const presentersHTML = () => `<section class="presenters"><h3 class="blockh">主办 <small>PRESENTED BY</small></h3><div class="pres-grid"><figure class="plate"><div class="plate-art">${logoImg("sparrow-movies","麻雀映画 Sparrow Movies")}</div><figcaption><b>麻雀映画</b><span>电影放映与策展</span></figcaption></figure><figure class="plate"><div class="plate-art">${logoImg("sparrow-tribe","麻雀部落 Sparrow Tribe")}</div><figcaption><b>麻雀部落</b><span>电影放映与策展</span></figcaption></figure></div></section>`;
+const lockup = (k) => { const en = k==="movies" ? "Movies" : "Tribe", cn = k==="movies" ? "麻雀映画" : "麻雀部落"; const txt = `<span class="lk-txt"><span class="lk-en">Sparrow<br>${en}</span><span class="lk-cn">${cn}</span></span>`, mk = `<span class="lk-mark">${logoImg("mark-"+k,"")}</span>`; return `<span class="lk lk-${k}" aria-label="${cn} Sparrow ${en}">${k==="movies"?txt+mk:mk+txt}</span>`; };
+const brandBar = () => `<div class="row lk-row">${lockup("movies")}<span class="lk-x" aria-hidden="true">×</span>${lockup("tribe")}<span class="sp"></span><span class="lk-tag">展映<br>排片表</span></div>`;
+const presentersHTML = () => `<section class="presenters"><p class="pres-k">主办 · PRESENTED BY</p><div class="pres-row"><span class="pres-logo">${logoImg("sparrow-movies","麻雀映画 Sparrow Movies")}</span><span class="pres-x" aria-hidden="true">×</span><span class="pres-logo">${logoImg("sparrow-tribe","麻雀部落 Sparrow Tribe")}</span></div><p class="pres-d">电影放映与策展</p></section>`;
 
 function ganttHTML(k, rowH, labW, compact, list){
   const S = toMin("12:00"), E = toMin("22:30"), W = Math.round((E-S)*k);
