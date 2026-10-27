@@ -1,0 +1,18 @@
+{
+  "name": "风格万相 · 中外经典影片展",
+  "short_name": "风格万相",
+  "description": "风格万相中外经典影片展电子手册：排片、片目、个人观影日程。由麻雀映画制作。",
+  "lang": "zh-CN",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#efe6d4",
+  "theme_color": "#8e2a22",
+  "icons": [
+    {"src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+    {"src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+    {"src": "icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+  ]
+}
