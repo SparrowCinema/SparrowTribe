@@ -14,10 +14,12 @@
 
 ## 项目结构与现状
 
-- 网站：https://sparrowcinema.github.io/style-kaleidoscope/
+- 网站：https://sparrowcinema.github.io/style-kaleidoscope/（仓库名沿用 style-kaleidoscope，未改动以免旧链接失效）
 - 单页静态应用：index.html，内含页面样式、影片和排片数据、路由与交互脚本。
-- 海报目录：posters/；发布配置：.github/workflows/pages.yml。
-- 主要路由：排片、片目、影片详情、#my（我的）、#plan（个人排片）、#export（导出）、#share=…（分享）。
+- 海报目录：posters/；发布配置：.github/workflows/pages.yml；PWA：manifest.webmanifest、sw.js（替换同名静态文件时需升级缓存名）、icons/。
+- 网站标题：麻雀映画&麻雀部落展映排片表。风格万相是其中一个影展专题，后续会加入院线电影、艺术影院等排片。
+- 专题数据：PROGRAMMES 数组（id、名称、类型、时段、封面、简介）；影片用 prog 字段归属专题，未填写时默认 style-kaleidoscope。专题封面放在 programmes/。
+- 主要路由：排片、片目、影片详情、#prog-<专题id>（专题页）、#my（我的）、#plan（个人排片）、#export（导出）、#share=…（分享）、#install（添加到手机）。
 - 个人排片保存在浏览器 localStorage，键为 style-kaleidoscope-plan-v1；没有账号或跨设备自动同步。
 - 分享链接编码场次键；场次键由日期、时间、影院、影厅构成。修改这些字段时必须考虑已有收藏和链接兼容性。
 - 导出包含 PNG、ICS 日历及打印保存 PDF；影院和影厅应保持完整显示。
