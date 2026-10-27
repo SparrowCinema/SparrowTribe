@@ -1,0 +1,87 @@
+<view class="brandbar">
+  <image class="sq" src="/images/brand/sparrow-movies-sq.png" mode="aspectFit" />
+  <text class="x">×</text>
+  <image class="sq" src="/images/brand/sparrow-tribe-sq.png" mode="aspectFit" />
+  <view class="sp" />
+  <view class="tag"><text>展映\n排片表</text></view>
+</view>
+
+<view class="wrap">
+  <view class="h2">展映排片表</view>
+  <view class="sub">{{span}} · {{count}} 场 · 点击色块查看影片</view>
+
+  <view class="blockh">专题 <text class="en">PROGRAMMES</text></view>
+  <view wx:for="{{progs}}" wx:key="id" class="prog card" data-id="{{item.id}}" bindtap="openProg">
+    <image wx:if="{{item.cover}}" class="cover" src="{{item.cover}}" mode="aspectFill" />
+    <view class="pbody">
+      <text class="pk mono">{{item.kind}} · {{item.period}}</text>
+      <text class="pn">{{item.name}}</text>
+      <text class="ps">{{item.sub}} · {{item.fn}} 部 / {{item.n}} 场</text>
+    </view>
+    <text class="go">专题 ›</text>
+  </view>
+
+  <scroll-view scroll-x class="chips-scroll" enhanced show-scrollbar="{{false}}">
+    <view class="chips">
+      <view class="chip {{pf==='all'?'on':''}}" data-id="all" bindtap="setProg">全部</view>
+      <view wx:for="{{progs}}" wx:key="id" class="chip {{pf===item.id?'on':''}}" data-id="{{item.id}}" bindtap="setProg">{{item.name}}</view>
+    </view>
+  </scroll-view>
+
+  <view class="legend">
+    <view wx:for="{{legend}}" wx:key="n" class="lg"><view class="dot" style="background:{{item.c}}" />{{item.n}}</view>
+  </view>
+
+  <!-- 甘特图：左侧日期固定，右侧左右滑动 -->
+  <view class="gantt card">
+    <view class="labels">
+      <view class="corner">日期</view>
+      <view wx:for="{{rows}}" wx:key="index" class="lab">
+        <text class="ld mono">{{item.d}}</text>
+        <text class="lw">{{item.wk}}</text>
+        <text wx:if="{{item.place}}" class="lp">{{item.place}}</text>
+      </view>
+    </view>
+    <scroll-view scroll-x class="track-scroll" scroll-left="0" enhanced show-scrollbar="{{false}}">
+      <view style="width:{{width}}rpx">
+        <view class="ruler">
+          <text wx:for="{{ruler}}" wx:key="t" class="tick mono" style="left:{{item.x}}rpx">{{item.t}}</text>
+        </view>
+        <view wx:for="{{rows}}" wx:for-item="row" wx:key="index" class="track">
+          <view wx:for="{{row.blocks}}" wx:key="key" class="blk" style="left:{{item.left}}rpx;width:{{item.w}}rpx;background:{{item.color}}" data-id="{{item.id}}" bindtap="openFilm">
+            <text class="bt">{{item.cn}}</text>
+            <text class="bm mono">{{item.version ? item.version + ' · ' : ''}}{{item.t}}–{{item.end}}</text>
+            <view wx:if="{{item.picked}}" class="star">✓</view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+  <view class="hint">← 左右滑动查看全天时段，色块长度即片长 →</view>
+
+  <view class="blockh">逐日场次 <text class="en">DAILY</text></view>
+  <view wx:for="{{agenda}}" wx:for-item="day" wx:key="d" class="day">
+    <view class="dh mono">{{day.d}} · {{day.wk}}</view>
+    <view wx:for="{{day.items}}" wx:key="key" class="ag">
+      <view class="agl" data-id="{{item.id}}" bindtap="openFilm">
+        <text class="at mono">{{item.t}}</text>
+        <view class="bar" style="background:{{item.color}}" />
+        <view class="an">
+          <view class="ann">{{item.cn}}<text wx:if="{{item.version}}" class="ed">{{item.version}}</text></view>
+          <text class="ans">{{item.venue}} · {{item.hall}} · {{item.min}} 分钟</text>
+        </view>
+      </view>
+      <view class="add {{item.picked?'on':''}}" data-key="{{item.key}}" catchtap="toggle">{{item.picked?'✓ 已加入':'+ 排片'}}</view>
+    </view>
+  </view>
+
+  <view class="makers">
+    <text class="k">制作设计 · PRODUCED {{'&'}} DESIGNED BY</text>
+    <view class="row">
+      <image src="/images/brand/sparrow-movies-sq.png" mode="aspectFit" />
+      <text class="x">×</text>
+      <image src="/images/brand/sparrow-tribe-sq.png" mode="aspectFit" />
+    </view>
+    <text class="d">电影放映与策展</text>
+  </view>
+</view>

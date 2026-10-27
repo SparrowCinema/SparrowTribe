@@ -1,0 +1,25 @@
+<view class="wrap">
+  <view wx:if="{{bad}}" class="empty">
+    <text class="et">这份排片已无法读取</text>
+    <text class="muted">其中的场次可能已经更新。</text>
+    <view class="btn" bindtap="home">进入首页看排片</view>
+  </view>
+  <block wx:else>
+    <view class="banner">
+      <text class="bt">{{items.length}} 场电影 · {{days}} 天</text>
+      <text class="bs">这是朋友分享给你的观影日程，加入后会和你自己的排片合并。</text>
+      <view class="acts">
+        <view class="btn light" bindtap="importAll">全部加入我的排片</view>
+        <view class="btn outline" bindtap="home">进入首页</view>
+      </view>
+    </view>
+    <view wx:for="{{items}}" wx:key="key" class="row" data-id="{{item.id}}" bindtap="open">
+      <view class="tm mono"><text class="d">{{item.d}} {{item.wk}}</text><text class="b">{{item.t}}</text></view>
+      <image wx:if="{{item.poster}}" class="th" src="{{item.poster}}" mode="aspectFill" />
+      <view class="info">
+        <view class="t">{{item.cn}}<text wx:if="{{item.version}}" class="ed">{{item.version}}</text></view>
+        <text class="v">{{item.venue}} · {{item.hall}} · 散场 {{item.end}}</text>
+      </view>
+    </view>
+  </block>
+</view>

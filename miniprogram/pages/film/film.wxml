@@ -1,0 +1,102 @@
+<view wx:if="{{f}}" style="--fc:{{f.color}}">
+  <view class="hero">
+    <image wx:if="{{f.poster}}" class="bg" src="{{f.poster}}" mode="aspectFill" />
+    <view class="shade" />
+    <view class="hin">
+      <image wx:if="{{f.poster}}" class="pst" src="{{f.poster}}" mode="aspectFill" />
+      <view class="tt">
+        <view class="prog" bindtap="openProg">{{f.prog.kind}} · {{f.prog.name}} ›</view>
+        <view class="eyebrow mono"><text class="reg">{{f.reg}}</text>{{f.y}} · {{f.c}}</view>
+        <view class="h1">{{f.cn}}</view>
+        <view class="en">{{f.en}}</view>
+        <view wx:if="{{f.o}}" class="native">原名 {{f.o}}</view>
+        <view class="tags">
+          <text wx:if="{{f.version}}" class="tg ed2">{{f.version}}</text>
+          <text class="tg">{{f.min}} 分钟</text>
+          <text class="tg">{{f.lang}}</text>
+          <text wx:for="{{f.genre}}" wx:key="*this" class="tg">{{item}}</text>
+        </view>
+        <view class="by">导演 <text class="b">{{f.dir}}</text></view>
+      </view>
+    </view>
+  </view>
+
+  <view class="wrap">
+    <!-- 购票：醒目位置 -->
+    <view wx:if="{{f.ticket}}" class="buy">
+      <view class="buyt">
+        <text class="bk mono">TICKETS</text>
+        <text class="bh">扫码购票</text>
+        <text class="bs">长按小程序码，选择「识别小程序码」即可进入购票页面</text>
+        <text wx:for="{{shows}}" wx:key="key" class="bd mono">{{item.d}} {{item.wk}} {{item.t}} · {{item.hall}}</text>
+      </view>
+      <image class="qr" src="{{f.ticket}}" mode="aspectFit" show-menu-by-longpress />
+    </view>
+
+    <view class="ratings card">
+      <view wx:for="{{ratings}}" wx:key="l" class="rt {{item.na?'na':''}}">
+        <text class="rl">{{item.l}}</text>
+        <text class="rv mono">{{item.v}}</text>
+        <view class="rb"><view class="ri" style="width:{{item.pct}}%" /></view>
+      </view>
+    </view>
+
+    <view class="sec-h">放映场次 <text class="muted small">{{shows.length}} 场</text></view>
+    <view wx:for="{{shows}}" wx:key="key" class="ticket card">
+      <view class="td"><text class="tm">{{item.m}}月</text><text class="tdd mono">{{item.dd}}</text><text class="tw">{{item.wk}}</text></view>
+      <view class="tb">
+        <view class="ttime mono"><text class="b">{{item.t}}</text> – {{item.end}}</view>
+        <text class="tv">{{item.venue}} · {{item.hall}}</text>
+        <view class="tact">
+          <view class="ta {{item.picked?'on':''}}" data-key="{{item.key}}" bindtap="toggle">{{item.picked?'✓ 已加入排片':'+ 加入排片'}}</view>
+          <view class="ta ghost" data-key="{{item.key}}" bindtap="calendar">加入日历</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="sec-h">影片信息</view>
+    <view class="credits">
+      <view wx:for="{{credits}}" wx:key="k" class="cr"><text class="ck">{{item.k}}</text><text class="cv">{{item.v}}</text></view>
+    </view>
+
+    <view class="st"><text class="stt">剧情简介</text><text class="ste mono">SYNOPSIS</text></view>
+    <view class="syn {{f.long && !open ? 'clamp' : ''}}">
+      <view wx:for="{{f.syn}}" wx:key="index" class="p">{{item}}</view>
+    </view>
+    <view wx:if="{{f.long}}" class="more" bindtap="more">{{open ? '收起' : '展开全文'}}</view>
+
+    <block wx:if="{{f.highlights.length}}">
+      <view class="st"><text class="stt">观影看点</text><text class="ste mono">WHAT TO WATCH</text></view>
+      <view wx:for="{{f.highlights}}" wx:key="n" class="hl card"><text class="hn">{{item.n}}</text><text class="hx">{{item.x}}</text></view>
+    </block>
+
+    <block wx:if="{{f.honors.length}}">
+      <view class="st"><text class="stt">影展与荣誉</text><text class="ste mono">FESTIVALS {{'&'}} AWARDS</text></view>
+      <view wx:for="{{f.honors}}" wx:key="index" class="ho {{item.cls}}">
+        <text class="ht">{{item.t}}</text><text wx:if="{{item.yr}}" class="hy mono">{{item.yr}}</text>
+        <view class="hb"><text class="ha">{{item.a}}</text><text wx:if="{{item.b}}" class="hbb">{{item.b}}</text></view>
+      </view>
+    </block>
+
+    <view class="st"><text class="stt">导演介绍</text><text class="ste mono">DIRECTOR</text></view>
+    <view class="dc card">
+      <view class="dh"><view class="av">{{f.dir[0]}}</view><view><view class="dn">{{f.dir}}</view><view class="ds">{{f.dirO}}</view><view class="ds">{{f.dirLife}}</view></view></view>
+      <view wx:for="{{f.bio}}" wx:key="index" class="p">{{item}}</view>
+    </view>
+
+    <view class="st"><text class="stt">创作背景</text><text class="ste mono">CONTEXT</text></view>
+    <view class="ctx"><view wx:for="{{f.st}}" wx:key="index" class="p">{{item}}</view></view>
+
+    <view class="nav">
+      <view wx:for="{{nav}}" wx:key="index" class="nb {{index===1?'r':''}}">
+        <block wx:if="{{item}}">
+          <view class="nbi" data-id="{{item.id}}" bindtap="openFilm">
+            <image wx:if="{{item.poster}}" src="{{item.poster}}" mode="aspectFill" />
+            <view class="nbt"><text class="muted small">{{index===0?'上一部':'下一部'}}</text><text class="b">{{item.cn}}</text></view>
+          </view>
+        </block>
+      </view>
+    </view>
+    <button class="btn ghost share" open-type="share">分享这部影片</button>
+  </view>
+</view>

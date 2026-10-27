@@ -1,0 +1,56 @@
+<view class="wrap">
+  <view class="k mono">MY FESTIVAL</view>
+  <view class="h1">我的影展</view>
+  <view class="sub">个人排片跟着微信号保存，换手机也不会丢。</view>
+  <view class="stats card">
+    <view><text class="n mono">{{stats.n}}</text><text class="l">场放映</text></view>
+    <view><text class="n mono">{{stats.d}}</text><text class="l">天行程</text></view>
+    <view><text class="n mono">{{stats.hm}}</text><text class="l">银幕时长</text></view>
+    <view class="{{clash?'bad':'good'}}"><text class="n mono">{{clash}}</text><text class="l">时间冲突</text></view>
+  </view>
+
+  <view wx:if="{{empty}}" class="empty">
+    <text class="plus">＋</text>
+    <text class="et">还没有加入场次</text>
+    <text class="es">在排片表或影片页点「加入排片」</text>
+    <view class="btn" bindtap="toSchedule">去选电影</view>
+  </view>
+
+  <block wx:else>
+    <view class="tools">
+      <button class="btn" open-type="share">分享给朋友</button>
+      <view class="btn ghost" bindtap="toSchedule">继续选片</view>
+      <view class="clear" bindtap="clear">清空</view>
+    </view>
+    <view wx:if="{{clash}}" class="conflict"><text class="b">有 {{clash}} 组场次时间重叠</text>，已在日程中标红，移出其中一场即可。</view>
+    <view wx:for="{{days}}" wx:for-item="day" wx:key="d" class="day">
+      <view class="dh"><text class="dd mono">{{day.d}}</text><text class="dw">{{day.wk}}</text><text class="dr">{{day.items.length}} 场 · {{day.range}}</text></view>
+      <block wx:for="{{day.items}}" wx:key="key">
+        <view wx:if="{{item.gap}}" class="gap {{item.gap.cls}}">{{item.gap.txt}}</view>
+        <view class="it">
+          <view class="tm mono"><text class="b">{{item.t}}</text><text>{{item.end}}</text></view>
+          <view class="pc card" style="--c:{{item.color}}" data-id="{{item.id}}" bindtap="open">
+            <image wx:if="{{item.poster}}" class="th" src="{{item.poster}}" mode="aspectFill" />
+            <view class="pi">
+              <view class="pt">{{item.cn}}<text wx:if="{{item.version}}" class="ed">{{item.version}}</text></view>
+              <text class="ps">{{item.dir}} · {{item.min}} 分钟</text>
+              <text class="pv">{{item.venue}} · {{item.hall}}</text>
+            </view>
+            <view class="rm" data-key="{{item.key}}" catchtap="remove">✕</view>
+          </view>
+        </view>
+      </block>
+    </view>
+    <view class="note">散场时间按片长计算，不含映前广告与映后交流。跨影院观影请另留交通时间。</view>
+  </block>
+
+  <view class="makers">
+    <text class="k2">制作设计 · PRODUCED {{'&'}} DESIGNED BY</text>
+    <view class="row">
+      <image src="/images/brand/sparrow-movies-sq.png" mode="aspectFit" />
+      <text class="x">×</text>
+      <image src="/images/brand/sparrow-tribe-sq.png" mode="aspectFit" />
+    </view>
+    <text class="d">电影放映与策展</text>
+  </view>
+</view>

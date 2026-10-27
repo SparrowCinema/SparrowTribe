@@ -1,0 +1,16 @@
+.banner { margin-top: 32rpx; padding: 32rpx; border-radius: 24rpx; background: var(--fg); color: var(--bg); display: flex; flex-direction: column; gap: 8rpx; }
+.bt { font-size: 36rpx; font-weight: 900; }
+.bs { font-size: 24rpx; opacity: .8; }
+.acts { display: flex; gap: 16rpx; margin-top: 16rpx; }
+.btn.light { background: var(--accent); color: #fffaf0; }
+.btn.outline { background: transparent; color: var(--bg); border: 2rpx solid rgba(239,230,212,.5); }
+.row { display: flex; align-items: center; gap: 20rpx; padding: 22rpx 0; border-bottom: 2rpx solid var(--line-soft); }
+.tm { flex: none; width: 150rpx; display: flex; flex-direction: column; }
+.tm .d { font-size: 20rpx; color: var(--muted); }
+.tm .b { font-size: 34rpx; font-weight: 700; }
+.th { flex: none; width: 80rpx; height: 120rpx; border-radius: 8rpx; }
+.info { flex: 1; min-width: 0; }
+.t { font-size: 30rpx; font-weight: 700; }
+.v { font-size: 22rpx; color: var(--teal); }
+.empty { display: flex; flex-direction: column; align-items: center; gap: 16rpx; padding: 120rpx 0; }
+.et { font-size: 34rpx; font-weight: 700; }
