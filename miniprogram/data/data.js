@@ -1012,13 +1012,78 @@ module.exports = {
   {
    "id": "premiere",
    "name": "百美汇影城",
+   "brand": "百美汇影城",
+   "store": "",
    "en": "PREMIERE",
+   "fmt": [
+    "LUXE"
+   ],
    "halls": [
     {
      "id": "luxe",
      "name": "LUXE4K激光巨幕厅"
     }
    ]
+  },
+  {
+   "id": "hz-xflh-qibao",
+   "name": "杭州幸福蓝海国际影城（七堡花园城IMAX店）",
+   "brand": "杭州幸福蓝海国际影城",
+   "store": "七堡花园城IMAX店",
+   "fmt": [
+    "IMAX"
+   ],
+   "halls": []
+  },
+  {
+   "id": "hz-xgjy-raffles",
+   "name": "星光嘉映影城（杭州来福士杜比巨幕店）",
+   "brand": "星光嘉映影城",
+   "store": "杭州来福士杜比巨幕店",
+   "fmt": [
+    "杜比巨幕"
+   ],
+   "halls": []
+  },
+  {
+   "id": "hz-mixc-imax",
+   "name": "万象影城（杭州万象城激光IMAX店）",
+   "brand": "万象影城",
+   "store": "杭州万象城激光IMAX店",
+   "fmt": [
+    "激光IMAX"
+   ],
+   "halls": []
+  },
+  {
+   "id": "hz-mixc-yaao",
+   "name": "万象影城（杭州亚奥万象杜比巨幕店）",
+   "brand": "万象影城",
+   "store": "杭州亚奥万象杜比巨幕店",
+   "fmt": [
+    "杜比巨幕"
+   ],
+   "halls": []
+  },
+  {
+   "id": "hz-cgv-olympic",
+   "name": "CGV影城（奥体印象城杜比影院店）",
+   "brand": "CGV影城",
+   "store": "奥体印象城杜比影院店",
+   "fmt": [
+    "杜比影院"
+   ],
+   "halls": []
+  },
+  {
+   "id": "hz-zy-xiguang",
+   "name": "浙影时代影城（西广激光IMAX店）",
+   "brand": "浙影时代影城",
+   "store": "西广激光IMAX店",
+   "fmt": [
+    "激光IMAX"
+   ],
+   "halls": []
   }
  ],
  "programmes": [

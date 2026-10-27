@@ -650,6 +650,21 @@ html.sheet-open,html.sheet-open body{overflow:hidden}
 .pres-x{font-size:13px!important}
 .presenters{gap:10px!important;padding-top:18px!important}
 @media (min-width:900px){.sq-logo{width:44px;height:44px}.pres-sq{width:68px!important;height:68px!important}}
+
+/* ---- Hangzhou cinemas (claude/add-hangzhou-cinemas) ---- */
+.vchips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.vchips::-webkit-scrollbar{display:none}
+.vchips .fchip{flex:none;white-space:nowrap}
+.vname small{letter-spacing:.02em!important}
+.vcount em{font-style:normal;font-size:11px;color:var(--muted);border:1px dashed var(--line);border-radius:99px;padding:2px 8px;white-space:nowrap}
+.vfmt{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px}
+.vfmt span{font:600 10px/1.6 var(--f-mono);letter-spacing:.04em;padding:1px 7px;border-radius:4px;border:1px solid var(--line);color:var(--muted)}
+.venue.idle .vmark{background:var(--chip);color:var(--fg)}
+.hall-tbd{border:1px dashed var(--line);background:transparent}
+.hall-tbd small{font-size:12px}
+.g-empty{display:flex;flex-direction:column;align-items:center;gap:4px;padding:36px 16px;border:1px dashed var(--line);border-radius:12px;background:var(--surface);text-align:center}
+.g-empty b{font-size:15px}
+.g-empty span{font-size:12px;color:var(--muted)}
 </style>
 
 </head>
@@ -1558,8 +1573,15 @@ const FILMS = [
 ];
 
 /* 影院与影厅：后续新增影院或影厅，在这里加一项即可 */
+/* 影院：brand 品牌、store 门店、fmt 特色厅标签、halls 影厅（待补充时留空数组）。新增场次时 v 填影院 id、h 填影厅 id */
 const VENUES = [
-  {id:"premiere", name:"百美汇影城", en:"PREMIERE", halls:[{id:"luxe", name:"LUXE4K激光巨幕厅"}]}
+  {id:"premiere", name:"百美汇影城", brand:"百美汇影城", store:"", en:"PREMIERE", fmt:["LUXE"], halls:[{id:"luxe", name:"LUXE4K激光巨幕厅"}]},
+  {id:"hz-xflh-qibao", name:"杭州幸福蓝海国际影城（七堡花园城IMAX店）", brand:"杭州幸福蓝海国际影城", store:"七堡花园城IMAX店", fmt:["IMAX"], halls:[]},
+  {id:"hz-xgjy-raffles", name:"星光嘉映影城（杭州来福士杜比巨幕店）", brand:"星光嘉映影城", store:"杭州来福士杜比巨幕店", fmt:["杜比巨幕"], halls:[]},
+  {id:"hz-mixc-imax", name:"万象影城（杭州万象城激光IMAX店）", brand:"万象影城", store:"杭州万象城激光IMAX店", fmt:["激光IMAX"], halls:[]},
+  {id:"hz-mixc-yaao", name:"万象影城（杭州亚奥万象杜比巨幕店）", brand:"万象影城", store:"杭州亚奥万象杜比巨幕店", fmt:["杜比巨幕"], halls:[]},
+  {id:"hz-cgv-olympic", name:"CGV影城（奥体印象城杜比影院店）", brand:"CGV影城", store:"奥体印象城杜比影院店", fmt:["杜比影院"], halls:[]},
+  {id:"hz-zy-xiguang", name:"浙影时代影城（西广激光IMAX店）", brand:"浙影时代影城", store:"西广激光IMAX店", fmt:["激光IMAX"], halls:[]}
 ];
 /* 专题：影展、院线、艺术影院等。影片用 prog 字段归入专题，不写时默认风格万相 */
 const PROGRAMMES = [
@@ -1670,11 +1692,13 @@ function schedule(){
     ag += `</div>`;
   });
   const allHalls = VENUES.flatMap(v=>v.halls);
-  const vchips = VENUES.length>1 ? `<div class="filters">${[["all","全部影院"],...VENUES.map(v=>[v.id,v.name])].map(([kk,n])=>`<button class="fchip" data-vf="${kk}" aria-pressed="${vfilt===kk}">${esc(n)}</button>`).join("")}</div>` : "";
+  const vchips = VENUES.length>1 ? `<div class="filters vchips">${[["all","全部影院"],...VENUES.map(v=>[v.id,v.brand&&v.store?v.brand.replace(/^杭州/,"")+"·"+v.store.replace(/店$/,""):v.name])].map(([kk,n])=>`<button class="fchip" data-vf="${kk}" aria-pressed="${vfilt===kk}">${esc(n)}</button>`).join("")}</div>` : "";
   const venues = VENUES.map(v=>{
     const n = SH.filter(x=>x.v===v.id).length;
-    return `<div class="venue"><div class="vhead"><span class="vmark">${esc(v.en.slice(0,1))}</span><span class="vname"><b>${esc(v.name)}</b><small>${esc(v.en)}</small></span><span class="vcount"><b>${n}</b>场</span></div>
-      <div class="halls">${v.halls.map(h=>{const hn=SH.filter(x=>x.v===v.id&&x.h===h.id).length;return `<div class="hall"><b>${esc(h.name)}</b><small>${esc(h.note||"")}${h.note?" · ":""}${hn} 场</small></div>`}).join("")}</div></div>`;
+    const mark = (v.brand||v.name).replace(/^杭州/,"").slice(0,1);
+    return `<div class="venue${n?"":" idle"}"><div class="vhead"><span class="vmark">${esc(mark)}</span><span class="vname"><b>${esc(v.brand||v.name)}</b><small>${esc(v.store||v.en||"")}</small></span><span class="vcount">${n?`<b>${n}</b>场`:`<em>待排片</em>`}</span></div>
+      ${(v.fmt||[]).length?`<div class="vfmt">${v.fmt.map(t=>`<span>${esc(t)}</span>`).join("")}</div>`:""}
+      <div class="halls">${v.halls.length?v.halls.map(h=>{const hn=SH.filter(x=>x.v===v.id&&x.h===h.id).length;return `<div class="hall"><b>${esc(h.name)}</b><small>${esc(h.note||"")}${h.note?" · ":""}${hn} 场</small></div>`}).join(""):`<div class="hall hall-tbd"><small>影厅信息待补充</small></div>`}</div></div>`;
   }).join("");
   main.innerHTML = `<section class="view gut">
     <h2 class="sec">展映排片表</h2><p class="sub">${dateSpan(list)} · ${list.length} 场 · ${wide?"点击色块看影片":"点击排片图进入详细排片"}</p>
@@ -1682,8 +1706,8 @@ function schedule(){
     ${progChips()}
     ${vchips}
     <div class="legend">${Object.values(REG).map(r=>`<span><i style="background:${r.c}"></i>${r.n}</span>`).join("")}</div>
-    ${gantt}
-    ${wide?"":`<button class="open-full" data-open-gantt><span>进入详细排片</span><small>左右滑动 · 点击色块看影片</small><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 9V4h5M20 15v5h-5M4 4l6 6M20 20l-6-6"/></svg></button>`}
+    ${list.length?gantt:`<div class="g-empty"><b>${vfilt!=="all"&&VN[vfilt]?esc(VN[vfilt].name):"当前筛选"}暂无排片</b><span>排片公布后会更新到这里</span></div>`}
+    ${wide||!list.length?"":`<button class="open-full" data-open-gantt><span>进入详细排片</span><small>左右滑动 · 点击色块看影片</small><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 9V4h5M20 15v5h-5M4 4l6 6M20 20l-6-6"/></svg></button>`}
     <div class="venues"><h3 class="blockh">影院 <small>VENUES · ${VENUES.length} 家 / ${allHalls.length} 个影厅</small></h3>${venues}</div>
     <div class="agenda"><h3 class="blockh">逐日场次 <small>DAILY</small></h3>${ag}</div>
     ${presentersHTML()}</section>`;
@@ -1790,7 +1814,7 @@ function progPage(pid){
 function about(){
   main.innerHTML = `<section class="view gut about"><h2 class="sec">关于影展</h2>
     <p class="sub">风格万相 · 中外经典影片展</p>
-    <dl class="kv"><dt>展期</dt><dd>2026.10 – 2027.01</dd><dt>影院</dt><dd>${VENUES.map(v=>esc(v.name+"（"+v.halls.map(h=>h.name).join("、")+"）")).join("<br>")}</dd><dt>本页场次</dt><dd>10.30 – 11.08，共 ${SH.length} 场 / ${FILMS.length} 部</dd></dl>
+    <dl class="kv"><dt>展期</dt><dd>2026.10 – 2027.01</dd><dt>影院</dt><dd>${VENUES.map(v=>esc(v.name+(v.halls.length?"（"+v.halls.map(h=>h.name).join("、")+"）":""))).join("<br>")}</dd><dt>本页场次</dt><dd>10.30 – 11.08，共 ${SH.length} 场 / ${FILMS.length} 部</dd></dl>
     <p>从伯格曼的公路回忆到塔可夫斯基的末日祈祷，从费穆的城墙到徐克的江湖，十七部作品横跨 1947 至 2025 年，排在同一块银幕上，恰好是一份关于“风格”的地图。</p>
     <p class="src">后续场次公布后将补充至排片表。</p></section>`;
 }
