@@ -549,6 +549,38 @@ html.sheet-open,html.sheet-open body{overflow:hidden}
 .pg-film small{font:11px var(--f-mono);color:var(--muted)}
 @media (min-width:640px){.pg-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
 @media (min-width:900px){.pg-grid{grid-template-columns:repeat(6,minmax(0,1fr))}.pg-head h1{font-size:48px}}
+
+/* ---- Brand logos (claude/brand-logos) ---- */
+:root{--plate:#fffaf0;--plate-line:#e6dcc7;--seal:#fffaf0;--seal-ring:var(--oxblood)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--plate:#211b15;--plate-line:#3b3128;--seal:#17130f;--seal-ring:#5a4a3c}}
+:root[data-theme="dark"]{--plate:#211b15;--plate-line:#3b3128;--seal:#17130f;--seal-ring:#5a4a3c}
+.lg-d{display:none!important}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .lg-l{display:none!important}:root:not([data-theme="light"]) .lg-d{display:block!important}}
+:root[data-theme="dark"] .lg-l{display:none!important}:root[data-theme="dark"] .lg-d{display:block!important}
+.topbar .row{gap:10px}
+.duo{display:inline-flex;flex:none;align-items:center}
+.seal{width:38px;height:38px;border-radius:50%;background:var(--seal);display:grid;place-items:center;box-shadow:0 0 0 1.5px var(--seal-ring),0 2px 6px rgba(0,0,0,.12);overflow:hidden}
+.seal+.seal{margin-left:-9px}
+.seal img{width:76%;height:76%;object-fit:contain;display:block}
+.brand-sparrow{min-width:0}
+.brand-sparrow b{font-size:19px;overflow:hidden;text-overflow:ellipsis}
+@media (max-width:360px){.brand-sparrow b{font-size:16px}.seal{width:32px;height:32px}}
+.presenters{margin-top:34px;padding-top:4px}
+.pres-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.plate{margin:0;border-radius:14px;background:var(--plate);border:1px solid var(--plate-line);padding:18px 14px 14px;display:flex;flex-direction:column;align-items:center;gap:12px;min-width:0}
+.plate-art{width:100%;height:96px;display:flex;align-items:center;justify-content:center}
+.plate-art img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain}
+.plate figcaption{text-align:center;display:flex;flex-direction:column;gap:2px;padding-top:10px;border-top:1px solid var(--plate-line);width:100%}
+.plate figcaption b{font-size:14px;color:var(--fg)}
+.plate figcaption span{font-size:11px;color:var(--muted)}
+@media (min-width:900px){.pres-grid{max-width:720px}.plate-art{height:130px}}
+.pres-note{margin-top:12px}
+.pb-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.pb-top>div{min-width:0}
+.paper-band .duo{display:inline-flex;margin:0}
+.paper-band .seal{display:grid;margin-top:0;width:46px;height:46px;background:#fffaf0;box-shadow:0 0 0 1.5px rgba(255,250,240,.55)}
+.paper-band .seal+.seal{margin-left:-10px}
+.share-paper .paper-band b{font-size:24px}
 </style>
 
 </head>
@@ -1516,7 +1548,11 @@ const days = [...new Set(SH.map(s=>s.d))];
 const chevron = '<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg>';
 const topEl = document.getElementById("topbar"), main = document.getElementById("main");
 
-const brandBar = () => `<div class="row"><div class="brand brand-sparrow"><b>麻雀映画<i>&amp;</i>麻雀部落</b><small>展映排片表 · SPARROW SCREENINGS</small></div></div>`;
+const logoImg = (base, alt, cls="") => `<img class="lg-l ${cls}" src="brand/${base}.png" alt="${alt}"><img class="lg-d ${cls}" src="brand/${base}-dark.png" alt="${alt}">`;
+const DUO = `<span class="duo" aria-hidden="true"><span class="seal">${logoImg("mark-movies","")}</span><span class="seal">${logoImg("mark-tribe","")}</span></span>`;
+const DUO_PRINT = '<span class="duo" aria-hidden="true"><span class="seal seal-print"><img src="brand/mark-movies.png" alt=""></span><span class="seal seal-print"><img src="brand/mark-tribe.png" alt=""></span></span>';
+const brandBar = () => `<div class="row">${DUO}<div class="brand brand-sparrow"><b>麻雀映画<i>&amp;</i>麻雀部落</b><small>展映排片表 · SPARROW SCREENINGS</small></div></div>`;
+const presentersHTML = () => `<section class="presenters"><h3 class="blockh">主办 <small>PRESENTED BY</small></h3><div class="pres-grid"><figure class="plate"><div class="plate-art">${logoImg("sparrow-movies","麻雀映画 Sparrow Movies")}</div><figcaption><b>麻雀映画</b><span>电影放映与策展</span></figcaption></figure><figure class="plate"><div class="plate-art">${logoImg("sparrow-tribe","麻雀部落 Sparrow Tribe")}</div><figcaption><b>麻雀部落</b><span>电影放映与策展</span></figcaption></figure></div></section>`;
 
 function ganttHTML(k, rowH, labW, compact, list){
   const S = toMin("12:00"), E = toMin("22:30"), W = Math.round((E-S)*k);
@@ -1579,7 +1615,8 @@ function schedule(){
     ${gantt}
     ${wide?"":`<button class="open-full" data-open-gantt><span>进入详细排片</span><small>左右滑动 · 点击色块看影片</small><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 9V4h5M20 15v5h-5M4 4l6 6M20 20l-6-6"/></svg></button>`}
     <div class="venues"><h3 class="blockh">影院 <small>VENUES · ${VENUES.length} 家 / ${allHalls.length} 个影厅</small></h3>${venues}</div>
-    <div class="agenda"><h3 class="blockh">逐日场次 <small>DAILY</small></h3>${ag}</div></section>`;
+    <div class="agenda"><h3 class="blockh">逐日场次 <small>DAILY</small></h3>${ag}</div>
+    ${presentersHTML()}</section>`;
   if(wide) flashIn(document.getElementById("gantt"));
 }
 
@@ -1767,7 +1804,7 @@ document.addEventListener("click",async e=>{
 function myPage(){const list=selectedRows(),st=planStats(list),next=list[0];
   main.innerHTML='<section class="view gut"><div class="my-hero"><small>MY FESTIVAL</small><h2>我的影展</h2><p>把想看的电影排进自己的日程，再分享给一起看的人。</p>'+statsHTML(st)+(next?'<button class="next-up" data-film="'+next.id+'"><span class="nu-label">第一场</span>'+thumbHTML(F[next.id])+'<span class="nu-body"><b>'+esc(F[next.id].cn)+'</b><small>'+next.d+' '+wk(next.d)+' · '+next.t+' · '+esc(placeOf(next))+'</small></span></button>':'')+'</div>'+
   '<div class="my-menu"><button class="my-entry" data-tab="plan"><span class="me-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="15" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span><span><b>个人排片</b><small>按天查看日程 · 自动检查时间冲突</small></span><span class="me-go">›</span></button><button class="my-entry" data-tab="export"><span class="me-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="4" width="6" height="6"/><rect x="14" y="4" width="6" height="6"/><rect x="4" y="14" width="6" height="6"/><path d="M14 14h2v2h-2zM18 18h2v2h-2zM14 18h2M18 14h2"/></svg></span><span><b>导出与分享</b><small>带二维码的排片长图 · 分享链接 · 日历 · PDF</small></span><span class="me-go">›</span></button><button class="my-entry" data-tab="install"><span class="me-ic">'+IIC.phone+'</span><span><b>添加到手机</b><small>'+(ENV.standalone?'已在 App 模式中打开':'放到桌面像 App 一样看 · 微信里用浮窗')+'</small></span><span class="me-go">›</span></button></div>'+
-  '<p class="local-note">排片保存在当前浏览器。换设备时，用分享链接或二维码带走日程。</p><details class="about-fold"><summary>关于麻雀映画 &amp; 麻雀部落</summary><p>麻雀映画与麻雀部落的展映排片表，汇集影展专题、艺术影院与院线放映场次。</p><p>当前专题：风格万相 · 中外经典影片展（2026.10—2027.01）。场次、影片与影厅以排片页面为准。</p></details></section>';}
+  '<p class="local-note">排片保存在当前浏览器。换设备时，用分享链接或二维码带走日程。</p>'+presentersHTML()+'<p class="local-note pres-note">麻雀映画与麻雀部落的展映排片表，汇集影展专题、艺术影院与院线放映场次。当前专题：风格万相 · 中外经典影片展（2026.10—2027.01）。</p></section>';}
 function planPage(){const list=selectedRows(),st=planStats(list);
   main.innerHTML='<section class="view gut"><div class="page-heading"><div><small>MY PROGRAMME</small><h2 class="sec">个人排片</h2></div><button class="text-button" data-tab="my">返回我的</button></div>'+
   (list.length?statsHTML(st)+'<div class="plan-toolbar"><button class="primary-button" data-tab="export">导出与分享</button><button class="secondary-button" data-tab="schedule">继续选片</button><button class="text-button" data-action="clear-plan">清空排片</button></div>'+(st.clash?'<div class="conflict" role="status"><b>有 '+st.clash+' 组场次时间重叠</b><p>重叠处已在日程中标红，移出其中一场即可解决。</p></div>':'')+'<div class="plan-days">'+planRowsHTML(list,true)+'</div>'
@@ -1789,7 +1826,7 @@ function exportPage(shared){let list;
   (isShared?'<div class="shared-banner"><b>'+st.n+' 场电影 · '+st.days+' 天</b><p>这是一份别人分享给你的观影日程。加入后会和你自己的排片合并。</p><button class="primary-button" data-action="import-plan">全部加入我的排片</button></div>':'')+
   '<div class="share-panel">'+(qr?'<div class="qr-box">'+qr+'</div>':'')+'<div class="share-body"><b>扫码打开这份排片</b><small>朋友用手机扫码或点开链接即可查看，无需登录，可一键加入自己的排片。</small><div class="link-row"><input id="share-url" readonly value="'+esc(shareURL(list))+'" aria-label="分享链接"><button class="secondary-button" data-action="copy-link">复制链接</button></div>'+(canShare?'<button class="text-button share-sys" data-action="system-share">'+IC.share+' 通过手机分享…</button>':'')+'</div></div>'+
   '<div class="export-grid">'+tile('png',IC.img,'排片长图','含海报与二维码 · PNG','main')+tile('calendar',IC.cal,'导入日历','.ics · 手机/电脑日历')+tile('print',IC.pdf,'打印 / PDF','A4 排版')+'</div>'+
-  '<h3 class="blockh">预览 <small>PREVIEW</small></h3><div class="share-paper"><div class="paper-band"><div><b>麻雀映画 &amp; 麻雀部落</b><span>展映排片表 · SPARROW SCREENINGS</span></div><em>'+(isShared?'观影日程':'我的观影日程')+'</em></div><div class="paper-stats"><span><b>'+st.n+'</b>场</span><span><b>'+st.days+'</b>天</span><span><b>'+st.hm+'</b>银幕时长</span></div><div class="plan-days">'+planRowsHTML(list,false)+'</div><footer>'+(qr?'<div class="paper-qr">'+qr+'</div>':'')+'<div><b>扫码查看并加入这份排片</b><span>中外经典影片展 · 2026.10—2027.01</span><span>由麻雀映画制作</span></div></footer></div>'+
+  '<h3 class="blockh">预览 <small>PREVIEW</small></h3><div class="share-paper"><div class="paper-band"><div class="pb-top"><div><b>麻雀映画 &amp; 麻雀部落</b><span>展映排片表 · SPARROW SCREENINGS</span></div>'+DUO_PRINT+'</div><em>'+(isShared?'观影日程':'我的观影日程')+'</em></div><div class="paper-stats"><span><b>'+st.n+'</b>场</span><span><b>'+st.days+'</b>天</span><span><b>'+st.hm+'</b>银幕时长</span></div><div class="plan-days">'+planRowsHTML(list,false)+'</div><footer>'+(qr?'<div class="paper-qr">'+qr+'</div>':'')+'<div><b>扫码查看并加入这份排片</b><span>麻雀映画 &amp; 麻雀部落 · 展映排片表</span></div></footer></div>'+
   '<p class="local-note">分享链接与二维码保存的是此刻的场次选择，之后修改个人排片不会改变已发出的内容。</p></section>';}
 function downloadBlob(blob,filename){const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),60000);}
 function wrapLines(ctx,text,maxWidth){const out=[];let line='';for(const ch of text){if(ctx.measureText(line+ch).width>maxWidth&&line){out.push(line);line=ch;}else line+=ch;}if(line)out.push(line);return out;}
@@ -1801,13 +1838,14 @@ async function exportPNG(){const list=currentExport;if(!list.length||pngBusy)ret
   try{try{await Promise.all(['900 64px "Noto Serif SC"','700 30px "Noto Sans SC"','500 24px "IBM Plex Mono"'].map(f=>document.fonts.load(f,'麻雀映画部落排片0123')));}catch(e){}
   const SERIF='"Noto Serif SC","Songti SC",serif',SANS='"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif',MONO='"IBM Plex Mono",Menlo,monospace';
   const W=1080,P=64,ROW=196,GAP=52,DAYH=104,HEAD=360,STATS=150,FOOT=420;
-  const groups=byDay(list),imgs={};await Promise.all([...new Set(list.map(s=>s.id))].map(async id=>{imgs[id]=await loadImg(pst(id));}));
+  const groups=byDay(list),imgs={};const marks=await Promise.all(['brand/mark-movies.png','brand/mark-tribe.png'].map(loadImg));await Promise.all([...new Set(list.map(s=>s.id))].map(async id=>{imgs[id]=await loadImg(pst(id));}));
   const H=HEAD+STATS+groups.reduce((n,[,it])=>n+DAYH+it.length*ROW+(it.length-1)*GAP+24,0)+FOOT;
   const cv=document.createElement('canvas'),scale=1;cv.width=W*scale;cv.height=H*scale;const c=cv.getContext('2d');c.scale(scale,scale);c.textBaseline='alphabetic';
   c.fillStyle='#efe6d4';c.fillRect(0,0,W,H);
   // header band
   c.fillStyle='#8e2a22';c.fillRect(0,0,W,HEAD);c.fillStyle='rgba(255,255,255,.06)';for(let x=-HEAD;x<W;x+=46){c.beginPath();c.moveTo(x,HEAD);c.lineTo(x+HEAD*.47,0);c.lineTo(x+HEAD*.47+2,0);c.lineTo(x+2,HEAD);c.fill();}
-  c.fillStyle='#fffaf0';c.font='italic 900 76px '+SERIF;c.fillText('麻雀映画 & 麻雀部落',P,140);
+  c.fillStyle='#fffaf0';c.font='italic 900 68px '+SERIF;c.fillText('麻雀映画 & 麻雀部落',P,140);
+  marks.forEach((im,i)=>{const R=62,cx=W-P-R-(1-i)*(R*2-16),cy=118;c.fillStyle='#fffaf0';c.beginPath();c.arc(cx,cy,R,0,Math.PI*2);c.fill();c.strokeStyle='#8e2a22';c.lineWidth=4;c.stroke();if(im){const s=Math.min((R*1.5)/im.width,(R*1.5)/im.height),w=im.width*s,h=im.height*s;c.drawImage(im,cx-w/2,cy-h/2,w,h);}});
   c.font='500 22px '+MONO;c.globalAlpha=.85;c.fillText('展映排片表 · SPARROW SCREENINGS',P,196);c.globalAlpha=1;
   c.fillStyle='#fffaf0';c.fillRect(P,240,56,3);c.font='700 46px '+SANS;c.fillText(location.hash.startsWith('#share=')?'观影日程':'我的观影日程',P,310);
   // stats
