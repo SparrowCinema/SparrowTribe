@@ -1,5 +1,14 @@
 <!doctype html><html lang="zh-CN"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
 <title>风格万相影展</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="theme-color" content="#f8f2e6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#211b15" media="(prefers-color-scheme: dark)">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="风格万相">
 <meta name="description" content="风格万相中外经典影片展：影片资料、观影看点、导演介绍与展映排片。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600;900&family=Noto+Sans+SC:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
@@ -480,6 +489,33 @@ html.sheet-open,html.sheet-open body{overflow:hidden}
   .fd-syn p,.fd-dcard p,.fd-ctx p{font-size:16.5px}
   .fd-watch{display:grid;grid-template-columns:1fr 1fr}
 }
+
+/* ---- Add to home screen (claude/add-to-home) ---- */
+.in-hero{display:flex;gap:14px;align-items:center;padding:16px;border-radius:14px;background:var(--surface);border:1px solid var(--line);margin-bottom:16px}
+.in-hero img{width:64px;height:64px;border-radius:15px;flex:none;box-shadow:0 4px 12px rgba(0,0,0,.15)}
+.in-hero b{display:block;font-size:16px}
+.in-hero p{margin:4px 0 0;font-size:13px;color:var(--muted);line-height:1.6}
+.in-done{padding:16px;border-radius:14px;background:color-mix(in srgb,var(--teal) 14%,var(--surface));border:1px solid var(--teal);margin-bottom:16px}
+.in-done b{color:var(--teal)}.in-done p{margin:4px 0 0;font-size:13px;color:var(--muted)}
+.in-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;padding:4px;border-radius:12px;background:var(--chip);margin-bottom:14px}
+.in-tabs button{position:relative;padding:9px 4px;border-radius:9px;font-size:13px;color:var(--muted);font-weight:500}
+.in-tabs button[aria-selected="true"]{background:var(--surface);color:var(--fg);font-weight:700;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.in-tabs button{white-space:nowrap}
+.in-tabs i{font-style:normal;white-space:nowrap;font-size:9px;font-weight:700;color:#fffaf0;background:var(--accent);border-radius:4px;padding:0 4px;margin-left:4px;vertical-align:2px}
+.in-steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.in-steps li{display:grid;grid-template-columns:22px 40px 1fr;gap:10px;align-items:center;padding:12px;border-radius:12px;background:var(--surface);border:1px solid var(--line-soft)}
+.in-n{font:600 14px var(--f-mono);color:var(--accent);text-align:center}
+.in-ic{width:40px;height:40px;border-radius:10px;background:var(--bg);display:grid;place-items:center;color:var(--fg)}
+.in-ic svg{width:22px;height:22px}
+.in-tx{min-width:0;display:flex;flex-direction:column}
+.in-tx b{font-size:15px}
+.in-tx small{font-size:12px;color:var(--muted);line-height:1.55;margin-top:2px}
+.in-cta{width:100%;margin-bottom:6px}
+.in-or{text-align:center;font-size:12px;color:var(--muted);margin:8px 0 12px}
+.in-warn{font-size:13px;padding:10px 12px;border-radius:10px;background:color-mix(in srgb,var(--ochre) 14%,var(--surface));margin:0 0 10px}
+.in-note{margin-top:12px;padding:14px;border-radius:12px;border:1px dashed var(--line)}
+.in-note b{font-size:14px}.in-note p{margin:4px 0 0;font-size:13px;color:var(--muted);line-height:1.6}
+.in-note.muted{border-style:solid;border-color:var(--line-soft)}
 </style>
 
 </head>
@@ -1613,9 +1649,60 @@ function planRowsHTML(list,editable){
   }).join('');
 }
 function statsHTML(st){return '<div class="pstats"><div><b>'+st.n+'</b><small>场放映</small></div><div><b>'+st.days+'</b><small>天行程</small></div><div><b>'+st.hm+'</b><small>银幕时长</small></div><div class="'+(st.clash?'bad':'good')+'"><b>'+st.clash+'</b><small>时间冲突</small></div></div>';}
+const ENV=(()=>{const ua=navigator.userAgent||"";const ios=/iPhone|iPad|iPod/i.test(ua)||(/Macintosh/.test(ua)&&navigator.maxTouchPoints>1);return {wechat:/MicroMessenger/i.test(ua),ios,android:/Android/i.test(ua),iosSafari:ios&&!/CriOS|FxiOS|EdgiOS|MicroMessenger|QQ\//i.test(ua),standalone:(window.matchMedia&&matchMedia("(display-mode: standalone)").matches)||navigator.standalone===true};})();
+let installPrompt=null;
+window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();installPrompt=e;if(location.hash==="#install")installPage();});
+window.addEventListener("appinstalled",()=>{installPrompt=null;toast("已添加到手机桌面");if(location.hash==="#install")installPage();});
+if("serviceWorker" in navigator&&location.protocol==="https:"){window.addEventListener("load",()=>{navigator.serviceWorker.register("sw.js").catch(()=>{});});}
+let installTab=null;
+const IIC={
+  share:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 15V3M8 7l4-4 4 4"/><path d="M6 11H5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-8a1 1 0 0 0-1-1h-1"/></svg>',
+  plus:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M12 8v8M8 12h8"/></svg>',
+  dots:'<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="12" cy="19" r="1.8"/></svg>',
+  hdots:'<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="19" cy="12" r="1.8"/></svg>',
+  float:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="4" width="16" height="16" rx="8"/><path d="M9 12h6"/></svg>',
+  star:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>',
+  globe:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>',
+  phone:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg>'
+};
+function stepsHTML(steps){return '<ol class="in-steps">'+steps.map(([ic,t,s],i)=>'<li><span class="in-n">'+(i+1)+'</span><span class="in-ic">'+(IIC[ic]||"")+'</span><span class="in-tx"><b>'+t+'</b>'+(s?'<small>'+s+'</small>':'')+'</span></li>').join("")+'</ol>';}
+function installPage(){
+  const tab=installTab||(ENV.wechat?"wechat":ENV.android?"android":"ios");
+  const T=[["ios","iPhone"],["android","安卓"],["wechat","微信"]];
+  let body="";
+  if(tab==="ios"){
+    body=(ENV.ios&&!ENV.iosSafari&&!ENV.wechat?'<p class="in-warn">建议先用 <b>Safari</b> 打开本页再添加，其他浏览器的菜单位置可能不同。</p>':'')+stepsHTML([
+      ["globe","用 Safari 打开本页","微信里请先点右上角「···」→「在默认浏览器中打开」"],
+      ["share","点底部工具栏的「分享」按钮","方框加向上箭头的图标；iPad 在右上角"],
+      ["plus","在菜单中选「添加到主屏幕」","没看到就向下滑，或点「编辑操作」把它加进列表"],
+      ["phone","点右上角「添加」","桌面会出现红色的「风格万相」图标"]]);
+  }else if(tab==="android"){
+    body=(installPrompt?'<button class="primary-button in-cta" data-install>一键添加到手机桌面</button><p class="in-or">或者按下面的步骤手动添加</p>':'')+stepsHTML([
+      ["globe","用 Chrome 或手机自带浏览器打开本页","微信里请先点右上角「···」→「在浏览器打开」"],
+      ["dots","点右上角或底部的「⋮ / ≡」菜单",""],
+      ["plus","选「添加到主屏幕」或「安装应用」","部分手机写作「添加到桌面」「发送到桌面」"],
+      ["phone","确认添加","如果桌面没出现图标，到系统设置里给浏览器打开「创建桌面快捷方式」权限"]]);
+  }else{
+    body=stepsHTML([
+      ["hdots","点右上角「···」",""],
+      ["float","选「浮窗」","返回聊天后，从屏幕边缘或聊天列表顶部就能一点即回"],
+      ["star","或者选「收藏」","之后在「我 → 收藏」里随时打开"]])+
+      '<div class="in-note"><b>想要像 App 一样放在桌面？</b><p>在「···」里选「在浏览器打开」，再按 iPhone 或安卓的步骤添加到主屏幕。</p></div>'+
+      '<div class="in-note muted"><b>关于小程序</b><p>网页不能直接加入微信的小程序列表。用「浮窗」是在微信里最接近小程序的打开方式。</p></div>';
+  }
+  main.innerHTML='<section class="view gut in-view"><div class="page-heading"><div><small>ADD TO HOME SCREEN</small><h2 class="sec">添加到手机</h2></div><button class="text-button" data-tab="my">返回我的</button></div>'+
+  (ENV.standalone?'<div class="in-done"><b>✓ 已经在 App 模式中打开</b><p>以后从桌面的「风格万相」图标进入即可。</p></div>':
+  '<div class="in-hero"><img src="icons/icon-192.png" alt="" width="64" height="64"><div><b>把「风格万相」放到手机桌面</b><p>全屏打开，没有地址栏，看排片就像用 App；个人排片也会一直保存在这台手机上。</p></div></div>')+
+  '<div class="in-tabs" role="tablist">'+T.map(([k,n])=>'<button role="tab" aria-selected="'+(k===tab)+'" data-itab="'+k+'">'+n+((k==="wechat"&&ENV.wechat)||(k==="ios"&&ENV.ios&&!ENV.wechat)||(k==="android"&&ENV.android&&!ENV.wechat)?'<i>当前</i>':'')+'</button>').join("")+'</div>'+
+  '<div class="in-panel">'+body+'</div><p class="local-note">添加到桌面后，排片保存在桌面版自己的存储里，可能和浏览器里的不互通。需要搬过去时，用「导出与分享」里的链接或二维码导入。</p></section>';
+}
+document.addEventListener("click",async e=>{
+  const t=e.target.closest("[data-itab]");if(t){installTab=t.dataset.itab;installPage();return;}
+  if(e.target.closest("[data-install]")&&installPrompt){installPrompt.prompt();try{await installPrompt.userChoice;}catch(err){}installPrompt=null;installPage();}
+});
 function myPage(){const list=selectedRows(),st=planStats(list),next=list[0];
   main.innerHTML='<section class="view gut"><div class="my-hero"><small>MY FESTIVAL</small><h2>我的影展</h2><p>把想看的电影排进自己的日程，再分享给一起看的人。</p>'+statsHTML(st)+(next?'<button class="next-up" data-film="'+next.id+'"><span class="nu-label">第一场</span>'+thumbHTML(F[next.id])+'<span class="nu-body"><b>'+esc(F[next.id].cn)+'</b><small>'+next.d+' '+wk(next.d)+' · '+next.t+' · '+esc(placeOf(next))+'</small></span></button>':'')+'</div>'+
-  '<div class="my-menu"><button class="my-entry" data-tab="plan"><span class="me-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="15" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span><span><b>个人排片</b><small>按天查看日程 · 自动检查时间冲突</small></span><span class="me-go">›</span></button><button class="my-entry" data-tab="export"><span class="me-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="4" width="6" height="6"/><rect x="14" y="4" width="6" height="6"/><rect x="4" y="14" width="6" height="6"/><path d="M14 14h2v2h-2zM18 18h2v2h-2zM14 18h2M18 14h2"/></svg></span><span><b>导出与分享</b><small>带二维码的排片长图 · 分享链接 · 日历 · PDF</small></span><span class="me-go">›</span></button></div>'+
+  '<div class="my-menu"><button class="my-entry" data-tab="plan"><span class="me-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="15" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span><span><b>个人排片</b><small>按天查看日程 · 自动检查时间冲突</small></span><span class="me-go">›</span></button><button class="my-entry" data-tab="export"><span class="me-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="4" width="6" height="6"/><rect x="14" y="4" width="6" height="6"/><rect x="4" y="14" width="6" height="6"/><path d="M14 14h2v2h-2zM18 18h2v2h-2zM14 18h2M18 14h2"/></svg></span><span><b>导出与分享</b><small>带二维码的排片长图 · 分享链接 · 日历 · PDF</small></span><span class="me-go">›</span></button><button class="my-entry" data-tab="install"><span class="me-ic">'+IIC.phone+'</span><span><b>添加到手机</b><small>'+(ENV.standalone?'已在 App 模式中打开':'放到桌面像 App 一样看 · 微信里用浮窗')+'</small></span><span class="me-go">›</span></button></div>'+
   '<p class="local-note">排片保存在当前浏览器。换设备时，用分享链接或二维码带走日程。</p><details class="about-fold"><summary>关于风格万相</summary><p>中外经典影片展 · 2026.10—2027.01</p><p>由麻雀映画制作。当前场次、影片与影厅以排片页面为准。</p></details></section>';}
 function planPage(){const list=selectedRows(),st=planStats(list);
   main.innerHTML='<section class="view gut"><div class="page-heading"><div><small>MY PROGRAMME</small><h2 class="sec">个人排片</h2></div><button class="text-button" data-tab="my">返回我的</button></div>'+
@@ -1711,13 +1798,14 @@ let pendingFlash=null, lastList="schedule";
 function go(h){ location.hash = h; }
 function route(){
   const h = location.hash.slice(1) || "schedule";
-  const tab = ["plan","export","about"].includes(h)||h.startsWith("share=") ? "my" : (h.startsWith("film-")||h==="gantt") ? null : h;
+  const tab = ["plan","export","about","install"].includes(h)||h.startsWith("share=") ? "my" : (h.startsWith("film-")||h==="gantt") ? null : h;
   document.querySelectorAll(".tab").forEach(t=>t.setAttribute("aria-current", t.dataset.tab===(tab||lastList)?"page":"false"));
   if(tab){ lastList = tab; topEl.innerHTML = brandBar(); }
   if(h.startsWith("film-")) detail(h.slice(5));
   else if(h==="films") films();
   else if(h==="my"||h==="about") myPage();
   else if(h==="plan") planPage();
+  else if(h==="install") installPage();
   else if(h==="export") exportPage();
   else if(h.startsWith("share=")) exportPage(h.slice(6));
   else if(h==="gantt") ganttFull();
