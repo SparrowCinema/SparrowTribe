@@ -16,11 +16,16 @@
 
 - 网站：https://sparrowcinema.github.io/SparrowTribe/（仓库 SparrowCinema/SparrowTribe，原名 style-kaleidoscope；GitHub Pages 不会自动跳转旧网址）
 - 内部标识沿用 style-kaleidoscope：localStorage 键、风格万相专题 id、ICS 事件 UID 后缀，修改会导致已保存排片或日历重复，不要改。
-- 单页静态应用：index.html，内含页面样式、影片和排片数据、路由与交互脚本。
+- 单页静态应用：index.html 含页面样式、路由与交互脚本；数据在 data/，启动时加载：
+  - data/catalog.json：专题（id、名称、类型、period、start/end ISO 日期、city、cover、file）与影院影厅。
+  - data/programmes/<专题id>.json：该专题的 films 与 shows（[日期, 时间, 影片id, 影院id, 影厅id]）。新增影展＝新增一个专题文件并在 catalog 登记。
+  - 同一部影片可被多个专题的场次引用，只需在一个专题文件里定义；场次归属看所在文件。
+  - 专题状态按 start/end 自动计算（即将开始 / 进行中 / 已结束），已结束进「往期专题」；已散场的场次变灰；片目按「近期放映 / 院线与待排片 / 已放映」排序并支持搜索。
+  - 调试可在网址加 ?now=2026-11-07T15:00 模拟当前时间。
 - 微信小程序：`project.config.json` + `miniprogram/` + `cloudfunctions/`（AppID wx1f3f065d4885ac25，云环境 cloud1-d9gvudh6vc59007ac），说明见 miniprogram/README.md。网站排片数据变更时，同步更新 `miniprogram/data/data.js` 与 `cloudfunctions/seed/data.json`，或直接改云数据库。小程序场次键格式与网站一致。
 - 海报目录：posters/；发布配置：.github/workflows/pages.yml；PWA：manifest.webmanifest、sw.js（替换同名静态文件时需升级缓存名）、icons/。
 - 网站与小程序名称：麻雀观影护照（2026-10 起，原名「麻雀映画&麻雀部落展映排片表」），制作设计：麻雀映画 × 麻雀部落。风格万相是其中一个影展专题，后续会加入院线电影、艺术影院等排片。
-- 专题数据：PROGRAMMES 数组（id、名称、类型、时段、封面、简介）；影片用 prog 字段归属专题，未填写时默认 style-kaleidoscope。专题封面放在 programmes/。
+- 专题封面放在 programmes/。影片缺少片长时显示「片长待定」，缺少简介、导演介绍等字段时详情页自动隐藏对应板块。
 - 主要路由：排片、片目、影片详情、#prog-<专题id>（专题页）、#my（我的）、#plan（个人排片）、#export（导出）、#share=…（分享）、#install（添加到手机）。
 - 个人排片保存在浏览器 localStorage，键为 style-kaleidoscope-plan-v1；没有账号或跨设备自动同步。
 - 分享链接编码场次键；场次键由日期、时间、影院、影厅构成。修改这些字段时必须考虑已有收藏和链接兼容性。

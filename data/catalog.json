@@ -1,0 +1,119 @@
+{
+ "version": 1,
+ "programmes": [
+  {
+   "id": "style-kaleidoscope",
+   "name": "风格万相",
+   "sub": "中外经典影片展",
+   "en": "STYLE KALEIDOSCOPE",
+   "kind": "影展专题",
+   "period": "2026.10 – 2027.01",
+   "cover": "programmes/style-kaleidoscope.jpg",
+   "blurb": "从伯格曼的公路回忆到塔可夫斯基的末日祈祷，从费穆的城墙到徐克的江湖，十七部作品横跨 1947 至 2025 年，排在同一块银幕上，恰好是一份关于“风格”的地图。",
+   "start": "2026-10-30",
+   "end": "2027-01-31",
+   "city": "杭州",
+   "file": "data/programmes/style-kaleidoscope.json"
+  },
+  {
+   "id": "cinema-2026",
+   "name": "院线新片",
+   "sub": "2026 秋冬院线上映与重映",
+   "en": "NOW SHOWING & COMING SOON",
+   "kind": "院线",
+   "period": "2026.08 – 2026.12",
+   "cover": null,
+   "blurb": "今年秋冬值得走进影院的院线新片与重映：从诺兰全 IMAX 胶片拍摄的《奥德赛》、塔伦蒂诺的《杀死比尔：血色全传》，到首次引进内地的《疾速追杀》、翠贝卡获奖的埃及电影《生日快乐》和藏族导演岗珍的《一个夜晚与三个夏天》，《时间里的爱人》、纪录片《夫妻一场》，以及年底的《复仇者联盟5》《沙丘3》。具体场次以各影院售票平台为准。",
+   "start": "2026-08-01",
+   "end": "2026-12-31",
+   "city": "杭州",
+   "file": "data/programmes/cinema-2026.json"
+  }
+ ],
+ "venues": [
+  {
+   "id": "premiere",
+   "short": "百美汇",
+   "name": "百美汇影城",
+   "brand": "百美汇影城",
+   "store": "",
+   "en": "PREMIERE",
+   "fmt": [
+    "LUXE"
+   ],
+   "halls": [
+    {
+     "id": "luxe",
+     "short": "LUXE厅",
+     "name": "LUXE4K激光巨幕厅"
+    }
+   ]
+  },
+  {
+   "id": "hz-xflh-qibao",
+   "short": "幸福蓝海·七堡",
+   "name": "杭州幸福蓝海国际影城（七堡花园城IMAX店）",
+   "brand": "杭州幸福蓝海国际影城",
+   "store": "七堡花园城IMAX店",
+   "fmt": [
+    "IMAX"
+   ],
+   "halls": []
+  },
+  {
+   "id": "hz-xgjy-raffles",
+   "short": "星光嘉映·来福士",
+   "name": "星光嘉映影城（杭州来福士杜比巨幕店）",
+   "brand": "星光嘉映影城",
+   "store": "杭州来福士杜比巨幕店",
+   "fmt": [
+    "杜比巨幕"
+   ],
+   "halls": []
+  },
+  {
+   "id": "hz-mixc-imax",
+   "short": "万象城IMAX",
+   "name": "万象影城（杭州万象城激光IMAX店）",
+   "brand": "万象影城",
+   "store": "杭州万象城激光IMAX店",
+   "fmt": [
+    "激光IMAX"
+   ],
+   "halls": []
+  },
+  {
+   "id": "hz-mixc-yaao",
+   "short": "亚奥万象",
+   "name": "万象影城（杭州亚奥万象杜比巨幕店）",
+   "brand": "万象影城",
+   "store": "杭州亚奥万象杜比巨幕店",
+   "fmt": [
+    "杜比巨幕"
+   ],
+   "halls": []
+  },
+  {
+   "id": "hz-cgv-olympic",
+   "short": "CGV·奥体",
+   "name": "CGV影城（奥体印象城杜比影院店）",
+   "brand": "CGV影城",
+   "store": "奥体印象城杜比影院店",
+   "fmt": [
+    "杜比影院"
+   ],
+   "halls": []
+  },
+  {
+   "id": "hz-zy-xiguang",
+   "short": "浙影·西广",
+   "name": "浙影时代影城（西广激光IMAX店）",
+   "brand": "浙影时代影城",
+   "store": "西广激光IMAX店",
+   "fmt": [
+    "激光IMAX"
+   ],
+   "halls": []
+  }
+ ]
+}
