@@ -3,11 +3,11 @@
   <text class="x">×</text>
   <image class="sq" src="/images/brand/sparrow-tribe-sq.png" mode="aspectFit" />
   <view class="sp" />
-  <view class="tag"><text>展映\n排片表</text></view>
+  <view class="tag"><text>观影\n护照</text></view>
 </view>
 
 <view class="wrap">
-  <view class="h2">展映排片表</view>
+  <view class="h2">排片表</view>
   <view class="sub">{{span}} · {{count}} 场 · 点击色块查看影片</view>
 
   <view class="blockh">专题 <text class="en">PROGRAMMES</text></view>

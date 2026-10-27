@@ -19,5 +19,5 @@ Page({
   setFilt(e) { this.setData({ filt: e.currentTarget.dataset.k }); this.build(); },
   setProg(e) { this.setData({ pf: e.currentTarget.dataset.k }); this.build(); },
   open(e) { wx.navigateTo({ url: '/pages/film/film?id=' + e.currentTarget.dataset.id }); },
-  onShareAppMessage() { return { title: '片目 · 麻雀映画 & 麻雀部落展映排片表', path: '/pages/films/films' }; }
+  onShareAppMessage() { return { title: '片目 · 麻雀观影护照', path: '/pages/films/films' }; }
 });
