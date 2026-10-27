@@ -12,7 +12,7 @@ Page({
       .map(f => {
         const first = data.shows.find(s => s.id === f.id);
         return { id: f.id, cn: f.cn, en: f.en || f.o, dir: f.dir, c: f.c, y: f.y, version: f.version || '', db: f.r && f.r[0] != null ? f.r[0] : '—',
-          poster: U.poster(f), color: (data.reg[f.reg] || {}).c, first: first ? first.d + ' ' + first.t : '' };
+          release: f.release || '', poster: U.poster(f), color: (data.reg[f.reg] || {}).c, first: first ? first.d + ' ' + first.t : '' };
       });
     this.setData({ list, regs: Object.keys(data.reg).map(k => ({ k, n: data.reg[k].n })), progs: data.programmes.length > 1 ? data.programmes : [] });
   },

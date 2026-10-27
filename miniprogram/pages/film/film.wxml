@@ -51,6 +51,7 @@
         <view class="tact">
           <view class="ta {{item.picked?'on':''}}" data-key="{{item.key}}" bindtap="toggle">{{item.picked?'✓ 已加入排片':'+ 加入排片'}}</view>
           <view class="ta ghost" data-key="{{item.key}}" bindtap="calendar">加入日历</view>
+          <view class="ta ghost" data-d="{{item.d}}" bindtap="seeDay">看当天排片</view>
         </view>
       </view>
     </view>

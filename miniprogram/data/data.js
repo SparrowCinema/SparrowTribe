@@ -1460,6 +1460,7 @@ module.exports = {
  "venues": [
   {
    "id": "premiere",
+   "short": "百美汇",
    "name": "百美汇影城",
    "brand": "百美汇影城",
    "store": "",
@@ -1470,12 +1471,14 @@ module.exports = {
    "halls": [
     {
      "id": "luxe",
+     "short": "LUXE厅",
      "name": "LUXE4K激光巨幕厅"
     }
    ]
   },
   {
    "id": "hz-xflh-qibao",
+   "short": "幸福蓝海·七堡",
    "name": "杭州幸福蓝海国际影城（七堡花园城IMAX店）",
    "brand": "杭州幸福蓝海国际影城",
    "store": "七堡花园城IMAX店",
@@ -1486,6 +1489,7 @@ module.exports = {
   },
   {
    "id": "hz-xgjy-raffles",
+   "short": "星光嘉映·来福士",
    "name": "星光嘉映影城（杭州来福士杜比巨幕店）",
    "brand": "星光嘉映影城",
    "store": "杭州来福士杜比巨幕店",
@@ -1496,6 +1500,7 @@ module.exports = {
   },
   {
    "id": "hz-mixc-imax",
+   "short": "万象城IMAX",
    "name": "万象影城（杭州万象城激光IMAX店）",
    "brand": "万象影城",
    "store": "杭州万象城激光IMAX店",
@@ -1506,6 +1511,7 @@ module.exports = {
   },
   {
    "id": "hz-mixc-yaao",
+   "short": "亚奥万象",
    "name": "万象影城（杭州亚奥万象杜比巨幕店）",
    "brand": "万象影城",
    "store": "杭州亚奥万象杜比巨幕店",
@@ -1516,6 +1522,7 @@ module.exports = {
   },
   {
    "id": "hz-cgv-olympic",
+   "short": "CGV·奥体",
    "name": "CGV影城（奥体印象城杜比影院店）",
    "brand": "CGV影城",
    "store": "奥体印象城杜比影院店",
@@ -1526,6 +1533,7 @@ module.exports = {
   },
   {
    "id": "hz-zy-xiguang",
+   "short": "浙影·西广",
    "name": "浙影时代影城（西广激光IMAX店）",
    "brand": "浙影时代影城",
    "store": "西广激光IMAX店",

@@ -21,6 +21,7 @@
       <text class="o">{{item.en}}</text>
       <text class="d">{{item.dir}} · {{item.c}} · {{item.y}}</text>
       <text wx:if="{{item.first}}" class="f mono">首场 {{item.first}}</text>
+      <text wx:elif="{{item.release}}" class="f">{{item.release}}</text>
     </view>
     <view class="sc"><text class="n mono">{{item.db}}</text><text class="l">豆瓣</text></view>
   </view>

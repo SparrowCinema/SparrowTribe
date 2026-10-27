@@ -8,7 +8,7 @@
 
 <view class="wrap">
   <view class="h2">排片表</view>
-  <view class="sub">{{span}} · {{count}} 场 · 点击色块查看影片</view>
+  <view class="sub">{{span}} · {{count}} 场 · 按日期查看，点击色块看影片</view>
 
   <view class="blockh">专题 <text class="en">PROGRAMMES</text></view>
   <view wx:for="{{progs}}" wx:key="id" class="prog card" data-id="{{item.id}}" bindtap="openProg">
@@ -21,48 +21,82 @@
     <text class="go">专题 ›</text>
   </view>
 
-  <scroll-view scroll-x class="chips-scroll" enhanced show-scrollbar="{{false}}">
+  <scroll-view scroll-x class="hscroll" enhanced show-scrollbar="{{false}}">
     <view class="chips">
-      <view class="chip {{pf==='all'?'on':''}}" data-id="all" bindtap="setProg">全部</view>
+      <view class="chip {{pf==='all'?'on':''}}" data-id="all" bindtap="setProg">全部专题</view>
       <view wx:for="{{progs}}" wx:key="id" class="chip {{pf===item.id?'on':''}}" data-id="{{item.id}}" bindtap="setProg">{{item.name}}</view>
     </view>
   </scroll-view>
+  <scroll-view scroll-x class="hscroll" enhanced show-scrollbar="{{false}}">
+    <view class="chips">
+      <view wx:for="{{vchips}}" wx:key="id" class="chip {{vf===item.id?'on':''}}" data-id="{{item.id}}" bindtap="setVenue">{{item.n}}</view>
+    </view>
+  </scroll-view>
 
-  <view class="legend">
-    <view wx:for="{{legend}}" wx:key="n" class="lg"><view class="dot" style="background:{{item.c}}" />{{item.n}}</view>
-  </view>
-
-  <!-- 甘特图：左侧日期固定，右侧左右滑动 -->
-  <view class="gantt card">
-    <view class="labels">
-      <view class="corner">日期</view>
-      <view wx:for="{{rows}}" wx:key="index" class="lab">
-        <text class="ld mono">{{item.d}}</text>
-        <text class="lw">{{item.wk}}</text>
-        <text wx:if="{{item.place}}" class="lp">{{item.place}}</text>
+  <!-- 影院：折叠小板块 -->
+  <view class="vbox card">
+    <view class="vb-head" bindtap="toggleVenues">
+      <text class="vb-k">影院</text>
+      <text class="vb-s">{{venues.length}} 家</text>
+      <text class="vb-go">{{vOpen ? '收起' : '展开'}}</text>
+    </view>
+    <view wx:if="{{vOpen}}" class="vb-list">
+      <view wx:for="{{venues}}" wx:key="id" class="vb-row {{item.n?'':'idle'}}">
+        <view class="vb-n"><text class="b">{{item.short}}</text><text class="s">{{item.name}}</text><text class="s">{{item.halls}}</text></view>
+        <view class="vb-r"><text wx:if="{{item.fmt}}" class="vb-f mono">{{item.fmt}}</text><text class="vb-c mono">{{item.n ? item.n + ' 场' : '待排片'}}</text></view>
       </view>
     </view>
-    <scroll-view scroll-x class="track-scroll" scroll-left="0" enhanced show-scrollbar="{{false}}">
-      <view style="width:{{width}}rpx">
-        <view class="ruler">
-          <text wx:for="{{ruler}}" wx:key="t" class="tick mono" style="left:{{item.x}}rpx">{{item.t}}</text>
-        </view>
-        <view wx:for="{{rows}}" wx:for-item="row" wx:key="index" class="track">
-          <view wx:for="{{row.blocks}}" wx:key="key" class="blk" style="left:{{item.left}}rpx;width:{{item.w}}rpx;background:{{item.color}}" data-id="{{item.id}}" bindtap="openFilm">
-            <text class="bt">{{item.cn}}</text>
-            <text class="bm mono">{{item.version ? item.version + ' · ' : ''}}{{item.t}}–{{item.end}}</text>
-            <view wx:if="{{item.picked}}" class="star">✓</view>
-          </view>
+  </view>
+
+  <view wx:if="{{empty}}" class="g-empty card"><text class="b">{{empty}}</text><text class="muted small">排片公布后会更新到这里</text></view>
+
+  <block wx:else>
+    <!-- 日期条 -->
+    <scroll-view scroll-x class="dstrip" enhanced show-scrollbar="{{false}}" scroll-into-view="{{scrollInto}}" scroll-with-animation>
+      <view class="drow">
+        <view wx:for="{{days}}" wx:key="d" id="d{{index}}" class="dchip {{day===item.d?'on':''}}" data-d="{{item.d}}" bindtap="setDay">
+          <text class="dm mono">{{item.mon || ' '}}</text>
+          <text class="dd mono">{{item.dd}}</text>
+          <text class="dw">{{item.wk}}</text>
+          <text class="dn">{{item.n}} 场</text>
+          <view wx:if="{{item.mine}}" class="dme" />
         </view>
       </view>
     </scroll-view>
-  </view>
-  <view class="hint">← 左右滑动查看全天时段，色块长度即片长 →</view>
 
-  <view class="blockh">逐日场次 <text class="en">DAILY</text></view>
-  <view wx:for="{{agenda}}" wx:for-item="day" wx:key="d" class="day">
-    <view class="dh mono">{{day.d}} · {{day.wk}}</view>
-    <view wx:for="{{day.items}}" wx:key="key" class="ag">
+    <view class="cap"><text class="ct">{{dayTitle}}</text><text class="cs">{{dayList.length}} 场 · {{hallCount}} 个影厅</text></view>
+    <view class="legend">
+      <view wx:for="{{legend}}" wx:key="n" class="lg"><view class="dot" style="background:{{item.c}}" />{{item.n}}</view>
+    </view>
+
+    <!-- 单日时刻表：纵轴时间，横向影厅 -->
+    <view class="tt card">
+      <view class="axis">
+        <view class="th corner">时间</view>
+        <view class="ticks" style="height:{{H}}rpx">
+          <text wx:for="{{ticks}}" wx:key="t" class="tick mono" style="top:{{item.y}}rpx">{{item.t}}</text>
+        </view>
+      </view>
+      <scroll-view scroll-x class="cols-scroll" enhanced show-scrollbar="{{false}}">
+        <view class="cols">
+          <view wx:for="{{cols}}" wx:for-item="col" wx:key="key" class="col {{cols.length===1?'solo':''}}">
+            <view class="th"><text class="tv">{{col.vn}}</text><text class="thn">{{col.hn}}</text></view>
+            <view class="body" style="height:{{H}}rpx">
+              <view wx:for="{{col.blocks}}" wx:key="key" class="blk {{item.picked?'mine':''}}" style="top:{{item.top}}rpx;height:{{item.h}}rpx;background:{{item.color}}" data-id="{{item.id}}" bindtap="openFilm">
+                <text class="bs mono">{{item.t}}</text>
+                <text class="bn">{{item.cn}}</text>
+                <text wx:if="{{item.version}}" class="bv mono">{{item.version}}</text>
+                <text class="be mono">至 {{item.end}} · {{item.min}}′</text>
+                <view wx:if="{{item.picked}}" class="star">✓</view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+
+    <view class="blockh">当日场次 <text class="en">{{dayTitle}}</text></view>
+    <view wx:for="{{dayList}}" wx:key="key" class="ag">
       <view class="agl" data-id="{{item.id}}" bindtap="openFilm">
         <text class="at mono">{{item.t}}</text>
         <view class="bar" style="background:{{item.color}}" />
@@ -73,7 +107,7 @@
       </view>
       <view class="add {{item.picked?'on':''}}" data-key="{{item.key}}" catchtap="toggle">{{item.picked?'✓ 已加入':'+ 排片'}}</view>
     </view>
-  </view>
+  </block>
 
   <view class="makers">
     <text class="k">制作设计 · PRODUCED {{'&'}} DESIGNED BY</text>

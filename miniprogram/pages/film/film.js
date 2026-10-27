@@ -63,6 +63,7 @@ Page({
   openFilm(e) { wx.redirectTo({ url: '/pages/film/film?id=' + e.currentTarget.dataset.id }); },
   openProg() { wx.navigateTo({ url: '/pages/programme/programme?id=' + this.data.f.prog.id }); },
   toSchedule() { wx.switchTab({ url: '/pages/schedule/schedule' }); },
+  seeDay(e) { app.globalData.jumpDay = e.currentTarget.dataset.d; wx.switchTab({ url: '/pages/schedule/schedule' }); },
   onShareAppMessage() { const f = this.data.f || {}; return { title: `《${f.cn}》${f.version ? f.version : ''} · 麻雀观影护照`, path: '/pages/film/film?id=' + this.id, imageUrl: f.poster || undefined }; },
   onShareTimeline() { const f = this.data.f || {}; return { title: `《${f.cn}》 · 麻雀观影护照`, query: 'id=' + this.id }; }
 });

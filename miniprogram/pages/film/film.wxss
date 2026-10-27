@@ -41,7 +41,7 @@
 .ttime { font-size: 30rpx; color: var(--muted); }
 .ttime .b { font-size: 40rpx; color: var(--fg); }
 .tv { font-size: 22rpx; color: var(--teal); font-weight: 500; }
-.tact { display: flex; gap: 12rpx; margin-top: 14rpx; }
+.tact { display: flex; flex-wrap: wrap; gap: 12rpx; margin-top: 14rpx; }
 .ta { font-size: 24rpx; font-weight: 700; padding: 12rpx 22rpx; border-radius: 14rpx; background: var(--fc); color: #fffaf0; }
 .ta.on, .ta.ghost { background: transparent; color: var(--fg); border: 2rpx solid var(--line); font-weight: 500; }
 .credits { border-top: 2rpx solid var(--line-soft); }
