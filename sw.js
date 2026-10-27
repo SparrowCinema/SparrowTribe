@@ -1,5 +1,5 @@
-/* 风格万相 service worker：页面走“网络优先”（保证排片总是最新），海报、图标等静态资源走“缓存优先”，离线时也能打开上次看过的内容。 */
-const CACHE = "sk-v1";
+/* 麻雀排片 service worker：页面走“网络优先”（保证排片总是最新），海报、图标等静态资源走“缓存优先”，离线时也能打开上次看过的内容。 */
+const CACHE = "sk-v2";
 const CORE = ["./", "./index.html", "./manifest.webmanifest", "./vendor/qrcode.js", "./icons/icon-192.png", "./icons/apple-touch-icon.png"];
 
 self.addEventListener("install", e => {
