@@ -14,7 +14,8 @@
 
 ## 项目结构与现状
 
-- 网站：https://sparrowcinema.github.io/style-kaleidoscope/（仓库名沿用 style-kaleidoscope，未改动以免旧链接失效）
+- 网站：https://sparrowcinema.github.io/SparrowTribe/（仓库 SparrowCinema/SparrowTribe，原名 style-kaleidoscope；GitHub Pages 不会自动跳转旧网址）
+- 内部标识沿用 style-kaleidoscope：localStorage 键、风格万相专题 id、ICS 事件 UID 后缀，修改会导致已保存排片或日历重复，不要改。
 - 单页静态应用：index.html，内含页面样式、影片和排片数据、路由与交互脚本。
 - 海报目录：posters/；发布配置：.github/workflows/pages.yml；PWA：manifest.webmanifest、sw.js（替换同名静态文件时需升级缓存名）、icons/。
 - 网站标题：麻雀映画&麻雀部落展映排片表。风格万相是其中一个影展专题，后续会加入院线电影、艺术影院等排片。
