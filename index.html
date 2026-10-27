@@ -665,6 +665,64 @@ html.sheet-open,html.sheet-open body{overflow:hidden}
 .g-empty{display:flex;flex-direction:column;align-items:center;gap:4px;padding:36px 16px;border:1px dashed var(--line);border-radius:12px;background:var(--surface);text-align:center}
 .g-empty b{font-size:15px}
 .g-empty span{font-size:12px;color:var(--muted)}
+
+/* ---- Day timetable (claude/day-timetable) ---- */
+.vbox{margin:4px 0 14px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.vbox summary{display:flex;align-items:center;gap:10px;padding:10px 14px;cursor:pointer;list-style:none;font-size:13px}
+.vbox summary::-webkit-details-marker{display:none}
+.vb-k{font-weight:700}
+.vb-s{color:var(--muted);font-size:12px}
+.vb-go{margin-left:auto;font-size:12px;color:var(--accent)}
+.vbox[open] .vb-go{font-size:0}.vbox[open] .vb-go::after{content:"收起";font-size:12px}
+.vb-list{list-style:none;margin:0;padding:0 14px 8px;border-top:1px solid var(--line-soft)}
+.vb-row{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:2px 10px;align-items:center;padding:9px 0;border-bottom:1px solid var(--line-soft)}
+.vb-row:last-child{border-bottom:0}
+.vb-n{min-width:0;display:flex;flex-direction:column}
+.vb-n b{font-size:13px}
+.vb-n small{font-size:11px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.vb-f i{font:600 9.5px/1.6 var(--f-mono);font-style:normal;padding:0 5px;border:1px solid var(--line);border-radius:4px;color:var(--muted);white-space:nowrap}
+.vb-c{font:600 11px var(--f-mono);color:var(--teal);white-space:nowrap}
+.vb-row.idle .vb-c{color:var(--muted);font-weight:400}
+.vb-h{grid-column:1/-1;font-size:11px;color:var(--muted)}
+.dstrip{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:2px 0 8px;margin-top:6px}
+.dstrip::-webkit-scrollbar{display:none}
+.dchip{position:relative;flex:none;width:58px;display:flex;flex-direction:column;align-items:center;gap:0;padding:6px 0 7px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--fg)}
+.dchip em{font:500 10px var(--f-mono);font-style:normal;color:var(--muted);height:13px}
+.dchip b{font:600 22px/1.1 var(--f-mono)}
+.dchip small{font-size:11px;color:var(--muted)}
+.dchip .dn{font-size:9.5px;color:var(--accent);margin-top:2px}
+.dchip .dme{position:absolute;top:6px;right:7px;width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.dchip[aria-selected="true"]{background:var(--fg);border-color:var(--fg);color:var(--bg)}
+.dchip[aria-selected="true"] em,.dchip[aria-selected="true"] small{color:var(--bg);opacity:.75}
+.dchip[aria-selected="true"] .dn{color:var(--bg)}
+.dchip[aria-selected="true"] .dme{background:var(--bg)}
+.tt-cap{display:flex;align-items:baseline;gap:10px;margin:8px 0 2px}
+.tt-cap b{font:900 20px var(--f-display)}
+.tt-cap span{font-size:12px;color:var(--muted)}
+.tt{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface);-webkit-overflow-scrolling:touch}
+.tt-grid{display:grid;grid-template-columns:48px repeat(var(--n),minmax(150px,1fr));min-width:100%}
+.tt-axis{position:sticky;left:0;z-index:3;background:var(--surface);border-right:1px solid var(--line)}
+.tt-h{height:46px;display:flex;flex-direction:column;justify-content:center;padding:0 10px;border-bottom:1px solid var(--line);box-sizing:border-box;min-width:0}
+.tt-h b{font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tt-h small{font-size:11px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tt-corner{padding:0;align-items:center;font-size:10px;color:var(--muted);letter-spacing:.1em}
+.tt-ticks{position:relative}
+.tt-ticks span{position:absolute;left:0;right:0;text-align:center;font:500 10.5px var(--f-mono);color:var(--muted);transform:translateY(-50%);background:var(--surface)}
+.tt-ticks span:first-child{transform:none}
+.tt-col{min-width:0;border-right:1px solid var(--line-soft)}
+.tt-col:last-child{border-right:0}
+.tt-body{position:relative;background-image:repeating-linear-gradient(to bottom,var(--line) 0 1px,transparent 1px var(--hh)),repeating-linear-gradient(to bottom,var(--line-soft) 0 1px,transparent 1px var(--hlf))}
+.tt-b{position:absolute;left:4px;right:4px;display:flex;flex-direction:column;align-items:flex-start;gap:1px;padding:6px 8px;border-radius:8px;color:var(--on-block);text-align:left;overflow:hidden;box-shadow:0 1px 0 rgba(0,0,0,.08)}
+.tt-b:hover{filter:brightness(1.08)}
+.tt-s{font:600 13px/1.2 var(--f-mono)}
+.tt-n{font-size:14px;font-weight:700;line-height:1.25;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tt-v{font:600 9.5px/1.5 var(--f-mono);padding:0 5px;border-radius:3px;background:rgba(255,250,240,.22)}
+.tt-e{margin-top:auto;font:500 10.5px var(--f-mono);opacity:.85}
+.tt-me{position:absolute;top:6px;right:6px;width:18px;height:18px;border-radius:50%;background:var(--on-block);color:var(--accent);font:700 11px/18px var(--f-body);font-style:normal;text-align:center}
+.tt-b.mine{box-shadow:0 0 0 2px var(--on-block) inset}
+.tt-b.flash{animation:flash 1.2s ease 2}
+@media (min-width:900px){.tt-grid{grid-template-columns:56px repeat(var(--n),minmax(200px,1fr))}}
+.agenda .ag-day{display:flex;flex-direction:column}
 </style>
 
 </head>
@@ -1575,13 +1633,13 @@ const FILMS = [
 /* 影院与影厅：后续新增影院或影厅，在这里加一项即可 */
 /* 影院：brand 品牌、store 门店、fmt 特色厅标签、halls 影厅（待补充时留空数组）。新增场次时 v 填影院 id、h 填影厅 id */
 const VENUES = [
-  {id:"premiere", name:"百美汇影城", brand:"百美汇影城", store:"", en:"PREMIERE", fmt:["LUXE"], halls:[{id:"luxe", name:"LUXE4K激光巨幕厅"}]},
-  {id:"hz-xflh-qibao", name:"杭州幸福蓝海国际影城（七堡花园城IMAX店）", brand:"杭州幸福蓝海国际影城", store:"七堡花园城IMAX店", fmt:["IMAX"], halls:[]},
-  {id:"hz-xgjy-raffles", name:"星光嘉映影城（杭州来福士杜比巨幕店）", brand:"星光嘉映影城", store:"杭州来福士杜比巨幕店", fmt:["杜比巨幕"], halls:[]},
-  {id:"hz-mixc-imax", name:"万象影城（杭州万象城激光IMAX店）", brand:"万象影城", store:"杭州万象城激光IMAX店", fmt:["激光IMAX"], halls:[]},
-  {id:"hz-mixc-yaao", name:"万象影城（杭州亚奥万象杜比巨幕店）", brand:"万象影城", store:"杭州亚奥万象杜比巨幕店", fmt:["杜比巨幕"], halls:[]},
-  {id:"hz-cgv-olympic", name:"CGV影城（奥体印象城杜比影院店）", brand:"CGV影城", store:"奥体印象城杜比影院店", fmt:["杜比影院"], halls:[]},
-  {id:"hz-zy-xiguang", name:"浙影时代影城（西广激光IMAX店）", brand:"浙影时代影城", store:"西广激光IMAX店", fmt:["激光IMAX"], halls:[]}
+  {id:"premiere", short:"百美汇", name:"百美汇影城", brand:"百美汇影城", store:"", en:"PREMIERE", fmt:["LUXE"], halls:[{id:"luxe", short:"LUXE厅", name:"LUXE4K激光巨幕厅"}]},
+  {id:"hz-xflh-qibao", short:"幸福蓝海·七堡", name:"杭州幸福蓝海国际影城（七堡花园城IMAX店）", brand:"杭州幸福蓝海国际影城", store:"七堡花园城IMAX店", fmt:["IMAX"], halls:[]},
+  {id:"hz-xgjy-raffles", short:"星光嘉映·来福士", name:"星光嘉映影城（杭州来福士杜比巨幕店）", brand:"星光嘉映影城", store:"杭州来福士杜比巨幕店", fmt:["杜比巨幕"], halls:[]},
+  {id:"hz-mixc-imax", short:"万象城IMAX", name:"万象影城（杭州万象城激光IMAX店）", brand:"万象影城", store:"杭州万象城激光IMAX店", fmt:["激光IMAX"], halls:[]},
+  {id:"hz-mixc-yaao", short:"亚奥万象", name:"万象影城（杭州亚奥万象杜比巨幕店）", brand:"万象影城", store:"杭州亚奥万象杜比巨幕店", fmt:["杜比巨幕"], halls:[]},
+  {id:"hz-cgv-olympic", short:"CGV·奥体", name:"CGV影城（奥体印象城杜比影院店）", brand:"CGV影城", store:"奥体印象城杜比影院店", fmt:["杜比影院"], halls:[]},
+  {id:"hz-zy-xiguang", short:"浙影·西广", name:"浙影时代影城（西广激光IMAX店）", brand:"浙影时代影城", store:"西广激光IMAX店", fmt:["激光IMAX"], halls:[]}
 ];
 /* 专题：影展、院线、艺术影院等。影片用 prog 字段归入专题，不写时默认风格万相 */
 const PROGRAMMES = [
@@ -1677,59 +1735,83 @@ function ganttHTML(k, rowH, labW, compact, list){
 const SPAN = toMin("22:30")-toMin("12:00");
 function fitK(labW){ const app=document.querySelector(".app"); const w=(app?app.clientWidth:window.innerWidth) - 2*Math.max(16,0) - labW - 4; return w/SPAN; }
 
+const vShort = v => v.short || (v.brand||v.name).replace(/^杭州/,"");
+const hShort = h => h.short || h.name;
+const pad2 = n => String(n).padStart(2,"0");
+let sday = null;
+function todayKey(){ const t=new Date(); return (t.getMonth()+1)+"/"+t.getDate(); }
+function pickDay(ds){
+  if(sday && ds.includes(sday)) return sday;
+  const t=new Date(); t.setHours(0,0,0,0);
+  const up = ds.find(d=>{const [m,dd]=d.split("/").map(Number);return new Date(year(d),m-1,dd)>=t;});
+  return up || ds[0] || null;
+}
+function dayStripHTML(ds, list){
+  let lastM="";
+  return `<div class="dstrip filters" role="tablist" aria-label="选择日期">${ds.map(d=>{
+    const [m,dd]=d.split("/"); const n=list.filter(x=>x.d===d).length; const mine=SH.some(x=>x.d===d&&picked.has(keyOf(x)));
+    const mon = m!==lastM ? `<em>${m}月</em>` : `<em>&nbsp;</em>`; lastM=m;
+    return `<button class="dchip" role="tab" data-day="${d}" aria-selected="${d===sday}">${mon}<b>${dd}</b><small>${wk(d)}</small><span class="dn">${n} 场</span>${mine?'<i class="dme" title="有我的排片"></i>':''}</button>`;
+  }).join("")}</div>`;
+}
+// 单日时刻表：纵轴为时间，横向每列一个影厅
+function timetableHTML(day, list){
+  const ds = list.filter(x=>x.d===day);
+  if(!ds.length) return "";
+  const cols=[]; VENUES.forEach(v=>v.halls.forEach(h=>{ if(ds.some(x=>x.v===v.id&&x.h===h.id)) cols.push({v,h}); }));
+  let S=Math.min(...ds.map(x=>toMin(x.t))), E=Math.max(...ds.map(x=>toMin(x.t)+F[x.id].min));
+  S=Math.floor(S/60)*60; E=Math.ceil(E/60)*60; if(E-S<180) E=S+180;
+  const K=1.25, H=Math.round((E-S)*K);
+  let axis=""; for(let m=S;m<=E;m+=60) axis+=`<span style="top:${Math.round((m-S)*K)}px">${fmt(m)}</span>`;
+  const colHTML = cols.map(({v,h})=>{
+    const items = ds.filter(x=>x.v===v.id&&x.h===h.id).map(x=>{
+      const f=F[x.id], st=toMin(x.t), top=Math.round((st-S)*K), ht=Math.max(46,Math.round(f.min*K)-3), mine=picked.has(keyOf(x));
+      return `<button class="tt-b${mine?" mine":""}" data-film="${x.id}" data-key="${keyOf(x)}" style="top:${top}px;height:${ht}px;background:${REG[f.reg].c}" aria-label="${d2(x)} ${esc(f.cn)} ${esc(placeOf(x))}"><b class="tt-s">${x.t}</b><span class="tt-n">${esc(f.cn)}</span>${f.version?`<span class="tt-v">${esc(f.version)}</span>`:""}<span class="tt-e">至 ${fmt(st+f.min)} · ${f.min}′</span>${mine?'<i class="tt-me">✓</i>':""}</button>`;
+    }).join("");
+    return `<div class="tt-col"><div class="tt-h" title="${esc(v.name)} · ${esc(h.name)}"><b>${esc(vShort(v))}</b><small>${esc(hShort(h))}</small></div><div class="tt-body" style="height:${H+16}px">${items}</div></div>`;
+  }).join("");
+  return `<div class="tt" id="gantt"><div class="tt-grid" style="--n:${cols.length};--hh:${Math.round(60*K)}px;--hlf:${Math.round(30*K)}px">
+    <div class="tt-axis"><div class="tt-h tt-corner">时间</div><div class="tt-ticks" style="height:${H+16}px">${axis}</div></div>${colHTML}</div></div>`;
+}
+const d2 = x => `${x.d} ${wk(x.d)} ${x.t}`;
+function venueBoxHTML(){
+  const active = VENUES.filter(v=>SH.some(x=>x.v===v.id)).length;
+  const rows = VENUES.map(v=>{
+    const n=SH.filter(x=>x.v===v.id).length;
+    return `<li class="vb-row${n?"":" idle"}"><span class="vb-n"><b>${esc(vShort(v))}</b><small>${esc(v.name)}</small></span><span class="vb-f">${(v.fmt||[]).map(t=>`<i>${esc(t)}</i>`).join("")}</span><span class="vb-c">${n?`${n} 场`:"待排片"}</span><span class="vb-h">${v.halls.length?v.halls.map(h=>esc(h.name)).join(" · "):"影厅待补充"}</span></li>`;
+  }).join("");
+  return `<details class="vbox"><summary><span class="vb-k">影院</span><span class="vb-s">${VENUES.length} 家 · ${active} 家有排片</span><span class="vb-go">展开</span></summary><ul class="vb-list">${rows}</ul></details>`;
+}
+
 function schedule(){
   const list = SH.filter(x=>(vfilt==="all"||x.v===vfilt)&&inProg(x));
-  const kFit = fitK(64);
-  const wide = kFit >= 1.5;
-  const k = wide ? kFit : fitK(102);
-  const gantt = wide ? ganttHTML(fitK(124), 88, 124, false, list) : ganttHTML(k, 76, 102, true, list);
-  let ag = "";
-  days.forEach(d=>{
-    const ds = list.filter(x=>x.d===d); if(!ds.length) return;
-    ag += `<div class="ag-day"><h3>${d} · ${wk(d)}</h3>`;
-    ds.forEach(x=>{const f=F[x.id];
-      ag += `<div class="agenda-choice"><button class="ag-row" data-film="${x.id}"><span class="tm">${x.t}</span><span class="bar" style="background:${REG[f.reg].c}"></span><span class="nm"><b>${esc(f.cn)}${editionHTML(f)}</b><small>${esc(placeOf(x))} · ${esc(f.dir)} · ${f.min} 分钟</small></span>${chevron}</button>${planToggleHTML(x)}</div>`;});
-    ag += `</div>`;
-  });
-  const allHalls = VENUES.flatMap(v=>v.halls);
-  const vchips = VENUES.length>1 ? `<div class="filters vchips">${[["all","全部影院"],...VENUES.map(v=>[v.id,v.brand&&v.store?v.brand.replace(/^杭州/,"")+"·"+v.store.replace(/店$/,""):v.name])].map(([kk,n])=>`<button class="fchip" data-vf="${kk}" aria-pressed="${vfilt===kk}">${esc(n)}</button>`).join("")}</div>` : "";
-  const venues = VENUES.map(v=>{
-    const n = SH.filter(x=>x.v===v.id).length;
-    const mark = (v.brand||v.name).replace(/^杭州/,"").slice(0,1);
-    return `<div class="venue${n?"":" idle"}"><div class="vhead"><span class="vmark">${esc(mark)}</span><span class="vname"><b>${esc(v.brand||v.name)}</b><small>${esc(v.store||v.en||"")}</small></span><span class="vcount">${n?`<b>${n}</b>场`:`<em>待排片</em>`}</span></div>
-      ${(v.fmt||[]).length?`<div class="vfmt">${v.fmt.map(t=>`<span>${esc(t)}</span>`).join("")}</div>`:""}
-      <div class="halls">${v.halls.length?v.halls.map(h=>{const hn=SH.filter(x=>x.v===v.id&&x.h===h.id).length;return `<div class="hall"><b>${esc(h.name)}</b><small>${esc(h.note||"")}${h.note?" · ":""}${hn} 场</small></div>`}).join(""):`<div class="hall hall-tbd"><small>影厅信息待补充</small></div>`}</div></div>`;
-  }).join("");
+  const ds = days.filter(d=>list.some(x=>x.d===d));
+  sday = pickDay(ds);
+  const vchips = VENUES.length>1 ? `<div class="filters vchips">${[["all","全部影院"],...VENUES.map(v=>[v.id,vShort(v)])].map(([kk,n])=>`<button class="fchip" data-vf="${kk}" aria-pressed="${vfilt===kk}">${esc(n)}</button>`).join("")}</div>` : "";
+  const dayList = list.filter(x=>x.d===sday);
+  const ag = dayList.map(x=>{const f=F[x.id];
+    return `<div class="agenda-choice"><button class="ag-row" data-film="${x.id}"><span class="tm">${x.t}</span><span class="bar" style="background:${REG[f.reg].c}"></span><span class="nm"><b>${esc(f.cn)}${editionHTML(f)}</b><small>${esc(placeOf(x))} · ${esc(f.dir)} · ${f.min} 分钟</small></span>${chevron}</button>${planToggleHTML(x)}</div>`;}).join("");
   main.innerHTML = `<section class="view gut">
-    <h2 class="sec">排片表</h2><p class="sub">${dateSpan(list)} · ${list.length} 场 · ${wide?"点击色块看影片":"点击排片图进入详细排片"}</p>
+    <h2 class="sec">排片表</h2><p class="sub">${dateSpan(list)} · ${list.length} 场 · 按日期查看，点击色块看影片</p>
     <h3 class="blockh prog-h">专题 <small>PROGRAMMES</small></h3>${progCardsHTML()}
     ${progChips()}
     ${vchips}
+    ${venueBoxHTML()}
+    ${ds.length?dayStripHTML(ds,list):""}
+    ${sday?`<div class="tt-cap"><b>${sday.replace("/","月")}日 ${wk(sday)}</b><span>${dayList.length} 场 · ${new Set(dayList.map(x=>x.v+x.h)).size} 个影厅</span></div>
     <div class="legend">${Object.values(REG).map(r=>`<span><i style="background:${r.c}"></i>${r.n}</span>`).join("")}</div>
-    ${list.length?gantt:`<div class="g-empty"><b>${vfilt!=="all"&&VN[vfilt]?esc(VN[vfilt].name):"当前筛选"}暂无排片</b><span>排片公布后会更新到这里</span></div>`}
-    ${wide||!list.length?"":`<button class="open-full" data-open-gantt><span>进入详细排片</span><small>左右滑动 · 点击色块看影片</small><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 9V4h5M20 15v5h-5M4 4l6 6M20 20l-6-6"/></svg></button>`}
-    <div class="venues"><h3 class="blockh">影院 <small>VENUES · ${VENUES.length} 家 / ${allHalls.length} 个影厅</small></h3>${venues}</div>
-    <div class="agenda"><h3 class="blockh">逐日场次 <small>DAILY</small></h3>${ag}</div>
+    ${timetableHTML(sday,list)}`:`<div class="g-empty"><b>${vfilt!=="all"&&VN[vfilt]?esc(VN[vfilt].name):"当前筛选"}暂无排片</b><span>排片公布后会更新到这里</span></div>`}
+    ${sday?`<div class="agenda"><h3 class="blockh">当日场次 <small>${sday} · ${wk(sday)}</small></h3><div class="ag-day">${ag}</div></div>`:""}
     ${presentersHTML()}</section>`;
-  if(wide) flashIn(document.getElementById("gantt"));
+  const strip=document.querySelector(".dstrip [aria-selected=true]"); if(strip){ const p=strip.parentElement; p.scrollLeft=Math.max(0,strip.offsetLeft-p.clientWidth/2+strip.clientWidth/2); }
+  flashIn(document.getElementById("gantt"));
 }
 
-function ganttFull(){
-  const list = SH.filter(x=>(vfilt==="all"||x.v===vfilt)&&inProg(x));
-  const k = Math.max(2, fitK(64));
-  topEl.innerHTML = `<div class="row"><button class="back" data-back><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m15 6-6 6 6 6"/></svg>返回</button><span class="sp"></span><span class="pill">详细排片</span></div>`;
-  main.innerHTML = `<section class="view gut full-g">
-    <div class="legend">${Object.values(REG).map(r=>`<span><i style="background:${r.c}"></i>${r.n}</span>`).join("")}</div>
-    ${ganttHTML(k, 88, 124, false, list)}
-    <p class="hint"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M15 8l4 4-4 4"/></svg>左右滑动查看全天时段 · 色块长度即片长 · 点击色块看影片</p></section>`;
-  const g = document.getElementById("gantt");
-  if(!flashIn(g)) g.scrollLeft = Math.max(0,(toMin("12:30")-toMin("12:00"))*k);
-}
 function flashIn(g){
   if(!pendingFlash||!g) return false;
   const bk=g.querySelector(`[data-key="${pendingFlash}"]`); pendingFlash=null;
   if(!bk) return false;
-  g.scrollLeft = bk.offsetLeft - 80; bk.scrollIntoView({block:"center"}); bk.classList.add("flash"); return true;
+  g.scrollLeft = Math.max(0, bk.parentElement.parentElement.offsetLeft - 60); bk.scrollIntoView({block:"center"}); bk.classList.add("flash"); return true;
 }
 
 let filt="all";
@@ -2026,7 +2108,7 @@ function route(){
   if(changing){if(capturedRoute!==activeRoute)rememberView(activeRoute);capturedRoute="";resetFilmSwipe();if(h.startsWith("film-")&&activeRoute&&!activeRoute.startsWith("film-"))filmReturn=activeRoute;}
   const returning=changing&&activeRoute.startsWith("film-")&&h===filmReturn;
   activeRoute=h;
-  const tab = ["plan","export","about","install"].includes(h)||h.startsWith("share=") ? "my" : (h.startsWith("film-")||h.startsWith("prog-")||h==="gantt") ? null : h;
+  const tab = ["plan","export","about","install"].includes(h)||h.startsWith("share=") ? "my" : h==="gantt" ? "schedule" : (h.startsWith("film-")||h.startsWith("prog-")) ? null : h;
   document.querySelectorAll(".tab").forEach(t=>t.setAttribute("aria-current", t.dataset.tab===(tab||lastList)?"page":"false"));
   if(tab){ lastList = tab; topEl.innerHTML = brandBar(); }
   if(h.startsWith("film-")) detail(h.slice(5));
@@ -2037,26 +2119,26 @@ function route(){
   else if(h==="install") installPage();
   else if(h==="export") exportPage();
   else if(h.startsWith("share=")) exportPage(h.slice(6));
-  else if(h==="gantt") ganttFull();
   else schedule();
   if(returning)restoreView(h);else if(!pendingFlash)window.scrollTo(0,0);
 }
 document.addEventListener("click",e=>{
-  const t=e.target.closest("[data-film],[data-tab],[data-filt],[data-vf],[data-pf],[data-prog],[data-prog-sched],[data-prog-films],[data-back],[data-jump],[data-open-gantt]"); if(!t) return;
+  const t=e.target.closest("[data-film],[data-tab],[data-filt],[data-vf],[data-pf],[data-prog],[data-prog-sched],[data-prog-films],[data-back],[data-jump],[data-day],[data-open-gantt]"); if(!t) return;
   if(t.dataset.film) go("film-"+t.dataset.film);
   else if(t.dataset.tab) go(t.dataset.tab);
   else if(t.dataset.filt){ filt=t.dataset.filt; films(); }
-  else if(t.dataset.vf){ vfilt=t.dataset.vf; schedule(); }
+  else if(t.dataset.vf){ vfilt=t.dataset.vf; const y=window.scrollY; schedule(); window.scrollTo(0,y); }
   else if(t.dataset.pf){ pfilt=t.dataset.pf; location.hash==="#films"?films():schedule(); }
   else if(t.dataset.prog) go("prog-"+t.dataset.prog);
   else if(t.dataset.progSched){ pfilt=t.dataset.progSched; go("schedule"); }
   else if(t.dataset.progFilms){ pfilt=t.dataset.progFilms; go("films"); }
   else if(t.hasAttribute("data-back")){if(activeRoute.startsWith("film-"))exitFilm();else go(lastList);}
-  else if(t.dataset.jump){ pfilt="all"; vfilt="all"; pendingFlash=t.dataset.jump; go(fitK(64)>=1.5?"schedule":"gantt"); }
-  else if(t.hasAttribute("data-open-gantt")) go("gantt");
+  else if(t.dataset.jump){ pfilt="all"; vfilt="all"; pendingFlash=t.dataset.jump; sday=t.dataset.jump.split("-")[0]; if(location.hash==="#schedule"||location.hash===""){schedule();}else go("schedule"); }
+  else if(t.dataset.day){ sday=t.dataset.day; const y=window.scrollY; schedule(); window.scrollTo(0,y); }
+  else if(t.hasAttribute("data-open-gantt")) go("schedule");
 });
 window.addEventListener("hashchange",route);
-let rz; let lastW=window.innerWidth; window.addEventListener("resize",()=>{clearTimeout(rz);rz=setTimeout(()=>{if(Math.abs(window.innerWidth-lastW)<40)return;lastW=window.innerWidth;const h=location.hash.slice(1)||"schedule";if(h==="schedule")schedule();else if(h==="gantt")ganttFull();},200)});
+let rz; let lastW=window.innerWidth; window.addEventListener("resize",()=>{clearTimeout(rz);rz=setTimeout(()=>{if(Math.abs(window.innerWidth-lastW)<40)return;lastW=window.innerWidth;const h=location.hash.slice(1)||"schedule";if(h==="schedule"||h==="gantt")schedule();},200)});
 route();
 </script>
 
