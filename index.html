@@ -336,18 +336,23 @@ h2.sec{font-size:26px;letter-spacing:.01em}
 .share-paper footer b{font-size:15px;opacity:1}
 
 /* image sheet */
-.img-sheet{position:fixed;inset:0;z-index:200;background:rgba(15,10,6,.62);display:flex;align-items:flex-end;justify-content:center;padding:env(safe-area-inset-top,0px) 0 0}
-.is-panel{background:var(--surface);width:100%;max-width:520px;max-height:92vh;border-radius:18px 18px 0 0;display:flex;flex-direction:column;padding:14px max(16px,env(safe-area-inset-left,0px)) calc(16px + env(safe-area-inset-bottom,0px));animation:sheetUp .22s ease-out}
-@keyframes sheetUp{from{transform:translateY(30px);opacity:.4}}
-.is-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
-.is-close{width:34px;height:34px;display:grid;place-items:center;border-radius:50%;background:var(--bg)}
+html.sheet-open,html.sheet-open body{overflow:hidden}
+.img-sheet{position:fixed;inset:0;z-index:200;background:rgba(15,10,6,.68);display:flex;align-items:flex-end;justify-content:center;padding-top:calc(env(safe-area-inset-top,0px) + 12px);animation:fadeIn .18s ease-out;overscroll-behavior:contain}
+.img-sheet.out{opacity:0;transition:opacity .18s}
+@keyframes fadeIn{from{opacity:0}}
+.is-panel{background:var(--surface);width:100%;max-width:520px;height:calc(100vh - 12px);height:calc(100dvh - env(safe-area-inset-top,0px) - 12px);border-radius:18px 18px 0 0;display:flex;flex-direction:column;padding:0 max(16px,env(safe-area-inset-left,0px)) calc(14px + env(safe-area-inset-bottom,0px));animation:sheetUp .24s ease-out;transition:transform .2s ease-out;will-change:transform}
+@keyframes sheetUp{from{transform:translateY(40px);opacity:.4}}
+.is-grab{display:flex;justify-content:center;padding:8px 0 2px;touch-action:none}
+.is-grab i{width:40px;height:5px;border-radius:3px;background:var(--line)}
+.is-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:6px 0 10px;touch-action:none;flex:none}
+.is-head b{font-size:16px}
+.is-close{display:inline-flex;align-items:center;gap:4px;height:36px;padding:0 12px 0 10px;border-radius:99px;background:var(--fg);color:var(--bg);font-size:13px;font-weight:600;flex:none}
 .is-close svg{width:16px;height:16px}
-.is-img{overflow:auto;border-radius:10px;border:1px solid var(--line);background:var(--bg);min-height:0;flex:1}
+.is-img{overflow:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;border-radius:10px;border:1px solid var(--line);background:var(--bg);min-height:0;flex:1}
 .is-img img{display:block;width:100%;height:auto}
-.is-tip{font-size:12px;color:var(--muted);text-align:center;margin:10px 0}
-.is-actions{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:8px}
-@media (min-width:700px){.img-sheet{align-items:center}.is-panel{border-radius:18px}}
-
+.is-tip{font-size:12px;color:var(--muted);text-align:center;margin:10px 0;flex:none}
+.is-actions{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:8px;flex:none}
+@media (min-width:700px){.img-sheet{align-items:center;padding:24px}.is-panel{border-radius:18px;height:auto;max-height:calc(100vh - 48px);padding-top:4px}.is-grab{display:none}}
 @media print{
   .shared-banner,.share-panel,.export-grid,.export-view .blockh,.img-sheet{display:none!important}
   .share-paper{border:0!important;border-radius:0}
@@ -1685,11 +1690,20 @@ async function exportPNG(){const list=currentExport;if(!list.length||pngBusy)ret
   const blob=await new Promise(r=>cv.toBlob(r,'image/png'));if(!blob){toast('图片生成失败，请使用打印导出');return;}
   showImageSheet(blob);}finally{pngBusy=false;}}
 function showImageSheet(blob){const url=URL.createObjectURL(blob),file=new File([blob],'风格万相_我的排片.png',{type:'image/png'});const canFile=!!(navigator.canShare&&navigator.canShare({files:[file]}));
-  let el=document.getElementById('img-sheet');if(el)el.remove();el=document.createElement('div');el.id='img-sheet';el.className='img-sheet';el.setAttribute('role','dialog');el.setAttribute('aria-label','排片长图');
-  el.innerHTML='<div class="is-panel"><div class="is-head"><b>排片长图已生成</b><button class="is-close" aria-label="关闭"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div><div class="is-img"><img src="'+url+'" alt="排片长图预览"></div><p class="is-tip">手机上可长按图片保存到相册</p><div class="is-actions">'+(canFile?'<button class="primary-button" data-is="share">分享图片</button>':'')+'<button class="'+(canFile?'secondary':'primary')+'-button" data-is="save">保存图片</button></div></div>';
-  document.body.appendChild(el);const close=()=>{el.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);};
+  let el=document.getElementById('img-sheet');if(el)el.remove();el=document.createElement('div');el.id='img-sheet';el.className='img-sheet';el.setAttribute('role','dialog');el.setAttribute('aria-modal','true');el.setAttribute('aria-label','排片长图');
+  el.innerHTML='<div class="is-panel"><div class="is-grab" aria-hidden="true"><i></i></div><div class="is-head"><b>排片长图已生成</b><button class="is-close" aria-label="关闭"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 6l12 12M18 6 6 18"/></svg><span>关闭</span></button></div><div class="is-img"><img src="'+url+'" alt="排片长图预览"></div><p class="is-tip">手机上长按图片可保存到相册 · 下滑或点「关闭」退出</p><div class="is-actions">'+(canFile?'<button class="primary-button" data-is="share">分享图片</button>':'')+'<button class="'+(canFile?'secondary':'primary')+'-button" data-is="save">保存图片</button></div></div>';
+  document.body.appendChild(el);document.documentElement.classList.add('sheet-open');
+  const panel=el.querySelector('.is-panel'),scroller=el.querySelector('.is-img');let closed=false;
+  const close=(fromPop)=>{if(closed)return;closed=true;document.documentElement.classList.remove('sheet-open');document.removeEventListener('keydown',onKey);window.removeEventListener('popstate',onPop);el.classList.add('out');setTimeout(()=>{el.remove();URL.revokeObjectURL(url);},200);if(!fromPop&&history.state&&history.state.sheet)history.back();};
+  const onKey=e=>{if(e.key==='Escape')close();};const onPop=()=>close(true);
+  document.addEventListener('keydown',onKey);try{history.pushState({sheet:1},'');window.addEventListener('popstate',onPop);}catch(e){}
+  el.querySelector('.is-close').focus({preventScroll:true});
   el.addEventListener('click',async e=>{if(e.target===el||e.target.closest('.is-close'))return close();const b=e.target.closest('[data-is]');if(!b)return;if(b.dataset.is==='save'){downloadBlob(blob,'风格万相_我的排片.png');toast('图片已保存');}else{try{await navigator.share({files:[file],title:'风格万相 · 我的观影日程'});}catch(err){}}});
-  document.addEventListener('keydown',function k(e){if(e.key==='Escape'){close();document.removeEventListener('keydown',k);}});}
+  let y0=null,dy=0,fromHead=false;
+  panel.addEventListener('touchstart',e=>{fromHead=!!e.target.closest('.is-grab,.is-head');if(fromHead||scroller.scrollTop<=0){y0=e.touches[0].clientY;dy=0;}else y0=null;},{passive:true});
+  panel.addEventListener('touchmove',e=>{if(y0==null)return;dy=e.touches[0].clientY-y0;if(dy<=0){panel.style.transform='';return;}if(!fromHead&&scroller.scrollTop>0){y0=null;panel.style.transform='';return;}panel.style.transition='none';panel.style.transform='translateY('+dy+'px)';if(fromHead||dy>8)e.preventDefault();},{passive:false});
+  panel.addEventListener('touchend',()=>{if(y0==null)return;panel.style.transition='';if(dy>110)close();else panel.style.transform='';y0=null;dy=0;});
+}
 function exportCalendar(){if(!currentExport.length)return;const stamp=d=>d.getFullYear()+String(d.getMonth()+1).padStart(2,'0')+String(d.getDate()).padStart(2,'0')+'T'+String(d.getHours()).padStart(2,'0')+String(d.getMinutes()).padStart(2,'0')+'00';const escapeIcs=s=>String(s).replace(/\\/g,'\\\\').replace(/\n/g,'\\n').replace(/,/g,'\\,').replace(/;/g,'\\;');let lines=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//SparrowCinema//Style Kaleidoscope//ZH','CALSCALE:GREGORIAN','X-WR-CALNAME:风格万相·我的排片','X-WR-TIMEZONE:Asia/Shanghai','BEGIN:VTIMEZONE','TZID:Asia/Shanghai','BEGIN:STANDARD','DTSTART:19700101T000000','TZOFFSETFROM:+0800','TZOFFSETTO:+0800','TZNAME:CST','END:STANDARD','END:VTIMEZONE'];for(const s of currentExport){const start=showDate(s),end=new Date(start.getTime()+F[s.id].min*60000);lines.push('BEGIN:VEVENT','UID:'+encodeURIComponent(keyOf(s))+'@style-kaleidoscope','DTSTAMP:'+new Date().toISOString().replace(/[-:]/g,'').replace(/\.\d+Z/,'Z'),'DTSTART;TZID=Asia/Shanghai:'+stamp(start),'DTEND;TZID=Asia/Shanghai:'+stamp(end),'SUMMARY:'+escapeIcs(F[s.id].cn+' · '+editionOf(F[s.id])),'LOCATION:'+escapeIcs(VN[s.v].name+' · '+hallOf(s).name),'DESCRIPTION:'+escapeIcs('风格万相中外经典影片展\n影片片长 '+F[s.id].min+' 分钟'),'END:VEVENT');}lines.push('END:VCALENDAR');downloadBlob(new Blob([lines.join('\r\n')+'\r\n'],{type:'text/calendar;charset=utf-8'}),'风格万相_我的排片.ics');toast('日历文件已生成');}
 document.addEventListener('click',async e=>{const button=e.target.closest('[data-plan],[data-action]');if(!button)return;if(button.dataset.plan){const k=button.dataset.plan;if(!validKeys.has(k))return;if(picked.has(k))picked.delete(k);else picked.add(k);saveSelection();const scroll=window.scrollY;route();window.scrollTo(0,scroll);return;}switch(button.dataset.action){case 'clear-plan':if(confirm('清空当前浏览器保存的个人排片？')){picked.clear();saveSelection();route();}break;case 'png':exportPNG();break;case 'calendar':exportCalendar();break;case 'print':window.print();break;case 'copy-link':{const input=document.getElementById('share-url');if(!input)break;try{await navigator.clipboard.writeText(input.value);toast('分享链接已复制');}catch{input.focus();input.select();toast('请复制已选中的分享链接');}break;}case 'system-share':{try{await navigator.share({title:'风格万相 · 观影日程',text:'我的风格万相观影日程（'+currentExport.length+' 场）',url:shareURL(currentExport)});}catch(err){}break;}case 'import-plan':currentExport.forEach(s=>picked.add(keyOf(s)));saveSelection();go('plan');break;}});
 
