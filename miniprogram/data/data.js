@@ -1529,6 +1529,20 @@ module.exports = {
    "id": "resident-evil",
    "v": "hz-mixc-imax",
    "h": "imax"
+  },
+  {
+   "d": "10/31",
+   "t": "15:30",
+   "id": "john-wick",
+   "v": "hz-mixc-yaao",
+   "h": "dolby"
+  },
+  {
+   "d": "11/1",
+   "t": "19:20",
+   "id": "john-wick",
+   "v": "hz-mixc-yaao",
+   "h": "dolby"
   }
  ],
  "venues": [
@@ -1604,7 +1618,13 @@ module.exports = {
    "fmt": [
     "杜比巨幕"
    ],
-   "halls": []
+   "halls": [
+    {
+     "id": "dolby",
+     "short": "杜比巨幕厅",
+     "name": "杜比巨幕厅"
+    }
+   ]
   },
   {
    "id": "hz-cgv-olympic",
