@@ -13,3 +13,7 @@
 .ph { display: flex; align-items: center; justify-content: center; color: #fffaf0; font-size: 48rpx; font-weight: 900; }
 .gt { font-size: 24rpx; font-weight: 700; line-height: 1.3; }
 .gs { font-size: 18rpx; color: var(--muted); }
+
+.empty { display: flex; flex-direction: column; gap: 8rpx; padding: 28rpx; border: 2rpx dashed var(--line); border-radius: 20rpx; margin-top: 16rpx; }
+.empty .eb { font-size: 28rpx; font-weight: 700; }
+.empty .es { font-size: 24rpx; color: var(--muted); }

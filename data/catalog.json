@@ -28,6 +28,20 @@
    "end": "2026-12-31",
    "city": "杭州",
    "file": "data/programmes/cinema-2026.json"
+  },
+  {
+   "id": "sparrow-tribe-space",
+   "name": "麻雀部落电影空间",
+   "sub": "线下独立单厅艺术影院",
+   "en": "SPARROW TRIBE · MQ CINEMA",
+   "kind": "艺术影院",
+   "period": "2026.10 起",
+   "cover": "programmes/sparrow-tribe-space.jpg",
+   "start": "2026-10-01",
+   "end": null,
+   "city": "杭州",
+   "file": "data/programmes/sparrow-tribe-space.json",
+   "blurb": "麻雀部落是杭州的独立电影放映与策展团体，近十年来以「盲盒放映」为人熟知。沉寂四年后，麻雀部落在 2026 年国庆前后重新出发，有了自己的线下独立单厅艺术影院：麻雀部落电影空间。这里收录空间的放映排片，场次公布后会陆续更新。"
   }
  ],
  "venues": [
@@ -125,6 +139,16 @@
    "fmt": [
     "激光IMAX"
    ],
+   "halls": []
+  },
+  {
+   "id": "sparrow-tribe",
+   "short": "麻雀部落",
+   "name": "麻雀部落电影空间",
+   "brand": "麻雀部落",
+   "store": "",
+   "en": "MQ CINEMA",
+   "fmt": [],
    "halls": []
   }
  ]
