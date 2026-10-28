@@ -14,6 +14,19 @@
 @media(max-width:360px){.ticket-card{gap:10px}.ticket-code{width:114px}.ticket-copy h2{font-size:19px}}
 @media print{.ticket-card,.ticket-modal{display:none!important}}
 
+
+/* ---- 每部影片一种柔和浅色 + 语言字幕（claude/gantt-film-colors-lang） ---- */
+.fc{--c:hsl(var(--h) var(--barS) var(--barL));--i:hsl(var(--h) 38% var(--inkL));background:var(--c)!important;color:var(--i)!important;border:1px solid hsl(var(--h) var(--barS) var(--lineL))}
+.tt-b.fc{box-shadow:none}
+.tt-b.fc.mine{box-shadow:0 0 0 2px var(--i) inset}
+.fc .tt-v{background:transparent;border:1px solid currentColor;padding:0 4px}
+.tt-l{font-size:10.5px;line-height:1.35;opacity:.9}
+.blk.fc{border-top:0;border-bottom:0}
+.blk .l{font-size:10.5px;opacity:.9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.tt-add.fa{--c:hsl(var(--h) var(--barS) var(--barL));--i:hsl(var(--h) 38% var(--inkL));color:var(--i);background:var(--c);border-color:var(--i)}
+.tt-add.fa:hover{background:color-mix(in srgb,var(--c) 80%,var(--i))}
+.tt-add.fa.on{background:var(--i);color:var(--c);border-color:var(--i)}
+.ag-row .bar.fc{border:0;background:hsl(var(--h) 40% 62%)!important}
 </style>
 <title>麻雀观影护照</title>
 <link rel="manifest" href="manifest.webmanifest">
@@ -35,6 +48,7 @@
   --fg:#2b2117; --muted:#7a6a55;
   --oxblood:#8e2a22; --teal:#2f6f6c; --ochre:#b26a1f; --olive:#5d6b2e;
   --accent:#8e2a22; --on-block:#fffaf0; --chip:#e5d8bf;
+  --barS:36%; --barL:85%; --lineL:68%; --inkL:22%;  /* per-film pastel blocks */
   --f-display:"Noto Serif SC","Songti SC","STSong",serif;
   --f-body:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
   --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
@@ -43,11 +57,11 @@
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
   --bg:#17130f; --surface:#211b15; --line:#3b3128; --line-soft:#2c241d;
   --fg:#f1e6d3; --muted:#a8977f; --oxblood:#a8382e; --teal:#33807b; --ochre:#b8741f; --olive:#6b7a35;
-  --accent:#e0705e; --on-block:#fff8ec; --chip:#2e261e; color-scheme:dark}}
+  --accent:#e0705e; --on-block:#fff8ec; --chip:#2e261e; --barS:22%; --barL:26%; --lineL:40%; --inkL:90%; color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#17130f; --surface:#211b15; --line:#3b3128; --line-soft:#2c241d;
   --fg:#f1e6d3; --muted:#a8977f; --oxblood:#a8382e; --teal:#33807b; --ochre:#b8741f; --olive:#6b7a35;
-  --accent:#e0705e; --on-block:#fff8ec; --chip:#2e261e; color-scheme:dark}
+  --accent:#e0705e; --on-block:#fff8ec; --chip:#2e261e; --barS:22%; --barL:26%; --lineL:40%; --inkL:90%; color-scheme:dark}
 
 html,body{height:100%}
 body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
@@ -791,6 +805,8 @@ const placeOf = s => `${VN[s.v].name.replace("影城","")} ${hallOf(s).name}`;
 const keyOf = s => `${s.d}-${s.t}-${s.v}-${s.h}`;
 let vfilt = "all";
 const editionOf = f => f.version||"";
+const fhue = id => { const i=Object.keys(F).indexOf(id); return Math.round((i<0?0:i)*137.508%360); };
+const langSub = f => [f.language, f.subtitles].filter(Boolean).join(" ｜ ");
 const editionHTML = f => f.version ? ` <small class="edition">${esc(f.version)}</small>` : "";
 const progOf = f => PG[f.prog||"style-kaleidoscope"];
 const progShows = pid => SH.filter(x=>x.p===pid);
@@ -863,9 +879,9 @@ function ganttHTML(k, rowH, labW, compact, list){
         const f=F[x.id], st=toMin(x.t), en=st+f.min, w=Math.round(f.min*k);
         const inner = compact
           ? `<span class="t">${w>=0?esc(f.cn.length>4&&w<60?f.cn.slice(0,3)+"…":f.cn):""}${editionHTML(f)}</span>`
-          : `<span class="t">${esc(f.cn)}${editionHTML(f)}</span><span class="m">${x.t}–${fmt(en)} · ${f.min}′</span>`;
+          : `<span class="t">${esc(f.cn)}${editionHTML(f)}</span><span class="m">${x.t}–${fmt(en)} · ${f.min}′</span>${langSub(f)?`<span class="l">${esc(langSub(f))}</span>`:""}`;
         const tag = compact ? "span" : "button";
-        rows += `<${tag} class="blk" ${compact?"":`data-film="${x.id}"`} data-key="${keyOf(x)}" style="left:${Math.round((st-S)*k)}px;width:${w}px;background:${REG[f.reg].c}" aria-label="${d} ${x.t} ${esc(f.cn)}">${inner}</${tag}>`;
+        rows += `<${tag} class="blk fc" ${compact?"":`data-film="${x.id}"`} data-key="${keyOf(x)}" style="--h:${fhue(x.id)};left:${Math.round((st-S)*k)}px;width:${w}px" aria-label="${d} ${x.t} ${esc(f.cn)}">${inner}</${tag}>`;
       });
       rows += `</div>`;
     });
@@ -908,7 +924,7 @@ function timetableHTML(day, list){
   const colHTML = cols.map(({v,h})=>{
     const items = ds.filter(x=>x.v===v.id&&x.h===h.id).map(x=>{
       const f=F[x.id], st=toMin(x.t), top=Math.round((st-S)*K), ht=Math.max(46,Math.round(f.min*K)-3), mine=picked.has(keyOf(x)), gone=isPast(x);
-      return `<button class="tt-b${mine?" mine":""}${gone?" past":""}" data-film="${x.id}" data-key="${keyOf(x)}" style="top:${top}px;height:${ht}px;background:${REG[f.reg].c}" aria-label="${d2(x)} ${esc(f.cn)} ${esc(placeOf(x))}"><b class="tt-s">${x.t}</b><span class="tt-n">${esc(f.cn)}</span>${f.version?`<span class="tt-v">${esc(f.version)}</span>`:""}<span class="tt-e">${gone?"已放映":`至 ${fmt(st+f.min)}${f.minTbd?"":` · ${f.min}′`}`}</span></button>${gone&&!mine?"":`<button class="tt-add${mine?" on":""}" data-plan="${keyOf(x)}" aria-pressed="${mine}" style="top:${top+5}px" aria-label="${mine?"移出排片":"加入排片"} ${esc(f.cn)} ${d2(x)}">${mine?"✓":"+"}</button>`}`;
+      return `<button class="tt-b fc${mine?" mine":""}${gone?" past":""}" data-film="${x.id}" data-key="${keyOf(x)}" style="--h:${fhue(x.id)};top:${top}px;height:${ht}px" aria-label="${d2(x)} ${esc(f.cn)} ${esc(placeOf(x))}"><b class="tt-s">${x.t}</b><span class="tt-n">${esc(f.cn)}</span>${f.version?`<span class="tt-v">${esc(f.version)}</span>`:""}${langSub(f)?`<span class="tt-l">${esc(langSub(f))}</span>`:""}<span class="tt-e">${gone?"已放映":`至 ${fmt(st+f.min)}${f.minTbd?"":` · ${f.min}′`}`}</span></button>${gone&&!mine?"":`<button class="tt-add fa${mine?" on":""}" data-plan="${keyOf(x)}" aria-pressed="${mine}" style="--h:${fhue(x.id)};top:${top+5}px" aria-label="${mine?"移出排片":"加入排片"} ${esc(f.cn)} ${d2(x)}">${mine?"✓":"+"}</button>`}`;
     }).join("");
     return `<div class="tt-col"><div class="tt-h" title="${esc(v.name)} · ${esc(h.name)}"><b>${esc(vShort(v))}</b><small>${esc(hShort(h))}</small></div><div class="tt-body" style="height:${H+16}px">${items}</div></div>`;
   }).join("");
@@ -934,7 +950,7 @@ function schedule(){
   const vchips = vlist.length>1 ? `<div class="filters vchips">${[["all","全部影院"],...vlist.map(v=>[v.id,vShort(v)])].map(([kk,n])=>`<button class="fchip" data-vf="${kk}" aria-pressed="${vfilt===kk}">${esc(n)}</button>`).join("")}</div>` : "";
   const dayList = list.filter(x=>x.d===sday);
   const ag = dayList.map(x=>{const f=F[x.id], gone=isPast(x);
-    return `<div class="agenda-choice${gone?" past":""}"><button class="ag-row" data-film="${x.id}"><span class="tm">${x.t}${gone?"<em>已放映</em>":""}</span><span class="bar" style="background:${REG[f.reg].c}"></span><span class="nm"><b>${esc(f.cn)}${editionHTML(f)}</b><small>${esc(placeOf(x))}${f.dir?` · ${esc(f.dir)}`:""} · ${minText(f)}</small></span>${chevron}</button>${planToggleHTML(x)}</div>`;}).join("");
+    return `<div class="agenda-choice${gone?" past":""}"><button class="ag-row" data-film="${x.id}"><span class="tm">${x.t}${gone?"<em>已放映</em>":""}</span><span class="bar fc" style="--h:${fhue(x.id)}"></span><span class="nm"><b>${esc(f.cn)}${editionHTML(f)}</b><small>${esc(placeOf(x))}${f.dir?` · ${esc(f.dir)}`:""} · ${minText(f)}</small></span>${chevron}</button>${planToggleHTML(x)}</div>`;}).join("");
   main.innerHTML = `<section class="view gut">
     <h2 class="sec">排片表</h2><p class="sub">${cur?`${esc(cur.name)}${cur.city?` · ${esc(cur.city)}`:""} · `:""}${list.length?`${dateSpan(list)} · ${list.length} 场 · `:""}按日期查看，点击色块看影片</p>
     <h3 class="blockh prog-h">专题 <small>PROGRAMMES</small></h3>${progCardsHTML()}
@@ -943,7 +959,7 @@ function schedule(){
     ${venueBoxHTML()}
     ${ds.length?dayStripHTML(ds,list):""}
     ${sday?`<div class="tt-cap"><b>${sday.replace("/","月")}日 ${wk(sday)}</b><span>${dayList.length} 场 · ${new Set(dayList.map(x=>x.v+x.h)).size} 个影厅</span></div>
-    <div class="legend">${Object.values(REG).map(r=>`<span><i style="background:${r.c}"></i>${r.n}</span>`).join("")}</div>
+    <div class="legend"><span>每部影片一种颜色 · 色块标注版本、对白语言与字幕</span></div>
     ${timetableHTML(sday,list)}`:`<div class="g-empty"><b>${vfilt!=="all"&&VN[vfilt]?esc(VN[vfilt].name):"当前筛选"}暂无排片</b><span>排片公布后会更新到这里</span></div>`}
     ${sday?`<div class="agenda"><h3 class="blockh">当日场次 <small>${sday} · ${wk(sday)}</small></h3><div class="ag-day">${ag}</div></div>`:""}
     ${presentersHTML()}</section>`;
