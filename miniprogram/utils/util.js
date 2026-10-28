@@ -18,8 +18,10 @@ const filmTone = i => { const h = Math.round((i < 0 ? 0 : i) * 137.508 % 360); r
 const relTime = f => { const m = String(f.release || '').match(/(\d{4})年(\d{1,2})月(\d{1,2})日/); if (m) return new Date(+m[1], m[2] - 1, +m[3]).getTime(); return f.y ? new Date(+f.y, 0, 1).getTime() : 0; };
 // 某部影片的下一场（未开映）
 const nextShowOf = (f, shows) => shows.filter(s => s.id === f.id && showDate(s).getTime() > Date.now()).sort((a, b) => showDate(a) - showDate(b))[0] || null;
-// 片单排序：有待放映场次的在前；同组内上映日期新的在前
-const filmOrder = shows => (a, b) => (nextShowOf(b, shows) ? 1 : 0) - (nextShowOf(a, shows) ? 1 : 0) || relTime(b) - relTime(a);
+// 片单排序：有待放映场次的在前，按下一场放映时间先后；无场次的按上映日期从新到旧
+const filmOrder = shows => (a, b) => { const na = nextShowOf(a, shows), nb = nextShowOf(b, shows); if (!!na !== !!nb) return na ? -1 : 1; if (na && nb) return showDate(na) - showDate(nb); return relTime(b) - relTime(a); };
+// 专题是否为影展类（影展在前，院线在后）
+const isFest = p => !!p && /影展/.test(p.kind || '');
 const langSub = f => [f.language, f.subtitles].filter(Boolean).join(' ｜ ');
 
 function index(data) {
@@ -46,4 +48,4 @@ function showView(s, idx, data, picked) {
   };
 }
 
-module.exports = { relTime, nextShowOf, filmOrder, filmTone, langSub, WK, year, wk, toMin, fmt, keyOf, showDate, poster, ticket, durText, index, showView };
+module.exports = { isFest, relTime, nextShowOf, filmOrder, filmTone, langSub, WK, year, wk, toMin, fmt, keyOf, showDate, poster, ticket, durText, index, showView };

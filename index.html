@@ -981,7 +981,11 @@ const nextShow = f => SH.find(s=>s.id===f.id&&!isPast(s));
 // 上映日期：优先解析 release 中的「YYYY年M月D日」，否则用年份
 const relTime = f => { const m=String(f.release||"").match(/(\d{4})年(\d{1,2})月(\d{1,2})日/); if(m) return new Date(+m[1],m[2]-1,+m[3]).getTime(); return f.y?new Date(+f.y,0,1).getTime():0; };
 // 片单排序：有待放映场次的在前；同组内上映日期新的在前
-const filmOrder = (a,b) => (nextShow(b)?1:0)-(nextShow(a)?1:0) || relTime(b)-relTime(a) || a.cn.localeCompare(b.cn,"zh");
+// 片单排序：有待放映场次的在前，按下一场放映时间先后；无场次的按上映日期从新到旧
+const filmOrder = (a,b) => { const na=nextShow(a), nb=nextShow(b); if(!!na!==!!nb) return na?-1:1; if(na&&nb) return showDate(na)-showDate(nb)||a.cn.localeCompare(b.cn,"zh"); return relTime(b)-relTime(a)||a.cn.localeCompare(b.cn,"zh"); };
+// 专题顺序：影展类在前，院线类在后
+const isFest = p => !!p && /影展/.test(p.kind||"");
+const progGroupOrder = () => PROGRAMMES.slice().sort((x,y)=>(isFest(y)?1:0)-(isFest(x)?1:0));
 function filmCardHTML(f, ns){
   const sub = ns ? `<span class="nx">下一场 ${ns.d} ${wk(ns.d)} ${ns.t} · ${esc(vShort(VN[ns.v]))}</span>` : f.release ? `<span class="rel">${esc(f.release)}</span>` : "";
   return `<button class="fcard" data-film="${f.id}">
@@ -991,16 +995,18 @@ function filmCardHTML(f, ns){
 }
 function filmsListHTML(){
   const base = FILMS.filter(f=>(filt==="all"||f.reg===filt)&&(ffilt==="all"||f.prog===ffilt||SH.some(s=>s.id===f.id&&s.p===ffilt))&&filmMatches(f,fq));
-  const soon=[], wait=[], past=[];
-  base.forEach(f=>{ const ns=nextShow(f); if(ns) soon.push([f,ns]); else if(!SH.some(s=>s.id===f.id)&&progStatus(PG[f.prog])!=="ended") wait.push([f,null]); else past.push([f,null]); });
-  const rowOrder=(a,b)=>relTime(b[0])-relTime(a[0])||(a[1]&&b[1]?showDate(a[1])-showDate(b[1]):0); soon.sort(rowOrder); wait.sort(rowOrder); past.sort(rowOrder);
-  const grp = (title,en,rows) => rows.length?`<h3 class="blockh fgrp">${title} <small>${rows.length} · ${en}</small></h3><div class="flist">${rows.map(([f,ns])=>filmCardHTML(f,ns)).join("")}</div>`:"";
-  const pastHTML = past.length?`<details class="fpast"${fq?" open":""}><summary>已放映 / 往期 <small>${past.length} 部</small></summary><div class="flist">${past.map(([f])=>filmCardHTML(f,null)).join("")}</div></details>`:"";
-  const body = grp("近期放映","ON SCREEN",soon)+grp("院线与待排片","RELEASES & TBA",wait)+pastHTML;
+  const live=[], past=[];
+  base.forEach(f=>{ if(nextShow(f) || (!SH.some(s=>s.id===f.id)&&progStatus(PG[f.prog])!=="ended")) live.push(f); else past.push(f); });
+  // 影展与院线分开成组：影展在前；组内按放映时间先后，无场次的排在后面
+  const groups = progGroupOrder().map(p=>[p,live.filter(f=>(f.prog||"style-kaleidoscope")===p.id).sort(filmOrder)]).filter(([,rows])=>rows.length);
+  const grpHTML = ([p,rows]) => `<h3 class="blockh fgrp">${esc(isFest(p)?"影展 · "+p.name:p.name)} <small>${rows.length} 部 · ${esc(p.en||p.kind||"")}</small></h3><div class="flist">${rows.map(f=>filmCardHTML(f,nextShow(f))).join("")}</div>`;
+  past.sort((a,b)=>(isFest(PG[b.prog])?1:0)-(isFest(PG[a.prog])?1:0)||relTime(b)-relTime(a));
+  const pastHTML = past.length?`<details class="fpast"${fq?" open":""}><summary>已放映 / 往期 <small>${past.length} 部</small></summary><div class="flist">${past.map(f=>filmCardHTML(f,null)).join("")}</div></details>`:"";
+  const body = groups.map(grpHTML).join("")+pastHTML;
   return body || `<div class="g-empty"><b>${fq?`没有找到「${esc(fq)}」`:"当前筛选暂无影片"}</b><span>试试片名、导演或演员的其他写法</span></div>`;
 }
 function films(){
-  main.innerHTML = `<section class="view gut"><h2 class="sec">片目</h2><p class="sub">有场次的排在前面，按上映日期从新到旧 · 已放映的收进往期 · 右侧为豆瓣评分</p>
+  main.innerHTML = `<section class="view gut"><h2 class="sec">片目</h2><p class="sub">影展与院线分开列出 · 按放映时间先后排列 · 已放映的收进往期 · 右侧为豆瓣评分</p>
     <label class="fsearch"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><input type="search" id="fq" placeholder="搜索片名、导演、演员" value="${esc(fq)}" autocomplete="off" enterkeyhint="search"></label>
     ${progChips(ffilt)}<div class="filters">${[["all","全部地区"],...Object.entries(REG).filter(([k])=>FILMS.some(f=>f.reg===k)).map(([k,v])=>[k,v.n])].map(([k,n])=>`<button class="fchip" data-filt="${k}" aria-pressed="${filt===k}">${n}</button>`).join("")}</div>
     <div id="flist-wrap">${filmsListHTML()}</div></section>`;
