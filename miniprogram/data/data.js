@@ -1181,7 +1181,9 @@ module.exports = {
       "片中同款生日蜡烛"
      ]
     }
-   ]
+   ],
+   "ticketLabel": "报名",
+   "ticketUrl": "/images/tickets/happy-birthday.jpg"
   },
   {
    "id": "linka-linka",
