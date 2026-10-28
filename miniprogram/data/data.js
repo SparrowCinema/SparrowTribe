@@ -934,7 +934,7 @@ module.exports = {
     "大陆酒店、金币与「不得在酒店内动手」的规矩，是整个疾速宇宙的起点。"
    ],
    "honors": [],
-   "version": ""
+   "version": "4K"
   },
   {
    "id": "happy-birthday",
@@ -1258,7 +1258,7 @@ module.exports = {
    "dirLife": "1969– · 爱尔兰",
    "r": [
     6.4,
-    7.0,
+    7,
     79,
     59,
     3.7
@@ -1335,6 +1335,50 @@ module.exports = {
     "提名｜2025 FIRST青年电影展 · 最佳纪录长片"
    ],
    "version": ""
+  },
+  {
+   "id": "resident-evil",
+   "cn": "生化危机：爆发夜",
+   "o": "Resident Evil",
+   "en": "Resident Evil",
+   "y": 2026,
+   "c": "德国 / 法国 / 美国",
+   "min": 94,
+   "reg": "us",
+   "release": "2026年10月5日 内地上映",
+   "dir": "扎克·克雷格",
+   "dirO": "Zach Cregger",
+   "dirLife": "1981– · 美国",
+   "r": [
+    7.3,
+    7.5,
+    96,
+    79,
+    3.7
+   ],
+   "syn": "医疗快递员布莱恩（奥斯汀·艾布拉姆斯 饰）接到任务，要把一批货物送进浣熊市。他抵达时，病毒正在城中失控扩散，整座城市在一夜之间沦陷，变异的怪物在街头四处追猎活人。布莱恩被困在这场浩劫里，只能在混乱中寻找出路，想办法活着离开。",
+   "bio": "扎克·克雷格是美国导演、编剧和演员，早年以喜剧团体 The Whitest Kids U' Know 成员身份为人所知。他自编自导的恐怖片《野蛮人》（2022）和《凶器》（2025）让他成为近年最受关注的类型片导演之一，《生化危机：爆发夜》是他执导的游戏改编新作。",
+   "writers": [
+    "扎克·克雷格",
+    "谢伊·哈顿"
+   ],
+   "cast": [
+    "奥斯汀·艾布拉姆斯",
+    "扎克·切利",
+    "卡莉·瑞斯",
+    "保罗·沃尔特·豪泽",
+    "安德莉亚·米尔特纳"
+   ],
+   "genre": [
+    "科幻",
+    "惊悚",
+    "恐怖"
+   ],
+   "language": "英语",
+   "highlights": [],
+   "honors": [],
+   "version": "4K",
+   "prog": "cinema-2026"
   }
  ],
  "shows": [
@@ -1456,6 +1500,20 @@ module.exports = {
    "id": "faces-places",
    "v": "premiere",
    "h": "luxe"
+  },
+  {
+   "d": "10/30",
+   "t": "19:30",
+   "id": "resident-evil",
+   "v": "hz-mixc-imax",
+   "h": "imax"
+  },
+  {
+   "d": "10/30",
+   "t": "21:35",
+   "id": "john-wick",
+   "v": "hz-mixc-imax",
+   "h": "imax"
   }
  ],
  "venues": [
@@ -1508,7 +1566,13 @@ module.exports = {
    "fmt": [
     "激光IMAX"
    ],
-   "halls": []
+   "halls": [
+    {
+     "id": "imax",
+     "short": "激光IMAX厅",
+     "name": "激光IMAX厅"
+    }
+   ]
   },
   {
    "id": "hz-mixc-yaao",

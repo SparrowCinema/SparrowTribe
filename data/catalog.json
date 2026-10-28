@@ -80,7 +80,13 @@
    "fmt": [
     "激光IMAX"
    ],
-   "halls": []
+   "halls": [
+    {
+     "id": "imax",
+     "short": "激光IMAX厅",
+     "name": "激光IMAX厅"
+    }
+   ]
   },
   {
    "id": "hz-mixc-yaao",
