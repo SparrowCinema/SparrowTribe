@@ -117,7 +117,13 @@
    "fmt": [
     "杜比巨幕"
    ],
-   "halls": []
+   "halls": [
+    {
+     "id": "dolby",
+     "short": "杜比巨幕厅",
+     "name": "杜比巨幕厅"
+    }
+   ]
   },
   {
    "id": "hz-cgv-olympic",
