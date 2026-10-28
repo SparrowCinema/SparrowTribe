@@ -10,17 +10,6 @@
   <view class="h2">排片表</view>
   <view class="sub">{{span}} · {{count}} 场 · 按日期查看，点击色块看影片</view>
 
-  <view class="blockh">专题 <text class="en">PROGRAMMES</text></view>
-  <view wx:for="{{progs}}" wx:key="id" class="prog card" data-id="{{item.id}}" bindtap="openProg">
-    <image wx:if="{{item.cover}}" class="cover" src="{{item.cover}}" mode="aspectFill" />
-    <view class="pbody">
-      <text class="pk mono">{{item.kind}} · {{item.period}}</text>
-      <text class="pn">{{item.name}}</text>
-      <text class="ps">{{item.sub}} · {{item.fn}} 部 / {{item.n}} 场</text>
-    </view>
-    <text class="go">专题 ›</text>
-  </view>
-
   <scroll-view scroll-x class="hscroll" enhanced show-scrollbar="{{false}}">
     <view class="chips">
       <view class="chip {{pf==='all'?'on':''}}" data-id="all" bindtap="setProg">全部专题</view>

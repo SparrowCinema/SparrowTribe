@@ -16,6 +16,6 @@ Page({
     this.setData({ p, films, stats: { f: films.length, s: shows.length, d: new Set(shows.map(s => s.d)).size, h: new Set(shows.map(s => s.v + s.h)).size } });
   },
   open(e) { wx.navigateTo({ url: '/pages/film/film?id=' + e.currentTarget.dataset.id }); },
-  toSchedule() { wx.switchTab({ url: '/pages/schedule/schedule' }); },
+  toSchedule() { app.globalData.jumpProg = this.id; wx.switchTab({ url: '/pages/schedule/schedule' }); },
   onShareAppMessage() { const p = this.data.p || {}; return { title: `${p.name} · ${p.sub}`, path: '/pages/programme/programme?id=' + this.id }; }
 });

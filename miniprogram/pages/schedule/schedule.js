@@ -16,7 +16,7 @@ Page({
     this.build();
   },
   onUnload() { this.off1 && this.off1(); this.off2 && this.off2(); },
-  onShow() { const j = app.globalData.jumpDay; if (j) { app.globalData.jumpDay = ''; this.setData({ pf: 'all', vf: 'all', day: j }); } this.build(); },
+  onShow() { const j = app.globalData.jumpDay, jp = app.globalData.jumpProg; if (j) { app.globalData.jumpDay = ''; this.setData({ pf: 'all', vf: 'all', day: j }); } if (jp) { app.globalData.jumpProg = ''; this.setData({ pf: jp, vf: 'all', day: '' }); } this.build(); },
   onPullDownRefresh() { app.loadRemote(); setTimeout(() => { this.build(); wx.stopPullDownRefresh(); }, 600); },
 
   build() {
