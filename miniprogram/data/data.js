@@ -987,7 +987,7 @@ module.exports = {
     "入选｜2026 丝绸之路国际电影节 · 展映影片",
     "送选｜第98届奥斯卡金像奖 · 埃及送选最佳国际影片"
    ],
-   "version": ""
+   "version": "4K"
   },
   {
    "id": "linka-linka",
@@ -1515,6 +1515,20 @@ module.exports = {
    "id": "john-wick",
    "v": "hz-mixc-imax",
    "h": "imax"
+  },
+  {
+   "d": "10/31",
+   "t": "16:30",
+   "id": "happy-birthday",
+   "v": "hz-mixc-imax",
+   "h": "dolby"
+  },
+  {
+   "d": "10/31",
+   "t": "19:30",
+   "id": "resident-evil",
+   "v": "hz-mixc-imax",
+   "h": "imax"
   }
  ],
  "venues": [
@@ -1560,18 +1574,24 @@ module.exports = {
   },
   {
    "id": "hz-mixc-imax",
-   "short": "万象城IMAX",
+   "short": "万象城",
    "name": "万象影城（杭州万象城激光IMAX店）",
    "brand": "万象影城",
    "store": "杭州万象城激光IMAX店",
    "fmt": [
-    "激光IMAX"
+    "激光IMAX",
+    "杜比巨幕"
    ],
    "halls": [
     {
      "id": "imax",
      "short": "激光IMAX厅",
      "name": "激光IMAX厅"
+    },
+    {
+     "id": "dolby",
+     "short": "杜比巨幕厅",
+     "name": "杜比巨幕厅"
     }
    ]
   },
