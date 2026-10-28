@@ -1528,7 +1528,9 @@ module.exports = {
    "honors": [
     "提名｜2025 FIRST青年电影展 · 最佳纪录长片"
    ],
-   "version": ""
+   "version": "",
+   "ticketLabel": "报名",
+   "ticketUrl": "/images/tickets/for-better-or-worse.jpg"
   },
   {
    "id": "resident-evil",
@@ -1592,7 +1594,9 @@ module.exports = {
       "限定纪念印章"
      ]
     }
-   ]
+   ],
+   "ticketLabel": "报名",
+   "ticketUrl": "/images/tickets/resident-evil.jpg"
   }
  ],
  "shows": [

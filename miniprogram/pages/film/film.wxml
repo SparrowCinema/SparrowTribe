@@ -26,8 +26,8 @@
     <view wx:if="{{f.ticket}}" class="buy">
       <view class="buyt">
         <text class="bk mono">TICKETS</text>
-        <text class="bh">扫码购票</text>
-        <text class="bs">长按小程序码，选择「识别小程序码」即可进入购票页面</text>
+        <text class="bh">扫码{{f.ticketLabel}}</text>
+        <text class="bs">长按小程序码，选择「识别小程序码」即可进入{{f.ticketLabel}}页面</text>
         <text wx:for="{{shows}}" wx:key="key" class="bd mono">{{item.d}} {{item.wk}} {{item.t}} · {{item.hall}}</text>
       </view>
       <image class="qr" src="{{f.ticket}}" mode="aspectFit" show-menu-by-longpress />
