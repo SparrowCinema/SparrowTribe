@@ -44,7 +44,7 @@
     <view class="sec-h">放映场次 <text class="muted small">{{shows.length}} 场</text></view>
     <view wx:if="{{!shows.length}}" class="noshow card"><text class="b">{{f.release || '上映信息待公布'}}</text><text class="muted small">场次公布后会更新到这里，也可以先在各影院售票平台查看。</text></view>
     <view wx:for="{{shows}}" wx:key="key" class="ticket card">
-      <view class="td"><text class="tm">{{item.m}}月</text><text class="tdd mono">{{item.dd}}</text><text class="tw">{{item.wk}}</text></view>
+      <view class="td" style="background:{{item.tone.bg}};color:{{item.tone.ink}};border-right:2rpx solid {{item.tone.line}}"><text class="tm">{{item.m}}月</text><text class="tdd mono">{{item.dd}}</text><text class="tw">{{item.wk}}</text></view>
       <view class="tb">
         <view class="ttime mono"><text class="b">{{item.t}}</text> – {{item.end}}</view>
         <text class="tv">{{item.venue}} · {{item.hall}}</text>
