@@ -14,6 +14,12 @@ const durText = m => (m < 60 ? m + ' 分钟' : Math.floor(m / 60) + ' 小时' + 
 // 每部影片一种柔和浅色：按片目顺序以黄金角拉开色相
 const hsl2hex = (h, s, l) => { s /= 100; l /= 100; const k = n => (n + h / 30) % 12; const a = s * Math.min(l, 1 - l); const f = n => Math.round(255 * (l - a * Math.max(-1, Math.min(k(n) - 3, 9 - k(n), 1)))).toString(16).padStart(2, '0'); return '#' + f(0) + f(8) + f(4); };
 const filmTone = i => { const h = Math.round((i < 0 ? 0 : i) * 137.508 % 360); return { bg: hsl2hex(h, 36, 85), line: hsl2hex(h, 36, 68), ink: hsl2hex(h, 38, 22), bar: hsl2hex(h, 40, 62) }; };
+// 上映日期：优先解析 release 中的「YYYY年M月D日」，否则用年份
+const relTime = f => { const m = String(f.release || '').match(/(\d{4})年(\d{1,2})月(\d{1,2})日/); if (m) return new Date(+m[1], m[2] - 1, +m[3]).getTime(); return f.y ? new Date(+f.y, 0, 1).getTime() : 0; };
+// 某部影片的下一场（未开映）
+const nextShowOf = (f, shows) => shows.filter(s => s.id === f.id && showDate(s).getTime() > Date.now()).sort((a, b) => showDate(a) - showDate(b))[0] || null;
+// 片单排序：有待放映场次的在前；同组内上映日期新的在前
+const filmOrder = shows => (a, b) => (nextShowOf(b, shows) ? 1 : 0) - (nextShowOf(a, shows) ? 1 : 0) || relTime(b) - relTime(a);
 const langSub = f => [f.language, f.subtitles].filter(Boolean).join(' ｜ ');
 
 function index(data) {
@@ -40,4 +46,4 @@ function showView(s, idx, data, picked) {
   };
 }
 
-module.exports = { filmTone, langSub, WK, year, wk, toMin, fmt, keyOf, showDate, poster, ticket, durText, index, showView };
+module.exports = { relTime, nextShowOf, filmOrder, filmTone, langSub, WK, year, wk, toMin, fmt, keyOf, showDate, poster, ticket, durText, index, showView };
