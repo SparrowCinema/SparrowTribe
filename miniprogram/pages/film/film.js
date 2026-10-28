@@ -43,7 +43,8 @@ Page({
         prog: { id: p.id, name: p.name, kind: p.kind },
         syn: para(f.syn), bio: para(f.bio), st: para(f.st), long: String(f.syn || '').length > 220,
         highlights: (f.highlights || []).map((x, k) => ({ n: String(k + 1).padStart(2, '0'), x })),
-        honors: (f.honors || []).map(honor)
+        honors: (f.honors || []).map(honor),
+        gifts: (f.gifts || []).map((g, k) => ({ k, label: g.label || '', items: g.items || [] }))
       },
       shows, ratings, credits, nav
     });

@@ -56,6 +56,14 @@
       </view>
     </view>
 
+    <view class="sec-h">伴手礼周边</view>
+    <view wx:if="{{!f.gifts.length}}" class="noshow card"><text class="b">伴手礼信息待公布</text><text class="muted small">公布后会更新到这里。</text></view>
+    <view wx:for="{{f.gifts}}" wx:key="k" class="gift card">
+      <text wx:if="{{item.label}}" class="gl">{{item.label}}</text>
+      <view class="gis"><text wx:for="{{item.items}}" wx:for-item="it" wx:key="*this" class="gi">{{it}}</text></view>
+    </view>
+    <text wx:if="{{f.gifts.length}}" class="muted small gnote">数量有限，以影院现场发放为准。</text>
+
     <view class="sec-h">影片信息</view>
     <view class="credits">
       <view wx:for="{{credits}}" wx:key="k" class="cr"><text class="ck">{{item.k}}</text><text class="cv">{{item.v}}</text></view>
