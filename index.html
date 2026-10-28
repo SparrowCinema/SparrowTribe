@@ -1382,7 +1382,7 @@ async function boot(){
   main.innerHTML='<section class="view gut boot"><p class="sub">正在载入排片…</p></section>';
   try{ await loadData(); }
   catch(e){ console.error(e); main.innerHTML='<section class="view gut boot"><h2 class="sec">排片数据加载失败</h2><p class="sub">请检查网络后重新打开。</p><button class="primary-button" data-reload>重新加载</button></section>'; return; }
-  pfilt=defaultProg(); READY=true; route();
+  pfilt="all"; READY=true; route();  // 首页（含扫分享二维码进入）默认显示全部专题
 }
 document.addEventListener("click",e=>{ if(e.target.closest("[data-reload]")) location.reload(); });
 let rz; let lastW=window.innerWidth; window.addEventListener("resize",()=>{clearTimeout(rz);rz=setTimeout(()=>{if(Math.abs(window.innerWidth-lastW)<40)return;lastW=window.innerWidth;const h=location.hash.slice(1)||"schedule";if(h==="schedule"||h==="gantt")schedule();},200)});
