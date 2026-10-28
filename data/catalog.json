@@ -73,18 +73,24 @@
   },
   {
    "id": "hz-mixc-imax",
-   "short": "万象城IMAX",
+   "short": "万象城",
    "name": "万象影城（杭州万象城激光IMAX店）",
    "brand": "万象影城",
    "store": "杭州万象城激光IMAX店",
    "fmt": [
-    "激光IMAX"
+    "激光IMAX",
+    "杜比巨幕"
    ],
    "halls": [
     {
      "id": "imax",
      "short": "激光IMAX厅",
      "name": "激光IMAX厅"
+    },
+    {
+     "id": "dolby",
+     "short": "杜比巨幕厅",
+     "name": "杜比巨幕厅"
     }
    ]
   },

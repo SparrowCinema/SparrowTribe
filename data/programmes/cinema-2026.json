@@ -101,7 +101,7 @@
     "入选｜2026 丝绸之路国际电影节 · 展映影片",
     "送选｜第98届奥斯卡金像奖 · 埃及送选最佳国际影片"
    ],
-   "version": "",
+   "version": "4K",
    "poster": "posters/happy-birthday.jpg"
   },
   {
@@ -508,6 +508,20 @@
    "10/30",
    "21:35",
    "john-wick",
+   "hz-mixc-imax",
+   "imax"
+  ],
+  [
+   "10/31",
+   "16:30",
+   "happy-birthday",
+   "hz-mixc-imax",
+   "dolby"
+  ],
+  [
+   "10/31",
+   "19:30",
+   "resident-evil",
    "hz-mixc-imax",
    "imax"
   ]
