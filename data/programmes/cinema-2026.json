@@ -126,7 +126,9 @@
       "片中同款生日蜡烛"
      ]
     }
-   ]
+   ],
+   "ticketLabel": "报名",
+   "ticket": "tickets/happy-birthday.png"
   },
   {
    "id": "linka-linka",
