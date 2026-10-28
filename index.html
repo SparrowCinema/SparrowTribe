@@ -170,6 +170,11 @@ h2.sec{font-family:var(--f-display);font-weight:900;font-size:22px;margin:0 0 4p
 .ag-row .nm small{color:var(--muted);font-size:12px}
 .chev{color:var(--muted);width:16px;height:16px}
 
+.pg-slots{display:flex;flex-direction:column;gap:5px;margin-top:8px}
+.pg-slot-count{font-size:10px;color:var(--muted)}
+.pg-slots .pg-slot{display:flex;flex-wrap:wrap;gap:3px 8px;margin:0;padding:5px 0;border-top:1px solid var(--line-soft)}
+.pg-slots .pg-slot small{flex-basis:100%;font:10px/1.5 var(--f-body);color:var(--muted);white-space:normal}
+.pg-slot-past{opacity:.65}
 /* films list */
 .film-language{display:block;margin-top:4px;color:var(--teal);font-size:11px;line-height:1.7;overflow-wrap:anywhere}
 
@@ -1100,8 +1105,8 @@ function progPage(pid){
       <div class="pstats pg-stats"><div><b>${films.length}</b><small>部影片</small></div><div><b>${shows.length}</b><small>场放映</small></div><div><b>${new Set(shows.map(x=>x.d)).size}</b><small>个放映日</small></div><div><b>${new Set(shows.map(x=>x.v+x.h)).size}</b><small>个影厅</small></div></div>
       ${p.blurb?`<p class="pg-blurb">${esc(p.blurb)}</p>`:""}
       <div class="plan-toolbar"><button class="primary-button" data-prog-sched="${pid}">查看专题排片</button><button class="secondary-button" data-prog-films="${pid}">专题片目</button></div>
-      <h3 class="blockh">放映影片 <small>${films.length} FILMS</small></h3>
-      ${films.length?`<div class="pg-grid">${films.map(f=>{const first=SH.find(x=>x.id===f.id&&x.p===pid&&!isPast(x))||SH.find(x=>x.id===f.id&&x.p===pid);return `<button class="pg-film" data-film="${f.id}">${pst(f.id)?`<img src="${pst(f.id)}" alt="" loading="lazy">`:`<span class="pg-ph" style="background:${REG[f.reg].c}">${esc(f.cn[0])}</span>`}<span class="pg-caption"><b class="pg-name">${esc(f.cn)}</b><span class="pg-edition">${esc(editionOf(f))}</span>${first?`<span class="pg-slot" aria-label="放映时间 ${esc(first.d)} ${esc(first.t)}"><time>${esc(first.d.split("/").map(n=>n.padStart(2,"0")).join("."))}</time><time>${esc(first.t)}</time></span>`:`<span class="pg-slot pg-unscheduled">场次待公布</span>`}</span></button>`}).join("")}</div>`:`<div class="fd-noshow"><b>片单与场次即将公布</b><span>公布后会第一时间更新到这里。</span></div>`}
+      <p class="src">场次与排片表自动同步 · 页面打开时每分钟检查更新</p><h3 class="blockh">放映影片 <small>${films.length} FILMS</small></h3>
+      ${films.length?`<div class="pg-grid">${films.map(f=>{return `<button class="pg-film" data-film="${f.id}">${pst(f.id)?`<img src="${pst(f.id)}" alt="" loading="lazy">`:`<span class="pg-ph" style="background:${REG[f.reg].c}">${esc(f.cn[0])}</span>`}<span class="pg-caption"><b class="pg-name">${esc(f.cn)}</b><span class="pg-edition">${esc(editionOf(f))}</span>${programmeFilmSlots(f,pid)}</span></button>`}).join("")}</div>`:`<div class="fd-noshow"><b>片单与场次即将公布</b><span>公布后会第一时间更新到这里。</span></div>`}
     </div></article>`;
 }
 function about(){
@@ -1360,22 +1365,43 @@ function normalizeFilm(f,pid){
   if(!REG[f.reg]){ REG.ot=REG.ot||{n:"其他",c:"#5f6b73"}; f.reg="ot"; }
   return f;
 }
+let dataSignature="",dataRefreshBusy=false,lastDataCheck=0;
 async function loadData(){
-  const get=u=>fetch(u,{cache:"no-cache"}).then(r=>{ if(!r.ok) throw Error(u+" "+r.status); return r.json(); });
-  const cat=await get("data/catalog.json");
-  VENUES=cat.venues||[]; VN=Object.fromEntries(VENUES.map(v=>[v.id,v]));
-  PROGRAMMES=cat.programmes||[]; PG=Object.fromEntries(PROGRAMMES.map(p=>[p.id,p]));
-  const packs=await Promise.all(PROGRAMMES.map(p=>p.file?get(p.file).catch(e=>{ console.warn("专题数据加载失败",p.id,e); return null; }):null));
-  FILMS=[]; F={}; SH=[];
-  PROGRAMMES.forEach((p,i)=>{ const pk=packs[i]; if(!pk) return;
-    (pk.films||[]).forEach(f=>{ if(F[f.id]) return; F[f.id]=normalizeFilm(f,p.id); FILMS.push(f); });
-    (pk.shows||[]).forEach(r=>{ const [d,t,id,v="premiere",h="luxe"]=Array.isArray(r)?r:[r.d,r.t,r.id,r.v,r.h];
-      if(!F[id]||!VN[v]||!VN[v].halls.some(x=>x.id===h)){ console.warn("场次数据不完整，已跳过",r); return; }
-      SH.push({d,t,id,v,h,p:p.id}); });
-  });
-  SH.sort((a,b)=>showDate(a)-showDate(b)||a.v.localeCompare(b.v));
-  days=[...new Set(SH.map(s=>s.d))];
-  validKeys=new Set(SH.map(keyOf)); picked=readSelection();
+ const get=u=>fetch(u,{cache:"no-store"}).then(r=>{if(!r.ok)throw Error(u+" "+r.status);return r.json();});
+ const cat=await get("data/catalog.json"),programmes=cat.programmes||[],venues=cat.venues||[];
+ const packs=await Promise.all(programmes.map(p=>p.file?get(p.file):null));
+ const signature=JSON.stringify([cat,packs]);if(signature===dataSignature)return false;
+ const vn=Object.fromEntries(venues.map(v=>[v.id,v])),films=[],filmMap={},shows=[];
+ programmes.forEach((p,i)=>{const pk=packs[i];if(!pk)return;
+  (pk.films||[]).forEach(source=>{if(filmMap[source.id])return;const f=normalizeFilm({...source},p.id);filmMap[f.id]=f;films.push(f);});
+  (pk.shows||[]).forEach(r=>{const [d,t,id,v="premiere",hall="luxe"]=Array.isArray(r)?r:[r.d,r.t,r.id,r.v,r.h];
+   if(!filmMap[id]||!vn[v]||!vn[v].halls.some(x=>x.id===hall)){console.warn("场次数据不完整，已跳过",r);return;}shows.push({d,t,id,v,h:hall,p:p.id});});});
+ shows.sort((a,b)=>showDate(a)-showDate(b)||a.v.localeCompare(b.v));
+ VENUES=venues;VN=vn;PROGRAMMES=programmes;PG=Object.fromEntries(programmes.map(p=>[p.id,p]));
+ FILMS=films;F=filmMap;SH=shows;days=[...new Set(SH.map(s=>s.d))];validKeys=new Set(SH.map(keyOf));picked=readSelection();dataSignature=signature;return true;
+}
+async function refreshProgrammeData(){
+ if(!READY||dataRefreshBusy||document.visibilityState==="hidden"||Date.now()-lastDataCheck<15000)return;
+ if(document.querySelector("dialog[open],.img-sheet")||document.activeElement?.matches("input,textarea,select"))return;
+ dataRefreshBusy=true;lastDataCheck=Date.now();
+ try{const changed=await loadData();if(changed){
+  const h=location.hash.slice(1)||"schedule";if(h==="export"||h.startsWith("share="))return;
+  rememberView(h);const expanded=[...document.querySelectorAll("details[open]")].map(el=>el.className);
+  const synopsisExpanded=!!document.querySelector(".fd-syn:not(.clamp)");
+  route();restoreView(h);document.querySelectorAll("details").forEach(el=>{if(expanded.includes(el.className))el.open=true;});
+  if(synopsisExpanded){document.querySelector(".fd-syn")?.classList.remove("clamp");const b=document.querySelector("[data-expand]");if(b)b.textContent="收起全文";}
+  toast("排片已自动更新");
+ }}catch(e){console.warn("自动同步暂不可用，保留当前排片",e);}finally{dataRefreshBusy=false;}
+}
+setInterval(refreshProgrammeData,60000);
+document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")refreshProgrammeData();});
+window.addEventListener("online",refreshProgrammeData);
+window.addEventListener("pageshow",refreshProgrammeData);
+function programmeFilmSlots(f,pid){
+ const all=SH.filter(s=>s.id===f.id&&s.p===pid).sort((a,b)=>showDate(a)-showDate(b));
+ const upcoming=all.filter(s=>!isPast(s)),list=upcoming.length?upcoming:all;
+ if(!list.length)return '<span class="pg-slot pg-unscheduled">场次待公布</span>';
+ return '<span class="pg-slots"><span class="pg-slot-count">'+(upcoming.length?"待映 ":"已放映 ")+list.length+' 场</span>'+list.map(s=>'<span class="pg-slot'+(isPast(s)?' pg-slot-past':'')+'" aria-label="'+esc(s.d+' '+s.t+' '+placeOf(s))+'"><time>'+esc(s.d.split("/").map(n=>n.padStart(2,"0")).join("."))+'</time><time>'+esc(s.t)+'</time><small>'+esc(placeOf(s))+'</small></span>').join("")+'</span>';
 }
 async function boot(){
   topEl.innerHTML=brandBar();
