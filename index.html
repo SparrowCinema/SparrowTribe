@@ -144,6 +144,8 @@ h2.sec{font-family:var(--f-display);font-weight:900;font-size:22px;margin:0 0 4p
 .chev{color:var(--muted);width:16px;height:16px}
 
 /* films list */
+.film-language{display:block;margin-top:4px;color:var(--teal);font-size:11px;line-height:1.7;overflow-wrap:anywhere}
+
 .flist{display:flex;flex-direction:column}
 .fcard{display:grid;grid-template-columns:58px 1fr auto;gap:14px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line-soft);text-align:left;width:100%}
 .slate{aspect-ratio:2/3;width:58px;max-width:100%;border-radius:4px;color:var(--on-block);display:flex;flex-direction:column;justify-content:space-between;padding:6px;font-family:var(--f-mono);font-size:10px}
@@ -828,7 +830,9 @@ const creditsHTML = f => [
   ["原著", f.book],
   [(f.genre||[]).includes("纪录片")?"出镜":"主演", (f.cast||[]).join(" / ")],
   ["类型", (f.genre||[]).join(" / ")],
-  ["原始语言", f.language]
+  ["国别", f.c],
+  ["放映语言", f.language],
+  ["字幕", f.subtitles]
 ].filter(([,value])=>value).map(([name,value])=>`<dt>${esc(name)}</dt><dd>${esc(value)}</dd>`).join("");
 
 const chevron = '<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg>';
@@ -961,7 +965,7 @@ function filmCardHTML(f, ns){
   const sub = ns ? `<span class="nx">下一场 ${ns.d} ${wk(ns.d)} ${ns.t} · ${esc(vShort(VN[ns.v]))}</span>` : f.release ? `<span class="rel">${esc(f.release)}</span>` : "";
   return `<button class="fcard" data-film="${f.id}">
       ${slateHTML(f)}
-      <span class="info"><b>${esc(f.cn)}${editionHTML(f)}</b><span class="o">${esc(f.en||f.o||"")}</span><span class="d">${[f.dir,f.c].filter(Boolean).map(esc).join(" · ")}</span>${sub}</span>
+      <span class="info"><b>${esc(f.cn)}${editionHTML(f)}</b><span class="o">${esc(f.en||f.o||"")}</span><span class="d">${[f.dir,f.c].filter(Boolean).map(esc).join(" · ")}</span>${f.language||f.subtitles?`<span class="film-language">${[f.language,f.subtitles].filter(Boolean).map(esc).join(" · ")}</span>`:""}${sub}</span>
       <span class="score"><b>${f.r[0]??"—"}</b>豆瓣</span></button>`;
 }
 function filmsListHTML(){
