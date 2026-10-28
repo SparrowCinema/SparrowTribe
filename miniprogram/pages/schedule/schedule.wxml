@@ -65,9 +65,7 @@
     </scroll-view>
 
     <view class="cap"><text class="ct">{{dayTitle}}</text><text class="cs">{{dayList.length}} 场 · {{hallCount}} 个影厅</text></view>
-    <view class="legend">
-      <view wx:for="{{legend}}" wx:key="n" class="lg"><view class="dot" style="background:{{item.c}}" />{{item.n}}</view>
-    </view>
+    <view class="legend"><text>每部影片一种颜色 · 色块标注版本、对白语言与字幕</text></view>
 
     <!-- 单日时刻表：纵轴时间，横向影厅 -->
     <view class="tt card">
@@ -82,12 +80,13 @@
           <view wx:for="{{cols}}" wx:for-item="col" wx:key="key" class="col {{cols.length===1?'solo':''}}">
             <view class="th"><text class="tv">{{col.vn}}</text><text class="thn">{{col.hn}}</text></view>
             <view class="body" style="height:{{H}}rpx">
-              <view wx:for="{{col.blocks}}" wx:key="key" class="blk {{item.picked?'mine':''}} {{item.past?'past':''}}" style="top:{{item.top}}rpx;height:{{item.h}}rpx;background:{{item.color}}" data-id="{{item.id}}" bindtap="openFilm">
+              <view wx:for="{{col.blocks}}" wx:key="key" class="blk {{item.picked?'mine':''}} {{item.past?'past':''}}" style="top:{{item.top}}rpx;height:{{item.h}}rpx;background:{{item.tone.bg}};color:{{item.tone.ink}};border:2rpx solid {{item.tone.line}};{{item.picked?'box-shadow:inset 0 0 0 4rpx '+item.tone.ink:''}}" data-id="{{item.id}}" bindtap="openFilm">
                 <text class="bs mono">{{item.t}}</text>
                 <text class="bn">{{item.cn}}</text>
                 <text wx:if="{{item.version}}" class="bv mono">{{item.version}}</text>
+                <text wx:if="{{item.langSub}}" class="bl">{{item.langSub}}</text>
                 <text class="be mono">{{item.past?'已放映':'至 '+item.end+' · '+item.min+'′'}}</text>
-                <view wx:if="{{!item.past||item.picked}}" class="badd {{item.picked?'on':''}}" data-key="{{item.key}}" catchtap="toggle" aria-role="button" aria-label="{{item.picked?'移出排片':'加入排片'}}">{{item.picked?'✓':'+'}}</view>
+                <view wx:if="{{!item.past||item.picked}}" class="badd {{item.picked?'on':''}}" style="{{item.picked?'background:'+item.tone.ink+';color:'+item.tone.bg+';border-color:'+item.tone.ink:'background:'+item.tone.bg+';color:'+item.tone.ink+';border-color:'+item.tone.ink}}" data-key="{{item.key}}" catchtap="toggle" aria-role="button" aria-label="{{item.picked?'移出排片':'加入排片'}}">{{item.picked?'✓':'+'}}</view>
               </view>
             </view>
           </view>
@@ -99,10 +98,10 @@
     <view wx:for="{{dayList}}" wx:key="key" class="ag">
       <view class="agl" data-id="{{item.id}}" bindtap="openFilm">
         <text class="at mono">{{item.t}}</text>
-        <view class="bar" style="background:{{item.color}}" />
+        <view class="bar" style="background:{{item.tone.bar}}" />
         <view class="an">
           <view class="ann">{{item.cn}}<text wx:if="{{item.version}}" class="ed">{{item.version}}</text></view>
-          <text class="ans">{{item.venue}} · {{item.hall}} · {{item.min}} 分钟</text>
+          <text class="ans">{{item.venue}} · {{item.hall}} · {{item.min}} 分钟{{item.langSub?' · '+item.langSub:''}}</text>
         </view>
       </view>
       <view class="add {{item.picked?'on':''}}" data-key="{{item.key}}" catchtap="toggle">{{item.picked?'✓ 已加入':'+ 排片'}}</view>
