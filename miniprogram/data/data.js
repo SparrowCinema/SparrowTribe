@@ -1378,7 +1378,8 @@ module.exports = {
    "highlights": [],
    "honors": [],
    "version": "4K",
-   "prog": "cinema-2026"
+   "prog": "cinema-2026",
+   "poster": "posters/resident-evil.jpg"
   }
  ],
  "shows": [
