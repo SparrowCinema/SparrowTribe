@@ -81,3 +81,9 @@
 .nbt .b { font-size: 26rpx; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .share { width: 100%; margin-top: 32rpx !important; }
 .noshow { display: flex; flex-direction: column; gap: 6rpx; padding: 24rpx; border-style: dashed; }
+
+.gift { padding: 24rpx 28rpx; margin-bottom: 16rpx; }
+.gl { display: inline-block; font-size: 22rpx; font-weight: 600; color: var(--accent); border: 2rpx solid var(--accent); border-radius: 8rpx; padding: 2rpx 12rpx; margin-bottom: 16rpx; }
+.gis { display: flex; flex-wrap: wrap; gap: 12rpx; }
+.gi { font-size: 26rpx; padding: 10rpx 18rpx; border-radius: 14rpx; background: var(--chip, #e5d8bf); }
+.gnote { display: block; margin-top: 4rpx; }

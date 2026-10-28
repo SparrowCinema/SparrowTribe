@@ -49,7 +49,22 @@
    ],
    "honors": [],
    "version": "4K",
-   "poster": "posters/john-wick.jpg"
+   "poster": "posters/john-wick.jpg",
+   "gifts": [
+    {
+     "label": "亚奥万象 · 杜比巨幕厅",
+     "items": [
+      "官方A3工艺海报",
+      "万象独家珍藏工艺海报"
+     ]
+    },
+    {
+     "label": "杭州万象城 · 激光IMAX厅",
+     "items": [
+      "万象独家珍藏工艺海报"
+     ]
+    }
+   ]
   },
   {
    "id": "happy-birthday",
@@ -102,7 +117,16 @@
     "送选｜第98届奥斯卡金像奖 · 埃及送选最佳国际影片"
    ],
    "version": "4K",
-   "poster": "posters/happy-birthday.jpg"
+   "poster": "posters/happy-birthday.jpg",
+   "gifts": [
+    {
+     "items": [
+      "官方A3海报",
+      "限定绝美·手绘生日愿望卡",
+      "片中同款生日蜡烛"
+     ]
+    }
+   ]
   },
   {
    "id": "linka-linka",
@@ -493,7 +517,26 @@
    "highlights": [],
    "honors": [],
    "version": "4K",
-   "poster": "posters/resident-evil.jpg"
+   "poster": "posters/resident-evil.jpg",
+   "gifts": [
+    {
+     "label": "三选一",
+     "items": [
+      "官方A3透明工艺海报",
+      "官方工艺票根",
+      "万象独家官方夜光工艺海报"
+     ]
+    },
+    {
+     "items": [
+      "IMAX官方海报",
+      "原版A3收藏双面海报",
+      "限定收藏胶片",
+      "限定明信片",
+      "限定纪念印章"
+     ]
+    }
+   ]
   }
  ],
  "shows": [
