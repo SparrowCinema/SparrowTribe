@@ -1,0 +1,11 @@
+.prog { position: relative; overflow: hidden; margin-bottom: 24rpx; }
+.prog .cover { width: 100%; height: 250rpx; display: block; }
+.pbody { display: flex; flex-direction: column; gap: 4rpx; padding: 20rpx 28rpx 64rpx; }
+.pk { font-size: 18rpx; letter-spacing: 3rpx; color: var(--accent); }
+.pn { font-size: 40rpx; font-weight: 900; }
+.ps { font-size: 22rpx; color: var(--muted); }
+.pb { font-size: 24rpx; line-height: 1.7; color: var(--fg); margin-top: 10rpx; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.go { position: absolute; right: 24rpx; bottom: 22rpx; font-size: 22rpx; font-weight: 700; color: var(--accent); }
+.empty { display: flex; flex-direction: column; gap: 8rpx; padding: 28rpx; }
+.empty .eb { font-size: 28rpx; font-weight: 700; }
+.empty .es { font-size: 24rpx; color: var(--muted); }

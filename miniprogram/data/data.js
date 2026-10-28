@@ -1624,6 +1624,13 @@ module.exports = {
    "h": "luxe"
   },
   {
+   "d": "10/31",
+   "t": "18:20",
+   "id": "wild-strawberries",
+   "v": "premiere",
+   "h": "luxe"
+  },
+  {
    "d": "11/1",
    "t": "12:40",
    "id": "swordsman",
@@ -1634,6 +1641,13 @@ module.exports = {
    "d": "11/1",
    "t": "15:10",
    "id": "swordsman-2",
+   "v": "premiere",
+   "h": "luxe"
+  },
+  {
+   "d": "11/1",
+   "t": "19:30",
+   "id": "dogville",
    "v": "premiere",
    "h": "luxe"
   },

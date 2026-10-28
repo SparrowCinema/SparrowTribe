@@ -1,0 +1,15 @@
+<view class="wrap">
+  <view class="h2">专题</view>
+  <view class="sub">影展、院线新片与艺术影院 · {{list.length}} 个专题</view>
+  <view wx:for="{{list}}" wx:key="id" class="prog card" data-id="{{item.id}}" bindtap="open">
+    <image wx:if="{{item.cover}}" class="cover" src="{{item.cover}}" mode="aspectFill" />
+    <view class="pbody">
+      <text class="pk mono">{{item.kind}} · {{item.period}}</text>
+      <text class="pn">{{item.name}}</text>
+      <text class="ps">{{item.sub}} · {{item.fn}} 部{{item.n ? ' / ' + item.n + ' 场' : ''}}</text>
+      <text wx:if="{{item.blurb}}" class="pb">{{item.blurb}}</text>
+    </view>
+    <text class="go">{{item.up ? item.up + ' 场待放映 ›' : '专题 ›'}}</text>
+  </view>
+  <view wx:if="{{!list.length}}" class="empty card"><text class="eb">专题整理中</text><text class="es">新的影展与放映专题会陆续上线。</text></view>
+</view>
