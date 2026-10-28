@@ -1627,6 +1627,16 @@ module.exports = {
     "激光IMAX"
    ],
    "halls": []
+  },
+  {
+   "id": "sparrow-tribe",
+   "short": "麻雀部落",
+   "name": "麻雀部落电影空间",
+   "brand": "麻雀部落",
+   "store": "",
+   "en": "MQ CINEMA",
+   "fmt": [],
+   "halls": []
   }
  ],
  "programmes": [
@@ -1649,6 +1659,16 @@ module.exports = {
    "period": "2026.08 – 2026.12",
    "cover": "",
    "blurb": "今年秋冬值得走进影院的院线新片与重映。具体场次以各影院售票平台为准。"
+  },
+  {
+   "id": "sparrow-tribe-space",
+   "name": "麻雀部落电影空间",
+   "sub": "线下独立单厅艺术影院",
+   "en": "SPARROW TRIBE · MQ CINEMA",
+   "kind": "艺术影院",
+   "period": "2026.10 起",
+   "cover": "/images/brand/prog-sparrow-tribe-space.jpg",
+   "blurb": "麻雀部落是杭州的独立电影放映与策展团体，近十年来以「盲盒放映」为人熟知。沉寂四年后，麻雀部落在 2026 年国庆前后重新出发，有了自己的线下独立单厅艺术影院：麻雀部落电影空间。这里收录空间的放映排片，场次公布后会陆续更新。"
   }
  ],
  "reg": {
