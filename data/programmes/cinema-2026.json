@@ -473,7 +473,9 @@
     "提名｜2025 FIRST青年电影展 · 最佳纪录长片"
    ],
    "version": "",
-   "poster": "posters/for-better-or-worse.jpg"
+   "poster": "posters/for-better-or-worse.jpg",
+   "ticketLabel": "报名",
+   "ticket": "tickets/for-better-or-worse.png"
   },
   {
    "id": "resident-evil",
@@ -536,7 +538,9 @@
       "限定纪念印章"
      ]
     }
-   ]
+   ],
+   "ticketLabel": "报名",
+   "ticket": "tickets/resident-evil.png"
   }
  ],
  "shows": [
