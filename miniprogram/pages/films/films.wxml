@@ -13,16 +13,19 @@
       <view wx:for="{{regs}}" wx:key="k" class="chip {{filt===item.k?'on':''}}" data-k="{{item.k}}" bindtap="setFilt">{{item.n}}</view>
     </view>
   </scroll-view>
-  <view wx:for="{{list}}" wx:key="id" class="row" data-id="{{item.id}}" bindtap="open">
+  <block wx:for="{{list}}" wx:key="id">
+  <view wx:if="{{item.grp}}" class="gh">{{item.grp}}</view>
+  <view class="row" data-id="{{item.id}}" bindtap="open">
     <image wx:if="{{item.poster}}" class="pst" src="{{item.poster}}" mode="aspectFill" lazy-load />
     <view wx:else class="pst ph" style="background:{{item.color}}">{{item.cn[0]}}</view>
     <view class="info">
       <view class="t">{{item.cn}}<text wx:if="{{item.version}}" class="ed">{{item.version}}</text></view>
       <text class="o">{{item.en}}</text>
       <text class="d">{{item.dir}} · {{item.c}} · {{item.y}}</text>
-      <text wx:if="{{item.first}}" class="f mono">首场 {{item.first}}</text>
+      <text wx:if="{{item.next}}" class="f mono">下一场 {{item.next}}</text>
       <text wx:elif="{{item.release}}" class="f">{{item.release}}</text>
     </view>
     <view class="sc"><text class="n mono">{{item.db}}</text><text class="l">豆瓣</text></view>
   </view>
+  </block>
 </view>
