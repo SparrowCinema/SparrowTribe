@@ -34,7 +34,7 @@
 
 - **默认：网站更新，小程序自动同步。** getData 云函数会读取 https://sparrowcinema.github.io/SparrowTribe/data/ 下的 catalog.json 和各专题文件，转换成小程序格式返回，并缓存到云数据库 `cache` 集合（网站暂时打不开时用缓存）。所以只要网站的数据合并上线，用户重新打开或下拉刷新小程序就能看到，不必重新发版。
 - 安装包里已有的海报、购票码、专题封面继续用本地图片；新增影片的图片直接用网站上的图片地址。安装包图片有增减时运行 `node tools/build-bundled.js` 更新 `cloudfunctions/getData/bundled.json` 并重新部署 getData。
-- getData 的超时时间设为 15 秒（config.json），部署后可在云开发控制台 → 云函数 → getData → 配置里确认。
+- getData 带一个定时触发器 refreshSite（config.json，每 10 分钟），在后台读取网站并更新 cache；小程序打开时直接返回缓存，不等网站。部署 getData 后需右键 getData →「上传触发器」。超时时间在控制台设为 30 秒。
 - 以下是网站读取和缓存都失败时的备用方式：
 - 在云开发控制台 → 数据库里直接改 films / shows / venues / programmes 的记录即可，用户下拉刷新就能看到，不必重新发版。
 - shows 记录字段：`d`（日期，如 `11/7`）、`t`（开场时间）、`id`（影片 id）、`v`（影院 id）、`h`（影厅 id）、`order`（排序）。
