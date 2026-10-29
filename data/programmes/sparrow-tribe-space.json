@@ -23,7 +23,7 @@
    "ticket": "tickets/no-mobile.png",
    "syn": "2023年冬天，艺术家杨淏将手机留在家中，独自踏上一段长达134天的离线中国旅行。他仅凭纸质地图、现金、书信与面对面的交谈，在24个省级行政区的68个市县间行走。面对无处不在的扫码、预约与线上支付，他不断遭遇意料之外的阻碍，也重新发现人与人之间的信任和偶遇。影片记录这场对数字化日常的个人实验，追问当生活不再依赖屏幕，我们如何感知世界。",
    "bio": "杨淏（Hao Yang），从事当代艺术实践，以绘画、影像、书法与行走为创作媒介。曾在英国学习、研究艺术，2023年至2024年完成134天无手机、无互联网的中国旅行，并将其发展为纪录片及非虚构写作。",
-   "st": "导演以134天的离线漫游回应被数字系统包围的日常生活：不使用手机和互联网，既意味着支付、交通和住宿的重重障碍，也带来了偶遇、专注和重新认识时间的可能。本场映后导演杨淏到场交流。 放映时间为10月31日14:30—16:21，映后交流16:21开始，预计17:20结束。",
+   "st": "导演以134天的离线漫游回应被数字系统包围的日常生活：不使用手机和互联网，既意味着支付、交通和住宿的重重障碍，也带来了偶遇、专注和重新认识时间的可能。本场映后导演杨淏到场交流。放映时间为10月31日14:30—16:21，映后交流16:21开始，预计17:20结束。",
    "writers": [],
    "cast": [],
    "highlights": [
@@ -32,15 +32,16 @@
     "10月31日16:21—17:20，导演杨淏现场映后交流。"
    ],
    "honors": [
-    "入围｜2025 Sweden Film Awards · Finalist（海报标注）",
-    "入围｜2025 Austin International Art Festival · Finalist（海报标注）",
-    "入选｜2025 Internationales Festival Zeichen der Nacht · Official Selection（海报标注）",
-    "入选｜2025 Peshawar International Film Festival · Official Selection（海报标注）"
+    "入围｜2025 瑞典电影奖（Sweden Film Awards）· Finalist（海报标注）",
+    "入围｜2025 奥斯汀国际艺术节（Austin International Art Festival）· Finalist（海报标注）",
+    "入选｜2025 “夜之征兆”国际电影节（Internationales Festival Zeichen der Nacht）· Official Selection（海报标注）",
+    "入选｜2025 白沙瓦国际电影节（Peshawar International Film Festival）· Official Selection（海报标注）"
    ],
    "screeningEnd": "16:21",
    "qaStart": "16:21",
    "qaEnd": "17:20",
-   "qaGuest": "导演杨淏 Hao Yang（现场交流）"
+   "qaGuest": "导演杨淏 Hao Yang（现场交流）",
+   "screeningStart": "14:30"
   }
  ],
  "shows": [
