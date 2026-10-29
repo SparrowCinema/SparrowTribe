@@ -1,6 +1,6 @@
 // 读取排片数据。
 // 1. 优先读取网站 https://sparrowcinema.github.io/SparrowTribe/data/ 的最新数据（网站更新后小程序自动同步，无需重新审核）。
-// 2. 网站读取失败时，用上次成功读取并缓存在云数据库 cache 集合里的数据。
+// 2. 读取结果缓存在云数据库 cache 集合，10 分钟内直接返回缓存；网站读取失败时也用缓存。
 // 3. 都没有时，读取 films / shows / venues / programmes 四个集合；仍为空时小程序使用安装包内置数据。
 const cloud = require('wx-server-sdk');
 const https = require('https');
@@ -86,7 +86,16 @@ function budget(context) {
 }
 const within = (p, ms) => Promise.race([p, new Promise((_, rej) => setTimeout(() => rej(new Error('site budget ' + ms + 'ms')), ms))]);
 
+const FRESH_MS = 10 * 60 * 1000; // 缓存 10 分钟内直接用，不再去网站读取
+
+async function readCache() {
+  try { const c = await db.collection('cache').doc('site').get(); if (c.data && c.data.json) return { data: JSON.parse(c.data.json), at: c.data.at || 0 }; } catch (e) {}
+  return null;
+}
+
 exports.main = async (event, context) => {
+  const cached = await readCache();
+  if (cached && Date.now() - cached.at < FRESH_MS && !(event && event.refresh)) return Object.assign(cached.data, { source: 'cache' });
   try {
     const ms = budget(context);
     const data = await within(fromSite(ms), ms);
@@ -97,9 +106,6 @@ exports.main = async (event, context) => {
   } catch (e) {
     console.warn('网站数据读取失败，改用缓存', e && e.message);
   }
-  try {
-    const c = await db.collection('cache').doc('site').get();
-    if (c.data && c.data.json) return Object.assign(JSON.parse(c.data.json), { source: 'cache' });
-  } catch (e) {}
+  if (cached) return Object.assign(cached.data, { source: 'cache-stale' });
   return fromDatabase();
 };
