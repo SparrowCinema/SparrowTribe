@@ -75,14 +75,16 @@ async function fromDatabase() {
   return { films: films.map(strip), shows: shows.map(strip), venues: venues.map(strip), programmes: programmes.map(strip), source: 'database' };
 }
 
-// 读取网站的时间预算：按云函数的超时设置留出 1.2 秒给缓存兜底（默认超时 3 秒时约 1.8 秒）
+// 读取网站的时间预算：getData 超时时间在控制台设为 30 秒。能读到运行时剩余时间时按它留 1.5 秒兜底，读不到时按 12 秒。
 function budget(context) {
-  let limit = 3000;
+  let limit = 0;
   try {
-    if (context && typeof context.getRemainingTimeInMillis === 'function') limit = context.getRemainingTimeInMillis();
-    else if (context && +context.time_limit_in_ms > 0) limit = +context.time_limit_in_ms;
+    if (context && typeof context.getRemainingTimeInMillis === 'function') limit = +context.getRemainingTimeInMillis();
+    if (!(limit > 0) && context) limit = +(context.time_limit_in_ms || context.timeLimitInMs || 0);
+    if (!(limit > 0)) limit = +(process.env.SCF_FUNCTIONTIMEOUT || 0) * 1000;
   } catch (e) {}
-  return Math.max(1200, Math.min(10000, limit - 1200));
+  if (!(limit > 0)) return 12000;
+  return Math.max(1500, Math.min(12000, limit - 1500));
 }
 const within = (p, ms) => Promise.race([p, new Promise((_, rej) => setTimeout(() => rej(new Error('site budget ' + ms + 'ms')), ms))]);
 
@@ -98,6 +100,7 @@ exports.main = async (event, context) => {
   if (cached && Date.now() - cached.at < FRESH_MS && !(event && event.refresh)) return Object.assign(cached.data, { source: 'cache' });
   try {
     const ms = budget(context);
+    console.log('读取网站，时限', ms + 'ms');
     const data = await within(fromSite(ms), ms);
     const doc = { data: { json: JSON.stringify(data), at: Date.now() } };
     try { await db.collection('cache').doc('site').set(doc); }
