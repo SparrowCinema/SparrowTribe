@@ -48,18 +48,24 @@
   {
    "id": "premiere",
    "short": "百美汇",
-   "name": "百美汇影城",
+   "name": "杭州百美汇影城",
    "brand": "百美汇影城",
    "store": "",
    "en": "PREMIERE",
    "fmt": [
-    "LUXE"
+    "LUXE",
+    "激光"
    ],
    "halls": [
     {
      "id": "luxe",
      "short": "LUXE厅",
      "name": "LUXE4K激光巨幕厅"
+    },
+    {
+     "id": "hall-7-laser",
+     "short": "7号激光厅",
+     "name": "7号激光厅"
     }
    ]
   },
