@@ -1,6 +1,6 @@
 // 读取排片数据。
 // 1. 优先读取网站 https://sparrowcinema.github.io/SparrowTribe/data/ 的最新数据（网站更新后小程序自动同步，无需重新审核）。
-// 2. 读取结果缓存在云数据库 cache 集合，10 分钟内直接返回缓存；网站读取失败时也用缓存。
+// 2. 定时触发器每 10 分钟读一次网站并写入云数据库 cache 集合；小程序打开时直接返回缓存，不用等网站。
 // 3. 都没有时，读取 films / shows / venues / programmes 四个集合；仍为空时小程序使用安装包内置数据。
 const cloud = require('wx-server-sdk');
 const https = require('https');
@@ -88,27 +88,31 @@ function budget(context) {
 }
 const within = (p, ms) => Promise.race([p, new Promise((_, rej) => setTimeout(() => rej(new Error('site budget ' + ms + 'ms')), ms))]);
 
-const FRESH_MS = 10 * 60 * 1000; // 缓存 10 分钟内直接用，不再去网站读取
-
 async function readCache() {
   try { const c = await db.collection('cache').doc('site').get(); if (c.data && c.data.json) return { data: JSON.parse(c.data.json), at: c.data.at || 0 }; } catch (e) {}
   return null;
 }
 
 exports.main = async (event, context) => {
+  // 定时触发器（每 10 分钟）或 {"refresh":true}：去网站取最新数据并更新缓存
+  const isTimer = !!(event && (event.Type === 'Timer' || event.TriggerName || event.Time));
+  const force = isTimer || !!(event && event.refresh);
   const cached = await readCache();
-  if (cached && Date.now() - cached.at < FRESH_MS && !(event && event.refresh)) return Object.assign(cached.data, { source: 'cache' });
+  // 小程序打开时：有缓存就直接返回，不等网站（缓存由定时触发器在后台更新）
+  if (!force && cached) return Object.assign(cached.data, { source: 'cache', cachedAt: cached.at });
   try {
     const ms = budget(context);
-    console.log('读取网站，时限', ms + 'ms');
+    console.log('读取网站，时限', ms + 'ms', isTimer ? '（定时触发）' : '');
     const data = await within(fromSite(ms), ms);
     const doc = { data: { json: JSON.stringify(data), at: Date.now() } };
     try { await db.collection('cache').doc('site').set(doc); }
     catch (e) { try { await db.createCollection('cache'); await db.collection('cache').doc('site').set(doc); } catch (e2) {} }
-    return data;
+    console.log('网站数据已更新到缓存', data.films.length + ' 部', data.shows.length + ' 场');
+    return isTimer ? { ok: true, films: data.films.length, shows: data.shows.length } : data;
   } catch (e) {
     console.warn('网站数据读取失败，改用缓存', e && e.message);
   }
-  if (cached) return Object.assign(cached.data, { source: 'cache-stale' });
+  if (isTimer) return { ok: false };
+  if (cached) return Object.assign(cached.data, { source: 'cache-stale', cachedAt: cached.at });
   return fromDatabase();
 };

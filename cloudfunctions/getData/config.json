@@ -1,1 +1,7 @@
-{ "permissions": { "openapi": [] }, "timeout": 15 }
+{
+  "permissions": { "openapi": [] },
+  "timeout": 30,
+  "triggers": [
+    { "name": "refreshSite", "type": "timer", "config": "0 */10 * * * * *" }
+  ]
+}
