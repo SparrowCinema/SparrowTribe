@@ -23,10 +23,10 @@ function getJSON(url, ms = 6000) {
 }
 
 // 把网站数据转换成小程序使用的格式；安装包里已有的图片用本地路径，其余图片直接用网站地址
-async function fromSite() {
-  const cat = await getJSON(SITE + 'data/catalog.json');
+async function fromSite(ms) {
+  const cat = await getJSON(SITE + 'data/catalog.json', ms);
   const progs = cat.programmes || [];
-  const packs = await Promise.all(progs.map(p => p.file ? getJSON(SITE + p.file).catch(() => null) : null));
+  const packs = await Promise.all(progs.map(p => p.file ? getJSON(SITE + p.file, ms).catch(() => null) : null));
   if (progs.some((p, i) => p.file && !packs[i])) throw new Error('programme file missing');
   const has = (dir, name) => BUNDLED[dir].includes(name);
   const films = [], shows = [], seen = new Set();
@@ -75,9 +75,21 @@ async function fromDatabase() {
   return { films: films.map(strip), shows: shows.map(strip), venues: venues.map(strip), programmes: programmes.map(strip), source: 'database' };
 }
 
-exports.main = async () => {
+// 读取网站的时间预算：按云函数的超时设置留出 1.2 秒给缓存兜底（默认超时 3 秒时约 1.8 秒）
+function budget(context) {
+  let limit = 3000;
   try {
-    const data = await fromSite();
+    if (context && typeof context.getRemainingTimeInMillis === 'function') limit = context.getRemainingTimeInMillis();
+    else if (context && +context.time_limit_in_ms > 0) limit = +context.time_limit_in_ms;
+  } catch (e) {}
+  return Math.max(1200, Math.min(10000, limit - 1200));
+}
+const within = (p, ms) => Promise.race([p, new Promise((_, rej) => setTimeout(() => rej(new Error('site budget ' + ms + 'ms')), ms))]);
+
+exports.main = async (event, context) => {
+  try {
+    const ms = budget(context);
+    const data = await within(fromSite(ms), ms);
     const doc = { data: { json: JSON.stringify(data), at: Date.now() } };
     try { await db.collection('cache').doc('site').set(doc); }
     catch (e) { try { await db.createCollection('cache'); await db.collection('cache').doc('site').set(doc); } catch (e2) {} }
