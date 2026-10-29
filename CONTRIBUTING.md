@@ -22,7 +22,7 @@
   - 同一部影片可被多个专题的场次引用，只需在一个专题文件里定义；场次归属看所在文件。
   - 专题状态按 start/end 自动计算（即将开始 / 进行中 / 已结束），已结束进「往期专题」；已散场的场次变灰；片目按「近期放映 / 院线与待排片 / 已放映」排序并支持搜索。
   - 调试可在网址加 ?now=2026-11-07T15:00 模拟当前时间。
-- 微信小程序：`project.config.json` + `miniprogram/` + `cloudfunctions/`（AppID wx1f3f065d4885ac25，云环境 cloud1-d9gvudh6vc59007ac），说明见 miniprogram/README.md。网站排片数据变更时，同步更新 `miniprogram/data/data.js` 与 `cloudfunctions/seed/data.json`，或直接改云数据库。小程序场次键格式与网站一致。
+- 微信小程序：`project.config.json` + `miniprogram/` + `cloudfunctions/`（AppID wx1f3f065d4885ac25，云环境 cloud1-d9gvudh6vc59007ac），说明见 miniprogram/README.md。小程序通过 getData 云函数自动读取网站 data/ 的最新数据（失败时用 cache 集合缓存），排片和影片数据只改网站即可，无需重新审核；`miniprogram/data/data.js` 是离线兜底数据，发新版时顺便同步。小程序安装包图片有增减时运行 `node tools/build-bundled.js` 并重新部署 getData。小程序场次键格式与网站一致。
 - 海报目录：posters/；发布配置：.github/workflows/pages.yml；PWA：manifest.webmanifest、sw.js（替换同名静态文件时需升级缓存名）、icons/。
 - 网站与小程序名称：麻雀观影护照（2026-10 起，原名「麻雀映画&麻雀部落展映排片表」），制作设计：麻雀映画 × 麻雀部落。风格万相是其中一个影展专题，后续会加入院线电影、艺术影院等排片。
 - 专题封面放在 programmes/。影片缺少片长时显示「片长待定」，缺少简介、导演介绍等字段时详情页自动隐藏对应板块。

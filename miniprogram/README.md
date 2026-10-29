@@ -18,7 +18,7 @@
 | `miniprogram/pages/share` | 朋友分享的排片：一键加入或进入首页 |
 | `miniprogram/data/data.js` | 内置数据（云数据库为空或断网时使用） |
 | `miniprogram/images/` | 海报、购票码、LOGO、tab 图标（已压缩，主包约 1.4MB） |
-| `cloudfunctions/getData` | 读取 films / shows / venues / programmes 四个集合 |
+| `cloudfunctions/getData` | 优先读取网站 data/ 的最新数据（失败时用 cache 集合里的上次结果，再退回四个集合） |
 | `cloudfunctions/seed` | 把 `data.json` 一次性导入云数据库 |
 | `cloudfunctions/plan` | 按微信用户保存个人排片（集合 plans） |
 
@@ -30,8 +30,12 @@
 4. 右键 `seed` →「云端测试」，参数填 `{"confirm":"overwrite"}`，运行一次。会创建并写入 films、shows、venues、programmes、plans 五个集合。
 5. 编译预览即可。没导入数据前，小程序会直接使用内置数据，也能正常打开。
 
-## 以后更新排片
+## 以后更新排片（不用重新审核）
 
+- **默认：网站更新，小程序自动同步。** getData 云函数会读取 https://sparrowcinema.github.io/SparrowTribe/data/ 下的 catalog.json 和各专题文件，转换成小程序格式返回，并缓存到云数据库 `cache` 集合（网站暂时打不开时用缓存）。所以只要网站的数据合并上线，用户重新打开或下拉刷新小程序就能看到，不必重新发版。
+- 安装包里已有的海报、购票码、专题封面继续用本地图片；新增影片的图片直接用网站上的图片地址。安装包图片有增减时运行 `node tools/build-bundled.js` 更新 `cloudfunctions/getData/bundled.json` 并重新部署 getData。
+- getData 的超时时间设为 15 秒（config.json），部署后可在云开发控制台 → 云函数 → getData → 配置里确认。
+- 以下是网站读取和缓存都失败时的备用方式：
 - 在云开发控制台 → 数据库里直接改 films / shows / venues / programmes 的记录即可，用户下拉刷新就能看到，不必重新发版。
 - shows 记录字段：`d`（日期，如 `11/7`）、`t`（开场时间）、`id`（影片 id）、`v`（影院 id）、`h`（影厅 id）、`order`（排序）。
 - 新影片的海报和购票码可以上传到云存储，把文件 ID 填到影片记录的 `posterUrl`、`ticketUrl` 字段。
