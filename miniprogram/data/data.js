@@ -1736,6 +1736,13 @@ module.exports = {
    "h": "luxe"
   },
   {
+   "d": "11/8",
+   "t": "19:30",
+   "id": "long-live-the-missus",
+   "v": "premiere",
+   "h": "luxe"
+  },
+  {
    "d": "10/30",
    "t": "19:30",
    "id": "resident-evil",
