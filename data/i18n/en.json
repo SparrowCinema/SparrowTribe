@@ -612,7 +612,10 @@
     "获奖｜2026 Hong Kong International Film Festival · FIPRESCI Prize",
     "获奖｜2026 Buenos Aires International Festival of Independent Cinema · Best Cinematography",
     "入选｜2026 Shanghai International Film Festival · New Chinese Wave"
-   ]
+   ],
+   "screeningNotes": {
+    "11/6-19:45-xm-gr26-1-hall-2": "Post-screening event · Director / Writer: Gangzhen; Producer: Zhang Qiancai (subject to who actually attends)"
+   }
   },
   "kill-bill-whole-bloody-affair": {
    "title": "Kill Bill: The Whole Bloody Affair",
@@ -850,7 +853,10 @@
    "dir": "Loden",
    "honors": [
     "入选｜2026 Golden Rooster Film Screening · 国产新片展映"
-   ]
+   ],
+   "screeningNotes": {
+    "11/6-18:20-xm-gr26-1-hall-4": "Post-screening event · Director / Writer: Loden; Producer: Chen Caiyun, Liu Xiaodai (subject to who actually attends)"
+   }
   },
   "gr26-005": {
    "title": "Donkey Princess",
@@ -955,7 +961,10 @@
    "dir": "Dong Jie",
    "honors": [
     "入选｜2026 Golden Rooster Film Screening · 国产新片展映"
-   ]
+   ],
+   "screeningNotes": {
+    "11/7-13:00-xm-gr26-1-hall-2": "Post-screening event · Director / Writer: Dong Jie; Producer: Cao Shanshan; Cinematographer: Li Zhong (subject to who actually attends)"
+   }
   },
   "gr26-014": {
    "title": "Starting Towards the Finish Line",
@@ -969,7 +978,10 @@
    "dir": "Hou Jue",
    "honors": [
     "入选｜2026 Golden Rooster Film Screening · 国产新片展映"
-   ]
+   ],
+   "screeningNotes": {
+    "11/7-14:00-xm-gr26-1-hall-4": "Post-screening event · Director / Writer: Hou Jue; Executive producer / Producer: Xing Xiao; Child lead: Meng Qichen (subject to who actually attends)"
+   }
   },
   "gr26-015": {
    "title": "Fatherland",
@@ -994,7 +1006,10 @@
    "dir": "Zhang Xin",
    "honors": [
     "入选｜2026 Golden Rooster Film Screening · 国产新片展映"
-   ]
+   ],
+   "screeningNotes": {
+    "11/7-16:00-xm-gr26-1-hall-2": "Post-screening event · Director / Writer / Starring: Zhang Xin; Producer: Liao Yong (subject to who actually attends)"
+   }
   },
   "gr26-017": {
    "title": "Steadfast Woman",
@@ -1008,7 +1023,12 @@
    "dir": "Zhang Pu",
    "honors": [
     "入选｜2026 Golden Rooster Film Screening · 国产新片展映"
-   ]
+   ],
+   "screeningNotes": {
+    "11/7-16:40-xm-gr26-1-hall-7": "Post-screening event · Director: Zhang Pu; Producer: Ma Jingjing; Starring: Xu Yueqing (subject to who actually attends)",
+    "11/8-14:30-xm-gr26-3-hall-3": "Post-screening event · Director: Zhang Pu; Producer: Ma Jingjing; Starring: Xu Yueqing (subject to who actually attends)",
+    "11/8-16:00-xm-gr26-2-hall-8": "Post-screening event · Director: Zhang Pu; Producer: Ma Jingjing; Starring: Xu Yueqing (subject to who actually attends)"
+   }
   },
   "gr26-018": {
    "title": "Light Pillar",
@@ -1047,7 +1067,10 @@
    "dir": "Liu Shichuan",
    "honors": [
     "入选｜2026 Golden Rooster Film Screening · 国产新片展映"
-   ]
+   ],
+   "screeningNotes": {
+    "11/7-19:40-xm-gr26-1-hall-3": "Post-screening event · Director / Writer: Liu Shichuan (subject to who actually attends)"
+   }
   },
   "gr26-021": {
    "title": "A Girl Unknown",
@@ -1061,7 +1084,11 @@
    "dir": "Zou Jing",
    "honors": [
     "入选｜2026 Golden Rooster Film Screening · 国产新片展映"
-   ]
+   ],
+   "screeningNotes": {
+    "11/7-19:50-xm-gr26-1-hall-6": "Post-screening event · Director / Writer: Zou Jing; Starring: Li Gengxi, Shen Jiani; Producer: Wang Yang, Cao Xi (subject to who actually attends)",
+    "11/9-19:40-xm-gr26-1-hall-6": "Post-screening event · Director / Writer: Zou Jing; Starring: Zu Feng, Shen Jiani; Producer: Wang Yang, Cao Xi (subject to who actually attends)"
+   }
   },
   "gr26-022": {
    "title": "Algerican Road",
@@ -1125,7 +1152,10 @@
    "dir": "Gong Yiwen",
    "honors": [
     "入选｜2026 Golden Rooster Film Screening · 国产新片展映"
-   ]
+   ],
+   "screeningNotes": {
+    "11/8-11:20-xm-gr26-1-hall-3": "Post-screening event · Director / Writer: Gong Yiwen; Cast: Ma Fufu, Liu Haoning (subject to who actually attends)"
+   }
   },
   "gr26-027": {
    "title": "Roaming over the Horseback",
@@ -1139,7 +1169,10 @@
    "dir": "白润青",
    "honors": [
     "入选｜2026 Golden Rooster Film Screening · 国产新片展映"
-   ]
+   ],
+   "screeningNotes": {
+    "11/8-13:20-xm-gr26-1-hall-4": "Post-screening event · Director / Writer: Bai Runqing; Starring: Bayin, Tumen, Taozi; Producer: Sun Tao (subject to who actually attends)"
+   }
   },
   "gr26-028": {
    "title": "Daughter of the River",
@@ -1153,7 +1186,10 @@
    "dir": "Hong Ying",
    "honors": [
     "入选｜2026 Golden Rooster Film Screening · 国产新片展映"
-   ]
+   ],
+   "screeningNotes": {
+    "11/8-14:20-xm-gr26-1-hall-2": "Post-screening event · Director / Writer / Starring: Hong Ying; Producer: Li Yan; Starring: Shuang Bai, Zou Zhiyong, Hu Guangzi (subject to who actually attends)"
+   }
   },
   "gr26-029": {
    "title": "Good Trip",
@@ -1192,7 +1228,10 @@
    "dir": "Zhong Kaifeng",
    "honors": [
     "入选｜2026 Golden Rooster Film Screening · 国产新片展映"
-   ]
+   ],
+   "screeningNotes": {
+    "11/8-16:15-xm-gr26-1-hall-6": "Post-screening event · Producer: Wang Tianxiao, Zheng Jing; Joining online — Director / Writer: Zhong Kaifeng; Starring: Yin Fang, Huang Miyi (subject to who actually attends)"
+   }
   },
   "gr26-032": {
    "title": "Deep Quiet Room",
@@ -1342,7 +1381,10 @@
    "dir": "Wan Bo",
    "honors": [
     "入选｜2026 Golden Rooster Film Screening · 国产新片展映"
-   ]
+   ],
+   "screeningNotes": {
+    "11/9-15:00-xm-gr26-1-hall-4": "Post-screening event · Director: Wan Bo; Producer / Starring: Li Yixiao; Writer / Starring: Luo Pan; Sound director: Dege Cairang (subject to who actually attends)"
+   }
   },
   "gr26-044": {
    "title": "When Malan Blooms",
@@ -1356,7 +1398,10 @@
    "dir": "Ma Xiaojing",
    "honors": [
     "入选｜2026 Golden Rooster Film Screening · 国产新片展映"
-   ]
+   ],
+   "screeningNotes": {
+    "11/9-19:30-xm-gr26-1-hall-4": "Post-screening event · Director: Ma Xiaojing; Starring: Ni Dahong, Huang Mengying, a representative of the Malanhua Children’s Voice Choir (subject to who actually attends)"
+   }
   },
   "gr26-045": {
    "title": "Nowhere to Lay My Eyes",
@@ -2840,6 +2885,11 @@
   "所有城市": "All cities",
   "没有匹配的专题": "No matching programmes",
   "没有匹配的城市": "No matching cities",
-  "没有匹配的结果": "No matching results"
+  "没有匹配的结果": "No matching results",
+  "映后活动": "Post-screening event",
+  "只看我的排片": "Only my plan",
+  "当前筛选下还没有你加入的场次": "None of your picks match the current filter",
+  "关掉「只看我的排片」，在排片表点色块右上角的 + 加入": "Turn off “Only my plan”, then tap + on a block to add it",
+  "地图": "Map"
  }
 }

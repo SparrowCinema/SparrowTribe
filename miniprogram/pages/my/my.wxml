@@ -144,7 +144,7 @@
     <view wx:for="{{days}}" wx:for-item="day" wx:key="d" class="day">
       <view class="dh"><text class="dd mono">{{day.d}}</text><text class="dw">{{day.wk}}</text><text class="dr">{{day.cnt}} · {{day.range}}</text></view>
       <block wx:for="{{day.items}}" wx:key="key">
-        <view wx:if="{{item.gap}}" class="gap {{item.gap.cls}}">{{item.gap.txt}}</view>
+        <view wx:if="{{item.gap}}" class="gap {{item.gap.cls}}"><text>{{item.gap.txt}}</text><text wx:if="{{item.gap.mapName}}" class="gap-map" data-v="{{item.gap.mapName}}" bindtap="openMap">{{L.t(i,'地图')}} ›</text></view>
         <view class="it">
           <view class="tm mono"><text class="b">{{item.t}}</text><text>{{item.end}}</text></view>
           <view class="pc card" style="--c:{{item.color}}" data-id="{{item.id}}" bindtap="open">
