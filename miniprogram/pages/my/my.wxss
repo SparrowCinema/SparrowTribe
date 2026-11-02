@@ -204,3 +204,10 @@
 
 .guide { margin-top: 24rpx; } .guide .sy-h { display: flex; justify-content: space-between; } .gtog { color: var(--accent); }
 .gi { display: flex; gap: 16rpx; padding: 18rpx 0; border-top: 1rpx solid var(--line); } .gk { font-size: 28rpx; color: var(--accent); width: 36rpx; flex-shrink: 0; } .gb { display: block; font-size: 26rpx; font-weight: 700; } .gs { display: block; font-size: 23rpx; line-height: 1.7; color: var(--muted); margin-top: 4rpx; }
+
+.rc-yscroll { white-space: nowrap; } .rc-years { flex-wrap: nowrap; display: inline-flex; } .rc-years .chip { flex-shrink: 0; }
+.rc-months { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14rpx; }
+.rc-m { display: flex; flex-direction: column; align-items: center; gap: 4rpx; padding: 16rpx 0; border: 2rpx solid var(--line); border-radius: 18rpx; background: var(--surface); }
+.rc-m .mb { font-size: 28rpx; font-weight: 700; } .rc-m .ms { font-size: 20rpx; color: var(--muted); }
+.rc-m.on { background: var(--fg); color: var(--bg); border-color: var(--fg); } .rc-m.on .ms { color: var(--bg); opacity: .8; }
+.rc-m.dis { opacity: .35; border-style: dashed; } .rc-hint { font-size: 22rpx; color: var(--muted); }
