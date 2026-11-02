@@ -30,7 +30,7 @@
       <view wx:for="{{progs}}" wx:key="id" class="chip {{pf===item.id?'on':''}}" data-id="{{item.id}}" bindtap="setProg">{{item.name}}</view>
     </view>
   </scroll-view>
-  <scroll-view scroll-x class="hscroll" enhanced show-scrollbar="{{false}}">
+  <scroll-view wx:if="{{vchips.length}}" scroll-x class="hscroll" enhanced show-scrollbar="{{false}}">
     <view class="chips">
       <view wx:for="{{vchips}}" wx:key="id" class="chip {{vf===item.id?'on':''}}" data-id="{{item.id}}" bindtap="setVenue">{{item.n}}</view>
     </view>

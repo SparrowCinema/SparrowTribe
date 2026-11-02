@@ -1,0 +1,46 @@
+// 生成小程序离线兜底数据 miniprogram/data/data.js（云函数和网站都读不到时才会用到）。
+// 转换规则与 cloudfunctions/getData/index.js 的 fromSite() 保持一致：两处改一处时要同步改另一处。
+// 发布小程序新版本前运行一次：node tools/build-fallback.js
+const fs = require('fs'), path = require('path');
+const root = path.join(__dirname, '..');
+const SITE = 'https://sparrowcinema.github.io/SparrowTribe/';
+const BUNDLED = require(path.join(root, 'cloudfunctions/getData/bundled.json'));
+const OUT = path.join(root, 'miniprogram/data/data.js');
+
+// 片区颜色沿用现有兜底数据里的 reg（网站上的 REG 用的是 CSS 变量，小程序需要具体色值）
+const prev = require(OUT);
+if (!prev.reg) throw new Error('现有 data.js 缺少 reg，无法沿用片区颜色');
+
+const readJSON = p => JSON.parse(fs.readFileSync(path.join(root, p), 'utf8'));
+const cat = readJSON('data/catalog.json');
+const progs = cat.programmes || [];
+const has = (dir, name) => (BUNDLED[dir] || []).includes(name);
+
+const films = [], shows = [], seen = new Set();
+progs.forEach(p => {
+  if (!p.file) return;
+  const pk = readJSON(p.file);
+  (pk.films || []).forEach(f => {
+    if (seen.has(f.id)) return; seen.add(f.id);
+    const o = Object.assign({}, f, { prog: f.prog || p.id });
+    delete o.ticket;
+    if (!has('posters', f.id + '.jpg') && f.poster && !o.posterUrl) o.posterUrl = SITE + f.poster;
+    if (has('tickets', f.id + '.jpg')) o.ticketUrl = '/images/tickets/' + f.id + '.jpg';
+    else if (f.ticket) o.ticketUrl = SITE + f.ticket;
+    films.push(o);
+  });
+  (pk.shows || []).forEach(r => {
+    const [d, t, id, v = 'premiere', h = 'luxe'] = Array.isArray(r) ? r : [r.d, r.t, r.id, r.v, r.h];
+    shows.push({ d, t, id, v, h });
+  });
+});
+const programmes = progs.map(p => {
+  const o = Object.assign({}, p); delete o.file;
+  o.cover = has('brand', 'prog-' + p.id + '.jpg') ? '/images/brand/prog-' + p.id + '.jpg' : (p.cover ? SITE + p.cover : '');
+  return o;
+});
+if (!films.length || !shows.length) throw new Error('网站数据为空，未生成');
+
+const data = { films, shows, venues: cat.venues || [], programmes, reg: prev.reg };
+fs.writeFileSync(OUT, '/* 本地内置数据：云数据库为空或网络不可用时使用。由 tools/build-fallback.js 从网站 data/ 生成，规则与 getData 云函数一致。 */\nmodule.exports = ' + JSON.stringify(data, null, 1) + ';\n');
+console.log('films', films.length, 'shows', shows.length, 'venues', data.venues.length, 'programmes', programmes.length);

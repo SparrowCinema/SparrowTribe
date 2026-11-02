@@ -60,3 +60,6 @@
 .pf-card.zero:not(.on) .pf-n { color: var(--muted); }
 
 .poster-cv { position: fixed; left: -9999px; top: 0; width: 540px; height: 960px; }
+.pf-empty { display: flex; flex-direction: column; gap: 6rpx; padding: 28rpx; margin-bottom: 24rpx; border-style: dashed; }
+.pf-empty .b { font-size: 28rpx; font-weight: 700; }
+.small { font-size: 22rpx; }
