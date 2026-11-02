@@ -595,6 +595,7 @@ html.sheet-open,html.sheet-open body{overflow:hidden}
 .prog-card:hover{border-color:var(--accent)}
 @media (min-width:900px){.prog-strip{grid-template-columns:repeat(auto-fill,minmax(360px,1fr))}}
 .prog-chips{margin-bottom:6px}
+.plan-filter{margin:4px 0 12px}.plan-filter>small{display:block;font-size:12px;color:var(--muted);margin-bottom:6px;letter-spacing:.04em}.plan-progs .fchip.zero{opacity:.55}
 .fd-prog{display:inline-flex;align-self:flex-start;font-size:11px;font-weight:600;padding:3px 9px;border-radius:99px;background:rgba(255,250,240,.92);color:#2b2117;margin-bottom:8px}
 .pg-cover{background:#1c1510;line-height:0}
 .pg-cover img{width:100%;max-width:100%;max-height:340px;object-fit:cover}
@@ -1148,12 +1149,12 @@ function toast(message){let el=document.getElementById('toast');if(!el){el=docum
 function saveSelection(){try{localStorage.setItem(PLAN_KEY,JSON.stringify([...picked]));return true;}catch{toast('当前浏览器无法保存，离开页面后可能丢失');return false;}}
 let planFilt="all";
 function planProgChips(all){
-  const ids=[...new Set(all.map(s=>s.p))];
-  if(ids.length<2) return "";
-  const items=[["all","全部专题",all.length],...ids.map(id=>[id,PG[id]?PG[id].name:id,all.filter(s=>s.p===id).length])];
-  return '<div class="filters prog-chips plan-progs" role="group" aria-label="选择专题">'+items.map(([k,n,c])=>'<button class="fchip" data-ppf="'+esc(k)+'" aria-pressed="'+(planFilt===k)+'">'+esc(n)+' · '+c+'</button>').join('')+'</div>';
+  if(!all.length) return "";
+  const ids=PROGRAMMES.map(p=>p.id).filter(id=>SH.some(s=>s.p===id));
+  const items=[["all","全部专题（合并）",all.length],...ids.map(id=>[id,PG[id]?PG[id].name:id,all.filter(s=>s.p===id).length])];
+  return '<div class="plan-filter"><small>选择专题 · 导出与分享只包含所选内容</small><div class="filters prog-chips plan-progs" role="group" aria-label="选择专题">'+items.map(([k,n,c])=>'<button class="fchip'+(c||k==="all"?'':' zero')+'" data-ppf="'+esc(k)+'" aria-pressed="'+(planFilt===k)+'">'+esc(n)+' · '+c+'</button>').join('')+'</div></div>';
 }
-function scopedRows(){const all=selectedRows();if(planFilt==="all")return all;const r=all.filter(s=>s.p===planFilt);return r.length?r:all;}
+function scopedRows(){const all=selectedRows();if(planFilt==="all")return all;return all.filter(s=>s.p===planFilt);}
 function selectedRows(keys=picked){const set=new Set(keys);return SH.filter(s=>set.has(keyOf(s))).sort((a,b)=>showDate(a)-showDate(b));}
 function showDate(s){const md=s.d.split('/').map(Number),tm=s.t.split(':').map(Number);return new Date(year(s.d),md[0]-1,md[1],tm[0],tm[1]);}
 function planToggleHTML(s){const k=keyOf(s),yes=picked.has(k);return '<button class="plan-toggle '+(yes?'selected':'')+'" data-plan="'+esc(k)+'" aria-pressed="'+yes+'" aria-label="'+(yes?'移出排片 ':'加入排片 ')+esc(F[s.id].cn)+' '+esc(s.d)+' '+s.t+'">'+(yes?'✓ 已加入':'+ 加入排片')+'</button>';}
@@ -1242,7 +1243,7 @@ function myPage(){const list=selectedRows(),st=planStats(list),next=list[0];
   '<p class="local-note">排片保存在当前浏览器。换设备时，用分享链接带走日程。</p>'+presentersHTML()+'<p class="local-note pres-note">麻雀观影护照由麻雀映画与麻雀部落制作，汇集影展专题、艺术影院与院线放映场次。当前专题：风格万相 · 中外经典影片展（2026.10—2027.01）。</p></section>';}
 function planPage(){const all=selectedRows(),list=scopedRows(),st=planStats(list);
   main.innerHTML='<section class="view gut"><div class="page-heading"><div><small>MY PROGRAMME</small><h2 class="sec">个人排片</h2></div><button class="text-button" data-tab="my">返回我的</button></div>'+
-  (list.length?planProgChips(all)+statsHTML(st)+'<div class="plan-toolbar"><button class="primary-button" data-tab="export">导出与分享</button><button class="secondary-button" data-tab="schedule">继续选片</button><button class="text-button" data-action="clear-plan">清空排片</button></div>'+(st.clash?'<div class="conflict" role="status"><b>有 '+st.clash+' 组场次时间重叠</b><p>重叠处已在日程中标红，移出其中一场即可解决。</p></div>':'')+'<div class="plan-days">'+planRowsHTML(list,true)+'</div>'
+  (all.length?planProgChips(all)+(!list.length?'<div class="empty-plan"><h3>这个专题还没有加入场次</h3><p>可以切换到「全部专题」，或去排片表挑选。</p><button class="primary-button" data-prog-sched="'+esc(planFilt)+'">去看这个专题的排片</button></div>':statsHTML(st)+'<div class="plan-toolbar"><button class="primary-button" data-tab="export">导出与分享</button><button class="secondary-button" data-tab="schedule">继续选片</button><button class="text-button" data-action="clear-plan">清空排片</button></div>'+(st.clash?'<div class="conflict" role="status"><b>有 '+st.clash+' 组场次时间重叠</b><p>重叠处已在日程中标红，移出其中一场即可解决。</p></div>':'')+'<div class="plan-days">'+planRowsHTML(list,true)+'</div>')
   :'<div class="empty-plan"><span>＋</span><h3>还没有加入场次</h3><p>在排片表或影片详情里，点击“加入排片”。</p><button class="primary-button" data-tab="schedule">去选电影</button></div>')+
   '<p class="local-note">散场时间按影片片长计算，不含映前广告与映后交流。跨影院观影请另留交通时间。</p></section>';}
 function homeURL(){return location.origin+location.pathname;}
@@ -1254,7 +1255,7 @@ function exportPage(shared){let list;
   if(shared!==undefined){try{const raw=decodeURIComponent(shared);const keys=raw.split('~');if(!keys.length||keys.some(k=>!validKeys.has(k)))throw Error();list=selectedRows(keys);}catch{main.innerHTML='<section class="view gut"><h2 class="sec">这个分享链接无法读取</h2><p>链接可能不完整，或其中场次已更新。</p><button class="primary-button" data-tab="my">打开我的影展</button></section>';currentExport=[];return;}}
   else list=scopedRows();
   currentExport=list;const isShared=shared!==undefined,st=planStats(list);
-  if(!list.length){main.innerHTML='<section class="view gut export-view"><div class="page-heading"><div><small>TAKE CINEMA WITH YOU</small><h2 class="sec">导出与分享</h2></div><button class="text-button" data-tab="plan">我的排片</button></div><div class="empty-plan"><h3>先为自己选几场电影</h3><p>加入场次后，就能生成带二维码的分享日程。</p><button class="primary-button" data-tab="schedule">去选电影</button></div></section>';return;}
+  if(!list.length){main.innerHTML='<section class="view gut export-view"><div class="page-heading"><div><small>TAKE CINEMA WITH YOU</small><h2 class="sec">导出与分享</h2></div><button class="text-button" data-tab="plan">我的排片</button></div><div class="share-empty">'+(selectedRows().length?planProgChips(selectedRows())+'<div class="empty-plan"><h3>这个专题还没有加入场次</h3><p>请切换到「全部专题」或其他专题，再导出与分享。</p></div>':'<div class="empty-plan"><h3>先为自己选几场电影</h3><p>加入场次后，就能生成带二维码的分享日程。</p><button class="primary-button" data-tab="schedule">去选电影</button></div>')+'</div></section>';return;}
   const qr=qrSVG(homeURL()),canShare=!!navigator.share;
   const chips=isShared?'':planProgChips(selectedRows());
   const tile=(act,ic,t,s,cls='')=>'<button class="xtile '+cls+'" data-action="'+act+'"><span class="xt-ic">'+ic+'</span><b>'+t+'</b><small>'+s+'</small></button>';
