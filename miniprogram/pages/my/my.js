@@ -12,7 +12,7 @@ Page({
   onLoad() { this.setData({ i: I.dict() }); this.off1 = plan.onChange(() => this.build()); this.off2 = app.onData(() => { this.build(); this.buildPassport(); }); this.off3 = W.onChange(() => this.buildPassport()); },
   onUnload() { this.off1 && this.off1(); this.off2 && this.off2(); this.off3 && this.off3(); },
   onShow() { wx.setNavigationBarTitle({ title: t('我的观影护照') }); this.build(); this.buildPassport(); },
-  // ===== 观影护照：封面 → 资料页 → 印章页（每页 4 枚），印章外观与网站一致 =====
+  // ===== 观影护照：封面 → 资料页 → 印章页（每页 15 枚），印章外观与网站一致 =====
   buildPassport() {
     const data = app.globalData.data, idx = U.index(data), list = W.entries(data, idx);
     const rated = list.filter(e => e.rec.r), mins = list.reduce((n, e) => n + (e.f.min || 0), 0);
@@ -20,12 +20,12 @@ Page({
       avg: rated.length ? (rated.reduce((n, e) => n + e.rec.r, 0) / rated.length).toFixed(1) : '—', hm: Math.floor(mins / 60) + 'h' + String(mins % 60).padStart(2, '0') };
     const stamps = list.map((e, k) => {
       const lk = R.look(e.id), p = idx.progOf(e.f), r = e.rec.r || 0;
-      return { id: e.id, title: e.f.cn, date: R.dstamp(e.rec.d), top: String((p && p.en) || 'SPARROW FILM PASSPORT').toUpperCase().split(/ · | & /)[0], venue: e.venue || t('线下观影'),
+      return { id: e.id, title: e.f.cn, date: R.dstamp(e.rec.d), top: String((p && p.en) || 'SPARROW FILM PASSPORT').toUpperCase().split(/ · | & /)[0], venue: e.venue || t('影院观影'),
         shape: lk.shape, tilt: lk.tilt, ink: lk.ink, r, stars: r ? [1, 2, 3, 4, 5].map(i => Math.max(0, Math.min(2, r - (i - 1) * 2)) * 50) : [] };
     });
-    const pages = []; for (let k = 0; k < Math.max(1, stamps.length); k += 4) { const items = stamps.slice(k, k + 4); pages.push({ no: String(pages.length + 2).padStart(2, '0'), items, slots: Array.from({ length: 4 - items.length }, (x, j) => j) }); }
+    const pages = []; for (let k = 0; k < Math.max(1, stamps.length); k += 15) { const items = stamps.slice(k, k + 15); pages.push({ no: String(pages.length + 2).padStart(2, '0'), items, slots: Array.from({ length: 15 - items.length }, (x, j) => j) }); }
     const hn = W.holder(), first = list[0], last = list[list.length - 1];
-    this.setData({ pp: { st, pages, n: pages.length + 1, empty: !list.length, holder: hn || t('影迷'), holderEn: hn ? '' : 'CINEPHILE',
+    this.setData({ pp: { st, pages, n: pages.length + 1, empty: !list.length, holder: hn || t('影迷'), photo: W.photo(), holderEn: hn ? '' : 'CINEPHILE',
       first: first ? R.dstamp(first.rec.d) : '—', last: last ? R.dstamp(last.rec.d) : '—',
       mrz1: 'P<SPARROW<FILM<PASSPORT<<' + (hn && !/[^\x00-\x7f]/.test(hn) ? hn.toUpperCase().replace(/[^A-Z]/g, '<').slice(0, 14) : 'CINEPHILE') + '<<<',
       mrz2: 'FILMS<' + String(st.n).padStart(3, '0') + '<<PROGS<' + String(st.progs).padStart(2, '0') + '<<AVG<' + (rated.length ? Math.round(st.avg * 10) : '00') + '<<' + (last ? last.rec.d.replace(/-/g, '') : '00000000') } });
@@ -36,10 +36,23 @@ Page({
   ppPrev() { if (this.data.ppPage > 0) this.setData({ ppPage: this.data.ppPage - 1 }); },
   ppNext() { if (this.data.ppPage < this.data.pp.n - 1) this.setData({ ppPage: this.data.ppPage + 1 }); },
   openStamp(e) { wx.navigateTo({ url: '/pages/film/film?id=' + e.currentTarget.dataset.id }); },
+  pickPhoto() {
+    const choose = () => wx.chooseMedia({ count: 1, mediaType: ['image'], sourceType: ['album', 'camera'], sizeType: ['compressed'], success: r => {
+      const f = r.tempFiles && r.tempFiles[0] && r.tempFiles[0].tempFilePath; if (!f) return;
+      const keep = p => { const fs = wx.getFileSystemManager(), old = W.photo();
+        fs.saveFile({ tempFilePath: p, success: x => { W.setPhoto(x.savedFilePath); if (old) fs.removeSavedFile({ filePath: old, fail() { } }); this.buildPassport(); wx.showToast({ title: t('照片已放进护照'), icon: 'none' }); }, fail: () => wx.showToast({ title: t('照片添加失败'), icon: 'none' }) }); };
+      wx.compressImage({ src: f, quality: 70, compressedWidth: 480, success: c => keep(c.tempFilePath), fail: () => keep(f) });
+    } });
+    if (!W.photo()) return choose();
+    wx.showActionSheet({ itemList: [t('更换照片'), t('移除照片')], success: r => {
+      if (r.tapIndex === 0) return choose();
+      const old = W.photo(); W.setPhoto(''); if (old) wx.getFileSystemManager().removeSavedFile({ filePath: old, fail() { } }); this.buildPassport();
+    } });
+  },
   editHolder() {
     wx.showModal({ title: t('护照持有人（显示在资料页）'), editable: true, placeholderText: t('影迷'), content: W.holder(), success: r => { if (r.confirm) { W.setHolder(r.content); this.buildPassport(); } } });
   },
-  // ===== 线下观影结算：按年份 / 专题 =====
+  // ===== 影院观影结算：按年份 / 专题 =====
   recapScope() {
     const data = app.globalData.data, idx = U.index(data), y = this.data.rcY || 'all', p = this.data.rcP || 'all';
     return W.entries(data, idx).filter(e => (y === 'all' || e.rec.d.slice(0, 4) === y) && (p === 'all' || idx.progOf(e.f).id === p));
@@ -78,7 +91,7 @@ Page({
         const topM = Object.keys(months).sort((a, b) => months[b] - months[a] || a - b)[0];
         const byP = {}; list.forEach(e => { const p = idx.progOf(e.f); const g = byP[p.id] = byP[p.id] || { name: p.name, n: 0, sum: 0, k: 0 }; g.n++; if (e.rec.r) { g.sum += e.rec.r; g.k++; } });
         const years = [...new Set(list.map(e => e.rec.d.slice(0, 4)))].sort();
-        const o = { title: t('我的线下观影结算'), sub: (y === 'all' ? (years.length > 1 ? years[0] + '–' + years[years.length - 1] : years[0]) : y) + ' · ' + (pid === 'all' ? t('全部专题') : idx.PG[pid].name),
+        const o = { title: t('我的影院观影结算'), sub: (y === 'all' ? (years.length > 1 ? years[0] + '–' + years[years.length - 1] : years[0]) : y) + ' · ' + (pid === 'all' ? t('全部专题') : idx.PG[pid].name),
           kicker: 'SPARROW FILM PASSPORT · MY CINEMA RECAP', yearTag: y === 'all' ? years[years.length - 1] : y,
           stats: [[list.length, t('部影片')], [Math.floor(mins / 60) + 'h' + String(mins % 60).padStart(2, '0'), t('银幕时长')], [rated.length ? (rated.reduce((n, e) => n + e.rec.r, 0) / rated.length).toFixed(1) : '—', t('平均评分')],
             [new Set(list.filter(e => e.s).map(e => e.s.v)).size, t('家影院')], [Object.keys(byP).length, t('个专题')], [topM ? t(topM + '月') : '—', t('看得最多的月份')]],

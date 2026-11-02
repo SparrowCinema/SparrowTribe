@@ -54,4 +54,4 @@
 
 ## 观影护照
 
-影片页可标记「看过」并五星十分制打分，「我的」页顶部是可翻页的观影护照和线下观影结算长图。看过记录通过 `plan` 云函数同步：**更新后请右键 `plan` →「上传并部署：云端安装依赖」**，否则记录只保存在本机。`utils/recap.js` 由 `node tools/build-fallback.js` 从 `shared/recap.js` 复制。
+影片页可标记「看过」并五星十分制打分，「我的」页顶部是可翻页的观影护照和影院观影结算长图。看过记录通过 `plan` 云函数同步：**更新后请右键 `plan` →「上传并部署：云端安装依赖」**，否则记录只保存在本机。`utils/recap.js` 由 `node tools/build-fallback.js` 从 `shared/recap.js` 复制。

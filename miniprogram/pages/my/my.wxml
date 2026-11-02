@@ -29,7 +29,10 @@
           <view class="fp-page fp-id">
             <view class="fp-ph mono"><text>{{L.t(i,'FILM PASSPORT / 资料页')}}</text><text>01</text></view>
             <view class="fp-idhead">
-              <view class="fp-portrait"><view class="reel sm"><view wx:for="{{[0,1,2,3,4,5]}}" wx:key="*this" class="hole h{{item}}" /><view class="hub" /></view></view>
+              <view class="fp-portrait" bindtap="pickPhoto">
+                <image wx:if="{{pp.photo}}" class="fp-photo" src="{{pp.photo}}" mode="aspectFill" />
+                <block wx:else><view class="reel sm"><view wx:for="{{[0,1,2,3,4,5]}}" wx:key="*this" class="hole h{{item}}" /><view class="hub" /></view><text class="fp-padd mono">{{L.t(i,'添加照片')}}</text></block>
+              </view>
               <view class="fp-fields">
                 <text class="fp-l mono">{{L.t(i,'类型 / TYPE · P')}}</text>
                 <text class="fp-l mono">{{L.t(i,'持有人 / HOLDER')}}</text>
@@ -59,7 +62,7 @@
             <view class="fp-sub">{{pp.empty ? L.t(i,'在影片页点「看过」，就会在这里盖章。') : L.t(i,'点印章回到影片 · 评分印在章上')}}</view>
             <view class="fp-grid">
               <view wx:for="{{pg.items}}" wx:for-item="s" wx:key="id" class="fp-cell">
-            <view class="st st{{s.shape}}" style="--ink:{{s.ink}};transform:rotate({{s.tilt}}deg)" data-id="{{s.id}}" bindtap="openStamp">
+            <view class="st st{{s.shape}}" style="--ink:{{s.ink}};transform:rotate({{s.tilt}}deg) scale(.72)" data-id="{{s.id}}" bindtap="openStamp">
               <view class="st-in" />
               <text class="st-top">{{s.top}}</text>
               <text class="st-title">{{s.title}}</text>
@@ -68,7 +71,7 @@
               <text class="st-venue">{{s.venue}}</text>
             </view>
               </view>
-              <view wx:for="{{pg.slots}}" wx:key="*this" class="fp-cell"><view class="fp-slot"><text wx:if="{{pp.empty && index === 0}}" class="b">{{L.t(i,'第一枚印章')}}</text><text class="mono">NEXT STAMP</text></view></view>
+              <view wx:for="{{pg.slots}}" wx:key="*this" class="fp-cell"><view class="fp-slot {{index ? 'dim' : ''}}"><text wx:if="{{pp.empty && index === 0}}" class="b">{{L.t(i,'第一枚印章')}}</text><text class="mono">NEXT STAMP</text></view></view>
             </view>
             <view class="fp-pf mono"><text>{{L.t(i,'印章')}} {{index + 1}} / {{pp.pages.length}}</text><text>SPARROW FILM PASSPORT</text></view>
           </view>
@@ -82,7 +85,7 @@
       <view class="fp-close"><text>{{L.t(i,'左右滑动翻页')}}</text><text class="lk" bindtap="ppClose">{{L.t(i,'合上护照')}}</text></view>
     </block>
     <view class="fp-recap" hover-class="hv" bindtap="openRecap">
-      <view><text class="b">{{L.t(i,'生成我的线下观影结算')}}</text><text class="s">{{L.t(i,'按年份 / 专题 · 一张长图 · 印章墙 · 我的评分')}}</text></view>
+      <view><text class="b">{{L.t(i,'生成我的影院观影结算')}}</text><text class="s">{{L.t(i,'按年份 / 专题 · 一张长图 · 印章墙 · 我的评分')}}</text></view>
       <text class="ar">↗</text>
     </view>
   </view>
@@ -158,7 +161,7 @@
 
 <view wx:if="{{rcOpen}}" class="rc-mask" bindtap="closeRecap">
   <view class="rc-panel" catchtap="noop">
-    <view class="rc-head"><text class="b">{{L.t(i,'我的线下观影结算')}}</text><text class="rc-x" bindtap="closeRecap">✕</text></view>
+    <view class="rc-head"><text class="b">{{L.t(i,'我的影院观影结算')}}</text><text class="rc-x" bindtap="closeRecap">✕</text></view>
     <text class="rc-k mono">{{L.t(i,'年份 / YEAR')}}</text>
     <view class="rc-chips"><text wx:for="{{rc.years}}" wx:key="v" class="chip {{rcY === item.v ? 'on' : ''}}" data-v="{{item.v}}" bindtap="setRcY">{{item.n}}</text></view>
     <text class="rc-k mono">{{L.t(i,'专题 / PROGRAMME')}}</text>
