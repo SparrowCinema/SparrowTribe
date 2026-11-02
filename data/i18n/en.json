@@ -2905,6 +2905,20 @@
   "换设备不丢": "Switch devices",
   "开启上方云端同步，另一台设备用同步码即可带走看过记录、评分、照片和排片。": "Turn on cloud sync above; enter the sync code on another device to bring over watched films, ratings, photo and plan.",
   "排片和护照保存在当前浏览器；开启上面的云端同步，或用分享链接，即可换设备。": "Your plan and passport live in this browser. Turn on cloud sync above, or use a share link, to switch devices.",
-  "麻雀映画 × 麻雀部落 制作 · 数据更新于": "Produced by Sparrow Cinema × Sparrow Tribe · Data updated"
+  "麻雀映画 × 麻雀部落 制作 · 数据更新于": "Produced by Sparrow Cinema × Sparrow Tribe · Data updated",
+  "先选一个年份，再按月份筛选": "Pick a year first, then a month",
+  " 部": " films",
+  "1月": "Jan",
+  "2月": "Feb",
+  "3月": "Mar",
+  "4月": "Apr",
+  "5月": "May",
+  "6月": "Jun",
+  "7月": "Jul",
+  "8月": "Aug",
+  "9月": "Sep",
+  "10月": "Oct",
+  "11月": "Nov",
+  "12月": "Dec"
  }
 }
