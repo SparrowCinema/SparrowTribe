@@ -1,7 +1,7 @@
 <wxs src="../../utils/l.wxs" module="L" />
 <view class="wrap">
   <view class="h2">{{L.t(i,'片目')}}</view>
-  <view class="sub">{{L.n(i,list.length,'f')}} · {{L.t(i,'右侧为豆瓣评分')}}</view>
+  <view class="sub">{{L.n(i,n,'f')}} · {{L.t(i,'右侧为豆瓣评分')}}</view>
   <scroll-view wx:if="{{progs.length}}" scroll-x enhanced show-scrollbar="{{false}}" style="white-space:nowrap">
     <view class="chips">
       <view class="chip {{pf==='all'?'on':''}}" data-k="all" bindtap="setProg">{{L.t(i,'全部专题')}}</view>
@@ -14,19 +14,71 @@
       <view wx:for="{{regs}}" wx:key="k" class="chip {{filt===item.k?'on':''}}" data-k="{{item.k}}" bindtap="setFilt">{{item.n}}</view>
     </view>
   </scroll-view>
-  <block wx:for="{{list}}" wx:key="id">
-  <view wx:if="{{item.grp}}" class="gh"><text class="gh-kind">{{item.grpKind}}</text><text class="gh-name">{{item.grpName}}</text></view>
-  <view class="row" data-id="{{item.id}}" bindtap="open">
-    <image wx:if="{{item.poster}}" class="pst" src="{{item.poster}}" mode="aspectFill" lazy-load />
-    <view wx:else class="pst ph" style="background:{{item.color}}">{{item.cn[0]}}</view>
-    <view class="info">
-      <view class="t">{{item.cn}}<text wx:if="{{item.version}}" class="ed">{{item.version}}</text></view>
-      <text class="o">{{item.en}}</text>
-      <text class="d">{{item.dir}} · {{item.c}} · {{item.y}}</text>
-      <text wx:if="{{item.next}}" class="f mono">{{L.t(i,'下一场')}} {{item.next}}</text>
-      <text wx:elif="{{item.release}}" class="f">{{item.release}}</text>
+  <view wx:for="{{secs}}" wx:for-item="g" wx:key="id" class="sec">
+    <view class="gh2" data-id="{{g.id}}" bindtap="toggleSec">
+      <view class="ghm"><text class="gh-kind">{{g.kind}}</text><text class="gh-name">{{g.name}}</text><text class="gh-meta mono">{{L.n(i,g.meta,'f')}}{{g.en ? ' · ' + g.en : ''}}</text></view>
+      <view class="stk" wx:if="{{!g.open}}"><block wx:for="{{g.stack}}" wx:for-item="s" wx:key="id"><image wx:if="{{s.poster}}" class="sp" src="{{s.poster}}" mode="aspectFill" lazy-load /><view wx:else class="sp sph" style="background:{{s.color}}">{{s.ch}}</view></block></view>
+      <view class="fold {{g.open ? '' : 'shut'}}"><text class="chev">⌄</text></view>
     </view>
-    <view class="sc"><text class="n mono">{{item.db}}</text><text class="l">{{L.t(i,'豆瓣')}}</text></view>
+    <block wx:if="{{g.open}}">
+      <block wx:for="{{g.live}}" wx:key="id">
+    <view class="row" data-id="{{item.id}}" bindtap="open">
+      <image wx:if="{{item.poster}}" class="pst" src="{{item.poster}}" mode="aspectFill" lazy-load />
+      <view wx:else class="pst ph" style="background:{{item.color}}">{{item.cn[0]}}</view>
+      <view class="info">
+        <view class="t">{{item.cn}}<text wx:if="{{item.version}}" class="ed">{{item.version}}</text></view>
+        <text class="o">{{item.en}}</text>
+        <text class="d">{{item.dir}} · {{item.c}} · {{item.y}}</text>
+        <text wx:if="{{item.next}}" class="f mono">{{L.t(i,'下一场')}} {{item.next}}</text>
+        <text wx:elif="{{item.release}}" class="f">{{item.release}}</text>
+      </view>
+      <view class="sc"><text class="n mono">{{item.db}}</text><text class="l">{{L.t(i,'豆瓣')}}</text></view>
+    </view>
+      </block>
+      <view wx:if="{{g.gone.length}}" class="gone {{g.goneOpen ? 'on' : ''}}" data-id="{{g.id}}" bindtap="toggleGone"><text>{{L.t(i,'本专题已放映')}}</text><text class="gn mono">{{g.gone.length}}</text><text class="chev2">{{g.goneOpen ? '⌃' : '›'}}</text></view>
+      <view wx:if="{{g.goneOpen}}" class="gone-list">
+        <block wx:for="{{g.gone}}" wx:key="id">
+    <view class="row" data-id="{{item.id}}" bindtap="open">
+      <image wx:if="{{item.poster}}" class="pst" src="{{item.poster}}" mode="aspectFill" lazy-load />
+      <view wx:else class="pst ph" style="background:{{item.color}}">{{item.cn[0]}}</view>
+      <view class="info">
+        <view class="t">{{item.cn}}<text wx:if="{{item.version}}" class="ed">{{item.version}}</text></view>
+        <text class="o">{{item.en}}</text>
+        <text class="d">{{item.dir}} · {{item.c}} · {{item.y}}</text>
+        <text wx:if="{{item.next}}" class="f mono">{{L.t(i,'下一场')}} {{item.next}}</text>
+        <text wx:elif="{{item.release}}" class="f">{{item.release}}</text>
+      </view>
+      <view class="sc"><text class="n mono">{{item.db}}</text><text class="l">{{L.t(i,'豆瓣')}}</text></view>
+    </view>
+        </block>
+      </view>
+    </block>
   </view>
+
+  <block wx:if="{{past.length}}">
+    <view class="pasth"><text class="pt">{{L.t(i,'往期专题')}}</text><text class="ps">{{L.n(i,pastN,'f')}}</text></view>
+    <view wx:for="{{past}}" wx:for-item="g" wx:key="id" class="pcard">
+      <view class="pc-h" data-id="{{g.id}}" bindtap="togglePast">
+        <view class="ghm"><text class="gh-kind">{{g.kind}}</text><text class="pc-name">{{g.name}}</text><text class="gh-meta mono">{{L.n(i,g.n,'f')}}{{g.period ? ' · ' + g.period : ''}}</text></view>
+        <view class="stk"><block wx:for="{{g.stack}}" wx:for-item="s" wx:key="id"><image wx:if="{{s.poster}}" class="sp" src="{{s.poster}}" mode="aspectFill" lazy-load /><view wx:else class="sp sph" style="background:{{s.color}}">{{s.ch}}</view></block></view>
+        <view class="fold {{g.open ? '' : 'shut'}}"><text class="chev">⌄</text></view>
+      </view>
+      <view wx:if="{{g.open}}" class="pc-b">
+        <block wx:for="{{g.rows}}" wx:key="id">
+    <view class="row" data-id="{{item.id}}" bindtap="open">
+      <image wx:if="{{item.poster}}" class="pst" src="{{item.poster}}" mode="aspectFill" lazy-load />
+      <view wx:else class="pst ph" style="background:{{item.color}}">{{item.cn[0]}}</view>
+      <view class="info">
+        <view class="t">{{item.cn}}<text wx:if="{{item.version}}" class="ed">{{item.version}}</text></view>
+        <text class="o">{{item.en}}</text>
+        <text class="d">{{item.dir}} · {{item.c}} · {{item.y}}</text>
+        <text wx:if="{{item.next}}" class="f mono">{{L.t(i,'下一场')}} {{item.next}}</text>
+        <text wx:elif="{{item.release}}" class="f">{{item.release}}</text>
+      </view>
+      <view class="sc"><text class="n mono">{{item.db}}</text><text class="l">{{L.t(i,'豆瓣')}}</text></view>
+    </view>
+        </block>
+      </view>
+    </view>
   </block>
 </view>
