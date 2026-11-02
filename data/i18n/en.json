@@ -2192,8 +2192,8 @@
    "store": "Xiamen",
    "halls": {
     "hall-6": {
-     "name": "Hall 6",
-     "short": "Hall 6"
+     "name": "Hall 6 · Laser Giant Screen",
+     "short": "Hall 6 Laser"
     },
     "hall-4": {
      "name": "Hall 4",
@@ -2212,8 +2212,8 @@
      "short": "Hall 7"
     },
     "hall-5": {
-     "name": "Hall 5",
-     "short": "Hall 5"
+     "name": "Hall 5 · Dolby Cinema",
+     "short": "Hall 5 Dolby Cinema"
     }
    }
   },
@@ -2256,8 +2256,8 @@
    "store": "Xiamen",
    "halls": {
     "imax": {
-     "name": "IMAX Hall",
-     "short": "IMAX Hall"
+     "name": "Laser IMAX",
+     "short": "Laser IMAX"
     }
    }
   },

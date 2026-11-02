@@ -8050,8 +8050,8 @@ module.exports = {
    "halls": [
     {
      "id": "hall-6",
-     "short": "6号厅",
-     "name": "6号厅"
+     "short": "6号激光巨幕厅",
+     "name": "6号激光巨幕厅"
     },
     {
      "id": "hall-4",
@@ -8075,8 +8075,8 @@ module.exports = {
     },
     {
      "id": "hall-5",
-     "short": "5号厅",
-     "name": "5号厅"
+     "short": "5号 Dolby Cinema",
+     "name": "5号Dolby Cinema 杜比影院厅"
     }
    ],
    "city": "厦门"
@@ -8133,8 +8133,8 @@ module.exports = {
    "halls": [
     {
      "id": "imax",
-     "short": "IMAX厅",
-     "name": "IMAX厅"
+     "short": "激光IMAX厅",
+     "name": "激光IMAX厅"
     }
    ],
    "city": "厦门"
