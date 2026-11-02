@@ -2957,6 +2957,9 @@
   "反馈与纠错": "Feedback & corrections",
   "排片、片名、人名或功能有问题？欢迎告诉我们，附上截图和页面名称会更快处理。": "Spotted a wrong schedule, title, name or bug? Let us know — a screenshot and the page name help us fix it faster.",
   "已复制": "Copied",
-  "已复制：": "Copied: "
+  "已复制：": "Copied: ",
+  "部待映": "to screen",
+  "片目概览": "Films overview",
+  "按专题分组，每个专题可收起；已放映的收进专题内，专题结束后归入「往期专题」。右侧为豆瓣评分。": "Grouped by programme; each can be collapsed. Screened films tuck inside it, and ended programmes move to “Past programmes”. Douban score on the right."
  }
 }

@@ -1,7 +1,8 @@
 <wxs src="../../utils/l.wxs" module="L" />
 <view class="wrap">
   <view class="h2">{{L.t(i,'片目')}}</view>
-  <view class="sub">{{L.n(i,n,'f')}} · {{L.t(i,'右侧为豆瓣评分')}}</view>
+  <view class="fi-stats"><view><text class="fn mono">{{stat.total}}</text><text class="fl">{{L.t(i,'部影片')}}</text></view><view><text class="fn mono">{{stat.progs}}</text><text class="fl">{{L.t(i,'个专题')}}</text></view><view><text class="fn mono">{{stat.live}}</text><text class="fl">{{L.t(i,'部待映')}}</text></view></view>
+  <view class="sub">{{L.t(i,'按专题分组，每个专题可收起；已放映的收进专题内，专题结束后归入「往期专题」。右侧为豆瓣评分。')}}</view>
   <scroll-view wx:if="{{progs.length}}" scroll-x enhanced show-scrollbar="{{false}}" style="white-space:nowrap">
     <view class="chips">
       <view class="chip {{pf==='all'?'on':''}}" data-k="all" bindtap="setProg">{{L.t(i,'全部专题')}}</view>

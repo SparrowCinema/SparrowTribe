@@ -38,3 +38,5 @@
 .pcard .pc-h { padding: 22rpx 0; }
 .pc-name { font-size: 32rpx; font-weight: 900; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .pc-b { border-top: 2rpx solid var(--line); }
+
+.fi-stats { display: flex; gap: 40rpx; margin: 8rpx 0 14rpx; } .fi-stats .fn { font-size: 44rpx; font-weight: 600; margin-right: 10rpx; } .fi-stats .fl { font-size: 22rpx; color: var(--muted); }
