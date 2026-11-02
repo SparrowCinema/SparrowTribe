@@ -62,6 +62,7 @@ Page({
       fail: (err) => { if (!/cancel/.test(err.errMsg || '')) wx.showToast({ title: '未能加入日历', icon: 'none' }); }
     });
   },
+  previewTicket() { const u = this.data.f && this.data.f.ticket; if (u) wx.previewImage({ urls: [u], current: u }); },
   more() { this.setData({ open: !this.data.open }); },
   openFilm(e) { wx.redirectTo({ url: '/pages/film/film?id=' + e.currentTarget.dataset.id }); },
   openProg() { wx.navigateTo({ url: '/pages/programme/programme?id=' + this.data.f.prog.id }); },
