@@ -168,7 +168,7 @@
             <view class="pi">
               <view class="pt">{{item.cn}}<text wx:if="{{item.version}}" class="ed">{{item.version}}</text></view>
               <text class="ps">{{item.dir}} · {{item.minTxt}}</text>
-              <text class="pv">{{item.venue}} · {{item.hall}}</text>
+              <text class="pv">{{item.venue}}<text class="htag">{{item.hall}}</text></text>
             </view>
             <view class="rm" data-key="{{item.key}}" catchtap="remove">✕</view>
           </view>

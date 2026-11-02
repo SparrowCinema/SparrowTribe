@@ -47,7 +47,7 @@
 .ttime { font-size: 30rpx; color: var(--muted); }
 .ttime .b { font-size: 40rpx; color: var(--fg); }
 .tv { font-size: 24rpx; color: var(--teal); font-weight: 600; line-height: 1.45; }
-.thall { font-size: 22rpx; color: var(--muted); line-height: 1.4; }
+.thall { align-self: flex-start; font-size: 22rpx; color: var(--teal); font-weight: 600; line-height: 1.5; padding: 0 14rpx; border-radius: 12rpx; background: rgba(47,111,108,.12); margin-top: 6rpx; }
 .tact { display: flex; flex-wrap: nowrap; gap: 10rpx; margin-top: 14rpx; }
 .ta { flex: 1; min-width: 0; height: 56rpx; line-height: 56rpx; text-align: center; white-space: nowrap; padding: 0; font-size: 22rpx; font-weight: 700; border-radius: 12rpx; background: var(--fc); color: #fffaf0; border: 2rpx solid transparent; box-sizing: border-box; }
 .ta.on, .ta.ghost { background: transparent; color: var(--fg); border: 2rpx solid var(--line); font-weight: 500; }

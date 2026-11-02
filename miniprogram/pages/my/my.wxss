@@ -229,3 +229,4 @@
 .fb { margin-top: 24rpx; } .fb-p { font-size: 23rpx; line-height: 1.7; color: var(--muted); margin: 8rpx 0 14rpx; }
 .fb-row { display: flex; align-items: center; gap: 16rpx; padding: 22rpx 24rpx; margin-top: 14rpx; border: 2rpx solid var(--line); border-radius: 20rpx; background: var(--bg); }
 .fb-k { flex: none; width: 124rpx; font-size: 18rpx; letter-spacing: 3rpx; color: var(--muted); } .fb-v { flex: 1; min-width: 0; font-size: 26rpx; font-weight: 600; word-break: break-all; } .fb-go { flex: none; font-size: 22rpx; color: var(--accent); }
+.htag { display: inline-block; margin-left: 10rpx; padding: 0 14rpx; border-radius: 12rpx; background: rgba(47,111,108,.12); font-weight: 600; line-height: 1.6; }
