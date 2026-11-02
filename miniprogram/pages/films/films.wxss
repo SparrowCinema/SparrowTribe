@@ -11,3 +11,5 @@
 .sc .l { font-size: 20rpx; color: var(--muted); }
 
 .gh { font-size: 32rpx; font-weight: 900; margin: 36rpx 0 8rpx; padding-bottom: 12rpx; border-bottom: 2rpx solid var(--line); }
+
+.gh-kind{display:block;font-size:20rpx;color:var(--muted);letter-spacing:3rpx;margin-bottom:10rpx}.gh-name{display:block;white-space:nowrap;font-size:40rpx}

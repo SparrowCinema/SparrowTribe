@@ -13,7 +13,7 @@
     </view>
     <view wx:if="{{p.blurb}}" class="blurb">{{p.blurb}}</view>
     <view wx:if="{{p.ticket}}" class="jumps"><view class="btn" bindtap="previewTicket">{{L.t(i,"淘票票扫码购票")}}</view></view>
-    <view wx:if="{{sections.length > 1}}" class="jumps"><view wx:for="{{sections}}" wx:key="value" class="btn {{section===item.value ? '' : 'ghost'}}" data-section="{{item.value}}" bindtap="selectSection">{{item.name}}</view></view>
+    <view wx:if="{{sections.length > 1}}" class="section-tabs"><view wx:for="{{sections}}" wx:key="value" class="btn {{section===item.value ? '' : 'ghost'}}" data-section="{{item.value}}" bindtap="selectSection">{{item.name}}</view></view>
     <view class="jumps"><view class="btn" bindtap="jump" data-to="up">{{L.t(i,'即将放映')}}</view><view class="btn ghost" bindtap="jump" data-to="gone">{{L.t(i,'已结束')}}</view></view>
     <view class="blockh" id="pg-up">{{L.t(i,'即将放映')}} <text class="en">UPCOMING · {{upN}}</text></view>
     <view wx:if="{{!films.length}}" class="empty"><text class="eb">{{gone.length ? L.t(i,'暂无待映场次') : L.t(i,'片单与场次即将公布')}}</text><text class="es">{{gone.length ? L.t(i,'新场次公布后会更新到这里。') : L.t(i,'公布后会第一时间更新到这里。')}}</text></view>

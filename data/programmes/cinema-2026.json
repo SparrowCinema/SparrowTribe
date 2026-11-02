@@ -178,18 +178,19 @@
     "入选｜2026 上海国际电影节 · 华语新风单元"
    ],
    "version": "",
-   "poster": "posters/linka-linka.jpg",
+   "poster": "posters/golden-rooster-linka-linka.jpg",
    "screeningEnds": {
     "11/6-19:45-xm-gr26-1-hall-2": "21:25",
     "11/19-20:00-xm-gr26-13-hall-1": "21:40",
     "11/21-20:00-xm-gr26-12-hall-3": "21:40"
    },
    "ticket": "tickets/golden-rooster-2026.jpg",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "ticketPlatform": "淘票票",
    "screeningNotes": {
     "11/6-19:45-xm-gr26-1-hall-2": "映后活动 · 导演/编剧：岗珍（以实际到场为准）"
-   }
+   },
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-linka-linka.jpg?v=37"
   },
   {
    "id": "kill-bill-whole-bloody-affair",

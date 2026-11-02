@@ -1,0 +1,2574 @@
+{
+ "checked": "2026-11-03",
+ "doulist": "https://www.douban.com/doulist/165148655/",
+ "imdbDataset": "https://datasets.imdbws.com/title.ratings.tsv.gz",
+ "notes": [
+  "Ratings are snapshots, not live feeds. Null means no verified score; not zero.",
+  "IMDb IDs come from matched title and director records, scores from the official daily dataset.",
+  "Rotten Tomatoes uses the critics Tomatometer; Metacritic uses critics Metascore.",
+  "Letterboxd values are rounded to one decimal in the UI.",
+  "User screening editions, durations, credits and keys are preserved.",
+  "The Doulist has 84 items: 82 match the existing festival films; two extra titles were not added. Linka Linka is absent from that list and uses the supplied festival portrait."
+ ],
+ "films": {
+  "gr26-001": {
+   "title": "神之子",
+   "ratings": {
+    "Douban": {
+     "value": 7.7,
+     "url": "https://movie.douban.com/subject/36976760/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    },
+    "IMDb": {
+     "rating": 7.4,
+     "votes": 160,
+     "url": "https://www.imdb.com/title/tt38820979/"
+    },
+    "Letterboxd": {
+     "value": 3.8,
+     "raw": 3.79,
+     "url": "https://letterboxd.com/film/benimana/"
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/36976760/",
+    "image": "https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2936190804.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/benimana/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-002": {
+   "title": "明天，会更好",
+   "ratings": {
+    "Douban": {
+     "value": null,
+     "url": "https://movie.douban.com/subject/35556002/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    },
+    "IMDb": {
+     "rating": 6.4,
+     "votes": 20,
+     "url": "https://www.imdb.com/title/tt42478876/"
+    },
+    "Letterboxd": {
+     "value": 3.6,
+     "raw": 3.56,
+     "url": "https://letterboxd.com/film/the-road-not-taken-2026/"
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/35556002/",
+    "image": "https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2934873589.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/the-road-not-taken-2026/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-003": {
+   "title": "当瓶子转动时",
+   "ratings": {
+    "Douban": {
+     "value": null,
+     "url": "https://movie.douban.com/subject/36714368/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/36714368/",
+    "image": "https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2927176712.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/when-the-bottle-turns/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "linka-linka": {
+   "title": "一个夜晚与三个夏天",
+   "ratings": {
+    "IMDb": {
+     "rating": 6.8,
+     "votes": 29,
+     "url": "https://www.imdb.com/title/tt38574217/"
+    },
+    "Letterboxd": {
+     "value": 3.4,
+     "raw": 3.37,
+     "url": "https://letterboxd.com/film/linka-linka/"
+    }
+   },
+   "poster": {
+    "source": "user-supplied festival poster, cropped portrait",
+    "note": "absent from supplied Doulist"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/linka-linka/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-005": {
+   "title": "驴公主",
+   "ratings": {
+    "Douban": {
+     "value": null,
+     "url": "https://movie.douban.com/subject/38548764/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    },
+    "IMDb": {
+     "rating": 6.2,
+     "votes": 58,
+     "url": "https://www.imdb.com/title/tt43660976/"
+    },
+    "Letterboxd": {
+     "value": 3.4,
+     "raw": 3.42,
+     "url": "https://letterboxd.com/film/donkey-princess/"
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/38548764/",
+    "image": "https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2934746432.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/donkey-princess/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-006": {
+   "title": "夏日红炎",
+   "ratings": {
+    "Douban": {
+     "value": 7.8,
+     "url": "https://movie.douban.com/subject/36778280/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    },
+    "IMDb": {
+     "rating": 6.4,
+     "votes": 180,
+     "url": "https://www.imdb.com/title/tt31383175/"
+    },
+    "Letterboxd": {
+     "value": 3.4,
+     "raw": 3.43,
+     "url": "https://letterboxd.com/film/red-rocks-2026/"
+    },
+    "Metacritic": {
+     "value": 73,
+     "url": "https://www.metacritic.com/movie/red-rocks/",
+     "director": [
+      "Bruno Dumont"
+     ]
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/36778280/",
+    "image": "https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2935557577.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/red-rocks-2026/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-007": {
+   "title": "女仆日记",
+   "ratings": {
+    "Douban": {
+     "value": 7.3,
+     "url": "https://movie.douban.com/subject/37331353/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    },
+    "IMDb": {
+     "rating": 7.0,
+     "votes": 355,
+     "url": "https://www.imdb.com/title/tt38785098/"
+    },
+    "Letterboxd": {
+     "value": 3.7,
+     "raw": 3.7,
+     "url": "https://letterboxd.com/film/the-diary-of-a-chambermaid-2026/"
+    },
+    "Metacritic": {
+     "value": 83,
+     "url": "https://www.metacritic.com/movie/the-diary-of-a-chambermaid/",
+     "director": [
+      "Radu Jude"
+     ]
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/37331353/",
+    "image": "https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2934910303.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/the-diary-of-a-chambermaid-2026/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-008": {
+   "title": "子",
+   "ratings": {
+    "Douban": {
+     "value": null,
+     "url": "https://movie.douban.com/subject/37923995/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    },
+    "IMDb": {
+     "rating": 5.8,
+     "votes": 144,
+     "url": "https://www.imdb.com/title/tt39150111/"
+    },
+    "Letterboxd": {
+     "value": 3.0,
+     "raw": 3,
+     "url": "https://letterboxd.com/film/zi-2026/"
+    },
+    "Rotten Tomatoes": {
+     "value": 63,
+     "url": "https://www.rottentomatoes.com/m/zi",
+     "director": [
+      "Kogonada"
+     ]
+    },
+    "Metacritic": {
+     "value": 67,
+     "url": "https://www.metacritic.com/movie/zi/",
+     "director": [
+      "Kogonada"
+     ]
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/37923995/",
+    "image": "https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2936680124.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/zi-2026/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-009": {
+   "title": "钢铁男孩",
+   "ratings": {
+    "Douban": {
+     "value": 7.9,
+     "url": "https://movie.douban.com/subject/36614615/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    },
+    "IMDb": {
+     "rating": 8.0,
+     "votes": 539,
+     "url": "https://www.imdb.com/title/tt36639956/"
+    },
+    "Letterboxd": {
+     "value": 4.2,
+     "raw": 4.15,
+     "url": "https://letterboxd.com/film/iron-boy/"
+    },
+    "Rotten Tomatoes": {
+     "value": 100,
+     "url": "https://www.rottentomatoes.com/m/iron_boy",
+     "director": [
+      "Louis Clichy"
+     ]
+    },
+    "Metacritic": {
+     "value": 84,
+     "url": "https://www.metacritic.com/movie/iron-boy/",
+     "director": [
+      "Louis Clichy"
+     ]
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/36614615/",
+    "image": "https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2933677391.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/iron-boy/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-010": {
+   "title": "明月共此时",
+   "ratings": {
+    "Douban": {
+     "value": null,
+     "url": "https://movie.douban.com/subject/37314633/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    },
+    "IMDb": {
+     "rating": 5.2,
+     "votes": 20,
+     "url": "https://www.imdb.com/title/tt39334277/"
+    },
+    "Letterboxd": {
+     "value": 3.0,
+     "raw": 3.05,
+     "url": "https://letterboxd.com/film/the-house-on-the-moon-2026/"
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/37314633/",
+    "image": "https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2934115518.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/the-house-on-the-moon-2026/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-011": {
+   "title": "泡泡糖女孩",
+   "ratings": {
+    "Douban": {
+     "value": 8.5,
+     "url": "https://movie.douban.com/subject/37030720/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    },
+    "IMDb": {
+     "rating": 7.5,
+     "votes": 71,
+     "url": "https://www.imdb.com/title/tt35683770/"
+    },
+    "Letterboxd": {
+     "value": 3.8,
+     "raw": 3.76,
+     "url": "https://letterboxd.com/film/ah-girl/"
+    },
+    "Rotten Tomatoes": {
+     "value": 100,
+     "url": "https://www.rottentomatoes.com/m/ah_girl",
+     "director": [
+      "Ang Geck Geck"
+     ]
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/37030720/",
+    "image": "https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2930610622.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/ah-girl/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-012": {
+   "title": "消失的金凤娜",
+   "ratings": {
+    "Douban": {
+     "value": null,
+     "url": "https://movie.douban.com/subject/37354971/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    },
+    "IMDb": {
+     "rating": 6.3,
+     "votes": 10,
+     "url": "https://www.imdb.com/title/tt36958624/"
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/37354971/",
+    "image": "https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2936146018.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/the-evil-inside-2026/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-013": {
+   "title": "发现之旅",
+   "ratings": {
+    "Douban": {
+     "value": null,
+     "url": "https://movie.douban.com/subject/36146113/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    },
+    "Letterboxd": {
+     "value": 3.2,
+     "raw": 3.22,
+     "url": "https://letterboxd.com/film/zoom-in-zoom-out/"
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/36146113/",
+    "image": "https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2934253179.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/zoom-in-zoom-out/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-014": {
+   "title": "向莲花镇出发",
+   "ratings": {
+    "Douban": {
+     "value": null,
+     "url": "https://movie.douban.com/subject/37315764/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/37315764/",
+    "image": "https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2920410919.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/starting-towards-the-finish-line/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-015": {
+   "title": "故土",
+   "ratings": {
+    "Douban": {
+     "value": 7.6,
+     "url": "https://movie.douban.com/subject/37487816/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    },
+    "IMDb": {
+     "rating": 7.4,
+     "votes": 3952,
+     "url": "https://www.imdb.com/title/tt37304295/"
+    },
+    "Letterboxd": {
+     "value": 3.6,
+     "raw": 3.65,
+     "url": "https://letterboxd.com/film/fatherland-2026/"
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/37487816/",
+    "image": "https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2935691855.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/fatherland-2026/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-016": {
+   "title": "七分熟",
+   "ratings": {
+    "Douban": {
+     "value": null,
+     "url": "https://movie.douban.com/subject/37028607/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/37028607/",
+    "image": "https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2924216018.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/gold-life/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-017": {
+   "title": "逆光绽放",
+   "ratings": {
+    "Douban": {
+     "value": null,
+     "url": "https://movie.douban.com/subject/37317256/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/37317256/",
+    "image": "https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2936848784.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/steadfast-woman/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-018": {
+   "title": "寒夜灯柱",
+   "ratings": {
+    "Douban": {
+     "value": null,
+     "url": "https://movie.douban.com/subject/36650614/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    },
+    "IMDb": {
+     "rating": 6.7,
+     "votes": 109,
+     "url": "https://www.imdb.com/title/tt32409947/"
+    },
+    "Letterboxd": {
+     "value": 3.4,
+     "raw": 3.44,
+     "url": "https://letterboxd.com/film/light-pillar/"
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/36650614/",
+    "image": "https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2929435156.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/light-pillar/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-019": {
+   "title": "澳门大赛车",
+   "ratings": {
+    "Douban": {
+     "value": null,
+     "url": "https://movie.douban.com/subject/38905085/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/38905085/",
+    "image": "https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2937094723.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/mgp-the-untamed-circuit/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-020": {
+   "title": "最佳状态",
+   "ratings": {
+    "Douban": {
+     "value": null,
+     "url": "https://movie.douban.com/subject/36847314/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/36847314/",
+    "image": "https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2937029023.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/no-hard-feelings-2026/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-021": {
+   "title": "无名女孩",
+   "ratings": {
+    "Douban": {
+     "value": null,
+     "url": "https://movie.douban.com/subject/36686123/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    },
+    "IMDb": {
+     "rating": 6.9,
+     "votes": 96,
+     "url": "https://www.imdb.com/title/tt32459280/"
+    },
+    "Letterboxd": {
+     "value": 3.8,
+     "raw": 3.78,
+     "url": "https://letterboxd.com/film/a-girl-unknown/"
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/36686123/",
+    "image": "https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2931558923.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/a-girl-unknown/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-022": {
+   "title": "阿尔及利卡之路",
+   "ratings": {
+    "Douban": {
+     "value": null,
+     "url": "https://movie.douban.com/subject/38184846/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/38184846/",
+    "image": "https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2937110420.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/algerican-road/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-023": {
+   "title": "悲惨世界",
+   "ratings": {
+    "Douban": {
+     "value": null,
+     "url": "https://movie.douban.com/subject/36778103/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    },
+    "IMDb": {
+     "rating": 7.1,
+     "votes": 486,
+     "url": "https://www.imdb.com/title/tt35518109/"
+    },
+    "Letterboxd": {
+     "value": 3.4,
+     "raw": 3.44,
+     "url": "https://letterboxd.com/film/les-miserables-2026/"
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/36778103/",
+    "image": "https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2934422920.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/les-miserables-2026/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-024": {
+   "title": "爱杀",
+   "ratings": {
+    "Douban": {
+     "value": 6.9,
+     "url": "https://movie.douban.com/subject/1353744/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    },
+    "IMDb": {
+     "rating": 6.5,
+     "votes": 356,
+     "url": "https://www.imdb.com/title/tt0081992/"
+    },
+    "Letterboxd": {
+     "value": 3.6,
+     "raw": 3.62,
+     "url": "https://letterboxd.com/film/love-massacre/"
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/1353744/",
+    "image": "https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2344424322.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/love-massacre/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-025": {
+   "title": "每时每刻",
+   "ratings": {
+    "Douban": {
+     "value": 7.8,
+     "url": "https://movie.douban.com/subject/36159749/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    },
+    "IMDb": {
+     "rating": 7.3,
+     "votes": 700,
+     "url": "https://www.imdb.com/title/tt41592057/"
+    },
+    "Letterboxd": {
+     "value": 3.8,
+     "raw": 3.8,
+     "url": "https://letterboxd.com/film/everytime/"
+    },
+    "Rotten Tomatoes": {
+     "value": 96,
+     "url": "https://www.rottentomatoes.com/m/everytime",
+     "director": [
+      "Sandra Wollner"
+     ]
+    },
+    "Metacritic": {
+     "value": 90,
+     "url": "https://www.metacritic.com/movie/everytime/",
+     "director": [
+      "Sandra Wollner"
+     ]
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/36159749/",
+    "image": "https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2932646643.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/everytime/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-026": {
+   "title": "语文的滋味",
+   "ratings": {
+    "Douban": {
+     "value": null,
+     "url": "https://movie.douban.com/subject/35765251/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    },
+    "IMDb": {
+     "rating": 5.6,
+     "votes": 7,
+     "url": "https://www.imdb.com/title/tt29508955/"
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/35765251/",
+    "image": "https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2935777134.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/her-first-taste/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-027": {
+   "title": "斯琴图的秋天",
+   "ratings": {
+    "Douban": {
+     "value": null,
+     "url": "https://movie.douban.com/subject/36995421/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/36995421/",
+    "image": "https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2933922556.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/roaming-over-the-horseback/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-028": {
+   "title": "河的女儿",
+   "ratings": {
+    "Douban": {
+     "value": null,
+     "url": "https://movie.douban.com/subject/38902954/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/38902954/",
+    "image": "https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2936039401.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": null,
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-029": {
+   "title": "我阿爹想旅行",
+   "ratings": {
+    "Douban": {
+     "value": 7.8,
+     "url": "https://movie.douban.com/subject/37663724/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    },
+    "IMDb": {
+     "rating": 7.5,
+     "votes": 115,
+     "url": "https://www.imdb.com/title/tt38489397/"
+    },
+    "Letterboxd": {
+     "value": 3.6,
+     "raw": 3.64,
+     "url": "https://letterboxd.com/film/good-trip-2026/"
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/37663724/",
+    "image": "https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2935019826.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/good-trip-2026/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-030": {
+   "title": "像我这样的爱情",
+   "ratings": {
+    "Douban": {
+     "value": 7.1,
+     "url": "https://movie.douban.com/subject/36219411/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    },
+    "IMDb": {
+     "rating": 6.3,
+     "votes": 193,
+     "url": "https://www.imdb.com/title/tt36217308/"
+    },
+    "Letterboxd": {
+     "value": 3.2,
+     "raw": 3.22,
+     "url": "https://letterboxd.com/film/someone-like-me-2025/"
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/36219411/",
+    "image": "https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2919474943.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/someone-like-me-2025/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-031": {
+   "title": "大西洋",
+   "ratings": {
+    "Douban": {
+     "value": null,
+     "url": "https://movie.douban.com/subject/36671189/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    },
+    "IMDb": {
+     "rating": 5.8,
+     "votes": 16,
+     "url": "https://www.imdb.com/title/tt32272953/"
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/36671189/",
+    "image": "https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2931241187.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/atlantic-rhapsody-2026/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-032": {
+   "title": "深度安静",
+   "ratings": {
+    "Douban": {
+     "value": 6.8,
+     "url": "https://movie.douban.com/subject/35211934/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    },
+    "IMDb": {
+     "rating": 6.9,
+     "votes": 115,
+     "url": "https://www.imdb.com/title/tt36354070/"
+    },
+    "Letterboxd": {
+     "value": 3.4,
+     "raw": 3.41,
+     "url": "https://letterboxd.com/film/deep-quiet-room/"
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/35211934/",
+    "image": "https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2923391533.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/deep-quiet-room/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-033": {
+   "title": "人生海海",
+   "ratings": {
+    "Douban": {
+     "value": 6.9,
+     "url": "https://movie.douban.com/subject/37227392/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    },
+    "IMDb": {
+     "rating": 6.5,
+     "votes": 82,
+     "url": "https://www.imdb.com/title/tt38589615/"
+    },
+    "Letterboxd": {
+     "value": 3.4,
+     "raw": 3.37,
+     "url": "https://letterboxd.com/film/the-waves-will-carry-us/"
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/37227392/",
+    "image": "https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2930456002.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/the-waves-will-carry-us/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-034": {
+   "title": "豪·路·博尔赫斯传",
+   "ratings": {
+    "Douban": {
+     "value": null,
+     "url": "https://movie.douban.com/subject/38569845/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    },
+    "IMDb": {
+     "rating": 7.2,
+     "votes": 21,
+     "url": "https://www.imdb.com/title/tt43704443/"
+    },
+    "Letterboxd": {
+     "value": 3.8,
+     "raw": 3.82,
+     "url": "https://letterboxd.com/film/life-of-jorge-luis-borges/"
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/38569845/",
+    "image": "https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2934339665.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/life-of-jorge-luis-borges/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-035": {
+   "title": "入学许可",
+   "ratings": {
+    "Douban": {
+     "value": null,
+     "url": "https://movie.douban.com/subject/36764640/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    },
+    "IMDb": {
+     "rating": 7.3,
+     "votes": 13,
+     "url": "https://www.imdb.com/title/tt38854615/"
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/36764640/",
+    "image": "https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2935923524.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/admission-2025/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-036": {
+   "title": "沧海琴声",
+   "ratings": {
+    "Douban": {
+     "value": null,
+     "url": "https://movie.douban.com/subject/36575404/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    },
+    "IMDb": {
+     "rating": 7.4,
+     "votes": 133,
+     "url": "https://www.imdb.com/title/tt30388264/"
+    },
+    "Letterboxd": {
+     "value": 3.5,
+     "raw": 3.46,
+     "url": "https://letterboxd.com/film/the-violinist-2026/"
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/36575404/",
+    "image": "https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2937118909.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/the-violinist-2026/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-037": {
+   "title": "妈样年华",
+   "ratings": {
+    "Douban": {
+     "value": null,
+     "url": "https://movie.douban.com/subject/36149740/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/36149740/",
+    "image": "https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2930781880.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/bird-of-paradise-2026/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-038": {
+   "title": "我们的救赎",
+   "ratings": {
+    "Douban": {
+     "value": 6.7,
+     "url": "https://movie.douban.com/subject/36660162/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    },
+    "IMDb": {
+     "rating": 7.0,
+     "votes": 852,
+     "url": "https://www.imdb.com/title/tt41593304/"
+    },
+    "Letterboxd": {
+     "value": 3.5,
+     "raw": 3.51,
+     "url": "https://letterboxd.com/film/a-man-of-his-time/"
+    },
+    "Rotten Tomatoes": {
+     "value": 80,
+     "url": "https://www.rottentomatoes.com/m/a_man_of_his_time",
+     "director": [
+      "Emmanuel Marre"
+     ]
+    },
+    "Metacritic": {
+     "value": 69,
+     "url": "https://www.metacritic.com/movie/a-man-of-his-time/",
+     "director": [
+      "Emmanuel Marre"
+     ]
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/36660162/",
+    "image": "https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2935124161.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/a-man-of-his-time/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-039": {
+   "title": "太极张三丰",
+   "ratings": {
+    "Douban": {
+     "value": 8.1,
+     "url": "https://movie.douban.com/subject/1294561/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    },
+    "IMDb": {
+     "rating": 7.2,
+     "votes": 11891,
+     "url": "https://www.imdb.com/title/tt0108281/"
+    },
+    "Letterboxd": {
+     "value": 3.7,
+     "raw": 3.69,
+     "url": "https://letterboxd.com/film/tai-chi-master/"
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/1294561/",
+    "image": "https://img3.doubanio.com/view/photo/s_ratio_poster/public/p722764652.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/tai-chi-master/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-040": {
+   "title": "浪花男女",
+   "ratings": {
+    "Douban": {
+     "value": null,
+     "url": "https://movie.douban.com/subject/37296842/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    },
+    "IMDb": {
+     "rating": 5.4,
+     "votes": 24,
+     "url": "https://www.imdb.com/title/tt37615065/"
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/37296842/",
+    "image": "https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2936872069.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/wakesurf-lovers/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-041": {
+   "title": "第四幕",
+   "ratings": {
+    "Douban": {
+     "value": null,
+     "url": "https://movie.douban.com/subject/37817037/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    },
+    "IMDb": {
+     "rating": 7.7,
+     "votes": 23,
+     "url": "https://www.imdb.com/title/tt38798617/"
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/37817037/",
+    "image": "https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2937102148.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/afterpiece/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-042": {
+   "title": "黑潮",
+   "ratings": {
+    "Douban": {
+     "value": 5.2,
+     "url": "https://movie.douban.com/subject/37207215/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/37207215/",
+    "image": "https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2936814573.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/dead-tide-2026/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-043": {
+   "title": "山中来客",
+   "ratings": {
+    "Douban": {
+     "value": null,
+     "url": "https://movie.douban.com/subject/36909176/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/36909176/",
+    "image": "https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2932874922.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/strangers-in-the-mountain/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-044": {
+   "title": "马兰花开的声音",
+   "ratings": {
+    "Douban": {
+     "value": null,
+     "url": "https://movie.douban.com/subject/37297313/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/37297313/",
+    "image": "https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2933727798.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": null,
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-045": {
+   "title": "无处安放我的双眼",
+   "ratings": {
+    "Douban": {
+     "value": 7.8,
+     "url": "https://movie.douban.com/subject/38208000/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    },
+    "IMDb": {
+     "rating": 6.8,
+     "votes": 61,
+     "url": "https://www.imdb.com/title/tt43663820/"
+    },
+    "Letterboxd": {
+     "value": 3.6,
+     "raw": 3.6,
+     "url": "https://letterboxd.com/film/nowhere-to-lay-my-eyes/"
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/38208000/",
+    "image": "https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2936863130.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/nowhere-to-lay-my-eyes/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-046": {
+   "title": "善男信女",
+   "ratings": {
+    "Douban": {
+     "value": 7.9,
+     "url": "https://movie.douban.com/subject/37114070/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    },
+    "IMDb": {
+     "rating": 7.5,
+     "votes": 51,
+     "url": "https://www.imdb.com/title/tt36563084/"
+    },
+    "Letterboxd": {
+     "value": 3.6,
+     "raw": 3.56,
+     "url": "https://letterboxd.com/film/we-are-born-good/"
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/37114070/",
+    "image": "https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2936799439.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/we-are-born-good/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-047": {
+   "title": "被杀的那天",
+   "ratings": {
+    "Douban": {
+     "value": null,
+     "url": "https://movie.douban.com/subject/36149739/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/36149739/",
+    "image": "https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2935865708.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/dead-end-2026-4/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-048": {
+   "title": "林中绿洲",
+   "ratings": {
+    "Douban": {
+     "value": null,
+     "url": "https://movie.douban.com/subject/37895396/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    },
+    "IMDb": {
+     "rating": 7.5,
+     "votes": 26,
+     "url": "https://www.imdb.com/title/tt43704174/"
+    },
+    "Letterboxd": {
+     "value": 3.2,
+     "raw": 3.22,
+     "url": "https://letterboxd.com/film/oasis-2026/"
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/37895396/",
+    "image": "https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2935338449.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/oasis-2026/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-049": {
+   "title": "金玉满堂",
+   "ratings": {
+    "Douban": {
+     "value": 8.1,
+     "url": "https://movie.douban.com/subject/1295374/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    },
+    "IMDb": {
+     "rating": 6.7,
+     "votes": 1670,
+     "url": "https://www.imdb.com/title/tt0113475/"
+    },
+    "Letterboxd": {
+     "value": 3.5,
+     "raw": 3.55,
+     "url": "https://letterboxd.com/film/the-chinese-feast/"
+    },
+    "Rotten Tomatoes": {
+     "value": 64,
+     "url": "https://www.rottentomatoes.com/m/the_chinese_feast",
+     "director": [
+      "Hark Tsui"
+     ]
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/1295374/",
+    "image": "https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2871150325.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/the-chinese-feast/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-050": {
+   "title": "深爱",
+   "ratings": {
+    "Douban": {
+     "value": null,
+     "url": "https://movie.douban.com/subject/36787770/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    },
+    "IMDb": {
+     "rating": 6.3,
+     "votes": 109,
+     "url": "https://www.imdb.com/title/tt31451181/"
+    },
+    "Letterboxd": {
+     "value": 3.3,
+     "raw": 3.34,
+     "url": "https://letterboxd.com/film/beloved-2026/"
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/36787770/",
+    "image": "https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2935622554.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/beloved-2026/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-051": {
+   "title": "其余皆噪音",
+   "ratings": {
+    "Douban": {
+     "value": null,
+     "url": "https://movie.douban.com/subject/37363613/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    },
+    "IMDb": {
+     "rating": 6.9,
+     "votes": 89,
+     "url": "https://www.imdb.com/title/tt39383384/"
+    },
+    "Letterboxd": {
+     "value": 3.6,
+     "raw": 3.64,
+     "url": "https://letterboxd.com/film/everything-else-is-noise/"
+    },
+    "Rotten Tomatoes": {
+     "value": 100,
+     "url": "https://www.rottentomatoes.com/m/everything_else_is_noise",
+     "director": [
+      "Nicolás Pereda"
+     ]
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/37363613/",
+    "image": "https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2930034305.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/everything-else-is-noise/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-052": {
+   "title": "吃饱的菲尔",
+   "ratings": {
+    "Douban": {
+     "value": null,
+     "url": "https://movie.douban.com/subject/37645032/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    },
+    "IMDb": {
+     "rating": 6.1,
+     "votes": 131,
+     "url": "https://www.imdb.com/title/tt38607959/"
+    },
+    "Letterboxd": {
+     "value": 2.9,
+     "raw": 2.91,
+     "url": "https://letterboxd.com/film/full-phil/"
+    },
+    "Rotten Tomatoes": {
+     "value": 71,
+     "url": "https://www.rottentomatoes.com/m/full_phil",
+     "director": [
+      "Quentin Dupieux"
+     ]
+    },
+    "Metacritic": {
+     "value": 60,
+     "url": "https://www.metacritic.com/movie/full-phil/",
+     "director": [
+      "Quentin Dupieux"
+     ]
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/37645032/",
+    "image": "https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2932520743.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/full-phil/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-053": {
+   "title": "匈牙利狂想曲",
+   "ratings": {
+    "Douban": {
+     "value": 9.3,
+     "url": "https://movie.douban.com/subject/19966691/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    },
+    "IMDb": {
+     "rating": 8.6,
+     "votes": 1532,
+     "url": "https://www.imdb.com/title/tt0093427/"
+    },
+    "Letterboxd": {
+     "value": 4.3,
+     "raw": 4.32,
+     "url": "https://letterboxd.com/film/queen-live-in-budapest/"
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/19966691/",
+    "image": "https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2935213013.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/queen-live-in-budapest/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-054": {
+   "title": "剪刀手爱德华",
+   "ratings": {
+    "Douban": {
+     "value": 8.7,
+     "url": "https://movie.douban.com/subject/1292370/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    },
+    "IMDb": {
+     "rating": 7.8,
+     "votes": 573430,
+     "url": "https://www.imdb.com/title/tt0099487/"
+    },
+    "Letterboxd": {
+     "value": 3.9,
+     "raw": 3.91,
+     "url": "https://letterboxd.com/film/edward-scissorhands/"
+    },
+    "Rotten Tomatoes": {
+     "value": 93,
+     "url": "https://www.rottentomatoes.com/m/edward_scissorhands",
+     "director": [
+      "Tim Burton"
+     ]
+    },
+    "Metacritic": {
+     "value": 74,
+     "url": "https://www.metacritic.com/movie/edward-scissorhands/",
+     "director": [
+      "Tim Burton"
+     ]
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/1292370/",
+    "image": "https://img3.doubanio.com/view/photo/s_ratio_poster/public/p480956937.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/edward-scissorhands/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-055": {
+   "title": "老无所依",
+   "ratings": {
+    "Douban": {
+     "value": 8.4,
+     "url": "https://movie.douban.com/subject/1857099/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    },
+    "IMDb": {
+     "rating": 8.2,
+     "votes": 1220897,
+     "url": "https://www.imdb.com/title/tt0477348/"
+    },
+    "Letterboxd": {
+     "value": 4.3,
+     "raw": 4.3,
+     "url": "https://letterboxd.com/film/no-country-for-old-men/"
+    },
+    "Rotten Tomatoes": {
+     "value": 93,
+     "url": "https://www.rottentomatoes.com/m/no_country_for_old_men",
+     "director": [
+      "Joel Coen",
+      "Ethan Coen"
+     ]
+    },
+    "Metacritic": {
+     "value": 92,
+     "url": "https://www.metacritic.com/movie/no-country-for-old-men/",
+     "director": [
+      "Ethan Coen",
+      "Joel Coen"
+     ]
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/1857099/",
+    "image": "https://img3.doubanio.com/view/photo/s_ratio_poster/public/p551171670.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/no-country-for-old-men/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-056": {
+   "title": "回归",
+   "ratings": {
+    "Douban": {
+     "value": 8.5,
+     "url": "https://movie.douban.com/subject/1308074/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    },
+    "IMDb": {
+     "rating": 7.9,
+     "votes": 50095,
+     "url": "https://www.imdb.com/title/tt0376968/"
+    },
+    "Letterboxd": {
+     "value": 4.2,
+     "raw": 4.15,
+     "url": "https://letterboxd.com/film/the-return/"
+    },
+    "Rotten Tomatoes": {
+     "value": 95,
+     "url": "https://www.rottentomatoes.com/m/the_return",
+     "director": [
+      "Andrey Zvyagintsev"
+     ]
+    },
+    "Metacritic": {
+     "value": 82,
+     "url": "https://www.metacritic.com/movie/the-return-2004/"
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/1308074/",
+    "image": "https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2493692221.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/the-return/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-057": {
+   "title": "冰释雪融",
+   "ratings": {
+    "Douban": {
+     "value": null,
+     "url": "https://movie.douban.com/subject/36131687/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    },
+    "IMDb": {
+     "rating": 6.7,
+     "votes": 262,
+     "url": "https://www.imdb.com/title/tt39571626/"
+    },
+    "Letterboxd": {
+     "value": 3.5,
+     "raw": 3.51,
+     "url": "https://letterboxd.com/film/the-meltdown/"
+    },
+    "Rotten Tomatoes": {
+     "value": 88,
+     "url": "https://www.rottentomatoes.com/m/the_meltdown",
+     "director": [
+      "Manuela Martelli"
+     ]
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/36131687/",
+    "image": "https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2936992749.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/the-meltdown/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-058": {
+   "title": "南国再见，南国",
+   "ratings": {
+    "Douban": {
+     "value": 8.1,
+     "url": "https://movie.douban.com/subject/1303458/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    },
+    "IMDb": {
+     "rating": 7.2,
+     "votes": 2183,
+     "url": "https://www.imdb.com/title/tt0117151/"
+    },
+    "Letterboxd": {
+     "value": 3.9,
+     "raw": 3.9,
+     "url": "https://letterboxd.com/film/goodbye-south-goodbye/"
+    },
+    "Rotten Tomatoes": {
+     "value": 100,
+     "url": "https://www.rottentomatoes.com/m/goodbye_south_goodbye",
+     "director": [
+      "Hsiao-hsien Hou"
+     ]
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/1303458/",
+    "image": "https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2412811816.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/goodbye-south-goodbye/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-059": {
+   "title": "别人的东西",
+   "ratings": {
+    "Douban": {
+     "value": null,
+     "url": "https://movie.douban.com/subject/37352209/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    },
+    "IMDb": {
+     "rating": 6.7,
+     "votes": 42,
+     "url": "https://www.imdb.com/title/tt43704165/"
+    },
+    "Letterboxd": {
+     "value": 3.3,
+     "raw": 3.33,
+     "url": "https://letterboxd.com/film/what-belongs-to-others/"
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/37352209/",
+    "image": "https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2936203578.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/what-belongs-to-others/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-060": {
+   "title": "白夜黑金",
+   "ratings": {
+    "Douban": {
+     "value": null,
+     "url": "https://movie.douban.com/subject/27666621/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    },
+    "IMDb": {
+     "rating": 7.0,
+     "votes": 54,
+     "url": "https://www.imdb.com/title/tt38799410/"
+    },
+    "Letterboxd": {
+     "value": 3.5,
+     "raw": 3.47,
+     "url": "https://letterboxd.com/film/black-money-for-white-nights/"
+    },
+    "Rotten Tomatoes": {
+     "value": 100,
+     "url": "https://www.rottentomatoes.com/m/black_money_for_white_nights",
+     "director": [
+      "Kristina Grozeva",
+      "Petar Valchanov"
+     ]
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/27666621/",
+    "image": "https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2933821383.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/black-money-for-white-nights/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-061": {
+   "title": "油麻菜籽",
+   "ratings": {
+    "Douban": {
+     "value": 7.8,
+     "url": "https://movie.douban.com/subject/1308633/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    },
+    "IMDb": {
+     "rating": 7.3,
+     "votes": 164,
+     "url": "https://www.imdb.com/title/tt0337507/"
+    },
+    "Letterboxd": {
+     "value": 3.5,
+     "raw": 3.55,
+     "url": "https://letterboxd.com/film/ah-fei/"
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/1308633/",
+    "image": "https://img2.doubanio.com/view/photo/s_ratio_poster/public/p1203605391.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/ah-fei/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-062": {
+   "title": "醉拳",
+   "ratings": {
+    "Douban": {
+     "value": 7.8,
+     "url": "https://movie.douban.com/subject/1296693/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    },
+    "IMDb": {
+     "rating": 7.4,
+     "votes": 48619,
+     "url": "https://www.imdb.com/title/tt0080179/"
+    },
+    "Letterboxd": {
+     "value": 3.8,
+     "raw": 3.81,
+     "url": "https://letterboxd.com/film/drunken-master/"
+    },
+    "Rotten Tomatoes": {
+     "value": 80,
+     "url": "https://www.rottentomatoes.com/m/drunken_master",
+     "director": [
+      "Woo-Ping Yuen"
+     ]
+    },
+    "Metacritic": {
+     "value": 68,
+     "url": "https://www.metacritic.com/movie/drunken-master/",
+     "director": [
+      "Woo-Ping Yuen"
+     ]
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/1296693/",
+    "image": "https://img3.doubanio.com/view/photo/s_ratio_poster/public/p1387691770.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/drunken-master/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-063": {
+   "title": "银翼杀手（最终剪辑版）",
+   "ratings": {
+    "Douban": {
+     "value": 8.6,
+     "url": "https://movie.douban.com/subject/1291839/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    },
+    "IMDb": {
+     "rating": 8.1,
+     "votes": 895745,
+     "url": "https://www.imdb.com/title/tt0083658/"
+    },
+    "Letterboxd": {
+     "value": 4.1,
+     "raw": 4.09,
+     "url": "https://letterboxd.com/film/blade-runner/"
+    },
+    "Rotten Tomatoes": {
+     "value": 89,
+     "url": "https://www.rottentomatoes.com/m/blade_runner",
+     "director": [
+      "Ridley Scott"
+     ]
+    },
+    "Metacritic": {
+     "value": 84,
+     "url": "https://www.metacritic.com/movie/blade-runner/",
+     "director": [
+      "Ridley Scott"
+     ]
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/1291839/",
+    "image": "https://img9.doubanio.com/view/photo/s_ratio_poster/public/p868550285.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/blade-runner/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-064": {
+   "title": "我们不是陌生人",
+   "ratings": {
+    "Douban": {
+     "value": 5.8,
+     "url": "https://movie.douban.com/subject/35328629/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    },
+    "IMDb": {
+     "rating": 7.2,
+     "votes": 212,
+     "url": "https://www.imdb.com/title/tt13848364/"
+    },
+    "Letterboxd": {
+     "value": 3.3,
+     "raw": 3.33,
+     "url": "https://letterboxd.com/film/we-are-all-strangers/"
+    },
+    "Rotten Tomatoes": {
+     "value": 79,
+     "url": "https://www.rottentomatoes.com/m/we_are_all_strangers",
+     "director": [
+      "Anthony Chen"
+     ]
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/35328629/",
+    "image": "https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2929810703.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/we-are-all-strangers/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-065": {
+   "title": "月球时代白日梦",
+   "ratings": {
+    "Douban": {
+     "value": 8.5,
+     "url": "https://movie.douban.com/subject/35869654/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    },
+    "IMDb": {
+     "rating": 7.6,
+     "votes": 16780,
+     "url": "https://www.imdb.com/title/tt9883832/"
+    },
+    "Letterboxd": {
+     "value": 4.1,
+     "raw": 4.06,
+     "url": "https://letterboxd.com/film/moonage-daydream/"
+    },
+    "Rotten Tomatoes": {
+     "value": 92,
+     "url": "https://www.rottentomatoes.com/m/moonage_daydream",
+     "director": [
+      "Brett Morgen"
+     ]
+    },
+    "Metacritic": {
+     "value": 83,
+     "url": "https://www.metacritic.com/movie/moonage-daydream/",
+     "director": [
+      "Brett Morgen"
+     ]
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/35869654/",
+    "image": "https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2877722002.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/moonage-daydream/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-066": {
+   "title": "将军号",
+   "ratings": {
+    "Douban": {
+     "value": 9.0,
+     "url": "https://movie.douban.com/subject/1292778/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    },
+    "IMDb": {
+     "rating": 8.1,
+     "votes": 106650,
+     "url": "https://www.imdb.com/title/tt0017925/"
+    },
+    "Letterboxd": {
+     "value": 4.2,
+     "raw": 4.18,
+     "url": "https://letterboxd.com/film/the-general/"
+    },
+    "Rotten Tomatoes": {
+     "value": 92,
+     "url": "https://www.rottentomatoes.com/m/1008166_general",
+     "director": [
+      "Clyde Bruckman",
+      "Buster Keaton"
+     ]
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/1292778/",
+    "image": "https://img2.doubanio.com/view/photo/s_ratio_poster/public/p2248676081.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/the-general/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-067": {
+   "title": "囚魂之地",
+   "ratings": {
+    "Douban": {
+     "value": 6.7,
+     "url": "https://movie.douban.com/subject/36146114/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    },
+    "IMDb": {
+     "rating": 6.5,
+     "votes": 4932,
+     "url": "https://www.imdb.com/title/tt9000310/"
+    },
+    "Letterboxd": {
+     "value": 3.5,
+     "raw": 3.49,
+     "url": "https://letterboxd.com/film/ghost-in-the-cell/"
+    },
+    "Rotten Tomatoes": {
+     "value": 93,
+     "url": "https://www.rottentomatoes.com/m/ghost_in_the_cell",
+     "director": [
+      "Joko Anwar"
+     ]
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/36146114/",
+    "image": "https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2929720334.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/ghost-in-the-cell/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-068": {
+   "title": "后台疯暴",
+   "ratings": {
+    "Douban": {
+     "value": null,
+     "url": "https://movie.douban.com/subject/37656471/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    },
+    "IMDb": {
+     "rating": 5.8,
+     "votes": 13,
+     "url": "https://www.imdb.com/title/tt38978986/"
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/37656471/",
+    "image": "https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2937111762.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/backstage-madness/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-069": {
+   "title": "刚果男孩",
+   "ratings": {
+    "Douban": {
+     "value": 7.0,
+     "url": "https://movie.douban.com/subject/36903388/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    },
+    "IMDb": {
+     "rating": 6.9,
+     "votes": 107,
+     "url": "https://www.imdb.com/title/tt41592086/"
+    },
+    "Letterboxd": {
+     "value": 3.6,
+     "raw": 3.63,
+     "url": "https://letterboxd.com/film/congo-boy/"
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/36903388/",
+    "image": "https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2932448265.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/congo-boy/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-070": {
+   "title": "无辜",
+   "ratings": {
+    "Douban": {
+     "value": 7.7,
+     "url": "https://movie.douban.com/subject/1302922/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    },
+    "IMDb": {
+     "rating": 7.4,
+     "votes": 4933,
+     "url": "https://www.imdb.com/title/tt0074686/"
+    },
+    "Letterboxd": {
+     "value": 3.8,
+     "raw": 3.81,
+     "url": "https://letterboxd.com/film/the-innocent-1976/"
+    },
+    "Rotten Tomatoes": {
+     "value": 80,
+     "url": "https://www.rottentomatoes.com/m/the_innocent_1976",
+     "director": [
+      "Luchino Visconti"
+     ]
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/1302922/",
+    "image": "https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2875161536.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/the-innocent-1976/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-071": {
+   "title": "无处容身",
+   "ratings": {
+    "Douban": {
+     "value": null,
+     "url": "https://movie.douban.com/subject/37834764/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    },
+    "IMDb": {
+     "rating": 7.3,
+     "votes": 101,
+     "url": "https://www.imdb.com/title/tt39228759/"
+    },
+    "Letterboxd": {
+     "value": 3.6,
+     "raw": 3.58,
+     "url": "https://letterboxd.com/film/you-dont-belong-here-2026/"
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/37834764/",
+    "image": "https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2934714013.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/you-dont-belong-here-2026/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-072": {
+   "title": "乱世佳人",
+   "ratings": {
+    "Douban": {
+     "value": 9.3,
+     "url": "https://movie.douban.com/subject/1300267/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    },
+    "IMDb": {
+     "rating": 8.2,
+     "votes": 360019,
+     "url": "https://www.imdb.com/title/tt0031381/"
+    },
+    "Letterboxd": {
+     "value": 3.9,
+     "raw": 3.86,
+     "url": "https://letterboxd.com/film/gone-with-the-wind/"
+    },
+    "Rotten Tomatoes": {
+     "value": 90,
+     "url": "https://www.rottentomatoes.com/m/gone_with_the_wind",
+     "director": [
+      "Victor Fleming"
+     ]
+    },
+    "Metacritic": {
+     "value": 97,
+     "url": "https://www.metacritic.com/movie/gone-with-the-wind/",
+     "director": [
+      "Victor Fleming"
+     ]
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/1300267/",
+    "image": "https://img3.doubanio.com/view/photo/s_ratio_poster/public/p1963126880.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/gone-with-the-wind/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-073": {
+   "title": "铁扇公主",
+   "ratings": {
+    "Douban": {
+     "value": 8.6,
+     "url": "https://movie.douban.com/subject/1466022/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    },
+    "IMDb": {
+     "rating": 6.3,
+     "votes": 388,
+     "url": "https://www.imdb.com/title/tt0471945/"
+    },
+    "Letterboxd": {
+     "value": 3.3,
+     "raw": 3.27,
+     "url": "https://letterboxd.com/film/princess-iron-fan/"
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/1466022/",
+    "image": "https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2550052042.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/princess-iron-fan/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-074": {
+   "title": "温柔以待",
+   "ratings": {
+    "Douban": {
+     "value": null,
+     "url": "https://movie.douban.com/subject/37077011/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    },
+    "IMDb": {
+     "rating": 7.6,
+     "votes": 300,
+     "url": "https://www.imdb.com/title/tt35638092/"
+    },
+    "Letterboxd": {
+     "value": 3.9,
+     "raw": 3.88,
+     "url": "https://letterboxd.com/film/tender-loving-care-2026/"
+    },
+    "Metacritic": {
+     "value": 85,
+     "url": "https://www.metacritic.com/movie/tender-loving-care/",
+     "director": [
+      "Mike Leigh"
+     ]
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/37077011/",
+    "image": "https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2934422852.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/tender-loving-care-2026/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-075": {
+   "title": "围城纪事",
+   "ratings": {
+    "Douban": {
+     "value": null,
+     "url": "https://movie.douban.com/subject/37202681/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    },
+    "IMDb": {
+     "rating": 6.2,
+     "votes": 144,
+     "url": "https://www.imdb.com/title/tt34734549/"
+    },
+    "Letterboxd": {
+     "value": 3.7,
+     "raw": 3.67,
+     "url": "https://letterboxd.com/film/chronicles-from-the-siege/"
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/37202681/",
+    "image": "https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2937113270.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/chronicles-from-the-siege/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-076": {
+   "title": "杰出的无名氏",
+   "ratings": {
+    "Douban": {
+     "value": null,
+     "url": "https://movie.douban.com/subject/37354880/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    },
+    "IMDb": {
+     "rating": 6.6,
+     "votes": 193,
+     "url": "https://www.imdb.com/title/tt37799310/"
+    },
+    "Letterboxd": {
+     "value": 3.3,
+     "raw": 3.26,
+     "url": "https://letterboxd.com/film/all-about-corinne/"
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/37354880/",
+    "image": "https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2934987087.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/all-about-corinne/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-077": {
+   "title": "盗梦空间",
+   "ratings": {
+    "Douban": {
+     "value": 9.4,
+     "url": "https://movie.douban.com/subject/3541415/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    },
+    "IMDb": {
+     "rating": 8.8,
+     "votes": 2885675,
+     "url": "https://www.imdb.com/title/tt1375666/"
+    },
+    "Letterboxd": {
+     "value": 4.2,
+     "raw": 4.24,
+     "url": "https://letterboxd.com/film/inception/"
+    },
+    "Rotten Tomatoes": {
+     "value": 86,
+     "url": "https://www.rottentomatoes.com/m/inception",
+     "director": [
+      "Christopher Nolan"
+     ]
+    },
+    "Metacritic": {
+     "value": 74,
+     "url": "https://www.metacritic.com/movie/inception/",
+     "director": [
+      "Christopher Nolan"
+     ]
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/3541415/",
+    "image": "https://img9.doubanio.com/view/photo/s_ratio_poster/public/p513344864.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/inception/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-078": {
+   "title": "霉变人生",
+   "ratings": {
+    "Douban": {
+     "value": null,
+     "url": "https://movie.douban.com/subject/38463469/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    },
+    "IMDb": {
+     "rating": 7.0,
+     "votes": 254,
+     "url": "https://www.imdb.com/title/tt42685861/"
+    },
+    "Letterboxd": {
+     "value": 3.4,
+     "raw": 3.4,
+     "url": "https://letterboxd.com/film/ground-floor-2026/"
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/38463469/",
+    "image": "https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2936960896.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/ground-floor-2026/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-079": {
+   "title": "客乡",
+   "ratings": {
+    "Douban": {
+     "value": null,
+     "url": "https://movie.douban.com/subject/37496434/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    },
+    "IMDb": {
+     "rating": 6.8,
+     "votes": 231,
+     "url": "https://www.imdb.com/title/tt38805050/"
+    },
+    "Letterboxd": {
+     "value": 3.2,
+     "raw": 3.21,
+     "url": "https://letterboxd.com/film/visitation-2026-1/"
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/37496434/",
+    "image": "https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2932448359.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/visitation-2026-1/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-080": {
+   "title": "浓情卡门",
+   "ratings": {
+    "Douban": {
+     "value": null,
+     "url": "https://movie.douban.com/subject/36308708/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    },
+    "IMDb": {
+     "rating": 7.0,
+     "votes": 56,
+     "url": "https://www.imdb.com/title/tt29034109/"
+    },
+    "Letterboxd": {
+     "value": 3.7,
+     "raw": 3.71,
+     "url": "https://letterboxd.com/film/viva-carmen/"
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/36308708/",
+    "image": "https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2933730132.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/viva-carmen/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-081": {
+   "title": "孔雀公主",
+   "ratings": {
+    "Douban": {
+     "value": 8.3,
+     "url": "https://movie.douban.com/subject/1431959/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/1431959/",
+    "image": "https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2628237603.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/the-peacock-princess/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-082": {
+   "title": "哪吒闹海",
+   "ratings": {
+    "Douban": {
+     "value": 9.2,
+     "url": "https://movie.douban.com/subject/1307315/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    },
+    "IMDb": {
+     "rating": 7.7,
+     "votes": 1652,
+     "url": "https://www.imdb.com/title/tt0354770/"
+    },
+    "Letterboxd": {
+     "value": 3.9,
+     "raw": 3.9,
+     "url": "https://letterboxd.com/film/nezha-conquers-the-dragon-king/"
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/1307315/",
+    "image": "https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2532803206.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/nezha-conquers-the-dragon-king/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  },
+  "gr26-083": {
+   "title": "中国动画100年",
+   "ratings": {
+    "Douban": {
+     "value": null,
+     "url": "https://movie.douban.com/subject/38465275/",
+     "list": "https://www.douban.com/doulist/165148655/"
+    }
+   },
+   "poster": {
+    "subject": "https://movie.douban.com/subject/38465275/",
+    "image": "https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2932894252.jpg"
+   },
+   "editorial": {
+    "plot": "preserved researched synopsis from PR #78",
+    "watchingNotes": "editorial interpretation of the synopsis, supplied programme and film form",
+    "directorCredit": "https://letterboxd.com/film/chinese-animation-a-century/",
+    "background": "see golden-rooster-2026-notes.md and research addendum"
+   }
+  }
+ }
+}

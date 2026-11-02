@@ -15,7 +15,7 @@
     </view>
   </scroll-view>
   <block wx:for="{{list}}" wx:key="id">
-  <view wx:if="{{item.grp}}" class="gh">{{item.grp}}</view>
+  <view wx:if="{{item.grp}}" class="gh"><text class="gh-kind">{{item.grpKind}}</text><text class="gh-name">{{item.grpName}}</text></view>
   <view class="row" data-id="{{item.id}}" bindtap="open">
     <image wx:if="{{item.poster}}" class="pst" src="{{item.poster}}" mode="aspectFill" lazy-load />
     <view wx:else class="pst ph" style="background:{{item.color}}">{{item.cn[0]}}</view>
