@@ -1,0 +1,20 @@
+const fs=require('fs'),vm=require('vm'),assert=require('assert'),path=require('path');
+const root=path.join(__dirname,'..'),L=require('../shared/library.js');
+const films=[{id:'a',prog:'festival',cn:'Alpha',dir:'Jane Doe'},{id:'b',prog:'festival',cn:'Bravo'},{id:'c',prog:'other',cn:'Charlie',screeningNotes:{c:'Post-screening event · Director'}},{id:'d',prog:'other',cn:'Delta'}];
+const shows=[{id:'a',p:'festival',k:'a'},{id:'a',p:'other',k:'a2'},{id:'b',p:'festival',k:'b'},{id:'c',p:'other',k:'c'}];
+const ctx={shows,picked:new Set(['a2','b']),watched:{a:{d:'2026-11-01',r:8},b:{del:1,t:1}},keyOf:s=>s.k,programme:'all',showProgramme:s=>s.p};
+assert(L.category(films[0],'planned',ctx));assert(L.category(films[0],'watched',ctx));assert(L.category(films[1],'unwatched',ctx));assert(!L.category(films[1],'watched',ctx));assert(L.category(films[2],'qa',ctx));assert(!L.category(films[3],'qa',ctx));assert(L.matches(films[0],'alpha jane'));assert(!L.matches(films[0],'alpha missing'));
+ctx.programme='festival';assert(!L.category(films[0],'planned',ctx));assert(L.category(films[1],'planned',ctx));assert(!L.category(films[2],'qa',ctx));assert(L.inProgramme(films[0],'other',ctx));assert(!L.inProgramme(films[3],'festival',ctx));
+ctx.programme='all';assert(!L.category({...films[0],qaGuest:'Director',qaStart:'15:00',qaEnd:'14:00'},'qa',ctx));assert(L.category({...films[0],qaGuest:'Director',qaStart:'14:00',qaEnd:'15:00'},'qa',ctx));
+assert.equal(fs.readFileSync(path.join(root,'miniprogram/utils/library.js'),'utf8'),fs.readFileSync(path.join(root,'shared/library.js'),'utf8'));
+// Exercise the mini-program page with real catalogue/utility data and reversible in-memory records.
+const data=require('../miniprogram/data/data.js'),U=require('../miniprogram/utils/util.js');let page;
+const picked=new Set(),watched={},app={globalData:{data},onData:()=>()=>{}};
+const sandbox={Page:p=>page=p,getApp:()=>app,require:n=>n.endsWith('/library.js')?L:n.endsWith('/util.js')?U:n.endsWith('/plan.js')?{get:()=>picked,onChange:()=>()=>{}}:n.endsWith('/watched.js')?{all:()=>watched,onChange:()=>()=>{}}:{tr:x=>x,dict:()=>({})},wx:{setNavigationBarTitle(){}}};
+vm.runInNewContext(fs.readFileSync(path.join(root,'miniprogram/pages/films/films.js'),'utf8'),sandbox);page.data=JSON.parse(JSON.stringify(page.data));page.setData=x=>Object.assign(page.data,x);page.onLoad();
+const rows=()=>page.data.secs.flatMap(g=>g.live.concat(g.gone)).concat(page.data.past.flatMap(g=>g.rows));assert.equal(page.data.n,data.films.length);
+const sample=data.shows.find(s=>s.p==='golden-rooster-2026')||data.shows.find(s=>U.progForShow(s,U.index(data)).id==='golden-rooster-2026');picked.add(U.keyOf(sample));page.data.mine='planned';page.build();assert.equal(page.data.n,1);assert.equal(rows()[0].id,sample.id);
+page.data.mine='watched';watched[sample.id]={d:'2026-11-01',r:8};page.build();assert.equal(page.data.n,1);watched[sample.id]={del:1,t:1};page.build();assert.equal(page.data.n,0);
+page.data.mine='all';page.openSelector({currentTarget:{dataset:{type:'personal'}}});assert.equal(page.data.selectorRows.length,5);page.chooseFilter({currentTarget:{dataset:{id:'qa'}}});assert.equal(page.data.selectorType,'');assert(page.data.n>0);assert(rows().every(f=>f.event));page.resetFilters();assert.equal(page.data.n,data.films.length);
+const original=data.programmes;data.programmes=Array.from({length:20},(_,i)=>({id:'festival-'+i,name:'Programme '+i}));assert.equal(page.options('programme','').length,21);assert.equal(page.options('programme','Programme 19').length,1);data.programmes=original;
+console.log('PASS: personal membership, deletion tombstones, programme-scoped plans/events, compound search, mini-program filters/reset and 20-programme search.');
