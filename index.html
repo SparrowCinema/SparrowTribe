@@ -635,6 +635,13 @@ html.sheet-open,html.sheet-open body{overflow:hidden}
 .pg-head h1{font:900 36px/1.15 var(--f-display);margin:6px 0 4px}
 .pg-sub{margin:0;color:var(--muted);font-size:14px}
 .pg-blurb{font-size:15px;line-height:1.85;max-width:65ch;margin:0 0 16px}
+.pg-grp{margin-top:26px}
+.pg-ended{margin-top:30px;border-top:1px dashed var(--line);padding-top:6px}
+.pg-ended>summary{cursor:pointer;list-style:none;margin:14px 0 0;color:var(--muted)}
+.pg-ended>summary::-webkit-details-marker{display:none}
+.pg-ended>summary::after{content:"展开 ▾";margin-left:auto;font:600 12px var(--f-body);color:var(--muted)}
+.pg-ended[open]>summary::after{content:"收起 ▴"}
+.pg-ended .pg-film{opacity:.78}
 .pg-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 14px;margin-top:16px}
 .pg-film{display:flex;flex-direction:column;text-align:left;min-width:0;border-radius:7px;transition:transform .18s ease}
 .pg-film:focus-visible{outline:2px solid var(--accent);outline-offset:6px}
@@ -1174,6 +1181,22 @@ document.addEventListener("click",e=>{
   const x=e.target.closest("[data-expand]");if(x){const b=x.previousElementSibling;b.classList.toggle("clamp");x.textContent=b.classList.contains("clamp")?"展开全文":"收起";}
 });
 
+function progFilmCard(f,pid){ return `<button class="pg-film" data-film="${f.id}">${pst(f.id)?`<img src="${pst(f.id)}" alt="" loading="lazy">`:`<span class="pg-ph" style="background:${REG[f.reg].c}">${esc(f.cn[0])}</span>`}<span class="pg-caption"><b class="pg-name">${esc(f.cn)}</b><span class="pg-edition">${esc(editionOf(f))}</span>${programmeFilmSlots(f,pid)}</span></button>`; }
+// 专题页影片分组：即将放映（含场次待公布）按下一场先后；已结束按最近一场由近及远
+function progFilmGroups(pid,films){
+  const up=[], gone=[];
+  films.forEach(f=>{ const mine=SH.filter(s=>s.id===f.id&&s.p===pid).sort((a,b)=>showDate(a)-showDate(b)), next=mine.find(s=>!isPast(s));
+    if(next||!mine.length) up.push({f,at:next?showDate(next):Infinity}); else gone.push({f,at:showDate(mine[mine.length-1])}); });
+  up.sort((a,b)=>(a.at===b.at?0:a.at<b.at?-1:1)||filmOrder(a.f,b.f)); gone.sort((a,b)=>b.at-a.at||a.f.cn.localeCompare(b.f.cn,"zh"));
+  return {up:up.map(x=>x.f), gone:gone.map(x=>x.f)};
+}
+function progFilmsHTML(pid,films){
+  const {up,gone}=progFilmGroups(pid,films);
+  const grid=list=>`<div class="pg-grid">${list.map(f=>progFilmCard(f,pid)).join("")}</div>`;
+  const upHTML=up.length?`<h3 class="blockh pg-grp">即将放映 <small>UPCOMING · ${up.length} 部</small></h3>${grid(up)}`:`<h3 class="blockh pg-grp">即将放映 <small>UPCOMING · 0 部</small></h3><div class="fd-noshow"><b>暂无待映场次</b><span>新场次公布后会更新到这里。</span></div>`;
+  const goneHTML=gone.length?`<details class="pg-ended"${up.length?"":" open"}><summary class="blockh pg-grp">已结束 <small>ENDED · ${gone.length} 部</small></summary>${grid(gone)}</details>`:"";
+  return upHTML+goneHTML;
+}
 function progPage(pid){
   const p=PG[pid]; if(!p){ go("schedule"); return; }
   const shows=progShows(pid), fids=[...new Set(shows.map(x=>x.id))], films=FILMS.filter(f=>f.prog===pid||fids.includes(f.id)).sort(filmOrder);
@@ -1185,8 +1208,7 @@ function progPage(pid){
       <div class="pstats pg-stats"><div><b>${films.length}</b><small>部影片</small></div><div><b>${shows.length}</b><small>场放映</small></div><div><b>${new Set(shows.map(x=>x.d)).size}</b><small>个放映日</small></div><div><b>${new Set(shows.map(x=>x.v+x.h)).size}</b><small>个影厅</small></div></div>
       ${p.blurb?`<p class="pg-blurb">${esc(p.blurb)}</p>`:""}
       <div class="plan-toolbar"><button class="primary-button" data-prog-sched="${pid}">查看专题排片</button><button class="secondary-button" data-prog-films="${pid}">专题片目</button></div>
-      <p class="src">场次与排片表自动同步 · 页面打开时每分钟检查更新</p><h3 class="blockh">放映影片 <small>${films.length} FILMS</small></h3>
-      ${films.length?`<div class="pg-grid">${films.map(f=>{return `<button class="pg-film" data-film="${f.id}">${pst(f.id)?`<img src="${pst(f.id)}" alt="" loading="lazy">`:`<span class="pg-ph" style="background:${REG[f.reg].c}">${esc(f.cn[0])}</span>`}<span class="pg-caption"><b class="pg-name">${esc(f.cn)}</b><span class="pg-edition">${esc(editionOf(f))}</span>${programmeFilmSlots(f,pid)}</span></button>`}).join("")}</div>`:`<div class="fd-noshow"><b>片单与场次即将公布</b><span>公布后会第一时间更新到这里。</span></div>`}
+      <p class="src">场次与排片表自动同步 · 页面打开时每分钟检查更新</p>${films.length?progFilmsHTML(pid,films):`<div class="fd-noshow"><b>片单与场次即将公布</b><span>公布后会第一时间更新到这里。</span></div>`}
     </div></article>`;
 }
 function about(){
