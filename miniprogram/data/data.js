@@ -1303,7 +1303,18 @@ module.exports = {
    ],
    "version": "",
    "poster": "posters/linka-linka.jpg",
-   "prog": "cinema-2026"
+   "screeningEnds": {
+    "11/6-19:45-xm-gr26-1-hall-2": "21:25",
+    "11/19-20:00-xm-gr26-13-hall-1": "21:40",
+    "11/21-20:00-xm-gr26-12-hall-3": "21:40"
+   },
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketPlatform": "淘票票",
+   "screeningNotes": {
+    "11/6-19:45-xm-gr26-1-hall-2": "映后活动 · 导演/编剧：岗珍（以实际到场为准）"
+   },
+   "prog": "cinema-2026",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
   },
   {
    "id": "kill-bill-whole-bloody-affair",
@@ -1718,6 +1729,2947 @@ module.exports = {
    "prog": "sparrow-tribe-space",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/no-mobile.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/no-mobile.png"
+  },
+  {
+   "id": "gr26-001",
+   "cn": "神之子",
+   "o": "Ben'imana",
+   "en": "Ben'imana",
+   "y": 2026,
+   "c": "卢旺达 / 加拿大 / 法国 / 挪威",
+   "min": 101,
+   "reg": "eu",
+   "dir": "玛丽-克莱门汀·杜萨贝詹博",
+   "genre": [],
+   "cast": [],
+   "writers": [],
+   "honors": [
+    "获奖｜第79届戛纳国际电影节 · 最佳首作"
+   ],
+   "highlights": [],
+   "syn": "卢旺达大屠杀多年后，幸存者维内兰达组织受害者与施害者家属交流，希望推动和解。女儿意外怀孕，却使她重新面对自己的创伤，也考验她对宽恕的信念。",
+   "bio": "",
+   "st": "",
+   "section": "此刻：国际新片展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "screeningEnds": {
+    "11/6-20:00-xm-gr26-1-hall-6": "21:41",
+    "11/21-16:15-xm-gr26-1-hall-6": "17:56"
+   },
+   "poster": "posters/golden-rooster-gr26-001.jpg",
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-001.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-002",
+   "cn": "明天，会更好",
+   "o": "The Road Not Taken",
+   "en": "The Road Not Taken",
+   "y": 2026,
+   "c": "中国内地",
+   "min": 127,
+   "reg": "cn",
+   "dir": "陈可辛",
+   "genre": [],
+   "cast": [
+    "周迅",
+    "王骁",
+    "田壮壮",
+    "林晓杰",
+    "文淇"
+   ],
+   "writers": [
+    "吴慧玲"
+   ],
+   "honors": [],
+   "highlights": [],
+   "syn": "事业光鲜的主持人沈佳同时承受婚姻、育儿和父亲患病的压力。当疾病与遗忘的阴影进入自己的生活，她必须重新理解家人，也在记忆消退前寻找自我的价值。",
+   "bio": "",
+   "st": "",
+   "section": "国产新片展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "poster": "posters/golden-rooster-gr26-002.jpg",
+   "screeningEnds": {
+    "11/6-14:00-xm-gr26-1-hall-6": "16:07"
+   },
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-002.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-003",
+   "cn": "当瓶子转动时",
+   "o": "When the Bottle Turns",
+   "en": "When the Bottle Turns",
+   "y": 2026,
+   "c": "中国内地",
+   "min": 89,
+   "reg": "cn",
+   "dir": "洛旦",
+   "genre": [],
+   "cast": [
+    "达巴",
+    "卓嘉舞"
+   ],
+   "writers": [
+    "洛旦"
+   ],
+   "honors": [],
+   "highlights": [],
+   "syn": "旦巴老人频频梦见亡妻，决定远赴寺院，向上师询问她的转世。途中，他结识一位拒绝手机与现代交通工具的流浪诗人，两种生活方式在同行中碰撞，孤独也逐渐转化为理解。",
+   "bio": "",
+   "st": "",
+   "section": "国产新片展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "poster": "posters/golden-rooster-gr26-003.jpg",
+   "screeningEnds": {
+    "11/6-18:20-xm-gr26-1-hall-4": "19:49",
+    "11/18-20:00-xm-gr26-10-hall-5": "21:29",
+    "11/22-20:00-xm-gr26-13-hall-1": "21:29"
+   },
+   "screeningNotes": {
+    "11/6-18:20-xm-gr26-1-hall-4": "映后活动 · 导演/编剧：洛旦（以实际到场为准）"
+   },
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-003.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-005",
+   "cn": "驴公主",
+   "o": "Donkey Princess",
+   "en": "Donkey Princess",
+   "y": 2026,
+   "c": "智利 / 法国 / 荷兰 / 乌拉圭 / 德国",
+   "min": 91,
+   "reg": "eu",
+   "dir": "克里斯托弗·列昂、乔奎因·科西纳",
+   "genre": [],
+   "cast": [
+    "安东尼娅•吉森",
+    "安德鲁•巴格斯泰德",
+    "弗朗西斯科•梅洛"
+   ],
+   "writers": [],
+   "honors": [
+    "入围｜第79届洛迦诺国际电影节 · 主竞赛单元"
+   ],
+   "highlights": [],
+   "syn": "国王因丧妻而禁止王国中的爱情，公主戴安娜却爱上了拉洛。恋人遭到放逐后，她借助魔法手镯穿越不同世界，试图找回爱人，也追问自己能否逃离父亲为她安排的命运。",
+   "bio": "",
+   "st": "",
+   "section": "此刻：国际新片展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "screeningEnds": {
+    "11/7-11:00-xm-gr26-1-hall-3": "12:31",
+    "11/22-17:20-xm-gr26-1-hall-3": "18:51"
+   },
+   "poster": "posters/golden-rooster-gr26-005.jpg",
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-005.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-006",
+   "cn": "夏日红炎",
+   "o": "Red Rocks",
+   "en": "Red Rocks",
+   "y": 2026,
+   "c": "葡萄牙 / 法国 / 意大利 / 西班牙 / 卡塔尔",
+   "min": 90,
+   "reg": "eu",
+   "dir": "布鲁诺·杜蒙",
+   "genre": [],
+   "cast": [
+    "凯隆-朗塞尔",
+    "凯尔西•韦德耶伊",
+    "路易丝：波多尔斯基"
+   ],
+   "writers": [],
+   "honors": [
+    "入围｜第79届戛纳国际电影节 · 导演双周单元"
+   ],
+   "highlights": [],
+   "syn": "法国蔚蓝海岸的夏天，两群孩子在红色悬崖与海湾间冒险、竞争。年幼的热奥遇见了伊芙，友谊、嫉妒与最初的心动，逐渐改变了这场看似无忧无虑的夏日游戏。",
+   "bio": "",
+   "st": "",
+   "section": "此刻：国际新片展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "poster": "posters/golden-rooster-gr26-006.jpg",
+   "screeningEnds": {
+    "11/7-11:10-xm-gr26-1-hall-6": "12:42",
+    "11/21-20:00-xm-gr26-1-hall-6": "21:32"
+   },
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-006.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-007",
+   "cn": "女仆日记",
+   "o": "The Diary of a Chambermaid",
+   "en": "The Diary of a Chambermaid",
+   "y": 2026,
+   "c": "法国 / 罗马尼亚",
+   "min": 93,
+   "reg": "eu",
+   "dir": "拉杜·裘德",
+   "genre": [],
+   "cast": [
+    "安娜•杜米特拉什库",
+    "梅拉妮-蒂埃里",
+    "樊尚 马凯涅"
+   ],
+   "writers": [],
+   "honors": [
+    "入围｜第79届戛纳国际电影节 · 导演双周单元"
+   ],
+   "highlights": [],
+   "syn": "罗马尼亚女子吉安娜在法国富裕家庭中担任家政工，同时参加一出改编自《女仆日记》的戏剧。她一边面对雇主善意背后的居高临下，一边盼望圣诞节回家，与远在故乡的女儿团聚。",
+   "bio": "",
+   "st": "",
+   "section": "此刻：国际新片展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "poster": "posters/golden-rooster-gr26-007.jpg",
+   "screeningEnds": {
+    "11/7-13:10-xm-gr26-1-hall-6": "14:43",
+    "11/15-16:15-xm-gr26-1-hall-3": "17:48"
+   },
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-007.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-008",
+   "cn": "子",
+   "o": "zi",
+   "en": "zi",
+   "y": 2026,
+   "c": "美国",
+   "min": 100,
+   "reg": "cn",
+   "dir": "郭共达",
+   "genre": [],
+   "cast": [
+    "毛俊懿",
+    "海莉•卢.理查森",
+    "河镇"
+   ],
+   "writers": [],
+   "honors": [
+    "入围｜第42届圣丹斯电影节 · “未来创新奖”单元",
+    "入围｜第31届釜山国际电影节 · “作者荟萃”单元"
+   ],
+   "highlights": [],
+   "syn": "香港的年轻小提琴手子被未来自己的影像困扰，现实与记忆逐渐交叠。她与陌生女子艾尔相遇，在城市里漫步，随后又遇见神经学研究者敏，一夜之间重新感受时间与人与人的联结。",
+   "bio": "",
+   "st": "",
+   "section": "拾光：华语新片展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "poster": "posters/golden-rooster-gr26-008.jpg",
+   "screeningEnds": {
+    "11/7-13:15-xm-gr26-1-hall-3": "14:53",
+    "11/26-20:00-xm-gr26-9-hall-2": "21:38"
+   },
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-008.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-009",
+   "cn": "钢铁男孩",
+   "o": "Iron Boy",
+   "en": "Iron Boy",
+   "y": 2026,
+   "c": "法国 / 比利时",
+   "min": 89,
+   "reg": "eu",
+   "dir": "路易斯·克里希",
+   "genre": [
+    "动画"
+   ],
+   "cast": [
+    "亚历山德拉•阿斯提耶尔",
+    "罗德•帕拉多特",
+    "布吕讷•穆兰"
+   ],
+   "writers": [],
+   "honors": [
+    "获奖｜第79届戛纳国际电影节 · 一种关注单元评审团特别奖",
+    "获奖｜第50届安纳西国际动画电影节 · 长篇动画单元观众票选奖"
+   ],
+   "highlights": [],
+   "syn": "法国乡村的男孩克里斯托夫渴望帮父亲守住农场，却因平衡障碍不断跌倒，被迫穿上沉重的金属矫形支架。离开熟悉的劳作后，他在管风琴、友情与最初的心动中寻找新的生活重心。",
+   "bio": "",
+   "st": "",
+   "section": "流光：动画展映单元",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "poster": "posters/golden-rooster-gr26-009.jpg",
+   "screeningEnds": {
+    "11/7-15:20-xm-gr26-1-hall-3": "16:50",
+    "11/16-20:00-xm-gr26-1-hall-6": "21:30",
+    "11/20-19:30-xm-gr26-1-hall-6": "21:00"
+   },
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-009.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-010",
+   "cn": "明月共此时",
+   "o": "The House on the Moon",
+   "en": "The House on the Moon",
+   "y": 2026,
+   "c": "新加坡",
+   "min": 104,
+   "reg": "cn",
+   "dir": "杨国瑞",
+   "genre": [],
+   "cast": [
+    "林诗安",
+    "黄冠智",
+    "张怀秋"
+   ],
+   "writers": [],
+   "honors": [
+    "入围｜第79届洛迦诺电影节 · “国际竞赛单元”入围"
+   ],
+   "highlights": [],
+   "syn": "后羿在拯救垂死太阳的任务中失踪，嫦娥为寻找爱人踏上前往月球暗面的旅程。来自地球的同行者加入寻人之路，而觊觎长生药的人，也将这场神话与科幻交织的冒险引向险境。",
+   "bio": "",
+   "st": "",
+   "section": "拾光：华语新片展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "poster": "posters/golden-rooster-gr26-010.jpg",
+   "screeningEnds": {
+    "11/7-16:30-xm-gr26-1-hall-4": "18:14",
+    "11/21-20:00-xm-gr26-16-hall-6": "21:44"
+   },
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-010.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-011",
+   "cn": "泡泡糖女孩",
+   "o": "Ah girl",
+   "en": "Ah girl",
+   "y": 2026,
+   "c": "新加坡",
+   "min": 99,
+   "reg": "cn",
+   "dir": "洪玉桔",
+   "genre": [],
+   "cast": [
+    "王宣静",
+    "王雪萁",
+    "卓桂枝"
+   ],
+   "writers": [],
+   "honors": [
+    "获奖｜第55届鹿特丹国际电影节 · 青年评审团奖"
+   ],
+   "highlights": [],
+   "syn": "1990年代的新加坡，七岁女孩在父母分居后往返于不同的家庭空间。大人的矛盾令她被迫早熟，她却仍用自己的想象与小小反抗，努力守护属于童年的世界。",
+   "bio": "",
+   "st": "",
+   "section": "拾光：华语新片展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "poster": "posters/golden-rooster-gr26-011.jpg",
+   "screeningEnds": {
+    "11/7-17:45-xm-gr26-1-hall-6": "19:24"
+   },
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-011.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-012",
+   "cn": "消失的金凤娜",
+   "o": "The Evil Inside",
+   "en": "The Evil Inside",
+   "y": 2026,
+   "c": "中国台湾",
+   "min": 110,
+   "reg": "cn",
+   "dir": "谢庭菡",
+   "genre": [],
+   "cast": [
+    "陈冲",
+    "喜翔",
+    "阳靓"
+   ],
+   "writers": [],
+   "honors": [],
+   "highlights": [],
+   "syn": "昔日秀场天后金凤娜因赌债抛下女儿，多年后在一间诡异疗养院中醒来。她逐渐察觉这里隐藏着以病人性命为赌注的游戏，试图逃离，并寻找失散的女儿。",
+   "bio": "",
+   "st": "",
+   "section": "拾光：华语新片展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "poster": "posters/golden-rooster-gr26-012.jpg",
+   "screeningEnds": {
+    "11/7-19:30-xm-gr26-1-hall-4": "21:15",
+    "11/21-20:00-xm-gr26-13-hall-1": "21:45"
+   },
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-012.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-013",
+   "cn": "发现之旅",
+   "o": "Zoom In, Zoom Out",
+   "en": "Zoom In, Zoom Out",
+   "y": 2026,
+   "c": "中国内地",
+   "min": 117,
+   "reg": "cn",
+   "dir": "董劼",
+   "genre": [],
+   "cast": [
+    "孙阳",
+    "赵天爱"
+   ],
+   "writers": [
+    "董劼"
+   ],
+   "honors": [],
+   "highlights": [],
+   "syn": "年轻游戏设计师石子安追寻失联室友留下的数字痕迹，意外结识与对方有关的女子YY。两人穿行城市与虚拟游戏空间，在寻找真相的过程中，重新理解记忆、人际关系与现实的边界。",
+   "bio": "",
+   "st": "",
+   "section": "国产新片展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "poster": "posters/golden-rooster-gr26-013.jpg",
+   "screeningEnds": {
+    "11/7-13:00-xm-gr26-1-hall-2": "14:57",
+    "11/19-20:00-xm-gr26-12-hall-3": "21:57"
+   },
+   "screeningNotes": {
+    "11/7-13:00-xm-gr26-1-hall-2": "映后活动 · 导演/编剧：董劼（以实际到场为准）"
+   },
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-013.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-014",
+   "cn": "向莲花镇出发",
+   "o": "Starting Towards the Finish Line",
+   "en": "Starting Towards the Finish Line",
+   "y": 2026,
+   "c": "中国内地",
+   "min": 90,
+   "reg": "cn",
+   "dir": "侯爵",
+   "genre": [],
+   "cast": [
+    "刘迅",
+    "蒋梦婕",
+    "孟启琛"
+   ],
+   "writers": [
+    "北一",
+    "樊荟",
+    "侯爵"
+   ],
+   "honors": [],
+   "highlights": [],
+   "syn": "小庆想去莲花镇寻找母亲，却苦于山区交通不便。他发现被泥沙掩埋的汽车框架，决定与各有心愿的小伙伴一起修车；支教老师也加入队伍，陪孩子们踏上一场特别的追梦旅程。",
+   "bio": "",
+   "st": "",
+   "section": "国产新片展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "poster": "posters/golden-rooster-gr26-014.jpg",
+   "screeningEnds": {
+    "11/7-14:00-xm-gr26-1-hall-4": "15:30",
+    "11/18-20:00-xm-gr26-8-hall-1": "21:30",
+    "11/23-20:00-xm-gr26-11-hall-7": "21:30"
+   },
+   "screeningNotes": {
+    "11/7-14:00-xm-gr26-1-hall-4": "映后活动 · 导演/编剧：侯爵（以实际到场为准）"
+   },
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-014.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-015",
+   "cn": "故土",
+   "o": "Fatherland",
+   "en": "Fatherland",
+   "y": 2026,
+   "c": "波兰 / 德国 / 意大利 / 法国",
+   "min": 82,
+   "reg": "eu",
+   "dir": "帕维乌·帕夫利科夫斯基",
+   "genre": [],
+   "cast": [
+    "桑德拉•惠勒",
+    "汉斯•齐施勒",
+    "奥古斯特.迪赫",
+    "安娜•梅德利"
+   ],
+   "writers": [],
+   "honors": [
+    "获奖｜第79届戛纳国际电影节 · 主竞赛单元最佳导演"
+   ],
+   "highlights": [],
+   "syn": "1949年，流亡多年的作家托马斯·曼与女儿埃里卡重返德国。他们乘车从西部前往东部，在战后废墟、冷战分野与家庭旧伤之间，重新思考故乡、责任和艺术家的位置。",
+   "bio": "",
+   "st": "",
+   "section": "此刻：国际新片展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "poster": "posters/golden-rooster-gr26-015.jpg",
+   "screeningEnds": {
+    "11/7-15:15-xm-gr26-1-hall-6": "16:37",
+    "11/8-11:00-xm-gr26-1-hall-6": "12:22",
+    "11/21-12:00-xm-gr26-1-hall-6": "13:22"
+   },
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-015.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-016",
+   "cn": "七分熟",
+   "o": "Gold Life",
+   "en": "Gold Life",
+   "y": 2026,
+   "c": "中国内地",
+   "min": 93,
+   "reg": "cn",
+   "dir": "张歆",
+   "genre": [],
+   "cast": [
+    "张歆",
+    "韦识一",
+    "尹正容"
+   ],
+   "writers": [
+    "张歆"
+   ],
+   "honors": [],
+   "highlights": [],
+   "syn": "章昕选择留在大理，一边攻读博士，一边以全职母亲的身份照顾儿子。分居的婚姻、与母亲的冷战、找工作和生活琐事接踵而来，答辩前的一通电话，又将她推向新的人生难关。",
+   "bio": "",
+   "st": "",
+   "section": "国产新片展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "poster": "posters/golden-rooster-gr26-016.jpg",
+   "screeningEnds": {
+    "11/7-16:00-xm-gr26-1-hall-2": "17:33",
+    "11/19-20:00-xm-gr26-11-hall-7": "21:33",
+    "11/25-20:00-xm-gr26-17-hall-4": "21:33"
+   },
+   "screeningNotes": {
+    "11/7-16:00-xm-gr26-1-hall-2": "映后活动 · 导演/编剧/主演：张歆（以实际到场为准）"
+   },
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-016.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-017",
+   "cn": "逆光绽放",
+   "o": "Steadfast Woman",
+   "en": "Steadfast Woman",
+   "y": 2026,
+   "c": "中国内地",
+   "min": 103,
+   "reg": "cn",
+   "dir": "张璞",
+   "genre": [],
+   "cast": [
+    "许月庆",
+    "王成阳",
+    "王宫良"
+   ],
+   "writers": [
+    "张璞"
+   ],
+   "honors": [],
+   "highlights": [],
+   "syn": "春霞在年少辍学、仓促成婚与家庭暴力后，独自经营饭馆、抚养女儿。雁北小城的日常里，她遭遇新的情感迷局，也在一次次生活考验中尝试摆脱偏见，找回独立生活的力量。",
+   "bio": "",
+   "st": "",
+   "section": "国产新片展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "poster": "posters/golden-rooster-gr26-017.jpg",
+   "screeningEnds": {
+    "11/7-16:40-xm-gr26-1-hall-7": "18:23",
+    "11/8-14:30-xm-gr26-3-hall-3": "16:13",
+    "11/8-16:00-xm-gr26-2-hall-8": "17:43"
+   },
+   "screeningNotes": {
+    "11/7-16:40-xm-gr26-1-hall-7": "映后活动 · 导演/编剧：张璞；主演：许月庆（以实际到场为准）",
+    "11/8-14:30-xm-gr26-3-hall-3": "映后活动 · 导演/编剧：张璞；主演：许月庆（以实际到场为准）",
+    "11/8-16:00-xm-gr26-2-hall-8": "映后活动 · 导演/编剧：张璞；主演：许月庆（以实际到场为准）"
+   },
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-017.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-018",
+   "cn": "寒夜灯柱",
+   "o": "Light Pillar",
+   "en": "Light Pillar",
+   "y": 2026,
+   "c": "中国内地",
+   "min": 89,
+   "reg": "eu",
+   "dir": "徐澡",
+   "genre": [
+    "动画"
+   ],
+   "cast": [
+    "大鹏",
+    "卿衣"
+   ],
+   "writers": [],
+   "honors": [
+    "获奖｜第10届平遥国际电影展 · 费穆荣誉·最佳导演",
+    "入围｜第76届柏林国际电影节 · 视点单元"
+   ],
+   "highlights": [],
+   "syn": "未来某个冬天，一座濒临荒废的影视城里，孤独的保洁员老查收到一台抵工资的VR设备。他在虚拟世界中获得久违的陪伴，而当现实与幻象相遇，影视城也迎来了自己的最后一场戏。",
+   "bio": "",
+   "st": "",
+   "section": "流光：动画展映单元",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "poster": "posters/golden-rooster-gr26-018.jpg",
+   "screeningEnds": {
+    "11/7-17:10-xm-gr26-1-hall-3": "18:39",
+    "11/15-14:00-xm-gr26-2-hall-6": "15:30"
+   },
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-018.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-019",
+   "cn": "澳门大赛车",
+   "o": "MGP: The Untamed Circuit",
+   "en": "MGP: The Untamed Circuit",
+   "y": 2026,
+   "c": "中国澳门",
+   "min": 88,
+   "reg": "cn",
+   "dir": "曹金玲",
+   "genre": [],
+   "cast": [
+    "马青骅",
+    "赫尔文",
+    "刘司銮"
+   ],
+   "writers": [],
+   "honors": [],
+   "highlights": [],
+   "syn": "影片将镜头对准澳门大赛车与参赛车手，记录城市赛道上的速度、准备与竞逐，通过赛事和人物的经历呈现赛车运动的魅力。",
+   "bio": "",
+   "st": "",
+   "section": "拾光：华语新片展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "poster": "posters/golden-rooster-gr26-019.jpg",
+   "screeningEnds": {
+    "11/7-19:00-xm-gr26-1-hall-2": "20:28"
+   },
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-019.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-020",
+   "cn": "最佳状态",
+   "o": "No Hard Feelings",
+   "en": "No Hard Feelings",
+   "y": 2026,
+   "c": "中国内地",
+   "min": 116,
+   "reg": "cn",
+   "dir": "刘诗川",
+   "genre": [],
+   "cast": [
+    "祖峰",
+    "王菊",
+    "黄小蕾",
+    "张子贤",
+    "张百乔",
+    "黄子琪",
+    "佟林楷"
+   ],
+   "writers": [
+    "鲍尔金娜",
+    "刘诗川",
+    "张赫"
+   ],
+   "honors": [],
+   "highlights": [],
+   "syn": "失意的网约车司机把文学梦想寄托在播客中，一名保健品销售员则用虚构身份应付工作。一次回访电话让两个孤独的都市人相遇，彼此的谎言与期待，逐渐迎向无法回避的现实。",
+   "bio": "",
+   "st": "",
+   "section": "国产新片展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "poster": "posters/golden-rooster-gr26-020.jpg",
+   "screeningEnds": {
+    "11/7-19:40-xm-gr26-1-hall-3": "21:37"
+   },
+   "screeningNotes": {
+    "11/7-19:40-xm-gr26-1-hall-3": "映后活动 · 导演/编剧：刘诗川（以实际到场为准）"
+   },
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-020.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-021",
+   "cn": "无名女孩",
+   "o": "A Girl Unknown",
+   "en": "A Girl Unknown",
+   "y": 2026,
+   "c": "中国内地 / 法国",
+   "min": 125,
+   "reg": "cn",
+   "dir": "邹静",
+   "genre": [],
+   "cast": [
+    "李庚希",
+    "沈佳妮",
+    "祖峰",
+    "曹若凡"
+   ],
+   "writers": [
+    "邹静"
+   ],
+   "honors": [],
+   "highlights": [],
+   "syn": "一个女孩的成长串起三个家庭的命运。围绕她在不同家庭中的身份，影片追问血缘、养育与归属如何塑造一个人，也呈现女性在亲情与社会期待之间的处境。",
+   "bio": "",
+   "st": "",
+   "section": "国产新片展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "poster": "posters/golden-rooster-gr26-021.jpg",
+   "screeningEnds": {
+    "11/7-19:50-xm-gr26-1-hall-6": "21:55",
+    "11/9-19:40-xm-gr26-1-hall-6": "21:45"
+   },
+   "screeningNotes": {
+    "11/7-19:50-xm-gr26-1-hall-6": "映后活动 · 导演/编剧：邹静；主演：李庚希、沈佳妮（以实际到场为准）",
+    "11/9-19:40-xm-gr26-1-hall-6": "映后活动 · 导演：邹静；主演：祖峰、沈佳妮（以实际到场为准）"
+   },
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-021.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-022",
+   "cn": "阿尔及利卡之路",
+   "o": "Algerican Road",
+   "en": "Algerican Road",
+   "y": 2026,
+   "c": "法国 / 阿尔及利亚 / 沙特阿拉伯 / 卡塔尔",
+   "min": 108,
+   "reg": "eu",
+   "dir": "拉巴赫·阿莫尔-兹梅什",
+   "genre": [],
+   "cast": [
+    "斯利曼·达兹",
+    "斯迈因·阿莫尔-兹梅什",
+    "莱娅·奥普莱"
+   ],
+   "writers": [],
+   "honors": [],
+   "highlights": [],
+   "syn": "年迈货车司机与搬运工深入阿尔及利亚撒哈拉运送货物，途中遭到袭击，货车被劫。一位法国研究者与同行者前来相助，几人的命运在沙漠公路上交汇。",
+   "bio": "",
+   "st": "",
+   "section": "此刻：国际新片展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "screeningEnds": {
+    "11/8-14:00-xm-gr26-1-hall-6": "15:48",
+    "11/19-20:00-xm-gr26-1-hall-6": "21:48"
+   },
+   "poster": "posters/golden-rooster-gr26-022.jpg",
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-022.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-023",
+   "cn": "悲惨世界",
+   "o": "Les Misérables",
+   "en": "Les Misérables",
+   "y": 2026,
+   "c": "法国 / 比利时",
+   "min": 178,
+   "reg": "eu",
+   "dir": "弗雷德·卡瓦耶",
+   "genre": [],
+   "cast": [
+    "文森特•林顿",
+    "塔哈•拉希姆",
+    "卡米耶•科坦"
+   ],
+   "writers": [],
+   "honors": [
+    "入围｜第74届圣塞巴斯蒂安国际电影节 · 主竞赛单元"
+   ],
+   "highlights": [],
+   "syn": "改编自维克多·雨果的小说。获释苦役犯冉阿让试图重新做人，却始终受到警长沙威追捕。他对芳汀与珂赛特的承诺，将个人的救赎与动荡时代中人们的抗争连接起来。",
+   "bio": "",
+   "st": "",
+   "section": "此刻：国际新片展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "poster": "posters/golden-rooster-gr26-023.jpg",
+   "screeningEnds": {
+    "11/8-16:30-xm-gr26-2-hall-3": "19:28",
+    "11/9-18:30-xm-gr26-1-hall-7": "21:28",
+    "11/14-16:00-xm-gr26-7-hall-2": "18:58",
+    "11/23-20:00-xm-gr26-5-hall-": "22:58",
+    "11/27-20:00-xm-gr26-17-hall-4": "22:58"
+   },
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-023.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-024",
+   "cn": "爱杀",
+   "o": "Love Massacre",
+   "en": "Love Massacre",
+   "y": 1981,
+   "c": "中国香港",
+   "min": 93,
+   "reg": "cn",
+   "dir": "谭家明",
+   "genre": [],
+   "cast": [],
+   "writers": [],
+   "honors": [],
+   "highlights": [],
+   "syn": "一名女子在异国求学时，与身边人的感情纠葛逐渐染上危险色彩。爱情、猜疑与潜藏的暴力彼此交织，平静日常一步步走向无法挽回的悲剧。",
+   "bio": "",
+   "st": "",
+   "section": "功夫·功夫：华语经典展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "screeningEnds": {
+    "11/8-17:45-xm-gr26-1-hall-3": "19:18",
+    "11/16-20:00-xm-gr26-9-hall-2": "21:33"
+   },
+   "prog": "golden-rooster-2026",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-025",
+   "cn": "每时每刻",
+   "o": "Everytime",
+   "en": "Everytime",
+   "y": 2026,
+   "c": "奥地利 / 德国",
+   "min": 121,
+   "reg": "eu",
+   "dir": "桑德拉·沃尔纳",
+   "genre": [],
+   "cast": [
+    "比吉特•米尼希迈尔",
+    "特里斯坦•洛佩斯",
+    "洛特•希琳•凯林"
+   ],
+   "writers": [],
+   "honors": [
+    "获奖｜第79届戛纳国际电影节 · 一种关注大奖"
+   ],
+   "highlights": [],
+   "syn": "少女杰西意外身亡后，母亲、妹妹和男友各自困在悲伤与内疚之中。一年后，他们尝试共同完成那场未曾成行的家庭假期，在旅途中面对失去、责备与原谅。",
+   "bio": "",
+   "st": "",
+   "section": "此刻：国际新片展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "poster": "posters/golden-rooster-gr26-025.jpg",
+   "screeningEnds": {
+    "11/8-19:30-xm-gr26-1-hall-6": "21:34",
+    "11/17-19:45-xm-gr26-1-hall-6": "21:49"
+   },
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-025.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-026",
+   "cn": "语文的滋味",
+   "o": "Her First Taste",
+   "en": "Her First Taste",
+   "y": 2026,
+   "c": "中国内地",
+   "min": 107,
+   "reg": "cn",
+   "dir": "龚依文",
+   "genre": [],
+   "cast": [
+    "马福福",
+    "刘浩宁",
+    "钟美",
+    "幸封燚"
+   ],
+   "writers": [
+    "龚依文"
+   ],
+   "honors": [],
+   "highlights": [],
+   "syn": "千禧年前后的杭州，热爱文学的少女文宇闻通过纸笔与网络寻找和外界的联系。家庭变化、朦胧情感与成长中的误解相继到来，她在写作与现实的碰撞中，慢慢认识自己。",
+   "bio": "",
+   "st": "",
+   "section": "国产新片展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "poster": "posters/golden-rooster-gr26-026.jpg",
+   "screeningEnds": {
+    "11/8-11:20-xm-gr26-1-hall-3": "13:07",
+    "11/15-16:00-xm-gr26-8-hall-5": "17:47",
+    "11/27-20:00-xm-gr26-15-hall-13": "21:47"
+   },
+   "screeningNotes": {
+    "11/8-11:20-xm-gr26-1-hall-3": "映后活动 · 导演/编剧：龚依文（以实际到场为准）"
+   },
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-026.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-027",
+   "cn": "斯琴图的秋天",
+   "o": "Roaming over the Horseback",
+   "en": "Roaming over the Horseback",
+   "y": 2026,
+   "c": "中国内地",
+   "min": 103,
+   "reg": "cn",
+   "dir": "白润青",
+   "genre": [],
+   "cast": [
+    "巴音",
+    "图门巴雅尔"
+   ],
+   "writers": [
+    "刘佳睿",
+    "白润青"
+   ],
+   "honors": [],
+   "highlights": [],
+   "syn": "在草原与矿山构成的生活背景中，主人公面对传统骑士精神与个人价值之间的拉扯，展开一场关于身份、生活与生命意义的探寻。",
+   "bio": "",
+   "st": "",
+   "section": "国产新片展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "poster": "posters/golden-rooster-gr26-027.jpg",
+   "screeningEnds": {
+    "11/8-13:20-xm-gr26-1-hall-4": "15:03",
+    "11/17-20:00-xm-gr26-3-hall-3": "21:43",
+    "11/22-20:00-xm-gr26-16-hall-6": "21:43"
+   },
+   "screeningNotes": {
+    "11/8-13:20-xm-gr26-1-hall-4": "映后活动 · 导演/编剧：白润青（以实际到场为准）"
+   },
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-027.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-028",
+   "cn": "河的女儿",
+   "o": "Daughter of the River",
+   "en": "Daughter of the River",
+   "y": 2026,
+   "c": "中国内地",
+   "min": 101,
+   "reg": "cn",
+   "dir": "虹影",
+   "genre": [],
+   "cast": [
+    "虹影",
+    "霜白",
+    "丁圣霏"
+   ],
+   "writers": [
+    "虹影"
+   ],
+   "honors": [],
+   "highlights": [],
+   "syn": "虹影从自身生命经历出发，回望重庆的童年街巷、饥饿记忆与家族往事。母亲、女儿与自己三代女性的经历交织，勾连起长江沿岸城市的变化，以及母女之间难以言尽的爱与伤痛。",
+   "bio": "",
+   "st": "",
+   "section": "国产新片展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "poster": "posters/golden-rooster-gr26-028.jpg",
+   "screeningEnds": {
+    "11/8-14:20-xm-gr26-1-hall-2": "16:01",
+    "11/14-14:30-xm-gr26-6-hall-1": "16:11",
+    "11/16-20:00-xm-gr26-11-hall-7": "21:41"
+   },
+   "screeningNotes": {
+    "11/14-14:30-xm-gr26-6-hall-1": "恋与联动场",
+    "11/8-14:20-xm-gr26-1-hall-2": "映后活动 · 导演/编剧/主演：虹影（以实际到场为准）"
+   },
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-028.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-029",
+   "cn": "我阿爹想旅行",
+   "o": "Good Trip",
+   "en": "Good Trip",
+   "y": 2026,
+   "c": "中国香港",
+   "min": 108,
+   "reg": "cn",
+   "dir": "黄绮琳、黄锎",
+   "genre": [],
+   "cast": [
+    "张家辉",
+    "钟雪莹",
+    "蒙嘉慧"
+   ],
+   "writers": [],
+   "honors": [],
+   "highlights": [],
+   "syn": "一对父女深夜偷偷离开医院，意外开启从香港经澳门、远至冲绳的跨境旅程。一路的荒诞遭遇与短暂自由，让他们重新面对彼此，也重新理解亲情。",
+   "bio": "",
+   "st": "",
+   "section": "拾光：华语新片展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "poster": "posters/golden-rooster-gr26-029.jpg",
+   "screeningEnds": {
+    "11/8-14:30-xm-gr26-1-hall-3": "16:18",
+    "11/21-20:00-xm-gr26-15-hall-13": "21:48"
+   },
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-029.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-030",
+   "cn": "像我这样的爱情",
+   "o": "Someone Like Me",
+   "en": "Someone Like Me",
+   "y": 2025,
+   "c": "中国香港",
+   "min": 105,
+   "reg": "cn",
+   "dir": "谭惠贞",
+   "genre": [],
+   "cast": [
+    "廖子妤",
+    "陈家乐"
+   ],
+   "writers": [],
+   "honors": [
+    "获奖｜第44届香港电影金像奖 · 最佳女主角"
+   ],
+   "highlights": [],
+   "syn": "一段突破社会偏见的亲密关系，让两个人重新认识自己的身体、欲望与尊严。影片从残障人士的生活经验出发，追问谁有权决定一个人如何去爱。",
+   "bio": "",
+   "st": "",
+   "section": "拾光：华语新片展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "poster": "posters/golden-rooster-gr26-030.jpg",
+   "screeningEnds": {
+    "11/8-15:50-xm-gr26-1-hall-7": "17:35",
+    "11/15-16:00-xm-gr26-2-hall-6": "17:45"
+   },
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-030.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-031",
+   "cn": "大西洋",
+   "o": "Atlantic Rhapsody",
+   "en": "Atlantic Rhapsody",
+   "y": 2026,
+   "c": "中国内地",
+   "min": 102,
+   "reg": "cn",
+   "dir": "钟凯峰",
+   "genre": [],
+   "cast": [
+    "尹昉",
+    "王一通",
+    "李雪琴",
+    "黄米依"
+   ],
+   "writers": [
+    "钟凯峰",
+    "吴林峰"
+   ],
+   "honors": [],
+   "highlights": [],
+   "syn": "超市理货员丁茂意外煮熟了店里的观赏鲨鱼，耳边从此出现奇怪声响。一则旧寻人启事把他带回东北故乡，他沿途拜访不同的人，拼凑父亲的人生，也追索被声音唤醒的记忆。",
+   "bio": "",
+   "st": "",
+   "section": "国产新片展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "poster": "posters/golden-rooster-gr26-031.jpg",
+   "screeningEnds": {
+    "11/8-16:15-xm-gr26-1-hall-6": "17:57"
+   },
+   "screeningNotes": {
+    "11/8-16:15-xm-gr26-1-hall-6": "映后活动 · 制片人：王天啸、郑菁；线上连线：导演/编剧钟凯峰，主演尹昉、黄米依（以实际到场为准）"
+   },
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-031.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-032",
+   "cn": "深度安静",
+   "o": "Deep Quiet Room",
+   "en": "Deep Quiet Room",
+   "y": 2025,
+   "c": "中国台湾",
+   "min": 107,
+   "reg": "cn",
+   "dir": "沈可尚",
+   "genre": [],
+   "cast": [
+    "张孝全",
+    "林依晨",
+    "金士杰"
+   ],
+   "writers": [],
+   "honors": [
+    "获奖｜第9届平遥国际电影展 · 费穆荣誉·最佳影片"
+   ],
+   "highlights": [],
+   "syn": "谕明和依庭从大学图书馆相识相爱，结婚后等待第一个孩子到来。然而依庭的突然离世打碎一切，谕明在照顾她的家人、追寻原因时，逐步接近她原生家庭中难以启齿的伤痛。",
+   "bio": "",
+   "st": "",
+   "section": "拾光：华语新片展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "poster": "posters/golden-rooster-gr26-032.jpg",
+   "screeningEnds": {
+    "11/8-16:20-xm-gr26-1-hall-4": "18:07",
+    "11/25-20:00-xm-gr26-7-hall-2": "21:47"
+   },
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-032.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-033",
+   "cn": "人生海海",
+   "o": "The Waves Will Carry Us",
+   "en": "The Waves Will Carry Us",
+   "y": 2025,
+   "c": "马来西亚",
+   "min": 100,
+   "reg": "cn",
+   "dir": "廖克发",
+   "genre": [],
+   "cast": [
+    "魏隽展",
+    "陈雪甄",
+    "吕杨"
+   ],
+   "writers": [],
+   "honors": [],
+   "highlights": [],
+   "syn": "旅居海外的阿耀返回马来西亚处理父亲后事，却因遗体归属卷入纷争。兄妹间不同的选择与老一辈的记忆交错，一场葬礼逐渐牵出家族迁徙、宗教与身份认同的百年回声。",
+   "bio": "",
+   "st": "",
+   "section": "拾光：华语新片展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "poster": "posters/golden-rooster-gr26-033.jpg",
+   "screeningEnds": {
+    "11/8-17:00-xm-gr26-1-hall-2": "18:41",
+    "11/21-14:30-xm-gr26-2-hall-6": "16:11"
+   },
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-033.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-034",
+   "cn": "豪·路·博尔赫斯传",
+   "o": "Life of Jorge Luis Borges",
+   "en": "Life of Jorge Luis Borges",
+   "y": 2026,
+   "c": "阿根廷",
+   "min": 323,
+   "reg": "eu",
+   "dir": "马里亚诺·利纳斯",
+   "genre": [],
+   "cast": [
+    "埃内斯托： 蒙特金",
+    "尼古拉斯-赫尔夫特",
+    "劳拉•帕雷德斯"
+   ],
+   "writers": [],
+   "honors": [
+    "入围｜第83届威尼斯国际电影节 · 非竞赛单元"
+   ],
+   "highlights": [],
+   "syn": "导演翻检档案、诗作、手稿、照片与私人收藏，循着博尔赫斯一生的踪迹展开研究。朗读、旅行与带着幽默的旁白交织，把文学传记变成一场迷宫般的影像探索。",
+   "bio": "",
+   "st": "",
+   "section": "此刻：国际新片展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "poster": "posters/golden-rooster-gr26-034.jpg",
+   "screeningEnds": {
+    "11/8-17:30-xm-gr26-1-hall-5": "23:04",
+    "11/21-14:10-xm-gr26-1-hall-5": "19:44"
+   },
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-034.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-035",
+   "cn": "入学许可",
+   "o": "Admission",
+   "en": "Admission",
+   "y": 2025,
+   "c": "中国内地",
+   "min": 95,
+   "reg": "cn",
+   "dir": "徐琨华",
+   "genre": [],
+   "cast": [
+    "汪飏",
+    "刘又年",
+    "耐安"
+   ],
+   "writers": [],
+   "honors": [
+    "入围｜第29届塔林黑夜电影节 · 新导演竞赛单元",
+    "入围｜第10届平遥国际电影展 · “藏龙”竞赛单元"
+   ],
+   "highlights": [],
+   "syn": "一对父母为六岁的儿子争取精英学校入学资格，请来咨询顾问与学校理事帮忙。最终面试后，孩子却进入不录取名单，几名大人必须在结果公布前查出哪里出了问题。",
+   "bio": "",
+   "st": "",
+   "section": "拾光：华语新片展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "poster": "posters/golden-rooster-gr26-035.jpg",
+   "screeningEnds": {
+    "11/8-19:20-xm-gr26-1-hall-4": "20:55",
+    "11/22-16:00-xm-gr26-14-hall-5": "17:35"
+   },
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-035.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-036",
+   "cn": "沧海琴声",
+   "o": "The Violinist",
+   "en": "The Violinist",
+   "y": 2026,
+   "c": "新加坡 / 西班牙 / 意大利",
+   "min": 114,
+   "reg": "eu",
+   "dir": "韩蕴光、劳尔·加西亚",
+   "genre": [
+    "动画"
+   ],
+   "cast": [
+    "陈琼华",
+    "符芳榕",
+    "孙政"
+   ],
+   "writers": [],
+   "honors": [
+    "获奖｜第50届安纳西国际动画电影节 · 长片水晶奖"
+   ],
+   "highlights": [],
+   "syn": "1941年，两个梦想成为小提琴家的年轻人因战争而分离。男孩参加抵抗后失踪，女孩在此后的岁月里坚持演奏与寻找；一把旧琴，又将后来者带回这段横跨数十年的往事。",
+   "bio": "",
+   "st": "",
+   "section": "流光：动画展映单元",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "poster": "posters/golden-rooster-gr26-036.jpg",
+   "screeningEnds": {
+    "11/8-19:45-xm-gr26-1-hall-3": "21:39"
+   },
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-036.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-037",
+   "cn": "妈样年华",
+   "o": "Bird of Paradise",
+   "en": "Bird of Paradise",
+   "y": 2026,
+   "c": "中国香港",
+   "min": 95,
+   "reg": "cn",
+   "dir": "胡翠儿",
+   "genre": [],
+   "cast": [
+    "周家怡",
+    "金燕玲",
+    "陈湛文"
+   ],
+   "writers": [],
+   "honors": [],
+   "highlights": [],
+   "syn": "一位长期围着丈夫、孩子与家务打转的家庭主妇，瞒着家人开始学习钢管舞。新的伙伴与舞台带来意外的勇气，也让她重新思考中年之后，自己还想怎样生活。",
+   "bio": "",
+   "st": "",
+   "section": "拾光：华语新片展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "poster": "posters/golden-rooster-gr26-037.jpg",
+   "screeningEnds": {
+    "11/8-20:15-xm-gr26-1-hall-2": "21:50",
+    "11/26-20:00-xm-gr26-17-hall-4": "21:35"
+   },
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-037.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-038",
+   "cn": "我们的救赎",
+   "o": "A Man of His Time",
+   "en": "A Man of His Time",
+   "y": 2026,
+   "c": "比利时 / 法国",
+   "min": 155,
+   "reg": "eu",
+   "dir": "伊曼努尔·马雷",
+   "genre": [],
+   "cast": [
+    "斯万·阿劳德",
+    "桑德琳·布朗克",
+    "马蒂厄·珀罗托"
+   ],
+   "writers": [],
+   "honors": [
+    "获奖｜第79届戛纳国际电影节 · 最佳编剧"
+   ],
+   "highlights": [],
+   "syn": "1940年，身无分文的亨利来到维希，希望凭借技术理想与自费出版的政治著作，在新政权中谋得位置。追求认可的愿望，逐渐使他成为压迫机器中的一环。",
+   "bio": "",
+   "st": "",
+   "section": "此刻：国际新片展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "poster": "posters/golden-rooster-gr26-038.jpg",
+   "screeningEnds": {
+    "11/9-17:30-xm-gr26-1-hall-3": "20:08",
+    "11/15-14:35-xm-gr26-1-hall-6": "17:13"
+   },
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-038.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-039",
+   "cn": "太极张三丰",
+   "o": "Tai Chi Master",
+   "en": "Tai Chi Master",
+   "y": 1993,
+   "c": "中国香港",
+   "min": 95,
+   "reg": "cn",
+   "dir": "袁和平",
+   "genre": [],
+   "cast": [],
+   "writers": [],
+   "honors": [],
+   "highlights": [],
+   "syn": "一同长大的君宝与天宝下山闯荡，却因对权力与人生的不同选择走向对立。经历背叛与挫折后，君宝在自然与生活中领悟新的武学之道。",
+   "bio": "",
+   "st": "",
+   "section": "功夫·功夫：华语经典展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "screeningEnds": {
+    "11/9-20:00-xm-gr26-1-hall-2": "21:35",
+    "11/13-20:00-xm-gr26-5-hall-6": "21:35"
+   },
+   "prog": "golden-rooster-2026",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-040",
+   "cn": "浪花男女",
+   "o": "Wakesurf Lovers",
+   "en": "Wakesurf Lovers",
+   "y": 2026,
+   "c": "中国香港",
+   "min": 108,
+   "reg": "cn",
+   "dir": "冯志强",
+   "genre": [],
+   "cast": [
+    "魏浚笙",
+    "杨偲泳",
+    "朱鉴然"
+   ],
+   "writers": [],
+   "honors": [],
+   "highlights": [],
+   "syn": "曾在网上攻击冲浪教练的青年，阴差阳错成为对方的学生。现实里的相处逐渐改变了他的成见，浪花、训练与误会之间，也萌生一段出人意料的感情。",
+   "bio": "",
+   "st": "",
+   "section": "拾光：华语新片展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "poster": "posters/golden-rooster-gr26-040.jpg",
+   "screeningEnds": {
+    "11/9-20:20-xm-gr26-1-hall-3": "22:09"
+   },
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-040.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-041",
+   "cn": "第四幕",
+   "o": "Afterpiece",
+   "en": "Afterpiece",
+   "y": 2026,
+   "c": "中国香港",
+   "min": 112,
+   "reg": "cn",
+   "dir": "王德健",
+   "genre": [],
+   "cast": [
+    "冯德伦",
+    "袁澧林",
+    "胡杏儿"
+   ],
+   "writers": [],
+   "honors": [],
+   "highlights": [],
+   "syn": "陷入创作瓶颈的舞台剧导演试图靠一出新戏挽回事业。选角与排练让他卷入年轻演员、旧爱与婚姻的复杂关系，戏中角色和戏外生活的边界逐渐失控。",
+   "bio": "",
+   "st": "",
+   "section": "拾光：华语新片展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "poster": "posters/golden-rooster-gr26-041.jpg",
+   "screeningEnds": {
+    "11/9-14:10-xm-gr26-1-hall-6": "16:03",
+    "11/20-20:00-xm-gr26-9-hall-3": "21:53"
+   },
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-041.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-042",
+   "cn": "黑潮",
+   "o": "Dead Tide",
+   "en": "Dead Tide",
+   "y": 2026,
+   "c": "马来西亚",
+   "min": 106,
+   "reg": "cn",
+   "dir": "池家庆",
+   "genre": [],
+   "cast": [
+    "陈泽耀",
+    "李沐"
+   ],
+   "writers": [],
+   "honors": [
+    "入围｜第10届平遥国际电影展 · “藏龙”竞赛单元"
+   ],
+   "highlights": [],
+   "syn": "刑满出狱的男子回到渔村，希望向死者家属表达愧疚，却遇见一名遭到软禁的女子。两个被世界排斥的人在夜色与潮汐间靠近，尝试抚平各自的伤痛。",
+   "bio": "",
+   "st": "",
+   "section": "拾光：华语新片展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "poster": "posters/golden-rooster-gr26-042.jpg",
+   "screeningEnds": {
+    "11/9-14:25-xm-gr26-1-hall-2": "16:11",
+    "11/21-20:00-xm-gr26-14-hall-5": "21:46"
+   },
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-042.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-043",
+   "cn": "山中来客",
+   "o": "Strangers in the Mountain",
+   "en": "Strangers in the Mountain",
+   "y": 2026,
+   "c": "中国内地",
+   "min": 104,
+   "reg": "cn",
+   "dir": "万波",
+   "genre": [],
+   "cast": [
+    "李依晓",
+    "罗攀",
+    "陆苇",
+    "黄静斯",
+    "白海涛"
+   ],
+   "writers": [
+    "罗攀"
+   ],
+   "honors": [],
+   "highlights": [],
+   "syn": "一桩尘封七年的女子失踪案，因两位警官到访偏远山村而再起波澜。随着追查深入，嫌疑人与失踪女子之间的情感纠葛逐渐浮现，往事与眼前的真相彼此映照。",
+   "bio": "",
+   "st": "",
+   "section": "国产新片展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "poster": "posters/golden-rooster-gr26-043.jpg",
+   "screeningEnds": {
+    "11/9-15:00-xm-gr26-1-hall-4": "16:44",
+    "11/17-20:00-xm-gr26-10-hall-5": "21:44",
+    "11/28-14:30-xm-gr26-6-hall-1": "16:14"
+   },
+   "screeningNotes": {
+    "11/28-14:30-xm-gr26-6-hall-1": "恋与联动场",
+    "11/9-15:00-xm-gr26-1-hall-4": "映后活动 · 导演：万波（以实际到场为准）"
+   },
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-043.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-044",
+   "cn": "马兰花开的声音",
+   "o": "When Malan Blooms",
+   "en": "When Malan Blooms",
+   "y": 2026,
+   "c": "中国内地",
+   "min": 96,
+   "reg": "cn",
+   "dir": "马晓静",
+   "genre": [],
+   "cast": [
+    "倪大红",
+    "黄梦莹",
+    "马兰花儿童声合唱团"
+   ],
+   "writers": [
+    "马晓静",
+    "张艺凡",
+    "陈仕忠"
+   ],
+   "honors": [],
+   "highlights": [],
+   "syn": "河北阜平山区的孩子们组成合唱团，在老师与冬奥团队的帮助下克服语言、训练与生活上的困难。来自山村的歌声，最终响起在北京冬奥会的舞台上。",
+   "bio": "",
+   "st": "",
+   "section": "国产新片展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "poster": "posters/golden-rooster-gr26-044.jpg",
+   "screeningEnds": {
+    "11/9-19:30-xm-gr26-1-hall-4": "21:06",
+    "11/16-20:00-xm-gr26-10-hall-5": "21:36"
+   },
+   "screeningNotes": {
+    "11/9-19:30-xm-gr26-1-hall-4": "映后活动 · 导演：马晓静；主演：倪大红、黄梦莹、马兰花儿童声合唱团代表（以实际到场为准）"
+   },
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-044.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-045",
+   "cn": "无处安放我的双眼",
+   "o": "Nowhere to Lay My Eyes",
+   "en": "Nowhere to Lay My Eyes",
+   "y": 2026,
+   "c": "韩国",
+   "min": 72,
+   "reg": "eu",
+   "dir": "洪常秀",
+   "genre": [],
+   "cast": [
+    "金珉禧",
+    "崔明吉",
+    "权海虓"
+   ],
+   "writers": [],
+   "honors": [
+    "获奖｜第79届洛迦诺国际电影节 · 主竞赛单元最佳导演奖"
+   ],
+   "highlights": [],
+   "syn": "实验电影创作者尚熙与弟弟前往济州岛，探望久未亲近的母亲。在与继父和新的家庭成员相处的细微时刻里，她重新面对家庭责任、衰老与创作之间的关系。",
+   "bio": "",
+   "st": "",
+   "section": "此刻：国际新片展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "poster": "posters/golden-rooster-gr26-045.jpg",
+   "screeningEnds": {
+    "11/10-20:30-xm-gr26-1-hall-7": "21:42",
+    "11/18-19:40-xm-gr26-1-hall-6": "20:52",
+    "11/23-20:00-xm-gr26-1-hall-6": "21:12"
+   },
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-045.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-046",
+   "cn": "善男信女",
+   "o": "We Are Born Good",
+   "en": "We Are Born Good",
+   "y": 2025,
+   "c": "中国香港",
+   "min": 96,
+   "reg": "cn",
+   "dir": "杨两全",
+   "genre": [],
+   "cast": [
+    "杨伟伦",
+    "钟雪莹",
+    "彭秀慧"
+   ],
+   "writers": [],
+   "honors": [
+    "入围｜第51届多伦多国际电影节 · 发现单元"
+   ],
+   "highlights": [],
+   "syn": "茶餐厅老板与一名女食客因一次出错餐的误会结怨，小小口角不断升级为互相报复。被都市生活逼近极限的两个人，在争斗中暴露各自的窘迫，也照见伤害与扶持之间的距离。",
+   "bio": "",
+   "st": "",
+   "section": "拾光：华语新片展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "poster": "posters/golden-rooster-gr26-046.jpg",
+   "screeningEnds": {
+    "11/10-19:30-xm-gr26-1-hall-3": "21:06",
+    "11/24-20:00-xm-gr26-15-hall-13": "21:36"
+   },
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-046.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-047",
+   "cn": "被杀的那天",
+   "o": "Dead End",
+   "en": "Dead End",
+   "y": 2026,
+   "c": "中国香港",
+   "min": 87,
+   "reg": "cn",
+   "dir": "林乐骞",
+   "genre": [],
+   "cast": [
+    "杨乐文",
+    "谈善言",
+    "邵美琪"
+   ],
+   "writers": [],
+   "honors": [
+    "入围｜第31届釜山国际电影节 · “展望·亚洲”竞赛单元"
+   ],
+   "highlights": [],
+   "syn": "一桩悬案把几个人的命运纠缠在一起。随着追索深入，人物背后的创伤与隐秘逐渐显露，犯罪与日常生活的边界也变得不再清晰。",
+   "bio": "",
+   "st": "",
+   "section": "拾光：华语新片展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "poster": "posters/golden-rooster-gr26-047.jpg",
+   "screeningEnds": {
+    "11/10-19:45-xm-gr26-1-hall-2": "21:12",
+    "11/19-20:00-xm-gr26-8-hall-1": "21:27"
+   },
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-047.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-048",
+   "cn": "林中绿洲",
+   "o": "Oasis",
+   "en": "Oasis",
+   "y": 2026,
+   "c": "德国 / 奥地利",
+   "min": 118,
+   "reg": "eu",
+   "dir": "扬尼斯·伦茨",
+   "genre": [],
+   "cast": [],
+   "writers": [],
+   "honors": [],
+   "highlights": [],
+   "syn": "学生威胁同学的视频在网上传播，校园气氛骤然紧张。三个被排斥的少年逃进附近森林，在游戏与怪异的结盟仪式中寻找归属，成人世界的压力却始终如影随形。",
+   "bio": "",
+   "st": "",
+   "section": "此刻：国际新片展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "poster": "posters/golden-rooster-gr26-048.jpg",
+   "screeningEnds": {
+    "11/10-20:00-xm-gr26-1-hall-6": "21:58",
+    "11/21-19:30-xm-gr26-1-hall-3": "21:28"
+   },
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-048.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-049",
+   "cn": "金玉满堂",
+   "o": "The Chinese Feast",
+   "en": "The Chinese Feast",
+   "y": 1995,
+   "c": "中国香港",
+   "min": 106,
+   "reg": "cn",
+   "dir": "徐克",
+   "genre": [],
+   "cast": [],
+   "writers": [],
+   "honors": [],
+   "highlights": [],
+   "syn": "心怀出国梦想的青年进入酒楼学厨，意外卷入一场决定酒楼命运的厨艺对决。为了备战满汉全席，众人寻找退隐名厨，在笑闹与磨练中重新理解技艺、友情与人生。",
+   "bio": "",
+   "st": "",
+   "section": "功夫·功夫：华语经典展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "screeningEnds": {
+    "11/11-20:00-xm-gr26-1-hall-6": "21:46"
+   },
+   "prog": "golden-rooster-2026",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-050",
+   "cn": "深爱",
+   "o": "Beloved",
+   "en": "Beloved",
+   "y": 2026,
+   "c": "挪威",
+   "min": 116,
+   "reg": "eu",
+   "dir": "埃里克·波普",
+   "genre": [],
+   "cast": [],
+   "writers": [],
+   "honors": [],
+   "highlights": [],
+   "syn": "阿斯勒与格尔德在挪威海边小城相爱，并迎来儿子。短暂幸福之后，身为水手的阿斯勒不断被大海吸引，格尔德则独自留在岸上，距离开始考验他们的爱情。",
+   "bio": "",
+   "st": "",
+   "section": "此刻：国际新片展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "poster": "posters/golden-rooster-gr26-050.jpg",
+   "screeningEnds": {
+    "11/11-20:20-xm-gr26-1-hall-3": "22:15",
+    "11/22-15:00-xm-gr26-1-hall-3": "16:55"
+   },
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-050.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-051",
+   "cn": "其余皆噪音",
+   "o": "Everything Else is Noise",
+   "en": "Everything Else is Noise",
+   "y": 2026,
+   "c": "墨西哥 / 德国 / 加拿大",
+   "min": 70,
+   "reg": "eu",
+   "dir": "尼古拉斯·佩雷达",
+   "genre": [],
+   "cast": [
+    "特雷西塔•桑切斯",
+    "罗莎•埃斯特拉•华雷斯•巴尔加斯",
+    "路易莎•帕尔多"
+   ],
+   "writers": [],
+   "honors": [
+    "入围｜第76届柏林国际电影节 · 论坛单元"
+   ],
+   "highlights": [],
+   "syn": "作曲家罗莎到朋友家接受电视采访，希望呈现最好的自己。笨拙的问题、设备故障、狗叫与意外来客不断打断拍摄，一次专业访谈逐渐变成艺术圈虚荣与性别成见的荒诞现场。",
+   "bio": "",
+   "st": "",
+   "section": "此刻：国际新片展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "poster": "posters/golden-rooster-gr26-051.jpg",
+   "screeningEnds": {
+    "11/12-19:30-xm-gr26-1-hall-3": "20:40",
+    "11/23-21:20-xm-gr26-1-hall-3": "22:30"
+   },
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-051.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-052",
+   "cn": "吃饱的菲尔",
+   "o": "Full Phil",
+   "en": "Full Phil",
+   "y": 2026,
+   "c": "法国 / 比利时 / 卢森堡",
+   "min": 78,
+   "reg": "eu",
+   "dir": "昆汀·杜皮约",
+   "genre": [],
+   "cast": [
+    "伍迪.哈里森 克里斯汀-斯图尔特 夏洛特•勒•邦"
+   ],
+   "writers": [],
+   "honors": [
+    "入围｜第79届戛纳国际电影节 · 午夜展映单元"
+   ],
+   "highlights": [],
+   "syn": "富有的美国商人带女儿来到巴黎豪华酒店，希望修补父女关系。过量的美食、一部老恐怖片，以及不断介入的酒店员工，却令这场精心安排的旅行越发失控。",
+   "bio": "",
+   "st": "",
+   "section": "此刻：国际新片展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "poster": "posters/golden-rooster-gr26-052.jpg",
+   "screeningEnds": {
+    "11/13-19:30-xm-gr26-1-hall-6": "20:46",
+    "11/18-21:25-xm-gr26-1-hall-6": "22:41"
+   },
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-052.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-053",
+   "cn": "匈牙利狂想曲",
+   "o": "Queen Budapest",
+   "en": "Queen Budapest",
+   "y": 1986,
+   "c": "匈牙利",
+   "min": 97,
+   "reg": "eu",
+   "dir": "亚诺什·容博尧伊",
+   "genre": [],
+   "cast": [
+    "弗雷油.默丘里",
+    "布赖恩.梅",
+    "约翰•油肯",
+    "罗杰.泰勒"
+   ],
+   "writers": [],
+   "honors": [],
+   "highlights": [],
+   "syn": "记录皇后乐队1986年在布达佩斯的演出与旅途。舞台上的经典歌曲与幕后片段交织，留下乐队、城市和现场观众共同度过的音乐时刻。",
+   "bio": "",
+   "st": "",
+   "section": "回声：国际经典展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "poster": "posters/golden-rooster-gr26-053.jpg",
+   "screeningEnds": {
+    "11/13-20:00-xm-gr26-4-imax": "21:37",
+    "11/22-20:00-xm-gr26-4-imax": "21:37",
+    "11/28-17:10-xm-gr26-4-imax": "18:47"
+   },
+   "version": "IMAX 4K",
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-053.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-054",
+   "cn": "剪刀手爱德华",
+   "o": "Edward Scissorhands",
+   "en": "Edward Scissorhands",
+   "y": 1990,
+   "c": "美国",
+   "min": 104,
+   "reg": "eu",
+   "dir": "蒂姆·伯顿",
+   "genre": [],
+   "cast": [
+    "约翰尼•德普",
+    "薇诺娜•瑞德",
+    "黛安•韦斯特"
+   ],
+   "writers": [],
+   "honors": [],
+   "highlights": [],
+   "syn": "一位发明家未能完成的人造青年，带着剪刀般的双手独居古堡。被带入郊区社区后，他以独特技艺赢得欢迎，也因爱情、误解与人们的恐惧而陷入困境。",
+   "bio": "",
+   "st": "",
+   "section": "回声：国际经典展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "version": "4K修复",
+   "poster": "posters/golden-rooster-gr26-054.jpg",
+   "screeningEnds": {
+    "11/13-21:05-xm-gr26-1-hall-5": "22:50",
+    "11/20-20:00-xm-gr26-1-hall-5": "21:45",
+    "11/28-18:30-xm-gr26-1-hall-5": "20:15"
+   },
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-054.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-055",
+   "cn": "老无所依",
+   "o": "No Country for Old Men",
+   "en": "No Country for Old Men",
+   "y": 2007,
+   "c": "美国",
+   "min": 122,
+   "reg": "eu",
+   "dir": "乔尔·科恩、伊桑·科恩",
+   "genre": [],
+   "cast": [
+    "汤米•李•琼斯",
+    "哈维尔•巴登",
+    "乔什•布洛林"
+   ],
+   "writers": [],
+   "honors": [
+    "获奖｜第80届奥斯卡金像奖 · 最佳影片"
+   ],
+   "highlights": [],
+   "syn": "猎人在荒野中发现毒品交易后的惨案与一箱现金，取走钱财后遭到冷酷杀手追踪。一名老警长也卷入其中，在暴力不断扩散的土地上，面对自己愈发难懂的世界。",
+   "bio": "",
+   "st": "",
+   "section": "回声：国际经典展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "version": "4K修复",
+   "poster": "posters/golden-rooster-gr26-055.jpg",
+   "screeningEnds": {
+    "11/14-11:00-xm-gr26-1-hall-3": "13:02",
+    "11/29-14:20-xm-gr26-1-hall-6": "16:22"
+   },
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-055.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-056",
+   "cn": "回归",
+   "o": "The Return",
+   "en": "The Return",
+   "y": 2003,
+   "c": "俄罗斯",
+   "min": 110,
+   "reg": "eu",
+   "dir": "安德烈·兹维亚金采夫",
+   "genre": [],
+   "cast": [
+    "弗拉基米尔•加林",
+    "伊万•杜布朗拉沃夫",
+    "康斯坦丁•拉夫罗年科"
+   ],
+   "writers": [],
+   "honors": [
+    "获奖｜第60届威尼斯国际电影节 · 最佳影片"
+   ],
+   "highlights": [],
+   "syn": "消失多年的父亲突然回家，带两个儿子展开一段驶向偏远岛屿的旅程。父亲的威严与沉默，使兄弟在渴望亲近与恐惧反抗之间摇摆，旅途最终改变了三个人的命运。",
+   "bio": "",
+   "st": "",
+   "section": "回声：国际经典展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "version": "4K修复",
+   "poster": "posters/golden-rooster-gr26-056.jpg",
+   "screeningEnds": {
+    "11/14-13:20-xm-gr26-1-hall-6": "15:10",
+    "11/25-20:00-xm-gr26-1-hall-6": "21:50"
+   },
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-056.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-057",
+   "cn": "冰释雪融",
+   "o": "The Meltdown",
+   "en": "The Meltdown",
+   "y": 2026,
+   "c": "智利 / 美国 / 西班牙 / 墨西哥",
+   "min": 108,
+   "reg": "eu",
+   "dir": "玛努埃拉·马特利",
+   "genre": [],
+   "cast": [
+    "玛雅•奥罗克",
+    "莎斯基亚•罗森道尔",
+    "玛雅•雷•多马加拉"
+   ],
+   "writers": [],
+   "honors": [
+    "入围｜第79届戛纳国际电影节 · 一种关注单元"
+   ],
+   "highlights": [],
+   "syn": "1992年，九岁女孩住在祖父母经营的安第斯山滑雪旅馆，结识一位年轻德国运动员。对方突然失踪后，女孩开始察觉成人世界的沉默、秘密与彼此袒护。",
+   "bio": "",
+   "st": "",
+   "section": "此刻：国际新片展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "poster": "posters/golden-rooster-gr26-057.jpg",
+   "screeningEnds": {
+    "11/14-13:50-xm-gr26-1-hall-3": "15:38",
+    "11/21-17:00-xm-gr26-1-hall-3": "18:48"
+   },
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-057.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-058",
+   "cn": "南国再见，南国",
+   "o": "Goodbye South, Goodbye",
+   "en": "Goodbye South, Goodbye",
+   "y": 1996,
+   "c": "中国台湾",
+   "min": 112,
+   "reg": "cn",
+   "dir": "侯孝贤",
+   "genre": [],
+   "cast": [],
+   "writers": [],
+   "honors": [],
+   "highlights": [],
+   "syn": "高哥带着年轻同伴在台北与南部之间奔走，想靠生意和机会改变生活。计划屡屡受挫，江湖关系、家庭矛盾与私人感情交错，他们在不断移动中寻找无处安放的未来。",
+   "bio": "",
+   "st": "",
+   "section": "功夫·功夫：华语经典展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "screeningEnds": {
+    "11/14-15:30-xm-gr26-1-hall-6": "17:22",
+    "11/22-18:00-xm-gr26-1-hall-6": "19:52"
+   },
+   "prog": "golden-rooster-2026",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-059",
+   "cn": "别人的东西",
+   "o": "What Belongs to Others",
+   "en": "What Belongs to Others",
+   "y": 2026,
+   "c": "波兰",
+   "min": 104,
+   "reg": "eu",
+   "dir": "格热戈日·登博夫斯基",
+   "genre": [],
+   "cast": [
+    "莫妮卡•萨比娜•克维亚特科夫斯卡",
+    "罗伯特•马尼亚",
+    "埃娃•帕扬克"
+   ],
+   "writers": [],
+   "honors": [
+    "入围｜第83届威尼斯国际电影节 · 地平线单元",
+    "获奖｜第42届华沙国际电影节 · 评委会大奖"
+   ],
+   "highlights": [],
+   "syn": "靠入室盗窃谋生的女子，在一次行动中发现屋主已经死亡。她冒充死者的伴侣，渐渐拼凑对方的生活和关系，也由此开始想象自己能否拥有另一种人生。",
+   "bio": "",
+   "st": "",
+   "section": "此刻：国际新片展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "poster": "posters/golden-rooster-gr26-059.jpg",
+   "screeningEnds": {
+    "11/14-16:05-xm-gr26-1-hall-3": "17:50",
+    "11/29-16:50-xm-gr26-1-hall-6": "18:35"
+   },
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-059.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-060",
+   "cn": "白夜黑金",
+   "o": "Black Money for White Nights",
+   "en": "Black Money for White Nights",
+   "y": 2026,
+   "c": "保加利亚 / 希腊",
+   "min": 95,
+   "reg": "eu",
+   "dir": "克里斯蒂娜·格罗泽娃、佩塔尔·瓦尔恰诺夫",
+   "genre": [],
+   "cast": [],
+   "writers": [],
+   "honors": [],
+   "highlights": [],
+   "syn": "一对保加利亚夫妇靠多年收受的小额贿赂，攒钱去圣彼得堡看白夜。战争与旅行骗局让梦想破灭，在追讨积蓄的过程中，他们不得不面对婚姻中长久掩藏的谎言。",
+   "bio": "",
+   "st": "",
+   "section": "此刻：国际新片展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "poster": "posters/golden-rooster-gr26-060.jpg",
+   "screeningEnds": {
+    "11/14-18:00-xm-gr26-1-hall-2": "19:35",
+    "11/17-20:00-xm-gr26-1-hall-3": "21:35"
+   },
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-060.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-061",
+   "cn": "油麻菜籽",
+   "o": "Ah Fei",
+   "en": "Ah Fei",
+   "y": 1983,
+   "c": "中国台湾",
+   "min": 110,
+   "reg": "cn",
+   "dir": "万仁",
+   "genre": [],
+   "cast": [],
+   "writers": [],
+   "honors": [],
+   "highlights": [],
+   "syn": "一名女子回望自己和母亲的家庭生活，从父权与婚姻中的委屈，到教育和社会变化带来的可能。两代女性的经历相互映照，呈现爱、牺牲与自我选择的艰难。",
+   "bio": "",
+   "st": "",
+   "section": "功夫·功夫：华语经典展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "screeningEnds": {
+    "11/14-18:10-xm-gr26-1-hall-6": "20:00"
+   },
+   "prog": "golden-rooster-2026",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-062",
+   "cn": "醉拳",
+   "o": "Drunken Master",
+   "en": "Drunken Master",
+   "y": 1978,
+   "c": "中国香港",
+   "min": 111,
+   "reg": "cn",
+   "dir": "袁和平",
+   "genre": [],
+   "cast": [],
+   "writers": [],
+   "honors": [],
+   "highlights": [],
+   "syn": "少年黄飞鸿因顽皮惹祸，被送去跟随苏乞儿学武。看似古怪的训练让他逐渐领悟醉拳精髓，并在危机中学会承担责任。",
+   "bio": "",
+   "st": "",
+   "section": "功夫·功夫：华语经典展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "screeningEnds": {
+    "11/14-18:20-xm-gr26-1-hall-3": "20:11",
+    "11/21-20:00-xm-gr26-3-hall-3": "21:51"
+   },
+   "prog": "golden-rooster-2026",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-063",
+   "cn": "银翼杀手（最终剪辑版）",
+   "o": "Blade Runner: The Final Cut",
+   "en": "Blade Runner: The Final Cut",
+   "y": 1982,
+   "c": "美国 / 中国香港 / 英国",
+   "min": 117,
+   "reg": "eu",
+   "dir": "雷德利·斯科特",
+   "genre": [],
+   "cast": [
+    "哈里森•福特",
+    "鲁格 豪尔",
+    "肖恩•杨"
+   ],
+   "writers": [],
+   "honors": [],
+   "highlights": [],
+   "syn": "未来洛杉矶，警探戴克奉命追捕逃回地球的复制人。随着调查深入，人与人造生命之间的界线不断动摇，他也开始怀疑记忆、情感与自我身份的真实性。",
+   "bio": "",
+   "st": "",
+   "section": "回声：国际经典展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "version": "4K修复",
+   "poster": "posters/golden-rooster-gr26-063.jpg",
+   "screeningEnds": {
+    "11/14-18:50-xm-gr26-1-hall-5": "20:47",
+    "11/24-20:00-xm-gr26-1-hall-5": "21:57",
+    "11/29-20:00-xm-gr26-1-hall-5": "21:57"
+   },
+   "screeningNotes": {
+    "11/29-20:00-xm-gr26-1-hall-5": "告别场"
+   },
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-063.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-064",
+   "cn": "我们不是陌生人",
+   "o": "We Are All Strangers",
+   "en": "We Are All Strangers",
+   "y": 2026,
+   "c": "新加坡",
+   "min": 157,
+   "reg": "cn",
+   "dir": "陈哲艺",
+   "genre": [],
+   "cast": [
+    "杨雁雁",
+    "许家乐",
+    "林咏谊"
+   ],
+   "writers": [],
+   "honors": [],
+   "highlights": [],
+   "syn": "当代新加坡，年轻的俊阳与父亲各自面对爱情和经济压力。女友人生中的意外转折，以及父亲生活里出现的新伴侣，迫使两代人重新学习责任，并尝试成为一家人。",
+   "bio": "",
+   "st": "",
+   "section": "拾光：华语新片展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "poster": "posters/golden-rooster-gr26-064.jpg",
+   "screeningEnds": {
+    "11/14-20:00-xm-gr26-1-hall-7": "22:37"
+   },
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-064.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-065",
+   "cn": "月球时代白日梦",
+   "o": "Moonage Daydream",
+   "en": "Moonage Daydream",
+   "y": 2022,
+   "c": "美国",
+   "min": 140,
+   "reg": "eu",
+   "dir": "布莱特·摩根",
+   "genre": [],
+   "cast": [
+    "大卫•鲍伊"
+   ],
+   "writers": [],
+   "honors": [],
+   "highlights": [],
+   "syn": "以大卫·鲍伊的音乐、演出、访谈和私人影像为线索，进入他的艺术世界。影片通过声音与影像的自由拼接，探索身份变化、创作冲动与不断自我更新的生命轨迹。",
+   "bio": "",
+   "st": "",
+   "section": "回声：国际经典展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "version": "IMAX 4K",
+   "poster": "posters/golden-rooster-gr26-065.jpg",
+   "screeningEnds": {
+    "11/14-20:00-xm-gr26-4-imax": "22:15",
+    "11/20-20:00-xm-gr26-4-imax": "22:15",
+    "11/28-14:30-xm-gr26-4-imax": "16:45"
+   },
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-065.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-066",
+   "cn": "将军号",
+   "o": "The General",
+   "en": "The General",
+   "y": 1926,
+   "c": "美国",
+   "min": 79,
+   "reg": "eu",
+   "dir": "巴斯特·基顿、克莱德·布鲁克曼",
+   "genre": [],
+   "cast": [
+    "巴斯特•基顿",
+    "玛丽昂•马克",
+    "格伦•卡文德"
+   ],
+   "writers": [],
+   "honors": [],
+   "highlights": [],
+   "syn": "美国南北战争期间，一名火车司机心爱的机车与恋人一同被敌军带走。他孤身追赶，在铁路、桥梁与炮火之间，展开一场充满险境与奇思的营救。",
+   "bio": "",
+   "st": "",
+   "section": "回声：国际经典展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "version": "4K修复",
+   "poster": "posters/golden-rooster-gr26-066.jpg",
+   "screeningEnds": {
+    "11/14-20:25-xm-gr26-1-hall-6": "21:45",
+    "11/27-20:00-xm-gr26-1-hall-6": "21:20"
+   },
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-066.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-067",
+   "cn": "囚魂之地",
+   "o": "Ghost in the Cell",
+   "en": "Ghost in the Cell",
+   "y": 2026,
+   "c": "印度尼西亚 / 韩国",
+   "min": 106,
+   "reg": "eu",
+   "dir": "乔可·安华",
+   "genre": [],
+   "cast": [
+    "阿比马纳-阿亚萨亚",
+    "布龙特 帕拉雷",
+    "摩根•奥伊"
+   ],
+   "writers": [],
+   "honors": [
+    "入围｜第76届柏林国际电影节 · 论坛单元"
+   ],
+   "highlights": [],
+   "syn": "拥挤监狱中，囚犯不仅要应付帮派与狱警的压迫，还遭遇无法解释的神秘死亡。面对盯上负面能量的超自然力量，他们必须寻找暂时抛开敌意、共同求生的方法。",
+   "bio": "",
+   "st": "",
+   "section": "此刻：国际新片展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "screeningEnds": {
+    "11/14-20:35-xm-gr26-1-hall-3": "22:21",
+    "11/22-20:20-xm-gr26-1-hall-6": "22:06"
+   },
+   "poster": "posters/golden-rooster-gr26-067.jpg",
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-067.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-068",
+   "cn": "后台疯暴",
+   "o": "Backstage Madness",
+   "en": "Backstage Madness",
+   "y": 2025,
+   "c": "吉尔吉斯斯坦",
+   "min": 79,
+   "reg": "eu",
+   "dir": "阿曼别克·阿日马特",
+   "genre": [],
+   "cast": [],
+   "writers": [],
+   "honors": [],
+   "highlights": [],
+   "syn": "一位七十岁的老导演坚持构思自己的艺术电影，却被年轻制片人与投资者不断要求改写。随着金钱、亲情和表演欲介入，幕后创作变成一场荒诞而热闹的混乱。",
+   "bio": "",
+   "st": "",
+   "section": "此刻：国际新片展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "poster": "posters/golden-rooster-gr26-068.jpg",
+   "screeningEnds": {
+    "11/14-22:10-xm-gr26-1-hall-6": "23:29",
+    "11/22-13:45-xm-gr26-1-hall-6": "15:04"
+   },
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-068.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-069",
+   "cn": "刚果男孩",
+   "o": "Congo Boy",
+   "en": "Congo Boy",
+   "y": 2026,
+   "c": "中非共和国 / 法国 / 刚果民主共和国 / 意大利",
+   "min": 94,
+   "reg": "eu",
+   "dir": "拉菲基·法里亚拉",
+   "genre": [],
+   "cast": [
+    "布拉德利-菲奥莫纳",
+    "克里斯蒂•乔曼达•卢巴",
+    "佩特鲁什•姆博姆巴"
+   ],
+   "writers": [],
+   "honors": [
+    "入围｜第79届戛纳国际电影节 · 一种关注单元",
+    "获奖｜第10届平遥国际电影展 · 罗伯托·罗西里尼荣誉最佳影片"
+   ],
+   "highlights": [],
+   "syn": "在中非共和国生活的刚果难民少年罗伯特梦想成为音乐人。父母入狱后，他独自照顾四个弟妹，在零工、考试与动荡街头之间奔走，却不愿放弃登台演唱的希望。",
+   "bio": "",
+   "st": "",
+   "section": "此刻：国际新片展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "poster": "posters/golden-rooster-gr26-069.jpg",
+   "screeningEnds": {
+    "11/15-11:00-xm-gr26-1-hall-3": "12:34",
+    "11/21-15:00-xm-gr26-1-hall-3": "16:34"
+   },
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-069.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-070",
+   "cn": "无辜",
+   "o": "The Innocent",
+   "en": "The Innocent",
+   "y": 1976,
+   "c": "意大利 / 法国",
+   "min": 130,
+   "reg": "eu",
+   "dir": "卢基诺·维斯康蒂",
+   "genre": [],
+   "cast": [
+    "吉安卡罗•吉安尼尼",
+    "劳拉•安托内利",
+    "里娜•莫雷莉"
+   ],
+   "writers": [],
+   "honors": [
+    "获奖｜第24届圣塞巴斯蒂安国际电影节 · 最佳影片"
+   ],
+   "highlights": [],
+   "syn": "一位贵族丈夫沉溺婚外情，却无法接受妻子与他人的关系。嫉妒、占有欲与阶级体面相互纠缠，将婚姻和一个无辜生命推向悲剧。",
+   "bio": "",
+   "st": "",
+   "section": "回声：国际经典展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "poster": "posters/golden-rooster-gr26-070.jpg",
+   "screeningEnds": {
+    "11/15-12:00-xm-gr26-1-hall-6": "14:09",
+    "11/19-19:50-xm-gr26-1-hall-3": "21:59",
+    "11/26-19:40-xm-gr26-1-hall-6": "21:49"
+   },
+   "version": "4K修复",
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-070.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-071",
+   "cn": "无处容身",
+   "o": "You Don’t Belong Here",
+   "en": "You Don’t Belong Here",
+   "y": 2026,
+   "c": "罗马尼亚",
+   "min": 154,
+   "reg": "eu",
+   "dir": "弗洛林·谢尔班",
+   "genre": [],
+   "cast": [
+    "阿德里安•万契克",
+    "特奥多尔•布特内斯库",
+    "克里斯蒂娜•里希特"
+   ],
+   "writers": [],
+   "honors": [
+    "获奖｜第79届洛迦诺国际电影节 · 主竞赛单元金豹奖"
+   ],
+   "highlights": [],
+   "syn": "小城医院的负责人在妻子去世后独自抚养儿子，自认熟悉孩子的一切。警方却怀疑儿子与谋杀案有关，迫使这位父亲面对家庭中的盲点，以及年轻人隐秘的暴力世界。",
+   "bio": "",
+   "st": "",
+   "section": "此刻：国际新片展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "screeningEnds": {
+    "11/15-13:10-xm-gr26-1-hall-3": "15:44",
+    "11/22-19:20-xm-gr26-1-hall-3": "21:54"
+   },
+   "poster": "posters/golden-rooster-gr26-071.jpg",
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-071.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-072",
+   "cn": "乱世佳人",
+   "o": "Gone with the Wind",
+   "en": "Gone with the Wind",
+   "y": 1939,
+   "c": "美国",
+   "min": 238,
+   "reg": "eu",
+   "dir": "维克多·弗莱明",
+   "genre": [],
+   "cast": [
+    "克拉克.盖博 费雯•丽",
+    "奥利维娅.德哈维兰"
+   ],
+   "writers": [],
+   "honors": [
+    "获奖｜第12届奥斯卡金像奖 · 最佳影片"
+   ],
+   "highlights": [],
+   "syn": "美国南北战争前后，斯嘉丽在战争、贫困和失落的爱情中挣扎求生。她与白瑞德的关系不断经历欲望、误解与错失，也见证旧南方社会的崩塌。",
+   "bio": "",
+   "st": "",
+   "section": "回声：国际经典展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "poster": "posters/golden-rooster-gr26-072.jpg",
+   "screeningEnds": {
+    "11/15-14:15-xm-gr26-1-hall-5": "18:08",
+    "11/22-15:20-xm-gr26-1-hall-5": "19:13"
+   },
+   "version": "4K修复",
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-072.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-073",
+   "cn": "铁扇公主",
+   "o": "Princess Iron Fan",
+   "en": "Princess Iron Fan",
+   "y": 1941,
+   "c": "中国",
+   "min": 65,
+   "reg": "eu",
+   "dir": "万籁鸣、万古蟾",
+   "genre": [
+    "动画"
+   ],
+   "cast": [
+    "白虹",
+    "严月玲",
+    "姜明"
+   ],
+   "writers": [],
+   "honors": [],
+   "highlights": [],
+   "syn": "唐僧师徒被火焰山阻住去路，孙悟空向铁扇公主借芭蕉扇，却因旧怨遭到拒绝。悟空变化周旋，最终在伙伴协助下与牛魔王斗法，为西行打开道路。",
+   "bio": "",
+   "st": "",
+   "section": "流光：动画展映单元",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "version": "4K修复",
+   "poster": "posters/golden-rooster-gr26-073.jpg",
+   "screeningEnds": {
+    "11/15-14:30-xm-gr26-6-hall-1": "15:48",
+    "11/18-20:00-xm-gr26-12-hall-3": "21:18"
+   },
+   "screeningNotes": {
+    "11/15-14:30-xm-gr26-6-hall-1": "恋与联动场"
+   },
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-073.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-074",
+   "cn": "温柔以待",
+   "o": "Tender Loving Care",
+   "en": "Tender Loving Care",
+   "y": 2026,
+   "c": "英国",
+   "min": 107,
+   "reg": "eu",
+   "dir": "迈克·李",
+   "genre": [],
+   "cast": [
+    "玛丽昂 贝利",
+    "保罗 杰森",
+    "凯特 奥弗林"
+   ],
+   "writers": [],
+   "honors": [
+    "获奖｜第74届圣塞巴斯蒂安国际电影节 · 主竞赛单元最佳影片"
+   ],
+   "highlights": [],
+   "syn": "分手后的社工艾米搬回好友罗茜家中，两人一同承受繁重工作带来的情绪压力。艾米年迈父母的健康与生活也出现变化，友情和日常关怀成为面对失落与衰老的重要支撑。",
+   "bio": "",
+   "st": "",
+   "section": "此刻：国际新片展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "poster": "posters/golden-rooster-gr26-074.jpg",
+   "screeningEnds": {
+    "11/15-18:00-xm-gr26-1-hall-6": "19:48",
+    "11/28-20:45-xm-gr26-1-hall-6": "22:33"
+   },
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-074.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-075",
+   "cn": "围城纪事",
+   "o": "Chronicles from the Siege",
+   "en": "Chronicles from the Siege",
+   "y": 2026,
+   "c": "阿尔及利亚 / 法国 / 卡塔尔",
+   "min": 98,
+   "reg": "eu",
+   "dir": "阿卜达拉·阿尔-哈提卜",
+   "genre": [],
+   "cast": [
+    "萨贾•基拉尼",
+    "艾哈迈德•孔塔尔",
+    "萨米尔•比沙特"
+   ],
+   "writers": [],
+   "honors": [
+    "获奖｜第76届柏林国际电影节 · 视角单元最佳影片"
+   ],
+   "highlights": [],
+   "syn": "城市遭到围困后，普通居民在饥饿、炮火与孤立中设法活下去。朋友、恋人和家庭的故事彼此交织，原本微小的快乐与日常选择，都变成关乎生存的难题。",
+   "bio": "",
+   "st": "",
+   "section": "此刻：国际新片展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "screeningEnds": {
+    "11/15-18:20-xm-gr26-1-hall-3": "19:55",
+    "11/25-20:30-xm-gr26-1-hall-3": "22:05"
+   },
+   "poster": "posters/golden-rooster-gr26-075.jpg",
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-075.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-076",
+   "cn": "杰出的无名氏",
+   "o": "All About Corinne",
+   "en": "All About Corinne",
+   "y": 2026,
+   "c": "法国",
+   "min": 115,
+   "reg": "eu",
+   "dir": "马克·菲图西",
+   "genre": [],
+   "cast": [
+    "伊莎贝尔·于佩尔",
+    "桑德琳娜·基贝兰",
+    "黛安·克鲁格"
+   ],
+   "writers": [],
+   "honors": [],
+   "highlights": [],
+   "syn": "多年担任临时演员的科琳始终相信自己终有一天能成为主角。她结识著名女星并努力靠近对方，希望借此迎来机会，却也逐渐看清电影圈光鲜表象背后的壁垒。",
+   "bio": "",
+   "st": "",
+   "section": "此刻：国际新片展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "poster": "posters/golden-rooster-gr26-076.jpg",
+   "screeningEnds": {
+    "11/15-19:30-xm-gr26-1-hall-7": "21:26",
+    "11/22-15:35-xm-gr26-1-hall-6": "17:31"
+   },
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-076.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-077",
+   "cn": "盗梦空间",
+   "o": "Inception",
+   "en": "Inception",
+   "y": 2010,
+   "c": "美国 / 英国",
+   "min": 148,
+   "reg": "eu",
+   "dir": "克里斯托弗·诺兰",
+   "genre": [],
+   "cast": [
+    "莱昂纳多•迪卡普里奥",
+    "约瑟夫•高登-莱维特",
+    "汤姆•哈迪"
+   ],
+   "writers": [],
+   "honors": [
+    "获奖｜第83届奥斯卡金像奖 · 最佳摄影"
+   ],
+   "highlights": [],
+   "syn": "擅长进入他人梦境窃取机密的柯布，接到一项更危险的任务：把一个念头植入目标潜意识。他组织团队潜入多层梦境，却被自己的记忆与愧疚不断干扰。",
+   "bio": "",
+   "st": "",
+   "section": "回声：国际经典展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "version": "IMAX 4K",
+   "poster": "posters/golden-rooster-gr26-077.jpg",
+   "screeningEnds": {
+    "11/15-19:40-xm-gr26-4-imax": "22:09",
+    "11/21-19:40-xm-gr26-4-imax": "22:09",
+    "11/28-19:30-xm-gr26-4-imax": "21:59"
+   },
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-077.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-078",
+   "cn": "霉变人生",
+   "o": "Ground Floor",
+   "en": "Ground Floor",
+   "y": 2026,
+   "c": "匈牙利 / 意大利",
+   "min": 109,
+   "reg": "eu",
+   "dir": "嘉博尔-赖斯",
+   "genre": [],
+   "cast": [
+    "亚当•通帕",
+    "罗德里戈.克雷斯波",
+    "贝蒂娜•约饶"
+   ],
+   "writers": [],
+   "honors": [
+    "入围｜第83届威尼斯国际电影节 · 聚焦单元"
+   ],
+   "highlights": [],
+   "syn": "即将与怀孕妻子度假的克里斯托夫，发现家中墙面长出黑霉。他向邻居追查漏水源头，却卷入整栋公寓的隐瞒、推诿和利益纠葛，一场维修逐渐演变为荒诞的社会风波。",
+   "bio": "",
+   "st": "",
+   "section": "此刻：国际新片展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "poster": "posters/golden-rooster-gr26-078.jpg",
+   "screeningEnds": {
+    "11/15-20:15-xm-gr26-1-hall-6": "22:04",
+    "11/21-14:00-xm-gr26-1-hall-6": "15:49"
+   },
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-078.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-079",
+   "cn": "客乡",
+   "o": "Visitation",
+   "en": "Visitation",
+   "y": 2026,
+   "c": "德国",
+   "min": 121,
+   "reg": "eu",
+   "dir": "沃尔克·施隆多夫",
+   "genre": [],
+   "cast": [
+    "玛蒂娜•格德克",
+    "拉斯•艾丁格",
+    "苏珊娜•沃尔夫"
+   ],
+   "writers": [],
+   "honors": [
+    "入围｜第79届戛纳国际电影节 · 首映单元"
+   ],
+   "highlights": [],
+   "syn": "柏林附近的一幢湖畔住宅，先后迎来不同的家庭与住客。从纳粹时期、战争与流亡，到东西德分裂和统一，房屋静静保留生活痕迹，人们却不断失去、寻找和重新定义家。",
+   "bio": "",
+   "st": "",
+   "section": "此刻：国际新片展映",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "poster": "posters/golden-rooster-gr26-079.jpg",
+   "screeningEnds": {
+    "11/15-20:30-xm-gr26-1-hall-3": "22:31",
+    "11/22-12:30-xm-gr26-1-hall-3": "14:31"
+   },
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-079.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-080",
+   "cn": "浓情卡门",
+   "o": "Viva Carmen!",
+   "en": "Viva Carmen!",
+   "y": 2026,
+   "c": "法国",
+   "min": 90,
+   "reg": "eu",
+   "dir": "塞巴斯蒂安·劳德巴克",
+   "genre": [
+    "动画"
+   ],
+   "cast": [
+    "卡梅莉亚•乔丹娜",
+    "米洛•马查多-格拉纳",
+    "卡尔•玛拉帕"
+   ],
+   "writers": [],
+   "honors": [
+    "入围｜第79届戛纳国际电影节 · 导演双周单元观众奖入围",
+    "入围｜第50届安纳西国际动画电影节 · 水晶奖最佳长片入围"
+   ],
+   "highlights": [],
+   "syn": "塞维利亚街头，少年萨尔瓦被自由热烈的卡门吸引。当预言指向她的悲剧命运，他与贝伦带领的一群街头孩子决定冒险相助，试图把她从危险中救出。",
+   "bio": "",
+   "st": "",
+   "section": "流光：动画展映单元",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "poster": "posters/golden-rooster-gr26-080.jpg",
+   "screeningEnds": {
+    "11/20-21:30-xm-gr26-1-hall-6": "23:01",
+    "11/26-20:00-xm-gr26-1-hall-3": "21:31"
+   },
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-080.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-081",
+   "cn": "孔雀公主",
+   "o": "Princess Peacock",
+   "en": "Princess Peacock",
+   "y": 1963,
+   "c": "中国",
+   "min": 73,
+   "reg": "eu",
+   "dir": "靳夕",
+   "genre": [
+    "动画"
+   ],
+   "cast": [
+    "刘广宁",
+    "胡庆汉"
+   ],
+   "writers": [],
+   "honors": [],
+   "highlights": [],
+   "syn": "王子与孔雀公主相遇相爱，却受到奸臣挑拨与迫害。公主被迫离去后，王子历经艰险追寻她，在忠贞与勇气的考验中争取重聚。",
+   "bio": "",
+   "st": "",
+   "section": "流光：动画展映单元",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "poster": "posters/golden-rooster-gr26-081.jpg",
+   "screeningEnds": {
+    "11/21-14:30-xm-gr26-6-hall-1": "15:44"
+   },
+   "screeningNotes": {
+    "11/21-14:30-xm-gr26-6-hall-1": "恋与联动场"
+   },
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-081.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-082",
+   "cn": "哪吒闹海",
+   "o": "Prince Nezha’s Triumph Against Dragon King",
+   "en": "Prince Nezha’s Triumph Against Dragon King",
+   "y": 1979,
+   "c": "中国",
+   "min": 61,
+   "reg": "eu",
+   "dir": "王树忱、严定宪、阿达",
+   "genre": [
+    "动画"
+   ],
+   "cast": [
+    "梁正辉",
+    "富润生",
+    "邱岳峰"
+   ],
+   "writers": [],
+   "honors": [
+    "获奖｜第3届大众电影百花奖 · 最佳美术片奖",
+    "入选｜第33届戛纳国际电影节 · 特别展映"
+   ],
+   "highlights": [],
+   "syn": "陈塘关少年哪吒不畏龙王与恶势力，为保护百姓挺身而出。冲突危及家人与全城，哪吒以生命担当，随后借莲花重生，再次迎战龙王。",
+   "bio": "",
+   "st": "",
+   "section": "流光：动画展映单元",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "screeningEnds": {
+    "11/22-14:30-xm-gr26-6-hall-1": "15:32"
+   },
+   "screeningNotes": {
+    "11/22-14:30-xm-gr26-6-hall-1": "恋与联动场"
+   },
+   "poster": "posters/golden-rooster-gr26-082.jpg",
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-082.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "gr26-083",
+   "cn": "中国动画100年",
+   "en": "Chinese Animation: A Century",
+   "o": "Chinese Animation: A Century",
+   "y": 2024,
+   "c": "中国内地",
+   "min": 87,
+   "reg": "cn",
+   "dir": "孙立军、冯亚兵",
+   "cast": [
+    "特伟",
+    "严定宪",
+    "林文肖"
+   ],
+   "genre": [
+    "纪录片"
+   ],
+   "writers": [],
+   "honors": [],
+   "section": "流光：动画展映单元",
+   "syn": "影片沿着中国动画百年历程，回访经典作品与幕后创作者。珍贵影像和动画人的讲述相互交织，回望不同时代的创作探索，以及中国动画民族风格的形成与传承。",
+   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketPlatform": "淘票票",
+   "poster": "posters/golden-rooster-gr26-083.jpg",
+   "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-083.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
   }
  ],
  "shows": [
@@ -1916,6 +4868,1217 @@ module.exports = {
    "id": "no-mobile",
    "v": "sparrow-tribe",
    "h": "screening-room"
+  },
+  {
+   "d": "11/6",
+   "t": "20:00",
+   "id": "gr26-001",
+   "v": "xm-gr26-1",
+   "h": "hall-6"
+  },
+  {
+   "d": "11/6",
+   "t": "14:00",
+   "id": "gr26-002",
+   "v": "xm-gr26-1",
+   "h": "hall-6"
+  },
+  {
+   "d": "11/6",
+   "t": "18:20",
+   "id": "gr26-003",
+   "v": "xm-gr26-1",
+   "h": "hall-4"
+  },
+  {
+   "d": "11/6",
+   "t": "19:45",
+   "id": "linka-linka",
+   "v": "xm-gr26-1",
+   "h": "hall-2"
+  },
+  {
+   "d": "11/7",
+   "t": "11:00",
+   "id": "gr26-005",
+   "v": "xm-gr26-1",
+   "h": "hall-3"
+  },
+  {
+   "d": "11/7",
+   "t": "11:10",
+   "id": "gr26-006",
+   "v": "xm-gr26-1",
+   "h": "hall-6"
+  },
+  {
+   "d": "11/7",
+   "t": "13:10",
+   "id": "gr26-007",
+   "v": "xm-gr26-1",
+   "h": "hall-6"
+  },
+  {
+   "d": "11/7",
+   "t": "13:15",
+   "id": "gr26-008",
+   "v": "xm-gr26-1",
+   "h": "hall-3"
+  },
+  {
+   "d": "11/7",
+   "t": "15:20",
+   "id": "gr26-009",
+   "v": "xm-gr26-1",
+   "h": "hall-3"
+  },
+  {
+   "d": "11/7",
+   "t": "16:30",
+   "id": "gr26-010",
+   "v": "xm-gr26-1",
+   "h": "hall-4"
+  },
+  {
+   "d": "11/7",
+   "t": "17:45",
+   "id": "gr26-011",
+   "v": "xm-gr26-1",
+   "h": "hall-6"
+  },
+  {
+   "d": "11/7",
+   "t": "19:30",
+   "id": "gr26-012",
+   "v": "xm-gr26-1",
+   "h": "hall-4"
+  },
+  {
+   "d": "11/7",
+   "t": "13:00",
+   "id": "gr26-013",
+   "v": "xm-gr26-1",
+   "h": "hall-2"
+  },
+  {
+   "d": "11/7",
+   "t": "14:00",
+   "id": "gr26-014",
+   "v": "xm-gr26-1",
+   "h": "hall-4"
+  },
+  {
+   "d": "11/7",
+   "t": "15:15",
+   "id": "gr26-015",
+   "v": "xm-gr26-1",
+   "h": "hall-6"
+  },
+  {
+   "d": "11/7",
+   "t": "16:00",
+   "id": "gr26-016",
+   "v": "xm-gr26-1",
+   "h": "hall-2"
+  },
+  {
+   "d": "11/7",
+   "t": "16:40",
+   "id": "gr26-017",
+   "v": "xm-gr26-1",
+   "h": "hall-7"
+  },
+  {
+   "d": "11/7",
+   "t": "17:10",
+   "id": "gr26-018",
+   "v": "xm-gr26-1",
+   "h": "hall-3"
+  },
+  {
+   "d": "11/7",
+   "t": "19:00",
+   "id": "gr26-019",
+   "v": "xm-gr26-1",
+   "h": "hall-2"
+  },
+  {
+   "d": "11/7",
+   "t": "19:40",
+   "id": "gr26-020",
+   "v": "xm-gr26-1",
+   "h": "hall-3"
+  },
+  {
+   "d": "11/7",
+   "t": "19:50",
+   "id": "gr26-021",
+   "v": "xm-gr26-1",
+   "h": "hall-6"
+  },
+  {
+   "d": "11/8",
+   "t": "11:00",
+   "id": "gr26-015",
+   "v": "xm-gr26-1",
+   "h": "hall-6"
+  },
+  {
+   "d": "11/8",
+   "t": "14:00",
+   "id": "gr26-022",
+   "v": "xm-gr26-1",
+   "h": "hall-6"
+  },
+  {
+   "d": "11/8",
+   "t": "16:30",
+   "id": "gr26-023",
+   "v": "xm-gr26-2",
+   "h": "hall-3"
+  },
+  {
+   "d": "11/8",
+   "t": "17:45",
+   "id": "gr26-024",
+   "v": "xm-gr26-1",
+   "h": "hall-3"
+  },
+  {
+   "d": "11/8",
+   "t": "19:30",
+   "id": "gr26-025",
+   "v": "xm-gr26-1",
+   "h": "hall-6"
+  },
+  {
+   "d": "11/8",
+   "t": "11:20",
+   "id": "gr26-026",
+   "v": "xm-gr26-1",
+   "h": "hall-3"
+  },
+  {
+   "d": "11/8",
+   "t": "13:20",
+   "id": "gr26-027",
+   "v": "xm-gr26-1",
+   "h": "hall-4"
+  },
+  {
+   "d": "11/8",
+   "t": "14:20",
+   "id": "gr26-028",
+   "v": "xm-gr26-1",
+   "h": "hall-2"
+  },
+  {
+   "d": "11/8",
+   "t": "14:30",
+   "id": "gr26-017",
+   "v": "xm-gr26-3",
+   "h": "hall-3"
+  },
+  {
+   "d": "11/8",
+   "t": "14:30",
+   "id": "gr26-029",
+   "v": "xm-gr26-1",
+   "h": "hall-3"
+  },
+  {
+   "d": "11/8",
+   "t": "15:50",
+   "id": "gr26-030",
+   "v": "xm-gr26-1",
+   "h": "hall-7"
+  },
+  {
+   "d": "11/8",
+   "t": "16:00",
+   "id": "gr26-017",
+   "v": "xm-gr26-2",
+   "h": "hall-8"
+  },
+  {
+   "d": "11/8",
+   "t": "16:15",
+   "id": "gr26-031",
+   "v": "xm-gr26-1",
+   "h": "hall-6"
+  },
+  {
+   "d": "11/8",
+   "t": "16:20",
+   "id": "gr26-032",
+   "v": "xm-gr26-1",
+   "h": "hall-4"
+  },
+  {
+   "d": "11/8",
+   "t": "17:00",
+   "id": "gr26-033",
+   "v": "xm-gr26-1",
+   "h": "hall-2"
+  },
+  {
+   "d": "11/8",
+   "t": "17:30",
+   "id": "gr26-034",
+   "v": "xm-gr26-1",
+   "h": "hall-5"
+  },
+  {
+   "d": "11/8",
+   "t": "19:20",
+   "id": "gr26-035",
+   "v": "xm-gr26-1",
+   "h": "hall-4"
+  },
+  {
+   "d": "11/8",
+   "t": "19:45",
+   "id": "gr26-036",
+   "v": "xm-gr26-1",
+   "h": "hall-3"
+  },
+  {
+   "d": "11/8",
+   "t": "20:15",
+   "id": "gr26-037",
+   "v": "xm-gr26-1",
+   "h": "hall-2"
+  },
+  {
+   "d": "11/9",
+   "t": "17:30",
+   "id": "gr26-038",
+   "v": "xm-gr26-1",
+   "h": "hall-3"
+  },
+  {
+   "d": "11/9",
+   "t": "20:00",
+   "id": "gr26-039",
+   "v": "xm-gr26-1",
+   "h": "hall-2"
+  },
+  {
+   "d": "11/9",
+   "t": "20:20",
+   "id": "gr26-040",
+   "v": "xm-gr26-1",
+   "h": "hall-3"
+  },
+  {
+   "d": "11/9",
+   "t": "14:10",
+   "id": "gr26-041",
+   "v": "xm-gr26-1",
+   "h": "hall-6"
+  },
+  {
+   "d": "11/9",
+   "t": "14:25",
+   "id": "gr26-042",
+   "v": "xm-gr26-1",
+   "h": "hall-2"
+  },
+  {
+   "d": "11/9",
+   "t": "15:00",
+   "id": "gr26-043",
+   "v": "xm-gr26-1",
+   "h": "hall-4"
+  },
+  {
+   "d": "11/9",
+   "t": "18:30",
+   "id": "gr26-023",
+   "v": "xm-gr26-1",
+   "h": "hall-7"
+  },
+  {
+   "d": "11/9",
+   "t": "19:30",
+   "id": "gr26-044",
+   "v": "xm-gr26-1",
+   "h": "hall-4"
+  },
+  {
+   "d": "11/9",
+   "t": "19:40",
+   "id": "gr26-021",
+   "v": "xm-gr26-1",
+   "h": "hall-6"
+  },
+  {
+   "d": "11/10",
+   "t": "20:30",
+   "id": "gr26-045",
+   "v": "xm-gr26-1",
+   "h": "hall-7"
+  },
+  {
+   "d": "11/10",
+   "t": "19:30",
+   "id": "gr26-046",
+   "v": "xm-gr26-1",
+   "h": "hall-3"
+  },
+  {
+   "d": "11/10",
+   "t": "19:45",
+   "id": "gr26-047",
+   "v": "xm-gr26-1",
+   "h": "hall-2"
+  },
+  {
+   "d": "11/10",
+   "t": "20:00",
+   "id": "gr26-048",
+   "v": "xm-gr26-1",
+   "h": "hall-6"
+  },
+  {
+   "d": "11/11",
+   "t": "20:00",
+   "id": "gr26-049",
+   "v": "xm-gr26-1",
+   "h": "hall-6"
+  },
+  {
+   "d": "11/11",
+   "t": "20:20",
+   "id": "gr26-050",
+   "v": "xm-gr26-1",
+   "h": "hall-3"
+  },
+  {
+   "d": "11/12",
+   "t": "19:30",
+   "id": "gr26-051",
+   "v": "xm-gr26-1",
+   "h": "hall-3"
+  },
+  {
+   "d": "11/13",
+   "t": "19:30",
+   "id": "gr26-052",
+   "v": "xm-gr26-1",
+   "h": "hall-6"
+  },
+  {
+   "d": "11/13",
+   "t": "20:00",
+   "id": "gr26-053",
+   "v": "xm-gr26-4",
+   "h": "imax"
+  },
+  {
+   "d": "11/13",
+   "t": "20:00",
+   "id": "gr26-039",
+   "v": "xm-gr26-5",
+   "h": "hall-6"
+  },
+  {
+   "d": "11/13",
+   "t": "21:05",
+   "id": "gr26-054",
+   "v": "xm-gr26-1",
+   "h": "hall-5"
+  },
+  {
+   "d": "11/14",
+   "t": "11:00",
+   "id": "gr26-055",
+   "v": "xm-gr26-1",
+   "h": "hall-3"
+  },
+  {
+   "d": "11/14",
+   "t": "13:20",
+   "id": "gr26-056",
+   "v": "xm-gr26-1",
+   "h": "hall-6"
+  },
+  {
+   "d": "11/14",
+   "t": "13:50",
+   "id": "gr26-057",
+   "v": "xm-gr26-1",
+   "h": "hall-3"
+  },
+  {
+   "d": "11/14",
+   "t": "14:30",
+   "id": "gr26-028",
+   "v": "xm-gr26-6",
+   "h": "hall-1"
+  },
+  {
+   "d": "11/14",
+   "t": "15:30",
+   "id": "gr26-058",
+   "v": "xm-gr26-1",
+   "h": "hall-6"
+  },
+  {
+   "d": "11/14",
+   "t": "16:00",
+   "id": "gr26-023",
+   "v": "xm-gr26-7",
+   "h": "hall-2"
+  },
+  {
+   "d": "11/14",
+   "t": "16:05",
+   "id": "gr26-059",
+   "v": "xm-gr26-1",
+   "h": "hall-3"
+  },
+  {
+   "d": "11/14",
+   "t": "18:00",
+   "id": "gr26-060",
+   "v": "xm-gr26-1",
+   "h": "hall-2"
+  },
+  {
+   "d": "11/14",
+   "t": "18:10",
+   "id": "gr26-061",
+   "v": "xm-gr26-1",
+   "h": "hall-6"
+  },
+  {
+   "d": "11/14",
+   "t": "18:20",
+   "id": "gr26-062",
+   "v": "xm-gr26-1",
+   "h": "hall-3"
+  },
+  {
+   "d": "11/14",
+   "t": "18:50",
+   "id": "gr26-063",
+   "v": "xm-gr26-1",
+   "h": "hall-5"
+  },
+  {
+   "d": "11/14",
+   "t": "20:00",
+   "id": "gr26-064",
+   "v": "xm-gr26-1",
+   "h": "hall-7"
+  },
+  {
+   "d": "11/14",
+   "t": "20:00",
+   "id": "gr26-065",
+   "v": "xm-gr26-4",
+   "h": "imax"
+  },
+  {
+   "d": "11/14",
+   "t": "20:25",
+   "id": "gr26-066",
+   "v": "xm-gr26-1",
+   "h": "hall-6"
+  },
+  {
+   "d": "11/14",
+   "t": "20:35",
+   "id": "gr26-067",
+   "v": "xm-gr26-1",
+   "h": "hall-3"
+  },
+  {
+   "d": "11/14",
+   "t": "22:10",
+   "id": "gr26-068",
+   "v": "xm-gr26-1",
+   "h": "hall-6"
+  },
+  {
+   "d": "11/15",
+   "t": "11:00",
+   "id": "gr26-069",
+   "v": "xm-gr26-1",
+   "h": "hall-3"
+  },
+  {
+   "d": "11/15",
+   "t": "12:00",
+   "id": "gr26-070",
+   "v": "xm-gr26-1",
+   "h": "hall-6"
+  },
+  {
+   "d": "11/15",
+   "t": "13:10",
+   "id": "gr26-071",
+   "v": "xm-gr26-1",
+   "h": "hall-3"
+  },
+  {
+   "d": "11/15",
+   "t": "14:00",
+   "id": "gr26-018",
+   "v": "xm-gr26-2",
+   "h": "hall-6"
+  },
+  {
+   "d": "11/15",
+   "t": "14:15",
+   "id": "gr26-072",
+   "v": "xm-gr26-1",
+   "h": "hall-5"
+  },
+  {
+   "d": "11/15",
+   "t": "14:30",
+   "id": "gr26-073",
+   "v": "xm-gr26-6",
+   "h": "hall-1"
+  },
+  {
+   "d": "11/15",
+   "t": "14:35",
+   "id": "gr26-038",
+   "v": "xm-gr26-1",
+   "h": "hall-6"
+  },
+  {
+   "d": "11/15",
+   "t": "16:00",
+   "id": "gr26-030",
+   "v": "xm-gr26-2",
+   "h": "hall-6"
+  },
+  {
+   "d": "11/15",
+   "t": "16:00",
+   "id": "gr26-026",
+   "v": "xm-gr26-8",
+   "h": "hall-5"
+  },
+  {
+   "d": "11/15",
+   "t": "16:15",
+   "id": "gr26-007",
+   "v": "xm-gr26-1",
+   "h": "hall-3"
+  },
+  {
+   "d": "11/15",
+   "t": "18:00",
+   "id": "gr26-074",
+   "v": "xm-gr26-1",
+   "h": "hall-6"
+  },
+  {
+   "d": "11/15",
+   "t": "18:20",
+   "id": "gr26-075",
+   "v": "xm-gr26-1",
+   "h": "hall-3"
+  },
+  {
+   "d": "11/15",
+   "t": "19:30",
+   "id": "gr26-076",
+   "v": "xm-gr26-1",
+   "h": "hall-7"
+  },
+  {
+   "d": "11/15",
+   "t": "19:40",
+   "id": "gr26-077",
+   "v": "xm-gr26-4",
+   "h": "imax"
+  },
+  {
+   "d": "11/15",
+   "t": "20:15",
+   "id": "gr26-078",
+   "v": "xm-gr26-1",
+   "h": "hall-6"
+  },
+  {
+   "d": "11/15",
+   "t": "20:30",
+   "id": "gr26-079",
+   "v": "xm-gr26-1",
+   "h": "hall-3"
+  },
+  {
+   "d": "11/16",
+   "t": "20:00",
+   "id": "gr26-009",
+   "v": "xm-gr26-1",
+   "h": "hall-6"
+  },
+  {
+   "d": "11/16",
+   "t": "20:00",
+   "id": "gr26-024",
+   "v": "xm-gr26-9",
+   "h": "hall-2"
+  },
+  {
+   "d": "11/16",
+   "t": "20:00",
+   "id": "gr26-044",
+   "v": "xm-gr26-10",
+   "h": "hall-5"
+  },
+  {
+   "d": "11/16",
+   "t": "20:00",
+   "id": "gr26-028",
+   "v": "xm-gr26-11",
+   "h": "hall-7"
+  },
+  {
+   "d": "11/17",
+   "t": "19:45",
+   "id": "gr26-025",
+   "v": "xm-gr26-1",
+   "h": "hall-6"
+  },
+  {
+   "d": "11/17",
+   "t": "20:00",
+   "id": "gr26-060",
+   "v": "xm-gr26-1",
+   "h": "hall-3"
+  },
+  {
+   "d": "11/17",
+   "t": "20:00",
+   "id": "gr26-027",
+   "v": "xm-gr26-3",
+   "h": "hall-3"
+  },
+  {
+   "d": "11/17",
+   "t": "20:00",
+   "id": "gr26-043",
+   "v": "xm-gr26-10",
+   "h": "hall-5"
+  },
+  {
+   "d": "11/18",
+   "t": "19:40",
+   "id": "gr26-045",
+   "v": "xm-gr26-1",
+   "h": "hall-6"
+  },
+  {
+   "d": "11/18",
+   "t": "20:00",
+   "id": "gr26-003",
+   "v": "xm-gr26-10",
+   "h": "hall-5"
+  },
+  {
+   "d": "11/18",
+   "t": "20:00",
+   "id": "gr26-014",
+   "v": "xm-gr26-8",
+   "h": "hall-1"
+  },
+  {
+   "d": "11/18",
+   "t": "20:00",
+   "id": "gr26-073",
+   "v": "xm-gr26-12",
+   "h": "hall-3"
+  },
+  {
+   "d": "11/18",
+   "t": "21:25",
+   "id": "gr26-052",
+   "v": "xm-gr26-1",
+   "h": "hall-6"
+  },
+  {
+   "d": "11/19",
+   "t": "19:50",
+   "id": "gr26-070",
+   "v": "xm-gr26-1",
+   "h": "hall-3"
+  },
+  {
+   "d": "11/19",
+   "t": "20:00",
+   "id": "gr26-022",
+   "v": "xm-gr26-1",
+   "h": "hall-6"
+  },
+  {
+   "d": "11/19",
+   "t": "20:00",
+   "id": "gr26-047",
+   "v": "xm-gr26-8",
+   "h": "hall-1"
+  },
+  {
+   "d": "11/19",
+   "t": "20:00",
+   "id": "gr26-013",
+   "v": "xm-gr26-12",
+   "h": "hall-3"
+  },
+  {
+   "d": "11/19",
+   "t": "20:00",
+   "id": "gr26-016",
+   "v": "xm-gr26-11",
+   "h": "hall-7"
+  },
+  {
+   "d": "11/19",
+   "t": "20:00",
+   "id": "linka-linka",
+   "v": "xm-gr26-13",
+   "h": "hall-1"
+  },
+  {
+   "d": "11/20",
+   "t": "19:30",
+   "id": "gr26-009",
+   "v": "xm-gr26-1",
+   "h": "hall-6"
+  },
+  {
+   "d": "11/20",
+   "t": "20:00",
+   "id": "gr26-054",
+   "v": "xm-gr26-1",
+   "h": "hall-5"
+  },
+  {
+   "d": "11/20",
+   "t": "20:00",
+   "id": "gr26-065",
+   "v": "xm-gr26-4",
+   "h": "imax"
+  },
+  {
+   "d": "11/20",
+   "t": "20:00",
+   "id": "gr26-041",
+   "v": "xm-gr26-9",
+   "h": "hall-3"
+  },
+  {
+   "d": "11/20",
+   "t": "21:30",
+   "id": "gr26-080",
+   "v": "xm-gr26-1",
+   "h": "hall-6"
+  },
+  {
+   "d": "11/21",
+   "t": "12:00",
+   "id": "gr26-015",
+   "v": "xm-gr26-1",
+   "h": "hall-6"
+  },
+  {
+   "d": "11/21",
+   "t": "14:00",
+   "id": "gr26-078",
+   "v": "xm-gr26-1",
+   "h": "hall-6"
+  },
+  {
+   "d": "11/21",
+   "t": "14:10",
+   "id": "gr26-034",
+   "v": "xm-gr26-1",
+   "h": "hall-5"
+  },
+  {
+   "d": "11/21",
+   "t": "14:30",
+   "id": "gr26-033",
+   "v": "xm-gr26-2",
+   "h": "hall-6"
+  },
+  {
+   "d": "11/21",
+   "t": "14:30",
+   "id": "gr26-081",
+   "v": "xm-gr26-6",
+   "h": "hall-1"
+  },
+  {
+   "d": "11/21",
+   "t": "15:00",
+   "id": "gr26-069",
+   "v": "xm-gr26-1",
+   "h": "hall-3"
+  },
+  {
+   "d": "11/21",
+   "t": "16:15",
+   "id": "gr26-001",
+   "v": "xm-gr26-1",
+   "h": "hall-6"
+  },
+  {
+   "d": "11/21",
+   "t": "17:00",
+   "id": "gr26-057",
+   "v": "xm-gr26-1",
+   "h": "hall-3"
+  },
+  {
+   "d": "11/21",
+   "t": "19:30",
+   "id": "gr26-048",
+   "v": "xm-gr26-1",
+   "h": "hall-3"
+  },
+  {
+   "d": "11/21",
+   "t": "19:40",
+   "id": "gr26-077",
+   "v": "xm-gr26-4",
+   "h": "imax"
+  },
+  {
+   "d": "11/21",
+   "t": "20:00",
+   "id": "gr26-006",
+   "v": "xm-gr26-1",
+   "h": "hall-6"
+  },
+  {
+   "d": "11/21",
+   "t": "20:00",
+   "id": "gr26-042",
+   "v": "xm-gr26-14",
+   "h": "hall-5"
+  },
+  {
+   "d": "11/21",
+   "t": "20:00",
+   "id": "gr26-029",
+   "v": "xm-gr26-15",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/21",
+   "t": "20:00",
+   "id": "gr26-062",
+   "v": "xm-gr26-3",
+   "h": "hall-3"
+  },
+  {
+   "d": "11/21",
+   "t": "20:00",
+   "id": "gr26-010",
+   "v": "xm-gr26-16",
+   "h": "hall-6"
+  },
+  {
+   "d": "11/21",
+   "t": "20:00",
+   "id": "gr26-012",
+   "v": "xm-gr26-13",
+   "h": "hall-1"
+  },
+  {
+   "d": "11/21",
+   "t": "20:00",
+   "id": "linka-linka",
+   "v": "xm-gr26-12",
+   "h": "hall-3"
+  },
+  {
+   "d": "11/22",
+   "t": "12:30",
+   "id": "gr26-079",
+   "v": "xm-gr26-1",
+   "h": "hall-3"
+  },
+  {
+   "d": "11/22",
+   "t": "13:45",
+   "id": "gr26-068",
+   "v": "xm-gr26-1",
+   "h": "hall-6"
+  },
+  {
+   "d": "11/22",
+   "t": "14:30",
+   "id": "gr26-082",
+   "v": "xm-gr26-6",
+   "h": "hall-1"
+  },
+  {
+   "d": "11/22",
+   "t": "15:00",
+   "id": "gr26-050",
+   "v": "xm-gr26-1",
+   "h": "hall-3"
+  },
+  {
+   "d": "11/22",
+   "t": "15:20",
+   "id": "gr26-072",
+   "v": "xm-gr26-1",
+   "h": "hall-5"
+  },
+  {
+   "d": "11/22",
+   "t": "15:35",
+   "id": "gr26-076",
+   "v": "xm-gr26-1",
+   "h": "hall-6"
+  },
+  {
+   "d": "11/22",
+   "t": "16:00",
+   "id": "gr26-035",
+   "v": "xm-gr26-14",
+   "h": "hall-5"
+  },
+  {
+   "d": "11/22",
+   "t": "17:20",
+   "id": "gr26-005",
+   "v": "xm-gr26-1",
+   "h": "hall-3"
+  },
+  {
+   "d": "11/22",
+   "t": "18:00",
+   "id": "gr26-058",
+   "v": "xm-gr26-1",
+   "h": "hall-6"
+  },
+  {
+   "d": "11/22",
+   "t": "19:20",
+   "id": "gr26-071",
+   "v": "xm-gr26-1",
+   "h": "hall-3"
+  },
+  {
+   "d": "11/22",
+   "t": "20:00",
+   "id": "gr26-003",
+   "v": "xm-gr26-13",
+   "h": "hall-1"
+  },
+  {
+   "d": "11/22",
+   "t": "20:00",
+   "id": "gr26-053",
+   "v": "xm-gr26-4",
+   "h": "imax"
+  },
+  {
+   "d": "11/22",
+   "t": "20:00",
+   "id": "gr26-027",
+   "v": "xm-gr26-16",
+   "h": "hall-6"
+  },
+  {
+   "d": "11/22",
+   "t": "20:20",
+   "id": "gr26-067",
+   "v": "xm-gr26-1",
+   "h": "hall-6"
+  },
+  {
+   "d": "11/23",
+   "t": "20:00",
+   "id": "gr26-045",
+   "v": "xm-gr26-1",
+   "h": "hall-6"
+  },
+  {
+   "d": "11/23",
+   "t": "20:00",
+   "id": "gr26-014",
+   "v": "xm-gr26-11",
+   "h": "hall-7"
+  },
+  {
+   "d": "11/23",
+   "t": "20:00",
+   "id": "gr26-023",
+   "v": "xm-gr26-5",
+   "h": "hall-"
+  },
+  {
+   "d": "11/23",
+   "t": "21:20",
+   "id": "gr26-051",
+   "v": "xm-gr26-1",
+   "h": "hall-3"
+  },
+  {
+   "d": "11/24",
+   "t": "20:00",
+   "id": "gr26-063",
+   "v": "xm-gr26-1",
+   "h": "hall-5"
+  },
+  {
+   "d": "11/24",
+   "t": "20:00",
+   "id": "gr26-046",
+   "v": "xm-gr26-15",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/25",
+   "t": "20:00",
+   "id": "gr26-056",
+   "v": "xm-gr26-1",
+   "h": "hall-6"
+  },
+  {
+   "d": "11/25",
+   "t": "20:00",
+   "id": "gr26-032",
+   "v": "xm-gr26-7",
+   "h": "hall-2"
+  },
+  {
+   "d": "11/25",
+   "t": "20:00",
+   "id": "gr26-016",
+   "v": "xm-gr26-17",
+   "h": "hall-4"
+  },
+  {
+   "d": "11/25",
+   "t": "20:30",
+   "id": "gr26-075",
+   "v": "xm-gr26-1",
+   "h": "hall-3"
+  },
+  {
+   "d": "11/26",
+   "t": "19:40",
+   "id": "gr26-070",
+   "v": "xm-gr26-1",
+   "h": "hall-6"
+  },
+  {
+   "d": "11/26",
+   "t": "20:00",
+   "id": "gr26-080",
+   "v": "xm-gr26-1",
+   "h": "hall-3"
+  },
+  {
+   "d": "11/26",
+   "t": "20:00",
+   "id": "gr26-008",
+   "v": "xm-gr26-9",
+   "h": "hall-2"
+  },
+  {
+   "d": "11/26",
+   "t": "20:00",
+   "id": "gr26-037",
+   "v": "xm-gr26-17",
+   "h": "hall-4"
+  },
+  {
+   "d": "11/27",
+   "t": "20:00",
+   "id": "gr26-066",
+   "v": "xm-gr26-1",
+   "h": "hall-6"
+  },
+  {
+   "d": "11/27",
+   "t": "20:00",
+   "id": "gr26-026",
+   "v": "xm-gr26-15",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/27",
+   "t": "20:00",
+   "id": "gr26-023",
+   "v": "xm-gr26-17",
+   "h": "hall-4"
+  },
+  {
+   "d": "11/28",
+   "t": "14:30",
+   "id": "gr26-043",
+   "v": "xm-gr26-6",
+   "h": "hall-1"
+  },
+  {
+   "d": "11/28",
+   "t": "14:30",
+   "id": "gr26-065",
+   "v": "xm-gr26-4",
+   "h": "imax"
+  },
+  {
+   "d": "11/28",
+   "t": "18:30",
+   "id": "gr26-054",
+   "v": "xm-gr26-1",
+   "h": "hall-5"
+  },
+  {
+   "d": "11/28",
+   "t": "17:10",
+   "id": "gr26-053",
+   "v": "xm-gr26-4",
+   "h": "imax"
+  },
+  {
+   "d": "11/28",
+   "t": "19:30",
+   "id": "gr26-077",
+   "v": "xm-gr26-4",
+   "h": "imax"
+  },
+  {
+   "d": "11/28",
+   "t": "20:45",
+   "id": "gr26-074",
+   "v": "xm-gr26-1",
+   "h": "hall-6"
+  },
+  {
+   "d": "11/29",
+   "t": "14:20",
+   "id": "gr26-055",
+   "v": "xm-gr26-1",
+   "h": "hall-6"
+  },
+  {
+   "d": "11/29",
+   "t": "16:50",
+   "id": "gr26-059",
+   "v": "xm-gr26-1",
+   "h": "hall-6"
+  },
+  {
+   "d": "11/29",
+   "t": "20:00",
+   "id": "gr26-063",
+   "v": "xm-gr26-1",
+   "h": "hall-5"
   }
  ],
  "venues": [
@@ -2042,6 +6205,311 @@ module.exports = {
      "name": "放映厅"
     }
    ]
+  },
+  {
+   "id": "xm-gr26-1",
+   "short": "厦门万象影城",
+   "name": "厦门万象影城",
+   "brand": "厦门万象影城",
+   "store": "厦门",
+   "fmt": [],
+   "halls": [
+    {
+     "id": "hall-6",
+     "short": "6号厅",
+     "name": "6号厅"
+    },
+    {
+     "id": "hall-4",
+     "short": "4号厅",
+     "name": "4号厅"
+    },
+    {
+     "id": "hall-2",
+     "short": "2号厅",
+     "name": "2号厅"
+    },
+    {
+     "id": "hall-3",
+     "short": "3号厅",
+     "name": "3号厅"
+    },
+    {
+     "id": "hall-7",
+     "short": "7号厅",
+     "name": "7号厅"
+    },
+    {
+     "id": "hall-5",
+     "short": "5号厅",
+     "name": "5号厅"
+    }
+   ]
+  },
+  {
+   "id": "xm-gr26-2",
+   "short": "厦门万达影城（SM广场IMAX+杜比影院店）",
+   "name": "厦门万达影城（SM广场IMAX+杜比影院店）",
+   "brand": "厦门万达影城（SM广场IMAX+杜比影院店）",
+   "store": "厦门",
+   "fmt": [],
+   "halls": [
+    {
+     "id": "hall-3",
+     "short": "3号厅",
+     "name": "3号厅"
+    },
+    {
+     "id": "hall-8",
+     "short": "8号厅",
+     "name": "8号厅"
+    },
+    {
+     "id": "hall-6",
+     "short": "6号厅",
+     "name": "6号厅"
+    }
+   ]
+  },
+  {
+   "id": "xm-gr26-3",
+   "short": "思明电影院",
+   "name": "思明电影院",
+   "brand": "思明电影院",
+   "store": "厦门",
+   "fmt": [],
+   "halls": [
+    {
+     "id": "hall-3",
+     "short": "3号厅",
+     "name": "3号厅"
+    }
+   ]
+  },
+  {
+   "id": "xm-gr26-4",
+   "short": "厦门寰映影城（海上世界激光IMAX店）",
+   "name": "厦门寰映影城（海上世界激光IMAX店）",
+   "brand": "厦门寰映影城（海上世界激光IMAX店）",
+   "store": "厦门",
+   "fmt": [],
+   "halls": [
+    {
+     "id": "imax",
+     "short": "IMAX厅",
+     "name": "IMAX厅"
+    }
+   ]
+  },
+  {
+   "id": "xm-gr26-5",
+   "short": "厦门UME影城(K11 Select店)",
+   "name": "厦门UME影城(K11 Select店)",
+   "brand": "厦门UME影城(K11 Select店)",
+   "store": "厦门",
+   "fmt": [],
+   "halls": [
+    {
+     "id": "hall-6",
+     "short": "6号厅",
+     "name": "6号厅"
+    },
+    {
+     "id": "hall-",
+     "short": " HEY LED厅",
+     "name": " HEY LED厅"
+    }
+   ]
+  },
+  {
+   "id": "xm-gr26-6",
+   "short": "博纳国际影城厦门大悦城店",
+   "name": "博纳国际影城厦门大悦城店",
+   "brand": "博纳国际影城厦门大悦城店",
+   "store": "厦门",
+   "fmt": [],
+   "halls": [
+    {
+     "id": "hall-1",
+     "short": "1号厅",
+     "name": "1号厅"
+    }
+   ]
+  },
+  {
+   "id": "xm-gr26-7",
+   "short": "博纳国际影城厦门磐基店",
+   "name": "博纳国际影城厦门磐基店",
+   "brand": "博纳国际影城厦门磐基店",
+   "store": "厦门",
+   "fmt": [],
+   "halls": [
+    {
+     "id": "hall-2",
+     "short": "2号厅",
+     "name": "2号厅"
+    }
+   ]
+  },
+  {
+   "id": "xm-gr26-8",
+   "short": "完美世界影城（厦门中华城店）",
+   "name": "完美世界影城（厦门中华城店）",
+   "brand": "完美世界影城（厦门中华城店）",
+   "store": "厦门",
+   "fmt": [],
+   "halls": [
+    {
+     "id": "hall-5",
+     "short": "5号厅",
+     "name": "5号厅"
+    },
+    {
+     "id": "hall-1",
+     "short": "1号厅",
+     "name": "1号厅"
+    }
+   ]
+  },
+  {
+   "id": "xm-gr26-9",
+   "short": "厦门奥斯卡国际影城(湾悦城店)",
+   "name": "厦门奥斯卡国际影城(湾悦城店)",
+   "brand": "厦门奥斯卡国际影城(湾悦城店)",
+   "store": "厦门",
+   "fmt": [],
+   "halls": [
+    {
+     "id": "hall-2",
+     "short": "2号厅",
+     "name": "2号厅"
+    },
+    {
+     "id": "hall-3",
+     "short": "3号厅",
+     "name": "3号厅"
+    }
+   ]
+  },
+  {
+   "id": "xm-gr26-10",
+   "short": "厦门万达影城(鹭港场CINITY店)",
+   "name": "厦门万达影城(鹭港场CINITY店)",
+   "brand": "厦门万达影城(鹭港场CINITY店)",
+   "store": "厦门",
+   "fmt": [],
+   "halls": [
+    {
+     "id": "hall-5",
+     "short": "5号厅",
+     "name": "5号厅"
+    }
+   ]
+  },
+  {
+   "id": "xm-gr26-11",
+   "short": "厦门上影国际影城（同安宝龙杜比全景声店）",
+   "name": "厦门上影国际影城（同安宝龙杜比全景声店）",
+   "brand": "厦门上影国际影城（同安宝龙杜比全景声店）",
+   "store": "厦门",
+   "fmt": [],
+   "halls": [
+    {
+     "id": "hall-7",
+     "short": "7号厅",
+     "name": "7号厅"
+    }
+   ]
+  },
+  {
+   "id": "xm-gr26-12",
+   "short": "厦门中影国际影城(翔安汇景店)",
+   "name": "厦门中影国际影城(翔安汇景店)",
+   "brand": "厦门中影国际影城(翔安汇景店)",
+   "store": "厦门",
+   "fmt": [],
+   "halls": [
+    {
+     "id": "hall-3",
+     "short": "3号厅",
+     "name": "3号厅"
+    }
+   ]
+  },
+  {
+   "id": "xm-gr26-13",
+   "short": "厦门梦露歌剧院影城",
+   "name": "厦门梦露歌剧院影城",
+   "brand": "厦门梦露歌剧院影城",
+   "store": "厦门",
+   "fmt": [],
+   "halls": [
+    {
+     "id": "hall-1",
+     "short": "1号厅",
+     "name": "1号厅"
+    }
+   ]
+  },
+  {
+   "id": "xm-gr26-14",
+   "short": "MGF梦工坊影城(五缘湾店)",
+   "name": "MGF梦工坊影城(五缘湾店)",
+   "brand": "MGF梦工坊影城(五缘湾店)",
+   "store": "厦门",
+   "fmt": [],
+   "halls": [
+    {
+     "id": "hall-5",
+     "short": "5号厅",
+     "name": "5号厅"
+    }
+   ]
+  },
+  {
+   "id": "xm-gr26-15",
+   "short": "厦门万达影城（湖里万达广场激光IMAX店）",
+   "name": "厦门万达影城（湖里万达广场激光IMAX店）",
+   "brand": "厦门万达影城（湖里万达广场激光IMAX店）",
+   "store": "厦门",
+   "fmt": [],
+   "halls": [
+    {
+     "id": "hall-13",
+     "short": "13号厅",
+     "name": "13号厅"
+    }
+   ]
+  },
+  {
+   "id": "xm-gr26-16",
+   "short": "寰映影城（IOI MALL店）",
+   "name": "寰映影城（IOI MALL店）",
+   "brand": "寰映影城（IOI MALL店）",
+   "store": "厦门",
+   "fmt": [],
+   "halls": [
+    {
+     "id": "hall-6",
+     "short": "6号厅",
+     "name": "6号厅"
+    }
+   ]
+  },
+  {
+   "id": "xm-gr26-17",
+   "short": "厦门万达影城(集美万达广场IMAX店)",
+   "name": "厦门万达影城(集美万达广场IMAX店)",
+   "brand": "厦门万达影城(集美万达广场IMAX店)",
+   "store": "厦门",
+   "fmt": [],
+   "halls": [
+    {
+     "id": "hall-4",
+     "short": "4号厅",
+     "name": "4号厅"
+    }
+   ]
   }
  ],
  "programmes": [
@@ -2084,6 +6552,105 @@ module.exports = {
    "ongoing": true,
    "city": "嘉兴",
    "blurb": "麻雀部落是独立电影放映与策展团体，近十年来以「盲盒放映」为人熟知。沉寂四年后，麻雀部落在 2026 年国庆前后重新出发，有了自己的线下单厅艺术电影空间：麻雀部落电影空间。这里收录空间的放映排片，场次公布后会陆续更新。"
+  },
+  {
+   "id": "golden-rooster-2026",
+   "name": "2026金鸡影展",
+   "sub": "中国金鸡百花电影节 · 厦门",
+   "en": "GOLDEN ROOSTER FILM SCREENING 2026",
+   "kind": "影展专题",
+   "period": "2026.11.06 – 11.29",
+   "start": "2026-11-06",
+   "end": "2026-11-29",
+   "city": "厦门",
+   "cover": "https://sparrowcinema.github.io/SparrowTribe/programmes/golden-rooster-2026.jpg",
+   "blurb": "11月6日至29日，厦门。按金鸡影展官方单元浏览片单，查看放映时间并加入个人排片。购票请使用淘票票，购票城市选择厦门。",
+   "ticket": "tickets/golden-rooster-2026.jpg",
+   "sections": {
+    "gr26-001": "此刻：国际新片展映",
+    "gr26-002": "国产新片展映",
+    "gr26-003": "国产新片展映",
+    "linka-linka": "国产新片展映",
+    "gr26-005": "此刻：国际新片展映",
+    "gr26-006": "此刻：国际新片展映",
+    "gr26-007": "此刻：国际新片展映",
+    "gr26-008": "拾光：华语新片展映",
+    "gr26-009": "流光：动画展映单元",
+    "gr26-010": "拾光：华语新片展映",
+    "gr26-011": "拾光：华语新片展映",
+    "gr26-012": "拾光：华语新片展映",
+    "gr26-013": "国产新片展映",
+    "gr26-014": "国产新片展映",
+    "gr26-015": "此刻：国际新片展映",
+    "gr26-016": "国产新片展映",
+    "gr26-017": "国产新片展映",
+    "gr26-018": "流光：动画展映单元",
+    "gr26-019": "拾光：华语新片展映",
+    "gr26-020": "国产新片展映",
+    "gr26-021": "国产新片展映",
+    "gr26-022": "此刻：国际新片展映",
+    "gr26-023": "此刻：国际新片展映",
+    "gr26-024": "功夫·功夫：华语经典展映",
+    "gr26-025": "此刻：国际新片展映",
+    "gr26-026": "国产新片展映",
+    "gr26-027": "国产新片展映",
+    "gr26-028": "国产新片展映",
+    "gr26-029": "拾光：华语新片展映",
+    "gr26-030": "拾光：华语新片展映",
+    "gr26-031": "国产新片展映",
+    "gr26-032": "拾光：华语新片展映",
+    "gr26-033": "拾光：华语新片展映",
+    "gr26-034": "此刻：国际新片展映",
+    "gr26-035": "拾光：华语新片展映",
+    "gr26-036": "流光：动画展映单元",
+    "gr26-037": "拾光：华语新片展映",
+    "gr26-038": "此刻：国际新片展映",
+    "gr26-039": "功夫·功夫：华语经典展映",
+    "gr26-040": "拾光：华语新片展映",
+    "gr26-041": "拾光：华语新片展映",
+    "gr26-042": "拾光：华语新片展映",
+    "gr26-043": "国产新片展映",
+    "gr26-044": "国产新片展映",
+    "gr26-045": "此刻：国际新片展映",
+    "gr26-046": "拾光：华语新片展映",
+    "gr26-047": "拾光：华语新片展映",
+    "gr26-048": "此刻：国际新片展映",
+    "gr26-049": "功夫·功夫：华语经典展映",
+    "gr26-050": "此刻：国际新片展映",
+    "gr26-051": "此刻：国际新片展映",
+    "gr26-052": "此刻：国际新片展映",
+    "gr26-053": "回声：国际经典展映",
+    "gr26-054": "回声：国际经典展映",
+    "gr26-055": "回声：国际经典展映",
+    "gr26-056": "回声：国际经典展映",
+    "gr26-057": "此刻：国际新片展映",
+    "gr26-058": "功夫·功夫：华语经典展映",
+    "gr26-059": "此刻：国际新片展映",
+    "gr26-060": "此刻：国际新片展映",
+    "gr26-061": "功夫·功夫：华语经典展映",
+    "gr26-062": "功夫·功夫：华语经典展映",
+    "gr26-063": "回声：国际经典展映",
+    "gr26-064": "拾光：华语新片展映",
+    "gr26-065": "回声：国际经典展映",
+    "gr26-066": "回声：国际经典展映",
+    "gr26-067": "此刻：国际新片展映",
+    "gr26-068": "此刻：国际新片展映",
+    "gr26-069": "此刻：国际新片展映",
+    "gr26-070": "回声：国际经典展映",
+    "gr26-071": "此刻：国际新片展映",
+    "gr26-072": "回声：国际经典展映",
+    "gr26-073": "流光：动画展映单元",
+    "gr26-074": "此刻：国际新片展映",
+    "gr26-075": "此刻：国际新片展映",
+    "gr26-076": "此刻：国际新片展映",
+    "gr26-077": "回声：国际经典展映",
+    "gr26-078": "此刻：国际新片展映",
+    "gr26-079": "此刻：国际新片展映",
+    "gr26-080": "流光：动画展映单元",
+    "gr26-081": "流光：动画展映单元",
+    "gr26-082": "流光：动画展映单元",
+    "gr26-083": "流光：动画展映单元"
+   }
   }
  ],
  "reg": {

@@ -39,13 +39,15 @@ function index(data) {
 const qaOf = f => (f && f.qaStart && f.qaEnd && f.qaGuest && toMin(f.qaEnd) > toMin(f.qaStart)) ? { start: toMin(f.qaStart), end: toMin(f.qaEnd), label: f.qaStart + '–' + f.qaEnd, guest: f.qaGuest } : null;
 
 // 一场放映是否已散场（片长结束后即视为已放映，首页与详情页不再显示）
-const ended = (s, idx) => showDate(s).getTime() + ((idx.F[s.id] && idx.F[s.id].min) || 0) * 60000 < Date.now();
+const durationOf = (s, idx) => { const f=idx.F[s.id]||{}, e=(f.screeningEnds||{})[keyOf(s)]; return e ? toMin(e)-toMin(s.t) : (f.min||0); };
+const progForShow = (s, idx) => { const f=idx.F[s.id]||{}; return idx.PG[s.p] || Object.values(idx.PG).find(p => (p.sections||{})[s.id] && (f.screeningEnds||{})[keyOf(s)]) || idx.progOf(f); };
+const ended = (s, idx) => showDate(s).getTime() + durationOf(s, idx) * 60000 < Date.now();
 
 // 专题状态：有起止日期按日期，否则按场次范围（与网站 progStatus 一致）：soon 即将开始 / live 进行中 / ended 已结束
 const ymd = v => { const [y, m, d] = String(v).split('-').map(Number); return new Date(y, (m || 1) - 1, d || 1).getTime(); };
 function progInfo(p, data, idx, now = Date.now()) {
-  const shows = data.shows.filter(s => idx.F[s.id] && idx.progOf(idx.F[s.id]).id === p.id);
-  const ts = shows.map(s => showDate(s).getTime()), te = shows.map(s => showDate(s).getTime() + ((idx.F[s.id] || {}).min || 0) * 60000);
+  const shows = data.shows.filter(s => idx.F[s.id] && progForShow(s, idx).id === p.id);
+  const ts = shows.map(s => showDate(s).getTime()), te = shows.map(s => showDate(s).getTime() + durationOf(s, idx) * 60000);
   const a = p.start ? ymd(p.start) : (ts.length ? Math.min(...ts) : null);
   const b = p.end ? ymd(p.end) + 864e5 : (te.length ? Math.max(...te) : null);
   // 常设专题（ongoing，如麻雀部落电影空间）：开始后一直算进行中，不进入往期
@@ -57,14 +59,14 @@ function progInfo(p, data, idx, now = Date.now()) {
 function showView(s, idx, data, picked) {
   const f = idx.F[s.id]; const st = toMin(s.t);
   return {
-    key: keyOf(s), d: s.d, t: s.t, end: fmt(st + f.min), wk: wk(s.d), id: s.id,
+    key: keyOf(s), d: s.d, t: s.t, end: fmt(st + durationOf(s, idx)), wk: wk(s.d), id: s.id,
     cn: f.cn, version: I.tr(f.version || ''), dir: f.dir, min: f.min, minTxt: I.tr(f.min ? f.min + ' 分钟' : '片长待定'),
     venue: idx.venueName(s), hall: idx.hallName(s),
     color: (data.reg[f.reg] || {}).c || '#8e2a22',
     tone: filmTone(idx.ORD ? idx.ORD[s.id] : 0), langSub: langSub(f),
-    poster: poster(f), picked: picked ? picked.has(keyOf(s)) : false,
-    past: showDate(s).getTime() + f.min * 60000 < Date.now()
+    note: I.tr((f.screeningNotes||{})[keyOf(s)]||""), poster: poster(f), picked: picked ? picked.has(keyOf(s)) : false,
+    past: showDate(s).getTime() + durationOf(s, idx) * 60000 < Date.now()
   };
 }
 
-module.exports = { progInfo, qaOf, ended, isFest, relTime, nextShowOf, filmOrder, filmTone, langSub, WK, year, wk, toMin, fmt, keyOf, showDate, poster, ticket, durText, index, showView };
+module.exports = { progForShow, durationOf, progInfo, qaOf, ended, isFest, relTime, nextShowOf, filmOrder, filmTone, langSub, WK, year, wk, toMin, fmt, keyOf, showDate, poster, ticket, durText, index, showView };

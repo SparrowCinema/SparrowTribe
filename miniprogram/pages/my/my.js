@@ -97,10 +97,10 @@ Page({
     const all = data.shows.filter(s => idx.F[s.id] && picked.has(U.keyOf(s))).sort((a, b) => U.showDate(a) - U.showDate(b));
     // 专题筛选：只列出个人排片里有场次的专题；选中的专题已无场次时回到「全部」
     // 专题筛选：只要个人排片不为空就显示；列出所有有放映场次的专题（未加入的显示「未加入」），与网站一致
-    const pids = data.programmes.map(p => p.id).filter(id => data.shows.some(s => idx.F[s.id] && idx.progOf(idx.F[s.id]).id === id));
-    const progs = all.length ? [{ id: 'all', n: t('全部专题'), c: all.length, lab: t('合并 ' + all.length + ' 场') }].concat(pids.map(id => { const c = all.filter(s => idx.progOf(idx.F[s.id]).id === id).length; return { id, n: idx.PG[id].name, c, lab: c ? t(c + ' 场') : t('未加入') }; })) : [];
+    const pids = data.programmes.map(p => p.id).filter(id => data.shows.some(s => idx.F[s.id] && U.progForShow(s, idx).id === id));
+    const progs = all.length ? [{ id: 'all', n: t('全部专题'), c: all.length, lab: t('合并 ' + all.length + ' 场') }].concat(pids.map(id => { const c = all.filter(s => U.progForShow(s, idx).id === id).length; return { id, n: idx.PG[id].name, c, lab: c ? t(c + ' 场') : t('未加入') }; })) : [];
     const pf = pids.includes(this.data.pf) ? this.data.pf : 'all';
-    const list = pf === 'all' ? all : all.filter(s => idx.progOf(idx.F[s.id]).id === pf);
+    const list = pf === 'all' ? all : all.filter(s => U.progForShow(s, idx).id === pf);
     const minutes = list.reduce((n, s) => n + idx.F[s.id].min, 0);
     let clash = 0;
     const byDay = [];
@@ -109,7 +109,7 @@ Page({
       const items = g.items.map((s, i) => {
         const v = U.showView(s, idx, data, picked);
         if (i) {
-          const prev = g.items[i - 1], gap = U.toMin(s.t) - (U.toMin(prev.t) + idx.F[prev.id].min);
+          const prev = g.items[i - 1], gap = U.toMin(s.t) - (U.toMin(prev.t) + U.durationOf(prev, idx));
           v.gap = gap < 0 ? { cls: 'clash', txt: t('⚠ 与上一场重叠 ' + (-gap) + ' 分钟') } : gap < 20 ? { cls: 'tight', txt: t('间隔仅 ' + gap + ' 分钟，留意入场时间') } : { cls: 'ok', txt: t('间隔') + ' ' + U.durText(gap) };
           if (gap < 0) clash++;
         }
