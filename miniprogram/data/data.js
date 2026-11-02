@@ -7828,7 +7828,8 @@ module.exports = {
    "blurb": "从伯格曼的公路回忆到塔可夫斯基的末日祈祷，从费穆的城墙到徐克的江湖，十七部作品横跨 1947 至 2025 年，排在同一块银幕上，恰好是一份关于“风格”的地图。",
    "start": "2026-10-30",
    "end": "2027-01-31",
-   "city": "杭州"
+   "city": "杭州",
+   "cardCover": ""
   },
   {
    "id": "cinema-2026",
@@ -7841,7 +7842,8 @@ module.exports = {
    "blurb": "今年秋冬值得走进影院的院线新片与重映：从诺兰全 IMAX 胶片拍摄的《奥德赛》、塔伦蒂诺的《杀死比尔：血色全传》，到首次引进内地的《疾速追杀》、翠贝卡获奖的埃及电影《生日快乐》和藏族导演岗珍的《一个夜晚与三个夏天》，《时间里的爱人》、纪录片《夫妻一场》，以及年底的《复仇者联盟5》《沙丘3》。具体场次以各影院售票平台为准。",
    "start": "2026-08-01",
    "end": "2026-12-31",
-   "city": "杭州"
+   "city": "杭州",
+   "cardCover": ""
   },
   {
    "id": "sparrow-tribe-space",
@@ -7855,7 +7857,8 @@ module.exports = {
    "end": null,
    "ongoing": true,
    "city": "嘉兴",
-   "blurb": "麻雀部落是独立电影放映与策展团体，近十年来以「盲盒放映」为人熟知。沉寂四年后，麻雀部落在 2026 年国庆前后重新出发，有了自己的线下单厅艺术电影空间：麻雀部落电影空间。这里收录空间的放映排片，场次公布后会陆续更新。"
+   "blurb": "麻雀部落是独立电影放映与策展团体，近十年来以「盲盒放映」为人熟知。沉寂四年后，麻雀部落在 2026 年国庆前后重新出发，有了自己的线下单厅艺术电影空间：麻雀部落电影空间。这里收录空间的放映排片，场次公布后会陆续更新。",
+   "cardCover": ""
   },
   {
    "id": "golden-rooster-2026",
@@ -7868,6 +7871,7 @@ module.exports = {
    "end": "2026-11-29",
    "city": "厦门",
    "cover": "https://sparrowcinema.github.io/SparrowTribe/programmes/golden-rooster-2026.jpg",
+   "cardCover": "https://sparrowcinema.github.io/SparrowTribe/programmes/golden-rooster-2026-card.jpg",
    "blurb": "11月6日至29日，厦门。按金鸡影展官方单元浏览片单，查看放映时间并加入个人排片。购票请使用淘票票，购票城市选择厦门。",
    "ticket": "tickets/golden-rooster-2026.jpg",
    "sections": {
