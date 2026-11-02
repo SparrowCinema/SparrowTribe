@@ -69,7 +69,7 @@ Page({
     let cols = [], ticks = [], H = 0, nowLine = null;
     this.ttCtx = null;
     if (dl.length) {
-      let S = Math.min(...dl.map(s => U.toMin(s.t))), E = Math.max(...dl.map(s => Math.max(U.toMin(s.t) + U.durationOf(s, idx), (U.qaOf(idx.F[s.id]) || {}).end || 0)));
+      let S = Math.min(...dl.map(s => U.toMin(s.t))), E = Math.max(...dl.map(s => Math.max(U.toMin(s.t) + U.durationOf(s, idx) + (U.showView(s, idx, data, picked).ev ? 30 : 0), (U.qaOf(idx.F[s.id]) || {}).end || 0)));
       // Only show the current-time marker inside the screening window.
       const tn = new Date(), todayKey = (tn.getMonth() + 1) + '/' + tn.getDate(), isToday = todayKey === day;
       // Leave 30–59 minutes before the first screening.
@@ -85,7 +85,8 @@ Page({
         const qas = [];
         cols.push({ key: v.id + h.id, vn: vShort(v), hn: hShort(h), qas, blocks: hs.map(s => {
           const vw = U.showView(s, idx, data, picked), st = U.toMin(s.t), qa = U.qaOf(idx.F[s.id]);
-          if (qa) qas.push({ key: vw.key + '-qa', id: s.id, top: Math.round((qa.start - S) * K), h: Math.max(60, Math.round((qa.end - qa.start) * K) - 6), label: qa.label });
+          if (qa) qas.push({ key: vw.key + '-qa', nm: '映后交流', id: s.id, top: Math.round((qa.start - S) * K), h: Math.max(60, Math.round((qa.end - qa.start) * K) - 6), label: qa.label });
+          else if (vw.ev) { const pe = st + U.durationOf(s, idx); qas.push({ key: vw.key + '-post', nm: '映后', id: s.id, top: Math.round((pe - S) * K), h: Math.round(30 * K) - 6, label: U.fmt(pe) + '–' + U.fmt(pe + 30) }); }
           return Object.assign(vw, { top: Math.round((st - S) * K), h: Math.max(150, Math.round(U.durationOf(s, idx) * K) - 6) });
         }) });
       }));
