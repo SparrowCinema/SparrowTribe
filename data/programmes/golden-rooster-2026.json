@@ -1521,7 +1521,10 @@
     null,
     3.2
    ],
-   "dirO": "Tam Wai-Ching"
+   "dirO": "Tam Wai-Ching",
+   "screeningNotes": {
+    "11/8-15:50-xm-gr26-1-hall-7": "映后活动 · 主创见面会（嘉宾名单待公布，以实际到场为准）"
+   }
   },
   {
    "id": "gr26-031",
@@ -1670,7 +1673,10 @@
     null,
     3.4
    ],
-   "dirO": "Lau Kek-huat"
+   "dirO": "Lau Kek-huat",
+   "screeningNotes": {
+    "11/8-17:00-xm-gr26-1-hall-2": "映后活动 · 主创见面会（嘉宾名单待公布，以实际到场为准）"
+   }
   },
   {
    "id": "gr26-034",
@@ -1815,7 +1821,10 @@
     null,
     3.5
    ],
-   "dirO": "Ervin Han / Raúl García"
+   "dirO": "Ervin Han / Raúl García",
+   "screeningNotes": {
+    "11/8-19:45-xm-gr26-1-hall-3": "映后活动 · 主创见面会（嘉宾名单待公布，以实际到场为准）"
+   }
   },
   {
    "id": "gr26-037",
@@ -2356,7 +2365,10 @@
     null,
     null
    ],
-   "dirO": "Isabella Lam"
+   "dirO": "Isabella Lam",
+   "screeningNotes": {
+    "11/10-19:45-xm-gr26-1-hall-2": "映后活动 · 主创见面会（嘉宾名单待公布，以实际到场为准）"
+   }
   },
   {
    "id": "gr26-048",
