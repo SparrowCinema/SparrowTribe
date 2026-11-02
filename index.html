@@ -667,7 +667,12 @@ html.sheet-open,html.sheet-open body{overflow:hidden}
 .today-toggle .tt-ic{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--accent);color:var(--on-block);transition:transform .22s}
 .today-toggle .tt-ic svg{width:14px;height:14px}
 .my-today.open .today-toggle .tt-ic{transform:rotate(180deg)}
-.fd-prog{display:inline-flex;align-self:flex-start;font-size:11px;font-weight:600;padding:3px 9px;border-radius:99px;background:rgba(255,250,240,.92);color:#2b2117;margin-bottom:8px}
+.fd-progrow{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-bottom:8px}
+.fd-prog{display:inline-flex;align-self:flex-start;font-size:11px;font-weight:600;padding:3px 9px;border-radius:99px;background:rgba(255,250,240,.92);color:#2b2117}
+/* 展映单元：头图里与专题胶囊并排的金色描边小标签 */
+.fd-unit{display:inline-flex;align-items:center;gap:5px;max-width:100%;font-size:11px;font-weight:600;line-height:1.5;padding:3px 10px 3px 8px;border-radius:99px;color:#ffe7a6;background:rgba(255,214,110,.16);border:1px solid rgba(255,214,110,.5);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+.fd-unit i{font-style:normal;font-size:7px;color:#ffd66e}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .pg-cover{background:#1c1510;line-height:0}
 .pg-cover img{width:100%;max-width:100%;max-height:340px;object-fit:cover}
 .pg-head{padding:20px 0 4px}
@@ -1488,7 +1493,7 @@ function detail(id){
     <div class="fd-hin gut">
       ${P?`<img class="fd-poster" src="${P}" alt="${esc(f.cn)} 海报">`:`<div class="fd-poster fd-ph"><b>${esc(f.cn[0])}</b></div>`}
       <div class="fd-title">
-        <button class="fd-prog" data-prog="${progOf(f).id}">${esc(progOf(f).kind)} · ${esc(progOf(f).name)} ›</button>
+        <div class="fd-progrow"><button class="fd-prog" data-prog="${progOf(f).id}">${esc(progOf(f).kind)} · ${esc(progOf(f).name)} ›</button>${f.section?`<span class="fd-unit"><i aria-hidden="true">◆</i><span class="sr-only">展映单元：</span>${esc(f.section)}</span>`:""}</div>
         <div class="fd-eyebrow"><span class="fd-reg">${REG[f.reg].n}</span>${[f.y,f.c].filter(Boolean).map(esc).join(" · ")}</div>
         <h1>${esc(f.cn)}</h1>
         <div class="fd-orig">${esc(f.en||f.o||"")}</div>${f.o&&f.o!==f.cn&&f.o!==(f.en||f.o)?`<div class="fd-native">原名 ${esc(f.o)}</div>`:""}
@@ -1499,7 +1504,7 @@ function detail(id){
   </header>
   <div class="fd-body gut">
     <aside class="fd-side">
-      ${f.section?`<p class="pg-sub">${esc(f.section)}</p>`:""}${ticketHTML(f)}
+      ${ticketHTML(f)}
       ${ratingsHTML(f)}
       ${myRateHTML(f)}
       <section class="fd-block"><h3 class="fd-h">放映场次 <small>${shows.length?shows.length+" 场":"排片待公布"}</small></h3>${shows.length?shows.map(s=>screeningHTML(s,f)).join(""):`<div class="fd-noshow"><b>${allShows.length?"本片场次已全部放映结束":(f.release?esc(f.release):"上映信息待公布")}</b><span>${allShows.length?"已放映的场次不再显示在这里。":"麻雀观影护照收录的场次公布后会更新到这里，也可以先在各影院售票平台查看。"}</span></div>`}</section>
