@@ -1,5 +1,6 @@
 const U = require('../../utils/util.js');
 const plan = require('../../utils/plan.js');
+const W = require('../../utils/watched.js');
 const I = require('../../utils/i18n.js');
 const t = I.tr;
 const app = getApp();
@@ -15,8 +16,8 @@ function honor(x) {
 
 Page({
   data: { i: {}, f: null, open: false },
-  onLoad(q) { this.setData({ i: I.dict() }); this.id = q.id; this.off1 = app.onData(() => this.build()); this.off2 = plan.onChange(() => this.build()); this.build(); },
-  onUnload() { this.off1 && this.off1(); this.off2 && this.off2(); },
+  onLoad(q) { this.setData({ i: I.dict() }); this.id = q.id; this.off1 = app.onData(() => this.build()); this.off2 = plan.onChange(() => this.build()); this.off3 = W.onChange(() => this.buildMine()); this.build(); },
+  onUnload() { this.off1 && this.off1(); this.off2 && this.off2(); this.off3 && this.off3(); },
   build() {
     const data = app.globalData.data, idx = U.index(data), f = idx.F[this.id];
     if (!f) { wx.showToast({ title: t('没有找到这部影片'), icon: 'none' }); return; }
@@ -53,7 +54,30 @@ Page({
       cnt: t(shows.length + ' 场'),
       shows, ratings, credits, nav, ended: allShows.length > 0 && !shows.length
     });
+    this.buildMine();
   },
+  // 我的观影：看过 + 五星十分制评分（每颗星 2 分，可半颗）
+  buildMine() {
+    const data = app.globalData.data, idx = U.index(data), rec = W.get(this.id), r = rec ? rec.r || 0 : 0, s = rec ? W.showOf(rec, data) : null;
+    this.setData({ mine: { seen: !!rec, r, d: rec ? rec.d : '', today: W.iso(new Date()), stars: [1, 2, 3, 4, 5].map(i => Math.max(0, Math.min(2, r - (i - 1) * 2)) * 50),
+      at: s ? W.vShort(idx.VN[s.v]) + ' · ' + s.t : t('未关联场次'), seenTxt: t(rec ? '已看过 · 已盖章' : '＋ 看过'), scoreTxt: r ? r + '/10' : t('点星打分') } });
+  },
+  toggleSeen() {
+    if (W.get(this.id)) {
+      wx.showModal({ title: t('移出观影护照？'), content: t('这部电影的印章和评分会一起删除。'), confirmText: t('移出'), confirmColor: '#8e2a22', success: r => { if (r.confirm) { W.remove(this.id); wx.showToast({ title: t('已移出观影护照'), icon: 'none' }); } } });
+    } else { const data = app.globalData.data; W.set(this.id, W.guess(this.id, data, U.index(data), plan.get())); wx.showToast({ title: t('已盖章 · 加入观影护照'), icon: 'none' }); }
+  },
+  rate(e) {
+    const v = +e.currentTarget.dataset.v, data = app.globalData.data, old = W.get(this.id), rec = old || W.guess(this.id, data, U.index(data), plan.get());
+    W.set(this.id, Object.assign({}, rec, { r: rec.r === v ? 0 : v }));
+    if (!old) wx.showToast({ title: t('已盖章 · 加入观影护照'), icon: 'none' });
+  },
+  setSeenDate(e) {
+    const d = e.detail.value, rec = W.get(this.id); if (!rec || !/^\d{4}-\d{2}-\d{2}$/.test(d)) return;
+    const data = app.globalData.data, idx = U.index(data), s = data.shows.find(x => x.id === this.id && W.iso(U.showDate(x)) === d && U.ended(x, idx));
+    W.set(this.id, Object.assign({}, rec, { d, k: s ? U.keyOf(s) : '' })); wx.showToast({ title: t('观影日期已更新'), icon: 'none' });
+  },
+  toMy() { wx.switchTab({ url: '/pages/my/my' }); },
   toggle(e) { const on = plan.toggle(e.currentTarget.dataset.key); wx.showToast({ title: t(on ? '已加入排片' : '已移出排片'), icon: 'none' }); },
   calendar(e) {
     const data = app.globalData.data, s = data.shows.find(x => U.keyOf(x) === e.currentTarget.dataset.key), idx = U.index(data), f = idx.F[s.id];

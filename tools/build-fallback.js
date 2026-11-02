@@ -49,3 +49,7 @@ console.log('films', films.length, 'shows', shows.length, 'venues', data.venues.
 const en = readJSON('data/i18n/en.json'); delete en._readme;
 fs.writeFileSync(path.join(root, 'miniprogram/data/en.js'), '/* 英文层：由 tools/build-fallback.js 从 data/i18n/en.json 生成。 */\nmodule.exports = ' + JSON.stringify(en) + ';\n');
 console.log('en.js films', Object.keys(en.films).length, 'ui', Object.keys(en.ui).length);
+
+// 观影护照：结算长图与印章的画布代码，网站与小程序共用 shared/recap.js，这里复制一份给小程序
+fs.writeFileSync(path.join(root, 'miniprogram/utils/recap.js'), '/* 由 tools/build-fallback.js 从 shared/recap.js 复制，请改 shared/recap.js 后重新运行。 */\n' + fs.readFileSync(path.join(root, 'shared/recap.js'), 'utf8'));
+console.log('recap.js copied');

@@ -1,5 +1,6 @@
 const LOCAL = require('./data/data.js');
 const plan = require('./utils/plan.js');
+const watched = require('./utils/watched.js');
 const I = require('./utils/i18n.js');
 
 App({
@@ -12,6 +13,7 @@ App({
       wx.cloud.init({ env: 'cloud1-d9gvudh6vc59007ac', traceUser: true });
       this.loadRemote();
       plan.syncFromCloud();
+      watched.syncFromCloud();
     }
   },
 

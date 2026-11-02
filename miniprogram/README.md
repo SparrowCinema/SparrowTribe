@@ -51,3 +51,7 @@
 ## 中 / EN 语言切换
 
 小程序有英文版：首页右上角「中 / EN」切换，词典与网站共用 `data/i18n/en.json`。离线兜底译文是 `miniprogram/data/en.js`，更新译文后运行 `node tools/build-fallback.js`；getData 云函数需重新部署一次才会把 `en` 一并返回（未部署时使用安装包里的 en.js）。详见仓库根目录 CONTRIBUTING.md「英文版（小程序）」。
+
+## 观影护照
+
+影片页可标记「看过」并五星十分制打分，「我的」页顶部是可翻页的观影护照和线下观影结算长图。看过记录通过 `plan` 云函数同步：**更新后请右键 `plan` →「上传并部署：云端安装依赖」**，否则记录只保存在本机。`utils/recap.js` 由 `node tools/build-fallback.js` 从 `shared/recap.js` 复制。
