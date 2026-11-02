@@ -10,6 +10,7 @@ const CJK = /[　-〿㐀-鿿＀-￯]/;
 const PATS = [
   [/间隔仅\s*(\d+)\s*分钟，留意入场时间/g, (m, n) => 'Only ' + n + ' min between screenings — mind the entry time'],
   [/有\s*(\d+)\s*组场次时间重叠/g, (m, n) => pl(n, 'pair of screenings overlaps', 'pairs of screenings overlap')],
+  [/(\d+)\s*天后/g, (m, n) => 'in ' + n + ' days'],
   [/还有\s*(\d+)\s*场/g, (m, n) => n + ' more'],
   [/(\d{4})年(\d{1,2})月(\d{1,2})日\s*/g, (m, y, mo, d) => MON[mo - 1] + ' ' + (+d) + ', ' + y + ' · '],
   [/(\d{1,2})月(\d{1,2})日/g, (m, a, b) => MON[a - 1] + ' ' + (+b)],

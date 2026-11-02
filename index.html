@@ -886,6 +886,7 @@ const pl=(n,one,many)=>n+" "+(+n===1?one:many);
 const PATS=[
  [/间隔仅\s*(\d+)\s*分钟，留意入场时间/g,(m,n)=>"Only "+n+" min between screenings — mind the entry time"],
  [/有\s*(\d+)\s*组场次时间重叠/g,(m,n)=>pl(n,"pair of screenings overlaps","pairs of screenings overlap")],
+ [/(\d+)\s*天后/g,(m,n)=>"in "+n+" days"],
  [/还有\s*(\d+)\s*场/g,(m,n)=>n+" more"],
  [/(\d{4})年(\d{1,2})月(\d{1,2})日\s*/g,(m,y,mo,d)=>MON[mo-1]+" "+(+d)+", "+y+" · "],
  [/(\d{1,2})月(\d{1,2})日/g,(m,a,b)=>MON[a-1]+" "+(+b)],
@@ -1116,12 +1117,14 @@ function venueBoxHTML(){
 
 // 首页顶部：今天我的排片中尚未散场的场次，按时间线排列
 function myTodayHTML(){
-  const t=new Date(now()); const key=(t.getMonth()+1)+"/"+t.getDate();
-  const list=selectedRows().filter(x=>x.d===key&&!isPast(x));
-  if(!list.length) return "";
+  // 今天还有没散场的就显示今天；今天都散场后顺延到之后最近一个有排片的日子（到了当天自动变回「今日」）
+  const upc=selectedRows().filter(x=>!isPast(x)); if(!upc.length) return "";
+  const key=upc[0].d, t0=new Date(now()); t0.setHours(0,0,0,0); const d0=showDate(upc[0]); d0.setHours(0,0,0,0);
+  const off=Math.round((d0-t0)/864e5), list=upc.filter(x=>x.d===key);
+  const head=off<=0?"今日我的排片":off===1?"明日我的排片":"近期我的排片", cnt=off<=0?`接下来 ${list.length} 场`:off===1?`${list.length} 场`:`${off} 天后 · ${list.length} 场`;
   const more=list.length>1;
   const chev='<i class="tt-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></i>';
-  return `<section class="my-today${more?" foldable":""}${more&&todayOpen?" open":""}"><h3 class="blockh">今日我的排片 <small>${key.replace("/","月")}日 ${wk(key)} · 接下来 ${list.length} 场</small></h3>${planRowsHTML(list,false)}${more?`<button class="today-toggle" data-today-toggle aria-expanded="${todayOpen}"><span class="tt-txt">${todayOpen?"收起":`还有 ${list.length-1} 场 · 展开全部`}</span>${chev}</button>`:""}</section>`;
+  return `<section class="my-today${more?" foldable":""}${more&&todayOpen?" open":""}"><h3 class="blockh">${head} <small>${key.replace("/","月")}日 ${wk(key)} · ${cnt}</small></h3>${planRowsHTML(list,false)}${more?`<button class="today-toggle" data-today-toggle aria-expanded="${todayOpen}"><span class="tt-txt">${todayOpen?"收起":`还有 ${list.length-1} 场 · 展开全部`}</span>${chev}</button>`:""}</section>`;
 }
 let todayOpen=false;
 document.addEventListener("click",e=>{const b=e.target.closest("[data-today-toggle]");if(!b)return;todayOpen=!todayOpen;const sec=b.closest(".my-today");if(!sec)return;sec.classList.toggle("open",todayOpen);b.setAttribute("aria-expanded",String(todayOpen));const n=sec.querySelectorAll(".pitem").length;b.querySelector(".tt-txt").textContent=todayOpen?"收起":"还有 "+(n-1)+" 场 · 展开全部";});
