@@ -47,7 +47,8 @@ function progInfo(p, data, idx, now = Date.now()) {
   const ts = shows.map(s => showDate(s).getTime()), te = shows.map(s => showDate(s).getTime() + ((idx.F[s.id] || {}).min || 0) * 60000);
   const a = p.start ? ymd(p.start) : (ts.length ? Math.min(...ts) : null);
   const b = p.end ? ymd(p.end) + 864e5 : (te.length ? Math.max(...te) : null);
-  const status = a != null && now < a ? 'soon' : (b != null && now >= b ? 'ended' : 'live');
+  // 常设专题（ongoing，如麻雀部落电影空间）：开始后一直算进行中，不进入往期
+  const status = a != null && now < a ? 'soon' : (!p.ongoing && b != null && now >= b ? 'ended' : 'live');
   return { shows, a, b, status, up: shows.filter(s => !ended(s, idx)).length };
 }
 

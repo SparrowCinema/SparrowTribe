@@ -2081,6 +2081,7 @@ module.exports = {
    "cover": "/images/brand/prog-sparrow-tribe-space.jpg",
    "start": "2026-10-01",
    "end": null,
+   "ongoing": true,
    "city": "嘉兴",
    "blurb": "麻雀部落是独立电影放映与策展团体，近十年来以「盲盒放映」为人熟知。沉寂四年后，麻雀部落在 2026 年国庆前后重新出发，有了自己的线下单厅艺术电影空间：麻雀部落电影空间。这里收录空间的放映排片，场次公布后会陆续更新。"
   }

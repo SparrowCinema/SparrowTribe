@@ -13,7 +13,7 @@ Page({
     const list = data.programmes.map((p, i) => {
       const { shows, up, a, b, status } = U.progInfo(p, data, idx, now);
       const fn = data.films.filter(f => idx.progOf(f).id === p.id).length;
-      return Object.assign({}, p, { i, n: shows.length, up, fn, fest: U.isFest(p), status, statusText: { live: '进行中', soon: '即将开始', ended: '已结束' }[status], a: a || 0, b: b || 0 });
+      return Object.assign({}, p, { i, n: shows.length, up, fn, fest: U.isFest(p), status, statusText: p.ongoing && status === 'live' ? '常设' : { live: '进行中', soon: '即将开始', ended: '已结束' }[status], a: a || 0, b: b || 0 });
     });
     const rank = (x, y) => ((y.up > 0) - (x.up > 0)) || (x.a - y.a) || x.i - y.i;
     const live = list.filter(p => p.status === 'live').sort(rank), soon = list.filter(p => p.status === 'soon').sort(rank);
