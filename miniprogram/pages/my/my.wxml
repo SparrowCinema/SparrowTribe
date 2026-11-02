@@ -62,7 +62,7 @@
             <view class="fp-sub">{{pp.empty ? L.t(i,'在影片页点「看过」，就会在这里盖章。') : L.t(i,'点印章回到影片 · 评分印在章上')}}</view>
             <view class="fp-grid">
               <view wx:for="{{pg.items}}" wx:for-item="s" wx:key="id" class="fp-cell">
-            <view class="st st{{s.shape}}" style="--ink:{{s.ink}};transform:rotate({{s.tilt}}deg) scale(.72)" data-id="{{s.id}}" bindtap="openStamp">
+            <view class="st st{{s.shape}}" style="--ink:{{s.ink}};transform:translate({{s.dx}}rpx,{{s.dy}}rpx) rotate({{s.tilt}}deg) scale(.5)" data-id="{{s.id}}" bindtap="openStamp">
               <view class="st-in" />
               <text class="st-top">{{s.top}}</text>
               <text class="st-title">{{s.title}}</text>
@@ -88,6 +88,21 @@
       <view><text class="b">{{L.t(i,'生成我的影院观影结算')}}</text><text class="s">{{L.t(i,'按年份 / 专题 · 一张长图 · 印章墙 · 我的评分')}}</text></view>
       <text class="ar">↗</text>
     </view>
+  </view>
+
+  <view class="sy card" wx:if="{{sy}}">
+    <view class="sy-h">{{L.t(i,'个人档案云端同步')}}</view>
+    <block wx:if="{{!sy.on}}">
+      <view class="sy-lead">{{L.t(i,'用一串同步码，在手机、电脑和小程序之间同步看过记录、评分、护照照片和个人排片。不用注册账号。')}}</view>
+      <view class="sy-row"><view class="btn" hover-class="hv" bindtap="syStart">{{L.t(i,'开启同步')}}</view><view class="btn ghost" hover-class="hv" bindtap="syJoin">{{L.t(i,'我已有同步码')}}</view></view>
+    </block>
+    <block wx:else>
+      <view class="sy-st"><view class="dot {{sy.state}}" /><text>{{sy.line}}</text></view>
+      <view class="sy-code"><text class="sy-l">{{L.t(i,'同步码')}}</text><text class="mono sy-c" user-select>{{sy.shown}}</text>
+        <view class="sy-ops"><text bindtap="syReveal">{{sy.rev ? L.t(i,'隐藏') : L.t(i,'显示')}}</text><text bindtap="syCopy">{{L.t(i,'复制')}}</text></view></view>
+      <view class="sy-row"><view class="btn" hover-class="hv" bindtap="syNow">{{L.t(i,'立即同步')}}</view><text class="sy-stop" bindtap="syStop">{{L.t(i,'停止同步')}}</text></view>
+      <view class="sy-note">{{L.t(i,'在另一台设备（网站或小程序）的「我的」页选「我已有同步码」，输入这串码即可。同步码就是钥匙，请自己保存好；知道它的人都能读写这份档案。')}}</view>
+    </block>
   </view>
 
   <view class="blockh">{{L.t(i,'个人排片')}} <text class="en">MY PLAN</text></view>

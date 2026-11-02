@@ -2,6 +2,7 @@ const LOCAL = require('./data/data.js');
 const plan = require('./utils/plan.js');
 const watched = require('./utils/watched.js');
 const I = require('./utils/i18n.js');
+const sync = require('./utils/sync.js');
 
 App({
   globalData: { data: LOCAL, source: 'local', raw: LOCAL },
@@ -14,6 +15,7 @@ App({
       this.loadRemote();
       plan.syncFromCloud();
       watched.syncFromCloud();
+      sync.init();
     }
   },
 
