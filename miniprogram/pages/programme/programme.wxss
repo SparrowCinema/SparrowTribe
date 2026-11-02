@@ -25,3 +25,10 @@
 .gone-ar { width: 12rpx; height: 12rpx; border-right: 3rpx solid currentColor; border-bottom: 3rpx solid currentColor; transform: rotate(45deg) translateY(-3rpx); transition: transform .2s; }
 .gone-ar.open { transform: rotate(-135deg) translateY(-3rpx); }
 .gone .gf { opacity: .78; }
+
+.jumps { display: flex; gap: 20rpx; margin-bottom: 8rpx; }
+.jumps .btn { flex: 1; }
+.pst { display: inline-block; margin-right: 12rpx; padding: 0 12rpx; border-radius: 8rpx; font-size: 20rpx; font-style: normal; font-weight: 700; letter-spacing: 1rpx; }
+.pst-live { background: rgba(47, 111, 108, .14); color: var(--teal); }
+.pst-soon { background: rgba(178, 106, 31, .16); color: var(--ochre); }
+.pst-ended { background: var(--chip); color: var(--muted); }
