@@ -47,7 +47,7 @@
    "poster": "posters/amrum.jpg",
    "r": [
     null,
-    null,
+    7.2,
     98,
     null,
     null
@@ -184,7 +184,7 @@
    "poster": "posters/karla.jpg",
    "r": [
     null,
-    null,
+    7.2,
     null,
     null,
     null
@@ -230,7 +230,7 @@
    "poster": "posters/miroirs-no-3.jpg",
    "r": [
     null,
-    null,
+    6.6,
     95,
     78,
     3.5
@@ -331,7 +331,7 @@
    "poster": "posters/oh-this-unspeakable-void.jpg",
    "r": [
     null,
-    null,
+    7.9,
     null,
     null,
     null
@@ -453,7 +453,7 @@
    "poster": "posters/shame-and-money.jpg",
    "r": [
     null,
-    null,
+    7.4,
     100,
     null,
     null

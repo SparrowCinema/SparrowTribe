@@ -5995,7 +5995,7 @@ module.exports = {
    "poster": "posters/amrum.jpg",
    "r": [
     null,
-    null,
+    7.2,
     98,
     null,
     null
@@ -6138,7 +6138,7 @@ module.exports = {
    "poster": "posters/karla.jpg",
    "r": [
     null,
-    null,
+    7.2,
     null,
     null,
     null
@@ -6186,7 +6186,7 @@ module.exports = {
    "poster": "posters/miroirs-no-3.jpg",
    "r": [
     null,
-    null,
+    6.6,
     95,
     78,
     3.5
@@ -6291,7 +6291,7 @@ module.exports = {
    "poster": "posters/oh-this-unspeakable-void.jpg",
    "r": [
     null,
-    null,
+    7.9,
     null,
     null,
     null
@@ -6419,7 +6419,7 @@ module.exports = {
    "poster": "posters/shame-and-money.jpg",
    "r": [
     null,
-    null,
+    7.4,
     100,
     null,
     null
@@ -8372,8 +8372,8 @@ module.exports = {
    "halls": [
     {
      "id": "festival",
-     "short": "展映厅",
-     "name": "展映厅"
+     "short": "Dolby VISION+ATMOS",
+     "name": "Dolby VISION+ATMOS"
     }
    ],
    "city": "杭州"
