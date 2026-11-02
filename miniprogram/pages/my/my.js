@@ -9,7 +9,7 @@ const t = I.tr;
 const app = getApp();
 
 Page({
-  data: { i: {}, pp: {}, ppOpen: false, ppPage: 0, rc: {}, rcOpen: false, rcY: 'all', rcP: 'all', stats: {}, days: [], clash: 0, empty: true, pf: 'all', progs: [] },
+  data: { i: {}, pp: {}, ppOpen: false, ppPage: 0, rc: {}, rcOpen: false, rcY: 'all', rcM: 'all', rcP: 'all', guideOpen: false, guide: [{ k: '看过 · 盖章', s: '在影片页点「看过」，护照里就会盖下这部片的印章；可以打星评分、改观影日期。' }, { k: '写下持有人', s: '护照首页可以填姓名、从相册放一张照片，印章每页最多 15 枚。' }, { k: '个人排片', s: '在排片表点色块右上角的 + 加入场次，「我的」里会自动检查时间冲突；首页甘特图可以只看我的排片。' }, { k: '导出与分享', s: '把排片生成带二维码的长图、分享链接或加入日历。' }, { k: '结算长图', s: '护照页底部「生成我的影院观影结算」，可按年份、月份、专题筛选，生成一张印章墙长图。' }, { k: '换设备不丢', s: '开启上方云端同步，另一台设备用同步码即可带走看过记录、评分、照片和排片。' }], stats: {}, days: [], clash: 0, empty: true, pf: 'all', progs: [] },
   onLoad() { this.setData({ i: I.dict() }); this.off1 = plan.onChange(() => this.build()); this.off2 = app.onData(() => { this.build(); this.buildPassport(); }); this.off3 = W.onChange(() => this.buildPassport()); },
   onUnload() { this.off1 && this.off1(); this.off2 && this.off2(); this.off3 && this.off3(); },
   onShow() { wx.setNavigationBarTitle({ title: t('我的观影护照') }); this.build(); this.buildPassport(); this.buildSync(); if (!this.offS) this.offS = SY.onStatus(() => this.buildSync()); if (SY.stale()) SY.quiet(); },
@@ -80,16 +80,18 @@ Page({
   },
   // ===== 影院观影结算：按年份 / 专题 =====
   recapScope() {
-    const data = app.globalData.data, idx = U.index(data), y = this.data.rcY || 'all', p = this.data.rcP || 'all';
-    return W.entries(data, idx).filter(e => (y === 'all' || e.rec.d.slice(0, 4) === y) && (p === 'all' || idx.progOf(e.f).id === p));
+    const data = app.globalData.data, idx = U.index(data), y = this.data.rcY || 'all', p = this.data.rcP || 'all', m = this.data.rcM || 'all';
+    return W.entries(data, idx).filter(e => (y === 'all' || e.rec.d.slice(0, 4) === y) && (m === 'all' || e.rec.d.slice(0, 7) === m) && (p === 'all' || idx.progOf(e.f).id === p));
   },
   buildRecap() {
     const data = app.globalData.data, idx = U.index(data), all = W.entries(data, idx);
     const years = [...new Set(all.map(e => e.rec.d.slice(0, 4)))].sort().reverse(), pids = data.programmes.map(p => p.id).filter(id => all.some(e => idx.progOf(e.f).id === id));
     let y = this.data.rcY || 'all', p = this.data.rcP || 'all'; if (y !== 'all' && !years.includes(y)) y = 'all'; if (p !== 'all' && !pids.includes(p)) p = 'all';
-    this.setData({ rcY: y, rcP: p });
+    const months = [...new Set(all.filter(e => y === 'all' || e.rec.d.slice(0, 4) === y).map(e => e.rec.d.slice(0, 7)))].sort().reverse();
+    let m = this.data.rcM || 'all'; if (m !== 'all' && !months.includes(m)) m = 'all';
+    this.setData({ rcY: y, rcP: p, rcM: m });
     const list = this.recapScope(), rated = list.filter(e => e.rec.r), mins = list.reduce((n, e) => n + (e.f.min || 0), 0);
-    this.setData({ rc: { years: [{ v: 'all', n: t('全部年份') }].concat(years.map(v => ({ v, n: v }))), progs: [{ v: 'all', n: t('全部专题') }].concat(pids.map(v => ({ v, n: idx.PG[v].name }))),
+    this.setData({ rc: { months: [{ v: 'all', n: t('全部月份') }].concat(months.map(v => ({ v, n: y === 'all' ? v.replace('-', '.') : t((+v.slice(5)) + '月') }))), years: [{ v: 'all', n: t('全部年份') }].concat(years.map(v => ({ v, n: v }))), progs: [{ v: 'all', n: t('全部专题') }].concat(pids.map(v => ({ v, n: idx.PG[v].name }))),
       n: list.length, hm: Math.floor(mins / 60) + 'h' + String(mins % 60).padStart(2, '0'), avg: rated.length ? (rated.reduce((n, e) => n + e.rec.r, 0) / rated.length).toFixed(1) : '—' } });
   },
   openRecap() {
@@ -97,6 +99,8 @@ Page({
     this.buildRecap(); this.setData({ rcOpen: true });
   },
   closeRecap() { this.setData({ rcOpen: false }); },
+  setRcM(e) { this.setData({ rcM: e.currentTarget.dataset.v }); this.buildRecap(); },
+  toggleGuide() { this.setData({ guideOpen: !this.data.guideOpen }); },
   setRcY(e) { this.setData({ rcY: e.currentTarget.dataset.v }); this.buildRecap(); },
   setRcP(e) { this.setData({ rcP: e.currentTarget.dataset.v }); this.buildRecap(); },
   noop() { },
@@ -104,7 +108,7 @@ Page({
     const list = this.recapScope(); if (!list.length || this.busy) return;
     this.busy = true; wx.showLoading({ title: t('正在生成观影结算…'), mask: true });
     const fail = () => { this.busy = false; wx.hideLoading(); wx.showToast({ title: t('图片生成失败，请稍后再试'), icon: 'none' }); };
-    const data = app.globalData.data, idx = U.index(data), y = this.data.rcY, pid = this.data.rcP;
+    const data = app.globalData.data, idx = U.index(data), y = this.data.rcY, pid = this.data.rcP, mo = this.data.rcM || 'all';
     wx.createSelectorQuery().select('#recap').fields({ node: true, size: true }).exec(async res => {
       try {
         const canvas = res && res[0] && res[0].node; if (!canvas) return fail();
@@ -117,7 +121,7 @@ Page({
         const topM = Object.keys(months).sort((a, b) => months[b] - months[a] || a - b)[0];
         const byP = {}; list.forEach(e => { const p = idx.progOf(e.f); const g = byP[p.id] = byP[p.id] || { name: p.name, n: 0, sum: 0, k: 0 }; g.n++; if (e.rec.r) { g.sum += e.rec.r; g.k++; } });
         const years = [...new Set(list.map(e => e.rec.d.slice(0, 4)))].sort();
-        const o = { title: t('我的影院观影结算'), sub: (y === 'all' ? (years.length > 1 ? years[0] + '–' + years[years.length - 1] : years[0]) : y) + ' · ' + (pid === 'all' ? t('全部专题') : idx.PG[pid].name),
+        const o = { title: t('我的影院观影结算'), sub: (mo !== 'all' ? mo.replace('-', '.') : y === 'all' ? (years.length > 1 ? years[0] + '–' + years[years.length - 1] : years[0]) : y) + ' · ' + (pid === 'all' ? t('全部专题') : idx.PG[pid].name),
           kicker: 'SPARROW FILM PASSPORT · MY CINEMA RECAP', yearTag: y === 'all' ? years[years.length - 1] : y,
           stats: [[list.length, t('部影片')], [Math.floor(mins / 60) + 'h' + String(mins % 60).padStart(2, '0'), t('银幕时长')], [rated.length ? (rated.reduce((n, e) => n + e.rec.r, 0) / rated.length).toFixed(1) : '—', t('平均评分')],
             [new Set(list.filter(e => e.s).map(e => e.s.v)).size, t('家影院')], [Object.keys(byP).length, t('个专题')], [topM ? t(topM + '月') : '—', t('看得最多的月份')]],
