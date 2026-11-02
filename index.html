@@ -982,17 +982,25 @@ function venueBoxHTML(){
   return `<details class="vbox"><summary><span class="vb-k">影院</span><span class="vb-s">${VENUES.length} 家 · ${active} 家有排片</span><span class="vb-go">展开</span></summary><ul class="vb-list">${rows}</ul></details>`;
 }
 
+// 首页顶部：今天我的排片中尚未散场的场次，按时间线排列
+function myTodayHTML(){
+  const t=new Date(now()); const key=(t.getMonth()+1)+"/"+t.getDate();
+  const list=selectedRows().filter(x=>x.d===key&&!isPast(x));
+  if(!list.length) return "";
+  return `<section class="my-today"><h3 class="blockh">今日我的排片 <small>${key.replace("/","月")}日 ${wk(key)} · 接下来 ${list.length} 场</small></h3>${planRowsHTML(list,false)}</section>`;
+}
 function schedule(){
-  const list = SH.filter(x=>(vfilt==="all"||x.v===vfilt)&&inProg(x));
+  const list = SH.filter(x=>(vfilt==="all"||x.v===vfilt)&&inProg(x)&&!isPast(x));
   const ds = days.filter(d=>list.some(x=>x.d===d));
   sday = pickDay(ds);
-  const pl = SH.filter(inProg), cur = PG[pfilt];
+  const pl = SH.filter(x=>inProg(x)&&!isPast(x)), cur = PG[pfilt];
   const vlist = VENUES.filter(v=>pl.some(x=>x.v===v.id)||v.id===vfilt);
   const vchips = vlist.length>1 ? `<div class="filters vchips">${[["all","全部影院"],...vlist.map(v=>[v.id,vShort(v)])].map(([kk,n])=>`<button class="fchip" data-vf="${kk}" aria-pressed="${vfilt===kk}">${esc(n)}</button>`).join("")}</div>` : "";
   const dayList = list.filter(x=>x.d===sday);
   const ag = dayList.map(x=>{const f=F[x.id], gone=isPast(x);
     return `<div class="agenda-choice${gone?" past":""}"><button class="ag-row" data-film="${x.id}"><span class="tm">${x.t}${gone?"<em>已放映</em>":""}</span><span class="bar fc" style="--h:${fhue(x.id)}"></span><span class="nm"><b>${esc(f.cn)}${editionHTML(f)}</b><small>${esc(placeOf(x))}${f.dir?` · ${esc(f.dir)}`:""} · ${minText(f)}</small></span>${chevron}</button>${planToggleHTML(x)}</div>`;}).join("");
   main.innerHTML = `<section class="view gut">
+    ${myTodayHTML()}
     <h2 class="sec">排片表</h2><p class="sub">${cur?`${esc(cur.name)}${cur.city?` · ${esc(cur.city)}`:""} · `:""}${list.length?`${dateSpan(list)} · ${list.length} 场 · `:""}按日期查看，点击色块看影片</p>
     ${progChips()}
     ${vchips}
@@ -1063,7 +1071,7 @@ document.addEventListener('click',e=>{const b=e.target.closest('[data-ticket]');
 function detail(id){
   const f=F[id]; if(!f){ go("films"); return; }
   const col = REG[f.reg].c, P = pst(id);
-  const shows = SH.filter(x=>x.id===id);
+  const allShows = SH.filter(x=>x.id===id), shows = allShows.filter(x=>!isPast(x));
   const sib = FILMS.filter(x=>x.prog===f.prog), idx = sib.indexOf(f), prev = sib[idx-1], next = sib[idx+1];
   topEl.innerHTML = `<div class="row"><button class="back" data-back><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m15 6-6 6 6 6"/></svg>返回</button><span class="sp"></span><span class="pill">${String(idx+1).padStart(2,"0")} / ${sib.length}</span></div>`;
   const syn = String(f.syn||""), long = syn.length > 220;
@@ -1088,7 +1096,7 @@ function detail(id){
     <aside class="fd-side">
       ${ticketHTML(f)}
       ${ratingsHTML(f)}
-      <section class="fd-block"><h3 class="fd-h">放映场次 <small>${shows.length?shows.length+" 场":"排片待公布"}</small></h3>${shows.length?shows.map(s=>screeningHTML(s,f)).join(""):`<div class="fd-noshow"><b>${f.release?esc(f.release):"上映信息待公布"}</b><span>麻雀观影护照收录的场次公布后会更新到这里，也可以先在各影院售票平台查看。</span></div>`}</section>
+      <section class="fd-block"><h3 class="fd-h">放映场次 <small>${shows.length?shows.length+" 场":"排片待公布"}</small></h3>${shows.length?shows.map(s=>screeningHTML(s,f)).join(""):`<div class="fd-noshow"><b>${allShows.length?"本片场次已全部放映结束":(f.release?esc(f.release):"上映信息待公布")}</b><span>${allShows.length?"已放映的场次不再显示在这里。":"麻雀观影护照收录的场次公布后会更新到这里，也可以先在各影院售票平台查看。"}</span></div>`}</section>
       ${qaPanelHTML(f)}
       ${giftsHTML(f)}
       <section class="fd-block"><h3 class="fd-h">影片信息</h3><dl class="fd-credits">${creditsHTML(f)}</dl></section>
@@ -1138,6 +1146,14 @@ function readSelection(){try{const a=JSON.parse(localStorage.getItem(PLAN_KEY)||
 let picked=new Set(),currentExport=[];
 function toast(message){let el=document.getElementById('toast');if(!el){el=document.createElement('div');el.id='toast';el.setAttribute('role','status');document.body.appendChild(el);}el.textContent=message;el.classList.add('visible');clearTimeout(toast.timer);toast.timer=setTimeout(()=>el.classList.remove('visible'),2800);}
 function saveSelection(){try{localStorage.setItem(PLAN_KEY,JSON.stringify([...picked]));return true;}catch{toast('当前浏览器无法保存，离开页面后可能丢失');return false;}}
+let planFilt="all";
+function planProgChips(all){
+  const ids=[...new Set(all.map(s=>s.p))];
+  if(ids.length<2) return "";
+  const items=[["all","全部专题",all.length],...ids.map(id=>[id,PG[id]?PG[id].name:id,all.filter(s=>s.p===id).length])];
+  return '<div class="filters prog-chips plan-progs" role="group" aria-label="选择专题">'+items.map(([k,n,c])=>'<button class="fchip" data-ppf="'+esc(k)+'" aria-pressed="'+(planFilt===k)+'">'+esc(n)+' · '+c+'</button>').join('')+'</div>';
+}
+function scopedRows(){const all=selectedRows();if(planFilt==="all")return all;const r=all.filter(s=>s.p===planFilt);return r.length?r:all;}
 function selectedRows(keys=picked){const set=new Set(keys);return SH.filter(s=>set.has(keyOf(s))).sort((a,b)=>showDate(a)-showDate(b));}
 function showDate(s){const md=s.d.split('/').map(Number),tm=s.t.split(':').map(Number);return new Date(year(s.d),md[0]-1,md[1],tm[0],tm[1]);}
 function planToggleHTML(s){const k=keyOf(s),yes=picked.has(k);return '<button class="plan-toggle '+(yes?'selected':'')+'" data-plan="'+esc(k)+'" aria-pressed="'+yes+'" aria-label="'+(yes?'移出排片 ':'加入排片 ')+esc(F[s.id].cn)+' '+esc(s.d)+' '+s.t+'">'+(yes?'✓ 已加入':'+ 加入排片')+'</button>';}
@@ -1224,9 +1240,9 @@ function myPage(){const list=selectedRows(),st=planStats(list),next=list[0];
   main.innerHTML='<section class="view gut"><div class="my-hero"><small>MY FESTIVAL</small><h2>我的影展</h2><p>把想看的电影排进自己的日程，再分享给一起看的人。</p>'+statsHTML(st)+(next?'<button class="next-up" data-film="'+next.id+'"><span class="nu-label">第一场</span>'+thumbHTML(F[next.id])+'<span class="nu-body"><b>'+esc(F[next.id].cn)+'</b><small>'+next.d+' '+wk(next.d)+' · '+next.t+' · '+esc(placeOf(next))+'</small></span></button>':'')+'</div>'+
   '<div class="my-menu"><button class="my-entry" data-tab="plan"><span class="me-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="15" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span><span><b>个人排片</b><small>按天查看日程 · 自动检查时间冲突</small></span><span class="me-go">›</span></button><button class="my-entry" data-tab="export"><span class="me-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="4" width="6" height="6"/><rect x="14" y="4" width="6" height="6"/><rect x="4" y="14" width="6" height="6"/><path d="M14 14h2v2h-2zM18 18h2v2h-2zM14 18h2M18 14h2"/></svg></span><span><b>导出与分享</b><small>带二维码的排片长图 · 分享链接 · 日历 · PDF</small></span><span class="me-go">›</span></button><button class="my-entry" data-tab="install"><span class="me-ic">'+IIC.phone+'</span><span><b>添加到手机</b><small>'+(ENV.standalone?'已在 App 模式中打开':'放到桌面像 App 一样看 · 微信里用浮窗')+'</small></span><span class="me-go">›</span></button></div>'+
   '<p class="local-note">排片保存在当前浏览器。换设备时，用分享链接带走日程。</p>'+presentersHTML()+'<p class="local-note pres-note">麻雀观影护照由麻雀映画与麻雀部落制作，汇集影展专题、艺术影院与院线放映场次。当前专题：风格万相 · 中外经典影片展（2026.10—2027.01）。</p></section>';}
-function planPage(){const list=selectedRows(),st=planStats(list);
+function planPage(){const all=selectedRows(),list=scopedRows(),st=planStats(list);
   main.innerHTML='<section class="view gut"><div class="page-heading"><div><small>MY PROGRAMME</small><h2 class="sec">个人排片</h2></div><button class="text-button" data-tab="my">返回我的</button></div>'+
-  (list.length?statsHTML(st)+'<div class="plan-toolbar"><button class="primary-button" data-tab="export">导出与分享</button><button class="secondary-button" data-tab="schedule">继续选片</button><button class="text-button" data-action="clear-plan">清空排片</button></div>'+(st.clash?'<div class="conflict" role="status"><b>有 '+st.clash+' 组场次时间重叠</b><p>重叠处已在日程中标红，移出其中一场即可解决。</p></div>':'')+'<div class="plan-days">'+planRowsHTML(list,true)+'</div>'
+  (list.length?planProgChips(all)+statsHTML(st)+'<div class="plan-toolbar"><button class="primary-button" data-tab="export">导出与分享</button><button class="secondary-button" data-tab="schedule">继续选片</button><button class="text-button" data-action="clear-plan">清空排片</button></div>'+(st.clash?'<div class="conflict" role="status"><b>有 '+st.clash+' 组场次时间重叠</b><p>重叠处已在日程中标红，移出其中一场即可解决。</p></div>':'')+'<div class="plan-days">'+planRowsHTML(list,true)+'</div>'
   :'<div class="empty-plan"><span>＋</span><h3>还没有加入场次</h3><p>在排片表或影片详情里，点击“加入排片”。</p><button class="primary-button" data-tab="schedule">去选电影</button></div>')+
   '<p class="local-note">散场时间按影片片长计算，不含映前广告与映后交流。跨影院观影请另留交通时间。</p></section>';}
 function homeURL(){return location.origin+location.pathname;}
@@ -1236,13 +1252,14 @@ function qrMatrix(text){if(!window.QRCodeLib)return null;try{const {QRCode,ECL}=
 function qrSVG(text){const m=qrMatrix(text);if(!m)return '';const n=m.length,q=4;let d='';for(let r=0;r<n;r++)for(let c=0;c<n;c++)if(m[r][c])d+='M'+(c+q)+' '+(r+q)+'h1v1h-1z';return '<svg viewBox="0 0 '+(n+2*q)+' '+(n+2*q)+'" role="img" aria-label="分享二维码" shape-rendering="crispEdges"><rect width="100%" height="100%" fill="#fff"/><path d="'+d+'" fill="#1d1712"/></svg>';}
 function exportPage(shared){let list;
   if(shared!==undefined){try{const raw=decodeURIComponent(shared);const keys=raw.split('~');if(!keys.length||keys.some(k=>!validKeys.has(k)))throw Error();list=selectedRows(keys);}catch{main.innerHTML='<section class="view gut"><h2 class="sec">这个分享链接无法读取</h2><p>链接可能不完整，或其中场次已更新。</p><button class="primary-button" data-tab="my">打开我的影展</button></section>';currentExport=[];return;}}
-  else list=selectedRows();
+  else list=scopedRows();
   currentExport=list;const isShared=shared!==undefined,st=planStats(list);
   if(!list.length){main.innerHTML='<section class="view gut export-view"><div class="page-heading"><div><small>TAKE CINEMA WITH YOU</small><h2 class="sec">导出与分享</h2></div><button class="text-button" data-tab="plan">我的排片</button></div><div class="empty-plan"><h3>先为自己选几场电影</h3><p>加入场次后，就能生成带二维码的分享日程。</p><button class="primary-button" data-tab="schedule">去选电影</button></div></section>';return;}
   const qr=qrSVG(homeURL()),canShare=!!navigator.share;
+  const chips=isShared?'':planProgChips(selectedRows());
   const tile=(act,ic,t,s,cls='')=>'<button class="xtile '+cls+'" data-action="'+act+'"><span class="xt-ic">'+ic+'</span><b>'+t+'</b><small>'+s+'</small></button>';
   const IC={img:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-5-5L5 21"/></svg>',cal:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M9 15h6"/></svg>',pdf:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 9V3h12v6M6 18H4v-7h16v7h-2M7 14h10v7H7z"/></svg>',add:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 5v14M5 12h14"/></svg>',share:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/></svg>'};
-  main.innerHTML='<section class="view gut export-view"><div class="page-heading"><div><small>'+(isShared?'SHARED PROGRAMME':'TAKE CINEMA WITH YOU')+'</small><h2 class="sec">'+(isShared?'朋友分享的排片':'导出与分享')+'</h2></div><button class="text-button" data-tab="plan">我的排片</button></div>'+
+  main.innerHTML='<section class="view gut export-view"><div class="page-heading"><div><small>'+(isShared?'SHARED PROGRAMME':'TAKE CINEMA WITH YOU')+'</small><h2 class="sec">'+(isShared?'朋友分享的排片':'导出与分享')+'</h2></div><button class="text-button" data-tab="plan">我的排片</button></div>'+chips+
   (isShared?'<div class="shared-banner"><b>'+st.n+' 场电影 · '+st.days+' 天</b><p>这是一份别人分享给你的观影日程。加入后会和你自己的排片合并。</p><button class="primary-button" data-action="import-plan">全部加入我的排片</button></div>':'')+
   '<div class="share-panel">'+(qr?'<div class="qr-box">'+qr+'</div>':'')+'<div class="share-body"><b>扫码直达排片首页</b><small>二维码打开网站首页，查看完整片目与最新排片。下方链接可分享这份个人日程。</small><div class="link-row"><input id="share-url" readonly value="'+esc(shareURL(list))+'" aria-label="分享链接"><button class="secondary-button" data-action="copy-link">复制链接</button></div>'+(canShare?'<button class="text-button share-sys" data-action="system-share">'+IC.share+' 通过手机分享…</button>':'')+'</div></div>'+
   '<div class="export-grid">'+tile('png',IC.img,'排片长图','含海报与二维码 · PNG','main')+tile('calendar',IC.cal,'导入日历','.ics · 手机/电脑日历')+tile('print',IC.pdf,'打印 / PDF','A4 排版')+'</div>'+
@@ -1268,6 +1285,7 @@ async function exportPNG(){const list=currentExport;if(!list.length||pngBusy)ret
   marks.forEach((im,i)=>{const R=62,cx=W-P-R-(1-i)*(R*2-16),cy=118;c.fillStyle='#fffaf0';c.beginPath();c.arc(cx,cy,R,0,Math.PI*2);c.fill();c.strokeStyle='#8e2a22';c.lineWidth=4;c.stroke();if(im){const s=Math.min((R*1.5)/im.width,(R*1.5)/im.height),w=im.width*s,h=im.height*s;c.drawImage(im,cx-w/2,cy-h/2,w,h);}});
   c.font='500 22px '+MONO;c.globalAlpha=.85;c.fillText('SPARROW FILM PASSPORT · 麻雀映画 × 麻雀部落',P,196);c.globalAlpha=1;
   c.fillStyle='#fffaf0';c.fillRect(P,240,56,3);c.font='700 46px '+SANS;c.fillText(location.hash.startsWith('#share=')?'观影日程':'我的观影日程',P,310);
+  if(!location.hash.startsWith('#share=')&&planFilt!=='all'&&PG[planFilt]&&list.every(s=>s.p===planFilt)){c.globalAlpha=.85;c.fillStyle='#fffaf0';c.font='400 24px '+SANS;c.fillText('专题：'+PG[planFilt].name,P,346);c.globalAlpha=1;}
   // stats
   const st=planStats(list);let sx=P;[[st.n,'场放映'],[st.days,'天行程'],[st.hm,'银幕时长']].forEach(([v,l])=>{c.fillStyle='#2b2117';c.font='600 56px '+MONO;c.fillText(String(v),sx,HEAD+92);const w=c.measureText(String(v)).width;c.fillStyle='#7a6a55';c.font='400 24px '+SANS;c.fillText(l,sx+w+10,HEAD+92);sx+=Math.max(250,w+150);});
   c.fillStyle='#d8cbb1';c.fillRect(P,HEAD+STATS-24,W-2*P,2);
@@ -1295,7 +1313,7 @@ async function exportPNG(){const list=currentExport;if(!list.length||pngBusy)ret
   const m=qrMatrix(homeURL()),qs=264,qx=P+36,qy=fy+36;
   if(m){c.fillStyle='#fff';rr(c,qx,qy,qs,qs,10);c.fill();const n=m.length,cell=(qs-24)/(n+8);c.fillStyle='#1d1712';for(let r=0;r<n;r++)for(let k=0;k<n;k++)if(m[r][k])c.fillRect(Math.floor(qx+12+(k+4)*cell),Math.floor(qy+12+(r+4)*cell),Math.ceil(cell),Math.ceil(cell));}
   const fx=m?qx+qs+40:P+36;c.fillStyle='#fffaf0';c.font='700 38px '+SANS;c.fillText('扫码进入排片首页',fx,fy+100);c.font='400 24px '+SANS;c.globalAlpha=.8;wrapCanvas(c,'查看完整片目 · 选择想看的电影',fx,fy+150,W-P-36-fx,34);c.globalAlpha=.6;c.font='400 20px '+MONO;c.fillText(location.host+location.pathname,fx,fy+226);c.globalAlpha=1;
-  c.fillStyle='#e0b9a6';c.font='italic 900 30px '+SERIF;c.fillText('麻雀观影护照',fx,fy+280);c.fillStyle='#fffaf0';c.globalAlpha=.7;c.font='400 20px '+SANS;c.fillText('麻雀映画 × 麻雀部落',fx+c.measureText('麻雀观影护照').width+40,fy+278);c.globalAlpha=1;
+  c.fillStyle='#e0b9a6';c.font='italic 900 30px '+SERIF;const brandW=c.measureText('麻雀观影护照').width;c.fillText('麻雀观影护照',fx,fy+280);c.fillStyle='#fffaf0';c.globalAlpha=.7;c.font='400 20px '+SANS;c.fillText('麻雀映画 × 麻雀部落',fx+brandW+40,fy+278);c.globalAlpha=1;
   const blob=await new Promise(r=>cv.toBlob(r,'image/png'));if(!blob){toast('图片生成失败，请使用打印导出');return;}
   showImageSheet(blob);}finally{pngBusy=false;}}
 function showImageSheet(blob){const url=URL.createObjectURL(blob),file=new File([blob],'麻雀观影护照_我的观影日程.png',{type:'image/png'});const canFile=!!(navigator.canShare&&navigator.canShare({files:[file]}));
@@ -1356,7 +1374,7 @@ function route(){
   if(returning)restoreView(h);else if(!pendingFlash)window.scrollTo(0,0);
 }
 document.addEventListener("click",e=>{
-  const t=e.target.closest("[data-film],[data-tab],[data-filt],[data-vf],[data-pf],[data-prog],[data-prog-sched],[data-prog-films],[data-back],[data-jump],[data-day],[data-open-gantt]"); if(!t) return;
+  const t=e.target.closest("[data-film],[data-tab],[data-filt],[data-vf],[data-pf],[data-prog],[data-prog-sched],[data-prog-films],[data-back],[data-jump],[data-day],[data-open-gantt],[data-ppf]"); if(!t) return;
   if(t.dataset.film) go("film-"+t.dataset.film);
   else if(t.dataset.tab) go(t.dataset.tab);
   else if(t.dataset.filt){ filt=t.dataset.filt; films(); }
@@ -1367,6 +1385,7 @@ document.addEventListener("click",e=>{
   else if(t.dataset.progFilms){ ffilt=t.dataset.progFilms; fq=""; go("films"); }
   else if(t.hasAttribute("data-back")){if(activeRoute.startsWith("film-"))exitFilm();else go(lastList);}
   else if(t.dataset.jump){ const js=SH.find(x=>keyOf(x)===t.dataset.jump); pfilt=js?js.p:"all"; vfilt="all"; pendingFlash=t.dataset.jump; sday=t.dataset.jump.split("-")[0]; if(location.hash==="#schedule"||location.hash===""){schedule();}else go("schedule"); }
+  else if(t.dataset.ppf){ planFilt=t.dataset.ppf; const y=window.scrollY; route(); window.scrollTo(0,y); }
   else if(t.dataset.day){ sday=t.dataset.day; const y=window.scrollY; schedule(); window.scrollTo(0,y); }
   else if(t.hasAttribute("data-open-gantt")) go("schedule");
 });

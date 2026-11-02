@@ -20,8 +20,9 @@
   - data/catalog.json：专题（id、名称、类型、period、start/end ISO 日期、city、cover、file）与影院影厅。
   - data/programmes/<专题id>.json：该专题的 films 与 shows（[日期, 时间, 影片id, 影院id, 影厅id]）。新增影展＝新增一个专题文件并在 catalog 登记。
   - 同一部影片可被多个专题的场次引用，只需在一个专题文件里定义；场次归属看所在文件。
-  - 专题状态按 start/end 自动计算（即将开始 / 进行中 / 已结束），已结束进「往期专题」；已散场的场次变灰；片目按「近期放映 / 院线与待排片 / 已放映」排序并支持搜索。
+  - 专题状态按 start/end 自动计算（即将开始 / 进行中 / 已结束），已结束进「往期专题」；排片首页与影片详情只显示尚未散场的场次，已放映的场次与日期自动隐藏（个人排片中的记录保留）；片目按「近期放映 / 院线与待排片 / 已放映」排序并支持搜索。
   - 调试可在网址加 ?now=2026-11-07T15:00 模拟当前时间。
+- 首页排片顶部显示「今日我的排片」（今天尚未散场的个人场次，按时间线排列）。个人排片与导出页可按专题筛选，导出的长图、日历与分享链接只包含所选专题。
 - 微信小程序：`project.config.json` + `miniprogram/` + `cloudfunctions/`（AppID wx1f3f065d4885ac25，云环境 cloud1-d9gvudh6vc59007ac），说明见 miniprogram/README.md。小程序通过 getData 云函数自动读取网站 data/ 的最新数据（失败时用 cache 集合缓存），排片和影片数据只改网站即可，无需重新审核；`miniprogram/data/data.js` 是离线兜底数据，发新版时顺便同步。小程序安装包图片有增减时运行 `node tools/build-bundled.js` 并重新部署 getData。小程序场次键格式与网站一致。
 - 海报目录：posters/；发布配置：.github/workflows/pages.yml；PWA：manifest.webmanifest、sw.js（替换同名静态文件时需升级缓存名）、icons/。
 - 网站与小程序名称：麻雀观影护照（2026-10 起，原名「麻雀映画&麻雀部落展映排片表」），制作设计：麻雀映画 × 麻雀部落。风格万相是其中一个影展专题，后续会加入院线电影、艺术影院等排片。
