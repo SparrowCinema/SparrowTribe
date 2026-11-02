@@ -144,6 +144,20 @@
     "gr26-082": "流光：动画展映单元",
     "gr26-083": "流光：动画展映单元"
    }
+  },
+  {
+   "id": "german-film-2026",
+   "name": "2026德国电影展",
+   "sub": "杭州站 · CINEMA CIRCLE",
+   "en": "FESTIVAL OF GERMAN CINEMA IN CHINA",
+   "kind": "影展专题",
+   "period": "2026.11.14 – 11.23",
+   "cover": "programmes/german-film-2026.jpg",
+   "start": "2026-11-14",
+   "end": "2026-11-23",
+   "city": "杭州",
+   "file": "data/programmes/german-film-2026.json",
+   "blurb": "2026年德国电影展·杭州站将于11月14日至23日在CINEMA CIRCLE（杭州恒隆店）举办，选取自近两年在各大国际电影节展中大放异彩的十部佳作。德国电影展由德国电影协会和北京德国文化中心·歌德学院（中国）联合举办，百老汇系列影城协办，并得到德国驻华大使馆的支持。"
   }
  ],
  "venues": [
@@ -600,6 +614,22 @@
     }
    ],
    "city": "厦门"
+  },
+  {
+   "id": "hz-cinema-circle",
+   "short": "CINEMA CIRCLE·恒隆",
+   "name": "CINEMA CIRCLE（杭州恒隆店）",
+   "brand": "CINEMA CIRCLE",
+   "store": "杭州恒隆店",
+   "fmt": [],
+   "halls": [
+    {
+     "id": "festival",
+     "short": "展映厅",
+     "name": "展映厅"
+    }
+   ],
+   "city": "杭州"
   }
  ],
  "reg": {
