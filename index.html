@@ -778,7 +778,7 @@ html.sheet-open,html.sheet-open body{overflow:hidden}
 .tt-cap b{font:900 20px var(--f-display)}
 .tt-cap span{font-size:12px;color:var(--muted)}
 .tt{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface);-webkit-overflow-scrolling:touch}
-.tt-grid{display:grid;grid-template-columns:48px repeat(var(--n),minmax(150px,1fr));min-width:100%}
+.tt-grid{position:relative;display:grid;grid-template-columns:48px repeat(var(--n),minmax(150px,1fr));min-width:100%}
 .tt-axis{position:sticky;left:0;z-index:3;background:var(--surface);border-right:1px solid var(--line)}
 .tt-h{height:46px;display:flex;flex-direction:column;justify-content:center;padding:0 10px;border-bottom:1px solid var(--line);box-sizing:border-box;min-width:0}
 .tt-h b{font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -797,6 +797,10 @@ html.sheet-open,html.sheet-open body{overflow:hidden}
 .tt-v{font:600 9.5px/1.5 var(--f-mono);padding:0 5px;border-radius:3px;background:rgba(255,250,240,.22)}
 .tt-e{margin-top:auto;font:500 10.5px var(--f-mono);opacity:.85}
 .tt-b{padding-right:36px}
+/* 当前时间线（类似 iPhone 日历） */
+.tt-now{position:absolute;left:48px;right:0;height:0;z-index:2;border-top:2px solid #e0352b;pointer-events:none}
+.tt-now i{position:absolute;left:-5px;top:-6px;width:10px;height:10px;border-radius:50%;background:#e0352b;box-shadow:0 0 0 2px var(--surface)}
+.tt-nowlab{position:absolute;left:2px;right:2px;z-index:4;transform:translateY(-50%);padding:1px 0;border-radius:99px;background:#e0352b;color:#fff;font:700 10.5px/1.5 var(--f-mono);text-align:center;box-shadow:0 0 0 2px var(--surface);pointer-events:none}
 .tt-add{position:absolute;right:9px;z-index:2;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font:700 16px/1 var(--f-body);color:var(--on-block);background:rgba(0,0,0,.22);border:1.5px solid color-mix(in srgb,var(--on-block) 75%,transparent);-webkit-tap-highlight-color:transparent}
 .tt-add:hover{background:rgba(0,0,0,.36)}
 .tt-add.on{background:var(--on-block);color:var(--accent);border-color:var(--on-block);font-size:13px}
@@ -991,6 +995,9 @@ function timetableHTML(day, list){
   if(!ds.length) return "";
   const cols=[]; VENUES.forEach(v=>v.halls.forEach(h=>{ if(ds.some(x=>x.v===v.id&&x.h===h.id)) cols.push({v,h}); }));
   let S=Math.min(...ds.map(x=>toMin(x.t))), E=Math.max(...ds.map(x=>Math.max(toMin(x.t)+F[x.id].min,qaForShow(x,F[x.id])?.end||0)));
+  // 查看今天时，把当前时间所在的小时纳入时间轴，才能画出当前时间线
+  const nowD=new Date(now()), isToday=(nowD.getMonth()+1)+"/"+nowD.getDate()===day, nowM=nowD.getHours()*60+nowD.getMinutes();
+  if(isToday&&nowM<S) S=nowM;
   S=Math.floor(S/60)*60; E=Math.ceil(E/60)*60; if(E-S<180) E=S+180;
   const K=1.25, H=Math.round((E-S)*K);
   let axis=""; for(let m=S;m<=E;m+=60) axis+=`<span style="top:${Math.round((m-S)*K)}px">${fmt(m)}</span>`;
@@ -1001,10 +1008,22 @@ function timetableHTML(day, list){
     }).join("");
     return `<div class="tt-col"><div class="tt-h" title="${esc(v.name)} · ${esc(h.name)}"><b>${esc(vShort(v))}</b><small>${esc(hShort(h))}</small></div><div class="tt-body" style="height:${H+16}px">${items}</div></div>`;
   }).join("");
-  return `<div class="tt" id="gantt"><div class="tt-grid" style="--n:${cols.length};--hh:${Math.round(60*K)}px;--hlf:${Math.round(30*K)}px">
-    <div class="tt-axis"><div class="tt-h tt-corner">时间</div><div class="tt-ticks" style="height:${H+16}px">${axis}</div></div>${colHTML}</div></div>`;
+  const nowLine=isToday?`<div class="tt-now" aria-hidden="true" hidden><i></i></div>`:"";
+  const nowLab=isToday?`<b class="tt-nowlab" aria-hidden="true" hidden></b>`:"";
+  return `<div class="tt" id="gantt" data-day="${day}" data-s="${S}" data-e="${E}" data-k="${K}"><div class="tt-grid" style="--n:${cols.length};--hh:${Math.round(60*K)}px;--hlf:${Math.round(30*K)}px">${nowLine}
+    <div class="tt-axis"><div class="tt-h tt-corner">时间</div><div class="tt-ticks" style="height:${H+16}px">${axis}${nowLab}</div></div>${colHTML}</div></div>`;
 }
 const d2 = x => `${x.d} ${wk(x.d)} ${x.t}`;
+// 当前时间线：像 iPhone 日历一样，在今天的时刻表上画一条红线，并每 30 秒移动一次
+function updateNowLine(){
+  const g=document.getElementById("gantt"); if(!g||!g.dataset.k) return;
+  const line=g.querySelector(".tt-now"), lab=g.querySelector(".tt-nowlab"); if(!line||!lab) return;
+  const t=new Date(now()), m=t.getHours()*60+t.getMinutes(), S=+g.dataset.s, E=+g.dataset.e, K=+g.dataset.k;
+  const same=(t.getMonth()+1)+"/"+t.getDate()===g.dataset.day, show=same&&m>=S&&m<=E;
+  line.hidden=lab.hidden=!show; if(!show) return;
+  const y=Math.round((m-S)*K); line.style.top="calc(46px + "+y+"px)"; lab.style.top=y+"px"; lab.textContent=fmt(m);
+}
+setInterval(()=>{ if(document.visibilityState==="visible") updateNowLine(); },30000);
 function venueBoxHTML(){
   const active = VENUES.filter(v=>SH.some(x=>x.v===v.id)).length;
   const rows = VENUES.map(v=>{
@@ -1049,6 +1068,7 @@ function schedule(){
     ${presentersHTML()}</section>`;
   const strip=document.querySelector(".dstrip [aria-selected=true]"); if(strip){ const p=strip.parentElement; p.scrollLeft=Math.max(0,strip.offsetLeft-p.clientWidth/2+strip.clientWidth/2); }
   flashIn(document.getElementById("gantt"));
+  updateNowLine();
 }
 
 function flashIn(g){

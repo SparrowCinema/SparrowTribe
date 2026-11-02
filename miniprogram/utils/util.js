@@ -34,6 +34,9 @@ function index(data) {
   return { F, ORD, VN, PG, hallName, venueName, progOf };
 }
 
+// 映后交流：片目里有起止时间与嘉宾，且结束晚于开始，才在时刻表上显示
+const qaOf = f => (f && f.qaStart && f.qaEnd && f.qaGuest && toMin(f.qaEnd) > toMin(f.qaStart)) ? { start: toMin(f.qaStart), end: toMin(f.qaEnd), label: f.qaStart + '–' + f.qaEnd, guest: f.qaGuest } : null;
+
 // 一场放映是否已散场（片长结束后即视为已放映，首页与详情页不再显示）
 const ended = (s, idx) => showDate(s).getTime() + ((idx.F[s.id] && idx.F[s.id].min) || 0) * 60000 < Date.now();
 
@@ -51,4 +54,4 @@ function showView(s, idx, data, picked) {
   };
 }
 
-module.exports = { ended, isFest, relTime, nextShowOf, filmOrder, filmTone, langSub, WK, year, wk, toMin, fmt, keyOf, showDate, poster, ticket, durText, index, showView };
+module.exports = { qaOf, ended, isFest, relTime, nextShowOf, filmOrder, filmTone, langSub, WK, year, wk, toMin, fmt, keyOf, showDate, poster, ticket, durText, index, showView };

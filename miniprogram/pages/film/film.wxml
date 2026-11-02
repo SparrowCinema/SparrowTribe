@@ -56,6 +56,12 @@
       </view>
     </view>
 
+    <view class="sec-h">映后交流 <text class="muted small">POST-SCREENING</text></view>
+    <view class="qapanel {{qa ? '' : 'qa-empty'}}">
+      <view class="qap-h"><text class="qap-l">✦ {{qa ? '映后交流 · DIRECTOR Q' + '&' + 'A' : '映后信息'}}</text><text wx:if="{{qa}}" class="qap-t mono">{{qa.label}}</text></view>
+      <text class="qap-b">{{qa ? qa.guest : '暂无映后交流安排'}}</text>
+    </view>
+
     <view class="sec-h">伴手礼周边</view>
     <view wx:if="{{!f.gifts.length}}" class="noshow card"><text class="b">伴手礼信息待公布</text><text class="muted small">公布后会更新到这里。</text></view>
     <view wx:for="{{f.gifts}}" wx:key="k" class="gift card">

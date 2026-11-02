@@ -47,6 +47,7 @@ Page({
         honors: (f.honors || []).map(honor),
         gifts: (f.gifts || []).map((g, k) => ({ k, label: g.label || '', items: g.items || [] }))
       },
+      qa: (q => q ? { label: f.qaStart + ' – ' + f.qaEnd, guest: f.qaGuest } : null)(U.qaOf(f)),
       shows, ratings, credits, nav, ended: allShows.length > 0 && !shows.length
     });
   },

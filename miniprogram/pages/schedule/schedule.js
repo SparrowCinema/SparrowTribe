@@ -7,7 +7,7 @@ const vShort = v => v.short || (v.brand || v.name).replace(/^杭州/, '');
 const hShort = h => h.short || h.name;
 
 Page({
-  data: { pf: 'all', vf: 'all', day: '', days: [], todayOpen: false, myToday: [], myTodayTitle: '', progs: [], vchips: [], venues: [], vOpen: false, cols: [], ticks: [], H: 0, dayList: [], legend: [], span: '', count: 0, dayTitle: '', empty: '', scrollInto: '' },
+  data: { pf: 'all', vf: 'all', day: '', days: [], nowLine: null, todayOpen: false, myToday: [], myTodayTitle: '', progs: [], vchips: [], venues: [], vOpen: false, cols: [], ticks: [], H: 0, dayList: [], legend: [], span: '', count: 0, dayTitle: '', empty: '', scrollInto: '' },
 
   onLoad(q) {
     if (q && q.day) this.setData({ day: q.day });
@@ -15,8 +15,23 @@ Page({
     this.off2 = plan.onChange(() => this.build());
     this.build();
   },
-  onUnload() { this.off1 && this.off1(); this.off2 && this.off2(); },
-  onShow() { const j = app.globalData.jumpDay, jp = app.globalData.jumpProg; if (j) { app.globalData.jumpDay = ''; this.setData({ pf: 'all', vf: 'all', day: j }); } if (jp) { app.globalData.jumpProg = ''; this.setData({ pf: jp, vf: 'all', day: '' }); } this.build(); },
+  onUnload() { this.off1 && this.off1(); this.off2 && this.off2(); this.stopTick(); },
+  onHide() { this.stopTick(); },
+  // 当前时间线：每 30 秒移动一次（跨天时整页重建）
+  startTick() { this.stopTick(); this.timer = setInterval(() => this.tick(), 30000); },
+  stopTick() { if (this.timer) { clearInterval(this.timer); this.timer = null; } },
+  tick() {
+    const c = this.ttCtx; if (!c) return;
+    const t = new Date(), key = (t.getMonth() + 1) + '/' + t.getDate();
+    if (key !== c.today) { this.build(); return; }
+    this.setData({ nowLine: this.nowLineOf(c) });
+  },
+  nowLineOf(c) {
+    if (!c.isToday) return null;
+    const t = new Date(), m = t.getHours() * 60 + t.getMinutes();
+    return m >= c.S && m <= c.E ? { top: Math.round((m - c.S) * K), label: U.fmt(m) } : null;
+  },
+  onShow() { this.startTick(); const j = app.globalData.jumpDay, jp = app.globalData.jumpProg; if (j) { app.globalData.jumpDay = ''; this.setData({ pf: 'all', vf: 'all', day: j }); } if (jp) { app.globalData.jumpProg = ''; this.setData({ pf: jp, vf: 'all', day: '' }); } this.build(); },
   onPullDownRefresh() { app.loadRemote(); setTimeout(() => { this.build(); wx.stopPullDownRefresh(); }, 600); },
 
   build() {
@@ -43,17 +58,25 @@ Page({
 
     // 单日时刻表：纵轴时间，横向影厅
     const dl = list.filter(s => s.d === day);
-    let cols = [], ticks = [], H = 0;
+    let cols = [], ticks = [], H = 0, nowLine = null;
+    this.ttCtx = null;
     if (dl.length) {
-      let S = Math.min(...dl.map(s => U.toMin(s.t))), E = Math.max(...dl.map(s => U.toMin(s.t) + (idx.F[s.id].min || 120)));
+      let S = Math.min(...dl.map(s => U.toMin(s.t))), E = Math.max(...dl.map(s => Math.max(U.toMin(s.t) + (idx.F[s.id].min || 120), (U.qaOf(idx.F[s.id]) || {}).end || 0)));
+      // 查看今天时，把当前时间所在的小时纳入时间轴，才能画出当前时间线
+      const tn = new Date(), todayKey = (tn.getMonth() + 1) + '/' + tn.getDate(), isToday = todayKey === day, nowM = tn.getHours() * 60 + tn.getMinutes();
+      if (isToday && nowM < S) S = nowM;
       S = Math.floor(S / 60) * 60; E = Math.ceil(E / 60) * 60; if (E - S < 180) E = S + 180;
+      this.ttCtx = { day, S, E, isToday, today: todayKey };
+      nowLine = this.nowLineOf(this.ttCtx);
       H = Math.round((E - S) * K) + 30;
       for (let m = S; m <= E; m += 60) ticks.push({ y: Math.round((m - S) * K), t: U.fmt(m) });
       data.venues.forEach(v => v.halls.forEach(h => {
         const hs = dl.filter(s => s.v === v.id && s.h === h.id);
         if (!hs.length) return;
-        cols.push({ key: v.id + h.id, vn: vShort(v), hn: hShort(h), blocks: hs.map(s => {
-          const vw = U.showView(s, idx, data, picked), st = U.toMin(s.t);
+        const qas = [];
+        cols.push({ key: v.id + h.id, vn: vShort(v), hn: hShort(h), qas, blocks: hs.map(s => {
+          const vw = U.showView(s, idx, data, picked), st = U.toMin(s.t), qa = U.qaOf(idx.F[s.id]);
+          if (qa) qas.push({ key: vw.key + '-qa', id: s.id, top: Math.round((qa.start - S) * K), h: Math.max(60, Math.round((qa.end - qa.start) * K) - 6), label: qa.label });
           return Object.assign(vw, { top: Math.round((st - S) * K), h: Math.max(110, Math.round((vw.min || 120) * K) - 6) });
         }) });
       }));
@@ -69,7 +92,7 @@ Page({
     });
     const vname = vf !== 'all' && idx.VN[vf] ? idx.VN[vf].name : '当前筛选';
     this.setData({
-      day, days, cols, ticks, H, progs, venues, myToday,
+      day, days, cols, ticks, H, nowLine, progs, venues, myToday,
       myTodayTitle: tk.getMonth() + 1 + '月' + tk.getDate() + '日 ' + U.wk(tkey) + ' · 接下来 ' + myToday.length + ' 场',
       vchips: [{ id: 'all', n: '全部影院' }].concat(data.venues.map(v => ({ id: v.id, n: vShort(v) }))),
       dayList: dl.map(s => U.showView(s, idx, data, picked)),

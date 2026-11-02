@@ -1,5 +1,6 @@
 const U = require('../../utils/util.js');
 const plan = require('../../utils/plan.js');
+const poster = require('../../utils/poster.js');
 const app = getApp();
 
 Page({
@@ -33,6 +34,40 @@ Page({
     });
     this.keys = list.map(U.keyOf);
     this.setData({ progs, pf, days, clash, empty: !all.length, stats: { n: list.length, d: byDay.length, hm: Math.floor(minutes / 60) + 'h' + String(minutes % 60).padStart(2, '0') } });
+  },
+  // 排片长图：与网站同版式，只含当前所选专题；保存到相册，或预览后发给朋友
+  makeImage() {
+    if (this.busy || !this.data.days.length) return;
+    this.busy = true; wx.showLoading({ title: '正在生成长图…', mask: true });
+    const fail = msg => { this.busy = false; wx.hideLoading(); wx.showToast({ title: msg || '生成失败，请稍后再试', icon: 'none' }); };
+    wx.createSelectorQuery().select('#poster').fields({ node: true, size: true }).exec(async res => {
+      try {
+        const canvas = res && res[0] && res[0].node; if (!canvas) return fail();
+        const days = this.data.days, k = 0.7;
+        canvas.width = Math.round(poster.D.W * k); canvas.height = Math.round(poster.heightOf(days) * k);
+        const c = canvas.getContext('2d'); c.scale(k, k);
+        const load = src => new Promise(r => { if (!src) return r(null); const im = canvas.createImage(); im.onload = () => r(im); im.onerror = () => r(null); im.src = src; });
+        const items = days.reduce((a, g) => a.concat(g.items), []), imgs = {};
+        await Promise.all([...new Set(items.map(i => i.id))].map(async id => { imgs[id] = await load((items.find(i => i.id === id) || {}).poster); }));
+        const marks = await Promise.all(['/images/brand/sparrow-movies-sq.png', '/images/brand/sparrow-tribe-sq.png'].map(load));
+        const cur = this.data.progs.find(p => p.id === this.data.pf);
+        poster.draw(c, { days, stats: this.data.stats, title: '我的观影日程', sub: this.data.pf !== 'all' && cur ? '专题：' + cur.n : '', imgs, marks });
+        wx.canvasToTempFilePath({ canvas, fileType: 'png', success: r => { this.busy = false; wx.hideLoading(); this.showImage(r.tempFilePath); }, fail: () => fail() });
+      } catch (e) { fail(); }
+    });
+  },
+  showImage(path) {
+    wx.showActionSheet({ itemList: ['保存到相册', '预览并发给朋友'], success: r => { if (r.tapIndex === 0) this.saveImage(path); else wx.previewImage({ urls: [path] }); } });
+  },
+  saveImage(path) {
+    wx.saveImageToPhotosAlbum({ filePath: path,
+      success: () => wx.showToast({ title: '已保存到相册', icon: 'success' }),
+      fail: err => {
+        const m = (err && err.errMsg) || '';
+        if (/cancel/.test(m)) return;
+        if (/auth/.test(m)) wx.showModal({ title: '需要相册权限', content: '请在设置里允许保存到相册；或选择「预览并发给朋友」后长按图片保存。', confirmText: '去设置', success: r => { if (r.confirm) wx.openSetting(); } });
+        else wx.showToast({ title: '保存失败', icon: 'none' });
+      } });
   },
   setProg(e) { this.setData({ pf: e.currentTarget.dataset.id }); this.build(); },
   remove(e) { plan.remove(e.currentTarget.dataset.key); wx.showToast({ title: '已移出', icon: 'none' }); },

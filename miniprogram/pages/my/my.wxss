@@ -12,7 +12,7 @@
 .plus { font-size: 80rpx; color: var(--accent); line-height: 1; }
 .et { font-size: 34rpx; font-weight: 700; }
 .es { font-size: 24rpx; color: var(--muted); margin-bottom: 20rpx; }
-.tools { display: flex; align-items: center; gap: 16rpx; margin-bottom: 28rpx; }
+.tools { display: flex; flex-wrap: wrap; align-items: center; gap: 16rpx; margin-bottom: 28rpx; }
 .clear { margin-left: auto; font-size: 24rpx; color: var(--muted); text-decoration: underline; }
 .conflict { border: 2rpx solid #c4372d; background: #f6e4df; border-radius: 20rpx; padding: 20rpx 24rpx; font-size: 24rpx; margin-bottom: 28rpx; }
 .conflict .b { color: #c4372d; font-weight: 700; }
@@ -58,3 +58,5 @@
 .pf-card.on .pf-tick { border-color: var(--accent); }
 .pf-card.zero:not(.on) { border-style: dashed; background: transparent; }
 .pf-card.zero:not(.on) .pf-n { color: var(--muted); }
+
+.poster-cv { position: fixed; left: -9999px; top: 0; width: 540px; height: 960px; }
