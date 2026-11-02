@@ -87,3 +87,11 @@
 .gis { display: flex; flex-wrap: wrap; gap: 12rpx; }
 .gi { font-size: 26rpx; padding: 10rpx 18rpx; border-radius: 14rpx; background: var(--chip, #e5d8bf); }
 .gnote { display: block; margin-top: 4rpx; }
+
+/* 映后交流 */
+.qapanel { padding: 24rpx 28rpx; border: 4rpx dashed var(--teal); border-radius: 24rpx; background: rgba(47, 111, 108, .08); color: var(--teal); }
+.qapanel.qa-empty { border-color: var(--line); background: transparent; color: var(--muted); }
+.qap-h { display: flex; align-items: baseline; justify-content: space-between; gap: 16rpx; }
+.qap-l { font-size: 22rpx; font-weight: 700; letter-spacing: 2rpx; }
+.qap-t { font-size: 28rpx; font-weight: 700; }
+.qap-b { display: block; margin-top: 8rpx; font-size: 28rpx; line-height: 1.6; }

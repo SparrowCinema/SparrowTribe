@@ -76,10 +76,12 @@
         <view class="th corner">时间</view>
         <view class="ticks" style="height:{{H}}rpx">
           <text wx:for="{{ticks}}" wx:key="t" class="tick mono" style="top:{{item.y}}rpx">{{item.t}}</text>
+          <view wx:if="{{nowLine}}" class="nowlab mono" style="top:{{nowLine.top}}rpx">{{nowLine.label}}</view>
         </view>
       </view>
       <scroll-view scroll-x class="cols-scroll" enhanced show-scrollbar="{{false}}">
         <view class="cols">
+          <view wx:if="{{nowLine}}" class="nowline" style="top:{{92 + nowLine.top}}rpx"><view class="nowdot" /></view>
           <view wx:for="{{cols}}" wx:for-item="col" wx:key="key" class="col {{cols.length===1?'solo':''}}">
             <view class="th"><text class="tv">{{col.vn}}</text><text class="thn">{{col.hn}}</text></view>
             <view class="body" style="height:{{H}}rpx">
@@ -91,6 +93,7 @@
                 <text class="be mono">{{item.past?'已放映':'至 '+item.end+' · '+item.min+'′'}}</text>
                 <view wx:if="{{!item.past||item.picked}}" class="badd {{item.picked?'on':''}}" style="{{item.picked?'background:'+item.tone.ink+';color:'+item.tone.bg+';border-color:'+item.tone.ink:'background:'+item.tone.bg+';color:'+item.tone.ink+';border-color:'+item.tone.ink}}" data-key="{{item.key}}" catchtap="toggle" aria-role="button" aria-label="{{item.picked?'移出排片':'加入排片'}}">{{item.picked?'✓':'+'}}</view>
               </view>
+              <view wx:for="{{col.qas}}" wx:for-item="qa" wx:key="key" class="qa" style="top:{{qa.top}}rpx;height:{{qa.h}}rpx" data-id="{{qa.id}}" bindtap="openFilm"><text class="qa-b">映后交流</text><text class="qa-t mono">{{qa.label}}</text></view>
             </view>
           </view>
         </view>

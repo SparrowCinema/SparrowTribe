@@ -30,7 +30,8 @@
       </scroll-view>
     </view>
     <view class="tools">
-      <button class="btn" open-type="share">分享给朋友</button>
+      <view class="btn" hover-class="hv" bindtap="makeImage">生成长图</view>
+      <button class="btn ghost" open-type="share">分享给朋友</button>
       <view class="btn ghost" bindtap="toSchedule">继续选片</view>
       <view class="clear" bindtap="clear">清空</view>
     </view>
@@ -53,6 +54,7 @@
         </view>
       </block>
     </view>
+    <canvas type="2d" id="poster" class="poster-cv" />
     <view class="note">散场时间按片长计算，不含映前广告与映后交流。跨影院观影请另留交通时间。</view>
   </block>
 

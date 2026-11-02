@@ -16,6 +16,7 @@
 | `miniprogram/pages/programme` | 专题页 |
 | `miniprogram/pages/my` | 我的影展：个人排片、冲突检查、分享给朋友（tab「我的」） |
 | `miniprogram/pages/share` | 朋友分享的排片：一键加入或进入首页 |
+| `miniprogram/utils/poster.js` | 个人排片长图的绘制（与网站版式一致，只含所选专题）；「我的」页点「生成长图」保存或预览发送 |
 | `miniprogram/data/data.js` | 内置数据（云数据库为空或断网时使用） |
 | `miniprogram/images/` | 海报、购票码、LOGO、tab 图标（已压缩，主包约 1.4MB） |
 | `cloudfunctions/getData` | 优先读取网站 data/ 的最新数据（失败时用 cache 集合里的上次结果，再退回四个集合） |

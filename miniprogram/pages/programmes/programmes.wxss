@@ -9,3 +9,16 @@
 .empty { display: flex; flex-direction: column; gap: 8rpx; padding: 28rpx; }
 .empty .eb { font-size: 28rpx; font-weight: 700; }
 .empty .es { font-size: 24rpx; color: var(--muted); }
+
+/* 专题状态 */
+.pst { display: inline-block; margin-right: 12rpx; padding: 0 12rpx; border-radius: 8rpx; font-size: 20rpx; font-style: normal; font-weight: 700; letter-spacing: 1rpx; }
+.pst-live { background: rgba(47, 111, 108, .14); color: var(--teal); }
+.pst-soon { background: rgba(178, 106, 31, .16); color: var(--ochre); }
+.pst-ended { background: var(--chip); color: var(--muted); }
+.past-h { display: flex; align-items: center; gap: 14rpx; margin: 28rpx 0 18rpx; padding: 22rpx 28rpx; border-radius: 24rpx; border: 2rpx dashed var(--line); background: transparent; }
+.past-h.hv { background: var(--chip); }
+.past-t { font-size: 30rpx; font-weight: 900; }
+.past-n { flex: 1; font-size: 22rpx; color: var(--muted); }
+.past-go { display: flex; align-items: center; gap: 10rpx; font-size: 24rpx; font-weight: 700; color: var(--accent); }
+.past-ar { width: 14rpx; height: 14rpx; border-right: 4rpx solid var(--accent); border-bottom: 4rpx solid var(--accent); transform: rotate(45deg) translate(-3rpx, -3rpx); transition: transform .2s; }
+.past-ar.open { transform: rotate(225deg) translate(-3rpx, -3rpx); }
