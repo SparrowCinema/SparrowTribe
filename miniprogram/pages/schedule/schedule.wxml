@@ -10,11 +10,15 @@
   <view wx:if="{{myToday.length}}" class="today card">
     <view class="today-h"><text class="b">今日我的排片</text><text class="muted small">{{myTodayTitle}}</text></view>
     <view class="tl">
-      <view wx:for="{{myToday}}" wx:key="key" class="tl-item" data-id="{{item.id}}" bindtap="openFilm">
+      <view wx:for="{{myToday}}" wx:key="key" wx:if="{{todayOpen || index === 0}}" class="tl-item" data-id="{{item.id}}" bindtap="openFilm">
         <view class="tl-time"><text class="mono b">{{item.t}}</text><text class="mono muted small">{{item.end}} 散场</text></view>
         <view class="tl-dot" style="background:{{item.tone.ink}}" />
         <view class="tl-body"><text class="b">{{item.cn}}</text><text class="muted small">{{item.venue}} · {{item.hall}}</text></view>
       </view>
+    </view>
+    <view wx:if="{{myToday.length > 1}}" class="today-toggle {{todayOpen ? 'open' : ''}}" hover-class="hv" bindtap="toggleToday">
+      <text class="tt-txt">{{todayOpen ? '收起' : '还有 ' + (myToday.length - 1) + ' 场 · 展开全部'}}</text>
+      <view class="tt-ic"><view class="tt-ar" /></view>
     </view>
   </view>
   <view class="h2">排片表</view>

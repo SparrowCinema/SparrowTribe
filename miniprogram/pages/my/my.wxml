@@ -17,11 +17,18 @@
   </view>
 
   <block wx:else>
-    <scroll-view wx:if="{{progs.length}}" scroll-x class="hscroll" enhanced show-scrollbar="{{false}}">
-      <view class="chips">
-        <view wx:for="{{progs}}" wx:key="id" class="chip {{pf===item.id?'on':''}}" data-id="{{item.id}}" bindtap="setProg">{{item.n}} · {{item.c}}</view>
-      </view>
-    </scroll-view>
+    <view wx:if="{{progs.length}}" class="pfbox">
+      <view class="pf-head"><text class="pf-t">选择专题</text><text class="pf-s">排片与分享只含所选内容</text></view>
+      <scroll-view scroll-x class="pf-scroll" enhanced show-scrollbar="{{false}}">
+        <view class="pf-row">
+          <view wx:for="{{progs}}" wx:key="id" class="pf-card {{pf===item.id?'on':''}} {{item.c?'':'zero'}}" data-id="{{item.id}}" hover-class="hv" bindtap="setProg">
+            <text class="pf-n">{{item.n}}</text>
+            <text class="pf-c mono">{{item.id==='all' ? '合并 ' + item.c + ' 场' : (item.c ? item.c + ' 场' : '未加入')}}</text>
+            <view class="pf-ck"><view class="pf-tick" /></view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
     <view class="tools">
       <button class="btn" open-type="share">分享给朋友</button>
       <view class="btn ghost" bindtap="toSchedule">继续选片</view>
