@@ -1053,7 +1053,10 @@
    "dir": "Cao Jinling",
    "honors": [
     "入选｜2026 Golden Rooster Film Screening · 拾光：华语新片展映"
-   ]
+   ],
+   "screeningNotes": {
+    "11/7-19:00-xm-gr26-1-hall-2": "Post-screening event · Q&A with the creative team (guest list to be announced; subject to who actually attends)"
+   }
   },
   "gr26-020": {
    "title": "No Hard Feelings",
@@ -1203,7 +1206,10 @@
    "dir": "Norris Wong Yee-lam / Wong Hoi",
    "honors": [
     "入选｜2026 Golden Rooster Film Screening · 拾光：华语新片展映"
-   ]
+   ],
+   "screeningNotes": {
+    "11/8-14:30-xm-gr26-1-hall-3": "Post-screening event · Q&A with the creative team (guest list to be announced; subject to who actually attends)"
+   }
   },
   "gr26-030": {
    "title": "Someone Like Me",
@@ -1245,7 +1251,10 @@
     "The survivors understand the deceased at different speeds."
    ],
    "st": "A husband's search after his wife's sudden death gradually enters the injuries concealed within her original family.",
-   "dir": "Shen Ko-shang"
+   "dir": "Shen Ko-shang",
+   "screeningNotes": {
+    "11/8-16:20-xm-gr26-1-hall-4": "Post-screening event · Q&A with the creative team (guest list to be announced; subject to who actually attends)"
+   }
   },
   "gr26-033": {
    "title": "The Waves Will Carry Us",
@@ -1287,7 +1296,10 @@
     "Adult ideas of success gradually eclipse the child."
    ],
    "st": "An unexpected admission result exposes the strategies, anxiety and power concealed inside the claim of acting for a child's benefit.",
-   "dir": "Hsu Kun-hua"
+   "dir": "Hsu Kun-hua",
+   "screeningNotes": {
+    "11/8-19:20-xm-gr26-1-hall-4": "Post-screening event · Q&A with the creative team (guest list to be announced; subject to who actually attends)"
+   }
   },
   "gr26-036": {
    "title": "The Violinist",
@@ -1315,7 +1327,10 @@
    "dir": "Wu Chui-yi",
    "honors": [
     "入选｜2026 Golden Rooster Film Screening · 拾光：华语新片展映"
-   ]
+   ],
+   "screeningNotes": {
+    "11/8-20:15-xm-gr26-1-hall-2": "Post-screening event · Q&A with the creative team (guest list to be announced; subject to who actually attends)"
+   }
   },
   "gr26-038": {
    "title": "A Man of His Time",
@@ -1368,7 +1383,10 @@
    "dir": "Keane Wong Tak-Kin",
    "honors": [
     "入选｜2026 Golden Rooster Film Screening · 拾光：华语新片展映"
-   ]
+   ],
+   "screeningNotes": {
+    "11/9-14:10-xm-gr26-1-hall-6": "Post-screening event · Q&A with the creative team (guest list to be announced; subject to who actually attends)"
+   }
   },
   "gr26-042": {
    "title": "Dead Tide",
@@ -1379,7 +1397,10 @@
     "Tides and village routines frame emotions that resist explanation."
    ],
    "st": "Inspired by events from the director's hometown, the story explores an unconventional relationship between two socially excluded people.",
-   "dir": "Kethsvin Chee"
+   "dir": "Kethsvin Chee",
+   "screeningNotes": {
+    "11/9-14:25-xm-gr26-1-hall-2": "Post-screening event · Q&A with the creative team (guest list to be announced; subject to who actually attends)"
+   }
   },
   "gr26-043": {
    "title": "Strangers in the Mountain",
@@ -1435,7 +1456,10 @@
     "Comic retaliation gradually exposes economic and emotional pressure."
    ],
    "st": "A familiar urban setting becomes a place to consider how strangers hurt one another and whether understanding remains possible.",
-   "dir": "Yeung Leung Chuen"
+   "dir": "Yeung Leung Chuen",
+   "screeningNotes": {
+    "11/10-19:30-xm-gr26-1-hall-3": "Post-screening event · Q&A with the creative team (guest list to be announced; subject to who actually attends)"
+   }
   },
   "gr26-047": {
    "title": "Dead End",
