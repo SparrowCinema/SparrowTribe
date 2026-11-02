@@ -3,13 +3,18 @@ const plan = require('../../utils/plan.js');
 const app = getApp();
 
 Page({
-  data: { stats: {}, days: [], clash: 0, empty: true },
+  data: { stats: {}, days: [], clash: 0, empty: true, pf: 'all', progs: [] },
   onLoad() { this.off1 = plan.onChange(() => this.build()); this.off2 = app.onData(() => this.build()); },
   onUnload() { this.off1 && this.off1(); this.off2 && this.off2(); },
   onShow() { this.build(); },
   build() {
     const data = app.globalData.data, idx = U.index(data), picked = plan.get();
-    const list = data.shows.filter(s => idx.F[s.id] && picked.has(U.keyOf(s))).sort((a, b) => U.showDate(a) - U.showDate(b));
+    const all = data.shows.filter(s => idx.F[s.id] && picked.has(U.keyOf(s))).sort((a, b) => U.showDate(a) - U.showDate(b));
+    // 专题筛选：只列出个人排片里有场次的专题；选中的专题已无场次时回到「全部」
+    const pids = [...new Set(all.map(s => idx.progOf(idx.F[s.id]).id))];
+    const progs = pids.length > 1 ? [{ id: 'all', n: '全部专题', c: all.length }].concat(pids.map(id => ({ id, n: idx.PG[id].name, c: all.filter(s => idx.progOf(idx.F[s.id]).id === id).length }))) : [];
+    const pf = pids.includes(this.data.pf) ? this.data.pf : 'all';
+    const list = pf === 'all' ? all : all.filter(s => idx.progOf(idx.F[s.id]).id === pf);
     const minutes = list.reduce((n, s) => n + idx.F[s.id].min, 0);
     let clash = 0;
     const byDay = [];
@@ -27,8 +32,9 @@ Page({
       return { d: g.d, wk: g.wk, items, range: g.items[0].t + ' – ' + items[items.length - 1].end };
     });
     this.keys = list.map(U.keyOf);
-    this.setData({ days, clash, empty: !list.length, stats: { n: list.length, d: byDay.length, hm: Math.floor(minutes / 60) + 'h' + String(minutes % 60).padStart(2, '0') } });
+    this.setData({ progs, pf, days, clash, empty: !all.length, stats: { n: list.length, d: byDay.length, hm: Math.floor(minutes / 60) + 'h' + String(minutes % 60).padStart(2, '0') } });
   },
+  setProg(e) { this.setData({ pf: e.currentTarget.dataset.id }); this.build(); },
   remove(e) { plan.remove(e.currentTarget.dataset.key); wx.showToast({ title: '已移出', icon: 'none' }); },
   clear() {
     wx.showModal({ title: '清空个人排片？', content: '会同时清除云端保存的排片。', confirmText: '清空', confirmColor: '#8e2a22',
@@ -38,7 +44,7 @@ Page({
   toSchedule() { wx.switchTab({ url: '/pages/schedule/schedule' }); },
   onShareAppMessage(res) {
     if (res.from === 'button' && this.keys && this.keys.length) {
-      return { title: `我的观影日程 · ${this.keys.length} 场电影`, path: '/pages/share/share?k=' + encodeURIComponent(this.keys.join('~')) };
+      return { title: `我的观影日程${this.data.pf !== 'all' && this.data.progs.length ? ' · ' + (this.data.progs.find(p => p.id === this.data.pf) || {}).n : ''} · ${this.keys.length} 场电影`, path: '/pages/share/share?k=' + encodeURIComponent(this.keys.join('~')) };
     }
     return { title: '麻雀观影护照 · 影展排片与观影日程', path: '/pages/schedule/schedule' };
   }
