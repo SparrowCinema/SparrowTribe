@@ -21,10 +21,18 @@ Page({
     // 即将放映（含场次待公布）按下一场先后；已结束按最近一场由近及远（与网站一致）
     const films = all.filter(f => !f.gone).sort((x, y) => (x.at === y.at ? 0 : x.at < y.at ? -1 : 1) || x.cn.localeCompare(y.cn, I.isEn() ? 'en' : 'zh'));
     const gone = all.filter(f => f.gone).sort((x, y) => y.lastAt - x.lastAt || x.cn.localeCompare(y.cn, I.isEn() ? 'en' : 'zh'));
-    this.setData({ p: Object.assign({}, p, { periodT: t(p.period) }), upN: t(films.length + ' 部'), goneN: t(gone.length + ' 部'), films, gone, goneOpen: this.data.goneOpen === undefined ? !films.length : this.data.goneOpen, stats: { f: all.length, s: shows.length, d: new Set(shows.map(s => s.d)).size, h: new Set(shows.map(s => s.v + s.h)).size } });
+    const st = U.progInfo(p, data, idx).status;
+    this.setData({ p: Object.assign({}, p, { periodT: t(p.period), status: st, statusText: t(p.ongoing && st === 'live' ? '常设' : { live: '进行中', soon: '即将开始', ended: '已结束' }[st]) }), upN: t(films.length + ' 部'), goneN: t(gone.length + ' 部'), films, gone, goneOpen: this.data.goneOpen === undefined ? !films.length : this.data.goneOpen, stats: { f: all.length, s: shows.length, d: new Set(shows.map(s => s.d)).size, h: new Set(shows.map(s => s.v + s.h)).size } });
   },
   toggleGone() { this.setData({ goneOpen: !this.data.goneOpen }); },
   open(e) { wx.navigateTo({ url: '/pages/film/film?id=' + e.currentTarget.dataset.id }); },
+  jump(e) {
+    const to = e.currentTarget.dataset.to;
+    if (to === 'gone' && !this.data.gone.length) { wx.showToast({ title: t('暂无已结束的影片'), icon: 'none' }); return; }
+    const go = () => wx.createSelectorQuery().select(to === 'gone' ? '#pg-gone' : '#pg-up').boundingClientRect(r => { if (!r) return; wx.pageScrollTo({ scrollTop: Math.max(0, r.top + (this.scrollTop || 0) - 8), duration: 300 }); }).selectViewport().scrollOffset(s => { this.scrollTop = s.scrollTop; }).exec();
+    if (to === 'gone' && !this.data.goneOpen) this.setData({ goneOpen: true }, go); else go();
+  },
+  onPageScroll(e) { this.scrollTop = e.scrollTop; },
   toSchedule() { app.globalData.jumpProg = this.id; wx.switchTab({ url: '/pages/schedule/schedule' }); },
   onShareAppMessage() { const p = this.data.p || {}; return { title: `${p.name} · ${p.sub}`, path: '/pages/programme/programme?id=' + this.id }; }
 });

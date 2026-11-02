@@ -1266,8 +1266,8 @@ function progFilmGroups(pid,films){
 function progFilmsHTML(pid,films){
   const {up,gone}=progFilmGroups(pid,films);
   const grid=list=>`<div class="pg-grid">${list.map(f=>progFilmCard(f,pid)).join("")}</div>`;
-  const upHTML=up.length?`<h3 class="blockh pg-grp">即将放映 <small>UPCOMING · ${up.length} 部</small></h3>${grid(up)}`:`<h3 class="blockh pg-grp">即将放映 <small>UPCOMING · 0 部</small></h3><div class="fd-noshow"><b>暂无待映场次</b><span>新场次公布后会更新到这里。</span></div>`;
-  const goneHTML=gone.length?`<details class="pg-ended"${up.length?"":" open"}><summary class="blockh pg-grp">已结束 <small>ENDED · ${gone.length} 部</small></summary>${grid(gone)}</details>`:"";
+  const upHTML=up.length?`<h3 class="blockh pg-grp" id="pg-up">即将放映 <small>UPCOMING · ${up.length} 部</small></h3>${grid(up)}`:`<h3 class="blockh pg-grp" id="pg-up">即将放映 <small>UPCOMING · 0 部</small></h3><div class="fd-noshow"><b>暂无待映场次</b><span>新场次公布后会更新到这里。</span></div>`;
+  const goneHTML=gone.length?`<details class="pg-ended" id="pg-gone"${up.length?"":" open"}><summary class="blockh pg-grp">已结束 <small>ENDED · ${gone.length} 部</small></summary>${grid(gone)}</details>`:"";
   return upHTML+goneHTML;
 }
 function progPage(pid){
@@ -1280,7 +1280,7 @@ function progPage(pid){
       <header class="pg-head"><small>${esc(p.en||"")}</small><h1>${esc(p.name)}</h1><p class="pg-sub">${statusTag(p)}${esc(p.sub)} · ${esc(p.period)}${p.city?` · ${esc(p.city)}`:""}</p></header>
       <div class="pstats pg-stats"><div><b>${films.length}</b><small>部影片</small></div><div><b>${shows.length}</b><small>场放映</small></div><div><b>${new Set(shows.map(x=>x.d)).size}</b><small>个放映日</small></div><div><b>${new Set(shows.map(x=>x.v+x.h)).size}</b><small>个影厅</small></div></div>
       ${p.blurb?`<p class="pg-blurb">${esc(p.blurb)}</p>`:""}
-      <div class="plan-toolbar"><button class="primary-button" data-prog-sched="${pid}">查看专题排片</button><button class="secondary-button" data-prog-films="${pid}">专题片目</button></div>
+      <div class="plan-toolbar"><button class="primary-button" data-prog-jump="up">即将放映</button><button class="secondary-button" data-prog-jump="gone">已结束</button></div>
       <p class="src">场次与排片表自动同步 · 页面打开时每分钟检查更新</p>${films.length?progFilmsHTML(pid,films):`<div class="fd-noshow"><b>片单与场次即将公布</b><span>公布后会第一时间更新到这里。</span></div>`}
     </div></article>`;
 }
@@ -1527,7 +1527,7 @@ function route(){
   if(returning)restoreView(h);else if(!pendingFlash)window.scrollTo(0,0);
 }
 document.addEventListener("click",e=>{
-  const t=e.target.closest("[data-film],[data-tab],[data-filt],[data-vf],[data-pf],[data-prog],[data-prog-sched],[data-prog-films],[data-back],[data-jump],[data-day],[data-open-gantt],[data-ppf]"); if(!t) return;
+  const t=e.target.closest("[data-film],[data-tab],[data-filt],[data-vf],[data-pf],[data-prog],[data-prog-sched],[data-prog-films],[data-prog-jump],[data-back],[data-jump],[data-day],[data-open-gantt],[data-ppf]"); if(!t) return;
   if(t.dataset.film) go("film-"+t.dataset.film);
   else if(t.dataset.tab) go(t.dataset.tab);
   else if(t.dataset.filt){ filt=t.dataset.filt; films(); }
@@ -1535,6 +1535,7 @@ document.addEventListener("click",e=>{
   else if(t.dataset.pf){ if(location.hash==="#films"){ ffilt=t.dataset.pf; films(); } else { pfilt=t.dataset.pf; vfilt="all"; sday=null; schedule(); } }
   else if(t.dataset.prog) go("prog-"+t.dataset.prog);
   else if(t.dataset.progSched){ pfilt=t.dataset.progSched; vfilt="all"; sday=null; go("schedule"); }
+  else if(t.dataset.progJump){ const el=document.getElementById(t.dataset.progJump==="gone"?"pg-gone":"pg-up"); if(el){ if(el.tagName==="DETAILS") el.open=true; el.scrollIntoView({behavior:"smooth",block:"start"}); } else toast("暂无已结束的影片"); }
   else if(t.dataset.progFilms){ ffilt=t.dataset.progFilms; fq=""; go("films"); }
   else if(t.hasAttribute("data-back")){if(activeRoute.startsWith("film-"))exitFilm();else go(lastList);}
   else if(t.dataset.jump){ const js=SH.find(x=>keyOf(x)===t.dataset.jump); pfilt=js?js.p:"all"; vfilt="all"; pendingFlash=t.dataset.jump; sday=t.dataset.jump.split("-")[0]; if(location.hash==="#schedule"||location.hash===""){schedule();}else go("schedule"); }
