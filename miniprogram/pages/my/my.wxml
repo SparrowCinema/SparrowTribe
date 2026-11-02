@@ -185,10 +185,10 @@
   <view class="rc-panel" catchtap="noop">
     <view class="rc-head"><text class="b">{{L.t(i,'我的影院观影结算')}}</text><text class="rc-x" bindtap="closeRecap">✕</text></view>
     <text class="rc-k mono">{{L.t(i,'年份 / YEAR')}}</text>
-    <scroll-view scroll-x class="rc-yscroll" enable-flex><view class="rc-chips rc-years"><text wx:for="{{rc.years}}" wx:key="v" class="chip {{rcY === item.v ? 'on' : ''}}" data-v="{{item.v}}" bindtap="setRcY">{{item.n}}</text></view></scroll-view>
-    <text class="rc-k mono">{{L.t(i,'月份 / MONTH')}}</text>
-    <view class="rc-months" wx:if="{{rc.grid.length}}"><view wx:for="{{rc.grid}}" wx:key="n" class="rc-m {{item.on ? 'on' : ''}} {{item.c ? '' : 'dis'}}" data-v="{{item.v}}" bindtap="{{item.c ? 'setRcM' : ''}}"><text class="mb">{{item.n}}</text><text class="ms mono">{{item.c || '·'}}</text></view></view>
-    <text wx:else class="rc-hint">{{L.t(i,'先选一个年份，再按月份筛选')}}</text>
+    <scroll-view scroll-x class="rc-seg-sv" enable-flex><view class="rc-seg"><view wx:for="{{rc.years}}" wx:key="v" class="rc-y {{rcY === item.v ? 'on' : ''}}" data-v="{{item.v}}" bindtap="setRcY"><text class="yb mono">{{item.n}}</text><text class="ys">{{item.c}}</text></view></view></scroll-view>
+    <view class="rc-kh"><text class="rc-k mono">{{L.t(i,'月份 / MONTH')}}</text><text wx:if="{{rc.mSel}}" class="rc-clear" data-v="all" bindtap="setRcM">{{rc.mSel}} · {{L.t(i,'清除')}}</text><text wx:elif="{{rc.mY}}" class="rc-kv mono">{{rc.mY}}</text></view>
+    <view class="rc-cal" wx:if="{{rc.grid.length}}"><view wx:for="{{rc.grid}}" wx:key="n" class="rc-d {{item.on ? 'on' : ''}} {{item.c ? '' : 'nil'}}" style="{{item.bg}}" data-v="{{item.v}}" data-c="{{item.c}}" bindtap="setRcM"><text class="db">{{item.n}}</text><text class="ds mono">{{item.cs}}</text></view></view>
+    <view wx:else class="rc-mempty">{{L.t(i,'先选一个年份，再按月份筛选')}}</view>
     <text class="rc-k mono">{{L.t(i,'专题 / PROGRAMME')}}</text>
     <view class="rc-chips"><text wx:for="{{rc.progs}}" wx:key="v" class="chip {{rcP === item.v ? 'on' : ''}}" data-v="{{item.v}}" bindtap="setRcP">{{item.n}}</text></view>
     <view class="rc-sum" wx:if="{{rc.n}}">

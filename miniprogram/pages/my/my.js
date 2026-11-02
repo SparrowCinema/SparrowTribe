@@ -93,8 +93,12 @@ Page({
     const list = this.recapScope(), rated = list.filter(e => e.rec.r), mins = list.reduce((n, e) => n + (e.f.min || 0), 0);
     const Y = y !== 'all' ? y : (years.length === 1 ? years[0] : ''), cnt = {};
     if (Y) all.filter(e => e.rec.d.slice(0, 4) === Y).forEach(e => { const k = e.rec.d.slice(0, 7); cnt[k] = (cnt[k] || 0) + 1; });
-    const grid = Y ? Array.from({ length: 12 }, (_, i) => { const k = Y + '-' + String(i + 1).padStart(2, '0'); return { v: this.data.rcM === k ? 'all' : k, n: t((i + 1) + '月'), c: cnt[k] || 0, on: this.data.rcM === k }; }) : [];
-    this.setData({ rc: { grid, months: [{ v: 'all', n: t('全部月份') }].concat(months.map(v => ({ v, n: y === 'all' ? v.replace('-', '.') : t((+v.slice(5)) + '月') }))), years: [{ v: 'all', n: t('全部年份') }].concat(years.map(v => ({ v, n: v }))), progs: [{ v: 'all', n: t('全部专题') }].concat(pids.map(v => ({ v, n: idx.PG[v].name }))),
+    const max = Math.max(1, ...Object.values(cnt)), nb = n => n + (I.isEn() ? (n === 1 ? ' film' : ' films') : ' 部');
+    // 6×2 观影热度日历：颜色深浅＝那个月看了几部（accent #8e2a22）
+    const grid = Y ? Array.from({ length: 12 }, (_, i) => { const k = Y + '-' + String(i + 1).padStart(2, '0'), c = cnt[k] || 0, on = this.data.rcM === k;
+      return { v: on ? 'all' : k, n: String(i + 1), c, cs: c ? nb(c) : '—', on, bg: c && !on ? 'background:rgba(142,42,34,' + (0.14 + 0.46 * c / max).toFixed(2) + ');border-color:rgba(142,42,34,' + (0.22 + 0.46 * c / max).toFixed(2) + ')' : '' }; }) : [];
+    const ycnt = {}; all.forEach(e => { const k = e.rec.d.slice(0, 4); ycnt[k] = (ycnt[k] || 0) + 1; });
+    this.setData({ rc: { grid, months: [{ v: 'all', n: t('全部月份') }].concat(months.map(v => ({ v, n: y === 'all' ? v.replace('-', '.') : t((+v.slice(5)) + '月') }))), years: [{ v: 'all', n: t('全部'), c: nb(all.length) }].concat(years.map(v => ({ v, n: v, c: nb(ycnt[v]) }))), mY: Y, mSel: this.data.rcM !== 'all' ? t((+this.data.rcM.slice(5)) + '月') : '', progs: [{ v: 'all', n: t('全部专题') }].concat(pids.map(v => ({ v, n: idx.PG[v].name }))),
       n: list.length, hm: Math.floor(mins / 60) + 'h' + String(mins % 60).padStart(2, '0'), avg: rated.length ? (rated.reduce((n, e) => n + e.rec.r, 0) / rated.length).toFixed(1) : '—' } });
   },
   openRecap() {
@@ -102,7 +106,7 @@ Page({
     this.buildRecap(); this.setData({ rcOpen: true });
   },
   closeRecap() { this.setData({ rcOpen: false }); },
-  setRcM(e) { this.setData({ rcM: e.currentTarget.dataset.v }); this.buildRecap(); },
+  setRcM(e) { const d = e.currentTarget.dataset; if (d.c === 0) return; this.setData({ rcM: d.v }); this.buildRecap(); },
   toggleGuide() { this.setData({ guideOpen: !this.data.guideOpen }); },
   setRcY(e) { this.setData({ rcY: e.currentTarget.dataset.v }); this.buildRecap(); },
   setRcP(e) { this.setData({ rcP: e.currentTarget.dataset.v }); this.buildRecap(); },

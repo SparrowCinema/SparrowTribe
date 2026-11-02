@@ -1021,8 +1021,21 @@ input:not([type=checkbox]):not([type=radio]),select,textarea{font-size:16px!impo
 .rc-panel{height:auto;max-height:calc(100dvh - 40px)}
 .rc-wrap{overflow:auto;padding-bottom:calc(16px + env(safe-area-inset-bottom,0px))}
 .rc-k{font:600 10px var(--f-mono);letter-spacing:.16em;color:var(--muted);margin:14px 0 8px}
-.rc-chips{display:flex;flex-wrap:wrap;gap:8px}.rc-years{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}.rc-years::-webkit-scrollbar{display:none}.rc-years .fchip{flex:none}
-.rc-months{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.rc-m{display:flex;flex-direction:column;align-items:center;gap:2px;padding:9px 0;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--fg)}.rc-m b{font-size:14px}.rc-m small{font:10px var(--f-mono);color:var(--muted)}.rc-m[aria-pressed=true]{background:var(--fg);color:var(--bg);border-color:var(--fg)}.rc-m[aria-pressed=true] small{color:inherit;opacity:.8}.rc-m:disabled{opacity:.35;border-style:dashed}.rc-hint{font-size:12px;color:var(--muted);margin:0}
+.rc-chips{display:flex;flex-wrap:wrap;gap:8px}.rc-seg{display:flex;gap:2px;padding:3px;border-radius:12px;background:var(--bg);border:1px solid var(--line);overflow-x:auto;scrollbar-width:none;scroll-snap-type:x proximity}.rc-seg::-webkit-scrollbar{display:none}
+.rc-y{flex:1 0 auto;min-width:68px;scroll-snap-align:start;display:flex;flex-direction:column;align-items:center;gap:1px;padding:7px 12px;border-radius:9px;color:var(--muted);transition:background .18s,color .18s,box-shadow .18s}
+.rc-y b{font:600 15px/1.2 var(--f-mono);color:var(--fg)}.rc-y small{font-size:10px;letter-spacing:.02em}
+.rc-y[aria-checked=true]{background:var(--surface);box-shadow:0 1px 2px rgba(40,25,10,.12),0 0 0 1px var(--line);color:var(--accent)}.rc-y[aria-checked=true] b{color:var(--accent)}
+.rc-kh{display:flex;align-items:baseline;justify-content:space-between}.rc-kv{font:600 11px var(--f-mono);color:var(--muted)}
+.rc-clear{font-size:11px;color:var(--accent);padding:2px 0;display:inline-flex;gap:6px}.rc-clear span+span::before{content:'· ';opacity:.6}
+.rc-cal{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}
+.rc-d{position:relative;aspect-ratio:1/1.08;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;border-radius:10px;border:1px solid color-mix(in srgb,var(--accent) calc(var(--p,0%) + 8%),var(--line));background:color-mix(in srgb,var(--accent) var(--p,0%),var(--surface));color:var(--fg);transition:transform .12s,box-shadow .18s}
+.rc-d b{font:900 19px/1 var(--f-display)}.rc-d small{font:500 9.5px var(--f-mono);opacity:.75}
+.rc-d:not(.nil):active{transform:scale(.94)}
+.rc-d.nil{background:transparent;border:1px dashed color-mix(in srgb,var(--line) 70%,transparent);color:var(--muted);opacity:.45;cursor:default}
+.rc-d[aria-checked=true]{background:var(--accent);border-color:var(--accent);color:#fff8ee;box-shadow:0 0 0 2px var(--surface),0 0 0 4px var(--accent)}
+.rc-body .fchip[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:#fff8ee}
+.rc-mempty{font-size:12px;color:var(--muted);padding:14px;border:1px dashed var(--line);border-radius:10px;text-align:center}
+@media(max-width:360px){.rc-cal{gap:4px}.rc-d b{font-size:16px}}
 .rc-sum{display:flex;gap:18px;margin:18px 0;padding:14px 16px;border-radius:12px;background:var(--bg);border:1px solid var(--line)}
 .rc-sum span{display:flex;flex-direction:column;font-size:11px;color:var(--muted)}
 .rc-sum b{font:600 22px/1.2 var(--f-mono);color:var(--fg)}
@@ -1268,7 +1281,7 @@ function timetableHTML(day, list){
   const colHTML = cols.map(({v,h})=>{
     const items = ds.filter(x=>x.v===v.id&&x.h===h.id).map(x=>{
       const f=F[x.id], st=toMin(x.t), top=Math.round((st-S)*K), ht=Math.max(78,Math.round(durationOf(x)*K)-3), mine=picked.has(keyOf(x)), gone=isPast(x);
-      return `<button class="tt-b fc${mine?" mine":""}${gone?" past":""}" data-film="${x.id}" data-key="${keyOf(x)}" style="--h:${fhue(x.id)};top:${top}px;height:${ht}px" aria-label="${d2(x)} ${esc(f.cn)} ${esc(placeOf(x))}"><b class="tt-s">${x.t}${evOf(x,f)?'<i class="tt-ev">映后</i>':""}</b><span class="tt-n">${esc(f.cn)}</span>${f.version?`<span class="tt-v">${esc(f.version)}</span>`:""}${langSub(f)?`<span class="tt-l">${esc(langSub(f))}</span>`:""}<span class="tt-e">${gone?"已放映":`至 ${fmt(st+durationOf(x))}${f.minTbd?"":` · ${f.min}′`}`}</span></button>${evOf(x,f)&&!qaForShow(x,f)?`<div class="tt-post" style="top:${top+Math.round(durationOf(x)*K)}px;height:${Math.round(POST_MIN*K)-3}px" aria-label="映后活动 ${fmt(st+durationOf(x))}至${fmt(st+durationOf(x)+POST_MIN)}"><b>映后</b><small>${fmt(st+durationOf(x))}–${fmt(st+durationOf(x)+POST_MIN)}</small></div>`:""}${qaForShow(x,f)?`<button class="tt-qa" data-film="${x.id}" style="top:${Math.round((qaForShow(x,f).start-S)*K)}px;height:${Math.max(24,Math.round((qaForShow(x,f).end-qaForShow(x,f).start)*K)-3)}px" aria-label="映后交流 ${esc(f.qaStart)}至${esc(f.qaEnd)}"><b>映后交流</b><small>${esc(f.qaStart)}–${esc(f.qaEnd)}</small></button>`:""}${gone&&!mine?"":`<button class="tt-add fa${mine?" on":""}" data-plan="${keyOf(x)}" aria-pressed="${mine}" style="--h:${fhue(x.id)};top:${top+5}px" aria-label="${mine?"移出排片":"加入排片"} ${esc(f.cn)} ${d2(x)}">${mine?"✓":"+"}</button>`}`;
+      return `<button class="tt-b fc${mine?" mine":""}${gone?" past":""}" data-film="${x.id}" data-key="${keyOf(x)}" style="--h:${fhue(x.id)};top:${top}px;height:${ht}px" aria-label="${d2(x)} ${esc(f.cn)} ${esc(placeOf(x))}"><b class="tt-s">${x.t}${evOf(x,f)?'<i class="tt-ev">映后</i>':""}</b><span class="tt-n">${esc(f.cn)}</span>${f.version?`<span class="tt-v">${esc(f.version)}</span>`:""}${langSub(f)?`<span class="tt-l">${esc(langSub(f))}</span>`:""}<span class="tt-e">${gone?"已放映":`至 ${fmt(st+durationOf(x))}${f.minTbd?"":` · ${f.min}′`}`}</span></button>${(()=>{if(!evOf(x,f)||qaForShow(x,f))return "";const pe=st+durationOf(x),nx=Math.min(Infinity,...ds.filter(y=>y.v===v.id&&y.h===h.id&&toMin(y.t)>st).map(y=>toMin(y.t))),pm=Math.min(POST_MIN,nx-pe);if(pm<10)return "";/* 同厅下一场开场前截止，避免压住下一场 */return `<div class="tt-post" style="top:${top+Math.round(durationOf(x)*K)}px;height:${Math.round(pm*K)-3}px" aria-label="映后活动 ${fmt(pe)}至${fmt(pe+pm)}"><b>映后</b><small>${fmt(pe)}–${fmt(pe+pm)}</small></div>`;})()}${qaForShow(x,f)?`<button class="tt-qa" data-film="${x.id}" style="top:${Math.round((qaForShow(x,f).start-S)*K)}px;height:${Math.max(24,Math.round((qaForShow(x,f).end-qaForShow(x,f).start)*K)-3)}px" aria-label="映后交流 ${esc(f.qaStart)}至${esc(f.qaEnd)}"><b>映后交流</b><small>${esc(f.qaStart)}–${esc(f.qaEnd)}</small></button>`:""}${gone&&!mine?"":`<button class="tt-add fa${mine?" on":""}" data-plan="${keyOf(x)}" aria-pressed="${mine}" style="--h:${fhue(x.id)};top:${top+5}px" aria-label="${mine?"移出排片":"加入排片"} ${esc(f.cn)} ${d2(x)}">${mine?"✓":"+"}</button>`}`;
     }).join("");
     return `<div class="tt-col"><div class="tt-h" title="${esc(v.name)} · ${esc(h.name)}"><b>${esc(vShort(v))}</b><small>${esc(hShort(h))}</small></div><div class="tt-body" style="height:${H+16}px">${items}</div></div>`;
   }).join("");
@@ -1312,7 +1325,7 @@ function openScheduleSelector(type){
  d.addEventListener('keydown',e=>{const opts=[...d.querySelectorAll('.selector-option')];if(!opts.length)return;if(e.key==='ArrowDown'||e.key==='ArrowUp'){e.preventDefault();const i=opts.indexOf(document.activeElement),next=e.key==='ArrowDown'?(i+1)%opts.length:(i<0?opts.length-1:(i-1+opts.length)%opts.length);opts[next].focus();}});
  const sy=window.scrollY,B=document.body.style,keep={p:B.position,t:B.top,w:B.width};B.position='fixed';B.top=-sy+'px';B.width='100%';/* 弹层打开时锁住底层页面与甘特图，滑动只发生在弹层内 */
  d.addEventListener('touchmove',e=>{const r=e.target.closest('.selector-results');if(!r||r.scrollHeight<=r.clientHeight+1)e.preventDefault();},{passive:false});
- d.addEventListener('close',()=>{B.position=keep.p;B.top=keep.t;B.width=keep.w;window.scrollTo({top:sy,behavior:'instant'});});
+ d.addEventListener('close',()=>{B.position=keep.p;B.top=keep.t;B.width=keep.w;if(!d._nav)window.scrollTo({top:sy,behavior:'instant'});});
  d.showModal();if(matchMedia('(min-width:700px)').matches)d.querySelector('input').focus();
 }
 document.addEventListener("input",e=>{if(e.target.id!=="schedule-filter-search")return;const d=e.target.closest('dialog');d.querySelector('#selector-results').innerHTML=selectorOptions(d.dataset.type,e.target.value);});
@@ -1323,7 +1336,7 @@ document.addEventListener("click",e=>{
  if(type==='programme'){pfilt=value;vfilt=cityFilt='all';}else if(type==='city'){cityFilt=value;vfilt='all';}else vfilt=value;
  sday=null;schedule();d.close();
 });
-window.addEventListener('hashchange',()=>document.getElementById('schedule-selector')?.close());
+window.addEventListener('hashchange',()=>{const d=document.getElementById('schedule-selector');if(d){d._nav=1;d.close();}});
 // 首页顶部：今天我的排片中尚未散场的场次，按时间线排列
 function myTodayHTML(){
   // 今天还有没散场的就显示今天；今天都散场后顺延到之后最近一个有排片的日子（到了当天自动变回「今日」）
@@ -1791,17 +1804,23 @@ function syncStart(){syncPrint=profilePrint();if(syncSt&&syncSt.code)syncQuiet()
 // —— 影院观影结算：按年份 / 专题筛选，生成长图 ——
 let recapYear='all',recapProg='all',recapMonth='all';
 function recapScope(){return watchEntries().filter(e=>(recapYear==='all'||e.rec.d.slice(0,4)===recapYear)&&(recapMonth==='all'||e.rec.d.slice(0,7)===recapMonth)&&(recapProg==='all'||progOf(e.f).id===recapProg));}
+/* 结算筛选：年份＝分段滑轨，月份＝6×2 观影热度日历（颜色深浅＝那个月看了几部） */
+function yearSegHTML(all,years){const cnt={};all.forEach(e=>{const y=e.rec.d.slice(0,4);cnt[y]=(cnt[y]||0)+1;});
+  const it=(v,lab,n)=>'<button class="rc-y" role="radio" data-rc="y" data-v="'+v+'" aria-checked="'+(recapYear===v)+'"><b>'+lab+'</b><small>'+n+' 部</small></button>';
+  return '<div class="rc-seg" role="radiogroup" aria-label="年份">'+it('all','全部',all.length)+years.map(y=>it(y,y,cnt[y])).join('')+'</div>';}
 function monthGridHTML(all,years){const Y=recapYear!=='all'?recapYear:(years.length===1?years[0]:'');
-  if(!Y)return '<p class="rc-hint">先选一个年份，再按月份筛选</p>';
+  if(!Y)return '<div class="rc-mempty">先选一个年份，再按月份筛选</div>';
   const cnt={};all.filter(e=>e.rec.d.slice(0,4)===Y).forEach(e=>{const m=e.rec.d.slice(0,7);cnt[m]=(cnt[m]||0)+1;});
-  let h='<div class="rc-months" role="group" aria-label="月份">';
-  for(let m=1;m<=12;m++){const k=Y+'-'+String(m).padStart(2,'0'),n=cnt[k]||0;h+='<button class="rc-m" data-rc="m" data-v="'+(recapMonth===k?'all':k)+'" aria-pressed="'+(recapMonth===k)+'"'+(n?'':' disabled')+'><b>'+m+'月</b><small>'+(n?n:'·')+'</small></button>';}
+  const max=Math.max(1,...Object.values(cnt));let h='<div class="rc-cal" role="radiogroup" aria-label="'+Y+' 月份">';
+  for(let m=1;m<=12;m++){const k=Y+'-'+String(m).padStart(2,'0'),n=cnt[k]||0,on=recapMonth===k;
+    h+='<button class="rc-d'+(n?'':' nil')+'" role="radio" data-rc="m" data-v="'+(on?'all':k)+'" aria-checked="'+on+'"'+(n?' style="--p:'+Math.round(14+46*n/max)+'%"':' disabled')+' aria-label="'+m+'月 '+n+' 部"><b>'+m+'</b><small>'+(n?n+' 部':'—')+'</small></button>';}
   return h+'</div>';}
 function recapPanelHTML(){const all=watchEntries(),years=[...new Set(all.map(e=>e.rec.d.slice(0,4)))].sort().reverse(),pids=PROGRAMMES.map(p=>p.id).filter(id=>all.some(e=>progOf(e.f).id===id));
   if(recapYear!=='all'&&!years.includes(recapYear))recapYear='all';const months=[...new Set(all.filter(e=>recapYear==='all'||e.rec.d.slice(0,4)===recapYear).map(e=>e.rec.d.slice(0,7)))];if(recapMonth!=='all'&&!months.includes(recapMonth))recapMonth='all';if(recapProg!=='all'&&!pids.includes(recapProg))recapProg='all';
   const list=recapScope(),st=passportStats(list),chip=(k,v,lab,cur)=>'<button class="fchip" aria-pressed="'+(cur===v)+'" data-rc="'+k+'" data-v="'+esc(v)+'">'+esc(lab)+'</button>';
-  return '<div class="rc-body"><p class="rc-k">年份 / YEAR</p><div class="rc-chips rc-years">'+chip('y','all','全部年份',recapYear)+years.map(y=>chip('y',y,y,recapYear)).join('')+'</div>'+
-    '<p class="rc-k">月份 / MONTH</p>'+monthGridHTML(all,years)+
+  const mY=recapYear!=='all'?recapYear:(years.length===1?years[0]:'');
+  return '<div class="rc-body"><p class="rc-k">年份 / YEAR</p>'+yearSegHTML(all,years)+
+    '<div class="rc-kh"><p class="rc-k">月份 / MONTH</p>'+(recapMonth!=='all'?'<button class="rc-clear" data-rc="m" data-v="all"><span>'+(+recapMonth.slice(5))+'月</span><span>清除</span></button>':mY?'<span class="rc-kv">'+mY+'</span>':'')+'</div>'+monthGridHTML(all,years)+
     '<p class="rc-k">专题 / PROGRAMME</p><div class="rc-chips">'+chip('p','all','全部专题',recapProg)+pids.map(id=>chip('p',id,PG[id].name,recapProg)).join('')+'</div>'+
     '<div class="rc-sum">'+(list.length?'<span><b>'+st.n+'</b>部影片</span><span><b>'+st.hm+'</b>银幕时长</span><span><b>'+(st.avg?st.avg.toFixed(1):'—')+'</b>平均评分</span>':'<span class="rc-none">这个范围里还没有看过的影片</span>')+'</div>'+
     '<button class="primary-button rc-go" data-rc="go" '+(list.length?'':'disabled')+'>生成结算长图</button></div>';}
@@ -1838,12 +1857,12 @@ function guideHTML(){const S=[['看过 · 盖章','在影片页点「看过」�
   return '<details class="guide-card" id="guide-card"><summary>观影护照使用指南</summary><ol>'+S.map(x=>'<li><b>'+x[0]+'</b><span>'+x[1]+'</span></li>').join('')+'</ol></details>';}
 let dataUpd=null;
 function dataUpdated(){const put=s=>{const el=document.getElementById('data-upd');if(el)el.textContent=s;};if(dataUpd)return put(dataUpd);
-  fetch('data/catalog.json',{method:'HEAD',cache:'no-cache'}).then(r=>{const lm=r.headers.get('last-modified');const d=lm?new Date(lm):null;if(!d||isNaN(d))throw 0;const p=n=>String(n).padStart(2,'0');dataUpd=d.getFullYear()+'.'+p(d.getMonth()+1)+'.'+p(d.getDate())+' '+p(d.getHours())+':'+p(d.getMinutes());put(dataUpd);}).catch(()=>{const el=document.getElementById('data-upd');if(el&&el.parentElement)el.parentElement.innerHTML=el.parentElement.innerHTML.replace(/ · 数据更新于.*$/,'');});}
+  fetch('data/catalog.json',{method:'HEAD',cache:'no-cache'}).then(r=>{const lm=r.headers.get('last-modified');const d=lm?new Date(lm):null;if(!d||isNaN(d))throw 0;const p=n=>String(n).padStart(2,'0');dataUpd=d.getFullYear()+'.'+p(d.getMonth()+1)+'.'+p(d.getDate())+' '+p(d.getHours())+':'+p(d.getMinutes());put(dataUpd);}).catch(()=>{document.getElementById('data-upd-w')?.remove();});}
 function myPage(){const list=selectedRows(),st=planStats(list),next=list.find(s=>!isPast(s));
   main.innerHTML='<section class="view gut">'+passportHTML()+
   '<div class="my-menu"><button class="my-entry" data-tab="plan"><span class="me-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="15" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span><span><b>个人排片</b><small>'+(list.length?st.n+' 场 · '+(next?'下一场 '+next.d+' '+wk(next.d)+' '+next.t:'已全部放映'):'按天查看日程 · 自动检查时间冲突')+'</small></span><span class="me-go">›</span></button><button class="my-entry" data-tab="export"><span class="me-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="4" width="6" height="6"/><rect x="14" y="4" width="6" height="6"/><rect x="4" y="14" width="6" height="6"/><path d="M14 14h2v2h-2zM18 18h2v2h-2zM14 18h2M18 14h2"/></svg></span><span><b>导出与分享</b><small>带二维码的排片长图 · 分享链接 · 日历 · PDF</small></span><span class="me-go">›</span></button><button class="my-entry" data-tab="install"><span class="me-ic">'+IIC.phone+'</span><span><b>添加到手机</b><small>'+(ENV.standalone?'已在 App 模式中打开':'放到桌面像 App 一样看 · 微信里用浮窗')+'</small></span><span class="me-go">›</span></button></div>'+
   '<section class="sync-card" id="sync-card" aria-label="个人档案云端同步">'+syncCardHTML()+'</section>'+guideHTML()+
-  '<p class="local-note">排片和护照保存在当前浏览器；开启上面的云端同步，或用分享链接，即可换设备。</p>'+presentersHTML()+'<p class="local-note pres-note">麻雀映画 × 麻雀部落 制作 · 数据更新于 <span id="data-upd">…</span></p></section>';sizeBook();dataUpdated();}
+  '<p class="local-note">排片和护照保存在当前浏览器；开启上面的云端同步，或用分享链接，即可换设备。</p>'+presentersHTML()+'<p class="local-note pres-note">麻雀映画 × 麻雀部落 制作<span id="data-upd-w"> · 数据更新于 <span id="data-upd">…</span></span></p></section>';sizeBook();dataUpdated();}
 function planPage(){const all=selectedRows(),list=scopedRows(),st=planStats(list);
   main.innerHTML='<section class="view gut"><div class="page-heading"><div><small>MY PROGRAMME</small><h2 class="sec">个人排片</h2></div><button class="text-button" data-tab="my">返回我的</button></div>'+
   (all.length?planProgChips(all)+(!list.length?'<div class="empty-plan"><h3>这个专题还没有加入场次</h3><p>可以切换到「全部专题」，或去排片表挑选。</p><button class="primary-button" data-prog-sched="'+esc(planFilt)+'">去看这个专题的排片</button></div>':statsHTML(st)+'<div class="plan-toolbar"><button class="primary-button" data-tab="export">导出与分享</button><button class="secondary-button" data-tab="schedule">继续选片</button><button class="text-button" data-action="clear-plan">清空排片</button></div>'+(st.clash?'<div class="conflict" role="status"><b>有 '+st.clash+' 组场次时间重叠</b><p>重叠处已在日程中标红，移出其中一场即可解决。</p></div>':'')+'<div class="plan-days">'+planRowsHTML(list,true)+'</div>')
