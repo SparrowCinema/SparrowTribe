@@ -211,3 +211,17 @@
 .rc-m .mb { font-size: 28rpx; font-weight: 700; } .rc-m .ms { font-size: 20rpx; color: var(--muted); }
 .rc-m.on { background: var(--fg); color: var(--bg); border-color: var(--fg); } .rc-m.on .ms { color: var(--bg); opacity: .8; }
 .rc-m.dis { opacity: .35; border-style: dashed; } .rc-hint { font-size: 22rpx; color: var(--muted); }
+
+/* 结算筛选 v2：年份分段滑轨 + 月份 6×2 热度日历 */
+.rc-seg-sv { white-space: nowrap; }
+.rc-seg { display: inline-flex; min-width: 100%; box-sizing: border-box; gap: 4rpx; padding: 6rpx; border-radius: 24rpx; background: var(--bg); border: 2rpx solid var(--line); }
+.rc-y { flex: 1 0 auto; min-width: 136rpx; display: flex; flex-direction: column; align-items: center; padding: 14rpx 24rpx; border-radius: 18rpx; color: var(--muted); }
+.rc-y .yb { font-size: 30rpx; font-weight: 600; color: var(--fg); } .rc-y .ys { font-size: 20rpx; margin-top: 2rpx; }
+.rc-y.on { background: var(--surface); box-shadow: 0 2rpx 4rpx rgba(40,25,10,.12), 0 0 0 2rpx var(--line); color: var(--accent); } .rc-y.on .yb { color: var(--accent); }
+.rc-kh { display: flex; align-items: baseline; justify-content: space-between; } .rc-kv { font-size: 22rpx; color: var(--muted); } .rc-clear { font-size: 22rpx; color: var(--accent); }
+.rc-cal { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12rpx; }
+.rc-d { height: 112rpx; display: flex; flex-direction: column; align-items: center; justify-content: center; border-radius: 20rpx; border: 2rpx solid var(--line); background: var(--surface); color: var(--fg); }
+.rc-d .db { font-size: 38rpx; font-weight: 900; line-height: 1; font-family: serif; } .rc-d .ds { font-size: 18rpx; opacity: .75; margin-top: 6rpx; }
+.rc-d.nil { background: transparent; border: 2rpx dashed var(--line); color: var(--muted); opacity: .45; }
+.rc-d.on { background: var(--accent); border-color: var(--accent); color: #fff8ee; box-shadow: 0 0 0 4rpx var(--surface), 0 0 0 8rpx var(--accent); }
+.rc-mempty { font-size: 22rpx; color: var(--muted); padding: 28rpx; border: 2rpx dashed var(--line); border-radius: 20rpx; text-align: center; }

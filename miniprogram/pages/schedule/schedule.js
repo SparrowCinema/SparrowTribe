@@ -86,7 +86,7 @@ Page({
         cols.push({ key: v.id + h.id, vn: vShort(v), hn: hShort(h), qas, blocks: hs.map(s => {
           const vw = U.showView(s, idx, data, picked), st = U.toMin(s.t), qa = U.qaOf(idx.F[s.id]);
           if (qa) qas.push({ key: vw.key + '-qa', nm: '映后交流', id: s.id, top: Math.round((qa.start - S) * K), h: Math.max(60, Math.round((qa.end - qa.start) * K) - 6), label: qa.label });
-          else if (vw.ev) { const pe = st + U.durationOf(s, idx); qas.push({ key: vw.key + '-post', nm: '映后', id: s.id, top: Math.round((pe - S) * K), h: Math.round(30 * K) - 6, label: U.fmt(pe) + '–' + U.fmt(pe + 30) }); }
+          else if (vw.ev) { const pe = st + U.durationOf(s, idx), nx = Math.min(Infinity, ...hs.map(y => U.toMin(y.t)).filter(m => m > st)), pm = Math.min(30, nx - pe); if (pm >= 10) qas.push({ key: vw.key + '-post', nm: '映后', id: s.id, top: Math.round((pe - S) * K), h: Math.round(pm * K) - 6, label: U.fmt(pe) + '–' + U.fmt(pe + pm) }); }
           return Object.assign(vw, { top: Math.round((st - S) * K), h: Math.max(150, Math.round(U.durationOf(s, idx) * K) - 6) });
         }) });
       }));
