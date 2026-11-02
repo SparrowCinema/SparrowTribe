@@ -595,7 +595,38 @@ html.sheet-open,html.sheet-open body{overflow:hidden}
 .prog-card:hover{border-color:var(--accent)}
 @media (min-width:900px){.prog-strip{grid-template-columns:repeat(auto-fill,minmax(360px,1fr))}}
 .prog-chips{margin-bottom:6px}
-.plan-filter{margin:4px 0 12px}.plan-filter>small{display:block;font-size:12px;color:var(--muted);margin-bottom:6px;letter-spacing:.04em}.plan-progs .fchip.zero{opacity:.55}
+.plan-filter{margin:6px 0 16px}
+.pf-head{display:flex;align-items:baseline;gap:8px;margin-bottom:9px}
+.pf-head b{font:900 15px var(--f-display);position:relative;padding-left:11px}
+.pf-head b::before{content:"";position:absolute;left:0;top:50%;width:4px;height:14px;margin-top:-7px;border-radius:2px;background:var(--accent)}
+.pf-head small{font-size:11px;color:var(--muted);letter-spacing:.03em}
+.pf-row{display:flex;gap:9px;overflow-x:auto;padding:3px 2px 9px;margin:0 -2px;scrollbar-width:none;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch}
+.pf-row::-webkit-scrollbar{display:none}
+.pf-card{position:relative;flex:none;scroll-snap-align:start;display:flex;flex-direction:column;gap:3px;min-width:116px;max-width:180px;padding:11px 40px 10px 14px;text-align:left;border-radius:14px;background:var(--surface);border:1px solid var(--line);color:var(--fg);transition:background .18s,border-color .18s,box-shadow .18s,transform .12s}
+.pf-card:active{transform:scale(.97)}
+.pf-n{font:700 14px/1.25 var(--f-body);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pf-c{font:500 11.5px var(--f-mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.pf-c b{font-weight:700;font-size:13px;color:var(--fg)}
+.pf-ck{position:absolute;top:11px;right:11px;width:18px;height:18px;border-radius:50%;display:grid;place-items:center;border:1.5px solid var(--line);color:transparent;transition:all .18s}
+.pf-ck svg{width:11px;height:11px}
+.pf-card[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--on-block);box-shadow:0 6px 16px color-mix(in srgb,var(--accent) 32%,transparent)}
+.pf-card[aria-pressed="true"] .pf-c,.pf-card[aria-pressed="true"] .pf-c b{color:inherit;opacity:.92}
+.pf-card[aria-pressed="true"] .pf-ck{background:var(--on-block);border-color:var(--on-block);color:var(--accent)}
+.pf-card.zero:not([aria-pressed="true"]){border-style:dashed;background:transparent}
+.pf-card.zero:not([aria-pressed="true"]) .pf-n{color:var(--muted)}
+.pf-card:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+/* 首页：今日我的排片（超过一场时折叠） */
+.my-today{margin:0 0 18px;padding:14px 14px 12px;border-radius:16px;background:var(--surface);border:1px solid var(--line);border-top:3px solid var(--accent);box-shadow:0 4px 18px #2b211708}
+.my-today .blockh{margin-bottom:6px}
+.my-today .pday{margin:0}
+.my-today.foldable:not(.open) .ptl>li:nth-child(n+2){display:none}
+.today-toggle{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;margin-top:12px;padding:9px 14px 9px 18px;border-radius:99px;border:1.5px solid var(--accent);background:color-mix(in srgb,var(--accent) 11%,var(--surface));color:var(--accent);font:700 14px var(--f-body);letter-spacing:.02em;transition:background .15s,transform .12s}
+.today-toggle:hover{background:color-mix(in srgb,var(--accent) 18%,var(--surface))}
+.today-toggle:active{transform:scale(.98)}
+.today-toggle:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.today-toggle .tt-ic{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--accent);color:var(--on-block);transition:transform .22s}
+.today-toggle .tt-ic svg{width:14px;height:14px}
+.my-today.open .today-toggle .tt-ic{transform:rotate(180deg)}
 .fd-prog{display:inline-flex;align-self:flex-start;font-size:11px;font-weight:600;padding:3px 9px;border-radius:99px;background:rgba(255,250,240,.92);color:#2b2117;margin-bottom:8px}
 .pg-cover{background:#1c1510;line-height:0}
 .pg-cover img{width:100%;max-width:100%;max-height:340px;object-fit:cover}
@@ -988,8 +1019,12 @@ function myTodayHTML(){
   const t=new Date(now()); const key=(t.getMonth()+1)+"/"+t.getDate();
   const list=selectedRows().filter(x=>x.d===key&&!isPast(x));
   if(!list.length) return "";
-  return `<section class="my-today"><h3 class="blockh">今日我的排片 <small>${key.replace("/","月")}日 ${wk(key)} · 接下来 ${list.length} 场</small></h3>${planRowsHTML(list,false)}</section>`;
+  const more=list.length>1;
+  const chev='<i class="tt-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></i>';
+  return `<section class="my-today${more?" foldable":""}${more&&todayOpen?" open":""}"><h3 class="blockh">今日我的排片 <small>${key.replace("/","月")}日 ${wk(key)} · 接下来 ${list.length} 场</small></h3>${planRowsHTML(list,false)}${more?`<button class="today-toggle" data-today-toggle aria-expanded="${todayOpen}"><span class="tt-txt">${todayOpen?"收起":`还有 ${list.length-1} 场 · 展开全部`}</span>${chev}</button>`:""}</section>`;
 }
+let todayOpen=false;
+document.addEventListener("click",e=>{const b=e.target.closest("[data-today-toggle]");if(!b)return;todayOpen=!todayOpen;const sec=b.closest(".my-today");if(!sec)return;sec.classList.toggle("open",todayOpen);b.setAttribute("aria-expanded",String(todayOpen));const n=sec.querySelectorAll(".pitem").length;b.querySelector(".tt-txt").textContent=todayOpen?"收起":"还有 "+(n-1)+" 场 · 展开全部";});
 function schedule(){
   const list = SH.filter(x=>(vfilt==="all"||x.v===vfilt)&&inProg(x)&&!isPast(x));
   const ds = days.filter(d=>list.some(x=>x.d===d));
@@ -1151,8 +1186,9 @@ let planFilt="all";
 function planProgChips(all){
   if(!all.length) return "";
   const ids=PROGRAMMES.map(p=>p.id).filter(id=>SH.some(s=>s.p===id));
-  const items=[["all","全部专题（合并）",all.length],...ids.map(id=>[id,PG[id]?PG[id].name:id,all.filter(s=>s.p===id).length])];
-  return '<div class="plan-filter"><small>选择专题 · 导出与分享只包含所选内容</small><div class="filters prog-chips plan-progs" role="group" aria-label="选择专题">'+items.map(([k,n,c])=>'<button class="fchip'+(c||k==="all"?'':' zero')+'" data-ppf="'+esc(k)+'" aria-pressed="'+(planFilt===k)+'">'+esc(n)+' · '+c+'</button>').join('')+'</div></div>';
+  const items=[["all","全部专题",all.length],...ids.map(id=>[id,PG[id]?PG[id].name:id,all.filter(s=>s.p===id).length])];
+  const ck='<i class="pf-ck" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></i>';
+  return '<div class="plan-filter"><div class="pf-head"><b>选择专题</b><small>排片、长图与分享只含所选内容</small></div><div class="pf-row plan-progs" role="group" aria-label="选择专题">'+items.map(([k,n,c])=>'<button class="pf-card'+(k==="all"?' pf-all':'')+(c||k==="all"?'':' zero')+'" data-ppf="'+esc(k)+'" aria-pressed="'+(planFilt===k)+'"><span class="pf-n">'+esc(n)+'</span><span class="pf-c">'+(k==="all"?'合并 <b>'+c+'</b> 场':c?'<b>'+c+'</b> 场':'未加入')+'</span>'+ck+'</button>').join('')+'</div></div>';
 }
 function scopedRows(){const all=selectedRows();if(planFilt==="all")return all;return all.filter(s=>s.p===planFilt);}
 function selectedRows(keys=picked){const set=new Set(keys);return SH.filter(s=>set.has(keyOf(s))).sort((a,b)=>showDate(a)-showDate(b));}

@@ -7,7 +7,7 @@ const vShort = v => v.short || (v.brand || v.name).replace(/^杭州/, '');
 const hShort = h => h.short || h.name;
 
 Page({
-  data: { pf: 'all', vf: 'all', day: '', days: [], myToday: [], myTodayTitle: '', progs: [], vchips: [], venues: [], vOpen: false, cols: [], ticks: [], H: 0, dayList: [], legend: [], span: '', count: 0, dayTitle: '', empty: '', scrollInto: '' },
+  data: { pf: 'all', vf: 'all', day: '', days: [], todayOpen: false, myToday: [], myTodayTitle: '', progs: [], vchips: [], venues: [], vOpen: false, cols: [], ticks: [], H: 0, dayList: [], legend: [], span: '', count: 0, dayTitle: '', empty: '', scrollInto: '' },
 
   onLoad(q) {
     if (q && q.day) this.setData({ day: q.day });
@@ -85,6 +85,7 @@ Page({
   setProg(e) { this.setData({ pf: e.currentTarget.dataset.id }); this.build(); },
   setVenue(e) { this.setData({ vf: e.currentTarget.dataset.id }); this.build(); },
   setDay(e) { this.setData({ day: e.currentTarget.dataset.d }); this.build(); },
+  toggleToday() { this.setData({ todayOpen: !this.data.todayOpen }); },
   toggleVenues() { this.setData({ vOpen: !this.data.vOpen }); },
   openFilm(e) { wx.navigateTo({ url: '/pages/film/film?id=' + e.currentTarget.dataset.id }); },
   openProg(e) { wx.navigateTo({ url: '/pages/programme/programme?id=' + e.currentTarget.dataset.id }); },
