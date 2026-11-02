@@ -3246,6 +3246,9 @@ module.exports = {
     3.2
    ],
    "dirO": "Tam Wai-Ching",
+   "screeningNotes": {
+    "11/8-15:50-xm-gr26-1-hall-7": "映后活动 · 主创见面会（嘉宾名单待公布，以实际到场为准）"
+   },
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-030.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -3401,6 +3404,9 @@ module.exports = {
     3.4
    ],
    "dirO": "Lau Kek-huat",
+   "screeningNotes": {
+    "11/8-17:00-xm-gr26-1-hall-2": "映后活动 · 主创见面会（嘉宾名单待公布，以实际到场为准）"
+   },
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-033.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -3552,6 +3558,9 @@ module.exports = {
     3.5
    ],
    "dirO": "Ervin Han / Raúl García",
+   "screeningNotes": {
+    "11/8-19:45-xm-gr26-1-hall-3": "映后活动 · 主创见面会（嘉宾名单待公布，以实际到场为准）"
+   },
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-036.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -4115,6 +4124,9 @@ module.exports = {
     null
    ],
    "dirO": "Isabella Lam",
+   "screeningNotes": {
+    "11/10-19:45-xm-gr26-1-hall-2": "映后活动 · 主创见面会（嘉宾名单待公布，以实际到场为准）"
+   },
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-047.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
