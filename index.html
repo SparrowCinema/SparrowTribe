@@ -853,6 +853,8 @@ html.sheet-open,html.sheet-open body{overflow:hidden}
 .fsearch svg{width:18px;height:18px;flex:none;color:var(--muted)}
 .fsearch input{flex:1;min-width:0;border:0;background:transparent;font:inherit;font-size:15px;color:var(--fg);outline:none}
 .fsearch:focus-within{border-color:var(--accent)}
+/* iOS Safari 在输入框字号 <16px 时聚焦会自动放大整页；触屏设备统一 16px 防止缩放 */
+@media (hover:none) and (pointer:coarse){input:not([type=checkbox]):not([type=radio]),select,textarea{font-size:16px!important}}
 .fgrp{margin-top:18px}
 .fcard .info .nx{display:block;font-size:11.5px;color:var(--accent);margin-top:2px;font-variant-numeric:tabular-nums}
 .fpast{margin-top:18px}
