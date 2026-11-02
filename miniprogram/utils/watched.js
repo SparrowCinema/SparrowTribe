@@ -1,7 +1,7 @@
 // 观影护照：看过 / 评分记录。本地存储 + 云端按微信用户同步（plan 云函数的 setWatched / get）。
 // 记录：{ 影片id: { d:'YYYY-MM-DD', r:0–10（0 未评分）, k:场次键, t:更新时间 } }；删除时留 { del:1, t } 以便多设备合并。
 const U = require('./util.js');
-const KEY = 'sk-watched-v1', HOLDER = 'sk-holder';
+const KEY = 'sk-watched-v1', HOLDER = 'sk-holder', PHOTO = 'sk-holder-photo';
 let cache = null;
 const listeners = [];
 const pad = n => String(n).padStart(2, '0');
@@ -37,6 +37,8 @@ function entries(data, idx) {
     return { id, f: idx.F[id], rec, s, venue: s ? vShort(idx.VN[s.v]) : '', venueFull: s ? idx.venueName(s) : '' };
   }).sort((a, b) => a.rec.d.localeCompare(b.rec.d) || (a.s && b.s ? U.showDate(a.s) - U.showDate(b.s) : 0) || a.id.localeCompare(b.id));
 }
+function photo() { try { return wx.getStorageSync(PHOTO) || ''; } catch (e) { return ''; } }
+function setPhoto(v) { try { wx.setStorageSync(PHOTO, v || ''); } catch (e) { } }
 function holder() { try { return wx.getStorageSync(HOLDER) || ''; } catch (e) { return ''; } }
 function setHolder(v) { try { wx.setStorageSync(HOLDER, String(v || '').trim().slice(0, 20)); } catch (e) { } }
 
@@ -51,4 +53,4 @@ function syncFromCloud() {
   }).catch(() => { });
 }
 
-module.exports = { all, get, set, remove, onChange, guess, showOf, entries, iso, vShort, holder, setHolder, syncFromCloud };
+module.exports = { all, get, set, remove, onChange, guess, showOf, entries, iso, vShort, holder, setHolder, photo, setPhoto, syncFromCloud };

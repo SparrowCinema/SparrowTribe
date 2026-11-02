@@ -1,5 +1,5 @@
 /* 由 tools/build-fallback.js 从 shared/recap.js 复制，请改 shared/recap.js 后重新运行。 */
-/* 麻雀观影护照 · 线下观影结算长图 + 观影印章（画布版）
+/* 麻雀观影护照 · 影院观影结算长图 + 观影印章（画布版）
  * 网站（shared/recap.js，以 window.SparrowRecap 使用）与小程序（miniprogram/utils/recap.js，由 tools/build-fallback.js 复制）共用同一份代码。
  * 只依赖 2d 画布接口，不碰 DOM / wx。
  *
@@ -72,19 +72,19 @@
       c.lineWidth = size * 0.03; c.beginPath(); c.arc(0, 0, s - c.lineWidth / 2, 0, Math.PI * 2); c.stroke();
       c.lineWidth = size * 0.01; c.beginPath(); c.arc(0, 0, s * 0.74, 0, Math.PI * 2); c.stroke();
       c.font = '700 ' + Math.round(size * 0.06) + 'px ' + MONO; arcText(c, String(it.top || 'SPARROW FILM PASSPORT').toUpperCase().split(/ · | & /)[0].slice(0, 26), 0, 0, s * 0.86, true);
-      c.font = '500 ' + Math.round(size * 0.058) + 'px ' + SANS; arcText(c, it.vs || it.venue || T('线下观影'), 0, 0, s * 0.86, false);
+      c.font = '500 ' + Math.round(size * 0.058) + 'px ' + SANS; arcText(c, it.vs || it.venue || T('影院观影'), 0, 0, s * 0.86, false);
       [-1, 1].forEach(k => { starPath(c, k * s * 0.86, 0, size * 0.022); c.fill(); });
       inner = s * 1.28; ty = -s * 0.16;
     } else if (shape === 1 || shape === 3) {
       c.lineWidth = size * 0.028; rr(c, -s + 3, -s * 0.82, size - 6, s * 1.64, shape === 1 ? size * 0.06 : 4); c.stroke();
       c.lineWidth = size * 0.009; rr(c, -s + size * 0.07, -s * 0.82 + size * 0.05, size - size * 0.14, s * 1.64 - size * 0.1, shape === 1 ? size * 0.03 : 2); c.stroke();
       c.font = '700 ' + Math.round(size * 0.055) + 'px ' + MONO; c.fillText(clip1(c, String(it.top || 'SPARROW FILM PASSPORT').toUpperCase().split(/ · | & /)[0], size * 0.8), 0, -s * 0.6);
-      c.font = '500 ' + Math.round(size * 0.055) + 'px ' + SANS; c.fillText(clip1(c, it.vs || it.venue || T('线下观影'), size * 0.8), 0, s * 0.62);
+      c.font = '500 ' + Math.round(size * 0.055) + 'px ' + SANS; c.fillText(clip1(c, it.vs || it.venue || T('影院观影'), size * 0.8), 0, s * 0.62);
       inner = size * 0.82; ty = -s * 0.14;
     } else {
       c.lineWidth = size * 0.028; octagon(c, 0, 0, s - 3); c.stroke(); c.lineWidth = size * 0.009; octagon(c, 0, 0, s * 0.86); c.stroke();
       c.font = '700 ' + Math.round(size * 0.055) + 'px ' + MONO; c.fillText(clip1(c, String(it.top || 'SPARROW FILM PASSPORT').toUpperCase().split(/ · | & /)[0], size * 0.62), 0, -s * 0.62);
-      c.font = '500 ' + Math.round(size * 0.055) + 'px ' + SANS; c.fillText(clip1(c, it.vs || it.venue || T('线下观影'), size * 0.62), 0, s * 0.64);
+      c.font = '500 ' + Math.round(size * 0.055) + 'px ' + SANS; c.fillText(clip1(c, it.vs || it.venue || T('影院观影'), size * 0.62), 0, s * 0.64);
       inner = size * 0.74; ty = -s * 0.14;
     }
     // 片名（最多两行）、日期、评分
@@ -114,7 +114,7 @@
     c.fillStyle = g; c.fillRect(0, 0, W, L.HEAD);
     c.strokeStyle = C.gold; c.globalAlpha = 0.75; c.lineWidth = 2; c.strokeRect(28, 28, W - 56, L.HEAD - 56); c.lineWidth = 1; c.strokeRect(38, 38, W - 76, L.HEAD - 76); c.globalAlpha = 1;
     c.fillStyle = C.gold; c.font = '600 22px ' + MONO; c.fillText(o.kicker || 'SPARROW FILM PASSPORT', P + 10, 112);
-    c.fillStyle = '#fffaf0'; c.font = '900 ' + (o.en ? 58 : 70) + 'px ' + SERIF; c.fillText(o.title || T('我的线下观影结算'), P + 10, 210);
+    c.fillStyle = '#fffaf0'; c.font = '900 ' + (o.en ? 58 : 70) + 'px ' + SERIF; c.fillText(o.title || T('我的影院观影结算'), P + 10, 210);
     c.font = '400 28px ' + SANS; c.globalAlpha = 0.85; c.fillText(o.sub || '', P + 10, 262); c.globalAlpha = 1;
     c.fillStyle = C.gold; c.fillRect(P + 10, 300, 64, 3);
     c.font = '400 22px ' + SANS; c.globalAlpha = 0.75; c.fillStyle = '#fffaf0'; c.fillText(T('麻雀观影护照') + ' · ' + T('麻雀映画 × 麻雀部落'), P + 10, 350); c.globalAlpha = 1;

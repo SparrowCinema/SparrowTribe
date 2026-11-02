@@ -911,14 +911,19 @@ html.sheet-open,html.sheet-open body{overflow:hidden}
 .fp-tallies span+span{border-left:1px solid var(--line-soft)}
 .fp-tallies b{font:600 21px/1.15 var(--f-mono);color:var(--fg)}
 .fp-stage{display:flex;justify-content:center;padding:18px 0 4px;perspective:1800px}
-.fp-book{--u:3.6px;position:relative;width:min(100%,380px);aspect-ratio:88/125;transform-style:preserve-3d}
+.fp-book{--u:3.6px;position:relative;width:min(100%,380px);aspect-ratio:88/168;transform-style:preserve-3d}
 .fp-page{position:absolute;inset:0;overflow:hidden;color:var(--pp-ink);border-radius:4px 14px 14px 4px;padding:calc(var(--u)*6) calc(var(--u)*6.4) calc(var(--u)*5);display:flex;flex-direction:column;
   background:radial-gradient(circle at 50% 118%,rgba(142,42,34,.08),transparent 58%),repeating-linear-gradient(60deg,rgba(130,100,60,.045) 0 1px,transparent 1px 8px),repeating-linear-gradient(-60deg,rgba(47,111,108,.04) 0 1px,transparent 1px 8px),var(--pp-paper);
   box-shadow:inset 12px 0 16px -12px rgba(60,40,20,.35),inset 0 0 0 1px rgba(0,0,0,.04),0 18px 36px -14px rgba(60,40,20,.45),3px 3px 0 -1px #e9e0cc,6px 6px 0 -2px #ded2ba}
 .fp-page::after{content:"";position:absolute;inset:auto 0 0 0;height:calc(var(--u)*1.6);background:repeating-linear-gradient(90deg,rgba(142,42,34,.16) 0 calc(var(--u)*2.2),transparent calc(var(--u)*2.2) calc(var(--u)*3.4))}
 .fp-ph{display:flex;justify-content:space-between;font:600 calc(var(--u)*2.6)/1 var(--f-mono);letter-spacing:.16em;color:var(--pp-muted);padding-bottom:calc(var(--u)*2.6);border-bottom:1px solid var(--pp-rule);margin-bottom:calc(var(--u)*4)}
 .fp-idhead{display:grid;grid-template-columns:calc(var(--u)*27) 1fr;gap:calc(var(--u)*4.5);align-items:start}
-.fp-portrait{aspect-ratio:3/4;border:1px solid var(--pp-rule);border-radius:4px;display:grid;place-items:center;padding:calc(var(--u)*3);color:#8e2a22;background:repeating-linear-gradient(0deg,rgba(142,42,34,.05) 0 1px,transparent 1px 4px),#efe5cf}
+.fp-portrait{position:relative;overflow:hidden;aspect-ratio:3/4;border:1px solid var(--pp-rule);border-radius:4px;display:grid;place-items:center;padding:calc(var(--u)*3);color:#8e2a22;background:repeating-linear-gradient(0deg,rgba(142,42,34,.05) 0 1px,transparent 1px 4px),#efe5cf}
+.fp-portrait small{position:absolute;left:0;right:0;bottom:calc(var(--u)*1.6);text-align:center;font:600 calc(var(--u)*1.9)/1.35 var(--f-mono);letter-spacing:.1em;color:var(--pp-muted)}
+.fp-portrait svg{margin-bottom:calc(var(--u)*3)}
+.fp-portrait.has{padding:0}.fp-portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:contrast(1.03) saturate(.92)}
+.fp-pbtn{position:absolute;inset:0;width:100%;height:100%;padding:0;cursor:pointer;background:none}
+.fp-pclear{position:absolute;top:3px;right:3px;width:calc(var(--u)*5);height:calc(var(--u)*5);border-radius:50%;background:rgba(30,20,10,.62);color:#fff;font:400 calc(var(--u)*4)/1 var(--f-body);padding:0;display:grid;place-items:center}
 .fp-fields{display:flex;flex-direction:column;min-width:0}
 .fp-l{font:500 calc(var(--u)*2.4)/1.5 var(--f-mono);letter-spacing:.12em;color:var(--pp-muted);margin-top:calc(var(--u)*1.4)}
 .fp-l:first-child{margin-top:0}
@@ -940,8 +945,8 @@ html.sheet-open,html.sheet-open body{overflow:hidden}
 .fp-mrz{font:500 calc(var(--u)*2.65)/1.55 "OCR B","OCR-B",var(--f-mono);letter-spacing:.1em;color:#4a4036;margin-top:calc(var(--u)*2.6);white-space:nowrap;overflow:hidden}
 .fp-visa h4{font:900 calc(var(--u)*5)/1.3 var(--f-display);margin:0}
 .fp-sub{font-size:calc(var(--u)*2.7);color:var(--pp-muted);margin:calc(var(--u)*1) 0 calc(var(--u)*3)}
-.fp-grid{flex:1;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:calc(var(--u)*2.6) calc(var(--u)*3);align-items:center;justify-items:center;min-height:0}
-.fp-stamp{width:100%;max-width:calc(var(--u)*41);aspect-ratio:1;padding:0;transform:rotate(var(--tilt));mix-blend-mode:multiply;animation:fp-stamp .5s cubic-bezier(.2,1.5,.4,1) both;animation-delay:calc(var(--i)*90ms + 120ms)}
+.fp-grid{flex:1;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(5,1fr);gap:calc(var(--u)*.6) calc(var(--u)*1.2);align-items:center;justify-items:center;min-height:0}
+.fp-stamp{width:100%;max-width:calc(var(--u)*27);aspect-ratio:1;padding:0;transform:rotate(var(--tilt));mix-blend-mode:multiply;animation:fp-stamp .5s cubic-bezier(.2,1.5,.4,1) both;animation-delay:calc(var(--i)*90ms + 120ms)}
 .fp-stamp:active{transform:rotate(var(--tilt)) scale(.96)}
 @keyframes fp-stamp{0%{opacity:0;transform:rotate(var(--tilt)) scale(1.45)}60%{opacity:1}100%{opacity:1;transform:rotate(var(--tilt)) scale(1)}}
 .st-svg{display:block;width:100%;height:100%;overflow:visible;opacity:.9}
@@ -955,6 +960,7 @@ html.sheet-open,html.sheet-open body{overflow:hidden}
 .st-g [fill="none"],.st-g circle,.st-g rect,.st-g polygon{fill:none}
 .st-g .st-cut{fill:var(--pp-paper);stroke:none}
 .fp-slot{width:82%;aspect-ratio:1;border:1.5px dashed var(--pp-rule);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;text-align:center;color:var(--pp-muted);padding:10%}
+.fp-slot.dim{opacity:.38}.fp-slot.dim small{display:none}
 .fp-slot b{font:800 calc(var(--u)*3.4)/1.3 var(--f-display);color:var(--pp-ink)}
 .fp-slot small{font:500 calc(var(--u)*2.3)/1.4 var(--f-mono);letter-spacing:.12em}
 .fp-pf{display:flex;justify-content:space-between;font:600 calc(var(--u)*2.4)/1 var(--f-mono);letter-spacing:.14em;color:var(--pp-muted);padding-top:calc(var(--u)*2.6);border-top:1px solid var(--pp-rule);margin-top:calc(var(--u)*2.4)}
@@ -1545,10 +1551,10 @@ document.addEventListener("click",async e=>{
   const t=e.target.closest("[data-itab]");if(t){installTab=t.dataset.itab;installPage();return;}
   if(e.target.closest("[data-install]")&&installPrompt){installPrompt.prompt();try{await installPrompt.userChoice;}catch(err){}installPrompt=null;installPage();}
 });
-/* ===== 观影护照：看过 / 我的评分（五星十分制）/ 每部影片一枚印章 / 线下观影结算 =====
+/* ===== 观影护照：看过 / 我的评分（五星十分制）/ 每部影片一枚印章 / 影院观影结算 =====
    记录存在本机 localStorage「sparrow-watched-v1」：{ 影片id: { d:'YYYY-MM-DD' 观影日期, r:0–10 评分（0 未评分）, k:场次键（可空）, t:更新时间 } }
    印章外观（形状、倾角、墨色）按影片 id 固定，与小程序、结算长图一致（shared/recap.js）。 */
-const WATCH_KEY='sparrow-watched-v1',HOLDER_KEY='sparrow-holder';
+const WATCH_KEY='sparrow-watched-v1',HOLDER_KEY='sparrow-holder',PHOTO_KEY='sparrow-holder-photo';
 let watched={};
 function readWatched(){try{const o=JSON.parse(localStorage.getItem(WATCH_KEY)||'{}');return o&&typeof o==='object'&&!Array.isArray(o)?o:{};}catch{return {};}}
 function saveWatched(){try{localStorage.setItem(WATCH_KEY,JSON.stringify(watched));}catch{toast('当前浏览器无法保存，离开页面后可能丢失');}}
@@ -1558,6 +1564,7 @@ function watchGuess(id){const past=SH.filter(s=>s.id===id&&isPast(s)),mine=past.
 function watchShow(rec){const s=rec&&rec.k&&SH.find(x=>keyOf(x)===rec.k);return s&&isoOf(showDate(s))===rec.d?s:null;}
 function watchEntries(){return Object.keys(watched).filter(id=>F[id]&&watched[id]&&watched[id].d).map(id=>{const rec=watched[id],s=watchShow(rec);return {id,f:F[id],rec,s,venue:s?vShort(VN[s.v]):''};})
   .sort((a,b)=>a.rec.d.localeCompare(b.rec.d)||(a.s&&b.s?showDate(a.s)-showDate(b.s):0)||a.id.localeCompare(b.id));}
+function holderPhoto(){try{return localStorage.getItem(PHOTO_KEY)||'';}catch{return '';}}
 function holderName(){try{return localStorage.getItem(HOLDER_KEY)||'';}catch{return '';}}
 
 const STAR_D='M12 2.6l2.85 6.05 6.6.8-4.87 4.55 1.25 6.55L12 17.3l-5.83 3.25 1.25-6.55L2.55 9.45l6.6-.8Z';
@@ -1578,7 +1585,7 @@ const stampTitle=t=>{t=String(t||'');if(CJK.test(t)){const a=[...t],n=a.length<=
 const svgStar=(cx,cy,R)=>{let p='';for(let i=0;i<10;i++){const r=i%2?R*.45:R,a=-Math.PI/2+i*Math.PI/5;p+=(i?'L':'M')+(cx+r*Math.cos(a)).toFixed(1)+' '+(cy+r*Math.sin(a)).toFixed(1);}return p+'Z';};
 const octPts=s=>{const k=s*.42;return [[-k,-s],[k,-s],[s,-k],[s,k],[k,s],[-k,s],[-s,k],[-s,-k]].map(([x,y])=>(100+x)+','+(100+y)).join(' ');};
 function stampSVG(e){const R=window.SparrowRecap,lk=R.look(e.id),col=lk.ink,p=progOf(e.f),uid='st-'+e.id,
-  topRaw=String((p&&p.en)||'SPARROW FILM PASSPORT').toUpperCase().split(/ · | & /)[0],top=esc(topRaw.slice(0,26)),venue=esc(e.venue||'线下观影'),date=R.dstamp(e.rec.d),r=e.rec.r||0;
+  topRaw=String((p&&p.en)||'SPARROW FILM PASSPORT').toUpperCase().split(/ · | & /)[0],top=esc(topRaw.slice(0,26)),venue=esc(e.venue||'影院观影'),date=R.dstamp(e.rec.d),r=e.rec.r||0;
   const ls=stampTitle(e.f.cn),big=ls.length===1&&[...ls[0]].length<=4,fs=CJK.test(e.f.cn)?(big?28:ls.join('').length>10?18:21):(ls.join(' ').length>16?15:17);
   let frame='',ty=88,dy=124,sy=146,topY=0,botY=0;
   if(lk.shape===0){frame='<circle cx="100" cy="100" r="95" stroke-width="5"/><circle cx="100" cy="100" r="71" stroke-width="1.6"/><path id="'+uid+'-a" d="M22 100a78 78 0 0 1 156 0" fill="none" stroke="none"/><path id="'+uid+'-b" d="M15 100a85 85 0 0 0 170 0" fill="none" stroke="none"/>'+
@@ -1591,22 +1598,22 @@ function stampSVG(e){const R=window.SparrowRecap,lk=R.look(e.id),col=lk.ink,p=pr
   return '<svg class="st-svg" viewBox="0 0 200 200" role="img" aria-label="'+esc(e.f.cn)+' · '+date+(r?' · '+r+'/10':'')+'" style="--ink:'+col+'"><g class="st-g" filter="url(#pp-ink)" fill="'+col+'" stroke="'+col+'">'+frame+side+lines+'<text class="st-d" x="100" y="'+dy+'">'+date+'</text>'+sc+'</g></svg>';}
 
 // —— 护照（封面 → 资料页 → 印章页，单页翻动）——
-const PP={open:false,page:0,busy:false};
+const PP={open:false,page:0,busy:false},PP_PER=15;
 const PP_EMBLEM='<svg viewBox="0 0 120 120" fill="none" aria-hidden="true"><circle cx="60" cy="60" r="44"/><circle cx="60" cy="60" r="36" stroke-dasharray="2 4"/><circle cx="60" cy="60" r="7"/>'+[0,1,2,3,4,5].map(i=>{const a=i*Math.PI/3-Math.PI/2;return '<circle cx="'+(60+21*Math.cos(a)).toFixed(1)+'" cy="'+(60+21*Math.sin(a)).toFixed(1)+'" r="8"/>';}).join('')+'<path d="M60 16v-8M60 112v-8M16 60H8M112 60h-8"/><path d="M38 100c6 5 14 8 22 8s16-3 22-8M30 92c-6-8-9-19-8-30M90 92c6-8 9-19 8-30" stroke-dasharray="1 3"/></svg>';
 function passportStats(list){const venues=new Set(list.filter(e=>e.s).map(e=>e.s.v)),progs=new Set(list.map(e=>progOf(e.f).id)),rated=list.filter(e=>e.rec.r),mins=list.reduce((n,e)=>n+(e.f.min||0),0);
   return {n:list.length,venues:venues.size,progs:progs.size,avg:rated.length?rated.reduce((n,e)=>n+e.rec.r,0)/rated.length:0,mins,hm:Math.floor(mins/60)+'h'+pad2(mins%60)};}
-function passportPages(list){const pages=['id'];for(let i=0;i<Math.max(1,list.length);i+=4)pages.push(i);return pages;}
-function ppPageHTML(list,pg,n){const R=window.SparrowRecap,st=passportStats(list),no=String(pg+1).padStart(2,'0'),hn=holderName();
+function passportPages(list){const pages=['id'];for(let i=0;i<Math.max(1,list.length);i+=PP_PER)pages.push(i);return pages;}
+function ppPageHTML(list,pg,n){const R=window.SparrowRecap,st=passportStats(list),no=String(pg+1).padStart(2,'0'),hn=holderName(),hp=holderPhoto();
   if(pg===0){const first=list[0],last=list[list.length-1];
     return '<section class="fp-page fp-id" aria-label="护照资料页"><div class="fp-ph"><span>FILM PASSPORT / 资料页</span><span>'+no+'</span></div>'+
-    '<div class="fp-idhead"><div class="fp-portrait">'+PP_EMBLEM+'</div><div class="fp-fields"><span class="fp-l">类型 / TYPE · P</span><span class="fp-l">持有人 / HOLDER</span><button class="fp-holder" data-pp="name">'+(hn?esc(hn):'影迷')+' <i>✎</i></button><span class="fp-en">'+(hn?'':'CINEPHILE')+'</span><span class="fp-l">签发 / ISSUED BY</span><b class="fp-iss">麻雀映画 × 麻雀部落</b></div></div>'+
+    '<div class="fp-idhead"><div class="fp-portrait'+(hp?' has':'')+'">'+(hp?'<img src="'+hp+'" alt="持有人照片">':PP_EMBLEM+'<small>添加照片<br>ADD PHOTO</small>')+'<button type="button" class="fp-pbtn" data-pp="photo" aria-label="从相册添加或更换照片"></button>'+(hp?'<button type="button" class="fp-pclear" data-pp="photo-clear" aria-label="移除照片">×</button>':'')+'</div><div class="fp-fields"><span class="fp-l">类型 / TYPE · P</span><span class="fp-l">持有人 / HOLDER</span><button class="fp-holder" data-pp="name">'+(hn?esc(hn):'影迷')+' <i>✎</i></button><span class="fp-en">'+(hn?'':'CINEPHILE')+'</span><span class="fp-l">签发 / ISSUED BY</span><b class="fp-iss">麻雀映画 × 麻雀部落</b></div></div>'+
     '<div class="fp-tally"><span><b>'+pad2(st.n)+'</b>看过影片</span><span><b>'+pad2(st.progs)+'</b>专题</span><span><b>'+pad2(st.venues)+'</b>影院</span><span><b>'+(st.avg?st.avg.toFixed(1):'—')+'</b>平均评分</span></div>'+
     '<dl class="fp-dl"><dt>首枚印章 / FIRST STAMP</dt><dd>'+(first?R.dstamp(first.rec.d):'—')+'</dd><dt>最近印章 / LATEST</dt><dd>'+(last?R.dstamp(last.rec.d):'—')+'</dd><dt>银幕时长 / SCREEN TIME</dt><dd>'+st.hm+'</dd></dl>'+
     '<div class="fp-sign"><span>签名 / SIGNATURE</span><b>See you at the cinema.</b></div>'+
     '<div class="fp-mrz" aria-hidden="true">P&lt;SPARROW&lt;FILM&lt;PASSPORT&lt;&lt;'+(hn&&!CJK.test(hn)?esc(hn.toUpperCase().replace(/[^A-Z]/g,'&lt;')).slice(0,14):'CINEPHILE')+'&lt;&lt;&lt;<br>FILMS&lt;'+String(st.n).padStart(3,'0')+'&lt;&lt;PROGS&lt;'+pad2(st.progs)+'&lt;&lt;AVG&lt;'+(st.avg?Math.round(st.avg*10):'00')+'&lt;&lt;'+(last?last.rec.d.replace(/-/g,''):'00000000')+'</div></section>';}
-  const start=(pg-1)*4,items=list.slice(start,start+4);
+  const start=(pg-1)*PP_PER,items=list.slice(start,start+PP_PER);
   const cells=items.map((e,i)=>'<button class="fp-stamp" data-film="'+e.id+'" style="--tilt:'+R.look(e.id).tilt+'deg;--i:'+i+'">'+stampSVG(e)+'</button>').join('')+
-    Array.from({length:4-items.length},(x,i)=>'<span class="fp-slot">'+(i===0&&!list.length?'<b>第一枚印章</b><small>在影片页点「看过」</small>':'<small>NEXT STAMP</small>')+'</span>').join('');
+    Array.from({length:PP_PER-items.length},(x,i)=>'<span class="fp-slot'+(i?' dim':'')+'">'+(i===0&&!list.length?'<b>第一枚印章</b><small>在影片页点「看过」</small>':'<small>NEXT STAMP</small>')+'</span>').join('');
   return '<section class="fp-page fp-visa" aria-label="观影印章页"><div class="fp-ph"><span>VISAS / 观影印章</span><span>'+no+'</span></div><h4>'+(list.length?'一部电影，一枚印章。':'这本护照还没有印章')+'</h4><p class="fp-sub">'+(list.length?'点印章回到影片 · 评分印在章上':'在影片页点「看过」，就会在这里盖章。')+'</p><div class="fp-grid">'+cells+'</div><div class="fp-pf"><span><span>印章</span> '+pg+' / '+(n-1)+'</span><span>SPARROW FILM PASSPORT</span></div></section>';}
 function passportHTML(){const list=watchEntries(),pages=passportPages(list),n=pages.length;PP.page=Math.min(PP.page,n-1);const st=passportStats(list);
   const cover='<button type="button" class="fp-cover" data-pp="open" aria-label="翻开我的观影护照"><span class="fp-cb"></span><span class="fp-pub">麻雀观影护照<small>SPARROW FILM PASSPORT</small></span><span class="fp-emb">'+PP_EMBLEM+'</span><span class="fp-name">观影护照</span><span class="fp-nen">FILM PASSPORT</span><span class="fp-motto">ONE FILM · ONE STAMP</span><span class="fp-chip"><svg viewBox="0 0 36 24" aria-hidden="true"><rect x="1" y="1" width="34" height="22" rx="3"/><circle cx="18" cy="12" r="6"/><path d="M1 12h11m12 0h11"/></svg>麻雀映画 × 麻雀部落</span></button>';
@@ -1614,7 +1621,7 @@ function passportHTML(){const list=watchEntries(),pages=passportPages(list),n=pa
   return '<section class="fp" id="fp"><div class="fp-heading"><small>MY FILM PASSPORT</small><h2>我的观影护照</h2><p>看过一部电影，盖一枚印章；打分、日期都印在章上。</p></div>'+
     (PP.open?'<div class="fp-stage"><div class="fp-book">'+ppPageHTML(list,PP.page,n)+'</div></div><div class="fp-nav"><button data-pp="prev" '+(PP.page===0?'disabled':'')+' aria-label="上一页">← 上一页</button><span>'+(PP.page+1)+' / '+n+'</span><button data-pp="next" '+(PP.page===n-1?'disabled':'')+' aria-label="下一页">下一页 →</button></div><div class="fp-close-row"><span>左右滑动翻页</span><button class="text-button" data-pp="close">合上护照</button></div>'
       :'<div class="fp-cover-stage">'+cover+'<p class="fp-cap">轻触封面或向左滑动，翻开护照 →</p></div>'+tallies)+
-    '<button class="fp-recap" data-pp="recap"><span><b>生成我的线下观影结算</b><small>按年份 / 专题 · 一张长图 · 印章墙 · 我的评分</small></span><i>↗</i></button>'+
+    '<button class="fp-recap" data-pp="recap"><span><b>生成我的影院观影结算</b><small>按年份 / 专题 · 一张长图 · 印章墙 · 我的评分</small></span><i>↗</i></button>'+
     '<svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="pp-ink" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="4" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="1.1" result="d"/><feTurbulence type="fractalNoise" baseFrequency=".05" numOctaves="3" seed="11" result="b"/><feColorMatrix in="b" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -2.2 2.05" result="m"/><feComposite in="d" in2="m" operator="in"/></filter></svg></section>';}
 function sizeBook(){const b=document.querySelector('.fp-book,.fp-cover');if(!b)return;const set=el=>el.style.setProperty('--u',(el.clientWidth/100)+'px');document.querySelectorAll('.fp-book,.fp-cover').forEach(set);}
 window.addEventListener('resize',()=>sizeBook());
@@ -1645,12 +1652,22 @@ document.addEventListener('click',e=>{
   const pp=e.target.closest('[data-pp]');
   if(pp){if(performance.now()<ppSuppress){e.preventDefault();return;}const a=pp.dataset.pp;
     if(a==='recap'){openRecap();return;}
+    if(a==='photo-clear'){try{localStorage.removeItem(PHOTO_KEY);}catch{}renderPassport();return;}
+    if(a==='photo'){pickPhoto();return;}
     if(a==='name'){const v=prompt(tr('护照持有人（显示在资料页）'),holderName());if(v!=null){try{localStorage.setItem(HOLDER_KEY,v.trim().slice(0,20));}catch{}renderPassport();}return;}
     turnPassport(a);}
 });
 document.addEventListener('change',e=>{const d=e.target.closest('[data-seen-date]');if(!d)return;const id=d.dataset.seenDate;if(!watched[id]||!/^\d{4}-\d{2}-\d{2}$/.test(d.value))return;watched[id].d=d.value;const s=SH.find(x=>x.id===id&&isoOf(showDate(x))===d.value&&isPast(x));watched[id].k=s?keyOf(s):'';watched[id].t=Date.now();saveWatched();refreshMyRate(id);toast('观影日期已更新');});
 
-// —— 线下观影结算：按年份 / 专题筛选，生成长图 ——
+// —— 护照持有人照片：从相册选择，裁成 3:4 小图存在本机 ——
+function pickPhoto(){const inp=document.createElement('input');inp.type='file';inp.accept='image/*';inp.style.display='none';
+  inp.onchange=async()=>{const f=inp.files&&inp.files[0];inp.remove();if(!f)return;
+    try{let bmp;try{bmp=await createImageBitmap(f,{imageOrientation:'from-image'});}catch{bmp=await new Promise((ok,no)=>{const im=new Image();im.onload=()=>ok(im);im.onerror=no;im.src=URL.createObjectURL(f);});}
+      const W=300,H=400,c=document.createElement('canvas');c.width=W;c.height=H;const x=c.getContext('2d'),sw=bmp.width,sh=bmp.height,k=Math.max(W/sw,H/sh),dw=sw*k,dh=sh*k;x.drawImage(bmp,(W-dw)/2,(H-dh)/2,dw,dh);
+      localStorage.setItem(PHOTO_KEY,c.toDataURL('image/jpeg',.82));renderPassport();toast('照片已放进护照');}
+    catch{toast('照片添加失败，请换一张再试');}};
+  document.body.appendChild(inp);inp.click();}
+// —— 影院观影结算：按年份 / 专题筛选，生成长图 ——
 let recapYear='all',recapProg='all';
 function recapScope(){return watchEntries().filter(e=>(recapYear==='all'||e.rec.d.slice(0,4)===recapYear)&&(recapProg==='all'||progOf(e.f).id===recapProg));}
 function recapPanelHTML(){const all=watchEntries(),years=[...new Set(all.map(e=>e.rec.d.slice(0,4)))].sort().reverse(),pids=PROGRAMMES.map(p=>p.id).filter(id=>all.some(e=>progOf(e.f).id===id));
@@ -1661,8 +1678,8 @@ function recapPanelHTML(){const all=watchEntries(),years=[...new Set(all.map(e=>
     '<div class="rc-sum">'+(list.length?'<span><b>'+st.n+'</b>部影片</span><span><b>'+st.hm+'</b>银幕时长</span><span><b>'+(st.avg?st.avg.toFixed(1):'—')+'</b>平均评分</span>':'<span class="rc-none">这个范围里还没有看过的影片</span>')+'</div>'+
     '<button class="primary-button rc-go" data-rc="go" '+(list.length?'':'disabled')+'>生成结算长图</button></div>';}
 function openRecap(){if(!watchEntries().length){toast('先在影片页点「看过」，盖下第一枚印章');return;}
-  let el=document.getElementById('recap-sheet');if(el)el.remove();el=document.createElement('div');el.id='recap-sheet';el.className='img-sheet rc-sheet';el.setAttribute('role','dialog');el.setAttribute('aria-modal','true');el.setAttribute('aria-label','线下观影结算');
-  el.innerHTML='<div class="is-panel rc-panel"><div class="is-head"><b>我的线下观影结算</b><button class="is-close" aria-label="关闭"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 6l12 12M18 6 6 18"/></svg><span>关闭</span></button></div><div class="rc-wrap">'+recapPanelHTML()+'</div></div>';
+  let el=document.getElementById('recap-sheet');if(el)el.remove();el=document.createElement('div');el.id='recap-sheet';el.className='img-sheet rc-sheet';el.setAttribute('role','dialog');el.setAttribute('aria-modal','true');el.setAttribute('aria-label','影院观影结算');
+  el.innerHTML='<div class="is-panel rc-panel"><div class="is-head"><b>我的影院观影结算</b><button class="is-close" aria-label="关闭"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 6l12 12M18 6 6 18"/></svg><span>关闭</span></button></div><div class="rc-wrap">'+recapPanelHTML()+'</div></div>';
   document.body.appendChild(el);document.documentElement.classList.add('sheet-open');
   const close=()=>{document.documentElement.classList.remove('sheet-open');el.remove();};
   el.addEventListener('click',async e=>{if(e.target===el||e.target.closest('.is-close'))return close();const b=e.target.closest('[data-rc]');if(!b)return;
@@ -1679,12 +1696,12 @@ async function makeRecap(){const list=recapScope();if(!list.length||recapBusy)re
     const byP=new Map();list.forEach(e=>{const p=progOf(e.f);if(!byP.has(p.id))byP.set(p.id,{name:p.name,n:0,sum:0,k:0});const g=byP.get(p.id);g.n++;if(e.rec.r){g.sum+=e.rec.r;g.k++;}});
     const progs=[...byP.values()].map(g=>({name:g.name,n:g.n,avg:g.k?g.sum/g.k:0})).sort((a,b)=>b.n-a.n);
     const years=[...new Set(list.map(e=>e.rec.d.slice(0,4)))].sort();
-    const o={title:tr('我的线下观影结算'),sub:(recapYear==='all'?(years.length>1?years[0]+'–'+years[years.length-1]:years[0]):recapYear)+' · '+(recapProg==='all'?tr('全部专题'):PG[recapProg].name),kicker:'SPARROW FILM PASSPORT · MY CINEMA RECAP',yearTag:recapYear==='all'?years[years.length-1]:recapYear,
+    const o={title:tr('我的影院观影结算'),sub:(recapYear==='all'?(years.length>1?years[0]+'–'+years[years.length-1]:years[0]):recapYear)+' · '+(recapProg==='all'?tr('全部专题'):PG[recapProg].name),kicker:'SPARROW FILM PASSPORT · MY CINEMA RECAP',yearTag:recapYear==='all'?years[years.length-1]:recapYear,
       stats:[[st.n,tr('部影片')],[st.hm,tr('银幕时长')],[st.avg?st.avg.toFixed(1):'—',tr('平均评分')],[st.venues,tr('家影院')],[st.progs,tr('个专题')],[topM?tr(topM+'月'):'—',tr('看得最多的月份')]],
       fav,progs,items,qr:qrMatrix(homeURL()),url:location.host+location.pathname,marks,T:tr,en:LANG==='en'};
     const cv=document.createElement('canvas');cv.width=R.W;cv.height=R.heightOf(o);R.draw(cv.getContext('2d'),o);
     const blob=await new Promise(r=>cv.toBlob(r,'image/png'));if(!blob){toast('图片生成失败，请稍后再试');return false;}
-    showImageSheet(blob,{file:'麻雀观影护照_线下观影结算.png',head:'观影结算已生成',alt:'线下观影结算长图'});return true;}
+    showImageSheet(blob,{file:'麻雀观影护照_影院观影结算.png',head:'观影结算已生成',alt:'影院观影结算长图'});return true;}
   catch(err){toast('图片生成失败，请稍后再试');return false;}finally{recapBusy=false;}}
 
 function myPage(){const list=selectedRows(),st=planStats(list),next=list.find(s=>!isPast(s));
