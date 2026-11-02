@@ -48,7 +48,7 @@
    "r": [
     null,
     null,
-    null,
+    98,
     null,
     null
    ]
@@ -98,9 +98,9 @@
    "r": [
     null,
     null,
+    82,
     null,
-    null,
-    null
+    3.8
    ]
   },
   {
@@ -231,9 +231,9 @@
    "r": [
     null,
     null,
-    null,
-    null,
-    null
+    95,
+    78,
+    3.5
    ]
   },
   {
@@ -454,7 +454,7 @@
    "r": [
     null,
     null,
-    null,
+    100,
     null,
     null
    ]

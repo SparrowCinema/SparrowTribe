@@ -5996,7 +5996,7 @@ module.exports = {
    "r": [
     null,
     null,
-    null,
+    98,
     null,
     null
    ],
@@ -6048,9 +6048,9 @@ module.exports = {
    "r": [
     null,
     null,
+    82,
     null,
-    null,
-    null
+    3.8
    ],
    "prog": "german-film-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/dry-leaf.jpg"
@@ -6187,9 +6187,9 @@ module.exports = {
    "r": [
     null,
     null,
-    null,
-    null,
-    null
+    95,
+    78,
+    3.5
    ],
    "prog": "german-film-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/miroirs-no-3.jpg"
@@ -6420,7 +6420,7 @@ module.exports = {
    "r": [
     null,
     null,
-    null,
+    100,
     null,
     null
    ],
