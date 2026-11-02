@@ -37,6 +37,7 @@ progs.forEach(p => {
 const programmes = progs.map(p => {
   const o = Object.assign({}, p); delete o.file;
   o.cover = has('brand', 'prog-' + p.id + '.jpg') ? '/images/brand/prog-' + p.id + '.jpg' : (p.cover ? SITE + p.cover : '');
+  o.cardCover = p.cardCover ? SITE + p.cardCover : '';
   return o;
 });
 if (!films.length || !shows.length) throw new Error('网站数据为空，未生成');
