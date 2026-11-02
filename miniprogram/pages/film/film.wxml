@@ -6,7 +6,7 @@
     <view class="hin">
       <image wx:if="{{f.poster}}" class="pst" src="{{f.poster}}" mode="aspectFill" />
       <view class="tt">
-        <view class="prog" bindtap="openProg">{{f.prog.kind}} · {{f.prog.name}} ›</view>
+        <view class="progrow"><view class="prog" bindtap="openProg">{{f.prog.kind}} · {{f.prog.name}} ›</view><view wx:if="{{f.section}}" class="unit"><text class="ud">◆</text>{{f.section}}</view></view>
         <view class="eyebrow mono"><text class="reg">{{f.reg}}</text>{{f.y}} · {{f.c}}</view>
         <view class="h1">{{f.cn}}</view>
         <view class="en">{{f.en}}</view>
