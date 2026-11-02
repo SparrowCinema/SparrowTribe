@@ -61,3 +61,6 @@ const head = '/* 由 tools/build-fallback.js 从 shared/psync.js 复制，请改
 fs.writeFileSync(path.join(root, 'miniprogram/utils/psync.js'), head + psync);
 fs.writeFileSync(path.join(root, 'cloudfunctions/psync/psync.js'), head + psync);
 console.log('psync.js copied');
+
+// Film-library membership and search rules shared with the website.
+fs.writeFileSync(path.join(root, 'miniprogram/utils/library.js'), fs.readFileSync(path.join(root, 'shared/library.js'), 'utf8'));

@@ -1,0 +1,15 @@
+# Film library and personal film archive
+
+The library uses the same bounded search selector as the schedule, with two fixed controls: programme and My films. Region chips are removed. My films offers All films, In my plan, Seen, Not seen yet, and Filmmaker Q&A, each with a film count. Programme, category and title/director/cast search combine. Programme selection includes ended programmes so saved and watched films remain discoverable; past groups open automatically when a personal category is selected.
+
+Plan membership uses saved screening keys within the selected programme. Seen membership requires a dated, non-deleted watched record; cloud deletion tombstones are excluded. Q&A membership uses explicit screening-event notes or the existing timed guest Q&A fields. Shared classification/search rules live in `shared/library.js` and are copied into the mini-program by `tools/build-fallback.js`. No film metadata or personal storage contracts change.
+
+The personal home has an ink-green cloth cover, warm gold typography, and an original vector film-gate/aperture illustration. The website uses the SVG; the mini-program uses a raster rendering of the same original geometry. The desktop home pairs the cover with an editorial introduction and viewing totals; mobile keeps the cover, totals and watched-library shortcut compact. Existing photo, stamp, rating, flip, recap, sync, itinerary and sharing actions remain available. Sync is placed in an expandable section, after the primary personal tools on the website.
+
+Validation: JavaScript syntax, WXML tag structure, `tools/check-library.js` (personal categories, tombstones, programme scope, compound search, real mini-program integration, and 20-programme search), and the existing Golden Rooster checks. Browser checks covered Chinese/English, 320/390px mobile and 1280px desktop, selector search, personal counts and programme combinations, cover overflow, passport photo/stamp pages, schedule selector, film details, and personal itinerary/export routes. Browser validation used local preview; publication is verified separately by the Pages workflow and matching online assets.
+
+Mini-program source, offline English dictionary, and bundled image inventory are synchronized. Native mini-program layout/release still needs WeChat Developer Tools upload and review; GitHub Pages publication does not publish the mini-program client.
+
+The latest input-focus viewport guard and Gantt anchoring/post-screening fixes from main are preserved. `tools/check-input-zoom.js` could not start because Playwright is not installed in this workspace; equivalent browser checks used the connected preview browser and confirmed 16px inputs and the focus viewport lock on the library and schedule selectors.
+
+Latest main through #108 is integrated, including the German film programme, programme fold preferences, per-programme past-film groups, month-based recaps, usage/feedback panels, modal scroll locking, updated screening notes and cinema names. Personal categories and searches auto-expand matching groups without deleting saved fold preferences.

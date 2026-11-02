@@ -56,6 +56,8 @@ Page({
   syReveal() { this._syShow = !this._syShow; this.buildSync(); },
   syCopy() { const st = SY.state(); if (st && st.code) wx.setClipboardData({ data: st.code, success: () => wx.showToast({ title: t('同步码已复制'), icon: 'none' }) }); },
   syStop() { wx.showModal({ title: t('停止同步'), content: t('在这台设备停止同步？本机记录会保留，云端的记录也不会删除；以后输入同步码可以重新连接。'), success: r => { if (r.confirm) { SY.stop(); this._syShow = false; this.buildSync(); } } }); },
+  openLibrary(e) {app.globalData.jumpLibraryMine=e.currentTarget.dataset.mode;wx.switchTab({url:'/pages/films/films'});},
+  toggleSync() {this.setData({syncExpanded:!this.data.syncExpanded});},
   ppOpen() { this.setData({ ppOpen: true, ppPage: 0 }); },
   ppClose() { this.setData({ ppOpen: false }); },
   ppChange(e) { this.setData({ ppPage: e.detail.current }); },

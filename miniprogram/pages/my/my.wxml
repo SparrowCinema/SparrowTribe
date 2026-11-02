@@ -1,21 +1,23 @@
 <wxs src="../../utils/l.wxs" module="L" />
 <view class="wrap">
   <view class="fp">
-    <view class="k mono">MY FILM PASSPORT</view>
+    <view class="k mono">YOUR LIFE IN CINEMA</view>
     <view class="h1 fp-h1">{{L.t(i,'我的观影护照')}}</view>
-    <view class="sub">{{L.t(i,'看过一部电影，盖一枚印章；打分、日期都印在章上。')}}</view>
+    <view class="sub">{{L.t(i,'把每一次银幕相遇，收进自己的电影档案。')}}</view>
     <view wx:if="{{!ppOpen}}" class="fp-stage">
       <view class="fp-cover {{i.__en?'en':''}}" hover-class="fp-press" bindtap="ppOpen">
         <view class="fp-cb" />
-        <text class="fp-pub">{{L.t(i,'麻雀观影护照')}}</text>
-        <text class="fp-pub2 mono">SPARROW FILM PASSPORT</text>
-        <view class="fp-emb"><view class="reel"><view wx:for="{{[0,1,2,3,4,5]}}" wx:key="*this" class="hole h{{item}}" /><view class="hub" /></view></view>
-        <text class="fp-name">{{L.t(i,'观影护照')}}</text>
-        <text class="fp-nen mono">FILM PASSPORT</text>
-        <text class="fp-motto mono">ONE FILM · ONE STAMP</text>
-        <text class="fp-chip">{{L.t(i,'麻雀映画 × 麻雀部落')}}</text>
+        <view class="fp-edition mono"><text>SPARROW CINEMA</text><text>VOL. 01</text></view>
+        <text class="fp-name">{{i.__en?'PERSONAL EDITION':'观影护照'}}</text>
+        <text class="fp-title-en">FILM
+PASSPORT</text>
+        <image class="fp-cover-art" src="/images/brand/passport-aperture.png" mode="aspectFit" />
+        <view class="fp-cover-rule" />
+        <view class="fp-cover-bottom mono"><text>ONE FILM
+ONE STAMP</text><text class="fp-open-icon">↗</text></view>
+        <text class="fp-publishers">{{L.t(i,'麻雀映画 × 麻雀部落')}}</text>
       </view>
-      <text class="fp-cap">{{L.t(i,'轻触封面，翻开护照 →')}}</text>
+      <text class="fp-cap">{{L.t(i,'轻触封面，翻开你的银幕旅程 ↗')}}</text>
       <view class="fp-tallies card">
         <view><text class="n mono">{{pp.st.n}}</text><text class="l">{{L.t(i,'看过影片')}}</text></view>
         <view><text class="n mono">{{pp.st.progs}}</text><text class="l">{{L.t(i,'专题')}}</text></view>
@@ -90,8 +92,11 @@
     </view>
   </view>
 
+  <view class="my-library-links"><view data-mode="planned" bindtap="openLibrary">{{L.t(i,'已加入排片')}} ↗</view><view data-mode="watched" bindtap="openLibrary">{{L.t(i,'已看过')}} ↗</view><view data-mode="qa" bindtap="openLibrary">{{L.t(i,'主创映后场')}} ↗</view></view>
+
   <view class="sy card" wx:if="{{sy}}">
-    <view class="sy-h">{{L.t(i,'个人档案云端同步')}}</view>
+    <view class="sy-h" bindtap="toggleSync"><text>{{L.t(i,'个人档案云端同步')}}</text><text>{{syncExpanded||sy.on?'−':'＋'}}</text></view>
+    <block wx:if="{{syncExpanded||sy.on}}">
     <block wx:if="{{!sy.on}}">
       <view class="sy-lead">{{L.t(i,'用一串同步码，在手机、电脑和小程序之间同步看过记录、评分、护照照片和个人排片。不用注册账号。')}}</view>
       <view class="sy-row"><view class="btn" hover-class="hv" bindtap="syStart">{{L.t(i,'开启同步')}}</view><view class="btn ghost" hover-class="hv" bindtap="syJoin">{{L.t(i,'我已有同步码')}}</view></view>
@@ -102,6 +107,7 @@
         <view class="sy-ops"><text bindtap="syReveal">{{sy.rev ? L.t(i,'隐藏') : L.t(i,'显示')}}</text><text bindtap="syCopy">{{L.t(i,'复制')}}</text></view></view>
       <view class="sy-row"><view class="btn" hover-class="hv" bindtap="syNow">{{L.t(i,'立即同步')}}</view><text class="sy-stop" bindtap="syStop">{{L.t(i,'停止同步')}}</text></view>
       <view class="sy-note">{{L.t(i,'在另一台设备（网站或小程序）的「我的」页选「我已有同步码」，输入这串码即可。同步码就是钥匙，请自己保存好；知道它的人都能读写这份档案。')}}</view>
+    </block>
     </block>
   </view>
 
