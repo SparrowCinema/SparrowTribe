@@ -5,11 +5,11 @@ const t = I.tr;
 const app = getApp();
 const K = 2.4; // 每分钟 2.4rpx
 
-const vShort = v => v.short || (v.brand || v.name).replace(/^杭州/, '');
+const vShort = v => (v.city ? t(v.city) + ' · ' : '') + (v.short || v.brand || v.name).replace(new RegExp('^(' + [v.city,t(v.city||'')].filter(Boolean).join('|') + ')\\s*[·・]?\\s*'), '');
 const hShort = h => h.short || h.name;
 
 Page({
-  data: { pf: 'all', vf: 'all', day: '', days: [], nowLine: null, todayOpen: false, myToday: [], myTodayTitle: '', progs: [], vchips: [], venues: [], vOpen: false, cols: [], ticks: [], H: 0, dayList: [], legend: [], span: '', count: 0, dayTitle: '', empty: '', scrollInto: '' },
+  data: { city: 'all', cityIndex: 0, cities: [], venueQuery: '', venueName: '', pf: 'all', vf: 'all', day: '', days: [], nowLine: null, todayOpen: false, myToday: [], myTodayTitle: '', progs: [], vchips: [], venues: [], vOpen: false, cols: [], ticks: [], H: 0, dayList: [], legend: [], span: '', count: 0, dayTitle: '', empty: '', scrollInto: '' },
 
   onLoad(q) {
     this.setData({ i: I.dict(), en: I.isEn() });
@@ -34,13 +34,13 @@ Page({
     const t = new Date(), m = t.getHours() * 60 + t.getMinutes();
     return m >= c.S && m <= c.E ? { top: Math.round((m - c.S) * K), label: U.fmt(m) } : null;
   },
-  onShow() { wx.setNavigationBarTitle({ title: t('麻雀观影护照') }); app.chrome(); this.startTick(); const j = app.globalData.jumpDay, jp = app.globalData.jumpProg; if (j) { app.globalData.jumpDay = ''; this.setData({ pf: 'all', vf: 'all', day: j }); } if (jp) { app.globalData.jumpProg = ''; this.setData({ pf: jp, vf: 'all', day: '' }); } this.build(); },
+  onShow() { wx.setNavigationBarTitle({ title: t('麻雀观影护照') }); app.chrome(); this.startTick(); const j = app.globalData.jumpDay, jp = app.globalData.jumpProg; if (j) { app.globalData.jumpDay = ''; this.setData({ pf: 'all', vf: 'all', city: 'all', venueQuery: '', day: j }); } if (jp) { app.globalData.jumpProg = ''; this.setData({ pf: jp, vf: 'all', city: 'all', venueQuery: '', day: '' }); } this.build(); },
   onPullDownRefresh() { app.loadRemote(); setTimeout(() => { this.build(); wx.stopPullDownRefresh(); }, 600); },
 
   build() {
     const data = app.globalData.data, idx = U.index(data), picked = plan.get();
-    const { pf, vf } = this.data;
-    const list = data.shows.filter(s => idx.F[s.id] && !U.ended(s, idx) && (pf === 'all' || U.progForShow(s, idx).id === pf) && (vf === 'all' || s.v === vf));
+    const { pf, vf, city, venueQuery } = this.data;
+    const list = data.shows.filter(s => idx.F[s.id] && !U.ended(s, idx) && (pf === 'all' || U.progForShow(s, idx).id === pf) && (vf === 'all' || s.v === vf) && (city === 'all' || idx.VN[s.v].city === city));
     // 首页顶部：今天我的排片中尚未散场的场次，按时间线排列
     const tk = new Date(), tkey = (tk.getMonth() + 1) + '/' + tk.getDate();
     // 今天还有没散场的就显示今天；今天都散场后顺延到之后最近一个有排片的日子（到了当天自动变回「今日」）
@@ -69,10 +69,10 @@ Page({
     this.ttCtx = null;
     if (dl.length) {
       let S = Math.min(...dl.map(s => U.toMin(s.t))), E = Math.max(...dl.map(s => Math.max(U.toMin(s.t) + U.durationOf(s, idx), (U.qaOf(idx.F[s.id]) || {}).end || 0)));
-      // 查看今天时，把当前时间所在的小时纳入时间轴，才能画出当前时间线
-      const tn = new Date(), todayKey = (tn.getMonth() + 1) + '/' + tn.getDate(), isToday = todayKey === day, nowM = tn.getHours() * 60 + tn.getMinutes();
-      if (isToday && nowM < S) S = nowM;
-      S = Math.floor(S / 60) * 60; E = Math.ceil(E / 60) * 60; if (E - S < 180) E = S + 180;
+      // Only show the current-time marker inside the screening window.
+      const tn = new Date(), todayKey = (tn.getMonth() + 1) + '/' + tn.getDate(), isToday = todayKey === day;
+      // Anchor to the first screening, even when today begins before it.
+      E = Math.ceil(E / 60) * 60; if (E - S < 180) E = S + 180;
       this.ttCtx = { day, S, E, isToday, today: todayKey };
       nowLine = this.nowLineOf(this.ttCtx);
       H = Math.round((E - S) * K) + 30;
@@ -97,13 +97,14 @@ Page({
     // 影院筛选：只列出当前专题里还有待放映场次的影院；只有一家时不显示
     const upInProg = data.shows.filter(s => idx.F[s.id] && !U.ended(s, idx) && (pf === 'all' || U.progForShow(s, idx).id === pf));
     const vlist = data.venues.filter(v => upInProg.some(s => s.v === v.id) || v.id === vf);
-    const venues = data.venues.map(v => {
-      const n = data.shows.filter(s => s.v === v.id).length;
-      return { id: v.id, short: vShort(v), name: v.name, fmt: t((v.fmt || []).join(' · ')), n, halls: v.halls.length ? v.halls.map(h => h.name).join(' · ') : t('影厅待补充') };
+    const cities = [{id:'all', name:t('全部城市')}].concat([...new Set(data.venues.map(v => v.city).filter(Boolean))].map(id=>({id,name:t(id)})));
+    const venues = data.venues.filter(v => (city==='all'||v.city===city) && (!venueQuery || [v.city,v.name,v.short,...v.halls.map(h=>h.name)].join(' ').toLowerCase().includes(venueQuery.toLowerCase()))).map(v => {
+      const n = upInProg.filter(s => s.v === v.id).length;
+      return { id: v.id, short: vShort(v), name: v.name, city: t(v.city||''), label: v.name.replace(new RegExp('^'+(v.city||'$^')),''), fmt: t((v.fmt || []).join(' · ')), n, halls: v.halls.length ? v.halls.map(h => h.name).join(' · ') : t('影厅待补充') };
     });
     const vname = vf !== 'all' && idx.VN[vf] ? idx.VN[vf].name : t('当前筛选');
     this.setData({
-      day, days, cols, ticks, H, nowLine, progs, venues, myToday,
+      day, days, cols, ticks, H, nowLine, progs, venues, myToday, cities, cityIndex: Math.max(0,cities.findIndex(c=>c.id===city)), venueName: vf==='all'?t('全部影院'):vShort(idx.VN[vf]),
       todayHead: t(off <= 0 ? '今日我的排片' : off === 1 ? '明日我的排片' : '近期我的排片'),
       myTodayTitle: t(nkey.replace('/', '月') + '日') + ' ' + U.wk(nkey) + ' · ' + t(off <= 0 ? '接下来 ' + myToday.length + ' 场' : off === 1 ? myToday.length + ' 场' : off + ' 天后 · ' + myToday.length + ' 场'),
       todayToggle: t(this.data.todayOpen ? '收起' : '还有 ' + Math.max(0, myToday.length - 1) + ' 场 · 展开全部'),
@@ -118,8 +119,10 @@ Page({
     });
   },
 
-  setProg(e) { this.setData({ pf: e.currentTarget.dataset.id, vf: 'all', day: '' }); this.build(); },
-  setVenue(e) { this.setData({ vf: e.currentTarget.dataset.id }); this.build(); },
+  setProg(e) { this.setData({ pf: e.currentTarget.dataset.id, vf: 'all', city: 'all', venueQuery: '', day: '' }); this.build(); },
+  setVenue(e) { this.setData({ vf: e.currentTarget.dataset.id, vOpen: false }); this.build(); },
+  setCity(e) { this.setData({city:this.data.cities[+e.detail.value].id,vf:'all',venueQuery:'',day:''}); this.build(); },
+  searchVenue(e) { this.setData({venueQuery:e.detail.value}); this.build(); },
   setDay(e) { this.setData({ day: e.currentTarget.dataset.d }); this.build(); },
   toggleToday() { this.setData({ todayOpen: !this.data.todayOpen }); this.build(); },
   switchLang() { app.switchLang(); },

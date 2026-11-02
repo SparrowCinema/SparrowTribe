@@ -34,3 +34,5 @@
 .pst-ended { background: var(--chip); color: var(--muted); }
 
 .jumps{flex-wrap:wrap}
+
+.section-tabs{display:flex;flex-wrap:wrap;gap:12rpx;padding:20rpx;border:1rpx solid var(--line);border-radius:24rpx;margin:30rpx 0}.section-tabs .btn{font-size:22rpx;padding:14rpx 20rpx;line-height:1.4;border-radius:40rpx;margin:0}

@@ -22,7 +22,7 @@ const nextShowOf = (f, shows) => shows.filter(s => s.id === f.id && showDate(s).
 // 片单排序：有待放映场次的在前，按下一场放映时间先后；无场次的按上映日期从新到旧
 const filmOrder = shows => (a, b) => { const na = nextShowOf(a, shows), nb = nextShowOf(b, shows); if (!!na !== !!nb) return na ? -1 : 1; if (na && nb) return showDate(na) - showDate(nb); return relTime(b) - relTime(a); };
 // 专题是否为影展类（影展在前，院线在后）
-const isFest = p => !!p && /影展/.test(p.kind || '');
+const isFest = p => !!p && /影展|festival/i.test(p.kind || '');
 const langSub = f => I.tr([f.language, f.subtitles].filter(Boolean).join(' ｜ '));
 
 function index(data) {
@@ -30,7 +30,7 @@ function index(data) {
   const VN = {}; data.venues.forEach(v => { VN[v.id] = v; });
   const PG = {}; data.programmes.forEach(p => { PG[p.id] = p; });
   const hallName = s => { const v = VN[s.v]; const h = v && v.halls.find(x => x.id === s.h); return h ? h.name : s.h; };
-  const venueName = s => (VN[s.v] ? VN[s.v].name : s.v);
+  const venueName = s => { const v=VN[s.v]; if(!v)return s.v; const c=I.tr(v.city||""),name=v.name.replace(new RegExp("^("+[v.city,c].filter(Boolean).join("|")+")\\s*[·・]?\\s*"),""); return (c?c+" · ":"")+name; };
   const progOf = f => PG[f.prog || 'style-kaleidoscope'] || data.programmes[0];
   return { F, ORD, VN, PG, hallName, venueName, progOf };
 }

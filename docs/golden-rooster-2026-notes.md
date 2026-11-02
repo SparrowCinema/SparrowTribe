@@ -81,3 +81,39 @@
 同 PR 更新专题单元筛选、购票预览、散场时间、共用影片的场次归属、冲突间隔和手机日历；重建离线兜底与英文层。海报、购票码和新专题封面均使用网站地址，不新增安装包图片。
 
 小程序页面代码仍需要在微信开发者工具中上传并提交审核；本次网页发布不等于小程序客户端代码已审核上线。
+
+## 2026-11-03 海报、详情与检索更新
+
+- 按用户指定豆列 https://www.douban.com/doulist/165148655/ 的四页条目匹配：现有片单中82部取得对应海报；豆列另有两部未在现有片单的影片，不擅自新增场次。《一个夜晚与三个夏天》不在该豆列，使用用户提供长图中的正式竖版海报，并同步更新共用院线记录。
+- 全部83部补齐或保留剧情、看点、导演、背景与影展荣誉；无其他已核实奖项者仅列本届展映入选，不能视为获奖。看点是编辑解读，不是主办方或导演原话。未改放映日期、开始/结束时间、影厅、片长和既有演职员。
+- 各平台评分核查记录在 [golden-rooster-2026-research.json](golden-rooster-2026-research.json)。豆瓣来自对应豆列；IMDb使用官方公开每日数据和经过导演核对的影片ID；烂番茄使用专业影评人Tomatometer；MTC使用Metascore；Letterboxd按一位小数展示。空缺为null，前台显示“—”，不以0或同名影片数据替代。这些为本次核查快照，并非实时评分。
+- 所有新详情文字均有英文同步。评分与海报独立于用户提供的展映版本；例如《银翼杀手》的平台评分对应电影通用条目，不代表平台单独评定了本次最终剪辑版。
+- 影院增加独立city字段，不变更venue ID；首页改为可折叠、可按城市和影院/影厅名称搜索的目录。网页和小程序时间轴均锚定所选日期首场，凌晨不再扩大时间范围；红色当前时间线仅在首末场覆盖的时间窗内显示。
+
+新增背景/导演核查入口（其余沿用上表与用户资料）：
+
+| 影片/用途 | 核查入口 |
+| --- | --- |
+| 神之子：首作及创作者 | https://www.festival-cannes.com/en/f/ben-imana/ |
+| 明天，会更好：创作与剧情 | https://laurelfilms.org/film/6a7dc65b1b28d4303b076b61 |
+| 当瓶子转动时：导演履历、创作缘起 | https://www.firstfilm.org.cn/movies/film-library/当瓶子转动时/ |
+| 子：郭共达与城市/记忆主题 | https://grasshopperfilm.com/film/zi/ |
+| 泡泡糖女孩：童年记忆与1994年背景 | https://iffr.com/en/iffr/2026/films/ah-girl |
+| 七分熟：导演教育背景与兼任角色 | https://www.eyecatcherhk.com/zhang-xin/ |
+| 寒夜灯柱：徐澡履历与影视城 | https://aniaff.com/en/program/film/815/ |
+| 寒夜灯柱：导演访谈、形式背景 | https://www.cartoonbrew.com/feature-film/light-pillar-xu-zao-interview-259128.html |
+| 无名女孩：首作、项目发展 | https://inter.pyramidefilms.com/pyramidefilms-international-catalogue/a-girl-unknown.html |
+| 最佳状态、语文的滋味、山中来客：导演经历 | https://www.screendaily.com/features/shanghai-film-festival-2026-lineup-guide-chinese-competition-titles/5217763.article |
+| 黑潮：导演、制作与故乡事件 | https://www.screendaily.com/news/malaysias-abang-adik-team-reunite-for-unconventional-love-story-dead-tide/5214909.article |
+| 无处安放我的双眼：家庭与创作背景 | https://www.filmlinc.org/nyff2026/films/nowhere-to-lay-my-eyes/ |
+| 无处容身：导演课堂缘起 | https://www.europeanfilmawards.eu/efa-movie/you-dont-belong-here/ |
+| 霉变人生：导演与片目 | https://www.cinefest.hu/film/ground-floor/?lang=en |
+| 客乡：文学改编、园丁和房屋 | https://www.viennale.at/en/film/heimsuchung-eine-jahrhundertgeschichte |
+| 浓情卡门：改编与主创 | https://www.quinzaine-cineastes.fr/fr/film/viva-carmen |
+| 刚果男孩：导演经历 | https://medias.unifrance.org/medias/15/202/313871/presse/congo-boy-dossier-de-presse-anglais.pdf |
+| 将军号：历史事件 | https://www.bfi.org.uk/film/136a6211-90d9-5d18-b047-7967deac8bab/the-general |
+| IMDb数据字段与更新说明 | https://data.imdb.com/non-commercial-datasets/ |
+
+补充验证：原始173场逐行对照排片表、83部双语详情和五个平台数据范围、25家影院城市字段、小程序午夜起点及城市/搜索/影院/专题联动、修改后JS语法；另检查网页桌面及390px手机布局、扫码弹窗、影片分组、详情锚点、当前时间线与个人排片交互。
+
+地区标签同时纠正了新导入片目统一落入“欧洲”的情况；保留已有地区代码，亚洲/非洲使用更准确的范围名称，并补充拉美类别，网页和小程序兜底使用一致调色板。

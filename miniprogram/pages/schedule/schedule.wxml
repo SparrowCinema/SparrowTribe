@@ -26,30 +26,23 @@
   <view class="h2">{{L.t(i,'排片表')}}</view>
   <view class="sub">{{span}} · {{L.n(i,count,'sc')}} · {{L.t(i,'按日期查看，点击色块看影片')}}</view>
 
-  <scroll-view scroll-x class="hscroll" enhanced show-scrollbar="{{false}}">
-    <view class="chips">
+  <view class="schedule-filters card">
+    <text class="filter-caption">{{L.t(i,'专题')}}</text>
+    <view class="programme-options">
       <view class="chip {{pf==='all'?'on':''}}" data-id="all" bindtap="setProg">{{L.t(i,'全部专题')}}</view>
       <view wx:for="{{progs}}" wx:key="id" class="chip {{pf===item.id?'on':''}}" data-id="{{item.id}}" bindtap="setProg">{{item.name}}</view>
     </view>
-  </scroll-view>
-  <scroll-view wx:if="{{vchips.length}}" scroll-x class="hscroll" enhanced show-scrollbar="{{false}}">
-    <view class="chips">
-      <view wx:for="{{vchips}}" wx:key="id" class="chip {{vf===item.id?'on':''}}" data-id="{{item.id}}" bindtap="setVenue">{{item.n}}</view>
+    <view class="venue-controls">
+      <picker class="city-control" range="{{cities}}" range-key="name" value="{{cityIndex}}" bindchange="setCity"><text class="filter-caption">{{L.t(i,'城市')}}</text><text>{{cities[cityIndex].name}} ⌄</text></picker>
+      <view class="venue-selected" bindtap="toggleVenues"><text class="filter-caption">{{L.t(i,'影院')}}</text><text>{{venueName}} ⌄</text></view>
     </view>
-  </scroll-view>
-
-  <!-- 影院：折叠小板块 -->
-  <view class="vbox card">
-    <view class="vb-head" bindtap="toggleVenues">
-      <text class="vb-k">{{L.t(i,'影院')}}</text>
-      <text class="vb-s">{{L.n(i,venues.length,'j')}}</text>
-      <text class="vb-go">{{vOpen ? L.t(i,'收起') : L.t(i,'展开')}}</text>
-    </view>
-    <view wx:if="{{vOpen}}" class="vb-list">
-      <view wx:for="{{venues}}" wx:key="id" class="vb-row {{item.n?'':'idle'}}">
-        <view class="vb-n"><text class="b">{{item.short}}</text><text class="s">{{item.name}}</text><text class="s">{{item.halls}}</text></view>
-        <view class="vb-r"><text wx:if="{{item.fmt}}" class="vb-f mono">{{item.fmt}}</text><text class="vb-c mono">{{item.n ? L.n(i,item.n,'sc') : L.t(i,'待排片')}}</text></view>
-      </view>
+    <view wx:if="{{vOpen}}" class="venue-menu">
+      <input type="text" placeholder="{{L.t(i,'搜索影院、城市或影厅')}}" value="{{venueQuery}}" bindinput="searchVenue" />
+      <view class="venue-all" data-id="all" bindtap="setVenue">{{L.t(i,'全部影院')}}</view>
+      <scroll-view scroll-y class="venue-results">
+        <view wx:for="{{venues}}" wx:key="id" class="venue-option" data-id="{{item.id}}" bindtap="setVenue"><text class="venue-city">{{item.city}}</text><view class="venue-info"><text class="b">{{item.label}}</text><text class="muted small">{{item.halls}}</text></view><text class="small muted">{{item.n ? L.n(i,item.n,'sc') : L.t(i,'待排片')}}</text></view>
+        <text wx:if="{{!venues.length}}" class="small muted">{{L.t(i,'没有匹配的影院')}}</text>
+      </scroll-view>
     </view>
   </view>
 

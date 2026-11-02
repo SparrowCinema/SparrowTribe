@@ -43,7 +43,7 @@ Page({
       f: {
         id: f.id, cn: f.cn, en: f.en || f.o, minText: t(f.min ? f.min + ' 分钟' : '片长待定'), release: t(f.release || ''), o: f.o !== f.cn && f.o !== (f.en || f.o) ? f.o : '', y: f.y, c: t(f.c), min: f.min, lang: t(f.language),
         version: t(f.version || ''), genre: (f.genre || []).map(t), dir: f.dir, dirO: f.dirO, dirLife: f.dirLife,
-        color: (data.reg[f.reg] || {}).c, reg: t((data.reg[f.reg] || {}).n || ''), poster: U.poster(f), ticket: U.ticket(f), ticketHint: t(f.ticketHint || ""), section: t(f.section || ""), ticketLabel: t(f.ticketLabel || '购票'),
+        color: (data.reg[f.reg] || {}).c, reg: t((data.reg[f.reg] || {}).n || ''), poster: U.poster(f), ticket: U.ticket(f), ticketHint: t([f.ticketPlatform ? f.ticketPlatform + "扫码" + (f.ticketLabel || "购票") : "", (f.ticketHint || "").replace(/^淘票票扫码购票\s*[·・]?\s*/, "")].filter(Boolean).join(" · ")), section: t(f.section || ""), ticketLabel: t(f.ticketLabel || '购票'),
         prog: { id: p.id, name: p.name, kind: t(p.kind) },
         syn: para(f.syn), bio: para(f.bio), st: para(f.st), long: String(f.syn || '').length > 220,
         ini: (f.dir || '').charAt(0), highlights: (f.highlights || []).map((x, k) => ({ n: String(k + 1).padStart(2, '0'), x })),

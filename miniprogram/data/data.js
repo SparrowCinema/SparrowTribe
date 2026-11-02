@@ -1302,17 +1302,18 @@ module.exports = {
     "入选｜2026 上海国际电影节 · 华语新风单元"
    ],
    "version": "",
-   "poster": "posters/linka-linka.jpg",
+   "poster": "posters/golden-rooster-linka-linka.jpg",
    "screeningEnds": {
     "11/6-19:45-xm-gr26-1-hall-2": "21:25",
     "11/19-20:00-xm-gr26-13-hall-1": "21:40",
     "11/21-20:00-xm-gr26-12-hall-3": "21:40"
    },
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "ticketPlatform": "淘票票",
    "screeningNotes": {
     "11/6-19:45-xm-gr26-1-hall-2": "映后活动 · 导演/编剧：岗珍（以实际到场为准）"
    },
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-linka-linka.jpg?v=37",
    "prog": "cinema-2026",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
   },
@@ -1738,26 +1739,47 @@ module.exports = {
    "y": 2026,
    "c": "卢旺达 / 加拿大 / 法国 / 挪威",
    "min": 101,
-   "reg": "eu",
+   "reg": "me",
    "dir": "玛丽-克莱门汀·杜萨贝詹博",
-   "genre": [],
-   "cast": [],
+   "genre": [
+    "剧情",
+    "历史"
+   ],
+   "cast": [
+    "Clémentine U. Nyirinkindi",
+    "Kesia Kelly Nishimwe",
+    "Arivere Kagoyire",
+    "Isabelle Kabano",
+    "Antoinette Uwamahoro",
+    "Leocadie Uwabeza"
+   ],
    "writers": [],
    "honors": [
     "获奖｜第79届戛纳国际电影节 · 最佳首作"
    ],
-   "highlights": [],
+   "highlights": [
+    "和解并非一句口号：母亲的公共信念，如何承受女儿处境带来的私人考验？",
+    "留意两代女性对创伤的不同回应，以及沉默怎样改变家庭中的权力关系。"
+   ],
    "syn": "卢旺达大屠杀多年后，幸存者维内兰达组织受害者与施害者家属交流，希望推动和解。女儿意外怀孕，却使她重新面对自己的创伤，也考验她对宽恕的信念。",
-   "bio": "",
-   "st": "",
+   "bio": "玛丽-克莱门汀·杜萨贝詹博来自卢旺达，兼任本片导演与编剧。《神之子》是她的首部长片，延续了她对大屠杀记忆、代际关系与共同生活可能性的追问。",
+   "st": "故事设置在卢旺达大屠杀多年之后。影片把幸存者推动的社区和解与母女之间的矛盾并置，讨论记忆、宽恕和遗忘的界线，而不把受害者的经验简化为一个答案。",
    "section": "此刻：国际新片展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "screeningEnds": {
     "11/6-20:00-xm-gr26-1-hall-6": "21:41",
     "11/21-16:15-xm-gr26-1-hall-6": "17:56"
    },
    "poster": "posters/golden-rooster-gr26-001.jpg",
+   "r": [
+    7.7,
+    7.4,
+    null,
+    null,
+    3.8
+   ],
+   "dirO": "Marie-Clémentine Dusabejambo",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-001.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -1772,7 +1794,9 @@ module.exports = {
    "min": 127,
    "reg": "cn",
    "dir": "陈可辛",
-   "genre": [],
+   "genre": [
+    "剧情"
+   ],
    "cast": [
     "周迅",
     "王骁",
@@ -1783,18 +1807,31 @@ module.exports = {
    "writers": [
     "吴慧玲"
    ],
-   "honors": [],
-   "highlights": [],
+   "honors": [
+    "入选｜2026金鸡影展 · 国产新片展映"
+   ],
+   "highlights": [
+    "周迅饰演的主持人同时面对职业身份、母亲身份与疾病，观察角色如何逐渐卸下光鲜的外壳。",
+    "父亲、伴侣和女儿的反应构成不同的镜面，让“被记住”与“被照顾”成为两道不同的问题。"
+   ],
    "syn": "事业光鲜的主持人沈佳同时承受婚姻、育儿和父亲患病的压力。当疾病与遗忘的阴影进入自己的生活，她必须重新理解家人，也在记忆消退前寻找自我的价值。",
-   "bio": "",
-   "st": "",
+   "bio": "陈可辛长期往返于香港与内地创作，作品包括《甜蜜蜜》《如果·爱》《亲爱的》。他擅长从人物关系切入时代变化，本片则将视线收回家庭、照护和个人尊严。",
+   "st": "记忆衰退使日常生活中的小事获得新的重量。影片由陈可辛执导、吴慧玲编剧，从家人的相处展开疾病叙事，也是本届金鸡国产电影展的开幕片。",
    "section": "国产新片展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "poster": "posters/golden-rooster-gr26-002.jpg",
    "screeningEnds": {
     "11/6-14:00-xm-gr26-1-hall-6": "16:07"
    },
+   "r": [
+    null,
+    6.4,
+    null,
+    null,
+    3.6
+   ],
+   "dirO": "Peter Chan Ho-Sun",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-002.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -1809,7 +1846,9 @@ module.exports = {
    "min": 89,
    "reg": "cn",
    "dir": "洛旦",
-   "genre": [],
+   "genre": [
+    "剧情"
+   ],
    "cast": [
     "达巴",
     "卓嘉舞"
@@ -1817,14 +1856,19 @@ module.exports = {
    "writers": [
     "洛旦"
    ],
-   "honors": [],
-   "highlights": [],
+   "honors": [
+    "入选｜2026金鸡影展 · 国产新片展映"
+   ],
+   "highlights": [
+    "老人对转世的执念，与流浪诗人拒绝现代便利的生活方式形成有趣的对照。",
+    "把注意力放在同行中的小动作与闲谈：旅程的意义未必来自抵达目的地。"
+   ],
    "syn": "旦巴老人频频梦见亡妻，决定远赴寺院，向上师询问她的转世。途中，他结识一位拒绝手机与现代交通工具的流浪诗人，两种生活方式在同行中碰撞，孤独也逐渐转化为理解。",
-   "bio": "",
-   "st": "",
+   "bio": "洛旦是成长于青海湖畔牧区的藏族导演、编剧，毕业于北京电影学院，曾拍摄《结》《迷路》等作品。他将对一位故乡老人的记忆，转化为关于孤独、无常、理解与友谊的公路故事。",
+   "st": "导演谈及创作缘起时，回忆了一位自幼关照他的老人及最后一次见面。由此生发的故事把悼念变成一次出行，借陌生人的陪伴回应生命中的失去。",
    "section": "国产新片展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "poster": "posters/golden-rooster-gr26-003.jpg",
    "screeningEnds": {
     "11/6-18:20-xm-gr26-1-hall-4": "19:49",
@@ -1834,6 +1878,14 @@ module.exports = {
    "screeningNotes": {
     "11/6-18:20-xm-gr26-1-hall-4": "映后活动 · 导演/编剧：洛旦（以实际到场为准）"
    },
+   "r": [
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "dirO": "Loden",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-003.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -1846,9 +1898,11 @@ module.exports = {
    "y": 2026,
    "c": "智利 / 法国 / 荷兰 / 乌拉圭 / 德国",
    "min": 91,
-   "reg": "eu",
+   "reg": "la",
    "dir": "克里斯托弗·列昂、乔奎因·科西纳",
-   "genre": [],
+   "genre": [
+    "奇幻"
+   ],
    "cast": [
     "安东尼娅•吉森",
     "安德鲁•巴格斯泰德",
@@ -1858,18 +1912,29 @@ module.exports = {
    "honors": [
     "入围｜第79届洛迦诺国际电影节 · 主竞赛单元"
    ],
-   "highlights": [],
+   "highlights": [
+    "把爱情童话当作一次反抗父权的行动，留意公主穿越不同世界时不断变化的身份。",
+    "手工动画的材质与变形，让宫廷、身体和魔法之间的界限变得不稳定。"
+   ],
    "syn": "国王因丧妻而禁止王国中的爱情，公主戴安娜却爱上了拉洛。恋人遭到放逐后，她借助魔法手镯穿越不同世界，试图找回爱人，也追问自己能否逃离父亲为她安排的命运。",
-   "bio": "",
-   "st": "",
+   "bio": "克里斯托弗·列昂与乔奎因·科西纳是来自智利的动画创作搭档，曾合作《狼屋》。他们将手工制作、空间变形与童话想象结合，常在梦境般的世界里呈现权力与恐惧。",
+   "st": "一个禁止爱情的王国，将私人哀伤扩张为公共禁令。影片沿着公主寻找恋人的旅程，重新审视童话里父亲、国王与女儿的关系。",
    "section": "此刻：国际新片展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "screeningEnds": {
     "11/7-11:00-xm-gr26-1-hall-3": "12:31",
     "11/22-17:20-xm-gr26-1-hall-3": "18:51"
    },
    "poster": "posters/golden-rooster-gr26-005.jpg",
+   "r": [
+    null,
+    6.2,
+    null,
+    null,
+    3.4
+   ],
+   "dirO": "Cristóbal León / Joaquín Cociña",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-005.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -1884,7 +1949,9 @@ module.exports = {
    "min": 90,
    "reg": "eu",
    "dir": "布鲁诺·杜蒙",
-   "genre": [],
+   "genre": [
+    "剧情"
+   ],
    "cast": [
     "凯隆-朗塞尔",
     "凯尔西•韦德耶伊",
@@ -1894,18 +1961,29 @@ module.exports = {
    "honors": [
     "入围｜第79届戛纳国际电影节 · 导演双周单元"
    ],
-   "highlights": [],
+   "highlights": [
+    "孩子间的结盟、敌意与嫉妒，让海边假期成为一个缩小的社会。",
+    "留意红色岩壁与海岸空间，如何把最初的情感经验放大成冒险。"
+   ],
    "syn": "法国蔚蓝海岸的夏天，两群孩子在红色悬崖与海湾间冒险、竞争。年幼的热奥遇见了伊芙，友谊、嫉妒与最初的心动，逐渐改变了这场看似无忧无虑的夏日游戏。",
-   "bio": "",
-   "st": "",
+   "bio": "布鲁诺·杜蒙是法国导演，作品从《人之子》《人性》延伸至《小孩子》《法兰西》。他常将普通人的身体、欲望与精神困境放在醒目的自然环境中，在严肃与荒诞之间改变叙事调性。",
+   "st": "故事发生在法国蔚蓝海岸。影片将儿童的夏日游戏与初次心动并置，进入成人规则尚未完全成形、占有欲却已经出现的年龄。",
    "section": "此刻：国际新片展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "poster": "posters/golden-rooster-gr26-006.jpg",
    "screeningEnds": {
     "11/7-11:10-xm-gr26-1-hall-6": "12:42",
     "11/21-20:00-xm-gr26-1-hall-6": "21:32"
    },
+   "r": [
+    7.8,
+    6.4,
+    null,
+    73,
+    3.4
+   ],
+   "dirO": "Bruno Dumont",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-006.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -1920,7 +1998,10 @@ module.exports = {
    "min": 93,
    "reg": "eu",
    "dir": "拉杜·裘德",
-   "genre": [],
+   "genre": [
+    "剧情",
+    "喜剧"
+   ],
    "cast": [
     "安娜•杜米特拉什库",
     "梅拉妮-蒂埃里",
@@ -1930,18 +2011,29 @@ module.exports = {
    "honors": [
     "入围｜第79届戛纳国际电影节 · 导演双周单元"
    ],
-   "highlights": [],
+   "highlights": [
+    "现实家政劳动与舞台上的“女仆”角色互相映照，观察表演怎样改变主人公看待自己的方式。",
+    "雇主看似善意的语言，也可能暴露阶级距离与移民劳动者的处境。"
+   ],
    "syn": "罗马尼亚女子吉安娜在法国富裕家庭中担任家政工，同时参加一出改编自《女仆日记》的戏剧。她一边面对雇主善意背后的居高临下，一边盼望圣诞节回家，与远在故乡的女儿团聚。",
-   "bio": "",
-   "st": "",
+   "bio": "拉杜·裘德是罗马尼亚导演，代表作有《喝彩！》《倒霉性爱，发狂黄片》《不要太期待世界末日》。他的创作经常把讽刺、影像实验与对劳动和权力的观察结合。",
+   "st": "影片让一位在法国家庭工作的罗马尼亚女性参加《女仆日记》的舞台演出。文学文本、工作现场和返乡愿望交织，将经典里的阶级问题带入当代欧洲。",
    "section": "此刻：国际新片展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "poster": "posters/golden-rooster-gr26-007.jpg",
    "screeningEnds": {
     "11/7-13:10-xm-gr26-1-hall-6": "14:43",
     "11/15-16:15-xm-gr26-1-hall-3": "17:48"
    },
+   "r": [
+    7.3,
+    7,
+    null,
+    83,
+    3.7
+   ],
+   "dirO": "Radu Jude",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-007.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -1956,7 +2048,9 @@ module.exports = {
    "min": 100,
    "reg": "cn",
    "dir": "郭共达",
-   "genre": [],
+   "genre": [
+    "剧情"
+   ],
    "cast": [
     "毛俊懿",
     "海莉•卢.理查森",
@@ -1967,18 +2061,29 @@ module.exports = {
     "入围｜第42届圣丹斯电影节 · “未来创新奖”单元",
     "入围｜第31届釜山国际电影节 · “作者荟萃”单元"
    ],
-   "highlights": [],
+   "highlights": [
+    "街头漫步不是过场：观察城市的声音、光线和偶遇，怎样与主人公的记忆共同流动。",
+    "未来自我的影像打断线性时间，使相识、认出与失去同时成为悬念。"
+   ],
    "syn": "香港的年轻小提琴手子被未来自己的影像困扰，现实与记忆逐渐交叠。她与陌生女子艾尔相遇，在城市里漫步，随后又遇见神经学研究者敏，一夜之间重新感受时间与人与人的联结。",
-   "bio": "",
-   "st": "",
+   "bio": "郭共达以影像论文和长片创作为人熟知，曾执导《哥伦布》《杨之后》。他关注建筑、记忆与人与人相处的节奏，本片把这种兴趣带入香港街头与时间交叠的经验。",
+   "st": "发行方将本片介绍为一部关于记忆、时间与联结的电影。小提琴手、陌生女子与神经学研究者在一日一夜中相遇，香港也成为感受流逝的时间的空间。",
    "section": "拾光：华语新片展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "poster": "posters/golden-rooster-gr26-008.jpg",
    "screeningEnds": {
     "11/7-13:15-xm-gr26-1-hall-3": "14:53",
     "11/26-20:00-xm-gr26-9-hall-2": "21:38"
    },
+   "r": [
+    null,
+    5.8,
+    63,
+    67,
+    3
+   ],
+   "dirO": "Kogonada",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-008.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -2006,19 +2111,30 @@ module.exports = {
     "获奖｜第79届戛纳国际电影节 · 一种关注单元评审团特别奖",
     "获奖｜第50届安纳西国际动画电影节 · 长篇动画单元观众票选奖"
    ],
-   "highlights": [],
+   "highlights": [
+    "沉重的矫形支架与管风琴形成两种身体经验：一个限制行动，一个打开新的表达。",
+    "父亲的农场、少年的友情与初恋，共同组成“有用”之外的人生尺度。"
+   ],
    "syn": "法国乡村的男孩克里斯托夫渴望帮父亲守住农场，却因平衡障碍不断跌倒，被迫穿上沉重的金属矫形支架。离开熟悉的劳作后，他在管风琴、友情与最初的心动中寻找新的生活重心。",
-   "bio": "",
-   "st": "",
+   "bio": "路易斯·克里希是法国动画导演，曾参与高卢英雄系列动画长片的导演工作。《钢铁男孩》把重心转向乡村成长、身体限制与音乐带来的可能。",
+   "st": "这是一部将残障经验放入乡村日常的动画长片。故事没有停留在克服障碍的单一目标，而是让主人公学习重新理解劳动、家庭与自己的价值。",
    "section": "流光：动画展映单元",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "poster": "posters/golden-rooster-gr26-009.jpg",
    "screeningEnds": {
     "11/7-15:20-xm-gr26-1-hall-3": "16:50",
     "11/16-20:00-xm-gr26-1-hall-6": "21:30",
     "11/20-19:30-xm-gr26-1-hall-6": "21:00"
    },
+   "r": [
+    7.9,
+    8,
+    100,
+    84,
+    4.2
+   ],
+   "dirO": "Louis Clichy",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-009.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -2033,7 +2149,10 @@ module.exports = {
    "min": 104,
    "reg": "cn",
    "dir": "杨国瑞",
-   "genre": [],
+   "genre": [
+    "科幻",
+    "奇幻"
+   ],
    "cast": [
     "林诗安",
     "黄冠智",
@@ -2043,18 +2162,29 @@ module.exports = {
    "honors": [
     "入围｜第79届洛迦诺电影节 · “国际竞赛单元”入围"
    ],
-   "highlights": [],
+   "highlights": [
+    "熟悉的神话角色进入陌生的月球旅程，观察爱情故事如何被重新安排。",
+    "寻找失踪爱人与争夺长生药两条线，让“永恒”成为既浪漫又危险的愿望。"
+   ],
    "syn": "后羿在拯救垂死太阳的任务中失踪，嫦娥为寻找爱人踏上前往月球暗面的旅程。来自地球的同行者加入寻人之路，而觊觎长生药的人，也将这场神话与科幻交织的冒险引向险境。",
-   "bio": "",
-   "st": "",
+   "bio": "杨国瑞是新加坡导演，曾执导《好梦一日游》。他的电影在现实经验与梦境、想象之间游移，本片进一步把华人熟悉的嫦娥后羿传说放入科幻与冒险的框架。",
+   "st": "影片以嫦娥寻找后羿为核心，将神话、科幻与寻人故事交织。它提供的不是一次传统传说复述，而是从离散、陪伴和欲望重新进入神话的路径。",
    "section": "拾光：华语新片展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "poster": "posters/golden-rooster-gr26-010.jpg",
    "screeningEnds": {
     "11/7-16:30-xm-gr26-1-hall-4": "18:14",
     "11/21-20:00-xm-gr26-16-hall-6": "21:44"
    },
+   "r": [
+    null,
+    5.2,
+    null,
+    null,
+    3
+   ],
+   "dirO": "Nelson Yeo",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-010.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -2069,7 +2199,9 @@ module.exports = {
    "min": 99,
    "reg": "cn",
    "dir": "洪玉桔",
-   "genre": [],
+   "genre": [
+    "剧情"
+   ],
    "cast": [
     "王宣静",
     "王雪萁",
@@ -2079,17 +2211,28 @@ module.exports = {
    "honors": [
     "获奖｜第55届鹿特丹国际电影节 · 青年评审团奖"
    ],
-   "highlights": [],
+   "highlights": [
+    "女孩在学校经营泡泡糖小生意的机灵，与她无法决定家庭安排的无力感形成反差。",
+    "关注姐妹之间的照应，以及孩子如何用幽默、想象与小小反抗抵抗大人的混乱。"
+   ],
    "syn": "1990年代的新加坡，七岁女孩在父母分居后往返于不同的家庭空间。大人的矛盾令她被迫早熟，她却仍用自己的想象与小小反抗，努力守护属于童年的世界。",
-   "bio": "",
-   "st": "",
+   "bio": "洪玉桔是新加坡导演、编剧，《泡泡糖女孩》是她的长片首作。她以自己的童年记忆为起点，把家庭分裂的经验交还给孩子的视角，而非由成年人替孩子解释一切。",
+   "st": "故事设置于1994年的新加坡。导演从个人成长经验出发，描写父母分居后孩子在不同住处之间往返的生活，让离婚叙事显现出儿童自己的时间与感受。",
    "section": "拾光：华语新片展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "poster": "posters/golden-rooster-gr26-011.jpg",
    "screeningEnds": {
     "11/7-17:45-xm-gr26-1-hall-6": "19:24"
    },
+   "r": [
+    8.5,
+    7.5,
+    100,
+    null,
+    3.8
+   ],
+   "dirO": "Ang Geck Geck",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-011.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -2104,26 +2247,42 @@ module.exports = {
    "min": 110,
    "reg": "cn",
    "dir": "谢庭菡",
-   "genre": [],
+   "genre": [
+    "剧情",
+    "惊悚"
+   ],
    "cast": [
     "陈冲",
     "喜翔",
     "阳靓"
    ],
    "writers": [],
-   "honors": [],
-   "highlights": [],
+   "honors": [
+    "入选｜2026金鸡影展 · 拾光：华语新片展映"
+   ],
+   "highlights": [
+    "陈冲饰演的过气天后，必须同时面对眼前的求生困局与抛下女儿的过去。",
+    "疗养院的照护表象和致命游戏形成反差，留意谁掌握规则、谁被迫下注。"
+   ],
    "syn": "昔日秀场天后金凤娜因赌债抛下女儿，多年后在一间诡异疗养院中醒来。她逐渐察觉这里隐藏着以病人性命为赌注的游戏，试图逃离，并寻找失散的女儿。",
-   "bio": "",
-   "st": "",
+   "bio": "谢庭菡是台湾导演，曾执导《尸忆》。她把惊悚类型中的封闭空间、身体威胁与人物内心相连，本片则将一位昔日秀场女星的母女旧事带入诡异疗养院。",
+   "st": "赌博与照护在故事中发生危险的叠合：一个曾因赌债离家的女人，成了另一场游戏中的筹码。类型悬念之外，母女关系构成主人公逃离的动力。",
    "section": "拾光：华语新片展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "poster": "posters/golden-rooster-gr26-012.jpg",
    "screeningEnds": {
     "11/7-19:30-xm-gr26-1-hall-4": "21:15",
     "11/21-20:00-xm-gr26-13-hall-1": "21:45"
    },
+   "r": [
+    null,
+    6.3,
+    null,
+    null,
+    null
+   ],
+   "dirO": "Lingo Hsieh",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-012.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -2138,7 +2297,9 @@ module.exports = {
    "min": 117,
    "reg": "cn",
    "dir": "董劼",
-   "genre": [],
+   "genre": [
+    "剧情"
+   ],
    "cast": [
     "孙阳",
     "赵天爱"
@@ -2146,14 +2307,19 @@ module.exports = {
    "writers": [
     "董劼"
    ],
-   "honors": [],
-   "highlights": [],
+   "honors": [
+    "入选｜2026金鸡影展 · 国产新片展映"
+   ],
+   "highlights": [
+    "搜索留下的数字线索，也是在重建一个无法直接相见的人。",
+    "留意游戏世界与现实城市之间的转换，哪些信息让人更接近彼此，哪些反而制造距离。"
+   ],
    "syn": "年轻游戏设计师石子安追寻失联室友留下的数字痕迹，意外结识与对方有关的女子YY。两人穿行城市与虚拟游戏空间，在寻找真相的过程中，重新理解记忆、人际关系与现实的边界。",
-   "bio": "",
-   "st": "",
+   "bio": "董劼兼任本片导演与编剧。《发现之旅》围绕游戏设计师展开，将人物对失联朋友的追寻，与数字痕迹、虚拟空间和城市生活的交错组织在一起。",
+   "st": "影片从失联室友的线索出发，把寻找他人的过程变成认识自己的过程。游戏不仅是主人公的职业，也是进入记忆、关系和现实边界的一条叙事通道。",
    "section": "国产新片展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "poster": "posters/golden-rooster-gr26-013.jpg",
    "screeningEnds": {
     "11/7-13:00-xm-gr26-1-hall-2": "14:57",
@@ -2162,6 +2328,14 @@ module.exports = {
    "screeningNotes": {
     "11/7-13:00-xm-gr26-1-hall-2": "映后活动 · 导演/编剧：董劼（以实际到场为准）"
    },
+   "r": [
+    null,
+    null,
+    null,
+    null,
+    3.2
+   ],
+   "dirO": "Dong Jie",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-013.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -2176,7 +2350,9 @@ module.exports = {
    "min": 90,
    "reg": "cn",
    "dir": "侯爵",
-   "genre": [],
+   "genre": [
+    "剧情"
+   ],
    "cast": [
     "刘迅",
     "蒋梦婕",
@@ -2187,14 +2363,19 @@ module.exports = {
     "樊荟",
     "侯爵"
    ],
-   "honors": [],
-   "highlights": [],
+   "honors": [
+    "入选｜2026金鸡影展 · 国产新片展映"
+   ],
+   "highlights": [
+    "被掩埋的汽车框架如何成为一群孩子共同的计划，是理解故事的重要线索。",
+    "儿童的执拗、合作与想象力，与山区出行的现实困难彼此碰撞。"
+   ],
    "syn": "小庆想去莲花镇寻找母亲，却苦于山区交通不便。他发现被泥沙掩埋的汽车框架，决定与各有心愿的小伙伴一起修车；支教老师也加入队伍，陪孩子们踏上一场特别的追梦旅程。",
-   "bio": "",
-   "st": "",
+   "bio": "侯爵是本片导演，并与北一、樊荟共同编剧。他以孩子们共同修复汽车的行动组织故事，让各不相同的愿望在一次看似不可能的旅程中汇合。",
+   "st": "故事以山村交通不便和孩子寻找母亲的愿望为起点。修车和上路并行推进，把亲情、支教和儿童成长放进一个具体的集体行动之中。",
    "section": "国产新片展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "poster": "posters/golden-rooster-gr26-014.jpg",
    "screeningEnds": {
     "11/7-14:00-xm-gr26-1-hall-4": "15:30",
@@ -2204,6 +2385,14 @@ module.exports = {
    "screeningNotes": {
     "11/7-14:00-xm-gr26-1-hall-4": "映后活动 · 导演/编剧：侯爵（以实际到场为准）"
    },
+   "r": [
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "dirO": "Hou Jue",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-014.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -2218,7 +2407,10 @@ module.exports = {
    "min": 82,
    "reg": "eu",
    "dir": "帕维乌·帕夫利科夫斯基",
-   "genre": [],
+   "genre": [
+    "剧情",
+    "传记"
+   ],
    "cast": [
     "桑德拉•惠勒",
     "汉斯•齐施勒",
@@ -2229,19 +2421,30 @@ module.exports = {
    "honors": [
     "获奖｜第79届戛纳国际电影节 · 主竞赛单元最佳导演"
    ],
-   "highlights": [],
+   "highlights": [
+    "同一趟旅程里，父女对故乡与责任的理解并不相同，观察他们如何与外界、也与彼此交锋。",
+    "战后的地理分界，使一次返乡同时成为关于政治立场与艺术家身份的追问。"
+   ],
    "syn": "1949年，流亡多年的作家托马斯·曼与女儿埃里卡重返德国。他们乘车从西部前往东部，在战后废墟、冷战分野与家庭旧伤之间，重新思考故乡、责任和艺术家的位置。",
-   "bio": "",
-   "st": "",
+   "bio": "帕维乌·帕夫利科夫斯基是波兰导演，代表作包括《修女艾达》《冷战》。他善于以克制的形式连接私人情感与历史处境，本片将镜头对准托马斯·曼父女战后的返乡之行。",
+   "st": "故事设置在1949年，以流亡作家托马斯·曼与女儿埃里卡重返德国为线索。西部与东部、旧日声望与眼前废墟交叠，故土也因此成为一个无法轻易返回的概念。",
    "section": "此刻：国际新片展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "poster": "posters/golden-rooster-gr26-015.jpg",
    "screeningEnds": {
     "11/7-15:15-xm-gr26-1-hall-6": "16:37",
     "11/8-11:00-xm-gr26-1-hall-6": "12:22",
     "11/21-12:00-xm-gr26-1-hall-6": "13:22"
    },
+   "r": [
+    7.6,
+    7.4,
+    null,
+    null,
+    3.6
+   ],
+   "dirO": "Paweł Pawlikowski",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-015.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -2256,7 +2459,9 @@ module.exports = {
    "min": 93,
    "reg": "cn",
    "dir": "张歆",
-   "genre": [],
+   "genre": [
+    "剧情"
+   ],
    "cast": [
     "张歆",
     "韦识一",
@@ -2265,14 +2470,19 @@ module.exports = {
    "writers": [
     "张歆"
    ],
-   "honors": [],
-   "highlights": [],
+   "honors": [
+    "入选｜2026金鸡影展 · 国产新片展映"
+   ],
+   "highlights": [
+    "“博士生”与“全职母亲”并存的身份，让时间分配和琐事本身成为戏剧冲突。",
+    "看主人公如何在婚姻、代际关系和工作期待之间，重新定义自己的完成度。"
+   ],
    "syn": "章昕选择留在大理，一边攻读博士，一边以全职母亲的身份照顾儿子。分居的婚姻、与母亲的冷战、找工作和生活琐事接踵而来，答辩前的一通电话，又将她推向新的人生难关。",
-   "bio": "",
-   "st": "",
+   "bio": "张歆拥有中国电影艺术研究中心硕士、北京电影学院导演系博士背景，在本片中兼任导演、编剧与主演。创作者与角色之间的接近，为女性的学业、母职和个人愿望带来内在视角。",
+   "st": "故事以大理的生活为背景，把答辩、求职、育儿和母女关系置于同一段日常。“七分熟”的片名，也可作为理解一种尚未完成、仍在变化的人生状态的入口。",
    "section": "国产新片展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "poster": "posters/golden-rooster-gr26-016.jpg",
    "screeningEnds": {
     "11/7-16:00-xm-gr26-1-hall-2": "17:33",
@@ -2282,6 +2492,14 @@ module.exports = {
    "screeningNotes": {
     "11/7-16:00-xm-gr26-1-hall-2": "映后活动 · 导演/编剧/主演：张歆（以实际到场为准）"
    },
+   "r": [
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "dirO": "Zhang Xin",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-016.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -2296,7 +2514,11 @@ module.exports = {
    "min": 103,
    "reg": "cn",
    "dir": "张璞",
-   "genre": [],
+   "genre": [
+    "剧情",
+    "喜剧",
+    "爱情"
+   ],
    "cast": [
     "许月庆",
     "王成阳",
@@ -2305,14 +2527,19 @@ module.exports = {
    "writers": [
     "张璞"
    ],
-   "honors": [],
-   "highlights": [],
+   "honors": [
+    "入选｜2026金鸡影展 · 国产新片展映"
+   ],
+   "highlights": [
+    "饭馆里的劳动和女儿的成长，让主人公的独立具有具体的生活重量。",
+    "留意情感关系里的控制与承诺，如何影响春霞对自身处境的判断。"
+   ],
    "syn": "春霞在年少辍学、仓促成婚与家庭暴力后，独自经营饭馆、抚养女儿。雁北小城的日常里，她遭遇新的情感迷局，也在一次次生活考验中尝试摆脱偏见，找回独立生活的力量。",
-   "bio": "",
-   "st": "",
+   "bio": "张璞兼任本片导演与编剧，许月庆饰演春霞。故事围绕一位独自经营饭馆、抚养女儿的女性展开，人物的谋生方式与亲密关系共同构成叙事重心。",
+   "st": "影片把家暴之后的生活继续写下去，关注独自抚养孩子的女性怎样在小城谋生。新的感情并不自动带来解答，日复一日的选择才逐渐构成她的改变。",
    "section": "国产新片展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "poster": "posters/golden-rooster-gr26-017.jpg",
    "screeningEnds": {
     "11/7-16:40-xm-gr26-1-hall-7": "18:23",
@@ -2324,6 +2551,14 @@ module.exports = {
     "11/8-14:30-xm-gr26-3-hall-3": "映后活动 · 导演/编剧：张璞；主演：许月庆（以实际到场为准）",
     "11/8-16:00-xm-gr26-2-hall-8": "映后活动 · 导演/编剧：张璞；主演：许月庆（以实际到场为准）"
    },
+   "r": [
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "dirO": "Zhang Pu",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-017.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -2336,7 +2571,7 @@ module.exports = {
    "y": 2026,
    "c": "中国内地",
    "min": 89,
-   "reg": "eu",
+   "reg": "cn",
    "dir": "徐澡",
    "genre": [
     "动画"
@@ -2350,18 +2585,29 @@ module.exports = {
     "获奖｜第10届平遥国际电影展 · 费穆荣誉·最佳导演",
     "入围｜第76届柏林国际电影节 · 视点单元"
    ],
-   "highlights": [],
+   "highlights": [
+    "废弃影视城里的现实生活与VR中的陪伴形成鲜明反差：两者又都是被建造的世界。",
+    "冷幽默之外，观察老查、猫与空置布景之间的关系，孤独如何通过空间被看见。"
+   ],
    "syn": "未来某个冬天，一座濒临荒废的影视城里，孤独的保洁员老查收到一台抵工资的VR设备。他在虚拟世界中获得久违的陪伴，而当现实与幻象相遇，影视城也迎来了自己的最后一场戏。",
-   "bio": "",
-   "st": "",
+   "bio": "徐澡1991年生于辽宁鞍山，是导演、编剧和美术创作者，毕业于北京电影学院美术学院。他的动画短片《我们的生活没有改变》曾入选鹿特丹电影节，《寒夜灯柱》是其长片创作。",
+   "st": "导演曾走访多处影视城，将那些为影像而造、又可能迅速被遗弃的空间转化为故事环境。片中的虚拟浪漫与影视城最后的拍摄，共同追问幻象为何能够安慰人。",
    "section": "流光：动画展映单元",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "poster": "posters/golden-rooster-gr26-018.jpg",
    "screeningEnds": {
     "11/7-17:10-xm-gr26-1-hall-3": "18:39",
     "11/15-14:00-xm-gr26-2-hall-6": "15:30"
    },
+   "r": [
+    null,
+    6.7,
+    null,
+    null,
+    3.4
+   ],
+   "dirO": "Zao Xu",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-018.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -2376,25 +2622,41 @@ module.exports = {
    "min": 88,
    "reg": "cn",
    "dir": "曹金玲",
-   "genre": [],
+   "genre": [
+    "剧情",
+    "运动"
+   ],
    "cast": [
     "马青骅",
     "赫尔文",
     "刘司銮"
    ],
    "writers": [],
-   "honors": [],
-   "highlights": [],
+   "honors": [
+    "入选｜2026金鸡影展 · 拾光：华语新片展映"
+   ],
+   "highlights": [
+    "比赛开始前的准备、人物的专注与赛场上的瞬间，同样值得关注。",
+    "城市赛道让建筑、转弯和车手视线发生特殊关系，可留意速度如何改变对澳门的感知。"
+   ],
    "syn": "影片将镜头对准澳门大赛车与参赛车手，记录城市赛道上的速度、准备与竞逐，通过赛事和人物的经历呈现赛车运动的魅力。",
-   "bio": "",
-   "st": "",
+   "bio": "曹金玲执导了这部聚焦澳门大赛车的作品。影片通过车手与赛事进入赛车运动，将城市街道的日常面貌与作为赛道时的速度、压力连接起来。",
+   "st": "澳门大赛车以城市街道构成的赛道闻名。影片围绕赛事及参与者展开，在运动的观赏性之外，提供接近车手经验和城市赛事文化的入口。",
    "section": "拾光：华语新片展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "poster": "posters/golden-rooster-gr26-019.jpg",
    "screeningEnds": {
     "11/7-19:00-xm-gr26-1-hall-2": "20:28"
    },
+   "r": [
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "dirO": "Cao Jinling",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-019.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -2409,7 +2671,9 @@ module.exports = {
    "min": 116,
    "reg": "cn",
    "dir": "刘诗川",
-   "genre": [],
+   "genre": [
+    "剧情"
+   ],
    "cast": [
     "祖峰",
     "王菊",
@@ -2424,14 +2688,19 @@ module.exports = {
     "刘诗川",
     "张赫"
    ],
-   "honors": [],
-   "highlights": [],
+   "honors": [
+    "入选｜2026金鸡影展 · 国产新片展映"
+   ],
+   "highlights": [
+    "播客里的文学理想与工作电话里的虚构身份，是两个角色各自经营的另一种自己。",
+    "祖峰、王菊饰演的人物如何从声音中的相遇走向现实，是情感变化的关键。"
+   ],
    "syn": "失意的网约车司机把文学梦想寄托在播客中，一名保健品销售员则用虚构身份应付工作。一次回访电话让两个孤独的都市人相遇，彼此的谎言与期待，逐渐迎向无法回避的现实。",
-   "bio": "",
-   "st": "",
+   "bio": "刘诗川毕业于中国传媒大学摄影专业，曾从事电影摄影，《最佳状态》是其导演长片创作。他把网约车司机和保健品销售员两种都市工作放在一起，观察谋生中的身份表演。",
+   "st": "影片也以英文名《No Hard Feelings》流通。两个处境不同的都市人以电话建立关系，故事由此触及工作压力、孤独，以及被理解与被认可的愿望。",
    "section": "国产新片展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "poster": "posters/golden-rooster-gr26-020.jpg",
    "screeningEnds": {
     "11/7-19:40-xm-gr26-1-hall-3": "21:37"
@@ -2439,6 +2708,14 @@ module.exports = {
    "screeningNotes": {
     "11/7-19:40-xm-gr26-1-hall-3": "映后活动 · 导演/编剧：刘诗川（以实际到场为准）"
    },
+   "r": [
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "dirO": "Liu Shichuan",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-020.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -2453,7 +2730,9 @@ module.exports = {
    "min": 125,
    "reg": "cn",
    "dir": "邹静",
-   "genre": [],
+   "genre": [
+    "剧情"
+   ],
    "cast": [
     "李庚希",
     "沈佳妮",
@@ -2463,14 +2742,19 @@ module.exports = {
    "writers": [
     "邹静"
    ],
-   "honors": [],
-   "highlights": [],
+   "honors": [
+    "入选｜2026金鸡影展 · 国产新片展映"
+   ],
+   "highlights": [
+    "同一个女孩拥有不同名字：每次称呼改变，都意味着一段关系和一套期待。",
+    "三段家庭经验之间的差异，让血缘与养育、保护与控制不再能够简单对应。"
+   ],
    "syn": "一个女孩的成长串起三个家庭的命运。围绕她在不同家庭中的身份，影片追问血缘、养育与归属如何塑造一个人，也呈现女性在亲情与社会期待之间的处境。",
-   "bio": "",
-   "st": "",
+   "bio": "邹静是导演、编剧，曾拍摄短片《朵丽》，《无名女孩》是她的首部长片。她把视角放在被不同家庭养育的女孩身上，以个人生命轨迹观察家庭结构与女性处境。",
+   "st": "影片从女孩六岁至十八岁间辗转家庭的经历展开，创作曾经过戛纳影评人周Next Step项目支持。成长故事也与收养、重男轻女和归属问题相连。",
    "section": "国产新片展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "poster": "posters/golden-rooster-gr26-021.jpg",
    "screeningEnds": {
     "11/7-19:50-xm-gr26-1-hall-6": "21:55",
@@ -2480,6 +2764,14 @@ module.exports = {
     "11/7-19:50-xm-gr26-1-hall-6": "映后活动 · 导演/编剧：邹静；主演：李庚希、沈佳妮（以实际到场为准）",
     "11/9-19:40-xm-gr26-1-hall-6": "映后活动 · 导演：邹静；主演：祖峰、沈佳妮（以实际到场为准）"
    },
+   "r": [
+    null,
+    6.9,
+    null,
+    null,
+    3.8
+   ],
+   "dirO": "Zou Jing",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-021.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -2494,26 +2786,42 @@ module.exports = {
    "min": 108,
    "reg": "eu",
    "dir": "拉巴赫·阿莫尔-兹梅什",
-   "genre": [],
+   "genre": [
+    "剧情",
+    "西部"
+   ],
    "cast": [
     "斯利曼·达兹",
     "斯迈因·阿莫尔-兹梅什",
     "莱娅·奥普莱"
    ],
    "writers": [],
-   "honors": [],
-   "highlights": [],
+   "honors": [
+    "入选｜2026金鸡影展 · 此刻：国际新片展映"
+   ],
+   "highlights": [
+    "运输路线上的袭击改变了旅程，也重新分配人物之间的依赖关系。",
+    "观察车辆、货物与沙漠的尺度，人们如何在辽阔空间里建立临时的合作。"
+   ],
    "syn": "年迈货车司机与搬运工深入阿尔及利亚撒哈拉运送货物，途中遭到袭击，货车被劫。一位法国研究者与同行者前来相助，几人的命运在沙漠公路上交汇。",
-   "bio": "",
-   "st": "",
+   "bio": "拉巴赫·阿莫尔-兹梅什是出生于阿尔及利亚的法国导演。他的创作常从边缘人物及群体关系出发，本片将货车司机、搬运工与研究者放进撒哈拉公路上的相遇。",
+   "st": "沙漠公路既是谋生通道，也是不同经历相遇的场所。影片以一次货运遭劫为起点，串联年迈劳动者与前来相助者的命运。",
    "section": "此刻：国际新片展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "screeningEnds": {
     "11/8-14:00-xm-gr26-1-hall-6": "15:48",
     "11/19-20:00-xm-gr26-1-hall-6": "21:48"
    },
    "poster": "posters/golden-rooster-gr26-022.jpg",
+   "r": [
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "dirO": "Rabah Ameur-Zaïmeche",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-022.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -2528,7 +2836,10 @@ module.exports = {
    "min": 178,
    "reg": "eu",
    "dir": "弗雷德·卡瓦耶",
-   "genre": [],
+   "genre": [
+    "剧情",
+    "历史"
+   ],
    "cast": [
     "文森特•林顿",
     "塔哈•拉希姆",
@@ -2538,13 +2849,16 @@ module.exports = {
    "honors": [
     "入围｜第74届圣塞巴斯蒂安国际电影节 · 主竞赛单元"
    ],
-   "highlights": [],
+   "highlights": [
+    "冉阿让与沙威代表的道德信念彼此冲突，留意法律、责任和怜悯之间的拉扯。",
+    "从芳汀与珂赛特的命运看宏大历史，私人承诺如何被社会的不公不断考验。"
+   ],
    "syn": "改编自维克多·雨果的小说。获释苦役犯冉阿让试图重新做人，却始终受到警长沙威追捕。他对芳汀与珂赛特的承诺，将个人的救赎与动荡时代中人们的抗争连接起来。",
-   "bio": "",
-   "st": "",
+   "bio": "弗雷德·卡瓦耶是法国导演，曾执导《为了她》《单刀直入》《永别了，霍夫曼先生》。他擅长围绕危急处境组织人物行动，本片将这种叙事经验带入雨果的长篇小说。",
+   "st": "本片是2026年由卡瓦耶执导的新版本，改编自维克多·雨果小说。观看时可把改编的取舍作为线索：哪些人物与事件承担起理解整个时代的任务。",
    "section": "此刻：国际新片展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "poster": "posters/golden-rooster-gr26-023.jpg",
    "screeningEnds": {
     "11/8-16:30-xm-gr26-2-hall-3": "19:28",
@@ -2553,6 +2867,14 @@ module.exports = {
     "11/23-20:00-xm-gr26-5-hall-": "22:58",
     "11/27-20:00-xm-gr26-17-hall-4": "22:58"
    },
+   "r": [
+    null,
+    7.1,
+    null,
+    null,
+    3.4
+   ],
+   "dirO": "Fred Cavayé",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-023.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -2567,22 +2889,49 @@ module.exports = {
    "min": 93,
    "reg": "cn",
    "dir": "谭家明",
-   "genre": [],
-   "cast": [],
+   "genre": [
+    "剧情",
+    "悬疑",
+    "爱情",
+    "惊悚"
+   ],
+   "cast": [
+    "Brigitte Lin",
+    "Chang Kuo-Chu",
+    "Charlie Chin Chiang-Lin",
+    "Tina Lau Tin-Lan",
+    "Deanie Ip",
+    "Ann Hui"
+   ],
    "writers": [],
-   "honors": [],
-   "highlights": [],
+   "honors": [
+    "入选｜2026金鸡影展 · 功夫·功夫：华语经典展映"
+   ],
+   "highlights": [
+    "留意红、白、蓝色块如何在画面中出现，色彩不仅装饰环境，也参与情绪的累积。",
+    "异国空间里的疏离与不安全感，使爱情关系逐渐转化为惊悚。"
+   ],
    "syn": "一名女子在异国求学时，与身边人的感情纠葛逐渐染上危险色彩。爱情、猜疑与潜藏的暴力彼此交织，平静日常一步步走向无法挽回的悲剧。",
-   "bio": "",
-   "st": "",
-   "section": "功夫·功夫：华语经典展映",
+   "bio": "谭家明是香港新浪潮的重要导演，代表作包括《名剑》《烈火青春》《父子》。他对色彩、构图和剪辑的敏感，也让《爱杀》在爱情与惊悚故事之外具有突出的视觉辨识度。",
+   "st": "影片于1981年问世，是谭家明早期电影创作中的重要作品。它将类型叙事与鲜明的造型探索结合，适合从香港新浪潮的形式实验脉络进入。",
+   "section": "功夫：华语经典展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "screeningEnds": {
     "11/8-17:45-xm-gr26-1-hall-3": "19:18",
     "11/16-20:00-xm-gr26-9-hall-2": "21:33"
    },
+   "poster": "posters/golden-rooster-gr26-024.jpg",
+   "r": [
+    6.9,
+    6.5,
+    null,
+    null,
+    3.6
+   ],
+   "dirO": "Patrick Tam Kar-Ming",
    "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-024.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
   },
   {
@@ -2595,7 +2944,9 @@ module.exports = {
    "min": 121,
    "reg": "eu",
    "dir": "桑德拉·沃尔纳",
-   "genre": [],
+   "genre": [
+    "剧情"
+   ],
    "cast": [
     "比吉特•米尼希迈尔",
     "特里斯坦•洛佩斯",
@@ -2605,18 +2956,29 @@ module.exports = {
    "honors": [
     "获奖｜第79届戛纳国际电影节 · 一种关注大奖"
    ],
-   "highlights": [],
+   "highlights": [
+    "同一场死亡在母亲、妹妹与男友那里留下不同的空缺，观察他们如何彼此靠近或逃开。",
+    "未曾完成的家庭假期再次启动，让“向前走”变成一个具体而艰难的行动。"
+   ],
    "syn": "少女杰西意外身亡后，母亲、妹妹和男友各自困在悲伤与内疚之中。一年后，他们尝试共同完成那场未曾成行的家庭假期，在旅途中面对失去、责备与原谅。",
-   "bio": "",
-   "st": "",
+   "bio": "桑德拉·沃尔纳是奥地利导演、编剧，她关注记忆、亲密关系与失去之后的生活，本片将叙事重心放在幸存者共同面对的时间。",
+   "st": "故事从少女死亡后的家庭生活展开，以一年后的旅行为新的起点。影片并不把悲伤当作一个必须迅速解决的问题，而是观察共同生活如何在失去后重新形成。",
    "section": "此刻：国际新片展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "poster": "posters/golden-rooster-gr26-025.jpg",
    "screeningEnds": {
     "11/8-19:30-xm-gr26-1-hall-6": "21:34",
     "11/17-19:45-xm-gr26-1-hall-6": "21:49"
    },
+   "r": [
+    7.8,
+    7.3,
+    96,
+    90,
+    3.8
+   ],
+   "dirO": "Sandra Wollner",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-025.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -2631,7 +2993,9 @@ module.exports = {
    "min": 107,
    "reg": "cn",
    "dir": "龚依文",
-   "genre": [],
+   "genre": [
+    "剧情"
+   ],
    "cast": [
     "马福福",
     "刘浩宁",
@@ -2641,14 +3005,19 @@ module.exports = {
    "writers": [
     "龚依文"
    ],
-   "honors": [],
-   "highlights": [],
+   "honors": [
+    "入选｜2026金鸡影展 · 国产新片展映"
+   ],
+   "highlights": [
+    "纸笔、网络与写作，为少女提供不同的表达空间，也可能制造新的误解。",
+    "留意家庭变化和朦胧情感怎样进入她的文字，文学理想与日常经验如何互相碰撞。"
+   ],
    "syn": "千禧年前后的杭州，热爱文学的少女文宇闻通过纸笔与网络寻找和外界的联系。家庭变化、朦胧情感与成长中的误解相继到来，她在写作与现实的碰撞中，慢慢认识自己。",
-   "bio": "",
-   "st": "",
+   "bio": "龚依文是本片导演、编剧，曾在曼荷莲学院和纽约大学学习，并参与《地久天长》的制作与剪辑。她将镜头转向千禧年前后杭州少女的文学兴趣与成长经验。",
+   "st": "影片置于千禧年前后的杭州，通过一位热爱文学的少女观察家庭和社会变化。成长没有一条明确的界线，语言与写作成为她辨认自己的一种方式。",
    "section": "国产新片展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "poster": "posters/golden-rooster-gr26-026.jpg",
    "screeningEnds": {
     "11/8-11:20-xm-gr26-1-hall-3": "13:07",
@@ -2658,6 +3027,14 @@ module.exports = {
    "screeningNotes": {
     "11/8-11:20-xm-gr26-1-hall-3": "映后活动 · 导演/编剧：龚依文（以实际到场为准）"
    },
+   "r": [
+    null,
+    5.6,
+    null,
+    null,
+    null
+   ],
+   "dirO": "Gong Yiwen",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-026.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -2672,7 +3049,10 @@ module.exports = {
    "min": 103,
    "reg": "cn",
    "dir": "白润青",
-   "genre": [],
+   "genre": [
+    "剧情",
+    "运动"
+   ],
    "cast": [
     "巴音",
     "图门巴雅尔"
@@ -2681,14 +3061,19 @@ module.exports = {
     "刘佳睿",
     "白润青"
    ],
-   "honors": [],
-   "highlights": [],
+   "honors": [
+    "入选｜2026金鸡影展 · 国产新片展映"
+   ],
+   "highlights": [
+    "草原与矿山不是互不相干的背景：观察两种空间如何共同塑造人物的生活。",
+    "传统骑士精神进入当下处境后，哪些价值被保留，哪些遭遇了新的考验？"
+   ],
    "syn": "在草原与矿山构成的生活背景中，主人公面对传统骑士精神与个人价值之间的拉扯，展开一场关于身份、生活与生命意义的探寻。",
-   "bio": "",
-   "st": "",
+   "bio": "白润青执导本片，并与刘佳睿共同编剧。他将故事放在草原与矿山的生活环境中，通过人物对骑士精神、生活选择和个人价值的思考展开叙事。",
+   "st": "影片以草原生活与现实变迁为观察背景。马、土地、劳动和身份相互关联，可以从这些具体线索进入人物对生命意义的寻找。",
    "section": "国产新片展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "poster": "posters/golden-rooster-gr26-027.jpg",
    "screeningEnds": {
     "11/8-13:20-xm-gr26-1-hall-4": "15:03",
@@ -2698,6 +3083,14 @@ module.exports = {
    "screeningNotes": {
     "11/8-13:20-xm-gr26-1-hall-4": "映后活动 · 导演/编剧：白润青（以实际到场为准）"
    },
+   "r": [
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "dirO": "白润青",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-027.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -2712,7 +3105,10 @@ module.exports = {
    "min": 101,
    "reg": "cn",
    "dir": "虹影",
-   "genre": [],
+   "genre": [
+    "剧情",
+    "纪录片"
+   ],
    "cast": [
     "虹影",
     "霜白",
@@ -2721,14 +3117,19 @@ module.exports = {
    "writers": [
     "虹影"
    ],
-   "honors": [],
-   "highlights": [],
+   "honors": [
+    "入选｜2026金鸡影展 · 国产新片展映"
+   ],
+   "highlights": [
+    "母亲、女儿与创作者自己构成三代女性的对照，留意同一段家族往事怎样获得不同解释。",
+    "城市的改变与私人记忆相互映照，熟悉的街巷也可能变成重新认识自己的地方。"
+   ],
    "syn": "虹影从自身生命经历出发，回望重庆的童年街巷、饥饿记忆与家族往事。母亲、女儿与自己三代女性的经历交织，勾连起长江沿岸城市的变化，以及母女之间难以言尽的爱与伤痛。",
-   "bio": "",
-   "st": "",
+   "bio": "虹影是作家、编剧与导演，《饥饿的女儿》等作品与她的重庆成长经验密切相关。本片让她以影像回望自身与家族，把文学中的记忆带回城市街巷和母女关系。",
+   "st": "影片与虹影的自传性写作经验相连，将饥饿、家庭与成长的记忆转化为影像。重庆和长江沿岸的变化，使家族回望同时具有地方历史的纵深。",
    "section": "国产新片展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "poster": "posters/golden-rooster-gr26-028.jpg",
    "screeningEnds": {
     "11/8-14:20-xm-gr26-1-hall-2": "16:01",
@@ -2739,6 +3140,13 @@ module.exports = {
     "11/14-14:30-xm-gr26-6-hall-1": "恋与联动场",
     "11/8-14:20-xm-gr26-1-hall-2": "映后活动 · 导演/编剧/主演：虹影（以实际到场为准）"
    },
+   "r": [
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-028.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -2753,26 +3161,42 @@ module.exports = {
    "min": 108,
    "reg": "cn",
    "dir": "黄绮琳、黄锎",
-   "genre": [],
+   "genre": [
+    "剧情",
+    "喜剧"
+   ],
    "cast": [
     "张家辉",
     "钟雪莹",
     "蒙嘉慧"
    ],
    "writers": [],
-   "honors": [],
-   "highlights": [],
+   "honors": [
+    "入选｜2026金鸡影展 · 拾光：华语新片展映"
+   ],
+   "highlights": [
+    "偷偷离开医院的行动，让照护者与被照护者的角色产生新的变化。",
+    "香港、澳门与冲绳的移动，为父女重新认识彼此提供了日常之外的空间。"
+   ],
    "syn": "一对父女深夜偷偷离开医院，意外开启从香港经澳门、远至冲绳的跨境旅程。一路的荒诞遭遇与短暂自由，让他们重新面对彼此，也重新理解亲情。",
-   "bio": "",
-   "st": "",
+   "bio": "黄绮琳与黄锎联合执导本片。黄绮琳曾执导《金都》，关注家庭期待与个人选择；本片把父女关系放进一次临时起意、不断越界的旅程。",
+   "st": "一对父女离开原有生活秩序，获得短暂的旅行自由。故事的趣味来自路途中的意外，也来自亲情里无法轻易说出口的愿望与顾虑。",
    "section": "拾光：华语新片展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "poster": "posters/golden-rooster-gr26-029.jpg",
    "screeningEnds": {
     "11/8-14:30-xm-gr26-1-hall-3": "16:18",
     "11/21-20:00-xm-gr26-15-hall-13": "21:48"
    },
+   "r": [
+    7.8,
+    7.5,
+    null,
+    null,
+    3.6
+   ],
+   "dirO": "Norris Wong Yee-lam / Wong Hoi",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-029.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -2787,7 +3211,10 @@ module.exports = {
    "min": 105,
    "reg": "cn",
    "dir": "谭惠贞",
-   "genre": [],
+   "genre": [
+    "剧情",
+    "爱情"
+   ],
    "cast": [
     "廖子妤",
     "陈家乐"
@@ -2796,18 +3223,29 @@ module.exports = {
    "honors": [
     "获奖｜第44届香港电影金像奖 · 最佳女主角"
    ],
-   "highlights": [],
+   "highlights": [
+    "亲密关系中的欲望与尊严，如何超出周围人安排好的“被照顾者”身份？",
+    "观察人物自己作出的决定，以及那些看似出于关心、却可能限制她的声音。"
+   ],
    "syn": "一段突破社会偏见的亲密关系，让两个人重新认识自己的身体、欲望与尊严。影片从残障人士的生活经验出发，追问谁有权决定一个人如何去爱。",
-   "bio": "",
-   "st": "",
+   "bio": "谭惠贞是香港导演，曾执导《以青春的名义》。她关注亲密关系中的复杂感受，本片从残障人士的生活经验出发，把爱情、身体自主和社会目光放在一起。",
+   "st": "影片不把残障仅作为需要解释的背景，而将其置于日常生活与亲密关系之中。谁能够决定如何去爱，是贯穿故事的社会问题，也是人物争取自我的过程。",
    "section": "拾光：华语新片展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "poster": "posters/golden-rooster-gr26-030.jpg",
    "screeningEnds": {
     "11/8-15:50-xm-gr26-1-hall-7": "17:35",
     "11/15-16:00-xm-gr26-2-hall-6": "17:45"
    },
+   "r": [
+    7.1,
+    6.3,
+    null,
+    null,
+    3.2
+   ],
+   "dirO": "Tam Wai-Ching",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-030.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -2822,7 +3260,11 @@ module.exports = {
    "min": 102,
    "reg": "cn",
    "dir": "钟凯峰",
-   "genre": [],
+   "genre": [
+    "剧情",
+    "喜剧",
+    "奇幻"
+   ],
    "cast": [
     "尹昉",
     "王一通",
@@ -2833,14 +3275,19 @@ module.exports = {
     "钟凯峰",
     "吴林峰"
    ],
-   "honors": [],
-   "highlights": [],
+   "honors": [
+    "入选｜2026金鸡影展 · 国产新片展映"
+   ],
+   "highlights": [
+    "煮熟观赏鲨鱼的奇遇，为现实生活打开了一个不寻常的入口。",
+    "声音、寻人启事与他人的讲述构成碎片，观察主人公如何把父亲的人生重新拼接。"
+   ],
    "syn": "超市理货员丁茂意外煮熟了店里的观赏鲨鱼，耳边从此出现奇怪声响。一则旧寻人启事把他带回东北故乡，他沿途拜访不同的人，拼凑父亲的人生，也追索被声音唤醒的记忆。",
-   "bio": "",
-   "st": "",
+   "bio": "钟凯峰执导本片，并与吴林峰共同编剧。影片由一桩超市里的荒诞事故出发，沿着主人公听到的声音和父亲留下的痕迹，进入一段带有寻找意味的返乡旅程。",
+   "st": "故事把超市理货员的日常与东北故乡的追寻连接起来。荒诞情节不是独立的笑料，而是让记忆与现实开始交错的触发点。",
    "section": "国产新片展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "poster": "posters/golden-rooster-gr26-031.jpg",
    "screeningEnds": {
     "11/8-16:15-xm-gr26-1-hall-6": "17:57"
@@ -2848,6 +3295,14 @@ module.exports = {
    "screeningNotes": {
     "11/8-16:15-xm-gr26-1-hall-6": "映后活动 · 制片人：王天啸、郑菁；线上连线：导演/编剧钟凯峰，主演尹昉、黄米依（以实际到场为准）"
    },
+   "r": [
+    null,
+    5.8,
+    null,
+    null,
+    null
+   ],
+   "dirO": "Zhong Kaifeng",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-031.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -2862,7 +3317,9 @@ module.exports = {
    "min": 107,
    "reg": "cn",
    "dir": "沈可尚",
-   "genre": [],
+   "genre": [
+    "剧情"
+   ],
    "cast": [
     "张孝全",
     "林依晨",
@@ -2872,18 +3329,29 @@ module.exports = {
    "honors": [
     "获奖｜第9届平遥国际电影展 · 费穆荣誉·最佳影片"
    ],
-   "highlights": [],
+   "highlights": [
+    "爱情相识时的亲密，与婚后逐渐浮现的沉默形成对照。",
+    "张孝全、林依晨、金士杰饰演的人物之间，未说出口的信息如何影响观众理解逝者？"
+   ],
    "syn": "谕明和依庭从大学图书馆相识相爱，结婚后等待第一个孩子到来。然而依庭的突然离世打碎一切，谕明在照顾她的家人、追寻原因时，逐步接近她原生家庭中难以启齿的伤痛。",
-   "bio": "",
-   "st": "",
+   "bio": "沈可尚是台湾导演，长期从事纪录片与剧情影像创作，作品包括《筑巢人》《幸福定格》。他对家庭关系的持续关注，在本片中转化为一段追问失去与原生家庭创伤的故事。",
+   "st": "从伴侣的突然离世出发，故事逐渐深入一个家庭被隐藏的伤痛。影片关注的既是追寻原因，也是留下来的人如何面对自己过去未能看见的部分。",
    "section": "拾光：华语新片展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "poster": "posters/golden-rooster-gr26-032.jpg",
    "screeningEnds": {
     "11/8-16:20-xm-gr26-1-hall-4": "18:07",
     "11/25-20:00-xm-gr26-7-hall-2": "21:47"
    },
+   "r": [
+    6.8,
+    6.9,
+    null,
+    null,
+    3.4
+   ],
+   "dirO": "Shen Ko-shang",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-032.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -2898,26 +3366,41 @@ module.exports = {
    "min": 100,
    "reg": "cn",
    "dir": "廖克发",
-   "genre": [],
+   "genre": [
+    "剧情"
+   ],
    "cast": [
     "魏隽展",
     "陈雪甄",
     "吕杨"
    ],
    "writers": [],
-   "honors": [],
-   "highlights": [],
+   "honors": [
+    "入选｜2026金鸡影展 · 拾光：华语新片展映"
+   ],
+   "highlights": [
+    "遗体归属的争执，把原本属于家庭内部的哀悼带入公共规则。",
+    "观察兄妹不同的生活选择，如何承接或抵抗上一代的历史记忆。"
+   ],
    "syn": "旅居海外的阿耀返回马来西亚处理父亲后事，却因遗体归属卷入纷争。兄妹间不同的选择与老一辈的记忆交错，一场葬礼逐渐牵出家族迁徙、宗教与身份认同的百年回声。",
-   "bio": "",
-   "st": "",
+   "bio": "廖克发是来自马来西亚、在台湾从事创作的导演，作品包括《不即不离》《菠萝蜜》。他持续关注家族历史、迁徙与身份，本片以一场葬礼再次进入这些问题。",
+   "st": "返乡处理后事，使离散家庭与马来西亚多元宗教、族群处境相遇。影片把当下的葬礼与更长久的家族迁徙经验交织，讨论“回家”究竟意味着什么。",
    "section": "拾光：华语新片展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "poster": "posters/golden-rooster-gr26-033.jpg",
    "screeningEnds": {
     "11/8-17:00-xm-gr26-1-hall-2": "18:41",
     "11/21-14:30-xm-gr26-2-hall-6": "16:11"
    },
+   "r": [
+    6.9,
+    6.5,
+    null,
+    null,
+    3.4
+   ],
+   "dirO": "Lau Kek-huat",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-033.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -2932,7 +3415,10 @@ module.exports = {
    "min": 323,
    "reg": "eu",
    "dir": "马里亚诺·利纳斯",
-   "genre": [],
+   "genre": [
+    "传记",
+    "纪录片"
+   ],
    "cast": [
     "埃内斯托： 蒙特金",
     "尼古拉斯-赫尔夫特",
@@ -2942,18 +3428,29 @@ module.exports = {
    "honors": [
     "入围｜第83届威尼斯国际电影节 · 非竞赛单元"
    ],
-   "highlights": [],
+   "highlights": [
+    "档案、诗作、手稿和私人收藏之间的跳转，让传记像一次不断发现岔路的阅读。",
+    "旁白中的幽默与研究者的执着并行，知识的搜集本身也成为故事。"
+   ],
    "syn": "导演翻检档案、诗作、手稿、照片与私人收藏，循着博尔赫斯一生的踪迹展开研究。朗读、旅行与带着幽默的旁白交织，把文学传记变成一场迷宫般的影像探索。",
-   "bio": "",
-   "st": "",
+   "bio": "马里亚诺·利纳斯是阿根廷导演、编剧，代表作有《非凡的故事》《花》。他偏爱篇幅开阔、不断分叉的叙事，本片把这种探索精神带入博尔赫斯的文学与生命。",
+   "st": "这部323分钟的作品围绕博尔赫斯展开，但不把作家的一生压缩成几个传奇片段。影像、朗读与考察共同构成文学迷宫，长时段观看也是进入作品的方法。",
    "section": "此刻：国际新片展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "poster": "posters/golden-rooster-gr26-034.jpg",
    "screeningEnds": {
     "11/8-17:30-xm-gr26-1-hall-5": "23:04",
     "11/21-14:10-xm-gr26-1-hall-5": "19:44"
    },
+   "r": [
+    null,
+    7.2,
+    null,
+    null,
+    3.8
+   ],
+   "dirO": "Mariano Llinás",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-034.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -2968,7 +3465,9 @@ module.exports = {
    "min": 95,
    "reg": "cn",
    "dir": "徐琨华",
-   "genre": [],
+   "genre": [
+    "剧情"
+   ],
    "cast": [
     "汪飏",
     "刘又年",
@@ -2979,18 +3478,29 @@ module.exports = {
     "入围｜第29届塔林黑夜电影节 · 新导演竞赛单元",
     "入围｜第10届平遥国际电影展 · “藏龙”竞赛单元"
    ],
-   "highlights": [],
+   "highlights": [
+    "围绕一次面试，父母、顾问和学校分别掌握着哪些信息与话语权？",
+    "孩子的入学结果成为悬念，也照见成年人对成功、体面与控制的执念。"
+   ],
    "syn": "一对父母为六岁的儿子争取精英学校入学资格，请来咨询顾问与学校理事帮忙。最终面试后，孩子却进入不录取名单，几名大人必须在结果公布前查出哪里出了问题。",
-   "bio": "",
-   "st": "",
+   "bio": "徐琨华执导这部围绕升学焦虑展开的电影。汪飏、刘又年、耐安饰演的人物，与咨询顾问及学校规则共同组成一个以孩子为中心、却由成年人主导的竞争场域。",
+   "st": "精英教育的门槛，把家庭愿望转化为资源与策略的较量。影片从录取名单中的意外出发，观察“为了孩子”这句话背后的焦虑和权力关系。",
    "section": "拾光：华语新片展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "poster": "posters/golden-rooster-gr26-035.jpg",
    "screeningEnds": {
     "11/8-19:20-xm-gr26-1-hall-4": "20:55",
     "11/22-16:00-xm-gr26-14-hall-5": "17:35"
    },
+   "r": [
+    null,
+    7.3,
+    null,
+    null,
+    null
+   ],
+   "dirO": "Hsu Kun-hua",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-035.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -3003,7 +3513,7 @@ module.exports = {
    "y": 2026,
    "c": "新加坡 / 西班牙 / 意大利",
    "min": 114,
-   "reg": "eu",
+   "reg": "cn",
    "dir": "韩蕴光、劳尔·加西亚",
    "genre": [
     "动画"
@@ -3017,17 +3527,28 @@ module.exports = {
    "honors": [
     "获奖｜第50届安纳西国际动画电影节 · 长片水晶奖"
    ],
-   "highlights": [],
+   "highlights": [
+    "同一把琴在不同时代中流转，声音如何连接未能相见的人？",
+    "爱情与音乐理想在战争中被迫分离，留意后来者怎样重新进入这段往事。"
+   ],
    "syn": "1941年，两个梦想成为小提琴家的年轻人因战争而分离。男孩参加抵抗后失踪，女孩在此后的岁月里坚持演奏与寻找；一把旧琴，又将后来者带回这段横跨数十年的往事。",
-   "bio": "",
-   "st": "",
+   "bio": "韩蕴光与劳尔·加西亚联合执导本片，将小提琴手的命运放进战争与离散的历史之中。两位创作者以动画承载跨越数十年的等待，让音乐成为串联人物与时代的线索。",
+   "st": "故事以1941年的战时经验为起点，把青年音乐家的离散延伸至多年之后。动画形式让不同年代、地点与记忆彼此转换，音乐则提供持续的情感联系。",
    "section": "流光：动画展映单元",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "poster": "posters/golden-rooster-gr26-036.jpg",
    "screeningEnds": {
     "11/8-19:45-xm-gr26-1-hall-3": "21:39"
    },
+   "r": [
+    null,
+    7.4,
+    null,
+    null,
+    3.5
+   ],
+   "dirO": "Ervin Han / Raúl García",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-036.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -3042,26 +3563,42 @@ module.exports = {
    "min": 95,
    "reg": "cn",
    "dir": "胡翠儿",
-   "genre": [],
+   "genre": [
+    "剧情",
+    "喜剧"
+   ],
    "cast": [
     "周家怡",
     "金燕玲",
     "陈湛文"
    ],
    "writers": [],
-   "honors": [],
-   "highlights": [],
+   "honors": [
+    "入选｜2026金鸡影展 · 拾光：华语新片展映"
+   ],
+   "highlights": [
+    "学习钢管舞需要重新感受身体，也意味着主人公开始为自己保留时间。",
+    "关注新伙伴提供的支持，以及家庭成员怎样回应她不再只为别人而活的选择。"
+   ],
    "syn": "一位长期围着丈夫、孩子与家务打转的家庭主妇，瞒着家人开始学习钢管舞。新的伙伴与舞台带来意外的勇气，也让她重新思考中年之后，自己还想怎样生活。",
-   "bio": "",
-   "st": "",
+   "bio": "胡翠儿是本片导演，周家怡、金燕玲与陈湛文出演。她把镜头对准一位重新学习舞蹈的中年家庭主妇，让长期被家庭职责遮蔽的愿望获得表达空间。",
+   "st": "故事将常被年龄与性别成见限制的舞台，交给一位中年女性。家庭劳动与舞蹈训练的并置，使自我表达和日常责任之间的拉扯变得具体。",
    "section": "拾光：华语新片展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "poster": "posters/golden-rooster-gr26-037.jpg",
    "screeningEnds": {
     "11/8-20:15-xm-gr26-1-hall-2": "21:50",
     "11/26-20:00-xm-gr26-17-hall-4": "21:35"
    },
+   "r": [
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "dirO": "Wu Chui-yi",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-037.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -3076,7 +3613,9 @@ module.exports = {
    "min": 155,
    "reg": "eu",
    "dir": "伊曼努尔·马雷",
-   "genre": [],
+   "genre": [
+    "剧情"
+   ],
    "cast": [
     "斯万·阿劳德",
     "桑德琳·布朗克",
@@ -3086,18 +3625,29 @@ module.exports = {
    "honors": [
     "获奖｜第79届戛纳国际电影节 · 最佳编剧"
    ],
-   "highlights": [],
+   "highlights": [
+    "一个希望被权力认可的人，怎样一步步把技术理想和个人野心交给压迫性的制度？",
+    "留意主人公的自我解释与实际行动之间的距离。"
+   ],
    "syn": "1940年，身无分文的亨利来到维希，希望凭借技术理想与自费出版的政治著作，在新政权中谋得位置。追求认可的愿望，逐渐使他成为压迫机器中的一环。",
-   "bio": "",
-   "st": "",
+   "bio": "伊曼努尔·马雷是法国导演，曾联合执导《空姐没有明天》。他关注人物如何在制度与工作中调整自己的形象，本片将这种观察放进1940年的法国。",
+   "st": "故事设置在维希政权建立的历史背景下。影片从一位试图谋职的普通人出发，观察妥协如何发生，个人追求又如何参与更大的政治机器。",
    "section": "此刻：国际新片展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "poster": "posters/golden-rooster-gr26-038.jpg",
    "screeningEnds": {
     "11/9-17:30-xm-gr26-1-hall-3": "20:08",
     "11/15-14:35-xm-gr26-1-hall-6": "17:13"
    },
+   "r": [
+    6.7,
+    7,
+    80,
+    69,
+    3.5
+   ],
+   "dirO": "Emmanuel Marre",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-038.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -3112,22 +3662,49 @@ module.exports = {
    "min": 95,
    "reg": "cn",
    "dir": "袁和平",
-   "genre": [],
-   "cast": [],
+   "genre": [
+    "喜剧",
+    "动作",
+    "武侠",
+    "古装"
+   ],
+   "cast": [
+    "Jet Li",
+    "Michelle Yeoh",
+    "Chin Siu-Ho",
+    "Fennie Yuen Kit-Ying",
+    "Yu Hai",
+    "Yuen Cheung-Yan"
+   ],
    "writers": [],
-   "honors": [],
-   "highlights": [],
+   "honors": [
+    "入选｜2026金鸡影展 · 功夫·功夫：华语经典展映"
+   ],
+   "highlights": [
+    "君宝与天宝的动作和选择逐渐分叉，武打场面同时承担人物塑造。",
+    "留意君宝从失衡到重新领悟的过程，太极的柔与圆如何转化成可见的身体语言。"
+   ],
    "syn": "一同长大的君宝与天宝下山闯荡，却因对权力与人生的不同选择走向对立。经历背叛与挫折后，君宝在自然与生活中领悟新的武学之道。",
-   "bio": "",
-   "st": "",
-   "section": "功夫·功夫：华语经典展映",
+   "bio": "袁和平出身武术电影世家，兼具导演与动作指导经验，曾执导《蛇形刁手》《醉拳》。本片以李连杰和钱小豪饰演的两位师兄弟，呈现同源武艺走向不同人生的对照。",
+   "st": "影片把张三丰的传说转化为师兄弟反目的武侠故事。江湖、军权与自然之间的冲突，让武学领悟与人生选择相互呼应。",
+   "section": "功夫：华语经典展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "screeningEnds": {
     "11/9-20:00-xm-gr26-1-hall-2": "21:35",
     "11/13-20:00-xm-gr26-5-hall-6": "21:35"
    },
+   "poster": "posters/golden-rooster-gr26-039.jpg",
+   "r": [
+    8.1,
+    7.2,
+    null,
+    null,
+    3.7
+   ],
+   "dirO": "Yuen Woo-ping",
    "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-039.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
   },
   {
@@ -3140,25 +3717,41 @@ module.exports = {
    "min": 108,
    "reg": "cn",
    "dir": "冯志强",
-   "genre": [],
+   "genre": [
+    "喜剧",
+    "爱情"
+   ],
    "cast": [
     "魏浚笙",
     "杨偲泳",
     "朱鉴然"
    ],
    "writers": [],
-   "honors": [],
-   "highlights": [],
+   "honors": [
+    "入选｜2026金鸡影展 · 拾光：华语新片展映"
+   ],
+   "highlights": [
+    "匿名网络里的攻击者，面对真实的教练时如何重新理解对方？",
+    "冲浪训练中的失衡、信任和配合，也可以作为观察两人关系变化的线索。"
+   ],
    "syn": "曾在网上攻击冲浪教练的青年，阴差阳错成为对方的学生。现实里的相处逐渐改变了他的成见，浪花、训练与误会之间，也萌生一段出人意料的感情。",
-   "bio": "",
-   "st": "",
+   "bio": "冯志强是香港导演、编剧，曾参与《少林足球》《喜剧之王》等影片编剧，导演作品包括《悬红》《犯罪现场》。他在本片以网络误解和冲浪训练组织一段爱情喜剧。",
+   "st": "故事由网络争执引出线下相处。冲浪提供了离开键盘、共同面对身体与自然的机会，让成见的瓦解发生在具体的互动之中。",
    "section": "拾光：华语新片展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "poster": "posters/golden-rooster-gr26-040.jpg",
    "screeningEnds": {
     "11/9-20:20-xm-gr26-1-hall-3": "22:09"
    },
+   "r": [
+    null,
+    5.4,
+    null,
+    null,
+    null
+   ],
+   "dirO": "Andrew Fung Chih-chiang",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-040.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -3173,26 +3766,41 @@ module.exports = {
    "min": 112,
    "reg": "cn",
    "dir": "王德健",
-   "genre": [],
+   "genre": [
+    "剧情"
+   ],
    "cast": [
     "冯德伦",
     "袁澧林",
     "胡杏儿"
    ],
    "writers": [],
-   "honors": [],
-   "highlights": [],
+   "honors": [
+    "入选｜2026金鸡影展 · 拾光：华语新片展映"
+   ],
+   "highlights": [
+    "戏剧角色与演员自身的关系逐渐重叠，留意哪些话是“台词”，哪些已越过排练的边界。",
+    "创作权力、婚姻与旧爱交错，舞台上的掌控并不等于生活中的掌控。"
+   ],
    "syn": "陷入创作瓶颈的舞台剧导演试图靠一出新戏挽回事业。选角与排练让他卷入年轻演员、旧爱与婚姻的复杂关系，戏中角色和戏外生活的边界逐渐失控。",
-   "bio": "",
-   "st": "",
+   "bio": "王德健执导本片，马德钟、袁澧林与胡杏儿出演。创作瓶颈中的舞台剧导演是叙事中心，选角、排练与亲密关系的纠缠，让艺术生产成为观察人物欲望的现场。",
+   "st": "影片以舞台剧的制作过程为框架，让创作危机与情感危机互相推动。观众既看一出戏怎样形成，也看导演如何被自己的生活反过来改写。",
    "section": "拾光：华语新片展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "poster": "posters/golden-rooster-gr26-041.jpg",
    "screeningEnds": {
     "11/9-14:10-xm-gr26-1-hall-6": "16:03",
     "11/20-20:00-xm-gr26-9-hall-3": "21:53"
    },
+   "r": [
+    null,
+    7.7,
+    null,
+    null,
+    null
+   ],
+   "dirO": "Keane Wong Tak-Kin",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-041.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -3207,7 +3815,9 @@ module.exports = {
    "min": 106,
    "reg": "cn",
    "dir": "池家庆",
-   "genre": [],
+   "genre": [
+    "剧情"
+   ],
    "cast": [
     "陈泽耀",
     "李沐"
@@ -3216,18 +3826,29 @@ module.exports = {
    "honors": [
     "入围｜第10届平遥国际电影展 · “藏龙”竞赛单元"
    ],
-   "highlights": [],
+   "highlights": [
+    "一个背负罪疚的出狱者与一个受困的女人，如何建立既脆弱又具体的信任？",
+    "潮汐、夜色与村落生活，为人物无法轻易说出的情绪提供环境。"
+   ],
    "syn": "刑满出狱的男子回到渔村，希望向死者家属表达愧疚，却遇见一名遭到软禁的女子。两个被世界排斥的人在夜色与潮汐间靠近，尝试抚平各自的伤痛。",
-   "bio": "",
-   "st": "",
+   "bio": "池家庆是马来西亚导演，曾执导《嗨！神兽》。本片由李心洁、王礼霖担任制片，陈泽耀与李沐出演，以渔村中的相遇探索伤害之后的关系。",
+   "st": "影片灵感与导演故乡的真实事件有关，拍摄故事则聚焦两个被排斥的人。它把救赎放在关系之中，追问理解能否为伤痛中的人提供新的可能。",
    "section": "拾光：华语新片展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "poster": "posters/golden-rooster-gr26-042.jpg",
    "screeningEnds": {
     "11/9-14:25-xm-gr26-1-hall-2": "16:11",
     "11/21-20:00-xm-gr26-14-hall-5": "21:46"
    },
+   "r": [
+    5.2,
+    null,
+    null,
+    null,
+    null
+   ],
+   "dirO": "Kethsvin Chee",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-042.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -3242,7 +3863,11 @@ module.exports = {
    "min": 104,
    "reg": "cn",
    "dir": "万波",
-   "genre": [],
+   "genre": [
+    "剧情",
+    "爱情",
+    "悬疑"
+   ],
    "cast": [
     "李依晓",
     "罗攀",
@@ -3253,14 +3878,19 @@ module.exports = {
    "writers": [
     "罗攀"
    ],
-   "honors": [],
-   "highlights": [],
+   "honors": [
+    "入选｜2026金鸡影展 · 国产新片展映"
+   ],
+   "highlights": [
+    "失踪七年的案件重新开启，观察证言和回忆如何随着调查改变意义。",
+    "山村空间中的亲疏关系、沉默与压力，可能比显眼的线索更能帮助理解人物。"
+   ],
    "syn": "一桩尘封七年的女子失踪案，因两位警官到访偏远山村而再起波澜。随着追查深入，嫌疑人与失踪女子之间的情感纠葛逐渐浮现，往事与眼前的真相彼此映照。",
-   "bio": "",
-   "st": "",
+   "bio": "万波是本片导演，曾执导《钱塘江》，拥有北京电影学院艺术学博士背景。他以悬疑案件进入偏远山村，让调查、回忆与情感关系共同塑造叙事。",
+   "st": "影片项目曾在上海国际电影节创投体系中发展。通过两位警官的来访，故事将一段私人关系与被掩埋的过去重新带到眼前。",
    "section": "国产新片展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "poster": "posters/golden-rooster-gr26-043.jpg",
    "screeningEnds": {
     "11/9-15:00-xm-gr26-1-hall-4": "16:44",
@@ -3271,6 +3901,14 @@ module.exports = {
     "11/28-14:30-xm-gr26-6-hall-1": "恋与联动场",
     "11/9-15:00-xm-gr26-1-hall-4": "映后活动 · 导演：万波（以实际到场为准）"
    },
+   "r": [
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "dirO": "Wan Bo",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-043.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -3285,7 +3923,9 @@ module.exports = {
    "min": 96,
    "reg": "cn",
    "dir": "马晓静",
-   "genre": [],
+   "genre": [
+    "剧情"
+   ],
    "cast": [
     "倪大红",
     "黄梦莹",
@@ -3296,14 +3936,19 @@ module.exports = {
     "张艺凡",
     "陈仕忠"
    ],
-   "honors": [],
-   "highlights": [],
+   "honors": [
+    "入选｜2026金鸡影展 · 国产新片展映"
+   ],
+   "highlights": [
+    "从山区日常到冬奥舞台，语言学习、合唱训练和彼此配合是同一段成长过程。",
+    "留意孩子们怎样在合唱中建立共同节奏，又保持各自鲜明的个性。"
+   ],
    "syn": "河北阜平山区的孩子们组成合唱团，在老师与冬奥团队的帮助下克服语言、训练与生活上的困难。来自山村的歌声，最终响起在北京冬奥会的舞台上。",
-   "bio": "",
-   "st": "",
+   "bio": "马晓静兼任本片导演与编剧，并与张艺凡、陈仕忠共同完成剧本。倪大红、黄梦莹与马兰花儿童声合唱团参与演出，让故事里的歌声与真实的集体经验相连。",
+   "st": "故事以河北阜平山区儿童合唱团登上北京冬奥舞台的经历为基础。影片将大型公共事件背后的准备过程，重新还原为孩子、老师和支持者的共同努力。",
    "section": "国产新片展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "poster": "posters/golden-rooster-gr26-044.jpg",
    "screeningEnds": {
     "11/9-19:30-xm-gr26-1-hall-4": "21:06",
@@ -3312,6 +3957,13 @@ module.exports = {
    "screeningNotes": {
     "11/9-19:30-xm-gr26-1-hall-4": "映后活动 · 导演：马晓静；主演：倪大红、黄梦莹、马兰花儿童声合唱团代表（以实际到场为准）"
    },
+   "r": [
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-044.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -3324,9 +3976,11 @@ module.exports = {
    "y": 2026,
    "c": "韩国",
    "min": 72,
-   "reg": "eu",
+   "reg": "as",
    "dir": "洪常秀",
-   "genre": [],
+   "genre": [
+    "剧情"
+   ],
    "cast": [
     "金珉禧",
     "崔明吉",
@@ -3336,19 +3990,30 @@ module.exports = {
    "honors": [
     "获奖｜第79届洛迦诺国际电影节 · 主竞赛单元最佳导演奖"
    ],
-   "highlights": [],
+   "highlights": [
+    "看似平常的饭局和交谈，如何逐渐显露家人间长期积累的距离？",
+    "导演身份的女儿与拍摄纪录片的继父形成对照，创作和家庭责任怎样共存？"
+   ],
    "syn": "实验电影创作者尚熙与弟弟前往济州岛，探望久未亲近的母亲。在与继父和新的家庭成员相处的细微时刻里，她重新面对家庭责任、衰老与创作之间的关系。",
-   "bio": "",
-   "st": "",
+   "bio": "洪常秀是韩国导演，作品常以日常谈话、偶遇和细微重复观察亲密关系。金敏喜、崔明吉、权海骁等出演本片，济州岛的一次家庭探访成为新的创作与照护问题的起点。",
+   "st": "从首尔来到济州岛，主人公进入母亲的新家庭。影片让衰老、亲情与艺术冲动落在少数人物的相处中，岛屿的天气与情绪变化互相呼应。",
    "section": "此刻：国际新片展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "poster": "posters/golden-rooster-gr26-045.jpg",
    "screeningEnds": {
     "11/10-20:30-xm-gr26-1-hall-7": "21:42",
     "11/18-19:40-xm-gr26-1-hall-6": "20:52",
     "11/23-20:00-xm-gr26-1-hall-6": "21:12"
    },
+   "r": [
+    7.8,
+    6.8,
+    null,
+    null,
+    3.6
+   ],
+   "dirO": "Hong Sang-soo",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-045.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -3363,7 +4028,9 @@ module.exports = {
    "min": 96,
    "reg": "cn",
    "dir": "杨两全",
-   "genre": [],
+   "genre": [
+    "剧情"
+   ],
    "cast": [
     "杨伟伦",
     "钟雪莹",
@@ -3373,18 +4040,29 @@ module.exports = {
    "honors": [
     "入围｜第51届多伦多国际电影节 · 发现单元"
    ],
-   "highlights": [],
+   "highlights": [
+    "一次出错餐怎样升级成连续报复，观察每个人为自己寻找的理由。",
+    "喜剧冲突背后，人物在工作、经济和情感上的窘迫逐渐显露。"
+   ],
    "syn": "茶餐厅老板与一名女食客因一次出错餐的误会结怨，小小口角不断升级为互相报复。被都市生活逼近极限的两个人，在争斗中暴露各自的窘迫，也照见伤害与扶持之间的距离。",
-   "bio": "",
-   "st": "",
+   "bio": "杨两全执导本片，杨伟伦、钟雪莹与彭秀慧出演。他以茶餐厅里的小小争执为开端，把城市人的压力、报复心与相互理解的可能放进一则黑色喜剧。",
+   "st": "片名里的“善”与不断失控的行为形成张力。影片从香港日常空间出发，让争执成为认识两位陌生人生活困境的入口。",
    "section": "拾光：华语新片展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "poster": "posters/golden-rooster-gr26-046.jpg",
    "screeningEnds": {
     "11/10-19:30-xm-gr26-1-hall-3": "21:06",
     "11/24-20:00-xm-gr26-15-hall-13": "21:36"
    },
+   "r": [
+    7.9,
+    7.5,
+    null,
+    null,
+    3.6
+   ],
+   "dirO": "Yeung Leung Chuen",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-046.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -3399,7 +4077,9 @@ module.exports = {
    "min": 87,
    "reg": "cn",
    "dir": "林乐骞",
-   "genre": [],
+   "genre": [
+    "剧情"
+   ],
    "cast": [
     "杨乐文",
     "谈善言",
@@ -3409,18 +4089,29 @@ module.exports = {
    "honors": [
     "入围｜第31届釜山国际电影节 · “展望·亚洲”竞赛单元"
    ],
-   "highlights": [],
+   "highlights": [
+    "追索案件时，不妨同时观察人物怎样回避自己的过去。",
+    "不同人物的隐秘逐渐浮出水面，犯罪事实与情感动机未必以相同速度变得清楚。"
+   ],
    "syn": "一桩悬案把几个人的命运纠缠在一起。随着追索深入，人物背后的创伤与隐秘逐渐显露，犯罪与日常生活的边界也变得不再清晰。",
-   "bio": "",
-   "st": "",
+   "bio": "林乐骞执导本片，杨乐文、谈善言和邵美琪出演。故事借一桩悬案连接人物，将调查和各自隐藏的创伤交织，让类型悬念与日常关系共同推进。",
+   "st": "影片以悬案为叙事入口，关注事件在不同人物生命中留下的痕迹。观看时可以把人物关系与信息出现的先后顺序放在一起，辨认真相被遮蔽的方式。",
    "section": "拾光：华语新片展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "poster": "posters/golden-rooster-gr26-047.jpg",
    "screeningEnds": {
     "11/10-19:45-xm-gr26-1-hall-2": "21:12",
     "11/19-20:00-xm-gr26-8-hall-1": "21:27"
    },
+   "r": [
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "dirO": "Isabella Lam",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-047.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -3436,21 +4127,41 @@ module.exports = {
    "reg": "eu",
    "dir": "扬尼斯·伦茨",
    "genre": [],
-   "cast": [],
+   "cast": [
+    "Florian Geißelmann",
+    "Anton Petzold",
+    "Mathilda Smidt",
+    "Godehard Giese",
+    "Mikke Rasch",
+    "Ioana Iacob"
+   ],
    "writers": [],
-   "honors": [],
-   "highlights": [],
+   "honors": [
+    "入选｜2026金鸡影展 · 此刻：国际新片展映"
+   ],
+   "highlights": [
+    "三个少年离开校园后，是否真的逃出了原有的强弱秩序？",
+    "游戏和结盟仪式逐渐带来不安，关注友谊怎样变成要求服从的压力。"
+   ],
    "syn": "学生威胁同学的视频在网上传播，校园气氛骤然紧张。三个被排斥的少年逃进附近森林，在游戏与怪异的结盟仪式中寻找归属，成人世界的压力却始终如影随形。",
-   "bio": "",
-   "st": "",
+   "bio": "扬尼斯·伦茨是德国导演，本片由弗洛里安·盖塞尔曼、安东·彼佐尔德与玛蒂尔达·施密特等出演。他将少年群体与森林空间相连，讨论排斥、结盟与成长中的暴力。",
+   "st": "一段网络视频把校园关系推向紧张，森林看似提供避难之所，却也让少年们在缺少成人的环境中重新建立规则。“绿洲”因此既是愿望，也带着疑问。",
    "section": "此刻：国际新片展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "poster": "posters/golden-rooster-gr26-048.jpg",
    "screeningEnds": {
     "11/10-20:00-xm-gr26-1-hall-6": "21:58",
     "11/21-19:30-xm-gr26-1-hall-3": "21:28"
    },
+   "r": [
+    null,
+    7.5,
+    null,
+    null,
+    3.2
+   ],
+   "dirO": "Jannis Lenz",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-048.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -3465,21 +4176,46 @@ module.exports = {
    "min": 106,
    "reg": "cn",
    "dir": "徐克",
-   "genre": [],
-   "cast": [],
+   "genre": [
+    "喜剧",
+    "爱情"
+   ],
+   "cast": [
+    "Leslie Cheung",
+    "Anita Yuen Wing-Yee",
+    "Law Kar-Ying",
+    "Kenny Bee",
+    "Vincent Zhao Wenzhuo",
+    "Xiong Xinxin"
+   ],
    "writers": [],
-   "honors": [],
-   "highlights": [],
+   "honors": [
+    "入选｜2026金鸡影展 · 功夫·功夫：华语经典展映"
+   ],
+   "highlights": [
+    "烹饪像武打一样有节奏、招式与对决，留意剪辑怎样把厨房变成竞技场。",
+    "热闹笑料之下，退隐名厨和学徒之间的关系让技艺传承有了情感基础。"
+   ],
    "syn": "心怀出国梦想的青年进入酒楼学厨，意外卷入一场决定酒楼命运的厨艺对决。为了备战满汉全席，众人寻找退隐名厨，在笑闹与磨练中重新理解技艺、友情与人生。",
-   "bio": "",
-   "st": "",
-   "section": "功夫·功夫：华语经典展映",
+   "bio": "徐克是香港电影新浪潮及商业类型电影的重要创作者，作品包括《黄飞鸿》《青蛇》《刀》。本片由张国荣、袁咏仪、钟镇涛等出演，将他擅长的速度与奇观带入厨艺喜剧。",
+   "st": "影片围绕满汉全席的厨艺竞赛展开，把饮食文化、职业尊严与商业娱乐结合。厨房的群体合作和个人技艺，共同构成对抗困局的办法。",
+   "section": "功夫：华语经典展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "screeningEnds": {
     "11/11-20:00-xm-gr26-1-hall-6": "21:46"
    },
+   "poster": "posters/golden-rooster-gr26-049.jpg",
+   "r": [
+    8.1,
+    6.7,
+    64,
+    null,
+    3.5
+   ],
+   "dirO": "Tsui Hark",
    "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-049.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
   },
   {
@@ -3492,22 +4228,42 @@ module.exports = {
    "min": 116,
    "reg": "eu",
    "dir": "埃里克·波普",
-   "genre": [],
-   "cast": [],
+   "genre": [
+    "剧情",
+    "爱情"
+   ],
+   "cast": [
+    "Leo Magnus de la Nuez",
+    "Kristi-Helene Giæver Engeberg",
+    "Arnhild Litleré"
+   ],
    "writers": [],
-   "honors": [],
-   "highlights": [],
+   "honors": [
+    "入选｜2026金鸡影展 · 此刻：国际新片展映"
+   ],
+   "highlights": [
+    "大海对一方意味着召唤，对另一方却可能意味着等待与孤独。",
+    "短暂团聚和长久分离之间的节奏，如何改变恋人对同一段爱情的理解？"
+   ],
    "syn": "阿斯勒与格尔德在挪威海边小城相爱，并迎来儿子。短暂幸福之后，身为水手的阿斯勒不断被大海吸引，格尔德则独自留在岸上，距离开始考验他们的爱情。",
-   "bio": "",
-   "st": "",
+   "bio": "埃里克·波普是挪威导演，作品包括《于特岛7月22日》《国王的选择》。本片改编自塔耶·维索斯的小说《Kjærasten》，将爱情的渴望与不断扩大的分离放在海边小城。",
+   "st": "故事从相爱与组建家庭展开，却不把家庭视为旅程的终点。水手的远行与岸上的等待，使爱、责任和自由之间的矛盾持续显现。",
    "section": "此刻：国际新片展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "poster": "posters/golden-rooster-gr26-050.jpg",
    "screeningEnds": {
     "11/11-20:20-xm-gr26-1-hall-3": "22:15",
     "11/22-15:00-xm-gr26-1-hall-3": "16:55"
    },
+   "r": [
+    null,
+    6.3,
+    null,
+    null,
+    3.3
+   ],
+   "dirO": "Erik Poppe",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-050.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -3520,9 +4276,11 @@ module.exports = {
    "y": 2026,
    "c": "墨西哥 / 德国 / 加拿大",
    "min": 70,
-   "reg": "eu",
+   "reg": "la",
    "dir": "尼古拉斯·佩雷达",
-   "genre": [],
+   "genre": [
+    "喜剧"
+   ],
    "cast": [
     "特雷西塔•桑切斯",
     "罗莎•埃斯特拉•华雷斯•巴尔加斯",
@@ -3532,18 +4290,29 @@ module.exports = {
    "honors": [
     "入围｜第76届柏林国际电影节 · 论坛单元"
    ],
-   "highlights": [],
+   "highlights": [
+    "狗叫、故障和来客不断打断采访，所谓“不重要”的声音逐渐成为主角。",
+    "艺术家的自我形象与采访者的提问之间，藏着怎样的性别预设和地位差异？"
+   ],
    "syn": "作曲家罗莎到朋友家接受电视采访，希望呈现最好的自己。笨拙的问题、设备故障、狗叫与意外来客不断打断拍摄，一次专业访谈逐渐变成艺术圈虚荣与性别成见的荒诞现场。",
-   "bio": "",
-   "st": "",
+   "bio": "尼古拉斯·佩雷达是墨西哥导演，创作横跨剧情与纪录形式，作品包括《动荡》《动物群》。他常以重复、日常和表演的错位观察社会关系，本片则把一次电视采访变成荒诞现场。",
+   "st": "影片以作曲家接受采访这一小事件组织叙事。设备与礼仪失灵后，访谈的权力关系也随之暴露，让观众重新辨认被正式节目排除的“噪音”。",
    "section": "此刻：国际新片展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "poster": "posters/golden-rooster-gr26-051.jpg",
    "screeningEnds": {
     "11/12-19:30-xm-gr26-1-hall-3": "20:40",
     "11/23-21:20-xm-gr26-1-hall-3": "22:30"
    },
+   "r": [
+    null,
+    6.9,
+    100,
+    null,
+    3.6
+   ],
+   "dirO": "Nicolás Pereda",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-051.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -3558,7 +4327,10 @@ module.exports = {
    "min": 78,
    "reg": "eu",
    "dir": "昆汀·杜皮约",
-   "genre": [],
+   "genre": [
+    "喜剧",
+    "科幻"
+   ],
    "cast": [
     "伍迪.哈里森 克里斯汀-斯图尔特 夏洛特•勒•邦"
    ],
@@ -3566,18 +4338,29 @@ module.exports = {
    "honors": [
     "入围｜第79届戛纳国际电影节 · 午夜展映单元"
    ],
-   "highlights": [],
+   "highlights": [
+    "食物不断增加，父女关系却未必因此更亲近：注意“补偿”怎样变成新的障碍。",
+    "酒店服务、旧恐怖片与不断闯入的人物，共同打乱一场精心设计的修复之旅。"
+   ],
    "syn": "富有的美国商人带女儿来到巴黎豪华酒店，希望修补父女关系。过量的美食、一部老恐怖片，以及不断介入的酒店员工，却令这场精心安排的旅行越发失控。",
-   "bio": "",
-   "st": "",
+   "bio": "昆汀·杜皮约是法国导演、音乐人，电影作品包括《橡皮轮胎杀手》《鹿皮》《扬妮克》。他擅长从荒诞设定出发，让日常秩序逐步失效，本片继续把失控的逻辑引入家庭与消费。",
+   "st": "故事集中在巴黎豪华酒店，将富有商人的控制欲与父女相处并置。过量消费和类型电影元素相互碰撞，构成一场关于亲密关系的荒诞实验。",
    "section": "此刻：国际新片展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "poster": "posters/golden-rooster-gr26-052.jpg",
    "screeningEnds": {
     "11/13-19:30-xm-gr26-1-hall-6": "20:46",
     "11/18-21:25-xm-gr26-1-hall-6": "22:41"
    },
+   "r": [
+    null,
+    6.1,
+    71,
+    60,
+    2.9
+   ],
+   "dirO": "Quentin Dupieux",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-052.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -3592,7 +4375,10 @@ module.exports = {
    "min": 97,
    "reg": "eu",
    "dir": "亚诺什·容博尧伊",
-   "genre": [],
+   "genre": [
+    "纪录片",
+    "音乐"
+   ],
    "cast": [
     "弗雷油.默丘里",
     "布赖恩.梅",
@@ -3600,14 +4386,19 @@ module.exports = {
     "罗杰.泰勒"
    ],
    "writers": [],
-   "honors": [],
-   "highlights": [],
+   "honors": [
+    "入选｜2026金鸡影展 · 回声：国际经典展映"
+   ],
+   "highlights": [
+    "在经典歌曲之外，留意乐队与当地观众之间的回应，以及镜头如何保留现场规模。",
+    "演出与旅途片段交错，使城市不只是背景，而成为这次相遇的一部分。"
+   ],
    "syn": "记录皇后乐队1986年在布达佩斯的演出与旅途。舞台上的经典歌曲与幕后片段交织，留下乐队、城市和现场观众共同度过的音乐时刻。",
-   "bio": "",
-   "st": "",
+   "bio": "亚诺什·容博尧伊是匈牙利导演、摄影师，执导了皇后乐队1986年布达佩斯演出的电影记录。他以演唱会与幕后旅途共同构成作品，让舞台表演与城市经验并行。",
+   "st": "本次为IMAX 4K版本，纪念原演出影像问世四十周年。影院的大银幕与声音空间，为重新感受1986年布达佩斯现场提供了不同于零散视频的观看方式。",
    "section": "回声：国际经典展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "poster": "posters/golden-rooster-gr26-053.jpg",
    "screeningEnds": {
     "11/13-20:00-xm-gr26-4-imax": "21:37",
@@ -3615,6 +4406,14 @@ module.exports = {
     "11/28-17:10-xm-gr26-4-imax": "18:47"
    },
    "version": "IMAX 4K",
+   "r": [
+    9.3,
+    8.6,
+    null,
+    null,
+    4.3
+   ],
+   "dirO": "János Zsombolyai",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-053.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -3627,23 +4426,32 @@ module.exports = {
    "y": 1990,
    "c": "美国",
    "min": 104,
-   "reg": "eu",
+   "reg": "us",
    "dir": "蒂姆·伯顿",
-   "genre": [],
+   "genre": [
+    "剧情",
+    "爱情",
+    "奇幻"
+   ],
    "cast": [
     "约翰尼•德普",
     "薇诺娜•瑞德",
     "黛安•韦斯特"
    ],
    "writers": [],
-   "honors": [],
-   "highlights": [],
+   "honors": [
+    "入选｜2026金鸡影展 · 回声：国际经典展映"
+   ],
+   "highlights": [
+    "整齐明亮的郊区与阴暗古堡形成视觉对照，谁才真正有能力接纳不同？",
+    "剪刀双手既创造美，也使亲近变得危险，人物的身体设定贯穿整部爱情悲剧。"
+   ],
    "syn": "一位发明家未能完成的人造青年，带着剪刀般的双手独居古堡。被带入郊区社区后，他以独特技艺赢得欢迎，也因爱情、误解与人们的恐惧而陷入困境。",
-   "bio": "",
-   "st": "",
+   "bio": "蒂姆·伯顿是美国导演，代表作包括《阴间大法师》《蝙蝠侠》《大鱼》。他常以带有哥特童话色彩的世界关注异类与孤独，本片由约翰尼·德普和薇诺娜·瑞德出演。",
+   "st": "影片将未完成的人造生命带入郊区社区，把童话、爱情与社会寓言结合。本次4K修复展映适合重新留意布景、服装、修剪造型与人物之间的视觉联系。",
    "section": "回声：国际经典展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "version": "4K修复",
    "poster": "posters/golden-rooster-gr26-054.jpg",
    "screeningEnds": {
@@ -3651,6 +4459,14 @@ module.exports = {
     "11/20-20:00-xm-gr26-1-hall-5": "21:45",
     "11/28-18:30-xm-gr26-1-hall-5": "20:15"
    },
+   "r": [
+    8.7,
+    7.8,
+    93,
+    74,
+    3.9
+   ],
+   "dirO": "Tim Burton",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-054.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -3663,9 +4479,13 @@ module.exports = {
    "y": 2007,
    "c": "美国",
    "min": 122,
-   "reg": "eu",
+   "reg": "us",
    "dir": "乔尔·科恩、伊桑·科恩",
-   "genre": [],
+   "genre": [
+    "犯罪",
+    "剧情",
+    "惊悚"
+   ],
    "cast": [
     "汤米•李•琼斯",
     "哈维尔•巴登",
@@ -3675,19 +4495,30 @@ module.exports = {
    "honors": [
     "获奖｜第80届奥斯卡金像奖 · 最佳影片"
    ],
-   "highlights": [],
+   "highlights": [
+    "脚步、门锁、风声与远处动静构成追踪线索，声音常比对白更早传来危险。",
+    "猎人、杀手与老警长代表三种不同的行动逻辑，观察影片如何在他们之间切换。"
+   ],
    "syn": "猎人在荒野中发现毒品交易后的惨案与一箱现金，取走钱财后遭到冷酷杀手追踪。一名老警长也卷入其中，在暴力不断扩散的土地上，面对自己愈发难懂的世界。",
-   "bio": "",
-   "st": "",
+   "bio": "乔尔·科恩与伊桑·科恩是美国电影创作搭档，代表作包括《血迷宫》《冰血暴》《谋杀绿脚趾》。他们以精密的类型叙事、黑色幽默和人物困境著称，本片改编自科马克·麦卡锡同名小说。",
+   "st": "故事置于美国边境地区，以一箱现金引出连锁暴力。影片将惊悚追逐与老警长的衰老感并置，使“失去理解世界的能力”成为案件之外的另一层主题。",
    "section": "回声：国际经典展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "version": "4K修复",
    "poster": "posters/golden-rooster-gr26-055.jpg",
    "screeningEnds": {
     "11/14-11:00-xm-gr26-1-hall-3": "13:02",
     "11/29-14:20-xm-gr26-1-hall-6": "16:22"
    },
+   "r": [
+    8.4,
+    8.2,
+    93,
+    92,
+    4.3
+   ],
+   "dirO": "Joel Coen / Ethan Coen",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-055.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -3702,7 +4533,10 @@ module.exports = {
    "min": 110,
    "reg": "eu",
    "dir": "安德烈·兹维亚金采夫",
-   "genre": [],
+   "genre": [
+    "剧情",
+    "家庭"
+   ],
    "cast": [
     "弗拉基米尔•加林",
     "伊万•杜布朗拉沃夫",
@@ -3712,19 +4546,30 @@ module.exports = {
    "honors": [
     "获奖｜第60届威尼斯国际电影节 · 最佳影片"
    ],
-   "highlights": [],
+   "highlights": [
+    "父亲的沉默与命令留下大量空白，两个儿子对他的期待和恐惧也并不相同。",
+    "公路、湖泊和岛屿的变化，让一次家庭旅行逐渐带上寓言的重量。"
+   ],
    "syn": "消失多年的父亲突然回家，带两个儿子展开一段驶向偏远岛屿的旅程。父亲的威严与沉默，使兄弟在渴望亲近与恐惧反抗之间摇摆，旅途最终改变了三个人的命运。",
-   "bio": "",
-   "st": "",
+   "bio": "安德烈·兹维亚金采夫是俄罗斯导演，《回归》是他的导演长片首作，后来执导《伊莲娜》《利维坦》《无爱可诉》。他的作品常从家庭裂缝进入权威、责任与社会关系。",
+   "st": "本片于2003年问世，并在威尼斯电影节获得金狮奖。父亲“回归”既是故事开端，也是一个持续被追问的关系：血缘能否自动带来信任与权威？",
    "section": "回声：国际经典展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "version": "4K修复",
    "poster": "posters/golden-rooster-gr26-056.jpg",
    "screeningEnds": {
     "11/14-13:20-xm-gr26-1-hall-6": "15:10",
     "11/25-20:00-xm-gr26-1-hall-6": "21:50"
    },
+   "r": [
+    8.5,
+    7.9,
+    95,
+    82,
+    4.2
+   ],
+   "dirO": "Andrey Zvyagintsev",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-056.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -3737,9 +4582,13 @@ module.exports = {
    "y": 2026,
    "c": "智利 / 美国 / 西班牙 / 墨西哥",
    "min": 108,
-   "reg": "eu",
+   "reg": "la",
    "dir": "玛努埃拉·马特利",
-   "genre": [],
+   "genre": [
+    "剧情",
+    "悬疑",
+    "惊悚"
+   ],
    "cast": [
     "玛雅•奥罗克",
     "莎斯基亚•罗森道尔",
@@ -3749,18 +4598,29 @@ module.exports = {
    "honors": [
     "入围｜第79届戛纳国际电影节 · 一种关注单元"
    ],
-   "highlights": [],
+   "highlights": [
+    "孩子注意到的细节，和大人愿意解释的事情之间始终存在落差。",
+    "滑雪度假场所的明亮外观与失踪事件形成反差，观察安逸如何掩盖不安。"
+   ],
    "syn": "1992年，九岁女孩住在祖父母经营的安第斯山滑雪旅馆，结识一位年轻德国运动员。对方突然失踪后，女孩开始察觉成人世界的沉默、秘密与彼此袒护。",
-   "bio": "",
-   "st": "",
+   "bio": "玛努埃拉·马特利是智利导演、演员，曾执导《1976》。她以私人空间进入历史中的沉默，本片通过九岁女孩的视角观察旅馆与家庭里的秘密。",
+   "st": "故事设置在1992年的智利安第斯山旅馆。儿童视角使过去与现实中的秘密逐渐显形，影片由此把家庭经验放进更广阔的社会氛围。",
    "section": "此刻：国际新片展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "poster": "posters/golden-rooster-gr26-057.jpg",
    "screeningEnds": {
     "11/14-13:50-xm-gr26-1-hall-3": "15:38",
     "11/21-17:00-xm-gr26-1-hall-3": "18:48"
    },
+   "r": [
+    null,
+    6.7,
+    88,
+    null,
+    3.5
+   ],
+   "dirO": "Manuela Martelli",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-057.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -3775,22 +4635,47 @@ module.exports = {
    "min": 112,
    "reg": "cn",
    "dir": "侯孝贤",
-   "genre": [],
-   "cast": [],
+   "genre": [
+    "犯罪",
+    "剧情"
+   ],
+   "cast": [
+    "Jack Kao",
+    "Lim Giong",
+    "Vicky Wei",
+    "Annie Shizuka Inoh",
+    "Hsu Kuei-ying",
+    "Lien Pi-tung"
+   ],
    "writers": [],
-   "honors": [],
-   "highlights": [],
+   "honors": [
+    "入选｜2026金鸡影展 · 功夫·功夫：华语经典展映"
+   ],
+   "highlights": [
+    "公路、火车与摩托车不断带人物向前，计划却屡屡原地打转。",
+    "林强的音乐与生活片段相连，留意节奏、距离和偶然相遇如何取代传统情节高潮。"
+   ],
    "syn": "高哥带着年轻同伴在台北与南部之间奔走，想靠生意和机会改变生活。计划屡屡受挫，江湖关系、家庭矛盾与私人感情交错，他们在不断移动中寻找无处安放的未来。",
-   "bio": "",
-   "st": "",
-   "section": "功夫·功夫：华语经典展映",
+   "bio": "侯孝贤是台湾电影的重要导演，代表作包括《悲情城市》《戏梦人生》《海上花》。本片由高捷、林强、伊能静等出演，将青年人的漂泊与社会变化写进台北和南部之间的移动。",
+   "st": "影片于1996年问世，描写试图靠生意与关系寻找出路的一群人。移动未必意味着抵达，江湖和家庭也未必提供稳定归属，是理解这部作品的重要入口。",
+   "section": "功夫：华语经典展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "screeningEnds": {
     "11/14-15:30-xm-gr26-1-hall-6": "17:22",
     "11/22-18:00-xm-gr26-1-hall-6": "19:52"
    },
+   "poster": "posters/golden-rooster-gr26-058.jpg",
+   "r": [
+    8.1,
+    7.2,
+    100,
+    null,
+    3.9
+   ],
+   "dirO": "Hou Hsiao-hsien",
    "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-058.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
   },
   {
@@ -3803,7 +4688,10 @@ module.exports = {
    "min": 104,
    "reg": "eu",
    "dir": "格热戈日·登博夫斯基",
-   "genre": [],
+   "genre": [
+    "剧情",
+    "犯罪"
+   ],
    "cast": [
     "莫妮卡•萨比娜•克维亚特科夫斯卡",
     "罗伯特•马尼亚",
@@ -3814,18 +4702,29 @@ module.exports = {
     "入围｜第83届威尼斯国际电影节 · 地平线单元",
     "获奖｜第42届华沙国际电影节 · 评委会大奖"
    ],
-   "highlights": [],
+   "highlights": [
+    "主人公不仅偷取财物，也试着进入一个人的社会关系与生活位置。",
+    "观察她面对陌生人时如何表演亲密，以及谎言何时开始反过来改变自己。"
+   ],
    "syn": "靠入室盗窃谋生的女子，在一次行动中发现屋主已经死亡。她冒充死者的伴侣，渐渐拼凑对方的生活和关系，也由此开始想象自己能否拥有另一种人生。",
-   "bio": "",
-   "st": "",
+   "bio": "格热戈日·登博夫斯基是波兰导演，本片由莫妮卡·萨比娜·克维亚特科夫斯卡等出演。他以一次冒充身份的行动，把犯罪的悬念和对另一种生活的想象连接起来。",
+   "st": "发现屋主死亡后，一次入室盗窃变成身份替代。故事把生存困境、阶级距离和归属的渴望放进同一个危险的机会里。",
    "section": "此刻：国际新片展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "poster": "posters/golden-rooster-gr26-059.jpg",
    "screeningEnds": {
     "11/14-16:05-xm-gr26-1-hall-3": "17:50",
     "11/29-16:50-xm-gr26-1-hall-6": "18:35"
    },
+   "r": [
+    null,
+    6.7,
+    null,
+    null,
+    3.3
+   ],
+   "dirO": "Grzegorz Dębowski",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-059.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -3840,22 +4739,44 @@ module.exports = {
    "min": 95,
    "reg": "eu",
    "dir": "克里斯蒂娜·格罗泽娃、佩塔尔·瓦尔恰诺夫",
-   "genre": [],
-   "cast": [],
+   "genre": [
+    "剧情"
+   ],
+   "cast": [
+    "Tanya Shahova",
+    "Ivan Savov",
+    "Margita Gosheva",
+    "Ivan Barnev",
+    "Sibila Petrova",
+    "Stephan Komandarev"
+   ],
    "writers": [],
-   "honors": [],
-   "highlights": [],
+   "honors": [
+    "入选｜2026金鸡影展 · 此刻：国际新片展映"
+   ],
+   "highlights": [
+    "小额贿赂积累成度假基金，日常妥协如何变成夫妻都不愿直面的事实？",
+    "追讨积蓄的旅程同时打开婚姻中的谎言，黑色幽默与难堪彼此相连。"
+   ],
    "syn": "一对保加利亚夫妇靠多年收受的小额贿赂，攒钱去圣彼得堡看白夜。战争与旅行骗局让梦想破灭，在追讨积蓄的过程中，他们不得不面对婚姻中长久掩藏的谎言。",
-   "bio": "",
-   "st": "",
+   "bio": "克里斯蒂娜·格罗泽娃与佩塔尔·瓦尔恰诺夫是保加利亚导演搭档，曾合作《教训》《荣耀》《父亲》。他们常以普通人的窘境观察制度与道德，本片把婚姻旧账放进一次破灭的旅行梦想。",
+   "st": "白夜旅游的梦想与战争、骗局及经济压力相撞，使看似遥远的政治进入私人生活。影片从一对夫妇的积蓄出发，观察金钱、体面与信任之间的关系。",
    "section": "此刻：国际新片展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "poster": "posters/golden-rooster-gr26-060.jpg",
    "screeningEnds": {
     "11/14-18:00-xm-gr26-1-hall-2": "19:35",
     "11/17-20:00-xm-gr26-1-hall-3": "21:35"
    },
+   "r": [
+    null,
+    7,
+    100,
+    null,
+    3.5
+   ],
+   "dirO": "Kristina Grozeva / Petar Valchanov",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-060.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -3870,21 +4791,46 @@ module.exports = {
    "min": 110,
    "reg": "cn",
    "dir": "万仁",
-   "genre": [],
-   "cast": [],
+   "genre": [
+    "剧情",
+    "家庭"
+   ],
+   "cast": [
+    "Ko I-chen",
+    "Tarcy Su",
+    "Chen Chiu-Yen",
+    "Su Ming-ming",
+    "Tou Tsung-hua",
+    "Chang Shih"
+   ],
    "writers": [],
-   "honors": [],
-   "highlights": [],
+   "honors": [
+    "入选｜2026金鸡影展 · 功夫·功夫：华语经典展映"
+   ],
+   "highlights": [
+    "母亲与女儿的生命轨迹互相映照，留意同样的家庭规则如何被不同年代的人承受或改变。",
+    "亲情中的照顾、要求与牺牲纠缠，使理解母亲并不等于重复她的人生。"
+   ],
    "syn": "一名女子回望自己和母亲的家庭生活，从父权与婚姻中的委屈，到教育和社会变化带来的可能。两代女性的经历相互映照，呈现爱、牺牲与自我选择的艰难。",
-   "bio": "",
-   "st": "",
-   "section": "功夫·功夫：华语经典展映",
+   "bio": "万仁是台湾新电影的重要导演之一，作品包括《油麻菜籽》《超级市民》《超级大国民》。他以人物的日常经验回应社会结构，本片把两代女性放在家庭与时代变化之间。",
+   "st": "影片改编自廖辉英的同名作品，于1983年问世。它把女性命运与教育、婚姻、家庭权力联系起来，也是进入台湾社会变迁的一条私人路径。",
+   "section": "功夫：华语经典展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "screeningEnds": {
     "11/14-18:10-xm-gr26-1-hall-6": "20:00"
    },
+   "poster": "posters/golden-rooster-gr26-061.jpg",
+   "r": [
+    7.8,
+    7.3,
+    null,
+    null,
+    3.5
+   ],
+   "dirO": "Wan Jen",
    "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-061.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
   },
   {
@@ -3897,22 +4843,47 @@ module.exports = {
    "min": 111,
    "reg": "cn",
    "dir": "袁和平",
-   "genre": [],
-   "cast": [],
+   "genre": [
+    "喜剧",
+    "动作"
+   ],
+   "cast": [
+    "Jackie Chan",
+    "Simon Yuen Siu-Tien",
+    "Hwang Jang-Lee",
+    "Dean Shek Tin",
+    "Hsu Hsia",
+    "Linda Lin Ying"
+   ],
    "writers": [],
-   "honors": [],
-   "highlights": [],
+   "honors": [
+    "入选｜2026金鸡影展 · 功夫·功夫：华语经典展映"
+   ],
+   "highlights": [
+    "看似胡闹的训练不断转化为真正可用的动作，笑料和技艺有着共同的身体基础。",
+    "醉拳的失衡与再平衡，如何让打斗同时具有节奏、性格与喜剧感？"
+   ],
    "syn": "少年黄飞鸿因顽皮惹祸，被送去跟随苏乞儿学武。看似古怪的训练让他逐渐领悟醉拳精髓，并在危机中学会承担责任。",
-   "bio": "",
-   "st": "",
-   "section": "功夫·功夫：华语经典展映",
+   "bio": "袁和平兼具导演与动作指导经验，《醉拳》是他与成龙合作的早期代表作。影片将训练、身体喜剧与武术招式紧密结合，成为功夫喜剧发展中的重要作品。",
+   "st": "影片于1978年问世，以少年黄飞鸿拜师成长为叙事骨架。它将传统功夫片的严肃英雄，转化为会犯错、会偷懒，也必须学习承担责任的年轻人。",
+   "section": "功夫：华语经典展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "screeningEnds": {
     "11/14-18:20-xm-gr26-1-hall-3": "20:11",
     "11/21-20:00-xm-gr26-3-hall-3": "21:51"
    },
+   "poster": "posters/golden-rooster-gr26-062.jpg",
+   "r": [
+    7.8,
+    7.4,
+    80,
+    68,
+    3.8
+   ],
+   "dirO": "Yuen Woo-ping",
    "prog": "golden-rooster-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-062.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
   },
   {
@@ -3923,23 +4894,31 @@ module.exports = {
    "y": 1982,
    "c": "美国 / 中国香港 / 英国",
    "min": 117,
-   "reg": "eu",
+   "reg": "us",
    "dir": "雷德利·斯科特",
-   "genre": [],
+   "genre": [
+    "科幻",
+    "惊悚"
+   ],
    "cast": [
     "哈里森•福特",
     "鲁格 豪尔",
     "肖恩•杨"
    ],
    "writers": [],
-   "honors": [],
-   "highlights": [],
+   "honors": [
+    "入选｜2026金鸡影展 · 回声：国际经典展映"
+   ],
+   "highlights": [
+    "霓虹、雨夜与拥挤城市构成侦探故事的空间，也不断模糊人与复制人的界线。",
+    "记忆能否证明身份、情感能否证明生命，是追捕之外持续回响的问题。"
+   ],
    "syn": "未来洛杉矶，警探戴克奉命追捕逃回地球的复制人。随着调查深入，人与人造生命之间的界线不断动摇，他也开始怀疑记忆、情感与自我身份的真实性。",
-   "bio": "",
-   "st": "",
+   "bio": "雷德利·斯科特是英国导演，作品包括《异形》《末路狂花》《角斗士》。他以强烈的视觉世界建构著称，《银翼杀手》则把黑色电影式追踪与未来都市想象结合。",
+   "st": "本次展映为2007年形成的“最终剪辑版”，与1982年最初公映版本有所不同。影片改编自菲利普·迪克小说，其关于人造生命与自我认同的讨论始终是科幻电影的重要议题。",
    "section": "回声：国际经典展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "version": "4K修复",
    "poster": "posters/golden-rooster-gr26-063.jpg",
    "screeningEnds": {
@@ -3950,6 +4929,14 @@ module.exports = {
    "screeningNotes": {
     "11/29-20:00-xm-gr26-1-hall-5": "告别场"
    },
+   "r": [
+    8.6,
+    8.1,
+    89,
+    84,
+    4.1
+   ],
+   "dirO": "Ridley Scott",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-063.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -3964,25 +4951,40 @@ module.exports = {
    "min": 157,
    "reg": "cn",
    "dir": "陈哲艺",
-   "genre": [],
+   "genre": [
+    "剧情"
+   ],
    "cast": [
     "杨雁雁",
     "许家乐",
     "林咏谊"
    ],
    "writers": [],
-   "honors": [],
-   "highlights": [],
+   "honors": [
+    "入选｜2026金鸡影展 · 拾光：华语新片展映"
+   ],
+   "highlights": [
+    "父亲和儿子的感情选择互相映照，年纪不同并不意味着更懂得如何成为家人。",
+    "经济处境进入爱情与家庭安排，观察温情怎样承受现实的重量。"
+   ],
    "syn": "当代新加坡，年轻的俊阳与父亲各自面对爱情和经济压力。女友人生中的意外转折，以及父亲生活里出现的新伴侣，迫使两代人重新学习责任，并尝试成为一家人。",
-   "bio": "",
-   "st": "",
+   "bio": "陈哲艺是新加坡导演，代表作包括《爸妈不在家》《热带雨》《燃冬》。他从家庭与社会环境的交互处观察人物，本片继续以新加坡日常生活描写两代人的亲密关系与现实压力。",
+   "st": "故事置于当代新加坡，让新伴侣、意外怀孕和家庭责任共同改变原有关系。影片关注的“陌生”不仅发生在初次相识的人之间，也可能存在于共同生活的亲人之中。",
    "section": "拾光：华语新片展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "poster": "posters/golden-rooster-gr26-064.jpg",
    "screeningEnds": {
     "11/14-20:00-xm-gr26-1-hall-7": "22:37"
    },
+   "r": [
+    5.8,
+    7.2,
+    79,
+    null,
+    3.3
+   ],
+   "dirO": "Anthony Chen",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-064.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -3995,21 +4997,29 @@ module.exports = {
    "y": 2022,
    "c": "美国",
    "min": 140,
-   "reg": "eu",
+   "reg": "us",
    "dir": "布莱特·摩根",
-   "genre": [],
+   "genre": [
+    "纪录片",
+    "音乐"
+   ],
    "cast": [
     "大卫•鲍伊"
    ],
    "writers": [],
-   "honors": [],
-   "highlights": [],
+   "honors": [
+    "入选｜2026金鸡影展 · 回声：国际经典展映"
+   ],
+   "highlights": [
+    "音乐、访谈与影像之间不是简单的年代排序，可留意声音怎样重新解释画面。",
+    "不断变化的舞台形象和艺术尝试，让身份成为持续创作的过程。"
+   ],
    "syn": "以大卫·鲍伊的音乐、演出、访谈和私人影像为线索，进入他的艺术世界。影片通过声音与影像的自由拼接，探索身份变化、创作冲动与不断自我更新的生命轨迹。",
-   "bio": "",
-   "st": "",
+   "bio": "布莱特·摩根是美国纪录片导演，作品包括《珍》《科特·柯本：烦恼的蒙太奇》。他以档案、声音和剪辑进入人物经验，本片围绕大卫·鲍伊的艺术与自我变化展开。",
+   "st": "影片以鲍伊的演出、访谈及私人影像为材料，组织成沉浸式的音乐电影。本次IMAX 4K展映强调声音与大银幕体验，适合把它当作一次进入艺术世界的旅程。",
    "section": "回声：国际经典展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "version": "IMAX 4K",
    "poster": "posters/golden-rooster-gr26-065.jpg",
    "screeningEnds": {
@@ -4017,6 +5027,14 @@ module.exports = {
     "11/20-20:00-xm-gr26-4-imax": "22:15",
     "11/28-14:30-xm-gr26-4-imax": "16:45"
    },
+   "r": [
+    8.5,
+    7.6,
+    92,
+    83,
+    4.1
+   ],
+   "dirO": "Brett Morgen",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-065.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -4029,29 +5047,48 @@ module.exports = {
    "y": 1926,
    "c": "美国",
    "min": 79,
-   "reg": "eu",
+   "reg": "us",
    "dir": "巴斯特·基顿、克莱德·布鲁克曼",
-   "genre": [],
+   "genre": [
+    "剧情",
+    "喜剧",
+    "动作",
+    "战争",
+    "冒险"
+   ],
    "cast": [
     "巴斯特•基顿",
     "玛丽昂•马克",
     "格伦•卡文德"
    ],
    "writers": [],
-   "honors": [],
-   "highlights": [],
+   "honors": [
+    "入选｜2026金鸡影展 · 回声：国际经典展映"
+   ],
+   "highlights": [
+    "机车、铁轨和桥梁不断改变局面，道具的使用与回收形成严密的笑料链条。",
+    "基顿的面部冷静与身体承担的危险形成反差，动作常在同一画面里完成因果。"
+   ],
    "syn": "美国南北战争期间，一名火车司机心爱的机车与恋人一同被敌军带走。他孤身追赶，在铁路、桥梁与炮火之间，展开一场充满险境与奇思的营救。",
-   "bio": "",
-   "st": "",
+   "bio": "巴斯特·基顿是默片时代的喜剧演员、导演与特技表演者，以冷静表情和精密身体动作著称。他与克莱德·布鲁克曼联合执导《将军号》，将铁路追逐发展成连续的视觉喜剧。",
+   "st": "影片取材于美国南北战争时期的列车劫持事件，于1926年问世。本次以4K修复版本纪念百年，适合重新观察实景调度、特技与默片叙事的空间精度。",
    "section": "回声：国际经典展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "version": "4K修复",
    "poster": "posters/golden-rooster-gr26-066.jpg",
    "screeningEnds": {
     "11/14-20:25-xm-gr26-1-hall-6": "21:45",
     "11/27-20:00-xm-gr26-1-hall-6": "21:20"
    },
+   "r": [
+    9,
+    8.1,
+    92,
+    null,
+    4.2
+   ],
+   "dirO": "Clyde Bruckman / Buster Keaton",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-066.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -4064,9 +5101,14 @@ module.exports = {
    "y": 2026,
    "c": "印度尼西亚 / 韩国",
    "min": 106,
-   "reg": "eu",
+   "reg": "as",
    "dir": "乔可·安华",
-   "genre": [],
+   "genre": [
+    "喜剧",
+    "动作",
+    "惊悚",
+    "恐怖"
+   ],
    "cast": [
     "阿比马纳-阿亚萨亚",
     "布龙特 帕拉雷",
@@ -4076,18 +5118,29 @@ module.exports = {
    "honors": [
     "入围｜第76届柏林国际电影节 · 论坛单元"
    ],
-   "highlights": [],
+   "highlights": [
+    "负面能量成为危险的触发条件，原有的仇恨与帮派规则是否还能继续运作？",
+    "恐怖场面与囚犯之间的合作并行，求生也成为观察制度和权力的方式。"
+   ],
    "syn": "拥挤监狱中，囚犯不仅要应付帮派与狱警的压迫，还遭遇无法解释的神秘死亡。面对盯上负面能量的超自然力量，他们必须寻找暂时抛开敌意、共同求生的方法。",
-   "bio": "",
-   "st": "",
+   "bio": "乔可·安华是印度尼西亚导演、编剧，代表作包括《撒旦的奴隶》《地狱折磨》。他将类型惊悚与社会环境连接，本片则让超自然威胁进入拥挤的监狱秩序。",
+   "st": "影片把监狱中的压迫、帮派竞争与超自然死亡并置。为了面对共同威胁，人物必须暂时改变相处方式，让恐怖类型承担起关于群体关系的讨论。",
    "section": "此刻：国际新片展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "screeningEnds": {
     "11/14-20:35-xm-gr26-1-hall-3": "22:21",
     "11/22-20:20-xm-gr26-1-hall-6": "22:06"
    },
    "poster": "posters/golden-rooster-gr26-067.jpg",
+   "r": [
+    6.7,
+    6.5,
+    93,
+    null,
+    3.5
+   ],
+   "dirO": "Joko Anwar",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-067.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -4100,24 +5153,46 @@ module.exports = {
    "y": 2025,
    "c": "吉尔吉斯斯坦",
    "min": 79,
-   "reg": "eu",
+   "reg": "as",
    "dir": "阿曼别克·阿日马特",
-   "genre": [],
-   "cast": [],
+   "genre": [
+    "喜剧"
+   ],
+   "cast": [
+    "Bolot Tileberdiev",
+    "Kural Chokoev",
+    "Erbol Ruslanov",
+    "Eldiyar Jarashev",
+    "Adyl Bolorbek uulu",
+    "Nazira Jetigenova"
+   ],
    "writers": [],
-   "honors": [],
-   "highlights": [],
+   "honors": [
+    "入选｜2026金鸡影展 · 此刻：国际新片展映"
+   ],
+   "highlights": [
+    "一份不断被改写的构思，如何暴露每个参与者不同的目标？",
+    "看老导演的坚持何时接近尊严，何时又成为无法放下自我的表演。"
+   ],
    "syn": "一位七十岁的老导演坚持构思自己的艺术电影，却被年轻制片人与投资者不断要求改写。随着金钱、亲情和表演欲介入，幕后创作变成一场荒诞而热闹的混乱。",
-   "bio": "",
-   "st": "",
+   "bio": "阿曼别克·阿日马特执导本片，故事聚焦一位坚持艺术电影理想的老导演。片中年轻制片人与投资者不断介入创作，使电影幕后同时成为代际关系与利益交换的舞台。",
+   "st": "影片以电影制作本身为题材，让艺术理想、资金、亲情和表演欲互相缠绕。幕后争执既制造喜剧，也提出“最终是谁的电影”这一问题。",
    "section": "此刻：国际新片展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "poster": "posters/golden-rooster-gr26-068.jpg",
    "screeningEnds": {
     "11/14-22:10-xm-gr26-1-hall-6": "23:29",
     "11/22-13:45-xm-gr26-1-hall-6": "15:04"
    },
+   "r": [
+    null,
+    5.8,
+    null,
+    null,
+    null
+   ],
+   "dirO": "Amanbek Azhymat",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-068.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -4130,9 +5205,11 @@ module.exports = {
    "y": 2026,
    "c": "中非共和国 / 法国 / 刚果民主共和国 / 意大利",
    "min": 94,
-   "reg": "eu",
+   "reg": "me",
    "dir": "拉菲基·法里亚拉",
-   "genre": [],
+   "genre": [
+    "剧情"
+   ],
    "cast": [
     "布拉德利-菲奥莫纳",
     "克里斯蒂•乔曼达•卢巴",
@@ -4143,18 +5220,29 @@ module.exports = {
     "入围｜第79届戛纳国际电影节 · 一种关注单元",
     "获奖｜第10届平遥国际电影展 · 罗伯托·罗西里尼荣誉最佳影片"
    ],
-   "highlights": [],
+   "highlights": [
+    "少年照顾弟妹的责任，与登台唱歌的愿望不是两条互不相干的线。",
+    "音乐如何为动荡生活中的人物提供表达和相互支持的空间，值得留意。"
+   ],
    "syn": "在中非共和国生活的刚果难民少年罗伯特梦想成为音乐人。父母入狱后，他独自照顾四个弟妹，在零工、考试与动荡街头之间奔走，却不愿放弃登台演唱的希望。",
-   "bio": "",
-   "st": "",
+   "bio": "拉菲基·法里亚拉出生于刚果，在中非共和国成长，也是一名音乐人。他的纪录片《我们，学生！》曾入选柏林电影节，《刚果男孩》将创作转向剧情长片。",
+   "st": "影片在中非共和国的社会环境中展开，主人公的难民身份与家庭责任共同塑造选择。导演自己的迁徙与音乐经历，为接近这一人物提供了个人经验的背景。",
    "section": "此刻：国际新片展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "poster": "posters/golden-rooster-gr26-069.jpg",
    "screeningEnds": {
     "11/15-11:00-xm-gr26-1-hall-3": "12:34",
     "11/21-15:00-xm-gr26-1-hall-3": "16:34"
    },
+   "r": [
+    7,
+    6.9,
+    null,
+    null,
+    3.6
+   ],
+   "dirO": "Rafiki Fariala",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-069.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -4169,7 +5257,10 @@ module.exports = {
    "min": 130,
    "reg": "eu",
    "dir": "卢基诺·维斯康蒂",
-   "genre": [],
+   "genre": [
+    "剧情",
+    "爱情"
+   ],
    "cast": [
     "吉安卡罗•吉安尼尼",
     "劳拉•安托内利",
@@ -4179,13 +5270,16 @@ module.exports = {
    "honors": [
     "获奖｜第24届圣塞巴斯蒂安国际电影节 · 最佳影片"
    ],
-   "highlights": [],
+   "highlights": [
+    "贵族礼仪与精致环境之下，丈夫如何以体面为占有欲寻找理由？",
+    "把注意力放在人物的沉默、目光与位置，婚姻中的不对等常先于激烈冲突显现。"
+   ],
    "syn": "一位贵族丈夫沉溺婚外情，却无法接受妻子与他人的关系。嫉妒、占有欲与阶级体面相互纠缠，将婚姻和一个无辜生命推向悲剧。",
-   "bio": "",
-   "st": "",
+   "bio": "卢基诺·维斯康蒂是意大利导演，代表作包括《豹》《魂断威尼斯》《洛可兄弟》。《无辜》是他的最后一部长片，延续了对贵族阶级、欲望与衰败的观察。",
+   "st": "本片改编自加布里埃莱·邓南遮的小说，于1976年问世。它将阶级特权与性别权力放在同一场婚姻悲剧中，追问谁有资格定义“无辜”。",
    "section": "回声：国际经典展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "poster": "posters/golden-rooster-gr26-070.jpg",
    "screeningEnds": {
     "11/15-12:00-xm-gr26-1-hall-6": "14:09",
@@ -4193,6 +5287,14 @@ module.exports = {
     "11/26-19:40-xm-gr26-1-hall-6": "21:49"
    },
    "version": "4K修复",
+   "r": [
+    7.7,
+    7.4,
+    80,
+    null,
+    3.8
+   ],
+   "dirO": "Luchino Visconti",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-070.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -4207,7 +5309,9 @@ module.exports = {
    "min": 154,
    "reg": "eu",
    "dir": "弗洛林·谢尔班",
-   "genre": [],
+   "genre": [
+    "剧情"
+   ],
    "cast": [
     "阿德里安•万契克",
     "特奥多尔•布特内斯库",
@@ -4217,18 +5321,29 @@ module.exports = {
    "honors": [
     "获奖｜第79届洛迦诺国际电影节 · 主竞赛单元金豹奖"
    ],
-   "highlights": [],
+   "highlights": [
+    "父亲作为医院负责人时的自信，与他对儿子夜间生活的无知形成反差。",
+    "案件并非唯一悬念，更值得追问的是一个人怎样承认自己并不了解最亲近的人。"
+   ],
    "syn": "小城医院的负责人在妻子去世后独自抚养儿子，自认熟悉孩子的一切。警方却怀疑儿子与谋杀案有关，迫使这位父亲面对家庭中的盲点，以及年轻人隐秘的暴力世界。",
-   "bio": "",
-   "st": "",
+   "bio": "弗洛林·谢尔班是罗马尼亚导演，曾执导《想吹口哨我就吹》。他也参与电影教学，本片的最初想法来自一次围绕代际冲突的表演课堂练习。",
+   "st": "导演从父亲压抑对儿子轻蔑的课堂场景出发，逐渐发展为完整故事。家庭权威、青年暴力与代际价值冲突相互作用，动摇父亲原本笃定的世界。",
    "section": "此刻：国际新片展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "screeningEnds": {
     "11/15-13:10-xm-gr26-1-hall-3": "15:44",
     "11/22-19:20-xm-gr26-1-hall-3": "21:54"
    },
    "poster": "posters/golden-rooster-gr26-071.jpg",
+   "r": [
+    null,
+    7.3,
+    null,
+    null,
+    3.6
+   ],
+   "dirO": "Florin Şerban",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-071.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -4241,9 +5356,14 @@ module.exports = {
    "y": 1939,
    "c": "美国",
    "min": 238,
-   "reg": "eu",
+   "reg": "us",
    "dir": "维克多·弗莱明",
-   "genre": [],
+   "genre": [
+    "剧情",
+    "历史",
+    "爱情",
+    "战争"
+   ],
    "cast": [
     "克拉克.盖博 费雯•丽",
     "奥利维娅.德哈维兰"
@@ -4252,19 +5372,30 @@ module.exports = {
    "honors": [
     "获奖｜第12届奥斯卡金像奖 · 最佳影片"
    ],
-   "highlights": [],
+   "highlights": [
+    "斯嘉丽的求生能力与情感盲点相互缠绕，人物的魅力也来自这些冲突。",
+    "宏大场景、服装与色彩展现制片厂时代的规模，同时可留意影片如何组织对旧南方的记忆。"
+   ],
    "syn": "美国南北战争前后，斯嘉丽在战争、贫困和失落的爱情中挣扎求生。她与白瑞德的关系不断经历欲望、误解与错失，也见证旧南方社会的崩塌。",
-   "bio": "",
-   "st": "",
+   "bio": "维克多·弗莱明是美国导演，同年完成的《绿野仙踪》与《乱世佳人》都成为好莱坞经典。费雯·丽与克拉克·盖博在本片中塑造了斯嘉丽和白瑞德两个具有鲜明矛盾的人物。",
+   "st": "影片改编自玛格丽特·米切尔小说，于1939年问世。本次4K修复展映既可感受其视觉制作，也值得带着当代视角辨认故事对奴隶制度与种族关系的浪漫化处理。",
    "section": "回声：国际经典展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "poster": "posters/golden-rooster-gr26-072.jpg",
    "screeningEnds": {
     "11/15-14:15-xm-gr26-1-hall-5": "18:08",
     "11/22-15:20-xm-gr26-1-hall-5": "19:13"
    },
    "version": "4K修复",
+   "r": [
+    9.3,
+    8.2,
+    90,
+    97,
+    3.9
+   ],
+   "dirO": "Victor Fleming",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-072.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -4277,7 +5408,7 @@ module.exports = {
    "y": 1941,
    "c": "中国",
    "min": 65,
-   "reg": "eu",
+   "reg": "cn",
    "dir": "万籁鸣、万古蟾",
    "genre": [
     "动画"
@@ -4288,14 +5419,19 @@ module.exports = {
     "姜明"
    ],
    "writers": [],
-   "honors": [],
-   "highlights": [],
+   "honors": [
+    "入选｜2026金鸡影展 · 流光：动画展映单元"
+   ],
+   "highlights": [
+    "变化术、扇子与火焰山，让道具和身体变形成为推动故事的力量。",
+    "可以与后来的《哪吒闹海》并看，观察不同年代中国动画的动作节奏与民族造型探索。"
+   ],
    "syn": "唐僧师徒被火焰山阻住去路，孙悟空向铁扇公主借芭蕉扇，却因旧怨遭到拒绝。悟空变化周旋，最终在伙伴协助下与牛魔王斗法，为西行打开道路。",
-   "bio": "",
-   "st": "",
+   "bio": "万籁鸣、万古蟾是中国动画先驱万氏兄弟的重要成员。他们在早期条件下探索长篇动画制作，《铁扇公主》将《西游记》的故事转化为持续展开的动作与造型想象。",
+   "st": "1941年问世的本片是中国早期长篇动画的里程碑。熟悉的西游故事与当时的动画技术相遇，本次4K修复提供观察早期线条、运动和声音组织的机会。",
    "section": "流光：动画展映单元",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "version": "4K修复",
    "poster": "posters/golden-rooster-gr26-073.jpg",
    "screeningEnds": {
@@ -4305,6 +5441,14 @@ module.exports = {
    "screeningNotes": {
     "11/15-14:30-xm-gr26-6-hall-1": "恋与联动场"
    },
+   "r": [
+    8.6,
+    6.3,
+    null,
+    null,
+    3.3
+   ],
+   "dirO": "Wan Laiming / Guchan Wan",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-073.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -4319,7 +5463,9 @@ module.exports = {
    "min": 107,
    "reg": "eu",
    "dir": "迈克·李",
-   "genre": [],
+   "genre": [
+    "剧情"
+   ],
    "cast": [
     "玛丽昂 贝利",
     "保罗 杰森",
@@ -4329,18 +5475,29 @@ module.exports = {
    "honors": [
     "获奖｜第74届圣塞巴斯蒂安国际电影节 · 主竞赛单元最佳影片"
    ],
-   "highlights": [],
+   "highlights": [
+    "照顾他人的职业与人物自己的情感需要发生碰撞，关怀并不意味着没有极限。",
+    "小小家务、短暂交谈和探访父母的时刻，如何累积成关系中的压力与支持？"
+   ],
    "syn": "分手后的社工艾米搬回好友罗茜家中，两人一同承受繁重工作带来的情绪压力。艾米年迈父母的健康与生活也出现变化，友情和日常关怀成为面对失落与衰老的重要支撑。",
-   "bio": "",
-   "st": "",
+   "bio": "迈克·李是英国导演，代表作包括《秘密与谎言》《维拉·德雷克》《又一年》。他以演员合作与细密的日常人物刻画著称，本片把目光放在社工、友情和年迈父母的生活。",
+   "st": "影片从分手后搬回朋友家这一日常变化展开，让心理负担、衰老和共同生活逐渐浮现。它关注能够持续的关怀，也观察关怀者自身需要谁来支撑。",
    "section": "此刻：国际新片展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "poster": "posters/golden-rooster-gr26-074.jpg",
    "screeningEnds": {
     "11/15-18:00-xm-gr26-1-hall-6": "19:48",
     "11/28-20:45-xm-gr26-1-hall-6": "22:33"
    },
+   "r": [
+    null,
+    7.6,
+    null,
+    85,
+    3.9
+   ],
+   "dirO": "Mike Leigh",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-074.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -4353,9 +5510,11 @@ module.exports = {
    "y": 2026,
    "c": "阿尔及利亚 / 法国 / 卡塔尔",
    "min": 98,
-   "reg": "eu",
+   "reg": "me",
    "dir": "阿卜达拉·阿尔-哈提卜",
-   "genre": [],
+   "genre": [
+    "剧情"
+   ],
    "cast": [
     "萨贾•基拉尼",
     "艾哈迈德•孔塔尔",
@@ -4365,18 +5524,29 @@ module.exports = {
    "honors": [
     "获奖｜第76届柏林国际电影节 · 视角单元最佳影片"
    ],
-   "highlights": [],
+   "highlights": [
+    "食物、出行与相见等普通选择，在围困之下如何获得截然不同的重量？",
+    "朋友、恋人和家庭各自应对生存压力，观察幽默与欲望是否仍能保留空间。"
+   ],
    "syn": "城市遭到围困后，普通居民在饥饿、炮火与孤立中设法活下去。朋友、恋人和家庭的故事彼此交织，原本微小的快乐与日常选择，都变成关乎生存的难题。",
-   "bio": "",
-   "st": "",
+   "bio": "阿卜达拉·阿尔-哈提卜是巴勒斯坦叙利亚导演，曾拍摄纪录片《小巴勒斯坦：围城日记》。他的创作与被围困生活的经验密切相连，本片以多个人物故事进入围城中的日常。",
+   "st": "影片没有只把围城表现为宏大事件，而是从普通人的生活连接政治与生存。多条人物线索让集体处境显现，也使每一个具体生命保有差异。",
    "section": "此刻：国际新片展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "screeningEnds": {
     "11/15-18:20-xm-gr26-1-hall-3": "19:55",
     "11/25-20:30-xm-gr26-1-hall-3": "22:05"
    },
    "poster": "posters/golden-rooster-gr26-075.jpg",
+   "r": [
+    null,
+    6.2,
+    null,
+    null,
+    3.7
+   ],
+   "dirO": "Abdallah Al-Khatib",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-075.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -4391,26 +5561,41 @@ module.exports = {
    "min": 115,
    "reg": "eu",
    "dir": "马克·菲图西",
-   "genre": [],
+   "genre": [
+    "喜剧"
+   ],
    "cast": [
     "伊莎贝尔·于佩尔",
     "桑德琳娜·基贝兰",
     "黛安·克鲁格"
    ],
    "writers": [],
-   "honors": [],
-   "highlights": [],
+   "honors": [
+    "入选｜2026金鸡影展 · 此刻：国际新片展映"
+   ],
+   "highlights": [
+    "临时演员相信“下一次”机会的执念，与明星已拥有的行业位置形成对照。",
+    "靠近偶像究竟带来真正的关系，还是让权力差距变得更加清楚？"
+   ],
    "syn": "多年担任临时演员的科琳始终相信自己终有一天能成为主角。她结识著名女星并努力靠近对方，希望借此迎来机会，却也逐渐看清电影圈光鲜表象背后的壁垒。",
-   "bio": "",
-   "st": "",
+   "bio": "马克·菲图西是法国导演，曾执导《Copacabana》《Folies Bergère》等作品。本片由伊莎贝尔·于佩尔、桑德琳娜·基贝兰和燕安·克鲁格出演，聚焦电影行业中的机会与边界。",
+   "st": "影片从一名长期担任临时演员的女性出发，呈现银幕梦想背后的劳动与等级。对主角位置的渴望，也使友谊、利用和自我想象难以清楚分开。",
    "section": "此刻：国际新片展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "poster": "posters/golden-rooster-gr26-076.jpg",
    "screeningEnds": {
     "11/15-19:30-xm-gr26-1-hall-7": "21:26",
     "11/22-15:35-xm-gr26-1-hall-6": "17:31"
    },
+   "r": [
+    null,
+    6.6,
+    null,
+    null,
+    3.3
+   ],
+   "dirO": "Marc Fitoussi",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-076.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -4423,9 +5608,14 @@ module.exports = {
    "y": 2010,
    "c": "美国 / 英国",
    "min": 148,
-   "reg": "eu",
+   "reg": "us",
    "dir": "克里斯托弗·诺兰",
-   "genre": [],
+   "genre": [
+    "剧情",
+    "科幻",
+    "悬疑",
+    "冒险"
+   ],
    "cast": [
     "莱昂纳多•迪卡普里奥",
     "约瑟夫•高登-莱维特",
@@ -4435,13 +5625,16 @@ module.exports = {
    "honors": [
     "获奖｜第83届奥斯卡金像奖 · 最佳摄影"
    ],
-   "highlights": [],
+   "highlights": [
+    "不同梦层的时间流速与行动同时推进，声音、剪辑和“坠落”构成理解结构的关键。",
+    "潜入别人的意识与困在自己的记忆形成对照，柯布的任务也是一场无法回避的自我面对。"
+   ],
    "syn": "擅长进入他人梦境窃取机密的柯布，接到一项更危险的任务：把一个念头植入目标潜意识。他组织团队潜入多层梦境，却被自己的记忆与愧疚不断干扰。",
-   "bio": "",
-   "st": "",
+   "bio": "克里斯托弗·诺兰是英国导演、编剧，代表作包括《记忆碎片》《黑暗骑士》《星际穿越》。他常以时间结构与类型叙事相互推进，本片将盗窃、团队行动和私人愧疚组织在多层梦境中。",
+   "st": "影片把商业间谍故事改写为进入潜意识的行动电影。本次IMAX 4K展映适合留意空间翻转、身体失重与声画节奏，以及宏大奇观怎样服务人物的情感困局。",
    "section": "回声：国际经典展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "version": "IMAX 4K",
    "poster": "posters/golden-rooster-gr26-077.jpg",
    "screeningEnds": {
@@ -4449,6 +5642,14 @@ module.exports = {
     "11/21-19:40-xm-gr26-4-imax": "22:09",
     "11/28-19:30-xm-gr26-4-imax": "21:59"
    },
+   "r": [
+    9.4,
+    8.8,
+    86,
+    74,
+    4.2
+   ],
+   "dirO": "Christopher Nolan",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-077.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -4463,7 +5664,10 @@ module.exports = {
    "min": 109,
    "reg": "eu",
    "dir": "嘉博尔-赖斯",
-   "genre": [],
+   "genre": [
+    "剧情",
+    "喜剧"
+   ],
    "cast": [
     "亚当•通帕",
     "罗德里戈.克雷斯波",
@@ -4473,18 +5677,29 @@ module.exports = {
    "honors": [
     "入围｜第83届威尼斯国际电影节 · 聚焦单元"
    ],
-   "highlights": [],
+   "highlights": [
+    "最初只是一次维修，居民的反应却逐渐暴露彼此的利益和偏见。",
+    "观察主人公对问题源头的追查，怎样从墙面扩展到无法控制的人际关系。"
+   ],
    "syn": "即将与怀孕妻子度假的克里斯托夫，发现家中墙面长出黑霉。他向邻居追查漏水源头，却卷入整栋公寓的隐瞒、推诿和利益纠葛，一场维修逐渐演变为荒诞的社会风波。",
-   "bio": "",
-   "st": "",
+   "bio": "嘉博尔·赖斯是匈牙利导演，曾执导《莫名其妙》《坏诗人》《解释一切》。他的创作常从个体窘境观察社会情绪，本片把一处黑霉发展成整栋公寓的群体冲突。",
+   "st": "影片将公寓当作一个社会缩影，以漏水、霉菌和责任推诿组织荒诞情节。居住空间里的隐患，也映照人们不愿承认的共同问题。",
    "section": "此刻：国际新片展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "poster": "posters/golden-rooster-gr26-078.jpg",
    "screeningEnds": {
     "11/15-20:15-xm-gr26-1-hall-6": "22:04",
     "11/21-14:00-xm-gr26-1-hall-6": "15:49"
    },
+   "r": [
+    null,
+    7,
+    null,
+    null,
+    3.4
+   ],
+   "dirO": "Gábor Reisz",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-078.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -4499,7 +5714,9 @@ module.exports = {
    "min": 121,
    "reg": "eu",
    "dir": "沃尔克·施隆多夫",
-   "genre": [],
+   "genre": [
+    "剧情"
+   ],
    "cast": [
     "玛蒂娜•格德克",
     "拉斯•艾丁格",
@@ -4509,18 +5726,29 @@ module.exports = {
    "honors": [
     "入围｜第79届戛纳国际电影节 · 首映单元"
    ],
-   "highlights": [],
+   "highlights": [
+    "固定的房屋迎来不同主人，留意环境里哪些东西保留下来，哪些被彻底抹去。",
+    "不同时代的个人愿望与政治力量相遇，使“家”始终无法成为完全隔绝历史的避难所。"
+   ],
    "syn": "柏林附近的一幢湖畔住宅，先后迎来不同的家庭与住客。从纳粹时期、战争与流亡，到东西德分裂和统一，房屋静静保留生活痕迹，人们却不断失去、寻找和重新定义家。",
-   "bio": "",
-   "st": "",
+   "bio": "沃尔克·施隆多夫是德国导演，代表作包括《铁皮鼓》《青年托尔勒斯》。他长期从事文学改编，本片与作家延妮·埃彭贝克合作，将一幢房屋的历史转化为多个住客的生命片段。",
+   "st": "本片改编自延妮·埃彭贝克小说《Visitation》，跨越德国战前、战争、分裂与统一。园丁和湖畔住宅成为时间的见证，人在不断更替中寻找属于自己的位置。",
    "section": "此刻：国际新片展映",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "poster": "posters/golden-rooster-gr26-079.jpg",
    "screeningEnds": {
     "11/15-20:30-xm-gr26-1-hall-3": "22:31",
     "11/22-12:30-xm-gr26-1-hall-3": "14:31"
    },
+   "r": [
+    null,
+    6.8,
+    null,
+    null,
+    3.2
+   ],
+   "dirO": "Volker Schlöndorff",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-079.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -4548,18 +5776,29 @@ module.exports = {
     "入围｜第79届戛纳国际电影节 · 导演双周单元观众奖入围",
     "入围｜第50届安纳西国际动画电影节 · 水晶奖最佳长片入围"
    ],
-   "highlights": [],
+   "highlights": [
+    "从街头孩子的视角进入卡门，熟悉的悲剧因此获得新的行动可能。",
+    "线条、颜色和音乐如何共同表达自由与危险，是动画形式的重要看点。"
+   ],
    "syn": "塞维利亚街头，少年萨尔瓦被自由热烈的卡门吸引。当预言指向她的悲剧命运，他与贝伦带领的一群街头孩子决定冒险相助，试图把她从危险中救出。",
-   "bio": "",
-   "st": "",
+   "bio": "塞巴斯蒂安·劳德巴克是法国动画导演，曾执导《无手的少女》并联合执导《琳达想吃鸡肉》。他以富有运动感的线条与色彩组织人物情绪，本片把卡门的命运交到一群孩子手中。",
+   "st": "影片自由改编自比才歌剧及梅里美小说《卡门》。萨尔瓦、贝伦和街头伙伴试图介入既定命运，使经典中的自由女性与孩子们的集体冒险发生联系。",
    "section": "流光：动画展映单元",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "poster": "posters/golden-rooster-gr26-080.jpg",
    "screeningEnds": {
     "11/20-21:30-xm-gr26-1-hall-6": "23:01",
     "11/26-20:00-xm-gr26-1-hall-3": "21:31"
    },
+   "r": [
+    null,
+    7,
+    null,
+    null,
+    3.7
+   ],
+   "dirO": "Sébastien Laudenbach",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-080.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -4572,7 +5811,7 @@ module.exports = {
    "y": 1963,
    "c": "中国",
    "min": 73,
-   "reg": "eu",
+   "reg": "cn",
    "dir": "靳夕",
    "genre": [
     "动画"
@@ -4582,14 +5821,19 @@ module.exports = {
     "胡庆汉"
    ],
    "writers": [],
-   "honors": [],
-   "highlights": [],
+   "honors": [
+    "入选｜2026金鸡影展 · 流光：动画展映单元"
+   ],
+   "highlights": [
+    "木偶的姿态、服饰与舞蹈节奏，共同塑造王子与公主的情感。",
+    "留意人物在复杂布景中的运动，手工材料如何让神话世界具有可触的重量。"
+   ],
    "syn": "王子与孔雀公主相遇相爱，却受到奸臣挑拨与迫害。公主被迫离去后，王子历经艰险追寻她，在忠贞与勇气的考验中争取重聚。",
-   "bio": "",
-   "st": "",
+   "bio": "靳夕是中国动画导演，长期从事木偶动画创作。《孔雀公主》以傣族民间故事为基础，通过木偶造型、服饰、动作与场景，让一段爱情传说获得独特的影像质感。",
+   "st": "1963年问世的《孔雀公主》是中国木偶动画长片的重要作品。它将傣族传说与动画工艺结合，也提供了观察民族艺术如何转化为银幕造型的路径。",
    "section": "流光：动画展映单元",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "poster": "posters/golden-rooster-gr26-081.jpg",
    "screeningEnds": {
     "11/21-14:30-xm-gr26-6-hall-1": "15:44"
@@ -4597,6 +5841,14 @@ module.exports = {
    "screeningNotes": {
     "11/21-14:30-xm-gr26-6-hall-1": "恋与联动场"
    },
+   "r": [
+    8.3,
+    null,
+    null,
+    null,
+    null
+   ],
+   "dirO": "Xi Jin",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-081.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -4609,7 +5861,7 @@ module.exports = {
    "y": 1979,
    "c": "中国",
    "min": 61,
-   "reg": "eu",
+   "reg": "cn",
    "dir": "王树忱、严定宪、阿达",
    "genre": [
     "动画"
@@ -4624,13 +5876,16 @@ module.exports = {
     "获奖｜第3届大众电影百花奖 · 最佳美术片奖",
     "入选｜第33届戛纳国际电影节 · 特别展映"
    ],
-   "highlights": [],
+   "highlights": [
+    "从闹海到莲花重生，动作、线条和色彩始终与人物情绪共同变化。",
+    "哪吒的反抗同时面对外部强权与家庭责任，让英雄成长具有复杂的情感分量。"
+   ],
    "syn": "陈塘关少年哪吒不畏龙王与恶势力，为保护百姓挺身而出。冲突危及家人与全城，哪吒以生命担当，随后借莲花重生，再次迎战龙王。",
-   "bio": "",
-   "st": "",
+   "bio": "王树忱、严定宪、阿达联合执导本片，均是上海美术电影制片厂的重要动画创作者。他们将传统造型、戏曲身段和鲜明的色彩组织结合，塑造了具有强烈反抗精神的哪吒形象。",
+   "st": "影片于1979年问世，取材于《封神演义》中的哪吒故事。它是中国动画民族风格探索的重要作品，可与《铁扇公主》《孔雀公主》对照观看不同媒介和时代的创作选择。",
    "section": "流光：动画展映单元",
    "ticketPlatform": "淘票票",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "screeningEnds": {
     "11/22-14:30-xm-gr26-6-hall-1": "15:32"
    },
@@ -4638,6 +5893,14 @@ module.exports = {
     "11/22-14:30-xm-gr26-6-hall-1": "恋与联动场"
    },
    "poster": "posters/golden-rooster-gr26-082.jpg",
+   "r": [
+    9.2,
+    7.7,
+    null,
+    null,
+    3.9
+   ],
+   "dirO": "Wang Shuchen / Yan Dingxian / A Da",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-082.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -4661,12 +5924,28 @@ module.exports = {
     "纪录片"
    ],
    "writers": [],
-   "honors": [],
+   "honors": [
+    "入选｜2026金鸡影展 · 流光：动画展映单元"
+   ],
    "section": "流光：动画展映单元",
    "syn": "影片沿着中国动画百年历程，回访经典作品与幕后创作者。珍贵影像和动画人的讲述相互交织，回望不同时代的创作探索，以及中国动画民族风格的形成与传承。",
-   "ticketHint": "淘票票扫码购票 · 购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门",
    "ticketPlatform": "淘票票",
    "poster": "posters/golden-rooster-gr26-083.jpg",
+   "r": [
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "bio": "孙立军、冯亚兵联合执导本片。影片通过作品回访与动画人的讲述，将创作者、工艺和时代环境连接起来，让观众从幕后劳动重新认识熟悉的银幕形象。",
+   "highlights": [
+    "把经典片段和创作者的回忆并看，留意一种风格如何由许多人的具体选择共同形成。",
+    "从不同年代的技术、材料与美学探索，理解“中国动画”内部的多样性。"
+   ],
+   "st": "本片回望中国动画百年历程，也为本届动画单元提供历史参照。与《铁扇公主》《孔雀公主》《哪吒闹海》搭配观看，可以把单部作品放回更长久的创作传承之中。",
+   "dirO": "Lijun Sun",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-083.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -6104,7 +7383,8 @@ module.exports = {
      "short": "7号激光厅",
      "name": "7号激光厅"
     }
-   ]
+   ],
+   "city": "杭州"
   },
   {
    "id": "hz-xflh-qibao",
@@ -6115,7 +7395,8 @@ module.exports = {
    "fmt": [
     "IMAX"
    ],
-   "halls": []
+   "halls": [],
+   "city": "杭州"
   },
   {
    "id": "hz-xgjy-raffles",
@@ -6126,7 +7407,8 @@ module.exports = {
    "fmt": [
     "杜比巨幕"
    ],
-   "halls": []
+   "halls": [],
+   "city": "杭州"
   },
   {
    "id": "hz-mixc-imax",
@@ -6149,7 +7431,8 @@ module.exports = {
      "short": "杜比巨幕厅",
      "name": "杜比巨幕厅"
     }
-   ]
+   ],
+   "city": "杭州"
   },
   {
    "id": "hz-mixc-yaao",
@@ -6166,7 +7449,8 @@ module.exports = {
      "short": "杜比巨幕厅",
      "name": "杜比巨幕厅"
     }
-   ]
+   ],
+   "city": "杭州"
   },
   {
    "id": "hz-cgv-olympic",
@@ -6177,7 +7461,8 @@ module.exports = {
    "fmt": [
     "杜比影院"
    ],
-   "halls": []
+   "halls": [],
+   "city": "杭州"
   },
   {
    "id": "hz-zy-xiguang",
@@ -6188,7 +7473,8 @@ module.exports = {
    "fmt": [
     "激光IMAX"
    ],
-   "halls": []
+   "halls": [],
+   "city": "杭州"
   },
   {
    "id": "sparrow-tribe",
@@ -6204,7 +7490,8 @@ module.exports = {
      "short": "放映厅",
      "name": "放映厅"
     }
-   ]
+   ],
+   "city": "嘉兴"
   },
   {
    "id": "xm-gr26-1",
@@ -6244,7 +7531,8 @@ module.exports = {
      "short": "5号厅",
      "name": "5号厅"
     }
-   ]
+   ],
+   "city": "厦门"
   },
   {
    "id": "xm-gr26-2",
@@ -6269,7 +7557,8 @@ module.exports = {
      "short": "6号厅",
      "name": "6号厅"
     }
-   ]
+   ],
+   "city": "厦门"
   },
   {
    "id": "xm-gr26-3",
@@ -6284,7 +7573,8 @@ module.exports = {
      "short": "3号厅",
      "name": "3号厅"
     }
-   ]
+   ],
+   "city": "厦门"
   },
   {
    "id": "xm-gr26-4",
@@ -6299,7 +7589,8 @@ module.exports = {
      "short": "IMAX厅",
      "name": "IMAX厅"
     }
-   ]
+   ],
+   "city": "厦门"
   },
   {
    "id": "xm-gr26-5",
@@ -6319,7 +7610,8 @@ module.exports = {
      "short": " HEY LED厅",
      "name": " HEY LED厅"
     }
-   ]
+   ],
+   "city": "厦门"
   },
   {
    "id": "xm-gr26-6",
@@ -6334,7 +7626,8 @@ module.exports = {
      "short": "1号厅",
      "name": "1号厅"
     }
-   ]
+   ],
+   "city": "厦门"
   },
   {
    "id": "xm-gr26-7",
@@ -6349,7 +7642,8 @@ module.exports = {
      "short": "2号厅",
      "name": "2号厅"
     }
-   ]
+   ],
+   "city": "厦门"
   },
   {
    "id": "xm-gr26-8",
@@ -6369,7 +7663,8 @@ module.exports = {
      "short": "1号厅",
      "name": "1号厅"
     }
-   ]
+   ],
+   "city": "厦门"
   },
   {
    "id": "xm-gr26-9",
@@ -6389,7 +7684,8 @@ module.exports = {
      "short": "3号厅",
      "name": "3号厅"
     }
-   ]
+   ],
+   "city": "厦门"
   },
   {
    "id": "xm-gr26-10",
@@ -6404,7 +7700,8 @@ module.exports = {
      "short": "5号厅",
      "name": "5号厅"
     }
-   ]
+   ],
+   "city": "厦门"
   },
   {
    "id": "xm-gr26-11",
@@ -6419,7 +7716,8 @@ module.exports = {
      "short": "7号厅",
      "name": "7号厅"
     }
-   ]
+   ],
+   "city": "厦门"
   },
   {
    "id": "xm-gr26-12",
@@ -6434,7 +7732,8 @@ module.exports = {
      "short": "3号厅",
      "name": "3号厅"
     }
-   ]
+   ],
+   "city": "厦门"
   },
   {
    "id": "xm-gr26-13",
@@ -6449,7 +7748,8 @@ module.exports = {
      "short": "1号厅",
      "name": "1号厅"
     }
-   ]
+   ],
+   "city": "厦门"
   },
   {
    "id": "xm-gr26-14",
@@ -6464,7 +7764,8 @@ module.exports = {
      "short": "5号厅",
      "name": "5号厅"
     }
-   ]
+   ],
+   "city": "厦门"
   },
   {
    "id": "xm-gr26-15",
@@ -6479,7 +7780,8 @@ module.exports = {
      "short": "13号厅",
      "name": "13号厅"
     }
-   ]
+   ],
+   "city": "厦门"
   },
   {
    "id": "xm-gr26-16",
@@ -6494,7 +7796,8 @@ module.exports = {
      "short": "6号厅",
      "name": "6号厅"
     }
-   ]
+   ],
+   "city": "厦门"
   },
   {
    "id": "xm-gr26-17",
@@ -6509,7 +7812,8 @@ module.exports = {
      "short": "4号厅",
      "name": "4号厅"
     }
-   ]
+   ],
+   "city": "厦门"
   }
  ],
  "programmes": [
@@ -6556,7 +7860,7 @@ module.exports = {
   {
    "id": "golden-rooster-2026",
    "name": "2026金鸡影展",
-   "sub": "中国金鸡百花电影节 · 厦门",
+   "sub": "中国金鸡百花电影节",
    "en": "GOLDEN ROOSTER FILM SCREENING 2026",
    "kind": "影展专题",
    "period": "2026.11.06 – 11.29",
@@ -6590,7 +7894,7 @@ module.exports = {
     "gr26-021": "国产新片展映",
     "gr26-022": "此刻：国际新片展映",
     "gr26-023": "此刻：国际新片展映",
-    "gr26-024": "功夫·功夫：华语经典展映",
+    "gr26-024": "功夫：华语经典展映",
     "gr26-025": "此刻：国际新片展映",
     "gr26-026": "国产新片展映",
     "gr26-027": "国产新片展映",
@@ -6605,7 +7909,7 @@ module.exports = {
     "gr26-036": "流光：动画展映单元",
     "gr26-037": "拾光：华语新片展映",
     "gr26-038": "此刻：国际新片展映",
-    "gr26-039": "功夫·功夫：华语经典展映",
+    "gr26-039": "功夫：华语经典展映",
     "gr26-040": "拾光：华语新片展映",
     "gr26-041": "拾光：华语新片展映",
     "gr26-042": "拾光：华语新片展映",
@@ -6615,7 +7919,7 @@ module.exports = {
     "gr26-046": "拾光：华语新片展映",
     "gr26-047": "拾光：华语新片展映",
     "gr26-048": "此刻：国际新片展映",
-    "gr26-049": "功夫·功夫：华语经典展映",
+    "gr26-049": "功夫：华语经典展映",
     "gr26-050": "此刻：国际新片展映",
     "gr26-051": "此刻：国际新片展映",
     "gr26-052": "此刻：国际新片展映",
@@ -6624,11 +7928,11 @@ module.exports = {
     "gr26-055": "回声：国际经典展映",
     "gr26-056": "回声：国际经典展映",
     "gr26-057": "此刻：国际新片展映",
-    "gr26-058": "功夫·功夫：华语经典展映",
+    "gr26-058": "功夫：华语经典展映",
     "gr26-059": "此刻：国际新片展映",
     "gr26-060": "此刻：国际新片展映",
-    "gr26-061": "功夫·功夫：华语经典展映",
-    "gr26-062": "功夫·功夫：华语经典展映",
+    "gr26-061": "功夫：华语经典展映",
+    "gr26-062": "功夫：华语经典展映",
     "gr26-063": "回声：国际经典展映",
     "gr26-064": "拾光：华语新片展映",
     "gr26-065": "回声：国际经典展映",
@@ -6667,12 +7971,16 @@ module.exports = {
    "c": "#b26a1f"
   },
   "as": {
-   "n": "伊朗",
-   "c": "#5d6b2e"
+   "n": "亚洲",
+   "c": "#6b7a35"
   },
   "me": {
-   "n": "埃及",
+   "n": "非洲",
    "c": "#6d4c6f"
+  },
+  "la": {
+   "n": "拉美",
+   "c": "#8a6350"
   }
  }
 };

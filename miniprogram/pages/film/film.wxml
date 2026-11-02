@@ -28,7 +28,7 @@
       <view class="buyt">
         <text class="bk mono">BOOK YOUR SEAT</text>
         <text class="bh">{{L.t(i,'银幕见')}}</text>
-        <text class="bs">{{f.ticketHint || L.t(i,'长按右侧小程序码，选择「识别小程序码」即可')}}{{i.__en ? ' ' : ''}}{{f.ticketLabel}}</text>
+        <text class="bs">{{f.ticketHint || L.t(i,'长按右侧小程序码，选择「识别小程序码」即可')}}</text>
         <view class="bx" hover-class="hv" bindtap="previewTicket">{{i.__en ? f.ticketLabel + ' code ↗' : '查看' + f.ticketLabel + '码 ↗'}}</view>
       </view>
       <image class="qr" src="{{f.ticket}}" mode="aspectFit" show-menu-by-longpress />
@@ -118,7 +118,7 @@
 
     <view class="st"><text class="stt">{{L.t(i,'导演介绍')}}</text><text class="ste mono">DIRECTOR</text></view>
     <view class="dc card">
-      <view class="dh"><view class="av">{{f.ini}}</view><view><view class="dn">{{f.dir}}</view><view class="ds">{{f.dirO}}</view><view class="ds">{{f.dirLife}}</view></view></view>
+      <view class="dh"><view class="av">{{f.ini}}</view><view><view class="dn">{{f.dir}}</view><view wx:if="{{f.dirO && f.dirO !== f.dir}}" class="ds">{{f.dirO}}</view><view class="ds">{{f.dirLife}}</view></view></view>
       <view wx:for="{{f.bio}}" wx:key="index" class="p">{{item}}</view>
     </view>
 
