@@ -9,7 +9,7 @@ const t = I.tr;
 const app = getApp();
 
 Page({
-  data: { i: {}, pp: {}, ppOpen: false, ppPage: 0, rc: {}, rcOpen: false, rcY: 'all', rcM: 'all', rcP: 'all', guideOpen: false, guide: [{ k: '看过 · 盖章', s: '在影片页点「看过」，护照里就会盖下这部片的印章；可以打星评分、改观影日期。' }, { k: '写下持有人', s: '护照首页可以填姓名、从相册放一张照片，印章每页最多 15 枚。' }, { k: '个人排片', s: '在排片表点色块右上角的 + 加入场次，「我的」里会自动检查时间冲突；首页甘特图可以只看我的排片。' }, { k: '导出与分享', s: '把排片生成带二维码的长图、分享链接或加入日历。' }, { k: '结算长图', s: '护照页底部「生成我的影院观影结算」，可按年份、月份、专题筛选，生成一张印章墙长图。' }, { k: '换设备不丢', s: '开启上方云端同步，另一台设备用同步码即可带走看过记录、评分、照片和排片。' }], stats: {}, days: [], clash: 0, empty: true, pf: 'all', progs: [] },
+  data: { i: {}, pp: {}, ppOpen: false, ppPage: 0, rc: {}, rcOpen: false, rcY: 'all', rcM: 'all', rcP: 'all', guideOpen: false, fbOpen: false, guide: [{ k: '看过 · 盖章', s: '在影片页点「看过」，护照里就会盖下这部片的印章；可以打星评分、改观影日期。' }, { k: '写下持有人', s: '护照首页可以填姓名、从相册放一张照片，印章每页最多 15 枚。' }, { k: '个人排片', s: '在排片表点色块右上角的 + 加入场次，「我的」里会自动检查时间冲突；首页甘特图可以只看我的排片。' }, { k: '导出与分享', s: '把排片生成带二维码的长图、分享链接或加入日历。' }, { k: '结算长图', s: '护照页底部「生成我的影院观影结算」，可按年份、月份、专题筛选，生成一张印章墙长图。' }, { k: '换设备不丢', s: '开启上方云端同步，另一台设备用同步码即可带走看过记录、评分、照片和排片。' }], stats: {}, days: [], clash: 0, empty: true, pf: 'all', progs: [] },
   onLoad() { this.setData({ i: I.dict() }); this.off1 = plan.onChange(() => this.build()); this.off2 = app.onData(() => { this.build(); this.buildPassport(); }); this.off3 = W.onChange(() => this.buildPassport()); },
   onUnload() { this.off1 && this.off1(); this.off2 && this.off2(); this.off3 && this.off3(); },
   onShow() { wx.setNavigationBarTitle({ title: t('我的观影护照') }); this.build(); this.buildPassport(); this.buildSync(); if (!this.offS) this.offS = SY.onStatus(() => this.buildSync()); if (SY.stale()) SY.quiet(); },
@@ -108,6 +108,7 @@ Page({
   closeRecap() { this.setData({ rcOpen: false }); },
   setRcM(e) { const d = e.currentTarget.dataset; if (d.c === 0) return; this.setData({ rcM: d.v }); this.buildRecap(); },
   copyContact(e) { const v = e.currentTarget.dataset.v; wx.setClipboardData({ data: v, success: () => wx.showToast({ title: t('已复制') + ' ' + v, icon: 'none' }) }); },
+  toggleFb() { this.setData({ fbOpen: !this.data.fbOpen }); },
   toggleGuide() { this.setData({ guideOpen: !this.data.guideOpen }); },
   setRcY(e) { this.setData({ rcY: e.currentTarget.dataset.v }); this.buildRecap(); },
   setRcP(e) { this.setData({ rcP: e.currentTarget.dataset.v }); this.buildRecap(); },

@@ -202,7 +202,7 @@
 
 .gap-map { margin-left: 16rpx; color: var(--accent); font-weight: 700; text-decoration: underline; }
 
-.guide { margin-top: 24rpx; } .guide .sy-h { display: flex; justify-content: space-between; } .gtog { color: var(--accent); }
+.guide { margin-top: 24rpx; } .guide .sy-h, .fb .sy-h { display: flex; justify-content: space-between; } .gtog { color: var(--accent); }
 .gi { display: flex; gap: 16rpx; padding: 18rpx 0; border-top: 1rpx solid var(--line); } .gk { font-size: 28rpx; color: var(--accent); width: 36rpx; flex-shrink: 0; } .gb { display: block; font-size: 26rpx; font-weight: 700; } .gs { display: block; font-size: 23rpx; line-height: 1.7; color: var(--muted); margin-top: 4rpx; }
 
 .rc-yscroll { white-space: nowrap; } .rc-years { flex-wrap: nowrap; display: inline-flex; } .rc-years .chip { flex-shrink: 0; }

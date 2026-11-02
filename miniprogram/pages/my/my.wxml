@@ -113,10 +113,12 @@
   </view>
 
   <view class="card fb">
-    <view class="sy-h">{{L.t(i,'反馈与纠错')}}</view>
+    <view class="sy-h" bindtap="toggleFb">{{L.t(i,'反馈与纠错')}} <text class="gtog">{{fbOpen ? '−' : '+'}}</text></view>
+    <block wx:if="{{fbOpen}}">
     <view class="fb-p">{{L.t(i,'排片、片名、人名或功能有问题？欢迎告诉我们，附上截图和页面名称会更快处理。')}}</view>
     <view class="fb-row" hover-class="hv" data-v="2165.yan@gmail.com" data-n="Email" bindtap="copyContact"><text class="fb-k mono">EMAIL</text><text class="fb-v mono">2165.yan@gmail.com</text><text class="fb-go">{{L.t(i,'复制')}}</text></view>
     <view class="fb-row" hover-class="hv" data-v="BFAFILM" data-n="WeChat" bindtap="copyContact"><text class="fb-k mono">WECHAT</text><text class="fb-v mono">BFAFILM</text><text class="fb-go">{{L.t(i,'复制')}}</text></view>
+    </block>
   </view>
 
   <view class="blockh">{{L.t(i,'个人排片')}} <text class="en">MY PLAN</text></view>
