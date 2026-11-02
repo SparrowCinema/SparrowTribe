@@ -5949,6 +5949,483 @@ module.exports = {
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-083.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
+  },
+  {
+   "id": "amrum",
+   "cn": "阿姆鲁姆",
+   "o": "Amrum",
+   "en": "Amrum",
+   "y": 2025,
+   "c": "德国",
+   "min": 93,
+   "dir": "法提赫·阿金",
+   "dirO": "Fatih Akin",
+   "dirLife": "1973– · 德国",
+   "genre": [
+    "剧情",
+    "历史"
+   ],
+   "language": "德语",
+   "subtitles": "中英字幕",
+   "writers": [
+    "哈克·博姆",
+    "法提赫·阿金"
+   ],
+   "cast": [
+    "Diane Kruger",
+    "Laura Tonke",
+    "Jasper Billerbeck",
+    "Detlev Buck",
+    "Lisa Hagmeister",
+    "Matthias Schweighöfer"
+   ],
+   "syn": "这部历史剧以1945年春季二战尾声为背景，聚焦十岁少年南宁。其父远征战场，少年竭尽所能助母养家：猎捕海豹、暗夜捕鱼、躬耕田间。然而期盼已久的和平降临后，却催生全新冲突，南宁必须在废墟之上探寻属于自己的人生航向。",
+   "honors": [
+    "提名｜2026 美国电影摄影师协会奖 · 聚光灯奖",
+    "获奖｜2026 巴伐利亚电影奖 · 最佳影片",
+    "提名｜2026 德国电影奖 · 最佳剧情片 / 最佳摄影 / 最佳音响 / 最佳配乐 / 最佳服装 / 最佳化妆"
+   ],
+   "highlights": [
+    "留意1945年春天的北海孤岛：战争尾声没有炮火，却处处渗入一个孩子的日常劳作。",
+    "和平来临之后，少年面对的不是解脱，而是新的冲突与选择。"
+   ],
+   "bio": "法提赫·阿金是土耳其裔德国导演，1973年生于汉堡，曾于2004年凭《Head-On》（德语原名 Gegen die Wand）获柏林国际电影节金熊奖。《阿姆鲁姆》由他与导演前辈哈克·博姆共同编剧。",
+   "st": "影片入围2025年戛纳电影节“戛纳首映”单元，并在2026年巴伐利亚电影奖上拿下最佳影片。",
+   "reg": "eu",
+   "poster": "posters/amrum.jpg",
+   "r": [
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "prog": "german-film-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/amrum.jpg"
+  },
+  {
+   "id": "dry-leaf",
+   "cn": "落叶球",
+   "o": "ხმელი ფოთოლი",
+   "en": "Dry Leaf",
+   "y": 2025,
+   "c": "德国 / 格鲁吉亚",
+   "min": 186,
+   "dir": "亚历山大·科贝里泽",
+   "dirO": "Alexandre Koberidze",
+   "genre": [
+    "剧情"
+   ],
+   "language": "格鲁吉亚语",
+   "subtitles": "中文字幕",
+   "writers": [
+    "亚历山大·科贝里泽"
+   ],
+   "cast": [
+    "David Koberidze",
+    "Otar Nijaradze",
+    "Irina Chelidze",
+    "Giorgi Bochorishvili",
+    "Vakhtang Panchulidze",
+    "Manu Tavadze"
+   ],
+   "syn": "摄影师丽莎突然失踪。最后的线索指向她拍摄过的七个足球场——它们散落在格鲁吉亚七个偏远村庄。父亲伊拉克利踏遍这些球场寻女，丽莎的挚友、如幽灵般的列瓦尼悄然加入搜寻。每当球场更迭，相遇的村民与他们的故事便如走马灯般轮转。看似荒诞的旅程里暗涌渐起：每踏过一片坑洼的草场，每穿过一座寂静村庄，找到丽莎的希望便如晨雾般日渐稀薄。",
+   "honors": [
+    "提名｜2025 洛迦诺国际电影节 · 金豹奖最佳影片",
+    "获奖｜2025 洛迦诺国际电影节 · 金豹奖特别提及",
+    "获奖｜2025 洛迦诺国际电影节 · 费比西奖",
+    "提名｜2025 法国贝尔福国际电影节 · 詹妮娜·巴赞最佳长片大奖",
+    "提名｜2025 海南岛国际电影节 · 金椰奖最佳影片"
+   ],
+   "highlights": [
+    "七个村庄、七片球场：留意影片怎样用寻人的路线，把风景与人情一站一站串起来。",
+    "186分钟的长度是影片的一部分，希望在行进中慢慢变薄，观看也随之变成一次同行。"
+   ],
+   "bio": "亚历山大·科贝里泽是格鲁吉亚裔导演，在德国学习电影。前作《我们仰望天空时看见了什么？》（2021）首映于柏林国际电影节。本片中他身兼导演、编剧、摄影与剪辑。",
+   "st": "影片入围2025年洛迦诺国际电影节主竞赛，获金豹奖特别提及与国际影评人费比西奖。片长186分钟，请预留充足时间。",
+   "reg": "eu",
+   "poster": "posters/dry-leaf.jpg",
+   "r": [
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "prog": "german-film-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/dry-leaf.jpg"
+  },
+  {
+   "id": "i-understand-your-displeasure",
+   "cn": "我理解您的不满",
+   "o": "I Understand Your Displeasure",
+   "en": "I Understand Your Displeasure",
+   "y": 2026,
+   "c": "德国",
+   "min": 91,
+   "dir": "基利安·阿曼多·弗里德里希",
+   "dirO": "Kilian Armando Friedrich",
+   "genre": [
+    "剧情"
+   ],
+   "language": "德语 / 克罗地亚语 / 波斯尼亚语 / 土耳其语",
+   "subtitles": "中文字幕",
+   "writers": [],
+   "cast": [],
+   "syn": "海克（59岁）在一家清洁公司担任客户服务经理，日常工作是在客户、公司管理层和清洁人员之间进行协调。她所在的公司目前正与一家重要的分包商发生矛盾，原因是海克违反规定，试图挖走该分包商手下的一名非正式员工。该分包商现在威胁说，除非海克能为他争取更多的工作时数和收入，否则他将停止提供支持。为了满足分包商的要求，海克不得不解雇自己的一名员工——而这位同事恰恰是她朋友塔娅非常器重的人。海克愈发感到自己陷入两难：一边是对自己员工的责任，一边是低薪行业的现实条件。",
+   "honors": [
+    "获奖｜2026 香港国际电影节 · 新秀电影竞赛（世界）最佳女演员",
+    "入围｜2026 柏林国际电影节 · 全景单元"
+   ],
+   "highlights": [
+    "一个管理者夹在客户、老板与清洁工之间：留意她每一次“协调”背后被牺牲的是谁。",
+    "影片使用德语、克罗地亚语、波斯尼亚语和土耳其语，语言本身就是低薪行业人群构成的缩影。"
+   ],
+   "st": "影片入围2026年柏林国际电影节全景单元，并在香港国际电影节新秀电影竞赛（世界）中获最佳女演员。",
+   "reg": "eu",
+   "poster": "posters/i-understand-your-displeasure.jpg",
+   "r": [
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "prog": "german-film-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/i-understand-your-displeasure.jpg"
+  },
+  {
+   "id": "karla",
+   "cn": "卡拉的审判",
+   "o": "Karla",
+   "en": "Karla",
+   "y": 2025,
+   "c": "德国",
+   "min": 105,
+   "dir": "克里斯蒂娜·图尔纳泽斯",
+   "dirO": "Christina Tournatzés",
+   "genre": [
+    "剧情"
+   ],
+   "language": "德语",
+   "subtitles": "中文字幕",
+   "writers": [
+    "伊冯娜·格尔拉赫"
+   ],
+   "cast": [
+    "Elise Krieps",
+    "Rainer Bock",
+    "Imogen Kogge",
+    "Torben Liebrecht",
+    "Katharina Schüttler",
+    "Carlotta von Falkenhayn",
+    "Luis Vorbach",
+    "Robert Hunger-Bühler"
+   ],
+   "syn": "影片以1962年的慕尼黑为背景，讲述了12岁的卡拉的真实故事。她对自己的父亲提起诉讼，寻求保护以免受其多年虐待。在艰难地走过司法程序的过程中，她与拉米法官之间建立了一种特殊的情感纽带——后者成为了她希望的灯塔。卡拉不愿完全吐露自己所受的痛苦，这逐渐迫使拉米法官给予她以自己的方式讲述故事的自由——而这一选择也将他自己的职业生涯置于风险之中。",
+   "honors": [
+    "获奖｜2026 巴伐利亚电影奖 · 最佳剧本、最佳主演",
+    "获奖｜2025 慕尼黑电影节 · 德国电影新锐奖 最佳导演、最佳剧本",
+    "提名｜2026 哥德堡电影节 · 英格玛·伯格曼竞赛 最佳首作"
+   ],
+   "highlights": [
+    "留意法庭上“没有说出口的部分”：影片把讲述的方式交还给一个12岁的孩子。",
+    "拉米法官的每一次让步，都在改变司法程序与他自己的位置。"
+   ],
+   "bio": "《卡拉的审判》是克里斯蒂娜·图尔纳泽斯的首部长片，影片据1962年慕尼黑的真实故事改编，并获2026年哥德堡电影节最佳首作提名。",
+   "st": "影片包揽2025年慕尼黑电影节德国电影新锐奖的最佳导演与最佳剧本，并在2026年巴伐利亚电影奖中获最佳剧本与最佳主演。影片涉及儿童受虐待题材，观影前请知悉。",
+   "reg": "eu",
+   "poster": "posters/karla.jpg",
+   "r": [
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "prog": "german-film-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/karla.jpg"
+  },
+  {
+   "id": "miroirs-no-3",
+   "cn": "镜的第三乐章",
+   "o": "Miroirs No. 3",
+   "en": "Miroirs No. 3",
+   "y": 2025,
+   "c": "德国",
+   "min": 86,
+   "dir": "克里斯蒂安·佩措尔德",
+   "dirO": "Christian Petzold",
+   "dirLife": "1960– · 德国",
+   "genre": [
+    "剧情"
+   ],
+   "language": "德语",
+   "subtitles": "中文字幕",
+   "writers": [
+    "克里斯蒂安·佩措尔德"
+   ],
+   "cast": [
+    "Paula Beer",
+    "Barbara Auer",
+    "Matthias Brandt",
+    "Enno Trebs"
+   ],
+   "syn": "在一个乡间周末旅行中，劳拉奇迹般地在一场车祸中幸存下来。虽然身体毫发无伤，但她的内心却受到了深深的震撼。她被事故目击者贝蒂收留，后者细心照料着她。渐渐地，贝蒂的丈夫和儿子也开始接受劳拉的存在，家中恢复了一种近乎家庭般的宁静。然而，不久之后，过去的阴影再次降临……",
+   "honors": [
+    "提名｜2025 戛纳电影节 · 导演双周单元",
+    "提名｜2025 悉尼电影节 · 最佳影片"
+   ],
+   "highlights": [
+    "一场车祸之后，一个陌生人被“收留”成家人：留意这个家庭是怎样一点点接纳劳拉的。",
+    "片名来自拉威尔的钢琴组曲《镜》第三首，音乐与“映照”是理解影片的线索。"
+   ],
+   "bio": "克里斯蒂安·佩措尔德是德国导演、编剧，1960年生，柏林学派代表人物之一。他曾凭《Barbara》（2012）与《Afire》（2023）两度获柏林国际电影节银熊奖，《Phoenix》《Transit》同样广受关注。",
+   "st": "影片入围2025年戛纳电影节导演双周单元，片长仅86分钟。",
+   "reg": "eu",
+   "poster": "posters/miroirs-no-3.jpg",
+   "r": [
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "prog": "german-film-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/miroirs-no-3.jpg"
+  },
+  {
+   "id": "the-miserable-mother",
+   "cn": "她们的狂想曲",
+   "o": "Die miserable Mutter",
+   "en": "The Miserable Mother",
+   "y": 2026,
+   "c": "德国 / 法国",
+   "min": 81,
+   "dir": "苏珊娜·海因里希",
+   "dirO": "Susanne Heinrich",
+   "genre": [
+    "剧情",
+    "歌舞"
+   ],
+   "language": "德语",
+   "subtitles": "中英字幕",
+   "writers": [
+    "苏珊娜·海因里希"
+   ],
+   "cast": [
+    "Rosa Landers",
+    "Theo Colarusso"
+   ],
+   "syn": "一位被家务困住的年轻母亲、一个永远长不大的“彼得·潘”式的男友，以及一个刚出生的婴儿。仙女下凡、婴儿开口说话、天使现身，超现实的奇幻元素在歌舞之中接连登场。本片融汇经典歌舞片的美学语言：有雅克·德米《瑟堡的雨伞》式的梦幻底色，也有香特尔·阿克曼《金色80年代》对肥皂剧程式的大胆挪用与结构。导演苏珊娜·海因里希将当代社交媒体语言融入其中，编织出一场流光溢彩的当代歌舞奇观。而在欢歌笑舞之下，是一位母亲寻找自我边界的内心旅程。",
+   "honors": [
+    "获奖｜2026 慕尼黑电影节 · 德国电影新锐奖 最佳剧本",
+    "获奖｜2026 上海国际电影节 · 金爵奖 艺术贡献奖",
+    "获奖｜2026 帕利奇欧洲电影节 · 国际竞赛单元 特别提及"
+   ],
+   "highlights": [
+    "沙发、公园、母婴咖啡馆：留意一位母亲的世界如何被压缩，又如何在歌舞中被撑开。",
+    "影片向《瑟堡的雨伞》与《金色80年代》致意，可以在歌舞段落里找找它们的影子。"
+   ],
+   "bio": "苏珊娜·海因里希身兼本片导演、编剧与词曲创作，歌曲由她与威利·西格等人共同完成。",
+   "st": "影片在2026年慕尼黑电影节获德国电影新锐奖最佳剧本，并在上海国际电影节金爵奖中获艺术贡献奖。",
+   "reg": "eu",
+   "poster": "posters/the-miserable-mother.jpg",
+   "r": [
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "prog": "german-film-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/the-miserable-mother.jpg"
+  },
+  {
+   "id": "oh-this-unspeakable-void",
+   "cn": "心隙",
+   "o": "Ach, diese Lücke, diese entsetzliche Lücke",
+   "en": "Oh This Unspeakable Void",
+   "y": 2025,
+   "c": "德国",
+   "min": 137,
+   "dir": "西蒙·范霍文",
+   "dirO": "Simon Verhoeven",
+   "dirLife": "1972– · 德国",
+   "genre": [
+    "喜剧"
+   ],
+   "language": "德语",
+   "subtitles": "中文字幕",
+   "writers": [
+    "西蒙·范霍文"
+   ],
+   "cast": [
+    "Senta Berger",
+    "Bruno Alexander",
+    "Michael Wittenborn",
+    "Laura Tonke",
+    "Devid Striesow",
+    "Katharina Stark",
+    "Tom Schilling",
+    "Johann von Bülow",
+    "Moritz Treuenfels",
+    "Victoria Trauttmansdorff",
+    "Anne Ratte-Polle",
+    "Friedrich von Thun",
+    "Karoline Herfurth"
+   ],
+   "syn": "二十岁那年，约阿希姆出人意料地被慕尼黑那所著名的表演学校录取，并搬进了祖父母英格和赫尔曼的别墅。在表演学校种种奇特的挑战与祖父母那些古怪、多半伴着酒精的日常仪式之间，约阿希姆努力在这个世界上寻找自己的位置——却不知道自己在这其中究竟扮演着怎样的角色。",
+   "honors": [
+    "获奖｜2026 德国电影奖 · 最佳剧情片（铜奖）",
+    "获奖｜2026 德国电影奖 · 最佳女主角（森塔·伯格）",
+    "获奖｜2026 德国电影奖 · 最佳男配角（米夏埃尔·维滕伯恩）"
+   ],
+   "highlights": [
+    "表演学校里的“演”与祖父母家里的“演”：留意年轻人在两种舞台之间怎样找自己的位置。",
+    "阵容庞大，森塔·伯格与米夏埃尔·维滕伯恩分别凭本片获德国电影奖表演奖项。"
+   ],
+   "bio": "西蒙·范霍文是德国导演、编剧，1972年生于慕尼黑，2016年的喜剧《Willkommen bei den Hartmanns》是德国近年最卖座的影片之一。本片改编自约阿希姆·迈尔霍夫的畅销小说，片中祖母由他的母亲森塔·伯格饰演。",
+   "st": "影片改编自约阿希姆·迈尔霍夫的畅销小说，在2026年德国电影奖上获最佳剧情片（铜奖）、最佳女主角与最佳男配角。",
+   "reg": "eu",
+   "poster": "posters/oh-this-unspeakable-void.jpg",
+   "r": [
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "prog": "german-film-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/oh-this-unspeakable-void.jpg"
+  },
+  {
+   "id": "sometimes-i-imagine-them-all-at-a-party",
+   "cn": "残存的感性",
+   "o": "Was an Empfindsamkeit bleibt",
+   "en": "Sometimes, I Imagine Them All at a Party",
+   "y": 2026,
+   "c": "德国",
+   "min": 91,
+   "dir": "丹妮拉·马尼亚尼·惠勒",
+   "dirO": "Daniela Magnani Hüller",
+   "genre": [
+    "纪录"
+   ],
+   "language": "德语 / 葡萄牙语",
+   "subtitles": "中文字幕",
+   "writers": [],
+   "cast": [],
+   "syn": "十四年前，电影人丹妮拉·马尼亚尼·惠勒在一次未遂的杀害女性（femicide）事件中幸存下来。如今，她回顾自己人生中那段时光的关键时刻。在慕尼黑和里约热内卢之间往返旅行中，她寻访了当时在她身边的某些人，并提出那些多年来一直萦绕在她心头的疑问。精心构图的银幕画面勾勒出她所经历的一切的复杂图景。",
+   "honors": [
+    "获奖｜2026 柏林国际电影节 · 论坛单元 最佳纪录片特别提及",
+    "获奖｜2026 慕尼黑国际纪录片电影节 · 学生电影奖"
+   ],
+   "highlights": [
+    "导演回到当事人身边，向老师、同学、医生、检察官、探员与朋友一一询问：留意每个人“记得”的内容有何不同。",
+    "画面经过精心构图，用克制的方式处理沉重的记忆。"
+   ],
+   "st": "影片入围2026年柏林国际电影节论坛单元，获纪录片评审团特别提及。影片涉及针对女性的暴力，观影前请知悉。",
+   "reg": "eu",
+   "poster": "posters/sometimes-i-imagine-them-all-at-a-party.jpg",
+   "r": [
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "prog": "german-film-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/sometimes-i-imagine-them-all-at-a-party.jpg"
+  },
+  {
+   "id": "when-pigs-fly",
+   "cn": "当猪会飞",
+   "o": "When Pigs Fly",
+   "en": "When Pigs Fly",
+   "y": 2026,
+   "c": "德国",
+   "min": 80,
+   "dir": "丹妮丝·里德迈尔",
+   "dirO": "Denise Riedmayr",
+   "genre": [
+    "纪录"
+   ],
+   "language": "德语 / 英语",
+   "subtitles": "中英字幕",
+   "writers": [],
+   "cast": [],
+   "syn": "我的心是我的一部分吗？它会分享我的经历吗？还是说它仅仅是一块肉、一块肌肉、一个泵、一个容易被另一个所取代的器官？在我们的社会中，猪只有在死后才被认为有价值——尽管它们与人类如此相似，以至于它们的心脏可以被用作捐赠器官。在一个通过猪来培育人类心脏以拯救生命的未来里，两个物种之间的界限开始模糊。现在是否是重新思考人与猪之间关系的时刻？本片跟随两位兽医，记录他们与猪之间矛盾而复杂的关系，并提供了一个亲密视角，让我们得以接近一种远比大多数人愿意承认的更接近我们的动物。",
+   "honors": [
+    "获奖｜2026 慕尼黑国际纪录片电影节 · 观众选择奖",
+    "入围｜2026 慕尼黑国际纪录片电影节 · 竞赛单元",
+    "入围｜2026 哥本哈根国际纪录片电影节 CPH:DOX"
+   ],
+   "highlights": [
+    "“猪的心脏可以移植给人”：影片跟随两位兽医，看他们如何面对与猪之间矛盾的关系。",
+    "留意镜头怎样靠近一种与我们极为相似、却长期只在死后被估价的动物。"
+   ],
+   "st": "影片在2026年慕尼黑国际纪录片电影节获观众选择奖，同时入围该电影节竞赛单元与哥本哈根 CPH:DOX。片长仅80分钟。",
+   "reg": "eu",
+   "poster": "posters/when-pigs-fly.jpg",
+   "r": [
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "prog": "german-film-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/when-pigs-fly.jpg"
+  },
+  {
+   "id": "shame-and-money",
+   "cn": "羞耻与金钱",
+   "o": "Von Scham und Geld",
+   "en": "Shame and Money",
+   "y": 2026,
+   "c": "德国 / 科索沃 / 斯洛文尼亚 / 阿尔巴尼亚 / 北马其顿 / 比利时",
+   "min": 129,
+   "dir": "维萨尔·莫里纳",
+   "dirO": "Visar Morina",
+   "genre": [
+    "剧情"
+   ],
+   "language": "阿尔巴尼亚语",
+   "subtitles": "中英字幕",
+   "writers": [
+    "维萨尔·莫里纳"
+   ],
+   "cast": [
+    "Astrit Kabashi",
+    "Flonja Kodheli",
+    "Kumrije Hoxa",
+    "Fiona Gllavica",
+    "Alban Ukaj"
+   ],
+   "syn": "科索沃一个家庭在失去村庄的生计后，被迫迁往首都，以期在高度资本主义的社会中找到一席之地。《羞耻与金钱》细腻地刻画了一群辛勤劳作的人们，在无情的压力和长期的动荡中，努力追求体面的生活。沙班是一位传统的户主，他渴望成为家里的顶梁柱，但维持家庭生计的却是母亲的积蓄。接受富有的姐夫的帮助，又给他带来了新的挑战。随着自尊心日渐受损，尊严也逐渐丧失，沙班正一步步走向崩溃的边缘——他究竟还能承受多少？",
+   "honors": [
+    "获奖｜2026 慕尼黑电影节 · ARRI/OSRAM 奖 最佳国际影片",
+    "获奖｜2026 圣丹斯电影节 · 世界电影单元 剧情片大评审团大奖",
+    "提名｜2026 悉尼电影节 · 最佳影片"
+   ],
+   "highlights": [
+    "从乡村到首都普里什蒂纳：留意一个传统家长的“面子”如何与金钱、亲情反复拉扯。",
+    "影片没有把贫困写成奇观，而是放在日常的羞耻与尊严之间。"
+   ],
+   "bio": "维萨尔·莫里纳出生于科索沃，在德国工作，本片由他编剧并执导；前作《Exile》（2020）首映于圣丹斯电影节。",
+   "st": "影片获2026年圣丹斯电影节世界电影单元剧情片大评审团大奖，以及慕尼黑电影节最佳国际影片。",
+   "reg": "eu",
+   "poster": "posters/shame-and-money.jpg",
+   "r": [
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "prog": "german-film-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/shame-and-money.jpg"
   }
  ],
  "shows": [
@@ -7358,6 +7835,76 @@ module.exports = {
    "id": "gr26-063",
    "v": "xm-gr26-1",
    "h": "hall-5"
+  },
+  {
+   "d": "11/14",
+   "t": "14:00",
+   "id": "amrum",
+   "v": "hz-cinema-circle",
+   "h": "festival"
+  },
+  {
+   "d": "11/14",
+   "t": "17:30",
+   "id": "the-miserable-mother",
+   "v": "hz-cinema-circle",
+   "h": "festival"
+  },
+  {
+   "d": "11/14",
+   "t": "19:30",
+   "id": "when-pigs-fly",
+   "v": "hz-cinema-circle",
+   "h": "festival"
+  },
+  {
+   "d": "11/15",
+   "t": "13:00",
+   "id": "shame-and-money",
+   "v": "hz-cinema-circle",
+   "h": "festival"
+  },
+  {
+   "d": "11/15",
+   "t": "16:40",
+   "id": "sometimes-i-imagine-them-all-at-a-party",
+   "v": "hz-cinema-circle",
+   "h": "festival"
+  },
+  {
+   "d": "11/21",
+   "t": "13:00",
+   "id": "dry-leaf",
+   "v": "hz-cinema-circle",
+   "h": "festival"
+  },
+  {
+   "d": "11/21",
+   "t": "16:30",
+   "id": "miroirs-no-3",
+   "v": "hz-cinema-circle",
+   "h": "festival"
+  },
+  {
+   "d": "11/21",
+   "t": "19:00",
+   "id": "karla",
+   "v": "hz-cinema-circle",
+   "h": "festival"
+  },
+  {
+   "d": "11/22",
+   "t": "13:00",
+   "id": "oh-this-unspeakable-void",
+   "v": "hz-cinema-circle",
+   "h": "festival"
+  },
+  {
+   "d": "11/22",
+   "t": "15:40",
+   "id": "i-understand-your-displeasure",
+   "v": "hz-cinema-circle",
+   "h": "festival"
   }
  ],
  "venues": [
@@ -7814,6 +8361,22 @@ module.exports = {
     }
    ],
    "city": "厦门"
+  },
+  {
+   "id": "hz-cinema-circle",
+   "short": "CINEMA CIRCLE·恒隆",
+   "name": "CINEMA CIRCLE（杭州恒隆店）",
+   "brand": "CINEMA CIRCLE",
+   "store": "杭州恒隆店",
+   "fmt": [],
+   "halls": [
+    {
+     "id": "festival",
+     "short": "展映厅",
+     "name": "展映厅"
+    }
+   ],
+   "city": "杭州"
   }
  ],
  "programmes": [
@@ -7959,6 +8522,20 @@ module.exports = {
     "gr26-082": "流光：动画展映单元",
     "gr26-083": "流光：动画展映单元"
    }
+  },
+  {
+   "id": "german-film-2026",
+   "name": "2026德国电影展",
+   "sub": "杭州站 · CINEMA CIRCLE",
+   "en": "FESTIVAL OF GERMAN CINEMA IN CHINA",
+   "kind": "影展专题",
+   "period": "2026.11.14 – 11.23",
+   "cover": "/images/brand/prog-german-film-2026.jpg",
+   "start": "2026-11-14",
+   "end": "2026-11-23",
+   "city": "杭州",
+   "blurb": "2026年德国电影展·杭州站将于11月14日至23日在CINEMA CIRCLE（杭州恒隆店）举办，选取自近两年在各大国际电影节展中大放异彩的十部佳作。德国电影展由德国电影协会和北京德国文化中心·歌德学院（中国）联合举办，百老汇系列影城协办，并得到德国驻华大使馆的支持。",
+   "cardCover": ""
   }
  ],
  "reg": {
