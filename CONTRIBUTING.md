@@ -59,3 +59,10 @@ Claude 与 GPT 可能使用同一 GitHub 身份，审批人数可先设为0；�
 
 - 专题页（网站 `progFilmsHTML` / 小程序 `pages/programme`）把影片分为「即将放映」（含场次待公布，按下一场先后）和「已结束」（按最近一场由近及远，可折叠；没有待映影片时默认展开）。
 - 专题头图放在 `programmes/<专题id>.jpg`（建议 1860×660），在 `data/catalog.json` 的 `cover` 里填路径；小程序另放一份缩小图到 `miniprogram/images/brand/prog-<专题id>.jpg`，然后运行 `node tools/build-bundled.js` 和 `node tools/build-fallback.js`。
+
+## 英文版（网站）
+
+- 页面右上角「中 / EN」切换；也可用 `?lang=en` / `?lang=zh`。选择记在本机，首次访问按浏览器语言。
+- 英文内容全部在 `data/i18n/en.json`：`films`（按影片 id 覆盖片名 title、导演、主演、剧情简介、荣誉等）、`programmes`、`venues`、`ui`（界面中文→英文词典，长词优先匹配）、`exact`（只整句匹配的短词）。荣誉条目保留中文前缀（获奖｜/提名｜）用于分类，页面上再由词典译成 Won / Nominated。
+- 新增影片或专题后，请在 `en.json` 补译；没补的字段自动显示中文，不会报错。界面上带数字的句式（N 场、N 分钟、日期等）在 `index.html` 的 `PATS` 里。
+- 小程序的英文版尚未做。
