@@ -3451,6 +3451,9 @@ module.exports = {
     3.8
    ],
    "dirO": "Mariano Llinás",
+   "screeningNotes": {
+    "11/8-17:30-xm-gr26-1-hall-5": "映后活动 · 主创见面会（嘉宾名单待公布，以实际到场为准）"
+   },
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-034.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
