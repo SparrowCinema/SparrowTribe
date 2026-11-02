@@ -94,8 +94,8 @@
 .fp-tallies > view + view { border-left: 2rpx solid var(--line-soft); }
 .fp-tallies .n { font-size: 38rpx; font-weight: 700; }
 .fp-tallies .l, .fp-tally .l { font-size: 20rpx; color: var(--muted); white-space: nowrap; }
-.fp-book { height: 1290rpx; margin-top: 24rpx; }
-.fp-page { position: relative; width: 600rpx; height: 1250rpx; margin: 0 auto; box-sizing: border-box; padding: 40rpx 40rpx 34rpx; display: flex; flex-direction: column; color: var(--ink); border-radius: 8rpx 24rpx 24rpx 8rpx; overflow: hidden;
+.fp-book { height: 880rpx; margin-top: 24rpx; }
+.fp-page { position: relative; width: 600rpx; height: 852rpx; margin: 0 auto; box-sizing: border-box; padding: 40rpx 40rpx 34rpx; display: flex; flex-direction: column; color: var(--ink); border-radius: 8rpx 24rpx 24rpx 8rpx; overflow: hidden;
   background: radial-gradient(circle at 50% 118%, rgba(142,42,34,.08), transparent 58%), repeating-linear-gradient(60deg, rgba(130,100,60,.05) 0 2rpx, transparent 2rpx 16rpx), repeating-linear-gradient(-60deg, rgba(47,111,108,.045) 0 2rpx, transparent 2rpx 16rpx), var(--paper);
   box-shadow: inset 20rpx 0 26rpx -20rpx rgba(60,40,20,.35), 0 20rpx 40rpx -20rpx rgba(60,40,20,.45), 6rpx 6rpx 0 -2rpx #e9e0cc; }
 .fp-page::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 10rpx; background: repeating-linear-gradient(90deg, rgba(142,42,34,.16) 0 14rpx, transparent 14rpx 22rpx); }
@@ -122,8 +122,8 @@
 .fp-vh { font-size: 32rpx; font-weight: 900; font-family: "Songti SC", "Noto Serif SC", serif; }
 .fp-sub { font-size: 18rpx; color: var(--pink); margin: 6rpx 0 16rpx; }
 .fp-grid { flex: 1; display: flex; flex-wrap: wrap; align-content: space-around; }
-.fp-cell { width: 33.333%; height: 196rpx; display: flex; align-items: center; justify-content: center; }
-.fp-slot { width: 150rpx; height: 150rpx; border-radius: 50%; border: 3rpx dashed var(--rule); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6rpx; font-size: 15rpx; letter-spacing: 3rpx; color: var(--pink); }
+.fp-cell { width: 33.333%; height: 106rpx; display: flex; align-items: center; justify-content: center; }
+.fp-slot { width: 100rpx; height: 100rpx; border-radius: 50%; border: 3rpx dashed var(--rule); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6rpx; font-size: 15rpx; letter-spacing: 3rpx; color: var(--pink); }
 .fp-slot .b { font-size: 22rpx; font-weight: 800; color: var(--ink); letter-spacing: 0; }
 .fp-pf { display: flex; justify-content: space-between; font-size: 15rpx; letter-spacing: 3rpx; color: var(--pink); padding-top: 14rpx; border-top: 2rpx solid var(--rule); }
 /* 印章：0 圆章 / 1 方章 / 2 八角章 / 3 票根章 */
@@ -184,3 +184,18 @@
 .fp-photo { position: absolute; left: 0; top: 0; width: 100%; height: 100%; }
 .fp-padd { position: absolute; bottom: 10rpx; left: 0; right: 0; text-align: center; font-size: 15rpx; letter-spacing: 2rpx; color: var(--pink); }
 .fp-slot.dim { opacity: .38; }
+
+/* 个人档案云端同步 */
+.sy { margin: 8rpx 0 20rpx; padding: 30rpx 30rpx 26rpx; }
+.sy-h { font-size: 32rpx; font-weight: 900; font-family: "Songti SC", "Noto Serif SC", serif; margin-bottom: 14rpx; }
+.sy-lead, .sy-note { font-size: 23rpx; line-height: 1.7; color: var(--muted); }
+.sy-note { margin-top: 20rpx; font-size: 21rpx; }
+.sy-row { display: flex; align-items: center; gap: 20rpx; margin-top: 20rpx; }
+.sy-st { display: flex; align-items: center; gap: 14rpx; font-size: 26rpx; margin-bottom: 18rpx; }
+.sy-st .dot { width: 16rpx; height: 16rpx; border-radius: 50%; background: #3b8f5b; flex: none; }
+.sy-st .dot.busy { background: #d49a2a; } .sy-st .dot.error { background: #c2412d; } .sy-st .dot.idle { background: #999; }
+.sy-code { padding: 18rpx 20rpx; border: 2rpx dashed var(--line); border-radius: 16rpx; display: flex; flex-wrap: wrap; align-items: center; gap: 12rpx; }
+.sy-l { font-size: 21rpx; color: var(--muted); }
+.sy-c { font-size: 23rpx; font-weight: 600; flex: 1; min-width: 300rpx; word-break: break-all; }
+.sy-ops { display: flex; gap: 24rpx; font-size: 23rpx; color: var(--muted); text-decoration: underline; }
+.sy-stop { font-size: 24rpx; color: var(--muted); text-decoration: underline; padding: 10rpx; }

@@ -911,7 +911,7 @@ html.sheet-open,html.sheet-open body{overflow:hidden}
 .fp-tallies span+span{border-left:1px solid var(--line-soft)}
 .fp-tallies b{font:600 21px/1.15 var(--f-mono);color:var(--fg)}
 .fp-stage{display:flex;justify-content:center;padding:18px 0 4px;perspective:1800px}
-.fp-book{--u:3.6px;position:relative;width:min(100%,380px);aspect-ratio:88/168;transform-style:preserve-3d}
+.fp-book{--u:3.6px;position:relative;width:min(100%,380px);aspect-ratio:88/125;transform-style:preserve-3d}
 .fp-page{position:absolute;inset:0;overflow:hidden;color:var(--pp-ink);border-radius:4px 14px 14px 4px;padding:calc(var(--u)*6) calc(var(--u)*6.4) calc(var(--u)*5);display:flex;flex-direction:column;
   background:radial-gradient(circle at 50% 118%,rgba(142,42,34,.08),transparent 58%),repeating-linear-gradient(60deg,rgba(130,100,60,.045) 0 1px,transparent 1px 8px),repeating-linear-gradient(-60deg,rgba(47,111,108,.04) 0 1px,transparent 1px 8px),var(--pp-paper);
   box-shadow:inset 12px 0 16px -12px rgba(60,40,20,.35),inset 0 0 0 1px rgba(0,0,0,.04),0 18px 36px -14px rgba(60,40,20,.45),3px 3px 0 -1px #e9e0cc,6px 6px 0 -2px #ded2ba}
@@ -945,10 +945,10 @@ html.sheet-open,html.sheet-open body{overflow:hidden}
 .fp-mrz{font:500 calc(var(--u)*2.65)/1.55 "OCR B","OCR-B",var(--f-mono);letter-spacing:.1em;color:#4a4036;margin-top:calc(var(--u)*2.6);white-space:nowrap;overflow:hidden}
 .fp-visa h4{font:900 calc(var(--u)*5)/1.3 var(--f-display);margin:0}
 .fp-sub{font-size:calc(var(--u)*2.7);color:var(--pp-muted);margin:calc(var(--u)*1) 0 calc(var(--u)*3)}
-.fp-grid{flex:1;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(5,1fr);gap:calc(var(--u)*.6) calc(var(--u)*1.2);align-items:center;justify-items:center;min-height:0}
-.fp-stamp{width:100%;max-width:calc(var(--u)*27);aspect-ratio:1;padding:0;transform:rotate(var(--tilt));mix-blend-mode:multiply;animation:fp-stamp .5s cubic-bezier(.2,1.5,.4,1) both;animation-delay:calc(var(--i)*90ms + 120ms)}
-.fp-stamp:active{transform:rotate(var(--tilt)) scale(.96)}
-@keyframes fp-stamp{0%{opacity:0;transform:rotate(var(--tilt)) scale(1.45)}60%{opacity:1}100%{opacity:1;transform:rotate(var(--tilt)) scale(1)}}
+.fp-grid{flex:1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:repeat(5,minmax(0,1fr));gap:0;align-items:center;justify-items:center;min-height:0}
+.fp-stamp{width:calc(var(--u)*21);aspect-ratio:1;padding:0;transform:translate(var(--dx,0),var(--dy,0)) rotate(var(--tilt));mix-blend-mode:multiply;animation:fp-stamp .5s cubic-bezier(.2,1.5,.4,1) both;animation-delay:calc(var(--i)*90ms + 120ms)}
+.fp-stamp:active{transform:translate(var(--dx,0),var(--dy,0)) rotate(var(--tilt)) scale(.96)}
+@keyframes fp-stamp{0%{opacity:0;transform:translate(var(--dx,0),var(--dy,0)) rotate(var(--tilt)) scale(1.45)}60%{opacity:1}100%{opacity:1;transform:translate(var(--dx,0),var(--dy,0)) rotate(var(--tilt)) scale(1)}}
 .st-svg{display:block;width:100%;height:100%;overflow:visible;opacity:.9}
 .st-g text{stroke:none;text-anchor:middle;dominant-baseline:middle}
 .st-arc{font:700 12.5px var(--f-mono);letter-spacing:1.2px}
@@ -959,7 +959,18 @@ html.sheet-open,html.sheet-open body{overflow:hidden}
 .st-d{font:700 14px var(--f-mono);letter-spacing:1px}
 .st-g [fill="none"],.st-g circle,.st-g rect,.st-g polygon{fill:none}
 .st-g .st-cut{fill:var(--pp-paper);stroke:none}
-.fp-slot{width:82%;aspect-ratio:1;border:1.5px dashed var(--pp-rule);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;text-align:center;color:var(--pp-muted);padding:10%}
+.sync-card{margin:18px 0 6px;padding:18px 18px 16px;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+.sync-card h3{font:900 18px var(--f-display);margin:0 0 8px}
+.sync-lead,.sync-note{font-size:12px;line-height:1.7;color:var(--muted);margin:0 0 12px}
+.sync-note{margin:12px 0 0;font-size:11px}
+.sync-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.sync-status{display:flex;align-items:center;gap:8px;font-size:13px;margin:0 0 12px}
+.sync-dot{width:8px;height:8px;border-radius:50%;background:#999;flex:none}.sync-dot.ok{background:#3b8f5b}.sync-dot.err{background:#c2412d}.sync-dot.busy{background:#d49a2a;animation:sync-pulse 1s infinite}
+@keyframes sync-pulse{50%{opacity:.35}}
+.sync-code{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:10px 12px;margin-bottom:12px;border:1px dashed var(--line);border-radius:10px}
+.sync-code span{font-size:11px;color:var(--muted)}.sync-code code{font:600 11.5px var(--f-mono);word-break:break-all;flex:1;min-width:150px}
+.sync-join{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.sync-join input{flex:1;min-width:0;height:42px;padding:0 12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--fg);font:13px var(--f-mono)}
+.fp-slot{width:70%;aspect-ratio:1;border:1.5px dashed var(--pp-rule);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;text-align:center;color:var(--pp-muted);padding:10%}
 .fp-slot.dim{opacity:.38}.fp-slot.dim small{display:none}
 .fp-slot b{font:800 calc(var(--u)*3.4)/1.3 var(--f-display);color:var(--pp-ink)}
 .fp-slot small{font:500 calc(var(--u)*2.3)/1.4 var(--f-mono);letter-spacing:.12em}
@@ -1025,6 +1036,7 @@ html.sheet-open,html.sheet-open body{overflow:hidden}
 
 <script src="vendor/qrcode.js"></script>
 <script src="shared/recap.js"></script>
+<script src="shared/psync.js"></script>
 <script>
 /* ---- i18n：中文 / English ----
    语言：?lang=en|zh > 本机记住的选择 > 浏览器语言。英文版 = data/i18n/en.json（影片/专题/影院译文 + 界面词典 ui）。
@@ -1454,12 +1466,14 @@ function about(){
     <p class="src">后续场次公布后将补充至排片表。</p></section>`;
 }
 
-const PLAN_KEY='style-kaleidoscope-plan-v1';
+const PLAN_KEY='style-kaleidoscope-plan-v1',META_KEY='sparrow-profile-meta';
+function readMeta(){try{return JSON.parse(localStorage.getItem(META_KEY)||'{}')||{};}catch{return {};}}
+function touchMeta(k){try{const m=readMeta();m[k]=Date.now();localStorage.setItem(META_KEY,JSON.stringify(m));}catch{}}
 let validKeys=new Set();
 function readSelection(){try{const a=JSON.parse(localStorage.getItem(PLAN_KEY)||'[]');return new Set(Array.isArray(a)?a.filter(k=>validKeys.has(k)):[]);}catch{return new Set();}}
 let picked=new Set(),currentExport=[];
 function toast(message){let el=document.getElementById('toast');if(!el){el=document.createElement('div');el.id='toast';el.setAttribute('role','status');document.body.appendChild(el);}el.textContent=message;el.classList.add('visible');clearTimeout(toast.timer);toast.timer=setTimeout(()=>el.classList.remove('visible'),2800);}
-function saveSelection(){try{localStorage.setItem(PLAN_KEY,JSON.stringify([...picked]));return true;}catch{toast('当前浏览器无法保存，离开页面后可能丢失');return false;}}
+function saveSelection(){try{localStorage.setItem(PLAN_KEY,JSON.stringify([...picked]));touchMeta('picks');return true;}catch{toast('当前浏览器无法保存，离开页面后可能丢失');return false;}}
 let planFilt="all";
 function planProgChips(all){
   if(!all.length) return "";
@@ -1570,7 +1584,7 @@ function holderName(){try{return localStorage.getItem(HOLDER_KEY)||'';}catch{ret
 const STAR_D='M12 2.6l2.85 6.05 6.6.8-4.87 4.55 1.25 6.55L12 17.3l-5.83 3.25 1.25-6.55L2.55 9.45l6.6-.8Z';
 const STAMP_IC='<svg class="mr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="M9 3h6l-1 6h3a2 2 0 0 1 2 2v3H5v-3a2 2 0 0 1 2-2h3Z"/><path d="M4 17h16v3H4z"/></svg>';
 function starsHTML(r,cls){return '<span class="'+(cls||'mr-stars')+'" aria-hidden="true">'+[1,2,3,4,5].map(i=>'<span class="mr-star" style="--fill:'+Math.max(0,Math.min(2,r-(i-1)*2))*50+'%"><svg viewBox="0 0 24 24"><path d="'+STAR_D+'"/></svg><svg class="on" viewBox="0 0 24 24"><path d="'+STAR_D+'"/></svg></span>').join('')+'</span>';}
-function myRateHTML(f){const rec=watched[f.id],on=!!rec,r=on?(rec.r||0):0,s=on?watchShow(rec):null;
+function myRateHTML(f){const rec=watched[f.id],on=!!(rec&&rec.d),r=on?(rec.r||0):0,s=on?watchShow(rec):null;
   const stars='<div class="mr-stars mr-input" role="group" aria-label="我的评分（五星十分制）">'+[1,2,3,4,5].map(i=>'<span class="mr-star" style="--fill:'+Math.max(0,Math.min(2,r-(i-1)*2))*50+'%"><svg viewBox="0 0 24 24"><path d="'+STAR_D+'"/></svg><svg class="on" viewBox="0 0 24 24"><path d="'+STAR_D+'"/></svg><button data-rate="'+f.id+'" data-v="'+(i*2-1)+'" aria-label="'+(i*2-1)+' 分"></button><button data-rate="'+f.id+'" data-v="'+(i*2)+'" aria-label="'+(i*2)+' 分"></button></span>').join('')+'</div>';
   return '<section class="fd-block my-rate'+(on?' on':'')+'" id="my-rate"><h3 class="fd-h">我的观影 <small>MY FILM PASSPORT</small></h3>'+
     '<div class="mr-row"><button class="mr-seen" data-seen="'+f.id+'" aria-pressed="'+on+'">'+(on?STAMP_IC+'<span>已看过 · 已盖章</span>':'<span>＋ 看过</span>')+'</button>'+
@@ -1603,6 +1617,9 @@ const PP_EMBLEM='<svg viewBox="0 0 120 120" fill="none" aria-hidden="true"><circ
 function passportStats(list){const venues=new Set(list.filter(e=>e.s).map(e=>e.s.v)),progs=new Set(list.map(e=>progOf(e.f).id)),rated=list.filter(e=>e.rec.r),mins=list.reduce((n,e)=>n+(e.f.min||0),0);
   return {n:list.length,venues:venues.size,progs:progs.size,avg:rated.length?rated.reduce((n,e)=>n+e.rec.r,0)/rated.length:0,mins,hm:Math.floor(mins/60)+'h'+pad2(mins%60)};}
 function passportPages(list){const pages=['id'];for(let i=0;i<Math.max(1,list.length);i+=PP_PER)pages.push(i);return pages;}
+// 印章像真护照那样盖：位置略有偏移、角度各不相同，边缘允许轻微重叠（同一枚章每次位置固定）
+function stampPose(id,i){const h=window.SparrowRecap.hash(id),row=Math.floor(i/3);
+  return {tilt:(((h%21)-10)*1.1).toFixed(1),dx:(((h>>>5)%9-4)*.5+(row%2?1.6:-.4)).toFixed(2),dy:(((h>>>9)%7-3)*.55).toFixed(2)};}
 function ppPageHTML(list,pg,n){const R=window.SparrowRecap,st=passportStats(list),no=String(pg+1).padStart(2,'0'),hn=holderName(),hp=holderPhoto();
   if(pg===0){const first=list[0],last=list[list.length-1];
     return '<section class="fp-page fp-id" aria-label="护照资料页"><div class="fp-ph"><span>FILM PASSPORT / 资料页</span><span>'+no+'</span></div>'+
@@ -1612,8 +1629,8 @@ function ppPageHTML(list,pg,n){const R=window.SparrowRecap,st=passportStats(list
     '<div class="fp-sign"><span>签名 / SIGNATURE</span><b>See you at the cinema.</b></div>'+
     '<div class="fp-mrz" aria-hidden="true">P&lt;SPARROW&lt;FILM&lt;PASSPORT&lt;&lt;'+(hn&&!CJK.test(hn)?esc(hn.toUpperCase().replace(/[^A-Z]/g,'&lt;')).slice(0,14):'CINEPHILE')+'&lt;&lt;&lt;<br>FILMS&lt;'+String(st.n).padStart(3,'0')+'&lt;&lt;PROGS&lt;'+pad2(st.progs)+'&lt;&lt;AVG&lt;'+(st.avg?Math.round(st.avg*10):'00')+'&lt;&lt;'+(last?last.rec.d.replace(/-/g,''):'00000000')+'</div></section>';}
   const start=(pg-1)*PP_PER,items=list.slice(start,start+PP_PER);
-  const cells=items.map((e,i)=>'<button class="fp-stamp" data-film="'+e.id+'" style="--tilt:'+R.look(e.id).tilt+'deg;--i:'+i+'">'+stampSVG(e)+'</button>').join('')+
-    Array.from({length:PP_PER-items.length},(x,i)=>'<span class="fp-slot'+(i?' dim':'')+'">'+(i===0&&!list.length?'<b>第一枚印章</b><small>在影片页点「看过」</small>':'<small>NEXT STAMP</small>')+'</span>').join('');
+  const cells=items.map((e,i)=>'<button class="fp-stamp" data-film="'+e.id+'" style="--tilt:'+stampPose(e.id,i).tilt+'deg;--dx:calc(var(--u)*'+stampPose(e.id,i).dx+');--dy:calc(var(--u)*'+stampPose(e.id,i).dy+');--i:'+i+'">'+stampSVG(e)+'</button>').join('')+
+    Array.from({length:Math.min(1,PP_PER-items.length)},(x,i)=>'<span class="fp-slot'+(i?' dim':'')+'">'+(i===0&&!list.length?'<b>第一枚印章</b><small>在影片页点「看过」</small>':'<small>NEXT STAMP</small>')+'</span>').join('');
   return '<section class="fp-page fp-visa" aria-label="观影印章页"><div class="fp-ph"><span>VISAS / 观影印章</span><span>'+no+'</span></div><h4>'+(list.length?'一部电影，一枚印章。':'这本护照还没有印章')+'</h4><p class="fp-sub">'+(list.length?'点印章回到影片 · 评分印在章上':'在影片页点「看过」，就会在这里盖章。')+'</p><div class="fp-grid">'+cells+'</div><div class="fp-pf"><span><span>印章</span> '+pg+' / '+(n-1)+'</span><span>SPARROW FILM PASSPORT</span></div></section>';}
 function passportHTML(){const list=watchEntries(),pages=passportPages(list),n=pages.length;PP.page=Math.min(PP.page,n-1);const st=passportStats(list);
   const cover='<button type="button" class="fp-cover" data-pp="open" aria-label="翻开我的观影护照"><span class="fp-cb"></span><span class="fp-pub">麻雀观影护照<small>SPARROW FILM PASSPORT</small></span><span class="fp-emb">'+PP_EMBLEM+'</span><span class="fp-name">观影护照</span><span class="fp-nen">FILM PASSPORT</span><span class="fp-motto">ONE FILM · ONE STAMP</span><span class="fp-chip"><svg viewBox="0 0 36 24" aria-hidden="true"><rect x="1" y="1" width="34" height="22" rx="3"/><circle cx="18" cy="12" r="6"/><path d="M1 12h11m12 0h11"/></svg>麻雀映画 × 麻雀部落</span></button>';
@@ -1646,27 +1663,81 @@ document.addEventListener('touchend',e=>{if(!ppGesture)return;const dx=e.changed
 // —— 看过 / 打分 / 护照按钮 ——
 document.addEventListener('click',e=>{
   const sv=e.target.closest('[data-seen]');
-  if(sv){const id=sv.dataset.seen;if(watched[id]){if(!confirm(tr('移出观影护照？这部电影的印章和评分会一起删除。')))return;delete watched[id];saveWatched();toast('已移出观影护照');}else{watched[id]=Object.assign({r:0,t:Date.now()},watchGuess(id));saveWatched();toast('已盖章 · 加入观影护照');}refreshMyRate(id);return;}
+  if(sv){const id=sv.dataset.seen;if(watched[id]&&watched[id].d){if(!confirm(tr('移出观影护照？这部电影的印章和评分会一起删除。')))return;watched[id]={del:1,t:Date.now()};saveWatched();toast('已移出观影护照');}else{watched[id]=Object.assign({r:0,t:Date.now()},watchGuess(id));saveWatched();toast('已盖章 · 加入观影护照');}refreshMyRate(id);return;}
   const rt=e.target.closest('[data-rate]');
-  if(rt){const id=rt.dataset.rate,v=+rt.dataset.v,isNew=!watched[id];if(isNew)watched[id]=Object.assign({r:0},watchGuess(id));watched[id].r=watched[id].r===v?0:v;watched[id].t=Date.now();saveWatched();if(isNew)toast('已盖章 · 加入观影护照');refreshMyRate(id);return;}
+  if(rt){const id=rt.dataset.rate,v=+rt.dataset.v,isNew=!(watched[id]&&watched[id].d);if(isNew)watched[id]=Object.assign({r:0},watchGuess(id));watched[id].r=watched[id].r===v?0:v;watched[id].t=Date.now();saveWatched();if(isNew)toast('已盖章 · 加入观影护照');refreshMyRate(id);return;}
   const pp=e.target.closest('[data-pp]');
   if(pp){if(performance.now()<ppSuppress){e.preventDefault();return;}const a=pp.dataset.pp;
     if(a==='recap'){openRecap();return;}
-    if(a==='photo-clear'){try{localStorage.removeItem(PHOTO_KEY);}catch{}renderPassport();return;}
+    if(a==='photo-clear'){try{localStorage.removeItem(PHOTO_KEY);touchMeta('photo');}catch{}renderPassport();return;}
     if(a==='photo'){pickPhoto();return;}
-    if(a==='name'){const v=prompt(tr('护照持有人（显示在资料页）'),holderName());if(v!=null){try{localStorage.setItem(HOLDER_KEY,v.trim().slice(0,20));}catch{}renderPassport();}return;}
+    if(a==='name'){const v=prompt(tr('护照持有人（显示在资料页）'),holderName());if(v!=null){try{localStorage.setItem(HOLDER_KEY,v.trim().slice(0,20));touchMeta('holder');}catch{}renderPassport();}return;}
     turnPassport(a);}
 });
-document.addEventListener('change',e=>{const d=e.target.closest('[data-seen-date]');if(!d)return;const id=d.dataset.seenDate;if(!watched[id]||!/^\d{4}-\d{2}-\d{2}$/.test(d.value))return;watched[id].d=d.value;const s=SH.find(x=>x.id===id&&isoOf(showDate(x))===d.value&&isPast(x));watched[id].k=s?keyOf(s):'';watched[id].t=Date.now();saveWatched();refreshMyRate(id);toast('观影日期已更新');});
+document.addEventListener('change',e=>{const d=e.target.closest('[data-seen-date]');if(!d)return;const id=d.dataset.seenDate;if(!(watched[id]&&watched[id].d)||!/^\d{4}-\d{2}-\d{2}$/.test(d.value))return;watched[id].d=d.value;const s=SH.find(x=>x.id===id&&isoOf(showDate(x))===d.value&&isPast(x));watched[id].k=s?keyOf(s):'';watched[id].t=Date.now();saveWatched();refreshMyRate(id);toast('观影日期已更新');});
 
 // —— 护照持有人照片：从相册选择，裁成 3:4 小图存在本机 ——
 function pickPhoto(){const inp=document.createElement('input');inp.type='file';inp.accept='image/*';inp.style.display='none';
   inp.onchange=async()=>{const f=inp.files&&inp.files[0];inp.remove();if(!f)return;
     try{let bmp;try{bmp=await createImageBitmap(f,{imageOrientation:'from-image'});}catch{bmp=await new Promise((ok,no)=>{const im=new Image();im.onload=()=>ok(im);im.onerror=no;im.src=URL.createObjectURL(f);});}
       const W=300,H=400,c=document.createElement('canvas');c.width=W;c.height=H;const x=c.getContext('2d'),sw=bmp.width,sh=bmp.height,k=Math.max(W/sw,H/sh),dw=sw*k,dh=sh*k;x.drawImage(bmp,(W-dw)/2,(H-dh)/2,dw,dh);
-      localStorage.setItem(PHOTO_KEY,c.toDataURL('image/jpeg',.82));renderPassport();toast('照片已放进护照');}
+      localStorage.setItem(PHOTO_KEY,c.toDataURL('image/jpeg',.82));touchMeta('photo');renderPassport();toast('照片已放进护照');}
     catch{toast('照片添加失败，请换一张再试');}};
   document.body.appendChild(inp);inp.click();}
+// —— 个人档案云端同步：同步码 + Supabase（与米其林全球名录共用同一个后端，不用注册）——
+const SYNC_KEY='sparrow-sync',SB_API='https://dclxhxxjktegyiwafmsv.supabase.co/rest/v1/rpc/',SB_KEY='sb_publishable_2K9O3h8nn2I_I-cIAdks8A_QZ98xwZ2';
+let syncSt=null,syncBusy=null,syncStatus={state:'idle',msg:'',at:0},syncReveal=false,syncMode='',syncPrint='',syncTimer=0;
+try{syncSt=JSON.parse(localStorage.getItem(SYNC_KEY)||'null');}catch{}
+function syncSave(){try{syncSt?localStorage.setItem(SYNC_KEY,JSON.stringify(syncSt)):localStorage.removeItem(SYNC_KEY);}catch{}}
+async function sbRpc(fn,body){const r=await fetch(SB_API+fn,{method:'POST',headers:{apikey:SB_KEY,Authorization:'Bearer '+SB_KEY,'Content-Type':'application/json'},body:JSON.stringify(body)});
+  if(!r.ok){let m='';try{m=(await r.json()).message||'';}catch{}throw new Error(m||('HTTP '+r.status));}return r.json();}
+function profileSnap(){const m=readMeta();return {v:1,watched:JSON.parse(JSON.stringify(watched)),holder:{n:holderName(),t:m.holder||0},photo:{d:holderPhoto(),t:m.photo||0},picks:{k:[...picked],t:m.picks||0}};}
+function profileApply(d){watched=d.watched;saveWatched();
+  try{localStorage.setItem(HOLDER_KEY,d.holder.n);d.photo.d?localStorage.setItem(PHOTO_KEY,d.photo.d):localStorage.removeItem(PHOTO_KEY);localStorage.setItem(PLAN_KEY,JSON.stringify(d.picks.k));
+    localStorage.setItem(META_KEY,JSON.stringify({holder:d.holder.t,photo:d.photo.t,picks:d.picks.t}));}catch{throw new Error(tr('浏览器未能保存，请检查存储空间'));}
+  picked=readSelection();}
+const profilePrint=()=>{try{return JSON.stringify([watched,holderName(),holderPhoto().length,[...picked].sort()]);}catch{return '';}};
+async function syncRun(){
+  if(!syncSt||!syncSt.code)return;syncStatus={state:'busy',msg:tr('同步中…'),at:syncStatus.at};syncPaint();
+  const S=window.SparrowSync;let merged,rev;
+  for(let i=0;i<4;i++){const remote=await sbRpc('mg_pull',{code:syncSt.code}),mine=profileSnap();
+    merged=remote.data?S.merge(mine,remote.data):S.clean(mine);
+    if(remote.data&&S.same(merged,remote.data)){rev=remote.rev;break;}
+    const r=await sbRpc('mg_push',{code:syncSt.code,data:merged,base_rev:remote.rev||0});if(r.ok){rev=r.rev;break;}}
+  if(rev===undefined)throw new Error(tr('云端有其他设备正在同步，请稍后再试'));
+  const changed=!S.same(merged,profileSnap());if(changed){profileApply(merged);if(location.hash.replace('#','').split('/')[0]==='my'||!location.hash){const y=window.scrollY;route();window.scrollTo(0,y);}}
+  syncSt={...syncSt,rev,at:Date.now()};syncSave();syncPrint=profilePrint();syncStatus={state:'ok',msg:'',at:Date.now()};syncPaint();return {changed};}
+function syncNow(){if(syncBusy)return syncBusy;syncBusy=syncRun().catch(e=>{syncStatus={state:'error',msg:(e&&e.message)||String(e),at:syncStatus.at};syncPaint();throw e;}).finally(()=>{syncBusy=null;});return syncBusy;}
+const syncQuiet=()=>syncNow().catch(()=>{});
+function syncAgo(t){if(!t)return '';const s=(Date.now()-t)/1000;return s<60?tr('刚刚'):s<3600?Math.round(s/60)+' '+tr('分钟前'):s<86400?Math.round(s/3600)+' '+tr('小时前'):new Date(t).toLocaleDateString();}
+function syncCardHTML(){
+  if(!syncSt||!syncSt.code){
+    return '<h3>个人档案云端同步</h3><p class="sync-lead">用一串同步码，在手机、电脑和小程序之间同步看过记录、评分、护照照片和个人排片。不用注册账号。</p>'+
+      (syncMode==='join'?'<form class="sync-join" id="sync-join"><input id="sync-input" placeholder="SP-XXXX-XXXX-XXXX-XXXX-XXXX-XXXX" autocomplete="off" autocapitalize="characters" spellcheck="false" aria-label="同步码"><button class="primary-button" type="submit">连接</button><button type="button" class="text-button" data-sync="cancel">取消</button></form>'
+      :'<div class="sync-row"><button class="primary-button" data-sync="start">开启同步</button><button class="secondary-button" data-sync="join">我已有同步码</button></div>');}
+  const code=syncSt.code,shown=syncReveal?code:code.slice(0,7)+'-••••-••••-••••-••••-'+code.slice(-4);
+  const line=syncStatus.state==='busy'?'<span class="sync-dot busy"></span>'+esc(syncStatus.msg||'同步中…'):syncStatus.state==='error'?'<span class="sync-dot err"></span>同步失败：'+esc(syncStatus.msg):'<span class="sync-dot ok"></span>已同步'+(syncSt.at?' · '+esc(syncAgo(syncSt.at)):'');
+  return '<h3>个人档案云端同步</h3><p class="sync-status" role="status" aria-live="polite">'+line+'</p>'+
+    '<div class="sync-code"><span>同步码</span><code translate="no">'+esc(shown)+'</code><div><button type="button" class="text-button" data-sync="reveal">'+(syncReveal?'隐藏':'显示')+'</button><button type="button" class="text-button" data-sync="copy">复制</button></div></div>'+
+    '<div class="sync-row"><button class="primary-button" data-sync="now">立即同步</button><button class="text-button" data-sync="stop">停止同步</button></div>'+
+    '<p class="sync-note">在另一台设备（网站或小程序）的「我的」页选「我已有同步码」，输入这串码即可。同步码就是钥匙，请自己保存好；知道它的人都能读写这份档案。</p>';}
+function syncPaint(){const el=document.getElementById('sync-card');if(el)el.innerHTML=syncCardHTML();}
+function syncCopy(t){return navigator.clipboard&&navigator.clipboard.writeText?navigator.clipboard.writeText(t):Promise.reject();}
+document.addEventListener('click',async e=>{const b=e.target.closest('[data-sync]');if(!b)return;const a=b.dataset.sync;
+  if(a==='join'||a==='cancel'){syncMode=a==='join'?'join':'';syncPaint();if(syncMode)document.getElementById('sync-input')?.focus();return;}
+  if(a==='start'){syncSt={code:window.SparrowSync.newCode(n=>crypto.getRandomValues(new Uint8Array(n))),rev:0,at:0};syncReveal=true;syncSave();syncPaint();try{await syncNow();toast('已开启同步，请保存好同步码');}catch(err){toast(tr('同步失败：')+err.message);}return;}
+  if(a==='reveal'){syncReveal=!syncReveal;syncPaint();return;}
+  if(a==='copy'){syncCopy(syncSt.code).then(()=>toast('同步码已复制'),()=>toast('复制失败，请长按同步码手动复制'));return;}
+  if(a==='now'){try{const r=await syncNow();toast(r&&r.changed?'已同步，并合并了其他设备的更改':'已同步');}catch(err){toast(tr('同步失败：')+err.message);}return;}
+  if(a==='stop'){if(!confirm(tr('在这台设备停止同步？本机记录会保留，云端的记录也不会删除；以后输入同步码可以重新连接。')))return;syncSt=null;syncSave();syncStatus={state:'idle',msg:'',at:0};syncMode='';syncReveal=false;syncPaint();}
+});
+document.addEventListener('submit',async e=>{if(e.target.id!=='sync-join')return;e.preventDefault();
+  const code=window.SparrowSync.normalize(document.getElementById('sync-input').value);if(!code){toast('同步码格式不对，请检查');return;}
+  syncSt={code,rev:0,at:0};syncSave();syncMode='';syncPaint();try{await syncNow();toast('已连接，记录已合并');}catch(err){toast(tr('同步失败：')+err.message);}});
+function syncStart(){syncPrint=profilePrint();if(syncSt&&syncSt.code)syncQuiet();
+  setInterval(()=>{if(!syncSt||!syncSt.code||syncBusy)return;const p=profilePrint();if(p!==syncPrint){syncPrint=p;clearTimeout(syncTimer);syncTimer=setTimeout(syncQuiet,3000);}},2000);
+  document.addEventListener('visibilitychange',()=>{if(syncSt&&syncSt.code&&document.visibilityState==='visible'&&Date.now()-(syncSt.at||0)>30000)syncQuiet();});
+  setInterval(()=>{if(syncStatus.state==='ok')syncPaint();},60000);}
 // —— 影院观影结算：按年份 / 专题筛选，生成长图 ——
 let recapYear='all',recapProg='all';
 function recapScope(){return watchEntries().filter(e=>(recapYear==='all'||e.rec.d.slice(0,4)===recapYear)&&(recapProg==='all'||progOf(e.f).id===recapProg));}
@@ -1705,7 +1776,7 @@ async function makeRecap(){const list=recapScope();if(!list.length||recapBusy)re
   catch(err){toast('图片生成失败，请稍后再试');return false;}finally{recapBusy=false;}}
 
 function myPage(){const list=selectedRows(),st=planStats(list),next=list.find(s=>!isPast(s));
-  main.innerHTML='<section class="view gut">'+passportHTML()+
+  main.innerHTML='<section class="view gut">'+passportHTML()+'<section class="sync-card" id="sync-card" aria-label="个人档案云端同步">'+syncCardHTML()+'</section>'+
   '<div class="my-menu"><button class="my-entry" data-tab="plan"><span class="me-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="15" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span><span><b>个人排片</b><small>'+(list.length?st.n+' 场 · '+(next?'下一场 '+next.d+' '+wk(next.d)+' '+next.t:'已全部放映'):'按天查看日程 · 自动检查时间冲突')+'</small></span><span class="me-go">›</span></button><button class="my-entry" data-tab="export"><span class="me-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="4" width="6" height="6"/><rect x="14" y="4" width="6" height="6"/><rect x="4" y="14" width="6" height="6"/><path d="M14 14h2v2h-2zM18 18h2v2h-2zM14 18h2M18 14h2"/></svg></span><span><b>导出与分享</b><small>带二维码的排片长图 · 分享链接 · 日历 · PDF</small></span><span class="me-go">›</span></button><button class="my-entry" data-tab="install"><span class="me-ic">'+IIC.phone+'</span><span><b>添加到手机</b><small>'+(ENV.standalone?'已在 App 模式中打开':'放到桌面像 App 一样看 · 微信里用浮窗')+'</small></span><span class="me-go">›</span></button></div>'+
   '<p class="local-note">排片保存在当前浏览器。换设备时，用分享链接带走日程。</p>'+presentersHTML()+'<p class="local-note pres-note">麻雀观影护照由麻雀映画与麻雀部落制作，汇集影展专题、艺术影院与院线放映场次。当前专题：风格万相 · 中外经典影片展（2026.10—2027.01）。</p></section>';sizeBook();}
 function planPage(){const all=selectedRows(),list=scopedRows(),st=planStats(list);
@@ -1913,7 +1984,7 @@ async function boot(){
   main.innerHTML='<section class="view gut boot"><p class="sub">正在载入排片…</p></section>';
   try{ await loadData(); }
   catch(e){ console.error(e); main.innerHTML='<section class="view gut boot"><h2 class="sec">排片数据加载失败</h2><p class="sub">请检查网络后重新打开。</p><button class="primary-button" data-reload>重新加载</button></section>'; return; }
-  pfilt="all"; READY=true; route();  // 首页（含扫分享二维码进入）默认显示全部专题
+  pfilt="all"; READY=true; route(); syncStart();  // 首页（含扫分享二维码进入）默认显示全部专题
 }
 document.addEventListener("click",e=>{ if(e.target.closest("[data-reload]")) location.reload(); });
 let rz; let lastW=window.innerWidth; window.addEventListener("resize",()=>{clearTimeout(rz);rz=setTimeout(()=>{if(Math.abs(window.innerWidth-lastW)<40)return;lastW=window.innerWidth;const h=location.hash.slice(1)||"schedule";if(h==="schedule"||h==="gantt")schedule();},200)});
