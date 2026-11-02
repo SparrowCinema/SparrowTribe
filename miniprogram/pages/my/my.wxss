@@ -36,3 +36,5 @@
 .gap.tight { color: var(--ochre); }
 .gap.clash { color: #c4372d; border-left: 4rpx solid #c4372d; font-weight: 700; }
 .k2 { font-family: Menlo, monospace; font-size: 18rpx; letter-spacing: 6rpx; color: var(--muted); }
+
+.hscroll { white-space: nowrap; margin: 8rpx 0 20rpx; }

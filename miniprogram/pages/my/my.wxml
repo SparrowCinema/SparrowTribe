@@ -17,6 +17,11 @@
   </view>
 
   <block wx:else>
+    <scroll-view wx:if="{{progs.length}}" scroll-x class="hscroll" enhanced show-scrollbar="{{false}}">
+      <view class="chips">
+        <view wx:for="{{progs}}" wx:key="id" class="chip {{pf===item.id?'on':''}}" data-id="{{item.id}}" bindtap="setProg">{{item.n}} · {{item.c}}</view>
+      </view>
+    </scroll-view>
     <view class="tools">
       <button class="btn" open-type="share">分享给朋友</button>
       <view class="btn ghost" bindtap="toSchedule">继续选片</view>
