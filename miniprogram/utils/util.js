@@ -40,6 +40,17 @@ const qaOf = f => (f && f.qaStart && f.qaEnd && f.qaGuest && toMin(f.qaEnd) > to
 // 一场放映是否已散场（片长结束后即视为已放映，首页与详情页不再显示）
 const ended = (s, idx) => showDate(s).getTime() + ((idx.F[s.id] && idx.F[s.id].min) || 0) * 60000 < Date.now();
 
+// 专题状态：有起止日期按日期，否则按场次范围（与网站 progStatus 一致）：soon 即将开始 / live 进行中 / ended 已结束
+const ymd = v => { const [y, m, d] = String(v).split('-').map(Number); return new Date(y, (m || 1) - 1, d || 1).getTime(); };
+function progInfo(p, data, idx, now = Date.now()) {
+  const shows = data.shows.filter(s => idx.F[s.id] && idx.progOf(idx.F[s.id]).id === p.id);
+  const ts = shows.map(s => showDate(s).getTime()), te = shows.map(s => showDate(s).getTime() + ((idx.F[s.id] || {}).min || 0) * 60000);
+  const a = p.start ? ymd(p.start) : (ts.length ? Math.min(...ts) : null);
+  const b = p.end ? ymd(p.end) + 864e5 : (te.length ? Math.max(...te) : null);
+  const status = a != null && now < a ? 'soon' : (b != null && now >= b ? 'ended' : 'live');
+  return { shows, a, b, status, up: shows.filter(s => !ended(s, idx)).length };
+}
+
 // 一场放映的展示用对象
 function showView(s, idx, data, picked) {
   const f = idx.F[s.id]; const st = toMin(s.t);
@@ -54,4 +65,4 @@ function showView(s, idx, data, picked) {
   };
 }
 
-module.exports = { qaOf, ended, isFest, relTime, nextShowOf, filmOrder, filmTone, langSub, WK, year, wk, toMin, fmt, keyOf, showDate, poster, ticket, durText, index, showView };
+module.exports = { progInfo, qaOf, ended, isFest, relTime, nextShowOf, filmOrder, filmTone, langSub, WK, year, wk, toMin, fmt, keyOf, showDate, poster, ticket, durText, index, showView };

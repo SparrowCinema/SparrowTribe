@@ -81,11 +81,15 @@ Page({
         }) });
       }));
     }
+    // 专题筛选：已结束的专题不再列出（当前选中的除外），与网站一致
     const progs = data.programmes.map(p => {
-      const ps = data.shows.filter(s => idx.F[s.id] && idx.progOf(idx.F[s.id]).id === p.id);
+      const info = U.progInfo(p, data, idx);
       const fn = data.films.filter(f => idx.progOf(f).id === p.id).length;
-      return Object.assign({}, p, { n: ps.length, fn });
-    });
+      return Object.assign({}, p, { n: info.shows.length, fn, status: info.status });
+    }).filter(p => p.status !== 'ended' || p.id === pf);
+    // 影院筛选：只列出当前专题里还有待放映场次的影院；只有一家时不显示
+    const upInProg = data.shows.filter(s => idx.F[s.id] && !U.ended(s, idx) && (pf === 'all' || idx.progOf(idx.F[s.id]).id === pf));
+    const vlist = data.venues.filter(v => upInProg.some(s => s.v === v.id) || v.id === vf);
     const venues = data.venues.map(v => {
       const n = data.shows.filter(s => s.v === v.id).length;
       return { id: v.id, short: vShort(v), name: v.name, fmt: (v.fmt || []).join(' · '), n, halls: v.halls.length ? v.halls.map(h => h.name).join(' · ') : '影厅待补充' };
@@ -94,7 +98,7 @@ Page({
     this.setData({
       day, days, cols, ticks, H, nowLine, progs, venues, myToday,
       myTodayTitle: tk.getMonth() + 1 + '月' + tk.getDate() + '日 ' + U.wk(tkey) + ' · 接下来 ' + myToday.length + ' 场',
-      vchips: [{ id: 'all', n: '全部影院' }].concat(data.venues.map(v => ({ id: v.id, n: vShort(v) }))),
+      vchips: vlist.length > 1 ? [{ id: 'all', n: '全部影院' }].concat(vlist.map(v => ({ id: v.id, n: vShort(v) }))) : [],
       dayList: dl.map(s => U.showView(s, idx, data, picked)),
       dayTitle: day ? day.replace('/', '月') + '日 ' + U.wk(day) : '',
       hallCount: new Set(dl.map(s => s.v + s.h)).size,
@@ -105,7 +109,7 @@ Page({
     });
   },
 
-  setProg(e) { this.setData({ pf: e.currentTarget.dataset.id }); this.build(); },
+  setProg(e) { this.setData({ pf: e.currentTarget.dataset.id, vf: 'all', day: '' }); this.build(); },
   setVenue(e) { this.setData({ vf: e.currentTarget.dataset.id }); this.build(); },
   setDay(e) { this.setData({ day: e.currentTarget.dataset.d }); this.build(); },
   toggleToday() { this.setData({ todayOpen: !this.data.todayOpen }); },

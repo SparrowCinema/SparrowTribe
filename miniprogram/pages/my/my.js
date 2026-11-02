@@ -12,8 +12,9 @@ Page({
     const data = app.globalData.data, idx = U.index(data), picked = plan.get();
     const all = data.shows.filter(s => idx.F[s.id] && picked.has(U.keyOf(s))).sort((a, b) => U.showDate(a) - U.showDate(b));
     // 专题筛选：只列出个人排片里有场次的专题；选中的专题已无场次时回到「全部」
-    const pids = [...new Set(all.map(s => idx.progOf(idx.F[s.id]).id))];
-    const progs = pids.length > 1 ? [{ id: 'all', n: '全部专题', c: all.length }].concat(pids.map(id => ({ id, n: idx.PG[id].name, c: all.filter(s => idx.progOf(idx.F[s.id]).id === id).length }))) : [];
+    // 专题筛选：只要个人排片不为空就显示；列出所有有放映场次的专题（未加入的显示「未加入」），与网站一致
+    const pids = data.programmes.map(p => p.id).filter(id => data.shows.some(s => idx.F[s.id] && idx.progOf(idx.F[s.id]).id === id));
+    const progs = all.length ? [{ id: 'all', n: '全部专题', c: all.length }].concat(pids.map(id => ({ id, n: idx.PG[id].name, c: all.filter(s => idx.progOf(idx.F[s.id]).id === id).length }))) : [];
     const pf = pids.includes(this.data.pf) ? this.data.pf : 'all';
     const list = pf === 'all' ? all : all.filter(s => idx.progOf(idx.F[s.id]).id === pf);
     const minutes = list.reduce((n, s) => n + idx.F[s.id].min, 0);
@@ -33,11 +34,12 @@ Page({
       return { d: g.d, wk: g.wk, items, range: g.items[0].t + ' – ' + items[items.length - 1].end };
     });
     this.keys = list.map(U.keyOf);
-    this.setData({ progs, pf, days, clash, empty: !all.length, stats: { n: list.length, d: byDay.length, hm: Math.floor(minutes / 60) + 'h' + String(minutes % 60).padStart(2, '0') } });
+    this.setData({ progs, pf, days, clash, empty: !all.length, pfEmpty: !!all.length && !list.length, stats: { n: list.length, d: byDay.length, hm: Math.floor(minutes / 60) + 'h' + String(minutes % 60).padStart(2, '0') } });
   },
   // 排片长图：与网站同版式，只含当前所选专题；保存到相册，或预览后发给朋友
   makeImage() {
-    if (this.busy || !this.data.days.length) return;
+    if (this.busy) return;
+    if (!this.data.days.length) { wx.showToast({ title: '这个专题还没有加入场次', icon: 'none' }); return; }
     this.busy = true; wx.showLoading({ title: '正在生成长图…', mask: true });
     const fail = msg => { this.busy = false; wx.hideLoading(); wx.showToast({ title: msg || '生成失败，请稍后再试', icon: 'none' }); };
     wx.createSelectorQuery().select('#poster').fields({ node: true, size: true }).exec(async res => {

@@ -1,4 +1,4 @@
-/* 本地内置数据：云数据库为空或网络不可用时使用。由网站 index.html 导出。 */
+/* 本地内置数据：云数据库为空或网络不可用时使用。由 tools/build-fallback.js 从网站 data/ 生成，规则与 getData 云函数一致。 */
 module.exports = {
  "films": [
   {
@@ -49,6 +49,8 @@ module.exports = {
     "提名｜第32届奥斯卡 · 最佳原创剧本：英格玛·伯格曼"
    ],
    "version": "4K修复",
+   "poster": "posters/wild-strawberries.jpg",
+   "subtitles": "中文字幕",
    "gifts": [
     {
      "items": [
@@ -58,14 +60,16 @@ module.exports = {
       "盖章"
      ]
     }
-   ]
+   ],
+   "prog": "style-kaleidoscope",
+   "ticketUrl": "/images/tickets/wild-strawberries.jpg"
   },
   {
    "id": "dogville",
    "cn": "狗镇",
    "o": "Dogville",
    "y": 2003,
-   "c": "丹麦 / 瑞典 / 英国等",
+   "c": "丹麦 / 瑞典 / 挪威 / 芬兰 / 意大利 / 法国 / 英国 / 德国 / 荷兰",
    "min": 178,
    "reg": "eu",
    "dir": "拉斯·冯·提尔",
@@ -109,6 +113,8 @@ module.exports = {
     "提名｜2003 欧洲电影奖 · 最佳编剧"
    ],
    "version": "4K修复",
+   "poster": "posters/dogville.jpg",
+   "subtitles": "中文字幕",
    "gifts": [
     {
      "items": [
@@ -118,14 +124,16 @@ module.exports = {
       "盖章"
      ]
     }
-   ]
+   ],
+   "prog": "style-kaleidoscope",
+   "ticketUrl": "/images/tickets/dogville.jpg"
   },
   {
    "id": "sirat",
    "cn": "接近终点",
    "o": "Sirāt",
    "y": 2025,
-   "c": "西班牙 / 法国",
+   "c": "法国 / 西班牙",
    "min": 115,
    "reg": "eu",
    "dir": "奥利维尔·拉克谢",
@@ -157,7 +165,7 @@ module.exports = {
     "惊悚",
     "冒险"
    ],
-   "language": "西班牙语 / 法语",
+   "language": "西班牙语",
    "highlights": [
     "开场的音箱与人群建立了影片的身体感，声音值得和画面一起留意。",
     "尽量少看详细剧情解析，让道路、空间和人物遭遇保留它们原有的突然性。"
@@ -179,6 +187,8 @@ module.exports = {
     "提名｜2026 戈雅奖 · 最佳特殊效果"
    ],
    "version": "4K修复",
+   "poster": "posters/sirat.jpg",
+   "subtitles": "中英字幕",
    "gifts": [
     {
      "items": [
@@ -188,14 +198,16 @@ module.exports = {
       "盖章"
      ]
     }
-   ]
+   ],
+   "prog": "style-kaleidoscope",
+   "ticketUrl": "/images/tickets/sirat.jpg"
   },
   {
    "id": "swordsman",
    "cn": "笑傲江湖",
    "o": "Swordsman",
    "y": 1990,
-   "c": "中国香港",
+   "c": "中国（香港 / 台湾）",
    "min": 118,
    "reg": "cn",
    "dir": "胡金铨 / 徐克 / 程小东 / 李惠民",
@@ -254,6 +266,8 @@ module.exports = {
     "提名｜第10届香港电影金像奖 · 最佳电影配乐：黄霑、戴乐民"
    ],
    "version": "4K修复",
+   "poster": "posters/swordsman.jpg",
+   "subtitles": "中文字幕",
    "gifts": [
     {
      "items": [
@@ -263,7 +277,9 @@ module.exports = {
       "盖章"
      ]
     }
-   ]
+   ],
+   "prog": "style-kaleidoscope",
+   "ticketUrl": "/images/tickets/swordsman.jpg"
   },
   {
    "id": "swordsman-2",
@@ -322,6 +338,7 @@ module.exports = {
     "提名｜第12届香港电影金像奖 · 最佳电影歌曲：《只记今朝笑》"
    ],
    "version": "4K修复",
+   "poster": "posters/swordsman-2.jpg",
    "gifts": [
     {
      "items": [
@@ -331,7 +348,9 @@ module.exports = {
       "盖章"
      ]
     }
-   ]
+   ],
+   "prog": "style-kaleidoscope",
+   "ticketUrl": "/images/tickets/swordsman-2.jpg"
   },
   {
    "id": "leningrad-cowboys",
@@ -369,7 +388,7 @@ module.exports = {
     "喜剧",
     "音乐"
    ],
-   "language": "芬兰语 / 英语",
+   "language": "英语",
    "highlights": [
     "看夸张的发型与严肃的面孔如何制造反差，许多笑点并不靠对白。",
     "把每场演出当作一次小小的文化碰撞，留意乐队怎样适应下一间酒吧。"
@@ -378,6 +397,8 @@ module.exports = {
     "获奖｜1989 芬兰教育与文化部 · 国家电影质量奖（State Quality Prize for Film）"
    ],
    "version": "2K",
+   "poster": "posters/leningrad-cowboys.jpg",
+   "subtitles": "中英字幕",
    "gifts": [
     {
      "items": [
@@ -387,14 +408,16 @@ module.exports = {
       "盖章"
      ]
     }
-   ]
+   ],
+   "prog": "style-kaleidoscope",
+   "ticketUrl": "/images/tickets/leningrad-cowboys.jpg"
   },
   {
    "id": "turin-horse",
    "cn": "都灵之马",
    "o": "A torinói ló",
    "y": 2011,
-   "c": "匈牙利 / 法国等",
+   "c": "匈牙利 / 法国 / 瑞典 / 德国 / 美国",
    "min": 155,
    "reg": "eu",
    "dir": "贝拉·塔尔",
@@ -434,6 +457,8 @@ module.exports = {
     "获奖｜2011 柏林国际电影节 · 费比西奖"
    ],
    "version": "2K",
+   "poster": "posters/turin-horse.jpg",
+   "subtitles": "中英字幕",
    "gifts": [
     {
      "items": [
@@ -443,14 +468,16 @@ module.exports = {
       "盖章"
      ]
     }
-   ]
+   ],
+   "prog": "style-kaleidoscope",
+   "ticketUrl": "/images/tickets/turin-horse.jpg"
   },
   {
    "id": "a-better-tomorrow",
    "cn": "英雄本色",
    "o": "A Better Tomorrow",
    "y": 1986,
-   "c": "中国香港",
+   "c": "中国（香港）",
    "min": 95,
    "reg": "cn",
    "dir": "吴宇森",
@@ -509,6 +536,8 @@ module.exports = {
     "提名｜第6届香港电影金像奖 · 最佳电影配乐：顾嘉辉"
    ],
    "version": "4K修复",
+   "poster": "posters/a-better-tomorrow.jpg",
+   "subtitles": "繁体中文 / 英文字幕",
    "gifts": [
     {
      "items": [
@@ -518,7 +547,9 @@ module.exports = {
       "盖章"
      ]
     }
-   ]
+   ],
+   "prog": "style-kaleidoscope",
+   "ticketUrl": "/images/tickets/a-better-tomorrow.jpg"
   },
   {
    "id": "long-live-the-missus",
@@ -558,7 +589,7 @@ module.exports = {
     "喜剧",
     "家庭"
    ],
-   "language": "汉语普通话",
+   "language": "普通话",
    "highlights": [
     "看每一次善意的圆场怎样带来下一次误会，陈思珍总在替别人承担后果。",
     "留意笑点之后人物短暂的停顿，家庭喜剧中的委屈往往就在这些空隙里。"
@@ -567,6 +598,8 @@ module.exports = {
     "影史评选｜2005 香港电影金像奖协会 · 最佳华语电影一百部，第82位"
    ],
    "version": "4K修复",
+   "poster": "posters/long-live-the-missus.jpg",
+   "subtitles": "无字幕",
    "gifts": [
     {
      "items": [
@@ -576,7 +609,9 @@ module.exports = {
       "盖章"
      ]
     }
-   ]
+   ],
+   "prog": "style-kaleidoscope",
+   "ticketUrl": "/images/tickets/long-live-the-missus.jpg"
   },
   {
    "id": "bullets-over-broadway",
@@ -631,6 +666,8 @@ module.exports = {
     "提名｜1995 独立精神奖 · 最佳影片"
    ],
    "version": "2K",
+   "poster": "posters/bullets-over-broadway.jpg",
+   "subtitles": "中文字幕",
    "gifts": [
     {
      "items": [
@@ -640,14 +677,16 @@ module.exports = {
       "盖章"
      ]
     }
-   ]
+   ],
+   "prog": "style-kaleidoscope",
+   "ticketUrl": "/images/tickets/bullets-over-broadway.jpg"
   },
   {
    "id": "green-green-grass",
    "cn": "在那河畔青草青",
    "o": "在那河畔青草青",
    "y": 1982,
-   "c": "中国台湾",
+   "c": "中国（台湾）",
    "min": 90,
    "reg": "cn",
    "dir": "侯孝贤",
@@ -678,7 +717,7 @@ module.exports = {
    "genre": [
     "剧情"
    ],
-   "language": "汉语普通话",
+   "language": "普通话",
    "highlights": [
     "留意孩子在画面边缘做什么，许多生活感来自主线之外的小动作。",
     "看看河流怎样兼具游乐场、生活环境与公共议题的意义。"
@@ -689,6 +728,8 @@ module.exports = {
     "提名｜第19届金马奖 · 最佳童星：颜正国"
    ],
    "version": "2K",
+   "poster": "posters/green-green-grass.jpg",
+   "subtitles": "中文字幕",
    "gifts": [
     {
      "items": [
@@ -698,7 +739,9 @@ module.exports = {
       "盖章"
      ]
     }
-   ]
+   ],
+   "prog": "style-kaleidoscope",
+   "ticketUrl": "/images/tickets/green-green-grass.jpg"
   },
   {
    "id": "blood-simple",
@@ -752,6 +795,8 @@ module.exports = {
     "提名｜1986 独立精神奖 · 最佳摄影：巴里·索南菲尔德"
    ],
    "version": "4K修复",
+   "poster": "posters/blood-simple.jpg",
+   "subtitles": "中文字幕",
    "gifts": [
     {
      "items": [
@@ -761,7 +806,9 @@ module.exports = {
       "盖章"
      ]
     }
-   ]
+   ],
+   "prog": "style-kaleidoscope",
+   "ticketUrl": "/images/tickets/blood-simple.jpg"
   },
   {
    "id": "spring-in-a-small-town",
@@ -799,7 +846,7 @@ module.exports = {
     "剧情",
     "爱情"
    ],
-   "language": "汉语普通话",
+   "language": "普通话",
    "highlights": [
     "听玉纹的旁白怎样先于、伴随或偏离她的行动，话语与身体未必一致。",
     "留意人物在门窗、走廊与城墙上的距离，克制的动作承载着并不平静的感情。"
@@ -808,6 +855,8 @@ module.exports = {
     "影史评选｜2005 香港电影金像奖协会 · 最佳华语电影一百部，第1位"
    ],
    "version": "4K修复",
+   "poster": "posters/spring-in-a-small-town.jpg",
+   "subtitles": "无字幕",
    "gifts": [
     {
      "items": [
@@ -817,14 +866,16 @@ module.exports = {
       "盖章"
      ]
     }
-   ]
+   ],
+   "prog": "style-kaleidoscope",
+   "ticketUrl": "/images/tickets/spring-in-a-small-town.jpg"
   },
   {
    "id": "mon-oncle",
    "cn": "我的舅舅",
    "o": "Mon Oncle",
    "y": 1958,
-   "c": "法国",
+   "c": "法国 / 意大利",
    "min": 116,
    "reg": "eu",
    "dir": "雅克·塔蒂",
@@ -866,6 +917,8 @@ module.exports = {
     "获奖｜第31届奥斯卡 · 最佳外语片"
    ],
    "version": "4K修复",
+   "poster": "posters/mon-oncle.jpg",
+   "subtitles": "中文字幕",
    "gifts": [
     {
      "items": [
@@ -875,7 +928,9 @@ module.exports = {
       "盖章"
      ]
     }
-   ]
+   ],
+   "prog": "style-kaleidoscope",
+   "ticketUrl": "/images/tickets/mon-oncle.jpg"
   },
   {
    "id": "where-is-the-friends-house",
@@ -929,6 +984,8 @@ module.exports = {
     "获奖｜1995 罗马夏季电影节 · 最佳影片"
    ],
    "version": "2K",
+   "poster": "posters/where-is-the-friends-house.jpg",
+   "subtitles": "繁体中文 / 英文字幕",
    "gifts": [
     {
      "items": [
@@ -938,14 +995,16 @@ module.exports = {
       "盖章"
      ]
     }
-   ]
+   ],
+   "prog": "style-kaleidoscope",
+   "ticketUrl": "/images/tickets/where-is-the-friends-house.jpg"
   },
   {
    "id": "the-sacrifice",
    "cn": "牺牲",
    "o": "Offret",
    "y": 1986,
-   "c": "瑞典 / 英国 / 法国",
+   "c": "瑞典 / 法国 / 英国",
    "min": 149,
    "reg": "eu",
    "dir": "安德烈·塔可夫斯基",
@@ -989,6 +1048,8 @@ module.exports = {
     "获奖｜1988 英国电影学院奖 · 最佳非英语片"
    ],
    "version": "4K修复",
+   "poster": "posters/the-sacrifice.jpg",
+   "subtitles": "中文字幕",
    "gifts": [
     {
      "items": [
@@ -998,7 +1059,9 @@ module.exports = {
       "盖章"
      ]
     }
-   ]
+   ],
+   "prog": "style-kaleidoscope",
+   "ticketUrl": "/images/tickets/the-sacrifice.jpg"
   },
   {
    "id": "faces-places",
@@ -1046,6 +1109,8 @@ module.exports = {
     "入选｜2017 戛纳电影节 · 非竞赛展映"
    ],
    "version": "2K",
+   "poster": "posters/faces-places.jpg",
+   "subtitles": "中文字幕",
    "gifts": [
     {
      "items": [
@@ -1055,7 +1120,9 @@ module.exports = {
       "盖章"
      ]
     }
-   ]
+   ],
+   "prog": "style-kaleidoscope",
+   "ticketUrl": "/images/tickets/faces-places.jpg"
   },
   {
    "id": "john-wick",
@@ -1066,7 +1133,6 @@ module.exports = {
    "c": "美国",
    "min": 101,
    "reg": "us",
-   "prog": "cinema-2026",
    "release": "2026年10月30日 内地首次公映",
    "dir": "查德·斯塔赫斯基",
    "dirO": "Chad Stahelski",
@@ -1105,6 +1171,7 @@ module.exports = {
    ],
    "honors": [],
    "version": "4K",
+   "poster": "posters/john-wick.jpg",
    "gifts": [
     {
      "label": "亚奥万象 · 杜比巨幕厅",
@@ -1119,7 +1186,9 @@ module.exports = {
       "万象独家珍藏工艺海报"
      ]
     }
-   ]
+   ],
+   "prog": "cinema-2026",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/john-wick.png"
   },
   {
    "id": "happy-birthday",
@@ -1130,7 +1199,6 @@ module.exports = {
    "c": "埃及",
    "min": 95,
    "reg": "me",
-   "prog": "cinema-2026",
    "release": "2026年10月23日 内地上映",
    "dir": "萨拉·戈赫尔",
    "dirO": "Sarah Goher",
@@ -1173,6 +1241,7 @@ module.exports = {
     "送选｜第98届奥斯卡金像奖 · 埃及送选最佳国际影片"
    ],
    "version": "4K",
+   "poster": "posters/happy-birthday.jpg",
    "gifts": [
     {
      "items": [
@@ -1183,6 +1252,7 @@ module.exports = {
     }
    ],
    "ticketLabel": "报名",
+   "prog": "cinema-2026",
    "ticketUrl": "/images/tickets/happy-birthday.jpg"
   },
   {
@@ -1194,7 +1264,6 @@ module.exports = {
    "c": "中国",
    "min": 100,
    "reg": "cn",
-   "prog": "cinema-2026",
    "release": "2026年10月13日 全国艺联上映",
    "dir": "岗珍",
    "dirO": "Kangdrun",
@@ -1232,7 +1301,9 @@ module.exports = {
     "获奖｜2026 布宜诺斯艾利斯国际独立电影节 · 最佳摄影",
     "入选｜2026 上海国际电影节 · 华语新风单元"
    ],
-   "version": ""
+   "version": "",
+   "poster": "posters/linka-linka.jpg",
+   "prog": "cinema-2026"
   },
   {
    "id": "kill-bill-whole-bloody-affair",
@@ -1243,7 +1314,6 @@ module.exports = {
    "c": "美国",
    "min": 275,
    "reg": "us",
-   "prog": "cinema-2026",
    "release": "2026年8月7日 内地上映",
    "dir": "昆汀·塔伦蒂诺",
    "dirO": "Quentin Tarantino",
@@ -1282,7 +1352,9 @@ module.exports = {
     "留意扩充后的动画段落，石井御莲的身世比原版交代得更完整。"
    ],
    "honors": [],
-   "version": ""
+   "version": "",
+   "poster": "posters/kill-bill-whole-bloody-affair.jpg",
+   "prog": "cinema-2026"
   },
   {
    "id": "the-odyssey",
@@ -1293,7 +1365,6 @@ module.exports = {
    "c": "美国 / 英国",
    "min": 173,
    "reg": "us",
-   "prog": "cinema-2026",
    "release": "2026年8月14日 内地上映",
    "dir": "克里斯托弗·诺兰",
    "dirO": "Christopher Nolan",
@@ -1332,7 +1403,9 @@ module.exports = {
     "两条线交替推进：海上的奥德修斯与伊萨卡的佩涅洛佩，各自守着同一个「回家」。"
    ],
    "honors": [],
-   "version": ""
+   "version": "",
+   "poster": "posters/the-odyssey.jpg",
+   "prog": "cinema-2026"
   },
   {
    "id": "dune-part-three",
@@ -1343,7 +1416,6 @@ module.exports = {
    "c": "美国 / 加拿大",
    "min": null,
    "reg": "us",
-   "prog": "cinema-2026",
    "release": "2026年12月31日 内地上映",
    "dir": "丹尼斯·维伦纽瓦",
    "dirO": "Denis Villeneuve",
@@ -1385,7 +1457,9 @@ module.exports = {
     "留意罗伯特·帕丁森饰演的变脸者斯基泰尔，他是这一部阴谋线的关键。"
    ],
    "honors": [],
-   "version": ""
+   "version": "",
+   "poster": "posters/dune-part-three.jpg",
+   "prog": "cinema-2026"
   },
   {
    "id": "avengers-doomsday",
@@ -1396,7 +1470,6 @@ module.exports = {
    "c": "美国",
    "min": null,
    "reg": "us",
-   "prog": "cinema-2026",
    "release": "2026年12月16日 内地上映（早于北美 12月18日）",
    "dir": "安东尼·罗素 / 乔·罗素",
    "dirO": "Anthony Russo, Joe Russo",
@@ -1436,7 +1509,9 @@ module.exports = {
     "神奇四侠与初代 X 战警第一次和复仇者同场，适合先补《神奇四侠：初露锋芒》《雷霆特攻队*》。"
    ],
    "honors": [],
-   "version": ""
+   "version": "",
+   "poster": "posters/avengers-doomsday.jpg",
+   "prog": "cinema-2026"
   },
   {
    "id": "we-live-in-time",
@@ -1447,7 +1522,6 @@ module.exports = {
    "c": "英国 / 法国",
    "min": 108,
    "reg": "eu",
-   "prog": "cinema-2026",
    "release": "2026年11月28日 全国上映",
    "dir": "约翰·克劳利",
    "dirO": "John Crowley",
@@ -1486,7 +1560,9 @@ module.exports = {
     "入选｜2024 多伦多国际电影节 · 世界首映",
     "入选｜2024 圣塞巴斯蒂安国际电影节 · 闭幕影片（非竞赛）"
    ],
-   "version": ""
+   "version": "",
+   "poster": "posters/we-live-in-time.jpg",
+   "prog": "cinema-2026"
   },
   {
    "id": "for-better-or-worse",
@@ -1497,7 +1573,6 @@ module.exports = {
    "c": "中国",
    "min": null,
    "reg": "cn",
-   "prog": "cinema-2026",
    "release": "2026年11月13日 全国上映",
    "dir": "秦潇越",
    "dirO": "Qin Xiaoyue",
@@ -1531,7 +1606,9 @@ module.exports = {
     "提名｜2025 FIRST青年电影展 · 最佳纪录长片"
    ],
    "version": "",
+   "poster": "posters/for-better-or-worse.jpg",
    "ticketLabel": "报名",
+   "prog": "cinema-2026",
    "ticketUrl": "/images/tickets/for-better-or-worse.jpg"
   },
   {
@@ -1576,7 +1653,6 @@ module.exports = {
    "highlights": [],
    "honors": [],
    "version": "4K",
-   "prog": "cinema-2026",
    "poster": "posters/resident-evil.jpg",
    "gifts": [
     {
@@ -1598,7 +1674,50 @@ module.exports = {
     }
    ],
    "ticketLabel": "报名",
+   "prog": "cinema-2026",
    "ticketUrl": "/images/tickets/resident-evil.jpg"
+  },
+  {
+   "id": "no-mobile",
+   "cn": "关机",
+   "o": "No Mobile",
+   "en": "No Mobile",
+   "y": 2025,
+   "c": "英国",
+   "min": 111,
+   "reg": "eu",
+   "dir": "杨淏",
+   "dirO": "Hao Yang",
+   "dirLife": "中国艺术家、纪录片导演",
+   "genre": [
+    "纪录片"
+   ],
+   "language": "中文",
+   "poster": "posters/no-mobile.jpg",
+   "syn": "2023年冬天，艺术家杨淏将手机留在家中，独自踏上一段长达134天的离线中国旅行。他仅凭纸质地图、现金、书信与面对面的交谈，在24个省级行政区的68个市县间行走。面对无处不在的扫码、预约与线上支付，他不断遭遇意料之外的阻碍，也重新发现人与人之间的信任和偶遇。影片记录这场对数字化日常的个人实验，追问当生活不再依赖屏幕，我们如何感知世界。",
+   "bio": "杨淏（Hao Yang），从事当代艺术实践，以绘画、影像、书法与行走为创作媒介。曾在英国学习、研究艺术，2023年至2024年完成134天无手机、无互联网的中国旅行，并将其发展为纪录片及非虚构写作。",
+   "st": "导演以134天的离线漫游回应被数字系统包围的日常生活：不使用手机和互联网，既意味着支付、交通和住宿的重重障碍，也带来了偶遇、专注和重新认识时间的可能。本场映后导演杨淏到场交流。放映时间为10月31日14:30—16:21，映后交流16:21开始，预计17:20结束。",
+   "writers": [],
+   "cast": [],
+   "highlights": [
+    "当一切都默认需要扫码，离线旅行如何继续？",
+    "134天、24个省级行政区、68个市县，一次关于技术与个人自由的实践。",
+    "10月31日16:21—17:20，导演杨淏现场映后交流。"
+   ],
+   "honors": [
+    "入围｜2025 瑞典电影奖（Sweden Film Awards）· Finalist（海报标注）",
+    "入围｜2025 奥斯汀国际艺术节（Austin International Art Festival）· Finalist（海报标注）",
+    "入选｜2025 “夜之征兆”国际电影节（Internationales Festival Zeichen der Nacht）· Official Selection（海报标注）",
+    "入选｜2025 白沙瓦国际电影节（Peshawar International Film Festival）· Official Selection（海报标注）"
+   ],
+   "screeningEnd": "16:21",
+   "qaStart": "16:21",
+   "qaEnd": "17:20",
+   "qaGuest": "导演杨淏 Hao Yang（现场交流）",
+   "screeningStart": "14:30",
+   "prog": "sparrow-tribe-space",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/no-mobile.jpg",
+   "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/no-mobile.png"
   }
  ],
  "shows": [
@@ -1783,24 +1902,44 @@ module.exports = {
    "id": "john-wick",
    "v": "hz-mixc-yaao",
    "h": "dolby"
+  },
+  {
+   "d": "11/1",
+   "t": "15:35",
+   "id": "happy-birthday",
+   "v": "premiere",
+   "h": "hall-7-laser"
+  },
+  {
+   "d": "10/31",
+   "t": "14:30",
+   "id": "no-mobile",
+   "v": "sparrow-tribe",
+   "h": "screening-room"
   }
  ],
  "venues": [
   {
    "id": "premiere",
    "short": "百美汇",
-   "name": "百美汇影城",
+   "name": "杭州百美汇影城",
    "brand": "百美汇影城",
    "store": "",
    "en": "PREMIERE",
    "fmt": [
-    "LUXE"
+    "LUXE",
+    "激光"
    ],
    "halls": [
     {
      "id": "luxe",
      "short": "LUXE厅",
      "name": "LUXE4K激光巨幕厅"
+    },
+    {
+     "id": "hall-7-laser",
+     "short": "7号激光厅",
+     "name": "7号激光厅"
     }
    ]
   },
@@ -1893,10 +2032,16 @@ module.exports = {
    "short": "麻雀部落",
    "name": "麻雀部落电影空间",
    "brand": "麻雀部落",
-   "store": "",
+   "store": "嘉兴·双溪湖文化中心3F",
    "en": "MQ CINEMA",
    "fmt": [],
-   "halls": []
+   "halls": [
+    {
+     "id": "screening-room",
+     "short": "放映厅",
+     "name": "放映厅"
+    }
+   ]
   }
  ],
  "programmes": [
@@ -1908,7 +2053,10 @@ module.exports = {
    "kind": "影展专题",
    "period": "2026.10 – 2027.01",
    "cover": "/images/brand/prog-style-kaleidoscope.jpg",
-   "blurb": "从伯格曼的公路回忆到塔可夫斯基的末日祈祷，从费穆的城墙到徐克的江湖，十七部作品横跨 1947 至 2025 年，排在同一块银幕上，恰好是一份关于“风格”的地图。"
+   "blurb": "从伯格曼的公路回忆到塔可夫斯基的末日祈祷，从费穆的城墙到徐克的江湖，十七部作品横跨 1947 至 2025 年，排在同一块银幕上，恰好是一份关于“风格”的地图。",
+   "start": "2026-10-30",
+   "end": "2027-01-31",
+   "city": "杭州"
   },
   {
    "id": "cinema-2026",
@@ -1918,7 +2066,10 @@ module.exports = {
    "kind": "院线",
    "period": "2026.08 – 2026.12",
    "cover": "",
-   "blurb": "今年秋冬值得走进影院的院线新片与重映。具体场次以各影院售票平台为准。"
+   "blurb": "今年秋冬值得走进影院的院线新片与重映：从诺兰全 IMAX 胶片拍摄的《奥德赛》、塔伦蒂诺的《杀死比尔：血色全传》，到首次引进内地的《疾速追杀》、翠贝卡获奖的埃及电影《生日快乐》和藏族导演岗珍的《一个夜晚与三个夏天》，《时间里的爱人》、纪录片《夫妻一场》，以及年底的《复仇者联盟5》《沙丘3》。具体场次以各影院售票平台为准。",
+   "start": "2026-08-01",
+   "end": "2026-12-31",
+   "city": "杭州"
   },
   {
    "id": "sparrow-tribe-space",
@@ -1928,7 +2079,10 @@ module.exports = {
    "kind": "艺术电影空间",
    "period": "2026.10 起",
    "cover": "/images/brand/prog-sparrow-tribe-space.jpg",
-   "blurb": "麻雀部落是杭州的独立电影放映与策展团体，近十年来以「盲盒放映」为人熟知。沉寂四年后，麻雀部落在 2026 年国庆前后重新出发，有了自己的线下单厅艺术电影空间：麻雀部落电影空间。这里收录空间的放映排片，场次公布后会陆续更新。"
+   "start": "2026-10-01",
+   "end": null,
+   "city": "嘉兴",
+   "blurb": "麻雀部落是独立电影放映与策展团体，近十年来以「盲盒放映」为人熟知。沉寂四年后，麻雀部落在 2026 年国庆前后重新出发，有了自己的线下单厅艺术电影空间：麻雀部落电影空间。这里收录空间的放映排片，场次公布后会陆续更新。"
   }
  ],
  "reg": {

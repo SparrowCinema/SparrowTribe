@@ -35,6 +35,7 @@
       <view class="btn ghost" bindtap="toSchedule">继续选片</view>
       <view class="clear" bindtap="clear">清空</view>
     </view>
+    <view wx:if="{{pfEmpty}}" class="pf-empty card"><text class="b">这个专题还没有加入场次</text><text class="muted small">切换到「全部专题」，或去排片表挑选。</text></view>
     <view wx:if="{{clash}}" class="conflict"><text class="b">有 {{clash}} 组场次时间重叠</text>，已在日程中标红，移出其中一场即可。</view>
     <view wx:for="{{days}}" wx:for-item="day" wx:key="d" class="day">
       <view class="dh"><text class="dd mono">{{day.d}}</text><text class="dw">{{day.wk}}</text><text class="dr">{{day.items.length}} 场 · {{day.range}}</text></view>
