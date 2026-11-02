@@ -967,6 +967,7 @@ input:not([type=checkbox]):not([type=radio]),select,textarea{font-size:16px!impo
 .st-d{font:700 14px var(--f-mono);letter-spacing:1px}
 .st-g [fill="none"],.st-g circle,.st-g rect,.st-g polygon{fill:none}
 .st-g .st-cut{fill:var(--pp-paper);stroke:none}
+.guide-card{margin:12px 0 6px;border:1px solid var(--line);border-radius:14px;background:var(--surface);padding:0 18px}.guide-card summary{cursor:pointer;padding:16px 0;font:900 16px var(--f-display);list-style:none;display:flex;justify-content:space-between}.guide-card summary::after{content:'+';color:var(--accent)}.guide-card[open] summary::after{content:'−'}.guide-card ol{margin:0;padding:0 0 12px;list-style:none;counter-reset:g}.guide-card li{counter-increment:g;display:grid;grid-template-columns:26px 1fr;gap:2px 8px;padding:9px 0;border-top:1px solid var(--line);font-size:13px;line-height:1.7}.guide-card li::before{content:counter(g);grid-row:1/3;font:600 14px var(--f-mono);color:var(--accent)}.guide-card li span{color:var(--muted)}
 .sync-card{margin:18px 0 6px;padding:18px 18px 16px;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
 .sync-card h3{font:900 18px var(--f-display);margin:0 0 8px}
 .sync-lead,.sync-note{font-size:12px;line-height:1.7;color:var(--muted);margin:0 0 12px}
@@ -1308,6 +1309,9 @@ function openScheduleSelector(type){
  document.body.append(d);d.querySelector('.selector-close').onclick=()=>d.close();d.addEventListener('click',e=>{if(e.target!==d)return;const r=d.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)d.close();});
  d.addEventListener('close',()=>{d.remove();document.querySelector(`[data-schedule-filter="${type}"]`)?.focus({preventScroll:true});});
  d.addEventListener('keydown',e=>{const opts=[...d.querySelectorAll('.selector-option')];if(!opts.length)return;if(e.key==='ArrowDown'||e.key==='ArrowUp'){e.preventDefault();const i=opts.indexOf(document.activeElement),next=e.key==='ArrowDown'?(i+1)%opts.length:(i<0?opts.length-1:(i-1+opts.length)%opts.length);opts[next].focus();}});
+ const sy=window.scrollY,B=document.body.style,keep={p:B.position,t:B.top,w:B.width};B.position='fixed';B.top=-sy+'px';B.width='100%';/* 弹层打开时锁住底层页面与甘特图，滑动只发生在弹层内 */
+ d.addEventListener('touchmove',e=>{const r=e.target.closest('.selector-results');if(!r||r.scrollHeight<=r.clientHeight+1)e.preventDefault();},{passive:false});
+ d.addEventListener('close',()=>{B.position=keep.p;B.top=keep.t;B.width=keep.w;window.scrollTo({top:sy,behavior:'instant'});});
  d.showModal();if(matchMedia('(min-width:700px)').matches)d.querySelector('input').focus();
 }
 document.addEventListener("input",e=>{if(e.target.id!=="schedule-filter-search")return;const d=e.target.closest('dialog');d.querySelector('#selector-results').innerHTML=selectorOptions(d.dataset.type,e.target.value);});
@@ -1784,12 +1788,13 @@ function syncStart(){syncPrint=profilePrint();if(syncSt&&syncSt.code)syncQuiet()
   document.addEventListener('visibilitychange',()=>{if(syncSt&&syncSt.code&&document.visibilityState==='visible'&&Date.now()-(syncSt.at||0)>30000)syncQuiet();});
   setInterval(()=>{if(syncStatus.state==='ok')syncPaint();},60000);}
 // —— 影院观影结算：按年份 / 专题筛选，生成长图 ——
-let recapYear='all',recapProg='all';
-function recapScope(){return watchEntries().filter(e=>(recapYear==='all'||e.rec.d.slice(0,4)===recapYear)&&(recapProg==='all'||progOf(e.f).id===recapProg));}
+let recapYear='all',recapProg='all',recapMonth='all';
+function recapScope(){return watchEntries().filter(e=>(recapYear==='all'||e.rec.d.slice(0,4)===recapYear)&&(recapMonth==='all'||e.rec.d.slice(0,7)===recapMonth)&&(recapProg==='all'||progOf(e.f).id===recapProg));}
 function recapPanelHTML(){const all=watchEntries(),years=[...new Set(all.map(e=>e.rec.d.slice(0,4)))].sort().reverse(),pids=PROGRAMMES.map(p=>p.id).filter(id=>all.some(e=>progOf(e.f).id===id));
-  if(recapYear!=='all'&&!years.includes(recapYear))recapYear='all';if(recapProg!=='all'&&!pids.includes(recapProg))recapProg='all';
+  if(recapYear!=='all'&&!years.includes(recapYear))recapYear='all';const months=[...new Set(all.filter(e=>recapYear==='all'||e.rec.d.slice(0,4)===recapYear).map(e=>e.rec.d.slice(0,7)))].sort().reverse();if(recapMonth!=='all'&&!months.includes(recapMonth))recapMonth='all';if(recapProg!=='all'&&!pids.includes(recapProg))recapProg='all';
   const list=recapScope(),st=passportStats(list),chip=(k,v,lab,cur)=>'<button class="fchip" aria-pressed="'+(cur===v)+'" data-rc="'+k+'" data-v="'+esc(v)+'">'+esc(lab)+'</button>';
   return '<div class="rc-body"><p class="rc-k">年份 / YEAR</p><div class="rc-chips">'+chip('y','all','全部年份',recapYear)+years.map(y=>chip('y',y,y,recapYear)).join('')+'</div>'+
+    '<p class="rc-k">月份 / MONTH</p><div class="rc-chips">'+chip('m','all','全部月份',recapMonth)+months.map(m=>chip('m',m,recapYear==='all'?m.replace('-','.'):(+m.slice(5))+'月',recapMonth)).join('')+'</div>'+
     '<p class="rc-k">专题 / PROGRAMME</p><div class="rc-chips">'+chip('p','all','全部专题',recapProg)+pids.map(id=>chip('p',id,PG[id].name,recapProg)).join('')+'</div>'+
     '<div class="rc-sum">'+(list.length?'<span><b>'+st.n+'</b>部影片</span><span><b>'+st.hm+'</b>银幕时长</span><span><b>'+(st.avg?st.avg.toFixed(1):'—')+'</b>平均评分</span>':'<span class="rc-none">这个范围里还没有看过的影片</span>')+'</div>'+
     '<button class="primary-button rc-go" data-rc="go" '+(list.length?'':'disabled')+'>生成结算长图</button></div>';}
@@ -1799,7 +1804,8 @@ function openRecap(){if(!watchEntries().length){toast('先在影片页点「看�
   document.body.appendChild(el);document.documentElement.classList.add('sheet-open');
   const close=()=>{document.documentElement.classList.remove('sheet-open');el.remove();};
   el.addEventListener('click',async e=>{if(e.target===el||e.target.closest('.is-close'))return close();const b=e.target.closest('[data-rc]');if(!b)return;
-    if(b.dataset.rc==='y'){recapYear=b.dataset.v;el.querySelector('.rc-wrap').innerHTML=recapPanelHTML();}
+    if(b.dataset.rc==='m'){recapMonth=b.dataset.v;el.querySelector('.rc-wrap').innerHTML=recapPanelHTML();}
+    else if(b.dataset.rc==='y'){recapYear=b.dataset.v;el.querySelector('.rc-wrap').innerHTML=recapPanelHTML();}
     else if(b.dataset.rc==='p'){recapProg=b.dataset.v;el.querySelector('.rc-wrap').innerHTML=recapPanelHTML();}
     else if(b.dataset.rc==='go'){b.disabled=true;const ok=await makeRecap();if(ok)close();else b.disabled=false;}});}
 let recapBusy=false;
@@ -1812,7 +1818,7 @@ async function makeRecap(){const list=recapScope();if(!list.length||recapBusy)re
     const byP=new Map();list.forEach(e=>{const p=progOf(e.f);if(!byP.has(p.id))byP.set(p.id,{name:p.name,n:0,sum:0,k:0});const g=byP.get(p.id);g.n++;if(e.rec.r){g.sum+=e.rec.r;g.k++;}});
     const progs=[...byP.values()].map(g=>({name:g.name,n:g.n,avg:g.k?g.sum/g.k:0})).sort((a,b)=>b.n-a.n);
     const years=[...new Set(list.map(e=>e.rec.d.slice(0,4)))].sort();
-    const o={title:tr('我的影院观影结算'),sub:(recapYear==='all'?(years.length>1?years[0]+'–'+years[years.length-1]:years[0]):recapYear)+' · '+(recapProg==='all'?tr('全部专题'):PG[recapProg].name),kicker:'SPARROW FILM PASSPORT · MY CINEMA RECAP',yearTag:recapYear==='all'?years[years.length-1]:recapYear,
+    const o={title:tr('我的影院观影结算'),sub:(recapMonth!=='all'?recapMonth.replace('-','.'):recapYear==='all'?(years.length>1?years[0]+'–'+years[years.length-1]:years[0]):recapYear)+' · '+(recapProg==='all'?tr('全部专题'):PG[recapProg].name),kicker:'SPARROW FILM PASSPORT · MY CINEMA RECAP',yearTag:recapYear==='all'?years[years.length-1]:recapYear,
       stats:[[st.n,tr('部影片')],[st.hm,tr('银幕时长')],[st.avg?st.avg.toFixed(1):'—',tr('平均评分')],[st.venues,tr('家影院')],[st.progs,tr('个专题')],[topM?tr(topM+'月'):'—',tr('看得最多的月份')]],
       fav,progs,items,qr:qrMatrix(homeURL()),url:location.host+location.pathname,marks,T:tr,en:LANG==='en'};
     const cv=document.createElement('canvas');cv.width=R.W;cv.height=R.heightOf(o);R.draw(cv.getContext('2d'),o);
@@ -1820,10 +1826,17 @@ async function makeRecap(){const list=recapScope();if(!list.length||recapBusy)re
     showImageSheet(blob,{file:'麻雀观影护照_影院观影结算.png',head:'观影结算已生成',alt:'影院观影结算长图'});return true;}
   catch(err){toast('图片生成失败，请稍后再试');return false;}finally{recapBusy=false;}}
 
+/* ---- 观影护照使用指南 + 数据更新时间 ---- */
+function guideHTML(){const S=[['看过 · 盖章','在影片页点「看过」，护照里就会盖下这部片的印章；可以打星评分、改观影日期。'],['写下持有人','护照首页可以填姓名、从相册放一张照片，印章每页最多 15 枚。'],['个人排片','在排片表点色块右上角的 + 加入场次，「我的」里会自动检查时间冲突；首页甘特图可以只看我的排片。'],['导出与分享','把排片生成带二维码的长图、分享链接或加入日历。'],['结算长图','护照页底部「生成我的影院观影结算」，可按年份、月份、专题筛选，生成一张印章墙长图。'],['换设备不丢','开启上方云端同步，另一台设备用同步码即可带走看过记录、评分、照片和排片。']];
+  return '<details class="guide-card" id="guide-card"><summary>观影护照使用指南</summary><ol>'+S.map(x=>'<li><b>'+x[0]+'</b><span>'+x[1]+'</span></li>').join('')+'</ol></details>';}
+let dataUpd=null;
+function dataUpdated(){const put=s=>{const el=document.getElementById('data-upd');if(el)el.textContent=s;};if(dataUpd)return put(dataUpd);
+  fetch('data/catalog.json',{method:'HEAD',cache:'no-cache'}).then(r=>{const lm=r.headers.get('last-modified');const d=lm?new Date(lm):null;if(!d||isNaN(d))throw 0;const p=n=>String(n).padStart(2,'0');dataUpd=d.getFullYear()+'.'+p(d.getMonth()+1)+'.'+p(d.getDate())+' '+p(d.getHours())+':'+p(d.getMinutes());put(dataUpd);}).catch(()=>{const el=document.getElementById('data-upd');if(el&&el.parentElement)el.parentElement.innerHTML=el.parentElement.innerHTML.replace(/ · 数据更新于.*$/,'');});}
 function myPage(){const list=selectedRows(),st=planStats(list),next=list.find(s=>!isPast(s));
-  main.innerHTML='<section class="view gut">'+passportHTML()+'<section class="sync-card" id="sync-card" aria-label="个人档案云端同步">'+syncCardHTML()+'</section>'+
+  main.innerHTML='<section class="view gut">'+passportHTML()+
   '<div class="my-menu"><button class="my-entry" data-tab="plan"><span class="me-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="15" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span><span><b>个人排片</b><small>'+(list.length?st.n+' 场 · '+(next?'下一场 '+next.d+' '+wk(next.d)+' '+next.t:'已全部放映'):'按天查看日程 · 自动检查时间冲突')+'</small></span><span class="me-go">›</span></button><button class="my-entry" data-tab="export"><span class="me-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="4" width="6" height="6"/><rect x="14" y="4" width="6" height="6"/><rect x="4" y="14" width="6" height="6"/><path d="M14 14h2v2h-2zM18 18h2v2h-2zM14 18h2M18 14h2"/></svg></span><span><b>导出与分享</b><small>带二维码的排片长图 · 分享链接 · 日历 · PDF</small></span><span class="me-go">›</span></button><button class="my-entry" data-tab="install"><span class="me-ic">'+IIC.phone+'</span><span><b>添加到手机</b><small>'+(ENV.standalone?'已在 App 模式中打开':'放到桌面像 App 一样看 · 微信里用浮窗')+'</small></span><span class="me-go">›</span></button></div>'+
-  '<p class="local-note">排片保存在当前浏览器。换设备时，用分享链接带走日程。</p>'+presentersHTML()+'<p class="local-note pres-note">麻雀观影护照由麻雀映画与麻雀部落制作，汇集影展专题、艺术影院与院线放映场次。当前专题：风格万相 · 中外经典影片展（2026.10—2027.01）。</p></section>';sizeBook();}
+  '<section class="sync-card" id="sync-card" aria-label="个人档案云端同步">'+syncCardHTML()+'</section>'+guideHTML()+
+  '<p class="local-note">排片和护照保存在当前浏览器；开启上面的云端同步，或用分享链接，即可换设备。</p>'+presentersHTML()+'<p class="local-note pres-note">麻雀映画 × 麻雀部落 制作 · 数据更新于 <span id="data-upd">…</span></p></section>';sizeBook();dataUpdated();}
 function planPage(){const all=selectedRows(),list=scopedRows(),st=planStats(list);
   main.innerHTML='<section class="view gut"><div class="page-heading"><div><small>MY PROGRAMME</small><h2 class="sec">个人排片</h2></div><button class="text-button" data-tab="my">返回我的</button></div>'+
   (all.length?planProgChips(all)+(!list.length?'<div class="empty-plan"><h3>这个专题还没有加入场次</h3><p>可以切换到「全部专题」，或去排片表挑选。</p><button class="primary-button" data-prog-sched="'+esc(planFilt)+'">去看这个专题的排片</button></div>':statsHTML(st)+'<div class="plan-toolbar"><button class="primary-button" data-tab="export">导出与分享</button><button class="secondary-button" data-tab="schedule">继续选片</button><button class="text-button" data-action="clear-plan">清空排片</button></div>'+(st.clash?'<div class="conflict" role="status"><b>有 '+st.clash+' 组场次时间重叠</b><p>重叠处已在日程中标红，移出其中一场即可解决。</p></div>':'')+'<div class="plan-days">'+planRowsHTML(list,true)+'</div>')

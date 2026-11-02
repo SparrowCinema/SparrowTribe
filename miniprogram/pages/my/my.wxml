@@ -105,6 +105,13 @@
     </block>
   </view>
 
+  <view class="card guide">
+    <view class="sy-h" bindtap="toggleGuide">{{L.t(i,'观影护照使用指南')}} <text class="gtog">{{guideOpen ? '−' : '+'}}</text></view>
+    <block wx:if="{{guideOpen}}">
+      <view class="gi" wx:for="{{guide}}" wx:key="k"><text class="gk">{{index + 1}}</text><view><text class="gb">{{L.t(i,item.k)}}</text><text class="gs">{{L.t(i,item.s)}}</text></view></view>
+    </block>
+  </view>
+
   <view class="blockh">{{L.t(i,'个人排片')}} <text class="en">MY PLAN</text></view>
   <view class="stats card">
     <view><text class="n mono">{{stats.n}}</text><text class="l">{{L.t(i,'场放映')}}</text></view>
@@ -179,6 +186,8 @@
     <view class="rc-head"><text class="b">{{L.t(i,'我的影院观影结算')}}</text><text class="rc-x" bindtap="closeRecap">✕</text></view>
     <text class="rc-k mono">{{L.t(i,'年份 / YEAR')}}</text>
     <view class="rc-chips"><text wx:for="{{rc.years}}" wx:key="v" class="chip {{rcY === item.v ? 'on' : ''}}" data-v="{{item.v}}" bindtap="setRcY">{{item.n}}</text></view>
+    <text class="rc-k mono">{{L.t(i,'月份 / MONTH')}}</text>
+    <view class="rc-chips"><text wx:for="{{rc.months}}" wx:key="v" class="chip {{rcM === item.v ? 'on' : ''}}" data-v="{{item.v}}" bindtap="setRcM">{{item.n}}</text></view>
     <text class="rc-k mono">{{L.t(i,'专题 / PROGRAMME')}}</text>
     <view class="rc-chips"><text wx:for="{{rc.progs}}" wx:key="v" class="chip {{rcP === item.v ? 'on' : ''}}" data-v="{{item.v}}" bindtap="setRcP">{{item.n}}</text></view>
     <view class="rc-sum" wx:if="{{rc.n}}">

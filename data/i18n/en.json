@@ -2890,6 +2890,21 @@
   "只看我的排片": "Only my plan",
   "当前筛选下还没有你加入的场次": "None of your picks match the current filter",
   "关掉「只看我的排片」，在排片表点色块右上角的 + 加入": "Turn off “Only my plan”, then tap + on a block to add it",
-  "地图": "Map"
+  "地图": "Map",
+  "月份 / MONTH": "MONTH",
+  "全部月份": "All months",
+  "观影护照使用指南": "Passport guide",
+  "看过 · 盖章": "Mark as watched · stamp",
+  "在影片页点「看过」，护照里就会盖下这部片的印章；可以打星评分、改观影日期。": "Tap “Watched” on a film page to stamp it into your passport. You can rate it and change the viewing date.",
+  "写下持有人": "Holder & photo",
+  "护照首页可以填姓名、从相册放一张照片，印章每页最多 15 枚。": "Add your name and a photo from your album on the cover. Each page holds up to 15 stamps.",
+  "在排片表点色块右上角的 + 加入场次，「我的」里会自动检查时间冲突；首页甘特图可以只看我的排片。": "Tap + on a block in the timetable to add a show; “Me” checks for clashes. The timetable can show only your plan.",
+  "把排片生成带二维码的长图、分享链接或加入日历。": "Turn your plan into a QR poster, a share link or calendar events.",
+  "结算长图": "Recap poster",
+  "护照页底部「生成我的影院观影结算」，可按年份、月份、专题筛选，生成一张印章墙长图。": "Use “Generate my cinema recap” under the passport. Filter by year, month or programme to get a stamp-wall poster.",
+  "换设备不丢": "Switch devices",
+  "开启上方云端同步，另一台设备用同步码即可带走看过记录、评分、照片和排片。": "Turn on cloud sync above; enter the sync code on another device to bring over watched films, ratings, photo and plan.",
+  "排片和护照保存在当前浏览器；开启上面的云端同步，或用分享链接，即可换设备。": "Your plan and passport live in this browser. Turn on cloud sync above, or use a share link, to switch devices.",
+  "麻雀映画 × 麻雀部落 制作 · 数据更新于": "Produced by Sparrow Cinema × Sparrow Tribe · Data updated"
  }
 }
