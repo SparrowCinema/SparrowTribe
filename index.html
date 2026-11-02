@@ -56,6 +56,24 @@
 /* Compact programme navigation and a searchable, city-aware cinema directory. */
 .section-tabs{display:flex;flex-wrap:wrap;gap:7px;margin:22px 0 16px;padding:12px;background:var(--surface);border:1px solid var(--line);border-radius:14px}
 .section-tabs button{font-size:12px;line-height:1.4;padding:8px 12px;border-radius:20px;font-weight:600;min-height:34px}
+.fsec{border-top:1px solid var(--line);margin-top:24px}.fsec .fgrp{border-top:0;margin-top:0}
+.fsec .fgrp2{align-items:center;flex-direction:row}.fgrp-main{min-width:0;flex:1}.fgrp-meta{display:block;margin-top:6px;font-size:10px;line-height:1.6;letter-spacing:.08em;color:var(--muted)}.fgrp-side{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.fold-btn{flex:none;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line);background:var(--surface);color:var(--fg);transition:transform .25s cubic-bezier(.3,.7,.3,1),background .2s,color .2s,border-color .2s;-webkit-tap-highlight-color:transparent}
+.fold-btn svg{width:16px;height:16px;transition:transform .25s cubic-bezier(.3,.7,.3,1)}
+.fold-btn:hover{border-color:var(--accent);color:var(--accent)}.fold-btn:active{transform:scale(.9)}
+.fsec.closed .fold-btn,details:not([open])>summary .fold-btn{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.fsec.closed .fold-btn svg,details:not([open])>summary .fold-btn svg{transform:rotate(-90deg)}
+.fsec.closed .fsec-body{display:none}.fsec-body{animation:fsecIn .22s ease-out}@keyframes fsecIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+.fstack{display:none;align-items:center}.fsec.closed .fstack,.fold-prog .fstack{display:inline-flex}
+.fstack img,.fstack i{width:22px;height:30px;border-radius:4px;object-fit:cover;border:2px solid var(--bg);margin-left:-9px;box-shadow:0 1px 3px rgba(40,25,10,.18);display:grid;place-items:center;font:700 10px var(--f-display);font-style:normal;color:#fff}.fstack>:first-child{margin-left:0}
+.fgone{margin:10px 0 4px}.fgone>summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:5px;padding:7px 12px 7px 14px;border:1px dashed var(--line);border-radius:99px;font-size:12px;color:var(--muted)}.fgone>summary::-webkit-details-marker{display:none}
+.fgone>summary b{font:600 12px var(--f-mono);color:var(--fg)}.fgone>summary svg{width:14px;height:14px;transition:transform .2s}.fgone:not([open])>summary svg{transform:rotate(-90deg)}.fgone[open]>summary{border-style:solid;color:var(--fg)}
+.fgone .flist{opacity:.82}
+.fpast-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-top:40px;padding-top:18px;border-top:2px solid var(--fg)}.fpast-h h3{margin:0;font-size:clamp(18px,2.6vw,22px)}.fpast-h small{font-size:11px;color:var(--muted)}
+.fold-prog{border:1px solid var(--line);border-radius:14px;background:var(--surface);margin-top:10px;overflow:hidden}.fold-prog>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:12px;padding:12px 12px 12px 16px}.fold-prog>summary::-webkit-details-marker{display:none}
+.fold-prog .fp-t{flex:1;min-width:0;display:flex;flex-direction:column}.fold-prog .fp-t b{font:900 16px/1.35 var(--f-display);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.fold-prog .fgrp-kind{margin-bottom:2px}
+.fold-prog .fp-n{font:500 11px var(--f-mono);color:var(--muted);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.fold-prog[open]>summary{border-bottom:1px solid var(--line)}.fold-prog .flist{padding:0 14px}
+@media(max-width:480px){.fsec .fgrp2{flex-direction:row;align-items:center}.fgrp-main h3{white-space:normal}.fstack img,.fstack i{width:19px;height:26px;margin-left:-8px}}
 .fgrp{display:flex;align-items:end;justify-content:space-between;gap:16px;padding:18px 0 14px;border-top:1px solid var(--line);margin-top:24px}
 .fgrp-kind{display:block;font-size:10px;letter-spacing:.18em;color:var(--muted);margin-bottom:6px}
 .fgrp h3{font-size:clamp(20px,3vw,26px);margin:0;line-height:1.3;white-space:nowrap}
@@ -1404,20 +1422,32 @@ function filmCardHTML(f, ns){
       <span class="info"><b>${esc(f.cn)}${editionHTML(f)}</b><span class="o">${esc(f.en||f.o||"")}</span><span class="d">${[f.dir,f.c].filter(Boolean).map(esc).join(" · ")}</span>${f.language||f.subtitles?`<span class="film-language">${[f.language,f.subtitles].filter(Boolean).map(esc).join(" · ")}</span>`:""}${sub}</span>
       <span class="score"><b>${f.r[0]??"—"}</b>豆瓣</span></button>`;
 }
+/* 片目分组折叠：
+   · 进行中/即将开始的专题：标题右侧圆形折叠按钮（状态记在本机，搜索时自动全部展开）；该专题里已放映完的片子收进组内底部「本专题已放映」小折叠。
+   · 整个专题结束后：整组移到最底部「往期专题」，每个专题各自一个折叠卡片（默认收起），按结束时间由近到远。 */
+let folds=(()=>{try{return JSON.parse(localStorage.getItem('sparrow-fold-v1')||'{}')||{};}catch{return {};}})();
+function saveFolds(){try{localStorage.setItem('sparrow-fold-v1',JSON.stringify(folds));}catch{}}
+const CHEV='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>';
+function stackHTML(rows){return '<span class="fstack" aria-hidden="true">'+rows.slice(0,4).map(f=>pst(f.id)?'<img src="'+pst(f.id)+'" alt="" loading="lazy">':'<i style="background:'+REG[f.reg].c+'">'+esc(f.cn[0])+'</i>').join('')+'</span>';}
 function filmsListHTML(){
   const base = FILMS.filter(f=>(filt==="all"||f.reg===filt)&&(ffilt==="all"||f.prog===ffilt||SH.some(s=>s.id===f.id&&s.p===ffilt))&&filmMatches(f,fq));
-  const live=[], past=[];
-  base.forEach(f=>{ if(nextShow(f) || (!SH.some(s=>s.id===f.id)&&progStatus(PG[f.prog])!=="ended")) live.push(f); else past.push(f); });
-  // 影展与院线分开成组：影展在前；组内按放映时间先后，无场次的排在后面
-  const groups = progGroupOrder().map(p=>[p,live.filter(f=>(ffilt!=="all"?ffilt:(f.prog||"style-kaleidoscope"))===p.id).sort(filmOrder)]).filter(([,rows])=>rows.length);
-  const grpHTML = ([p,rows]) => `<header class="fgrp"><div><span class="fgrp-kind">${isFest(p)?"影展":esc(p.kind||"专题")}</span><h3>${esc(p.name)}</h3></div><small>${rows.length} 部 · ${esc(p.en||p.kind||"")}</small></header><div class="flist">${rows.map(f=>filmCardHTML(f,nextShow(f))).join("")}</div>`;
-  past.sort((a,b)=>(isFest(PG[b.prog])?1:0)-(isFest(PG[a.prog])?1:0)||relTime(b)-relTime(a));
-  const pastHTML = past.length?`<details class="fpast"${fq?" open":""}><summary>已放映 / 往期 <small>${past.length} 部</small></summary><div class="flist">${past.map(f=>filmCardHTML(f,null)).join("")}</div></details>`:"";
+  const pidOf=f=>ffilt!=="all"?ffilt:(f.prog||"style-kaleidoscope");
+  const live=[], gone=[];
+  base.forEach(f=>{ if(nextShow(f) || (!SH.some(s=>s.id===f.id)&&progStatus(PG[f.prog])!=="ended")) live.push(f); else gone.push(f); });
+  const endedP=p=>progStatus(p)==="ended";
+  const groups = progGroupOrder().filter(p=>!endedP(p)).map(p=>[p,live.filter(f=>pidOf(f)===p.id).sort(filmOrder),gone.filter(f=>pidOf(f)===p.id).sort((a,b)=>relTime(b)-relTime(a))]).filter(([,r,g])=>r.length||g.length);
+  const grpHTML = ([p,rows,old]) => { const key='g:'+p.id, open=!!fq||folds[key]!==0, all=rows.concat(old);
+    return `<section class="fsec${open?"":" closed"}" data-fsec="${key}"><header class="fgrp fgrp2"><div class="fgrp-main"><span class="fgrp-kind">${isFest(p)?"影展":esc(p.kind||"专题")}</span><h3>${esc(p.name)}</h3><small class="fgrp-meta">${all.length} 部 · ${esc(p.en||p.kind||"")}</small></div><div class="fgrp-side">${stackHTML(all)}<button class="fold-btn" data-fold="${key}" aria-expanded="${open}" aria-label="${tr(open?"收起":"展开")} ${esc(p.name)}">${CHEV}</button></div></header>
+      <div class="fsec-body">${rows.length?`<div class="flist">${rows.map(f=>filmCardHTML(f,nextShow(f))).join("")}</div>`:""}${old.length?`<details class="fgone"${fq?" open":""}><summary><span>本专题已放映</span><b>${old.length}</b><span>部</span>${CHEV}</summary><div class="flist">${old.map(f=>filmCardHTML(f,null)).join("")}</div></details>`:""}</div></section>`; };
+  const endedGroups = progGroupOrder().filter(endedP).map(p=>[p,gone.filter(f=>pidOf(f)===p.id).sort((a,b)=>relTime(b)-relTime(a))]).filter(([,r])=>r.length).sort((x,y)=>(progRange(y[0])[1]||0)-(progRange(x[0])[1]||0));
+  const pastHTML = endedGroups.length?`<header class="fpast-h"><h3>往期专题</h3><small>${endedGroups.reduce((n,[,r])=>n+r.length,0)} 部 · 已结束的专题收在这里</small></header>`+endedGroups.map(([p,rows])=>`<details class="fold-prog"${fq?" open":""}><summary><span class="fp-t"><span class="fgrp-kind">${isFest(p)?"影展":esc(p.kind||"专题")}</span><b>${esc(p.name)}</b><small class="fp-n">${rows.length} 部${p.period?" · "+esc(p.period):""}</small></span>${stackHTML(rows)}<span class="fold-btn" aria-hidden="true">${CHEV}</span></summary><div class="flist">${rows.map(f=>filmCardHTML(f,null)).join("")}</div></details>`).join(""):"";
   const body = groups.map(grpHTML).join("")+pastHTML;
   return body || `<div class="g-empty"><b>${fq?`没有找到「${esc(fq)}」`:"当前筛选暂无影片"}</b><span>试试片名、导演或演员的其他写法</span></div>`;
 }
+document.addEventListener("click",e=>{const b=e.target.closest("[data-fold]");if(!b)return;const sec=b.closest(".fsec"),open=!sec.classList.toggle("closed");folds[b.dataset.fold]=open?1:0;saveFolds();b.setAttribute("aria-expanded",open);b.setAttribute("aria-label",tr(open?"收起":"展开")+" "+sec.querySelector("h3").textContent);
+  if(!open){const top=sec.getBoundingClientRect().top;if(top<0)window.scrollTo({top:window.scrollY+top-(document.getElementById("topbar")?.offsetHeight||0)-8,behavior:"instant"});}});
 function films(){
-  main.innerHTML = `<section class="view gut"><h2 class="sec">片目</h2><p class="sub">影展与院线分开列出 · 按放映时间先后排列 · 已放映的收进往期 · 右侧为豆瓣评分</p>
+  main.innerHTML = `<section class="view gut"><h2 class="sec">片目</h2><p class="sub">影展与院线分开列出 · 按放映时间先后排列 · 点标题右侧按钮可收起 · 右侧为豆瓣评分</p>
     <label class="fsearch"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><input type="search" id="fq" placeholder="搜索片名、导演、演员" value="${esc(fq)}" autocomplete="off" enterkeyhint="search"></label>
     ${progChips(ffilt)}<div class="filters">${[["all","全部地区"],...Object.entries(REG).filter(([k])=>FILMS.some(f=>f.reg===k)).map(([k,v])=>[k,v.n])].map(([k,n])=>`<button class="fchip" data-filt="${k}" aria-pressed="${filt===k}">${n}</button>`).join("")}</div>
     <div id="flist-wrap">${filmsListHTML()}</div></section>`;

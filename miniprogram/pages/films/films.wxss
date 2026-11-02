@@ -13,3 +13,28 @@
 .gh { font-size: 32rpx; font-weight: 900; margin: 36rpx 0 8rpx; padding-bottom: 12rpx; border-bottom: 2rpx solid var(--line); }
 
 .gh-kind{display:block;font-size:20rpx;color:var(--muted);letter-spacing:3rpx;margin-bottom:10rpx}.gh-name{display:block;white-space:nowrap;font-size:40rpx}
+
+/* 分组折叠 */
+.sec { border-top: 2rpx solid var(--line); margin-top: 36rpx; }
+.gh2, .pc-h { display: flex; align-items: center; gap: 18rpx; padding: 26rpx 0 18rpx; }
+.ghm { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.gh2 .gh-name { white-space: normal; font-size: 40rpx; font-weight: 900; }
+.gh-meta { font-size: 20rpx; color: var(--muted); letter-spacing: 2rpx; margin-top: 8rpx; }
+.fold { flex: none; width: 60rpx; height: 60rpx; border-radius: 50%; border: 2rpx solid var(--line); background: var(--surface); display: flex; align-items: center; justify-content: center; transition: transform .25s; }
+.fold .chev { font-size: 34rpx; line-height: 1; margin-top: -10rpx; color: var(--fg); transition: transform .25s; }
+.fold.shut { background: var(--fg); border-color: var(--fg); }
+.fold.shut .chev { color: var(--bg); transform: rotate(-90deg); margin-top: 0; margin-left: -8rpx; }
+.stk { display: flex; align-items: center; flex: none; }
+.sp { width: 38rpx; height: 54rpx; border-radius: 8rpx; margin-left: -16rpx; border: 4rpx solid var(--bg); box-shadow: 0 2rpx 6rpx rgba(40,25,10,.18); }
+.stk .sp:first-child { margin-left: 0; }
+.sph { display: flex; align-items: center; justify-content: center; color: #fffaf0; font-size: 20rpx; font-weight: 900; }
+.gone { display: inline-flex; align-items: center; gap: 10rpx; margin: 18rpx 0 8rpx; padding: 12rpx 24rpx; border: 2rpx dashed var(--line); border-radius: 99rpx; font-size: 24rpx; color: var(--muted); }
+.gone.on { border-style: solid; color: var(--fg); }
+.gone .gn { font-weight: 700; color: var(--fg); }
+.gone-list { opacity: .85; }
+.pasth { display: flex; align-items: baseline; justify-content: space-between; margin-top: 64rpx; padding-top: 28rpx; border-top: 4rpx solid var(--fg); }
+.pasth .pt { font-size: 36rpx; font-weight: 900; } .pasth .ps { font-size: 22rpx; color: var(--muted); }
+.pcard { margin-top: 20rpx; border: 2rpx solid var(--line); border-radius: 24rpx; background: var(--surface); padding: 0 24rpx; }
+.pcard .pc-h { padding: 22rpx 0; }
+.pc-name { font-size: 32rpx; font-weight: 900; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pc-b { border-top: 2rpx solid var(--line); }
