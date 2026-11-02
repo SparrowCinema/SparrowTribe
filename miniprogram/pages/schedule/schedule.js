@@ -7,7 +7,7 @@ const vShort = v => v.short || (v.brand || v.name).replace(/^杭州/, '');
 const hShort = h => h.short || h.name;
 
 Page({
-  data: { pf: 'all', vf: 'all', day: '', days: [], progs: [], vchips: [], venues: [], vOpen: false, cols: [], ticks: [], H: 0, dayList: [], legend: [], span: '', count: 0, dayTitle: '', empty: '', scrollInto: '' },
+  data: { pf: 'all', vf: 'all', day: '', days: [], myToday: [], myTodayTitle: '', progs: [], vchips: [], venues: [], vOpen: false, cols: [], ticks: [], H: 0, dayList: [], legend: [], span: '', count: 0, dayTitle: '', empty: '', scrollInto: '' },
 
   onLoad(q) {
     if (q && q.day) this.setData({ day: q.day });
@@ -22,7 +22,12 @@ Page({
   build() {
     const data = app.globalData.data, idx = U.index(data), picked = plan.get();
     const { pf, vf } = this.data;
-    const list = data.shows.filter(s => idx.F[s.id] && (pf === 'all' || idx.progOf(idx.F[s.id]).id === pf) && (vf === 'all' || s.v === vf));
+    const list = data.shows.filter(s => idx.F[s.id] && !U.ended(s, idx) && (pf === 'all' || idx.progOf(idx.F[s.id]).id === pf) && (vf === 'all' || s.v === vf));
+    // 首页顶部：今天我的排片中尚未散场的场次，按时间线排列
+    const tk = new Date(), tkey = (tk.getMonth() + 1) + '/' + tk.getDate();
+    const myToday = data.shows.filter(s => idx.F[s.id] && s.d === tkey && picked.has(U.keyOf(s)) && !U.ended(s, idx))
+      .sort((a, b) => U.toMin(a.t) - U.toMin(b.t))
+      .map(s => { const vw = U.showView(s, idx, data, picked); return { key: vw.key, id: s.id, t: vw.t, end: vw.end, cn: vw.cn, venue: vw.venue, hall: vw.hall, tone: vw.tone }; });
     const allDays = [...new Set(data.shows.map(s => s.d))];
     const ds = allDays.filter(d => list.some(s => s.d === d));
     let day = this.data.day;
@@ -64,7 +69,8 @@ Page({
     });
     const vname = vf !== 'all' && idx.VN[vf] ? idx.VN[vf].name : '当前筛选';
     this.setData({
-      day, days, cols, ticks, H, progs, venues,
+      day, days, cols, ticks, H, progs, venues, myToday,
+      myTodayTitle: tk.getMonth() + 1 + '月' + tk.getDate() + '日 ' + U.wk(tkey) + ' · 接下来 ' + myToday.length + ' 场',
       vchips: [{ id: 'all', n: '全部影院' }].concat(data.venues.map(v => ({ id: v.id, n: vShort(v) }))),
       dayList: dl.map(s => U.showView(s, idx, data, picked)),
       dayTitle: day ? day.replace('/', '月') + '日 ' + U.wk(day) : '',

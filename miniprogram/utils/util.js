@@ -34,6 +34,9 @@ function index(data) {
   return { F, ORD, VN, PG, hallName, venueName, progOf };
 }
 
+// 一场放映是否已散场（片长结束后即视为已放映，首页与详情页不再显示）
+const ended = (s, idx) => showDate(s).getTime() + ((idx.F[s.id] && idx.F[s.id].min) || 0) * 60000 < Date.now();
+
 // 一场放映的展示用对象
 function showView(s, idx, data, picked) {
   const f = idx.F[s.id]; const st = toMin(s.t);
@@ -48,4 +51,4 @@ function showView(s, idx, data, picked) {
   };
 }
 
-module.exports = { isFest, relTime, nextShowOf, filmOrder, filmTone, langSub, WK, year, wk, toMin, fmt, keyOf, showDate, poster, ticket, durText, index, showView };
+module.exports = { ended, isFest, relTime, nextShowOf, filmOrder, filmTone, langSub, WK, year, wk, toMin, fmt, keyOf, showDate, poster, ticket, durText, index, showView };
