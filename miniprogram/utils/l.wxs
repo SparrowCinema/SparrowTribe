@@ -1,0 +1,5 @@
+// WXML 里的翻译助手：t(i, '中文') 取英文（没有则原样），n(i, 数量, 单位) 带单复数
+var UNITS = { sc: ['场', 'screening', 'screenings'], f: ['部', 'film', 'films'], d: ['天', 'day', 'days'], h: ['个影厅', 'hall', 'halls'], j: ['家', 'cinema', 'cinemas'] };
+function t(i, s) { return i && i[s] ? i[s] : s; }
+function n(i, c, k) { var u = UNITS[k]; if (i && i.__en) { return c + ' ' + (c == 1 ? u[1] : u[2]); } return c + ' ' + u[0]; }
+module.exports = { t: t, n: n };

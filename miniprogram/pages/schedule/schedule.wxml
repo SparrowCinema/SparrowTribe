@@ -1,32 +1,34 @@
+<wxs src="../../utils/l.wxs" module="L" />
 <view class="brandbar">
   <image class="sq" src="/images/brand/sparrow-movies-sq.png" mode="aspectFit" />
   <text class="x">×</text>
   <image class="sq" src="/images/brand/sparrow-tribe-sq.png" mode="aspectFit" />
   <view class="sp" />
-  <view class="tag"><text>观影\n护照</text></view>
+  <view class="lang" hover-class="hv" bindtap="switchLang"><text class="{{en ? '' : 'on'}}">中</text><text class="{{en ? 'on' : ''}}">EN</text></view>
+  <view class="tag"><text>{{L.t(i,'观影')}}\n{{L.t(i,'护照')}}</text></view>
 </view>
 
 <view class="wrap">
   <view wx:if="{{myToday.length}}" class="today card">
-    <view class="today-h"><text class="b">今日我的排片</text><text class="muted small">{{myTodayTitle}}</text></view>
+    <view class="today-h"><text class="b">{{L.t(i,'今日我的排片')}}</text><text class="muted small">{{myTodayTitle}}</text></view>
     <view class="tl">
       <view wx:for="{{myToday}}" wx:key="key" wx:if="{{todayOpen || index === 0}}" class="tl-item" data-id="{{item.id}}" bindtap="openFilm">
-        <view class="tl-time"><text class="mono b">{{item.t}}</text><text class="mono muted small">{{item.end}} 散场</text></view>
+        <view class="tl-time"><text class="mono b">{{item.t}}</text><text class="mono muted small">{{item.endTxt}}</text></view>
         <view class="tl-dot" style="background:{{item.tone.ink}}" />
         <view class="tl-body"><text class="b">{{item.cn}}</text><text class="muted small">{{item.venue}} · {{item.hall}}</text></view>
       </view>
     </view>
     <view wx:if="{{myToday.length > 1}}" class="today-toggle {{todayOpen ? 'open' : ''}}" hover-class="hv" bindtap="toggleToday">
-      <text class="tt-txt">{{todayOpen ? '收起' : '还有 ' + (myToday.length - 1) + ' 场 · 展开全部'}}</text>
+      <text class="tt-txt">{{todayToggle}}</text>
       <view class="tt-ic"><view class="tt-ar" /></view>
     </view>
   </view>
-  <view class="h2">排片表</view>
-  <view class="sub">{{span}} · {{count}} 场 · 按日期查看，点击色块看影片</view>
+  <view class="h2">{{L.t(i,'排片表')}}</view>
+  <view class="sub">{{span}} · {{L.n(i,count,'sc')}} · {{L.t(i,'按日期查看，点击色块看影片')}}</view>
 
   <scroll-view scroll-x class="hscroll" enhanced show-scrollbar="{{false}}">
     <view class="chips">
-      <view class="chip {{pf==='all'?'on':''}}" data-id="all" bindtap="setProg">全部专题</view>
+      <view class="chip {{pf==='all'?'on':''}}" data-id="all" bindtap="setProg">{{L.t(i,'全部专题')}}</view>
       <view wx:for="{{progs}}" wx:key="id" class="chip {{pf===item.id?'on':''}}" data-id="{{item.id}}" bindtap="setProg">{{item.name}}</view>
     </view>
   </scroll-view>
@@ -39,19 +41,19 @@
   <!-- 影院：折叠小板块 -->
   <view class="vbox card">
     <view class="vb-head" bindtap="toggleVenues">
-      <text class="vb-k">影院</text>
-      <text class="vb-s">{{venues.length}} 家</text>
-      <text class="vb-go">{{vOpen ? '收起' : '展开'}}</text>
+      <text class="vb-k">{{L.t(i,'影院')}}</text>
+      <text class="vb-s">{{L.n(i,venues.length,'j')}}</text>
+      <text class="vb-go">{{vOpen ? L.t(i,'收起') : L.t(i,'展开')}}</text>
     </view>
     <view wx:if="{{vOpen}}" class="vb-list">
       <view wx:for="{{venues}}" wx:key="id" class="vb-row {{item.n?'':'idle'}}">
         <view class="vb-n"><text class="b">{{item.short}}</text><text class="s">{{item.name}}</text><text class="s">{{item.halls}}</text></view>
-        <view class="vb-r"><text wx:if="{{item.fmt}}" class="vb-f mono">{{item.fmt}}</text><text class="vb-c mono">{{item.n ? item.n + ' 场' : '待排片'}}</text></view>
+        <view class="vb-r"><text wx:if="{{item.fmt}}" class="vb-f mono">{{item.fmt}}</text><text class="vb-c mono">{{item.n ? L.n(i,item.n,'sc') : L.t(i,'待排片')}}</text></view>
       </view>
     </view>
   </view>
 
-  <view wx:if="{{empty}}" class="g-empty card"><text class="b">{{empty}}</text><text class="muted small">排片公布后会更新到这里</text></view>
+  <view wx:if="{{empty}}" class="g-empty card"><text class="b">{{empty}}</text><text class="muted small">{{L.t(i,'排片公布后会更新到这里')}}</text></view>
 
   <block wx:else>
     <!-- 日期条 -->
@@ -61,19 +63,19 @@
           <text class="dm mono">{{item.mon || ' '}}</text>
           <text class="dd mono">{{item.dd}}</text>
           <text class="dw">{{item.wk}}</text>
-          <text class="dn">{{item.n}} 场</text>
+          <text class="dn">{{L.n(i,item.n,'sc')}}</text>
           <view wx:if="{{item.mine}}" class="dme" />
         </view>
       </view>
     </scroll-view>
 
-    <view class="cap"><text class="ct">{{dayTitle}}</text><text class="cs">{{dayList.length}} 场 · {{hallCount}} 个影厅</text></view>
-    <view class="legend"><text>每部影片一种颜色 · 色块标注版本、对白语言与字幕</text></view>
+    <view class="cap"><text class="ct">{{dayTitle}}</text><text class="cs">{{L.n(i,dayList.length,'sc')}} · {{L.n(i,hallCount,'h')}}</text></view>
+    <view class="legend"><text>{{L.t(i,'每部影片一种颜色 · 色块标注版本、对白语言与字幕')}}</text></view>
 
     <!-- 单日时刻表：纵轴时间，横向影厅 -->
     <view class="tt card">
       <view class="axis">
-        <view class="th corner">时间</view>
+        <view class="th corner">{{L.t(i,'时间')}}</view>
         <view class="ticks" style="height:{{H}}rpx">
           <text wx:for="{{ticks}}" wx:key="t" class="tick mono" style="top:{{item.y}}rpx">{{item.t}}</text>
           <view wx:if="{{nowLine}}" class="nowlab mono" style="top:{{nowLine.top}}rpx">{{nowLine.label}}</view>
@@ -90,37 +92,37 @@
                 <text class="bn">{{item.cn}}</text>
                 <text wx:if="{{item.version}}" class="bv mono">{{item.version}}</text>
                 <text wx:if="{{item.langSub}}" class="bl">{{item.langSub}}</text>
-                <text class="be mono">{{item.past?'已放映':'至 '+item.end+' · '+item.min+'′'}}</text>
-                <view wx:if="{{!item.past||item.picked}}" class="badd {{item.picked?'on':''}}" style="{{item.picked?'background:'+item.tone.ink+';color:'+item.tone.bg+';border-color:'+item.tone.ink:'background:'+item.tone.bg+';color:'+item.tone.ink+';border-color:'+item.tone.ink}}" data-key="{{item.key}}" catchtap="toggle" aria-role="button" aria-label="{{item.picked?'移出排片':'加入排片'}}">{{item.picked?'✓':'+'}}</view>
+                <text class="be mono">{{item.past ? L.t(i,'已放映') : L.t(i,'至') + ' ' + item.end + ' · ' + item.min + '′'}}</text>
+                <view wx:if="{{!item.past||item.picked}}" class="badd {{item.picked?'on':''}}" style="{{item.picked?'background:'+item.tone.ink+';color:'+item.tone.bg+';border-color:'+item.tone.ink:'background:'+item.tone.bg+';color:'+item.tone.ink+';border-color:'+item.tone.ink}}" data-key="{{item.key}}" catchtap="toggle" aria-role="button" aria-label="{{item.picked ? L.t(i,'移出排片') : L.t(i,'加入排片')}}">{{item.picked?'✓':'+'}}</view>
               </view>
-              <view wx:for="{{col.qas}}" wx:for-item="qa" wx:key="key" class="qa" style="top:{{qa.top}}rpx;height:{{qa.h}}rpx" data-id="{{qa.id}}" bindtap="openFilm"><text class="qa-b">映后交流</text><text class="qa-t mono">{{qa.label}}</text></view>
+              <view wx:for="{{col.qas}}" wx:for-item="qa" wx:key="key" class="qa" style="top:{{qa.top}}rpx;height:{{qa.h}}rpx" data-id="{{qa.id}}" bindtap="openFilm"><text class="qa-b">{{L.t(i,'映后交流')}}</text><text class="qa-t mono">{{qa.label}}</text></view>
             </view>
           </view>
         </view>
       </scroll-view>
     </view>
 
-    <view class="blockh">当日场次 <text class="en">{{dayTitle}}</text></view>
+    <view class="blockh">{{L.t(i,'当日场次')}} <text class="en">{{dayTitle}}</text></view>
     <view wx:for="{{dayList}}" wx:key="key" class="ag">
       <view class="agl" data-id="{{item.id}}" bindtap="openFilm">
         <text class="at mono">{{item.t}}</text>
         <view class="bar" style="background:{{item.tone.bar}}" />
         <view class="an">
           <view class="ann">{{item.cn}}<text wx:if="{{item.version}}" class="ed">{{item.version}}</text></view>
-          <text class="ans">{{item.venue}} · {{item.hall}} · {{item.min}} 分钟{{item.langSub?' · '+item.langSub:''}}</text>
+          <text class="ans">{{item.venue}} · {{item.hall}} · {{item.minTxt}}{{item.langSub?' · '+item.langSub:''}}</text>
         </view>
       </view>
-      <view class="add {{item.picked?'on':''}}" data-key="{{item.key}}" catchtap="toggle">{{item.picked?'✓ 已加入':'+ 排片'}}</view>
+      <view class="add {{item.picked?'on':''}}" data-key="{{item.key}}" catchtap="toggle">{{item.picked ? L.t(i,'✓ 已加入') : L.t(i,'+ 排片')}}</view>
     </view>
   </block>
 
   <view class="makers">
-    <text class="k">制作设计 · PRODUCED {{'&'}} DESIGNED BY</text>
+    <text class="k">{{L.t(i, '制作设计 · PRODUCED ' + '&' + ' DESIGNED BY')}}</text>
     <view class="row">
       <image src="/images/brand/sparrow-movies-sq.png" mode="aspectFit" />
       <text class="x">×</text>
       <image src="/images/brand/sparrow-tribe-sq.png" mode="aspectFit" />
     </view>
-    <text class="d">电影放映与策展</text>
+    <text class="d">{{L.t(i,'电影放映与策展')}}</text>
   </view>
 </view>

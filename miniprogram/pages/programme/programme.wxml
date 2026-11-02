@@ -1,36 +1,37 @@
+<wxs src="../../utils/l.wxs" module="L" />
 <view wx:if="{{p}}">
   <image wx:if="{{p.cover}}" class="cover" src="{{p.cover}}" mode="widthFix" />
   <view class="wrap">
     <view class="k mono">{{p.en}}</view>
     <view class="h1">{{p.name}}</view>
-    <view class="sub">{{p.sub}} · {{p.period}}</view>
+    <view class="sub">{{p.sub}} · {{p.periodT}}</view>
     <view class="stats card">
-      <view><text class="n mono">{{stats.f}}</text><text class="l">部影片</text></view>
-      <view><text class="n mono">{{stats.s}}</text><text class="l">场放映</text></view>
-      <view><text class="n mono">{{stats.d}}</text><text class="l">个放映日</text></view>
-      <view><text class="n mono">{{stats.h}}</text><text class="l">个影厅</text></view>
+      <view><text class="n mono">{{stats.f}}</text><text class="l">{{L.t(i,'部影片')}}</text></view>
+      <view><text class="n mono">{{stats.s}}</text><text class="l">{{L.t(i,'场放映')}}</text></view>
+      <view><text class="n mono">{{stats.d}}</text><text class="l">{{L.t(i,'个放映日')}}</text></view>
+      <view><text class="n mono">{{stats.h}}</text><text class="l">{{L.t(i,'个影厅')}}</text></view>
     </view>
     <view wx:if="{{p.blurb}}" class="blurb">{{p.blurb}}</view>
-    <view class="btn" bindtap="toSchedule">查看排片</view>
-    <view class="blockh">即将放映 <text class="en">UPCOMING · {{films.length}} 部</text></view>
-    <view wx:if="{{!films.length}}" class="empty"><text class="eb">{{gone.length ? '暂无待映场次' : '片单与场次即将公布'}}</text><text class="es">{{gone.length ? '新场次公布后会更新到这里。' : '公布后会第一时间更新到这里。'}}</text></view>
+    <view class="btn" bindtap="toSchedule">{{L.t(i,'查看排片')}}</view>
+    <view class="blockh">{{L.t(i,'即将放映')}} <text class="en">UPCOMING · {{upN}}</text></view>
+    <view wx:if="{{!films.length}}" class="empty"><text class="eb">{{gone.length ? L.t(i,'暂无待映场次') : L.t(i,'片单与场次即将公布')}}</text><text class="es">{{gone.length ? L.t(i,'新场次公布后会更新到这里。') : L.t(i,'公布后会第一时间更新到这里。')}}</text></view>
     <view wx:else class="grid">
       <view wx:for="{{films}}" wx:key="id" class="gf" data-id="{{item.id}}" bindtap="open">
         <image wx:if="{{item.poster}}" src="{{item.poster}}" mode="aspectFill" lazy-load />
-        <view wx:else class="ph" style="background:{{item.color}}">{{item.cn[0]}}</view>
+        <view wx:else class="ph" style="background:{{item.color}}">{{item.ini}}</view>
         <text class="gt">{{item.cn}}</text>
         <text class="gs mono">{{item.version ? item.version + ' · ' : ''}}{{item.first}}</text>
       </view>
     </view>
     <block wx:if="{{gone.length}}">
       <view class="gone-h" hover-class="hv" bindtap="toggleGone">
-        <text class="gone-t">已结束</text><text class="en">ENDED · {{gone.length}} 部</text>
-        <view class="gone-go"><text>{{goneOpen ? '收起' : '展开'}}</text><view class="gone-ar {{goneOpen ? 'open' : ''}}" /></view>
+        <text class="gone-t">{{L.t(i,'已结束')}}</text><text class="en">ENDED · {{goneN}}</text>
+        <view class="gone-go"><text>{{goneOpen ? L.t(i,'收起') : L.t(i,'展开')}}</text><view class="gone-ar {{goneOpen ? 'open' : ''}}" /></view>
       </view>
       <view wx:if="{{goneOpen}}" class="grid gone">
         <view wx:for="{{gone}}" wx:key="id" class="gf" data-id="{{item.id}}" bindtap="open">
           <image wx:if="{{item.poster}}" src="{{item.poster}}" mode="aspectFill" lazy-load />
-          <view wx:else class="ph" style="background:{{item.color}}">{{item.cn[0]}}</view>
+          <view wx:else class="ph" style="background:{{item.color}}">{{item.ini}}</view>
           <text class="gt">{{item.cn}}</text>
           <text class="gs mono">{{item.version ? item.version + ' · ' : ''}}{{item.first}}</text>
         </view>

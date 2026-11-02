@@ -1,5 +1,7 @@
 const U = require('../../utils/util.js');
 const plan = require('../../utils/plan.js');
+const I = require('../../utils/i18n.js');
+const t = I.tr;
 const app = getApp();
 const K = 2.4; // 每分钟 2.4rpx
 
@@ -10,6 +12,7 @@ Page({
   data: { pf: 'all', vf: 'all', day: '', days: [], nowLine: null, todayOpen: false, myToday: [], myTodayTitle: '', progs: [], vchips: [], venues: [], vOpen: false, cols: [], ticks: [], H: 0, dayList: [], legend: [], span: '', count: 0, dayTitle: '', empty: '', scrollInto: '' },
 
   onLoad(q) {
+    this.setData({ i: I.dict(), en: I.isEn() });
     if (q && q.day) this.setData({ day: q.day });
     this.off1 = app.onData(() => this.build());
     this.off2 = plan.onChange(() => this.build());
@@ -31,7 +34,7 @@ Page({
     const t = new Date(), m = t.getHours() * 60 + t.getMinutes();
     return m >= c.S && m <= c.E ? { top: Math.round((m - c.S) * K), label: U.fmt(m) } : null;
   },
-  onShow() { this.startTick(); const j = app.globalData.jumpDay, jp = app.globalData.jumpProg; if (j) { app.globalData.jumpDay = ''; this.setData({ pf: 'all', vf: 'all', day: j }); } if (jp) { app.globalData.jumpProg = ''; this.setData({ pf: jp, vf: 'all', day: '' }); } this.build(); },
+  onShow() { wx.setNavigationBarTitle({ title: t('麻雀观影护照') }); app.chrome(); this.startTick(); const j = app.globalData.jumpDay, jp = app.globalData.jumpProg; if (j) { app.globalData.jumpDay = ''; this.setData({ pf: 'all', vf: 'all', day: j }); } if (jp) { app.globalData.jumpProg = ''; this.setData({ pf: jp, vf: 'all', day: '' }); } this.build(); },
   onPullDownRefresh() { app.loadRemote(); setTimeout(() => { this.build(); wx.stopPullDownRefresh(); }, 600); },
 
   build() {
@@ -42,7 +45,7 @@ Page({
     const tk = new Date(), tkey = (tk.getMonth() + 1) + '/' + tk.getDate();
     const myToday = data.shows.filter(s => idx.F[s.id] && s.d === tkey && picked.has(U.keyOf(s)) && !U.ended(s, idx))
       .sort((a, b) => U.toMin(a.t) - U.toMin(b.t))
-      .map(s => { const vw = U.showView(s, idx, data, picked); return { key: vw.key, id: s.id, t: vw.t, end: vw.end, cn: vw.cn, venue: vw.venue, hall: vw.hall, tone: vw.tone }; });
+      .map(s => { const vw = U.showView(s, idx, data, picked); return { key: vw.key, id: s.id, t: vw.t, end: vw.end, endTxt: I.isEn() ? 'ends ' + vw.end : vw.end + ' 散场', cn: vw.cn, venue: vw.venue, hall: vw.hall, tone: vw.tone }; });
     const allDays = [...new Set(data.shows.map(s => s.d))];
     const ds = allDays.filter(d => list.some(s => s.d === d));
     let day = this.data.day;
@@ -52,7 +55,7 @@ Page({
     }
     let lastM = '';
     const days = ds.map(d => {
-      const [m, dd] = d.split('/'); const mon = m !== lastM ? m + '月' : ''; lastM = m;
+      const [m, dd] = d.split('/'); const mon = m !== lastM ? t(m + '月') : ''; lastM = m;
       return { d, mon, dd, wk: U.wk(d), n: list.filter(s => s.d === d).length, mine: data.shows.some(s => s.d === d && picked.has(U.keyOf(s))) };
     });
 
@@ -92,17 +95,18 @@ Page({
     const vlist = data.venues.filter(v => upInProg.some(s => s.v === v.id) || v.id === vf);
     const venues = data.venues.map(v => {
       const n = data.shows.filter(s => s.v === v.id).length;
-      return { id: v.id, short: vShort(v), name: v.name, fmt: (v.fmt || []).join(' · '), n, halls: v.halls.length ? v.halls.map(h => h.name).join(' · ') : '影厅待补充' };
+      return { id: v.id, short: vShort(v), name: v.name, fmt: t((v.fmt || []).join(' · ')), n, halls: v.halls.length ? v.halls.map(h => h.name).join(' · ') : t('影厅待补充') };
     });
-    const vname = vf !== 'all' && idx.VN[vf] ? idx.VN[vf].name : '当前筛选';
+    const vname = vf !== 'all' && idx.VN[vf] ? idx.VN[vf].name : t('当前筛选');
     this.setData({
       day, days, cols, ticks, H, nowLine, progs, venues, myToday,
-      myTodayTitle: tk.getMonth() + 1 + '月' + tk.getDate() + '日 ' + U.wk(tkey) + ' · 接下来 ' + myToday.length + ' 场',
-      vchips: vlist.length > 1 ? [{ id: 'all', n: '全部影院' }].concat(vlist.map(v => ({ id: v.id, n: vShort(v) }))) : [],
+      myTodayTitle: t(tk.getMonth() + 1 + '月' + tk.getDate() + '日') + ' ' + U.wk(tkey) + ' · ' + t('接下来 ' + myToday.length + ' 场'),
+      todayToggle: t(this.data.todayOpen ? '收起' : '还有 ' + Math.max(0, myToday.length - 1) + ' 场 · 展开全部'),
+      vchips: vlist.length > 1 ? [{ id: 'all', n: t('全部影院') }].concat(vlist.map(v => ({ id: v.id, n: vShort(v) }))) : [],
       dayList: dl.map(s => U.showView(s, idx, data, picked)),
-      dayTitle: day ? day.replace('/', '月') + '日 ' + U.wk(day) : '',
+      dayTitle: day ? t(day.replace('/', '月') + '日') + ' ' + U.wk(day) : '',
       hallCount: new Set(dl.map(s => s.v + s.h)).size,
-      empty: ds.length ? '' : vname + '暂无排片',
+      empty: ds.length ? '' : t(vname + '暂无排片'),
       legend: Object.keys(data.reg).map(k => data.reg[k]),
       span: ds.length ? ds[0] + ' – ' + ds[ds.length - 1] : '', count: list.length,
       scrollInto: 'd' + (ds.indexOf(day) > 1 ? ds.indexOf(day) - 1 : 0)
@@ -112,14 +116,15 @@ Page({
   setProg(e) { this.setData({ pf: e.currentTarget.dataset.id, vf: 'all', day: '' }); this.build(); },
   setVenue(e) { this.setData({ vf: e.currentTarget.dataset.id }); this.build(); },
   setDay(e) { this.setData({ day: e.currentTarget.dataset.d }); this.build(); },
-  toggleToday() { this.setData({ todayOpen: !this.data.todayOpen }); },
+  toggleToday() { this.setData({ todayOpen: !this.data.todayOpen }); this.build(); },
+  switchLang() { app.switchLang(); },
   toggleVenues() { this.setData({ vOpen: !this.data.vOpen }); },
   openFilm(e) { wx.navigateTo({ url: '/pages/film/film?id=' + e.currentTarget.dataset.id }); },
   openProg(e) { wx.navigateTo({ url: '/pages/programme/programme?id=' + e.currentTarget.dataset.id }); },
   toggle(e) {
     const on = plan.toggle(e.currentTarget.dataset.key);
-    wx.showToast({ title: on ? '已加入排片' : '已移出排片', icon: 'none' });
+    wx.showToast({ title: t(on ? '已加入排片' : '已移出排片'), icon: 'none' });
   },
-  onShareAppMessage() { return { title: '麻雀观影护照 · 影展排片与观影日程', path: '/pages/schedule/schedule' }; },
-  onShareTimeline() { return { title: '麻雀观影护照 · 影展排片与观影日程' }; }
+  onShareAppMessage() { return { title: t('麻雀观影护照 · 影展排片与观影日程'), path: '/pages/schedule/schedule' }; },
+  onShareTimeline() { return { title: t('麻雀观影护照 · 影展排片与观影日程') }; }
 });

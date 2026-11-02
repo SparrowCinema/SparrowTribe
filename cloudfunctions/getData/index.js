@@ -52,7 +52,8 @@ async function fromSite(ms) {
     return o;
   });
   if (!films.length || !shows.length) throw new Error('empty site data');
-  return { films, shows, venues: cat.venues || [], programmes, source: 'site' };
+  const en = await getJSON(SITE + 'data/i18n/en.json', ms).catch(() => null); // 英文层：读不到时小程序用安装包里的
+  return { films, shows, venues: cat.venues || [], programmes, en, source: 'site' };
 }
 
 async function all(name) {
