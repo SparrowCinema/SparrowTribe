@@ -46,13 +46,13 @@
       <view class="mr-h"><text class="mr-t">{{L.t(i,'我的观影')}}</text><text class="mr-en mono">MY FILM PASSPORT</text></view>
       <view class="mr-row">
         <view class="mr-seen" hover-class="hv" bindtap="toggleSeen">{{mine.seenTxt}}</view>
-        <view class="mr-stars">
+        <view class="mr-rate"><view class="mr-stars">
           <view wx:for="{{mine.stars}}" wx:key="index" class="mr-star">
             <text class="s0">★</text><view class="s1" style="width:{{item}}%"><text>★</text></view>
             <view class="hz l" data-v="{{index * 2 + 1}}" bindtap="rate" /><view class="hz r" data-v="{{index * 2 + 2}}" bindtap="rate" />
           </view>
         </view>
-        <text class="mr-score mono {{mine.r ? 'has' : ''}}">{{mine.scoreTxt}}</text>
+        <text class="mr-score mono {{mine.r ? 'has' : ''}}">{{mine.scoreTxt}}</text></view>
       </view>
       <view wx:if="{{mine.seen}}" class="mr-meta">
         <picker mode="date" value="{{mine.d}}" end="{{mine.today}}" bindchange="setSeenDate"><view class="mr-date">{{L.t(i,'观影日期')}} <text class="mono">{{mine.d}}</text> ▾</view></picker>

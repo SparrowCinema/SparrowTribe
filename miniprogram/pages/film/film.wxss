@@ -106,10 +106,11 @@
 .mr-h { display: flex; align-items: baseline; gap: 14rpx; margin-bottom: 18rpx; }
 .mr-t { font-size: 30rpx; font-weight: 900; }
 .mr-en { font-size: 18rpx; letter-spacing: 4rpx; color: var(--muted); }
-.mr-row { display: flex; align-items: center; gap: 18rpx; }
-.mr-seen { flex: none; height: 68rpx; padding: 0 24rpx; display: flex; align-items: center; border-radius: 16rpx; border: 3rpx solid var(--accent); color: var(--accent); font-size: 26rpx; font-weight: 700; }
+.mr-row { display: flex; flex-wrap: wrap; align-items: center; gap: 14rpx 18rpx; }
+.mr-rate { flex: 1 1 300rpx; min-width: 0; display: flex; align-items: center; justify-content: space-between; gap: 12rpx; }
+.mr-seen { flex: none; max-width: 100%; box-sizing: border-box; white-space: nowrap; height: 68rpx; padding: 0 24rpx; display: flex; align-items: center; border-radius: 16rpx; border: 3rpx solid var(--accent); color: var(--accent); font-size: 26rpx; font-weight: 700; }
 .mr.on .mr-seen { background: var(--accent); color: #fffaf0; }
-.mr-stars { display: flex; margin-left: auto; }
+.mr-stars { display: flex; flex: none; }
 .mr-star { position: relative; width: 50rpx; height: 50rpx; font-size: 46rpx; line-height: 50rpx; text-align: center; }
 .mr-star .s0 { color: var(--line); }
 .mr-star .s1 { position: absolute; left: 0; top: 0; height: 100%; overflow: hidden; color: #c8862a; }
@@ -120,7 +121,8 @@
 .mr-score.has { font-size: 30rpx; font-weight: 700; color: #c8862a; }
 .mr-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 8rpx 20rpx; margin-top: 20rpx; padding-top: 18rpx; border-top: 2rpx dashed var(--line); font-size: 22rpx; color: var(--muted); }
 .mr-date { padding: 6rpx 14rpx; border-radius: 10rpx; border: 2rpx solid var(--line); background: var(--bg); color: var(--fg); }
-.mr-go { margin-left: auto; color: var(--accent); }
+.mr-go { margin-left: auto; color: var(--accent); white-space: nowrap; }
+.mr-at { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .mr-tip { display: block; margin-top: 16rpx; font-size: 22rpx; color: var(--muted); line-height: 1.6; }
 
 .evtag { display: inline-block; font-size: 20rpx; font-weight: 700; line-height: 32rpx; padding: 0 14rpx; margin-right: 12rpx; border-radius: 99rpx; background: #ffe94a; color: #2b2110; vertical-align: 2rpx; }
