@@ -2657,6 +2657,9 @@ module.exports = {
     null
    ],
    "dirO": "Cao Jinling",
+   "screeningNotes": {
+    "11/7-19:00-xm-gr26-1-hall-2": "映后活动 · 主创映后交流（嘉宾名单待公布，以实际到场为准）"
+   },
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-019.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -3197,6 +3200,9 @@ module.exports = {
     3.6
    ],
    "dirO": "Norris Wong Yee-lam / Wong Hoi",
+   "screeningNotes": {
+    "11/8-14:30-xm-gr26-1-hall-3": "映后活动 · 主创映后交流（嘉宾名单待公布，以实际到场为准）"
+   },
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-029.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -3355,6 +3361,9 @@ module.exports = {
     3.4
    ],
    "dirO": "Shen Ko-shang",
+   "screeningNotes": {
+    "11/8-16:20-xm-gr26-1-hall-4": "映后活动 · 主创映后交流（嘉宾名单待公布，以实际到场为准）"
+   },
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-032.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -3510,6 +3519,9 @@ module.exports = {
     null
    ],
    "dirO": "Hsu Kun-hua",
+   "screeningNotes": {
+    "11/8-19:20-xm-gr26-1-hall-4": "映后活动 · 主创映后交流（嘉宾名单待公布，以实际到场为准）"
+   },
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-035.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -3611,6 +3623,9 @@ module.exports = {
     null
    ],
    "dirO": "Wu Chui-yi",
+   "screeningNotes": {
+    "11/8-20:15-xm-gr26-1-hall-2": "映后活动 · 主创映后交流（嘉宾名单待公布，以实际到场为准）"
+   },
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-037.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -3813,6 +3828,9 @@ module.exports = {
     null
    ],
    "dirO": "Keane Wong Tak-Kin",
+   "screeningNotes": {
+    "11/9-14:10-xm-gr26-1-hall-6": "映后活动 · 主创映后交流（嘉宾名单待公布，以实际到场为准）"
+   },
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-041.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -3861,6 +3879,9 @@ module.exports = {
     null
    ],
    "dirO": "Kethsvin Chee",
+   "screeningNotes": {
+    "11/9-14:25-xm-gr26-1-hall-2": "映后活动 · 主创映后交流（嘉宾名单待公布，以实际到场为准）"
+   },
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-042.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -4075,6 +4096,9 @@ module.exports = {
     3.6
    ],
    "dirO": "Yeung Leung Chuen",
+   "screeningNotes": {
+    "11/10-19:30-xm-gr26-1-hall-3": "映后活动 · 主创映后交流（嘉宾名单待公布，以实际到场为准）"
+   },
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-046.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"

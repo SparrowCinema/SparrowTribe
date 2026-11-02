@@ -954,7 +954,10 @@
     null,
     null
    ],
-   "dirO": "Cao Jinling"
+   "dirO": "Cao Jinling",
+   "screeningNotes": {
+    "11/7-19:00-xm-gr26-1-hall-2": "映后活动 · 主创映后交流（嘉宾名单待公布，以实际到场为准）"
+   }
   },
   {
    "id": "gr26-020",
@@ -1474,7 +1477,10 @@
     null,
     3.6
    ],
-   "dirO": "Norris Wong Yee-lam / Wong Hoi"
+   "dirO": "Norris Wong Yee-lam / Wong Hoi",
+   "screeningNotes": {
+    "11/8-14:30-xm-gr26-1-hall-3": "映后活动 · 主创映后交流（嘉宾名单待公布，以实际到场为准）"
+   }
   },
   {
    "id": "gr26-030",
@@ -1626,7 +1632,10 @@
     null,
     3.4
    ],
-   "dirO": "Shen Ko-shang"
+   "dirO": "Shen Ko-shang",
+   "screeningNotes": {
+    "11/8-16:20-xm-gr26-1-hall-4": "映后活动 · 主创映后交流（嘉宾名单待公布，以实际到场为准）"
+   }
   },
   {
    "id": "gr26-033",
@@ -1775,7 +1784,10 @@
     null,
     null
    ],
-   "dirO": "Hsu Kun-hua"
+   "dirO": "Hsu Kun-hua",
+   "screeningNotes": {
+    "11/8-19:20-xm-gr26-1-hall-4": "映后活动 · 主创映后交流（嘉宾名单待公布，以实际到场为准）"
+   }
   },
   {
    "id": "gr26-036",
@@ -1872,7 +1884,10 @@
     null,
     null
    ],
-   "dirO": "Wu Chui-yi"
+   "dirO": "Wu Chui-yi",
+   "screeningNotes": {
+    "11/8-20:15-xm-gr26-1-hall-2": "映后活动 · 主创映后交流（嘉宾名单待公布，以实际到场为准）"
+   }
   },
   {
    "id": "gr26-038",
@@ -2066,7 +2081,10 @@
     null,
     null
    ],
-   "dirO": "Keane Wong Tak-Kin"
+   "dirO": "Keane Wong Tak-Kin",
+   "screeningNotes": {
+    "11/9-14:10-xm-gr26-1-hall-6": "映后活动 · 主创映后交流（嘉宾名单待公布，以实际到场为准）"
+   }
   },
   {
    "id": "gr26-042",
@@ -2112,7 +2130,10 @@
     null,
     null
    ],
-   "dirO": "Kethsvin Chee"
+   "dirO": "Kethsvin Chee",
+   "screeningNotes": {
+    "11/9-14:25-xm-gr26-1-hall-2": "映后活动 · 主创映后交流（嘉宾名单待公布，以实际到场为准）"
+   }
   },
   {
    "id": "gr26-043",
@@ -2318,7 +2339,10 @@
     null,
     3.6
    ],
-   "dirO": "Yeung Leung Chuen"
+   "dirO": "Yeung Leung Chuen",
+   "screeningNotes": {
+    "11/10-19:30-xm-gr26-1-hall-3": "映后活动 · 主创映后交流（嘉宾名单待公布，以实际到场为准）"
+   }
   },
   {
    "id": "gr26-047",
