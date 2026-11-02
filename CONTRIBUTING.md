@@ -111,3 +111,12 @@ Claude 与 GPT 可能使用同一 GitHub 身份，审批人数可先设为0；�
 
 - 进行中 / 即将开始的专题：标题右侧圆形按钮可收起（状态存本机 `sparrow-fold-v1`，小程序 `sk-fold-v1`；搜索时自动全部展开）。专题里已放映完的影片收在组内底部「本专题已放映」。
 - 专题整体结束（`progStatus` 为 ended）后，整组自动移到最底部「往期专题」，每个专题一张折叠卡片，按结束时间由近到远。常设专题（`ongoing`，如麻雀部落电影空间）永远不会进往期。
+
+## 院线新片按年份建专题
+
+院线新片专题按自然年命名：`cinema-2026`（名称「2026院线新片」，档期 2026.01–2026.12）。每年年底新建下一年的专题：
+1. 复制 `data/programmes/cinema-2026.json` 为 `cinema-2027.json`，清空影片与场次后录入新数据；
+2. 在 `data/catalog.json` 新增 `cinema-2027`（名称「2027院线新片」、`start` 2027-01-01、`end` 2027-12-31、`period`、`cover`）；
+3. 运行 `node tools/make-cinema-cover.js 2027` 生成中/英头图（`programmes/cinema-2027.jpg` / `-en.jpg`），再缩成 930×330 放到 `miniprogram/images/brand/prog-cinema-2027.jpg`；
+4. `data/i18n/en.json` 的 `programmes` 里补英文名（如「2027 Now Showing」）。
+2026 专题结束（12.31 之后）会自动进入片目的「往期专题」。
