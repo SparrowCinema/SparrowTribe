@@ -105,6 +105,8 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="麻雀观影护照">
 <meta name="description" content="麻雀观影护照：影展专题、艺术影院与院线放映的排片、片目与个人观影日程。">
+<meta property="og:site_name" content="麻雀观影护照"><meta property="og:type" content="website"><meta property="og:title" content="麻雀观影护照 · Sparrow Film Passport"><meta property="og:description" content="影展专题、艺术影院与院线放映的排片、片目与个人观影日程。Film festival and cinema screening schedules with a personal film passport."><meta property="og:image" content="https://sparrowcinema.github.io/SparrowTribe/brand/og-default.jpg"><meta property="og:url" content="https://sparrowcinema.github.io/SparrowTribe/">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="麻雀观影护照 · Sparrow Film Passport"><meta name="twitter:image" content="https://sparrowcinema.github.io/SparrowTribe/brand/og-default.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600;900&family=Noto+Sans+SC:wght@400;500;700;900&family=Barlow:wght@500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
 <style>
@@ -682,6 +684,13 @@ html.sheet-open,html.sheet-open body{overflow:hidden}
 .pg-head h1{font:900 36px/1.15 var(--f-display);margin:6px 0 4px}
 .pg-sub{margin:0;color:var(--muted);font-size:14px}
 .pg-blurb{font-size:15px;line-height:1.85;max-width:65ch;margin:0 0 16px}
+.fd-ext{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 0}.fd-extl{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:600;line-height:1.4;padding:6px 11px;border-radius:99px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none}.fd-extl svg{width:13px;height:13px;color:var(--accent);flex:none}.fd-extl:hover{border-color:var(--accent)}.fd-extl:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.fd-notes{border-left:3px solid #c0791f}.fd-warns{display:flex;flex-wrap:wrap;gap:6px}.fd-warn{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:3px 10px 3px 4px;border-radius:99px;color:#7a4a0c;background:#f6e3c2}.fd-warn i{display:inline-grid;place-items:center;width:16px;height:16px;border-radius:50%;background:#c0791f;color:#fff;font:700 11px/1 var(--f-mono);font-style:normal}.fd-warn-note{font-size:11px;color:var(--muted);margin:8px 0 0;line-height:1.6}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .fd-warn{color:#f1c98a;background:#4a3a22}}:root[data-theme="dark"] .fd-warn{color:#f1c98a;background:#4a3a22}
+
+.fd-acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}.fd-act{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;line-height:1.4;padding:6px 13px 6px 10px;border-radius:99px;color:#fff;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.42);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);cursor:pointer}.fd-act svg{width:14px;height:14px}.fd-act:focus-visible,.pg-act:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.pg-acts{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 6px}.pg-act{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;line-height:1.4;padding:8px 14px 8px 11px;border-radius:99px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none;cursor:pointer}.pg-act svg{width:15px;height:15px;color:var(--accent)}.pg-hint{font-size:12px;color:var(--muted);margin:2px 0 14px}
+
 .pg-grp{margin-top:26px}
 .pg-ended{margin-top:30px;border-top:1px dashed var(--line);padding-top:6px}
 .pg-ended>summary{cursor:pointer;list-style:none;margin:14px 0 0;color:var(--muted)}
@@ -1248,7 +1257,10 @@ const creditsHTML = f => [
   ["类型", (f.genre||[]).join(" / ")],
   ["国别", f.c],
   ["放映语言", f.language],
-  ["字幕", f.subtitles]
+  ["字幕", f.subtitles],
+  ["放映格式", f.medium],
+  ["年龄提示", f.ageRating],
+  ["无障碍", (f.access||[]).join(" / ")]
 ].filter(([,value])=>value).map(([name,value])=>`<dt>${esc(name)}</dt><dd>${esc(value)}</dd>`).join("");
 
 const chevron = '<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg>';
@@ -1515,6 +1527,13 @@ document.addEventListener('focusout',e=>{if(isField(e.target))setTimeout(()=>{if
 document.addEventListener("input",e=>{ if(e.target.id!=="fq") return; fq=e.target.value.trim(); const w=document.getElementById("flist-wrap"); if(w) w.innerHTML=filmsListHTML(); });
 
 function honorHTML(x){const i=x.indexOf("｜");const t=i>0?x.slice(0,i):"",rest=i>0?x.slice(i+1):x;const m=rest.match(/^(\d{4})\s*(.*)$/);const yr=m?m[1]:"",body=m?m[2]:rest;const cls=t==="获奖"?"win":t==="提名"?"nom":/评选|入选/.test(t)?"list":"sel";const parts=body.split(" · ");return `<li class="fd-honor ${cls}"><span class="fd-ht">${esc(t||"荣誉")}</span><span class="fd-hy">${esc(yr)}</span><span class="fd-hb"><b>${esc(parts[0])}</b>${parts.length>1?`<small>${esc(parts.slice(1).join(" · "))}</small>`:""}</span></li>`;}
+const EXT_ARROW='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>';
+function extLinksHTML(f){const l=f.links||{},en=encodeURIComponent(f.en||f.o||f.cnZh||f.cn),zh=encodeURIComponent(f.cnZh||f.cn),y=f.y?" "+f.y:"";
+  const items=[["Letterboxd",l.lb?`https://letterboxd.com/film/${l.lb}/`:l.imdb?`https://letterboxd.com/imdb/${l.imdb}`:`https://letterboxd.com/search/films/${en}${encodeURIComponent(y)}/`,!!(l.lb||l.imdb),"在 Letterboxd 上查看"],
+    ["IMDb",l.imdb?`https://www.imdb.com/title/${l.imdb}/`:`https://www.imdb.com/find/?q=${en}${encodeURIComponent(y)}&s=tt`,!!l.imdb,"在 IMDb 上查看"],
+    ["豆瓣",l.douban?`https://movie.douban.com/subject/${l.douban}/`:`https://search.douban.com/movie/subject_search?search_text=${zh}`,!!l.douban,"在豆瓣上查看"]];
+  return `<nav class="fd-ext" aria-label="外部评分与影评">${items.map(([n,u,exact,lab])=>`<a class="fd-extl" href="${u}" target="_blank" rel="noopener noreferrer"${exact?"":' title="打开该站搜索结果"'}><span>${lab}</span>${EXT_ARROW}</a>`).join("")}</nav>`;}
+function noticeHTML(f){if(!(f.warnings||[]).length)return "";return `<section class="fd-block fd-notes"><h3 class="fd-h">内容提示 <small>CONTENT NOTES</small></h3><div class="fd-warns">${f.warnings.map(w=>`<span class="fd-warn"><i aria-hidden="true">!</i>${esc(w)}</span>`).join("")}</div><p class="fd-warn-note">提示仅供参考，不是官方分级；观影前请按个人情况判断。</p></section>`;}
 function ratingsHTML(f){if(!(f.r||[]).length)return "";const R=[["豆瓣",10],["IMDb",10],["烂番茄",100],["MTC",100],["Letterboxd",5]];return `<div class="fd-ratings">${f.r.map((v,i)=>{const na=v==null;const shown=na?"—":i===2?v+"%":i===4?v.toFixed(1):(i<2?Number(v).toFixed(1):v);const pct=na?0:Math.max(0,Math.min(100,v/R[i][1]*100));return `<div class="fd-rt${na?" na":""}"><span class="fd-rl">${R[i][0]}</span><b aria-label="${R[i][0]} ${na?"暂无评分":shown}">${shown}</b><span class="fd-rbar"><i style="width:${pct}%"></i></span></div>`;}).join("")}</div>`;}
 function giftsHTML(f){const g=f.gifts||[];return `<section class="fd-block fd-gifts"><h3 class="fd-h">伴手礼周边 <small>${g.length?"GIFTS":"待公布"}</small></h3>${g.length?g.map(x=>`<div class="fd-gift">${x.label?`<b class="fd-gl">${esc(x.label)}</b>`:""}<ul>${x.items.map(i=>`<li>${esc(i)}</li>`).join("")}</ul></div>`).join("")+`<p class="fd-gnote">数量有限，以影院现场发放为准。</p>`:`<div class="fd-noshow"><b>伴手礼信息待公布</b><span>公布后会更新到这里。</span></div>`}</section>`;}
 function qaPanelHTML(f){const ready=!!(f.qaStart&&f.qaEnd&&f.qaGuest);return `<section class="fd-block fd-qa-section"><h3 class="fd-h">映后交流 <small>POST-SCREENING</small></h3><div class="fd-qa-panel${ready?"":" fd-qa-empty"}"><div class="fd-qa-panel-head"><span class="fd-qa-label">✦ ${ready?"映后交流 · DIRECTOR Q&A":"映后信息"}</span>${ready?`<b class="fd-qa-time">${esc(f.qaStart)} – ${esc(f.qaEnd)}</b>`:""}</div><div class="fd-qa-panel-body">${ready?esc(f.qaGuest):Object.values(f.screeningNotes||{}).some(x=>x.includes("映后"))?"映后活动安排见各场次备注，嘉宾以实际到场为准。":"暂无映后交流安排"}</div></div></section>`;}
@@ -1543,6 +1562,7 @@ function detail(id){
         <div class="fd-orig">${esc(f.en||f.o||"")}</div>${f.o&&f.o!==f.cn&&f.o!==(f.en||f.o)?`<div class="fd-native">原名 ${esc(f.o)}</div>`:""}
         <div class="fd-chips">${f.version?`<span class="fd-ed">${esc(f.version)}</span>`:""}<span>${minText(f)}</span>${f.language?`<span>${esc(f.language)}</span>`:""}${f.genre.map(g=>`<span>${esc(g)}</span>`).join("")}</div>
         ${f.dir?`<div class="fd-by">导演 <b>${esc(f.dir)}</b>${f.coDirector?` / ${esc(f.coDirector)}`:""}</div>`:""}
+        <div class="fd-acts"><button class="fd-act" type="button" data-share="f:${f.id}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M8 7l4-4 4 4M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg>分享影片</button></div>
       </div>
     </div>
   </header>
@@ -1550,6 +1570,8 @@ function detail(id){
     <aside class="fd-side">
       ${ticketHTML(f)}
       ${ratingsHTML(f)}
+      ${extLinksHTML(f)}
+      ${noticeHTML(f)}
       ${myRateHTML(f)}
       <section class="fd-block"><h3 class="fd-h">放映场次 <small>${shows.length?shows.length+" 场":"排片待公布"}</small></h3>${shows.length?shows.map(s=>screeningHTML(s,f)).join(""):`<div class="fd-noshow"><b>${allShows.length?"本片场次已全部放映结束":(f.release?esc(f.release):"上映信息待公布")}</b><span>${allShows.length?"已放映的场次不再显示在这里。":"麻雀观影护照收录的场次公布后会更新到这里，也可以先在各影院售票平台查看。"}</span></div>`}</section>
       ${qaPanelHTML(f)}
@@ -1601,6 +1623,7 @@ function progPage(pid){
       <header class="pg-head"><small>${esc(p.en||"")}</small><h1>${esc(p.name)}</h1><p class="pg-sub">${statusTag(p)}${esc(p.sub)} · ${esc(p.period)}${p.city?`<span style="white-space:nowrap"> · ${esc(p.city)}</span>`:""}</p></header>
       <div class="pstats pg-stats"><div><b>${films.length}</b><small>部影片</small></div><div><b>${shows.length}</b><small>场放映</small></div><div><b>${new Set(shows.map(x=>x.d)).size}</b><small>个放映日</small></div><div><b>${new Set(shows.map(x=>x.v+x.h)).size}</b><small>个影厅</small></div></div>
       ${p.blurb?`<p class="pg-blurb">${esc(p.blurb)}</p>`:""}
+      ${progActsHTML(p)}
       ${p.ticket?ticketHTML({id:"golden-rooster-ticket",cn:p.name,ticket:p.ticket,ticketPlatform:"淘票票",ticketHint:"购票城市选择厦门"}):""}
       ${p.sections?`<div class="section-tabs" aria-label="展映单元">${["",...new Set(Object.values(p.sections))].map(name=>`<button class="${sectionFilter===name?"primary-button":"secondary-button"}" data-section="${esc(name)}" aria-pressed="${sectionFilter===name}">${esc((name||"全部单元").replace("功夫·功夫：","功夫："))}</button>`).join("")}</div>`:""}
       <div class="plan-toolbar"><button class="primary-button" data-prog-jump="up">即将放映</button><button class="secondary-button" data-prog-jump="gone">已结束</button></div>
@@ -1621,6 +1644,18 @@ function touchMeta(k){try{const m=readMeta();m[k]=Date.now();localStorage.setIte
 let validKeys=new Set();
 function readSelection(){try{const a=JSON.parse(localStorage.getItem(PLAN_KEY)||'[]');return new Set(Array.isArray(a)?a.filter(k=>validKeys.has(k)):[]);}catch{return new Set();}}
 let picked=new Set(),currentExport=[];
+const pageShareURL=(k,id)=>new URL('s/'+(LANG==='en'?'en/':'')+k+'/'+encodeURIComponent(id)+'.html',document.baseURI).href;
+const calURL=id=>new URL('cal/'+(LANG==='en'?'en/':'')+encodeURIComponent(id)+'.ics',document.baseURI).href;
+async function copyText(v){try{await navigator.clipboard.writeText(v);}catch{const i=document.createElement('textarea');i.value=v;i.style.cssText='position:fixed;opacity:0';document.body.appendChild(i);i.select();try{document.execCommand('copy');}catch{}i.remove();}}
+function progActsHTML(p){if(!p||!p.file)return "";return `<div class="pg-acts"><button class="pg-act" type="button" data-share="p:${p.id}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M8 7l4-4 4 4M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg>分享专题</button><a class="pg-act" href="${calURL(p.id).replace(/^https?:/,"webcal:")}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>订阅日历</a><button class="pg-act" type="button" data-copyurl="${esc(calURL(p.id))}">复制订阅链接</button></div><p class="pg-hint">订阅后，场次有调整会自动同步到你的日历。</p>`;}
+document.addEventListener('click',async e=>{
+  const sh=e.target.closest('[data-share]');
+  if(sh){const [k,id]=sh.dataset.share.split(':'),f=k==='f'?F[id]:null,p=k==='p'?PG[id]:null,title=(f?f.cn:p&&p.name)||'',url=pageShareURL(k,id);
+    if(navigator.share){try{await navigator.share({title:title+' | '+tr('麻雀观影护照'),url});return;}catch(err){if(err&&err.name==='AbortError')return;}}
+    await copyText(url);toast('分享链接已复制');return;}
+  const cu=e.target.closest('[data-copyurl]');
+  if(cu){await copyText(cu.dataset.copyurl);toast('订阅链接已复制');}
+});
 function toast(message){let el=document.getElementById('toast');if(!el){el=document.createElement('div');el.id='toast';el.setAttribute('role','status');document.body.appendChild(el);}el.textContent=message;el.classList.add('visible');clearTimeout(toast.timer);toast.timer=setTimeout(()=>el.classList.remove('visible'),2800);}
 function saveSelection(){try{localStorage.setItem(PLAN_KEY,JSON.stringify([...picked]));touchMeta('picks');return true;}catch{toast('当前浏览器无法保存，离开页面后可能丢失');return false;}}
 let planFilt="all";
@@ -2114,7 +2149,7 @@ let READY=false;
 function normalizeFilm(f,pid){
   f.prog=f.prog||pid; f.cn=f.cn||f.o||f.en||f.id;
   f.r=Array.isArray(f.r)?f.r.slice(0,5):[]; while(f.r.length<5) f.r.push(null);
-  ["genre","honors","highlights","cast","writers"].forEach(k=>{ if(!Array.isArray(f[k])) f[k]=f[k]?[f[k]]:[]; });
+  ["genre","honors","highlights","cast","writers","warnings","access"].forEach(k=>{ if(!Array.isArray(f[k])) f[k]=f[k]?[f[k]]:[]; });
   if(!(+f.min>0)){ f.min=120; f.minTbd=true; } else f.min=+f.min;
   if(!REG[f.reg]){ REG.ot=REG.ot||{n:"其他",c:"#5f6b73"}; f.reg="ot"; }
   return f;

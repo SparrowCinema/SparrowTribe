@@ -796,7 +796,7 @@
   },
   "no-mobile": {
    "title": "No Mobile",
-   "dir": "Hao Yang",
+   "dir": "Yang Hao",
    "dirLife": "Chinese artist and documentary director",
    "writers": [],
    "cast": [],
@@ -1039,7 +1039,7 @@
     "Cold humour makes the janitor's loneliness visible."
    ],
    "st": "Visits to film studios informed a world of abandoned sets, where virtual companionship and a final shoot offer competing forms of escape.",
-   "dir": "Zao Xu"
+   "dir": "Xu Zao"
   },
   "gr26-019": {
    "title": "MGP: The Untamed Circuit",
@@ -1801,7 +1801,7 @@
     "Compare its movement with later Chinese animation classics."
    ],
    "st": "Released in 1941, this milestone joins a familiar Journey to the West episode with the evolving craft of early feature-length animation.",
-   "dir": "Wan Laiming / Guchan Wan",
+   "dir": "Wan Laiming / Wan Guchan",
    "honors": [
     "入选｜2026 Golden Rooster Film Screening · 流光：动画展映单元"
    ]
@@ -1895,7 +1895,7 @@
     "Handmade settings give the mythical world physical weight."
    ],
    "st": "Released in 1963, the feature connects a Dai love story with the craft of puppet cinema and the transformation of folk art into screen design.",
-   "dir": "Xi Jin",
+   "dir": "Jin Xi",
    "honors": [
     "入选｜2026 Golden Rooster Film Screening · 流光：动画展映单元"
    ]
@@ -1920,7 +1920,7 @@
     "Different materials and techniques complicate any single definition of Chinese animation."
    ],
    "st": "The documentary provides a historical companion to Princess Iron Fan, The Peacock Princess and Nezha, placing individual works within changing creative traditions.",
-   "dir": "Lijun Sun",
+   "dir": "Sun Lijun",
    "honors": [
     "入选｜2026 Golden Rooster Film Screening · 流光：动画展映单元"
    ]
@@ -1998,7 +1998,7 @@
     "Each concession Judge Lamy makes changes both the legal process and his own position."
    ],
    "bio": "Karla is Christina Tournatzés's first feature, based on a true story from Munich in 1962. It was nominated for Best Debut Feature at the 2026 Göteborg Film Festival.",
-   "st": "The film took both Best Director and Best Screenplay at the 2025 Munich Film Festival's German Cinema New Talent Award, and Best Screenplay and Best Actor at the 2026 Bavarian Film Awards. It deals with child abuse; please be aware before viewing."
+   "st": "The film took both Best Director and Best Screenplay at the 2025 Munich Film Festival's German Cinema New Talent Award, and Best Screenplay and Best Actor at the 2026 Bavarian Film Awards."
   },
   "miroirs-no-3": {
    "title": "Miroirs No. 3",
@@ -2070,7 +2070,7 @@
     "She returns to a teacher, a classmate, a doctor, a prosecutor, a detective and a friend: notice how each remembers differently.",
     "Carefully composed frames handle a heavy memory with restraint."
    ],
-   "st": "Selected for the Berlinale Forum in 2026 with a Documentary Award Jury Special Mention. The film deals with violence against women; please be aware before viewing."
+   "st": "Selected for the Berlinale Forum in 2026 with a Documentary Award Jury Special Mention."
   },
   "when-pigs-fly": {
    "title": "When Pigs Fly",
@@ -3215,6 +3215,37 @@
   "歌舞": "Musical",
   "历史": "History",
   "2026德国电影展": "2026 German Film Festival",
+  "分享影片": "Share film",
+  "分享专题": "Share programme",
+  "订阅日历": "Subscribe to calendar",
+  "复制订阅链接": "Copy subscription link",
+  "订阅后，场次有调整会自动同步到你的日历。": "Once subscribed, schedule changes sync to your calendar automatically.",
+  "订阅链接已复制": "Subscription link copied",
+  "内容提示": "Content notes",
+  "提示仅供参考，不是官方分级；观影前请按个人情况判断。": "For reference only, not an official rating; please use your own judgement before viewing.",
+  "儿童受虐": "Child abuse",
+  "针对女性的暴力": "Violence against women",
+  "放映格式": "Format",
+  "年龄提示": "Age advisory",
+  "无障碍": "Accessibility",
+  "在 Letterboxd 上查看": "View on Letterboxd",
+  "在 IMDb 上查看": "View on IMDb",
+  "在豆瓣上查看": "View on Douban",
+  "外部评分与影评": "External ratings and reviews",
+  "打开该站搜索结果": "Opens search results on that site",
+  "性暴力": "Sexual violence",
+  "暴力": "Violence",
+  "血腥": "Gore",
+  "自伤或自杀": "Self-harm or suicide",
+  "药物滥用": "Substance abuse",
+  "频闪／强光": "Flashing lights",
+  "动物伤害": "Animal harm",
+  "歧视性语言": "Discriminatory language",
+  "听障字幕场": "Captioned screening (deaf / hard of hearing)",
+  "无障碍影厅": "Wheelchair-accessible auditorium",
+  "建议16岁以上": "Recommended 16+",
+  "建议18岁以上": "Recommended 18+",
+  "建议12岁以上": "Recommended 12+",
   "我的影片": "My films",
   "搜索我的分类": "Search my categories",
   "片目筛选": "Film library filters",
