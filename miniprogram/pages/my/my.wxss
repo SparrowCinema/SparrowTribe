@@ -170,3 +170,12 @@
 .rc-sum .l { font-size: 20rpx; color: var(--muted); }
 .rc-go { width: 100%; box-sizing: border-box; height: 88rpx; }
 .rc-go.dis { opacity: .4; }
+
+/* 英文版封面：字母间距收紧、不换行，隐藏与主标题重复的英文小字 */
+.fp-cover.en { padding: 64rpx 24rpx 44rpx; }
+.fp-cover.en .fp-pub { font-size: 24rpx; letter-spacing: 4rpx; white-space: nowrap; }
+.fp-cover.en .fp-pub2, .fp-cover.en .fp-nen { display: none; }
+.fp-cover.en .fp-name { font-size: 46rpx; letter-spacing: 4rpx; margin-right: 0; white-space: nowrap; line-height: 1.2; }
+.fp-cover.en .fp-motto { font-size: 14rpx; letter-spacing: 6rpx; white-space: nowrap; }
+.fp-cover.en .fp-chip { font-size: 17rpx; letter-spacing: 2rpx; white-space: nowrap; }
+.fp-ph text, .fp-dl .dt, .fp-dl .dd { white-space: nowrap; }
