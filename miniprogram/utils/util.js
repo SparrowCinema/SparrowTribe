@@ -1,6 +1,7 @@
+const I = require('./i18n.js');
 const WK = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
 const year = d => (+d.split('/')[0] >= 10 ? 2026 : 2027);
-const wk = d => { const [m, dd] = d.split('/').map(Number); return WK[new Date(year(d), m - 1, dd).getDay()]; };
+const wk = d => { const [m, dd] = d.split('/').map(Number); return I.tr(WK[new Date(year(d), m - 1, dd).getDay()]); };
 const toMin = t => { const [h, m] = t.split(':').map(Number); return h * 60 + m; };
 const fmt = m => String(Math.floor(m / 60)).padStart(2, '0') + ':' + String(m % 60).padStart(2, '0');
 const keyOf = s => `${s.d}-${s.t}-${s.v}-${s.h}`;
@@ -9,7 +10,7 @@ const POSTERS = 'wild-strawberries dogville sirat swordsman swordsman-2 leningra
 const poster = f => f.posterUrl || (POSTERS.includes(f.id) ? `/images/posters/${f.id}.jpg` : '');
 const TICKETS = POSTERS.slice(0, 17); // 只有风格万相 17 部有购票码
 const ticket = f => f.ticketUrl || (TICKETS.includes(f.id) ? `/images/tickets/${f.id}.jpg` : '');
-const durText = m => (m < 60 ? m + ' 分钟' : Math.floor(m / 60) + ' 小时' + (m % 60 ? ' ' + (m % 60) + ' 分' : ''));
+const durText = m => I.tr(m < 60 ? m + ' 分钟' : Math.floor(m / 60) + ' 小时' + (m % 60 ? ' ' + (m % 60) + ' 分' : ''));
 
 // 每部影片一种柔和浅色：按片目顺序以黄金角拉开色相
 const hsl2hex = (h, s, l) => { s /= 100; l /= 100; const k = n => (n + h / 30) % 12; const a = s * Math.min(l, 1 - l); const f = n => Math.round(255 * (l - a * Math.max(-1, Math.min(k(n) - 3, 9 - k(n), 1)))).toString(16).padStart(2, '0'); return '#' + f(0) + f(8) + f(4); };
@@ -22,7 +23,7 @@ const nextShowOf = (f, shows) => shows.filter(s => s.id === f.id && showDate(s).
 const filmOrder = shows => (a, b) => { const na = nextShowOf(a, shows), nb = nextShowOf(b, shows); if (!!na !== !!nb) return na ? -1 : 1; if (na && nb) return showDate(na) - showDate(nb); return relTime(b) - relTime(a); };
 // 专题是否为影展类（影展在前，院线在后）
 const isFest = p => !!p && /影展/.test(p.kind || '');
-const langSub = f => [f.language, f.subtitles].filter(Boolean).join(' ｜ ');
+const langSub = f => I.tr([f.language, f.subtitles].filter(Boolean).join(' ｜ '));
 
 function index(data) {
   const F = {}; const ORD = {}; data.films.forEach((f, i) => { F[f.id] = f; ORD[f.id] = i; });
@@ -57,7 +58,7 @@ function showView(s, idx, data, picked) {
   const f = idx.F[s.id]; const st = toMin(s.t);
   return {
     key: keyOf(s), d: s.d, t: s.t, end: fmt(st + f.min), wk: wk(s.d), id: s.id,
-    cn: f.cn, version: f.version || '', dir: f.dir, min: f.min,
+    cn: f.cn, version: I.tr(f.version || ''), dir: f.dir, min: f.min, minTxt: I.tr(f.min ? f.min + ' 分钟' : '片长待定'),
     venue: idx.venueName(s), hall: idx.hallName(s),
     color: (data.reg[f.reg] || {}).c || '#8e2a22',
     tone: filmTone(idx.ORD ? idx.ORD[s.id] : 0), langSub: langSub(f),

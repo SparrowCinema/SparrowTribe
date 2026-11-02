@@ -65,4 +65,11 @@ Claude 与 GPT 可能使用同一 GitHub 身份，审批人数可先设为0；�
 - 页面右上角「中 / EN」切换；也可用 `?lang=en` / `?lang=zh`。选择记在本机，首次访问按浏览器语言。
 - 英文内容全部在 `data/i18n/en.json`：`films`（按影片 id 覆盖片名 title、导演、主演、剧情简介、荣誉等）、`programmes`、`venues`、`ui`（界面中文→英文词典，长词优先匹配）、`exact`（只整句匹配的短词）。荣誉条目保留中文前缀（获奖｜/提名｜）用于分类，页面上再由词典译成 Won / Nominated。
 - 新增影片或专题后，请在 `en.json` 补译；没补的字段自动显示中文，不会报错。界面上带数字的句式（N 场、N 分钟、日期等）在 `index.html` 的 `PATS` 里。
-- 小程序的英文版尚未做。
+
+## 英文版（小程序）
+
+- 首页右上角「中 / EN」切换，选择记在本机；首次打开按微信语言。切换后用 `reLaunch` 重新进入首页，各页面在 `onLoad` 里取 `I.dict()`。
+- 与网站共用同一份词典 `data/i18n/en.json`。getData 云函数会一并返回 `en`；离线兜底是 `miniprogram/data/en.js`，由 `node tools/build-fallback.js` 生成（和 `data.js` 一起）。
+- 页面里的 JS 文字用 `tr()`（`miniprogram/utils/i18n.js`），WXML 里的固定文字用 `L.t(i, '中文')` / `L.n(i, 数量, 单位)`（`utils/l.wxs`）。词典里没有的文字原样显示中文，不会报错。新增界面文字后请在 `en.json` 的 `ui` 补译，并运行 `node tools/build-fallback.js`。
+- 长图（`utils/poster.js`）在英文模式下按单词折行；页脚「微信搜索「麻雀观影护照」」保留中文名，因为小程序在微信里就叫这个名字。
+- 小程序页面代码改动需要在微信开发者工具上传新版本并提交审核；英文译文数据随网站自动同步（需重新部署 getData 云函数一次，之后 `en` 会随网站更新）。

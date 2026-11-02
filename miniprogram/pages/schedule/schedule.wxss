@@ -105,3 +105,7 @@
 .qa { position: absolute; left: 8rpx; right: 8rpx; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6rpx; border: 4rpx dashed var(--teal); border-radius: 16rpx; background: rgba(47, 111, 108, .1); color: var(--teal); }
 .qa-b { font-size: 24rpx; font-weight: 700; }
 .qa-t { font-size: 20rpx; }
+
+.lang { display: flex; align-items: center; border: 2rpx solid var(--line); border-radius: 999rpx; background: var(--surface, #f8f2e6); padding: 4rpx; margin-right: 16rpx; }
+.lang text { font-size: 20rpx; font-weight: 600; padding: 10rpx 18rpx; border-radius: 999rpx; color: var(--muted); font-family: ui-monospace, Menlo, monospace; }
+.lang text.on { background: var(--accent); color: #fffaf0; }

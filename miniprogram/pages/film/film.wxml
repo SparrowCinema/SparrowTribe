@@ -1,3 +1,4 @@
+<wxs src="../../utils/l.wxs" module="L" />
 <view wx:if="{{f}}" style="--fc:{{f.color}}">
   <view class="hero">
     <image wx:if="{{f.poster}}" class="bg" src="{{f.poster}}" mode="aspectFill" />
@@ -9,14 +10,14 @@
         <view class="eyebrow mono"><text class="reg">{{f.reg}}</text>{{f.y}} · {{f.c}}</view>
         <view class="h1">{{f.cn}}</view>
         <view class="en">{{f.en}}</view>
-        <view wx:if="{{f.o}}" class="native">原名 {{f.o}}</view>
+        <view wx:if="{{f.o}}" class="native">{{L.t(i,'原名')}} {{f.o}}</view>
         <view class="tags">
           <text wx:if="{{f.version}}" class="tg ed2">{{f.version}}</text>
           <text class="tg">{{f.minText}}</text>
           <text class="tg">{{f.lang}}</text>
           <text wx:for="{{f.genre}}" wx:key="*this" class="tg">{{item}}</text>
         </view>
-        <view class="by">导演 <text class="b">{{f.dir}}</text></view>
+        <view class="by">{{L.t(i,'导演')}} <text class="b">{{f.dir}}</text></view>
       </view>
     </view>
   </view>
@@ -26,9 +27,9 @@
     <view wx:if="{{f.ticket}}" class="buy">
       <view class="buyt">
         <text class="bk mono">BOOK YOUR SEAT</text>
-        <text class="bh">银幕见</text>
-        <text class="bs">长按右侧小程序码，选择「识别小程序码」即可{{f.ticketLabel}}</text>
-        <view class="bx" hover-class="hv" bindtap="previewTicket">查看{{f.ticketLabel}}码 ↗</view>
+        <text class="bh">{{L.t(i,'银幕见')}}</text>
+        <text class="bs">{{L.t(i,'长按右侧小程序码，选择「识别小程序码」即可')}}{{i.__en ? ' ' : ''}}{{f.ticketLabel}}</text>
+        <view class="bx" hover-class="hv" bindtap="previewTicket">{{i.__en ? f.ticketLabel + ' code ↗' : '查看' + f.ticketLabel + '码 ↗'}}</view>
       </view>
       <image class="qr" src="{{f.ticket}}" mode="aspectFit" show-menu-by-longpress />
     </view>
@@ -41,67 +42,67 @@
       </view>
     </view>
 
-    <view class="sec-h">放映场次 <text class="muted small">{{shows.length}} 场</text></view>
-    <view wx:if="{{!shows.length}}" class="noshow card"><text class="b">{{ended ? '本片场次已全部放映结束' : (f.release || '上映信息待公布')}}</text><text class="muted small">{{ended ? '已放映的场次不再显示在这里。' : '场次公布后会更新到这里，也可以先在各影院售票平台查看。'}}</text></view>
+    <view class="sec-h">{{L.t(i,'放映场次')}} <text class="muted small">{{cnt}}</text></view>
+    <view wx:if="{{!shows.length}}" class="noshow card"><text class="b">{{ended ? L.t(i,'本片场次已全部放映结束') : (f.release || L.t(i,'上映信息待公布'))}}</text><text class="muted small">{{ended ? L.t(i,'已放映的场次不再显示在这里。') : L.t(i,'场次公布后会更新到这里，也可以先在各影院售票平台查看。')}}</text></view>
     <view wx:for="{{shows}}" wx:key="key" class="ticket card">
-      <view class="td" style="background:{{item.tone.bg}};color:{{item.tone.ink}};border-right:2rpx solid {{item.tone.line}}"><text class="tm">{{item.m}}月</text><text class="tdd mono">{{item.dd}}</text><text class="tw">{{item.wk}}</text></view>
+      <view class="td" style="background:{{item.tone.bg}};color:{{item.tone.ink}};border-right:2rpx solid {{item.tone.line}}"><text class="tm">{{item.mon}}</text><text class="tdd mono">{{item.dd}}</text><text class="tw">{{item.wk}}</text></view>
       <view class="tb">
         <view class="ttime mono"><text class="b">{{item.t}}</text> – {{item.end}}</view>
         <text class="tv">{{item.venue}}</text>
         <text class="thall">{{item.hall}}</text>
         <view class="tact">
-          <view class="ta {{item.picked?'on':''}}" data-key="{{item.key}}" bindtap="toggle">{{item.picked?'✓ 已加入排片':'+ 加入排片'}}</view>
-          <view class="ta ghost" data-key="{{item.key}}" bindtap="calendar">加入日历</view>
-          <view class="ta ghost" data-d="{{item.d}}" bindtap="seeDay">看当天排片</view>
+          <view class="ta {{item.picked?'on':''}}" data-key="{{item.key}}" bindtap="toggle">{{item.picked ? L.t(i,'✓ 已加入排片') : L.t(i,'+ 加入排片')}}</view>
+          <view class="ta ghost" data-key="{{item.key}}" bindtap="calendar">{{L.t(i,'加入日历')}}</view>
+          <view class="ta ghost" data-d="{{item.d}}" bindtap="seeDay">{{L.t(i,'看当天排片')}}</view>
         </view>
       </view>
     </view>
 
-    <view class="sec-h">映后交流 <text class="muted small">POST-SCREENING</text></view>
+    <view class="sec-h">{{L.t(i,'映后交流')}} <text class="muted small">POST-SCREENING</text></view>
     <view class="qapanel {{qa ? '' : 'qa-empty'}}">
-      <view class="qap-h"><text class="qap-l">✦ {{qa ? '映后交流 · DIRECTOR Q' + '&' + 'A' : '映后信息'}}</text><text wx:if="{{qa}}" class="qap-t mono">{{qa.label}}</text></view>
-      <text class="qap-b">{{qa ? qa.guest : '暂无映后交流安排'}}</text>
+      <view class="qap-h"><text class="qap-l">✦ {{qa ? L.t(i,'映后交流 · DIRECTOR Q&A') : L.t(i,'映后信息')}}</text><text wx:if="{{qa}}" class="qap-t mono">{{qa.label}}</text></view>
+      <text class="qap-b">{{qa ? qa.guest : L.t(i,'暂无映后交流安排')}}</text>
     </view>
 
-    <view class="sec-h">伴手礼周边</view>
-    <view wx:if="{{!f.gifts.length}}" class="noshow card"><text class="b">伴手礼信息待公布</text><text class="muted small">公布后会更新到这里。</text></view>
+    <view class="sec-h">{{L.t(i,'伴手礼周边')}}</view>
+    <view wx:if="{{!f.gifts.length}}" class="noshow card"><text class="b">{{L.t(i,'伴手礼信息待公布')}}</text><text class="muted small">{{L.t(i,'公布后会更新到这里。')}}</text></view>
     <view wx:for="{{f.gifts}}" wx:key="k" class="gift card">
       <text wx:if="{{item.label}}" class="gl">{{item.label}}</text>
       <view class="gis"><text wx:for="{{item.items}}" wx:for-item="it" wx:key="*this" class="gi">{{it}}</text></view>
     </view>
-    <text wx:if="{{f.gifts.length}}" class="muted small gnote">数量有限，以影院现场发放为准。</text>
+    <text wx:if="{{f.gifts.length}}" class="muted small gnote">{{L.t(i,'数量有限，以影院现场发放为准。')}}</text>
 
-    <view class="sec-h">影片信息</view>
+    <view class="sec-h">{{L.t(i,'影片信息')}}</view>
     <view class="credits">
       <view wx:for="{{credits}}" wx:key="k" class="cr"><text class="ck">{{item.k}}</text><text class="cv">{{item.v}}</text></view>
     </view>
 
-    <view class="st"><text class="stt">剧情简介</text><text class="ste mono">SYNOPSIS</text></view>
+    <view class="st"><text class="stt">{{L.t(i,'剧情简介')}}</text><text class="ste mono">SYNOPSIS</text></view>
     <view class="syn {{f.long && !open ? 'clamp' : ''}}">
       <view wx:for="{{f.syn}}" wx:key="index" class="p">{{item}}</view>
     </view>
-    <view wx:if="{{f.long}}" class="more" bindtap="more">{{open ? '收起' : '展开全文'}}</view>
+    <view wx:if="{{f.long}}" class="more" bindtap="more">{{open ? L.t(i,'收起') : L.t(i,'展开全文')}}</view>
 
     <block wx:if="{{f.highlights.length}}">
-      <view class="st"><text class="stt">观影看点</text><text class="ste mono">WHAT TO WATCH</text></view>
+      <view class="st"><text class="stt">{{L.t(i,'观影看点')}}</text><text class="ste mono">WHAT TO WATCH</text></view>
       <view wx:for="{{f.highlights}}" wx:key="n" class="hl card"><text class="hn">{{item.n}}</text><text class="hx">{{item.x}}</text></view>
     </block>
 
     <block wx:if="{{f.honors.length}}">
-      <view class="st"><text class="stt">影展与荣誉</text><text class="ste mono">FESTIVALS {{'&'}} AWARDS</text></view>
+      <view class="st"><text class="stt">{{L.t(i,'影展与荣誉')}}</text><text class="ste mono">FESTIVALS {{'&'}} AWARDS</text></view>
       <view wx:for="{{f.honors}}" wx:key="index" class="ho {{item.cls}}">
         <text class="ht">{{item.t}}</text><text wx:if="{{item.yr}}" class="hy mono">{{item.yr}}</text>
         <view class="hb"><text class="ha">{{item.a}}</text><text wx:if="{{item.b}}" class="hbb">{{item.b}}</text></view>
       </view>
     </block>
 
-    <view class="st"><text class="stt">导演介绍</text><text class="ste mono">DIRECTOR</text></view>
+    <view class="st"><text class="stt">{{L.t(i,'导演介绍')}}</text><text class="ste mono">DIRECTOR</text></view>
     <view class="dc card">
-      <view class="dh"><view class="av">{{f.dir[0]}}</view><view><view class="dn">{{f.dir}}</view><view class="ds">{{f.dirO}}</view><view class="ds">{{f.dirLife}}</view></view></view>
+      <view class="dh"><view class="av">{{f.ini}}</view><view><view class="dn">{{f.dir}}</view><view class="ds">{{f.dirO}}</view><view class="ds">{{f.dirLife}}</view></view></view>
       <view wx:for="{{f.bio}}" wx:key="index" class="p">{{item}}</view>
     </view>
 
-    <view class="st"><text class="stt">创作背景</text><text class="ste mono">CONTEXT</text></view>
+    <view class="st"><text class="stt">{{L.t(i,'创作背景')}}</text><text class="ste mono">CONTEXT</text></view>
     <view class="ctx"><view wx:for="{{f.st}}" wx:key="index" class="p">{{item}}</view></view>
 
     <view class="nav">
@@ -109,11 +110,11 @@
         <block wx:if="{{item}}">
           <view class="nbi" data-id="{{item.id}}" bindtap="openFilm">
             <image wx:if="{{item.poster}}" src="{{item.poster}}" mode="aspectFill" />
-            <view class="nbt"><text class="muted small">{{index===0?'上一部':'下一部'}}</text><text class="b">{{item.cn}}</text></view>
+            <view class="nbt"><text class="muted small">{{index===0 ? L.t(i,'上一部') : L.t(i,'下一部')}}</text><text class="b">{{item.cn}}</text></view>
           </view>
         </block>
       </view>
     </view>
-    <button class="btn ghost share" open-type="share">分享这部影片</button>
+    <button class="btn ghost share" open-type="share">{{L.t(i,'分享这部影片')}}</button>
   </view>
 </view>
