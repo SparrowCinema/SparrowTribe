@@ -225,3 +225,7 @@
 .rc-d.nil { background: transparent; border: 2rpx dashed var(--line); color: var(--muted); opacity: .45; }
 .rc-d.on { background: var(--accent); border-color: var(--accent); color: #fff8ee; box-shadow: 0 0 0 4rpx var(--surface), 0 0 0 8rpx var(--accent); }
 .rc-mempty { font-size: 22rpx; color: var(--muted); padding: 28rpx; border: 2rpx dashed var(--line); border-radius: 20rpx; text-align: center; }
+
+.fb { margin-top: 24rpx; } .fb-p { font-size: 23rpx; line-height: 1.7; color: var(--muted); margin: 8rpx 0 14rpx; }
+.fb-row { display: flex; align-items: center; gap: 16rpx; padding: 22rpx 24rpx; margin-top: 14rpx; border: 2rpx solid var(--line); border-radius: 20rpx; background: var(--bg); }
+.fb-k { flex: none; width: 124rpx; font-size: 18rpx; letter-spacing: 3rpx; color: var(--muted); } .fb-v { flex: 1; min-width: 0; font-size: 26rpx; font-weight: 600; word-break: break-all; } .fb-go { flex: none; font-size: 22rpx; color: var(--accent); }
