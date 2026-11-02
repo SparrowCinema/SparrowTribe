@@ -884,7 +884,8 @@ html.sheet-open,html.sheet-open body{overflow:hidden}
 .fsearch input{flex:1;min-width:0;border:0;background:transparent;font:inherit;font-size:15px;color:var(--fg);outline:none}
 .fsearch:focus-within{border-color:var(--accent)}
 /* iOS Safari 在输入框字号 <16px 时聚焦会自动放大整页；触屏设备统一 16px 防止缩放 */
-@media (hover:none) and (pointer:coarse){input:not([type=checkbox]):not([type=radio]),select,textarea{font-size:16px!important}}
+/* 防缩放守卫（勿删）：所有输入控件任何设备一律 ≥16px，不再依赖 media 判断；另见下方 JS 聚焦时锁定 viewport */
+input:not([type=checkbox]):not([type=radio]),select,textarea{font-size:16px!important}html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 .fgrp{margin-top:18px}
 .fcard .info .nx{display:block;font-size:11.5px;color:var(--accent);margin-top:2px;font-variant-numeric:tabular-nums}
 .fpast{margin-top:18px}
@@ -1401,6 +1402,11 @@ function films(){
     ${progChips(ffilt)}<div class="filters">${[["all","全部地区"],...Object.entries(REG).filter(([k])=>FILMS.some(f=>f.reg===k)).map(([k,v])=>[k,v.n])].map(([k,n])=>`<button class="fchip" data-filt="${k}" aria-pressed="${filt===k}">${n}</button>`).join("")}</div>
     <div id="flist-wrap">${filmsListHTML()}</div></section>`;
 }
+/* 防缩放守卫（勿删）：输入框聚焦时临时 maximum-scale=1，失焦恢复，避免 iOS/微信内置浏览器聚焦自动放大整页 */
+(function(){const m=document.querySelector('meta[name=viewport]');if(!m)return;const base=m.content,lock=base+',maximum-scale=1';
+const isField=e=>e&&e.matches&&e.matches('input:not([type=checkbox]):not([type=radio]):not([type=range]),textarea,select');
+document.addEventListener('focusin',e=>{if(isField(e.target))m.content=lock;});
+document.addEventListener('focusout',e=>{if(isField(e.target))setTimeout(()=>{if(!isField(document.activeElement))m.content=base;},50);});})();
 document.addEventListener("input",e=>{ if(e.target.id!=="fq") return; fq=e.target.value.trim(); const w=document.getElementById("flist-wrap"); if(w) w.innerHTML=filmsListHTML(); });
 
 function honorHTML(x){const i=x.indexOf("｜");const t=i>0?x.slice(0,i):"",rest=i>0?x.slice(i+1):x;const m=rest.match(/^(\d{4})\s*(.*)$/);const yr=m?m[1]:"",body=m?m[2]:rest;const cls=t==="获奖"?"win":t==="提名"?"nom":/评选|入选/.test(t)?"list":"sel";const parts=body.split(" · ");return `<li class="fd-honor ${cls}"><span class="fd-ht">${esc(t||"荣誉")}</span><span class="fd-hy">${esc(yr)}</span><span class="fd-hb"><b>${esc(parts[0])}</b>${parts.length>1?`<small>${esc(parts.slice(1).join(" · "))}</small>`:""}</span></li>`;}

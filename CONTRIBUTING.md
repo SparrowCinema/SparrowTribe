@@ -100,3 +100,7 @@ Claude 与 GPT 可能使用同一 GitHub 身份，审批人数可先设为0；�
 ## 映后活动
 
 某一场有映后活动时，在对应影片的 `screeningNotes["日期-时间-影院id-厅id"]` 里写 `映后活动 · 角色：姓名、姓名；角色：姓名（以实际到场为准）`。网站和小程序会把「映后活动」显示成黄色标签，甘特图里该场色块带「映后」小标签；英文版在 `data/i18n/en.json` 的 `films.<id>.screeningNotes` 里同样的键下写英文（以 `Post-screening event · ` 开头）。
+
+## 输入框防缩放（勿破坏）
+
+手机上输入框字号 <16px 会让 iOS/微信浏览器聚焦时放大整页。index.html 里有两道守卫：全局 `input,select,textarea{font-size:16px!important}`，以及聚焦时临时锁定 viewport 的脚本。新增任何输入框都不要把字号设小于 16px；改完跑 `node tools/check-input-zoom.js`（需先起本地 http.server 8123）。
