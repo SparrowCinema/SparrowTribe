@@ -128,3 +128,10 @@ Claude 与 GPT 可能使用同一 GitHub 身份，审批人数可先设为0；�
 ## 影厅名较长时的排版
 
 - 影厅名在影片页、专题页、个人排片里以独立小标签显示（网站 `placeHTML()` / `.hall-tag`，小程序 `.thall` / `.htag`），名称很长（如「5号Dolby Cinema 杜比影院厅」）时整体换行，不会挤乱影院名。甘特图列头用 `short`，请给长影厅名填一个简短的 `short`。
+
+## 国际化字段（内容提示 / 外链 / 分享 / 日历）
+
+- 影片可选字段：`warnings`（内容提示数组，如 `["儿童受虐"]`，影片页显示「内容提示」，需在 `data/i18n/en.json` 的 `ui` 里给英文）、`medium`（放映格式）、`ageRating`（年龄提示）、`access`（无障碍信息数组，如听障字幕场）、`links`（`{imdb:"tt…", lb:"letterboxd-slug", douban:"id"}`，填了就是直达链接，没填则跳转各站搜索结果）。
+- 内容提示只作参考，不是官方分级；正文简介里不再写「观影前请知悉」。
+- 分享预览卡片与订阅日历在部署时由 `node tools/build-extras.js` 生成（`s/` 分享页、`cal/` 的 `.ics`，均已在 `.gitignore`，不要提交）。默认分享图由 `node tools/make-og-default.js` 生成 `brand/og-default.jpg`。
+- 英文名规范：片名优先用国际发行英文名（对照 IMDb / 影展官方英文手册）；内地导演用拼音、姓在前，港台导演用本人惯用拼法（如 Tsui Hark）。

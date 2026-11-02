@@ -6039,6 +6039,10 @@ module.exports = {
     null,
     null
    ],
+   "links": {
+    "imdb": "tt22507216",
+    "douban": "36116464"
+   },
    "prog": "german-film-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/amrum.jpg"
   },
@@ -6091,6 +6095,9 @@ module.exports = {
     null,
     3.8
    ],
+   "links": {
+    "imdb": "tt37537636"
+   },
    "prog": "german-film-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/dry-leaf.jpg"
   },
@@ -6172,7 +6179,7 @@ module.exports = {
     "拉米法官的每一次让步，都在改变司法程序与他自己的位置。"
    ],
    "bio": "《卡拉的审判》是克里斯蒂娜·图尔纳泽斯的首部长片，影片据1962年慕尼黑的真实故事改编，并获2026年哥德堡电影节最佳首作提名。",
-   "st": "影片包揽2025年慕尼黑电影节德国电影新锐奖的最佳导演与最佳剧本，并在2026年巴伐利亚电影奖中获最佳剧本与最佳主演。影片涉及儿童受虐待题材，观影前请知悉。",
+   "st": "影片包揽2025年慕尼黑电影节德国电影新锐奖的最佳导演与最佳剧本，并在2026年巴伐利亚电影奖中获最佳剧本与最佳主演。",
    "reg": "eu",
    "poster": "posters/karla.jpg",
    "r": [
@@ -6181,6 +6188,12 @@ module.exports = {
     null,
     null,
     null
+   ],
+   "links": {
+    "imdb": "tt37021896"
+   },
+   "warnings": [
+    "儿童受虐"
    ],
    "prog": "german-film-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/karla.jpg"
@@ -6230,6 +6243,9 @@ module.exports = {
     78,
     3.5
    ],
+   "links": {
+    "imdb": "tt32247943"
+   },
    "prog": "german-film-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/miroirs-no-3.jpg"
   },
@@ -6335,6 +6351,9 @@ module.exports = {
     null,
     null
    ],
+   "links": {
+    "imdb": "tt33888334"
+   },
    "prog": "german-film-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/oh-this-unspeakable-void.jpg"
   },
@@ -6364,7 +6383,7 @@ module.exports = {
     "导演回到当事人身边，向老师、同学、医生、检察官、探员与朋友一一询问：留意每个人“记得”的内容有何不同。",
     "画面经过精心构图，用克制的方式处理沉重的记忆。"
    ],
-   "st": "影片入围2026年柏林国际电影节论坛单元，获纪录片评审团特别提及。影片涉及针对女性的暴力，观影前请知悉。",
+   "st": "影片入围2026年柏林国际电影节论坛单元，获纪录片评审团特别提及。",
    "reg": "eu",
    "poster": "posters/sometimes-i-imagine-them-all-at-a-party.jpg",
    "r": [
@@ -6373,6 +6392,12 @@ module.exports = {
     null,
     null,
     null
+   ],
+   "links": {
+    "imdb": "tt39383613"
+   },
+   "warnings": [
+    "针对女性的暴力"
    ],
    "prog": "german-film-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/sometimes-i-imagine-them-all-at-a-party.jpg"
@@ -6414,6 +6439,9 @@ module.exports = {
     null,
     null
    ],
+   "links": {
+    "lb": "when-pigs-fly-2026"
+   },
    "prog": "german-film-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/when-pigs-fly.jpg"
   },
@@ -6463,6 +6491,9 @@ module.exports = {
     null,
     null
    ],
+   "links": {
+    "imdb": "tt39140264"
+   },
    "prog": "german-film-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/shame-and-money.jpg"
   }
