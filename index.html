@@ -56,6 +56,7 @@
 /* Compact programme navigation and a searchable, city-aware cinema directory. */
 .section-tabs{display:flex;flex-wrap:wrap;gap:7px;margin:22px 0 16px;padding:12px;background:var(--surface);border:1px solid var(--line);border-radius:14px}
 .section-tabs button{font-size:12px;line-height:1.4;padding:8px 12px;border-radius:20px;font-weight:600;min-height:34px}
+.fi-stats{display:flex;flex-wrap:wrap;gap:6px 22px;margin:2px 0 10px}.fi-stats span{font-size:12px;color:var(--muted)}.fi-stats b{font:600 22px/1.2 var(--f-mono);color:var(--fg);margin-right:5px}.fi-sub{margin-top:0}
 .fsec{border-top:1px solid var(--line);margin-top:24px}.fsec .fgrp{border-top:0;margin-top:0}
 .fsec .fgrp2{align-items:center;flex-direction:row}.fgrp-main{min-width:0;flex:1}.fgrp-meta{display:block;margin-top:6px;font-size:10px;line-height:1.6;letter-spacing:.08em;color:var(--muted)}.fgrp-side{display:flex;align-items:center;gap:10px;flex-shrink:0}
 .fold-btn{flex:none;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line);background:var(--surface);color:var(--fg);transition:transform .25s cubic-bezier(.3,.7,.3,1),background .2s,color .2s,border-color .2s;-webkit-tap-highlight-color:transparent}
@@ -1463,8 +1464,12 @@ function filmsListHTML(){
 }
 document.addEventListener("click",e=>{const b=e.target.closest("[data-fold]");if(!b)return;const sec=b.closest(".fsec"),open=!sec.classList.toggle("closed");folds[b.dataset.fold]=open?1:0;saveFolds();b.setAttribute("aria-expanded",open);b.setAttribute("aria-label",tr(open?"收起":"展开")+" "+sec.querySelector("h3").textContent);
   if(!open){const top=sec.getBoundingClientRect().top;if(top<0)window.scrollTo({top:window.scrollY+top-(document.getElementById("topbar")?.offsetHeight||0)-8,behavior:"instant"});}});
+/* 片目顶部介绍：总片目数随专题增加自动更新；文案按当前规划（按专题分组、可折叠、结束后归往期）*/
+function filmsIntroHTML(){const total=FILMS.length,live=FILMS.filter(f=>nextShow(f)).length,progs=PROGRAMMES.filter(p=>FILMS.some(f=>f.prog===p.id||p.sections?.[f.id])).length;
+  return '<div class="fi-stats" aria-label="片目概览"><span><b>'+total+'</b>部影片</span><span><b>'+progs+'</b>个专题</span><span><b>'+live+'</b>部待映</span></div>'+
+    '<p class="sub fi-sub">按专题分组，每个专题可收起；已放映的收进专题内，专题结束后归入「往期专题」。右侧为豆瓣评分。</p>';}
 function films(){
-  main.innerHTML = `<section class="view gut"><h2 class="sec">片目</h2><p class="sub">影展与院线分开列出 · 按放映时间先后排列 · 点标题右侧按钮可收起 · 右侧为豆瓣评分</p>
+  main.innerHTML = `<section class="view gut"><h2 class="sec">片目</h2>${filmsIntroHTML()}
     <label class="fsearch"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><input type="search" id="fq" placeholder="搜索片名、导演、演员" value="${esc(fq)}" autocomplete="off" enterkeyhint="search"></label>
     ${progChips(ffilt)}<div class="filters">${[["all","全部地区"],...Object.entries(REG).filter(([k])=>FILMS.some(f=>f.reg===k)).map(([k,v])=>[k,v.n])].map(([k,n])=>`<button class="fchip" data-filt="${k}" aria-pressed="${filt===k}">${n}</button>`).join("")}</div>
     <div id="flist-wrap">${filmsListHTML()}</div></section>`;
