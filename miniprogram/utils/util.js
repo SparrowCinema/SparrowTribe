@@ -64,9 +64,37 @@ function showView(s, idx, data, picked) {
     venue: idx.venueName(s), hall: idx.hallName(s),
     color: (data.reg[f.reg] || {}).c || '#8e2a22',
     tone: filmTone(idx.ORD ? idx.ORD[s.id] : 0), langSub: langSub(f),
-    note: I.tr((f.screeningNotes||{})[keyOf(s)]||""), poster: poster(f), picked: picked ? picked.has(keyOf(s)) : false,
+    note: I.tr((f.screeningNotes||{})[keyOf(s)]||""), ev: EV_RE.test(I.tr((f.screeningNotes||{})[keyOf(s)]||"")), noteRest: I.tr((f.screeningNotes||{})[keyOf(s)]||"").replace(EV_RE, ''), poster: poster(f), picked: picked ? picked.has(keyOf(s)) : false,
     past: showDate(s).getTime() + durationOf(s, idx) * 60000 < Date.now()
   };
 }
 
-module.exports = { progForShow, durationOf, progInfo, qaOf, ended, isFest, relTime, nextShowOf, filmOrder, filmTone, langSub, WK, year, wk, toMin, fmt, keyOf, showDate, poster, ticket, durText, index, showView };
+// ===== 影院位置与转场估算 =====
+// 影院坐标写在 data/catalog.json 的 venues[].geo = [纬度, 经度]（GCJ-02，腾讯地图/高德坐标），addr 为地址。
+// 有坐标：小程序显示「地图」按钮；相邻两场都有坐标时按直线距离估算地铁 / 打车用时；没有坐标时按通用经验值提示。
+const geoOf = v => (v && Array.isArray(v.geo) && v.geo.length === 2 && isFinite(+v.geo[0]) && isFinite(+v.geo[1])) ? { lat: +v.geo[0], lng: +v.geo[1] } : null;
+function distKm(a, b) {
+  const R = 6371, r = x => x * Math.PI / 180, dLa = r(b.lat - a.lat), dLo = r(b.lng - a.lng);
+  const h = Math.sin(dLa / 2) ** 2 + Math.cos(r(a.lat)) * Math.cos(r(b.lat)) * Math.sin(dLo / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(h));
+}
+// 相邻两场（同一天）的转场：同影院约 10 分钟（取票、找厅）；跨影院 = 估算出行时间 + 10 分钟；跨城市无法衔接
+function transfer(a, b, idx) {
+  const gap = toMin(b.t) - (toMin(a.t) + durationOf(a, idx));
+  if (a.v === b.v) return { kind: 'same', gap, need: 10 };
+  const va = idx.VN[a.v], vb = idx.VN[b.v];
+  if (va && vb && va.city && vb.city && va.city !== vb.city) return { kind: 'city', gap, need: 9999 };
+  const ga = geoOf(va), gb = geoOf(vb);
+  if (ga && gb) {
+    const road = distKm(ga, gb) * 1.35, taxi = Math.max(8, Math.round(6 + road / 25 * 60)), metro = Math.max(15, Math.round(12 + road / 32 * 60));
+    return { kind: 'cross', gap, need: Math.min(taxi, metro) + 10, km: Math.round(road * 10) / 10, taxi, metro };
+  }
+  return { kind: 'cross', gap, need: 45 };
+}
+function openMap(v) {
+  const g = geoOf(v); if (!g) return false;
+  wx.openLocation({ latitude: g.lat, longitude: g.lng, name: v.name || v.short || '', address: v.addr || '', scale: 17 });
+  return true;
+}
+const EV_RE = /^(映后活动|Post-screening event)\s*·\s*/;
+module.exports = { geoOf, distKm, transfer, openMap, progForShow, durationOf, progInfo, qaOf, ended, isFest, relTime, nextShowOf, filmOrder, filmTone, langSub, WK, year, wk, toMin, fmt, keyOf, showDate, poster, ticket, durText, index, showView };

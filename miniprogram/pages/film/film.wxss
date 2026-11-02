@@ -122,3 +122,8 @@
 .mr-date { padding: 6rpx 14rpx; border-radius: 10rpx; border: 2rpx solid var(--line); background: var(--bg); color: var(--fg); }
 .mr-go { margin-left: auto; color: var(--accent); }
 .mr-tip { display: block; margin-top: 16rpx; font-size: 22rpx; color: var(--muted); line-height: 1.6; }
+
+.evtag { display: inline-block; font-size: 20rpx; font-weight: 700; line-height: 32rpx; padding: 0 14rpx; margin-right: 12rpx; border-radius: 99rpx; background: #ffe94a; color: #2b2110; vertical-align: 2rpx; }
+
+.tvrow { display: flex; align-items: center; gap: 16rpx; flex-wrap: wrap; }
+.tmap { font-size: 22rpx; font-weight: 700; color: var(--accent); padding: 4rpx 14rpx; border: 2rpx solid var(--accent); border-radius: 99rpx; }

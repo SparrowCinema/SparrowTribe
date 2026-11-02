@@ -90,3 +90,13 @@ Claude 与 GPT 可能使用同一 GitHub 身份，审批人数可先设为0；�
 - 合并规则：`shared/psync.js`（网站直接引用；`node tools/build-fallback.js` 会把它复制到 `miniprogram/utils/psync.js` 和 `cloudfunctions/psync/psync.js`）。每一项都带更新时间，取较新者；删除用 `{del:1,t}` 留痕。个人排片整体取较新的一份。
 - 网站：`index.html` 里直接请求 Supabase。小程序：通过 `psync` 云函数请求（不用配置 request 合法域名）。
 - 本机附加存储：网站 `sparrow-sync`（同步码）、`sparrow-profile-meta`（各项修改时间）、`sparrow-holder-photo`；小程序 `sk-sync`、`sk-profile-meta`。
+
+## 影院地图与转场时间（小程序）
+
+- `data/catalog.json` 的每个影院可以加 `"geo": [纬度, 经度]`（**GCJ-02**，即腾讯地图 / 高德坐标，可在 https://lbs.qq.com/getPoint/ 拾取）和 `"addr": "地址"`。getData 云函数会自动带给小程序，**不用重新审核**。
+- 有 `geo` 的影院：影片页场次旁出现「📍 地图」，「我的」页个人排片的转场行出现「地图 ›」，点击打开微信地图。
+- 「我的」页个人排片里，相邻两场之间的转场行：同影院约 10 分钟（换厅/取票）；跨影院——两家都有 `geo` 时按直线距离 ×1.35 估算地铁与打车用时，没有坐标时提示通常需 30–45 分钟；跨城市提示无法衔接。间隔不够时标橙色「转场可能来不及」。估算只供参考。
+
+## 映后活动
+
+某一场有映后活动时，在对应影片的 `screeningNotes["日期-时间-影院id-厅id"]` 里写 `映后活动 · 角色：姓名、姓名；角色：姓名（以实际到场为准）`。网站和小程序会把「映后活动」显示成黄色标签，甘特图里该场色块带「映后」小标签；英文版在 `data/i18n/en.json` 的 `films.<id>.screeningNotes` 里同样的键下写英文（以 `Post-screening event · ` 开头）。

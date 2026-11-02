@@ -199,3 +199,5 @@
 .sy-c { font-size: 23rpx; font-weight: 600; flex: 1; min-width: 300rpx; word-break: break-all; }
 .sy-ops { display: flex; gap: 24rpx; font-size: 23rpx; color: var(--muted); text-decoration: underline; }
 .sy-stop { font-size: 24rpx; color: var(--muted); text-decoration: underline; padding: 10rpx; }
+
+.gap-map { margin-left: 16rpx; color: var(--accent); font-weight: 700; text-decoration: underline; }

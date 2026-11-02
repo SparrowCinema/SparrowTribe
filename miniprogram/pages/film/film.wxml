@@ -68,9 +68,9 @@
       <view class="td" style="background:{{item.tone.bg}};color:{{item.tone.ink}};border-right:2rpx solid {{item.tone.line}}"><text class="tm">{{item.mon}}</text><text class="tdd mono">{{item.dd}}</text><text class="tw">{{item.wk}}</text></view>
       <view class="tb">
         <view class="ttime mono"><text class="b">{{item.t}}</text> – {{item.end}}</view>
-        <text class="tv">{{item.venue}}</text>
+        <view class="tvrow"><text class="tv">{{item.venue}}</text><text wx:if="{{item.geo}}" class="tmap" data-v="{{item.vid}}" bindtap="openMap">📍 {{L.t(i,'地图')}}</text></view>
         <text class="thall">{{item.hall}}</text>
-        <view wx:if="{{item.note}}" class="muted">{{item.note}}</view><view class="tact">
+        <view wx:if="{{item.note}}" class="muted"><text wx:if="{{item.ev}}" class="evtag">{{L.t(i,'映后活动')}}</text>{{item.ev ? item.noteRest : item.note}}</view><view class="tact">
           <view class="ta {{item.picked?'on':''}}" data-key="{{item.key}}" bindtap="toggle">{{item.picked ? L.t(i,'✓ 已加入排片') : L.t(i,'+ 加入排片')}}</view>
           <view class="ta ghost" data-key="{{item.key}}" bindtap="calendar">{{L.t(i,'加入日历')}}</view>
           <view class="ta ghost" data-d="{{item.d}}" bindtap="seeDay">{{L.t(i,'看当天排片')}}</view>

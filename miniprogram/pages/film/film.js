@@ -26,7 +26,7 @@ Page({
     const allShows = data.shows.filter(s => s.id === f.id);
     const shows = allShows.filter(s => !U.ended(s, idx)).map(s => {
       const v = U.showView(s, idx, data, picked); const [m, d] = s.d.split('/');
-      return Object.assign(v, { m, dd: d, mon: t(m + '月') });
+      return Object.assign(v, { m, dd: d, mon: t(m + '月'), vid: s.v, geo: !!U.geoOf(idx.VN[s.v]) });
     });
     const ratings = (f.r || []).map((v, i) => ({
       l: t(RT[i][0]), na: v == null,
@@ -78,6 +78,7 @@ Page({
     W.set(this.id, Object.assign({}, rec, { d, k: s ? U.keyOf(s) : '' })); wx.showToast({ title: t('观影日期已更新'), icon: 'none' });
   },
   toMy() { wx.switchTab({ url: '/pages/my/my' }); },
+  openMap(e) { const v = app.globalData.data.venues.find(x => x.id === e.currentTarget.dataset.v); if (v) U.openMap(v); },
   toggle(e) { const on = plan.toggle(e.currentTarget.dataset.key); wx.showToast({ title: t(on ? '已加入排片' : '已移出排片'), icon: 'none' }); },
   calendar(e) {
     const data = app.globalData.data, s = data.shows.find(x => U.keyOf(x) === e.currentTarget.dataset.key), idx = U.index(data), f = idx.F[s.id];

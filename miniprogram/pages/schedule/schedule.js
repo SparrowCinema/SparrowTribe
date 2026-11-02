@@ -3,16 +3,17 @@ const plan = require('../../utils/plan.js');
 const I = require('../../utils/i18n.js');
 const t = I.tr;
 const app = getApp();
-const K = 2.4; // 每分钟 2.4rpx
+const K = 3.4; // 每分钟 3.4rpx（每小时约 204rpx，片名与版本标签都能完整显示）
 
 const vShort = v => (v.city ? t(v.city) + ' · ' : '') + (v.short || v.brand || v.name).replace(new RegExp('^(' + [v.city,t(v.city||'')].filter(Boolean).join('|') + ')\\s*[·・]?\\s*'), '');
 const hShort = h => h.short || h.name;
 
 Page({
-  data: { selectorType: '', selectorQuery: '', selectorRows: [], programmeName: '', cityName: '', city: 'all', cityIndex: 0, cities: [], venueQuery: '', venueName: '', pf: 'all', vf: 'all', day: '', days: [], nowLine: null, todayOpen: false, myToday: [], myTodayTitle: '', progs: [], vchips: [], venues: [], vOpen: false, cols: [], ticks: [], H: 0, dayList: [], legend: [], span: '', count: 0, dayTitle: '', empty: '', scrollInto: '' },
+  data: { onlyMine: false, selectorType: '', selectorQuery: '', selectorRows: [], programmeName: '', cityName: '', city: 'all', cityIndex: 0, cities: [], venueQuery: '', venueName: '', pf: 'all', vf: 'all', day: '', days: [], nowLine: null, todayOpen: false, myToday: [], myTodayTitle: '', progs: [], vchips: [], venues: [], vOpen: false, cols: [], ticks: [], H: 0, dayList: [], legend: [], span: '', count: 0, dayTitle: '', empty: '', scrollInto: '' },
 
   onLoad(q) {
-    this.setData({ i: I.dict(), en: I.isEn() });
+    let om = false; try { om = !!wx.getStorageSync('sk-only-mine'); } catch (e) { }
+    this.setData({ i: I.dict(), en: I.isEn(), onlyMine: om });
     if (q && q.day) this.setData({ day: q.day });
     this.off1 = app.onData(() => this.build());
     this.off2 = plan.onChange(() => this.build());
@@ -40,7 +41,7 @@ Page({
   build() {
     const data = app.globalData.data, idx = U.index(data), picked = plan.get();
     const { pf, vf, city, venueQuery } = this.data;
-    const list = data.shows.filter(s => idx.F[s.id] && !U.ended(s, idx) && (pf === 'all' || U.progForShow(s, idx).id === pf) && (vf === 'all' || s.v === vf) && (city === 'all' || idx.VN[s.v].city === city));
+    const list = data.shows.filter(s => idx.F[s.id] && !U.ended(s, idx) && (pf === 'all' || U.progForShow(s, idx).id === pf) && (vf === 'all' || s.v === vf) && (city === 'all' || idx.VN[s.v].city === city) && (!this.data.onlyMine || picked.has(U.keyOf(s))));
     // 首页顶部：今天我的排片中尚未散场的场次，按时间线排列
     const tk = new Date(), tkey = (tk.getMonth() + 1) + '/' + tk.getDate();
     // 今天还有没散场的就显示今天；今天都散场后顺延到之后最近一个有排片的日子（到了当天自动变回「今日」）
@@ -85,7 +86,7 @@ Page({
         cols.push({ key: v.id + h.id, vn: vShort(v), hn: hShort(h), qas, blocks: hs.map(s => {
           const vw = U.showView(s, idx, data, picked), st = U.toMin(s.t), qa = U.qaOf(idx.F[s.id]);
           if (qa) qas.push({ key: vw.key + '-qa', id: s.id, top: Math.round((qa.start - S) * K), h: Math.max(60, Math.round((qa.end - qa.start) * K) - 6), label: qa.label });
-          return Object.assign(vw, { top: Math.round((st - S) * K), h: Math.max(110, Math.round(U.durationOf(s, idx) * K) - 6) });
+          return Object.assign(vw, { top: Math.round((st - S) * K), h: Math.max(150, Math.round(U.durationOf(s, idx) * K) - 6) });
         }) });
       }));
     }
@@ -113,7 +114,7 @@ Page({
       dayList: dl.map(s => U.showView(s, idx, data, picked)),
       dayTitle: day ? t(day.replace('/', '月') + '日') + ' ' + U.wk(day) : '',
       hallCount: new Set(dl.map(s => s.v + s.h)).size,
-      empty: ds.length ? '' : t(vname + '暂无排片'),
+      empty: ds.length ? '' : (this.data.onlyMine ? t('当前筛选下还没有你加入的场次') : t(vname + '暂无排片')), mineN: data.shows.filter(s => idx.F[s.id] && !U.ended(s, idx) && picked.has(U.keyOf(s)) && (pf === 'all' || U.progForShow(s, idx).id === pf)).length,
       legend: Object.keys(data.reg).map(k => data.reg[k]),
       span: ds.length ? ds[0] + ' – ' + ds[ds.length - 1] : '', count: list.length,
       scrollInto: 'd' + (ds.indexOf(day) > 1 ? ds.indexOf(day) - 1 : 0)
@@ -137,6 +138,7 @@ Page({
   setVenue(e) { this.setData({ vf: e.currentTarget.dataset.id, vOpen: false }); this.build(); },
   setCity(e) { this.setData({city:this.data.cities[+e.detail.value].id,vf:'all',venueQuery:'',day:''}); this.build(); },
   searchVenue(e) { this.setData({venueQuery:e.detail.value}); this.build(); },
+  toggleMine() { const v = !this.data.onlyMine; try { wx.setStorageSync('sk-only-mine', v ? 1 : 0); } catch (e) { } this.setData({ onlyMine: v }); this.build(); },
   setDay(e) { this.setData({ day: e.currentTarget.dataset.d }); this.build(); },
   toggleToday() { this.setData({ todayOpen: !this.data.todayOpen }); this.build(); },
   switchLang() { app.switchLang(); },

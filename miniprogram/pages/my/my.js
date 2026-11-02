@@ -42,6 +42,7 @@ Page({
     }
     this.setData({ sy: { on: !!(st && st.code), state: s.state, line, code: st ? st.code : '', shown: st && st.code ? (rev ? st.code : st.code.slice(0, 7) + '-••••-••••-••••-••••-' + st.code.slice(-4)) : '', rev: !!rev } });
   },
+  openMap(e) { const v = app.globalData.data.venues.find(x => x.id === e.currentTarget.dataset.v); if (v) U.openMap(v); },
   syStart() { wx.showLoading({ title: t('同步中…'), mask: true }); SY.start().then(() => { wx.hideLoading(); this._syShow = true; this.buildSync(); wx.showToast({ title: t('已开启同步，请保存好同步码'), icon: 'none', duration: 2500 }); }).catch(e => { wx.hideLoading(); this.buildSync(); wx.showToast({ title: t('同步失败：') + ((e && e.message) || ''), icon: 'none' }); }); },
   syJoin() {
     wx.showModal({ title: t('输入同步码'), editable: true, placeholderText: 'SP-XXXX-XXXX-XXXX-XXXX-XXXX-XXXX', confirmText: t('连接'), success: r => {
@@ -147,8 +148,21 @@ Page({
       const items = g.items.map((s, i) => {
         const v = U.showView(s, idx, data, picked);
         if (i) {
-          const prev = g.items[i - 1], gap = U.toMin(s.t) - (U.toMin(prev.t) + U.durationOf(prev, idx));
-          v.gap = gap < 0 ? { cls: 'clash', txt: t('⚠ 与上一场重叠 ' + (-gap) + ' 分钟') } : gap < 20 ? { cls: 'tight', txt: t('间隔仅 ' + gap + ' 分钟，留意入场时间') } : { cls: 'ok', txt: t('间隔') + ' ' + U.durText(gap) };
+          const prev = g.items[i - 1], tr = U.transfer(prev, s, idx), gap = tr.gap, en = I.isEn(), vb = idx.VN[s.v];
+          const gapTxt = (en ? 'gap ' : '间隔 ') + U.durText(Math.max(gap, 0));
+          let cls = 'ok', txt;
+          if (gap < 0) { cls = 'clash'; txt = t('⚠ 与上一场重叠 ' + (-gap) + ' 分钟'); }
+          else if (tr.kind === 'same') {
+            cls = gap < tr.need ? 'tight' : 'ok';
+            txt = en ? 'Same cinema · ~' + tr.need + ' min to change halls · ' + gapTxt + (gap < tr.need ? ' — tight' : '') : '同影院 · 换厅约 ' + tr.need + ' 分钟 · ' + gapTxt + (gap < tr.need ? '，时间偏紧' : '');
+          } else if (tr.kind === 'city') {
+            cls = 'clash'; txt = en ? '⚠ Different city — cannot connect' : '⚠ 跨城市，无法衔接';
+          } else {
+            cls = gap < tr.need ? 'tight' : 'ok';
+            const how = tr.taxi ? (en ? 'metro ~' + tr.metro + ' min · taxi ~' + tr.taxi + ' min (estimate)' : '地铁约 ' + tr.metro + ' 分钟 · 打车约 ' + tr.taxi + ' 分钟（估算）') : (en ? 'usually 30–45 min' : '通常需 30–45 分钟');
+            txt = (gap < tr.need ? (en ? '⚠ Transfer may be too tight · ' : '⚠ 转场可能来不及 · ') : '') + (en ? 'To ' : '转场 → ') + W.vShort(vb) + ' · ' + how + ' · ' + gapTxt;
+          }
+          v.gap = { cls, txt, mapName: U.geoOf(vb) ? vb.id : '' };
           if (gap < 0) clash++;
         }
         return v;
