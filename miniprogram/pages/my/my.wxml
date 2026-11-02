@@ -5,7 +5,7 @@
     <view class="h1 fp-h1">{{L.t(i,'我的观影护照')}}</view>
     <view class="sub">{{L.t(i,'看过一部电影，盖一枚印章；打分、日期都印在章上。')}}</view>
     <view wx:if="{{!ppOpen}}" class="fp-stage">
-      <view class="fp-cover" hover-class="fp-press" bindtap="ppOpen">
+      <view class="fp-cover {{i.__en?'en':''}}" hover-class="fp-press" bindtap="ppOpen">
         <view class="fp-cb" />
         <text class="fp-pub">{{L.t(i,'麻雀观影护照')}}</text>
         <text class="fp-pub2 mono">SPARROW FILM PASSPORT</text>
