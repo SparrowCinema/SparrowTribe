@@ -8034,8 +8034,8 @@ module.exports = {
    "halls": [
     {
      "id": "screening-room",
-     "short": "放映厅",
-     "name": "放映厅"
+     "short": "4K激光放映厅",
+     "name": "4K激光放映厅"
     }
    ],
    "city": "嘉兴"
