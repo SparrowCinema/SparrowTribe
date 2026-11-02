@@ -81,3 +81,12 @@ Claude 与 GPT 可能使用同一 GitHub 身份，审批人数可先设为0；�
 - 「生成我的影院观影结算」按年份、专题筛选，生成长图（统计、本期最爱、按专题、印章墙、观影清单）。
 - 结算长图与画布印章的代码在 `shared/recap.js`，网站直接加载；小程序用的 `miniprogram/utils/recap.js` 由 `node tools/build-fallback.js` 复制生成，不要直接改小程序那份。
 - 记录保存：网站存在浏览器 localStorage `sparrow-watched-v1`（护照持有人名 `sparrow-holder`）；小程序存在本机 `sk-watched-v1` 并通过 `plan` 云函数（action `setWatched` / `get`）按微信用户同步，`plan` 云函数改动后需重新部署。
+
+## 个人档案云端同步（同步码）
+
+「我的」页的「个人档案云端同步」板块（网站和小程序都有）：用一串同步码（`SP-` 开头）在多台设备间同步看过记录、评分、护照照片、持有人和个人排片，不用注册账号。
+
+- 后端：与米其林全球名录共用同一个 Supabase 项目（`mg_pull` / `mg_push`），只保存同步码的 SHA-256；同步码前缀 `SP-` 与米其林的 `MG-` 互不冲突，无需改数据库。
+- 合并规则：`shared/psync.js`（网站直接引用；`node tools/build-fallback.js` 会把它复制到 `miniprogram/utils/psync.js` 和 `cloudfunctions/psync/psync.js`）。每一项都带更新时间，取较新者；删除用 `{del:1,t}` 留痕。个人排片整体取较新的一份。
+- 网站：`index.html` 里直接请求 Supabase。小程序：通过 `psync` 云函数请求（不用配置 request 合法域名）。
+- 本机附加存储：网站 `sparrow-sync`（同步码）、`sparrow-profile-meta`（各项修改时间）、`sparrow-holder-photo`；小程序 `sk-sync`、`sk-profile-meta`。

@@ -37,10 +37,16 @@ function entries(data, idx) {
     return { id, f: idx.F[id], rec, s, venue: s ? vShort(idx.VN[s.v]) : '', venueFull: s ? idx.venueName(s) : '' };
   }).sort((a, b) => a.rec.d.localeCompare(b.rec.d) || (a.s && b.s ? U.showDate(a.s) - U.showDate(b.s) : 0) || a.id.localeCompare(b.id));
 }
+// 个人档案各项的最后修改时间（同步用）：{ holder, photo, picks }
+const META = 'sk-profile-meta';
+function meta() { try { return wx.getStorageSync(META) || {}; } catch (e) { return {}; } }
+function touch(k) { try { const m = meta(); m[k] = Date.now(); wx.setStorageSync(META, m); } catch (e) { } }
+function setMeta(m) { try { wx.setStorageSync(META, m || {}); } catch (e) { } }
+function replaceAll(obj) { cache = obj && typeof obj === "object" ? obj : {}; save(true); }
 function photo() { try { return wx.getStorageSync(PHOTO) || ''; } catch (e) { return ''; } }
-function setPhoto(v) { try { wx.setStorageSync(PHOTO, v || ''); } catch (e) { } }
+function setPhoto(v, quiet) { try { wx.setStorageSync(PHOTO, v || ''); if (!quiet) touch('photo'); } catch (e) { } }
 function holder() { try { return wx.getStorageSync(HOLDER) || ''; } catch (e) { return ''; } }
-function setHolder(v) { try { wx.setStorageSync(HOLDER, String(v || '').trim().slice(0, 20)); } catch (e) { } }
+function setHolder(v, quiet) { try { wx.setStorageSync(HOLDER, String(v || '').trim().slice(0, 20)); if (!quiet) touch('holder'); } catch (e) { } }
 
 // 启动时与云端合并：同一部影片取更新时间较新的那条
 function syncFromCloud() {
@@ -53,4 +59,4 @@ function syncFromCloud() {
   }).catch(() => { });
 }
 
-module.exports = { all, get, set, remove, onChange, guess, showOf, entries, iso, vShort, holder, setHolder, photo, setPhoto, syncFromCloud };
+module.exports = { all, get, set, remove, onChange, guess, showOf, entries, iso, vShort, holder, setHolder, photo, setPhoto, meta, touch, setMeta, replaceAll, syncFromCloud };
