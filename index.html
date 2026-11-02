@@ -1254,7 +1254,7 @@ document.addEventListener("click",e=>{
   const x=e.target.closest("[data-expand]");if(x){const b=x.previousElementSibling;b.classList.toggle("clamp");x.textContent=b.classList.contains("clamp")?"展开全文":"收起";}
 });
 
-function progFilmCard(f,pid){ return `<button class="pg-film" data-film="${f.id}">${pst(f.id)?`<img src="${pst(f.id)}" alt="" loading="lazy">`:`<span class="pg-ph" style="background:${REG[f.reg].c}">${esc(f.cn[0])}</span>`}<span class="pg-caption"><b class="pg-name">${esc(f.cn)}</b><span class="pg-edition">${esc(editionOf(f))}</span>${programmeFilmSlots(f,pid)}</span></button>`; }
+function progFilmCard(f,pid,ended){ return `<button class="pg-film" data-film="${f.id}">${pst(f.id)?`<img src="${pst(f.id)}" alt="" loading="lazy">`:`<span class="pg-ph" style="background:${REG[f.reg].c}">${esc(f.cn[0])}</span>`}<span class="pg-caption"><b class="pg-name">${esc(f.cn)}</b><span class="pg-edition">${esc(editionOf(f))}</span>${ended?"":programmeFilmSlots(f,pid)}</span></button>`; }
 // 专题页影片分组：即将放映（含场次待公布）按下一场先后；已结束按最近一场由近及远
 function progFilmGroups(pid,films){
   const up=[], gone=[];
@@ -1265,9 +1265,9 @@ function progFilmGroups(pid,films){
 }
 function progFilmsHTML(pid,films){
   const {up,gone}=progFilmGroups(pid,films);
-  const grid=list=>`<div class="pg-grid">${list.map(f=>progFilmCard(f,pid)).join("")}</div>`;
+  const grid=(list,ended)=>`<div class="pg-grid">${list.map(f=>progFilmCard(f,pid,ended)).join("")}</div>`;
   const upHTML=up.length?`<h3 class="blockh pg-grp" id="pg-up">即将放映 <small>UPCOMING · ${up.length} 部</small></h3>${grid(up)}`:`<h3 class="blockh pg-grp" id="pg-up">即将放映 <small>UPCOMING · 0 部</small></h3><div class="fd-noshow"><b>暂无待映场次</b><span>新场次公布后会更新到这里。</span></div>`;
-  const goneHTML=gone.length?`<details class="pg-ended" id="pg-gone"${up.length?"":" open"}><summary class="blockh pg-grp">已结束 <small>ENDED · ${gone.length} 部</small></summary>${grid(gone)}</details>`:"";
+  const goneHTML=gone.length?`<details class="pg-ended" id="pg-gone"${up.length?"":" open"}><summary class="blockh pg-grp">已结束 <small>ENDED · ${gone.length} 部</small></summary>${grid(gone,true)}</details>`:"";
   return upHTML+goneHTML;
 }
 function progPage(pid){
