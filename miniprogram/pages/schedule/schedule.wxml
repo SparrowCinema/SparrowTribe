@@ -10,7 +10,7 @@
 
 <view class="wrap">
   <view wx:if="{{myToday.length}}" class="today card">
-    <view class="today-h"><text class="b">{{L.t(i,'今日我的排片')}}</text><text class="muted small">{{myTodayTitle}}</text></view>
+    <view class="today-h"><text class="b">{{todayHead}}</text><text class="muted small">{{myTodayTitle}}</text></view>
     <view class="tl">
       <view wx:for="{{myToday}}" wx:key="key" wx:if="{{todayOpen || index === 0}}" class="tl-item" data-id="{{item.id}}" bindtap="openFilm">
         <view class="tl-time"><text class="mono b">{{item.t}}</text><text class="mono muted small">{{item.endTxt}}</text></view>

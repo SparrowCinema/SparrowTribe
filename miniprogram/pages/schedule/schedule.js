@@ -43,7 +43,11 @@ Page({
     const list = data.shows.filter(s => idx.F[s.id] && !U.ended(s, idx) && (pf === 'all' || idx.progOf(idx.F[s.id]).id === pf) && (vf === 'all' || s.v === vf));
     // 首页顶部：今天我的排片中尚未散场的场次，按时间线排列
     const tk = new Date(), tkey = (tk.getMonth() + 1) + '/' + tk.getDate();
-    const myToday = data.shows.filter(s => idx.F[s.id] && s.d === tkey && picked.has(U.keyOf(s)) && !U.ended(s, idx))
+    // 今天还有没散场的就显示今天；今天都散场后顺延到之后最近一个有排片的日子（到了当天自动变回「今日」）
+    const upc = data.shows.filter(s => idx.F[s.id] && picked.has(U.keyOf(s)) && !U.ended(s, idx)).sort((a, b) => U.showDate(a) - U.showDate(b));
+    const nkey = upc.length ? upc[0].d : tkey, t0 = new Date(tk.getFullYear(), tk.getMonth(), tk.getDate()), d1 = upc.length ? U.showDate(upc[0]) : t0;
+    const off = Math.round((new Date(d1.getFullYear(), d1.getMonth(), d1.getDate()) - t0) / 864e5);
+    const myToday = upc.filter(s => s.d === nkey)
       .sort((a, b) => U.toMin(a.t) - U.toMin(b.t))
       .map(s => { const vw = U.showView(s, idx, data, picked); return { key: vw.key, id: s.id, t: vw.t, end: vw.end, endTxt: I.isEn() ? 'ends ' + vw.end : vw.end + ' 散场', cn: vw.cn, venue: vw.venue, hall: vw.hall, tone: vw.tone }; });
     const allDays = [...new Set(data.shows.map(s => s.d))];
@@ -100,7 +104,8 @@ Page({
     const vname = vf !== 'all' && idx.VN[vf] ? idx.VN[vf].name : t('当前筛选');
     this.setData({
       day, days, cols, ticks, H, nowLine, progs, venues, myToday,
-      myTodayTitle: t(tk.getMonth() + 1 + '月' + tk.getDate() + '日') + ' ' + U.wk(tkey) + ' · ' + t('接下来 ' + myToday.length + ' 场'),
+      todayHead: t(off <= 0 ? '今日我的排片' : off === 1 ? '明日我的排片' : '近期我的排片'),
+      myTodayTitle: t(nkey.replace('/', '月') + '日') + ' ' + U.wk(nkey) + ' · ' + t(off <= 0 ? '接下来 ' + myToday.length + ' 场' : off === 1 ? myToday.length + ' 场' : off + ' 天后 · ' + myToday.length + ' 场'),
       todayToggle: t(this.data.todayOpen ? '收起' : '还有 ' + Math.max(0, myToday.length - 1) + ' 场 · 展开全部'),
       vchips: vlist.length > 1 ? [{ id: 'all', n: t('全部影院') }].concat(vlist.map(v => ({ id: v.id, n: vShort(v) }))) : [],
       dayList: dl.map(s => U.showView(s, idx, data, picked)),
