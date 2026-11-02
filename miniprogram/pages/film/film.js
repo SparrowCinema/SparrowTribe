@@ -20,7 +20,8 @@ Page({
     if (!f) { wx.showToast({ title: '没有找到这部影片', icon: 'none' }); return; }
     wx.setNavigationBarTitle({ title: f.cn });
     const picked = plan.get(), p = idx.progOf(f);
-    const shows = data.shows.filter(s => s.id === f.id).map(s => {
+    const allShows = data.shows.filter(s => s.id === f.id);
+    const shows = allShows.filter(s => !U.ended(s, idx)).map(s => {
       const v = U.showView(s, idx, data, picked); const [m, d] = s.d.split('/');
       return Object.assign(v, { m, dd: d });
     });
@@ -46,7 +47,7 @@ Page({
         honors: (f.honors || []).map(honor),
         gifts: (f.gifts || []).map((g, k) => ({ k, label: g.label || '', items: g.items || [] }))
       },
-      shows, ratings, credits, nav
+      shows, ratings, credits, nav, ended: allShows.length > 0 && !shows.length
     });
   },
   toggle(e) { const on = plan.toggle(e.currentTarget.dataset.key); wx.showToast({ title: on ? '已加入排片' : '已移出排片', icon: 'none' }); },
