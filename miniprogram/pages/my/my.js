@@ -1,15 +1,97 @@
 const U = require('../../utils/util.js');
 const plan = require('../../utils/plan.js');
 const poster = require('../../utils/poster.js');
+const W = require('../../utils/watched.js');
+const R = require('../../utils/recap.js');
 const I = require('../../utils/i18n.js');
 const t = I.tr;
 const app = getApp();
 
 Page({
-  data: { i: {}, stats: {}, days: [], clash: 0, empty: true, pf: 'all', progs: [] },
-  onLoad() { this.setData({ i: I.dict() }); this.off1 = plan.onChange(() => this.build()); this.off2 = app.onData(() => this.build()); },
-  onUnload() { this.off1 && this.off1(); this.off2 && this.off2(); },
-  onShow() { wx.setNavigationBarTitle({ title: t('我的影展') }); this.build(); },
+  data: { i: {}, pp: {}, ppOpen: false, ppPage: 0, rc: {}, rcOpen: false, rcY: 'all', rcP: 'all', stats: {}, days: [], clash: 0, empty: true, pf: 'all', progs: [] },
+  onLoad() { this.setData({ i: I.dict() }); this.off1 = plan.onChange(() => this.build()); this.off2 = app.onData(() => { this.build(); this.buildPassport(); }); this.off3 = W.onChange(() => this.buildPassport()); },
+  onUnload() { this.off1 && this.off1(); this.off2 && this.off2(); this.off3 && this.off3(); },
+  onShow() { wx.setNavigationBarTitle({ title: t('我的观影护照') }); this.build(); this.buildPassport(); },
+  // ===== 观影护照：封面 → 资料页 → 印章页（每页 4 枚），印章外观与网站一致 =====
+  buildPassport() {
+    const data = app.globalData.data, idx = U.index(data), list = W.entries(data, idx);
+    const rated = list.filter(e => e.rec.r), mins = list.reduce((n, e) => n + (e.f.min || 0), 0);
+    const st = { n: list.length, progs: new Set(list.map(e => idx.progOf(e.f).id)).size, venues: new Set(list.filter(e => e.s).map(e => e.s.v)).size,
+      avg: rated.length ? (rated.reduce((n, e) => n + e.rec.r, 0) / rated.length).toFixed(1) : '—', hm: Math.floor(mins / 60) + 'h' + String(mins % 60).padStart(2, '0') };
+    const stamps = list.map((e, k) => {
+      const lk = R.look(e.id), p = idx.progOf(e.f), r = e.rec.r || 0;
+      return { id: e.id, title: e.f.cn, date: R.dstamp(e.rec.d), top: String((p && p.en) || 'SPARROW FILM PASSPORT').toUpperCase().split(/ · | & /)[0], venue: e.venue || t('线下观影'),
+        shape: lk.shape, tilt: lk.tilt, ink: lk.ink, r, stars: r ? [1, 2, 3, 4, 5].map(i => Math.max(0, Math.min(2, r - (i - 1) * 2)) * 50) : [] };
+    });
+    const pages = []; for (let k = 0; k < Math.max(1, stamps.length); k += 4) { const items = stamps.slice(k, k + 4); pages.push({ no: String(pages.length + 2).padStart(2, '0'), items, slots: Array.from({ length: 4 - items.length }, (x, j) => j) }); }
+    const hn = W.holder(), first = list[0], last = list[list.length - 1];
+    this.setData({ pp: { st, pages, n: pages.length + 1, empty: !list.length, holder: hn || t('影迷'), holderEn: hn ? '' : 'CINEPHILE',
+      first: first ? R.dstamp(first.rec.d) : '—', last: last ? R.dstamp(last.rec.d) : '—',
+      mrz1: 'P<SPARROW<FILM<PASSPORT<<' + (hn && !/[^\x00-\x7f]/.test(hn) ? hn.toUpperCase().replace(/[^A-Z]/g, '<').slice(0, 14) : 'CINEPHILE') + '<<<',
+      mrz2: 'FILMS<' + String(st.n).padStart(3, '0') + '<<PROGS<' + String(st.progs).padStart(2, '0') + '<<AVG<' + (rated.length ? Math.round(st.avg * 10) : '00') + '<<' + (last ? last.rec.d.replace(/-/g, '') : '00000000') } });
+  },
+  ppOpen() { this.setData({ ppOpen: true, ppPage: 0 }); },
+  ppClose() { this.setData({ ppOpen: false }); },
+  ppChange(e) { this.setData({ ppPage: e.detail.current }); },
+  ppPrev() { if (this.data.ppPage > 0) this.setData({ ppPage: this.data.ppPage - 1 }); },
+  ppNext() { if (this.data.ppPage < this.data.pp.n - 1) this.setData({ ppPage: this.data.ppPage + 1 }); },
+  openStamp(e) { wx.navigateTo({ url: '/pages/film/film?id=' + e.currentTarget.dataset.id }); },
+  editHolder() {
+    wx.showModal({ title: t('护照持有人（显示在资料页）'), editable: true, placeholderText: t('影迷'), content: W.holder(), success: r => { if (r.confirm) { W.setHolder(r.content); this.buildPassport(); } } });
+  },
+  // ===== 线下观影结算：按年份 / 专题 =====
+  recapScope() {
+    const data = app.globalData.data, idx = U.index(data), y = this.data.rcY || 'all', p = this.data.rcP || 'all';
+    return W.entries(data, idx).filter(e => (y === 'all' || e.rec.d.slice(0, 4) === y) && (p === 'all' || idx.progOf(e.f).id === p));
+  },
+  buildRecap() {
+    const data = app.globalData.data, idx = U.index(data), all = W.entries(data, idx);
+    const years = [...new Set(all.map(e => e.rec.d.slice(0, 4)))].sort().reverse(), pids = data.programmes.map(p => p.id).filter(id => all.some(e => idx.progOf(e.f).id === id));
+    let y = this.data.rcY || 'all', p = this.data.rcP || 'all'; if (y !== 'all' && !years.includes(y)) y = 'all'; if (p !== 'all' && !pids.includes(p)) p = 'all';
+    this.setData({ rcY: y, rcP: p });
+    const list = this.recapScope(), rated = list.filter(e => e.rec.r), mins = list.reduce((n, e) => n + (e.f.min || 0), 0);
+    this.setData({ rc: { years: [{ v: 'all', n: t('全部年份') }].concat(years.map(v => ({ v, n: v }))), progs: [{ v: 'all', n: t('全部专题') }].concat(pids.map(v => ({ v, n: idx.PG[v].name }))),
+      n: list.length, hm: Math.floor(mins / 60) + 'h' + String(mins % 60).padStart(2, '0'), avg: rated.length ? (rated.reduce((n, e) => n + e.rec.r, 0) / rated.length).toFixed(1) : '—' } });
+  },
+  openRecap() {
+    const data = app.globalData.data; if (!W.entries(data, U.index(data)).length) { wx.showToast({ title: t('先在影片页点「看过」，盖下第一枚印章'), icon: 'none' }); return; }
+    this.buildRecap(); this.setData({ rcOpen: true });
+  },
+  closeRecap() { this.setData({ rcOpen: false }); },
+  setRcY(e) { this.setData({ rcY: e.currentTarget.dataset.v }); this.buildRecap(); },
+  setRcP(e) { this.setData({ rcP: e.currentTarget.dataset.v }); this.buildRecap(); },
+  noop() { },
+  makeRecap() {
+    const list = this.recapScope(); if (!list.length || this.busy) return;
+    this.busy = true; wx.showLoading({ title: t('正在生成观影结算…'), mask: true });
+    const fail = () => { this.busy = false; wx.hideLoading(); wx.showToast({ title: t('图片生成失败，请稍后再试'), icon: 'none' }); };
+    const data = app.globalData.data, idx = U.index(data), y = this.data.rcY, pid = this.data.rcP;
+    wx.createSelectorQuery().select('#recap').fields({ node: true, size: true }).exec(async res => {
+      try {
+        const canvas = res && res[0] && res[0].node; if (!canvas) return fail();
+        const load = src => new Promise(r => { if (!src) return r(null); const im = canvas.createImage(); im.onload = () => r(im); im.onerror = () => r(null); im.src = src; });
+        const imgs = {}; await Promise.all(list.map(async e => { imgs[e.id] = await load(U.poster(e.f)); }));
+        const marks = await Promise.all(['/images/brand/sparrow-movies-sq.png', '/images/brand/sparrow-tribe-sq.png'].map(load));
+        const items = list.map(e => { const lk = R.look(e.id), p = idx.progOf(e.f); return { id: e.id, title: e.f.cn, en: e.f.en || e.f.o || '', date: e.rec.d, dstamp: R.dstamp(e.rec.d), venue: I.isEn() ? e.venue : e.venueFull, vs: e.venue, score: e.rec.r || 0, color: lk.ink, shape: lk.shape, tilt: lk.tilt, top: (p && p.en) || 'SPARROW FILM PASSPORT', prog: p ? p.name : '', img: imgs[e.id] }; });
+        const rated = list.filter(e => e.rec.r), mins = list.reduce((n, e) => n + (e.f.min || 0), 0), months = {};
+        list.forEach(e => { const m = +e.rec.d.slice(5, 7); months[m] = (months[m] || 0) + 1; });
+        const topM = Object.keys(months).sort((a, b) => months[b] - months[a] || a - b)[0];
+        const byP = {}; list.forEach(e => { const p = idx.progOf(e.f); const g = byP[p.id] = byP[p.id] || { name: p.name, n: 0, sum: 0, k: 0 }; g.n++; if (e.rec.r) { g.sum += e.rec.r; g.k++; } });
+        const years = [...new Set(list.map(e => e.rec.d.slice(0, 4)))].sort();
+        const o = { title: t('我的线下观影结算'), sub: (y === 'all' ? (years.length > 1 ? years[0] + '–' + years[years.length - 1] : years[0]) : y) + ' · ' + (pid === 'all' ? t('全部专题') : idx.PG[pid].name),
+          kicker: 'SPARROW FILM PASSPORT · MY CINEMA RECAP', yearTag: y === 'all' ? years[years.length - 1] : y,
+          stats: [[list.length, t('部影片')], [Math.floor(mins / 60) + 'h' + String(mins % 60).padStart(2, '0'), t('银幕时长')], [rated.length ? (rated.reduce((n, e) => n + e.rec.r, 0) / rated.length).toFixed(1) : '—', t('平均评分')],
+            [new Set(list.filter(e => e.s).map(e => e.s.v)).size, t('家影院')], [Object.keys(byP).length, t('个专题')], [topM ? t(topM + '月') : '—', t('看得最多的月份')]],
+          fav: items.filter(x => x.score).sort((a, b) => b.score - a.score || b.date.localeCompare(a.date))[0] || null,
+          progs: Object.keys(byP).map(k => ({ name: byP[k].name, n: byP[k].n, avg: byP[k].k ? byP[k].sum / byP[k].k : 0 })).sort((a, b) => b.n - a.n),
+          items, qr: null, marks, T: t, en: I.isEn() };
+        const k = 0.6; canvas.width = Math.round(R.W * k); canvas.height = Math.round(R.heightOf(o) * k);
+        const c = canvas.getContext('2d'); c.scale(k, k); R.draw(c, o);
+        wx.canvasToTempFilePath({ canvas, fileType: 'png', success: r => { this.busy = false; wx.hideLoading(); this.setData({ rcOpen: false }); this.showImage(r.tempFilePath); }, fail: () => fail() });
+      } catch (err) { fail(); }
+    });
+  },
+
   build() {
     const data = app.globalData.data, idx = U.index(data), picked = plan.get();
     const all = data.shows.filter(s => idx.F[s.id] && picked.has(U.keyOf(s))).sort((a, b) => U.showDate(a) - U.showDate(b));

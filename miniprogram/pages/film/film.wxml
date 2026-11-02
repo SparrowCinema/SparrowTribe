@@ -42,6 +42,26 @@
       </view>
     </view>
 
+    <view class="mr card {{mine.seen ? 'on' : ''}}">
+      <view class="mr-h"><text class="mr-t">{{L.t(i,'我的观影')}}</text><text class="mr-en mono">MY FILM PASSPORT</text></view>
+      <view class="mr-row">
+        <view class="mr-seen" hover-class="hv" bindtap="toggleSeen">{{mine.seenTxt}}</view>
+        <view class="mr-stars">
+          <view wx:for="{{mine.stars}}" wx:key="index" class="mr-star">
+            <text class="s0">★</text><view class="s1" style="width:{{item}}%"><text>★</text></view>
+            <view class="hz l" data-v="{{index * 2 + 1}}" bindtap="rate" /><view class="hz r" data-v="{{index * 2 + 2}}" bindtap="rate" />
+          </view>
+        </view>
+        <text class="mr-score mono {{mine.r ? 'has' : ''}}">{{mine.scoreTxt}}</text>
+      </view>
+      <view wx:if="{{mine.seen}}" class="mr-meta">
+        <picker mode="date" value="{{mine.d}}" end="{{mine.today}}" bindchange="setSeenDate"><view class="mr-date">{{L.t(i,'观影日期')}} <text class="mono">{{mine.d}}</text> ▾</view></picker>
+        <text class="mr-at">{{mine.at}}</text>
+        <text class="mr-go" bindtap="toMy">{{L.t(i,'查看护照 ›')}}</text>
+      </view>
+      <text wx:else class="mr-tip">{{L.t(i,'看过后会在「我的 → 观影护照」盖下这部电影的印章；评分为五星十分制，可打半颗星。')}}</text>
+    </view>
+
     <view class="sec-h">{{L.t(i,'放映场次')}} <text class="muted small">{{cnt}}</text></view>
     <view wx:if="{{!shows.length}}" class="noshow card"><text class="b">{{ended ? L.t(i,'本片场次已全部放映结束') : (f.release || L.t(i,'上映信息待公布'))}}</text><text class="muted small">{{ended ? L.t(i,'已放映的场次不再显示在这里。') : L.t(i,'场次公布后会更新到这里，也可以先在各影院售票平台查看。')}}</text></view>
     <view wx:for="{{shows}}" wx:key="key" class="ticket card">
