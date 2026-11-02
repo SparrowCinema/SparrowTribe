@@ -88,7 +88,7 @@
                 <text class="be mono">{{item.past ? L.t(i,'已放映') : L.t(i,'至') + ' ' + item.end + ' · ' + item.min + '′'}}</text>
                 <view wx:if="{{!item.past||item.picked}}" class="badd {{item.picked?'on':''}}" style="{{item.picked?'background:'+item.tone.ink+';color:'+item.tone.bg+';border-color:'+item.tone.ink:'background:'+item.tone.bg+';color:'+item.tone.ink+';border-color:'+item.tone.ink}}" data-key="{{item.key}}" catchtap="toggle" aria-role="button" aria-label="{{item.picked ? L.t(i,'移出排片') : L.t(i,'加入排片')}}">{{item.picked?'✓':'+'}}</view>
               </view>
-              <view wx:for="{{col.qas}}" wx:for-item="qa" wx:key="key" class="qa" style="top:{{qa.top}}rpx;height:{{qa.h}}rpx" data-id="{{qa.id}}" bindtap="openFilm"><text class="qa-b">{{L.t(i,'映后交流')}}</text><text class="qa-t mono">{{qa.label}}</text></view>
+              <view wx:for="{{col.qas}}" wx:for-item="qa" wx:key="key" class="qa" style="top:{{qa.top}}rpx;height:{{qa.h}}rpx" data-id="{{qa.id}}" bindtap="openFilm"><text class="qa-b">{{L.t(i,qa.nm)}}</text><text class="qa-t mono">{{qa.label}}</text></view>
             </view>
           </view>
         </view>

@@ -104,3 +104,5 @@ Claude 与 GPT 可能使用同一 GitHub 身份，审批人数可先设为0；�
 ## 输入框防缩放（勿破坏）
 
 手机上输入框字号 <16px 会让 iOS/微信浏览器聚焦时放大整页。index.html 里有两道守卫：全局 `input,select,textarea{font-size:16px!important}`，以及聚焦时临时锁定 viewport 的脚本。新增任何输入框都不要把字号设小于 16px；改完跑 `node tools/check-input-zoom.js`（需先起本地 http.server 8123）。
+
+甘特图里带「映后活动」备注的场次，会在影片结束后自动预留 30 分钟的「映后」虚线时段（网站与小程序；常量 `POST_MIN` / 30）。已有「映后交流」专用时段的影片不重复显示。
