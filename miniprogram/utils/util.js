@@ -27,6 +27,9 @@ const langSub = f => I.tr([f.language, f.subtitles].filter(Boolean).join(' ｜ '
 
 function index(data) {
   const F = {}; const ORD = {}; data.films.forEach((f, i) => { F[f.id] = f; ORD[f.id] = i; });
+  // 杭州影院固定排最前（甘特图列与影院/城市选择器），其余按原顺序
+  const vrank = new Map(data.venues.map((v, i) => [v.id, (v.city === '杭州' ? 0 : 1000) + i]));
+  data.venues.sort((a, b) => vrank.get(a.id) - vrank.get(b.id));
   const VN = {}; data.venues.forEach(v => { VN[v.id] = v; });
   const PG = {}; data.programmes.forEach(p => { PG[p.id] = p; });
   const hallName = s => { const v = VN[s.v]; const h = v && v.halls.find(x => x.id === s.h); return h ? h.name : s.h; };
