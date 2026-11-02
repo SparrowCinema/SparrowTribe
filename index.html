@@ -61,20 +61,18 @@
 .fgrp h3{font-size:clamp(20px,3vw,26px);margin:0;line-height:1.3;white-space:nowrap}
 :lang(en) .fgrp h3{white-space:normal}
 .fgrp>small{font-size:10px;line-height:1.6;letter-spacing:.08em;color:var(--muted);max-width:46%;text-align:right}
-.schedule-filters{margin:18px 0 22px;padding:14px;background:var(--surface);border:1px solid var(--line);border-radius:16px}
-.filter-caption{display:block;font-size:10px;letter-spacing:.15em;color:var(--muted);margin-bottom:8px}
-.schedule-filters .prog-chips{flex-wrap:wrap;overflow:visible;margin:0 0 14px;gap:6px;padding:0}
-.schedule-filters .fchip{font-size:12px;padding:7px 11px}
-.venue-controls{display:grid;grid-template-columns:110px minmax(0,1fr);gap:10px;align-items:start;border-top:1px solid var(--line);padding-top:12px}
-.city-control{display:flex;flex-direction:column;gap:5px;font-size:10px;color:var(--muted)}
-.city-control select{font:inherit;font-size:13px;color:var(--fg);background:transparent;border:0;padding:7px 0;min-height:34px;width:100%}
-.venue-picker{min-width:0}.venue-picker summary{list-style:none;display:flex;align-items:center;justify-content:space-between;cursor:pointer;gap:8px;min-height:54px}
-.venue-picker summary::-webkit-details-marker{display:none}.venue-picker summary small{display:block;font-size:10px;color:var(--muted);margin-bottom:7px}.venue-picker summary b{font-size:13px;line-height:1.5}.venue-picker summary i{font-style:normal;font-size:20px}
-.venue-menu{padding-top:12px}.venue-menu input{width:100%;border:1px solid var(--line);border-radius:9px;background:var(--bg);padding:10px 12px;color:var(--fg);font:inherit;font-size:13px;box-sizing:border-box}
-.venue-all{margin:8px 0;padding:8px 12px;border:1px solid var(--line);border-radius:8px;background:transparent;font:inherit;font-size:12px}.venue-all[aria-pressed=true]{background:var(--fg);color:var(--surface)}
-.venue-results{max-height:320px;overflow:auto;overscroll-behavior:contain}.venue-option{display:flex;width:100%;text-align:left;align-items:start;gap:9px;border:0;border-top:1px solid var(--line);padding:12px 3px;background:transparent;color:var(--fg);font:inherit}.venue-option:hover,.venue-option[aria-pressed=true]{background:rgba(142,42,34,.06)}
-.venue-city{font-size:10px;color:var(--muted);padding:3px 6px;background:var(--bg);border-radius:4px;white-space:nowrap}.venue-info{flex:1;min-width:0}.venue-info b{font-size:12px;line-height:1.5;display:block}.venue-info small{font-size:10px;color:var(--muted);display:block;margin-top:4px;line-height:1.6}.venue-count{white-space:nowrap;font-size:10px;color:var(--muted);padding-top:3px}.venue-empty{font-size:12px;color:var(--muted)}
-@media(max-width:480px){.fgrp{align-items:start;flex-direction:column;gap:7px}.fgrp>small{max-width:100%;text-align:left}.schedule-filters{padding:12px}.venue-controls{grid-template-columns:86px minmax(0,1fr)}.section-tabs{padding:10px;gap:6px}.section-tabs button{font-size:11px;padding:7px 10px}}
+/* One bounded control row; long lists live in a searchable selector. */
+.schedule-filterbar{display:grid;grid-template-columns:1.15fr .8fr 1.25fr;gap:0;margin:18px 0 20px;border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}
+.schedule-filter{display:flex;align-items:center;justify-content:space-between;gap:8px;min-width:0;padding:11px 14px;background:none;border:0;color:var(--fg);text-align:left;font:inherit;cursor:pointer}
+.schedule-filter+button{border-left:1px solid var(--line)}.schedule-filter:hover{background:var(--chip)}.schedule-filter>span{min-width:0}.schedule-filter small{display:block;font-size:10px;line-height:1.3;color:var(--muted);margin-bottom:5px;letter-spacing:.04em}.schedule-filter b{display:block;font-size:13px;line-height:1.4;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.schedule-filter svg{width:12px;height:12px;flex-shrink:0;color:var(--muted)}.schedule-filter.active{box-shadow:inset 0 -2px var(--accent)}
+.filter-reset-row{display:flex;justify-content:flex-end;margin:-12px 0 12px}.filter-reset{font:inherit;font-size:11px;color:var(--muted);background:none;border:0;padding:4px;cursor:pointer}
+.schedule-selector{box-sizing:border-box;width:min(480px,calc(100% - 32px));max-height:min(560px,76dvh);padding:0;border:1px solid var(--line);border-radius:18px;background:var(--surface);color:var(--fg);box-shadow:0 24px 80px #0002;overflow:hidden}
+.schedule-selector[open]{display:flex;flex-direction:column}.selector-head,.selector-search{flex-shrink:0}.selector-results{flex:1;min-height:0}
+.schedule-selector::backdrop{background:rgba(25,20,15,.23);backdrop-filter:blur(2px)}
+.selector-head{display:flex;align-items:center;justify-content:space-between;padding:18px 20px 10px;gap:12px}.selector-head h2{font-size:19px;line-height:1.3;margin:0}.selector-close{border:0;background:var(--bg);border-radius:50%;width:30px;height:30px;color:var(--muted);font-size:22px;line-height:1;cursor:pointer}
+.selector-search{display:flex;align-items:center;gap:9px;margin:0 20px 12px;padding:10px 12px;border:1px solid var(--line);border-radius:9px;background:var(--bg)}.selector-search svg{width:16px;height:16px;flex-shrink:0;color:var(--muted)}.selector-search input{min-width:0;width:100%;font:inherit;font-size:14px;border:0;outline:0;background:transparent;color:var(--fg)}.selector-search:focus-within{border-color:var(--teal);box-shadow:0 0 0 2px color-mix(in srgb,var(--teal) 12%,transparent)}
+.selector-results{max-height:min(360px,48dvh);overflow:auto;overscroll-behavior:contain;padding:0 8px 8px;scrollbar-width:thin}.selector-option{display:flex;align-items:center;gap:12px;width:100%;min-height:56px;padding:11px 12px;border:0;border-radius:9px;background:none;color:var(--fg);text-align:left;font:inherit;cursor:pointer}.selector-option:hover,.selector-option:focus-visible{background:var(--bg)}.selector-option[aria-selected=true]{background:color-mix(in srgb,var(--teal) 9%,var(--surface))}.selector-option>span:first-child{min-width:0;flex:1}.selector-option b{display:block;font-size:13px;line-height:1.5;font-weight:600}.selector-option small{display:block;font-size:11px;line-height:1.5;color:var(--muted);margin-top:3px}.selector-option .selector-check{color:var(--teal);width:18px;font-size:17px;flex-shrink:0}.selector-empty{padding:28px 12px;color:var(--muted);font-size:13px;text-align:center}
+@media(max-width:480px){.fgrp{align-items:start;flex-direction:column;gap:7px}.fgrp>small{max-width:100%;text-align:left} .schedule-filter{padding:10px 9px;gap:5px}.schedule-filter b{font-size:12px}.schedule-filter small{font-size:9px}.schedule-selector{max-height:68dvh}.selector-head{padding:16px 16px 10px}.selector-search{margin-inline:16px}.section-tabs{padding:10px;gap:6px}.section-tabs button{font-size:11px;padding:7px 10px}}
 
 </style>
 <title>麻雀观影护照</title>
@@ -1186,7 +1184,7 @@ const presentersHTML = () => `<section class="presenters"><p class="pres-k">制�
 
 function qaForShow(s,f){return f.qaStart&&f.qaEnd&&f.qaGuest&&toMin(f.qaEnd)>toMin(f.qaStart)?{start:toMin(f.qaStart),end:toMin(f.qaEnd)}:null;}
 function ganttHTML(k, rowH, labW, compact, list){
-  const S = list.length?Math.min(...list.map(x=>toMin(x.t))):720, E = list.length?Math.max(...list.map(x=>Math.max(toMin(x.t)+durationOf(x),qaForShow(x,F[x.id])?.end||0))):1350, W = Math.round((E-S)*k);
+  const S = list.length?Math.max(0,Math.floor((Math.min(...list.map(x=>toMin(x.t)))-30)/30)*30):720, E = list.length?Math.max(...list.map(x=>Math.max(toMin(x.t)+durationOf(x),qaForShow(x,F[x.id])?.end||0))):1350, W = Math.round((E-S)*k);
   const allHalls = VENUES.flatMap(v=>v.halls.map(h=>({v:v.id,h:h.id})));
   const multi = new Set(list.map(x=>x.v+"/"+x.h)).size > 1;
   const step = k < 1 ? 120 : 60;
@@ -1246,7 +1244,8 @@ function timetableHTML(day, list){
   let S=Math.min(...ds.map(x=>toMin(x.t))), E=Math.max(...ds.map(x=>Math.max(toMin(x.t)+durationOf(x),qaForShow(x,F[x.id])?.end||0)));
   // The current-time marker is shown only inside the screening window.
   const nowD=new Date(now()), isToday=(nowD.getMonth()+1)+"/"+nowD.getDate()===day;
-  // The first screening anchors the axis; the current-time marker never extends it.
+  // Add a bounded lead-in, independent of the current time.
+  S=Math.max(0,Math.floor((S-30)/30)*30);
   E=Math.ceil(E/60)*60; if(E-S<180) E=S+180;
   const K=1.25, H=Math.round((E-S)*K);
   let axis=""; for(let m=S;m<=E;m+=60) axis+=`<span style="top:${Math.round((m-S)*K)}px">${fmt(m)}</span>`;
@@ -1273,17 +1272,39 @@ function updateNowLine(){
   const y=Math.round((m-S)*K); line.style.top="calc(46px + "+y+"px)"; lab.style.top=y+"px"; lab.textContent=fmt(m);
 }
 setInterval(()=>{ if(document.visibilityState==="visible") updateNowLine(); },30000);
-function venueResultsHTML(){
-  const q=venueQuery.trim().toLocaleLowerCase();
-  const rows=VENUES.filter(v=>(cityFilt==="all"||v.city===cityFilt)&&(!q||[v.name,v.short,v.city,...v.halls.map(h=>h.name)].join(" ").toLocaleLowerCase().includes(q)));
-  return rows.length?rows.map(v=>{const n=SH.filter(x=>x.v===v.id&&inProg(x)&&!isPast(x)).length;return `<button class="venue-option" data-vf="${v.id}" aria-pressed="${vfilt===v.id}"><span class="venue-city">${esc(v.city||"")}</span><span class="venue-info"><b>${esc(stripCity(v.name,v))}</b><small>${v.halls.length?v.halls.map(h=>esc(h.name)).join(" · "):"影厅待补充"}</small></span><span class="venue-count">${n?`${n} 场`:"待排片"}</span></button>`;}).join(""):`<p class="venue-empty" role="status">没有匹配的影院</p>`;
+const filterChevron='<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m4 6 4 4 4-4"/></svg>';
+function scheduleFiltersHTML(){
+ const fields=[["programme","专题",pfilt==="all"?"全部专题":PG[pfilt]?.name,pfilt],["city","城市",cityFilt==="all"?"全部城市":tr(cityFilt),cityFilt],["venue","影院",vfilt==="all"?"全部影院":venueLabel(VN[vfilt]),vfilt]];
+ return `<div class="schedule-filterbar" aria-label="排片筛选">${fields.map(([type,label,value,id])=>`<button class="schedule-filter${id!=="all"?" active":""}" data-schedule-filter="${type}" aria-haspopup="dialog" aria-label="${esc(label+"："+value)}"><span><small>${label}</small><b>${esc(value||"")}</b></span>${filterChevron}</button>`).join("")}</div>${fields.some(x=>x[3]!=="all")?`<div class="filter-reset-row"><button class="filter-reset" data-reset-schedule>重置筛选 ↺</button></div>`:""}`;
 }
-function venueBoxHTML(){
- const cities=[...new Set(VENUES.map(v=>v.city).filter(Boolean))];
- return `<div class="venue-controls"><label class="city-control"><span>城市</span><select id="city-filter" aria-label="选择城市"><option value="all"${cityFilt==="all"?" selected":""}>全部城市</option>${cities.map(c=>`<option value="${esc(c)}"${cityFilt===c?" selected":""}>${esc(c)}</option>`).join("")}</select></label><details class="venue-picker"><summary><span><small>影院</small><b>${vfilt==="all"?"全部影院":esc(venueLabel(VN[vfilt]))}</b></span><i>⌄</i></summary><div class="venue-menu"><input id="venue-search" type="search" aria-label="搜索影院、城市或影厅" placeholder="搜索影院、城市或影厅" value="${esc(venueQuery)}" autocomplete="off"><button class="venue-all" data-vf="all" aria-pressed="${vfilt==="all"}">全部影院</button><div id="venue-results" class="venue-results">${venueResultsHTML()}</div></div></details></div>`;
+function selectorOptions(type,query=""){
+ const q=query.trim().toLocaleLowerCase(),matches=x=>!q||x.toLocaleLowerCase().includes(q);
+ const shows=SH.filter(x=>!isPast(x));
+ let rows;
+ if(type==="programme")rows=[{id:"all",name:tr("全部专题"),sub:tr("查看所有专题的排片"),selected:pfilt==="all"},...progOrdered().filter(p=>progStatus(p)!=="ended"||p.id===pfilt).map(p=>({id:p.id,name:p.name,sub:[p.city,p.period].filter(Boolean).join(" · "),selected:pfilt===p.id}))];
+ else if(type==="city")rows=[{id:"all",name:tr("全部城市"),sub:"",selected:cityFilt==="all"},...[...new Set(VENUES.map(v=>v.city).filter(Boolean))].map(c=>({id:c,name:tr(c),sub:tr(VENUES.filter(v=>v.city===c).length+" 家"),selected:cityFilt===c}))];
+ else rows=[{id:"all",name:tr("全部影院"),sub:cityFilt==="all"?tr("所有城市"):tr(cityFilt),selected:vfilt==="all"},...VENUES.filter(v=>cityFilt==="all"||v.city===cityFilt).map(v=>{const n=shows.filter(x=>x.v===v.id&&inProg(x)).length;return {id:v.id,n,name:venueLabel(v),sub:[tr(n+" 场"),...v.halls.map(h=>h.name)].filter(Boolean).join(" · "),selected:vfilt===v.id};}).sort((a,b)=>Number(b.n>0)-Number(a.n>0))];
+ return rows.filter(x=>matches(x.name+" "+x.sub)).map(x=>`<button class="selector-option" role="option" aria-selected="${x.selected}" data-filter-value="${esc(x.id)}"><span><b>${esc(x.name)}</b>${x.sub?`<small>${esc(x.sub)}</small>`:""}</span><span class="selector-check" aria-hidden="true">${x.selected?"✓":""}</span></button>`).join("")||`<p class="selector-empty" role="status">${type==="programme"?"没有匹配的专题":type==="city"?"没有匹配的城市":"没有匹配的影院"}</p>`;
 }
-document.addEventListener("change",e=>{if(e.target.id!=="city-filter")return;cityFilt=e.target.value;vfilt="all";venueQuery="";sday=null;schedule();});
-document.addEventListener("input",e=>{if(e.target.id!=="venue-search")return;venueQuery=e.target.value;document.getElementById("venue-results").innerHTML=venueResultsHTML();});
+function openScheduleSelector(type){
+ document.getElementById("schedule-selector")?.remove();
+ const title={programme:"选择专题",city:"选择城市",venue:"选择影院"}[type],placeholder={programme:"搜索专题",city:"搜索城市",venue:"搜索影院、城市或影厅"}[type];if(!title)return;
+ const d=document.createElement("dialog");d.id="schedule-selector";d.className="schedule-selector";d.dataset.type=type;d.setAttribute("aria-labelledby","selector-title");
+ d.innerHTML=`<header class="selector-head"><h2 id="selector-title">${title}</h2><button class="selector-close" aria-label="关闭筛选">×</button></header><label class="selector-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg><input type="search" id="schedule-filter-search" aria-label="${placeholder}" placeholder="${placeholder}" autocomplete="off"></label><div class="selector-results" id="selector-results" role="listbox" aria-label="${title}">${selectorOptions(type)}</div>`;
+ document.body.append(d);d.querySelector('.selector-close').onclick=()=>d.close();d.addEventListener('click',e=>{if(e.target!==d)return;const r=d.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)d.close();});
+ d.addEventListener('close',()=>{d.remove();document.querySelector(`[data-schedule-filter="${type}"]`)?.focus({preventScroll:true});});
+ d.addEventListener('keydown',e=>{const opts=[...d.querySelectorAll('.selector-option')];if(!opts.length)return;if(e.key==='ArrowDown'||e.key==='ArrowUp'){e.preventDefault();const i=opts.indexOf(document.activeElement),next=e.key==='ArrowDown'?(i+1)%opts.length:(i<0?opts.length-1:(i-1+opts.length)%opts.length);opts[next].focus();}});
+ d.showModal();if(matchMedia('(min-width:700px)').matches)d.querySelector('input').focus();
+}
+document.addEventListener("input",e=>{if(e.target.id!=="schedule-filter-search")return;const d=e.target.closest('dialog');d.querySelector('#selector-results').innerHTML=selectorOptions(d.dataset.type,e.target.value);});
+document.addEventListener("click",e=>{
+ const trigger=e.target.closest('[data-schedule-filter]');if(trigger){openScheduleSelector(trigger.dataset.scheduleFilter);return;}
+ const reset=e.target.closest('[data-reset-schedule]');if(reset){pfilt=vfilt=cityFilt="all";sday=null;schedule();return;}
+ const option=e.target.closest('[data-filter-value]');if(!option)return;const d=option.closest('dialog'),type=d.dataset.type,value=option.dataset.filterValue;
+ if(type==='programme'){pfilt=value;vfilt=cityFilt='all';}else if(type==='city'){cityFilt=value;vfilt='all';}else vfilt=value;
+ sday=null;schedule();d.close();
+});
+window.addEventListener('hashchange',()=>document.getElementById('schedule-selector')?.close());
 // 首页顶部：今天我的排片中尚未散场的场次，按时间线排列
 function myTodayHTML(){
   // 今天还有没散场的就显示今天；今天都散场后顺延到之后最近一个有排片的日子（到了当天自动变回「今日」）
@@ -1309,7 +1330,7 @@ function schedule(){
   main.innerHTML = `<section class="view gut">
     ${myTodayHTML()}
     <h2 class="sec">排片表</h2><p class="sub">${cur?`${esc(cur.name)}${cur.city?` · ${esc(cur.city)}`:""} · `:""}${list.length?`${dateSpan(list)} · ${list.length} 场 · `:""}按日期查看，点击色块看影片</p>
-    <div class="schedule-filters"><span class="filter-caption">专题</span>${progChips()}${venueBoxHTML()}</div>
+    ${scheduleFiltersHTML()}
     ${ds.length?dayStripHTML(ds,list):""}
     ${sday?`<div class="tt-cap"><b>${sday.replace("/","月")}日 ${wk(sday)}</b><span>${dayList.length} 场 · ${new Set(dayList.map(x=>x.v+x.h)).size} 个影厅</span></div>
     <div class="legend"><span>每部影片一种颜色 · 色块标注版本、对白语言与字幕</span></div>

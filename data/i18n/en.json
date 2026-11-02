@@ -2466,7 +2466,7 @@
   "已在 App 模式中打开": "Opened in app mode",
   "排片保存在当前浏览器。换设备时，用分享链接带走日程。": "Your plan is saved in this browser. Use a share link to take it to another device.",
   "麻雀观影护照由麻雀映画与麻雀部落制作，汇集影展专题、艺术影院与院线放映场次。当前专题：风格万相 · 中外经典影片展（2026.10—2027.01）。": "Sparrow Film Passport is made by Sparrow Movies and Sparrow Tribe, gathering festival programmes, arthouse screenings and cinema releases. Current programme: Style Kaleidoscope · Chinese & World Classics (Oct 2026 – Jan 2027).",
-  "选择专题": "Programme",
+  "选择专题": "Choose programme",
   "排片、长图与分享只含所选内容": "Your plan, long image and sharing include only what you pick",
   "合并": "Merged",
   "未加入": "None added",
@@ -2829,6 +2829,17 @@
   "云端有其他设备正在同步，请稍后再试": "Another device is syncing — please try again shortly",
   "同步码输入框": "Sync code input",
   "输入同步码": "Enter sync code",
-  "同步码（登录凭证）": "Sync code"
+  "同步码（登录凭证）": "Sync code",
+  "排片筛选": "Schedule filters",
+  "选择影院": "Choose cinema",
+  "关闭筛选": "Close filters",
+  "重置筛选": "Reset filters",
+  "搜索专题": "Search programmes",
+  "搜索城市": "Search cities",
+  "查看所有专题的排片": "Browse all programmes",
+  "所有城市": "All cities",
+  "没有匹配的专题": "No matching programmes",
+  "没有匹配的城市": "No matching cities",
+  "没有匹配的结果": "No matching results"
  }
 }

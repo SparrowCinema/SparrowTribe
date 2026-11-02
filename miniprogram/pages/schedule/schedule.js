@@ -9,7 +9,7 @@ const vShort = v => (v.city ? t(v.city) + ' · ' : '') + (v.short || v.brand || 
 const hShort = h => h.short || h.name;
 
 Page({
-  data: { city: 'all', cityIndex: 0, cities: [], venueQuery: '', venueName: '', pf: 'all', vf: 'all', day: '', days: [], nowLine: null, todayOpen: false, myToday: [], myTodayTitle: '', progs: [], vchips: [], venues: [], vOpen: false, cols: [], ticks: [], H: 0, dayList: [], legend: [], span: '', count: 0, dayTitle: '', empty: '', scrollInto: '' },
+  data: { selectorType: '', selectorQuery: '', selectorRows: [], programmeName: '', cityName: '', city: 'all', cityIndex: 0, cities: [], venueQuery: '', venueName: '', pf: 'all', vf: 'all', day: '', days: [], nowLine: null, todayOpen: false, myToday: [], myTodayTitle: '', progs: [], vchips: [], venues: [], vOpen: false, cols: [], ticks: [], H: 0, dayList: [], legend: [], span: '', count: 0, dayTitle: '', empty: '', scrollInto: '' },
 
   onLoad(q) {
     this.setData({ i: I.dict(), en: I.isEn() });
@@ -71,7 +71,8 @@ Page({
       let S = Math.min(...dl.map(s => U.toMin(s.t))), E = Math.max(...dl.map(s => Math.max(U.toMin(s.t) + U.durationOf(s, idx), (U.qaOf(idx.F[s.id]) || {}).end || 0)));
       // Only show the current-time marker inside the screening window.
       const tn = new Date(), todayKey = (tn.getMonth() + 1) + '/' + tn.getDate(), isToday = todayKey === day;
-      // Anchor to the first screening, even when today begins before it.
+      // Leave 30–59 minutes before the first screening.
+      S = Math.max(0, Math.floor((S - 30) / 30) * 30);
       E = Math.ceil(E / 60) * 60; if (E - S < 180) E = S + 180;
       this.ttCtx = { day, S, E, isToday, today: todayKey };
       nowLine = this.nowLineOf(this.ttCtx);
@@ -104,7 +105,7 @@ Page({
     });
     const vname = vf !== 'all' && idx.VN[vf] ? idx.VN[vf].name : t('当前筛选');
     this.setData({
-      day, days, cols, ticks, H, nowLine, progs, venues, myToday, cities, cityIndex: Math.max(0,cities.findIndex(c=>c.id===city)), venueName: vf==='all'?t('全部影院'):vShort(idx.VN[vf]),
+      day, days, cols, ticks, H, nowLine, progs, venues, myToday, cities, cityIndex: Math.max(0,cities.findIndex(c=>c.id===city)), venueName: vf==='all'?t('全部影院'):vShort(idx.VN[vf]), programmeName: pf==='all'?t('全部专题'):idx.PG[pf].name, cityName:city==='all'?t('全部城市'):t(city),
       todayHead: t(off <= 0 ? '今日我的排片' : off === 1 ? '明日我的排片' : '近期我的排片'),
       myTodayTitle: t(nkey.replace('/', '月') + '日') + ' ' + U.wk(nkey) + ' · ' + t(off <= 0 ? '接下来 ' + myToday.length + ' 场' : off === 1 ? myToday.length + ' 场' : off + ' 天后 · ' + myToday.length + ' 场'),
       todayToggle: t(this.data.todayOpen ? '收起' : '还有 ' + Math.max(0, myToday.length - 1) + ' 场 · 展开全部'),
@@ -119,6 +120,19 @@ Page({
     });
   },
 
+  selectorOptions(type, query) {
+    const data=app.globalData.data, idx=U.index(data), q=(query||'').trim().toLowerCase();let rows;
+    if(type==='programme')rows=[{id:'all',name:t('全部专题'),sub:t('查看所有专题的排片'),selected:this.data.pf==='all'},...this.data.progs.map(p=>({id:p.id,name:p.name,sub:[p.city,p.period].filter(Boolean).join(' · '),selected:this.data.pf===p.id}))];
+    else if(type==='city')rows=this.data.cities.map(c=>({id:c.id,name:c.name,sub:'',selected:this.data.city===c.id}));
+    else rows=[{id:'all',name:t('全部影院'),sub:this.data.cityName,selected:this.data.vf==='all'},...data.venues.filter(v=>this.data.city==='all'||v.city===this.data.city).map(v=>{const n=data.shows.filter(s=>s.v===v.id&&!U.ended(s,idx)&&(this.data.pf==='all'||U.progForShow(s,idx).id===this.data.pf)).length;return {id:v.id,n,name:vShort(v),sub:[t(n+' 场'),...v.halls.map(h=>h.name)].filter(Boolean).join(' · '),selected:this.data.vf===v.id};}).sort((a,b)=>Number(b.n>0)-Number(a.n>0))];
+    return rows.filter(x=>!q||(x.name+' '+x.sub).toLowerCase().includes(q));
+  },
+  openSelector(e) { const type=e.currentTarget.dataset.type;this.setData({selectorType:type,selectorQuery:'',selectorTitle:t({programme:'选择专题',city:'选择城市',venue:'选择影院'}[type]),selectorPlaceholder:t({programme:'搜索专题',city:'搜索城市',venue:'搜索影院、城市或影厅'}[type]),selectorRows:this.selectorOptions(type,'')}); },
+  searchSelector(e) {this.setData({selectorQuery:e.detail.value,selectorRows:this.selectorOptions(this.data.selectorType,e.detail.value)});},
+  closeSelector() {this.setData({selectorType:'',selectorQuery:''});},
+  stopMove() {},
+  chooseFilter(e) {const id=e.currentTarget.dataset.id,type=this.data.selectorType;if(type==='programme')this.setProg(e);else if(type==='city'){this.setData({city:id,vf:'all',day:''});this.build();}else this.setVenue(e);this.closeSelector();},
+  resetFilters() {this.setData({pf:'all',city:'all',vf:'all',day:'',venueQuery:''});this.build();},
   setProg(e) { this.setData({ pf: e.currentTarget.dataset.id, vf: 'all', city: 'all', venueQuery: '', day: '' }); this.build(); },
   setVenue(e) { this.setData({ vf: e.currentTarget.dataset.id, vOpen: false }); this.build(); },
   setCity(e) { this.setData({city:this.data.cities[+e.detail.value].id,vf:'all',venueQuery:'',day:''}); this.build(); },
