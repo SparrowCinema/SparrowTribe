@@ -120,3 +120,7 @@ Claude 与 GPT 可能使用同一 GitHub 身份，审批人数可先设为0；�
 3. 运行 `node tools/make-cinema-cover.js 2027` 生成中/英头图（`programmes/cinema-2027.jpg` / `-en.jpg`），再缩成 930×330 放到 `miniprogram/images/brand/prog-cinema-2027.jpg`；
 4. `data/i18n/en.json` 的 `programmes` 里补英文名（如「2027 Now Showing」）。
 2026 专题结束（12.31 之后）会自动进入片目的「往期专题」。
+
+## 杭州影院优先
+
+- 首页甘特图的影院列、城市/影院选择器、同时间场次的先后，都固定把「杭州」的影院排在最前，其他城市按 `data/catalog.json` 里的顺序跟在后面（网站 `loadData`、小程序 `utils/util.js` 的 `index()` 同步实现）。新增杭州影院无需调整顺序；以后若要换成别的本地城市，改这两处的 `杭州` 即可。
