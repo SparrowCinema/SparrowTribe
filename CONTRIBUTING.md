@@ -54,3 +54,8 @@
 AGENTS.md 和 CLAUDE.md 是协作约定，不等于 GitHub 强制保护。此次配置不自动启用仓库规则。
 如需强制执行，可在 GitHub Settings → Rules → Rulesets 中为 main 启用必须通过 PR 合并、阻止强推和删除。
 Claude 与 GPT 可能使用同一 GitHub 身份，审批人数可先设为0；不要要求尚不存在的 CI 检查。
+
+## 专题页分组与头图
+
+- 专题页（网站 `progFilmsHTML` / 小程序 `pages/programme`）把影片分为「即将放映」（含场次待公布，按下一场先后）和「已结束」（按最近一场由近及远，可折叠；没有待映影片时默认展开）。
+- 专题头图放在 `programmes/<专题id>.jpg`（建议 1860×660），在 `data/catalog.json` 的 `cover` 里填路径；小程序另放一份缩小图到 `miniprogram/images/brand/prog-<专题id>.jpg`，然后运行 `node tools/build-bundled.js` 和 `node tools/build-fallback.js`。

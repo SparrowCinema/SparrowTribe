@@ -17,3 +17,11 @@
 .empty { display: flex; flex-direction: column; gap: 8rpx; padding: 28rpx; border: 2rpx dashed var(--line); border-radius: 20rpx; margin-top: 16rpx; }
 .empty .eb { font-size: 28rpx; font-weight: 700; }
 .empty .es { font-size: 24rpx; color: var(--muted); }
+
+.gone-h { display: flex; align-items: baseline; gap: 14rpx; margin: 56rpx 0 18rpx; padding-top: 24rpx; border-top: 2rpx dashed var(--line); color: var(--muted); }
+.gone-t { font-size: 34rpx; font-weight: 900; }
+.gone-h .en { font-size: 20rpx; letter-spacing: 4rpx; }
+.gone-go { margin-left: auto; display: flex; align-items: center; gap: 8rpx; font-size: 22rpx; font-weight: 600; }
+.gone-ar { width: 12rpx; height: 12rpx; border-right: 3rpx solid currentColor; border-bottom: 3rpx solid currentColor; transform: rotate(45deg) translateY(-3rpx); transition: transform .2s; }
+.gone-ar.open { transform: rotate(-135deg) translateY(-3rpx); }
+.gone .gf { opacity: .78; }
