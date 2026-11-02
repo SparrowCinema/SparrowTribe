@@ -25,10 +25,10 @@
     <!-- 购票：醒目位置 -->
     <view wx:if="{{f.ticket}}" class="buy">
       <view class="buyt">
-        <text class="bk mono">TICKETS</text>
-        <text class="bh">扫码{{f.ticketLabel}}</text>
-        <text class="bs">长按小程序码，选择「识别小程序码」即可进入{{f.ticketLabel}}页面</text>
-        <text wx:for="{{shows}}" wx:key="key" class="bd mono">{{item.d}} {{item.wk}} {{item.t}} · {{item.hall}}</text>
+        <text class="bk mono">BOOK YOUR SEAT</text>
+        <text class="bh">银幕见</text>
+        <text class="bs">长按右侧小程序码，选择「识别小程序码」即可{{f.ticketLabel}}</text>
+        <view class="bx" hover-class="hv" bindtap="previewTicket">查看{{f.ticketLabel}}码 ↗</view>
       </view>
       <image class="qr" src="{{f.ticket}}" mode="aspectFit" show-menu-by-longpress />
     </view>
@@ -47,7 +47,8 @@
       <view class="td" style="background:{{item.tone.bg}};color:{{item.tone.ink}};border-right:2rpx solid {{item.tone.line}}"><text class="tm">{{item.m}}月</text><text class="tdd mono">{{item.dd}}</text><text class="tw">{{item.wk}}</text></view>
       <view class="tb">
         <view class="ttime mono"><text class="b">{{item.t}}</text> – {{item.end}}</view>
-        <text class="tv">{{item.venue}} · {{item.hall}}</text>
+        <text class="tv">{{item.venue}}</text>
+        <text class="thall">{{item.hall}}</text>
         <view class="tact">
           <view class="ta {{item.picked?'on':''}}" data-key="{{item.key}}" bindtap="toggle">{{item.picked?'✓ 已加入排片':'+ 加入排片'}}</view>
           <view class="ta ghost" data-key="{{item.key}}" bindtap="calendar">加入日历</view>
