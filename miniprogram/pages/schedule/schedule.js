@@ -40,7 +40,7 @@ Page({
   build() {
     const data = app.globalData.data, idx = U.index(data), picked = plan.get();
     const { pf, vf } = this.data;
-    const list = data.shows.filter(s => idx.F[s.id] && !U.ended(s, idx) && (pf === 'all' || idx.progOf(idx.F[s.id]).id === pf) && (vf === 'all' || s.v === vf));
+    const list = data.shows.filter(s => idx.F[s.id] && !U.ended(s, idx) && (pf === 'all' || U.progForShow(s, idx).id === pf) && (vf === 'all' || s.v === vf));
     // 首页顶部：今天我的排片中尚未散场的场次，按时间线排列
     const tk = new Date(), tkey = (tk.getMonth() + 1) + '/' + tk.getDate();
     // 今天还有没散场的就显示今天；今天都散场后顺延到之后最近一个有排片的日子（到了当天自动变回「今日」）
@@ -68,7 +68,7 @@ Page({
     let cols = [], ticks = [], H = 0, nowLine = null;
     this.ttCtx = null;
     if (dl.length) {
-      let S = Math.min(...dl.map(s => U.toMin(s.t))), E = Math.max(...dl.map(s => Math.max(U.toMin(s.t) + (idx.F[s.id].min || 120), (U.qaOf(idx.F[s.id]) || {}).end || 0)));
+      let S = Math.min(...dl.map(s => U.toMin(s.t))), E = Math.max(...dl.map(s => Math.max(U.toMin(s.t) + U.durationOf(s, idx), (U.qaOf(idx.F[s.id]) || {}).end || 0)));
       // 查看今天时，把当前时间所在的小时纳入时间轴，才能画出当前时间线
       const tn = new Date(), todayKey = (tn.getMonth() + 1) + '/' + tn.getDate(), isToday = todayKey === day, nowM = tn.getHours() * 60 + tn.getMinutes();
       if (isToday && nowM < S) S = nowM;
@@ -84,18 +84,18 @@ Page({
         cols.push({ key: v.id + h.id, vn: vShort(v), hn: hShort(h), qas, blocks: hs.map(s => {
           const vw = U.showView(s, idx, data, picked), st = U.toMin(s.t), qa = U.qaOf(idx.F[s.id]);
           if (qa) qas.push({ key: vw.key + '-qa', id: s.id, top: Math.round((qa.start - S) * K), h: Math.max(60, Math.round((qa.end - qa.start) * K) - 6), label: qa.label });
-          return Object.assign(vw, { top: Math.round((st - S) * K), h: Math.max(110, Math.round((vw.min || 120) * K) - 6) });
+          return Object.assign(vw, { top: Math.round((st - S) * K), h: Math.max(110, Math.round(U.durationOf(s, idx) * K) - 6) });
         }) });
       }));
     }
     // 专题筛选：已结束的专题不再列出（当前选中的除外），与网站一致
     const progs = data.programmes.map(p => {
       const info = U.progInfo(p, data, idx);
-      const fn = data.films.filter(f => idx.progOf(f).id === p.id).length;
+      const fn = data.films.filter(f => idx.progOf(f).id === p.id || (p.sections||{})[f.id]).length;
       return Object.assign({}, p, { n: info.shows.length, fn, status: info.status });
     }).filter(p => p.status !== 'ended' || p.id === pf);
     // 影院筛选：只列出当前专题里还有待放映场次的影院；只有一家时不显示
-    const upInProg = data.shows.filter(s => idx.F[s.id] && !U.ended(s, idx) && (pf === 'all' || idx.progOf(idx.F[s.id]).id === pf));
+    const upInProg = data.shows.filter(s => idx.F[s.id] && !U.ended(s, idx) && (pf === 'all' || U.progForShow(s, idx).id === pf));
     const vlist = data.venues.filter(v => upInProg.some(s => s.v === v.id) || v.id === vf);
     const venues = data.venues.map(v => {
       const n = data.shows.filter(s => s.v === v.id).length;

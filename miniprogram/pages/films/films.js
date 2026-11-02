@@ -12,7 +12,7 @@ Page({
     const fest = p => U.isFest(p) ? 0 : 1;
     let lastP = '';
     const list = data.films
-      .filter(f => (filt === 'all' || f.reg === filt) && (pf === 'all' || idx.progOf(f).id === pf))
+      .filter(f => (filt === 'all' || f.reg === filt) && (pf === 'all' || idx.progOf(f).id === pf || ((idx.PG[pf]||{}).sections||{})[f.id]))
       .sort((a, b) => fest(idx.progOf(a)) - fest(idx.progOf(b)) || data.programmes.indexOf(idx.progOf(a)) - data.programmes.indexOf(idx.progOf(b)) || U.filmOrder(data.shows)(a, b))
       .map(f => {
         const p = idx.progOf(f), nx = U.nextShowOf(f, data.shows);

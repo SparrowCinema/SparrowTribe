@@ -32,3 +32,5 @@
 .pst-live { background: rgba(47, 111, 108, .14); color: var(--teal); }
 .pst-soon { background: rgba(178, 106, 31, .16); color: var(--ochre); }
 .pst-ended { background: var(--chip); color: var(--muted); }
+
+.jumps{flex-wrap:wrap}
