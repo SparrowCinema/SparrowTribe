@@ -1,7 +1,7 @@
 /* Film-library membership. Shared by the website and mini-program. */
 (function(root){
  'use strict';
- function matches(f,query){const hay=[f.cn,f.cnZh,f.en,f.o,f.dir,f.dirO,f.c,(f.cast||[]).join(' '),f.version].filter(Boolean).join(' ').toLocaleLowerCase();return String(query||'').toLocaleLowerCase().split(/\s+/).filter(Boolean).every(w=>hay.includes(w));}
+ function matches(f,query){const hay=[f.cn,f.cnZh,f.cnDb,f.en,f.o,f.dir,f.dirO,f.c,(f.cast||[]).join(' '),f.version].filter(Boolean).join(' ').toLocaleLowerCase();return String(query||'').toLocaleLowerCase().split(/\s+/).filter(Boolean).every(w=>hay.includes(w));}
  function inProgramme(f,id,ctx){return id==='all'||(f.prog||ctx.programmeOf?.(f))===id||ctx.shows.some(s=>s.id===f.id&&ctx.showProgramme(s)===id);}
  function inCity(f,city,ctx){return !city||city==='all'||ctx.shows.some(s=>s.id===f.id&&ctx.cityOfShow&&ctx.cityOfShow(s)===city&&(ctx.programme==='all'||ctx.showProgramme(s)===ctx.programme));}
  const minutes=t=>{const m=/^(\d{1,2}):(\d{2})$/.exec(String(t||''));return m?+m[1]*60+(+m[2]):NaN;};
