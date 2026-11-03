@@ -39,7 +39,15 @@ Page({
     const all = data.films.filter(x => !x.ev), i = all.indexOf(f);
     const nav = (f.ev ? [null, null] : [all[i - 1], all[i + 1]]).map(x => x ? { id: x.id, cn: x.cn, poster: U.poster(x) } : null);
     const para = s => String(s || '').split(/\n{2,}/).filter(Boolean);
+    // 购票码：影片自带 + 所属各专题的购票码（跨影展影片可有多张，按专题标注）
+    const SITE = 'https://sparrowcinema.github.io/SparrowTribe/', tks = [], seenTk = {};
+    const hintOf = (pl, lb, h) => t([pl ? pl + '扫码' + (lb || '购票') : '', (h || '').replace(/^淘票票扫码购票\s*[·・]?\s*/, '')].filter(Boolean).join(' · '));
+    const addTk = (url, pl, lb, h, p) => { if (!url || seenTk[url]) return; seenTk[url] = 1; tks.push({ url, hint: hintOf(pl, lb, h), label: t(lb || '购票'), prog: p ? p.name : '' }); };
+    addTk(U.ticket(f), f.ticketPlatform, f.ticketLabel, f.ticketHint, idx.progOf(f));
+    if (!f.ev) idx.progsOf(f).forEach(x => { if (x.p.ticket) addTk(/^https?:|^\//.test(x.p.ticket) ? x.p.ticket : SITE + x.p.ticket, x.p.ticketPlatform, '', x.p.ticketHint, x.p); });
+    if (tks.length < 2) tks.forEach(x => { x.prog = ''; });
     this.setData({
+      tickets: tks,
       f: {
         id: f.id, ev: !!f.ev, cn: f.cn, cnDb: (!I.isEn() && f.cnDb && f.cnDb !== f.cn) ? f.cnDb : '',warnings:f.warnings||[],contentNote:f.contentNote||t('具体内容尚待核实，不代表没有敏感内容或适合所有年龄。'),sensory:f.contentReview?.sensory==='flashing', en: f.en || f.o, minText: t(f.min ? f.min + ' 分钟' : '片长待定'), release: t(f.release || ''), o: f.o !== f.cn && f.o !== (f.en || f.o) ? f.o : '', y: f.y, c: t(f.c), min: f.min, lang: t(f.language),
         version: t(f.version || ''), genre: (f.genre || []).map(t), dir: f.dir, dirO: f.dirO, dirLife: f.dirLife,
@@ -98,7 +106,7 @@ Page({
       fail: (err) => { if (!/cancel/.test(err.errMsg || '')) wx.showToast({ title: t('未能加入日历'), icon: 'none' }); }
     });
   },
-  previewTicket() { const u = this.data.f && this.data.f.ticket; if (u) wx.previewImage({ urls: [u], current: u }); },
+  previewTicket(e) { const k = (e && e.currentTarget.dataset.k) || 0, x = (this.data.tickets || [])[k], u = x ? x.url : (this.data.f && this.data.f.ticket); if (u) wx.previewImage({ urls: [u], current: u }); },
   more() { this.setData({ open: !this.data.open }); },
   openFilm(e) { wx.redirectTo({ url: '/pages/film/film?id=' + e.currentTarget.dataset.id }); },
   openProg(e) { wx.navigateTo({ url: '/pages/programme/programme?id=' + ((e && e.currentTarget.dataset.id) || this.data.f.prog.id) }); },

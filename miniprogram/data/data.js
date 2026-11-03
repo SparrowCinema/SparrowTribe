@@ -21993,6 +21993,8 @@ module.exports = {
    "cardCover": "https://sparrowcinema.github.io/SparrowTribe/programmes/golden-rooster-2026-card.jpg",
    "blurb": "11月6日至29日，厦门。按金鸡影展官方单元浏览片单，查看放映时间并加入个人排片。购票请使用淘票票，购票城市选择厦门。",
    "ticket": "tickets/golden-rooster-2026.jpg",
+   "ticketPlatform": "淘票票",
+   "ticketHint": "购票城市选择厦门",
    "sections": {
     "gr26-001": "此刻：国际新片展映",
     "gr26-002": "国产新片展映",
@@ -22107,6 +22109,9 @@ module.exports = {
    "coverPos": "center 4%",
    "blurb": "11月6日至22日，台北。电子手册按金马影展官方单元浏览片单、主创与荣誉，查看信义威秀与 MUVIE TITAN 的完整场次，并附大师讲堂、导演论导演、电影沙龙、论坛等活动。购票请使用拓元售票系统。",
    "ticketUrl": "https://tghff.tixcraft.com",
+   "ticket": "tickets/golden-horse-2026.png",
+   "ticketPlatform": "拓元",
+   "ticketHint": "台北金马影展官方售票",
    "ticketLabel": "拓元购票",
    "sections": {
     "gh63-001": "开幕片",
