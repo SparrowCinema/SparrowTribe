@@ -8379,6 +8379,11 @@
   "搜索活动分类": "Search event categories",
   "没有匹配的分类": "No matching categories",
   "项活动": "events",
-  "海报说明": "Artwork"
+  "海报说明": "Artwork",
+  "观影护照小程序": "Passport mini programme",
+  "微信里更适配 · 可同步个人云档案": "Better fit inside WeChat · syncs your cloud profile",
+  "观影护照微信小程序码": "Mini programme code for the Film Passport",
+  "在微信里长按识别小程序码，或用微信扫一扫打开。": "In WeChat, long-press the code or use Scan to open it.",
+  "微信里使用更适配，也可以同步个人云档案。小程序内的排片更新比网页稍慢，以网页为准。": "It fits WeChat better and can sync your cloud profile. Schedule updates arrive in the mini programme slightly later than on the web; the web version is the reference."
  }
 }
