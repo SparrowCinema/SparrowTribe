@@ -684,7 +684,7 @@ html.sheet-open,html.sheet-open body{overflow:hidden}
 .pg-head h1{font:900 36px/1.15 var(--f-display);margin:6px 0 4px}
 .pg-sub{margin:0;color:var(--muted);font-size:14px}
 
-.ev-wrap{margin:0 0 16px;border:1px solid var(--line,#ddd);border-radius:14px;padding:0 14px}.ev-wrap summary{display:flex;justify-content:space-between;align-items:center;padding:14px 0;cursor:pointer;font-size:16px}.ev-wrap summary small{opacity:.6}
+.ev-entry{display:flex;align-items:center;gap:12px;margin:0 0 16px;padding:14px 16px;border:1px solid var(--line,#ddd);border-radius:14px;color:inherit;text-decoration:none}.ev-entry span{flex:1}.ev-entry b{display:block;font-size:16px}.ev-entry small{opacity:.65;font-size:13px}.ev-entry em{font-style:normal;opacity:.6}.ev-entry svg{width:18px;height:18px;opacity:.5}.ev-page .section-tabs{margin:12px 0 8px}.ev-wrap{margin:0 0 16px;border:1px solid var(--line,#ddd);border-radius:14px;padding:0 14px}.ev-wrap summary{display:flex;justify-content:space-between;align-items:center;padding:14px 0;cursor:pointer;font-size:16px}.ev-wrap summary small{opacity:.6}
 .ev-h{font-size:15px;margin:14px 0 8px;opacity:.8}.ev-card{border-top:1px solid var(--line,#ddd);padding:12px 0}.ev-card header{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.ev-card p{font-size:14px;line-height:1.75;margin:6px 0}.ev-card dl{display:grid;grid-template-columns:5em 1fr;gap:4px 10px;font-size:13.5px;margin:6px 0 0}.ev-card dt{opacity:.6}.ev-card dd{margin:0;line-height:1.6}
 .ev-tag{font-size:11px;padding:1px 7px;border-radius:99px;background:rgba(200,160,60,.2)}.ev-end{background:rgba(120,120,120,.2)}.ev-done{opacity:.65}
 .fd-part{border-top:1px solid var(--line,#ddd);padding:10px 0}.fd-part small{display:block;opacity:.7;margin-top:2px}.fd-part p{font-size:14px;line-height:1.75;margin:6px 0}.pg-ticketlink{margin:0 0 14px}
@@ -1621,19 +1621,36 @@ function progFilmsHTML(pid,films){
 function evText(p,e){const o=LANG==="en"&&p.evEn&&p.evEn[e.id];return o?{title:o.title||e.title,desc:o.desc||e.desc,lines:o.lines||e.lines}:{title:e.title,desc:e.desc,lines:e.lines};}
 function evEnded(e){const d=(e.dates||[]).slice().sort().pop();return !!d&&d<todayISO();}
 function todayISO(){const n=new Date(now());return n.getFullYear()+"-"+String(n.getMonth()+1).padStart(2,"0")+"-"+String(n.getDate()).padStart(2,"0");}
-function eventsHTML(p){
+function eventsBodyHTML(p,kind){
   if(!p.events||!p.events.length)return "";
   const ks=p.eventKinds||[];
   const kn=k=>{const o=LANG==="en"&&p.kindEn&&p.kindEn[k.id];return o||k.name;};
-  const body=ks.map(k=>{const es=p.events.filter(e=>e.kind===k.id).sort((a,b)=>String((a.dates||[])[0]||"9").localeCompare(String((b.dates||[])[0]||"9")));if(!es.length)return "";
+  const body=ks.filter(k=>!kind||k.id===kind).map(k=>{const es=p.events.filter(e=>e.kind===k.id).sort((a,b)=>String((a.dates||[])[0]||"9").localeCompare(String((b.dates||[])[0]||"9")));if(!es.length)return "";
     return `<section class="ev-group"><h3 class="ev-h">${esc(kn(k))}</h3>${es.map(e=>{const t=evText(p,e);return `<article class="ev-card${evEnded(e)?" ev-done":""}"><header><b>${esc(t.title)}</b>${e.free?`<span class="ev-tag">${esc(tr("免费"))}</span>`:""}${evEnded(e)?`<span class="ev-tag ev-end">${esc(tr("已结束"))}</span>`:""}</header>${t.desc?`<p>${esc(t.desc)}</p>`:""}<dl>${(t.lines||[]).map(l=>`<dt>${esc(l[0])}</dt><dd>${esc(l[1])}</dd>`).join("")}</dl></article>`;}).join("")}</section>`;}).join("");
-  return `<details class="ev-wrap" id="prog-events"><summary><b>${esc(tr("活动与论坛"))}</b><small>${p.events.length}</small></summary>${body}</details>`;
+  return body;
+}
+function eventsHTML(p){
+  if(!p.events||!p.events.length)return "";
+  return `<a class="ev-entry" href="#events-${esc(p.id)}"><span><b>${esc(tr("活动与论坛"))}</b><small>${esc(tr("大师讲堂、导演论导演、沙龙、论坛等"))}</small></span><em>${p.events.length}</em><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg></a>`;
 }
 function partsHTML(f){
   if(!f.parts||!f.parts.length)return "";
   const en=LANG==="en";
   return `<section class="fd-block"><h3 class="fd-h">${esc(tr("收录短片"))}</h3>${f.parts.map(m=>`<div class="fd-part"><b>${esc(en?m.en:m.cn)}</b><small>${esc(en?m.cn:m.en)}${m.y?" · "+m.y:""}${m.min?" · "+m.min+(en?" min":"分钟"):""}${m.c?" · "+esc(m.c):""}</small>${m.dir?`<small>${esc(tr("导演"))}：${esc(en&&m.dirO?m.dirO:m.dir)}</small>`:""}${(en?m.synEn:m.syn)?`<p>${esc(en?m.synEn:m.syn)}</p>`:""}${(m.honors||[]).length?`<ul class="fd-honors">${m.honors.map(honorHTML).join("")}</ul>`:""}</div>`).join("")}</section>`;
 }
+
+let evKind="";
+function eventsPage(pid){
+  const p=PG[pid]; if(!p||!p.events){go("programmes");return;}
+  if(evProg!==pid){evKind="";evProg=pid;}
+  const ks=(p.eventKinds||[]).filter(k=>p.events.some(e=>e.kind===k.id)),kn=k=>(LANG==="en"&&p.kindEn&&p.kindEn[k.id])||k.name;
+  topEl.innerHTML=`<div class="row"><button class="back" data-back><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m15 6-6 6 6 6"/></svg>${esc(tr("返回"))}</button><span class="sp"></span><span class="pill">${esc(p.name)}</span></div>`;
+  main.innerHTML=`<section class="view gut ev-page"><h2 class="sec">${esc(tr("活动与论坛"))}</h2><p class="sub">${esc(p.name)} · ${esc(p.period)}</p>
+  <div class="section-tabs" aria-label="${esc(tr("活动分类"))}">${[{id:"",name:tr("全部活动")},...ks.map(k=>({id:k.id,name:kn(k)}))].map(k=>`<button class="${evKind===k.id?"primary-button":"secondary-button"}" data-evkind="${esc(k.id)}" aria-pressed="${evKind===k.id}">${esc(k.name)}</button>`).join("")}</div>
+  ${eventsBodyHTML(p,evKind)}</section>`;
+}
+let evProg="";
+document.addEventListener("click",e=>{const b=e.target.closest("[data-evkind]");if(!b)return;evKind=b.dataset.evkind;const y=window.scrollY;route();window.scrollTo(0,y);});
 function progPage(pid){
   if(sectionProgramme!==pid){sectionFilter="";sectionProgramme=pid;}
   const p=PG[pid]; if(!p){ go("schedule"); return; }
@@ -2137,11 +2154,12 @@ function route(){
   if(changing){if(capturedRoute!==activeRoute)rememberView(activeRoute);capturedRoute="";resetFilmSwipe();if(h.startsWith("film-")&&activeRoute&&!activeRoute.startsWith("film-"))filmReturn=activeRoute;}
   const returning=changing&&activeRoute.startsWith("film-")&&h===filmReturn;
   activeRoute=h;
-  const tab = ["plan","export","about","install"].includes(h)||h.startsWith("share=") ? "my" : h==="gantt" ? "schedule" : h.startsWith("prog-") ? "programmes" : h.startsWith("film-") ? null : h;
+  const tab = ["plan","export","about","install"].includes(h)||h.startsWith("share=") ? "my" : h==="gantt" ? "schedule" : h.startsWith("prog-")||h.startsWith("events-") ? "programmes" : h.startsWith("film-") ? null : h;
   document.querySelectorAll(".tab").forEach(t=>t.setAttribute("aria-current", t.dataset.tab===(tab||lastList)?"page":"false"));
   if(tab){ lastList = tab; topEl.innerHTML = brandBar(); }
   if(h.startsWith("film-")) detail(h.slice(5));
   else if(h.startsWith("prog-")) progPage(h.slice(5));
+  else if(h.startsWith("events-")) eventsPage(h.slice(7));
   else if(h==="films") films();
   else if(h==="programmes") programmesPage();
   else if(h==="my"||h==="about") myPage();
