@@ -78,6 +78,7 @@
       </view>
     </view>
 
+    <view class="sec-h">{{L.t(i,'内容提示')}}</view><view class="content-note"><view class="content-tags"><text wx:for="{{f.warnings}}" wx:key="*this">{{item}}</text></view><text>{{f.contentNote}}</text><text class="small">{{f.sensory?L.t(i,'已查到闪烁影像提示；光敏观众请谨慎选择。'):L.t(i,'闪烁与突发音量尚未核实；有需要请提前询问影院。')}}</text></view>
     <view class="sec-h">{{L.t(i,'映后交流')}} <text class="muted small">POST-SCREENING</text></view>
     <view class="qapanel {{qa ? '' : 'qa-empty'}}">
       <view class="qap-h"><text class="qap-l">✦ {{qa ? L.t(i,'映后交流 · DIRECTOR Q&A') : L.t(i,'映后信息')}}</text><text wx:if="{{qa}}" class="qap-t mono">{{qa.label}}</text></view>

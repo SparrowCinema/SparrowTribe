@@ -21,6 +21,11 @@ jobs:
       - uses: actions/configure-pages@v5
         with:
           enablement: true
+      - name: Validate film guidance and personal archive compatibility
+        run: |
+          node tools/check-content.js
+          node tools/check-library.js
+          node tools/check-companion.js
       - name: Build share pages and calendar feeds
         run: node tools/build-extras.js
       - uses: actions/upload-pages-artifact@v3

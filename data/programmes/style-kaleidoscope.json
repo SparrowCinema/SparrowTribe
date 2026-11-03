@@ -62,7 +62,18 @@
       "盖章"
      ]
     }
-   ]
+   ],
+   "warnings": [
+    "衰老与死亡焦虑",
+    "家庭疏离"
+   ],
+   "editorial": "适合对回忆、梦境和衰老感兴趣的观众。旅途中与旧地的重逢比抵达终点更重要，愿意留意人物的沉默会更有收获。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及衰老与死亡焦虑、家庭疏离。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "dogville",
@@ -125,7 +136,24 @@
       "盖章"
      ]
     }
-   ]
+   ],
+   "warnings": [
+    "性暴力与胁迫",
+    "剥削与囚禁",
+    "杀戮"
+   ],
+   "editorial": "适合愿意面对权力与群体伤害的观众。极简舞台把注意力集中到人物行为，内容沉重，建议给观后消化留出时间。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及性暴力与胁迫、剥削与囚禁、杀戮。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "mpa": {
+    "rating": "R",
+    "edition": "US catalogue release",
+    "checked": "2026-11-03"
+   }
   },
   {
    "id": "sirat",
@@ -198,7 +226,24 @@
       "盖章"
      ]
     }
-   ]
+   ],
+   "warnings": [
+    "亲人失踪",
+    "生存危险",
+    "家庭焦虑"
+   ],
+   "editorial": "适合接受不安旅途与沙漠空间的观众。不要只按寻人故事期待情节回报；派对与边境环境也是理解人物处境的入口。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及亲人失踪、生存危险、家庭焦虑。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "mpa": {
+    "rating": "R",
+    "edition": "US Blu-ray release",
+    "checked": "2026-11-03"
+   }
   },
   {
    "id": "swordsman",
@@ -276,7 +321,18 @@
       "盖章"
      ]
     }
-   ]
+   ],
+   "warnings": [
+    "武打与兵器伤害",
+    "权力迫害"
+   ],
+   "editorial": "适合想从音乐、人物与江湖关系进入武侠的观众。追逐秘笈只是入口，人物如何在权力之外寻找相处方式同样值得看。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及武打与兵器伤害、权力迫害。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "swordsman-2",
@@ -346,7 +402,18 @@
       "盖章"
      ]
     }
-   ]
+   ],
+   "warnings": [
+    "武打与兵器伤害",
+    "背叛与迫害"
+   ],
+   "editorial": "适合喜欢武侠表演和复杂人物关系的观众。4K修复场值得留意服装、色彩与动作细节，人物吸引力也来自身份和立场的不确定。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及武打与兵器伤害、背叛与迫害。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "leningrad-cowboys",
@@ -405,7 +472,18 @@
       "盖章"
      ]
     }
-   ]
+   ],
+   "warnings": [
+    "死亡与遗体情节",
+    "饮酒"
+   ],
+   "editorial": "适合喜欢冷面幽默与公路音乐的观众。乐队的造型和一次次碰壁可以慢慢品，荒诞里的失落感也值得保留。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及死亡与遗体情节、饮酒。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "turin-horse",
@@ -464,7 +542,19 @@
       "盖章"
      ]
     }
-   ]
+   ],
+   "warnings": [
+    "动物受苦议题",
+    "生存困境",
+    "绝望与衰败"
+   ],
+   "editorial": "适合能投入缓慢重复与长时间凝视的观众。日常动作的变化是重要线索，疲惫赶场时可能较难进入，建议留出安静的观影状态。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及动物受苦议题、生存困境、绝望与衰败。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "a-better-tomorrow",
@@ -542,7 +632,18 @@
       "盖章"
      ]
     }
-   ]
+   ],
+   "warnings": [
+    "枪战与血腥伤害",
+    "亲人死亡"
+   ],
+   "editorial": "适合关注香港动作片表演和兄弟关系的观众。重看时可把注意力从名场面移向角色的愧疚、信任与尊严。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及枪战与血腥伤害、亲人死亡。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "long-live-the-missus",
@@ -603,7 +704,19 @@
       "盖章"
      ]
     }
-   ]
+   ],
+   "warnings": [
+    "婚外关系",
+    "家庭争执",
+    "性别偏见"
+   ],
+   "editorial": "适合喜欢家庭喜剧和语言机锋的观众。可以观察笑料如何依赖家庭中的性别分工，同时保留对时代观念的距离。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及婚外关系、家庭争执、性别偏见。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "bullets-over-broadway",
@@ -670,7 +783,18 @@
       "盖章"
      ]
     }
-   ]
+   ],
+   "warnings": [
+    "黑帮暴力",
+    "婚外关系"
+   ],
+   "editorial": "适合喜欢戏剧后台与黑色喜剧的观众。把创作理想与现实交易放在一起看，留意谁真正拥有修改剧本的权力。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及黑帮暴力、婚外关系。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "green-green-grass",
@@ -731,7 +855,15 @@
       "盖章"
      ]
     }
-   ]
+   ],
+   "warnings": [],
+   "editorial": "适合喜欢乡村日常和早期侯孝贤的观众。教师、孩子与河流共同构成观察入口，别只把乡村当作浪漫背景。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "已查看现有剧情资料，尚未确认需要特别标注的敏感内容。这不代表适合所有年龄，也不等同于完整内容审查。"
   },
   {
    "id": "blood-simple",
@@ -797,7 +929,23 @@
       "盖章"
      ]
     }
-   ]
+   ],
+   "warnings": [
+    "谋杀与血腥伤害",
+    "婚外关系"
+   ],
+   "editorial": "适合喜欢误会层层累积的犯罪片观众。留意每个人知道多少、误认了什么，紧张感也来自空间里不起眼的细节。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及谋杀与血腥伤害、婚外关系。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "mpa": {
+    "rating": "R",
+    "edition": "US release",
+    "checked": "2026-11-03"
+   }
   },
   {
    "id": "spring-in-a-small-town",
@@ -856,7 +1004,18 @@
       "盖章"
      ]
     }
-   ]
+   ],
+   "warnings": [
+    "疾病与照护",
+    "婚姻压抑"
+   ],
+   "editorial": "适合愿意在克制对话和日常动作里看感情的观众。战后废墟与庭院不是装饰，人物难以说出口的部分尤其值得留意。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及疾病与照护、婚姻压抑。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "mon-oncle",
@@ -917,7 +1076,15 @@
       "盖章"
      ]
     }
-   ]
+   ],
+   "warnings": [],
+   "editorial": "适合喜欢视觉喜剧与生活空间设计的观众。可暂时放下追情节的习惯，看看房子、机器和声音怎样让日常变得好笑。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "已查看现有剧情资料，尚未确认需要特别标注的敏感内容。这不代表适合所有年龄，也不等同于完整内容审查。"
   },
   {
    "id": "where-is-the-friends-house",
@@ -983,7 +1150,18 @@
       "盖章"
      ]
     }
-   ]
+   ],
+   "warnings": [
+    "儿童受责备",
+    "被学校排斥的焦虑"
+   ],
+   "editorial": "适合从儿童尺度重新看成人规则的观众。一本作业本带来的紧迫感就是入口，沿途那些被忽略的求助值得耐心听。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及儿童受责备、被学校排斥的焦虑。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "the-sacrifice",
@@ -1046,7 +1224,19 @@
       "盖章"
      ]
     }
-   ]
+   ],
+   "warnings": [
+    "核战争恐惧",
+    "精神危机",
+    "家庭焦虑"
+   ],
+   "editorial": "适合愿意进入信仰与责任追问的观众。长镜头中的空间、等待和仪式感很重要，建议避免把它夹在特别匆忙的两场之间。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及核战争恐惧、精神危机、家庭焦虑。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "faces-places",
@@ -1106,7 +1296,18 @@
       "盖章"
      ]
     }
-   ]
+   ],
+   "warnings": [
+    "死亡与哀伤",
+    "衰老议题"
+   ],
+   "editorial": "适合喜欢人物相遇与公共艺术的观众。巨幅肖像的制作过程之外，普通人如何回应被看见同样动人，可与自己的城市经验对照。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及死亡与哀伤、衰老议题。具体画面与表现强度尚未核实，请结合个人情况选择。"
   }
  ],
  "shows": [

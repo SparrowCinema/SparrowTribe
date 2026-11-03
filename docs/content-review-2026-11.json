@@ -1,0 +1,1024 @@
+{
+ "wild-strawberries": {
+  "title": "野草莓",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/style-kaleidoscope.json",
+  "synopsisSha256": "fdf3315f3d7f9c23b557f2c1cefa17ce65f065cdc21981d65d9870f13cec7699",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "dogville": {
+  "title": "狗镇",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/style-kaleidoscope.json",
+  "synopsisSha256": "9bd09a5efda157d154d39c35ee7b97bb93a0e2c99ad4bc2bab17bbd8937a794c",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below.",
+  "mpa": {
+   "rating": "R",
+   "source": "https://www.netflix.com/title/60034546",
+   "edition": "US catalogue release"
+  }
+ },
+ "sirat": {
+  "title": "接近终点",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/style-kaleidoscope.json",
+  "synopsisSha256": "3d4c5736e76949d187c29504d507aee5ce08565e783c6445144f890e991d04cb",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below.",
+  "mpa": {
+   "rating": "R",
+   "source": "https://www.neonrated.com/product/sirat-blu-ray",
+   "edition": "US Blu-ray release"
+  }
+ },
+ "swordsman": {
+  "title": "笑傲江湖",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/style-kaleidoscope.json",
+  "synopsisSha256": "8838e1530947f30fd65ba78d792e7cbdea8c7248ae3956033db60f499a818d57",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "swordsman-2": {
+  "title": "笑傲江湖2：东方不败",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/style-kaleidoscope.json",
+  "synopsisSha256": "d62a8b8444e3d673f7744ae7a9609657a0d9f514a64fd4511fc72b71480452d3",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "leningrad-cowboys": {
+  "title": "列宁格勒牛仔征美记",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/style-kaleidoscope.json",
+  "synopsisSha256": "bf4c4502986bbf5a135c51f54bb91795011fc8e23f35171a98911f28b0ca1d3d",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "turin-horse": {
+  "title": "都灵之马",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/style-kaleidoscope.json",
+  "synopsisSha256": "0f0ce2be6f55dc686d1ef8bbf50903326f88b49c25b1fc6554ce674acc4ebd72",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "a-better-tomorrow": {
+  "title": "英雄本色",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/style-kaleidoscope.json",
+  "synopsisSha256": "47c1f1e5dfd7679ab22a62883ff9661394f31163e72848706486bbd0c75a4e23",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "long-live-the-missus": {
+  "title": "太太万岁",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/style-kaleidoscope.json",
+  "synopsisSha256": "17f31aab6b179d5b9229e65b6c36de0a0593da874bc4bb35ba6d036844df6784",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "bullets-over-broadway": {
+  "title": "子弹横飞百老汇",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/style-kaleidoscope.json",
+  "synopsisSha256": "6b839eacfec3ecda4d69f8026496a12f037adef06d5ea37541a2abaf8f4d69e9",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "green-green-grass": {
+  "title": "在那河畔青草青",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/style-kaleidoscope.json",
+  "synopsisSha256": "b61168781036d0d52a6a0fb4dfb3565fa2e4f47fd5baecc9891e4e49b64c40e9",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "blood-simple": {
+  "title": "血迷宫",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/style-kaleidoscope.json",
+  "synopsisSha256": "6aff03d4520d944815402b02e2f5aed64f92feb258c1ad89932fbcaa58be4817",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below.",
+  "mpa": {
+   "rating": "R",
+   "source": "https://silver.afi.com/movies/detail/0100005180/",
+   "edition": "US release"
+  }
+ },
+ "spring-in-a-small-town": {
+  "title": "小城之春",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/style-kaleidoscope.json",
+  "synopsisSha256": "ece53223124d2d86dabce97bfeed654c2131ec0e45ca131996be09d8d9a6b963",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "mon-oncle": {
+  "title": "我的舅舅",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/style-kaleidoscope.json",
+  "synopsisSha256": "244dfd3a9b5ff2f624c3f25d0921e508c784670580046406f2483920e7eec4d8",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "where-is-the-friends-house": {
+  "title": "何处是我朋友的家",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/style-kaleidoscope.json",
+  "synopsisSha256": "88c4331bafb935dd9167af00f5b6b4a43bf63aed7998ba363a71fd386e85a83f",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "the-sacrifice": {
+  "title": "牺牲",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/style-kaleidoscope.json",
+  "synopsisSha256": "b80cacf2b6baed7847ee95631b7357b8917baa285de9e8336df8ff073d19708e",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "faces-places": {
+  "title": "脸庞，村庄",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/style-kaleidoscope.json",
+  "synopsisSha256": "9a112827ae227480c3c03ec54e4e23b8708aec2bbc45af49dcc0f1b177dae7cc",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "john-wick": {
+  "title": "疾速追杀",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/cinema-2026.json",
+  "synopsisSha256": "3adb89b693f746de41637656b7379add364b85989ec2d87c1a9b93d9a97ce53f",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below.",
+  "advisory": "https://www.alberta.ca/search-movie-ratings.aspx?fid=15565",
+  "versionNote": "Advisory for the classified overseas edition, not an asserted classification of the festival print."
+ },
+ "happy-birthday": {
+  "title": "生日快乐",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/cinema-2026.json",
+  "synopsisSha256": "90ef920e4a03643dfcb880ea5a9b37424c00dff07ee73a63d1b8d6562c73482e",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "linka-linka": {
+  "title": "一个夜晚与三个夏天",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "0ef3b00f2661acd7c6f4d02e74b582d50bb464999549f5c1c514ea780fd37055",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "kill-bill-whole-bloody-affair": {
+  "title": "杀死比尔：血色全传",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/cinema-2026.json",
+  "synopsisSha256": "e130714b9a1f311787b0ff47a0f76baff1fc641ca614c05be8d311aa41d7858b",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below.",
+  "advisory": "https://www.bbfc.co.uk/release/kill-bill-the-whole-bloody-affair-q29sbgvjdglvbjpwwc0xmdmzodiz",
+  "versionNote": "Advisory for the classified overseas edition, not an asserted classification of the festival print.",
+  "mpaResearch": {
+   "source": "https://lionsgatelimited.com/products/kill-bill-the-whole-bloody-affair-4k-collector-s-edition",
+   "finding": "US combined edition is Unrated; do not copy the individual volumes' R rating. Badge stays unknown because it is not one of the five MPA classifications."
+  }
+ },
+ "the-odyssey": {
+  "title": "奥德赛",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/cinema-2026.json",
+  "synopsisSha256": "68306540baacd9bd8f0be019bffdea367148638c7d4a0a0f3abcc2161d492d97",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "dune-part-three": {
+  "title": "沙丘3",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/cinema-2026.json",
+  "synopsisSha256": "0b809d9bd6dec68fb031bc7b0474f7f70361f89f254966f79cb09a5a02efde93",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "avengers-doomsday": {
+  "title": "复仇者联盟5",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/cinema-2026.json",
+  "synopsisSha256": "a3caaa220532ea3d9e286b1063f1ca18e7051b16bcbbe37e093b5ee315c98b7e",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "we-live-in-time": {
+  "title": "时间里的爱人",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/cinema-2026.json",
+  "synopsisSha256": "735f4b274aa05dbc4afe868b8535303d9037048f3cc07e41bac54f176a5279b6",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below.",
+  "mpa": {
+   "rating": "R",
+   "source": "https://shop.a24films.com/products/we-live-in-time-blu-ray",
+   "edition": "US Blu-ray release"
+  }
+ },
+ "for-better-or-worse": {
+  "title": "夫妻一场",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/cinema-2026.json",
+  "synopsisSha256": "2d5e44c66eff34219590c1966acd6d1d9ef069d71ea4b8d599f2121ec6a6aa63",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "resident-evil": {
+  "title": "生化危机：爆发夜",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/cinema-2026.json",
+  "synopsisSha256": "eb4ae4ff06c18974920fb7258bf22969a134fe7c68fe21c63ac0e7fbba3b5718",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "no-mobile": {
+  "title": "关机",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/sparrow-tribe-space.json",
+  "synopsisSha256": "fb0982206918fbd3bd1af3becc4968320c5b59e4c1d0283904960d31b3a160e1",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-001": {
+  "title": "神之子",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "56cc29621524579339bae5baf1f003d0fdea70daccd29fde2beec2d433615598",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-002": {
+  "title": "明天，会更好",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "c2fda24b4d9090723440a20ad4c2aa3722b51ca632c914efb9153a01c8fcc23b",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-003": {
+  "title": "当瓶子转动时",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "438a55369f75b5658dce95d3c3f5c5453b76aa4c01afb1c193448caebc57377d",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-005": {
+  "title": "驴公主",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "8a311043b66516efa511dcb9044cd42bd453186de39d54fb5288a3b267b0928d",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-006": {
+  "title": "夏日红炎",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "93799736d8cb5e5696777f4d84949d00b1da9628684846e429b09d456205e3fa",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-007": {
+  "title": "女仆日记",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "de3480e7701fbf9d5f16208d08a33eec5e4386e85783bca61c2173404ce8deea",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-008": {
+  "title": "子",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "69c1b290f1a754ae1814d2704b310504024fa42bb0835cd2740ab72476f21fd2",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-009": {
+  "title": "钢铁男孩",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "92ba6329c1c37add24340f45ce2091d2119d58836bd72dedd1f6b0e7ea486b81",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-010": {
+  "title": "明月共此时",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "251b690dfcec23717686063f43a7dde5d89a7cb5dc29a78e4c5b513ccb2b4f1e",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-011": {
+  "title": "泡泡糖女孩",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "f563816efb23afb4ecb87e59f7c62261898a3037d00ad0a53bbffaf1a680ccc3",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-012": {
+  "title": "消失的金凤娜",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "0df53d1d7cfe684072ccbb364f966224ea9ccb829e28c958a16e990c037fb0b4",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-013": {
+  "title": "发现之旅",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "4bd6fefc9d575e39a8ca179a1340268d969742994b7985014e27fafd4a59c9b6",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-014": {
+  "title": "向莲花镇出发",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "bcc11515e70b2a61d212e85a91f112671001fcee8c8e0e3519da3ec77df2431e",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-015": {
+  "title": "故土",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "76ea8ee86ee33713414ff2f03c77ed3c4090bbc41ad59c99aaacf52b786f484a",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-016": {
+  "title": "七分熟",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "85ca720b249ad2c14bedbc226b032665b27e720f01e3b18926a1d452e92e5f14",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-017": {
+  "title": "逆光绽放",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "942cd0b162454c1170a3b49b483b40a56c83ded7babe1c846d32d8534c7eafda",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-018": {
+  "title": "寒夜灯柱",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "cf3fb4504050e1fe9095e475b8e652d93b74fad2c9f3227760729b456b4a93eb",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-019": {
+  "title": "澳门大赛车",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "6e1c2df6617cb8b9c36880e899443306c92df4cca7955ee8c46ce9a846dd43b1",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-020": {
+  "title": "最佳状态",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "e96bced80c0c1ac3cff7ad26c4e611de94d928f23c383bdea6cce3f431cea5b8",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-021": {
+  "title": "无名女孩",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "c1206843ab5c7658b0892a5fe3137fe04048382288e1c55dfd5237a75e2de40e",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-022": {
+  "title": "阿尔及利卡之路",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "ff22752980a9a03ff9b4676a512896130d44cc2f10cb50b874c2676e1cebb6f3",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-023": {
+  "title": "悲惨世界",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "89a36f8b53cdd9ac11c7791bc1e85cc69b524f1c33bc8e3bd15784e9cbbecee1",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-024": {
+  "title": "爱杀",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "3efba1a4ac27a463e071da9d56a29c43668a01fbbc0620351306b7a95c502829",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-025": {
+  "title": "每时每刻",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "65d976e54467047b95340a61a7548f052c62501267f14cd48bf388d3041f59ac",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-026": {
+  "title": "语文的滋味",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "e974522e1c23a348dc64fe2feb54001ea3816bb686130fa503be3e1d1b297179",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-027": {
+  "title": "斯琴图的秋天",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "ad0d38bb50095f76fc25c5620ba9fdc85fe71f058762697dbc5c28e5f4f9f1ac",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-028": {
+  "title": "河的女儿",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "1b2129148d4c51ed6664707fcd0049b24c78a096a985198b914a69e4f4ed2885",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-029": {
+  "title": "我阿爹想旅行",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "ee9ec4134fa5153717b3e98230555fce271fffa878ffaf8b756ab6a5a199e0f5",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-030": {
+  "title": "像我这样的爱情",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "1f2d68ee6eea66215603a56640bf5cd69673aca59063f1db48d5218989643480",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-031": {
+  "title": "大西洋",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "83667820a0e6f2291b36acf26a1727c9bca84dd8065c691a4c96eb03dcb00641",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-032": {
+  "title": "深度安静",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "dd0123aa576ee45fa5fe199fbfffa84b2989f1606db414e8502896e4dec62873",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-033": {
+  "title": "人生海海",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "35761590d6f1d47286fbee505495a73708fedaeec0dce8399f7c29885aa2552d",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-034": {
+  "title": "豪·路·博尔赫斯传",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "e849375f69bf3b16a0a00613f3c95b3f58ddc03ca15f1293390045c5f3b418a9",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-035": {
+  "title": "入学许可",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "d5d6fe5b2e09e03ea9e23a5815649ec46413de824953ff5594874db3c0e812ab",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-036": {
+  "title": "沧海琴声",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "56bba7a6c16b64304982f05e3b5b88bc08d46a9ed048b46098cb78c3999d3409",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-037": {
+  "title": "妈样年华",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "32b7fc8e117732943a85ef8fb3ee19015c9f335f626add2dbba4e3b73c2fdd65",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-038": {
+  "title": "我们的救赎",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "b36e5377e6658e1fd20ff5724e3c6ba50aa9b785116bd0302b1d7ee1d4d56917",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-039": {
+  "title": "太极张三丰",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "a382e70f01e3ef0b14965c10162150e940e1f39e40b8746ff72a7d8d8b8fc50e",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-040": {
+  "title": "浪花男女",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "2603eb85cd4b8eb9898d801cf00321ad5431c51b3d829c8d375cb27e91cacfec",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-041": {
+  "title": "第四幕",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "76e186ad60a4a7f8dba12a5a976aee336bac40b29904a112b5bdc3a3fcf671df",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-042": {
+  "title": "黑潮",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "70c4af79c597c4c2e26c3ebbbdc65fff9cd951b614ddd51d25d4a0b14098e302",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-043": {
+  "title": "山中来客",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "54fe63d05d32251a3970d7d44dc7fb02198a4b6c8b18d9592d5a8e5f8e1c8fb4",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-044": {
+  "title": "马兰花开的声音",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "f3a84d8be89def1caf25a26457e28db824868879e4cbd699a6a4ae6e7fcba476",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-045": {
+  "title": "无处安放我的双眼",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "6481f1a3ee07cedb221668b68247e92867e897ee5c855fe713b0ad4f6ef4b1dc",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-046": {
+  "title": "善男信女",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "b1f173da7364cbb597632f79755704d4c283047befd0dfec049109b15f2e8063",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-047": {
+  "title": "被杀的那天",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "ca0c2269313e58d88f2d66a1f496e90f9961465de8f637241c4b3f90ef0d3117",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-048": {
+  "title": "林中绿洲",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "60901eddde36256d122312c3c477953a8196317ed8ab719c75354a56d200fe5c",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-049": {
+  "title": "金玉满堂",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "cf3249bbf6fdbca4dc1adacb6460cec9530609cd1eb3ed89d6ed6e5721b4d81f",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-050": {
+  "title": "深爱",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "9d9a585837c906a410ea8ec455565365f9b52a1d211fa0e2821153195108ab83",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-051": {
+  "title": "其余皆噪音",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "47aa3539388b9c1851566c729bc308d5bf4fd3546ce65c68f57087c7830db402",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-052": {
+  "title": "吃饱的菲尔",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "dff9f271efef4bb098b2a6c0bbe7103c6085a5b8da65b93fe680ebcde4ded93f",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-053": {
+  "title": "匈牙利狂想曲",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "bc8eb549a5d4a721eb4c5a2696c3455e598aa01c80ed51d57dd2f865cad1fa86",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-054": {
+  "title": "剪刀手爱德华",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "835a75c054fec25ec2bebc9ace8f1a0415e2f7397895c228d16ffcf3ed5d4f8f",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below.",
+  "mpa": {
+   "rating": "PG-13",
+   "source": "https://www.20thcenturystudios.com/movies/edward-scissorhands",
+   "edition": "US release"
+  }
+ },
+ "gr26-055": {
+  "title": "老无所依",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "fc85d39cd95024967be465ff178365dc304d11a1cc0f57b9270cfecb6f9110ff",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below.",
+  "mpa": {
+   "rating": "R",
+   "source": "https://www.filmratings.com/search-results/?cn=43473",
+   "edition": "US release, certificate 43473"
+  }
+ },
+ "gr26-056": {
+  "title": "回归",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "1fafbe7ec573dd81bdd1c8bffc3905f3d1d97f5b27eafa88b9f8bfa0cb0f1afc",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-057": {
+  "title": "冰释雪融",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "7e3900c2516c27ef9508346f70627f14984551dec6c51ea2d2f074cbc323499d",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-058": {
+  "title": "南国再见，南国",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "a4141021f21ccbf63f9e5b9fa7e9574bd2941576985d269cc8f750949f89b64c",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-059": {
+  "title": "别人的东西",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "ac4c019461b106e0f4ad54977f15791da71e4219be91842f0effd0710e4f6a61",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-060": {
+  "title": "白夜黑金",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "6c6debf4bd641fed87bf200474b1ff2abc7c57ac796fa10f119cb5f0b05936b2",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-061": {
+  "title": "油麻菜籽",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "85254d4320ee0464f531c15f929bc3c2b808b2330a9d43c2079f87ece1721146",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-062": {
+  "title": "醉拳",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "b6953983cb6ce29aaacca7a8b62025a4c469d9a5bfa8dee4c6ef207e97d003b2",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-063": {
+  "title": "银翼杀手（最终剪辑版）",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "6bfc33a2cb9b9f57751156a30578a09c6d1fbd132a69ac426ae695c0888d6b68",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below.",
+  "mpa": {
+   "rating": "R",
+   "source": "https://silver.afi.com/movies/detail/0100000074/",
+   "edition": "The Final Cut, US release"
+  }
+ },
+ "gr26-064": {
+  "title": "我们不是陌生人",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "eab5852a2f09583cd3462ce1fe106f5fd1ceb7a6b2f2244e0572cc6efb2056a0",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-065": {
+  "title": "月球时代白日梦",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "05807fe1ba4d2f5a4479c375929d25a90bbbd10b5cf2b7d1c8bd58c26bedcfca",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below.",
+  "advisory": "https://www.bbfc.co.uk/release/moonage-daydream-q29sbgvjdglvbjpwwc0xmda1otez",
+  "versionNote": "Advisory for the classified overseas edition, not an asserted classification of the festival print.",
+  "mpa": {
+   "rating": "PG-13",
+   "source": "https://www.neonrated.com/film/moonage-daydream",
+   "edition": "US release"
+  }
+ },
+ "gr26-066": {
+  "title": "将军号",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "aaa8250ccef3eaae8b5072473a497b0f38d2ca3b91cd46389242bf307d7527f3",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-067": {
+  "title": "囚魂之地",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "c734752a37c955209601b07fd20a9c9ed5cbb123c7944aad824b05ea816fdc9c",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-068": {
+  "title": "后台疯暴",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "5f9df0a11bd4fa8e9296b1b79a85ca0c40a9cd46130caf71bd8696a3742ca6e0",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-069": {
+  "title": "刚果男孩",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "bcd989622c0b845720d41c1ba91ad0cf2a61d3c6f880b0fa9557b611230f85e2",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-070": {
+  "title": "无辜",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "f0d0a3ae89e8a3f31ecb8e2c9aed943cc35bd60b33db7de7fdab6915513fdebc",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-071": {
+  "title": "无处容身",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "9ca6d4edc0fdad050ea42d239e147d48321a83e7cb39f66af38c751a4bf52c37",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-072": {
+  "title": "乱世佳人",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "77a64c0f416920a2ef462f63ab7b5262580f83bb2e954acf1381daf8d3fd3be7",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below.",
+  "advisory": "https://www.bbfc.co.uk/release/gone-with-the-wind-q29sbgvjdglvbjpwwc0ynjcznti",
+  "versionNote": "Advisory for the classified overseas edition, not an asserted classification of the festival print.",
+  "mpa": {
+   "rating": "G",
+   "source": "https://afisilver.afi.com/silver/films/preview/archive/afipreview_69.pdf",
+   "edition": "US repertory release"
+  }
+ },
+ "gr26-073": {
+  "title": "铁扇公主",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "a1a63e8fb40d1119273dc66c6b311607395b73070cc38ca03c8ec423d5f22acd",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-074": {
+  "title": "温柔以待",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "23b150632ad55df736d36f835794ef14e5ba4bbc44b54a89d973ac8b83fba5ee",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-075": {
+  "title": "围城纪事",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "1d1de23f0ff8946da49b3c1228a937785ed1226c7325db60770321cfe4709aa6",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-076": {
+  "title": "杰出的无名氏",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "ac7579bd945e6f11f2567a416a97715893746f34ef16c00f7efcc49a1aeb4e33",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-077": {
+  "title": "盗梦空间",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "ebfd2c0c0003583e5dbdf463aafce310ec9dfb3f6c33623e3069a11c3c9b99fe",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below.",
+  "mpa": {
+   "rating": "PG-13",
+   "source": "https://catalog.afi.com/Catalog/moviedetails/66167/",
+   "edition": "US release"
+  }
+ },
+ "gr26-078": {
+  "title": "霉变人生",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "4238ef08143549a74230cfc5c62b07af4ba18fd1ddd38e215afebbd5bf4db425",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-079": {
+  "title": "客乡",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "ae33265ec16561ddb2d11785f69a7d8cfbab51bf3e5890338593cc40e26990de",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-080": {
+  "title": "浓情卡门",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "e504f8a5b0dcd47a5610e81cb8b7035a9bada6fdd9280374273240c9c4b68bbe",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-081": {
+  "title": "孔雀公主",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "805f022133762d4d8d078f80e2f278df620c0d26948ef19689b2912258ccba3f",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-082": {
+  "title": "哪吒闹海",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "148741490cc5cd5d4f1088b9a9cd4c176fdab5680617e353f1bfce830239cc3b",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "gr26-083": {
+  "title": "中国动画100年",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/golden-rooster-2026.json",
+  "synopsisSha256": "bb1e5ae84f332693ba4eae8d030e8dd2294d3efd84f78116786ca704ae106b6f",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "amrum": {
+  "title": "阿姆鲁姆",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/german-film-2026.json",
+  "synopsisSha256": "41719e8a7d405bac4c233dd029b6ee2e57810c705f0b4fc53fc3bdbcff5a02ad",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "dry-leaf": {
+  "title": "落叶球",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/german-film-2026.json",
+  "synopsisSha256": "4b9917cd7a9b830d76915a86a6e832b41229962c37f16204e195c2e2de913da2",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "i-understand-your-displeasure": {
+  "title": "我理解您的不满",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/german-film-2026.json",
+  "synopsisSha256": "ca7167596a2870ce183805b606e796b14e79a48e28cb7cef4ebb3298c8118243",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "karla": {
+  "title": "卡拉的审判",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/german-film-2026.json",
+  "synopsisSha256": "5318b5470a644542168ffc8277d0bc2c154028f69f6b451b6973c36b98e44b28",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "miroirs-no-3": {
+  "title": "镜的第三乐章",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/german-film-2026.json",
+  "synopsisSha256": "8b992da50aebefc26e0d987ab1af454b6b882bfbc3a10224fef952836b2c7f3f",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "the-miserable-mother": {
+  "title": "她们的狂想曲",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/german-film-2026.json",
+  "synopsisSha256": "fa6ed77f7313e6aaf97dd7e35795160e831717ea4bc497c878de0c5b70475a9b",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "oh-this-unspeakable-void": {
+  "title": "心隙",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/german-film-2026.json",
+  "synopsisSha256": "9b4cea12f2d7696f8d7ac0929b5c05669655c58c889ced3fe62ff0d5de496207",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "sometimes-i-imagine-them-all-at-a-party": {
+  "title": "残存的感性",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/german-film-2026.json",
+  "synopsisSha256": "242ba1a300b7e8cda62cdfce72e6859bb02bdfb7117531ef3c5070a841c75394",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "when-pigs-fly": {
+  "title": "当猪会飞",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/german-film-2026.json",
+  "synopsisSha256": "d23ad1328b87be2d4d97fa61f9db30e90835c0b8a8937704e13916a46007c45f",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ },
+ "shame-and-money": {
+  "title": "羞耻与金钱",
+  "basis": "Existing supplied/previously researched synopsis, context and highlights; no full-film viewing claimed.",
+  "path": "data/programmes/german-film-2026.json",
+  "synopsisSha256": "8fbdf5f736286d60a7487b893ee5786df35b66048a4da9b09e348e693088d25a",
+  "checked": "2026-11-03",
+  "sensory": "Unverified unless a named advisory is recorded below."
+ }
+}

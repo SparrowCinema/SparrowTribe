@@ -44,6 +44,7 @@
     </view>
   </view>
 
+  <view class="view-switch"><view class="{{view==='gantt'?'on':''}}" data-view="gantt" bindtap="setView" aria-role="button" aria-label="{{L.t(i,'时间轴')}}"><view class="grid-icon"><view/><view/><view/><view/></view></view><view class="{{view==='list'?'on':''}}" data-view="list" bindtap="setView" aria-role="button" aria-label="{{L.t(i,'清单')}}"><view class="list-icon"><view/><view/><view/></view></view></view>
   <view class="mine-only"><view class="mine-chip {{onlyMine?'on':''}}" hover-class="hv" bindtap="toggleMine"><view class="mc-i"><text>✓</text></view><text class="mc-t">{{L.t(i,'只看我的排片')}}</text><text class="mc-n mono">{{mineN}}</text></view></view>
 
   <view wx:if="{{empty}}" class="g-empty card"><text class="b">{{empty}}</text><text class="muted small">{{onlyMine ? L.t(i,'关掉「只看我的排片」，在排片表点色块右上角的 + 加入') : L.t(i,'排片公布后会更新到这里')}}</text></view>
@@ -66,7 +67,7 @@
     <view class="legend"><text>{{L.t(i,'每部影片一种颜色 · 色块标注版本、对白语言与字幕')}}</text></view>
 
     <!-- 单日时刻表：纵轴时间，横向影厅 -->
-    <view class="tt card">
+    <view wx:if="{{view==='gantt'}}" class="tt card">
       <view class="axis">
         <view class="th corner">{{L.t(i,'时间')}}</view>
         <view class="ticks" style="height:{{H}}rpx">
@@ -95,18 +96,9 @@
       </scroll-view>
     </view>
 
-    <view class="blockh">{{L.t(i,'当日场次')}} <text class="en">{{dayTitle}}</text></view>
-    <view wx:for="{{dayList}}" wx:key="key" class="ag">
-      <view class="agl" data-id="{{item.id}}" bindtap="openFilm">
-        <text class="at mono">{{item.t}}</text>
-        <view class="bar" style="background:{{item.tone.bar}}" />
-        <view class="an">
-          <view class="ann">{{item.cn}}<text wx:if="{{item.version}}" class="ed">{{item.version}}</text></view>
-          <text class="ans">{{item.venue}} · {{item.hall}} · {{item.minTxt}}{{item.langSub?' · '+item.langSub:''}}</text>
-        </view>
-      </view>
-      <view class="add {{item.picked?'on':''}}" data-key="{{item.key}}" catchtap="toggle">{{item.picked ? L.t(i,'✓ 已加入') : L.t(i,'+ 排片')}}</view>
-    </view>
+    <block wx:if="{{view==='list'}}">
+      <view class="cinema-list" wx:for="{{venueGroups}}" wx:for-item="v" wx:key="id"><view class="cl-venue">{{v.name}}</view><view wx:for="{{v.halls}}" wx:for-item="h" wx:key="id" class="hall-list"><view class="cl-hall-label">{{h.name}}</view><view wx:for="{{h.rows}}" wx:key="key" class="agenda-row"><view class="agenda-film" data-id="{{item.id}}" bindtap="openFilm"><text class="agenda-time mono">{{item.t}}</text><view class="agenda-bar" style="background:{{item.tone.bar}}"/><view class="agenda-title"><text class="b">{{item.cn}}<text wx:if="{{item.version}}" class="ed">{{item.version}}</text></text><text class="small">{{!item.mpa?item.dir+' · ':''}}{{item.minTxt}}{{item.ev?' · '+L.t(i,'主创映后'):''}}</text></view><text wx:if="{{item.mpa}}" class="mpa">{{item.mpa}}</text></view><view class="agenda-pick {{item.picked?'on':''}}" data-key="{{item.key}}" catchtap="toggle">{{item.picked?L.t(i,'✓ 已加入'):L.t(i,'+ 加入排片')}}</view></view></view></view>
+    </block>
   </block>
 
   <view class="makers">

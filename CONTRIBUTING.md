@@ -140,3 +140,11 @@ Claude 与 GPT 可能使用同一 GitHub 身份，审批人数可先设为0；�
 
 - 专题可带 `eventKinds` 与 `events`（见 docs/golden-horse-2026-notes.md），网站 `eventsHTML` 与小程序 `pages/programme` 同步显示；英文放在 `en.json` 的 `programmes.<id>.kindEn` / `evEn`。
 - 影片可带 `parts`（合辑收录的短片，字段 cn/en/y/c/min/dir/dirO/syn/synEn/honors），影片页显示「收录短片」。专题可带 `ticketUrl` / `ticketLabel`（购票链接）。
+
+## 每部影片必备的观影提示
+
+- 新增与修改影片必须包含 `warnings` 数组、`contentNote`、`editorial` 与 `contentReview`；英文层补对应的三项文案。未查证的内容使用 `status: "pending"`、空提示数组与明确的待核实文案，不能写成“无敏感内容”。
+- `contentReview` 包含 `status`（`synopsis-reviewed` / `official-advisory` / `pending`）、`checked`（核对日期）、`sensory`（`unverified` / 已查实闪烁提示的 `flashing`）。简介核对不等于完整审片，提示说明须保留此范围。
+- 内容提醒针对具体情节，不把性取向、身份或残障本身作为风险。光敏与音量提示无法从剧情推断。
+- 美国 MPA 分级只使用已核实的 `mpa: {rating, edition, checked}`，证据记录在内部文档。不同剪辑版不能套用旧版分级；未知时不显示破折号占位。
+- 提交前运行 `node tools/build-fallback.js`、`node tools/check-content.js`、`node tools/check-library.js`、`node tools/check-companion.js`；部署也会执行后三项，避免后续片目漏掉提醒。

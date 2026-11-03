@@ -41,12 +41,12 @@ Page({
     const para = s => String(s || '').split(/\n{2,}/).filter(Boolean);
     this.setData({
       f: {
-        id: f.id, cn: f.cn, en: f.en || f.o, minText: t(f.min ? f.min + ' 分钟' : '片长待定'), release: t(f.release || ''), o: f.o !== f.cn && f.o !== (f.en || f.o) ? f.o : '', y: f.y, c: t(f.c), min: f.min, lang: t(f.language),
+        id: f.id, cn: f.cn,warnings:f.warnings||[],contentNote:f.contentNote||t('具体内容尚待核实，不代表没有敏感内容或适合所有年龄。'),sensory:f.contentReview?.sensory==='flashing', en: f.en || f.o, minText: t(f.min ? f.min + ' 分钟' : '片长待定'), release: t(f.release || ''), o: f.o !== f.cn && f.o !== (f.en || f.o) ? f.o : '', y: f.y, c: t(f.c), min: f.min, lang: t(f.language),
         version: t(f.version || ''), genre: (f.genre || []).map(t), dir: f.dir, dirO: f.dirO, dirLife: f.dirLife,
         color: (data.reg[f.reg] || {}).c, reg: t((data.reg[f.reg] || {}).n || ''), poster: U.poster(f), ticket: U.ticket(f), ticketHint: t([f.ticketPlatform ? f.ticketPlatform + "扫码" + (f.ticketLabel || "购票") : "", (f.ticketHint || "").replace(/^淘票票扫码购票\s*[·・]?\s*/, "")].filter(Boolean).join(" · ")), section: t(f.section || ""), ticketLabel: t(f.ticketLabel || '购票'),
         prog: { id: p.id, name: p.name, kind: t(p.kind) }, section: t(f.section || ''),
         syn: para(f.syn), bio: para(f.bio), st: para(f.st), long: String(f.syn || '').length > 220,
-        ini: (f.dir || '').charAt(0), highlights: (f.highlights || []).map((x, k) => ({ n: String(k + 1).padStart(2, '0'), x })),
+        ini: (f.dir || '').charAt(0), highlights: [f.editorial,...(f.highlights || [])].filter(Boolean).map((x, k) => ({ n: String(k + 1).padStart(2, '0'), x })),
         honors: (f.honors || []).map(honor),
         gifts: (f.gifts || []).map((g, k) => ({ k, label: t(g.label || ''), items: (g.items || []).map(t) }))
       },

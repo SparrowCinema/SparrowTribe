@@ -30,7 +30,15 @@
    "section": "开幕片",
    "screeningNotes": {
     "11/6-19:00-tp-muvie-titan-titan": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-002",
@@ -56,7 +64,15 @@
    "section": "闭幕片",
    "screeningNotes": {
     "11/21-18:10-tp-muvie-titan-titan": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-003",
@@ -81,7 +97,15 @@
    "section": "金马奖入围影片",
    "screeningNotes": {
     "11/11-21:30-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-004",
@@ -115,7 +139,15 @@
    "section": "金马奖入围影片",
    "highlights": [
     "本片仅安排业界限定场（11/19 21:00，信义11厅，不对外售票）；如有加映，请以金马官网公布为准。"
-   ]
+   ],
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-005",
@@ -141,7 +173,15 @@
    "screeningNotes": {
     "11/16-18:40-tp-vieshow-xinyi-hall-10": "映后活动 · 影人出席（嘉宾待公布）",
     "11/19-21:00-tp-vieshow-xinyi-hall-10": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-006",
@@ -167,7 +207,15 @@
    "section": "金马奖入围影片",
    "screeningNotes": {
     "11/21-20:50-tp-vieshow-xinyi-hall-10": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-007",
@@ -195,7 +243,15 @@
    "screeningNotes": {
     "11/18-16:20-tp-vieshow-xinyi-hall-10": "映后活动 · 影人出席（嘉宾待公布）",
     "11/20-18:50-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-008",
@@ -224,7 +280,15 @@
    ],
    "ageRating": "辅15级（15+）",
    "subtitles": "原文发音，中文字幕",
-   "section": "金马奖入围影片"
+   "section": "金马奖入围影片",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-009",
@@ -250,7 +314,15 @@
    "section": "金马奖入围影片",
    "screeningNotes": {
     "11/20-18:30-tp-vieshow-xinyi-hall-12": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-010",
@@ -275,7 +347,15 @@
    "section": "金马奖入围影片",
    "screeningNotes": {
     "11/21-21:30-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-011",
@@ -304,7 +384,15 @@
    "section": "金马奖入围影片",
    "screeningNotes": {
     "11/20-19:00-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-012",
@@ -331,7 +419,15 @@
    "section": "金马奖入围影片",
    "screeningNotes": {
     "11/7-21:00-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-013",
@@ -364,7 +460,15 @@
    "section": "金马奖入围影片",
    "screeningNotes": {
     "11/21-17:40-tp-vieshow-xinyi-hall-10": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-014",
@@ -389,7 +493,15 @@
    ],
    "ageRating": "辅12级（12+）",
    "subtitles": "原文发音，中文字幕",
-   "section": "金马奖入围影片"
+   "section": "金马奖入围影片",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-015",
@@ -416,7 +528,15 @@
    "section": "金马奖入围影片",
    "screeningNotes": {
     "11/21-12:50-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-016",
@@ -449,7 +569,15 @@
    "section": "金马奖入围影片",
    "screeningNotes": {
     "11/20-18:00-tp-muvie-titan-titan": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-017",
@@ -474,7 +602,15 @@
    "section": "金马奖入围影片",
    "screeningNotes": {
     "11/7-11:10-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-018",
@@ -499,7 +635,15 @@
    "section": "金马奖入围影片",
    "screeningNotes": {
     "11/10-19:10-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-019",
@@ -525,7 +669,15 @@
    "section": "金马奖入围影片",
    "screeningNotes": {
     "11/12-18:40-tp-vieshow-xinyi-hall-12": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-020",
@@ -559,7 +711,15 @@
    "section": "金马奖入围影片",
    "screeningNotes": {
     "11/21-15:40-tp-muvie-titan-titan": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-021",
@@ -590,7 +750,15 @@
    "section": "金马奖入围影片",
    "screeningNotes": {
     "11/20-20:30-tp-muvie-titan-titan": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-022",
@@ -619,7 +787,15 @@
    "section": "金马奖入围影片",
    "screeningNotes": {
     "11/8-13:10-tp-muvie-titan-titan": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-023",
@@ -646,7 +822,15 @@
    "section": "金马奖入围影片",
    "screeningNotes": {
     "11/8-13:20-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-024",
@@ -674,7 +858,15 @@
    "screeningNotes": {
     "11/20-21:20-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）",
     "11/21-15:30-tp-vieshow-xinyi-hall-10": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-025",
@@ -701,7 +893,15 @@
    "section": "金马奖入围影片",
    "screeningNotes": {
     "11/9-19:10-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-026",
@@ -729,7 +929,15 @@
    "screeningNotes": {
     "11/20-17:00-tp-vieshow-xinyi-hall-10": "映后活动 · 影人出席（嘉宾待公布）",
     "11/21-18:20-tp-vieshow-xinyi-hall-12": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-027",
@@ -757,7 +965,15 @@
    "screeningNotes": {
     "11/7-18:10-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）",
     "11/12-14:00-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-028",
@@ -785,7 +1001,15 @@
    "screeningNotes": {
     "11/20-16:10-tp-vieshow-xinyi-hall-12": "映后活动 · 影人出席（嘉宾待公布）",
     "11/21-19:20-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-029",
@@ -812,7 +1036,15 @@
    "section": "金马奖入围影片",
    "screeningNotes": {
     "11/8-11:00-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-030",
@@ -842,7 +1074,15 @@
    "screeningNotes": {
     "11/20-13:40-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）",
     "11/21-15:30-tp-vieshow-xinyi-hall-12": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-031",
@@ -912,7 +1152,15 @@
    "section": "金马奖入围影片",
    "screeningNotes": {
     "11/20-21:40-tp-vieshow-xinyi-hall-10": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-032",
@@ -968,7 +1216,15 @@
    "section": "金马奖入围影片",
    "screeningNotes": {
     "11/21-22:10-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-033",
@@ -1039,7 +1295,15 @@
    "section": "金马奖入围影片",
    "screeningNotes": {
     "11/8-17:30-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-034",
@@ -1096,7 +1360,15 @@
    "section": "金马奖入围影片",
    "screeningNotes": {
     "11/20-19:30-tp-vieshow-xinyi-hall-10": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-035",
@@ -1195,7 +1467,15 @@
    "section": "金马奖入围影片",
    "screeningNotes": {
     "11/20-21:40-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-036",
@@ -1222,7 +1502,15 @@
    "section": "金马奖终身成就奖：虞戡平",
    "screeningNotes": {
     "11/15-16:00-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-037",
@@ -1251,7 +1539,15 @@
    "section": "金马奖终身成就奖：虞戡平",
    "screeningNotes": {
     "11/14-18:20-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-038",
@@ -1277,7 +1573,15 @@
    "section": "金马奖终身成就奖：虞戡平",
    "screeningNotes": {
     "11/15-13:10-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-039",
@@ -1304,7 +1608,15 @@
    "section": "华语首映",
    "screeningNotes": {
     "11/7-13:40-tp-muvie-titan-titan": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-040",
@@ -1328,7 +1640,15 @@
    "section": "华语首映",
    "screeningNotes": {
     "11/17-18:40-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-041",
@@ -1360,7 +1680,15 @@
    "screeningNotes": {
     "11/8-19:00-tp-vieshow-xinyi-hall-10": "映后活动 · 影人出席（嘉宾待公布）",
     "11/9-16:00-tp-vieshow-xinyi-hall-10": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-042",
@@ -1386,7 +1714,15 @@
    "section": "华语首映",
    "screeningNotes": {
     "11/18-18:50-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-043",
@@ -1413,7 +1749,15 @@
    "screeningNotes": {
     "11/14-16:00-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）",
     "11/15-10:50-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-044",
@@ -1438,7 +1782,15 @@
    "screeningNotes": {
     "11/11-18:30-tp-vieshow-xinyi-hall-12": "映后活动 · 影人出席（嘉宾待公布）",
     "11/13-15:40-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-045",
@@ -1463,7 +1815,15 @@
    "screeningNotes": {
     "11/10-18:40-tp-muvie-titan-titan": "映后活动 · 影人出席（嘉宾待公布）",
     "11/11-17:10-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-046",
@@ -1487,7 +1847,15 @@
    "section": "华语首映",
    "screeningNotes": {
     "11/7-18:30-tp-muvie-titan-titan": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-047",
@@ -1554,7 +1922,15 @@
    "screeningNotes": {
     "11/12-14:00-tp-vieshow-xinyi-hall-10": "映后活动 · 影人出席（嘉宾待公布）",
     "11/14-14:00-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-048",
@@ -1634,7 +2010,15 @@
    "screeningNotes": {
     "11/15-19:00-tp-vieshow-xinyi-hall-12": "映后活动 · 影人出席（嘉宾待公布）",
     "11/21-16:50-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-049",
@@ -1715,7 +2099,15 @@
    "screeningNotes": {
     "11/19-16:20-tp-vieshow-xinyi-hall-12": "映后活动 · 影人出席（嘉宾待公布）",
     "11/21-14:40-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-050",
@@ -1746,7 +2138,15 @@
    ],
    "ageRating": "保护级（6+）",
    "subtitles": "原文发音，中文字幕",
-   "section": "名家飨宴"
+   "section": "名家飨宴",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-051",
@@ -1776,7 +2176,15 @@
    ],
    "ageRating": "辅12级（12+）",
    "subtitles": "原文发音，中文字幕",
-   "section": "名家飨宴"
+   "section": "名家飨宴",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-052",
@@ -1806,7 +2214,15 @@
    ],
    "ageRating": "辅12级（12+）",
    "subtitles": "原文发音，中文字幕",
-   "section": "名家飨宴"
+   "section": "名家飨宴",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-053",
@@ -1833,7 +2249,15 @@
    ],
    "ageRating": "辅15级（15+）",
    "subtitles": "原文发音，中文字幕",
-   "section": "名家飨宴"
+   "section": "名家飨宴",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-054",
@@ -1858,7 +2282,15 @@
    ],
    "ageRating": "辅15级（15+）",
    "subtitles": "原文发音，中文字幕",
-   "section": "名家飨宴"
+   "section": "名家飨宴",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-055",
@@ -1887,7 +2319,15 @@
    ],
    "ageRating": "辅12级（12+）",
    "subtitles": "原文发音，中文字幕",
-   "section": "名家飨宴"
+   "section": "名家飨宴",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-056",
@@ -1914,7 +2354,15 @@
    ],
    "ageRating": "辅12级（12+）",
    "subtitles": "原文发音，中文字幕",
-   "section": "名家飨宴"
+   "section": "名家飨宴",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-057",
@@ -1943,7 +2391,15 @@
    "screeningNotes": {
     "11/7-19:00-tp-vieshow-xinyi-hall-10": "映后活动 · 影人出席（嘉宾待公布）",
     "11/8-12:40-tp-vieshow-xinyi-hall-10": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-058",
@@ -1972,7 +2428,15 @@
    ],
    "ageRating": "辅15级（15+）",
    "subtitles": "原文发音，中文字幕",
-   "section": "名家飨宴"
+   "section": "名家飨宴",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-059",
@@ -2000,7 +2464,15 @@
    ],
    "ageRating": "辅12级（12+）",
    "subtitles": "原文发音，中文字幕；无英文字幕",
-   "section": "影迷嘉年华"
+   "section": "影迷嘉年华",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-060",
@@ -2025,7 +2497,15 @@
    ],
    "ageRating": "辅12级（12+）",
    "subtitles": "原文发音，中文字幕",
-   "section": "影迷嘉年华"
+   "section": "影迷嘉年华",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-061",
@@ -2054,7 +2534,15 @@
    ],
    "ageRating": "保护级（6+）",
    "subtitles": "原文发音，中文字幕",
-   "section": "影迷嘉年华"
+   "section": "影迷嘉年华",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-062",
@@ -2080,7 +2568,15 @@
    ],
    "ageRating": "辅15级（15+）",
    "subtitles": "原文发音，中文字幕",
-   "section": "影迷嘉年华"
+   "section": "影迷嘉年华",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-063",
@@ -2110,7 +2606,15 @@
    "section": "影迷嘉年华",
    "screeningNotes": {
     "11/21-21:00-tp-muvie-titan-titan": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-064",
@@ -2135,7 +2639,15 @@
    ],
    "ageRating": "保护级（6+）",
    "subtitles": "原文发音，中文字幕",
-   "section": "影迷嘉年华"
+   "section": "影迷嘉年华",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-065",
@@ -2168,7 +2680,15 @@
    "screeningNotes": {
     "11/12-18:50-tp-muvie-titan-titan": "映后活动 · 影人出席（嘉宾待公布）",
     "11/13-13:10-tp-vieshow-xinyi-hall-12": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-066",
@@ -2194,7 +2714,15 @@
    ],
    "ageRating": "保护级（6+）",
    "subtitles": "原文发音，中文字幕",
-   "section": "影迷嘉年华"
+   "section": "影迷嘉年华",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-067",
@@ -2224,7 +2752,15 @@
    "section": "影迷嘉年华",
    "screeningEnds": {
     "11/9-21:40-tp-muvie-titan-titan": "22:57"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-068",
@@ -2256,7 +2792,15 @@
    ],
    "ageRating": "辅15级（15+）",
    "subtitles": "原文发音，中文字幕",
-   "section": "影迷嘉年华"
+   "section": "影迷嘉年华",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-069",
@@ -2284,7 +2828,15 @@
    ],
    "ageRating": "保护级（6+）",
    "subtitles": "原文发音，中文字幕",
-   "section": "影迷嘉年华"
+   "section": "影迷嘉年华",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-070",
@@ -2313,7 +2865,15 @@
    ],
    "ageRating": "保护级（6+）",
    "subtitles": "原文发音，中文字幕",
-   "section": "影迷嘉年华"
+   "section": "影迷嘉年华",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-071",
@@ -2339,7 +2899,15 @@
    ],
    "ageRating": "辅15级（15+）",
    "subtitles": "原文发音，中文字幕",
-   "section": "影坛新势力"
+   "section": "影坛新势力",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-072",
@@ -2368,7 +2936,15 @@
    ],
    "ageRating": "保护级（6+）",
    "subtitles": "原文发音，中文字幕",
-   "section": "影坛新势力"
+   "section": "影坛新势力",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-073",
@@ -2392,7 +2968,15 @@
    ],
    "ageRating": "辅12级（12+）",
    "subtitles": "原文发音，中文字幕",
-   "section": "影坛新势力"
+   "section": "影坛新势力",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-074",
@@ -2420,7 +3004,15 @@
    ],
    "ageRating": "保护级（6+）",
    "subtitles": "原文发音，中文字幕",
-   "section": "影坛新势力"
+   "section": "影坛新势力",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-075",
@@ -2447,7 +3039,15 @@
    ],
    "ageRating": "保护级（6+）",
    "subtitles": "原文发音，中文字幕",
-   "section": "影坛新势力"
+   "section": "影坛新势力",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-076",
@@ -2472,7 +3072,15 @@
    ],
    "ageRating": "辅15级（15+）",
    "subtitles": "原文发音，中文字幕",
-   "section": "影坛新势力"
+   "section": "影坛新势力",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-077",
@@ -2500,7 +3108,15 @@
    "screeningNotes": {
     "11/15-13:20-tp-vieshow-xinyi-hall-10": "映后活动 · 影人出席（嘉宾待公布）",
     "11/16-12:50-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-078",
@@ -2527,7 +3143,15 @@
    ],
    "ageRating": "辅12级（12+）",
    "subtitles": "原文发音，中文字幕",
-   "section": "不设防地带"
+   "section": "不设防地带",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-079",
@@ -2556,7 +3180,15 @@
    ],
    "ageRating": "辅12级（12+）",
    "subtitles": "原文发音，中文字幕",
-   "section": "不设防地带"
+   "section": "不设防地带",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-080",
@@ -2586,7 +3218,15 @@
    ],
    "ageRating": "限制级（18+）",
    "subtitles": "原文发音，中文字幕",
-   "section": "不设防地带"
+   "section": "不设防地带",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-081",
@@ -2615,7 +3255,15 @@
    ],
    "ageRating": "普遍级（0+）",
    "subtitles": "原文发音，中文字幕",
-   "section": "不设防地带"
+   "section": "不设防地带",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-082",
@@ -2641,7 +3289,15 @@
    ],
    "ageRating": "辅15级（15+）",
    "subtitles": "原文发音，中文字幕",
-   "section": "不设防地带"
+   "section": "不设防地带",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-083",
@@ -2674,7 +3330,15 @@
    "screeningNotes": {
     "11/16-18:30-tp-vieshow-xinyi-hall-12": "映后活动 · 影人出席（嘉宾待公布）",
     "11/18-15:50-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-084",
@@ -2699,7 +3363,15 @@
    ],
    "ageRating": "辅12级（12+）",
    "subtitles": "原文发音，中文字幕",
-   "section": "亚洲之窗"
+   "section": "亚洲之窗",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-085",
@@ -2727,7 +3399,15 @@
    ],
    "ageRating": "辅15级（15+）",
    "subtitles": "原文发音，中文字幕",
-   "section": "亚洲之窗"
+   "section": "亚洲之窗",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-086",
@@ -2757,7 +3437,15 @@
    "screeningNotes": {
     "11/17-18:50-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）",
     "11/18-21:30-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-087",
@@ -2791,7 +3479,15 @@
    "section": "亚洲之窗",
    "screeningNotes": {
     "11/17-21:10-tp-vieshow-xinyi-hall-12": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-088",
@@ -2821,7 +3517,15 @@
    "screeningNotes": {
     "11/18-18:30-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）",
     "11/19-13:20-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-089",
@@ -2852,7 +3556,15 @@
    "screeningNotes": {
     "11/16-21:20-tp-vieshow-xinyi-hall-12": "映后活动 · 影人出席（嘉宾待公布）",
     "11/18-21:20-tp-vieshow-xinyi-hall-12": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-090",
@@ -2883,7 +3595,15 @@
    "screeningNotes": {
     "11/17-16:20-tp-vieshow-xinyi-hall-10": "映后活动 · 影人出席（嘉宾待公布）",
     "11/18-19:00-tp-vieshow-xinyi-hall-10": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-091",
@@ -2915,7 +3635,15 @@
    "screeningNotes": {
     "11/14-21:00-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）",
     "11/15-13:50-tp-muvie-titan-titan": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-092",
@@ -2941,7 +3669,15 @@
    ],
    "ageRating": "辅15级（15+）",
    "subtitles": "原文发音，中文字幕",
-   "section": "日正当中"
+   "section": "日正当中",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-093",
@@ -2968,7 +3704,15 @@
    "screeningNotes": {
     "11/14-18:20-tp-muvie-titan-titan": "映后活动 · 影人出席（嘉宾待公布）",
     "11/15-20:20-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-094",
@@ -2995,7 +3739,15 @@
    "screeningNotes": {
     "11/7-15:10-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）",
     "11/8-10:20-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-095",
@@ -3023,7 +3775,15 @@
    "screeningNotes": {
     "11/17-18:40-tp-vieshow-xinyi-hall-12": "映后活动 · 影人出席（嘉宾待公布）",
     "11/18-15:10-tp-vieshow-xinyi-hall-12": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-096",
@@ -3048,7 +3808,15 @@
    ],
    "ageRating": "普遍级（0+）",
    "subtitles": "原文发音，中文字幕；无英文字幕",
-   "section": "日正当中"
+   "section": "日正当中",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-097",
@@ -3076,7 +3844,15 @@
    "screeningNotes": {
     "11/7-12:30-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）",
     "11/10-18:30-tp-vieshow-xinyi-hall-12": "映后活动 · 司法讲堂（与本片连场）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-098",
@@ -3102,7 +3878,15 @@
    "section": "罪与罚之外",
    "screeningNotes": {
     "11/8-12:30-tp-vieshow-xinyi-hall-12": "映后活动 · 司法讲堂（与本片连场）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-099",
@@ -3132,7 +3916,15 @@
    "section": "罪与罚之外",
    "screeningNotes": {
     "11/9-18:50-tp-vieshow-xinyi-hall-12": "映后活动 · 司法讲堂（与本片连场）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-100",
@@ -3165,7 +3957,15 @@
     "11/7-13:00-tp-vieshow-xinyi-hall-12": "映后活动 · 司法讲堂（与本片连场）",
     "11/8-21:00-tp-vieshow-xinyi-hall-12": "映后活动 · 影人出席（嘉宾待公布）",
     "11/10-14:20-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-101",
@@ -3196,7 +3996,15 @@
    "section": "罪与罚之外",
    "screeningNotes": {
     "11/8-15:50-tp-vieshow-xinyi-hall-12": "映后活动 · 司法讲堂（与本片连场）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-102",
@@ -3225,7 +4033,15 @@
    "section": "罪与罚之外",
    "screeningNotes": {
     "11/7-16:10-tp-vieshow-xinyi-hall-12": "映后活动 · 司法讲堂（与本片连场）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-103",
@@ -3248,7 +4064,15 @@
    ],
    "ageRating": "辅12级（12+）",
    "subtitles": "原文发音，中文字幕",
-   "section": "金马×柏林新世代"
+   "section": "金马×柏林新世代",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-104",
@@ -3276,7 +4100,15 @@
    ],
    "ageRating": "辅12级（12+）",
    "subtitles": "原文发音，中文字幕",
-   "section": "金马×柏林新世代"
+   "section": "金马×柏林新世代",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-105",
@@ -3305,7 +4137,15 @@
    "screeningNotes": {
     "11/11-16:00-tp-vieshow-xinyi-hall-12": "映后活动 · 影人出席（嘉宾待公布）",
     "11/13-18:30-tp-vieshow-xinyi-hall-12": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-106",
@@ -3413,7 +4253,15 @@
    "screeningNotes": {
     "11/7-10:30-tp-vieshow-xinyi-hall-12": "映后活动 · 影人出席（嘉宾待公布）",
     "11/13-18:50-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-107",
@@ -3443,7 +4291,15 @@
    ],
    "ageRating": "辅15级（15+）",
    "subtitles": "原文发音，中文字幕",
-   "section": "日常酷儿"
+   "section": "日常酷儿",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-108",
@@ -3470,7 +4326,15 @@
    ],
    "ageRating": "保护级（6+）",
    "subtitles": "原文发音，中文字幕",
-   "section": "日常酷儿"
+   "section": "日常酷儿",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-109",
@@ -3500,7 +4364,15 @@
    ],
    "ageRating": "辅12级（12+）",
    "subtitles": "原文发音，中文字幕",
-   "section": "日常酷儿"
+   "section": "日常酷儿",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-110",
@@ -3528,7 +4400,15 @@
    ],
    "ageRating": "限制级（18+）",
    "subtitles": "原文发音，中文字幕",
-   "section": "日常酷儿"
+   "section": "日常酷儿",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-111",
@@ -3554,7 +4434,15 @@
    ],
    "ageRating": "辅12级（12+）",
    "subtitles": "原文发音，中文字幕",
-   "section": "日常酷儿"
+   "section": "日常酷儿",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-112",
@@ -3581,7 +4469,15 @@
    ],
    "ageRating": "保护级（6+）",
    "subtitles": "原文发音，中文字幕",
-   "section": "日常酷儿"
+   "section": "日常酷儿",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-113",
@@ -3608,7 +4504,15 @@
    ],
    "ageRating": "限制级（18+）",
    "subtitles": "原文发音，中文字幕",
-   "section": "日常酷儿"
+   "section": "日常酷儿",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-114",
@@ -3631,7 +4535,15 @@
    ],
    "ageRating": "辅12级（12+）",
    "subtitles": "原文发音，中文字幕",
-   "section": "摇滚再放送"
+   "section": "摇滚再放送",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-115",
@@ -3652,7 +4564,15 @@
    "honors": [],
    "ageRating": "保护级（6+）",
    "subtitles": "原文发音，中文字幕",
-   "section": "摇滚再放送"
+   "section": "摇滚再放送",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-116",
@@ -3681,7 +4601,15 @@
    ],
    "ageRating": "保护级（6+）",
    "subtitles": "原文发音，中文字幕",
-   "section": "摇滚再放送"
+   "section": "摇滚再放送",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-117",
@@ -3709,7 +4637,15 @@
    ],
    "ageRating": "辅15级（15+）",
    "subtitles": "原文发音，中文字幕",
-   "section": "摇滚再放送"
+   "section": "摇滚再放送",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-118",
@@ -3737,7 +4673,15 @@
    ],
    "ageRating": "辅12级（12+）",
    "subtitles": "原文发音，中文字幕",
-   "section": "奇幻特快车"
+   "section": "奇幻特快车",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-119",
@@ -3765,7 +4709,15 @@
    ],
    "ageRating": "辅12级（12+）",
    "subtitles": "原文发音，中文字幕",
-   "section": "奇幻特快车"
+   "section": "奇幻特快车",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-120",
@@ -3794,7 +4746,15 @@
    ],
    "ageRating": "辅15级（15+）",
    "subtitles": "原文发音，中文字幕",
-   "section": "奇幻特快车"
+   "section": "奇幻特快车",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-121",
@@ -3823,7 +4783,15 @@
    ],
    "ageRating": "辅15级（15+）",
    "subtitles": "原文发音，中文字幕",
-   "section": "奇幻特快车"
+   "section": "奇幻特快车",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-122",
@@ -3851,7 +4819,15 @@
    ],
    "ageRating": "辅15级（15+）",
    "subtitles": "原文发音，中文字幕",
-   "section": "奇幻特快车"
+   "section": "奇幻特快车",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-123",
@@ -3872,7 +4848,15 @@
    "honors": [],
    "ageRating": "辅12级（12+）",
    "subtitles": "原文发音，中文字幕",
-   "section": "奇幻特快车"
+   "section": "奇幻特快车",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-124",
@@ -3904,7 +4888,15 @@
    ],
    "ageRating": "辅15级（15+）",
    "subtitles": "原文发音，中文字幕",
-   "section": "奇幻特快车"
+   "section": "奇幻特快车",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-125",
@@ -3934,7 +4926,15 @@
    "screeningNotes": {
     "11/17-19:10-tp-vieshow-xinyi-hall-10": "映后活动 · 影人出席（嘉宾待公布）",
     "11/18-11:40-tp-vieshow-xinyi-hall-10": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-126",
@@ -3964,7 +4964,15 @@
    "section": "经典影事",
    "screeningNotes": {
     "11/14-15:20-tp-muvie-titan-titan": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-127",
@@ -3993,7 +5001,15 @@
    "section": "经典影事",
    "screeningNotes": {
     "11/17-21:20-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-128",
@@ -4023,7 +5039,15 @@
    ],
    "ageRating": "辅12级（12+）",
    "subtitles": "原文发音，中文字幕",
-   "section": "经典影事"
+   "section": "经典影事",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-129",
@@ -4050,7 +5074,15 @@
    ],
    "ageRating": "保护级（6+）",
    "subtitles": "原文发音，中文字幕",
-   "section": "经典影事"
+   "section": "经典影事",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-130",
@@ -4076,7 +5108,15 @@
    ],
    "ageRating": "保护级（6+）",
    "subtitles": "原文发音，中文字幕",
-   "section": "经典影事"
+   "section": "经典影事",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-131",
@@ -4101,7 +5141,15 @@
    ],
    "ageRating": "保护级（6+）",
    "subtitles": "原文发音，中文字幕",
-   "section": "经典影事"
+   "section": "经典影事",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-132",
@@ -4130,7 +5178,15 @@
    "section": "经典影事",
    "screeningNotes": {
     "11/7-16:50-tp-vieshow-xinyi-hall-10": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-133",
@@ -4155,7 +5211,15 @@
    ],
    "ageRating": "保护级（6+）",
    "subtitles": "原文发音，中文字幕",
-   "section": "电影如何成为我们：策展人的再访"
+   "section": "电影如何成为我们：策展人的再访",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-134",
@@ -4180,7 +5244,15 @@
    ],
    "ageRating": "普遍级（0+）",
    "subtitles": "原文发音，中文字幕",
-   "section": "电影如何成为我们：策展人的再访"
+   "section": "电影如何成为我们：策展人的再访",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-135",
@@ -4210,7 +5282,15 @@
    "section": "电影如何成为我们：策展人的再访",
    "screeningNotes": {
     "11/15-10:20-tp-vieshow-xinyi-hall-12": "映后活动 · 策展人座谈（与本片连场）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-136",
@@ -4239,7 +5319,15 @@
    "section": "电影如何成为我们：策展人的再访",
    "screeningNotes": {
     "11/14-12:20-tp-vieshow-xinyi-hall-10": "映后活动 · 策展人座谈（与本片连场）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-137",
@@ -4272,7 +5360,15 @@
    "section": "电影如何成为我们：策展人的再访",
    "screeningNotes": {
     "11/15-18:20-tp-vieshow-xinyi-hall-11": "映后活动 · 策展人座谈（与本片连场）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-138",
@@ -4301,7 +5397,15 @@
    "section": "致敬：今村昌平",
    "screeningNotes": {
     "11/12-18:50-tp-vieshow-xinyi-hall-11": "映后活动 · 今村昌平讲堂：曹仕翰（20:40，11厅）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-139",
@@ -4329,7 +5433,15 @@
    ],
    "ageRating": "辅15级（15+）",
    "subtitles": "原文发音，中文字幕",
-   "section": "致敬：今村昌平"
+   "section": "致敬：今村昌平",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-140",
@@ -4360,7 +5472,15 @@
    "section": "致敬：今村昌平",
    "screeningNotes": {
     "11/21-18:30-tp-vieshow-xinyi-hall-11": "映后活动 · 今村昌平讲堂：奉俊昊（21:00，11厅）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-141",
@@ -4386,7 +5506,15 @@
    ],
    "ageRating": "限制级（18+）",
    "subtitles": "原文发音，中文字幕",
-   "section": "致敬：今村昌平"
+   "section": "致敬：今村昌平",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-142",
@@ -4416,7 +5544,15 @@
    "section": "致敬：今村昌平",
    "screeningNotes": {
     "11/15-16:50-tp-muvie-titan-titan": "映后活动 · 今村昌平讲堂：西川美和（19:10，MUVIE TITAN）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-143",
@@ -4446,7 +5582,15 @@
    "section": "致敬：今村昌平",
    "screeningNotes": {
     "11/14-12:40-tp-vieshow-xinyi-hall-12": "映后活动 · 今村昌平讲堂：天愿大介（14:40，12厅）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-144",
@@ -4474,7 +5618,15 @@
    ],
    "ageRating": "辅15级（15+）",
    "subtitles": "原文发音，中文字幕",
-   "section": "致敬：今村昌平"
+   "section": "致敬：今村昌平",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-145",
@@ -4505,7 +5657,15 @@
    "section": "致敬：今村昌平",
    "screeningNotes": {
     "11/13-18:30-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-146",
@@ -4536,7 +5696,15 @@
    "section": "遇见大师",
    "screeningNotes": {
     "11/22-10:30-tp-muvie-titan-titan": "映后活动 · 大师讲堂：奉俊昊（12:30，MUVIE TITAN）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-147",
@@ -4567,7 +5735,15 @@
    "section": "遇见大师",
    "screeningNotes": {
     "11/21-10:10-tp-muvie-titan-titan": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-148",
@@ -4595,7 +5771,15 @@
    "version": "4K修复",
    "ageRating": "辅15级（15+）",
    "subtitles": "原文发音，中文字幕",
-   "section": "遇见大师"
+   "section": "遇见大师",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-149",
@@ -4626,7 +5810,15 @@
    "section": "遇见大师",
    "screeningNotes": {
     "11/16-18:10-tp-muvie-titan-titan": "映后活动 · 大师讲堂：戴伦艾洛诺夫斯基（20:00，MUVIE TITAN）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-150",
@@ -4655,7 +5847,15 @@
    "section": "遇见大师",
    "screeningNotes": {
     "11/16-14:30-tp-muvie-titan-titan": "映后活动 · 大师讲堂：三谷幸喜（16:30，MUVIE TITAN）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-151",
@@ -4682,7 +5882,15 @@
    "screeningNotes": {
     "11/14-17:40-tp-vieshow-xinyi-hall-10": "映后活动 · 大师讲堂：凯尔巴尔达（19:30，10厅）",
     "11/19-18:30-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-152",
@@ -4706,7 +5914,15 @@
    "section": "神秘影片",
    "screeningNotes": {
     "11/8-10:20-tp-muvie-titan-titan": "映后活动 · 影人出席（嘉宾待公布）"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-153",
@@ -4736,7 +5952,15 @@
    ],
    "ageRating": "保护级（6+）",
    "subtitles": "原文发音，中文字幕",
-   "section": "神秘影片"
+   "section": "神秘影片",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-154",
@@ -4771,7 +5995,15 @@
    "section": "神秘影片",
    "screeningNotes": {
     "11/14-21:00-tp-vieshow-xinyi-hall-10": "影片页列有本场，场次总表未列出，请以金马官网及现场公布为准"
-   }
+   },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-155",
@@ -4798,7 +6030,15 @@
    ],
    "ageRating": "辅15级（15+）",
    "subtitles": "原文发音，中文字幕",
-   "section": "神秘影片"
+   "section": "神秘影片",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   },
   {
    "id": "gh63-156",
@@ -4822,7 +6062,15 @@
    ],
    "ageRating": "辅12级（12+）",
    "subtitles": "原文发音，中文字幕",
-   "section": "神秘影片"
+   "section": "神秘影片",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。"
   }
  ],
  "shows": [

@@ -8,7 +8,7 @@ const now=new Date(2026,10,6,0,15).getTime(),RealDate=Date;
 class FakeDate extends RealDate{constructor(...args){super(...(args.length?args:[now]));}static now(){return now;}}
 // Use real utilities, with the page clock simulated at 00:15 before its first screening.
 const utilSource=fs.readFileSync(path.join(root,'miniprogram/utils/util.js'),'utf8'),utilCtx={require:()=>I,module:{exports:{}},Date:FakeDate};vm.runInNewContext(utilSource,utilCtx);const UT=utilCtx.module.exports;
-const ctx={Date:FakeDate,Page:p=>page=p,getApp:()=>({globalData:{data}}),require:n=>n.endsWith('/util.js')?UT:n.endsWith('/plan.js')?plan:I,wx:{},setInterval:()=>0,clearInterval(){}};
+const ctx={Date:FakeDate,Page:p=>page=p,getApp:()=>({globalData:{data}}),require:n=>n.endsWith('/util.js')?UT:n.endsWith('/plan.js')?plan:I,wx:{getStorageSync:k=>store.get(k),setStorageSync:(k,v)=>store.set(k,v)},setInterval:()=>0,clearInterval(){}};
 vm.runInNewContext(fs.readFileSync(path.join(root,'miniprogram/pages/schedule/schedule.js'),'utf8'),ctx);page.data=JSON.parse(JSON.stringify(page.data));page.setData=x=>Object.assign(page.data,x);page.data.pf='golden-rooster-2026';page.data.day='11/6';page.build();assert.equal(page.ttCtx.S,810);assert.equal(page.data.ticks[0].t,'13:30');assert.equal(page.data.nowLine,null);
 page.setCity({detail:{value:page.data.cities.findIndex(c=>c.id==='厦门')}});assert.equal(page.data.count,173);
 page.searchVenue({detail:{value:'思明'}});assert.equal(page.data.venues.length,1);assert.equal(page.data.venues[0].city,'厦门');const vid=page.data.venues[0].id;page.setVenue({currentTarget:{dataset:{id:vid}}});assert.equal(page.data.count,3);assert.equal(page.ttCtx.S,840);assert.equal(page.data.ticks[0].t,'14:00');

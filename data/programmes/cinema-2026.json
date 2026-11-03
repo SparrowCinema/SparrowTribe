@@ -65,7 +65,19 @@
       "万象独家珍藏工艺海报"
      ]
     }
-   ]
+   ],
+   "warnings": [
+    "强烈血腥暴力",
+    "动物死亡",
+    "粗口"
+   ],
+   "editorial": "适合想在大银幕看动作调度的观众。留意空间、身体与枪械动作如何衔接；对动物受害情节敏感的观众应提前考虑。",
+   "contentReview": {
+    "status": "official-advisory",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "已结合海外公开内容提示整理；片长、剪辑与本次放映版本可能不同，请按个人情况选择。"
   },
   {
    "id": "happy-birthday",
@@ -129,7 +141,18 @@
     }
    ],
    "ticketLabel": "报名",
-   "ticket": "tickets/happy-birthday.png"
+   "ticket": "tickets/happy-birthday.png",
+   "warnings": [
+    "童工与儿童剥削",
+    "阶级歧视"
+   ],
+   "editorial": "适合关注儿童处境与阶级关系的观众。生日派对的欢乐与女童所处的位置形成落差，温暖时刻也值得连同权力关系一起看。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及童工与儿童剥削、阶级歧视。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "linka-linka",
@@ -190,7 +213,18 @@
    "screeningNotes": {
     "11/6-19:45-xm-gr26-1-hall-2": "映后活动 · 导演/编剧：岗珍（以实际到场为准）"
    },
-   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-linka-linka.jpg?v=37"
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-linka-linka.jpg?v=37",
+   "warnings": [
+    "童年伤痛",
+    "家庭矛盾"
+   ],
+   "editorial": "适合喜欢记忆与电影创作交织的观众。可以跟着拍摄现场和少女往事的切换寻找关系，不必急于把不同记忆拼成单一答案。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及童年伤痛、家庭矛盾。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "kill-bill-whole-bloody-affair",
@@ -240,7 +274,20 @@
    ],
    "honors": [],
    "version": "",
-   "poster": "posters/kill-bill-whole-bloody-affair.jpg"
+   "poster": "posters/kill-bill-whole-bloody-affair.jpg",
+   "warnings": [
+    "强烈血腥暴力",
+    "性暴力与威胁",
+    "毒品使用",
+    "粗口"
+   ],
+   "editorial": "适合希望整体体验这段复仇叙事的观众。合并版值得关注两部分如何连接；片长很长，请先确认休息安排并预留体力。",
+   "contentReview": {
+    "status": "official-advisory",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "已结合海外公开内容提示整理；片长、剪辑与本次放映版本可能不同，请按个人情况选择。"
   },
   {
    "id": "the-odyssey",
@@ -290,7 +337,19 @@
    ],
    "honors": [],
    "version": "",
-   "poster": "posters/the-odyssey.jpg"
+   "poster": "posters/the-odyssey.jpg",
+   "warnings": [
+    "战争题材",
+    "失踪与家庭分离",
+    "冒险中的危险"
+   ],
+   "editorial": "适合对荷马史诗和返乡母题感兴趣的观众。可以从家人等待与归途阻碍两条线进入；想紧接下一场时，请先确认本场散场时间。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及战争题材、失踪与家庭分离、冒险中的危险。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "dune-part-three",
@@ -343,7 +402,18 @@
    ],
    "honors": [],
    "version": "",
-   "poster": "posters/dune-part-three.jpg"
+   "poster": "posters/dune-part-three.jpg",
+   "warnings": [
+    "战争与宗教权力题材",
+    "政治压迫"
+   ],
+   "editorial": "适合愿意延续沙丘人物与权力关系的观众。先回顾前作会更容易进入；当前选片笔记基于已收录故事资料，成片体验待确认。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及战争与宗教权力题材、政治压迫。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "avengers-doomsday",
@@ -394,7 +464,18 @@
    ],
    "honors": [],
    "version": "",
-   "poster": "posters/avengers-doomsday.jpg"
+   "poster": "posters/avengers-doomsday.jpg",
+   "warnings": [
+    "战斗与威胁题材",
+    "灾难题材"
+   ],
+   "editorial": "适合熟悉不同漫威人物线的观众。可先梳理各宇宙角色关系；正式版本与具体放映信息尚需确认，不宜据此安排紧密赶场。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及战斗与威胁题材、灾难题材。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "we-live-in-time",
@@ -444,7 +525,25 @@
     "入选｜2024 圣塞巴斯蒂安国际电影节 · 闭幕影片（非竞赛）"
    ],
    "version": "",
-   "poster": "posters/we-live-in-time.jpg"
+   "poster": "posters/we-live-in-time.jpg",
+   "warnings": [
+    "癌症与治疗",
+    "死亡与哀伤",
+    "生育议题",
+    "交通事故"
+   ],
+   "editorial": "适合愿意进入爱情与疾病日常的观众。注意时间顺序如何改变一个普通生活片段的分量；近期经历病痛或丧失时请照顾自己的状态。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及癌症与治疗、死亡与哀伤、生育议题、交通事故。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "mpa": {
+    "rating": "R",
+    "edition": "US Blu-ray release",
+    "checked": "2026-11-03"
+   }
   },
   {
    "id": "for-better-or-worse",
@@ -490,7 +589,19 @@
    "version": "",
    "poster": "posters/for-better-or-worse.jpg",
    "ticketLabel": "报名",
-   "ticket": "tickets/for-better-or-worse.png"
+   "ticket": "tickets/for-better-or-worse.png",
+   "warnings": [
+    "抑郁经历",
+    "债务压力",
+    "伴侣争执"
+   ],
+   "editorial": "适合关注亲密关系真实磨合的观众。把经营、育儿和争执放在同一条生活线上看，纪录片的价值也在那些没有解决的时刻。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及抑郁经历、债务压力、伴侣争执。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "resident-evil",
@@ -555,7 +666,19 @@
     }
    ],
    "ticketLabel": "报名",
-   "ticket": "tickets/resident-evil.png"
+   "ticket": "tickets/resident-evil.png",
+   "warnings": [
+    "恐怖题材",
+    "感染与变异",
+    "生存威胁"
+   ],
+   "editorial": "适合接受感染与怪物题材的观众。可以从被困城中的普通人处境进入；成片血腥程度与感官提示需等正式资料确认。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及恐怖题材、感染与变异、生存威胁。具体画面与表现强度尚未核实，请结合个人情况选择。"
   }
  ],
  "shows": [

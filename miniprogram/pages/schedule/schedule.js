@@ -9,7 +9,8 @@ const vShort = v => (v.city ? t(v.city) + ' · ' : '') + (v.short || v.brand || 
 const hShort = h => h.short || h.name;
 
 Page({
-  data: { onlyMine: false, selectorType: '', selectorQuery: '', selectorRows: [], programmeName: '', cityName: '', city: 'all', cityIndex: 0, cities: [], venueQuery: '', venueName: '', pf: 'all', vf: 'all', day: '', days: [], nowLine: null, todayOpen: false, myToday: [], myTodayTitle: '', progs: [], vchips: [], venues: [], vOpen: false, cols: [], ticks: [], H: 0, dayList: [], legend: [], span: '', count: 0, dayTitle: '', empty: '', scrollInto: '' },
+  setView(e){const view=e.currentTarget.dataset.view;this.setData({view});try{wx.setStorageSync('sk-schedule-view',view);}catch{}},
+  data: {view:wx.getStorageSync('sk-schedule-view')||'gantt', onlyMine: false, selectorType: '', selectorQuery: '', selectorRows: [], programmeName: '', cityName: '', city: 'all', cityIndex: 0, cities: [], venueQuery: '', venueName: '', pf: 'all', vf: 'all', day: '', days: [], nowLine: null, todayOpen: false, myToday: [], myTodayTitle: '', progs: [], vchips: [], venues: [], vOpen: false, cols: [], ticks: [], H: 0, dayList: [], legend: [], span: '', count: 0, dayTitle: '', empty: '', scrollInto: '' },
 
   onLoad(q) {
     let om = false; try { om = !!wx.getStorageSync('sk-only-mine'); } catch (e) { }
@@ -106,8 +107,9 @@ Page({
       return { id: v.id, short: vShort(v), name: v.name, city: t(v.city||''), label: v.name.replace(new RegExp('^'+(v.city||'$^')),''), fmt: t((v.fmt || []).join(' · ')), n, halls: v.halls.length ? v.halls.map(h => h.name).join(' · ') : t('影厅待补充') };
     });
     const vname = vf !== 'all' && idx.VN[vf] ? idx.VN[vf].name : t('当前筛选');
+    const venueGroups=data.venues.filter(v=>dl.some(s=>s.v===v.id)).map(v=>({id:v.id,name:vShort(v),halls:v.halls.filter(h=>dl.some(s=>s.v===v.id&&s.h===h.id)).map(h=>({id:h.id,name:h.short||h.name,rows:dl.filter(s=>s.v===v.id&&s.h===h.id).map(s=>{const r=U.showView(s,idx,data,picked);r.mpa=idx.F[s.id].mpa?.rating||'';return r;})}))}));
     this.setData({
-      day, days, cols, ticks, H, nowLine, progs, venues, myToday, cities, cityIndex: Math.max(0,cities.findIndex(c=>c.id===city)), venueName: vf==='all'?t('全部影院'):vShort(idx.VN[vf]), programmeName: pf==='all'?t('全部专题'):idx.PG[pf].name, cityName:city==='all'?t('全部城市'):t(city),
+      venueGroups,day, days, cols, ticks, H, nowLine, progs, venues, myToday, cities, cityIndex: Math.max(0,cities.findIndex(c=>c.id===city)), venueName: vf==='all'?t('全部影院'):vShort(idx.VN[vf]), programmeName: pf==='all'?t('全部专题'):idx.PG[pf].name, cityName:city==='all'?t('全部城市'):t(city),
       todayHead: t(off <= 0 ? '今日我的排片' : off === 1 ? '明日我的排片' : '近期我的排片'),
       myTodayTitle: t(nkey.replace('/', '月') + '日') + ' ' + U.wk(nkey) + ' · ' + t(off <= 0 ? '接下来 ' + myToday.length + ' 场' : off === 1 ? myToday.length + ' 场' : off + ' 天后 · ' + myToday.length + ' 场'),
       todayToggle: t(this.data.todayOpen ? '收起' : '还有 ' + Math.max(0, myToday.length - 1) + ' 场 · 展开全部'),
