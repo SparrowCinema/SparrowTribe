@@ -94,8 +94,6 @@ ONE STAMP</text><text class="fp-open-icon">↗</text></view>
   <view class="my-library-links"><view data-mode="planned" bindtap="openLibrary">{{L.t(i,'已加入排片')}} ↗</view><view data-mode="watched" bindtap="openLibrary">{{L.t(i,'已看过')}} ↗</view><view data-mode="qa" bindtap="openLibrary">{{L.t(i,'主创映后场')}} ↗</view></view>
   </view>
   <view class="me-row" hover-class="hv" bindtap="openRecap"><image class="me-ic" src="/images/menu/recap.svg" mode="aspectFit" /><view class="me-copy"><text class="me-t">{{L.t(i,'我的影院观影结算')}}</text><text class="me-s">{{L.t(i,'按年份与专题，收藏印章与评分。')}}</text></view><text class="me-go">›</text></view>
-  <view class="me-row" hover-class="hv" bindtap="toPlan" data-to="plan"><image class="me-ic" src="/images/menu/plan.svg" mode="aspectFit" /><view class="me-copy"><text class="me-t">{{L.t(i,'个人排片')}}</text><text class="me-s">{{stats.n ? stats.n + ' ' + L.t(i,'场放映') + ' · ' + stats.d + ' ' + L.t(i,'天行程') : L.t(i,'按天查看日程 · 自动检查时间冲突')}}</text></view><text class="me-go">›</text></view>
-  <view class="me-row" hover-class="hv" bindtap="toPlan" data-to="plan-tools"><image class="me-ic" src="/images/menu/export.svg" mode="aspectFit" /><view class="me-copy"><text class="me-t">{{L.t(i,'导出与分享')}}</text><text class="me-s">{{L.t(i,'排片长图 · 分享给朋友')}}</text></view><text class="me-go">›</text></view>
   <view class="me-row" hover-class="hv" bindtap="toggleSync"><image class="me-ic" src="/images/menu/sync.svg" mode="aspectFit" /><view class="me-copy"><text class="me-t">{{L.t(i,'个人档案云端同步')}}</text><text class="me-s">{{sy.on ? sy.line : L.t(i,'同步、备份与档案保管')}}</text></view><text class="me-go {{syncExpanded?'on':''}}">›</text></view>
   <view wx:if="{{syncExpanded}}" class="me-body sync-body">
    <block wx:if="{{sy}}">
