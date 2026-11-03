@@ -1623,6 +1623,29 @@
     }
    ],
    "city": "台北"
+  },
+  {
+   "id": "tp-wenchuang",
+   "short": "文创大楼",
+   "name": "台北文创大楼",
+   "brand": "台北文创大楼",
+   "store": "",
+   "en": "Taipei Creative Hub",
+   "fmt": [],
+   "addr": "台北市菸厂路88号",
+   "halls": [
+    {
+     "id": "6f",
+     "short": "6楼",
+     "name": "6楼多功能厅"
+    },
+    {
+     "id": "14f",
+     "short": "14楼",
+     "name": "14楼文创会所"
+    }
+   ],
+   "city": "台北"
   }
  ],
  "reg": {

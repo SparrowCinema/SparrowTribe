@@ -14123,6 +14123,357 @@ module.exports = {
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-ev-master-balda",
+   "cn": "大师讲堂：凯尔巴尔达",
+   "o": "大师讲堂：凯尔巴尔达",
+   "en": "Master’s Talk: Kyle Balda",
+   "y": 2026,
+   "c": "台北",
+   "min": 60,
+   "reg": "cn",
+   "ev": 1,
+   "evKind": "masters",
+   "syn": "《绵羊侦探团》导演、全球卖座动画导演凯尔巴尔达亲口分享创作经历与幕后秘密。（须购票观影入场，映后讲堂视现场情况安排候补入场。）",
+   "genre": [],
+   "honors": [],
+   "cast": [],
+   "writers": [],
+   "evId": "master-balda",
+   "warnings": [],
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "这是讲座或活动场次，不是影片放映。",
+   "editorial": "活动场次，具体安排以现场公布为准。",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-ev-master-mitani",
+   "cn": "大师讲堂：三谷幸喜",
+   "o": "大师讲堂：三谷幸喜",
+   "en": "Master’s Talk: Mitani Koki",
+   "y": 2026,
+   "c": "台北",
+   "min": 60,
+   "reg": "cn",
+   "ev": 1,
+   "evKind": "masters",
+   "syn": "日本国民喜剧大师三谷幸喜，谈《笑之大学》与他的编剧创作。（须购票观影入场，映后讲堂视现场情况安排候补入场。）",
+   "genre": [],
+   "honors": [],
+   "cast": [],
+   "writers": [],
+   "evId": "master-mitani",
+   "warnings": [],
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "这是讲座或活动场次，不是影片放映。",
+   "editorial": "活动场次，具体安排以现场公布为准。",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-ev-master-aronofsky",
+   "cn": "大师讲堂：戴伦艾洛诺夫斯基",
+   "o": "大师讲堂：戴伦艾洛诺夫斯基",
+   "en": "Master’s Talk: Darren Aronofsky",
+   "y": 2026,
+   "c": "台北",
+   "min": 60,
+   "reg": "cn",
+   "ev": 1,
+   "evKind": "masters",
+   "syn": "《黑天鹅》导演戴伦艾洛诺夫斯基亲临金马，分享创作历程。（须购票观影入场，映后讲堂视现场情况安排候补入场。）",
+   "genre": [],
+   "honors": [],
+   "cast": [],
+   "writers": [],
+   "evId": "master-aronofsky",
+   "warnings": [],
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "这是讲座或活动场次，不是影片放映。",
+   "editorial": "活动场次，具体安排以现场公布为准。",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-ev-master-bong",
+   "cn": "大师讲堂：奉俊昊",
+   "o": "大师讲堂：奉俊昊",
+   "en": "Master’s Talk: Bong Joon-ho",
+   "y": 2026,
+   "c": "台北",
+   "min": 60,
+   "reg": "cn",
+   "ev": 1,
+   "evKind": "masters",
+   "syn": "韩国奥斯卡大导奉俊昊，在《骇人怪物》放映后现身讲堂。（须购票观影入场，映后讲堂视现场情况安排候补入场。）",
+   "genre": [],
+   "honors": [],
+   "cast": [],
+   "writers": [],
+   "evId": "master-bong",
+   "warnings": [],
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "这是讲座或活动场次，不是影片放映。",
+   "editorial": "活动场次，具体安排以现场公布为准。",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-ev-imamura-tsao",
+   "cn": "今村昌平讲堂：曹仕翰",
+   "o": "今村昌平讲堂：曹仕翰",
+   "en": "Imamura Talk: Tsao Shih-han",
+   "y": 2026,
+   "c": "台北",
+   "min": 40,
+   "reg": "cn",
+   "ev": 1,
+   "evKind": "imamura",
+   "syn": "日韩台导演齐聚金马论导演，说他们如何从今村昌平的电影中汲取养分，灌溉至个人作品里。（须购票观影入场，映后讲堂视现场情况安排候补入场。）",
+   "genre": [],
+   "honors": [],
+   "cast": [],
+   "writers": [],
+   "evId": "imamura-tsao",
+   "warnings": [],
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "这是讲座或活动场次，不是影片放映。",
+   "editorial": "活动场次，具体安排以现场公布为准。",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-ev-imamura-tengan",
+   "cn": "今村昌平讲堂：天愿大介",
+   "o": "今村昌平讲堂：天愿大介",
+   "en": "Imamura Talk: Tengan Daisuke",
+   "y": 2026,
+   "c": "台北",
+   "min": 60,
+   "reg": "cn",
+   "ev": 1,
+   "evKind": "imamura",
+   "syn": "导演天愿大介谈今村昌平。（须购票观影入场，映后讲堂视现场情况安排候补入场。）",
+   "genre": [],
+   "honors": [],
+   "cast": [],
+   "writers": [],
+   "evId": "imamura-tengan",
+   "warnings": [],
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "这是讲座或活动场次，不是影片放映。",
+   "editorial": "活动场次，具体安排以现场公布为准。",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-ev-imamura-nishikawa",
+   "cn": "今村昌平讲堂：西川美和",
+   "o": "今村昌平讲堂：西川美和",
+   "en": "Imamura Talk: Nishikawa Miwa",
+   "y": 2026,
+   "c": "台北",
+   "min": 40,
+   "reg": "cn",
+   "ev": 1,
+   "evKind": "imamura",
+   "syn": "导演西川美和谈今村昌平。（须购票观影入场，映后讲堂视现场情况安排候补入场。）",
+   "genre": [],
+   "honors": [],
+   "cast": [],
+   "writers": [],
+   "evId": "imamura-nishikawa",
+   "warnings": [],
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "这是讲座或活动场次，不是影片放映。",
+   "editorial": "活动场次，具体安排以现场公布为准。",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-ev-imamura-bong",
+   "cn": "今村昌平讲堂：奉俊昊",
+   "o": "今村昌平讲堂：奉俊昊",
+   "en": "Imamura Talk: Bong Joon-ho",
+   "y": 2026,
+   "c": "台北",
+   "min": 40,
+   "reg": "cn",
+   "ev": 1,
+   "evKind": "imamura",
+   "syn": "导演奉俊昊谈今村昌平。（须购票观影入场，映后讲堂视现场情况安排候补入场。）",
+   "genre": [],
+   "honors": [],
+   "cast": [],
+   "writers": [],
+   "evId": "imamura-bong",
+   "warnings": [],
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "这是讲座或活动场次，不是影片放映。",
+   "editorial": "活动场次，具体安排以现场公布为准。",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-ev-salon-berlinale",
+   "cn": "电影沙龙：金马 × 柏林新世代｜电影如何与年轻观众相遇？",
+   "o": "电影沙龙：金马 × 柏林新世代｜电影如何与年轻观众相遇？",
+   "en": "Cinema Talk: Golden Horse × Berlinale Generation – How Does Cinema Meet Young Audiences?",
+   "y": 2026,
+   "c": "台北",
+   "min": 90,
+   "reg": "cn",
+   "ev": 1,
+   "evKind": "salon",
+   "syn": "柏林影展新世代单元在寻找什么样的影片？如何理解儿童与青少年的观影经验，又是什么让一部电影真正与年轻观众建立关系？总监塞巴斯蒂安马克特以本届「金马 × 柏林新世代」选片为例，分享策展思考与选片经验。",
+   "genre": [],
+   "honors": [],
+   "cast": [],
+   "writers": [],
+   "evId": "salon-berlinale",
+   "warnings": [],
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "这是讲座或活动场次，不是影片放映。",
+   "editorial": "活动场次，具体安排以现场公布为准。",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-ev-salon-netpac",
+   "cn": "电影沙龙：金马 × 奈派克｜亚洲电影新锐面对面（A／B／C）",
+   "o": "电影沙龙：金马 × 奈派克｜亚洲电影新锐面对面（A／B／C）",
+   "en": "Cinema Talk: Golden Horse × NETPAC – Meet Asia’s Emerging Filmmakers (A/B/C)",
+   "y": 2026,
+   "c": "台北",
+   "min": 60,
+   "reg": "cn",
+   "ev": 1,
+   "evKind": "salon",
+   "syn": "亚洲影坛新秀齐聚金马武林：漫漫创作路、层层闯关卡，化常规类型为功法秘笈，努力走出自己的叙事。三场讲座邀请入选奈派克奖各国好手，共享心法所学，带领观众回望创作记忆的酸甘甜。",
+   "genre": [],
+   "honors": [],
+   "cast": [],
+   "writers": [],
+   "evId": "salon-netpac",
+   "warnings": [],
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "这是讲座或活动场次，不是影片放映。",
+   "editorial": "活动场次，具体安排以现场公布为准。",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-ev-salon-curators",
+   "cn": "电影沙龙：电影如何成为我们｜策展人的来访",
+   "o": "电影沙龙：电影如何成为我们｜策展人的来访",
+   "en": "Cinema Talk: How Cinema Made Us – Curators Revisit",
+   "y": 2026,
+   "c": "台北",
+   "min": 90,
+   "reg": "cn",
+   "ev": 1,
+   "evKind": "salon",
+   "syn": "历届金马策展人重返影展现场，从各自选回的一部电影谈起，分享当年如何选片、又曾如何想像观众，也回望那些改变策展人与影迷观看方向的时刻。",
+   "genre": [],
+   "honors": [],
+   "cast": [],
+   "writers": [],
+   "evId": "salon-curators",
+   "warnings": [],
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "这是讲座或活动场次，不是影片放映。",
+   "editorial": "活动场次，具体安排以现场公布为准。",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-ev-academy",
+   "cn": "金马电影学院 作品放映暨结业典礼（含新世代及奈派克颁奖典礼）",
+   "o": "金马电影学院 作品放映暨结业典礼（含新世代及奈派克颁奖典礼）",
+   "en": "Golden Horse Film Academy Screening & Graduation Ceremony (with New Current × NETPAC Awards)",
+   "y": 2026,
+   "c": "台北",
+   "min": 95,
+   "reg": "cn",
+   "ev": 1,
+   "evKind": "academy",
+   "syn": "九位来自不同文化背景与创作风格的华语创作者，藉由为期 79 天的集体创作拍摄短片，激发更大的创作能量与视野，欢迎见证成果。",
+   "genre": [],
+   "honors": [],
+   "cast": [],
+   "writers": [],
+   "evId": "academy",
+   "warnings": [],
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "这是讲座或活动场次，不是影片放映。",
+   "editorial": "活动场次，具体安排以现场公布为准。",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-ev-forum",
+   "cn": "金马电影论坛",
+   "o": "金马电影论坛",
+   "en": "Golden Horse Film Forum",
+   "y": 2026,
+   "c": "台北",
+   "min": 120,
+   "reg": "cn",
+   "ev": 1,
+   "evKind": "forum",
+   "syn": "本届金马奖入围影人齐聚，携手回溯电影诞生的旅程，畅谈创意与现实的碰撞取舍，幕前幕后如何汇聚心力，将最初的一念灵光化为银幕上的万千光景。",
+   "genre": [],
+   "honors": [],
+   "cast": [],
+   "writers": [],
+   "evId": "forum",
+   "warnings": [],
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "这是讲座或活动场次，不是影片放映。",
+   "editorial": "活动场次，具体安排以现场公布为准。",
+   "prog": "golden-horse-2026"
   }
  ],
  "shows": [
@@ -18227,6 +18578,111 @@ module.exports = {
    "id": "gh63-137",
    "v": "tp-vieshow-xinyi",
    "h": "hall-10"
+  },
+  {
+   "d": "11/14",
+   "t": "19:30",
+   "id": "gh63-ev-master-balda",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/16",
+   "t": "16:30",
+   "id": "gh63-ev-master-mitani",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/16",
+   "t": "20:00",
+   "id": "gh63-ev-master-aronofsky",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/22",
+   "t": "12:30",
+   "id": "gh63-ev-master-bong",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/12",
+   "t": "20:40",
+   "id": "gh63-ev-imamura-tsao",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/14",
+   "t": "14:40",
+   "id": "gh63-ev-imamura-tengan",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/15",
+   "t": "19:10",
+   "id": "gh63-ev-imamura-nishikawa",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/21",
+   "t": "21:00",
+   "id": "gh63-ev-imamura-bong",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/8",
+   "t": "16:00",
+   "id": "gh63-ev-salon-berlinale",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-15"
+  },
+  {
+   "d": "11/17",
+   "t": "16:30",
+   "id": "gh63-ev-salon-netpac",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-15"
+  },
+  {
+   "d": "11/18",
+   "t": "15:00",
+   "id": "gh63-ev-salon-netpac",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-15"
+  },
+  {
+   "d": "11/18",
+   "t": "16:30",
+   "id": "gh63-ev-salon-netpac",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-15"
+  },
+  {
+   "d": "11/15",
+   "t": "15:00",
+   "id": "gh63-ev-salon-curators",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-15"
+  },
+  {
+   "d": "11/18",
+   "t": "19:00",
+   "id": "gh63-ev-academy",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/20",
+   "t": "15:00",
+   "id": "gh63-ev-forum",
+   "v": "tp-wenchuang",
+   "h": "14f"
   }
  ],
  "venues": [
@@ -18752,6 +19208,29 @@ module.exports = {
      "id": "titan",
      "short": "TITAN",
      "name": "MUVIE TITAN 厅"
+    }
+   ],
+   "city": "台北"
+  },
+  {
+   "id": "tp-wenchuang",
+   "short": "文创大楼",
+   "name": "台北文创大楼",
+   "brand": "台北文创大楼",
+   "store": "",
+   "en": "Taipei Creative Hub",
+   "fmt": [],
+   "addr": "台北市菸厂路88号",
+   "halls": [
+    {
+     "id": "6f",
+     "short": "6楼",
+     "name": "6楼多功能厅"
+    },
+    {
+     "id": "14f",
+     "short": "14楼",
+     "name": "14楼文创会所"
     }
    ],
    "city": "台北"

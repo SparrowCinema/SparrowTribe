@@ -14,7 +14,7 @@ Page({
     const data = app.globalData.data, idx = U.index(data), now = Date.now();
     const list = data.programmes.map((p, i) => {
       const { shows, up, a, b, status } = U.progInfo(p, data, idx, now);
-      const fn = data.films.filter(f => idx.progOf(f).id === p.id || (p.sections||{})[f.id]).length;
+      const fn = data.films.filter(f => !f.ev && idx.progOf(f).id === p.id || (p.sections||{})[f.id]).length;
       return Object.assign({}, p, { ord: i, n: shows.length, up, fn, fest: U.isFest(p), status, statusText: t(p.ongoing && status === 'live' ? '常设' : { live: '进行中', soon: '即将开始', ended: '已结束' }[status]), a: a || 0, b: b || 0,
         kt: t(p.kind), pt: t(p.period), stat: p.sub + ' · ' + t(fn + ' 部' + (shows.length ? ' / ' + shows.length + ' 场' : '')), goTxt: up ? t(up + ' 场') + (I.isEn() ? ' upcoming ›' : '待放映 ›') : t('专题') + ' ›' });
     });

@@ -4385,6 +4385,97 @@
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
    "warnings": [],
    "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+  },
+  "gh63-ev-master-balda": {
+   "title": "Master’s Talk: Kyle Balda",
+   "syn": "Kyle Balda, director of The Sheep Detectives and of global animated hits, shares his creative path and behind-the-scenes stories. (Film ticket required; standby queue for the talk depends on available seats.)",
+   "warnings": [],
+   "contentNote": "This is a talk or event session, not a film screening.",
+   "editorial": "Event session; details are subject to on-site announcements."
+  },
+  "gh63-ev-master-mitani": {
+   "title": "Master’s Talk: Mitani Koki",
+   "syn": "Mitani Koki, a leading comedy writer of Japan, talks about University of Laughs and his writing. (Film ticket required; standby queue for the talk depends on available seats.)",
+   "warnings": [],
+   "contentNote": "This is a talk or event session, not a film screening.",
+   "editorial": "Event session; details are subject to on-site announcements."
+  },
+  "gh63-ev-master-aronofsky": {
+   "title": "Master’s Talk: Darren Aronofsky",
+   "syn": "Darren Aronofsky, director of Black Swan, shares his creative journey. (Film ticket required; standby queue for the talk depends on available seats.)",
+   "warnings": [],
+   "contentNote": "This is a talk or event session, not a film screening.",
+   "editorial": "Event session; details are subject to on-site announcements."
+  },
+  "gh63-ev-master-bong": {
+   "title": "Master’s Talk: Bong Joon-ho",
+   "syn": "Oscar-winning Korean director Bong Joon-ho speaks after the screening of The Host. (Film ticket required; standby queue for the talk depends on available seats.)",
+   "warnings": [],
+   "contentNote": "This is a talk or event session, not a film screening.",
+   "editorial": "Event session; details are subject to on-site announcements."
+  },
+  "gh63-ev-imamura-tsao": {
+   "title": "Imamura Talk: Tsao Shih-han",
+   "syn": "Directors from Japan, Korea and Taiwan discuss how Imamura Shohei’s films nourished their own work. (Film ticket required; standby queue for the talk depends on available seats.)",
+   "warnings": [],
+   "contentNote": "This is a talk or event session, not a film screening.",
+   "editorial": "Event session; details are subject to on-site announcements."
+  },
+  "gh63-ev-imamura-tengan": {
+   "title": "Imamura Talk: Tengan Daisuke",
+   "syn": "Director Tengan Daisuke on Imamura Shohei. (Film ticket required; standby queue for the talk depends on available seats.)",
+   "warnings": [],
+   "contentNote": "This is a talk or event session, not a film screening.",
+   "editorial": "Event session; details are subject to on-site announcements."
+  },
+  "gh63-ev-imamura-nishikawa": {
+   "title": "Imamura Talk: Nishikawa Miwa",
+   "syn": "Director Nishikawa Miwa on Imamura Shohei. (Film ticket required; standby queue for the talk depends on available seats.)",
+   "warnings": [],
+   "contentNote": "This is a talk or event session, not a film screening.",
+   "editorial": "Event session; details are subject to on-site announcements."
+  },
+  "gh63-ev-imamura-bong": {
+   "title": "Imamura Talk: Bong Joon-ho",
+   "syn": "Director Bong Joon-ho on Imamura Shohei. (Film ticket required; standby queue for the talk depends on available seats.)",
+   "warnings": [],
+   "contentNote": "This is a talk or event session, not a film screening.",
+   "editorial": "Event session; details are subject to on-site announcements."
+  },
+  "gh63-ev-salon-berlinale": {
+   "title": "Cinema Talk: Golden Horse × Berlinale Generation – How Does Cinema Meet Young Audiences?",
+   "syn": "What is Berlinale Generation looking for, how does it understand children’s and teens’ viewing experience, and what makes a film truly connect with young audiences? Section head Sebastian Markt uses this year’s Golden Horse × Berlinale Generation selection to share his curatorial thinking.",
+   "warnings": [],
+   "contentNote": "This is a talk or event session, not a film screening.",
+   "editorial": "Event session; details are subject to on-site announcements."
+  },
+  "gh63-ev-salon-netpac": {
+   "title": "Cinema Talk: Golden Horse × NETPAC – Meet Asia’s Emerging Filmmakers (A/B/C)",
+   "syn": "Rising Asian filmmakers gather at the Golden Horse to share how they turn genre conventions into their own narrative craft. Three talks bring together filmmakers selected for the NETPAC Award.",
+   "warnings": [],
+   "contentNote": "This is a talk or event session, not a film screening.",
+   "editorial": "Event session; details are subject to on-site announcements."
+  },
+  "gh63-ev-salon-curators": {
+   "title": "Cinema Talk: How Cinema Made Us – Curators Revisit",
+   "syn": "Former Golden Horse programmers return to talk about one film each, how they selected films and imagined audiences back then, and the moments that changed how they and fans watch.",
+   "warnings": [],
+   "contentNote": "This is a talk or event session, not a film screening.",
+   "editorial": "Event session; details are subject to on-site announcements."
+  },
+  "gh63-ev-academy": {
+   "title": "Golden Horse Film Academy Screening & Graduation Ceremony (with New Current × NETPAC Awards)",
+   "syn": "Nine Chinese-language creators from different cultural backgrounds and styles made short films through a 79-day collective creation programme. Come and see the results.",
+   "warnings": [],
+   "contentNote": "This is a talk or event session, not a film screening.",
+   "editorial": "Event session; details are subject to on-site announcements."
+  },
+  "gh63-ev-forum": {
+   "title": "Golden Horse Film Forum",
+   "syn": "This year’s Golden Horse Awards nominees gather to retrace the journey of making a film, the clash between creativity and reality, and how cast and crew turn a first spark into what we see on screen.",
+   "warnings": [],
+   "contentNote": "This is a talk or event session, not a film screening.",
+   "editorial": "Event session; details are subject to on-site announcements."
   }
  },
  "programmes": {
@@ -5349,6 +5440,22 @@
      "short": "TITAN"
     }
    }
+  },
+  "tp-wenchuang": {
+   "name": "Taipei Creative Hub",
+   "short": "Creative Hub",
+   "brand": "Taipei Creative Hub",
+   "store": "",
+   "halls": {
+    "6f": {
+     "name": "6F Multi-purpose Hall",
+     "short": "6F"
+    },
+    "14f": {
+     "name": "14F Creative Club",
+     "short": "14F"
+    }
+   }
   }
  },
  "ui": {
@@ -6219,6 +6326,10 @@
   "备份文件过大，请检查文件": "The backup file is too large; please check it",
   "停止同步与删除": "Disconnecting and deletion",
   "完整备份已生成，请妥善保管": "Full backup created; keep the file safe",
-  "你的档案，由你保管": "Your archive, in your care"
+  "你的档案，由你保管": "Your archive, in your care",
+  "活动场次": "Event",
+  "可加入个人行程": "Add to your itinerary",
+  "加入我的行程": "Add to my itinerary",
+  "已加入行程": "Added to itinerary"
  }
 }

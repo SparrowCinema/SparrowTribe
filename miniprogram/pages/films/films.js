@@ -31,7 +31,7 @@ Page({
   build() {
     const data = app.globalData.data, idx = U.index(data), {mine,pf,q}=this.data,ctx=this.context();
     const fest = p => U.isFest(p) ? 0 : 1;
-    const base=data.films.filter(f=>Library.inProgramme(f,pf,ctx)&&Library.inCity(f,this.data.city,ctx)&&Library.category(f,mine,ctx)&&Library.matches(f,q));
+    const base=data.films.filter(f=>!f.ev).filter(f=>Library.inProgramme(f,pf,ctx)&&Library.inCity(f,this.data.city,ctx)&&Library.category(f,mine,ctx)&&Library.matches(f,q));
     const pidOf = f => pf !== 'all' ? pf : idx.progOf(f).id;
     const info = {}; data.programmes.forEach(p => { info[p.id] = U.progInfo(p, data, idx); });
     const hasShows = f => data.shows.some(s => s.id === f.id);
@@ -53,13 +53,13 @@ Page({
       }
     });
     past.sort((a, b) => b.end - a.end);
-    const stat = { total: data.films.length, live: data.films.filter(f => U.nextShowOf(f, data.shows)).length, progs: data.programmes.filter(p => data.films.some(f => idx.progOf(f).id === p.id || ((p.sections || {})[f.id]))).length };
+    const stat = { total: data.films.filter(f => !f.ev).length, live: data.films.filter(f => !f.ev).filter(f => U.nextShowOf(f, data.shows)).length, progs: data.programmes.filter(p => data.films.some(f => idx.progOf(f).id === p.id || ((p.sections || {})[f.id]))).length };
     this.setData({cityName:this.data.city==='all'?t('全部城市'):t(this.data.city),programmeName:pf==='all'?t('全部专题'):(idx.PG[pf]||{}).name,mineName:t(MODES.find(x=>x[0]===mine)[1]),active:pf!=='all'||this.data.city!=='all'||mine!=='all'||!!q,stat, secs, past, pastN: past.reduce((n, x) => n + x.n, 0), n: base.length, regs: Object.keys(data.reg).map(k => ({ k, n: t(data.reg[k].n) })), progs: data.programmes.length > 1 ? data.programmes : [] });
   },
   search(e) {this.setData({q:e.detail.value});this.build();},
   resetFilters() {this.setData({mine:'all',pf:'all',city:'all',q:''});this.build();},
   options(type,query) {const data=app.globalData.data,ctx=this.context(),q=(query||'').trim().toLocaleLowerCase();
-    const rows=type==='city'?[{id:'all',name:t('全部城市'),sub:t('按已收录场次所在城市筛选'),selected:this.data.city==='all'},...[...new Set(data.venues.map(v=>v.city).filter(Boolean))].map(c=>({id:c,name:t(c),sub:t(data.films.filter(f=>Library.inProgramme(f,this.data.pf,ctx)&&Library.inCity(f,c,ctx)).length+' 部影片'),selected:this.data.city===c}))]:type==='programme'?[{id:'all',name:t('全部专题'),sub:t('浏览完整片目'),selected:this.data.pf==='all'},...data.programmes.map(p=>({id:p.id,name:p.name,sub:t(data.films.filter(f=>Library.inProgramme(f,p.id,ctx)).length+' 部影片')+' · '+t(p.city||''),selected:this.data.pf===p.id}))]:MODES.map(([id,name,sub])=>({id,name:t(name),sub:t(sub)+' · '+t(data.films.filter(f=>Library.inProgramme(f,this.data.pf,ctx)&&Library.category(f,id,ctx)).length+' 部影片'),selected:this.data.mine===id}));
+    const rows=type==='city'?[{id:'all',name:t('全部城市'),sub:t('按已收录场次所在城市筛选'),selected:this.data.city==='all'},...[...new Set(data.venues.map(v=>v.city).filter(Boolean))].map(c=>({id:c,name:t(c),sub:t(data.films.filter(f=>!f.ev&&Library.inProgramme(f,this.data.pf,ctx)&&Library.inCity(f,c,ctx)).length+' 部影片'),selected:this.data.city===c}))]:type==='programme'?[{id:'all',name:t('全部专题'),sub:t('浏览完整片目'),selected:this.data.pf==='all'},...data.programmes.map(p=>({id:p.id,name:p.name,sub:t(data.films.filter(f=>!f.ev&&Library.inProgramme(f,p.id,ctx)).length+' 部影片')+' · '+t(p.city||''),selected:this.data.pf===p.id}))]:MODES.map(([id,name,sub])=>({id,name:t(name),sub:t(sub)+' · '+t(data.films.filter(f=>!f.ev&&Library.inProgramme(f,this.data.pf,ctx)&&Library.category(f,id,ctx)).length+' 部影片'),selected:this.data.mine===id}));
     return rows.filter(x=>!q||(x.name+' '+x.sub).toLocaleLowerCase().includes(q));
   },
   openSelector(e) {const type=e.currentTarget.dataset.type;this.setData({selectorType:type,selectorQuery:'',selectorTitle:t(type==='programme'?'选择专题':type==='city'?'选择城市':'我的影片'),selectorPlaceholder:t(type==='programme'?'搜索专题':type==='city'?'搜索城市':'搜索我的分类'),selectorRows:this.options(type,'')});},

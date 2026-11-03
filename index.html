@@ -684,6 +684,7 @@ html.sheet-open,html.sheet-open body{overflow:hidden}
 .pg-head h1{font:900 36px/1.15 var(--f-display);margin:6px 0 4px}
 .pg-sub{margin:0;color:var(--muted);font-size:14px}
 
+.ev-slots{margin-top:10px;border-top:1px dashed var(--line-soft);padding-top:8px;display:grid;gap:8px}.ev-slots>small{font-size:12px;color:var(--muted)}.ev-slot{display:flex;align-items:center;justify-content:space-between;gap:10px}.ev-st{display:grid;gap:2px;min-width:0}.ev-st b{font-size:14px}.ev-st small{font-size:12px;color:var(--muted)}.ev-slot em{font-style:normal;font-size:12px;color:var(--muted)}.ev-add{flex:none;border:1px solid var(--accent);background:transparent;color:var(--accent);border-radius:99px;padding:7px 13px;font-size:13px;font-weight:700;cursor:pointer}.ev-add.on{background:var(--accent);color:#fff}
 .ev-entry{display:flex;align-items:center;gap:12px;margin:0 0 16px;padding:14px 16px;border:1px solid var(--line,#ddd);border-radius:14px;color:inherit;text-decoration:none}.ev-entry span{flex:1}.ev-entry b{display:block;font-size:16px}.ev-entry small{opacity:.65;font-size:13px}.ev-entry em{font-style:normal;opacity:.6}.ev-entry svg{width:18px;height:18px;opacity:.5}.ev-page .section-tabs{margin:12px 0 8px}.ev-wrap{margin:0 0 16px;border:1px solid var(--line,#ddd);border-radius:14px;padding:0 14px}.ev-wrap summary{display:flex;justify-content:space-between;align-items:center;padding:14px 0;cursor:pointer;font-size:16px}.ev-wrap summary small{opacity:.6}
 .ev-h{font-size:15px;margin:14px 0 8px;opacity:.8}.ev-card{border-top:1px solid var(--line,#ddd);padding:12px 0}.ev-card header{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.ev-card p{font-size:14px;line-height:1.75;margin:6px 0}.ev-card dl{display:grid;grid-template-columns:5em 1fr;gap:4px 10px;font-size:13.5px;margin:6px 0 0}.ev-card dt{opacity:.6}.ev-card dd{margin:0;line-height:1.6}
 .ev-tag{font-size:11px;padding:1px 7px;border-radius:99px;background:rgba(200,160,60,.2)}.ev-end{background:rgba(120,120,120,.2)}.ev-done{opacity:.65}
@@ -1562,7 +1563,7 @@ function detail(id){
   const col = REG[f.reg].c, P = pst(id);
   const allShows = SH.filter(x=>x.id===id), shows = allShows.filter(x=>!isPast(x));
   const sib = FILMS.filter(x=>x.prog===f.prog||PG[f.prog]?.sections?.[x.id]), idx = sib.indexOf(f), prev = sib[idx-1], next = sib[idx+1];
-  topEl.innerHTML = `<div class="row"><button class="back" data-back><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m15 6-6 6 6 6"/></svg>返回</button><span class="sp"></span><span class="pill">${String(idx+1).padStart(2,"0")} / ${sib.length}</span></div>`;
+  topEl.innerHTML = `<div class="row"><button class="back" data-back><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m15 6-6 6 6 6"/></svg>返回</button><span class="sp"></span><span class="pill">${f.ev?esc(tr("活动场次")):String(idx+1).padStart(2,"0")+" / "+sib.length}</span></div>`;
   const syn = String(f.syn||""), long = syn.length > 220;
   const has = {syn:!!syn, watch:!!f.editorial||f.highlights.length>0, hon:f.honors.length>0, dir:!!(f.dir&&(f.bio||f.dirO||f.dirLife)), ctx:!!f.st};
   const secs = [["fd-syn","剧情",has.syn],["fd-watch","看点",has.watch],["fd-hon","荣誉",has.hon],["fd-dir","导演",has.dir],["fd-ctx","背景",has.ctx]].filter(x=>x[2]);
@@ -1585,12 +1586,12 @@ function detail(id){
   <div class="fd-body gut">
     <aside class="fd-side">
       ${ticketHTML(f)}
-      ${ratingsHTML(f)}
-      ${extLinksHTML(f)}
-      ${myRateHTML(f)}
+      ${f.ev?"":ratingsHTML(f)}
+      ${f.ev?"":extLinksHTML(f)}
+      ${f.ev?"":myRateHTML(f)}
       <section class="fd-block"><h3 class="fd-h">放映场次 <small>${shows.length?shows.length+" 场":"排片待公布"}</small></h3>${shows.length?shows.map(s=>screeningHTML(s,f)).join(""):`<div class="fd-noshow"><b>${allShows.length?"本片场次已全部放映结束":(f.release?esc(f.release):"上映信息待公布")}</b><span>${allShows.length?"已放映的场次不再显示在这里。":"麻雀观影护照收录的场次公布后会更新到这里，也可以先在各影院售票平台查看。"}</span></div>`}</section>
-      ${noticeHTML(f)}
-      ${qaPanelHTML(f)}
+      ${f.ev?"":noticeHTML(f)}
+      ${f.ev?"":qaPanelHTML(f)}
       ${giftsHTML(f)}
       <section class="fd-block"><h3 class="fd-h">影片信息</h3><dl class="fd-credits">${creditsHTML(f)}</dl></section>${partsHTML(f)}
     </aside>
@@ -1601,7 +1602,7 @@ function detail(id){
       ${f.honors.length?`<section class="fd-sec" id="fd-hon"><h2 class="fd-st"><span>影展与荣誉</span><small>FESTIVALS & AWARDS</small></h2><ul class="fd-honors">${f.honors.map(honorHTML).join("")}</ul></section>`:""}
       ${!has.dir?"":`<section class="fd-sec" id="fd-dir"><h2 class="fd-st"><span>导演介绍</span><small>DIRECTOR</small></h2><div class="fd-dcard"><div class="fd-dhead"><span class="fd-av">${esc(f.dir[0])}</span><span><b>${esc(f.dir)}</b>${f.dirO&&f.dirO!==f.dir?`<small>${esc(f.dirO)}</small>`:""}${f.dirLife?`<small>${esc(f.dirLife)}</small>`:""}</span></div>${paragraphsHTML(f.bio)}</div></section>`}
       ${!has.ctx?"":`<section class="fd-sec" id="fd-ctx"><h2 class="fd-st"><span>创作背景</span><small>CONTEXT</small></h2><blockquote class="fd-ctx">${paragraphsHTML(f.st)}</blockquote></section>`}
-      <nav class="fd-nav">${navBtn(prev,"上一部")}${navBtn(next,"下一部")}</nav>
+      ${f.ev?"":`<nav class="fd-nav">${navBtn(prev,"上一部")}${navBtn(next,"下一部")}</nav>`}
     </div>
     <div class="gut">${presentersHTML()}</div>
   </div></article>`;
@@ -1632,12 +1633,18 @@ function progFilmsHTML(pid,films){
 function evText(p,e){const o=LANG==="en"&&p.evEn&&p.evEn[e.id];return o?{title:o.title||e.title,desc:o.desc||e.desc,lines:o.lines||e.lines}:{title:e.title,desc:e.desc,lines:e.lines};}
 function evEnded(e){const d=(e.dates||[]).slice().sort().pop();return !!d&&d<todayISO();}
 function todayISO(){const n=new Date(now());return n.getFullYear()+"-"+String(n.getMonth()+1).padStart(2,"0")+"-"+String(n.getDate()).padStart(2,"0");}
+function evSlotsHTML(p,e){
+  const ss=SH.filter(x=>x.p===p.id&&F[x.id]?.evId===e.id).sort((a,b)=>showDate(a)-showDate(b));
+  if(!ss.length)return "";
+  return `<div class="ev-slots"><small>${esc(tr("可加入个人行程"))}</small>${ss.map(x=>{const k=keyOf(x),on=picked.has(k),past=isPast(x);
+    return `<div class="ev-slot${past?" past":""}"><span class="ev-st"><b>${esc(d2(x))}–${fmt(endMin(x))}</b><small>${esc(placeOf(x))}</small></span>${past?`<em>${esc(tr("已结束"))}</em>`:`<button class="ev-add${on?" on":""}" data-plan="${esc(k)}" aria-pressed="${on}">${esc(tr(on?"已加入行程":"加入我的行程"))}</button>`}</div>`;}).join("")}</div>`;
+}
 function eventsBodyHTML(p,kind){
   if(!p.events||!p.events.length)return "";
   const ks=p.eventKinds||[];
   const kn=k=>{const o=LANG==="en"&&p.kindEn&&p.kindEn[k.id];return o||k.name;};
   const body=ks.filter(k=>!kind||k.id===kind).map(k=>{const es=p.events.filter(e=>e.kind===k.id).sort((a,b)=>String((a.dates||[])[0]||"9").localeCompare(String((b.dates||[])[0]||"9")));if(!es.length)return "";
-    return `<section class="ev-group"><h3 class="ev-h">${esc(kn(k))}</h3>${es.map(e=>{const t=evText(p,e);return `<article class="ev-card${evEnded(e)?" ev-done":""}"><header><b>${esc(t.title)}</b>${e.free?`<span class="ev-tag">${esc(tr("免费"))}</span>`:""}${evEnded(e)?`<span class="ev-tag ev-end">${esc(tr("已结束"))}</span>`:""}</header>${t.desc?`<p>${esc(t.desc)}</p>`:""}<dl>${(t.lines||[]).map(l=>`<dt>${esc(l[0])}</dt><dd>${esc(l[1])}</dd>`).join("")}</dl></article>`;}).join("")}</section>`;}).join("");
+    return `<section class="ev-group"><h3 class="ev-h">${esc(kn(k))}</h3>${es.map(e=>{const t=evText(p,e);return `<article class="ev-card${evEnded(e)?" ev-done":""}"><header><b>${esc(t.title)}</b>${e.free?`<span class="ev-tag">${esc(tr("免费"))}</span>`:""}${evEnded(e)?`<span class="ev-tag ev-end">${esc(tr("已结束"))}</span>`:""}</header>${t.desc?`<p>${esc(t.desc)}</p>`:""}<dl>${(t.lines||[]).map(l=>`<dt>${esc(l[0])}</dt><dd>${esc(l[1])}</dd>`).join("")}</dl>${evSlotsHTML(p,e)}</article>`;}).join("")}</section>`;}).join("");
   return body;
 }
 function eventsHTML(p){
@@ -1671,7 +1678,7 @@ function progPage(pid){
     ${p.cover?`<div class="pg-cover"><img src="${p.cover}"${p.coverPos?` style="object-position:${p.coverPos}"`:""} alt="${esc(p.name)} 主视觉"></div>`:""}
     <div class="gut">
       <header class="pg-head"><small>${esc(p.en||"")}</small><h1>${esc(p.name)}</h1><p class="pg-sub">${statusTag(p)}${esc(p.sub)} · ${esc(p.period)}${p.city?`<span style="white-space:nowrap"> · ${esc(p.city)}</span>`:""}</p></header>
-      <div class="pstats pg-stats"><div><b>${films.length}</b><small>部影片</small></div><div><b>${shows.length}</b><small>场放映</small></div><div><b>${new Set(shows.map(x=>x.d)).size}</b><small>个放映日</small></div><div><b>${new Set(shows.map(x=>x.v+x.h)).size}</b><small>个影厅</small></div></div>
+      <div class="pstats pg-stats"><div><b>${films.length}</b><small>部影片</small></div><div><b>${shows.filter(x=>!F[x.id]?.ev).length}</b><small>场放映</small></div><div><b>${new Set(shows.map(x=>x.d)).size}</b><small>个放映日</small></div><div><b>${new Set(shows.map(x=>x.v+x.h)).size}</b><small>个影厅</small></div></div>
       ${p.blurb?`<p class="pg-blurb">${esc(p.blurb)}</p>`:""}
       ${progActsHTML(p)}
       ${p.ticketUrl?`<p class="pg-ticketlink"><a class="primary-button" href="${esc(p.ticketUrl)}" target="_blank" rel="noopener">${esc(tr(p.ticketLabel||"购票"))}</a></p>`:""}
@@ -1723,7 +1730,7 @@ function selectedRows(keys=picked){const set=new Set(keys);return SH.filter(s=>s
 function showDate(s){const md=s.d.split('/').map(Number),tm=s.t.split(':').map(Number);return new Date(year(s.d),md[0]-1,md[1],tm[0],tm[1]);}
 function planToggleHTML(s){const k=keyOf(s),yes=picked.has(k);return '<button class="plan-toggle '+(yes?'selected':'')+'" data-plan="'+esc(k)+'" aria-pressed="'+yes+'" aria-label="'+(yes?'移出排片 ':'加入排片 ')+esc(F[s.id].cn)+' '+esc(s.d)+' '+s.t+'">'+(yes?'✓ 已加入':'+ 加入排片')+'</button>';}
 function showChoiceHTML(s){return '<div class="show-choice"><button class="show" data-jump="'+keyOf(s)+'"><span class="dt">'+s.d+' '+s.t+'</span><span class="x">'+wk(s.d)+' · '+placeHTML(s)+' · 散场 '+fmt(toMin(s.t)+durationOf(s))+'</span><span class="go">查看排片 ›</span></button>'+planToggleHTML(s)+'</div>';}
-function conflicts(list){let out=[];for(let i=0;i<list.length;i++)for(let j=i+1;j<list.length;j++){const a=list[i],b=list[j];if(a.d===b.d&&toMin(a.t)<toMin(b.t)+F[b.id].min&&toMin(b.t)<toMin(a.t)+F[a.id].min)out.push([a,b]);}return out;}
+function conflicts(list){let out=[];for(let i=0;i<list.length;i++)for(let j=i+1;j<list.length;j++){const a=list[i],b=list[j];if(a.d===b.d&&toMin(a.t)<toMin(b.t)+F[b.id].min-2&&toMin(b.t)<toMin(a.t)+F[a.id].min-2)out.push([a,b]);}return out;}
 const regColor = f => ({cn:"#8e2a22",eu:"#2f6f6c",us:"#b26a1f",as:"#5d6b2e"})[f.reg]||"#8e2a22";
 const endMin = s => toMin(s.t)+durationOf(s);
 const durText = m => m<60 ? m+" 分钟" : Math.floor(m/60)+" 小时"+(m%60?" "+m%60+" 分":"");
@@ -2251,7 +2258,7 @@ async function loadData(){
  venues.sort((a,b)=>rank[a.id]-rank[b.id]);
  shows.sort((a,b)=>showDate(a)-showDate(b)||rank[a.v]-rank[b.v]);
  VENUES=venues;VN=vn;PROGRAMMES=programmes;PG=Object.fromEntries(programmes.map(p=>[p.id,p]));
- FILMS=films;F=filmMap;SH=shows;days=[...new Set(SH.map(s=>s.d))];validKeys=new Set(SH.map(keyOf));picked=readSelection();watched=readWatched();dataSignature=signature;return true;
+ FILMS=films.filter(f=>!f.ev);F=filmMap;SH=shows;days=[...new Set(SH.map(s=>s.d))];validKeys=new Set(SH.map(keyOf));picked=readSelection();watched=readWatched();dataSignature=signature;return true;
 }
 async function refreshProgrammeData(){
  if(!READY||dataRefreshBusy||document.visibilityState==="hidden"||Date.now()-lastDataCheck<15000)return;
