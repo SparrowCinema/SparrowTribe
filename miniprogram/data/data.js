@@ -22149,6 +22149,7 @@ module.exports = {
    "end": "2026-11-22",
    "city": "台北",
    "cover": "/images/brand/prog-golden-horse-2026.jpg",
+   "cardCover": "https://sparrowcinema.github.io/SparrowTribe/programmes/golden-horse-2026-card.jpg",
    "coverPos": "center 4%",
    "blurb": "11月6日至22日，台北。电子手册按金马影展官方单元浏览片单、主创与荣誉，查看信义威秀与 MUVIE TITAN 的完整场次，并附大师讲堂、导演论导演、电影沙龙、论坛等活动。购票请使用拓元售票系统。",
    "ticketUrl": "https://tghff.tixcraft.com",
@@ -23076,8 +23077,7 @@ module.exports = {
       "2026-11-19"
      ]
     }
-   ],
-   "cardCover": ""
+   ]
   }
  ],
  "aliases": {

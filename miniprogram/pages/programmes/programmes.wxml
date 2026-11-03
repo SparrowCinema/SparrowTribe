@@ -1,7 +1,7 @@
 <wxs src="../../utils/l.wxs" module="L" />
 <template name="pc">
   <view class="prog card" data-id="{{id}}" bindtap="open">
-    <image wx:if="{{cover}}" class="cover" src="{{cardCover || cover}}" mode="{{id==='golden-horse-2026'?'aspectFit':'aspectFill'}}" style="{{id==='golden-horse-2026'?'background:#190e19':''}}" />
+    <image wx:if="{{cover}}" class="cover" src="{{cardCover || cover}}" mode="aspectFill" />
     <view class="pbody">
       <text class="pk mono"><text class="pst pst-{{status}}">{{statusText}}</text>{{kt}} · {{pt}}</text>
       <text class="pn">{{name}}</text>
