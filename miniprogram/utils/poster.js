@@ -3,8 +3,27 @@
 const D = { W: 1080, P: 64, ROW: 196, GAP: 52, DAYH: 104, HEAD: 360, STATS: 150, FOOT: 420 };
 const SERIF = 'serif', SANS = 'sans-serif', MONO = 'monospace';
 
-function heightOf(days) {
-  return D.HEAD + D.STATS + days.reduce((n, g) => n + D.DAYH + g.items.length * D.ROW + (g.items.length - 1) * D.GAP + 24, 0) + D.FOOT;
+// 顶部标题区：专题名最大（与网站一致），品牌与 Logo 缩小放角落；返回 { TS, TLH, TY0, HEAD, lines }
+function layout(c, o) {
+  const { W, P } = D, names = (o.pgs || []).filter(Boolean), EN = !!o.en, kickT = EN ? 'Screening plan' : '观影日程';
+  let TS = names.length === 1 ? 92 : 68, lines = [];
+  const fit = () => {
+    c.font = '900 ' + TS + 'px ' + SERIF; const mw = W - 2 * P; lines = [];
+    if (names.length <= 1) lines = wrapLines(c, names.length ? names[0] : kickT, mw);
+    else {
+      const show = names.length > 3 ? names.slice(0, 2) : names;
+      show.forEach(n => { const ls = wrapLines(c, n, mw); lines.push(ls.length > 1 ? ls[0].replace(/\s+$/, '') + '…' : ls[0]); });
+      if (names.length > 3) lines.push(EN ? '+ ' + (names.length - 2) + ' more' : '等 ' + names.length + ' 个专题');
+    }
+  };
+  fit(); while (lines.length > 3 && TS > 52) { TS -= 6; fit(); }
+  if (names.length > 1) { TS = 60; fit(); while (lines.some(l => l.endsWith('…')) && TS > 44) { TS -= 4; fit(); } }
+  const TLH = Math.round(TS * 1.2), TY0 = 152 + 14 + TS;
+  return { TS, TLH, TY0, HEAD: TY0 + (lines.length - 1) * TLH + 64, lines };
+}
+
+function heightOf(days, head) {
+  return (head || D.HEAD) + D.STATS + days.reduce((n, g) => n + D.DAYH + g.items.length * D.ROW + (g.items.length - 1) * D.GAP + 24, 0) + D.FOOT;
 }
 
 function rr(c, x, y, w, h, r) {
@@ -35,8 +54,8 @@ function wrapCanvas(c, text, x, y, maxWidth, lineHeight) {
 
 // o: { days, stats:{n,d,hm}, title, sub, imgs:{[filmId]:Image|null}, marks:[Image|null, Image|null] }
 function draw(c, o) {
-  const { W, P, ROW, GAP, DAYH, HEAD, STATS, FOOT } = D;
-  const days = o.days, H = heightOf(days), T = o.T || (x => x), EN = !!o.en;
+  const { W, P, ROW, GAP, DAYH, STATS, FOOT } = D;
+  const days = o.days, hd = o.head || layout(c, o), HEAD = hd.HEAD, H = heightOf(days, HEAD), T = o.T || (x => x), EN = !!o.en;
   c.textBaseline = 'alphabetic'; c.textAlign = 'left';
   c.fillStyle = '#efe6d4'; c.fillRect(0, 0, W, H);
 
@@ -44,16 +63,17 @@ function draw(c, o) {
   c.fillStyle = '#8e2a22'; c.fillRect(0, 0, W, HEAD);
   c.fillStyle = 'rgba(255,255,255,.06)';
   for (let x = -HEAD; x < W; x += 46) { c.beginPath(); c.moveTo(x, HEAD); c.lineTo(x + HEAD * .47, 0); c.lineTo(x + HEAD * .47 + 2, 0); c.lineTo(x + 2, HEAD); c.fill(); }
-  c.fillStyle = '#fffaf0'; c.font = 'italic 900 ' + (EN ? 54 : 68) + 'px ' + SERIF; c.fillText(T('麻雀观影护照'), P, 140);
+  const R0 = 24;
   (o.marks || []).forEach((im, i) => {
-    const R = 62, cx = W - P - R - (1 - i) * (R * 2 - 16), cy = 118;
-    c.fillStyle = '#fffaf0'; c.beginPath(); c.arc(cx, cy, R, 0, Math.PI * 2); c.fill();
-    c.strokeStyle = '#8e2a22'; c.lineWidth = 4; c.stroke();
-    if (im) { const s = Math.min((R * 1.5) / im.width, (R * 1.5) / im.height), w = im.width * s, h = im.height * s; c.drawImage(im, cx - w / 2, cy - h / 2, w, h); }
+    const cx = P + R0 + i * (R0 * 2 - 10), cy = 70;
+    c.fillStyle = '#fffaf0'; c.beginPath(); c.arc(cx, cy, R0, 0, Math.PI * 2); c.fill();
+    c.strokeStyle = '#8e2a22'; c.lineWidth = 3; c.stroke();
+    if (im) { const k = Math.min((R0 * 1.5) / im.width, (R0 * 1.5) / im.height), w = im.width * k, h = im.height * k; c.drawImage(im, cx - w / 2, cy - h / 2, w, h); }
   });
-  c.font = '500 22px ' + MONO; c.globalAlpha = .85; c.fillText('SPARROW FILM PASSPORT · ' + T('麻雀映画 × 麻雀部落'), P, 196); c.globalAlpha = 1;
-  c.fillStyle = '#fffaf0'; c.fillRect(P, 240, 56, 3); c.font = '700 46px ' + SANS; c.fillText(o.title || T('我的观影日程'), P, 310);
-  if (o.sub) { c.globalAlpha = .85; c.font = '400 24px ' + SANS; c.fillText(o.sub, P, 346); c.globalAlpha = 1; }
+  const bx = P + R0 * 3 - 10 + 30; c.fillStyle = '#fffaf0'; c.font = 'italic 900 26px ' + SERIF; c.fillText(T('麻雀观影护照'), bx, 78);
+  if (!EN) { c.globalAlpha = .7; c.font = '500 17px ' + MONO; c.textAlign = 'right'; c.fillText('SPARROW FILM PASSPORT', W - P, 76); c.textAlign = 'left'; c.globalAlpha = 1; }
+  c.fillStyle = '#fffaf0'; c.fillRect(P, 142, 48, 3); c.globalAlpha = .9; c.font = '600 26px ' + SANS; c.fillText(o.title || T('我的观影日程'), P + 64, 152); c.globalAlpha = 1;
+  c.fillStyle = '#fffaf0'; c.font = '900 ' + hd.TS + 'px ' + SERIF; hd.lines.forEach((l, i) => c.fillText(l, P, hd.TY0 + i * hd.TLH));
 
   // 统计
   let sx = P;
@@ -112,4 +132,4 @@ function draw(c, o) {
   c.fillStyle = '#fffaf0'; c.globalAlpha = .7; c.font = '400 22px ' + SANS; c.fillText(T('麻雀映画 × 麻雀部落'), tx2, fy + 268); c.globalAlpha = 1;
 }
 
-module.exports = { D, heightOf, draw };
+module.exports = { D, heightOf, layout, draw };

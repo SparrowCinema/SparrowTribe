@@ -58,6 +58,7 @@ Page({
       return { d: g.d, wk: g.wk, cnt: t(items.length + ' 场'), items, range: g.items[0].t + ' – ' + items[items.length - 1].end };
     });
     this.keys = list.map(U.keyOf);
+    this.pgs = [...new Set(list.map(x => U.progForShow(x, idx).name))];
     this.setData({planScopeName:(progs.find(p=>p.id===pf)||{n:t('全部专题')}).n, clashTxt: t('有 ' + clash + ' 组场次时间重叠'), progs, pf, days, clash, empty: !all.length, pfEmpty: !!all.length && !list.length, stats: { n: list.length, d: byDay.length, hm: Math.floor(minutes / 60) + 'h' + String(minutes % 60).padStart(2, '0') } });
   },
   // 排片长图：与网站同版式，只含当前所选专题；保存到相册，或预览后发给朋友
@@ -69,15 +70,16 @@ Page({
     wx.createSelectorQuery().select('#poster').fields({ node: true, size: true }).exec(async res => {
       try {
         const canvas = res && res[0] && res[0].node; if (!canvas) return fail();
-        const days = this.data.days, k = 0.7;
-        canvas.width = Math.round(poster.D.W * k); canvas.height = Math.round(poster.heightOf(days) * k);
-        const c = canvas.getContext('2d'); c.scale(k, k);
+        const days = this.data.days, k = 0.7, c = canvas.getContext('2d');
+        const head = poster.layout(c, { pgs: this.pgs, en: I.isEn() });
+        canvas.width = Math.round(poster.D.W * k); canvas.height = Math.round(poster.heightOf(days, head.HEAD) * k);
+        c.scale(k, k);
         const load = src => new Promise(r => { if (!src) return r(null); const im = canvas.createImage(); im.onload = () => r(im); im.onerror = () => r(null); im.src = src; });
         const items = days.reduce((a, g) => a.concat(g.items), []), imgs = {};
         await Promise.all([...new Set(items.map(i => i.id))].map(async id => { imgs[id] = await load((items.find(i => i.id === id) || {}).poster); }));
         const marks = await Promise.all(['/images/brand/sparrow-movies-sq.png', '/images/brand/sparrow-tribe-sq.png'].map(load));
         const cur = this.data.progs.find(p => p.id === this.data.pf);
-        poster.draw(c, { days, stats: this.data.stats, title: t('我的观影日程'), sub: this.data.pf !== 'all' && cur ? t('专题：') + cur.n : '', imgs, marks, T: t, en: I.isEn() });
+        poster.draw(c, { days, head, pgs: this.pgs, stats: this.data.stats, title: t('我的观影日程'), imgs, marks, T: t, en: I.isEn() });
         wx.canvasToTempFilePath({ canvas, fileType: 'png', success: r => { this.busy = false; wx.hideLoading(); this.showImage(r.tempFilePath); }, fail: () => fail() });
       } catch (e) { fail(); }
     });
