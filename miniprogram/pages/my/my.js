@@ -5,15 +5,26 @@ const W = require('../../utils/watched.js');
 const R = require('../../utils/recap.js');
 const I = require('../../utils/i18n.js');
 const SY = require('../../utils/sync.js');
+const Backup=require('../../utils/profile-backup.js');
 const t = I.tr;
 const app = getApp();
 
 Page({
-  data: { i: {}, pp: {}, ppOpen: false, ppPage: 0, rc: {}, rcOpen: false, rcY: 'all', rcM: 'all', rcP: 'all', guideOpen: false, fbOpen: false, guide: [{ k: '看过 · 盖章', s: '在影片页点「看过」，护照里就会盖下这部片的印章；可以打星评分、改观影日期。' }, { k: '写下持有人', s: '护照首页可以填姓名、从相册放一张照片，印章每页最多 15 枚。' }, { k: '个人排片', s: '在排片表点色块右上角的 + 加入场次，「我的」里会自动检查时间冲突；首页甘特图可以只看我的排片。' }, { k: '导出与分享', s: '把排片生成带二维码的长图、分享链接或加入日历。' }, { k: '结算长图', s: '护照页底部「生成我的影院观影结算」，可按年份、月份、专题筛选，生成一张印章墙长图。' }, { k: '换设备不丢', s: '开启上方云端同步，另一台设备用同步码即可带走看过记录、评分、照片和排片。' }], stats: {}, days: [], clash: 0, empty: true, pf: 'all', progs: [] },
+  data: {collectionOpen:false,todayExpanded:false,careOpen:false,planSelectorOpen:false,planQuery:'',planOptions:[],todayRows:[], i: {}, pp: {}, ppOpen: false, ppPage: 0, rc: {}, rcOpen: false, rcY: 'all', rcM: 'all', rcP: 'all', guideOpen: false, fbOpen: false, guide: [{ k: '看过 · 盖章', s: '在影片页点「看过」，护照里就会盖下这部片的印章；可以打星评分、改观影日期。' }, { k: '写下持有人', s: '护照首页可以填姓名、从相册放一张照片，印章每页最多 15 枚。' }, { k: '个人排片', s: '在排片表点色块右上角的 + 加入场次，「我的」里会自动检查时间冲突；首页甘特图可以只看我的排片。' }, { k: '导出与分享', s: '把排片生成带二维码的长图、分享链接或加入日历。' }, { k: '结算长图', s: '护照页底部「生成我的影院观影结算」，可按年份、月份、专题筛选，生成一张印章墙长图。' }, { k: '换设备不丢', s: '开启上方云端同步，另一台设备用同步码即可带走看过记录、评分、照片和排片。' }], stats: {}, days: [], clash: 0, empty: true, pf: 'all', progs: [] },
   onLoad() { this.setData({ i: I.dict() }); this.off1 = plan.onChange(() => this.build()); this.off2 = app.onData(() => { this.build(); this.buildPassport(); }); this.off3 = W.onChange(() => this.buildPassport()); },
   onUnload() { this.off1 && this.off1(); this.off2 && this.off2(); this.off3 && this.off3(); },
   onShow() { wx.setNavigationBarTitle({ title: t('我的观影护照') }); this.build(); this.buildPassport(); this.buildSync(); if (!this.offS) this.offS = SY.onStatus(() => this.buildSync()); if (SY.stale()) SY.quiet(); },
   onHide() { this.offS && this.offS(); this.offS = null; },
+  toggleCollection(){this.setData({collectionOpen:!this.data.collectionOpen});},
+  toggleToday(){this.setData({todayExpanded:!this.data.todayExpanded});},
+  toggleCare(){this.setData({careOpen:!this.data.careOpen});},
+  openPlanSelector(){this.setData({planSelectorOpen:true,planQuery:'',planOptions:this.data.progs});},
+  closePlanSelector(){this.setData({planSelectorOpen:false});},
+  searchPlanSelector(e){const q=e.detail.value.toLocaleLowerCase();this.setData({planQuery:e.detail.value,planOptions:this.data.progs.filter(p=>p.n.toLocaleLowerCase().includes(q))});},
+  choosePlanScope(e){this.setProg(e);this.closePlanSelector();},
+  backupProfile(){try{const file=wx.env.USER_DATA_PATH+'/sparrow-passport-'+Date.now()+'.json';wx.getFileSystemManager().writeFileSync(file,JSON.stringify(Backup.encode(SY.snapshot()),null,2),'utf8');wx.shareFileMessage({filePath:file,fileName:'sparrow-passport.json',fail:()=>wx.showToast({title:t('请在网页版下载备份'),icon:'none'})});}catch{wx.showToast({title:t('备份失败，请检查存储空间'),icon:'none'});}},
+  restoreProfile(){wx.chooseMessageFile({count:1,type:'file',extension:['json'],success:r=>{try{const f=r.tempFiles[0];if(f.size>2600000)throw 0;const value=JSON.parse(wx.getFileSystemManager().readFileSync(f.path,'utf8'));Backup.decode(value);wx.showModal({title:t('导入备份'),content:t('导入后会合并排片，同一影片以备份中的记录为准；已开启同步时也会同步到其他设备。继续？'),success:async r=>{if(!r.confirm)return;try{await SY.restore(value);this.build();this.buildPassport();wx.showToast({title:t('备份已导入'),icon:'none'});}catch{wx.showToast({title:t('导入失败，请检查文件与存储空间'),icon:'none'});}}});}catch{wx.showToast({title:t('备份格式不正确'),icon:'none'});}}});},
+  clearCloudProfile(){wx.showModal({title:t('清空云端内容并断开同步'),content:t('请先保存完整备份，并在其他设备停止同步。清空云端内容并断开本设备？本机档案仍会保留。'),success:async r=>{if(!r.confirm)return;try{await SY.clearCloud();this.buildSync();wx.showToast({title:t('云端内容已清空，本机档案保留'),icon:'none'});}catch{wx.showToast({title:t('云端清空未完成，请稍后重试'),icon:'none'});}}});},
   // ===== 观影护照：封面 → 资料页 → 印章页（每页 15 枚），印章外观与网站一致 =====
   buildPassport() {
     const data = app.globalData.data, idx = U.index(data), list = W.entries(data, idx);
@@ -185,7 +196,7 @@ Page({
       return { d: g.d, wk: g.wk, cnt: t(items.length + ' 场'), items, range: g.items[0].t + ' – ' + items[items.length - 1].end };
     });
     this.keys = list.map(U.keyOf);
-    this.setData({ clashTxt: t('有 ' + clash + ' 组场次时间重叠'), progs, pf, days, clash, empty: !all.length, pfEmpty: !!all.length && !list.length, stats: { n: list.length, d: byDay.length, hm: Math.floor(minutes / 60) + 'h' + String(minutes % 60).padStart(2, '0') } });
+    this.setData({planScopeName:(progs.find(p=>p.id===pf)||{n:t('全部专题')}).n, clashTxt: t('有 ' + clash + ' 组场次时间重叠'), progs, pf, days, clash, empty: !all.length, pfEmpty: !!all.length && !list.length, stats: { n: list.length, d: byDay.length, hm: Math.floor(minutes / 60) + 'h' + String(minutes % 60).padStart(2, '0') } });
   },
   // 排片长图：与网站同版式，只含当前所选专题；保存到相册，或预览后发给朋友
   makeImage() {

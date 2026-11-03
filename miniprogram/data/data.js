@@ -61,6 +61,17 @@ module.exports = {
      ]
     }
    ],
+   "warnings": [
+    "衰老与死亡焦虑",
+    "家庭疏离"
+   ],
+   "editorial": "适合对回忆、梦境和衰老感兴趣的观众。旅途中与旧地的重逢比抵达终点更重要，愿意留意人物的沉默会更有收获。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及衰老与死亡焦虑、家庭疏离。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "style-kaleidoscope",
    "ticketUrl": "/images/tickets/wild-strawberries.jpg"
   },
@@ -125,6 +136,23 @@ module.exports = {
      ]
     }
    ],
+   "warnings": [
+    "性暴力与胁迫",
+    "剥削与囚禁",
+    "杀戮"
+   ],
+   "editorial": "适合愿意面对权力与群体伤害的观众。极简舞台把注意力集中到人物行为，内容沉重，建议给观后消化留出时间。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及性暴力与胁迫、剥削与囚禁、杀戮。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "mpa": {
+    "rating": "R",
+    "edition": "US catalogue release",
+    "checked": "2026-11-03"
+   },
    "prog": "style-kaleidoscope",
    "ticketUrl": "/images/tickets/dogville.jpg"
   },
@@ -199,6 +227,23 @@ module.exports = {
      ]
     }
    ],
+   "warnings": [
+    "亲人失踪",
+    "生存危险",
+    "家庭焦虑"
+   ],
+   "editorial": "适合接受不安旅途与沙漠空间的观众。不要只按寻人故事期待情节回报；派对与边境环境也是理解人物处境的入口。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及亲人失踪、生存危险、家庭焦虑。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "mpa": {
+    "rating": "R",
+    "edition": "US Blu-ray release",
+    "checked": "2026-11-03"
+   },
    "prog": "style-kaleidoscope",
    "ticketUrl": "/images/tickets/sirat.jpg"
   },
@@ -278,6 +323,17 @@ module.exports = {
      ]
     }
    ],
+   "warnings": [
+    "武打与兵器伤害",
+    "权力迫害"
+   ],
+   "editorial": "适合想从音乐、人物与江湖关系进入武侠的观众。追逐秘笈只是入口，人物如何在权力之外寻找相处方式同样值得看。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及武打与兵器伤害、权力迫害。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "style-kaleidoscope",
    "ticketUrl": "/images/tickets/swordsman.jpg"
   },
@@ -349,6 +405,17 @@ module.exports = {
      ]
     }
    ],
+   "warnings": [
+    "武打与兵器伤害",
+    "背叛与迫害"
+   ],
+   "editorial": "适合喜欢武侠表演和复杂人物关系的观众。4K修复场值得留意服装、色彩与动作细节，人物吸引力也来自身份和立场的不确定。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及武打与兵器伤害、背叛与迫害。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "style-kaleidoscope",
    "ticketUrl": "/images/tickets/swordsman-2.jpg"
   },
@@ -409,6 +476,17 @@ module.exports = {
      ]
     }
    ],
+   "warnings": [
+    "死亡与遗体情节",
+    "饮酒"
+   ],
+   "editorial": "适合喜欢冷面幽默与公路音乐的观众。乐队的造型和一次次碰壁可以慢慢品，荒诞里的失落感也值得保留。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及死亡与遗体情节、饮酒。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "style-kaleidoscope",
    "ticketUrl": "/images/tickets/leningrad-cowboys.jpg"
   },
@@ -469,6 +547,18 @@ module.exports = {
      ]
     }
    ],
+   "warnings": [
+    "动物受苦议题",
+    "生存困境",
+    "绝望与衰败"
+   ],
+   "editorial": "适合能投入缓慢重复与长时间凝视的观众。日常动作的变化是重要线索，疲惫赶场时可能较难进入，建议留出安静的观影状态。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及动物受苦议题、生存困境、绝望与衰败。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "style-kaleidoscope",
    "ticketUrl": "/images/tickets/turin-horse.jpg"
   },
@@ -548,6 +638,17 @@ module.exports = {
      ]
     }
    ],
+   "warnings": [
+    "枪战与血腥伤害",
+    "亲人死亡"
+   ],
+   "editorial": "适合关注香港动作片表演和兄弟关系的观众。重看时可把注意力从名场面移向角色的愧疚、信任与尊严。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及枪战与血腥伤害、亲人死亡。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "style-kaleidoscope",
    "ticketUrl": "/images/tickets/a-better-tomorrow.jpg"
   },
@@ -610,6 +711,18 @@ module.exports = {
      ]
     }
    ],
+   "warnings": [
+    "婚外关系",
+    "家庭争执",
+    "性别偏见"
+   ],
+   "editorial": "适合喜欢家庭喜剧和语言机锋的观众。可以观察笑料如何依赖家庭中的性别分工，同时保留对时代观念的距离。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及婚外关系、家庭争执、性别偏见。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "style-kaleidoscope",
    "ticketUrl": "/images/tickets/long-live-the-missus.jpg"
   },
@@ -678,6 +791,17 @@ module.exports = {
      ]
     }
    ],
+   "warnings": [
+    "黑帮暴力",
+    "婚外关系"
+   ],
+   "editorial": "适合喜欢戏剧后台与黑色喜剧的观众。把创作理想与现实交易放在一起看，留意谁真正拥有修改剧本的权力。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及黑帮暴力、婚外关系。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "style-kaleidoscope",
    "ticketUrl": "/images/tickets/bullets-over-broadway.jpg"
   },
@@ -740,6 +864,14 @@ module.exports = {
      ]
     }
    ],
+   "warnings": [],
+   "editorial": "适合喜欢乡村日常和早期侯孝贤的观众。教师、孩子与河流共同构成观察入口，别只把乡村当作浪漫背景。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "已查看现有剧情资料，尚未确认需要特别标注的敏感内容。这不代表适合所有年龄，也不等同于完整内容审查。",
    "prog": "style-kaleidoscope",
    "ticketUrl": "/images/tickets/green-green-grass.jpg"
   },
@@ -807,6 +939,22 @@ module.exports = {
      ]
     }
    ],
+   "warnings": [
+    "谋杀与血腥伤害",
+    "婚外关系"
+   ],
+   "editorial": "适合喜欢误会层层累积的犯罪片观众。留意每个人知道多少、误认了什么，紧张感也来自空间里不起眼的细节。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及谋杀与血腥伤害、婚外关系。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "mpa": {
+    "rating": "R",
+    "edition": "US release",
+    "checked": "2026-11-03"
+   },
    "prog": "style-kaleidoscope",
    "ticketUrl": "/images/tickets/blood-simple.jpg"
   },
@@ -867,6 +1015,17 @@ module.exports = {
      ]
     }
    ],
+   "warnings": [
+    "疾病与照护",
+    "婚姻压抑"
+   ],
+   "editorial": "适合愿意在克制对话和日常动作里看感情的观众。战后废墟与庭院不是装饰，人物难以说出口的部分尤其值得留意。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及疾病与照护、婚姻压抑。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "style-kaleidoscope",
    "ticketUrl": "/images/tickets/spring-in-a-small-town.jpg"
   },
@@ -929,6 +1088,14 @@ module.exports = {
      ]
     }
    ],
+   "warnings": [],
+   "editorial": "适合喜欢视觉喜剧与生活空间设计的观众。可暂时放下追情节的习惯，看看房子、机器和声音怎样让日常变得好笑。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "已查看现有剧情资料，尚未确认需要特别标注的敏感内容。这不代表适合所有年龄，也不等同于完整内容审查。",
    "prog": "style-kaleidoscope",
    "ticketUrl": "/images/tickets/mon-oncle.jpg"
   },
@@ -996,6 +1163,17 @@ module.exports = {
      ]
     }
    ],
+   "warnings": [
+    "儿童受责备",
+    "被学校排斥的焦虑"
+   ],
+   "editorial": "适合从儿童尺度重新看成人规则的观众。一本作业本带来的紧迫感就是入口，沿途那些被忽略的求助值得耐心听。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及儿童受责备、被学校排斥的焦虑。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "style-kaleidoscope",
    "ticketUrl": "/images/tickets/where-is-the-friends-house.jpg"
   },
@@ -1060,6 +1238,18 @@ module.exports = {
      ]
     }
    ],
+   "warnings": [
+    "核战争恐惧",
+    "精神危机",
+    "家庭焦虑"
+   ],
+   "editorial": "适合愿意进入信仰与责任追问的观众。长镜头中的空间、等待和仪式感很重要，建议避免把它夹在特别匆忙的两场之间。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及核战争恐惧、精神危机、家庭焦虑。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "style-kaleidoscope",
    "ticketUrl": "/images/tickets/the-sacrifice.jpg"
   },
@@ -1121,6 +1311,17 @@ module.exports = {
      ]
     }
    ],
+   "warnings": [
+    "死亡与哀伤",
+    "衰老议题"
+   ],
+   "editorial": "适合喜欢人物相遇与公共艺术的观众。巨幅肖像的制作过程之外，普通人如何回应被看见同样动人，可与自己的城市经验对照。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及死亡与哀伤、衰老议题。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "style-kaleidoscope",
    "ticketUrl": "/images/tickets/faces-places.jpg"
   },
@@ -1187,6 +1388,18 @@ module.exports = {
      ]
     }
    ],
+   "warnings": [
+    "强烈血腥暴力",
+    "动物死亡",
+    "粗口"
+   ],
+   "editorial": "适合想在大银幕看动作调度的观众。留意空间、身体与枪械动作如何衔接；对动物受害情节敏感的观众应提前考虑。",
+   "contentReview": {
+    "status": "official-advisory",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "已结合海外公开内容提示整理；片长、剪辑与本次放映版本可能不同，请按个人情况选择。",
    "prog": "cinema-2026",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/john-wick.png"
   },
@@ -1252,6 +1465,17 @@ module.exports = {
     }
    ],
    "ticketLabel": "报名",
+   "warnings": [
+    "童工与儿童剥削",
+    "阶级歧视"
+   ],
+   "editorial": "适合关注儿童处境与阶级关系的观众。生日派对的欢乐与女童所处的位置形成落差，温暖时刻也值得连同权力关系一起看。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及童工与儿童剥削、阶级歧视。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "cinema-2026",
    "ticketUrl": "/images/tickets/happy-birthday.jpg"
   },
@@ -1314,6 +1538,17 @@ module.exports = {
     "11/6-19:45-xm-gr26-1-hall-2": "映后活动 · 导演/编剧：岗珍（以实际到场为准）"
    },
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-linka-linka.jpg?v=37",
+   "warnings": [
+    "童年伤痛",
+    "家庭矛盾"
+   ],
+   "editorial": "适合喜欢记忆与电影创作交织的观众。可以跟着拍摄现场和少女往事的切换寻找关系，不必急于把不同记忆拼成单一答案。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及童年伤痛、家庭矛盾。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "cinema-2026",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
   },
@@ -1366,6 +1601,19 @@ module.exports = {
    "honors": [],
    "version": "",
    "poster": "posters/kill-bill-whole-bloody-affair.jpg",
+   "warnings": [
+    "强烈血腥暴力",
+    "性暴力与威胁",
+    "毒品使用",
+    "粗口"
+   ],
+   "editorial": "适合希望整体体验这段复仇叙事的观众。合并版值得关注两部分如何连接；片长很长，请先确认休息安排并预留体力。",
+   "contentReview": {
+    "status": "official-advisory",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "已结合海外公开内容提示整理；片长、剪辑与本次放映版本可能不同，请按个人情况选择。",
    "prog": "cinema-2026"
   },
   {
@@ -1417,6 +1665,18 @@ module.exports = {
    "honors": [],
    "version": "",
    "poster": "posters/the-odyssey.jpg",
+   "warnings": [
+    "战争题材",
+    "失踪与家庭分离",
+    "冒险中的危险"
+   ],
+   "editorial": "适合对荷马史诗和返乡母题感兴趣的观众。可以从家人等待与归途阻碍两条线进入；想紧接下一场时，请先确认本场散场时间。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及战争题材、失踪与家庭分离、冒险中的危险。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "cinema-2026"
   },
   {
@@ -1471,6 +1731,17 @@ module.exports = {
    "honors": [],
    "version": "",
    "poster": "posters/dune-part-three.jpg",
+   "warnings": [
+    "战争与宗教权力题材",
+    "政治压迫"
+   ],
+   "editorial": "适合愿意延续沙丘人物与权力关系的观众。先回顾前作会更容易进入；当前选片笔记基于已收录故事资料，成片体验待确认。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及战争与宗教权力题材、政治压迫。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "cinema-2026"
   },
   {
@@ -1523,6 +1794,17 @@ module.exports = {
    "honors": [],
    "version": "",
    "poster": "posters/avengers-doomsday.jpg",
+   "warnings": [
+    "战斗与威胁题材",
+    "灾难题材"
+   ],
+   "editorial": "适合熟悉不同漫威人物线的观众。可先梳理各宇宙角色关系；正式版本与具体放映信息尚需确认，不宜据此安排紧密赶场。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及战斗与威胁题材、灾难题材。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "cinema-2026"
   },
   {
@@ -1574,6 +1856,24 @@ module.exports = {
    ],
    "version": "",
    "poster": "posters/we-live-in-time.jpg",
+   "warnings": [
+    "癌症与治疗",
+    "死亡与哀伤",
+    "生育议题",
+    "交通事故"
+   ],
+   "editorial": "适合愿意进入爱情与疾病日常的观众。注意时间顺序如何改变一个普通生活片段的分量；近期经历病痛或丧失时请照顾自己的状态。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及癌症与治疗、死亡与哀伤、生育议题、交通事故。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "mpa": {
+    "rating": "R",
+    "edition": "US Blu-ray release",
+    "checked": "2026-11-03"
+   },
    "prog": "cinema-2026"
   },
   {
@@ -1620,6 +1920,18 @@ module.exports = {
    "version": "",
    "poster": "posters/for-better-or-worse.jpg",
    "ticketLabel": "报名",
+   "warnings": [
+    "抑郁经历",
+    "债务压力",
+    "伴侣争执"
+   ],
+   "editorial": "适合关注亲密关系真实磨合的观众。把经营、育儿和争执放在同一条生活线上看，纪录片的价值也在那些没有解决的时刻。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及抑郁经历、债务压力、伴侣争执。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "cinema-2026",
    "ticketUrl": "/images/tickets/for-better-or-worse.jpg"
   },
@@ -1686,6 +1998,18 @@ module.exports = {
     }
    ],
    "ticketLabel": "报名",
+   "warnings": [
+    "恐怖题材",
+    "感染与变异",
+    "生存威胁"
+   ],
+   "editorial": "适合接受感染与怪物题材的观众。可以从被困城中的普通人处境进入；成片血腥程度与感官提示需等正式资料确认。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及恐怖题材、感染与变异、生存威胁。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "cinema-2026",
    "ticketUrl": "/images/tickets/resident-evil.jpg"
   },
@@ -1727,6 +2051,14 @@ module.exports = {
    "qaEnd": "17:20",
    "qaGuest": "导演杨淏 Hao Yang（现场交流）",
    "screeningStart": "14:30",
+   "warnings": [],
+   "editorial": "适合想重新审视数字生活的观众。重点可以放在地图、现金和面对面交流如何改变旅程，不必把影片理解成人人都该断网的主张。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "已查看现有剧情资料，尚未确认需要特别标注的敏感内容。这不代表适合所有年龄，也不等同于完整内容审查。",
    "prog": "sparrow-tribe-space",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/no-mobile.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/no-mobile.png"
@@ -1780,6 +2112,18 @@ module.exports = {
     3.8
    ],
    "dirO": "Marie-Clémentine Dusabejambo",
+   "warnings": [
+    "种族灭绝与历史创伤",
+    "家庭冲突",
+    "怀孕议题"
+   ],
+   "editorial": "适合关注记忆与和解的观众。留意母亲的公共信念如何面对女儿的私人处境，内容较沉重，观后可以留一点缓冲。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及种族灭绝与历史创伤、家庭冲突、怀孕议题。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-001.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -1832,6 +2176,17 @@ module.exports = {
     3.6
    ],
    "dirO": "Peter Chan Ho-Sun",
+   "warnings": [
+    "记忆衰退与疾病",
+    "家庭照护压力"
+   ],
+   "editorial": "适合关注家庭照护与自我认同的观众。可以对照主人公的公众身份和家庭角色，最近经历病痛照护时请留意自己的情绪。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及记忆衰退与疾病、家庭照护压力。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-002.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -1886,6 +2241,17 @@ module.exports = {
     null
    ],
    "dirO": "Loden",
+   "warnings": [
+    "配偶离世",
+    "哀伤"
+   ],
+   "editorial": "适合喜欢同行关系和旅途闲谈的观众。老人寻找转世的愿望与诗人的生活选择互相映照，目的地之外的陪伴也值得留意。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及配偶离世、哀伤。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-003.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -1935,6 +2301,18 @@ module.exports = {
     3.4
    ],
    "dirO": "Cristóbal León / Joaquín Cociña",
+   "warnings": [
+    "丧亲",
+    "父权控制",
+    "放逐与威胁"
+   ],
+   "editorial": "适合喜欢非传统童话与手工动画的观众。把寻找恋人的冒险也看成摆脱父亲安排的过程，动画形式不等于儿童向内容。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及丧亲、父权控制、放逐与威胁。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-005.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -1984,6 +2362,16 @@ module.exports = {
     3.4
    ],
    "dirO": "Bruno Dumont",
+   "warnings": [
+    "儿童间的敌意与排斥"
+   ],
+   "editorial": "适合对童年关系与海岸空间感兴趣的观众。结盟、嫉妒和初次心动可以一起观察，夏日冒险里并非只有轻松。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及儿童间的敌意与排斥。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-006.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -2034,6 +2422,18 @@ module.exports = {
     3.7
    ],
    "dirO": "Radu Jude",
+   "warnings": [
+    "阶级歧视",
+    "移民劳动压力",
+    "母女分离"
+   ],
+   "editorial": "适合关注家政劳动与移民生活的观众。舞台里的女仆和工作中的自己构成对照，善意语言背后的距离尤其值得听。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及阶级歧视、移民劳动压力、母女分离。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-007.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -2084,6 +2484,17 @@ module.exports = {
     3
    ],
    "dirO": "Kogonada",
+   "warnings": [
+    "现实与记忆混淆",
+    "心理困扰"
+   ],
+   "editorial": "适合喜欢城市漫步和时间实验的观众。相遇、声音与记忆比快速解谜更重要，愿意接受时间边界模糊会更容易进入。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及现实与记忆混淆、心理困扰。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-008.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -2135,6 +2546,17 @@ module.exports = {
     4.2
    ],
    "dirO": "Louis Clichy",
+   "warnings": [
+    "疾病与医疗器具",
+    "身体能力焦虑"
+   ],
+   "editorial": "适合从身体经验进入成长故事的观众。农场劳动和管风琴是两条观察线，也可以留意家庭如何重新理解一个人的价值。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及疾病与医疗器具、身体能力焦虑。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-009.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -2185,6 +2607,17 @@ module.exports = {
     3
    ],
    "dirO": "Nelson Yeo",
+   "warnings": [
+    "亲人失踪",
+    "冒险与生存危险"
+   ],
+   "editorial": "适合喜欢神话改写的观众。可以跟随嫦娥的寻找重新认识熟悉人物，爱情、离散和永生的愿望比神话知识测验更重要。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及亲人失踪、冒险与生存危险。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-010.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -2233,6 +2666,18 @@ module.exports = {
     3.8
    ],
    "dirO": "Ang Geck Geck",
+   "warnings": [
+    "父母分居",
+    "家庭争执",
+    "儿童情绪压力"
+   ],
+   "editorial": "适合想从儿童感受理解家庭变化的观众。女孩的机灵与她无法决定住处的无力感可以对照着看，成长不只有可爱的一面。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及父母分居、家庭争执、儿童情绪压力。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-011.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -2283,6 +2728,18 @@ module.exports = {
     null
    ],
    "dirO": "Lingo Hsieh",
+   "warnings": [
+    "恐怖与囚困",
+    "赌博债务",
+    "生命威胁"
+   ],
+   "editorial": "适合能接受诡异机构与生存威胁的观众。母女关系是悬念之外的另一条线；对疗养院和失去控制的情境敏感时请先看提示。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及恐怖与囚困、赌博债务、生命威胁。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-012.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -2336,6 +2793,17 @@ module.exports = {
     3.2
    ],
    "dirO": "Dong Jie",
+   "warnings": [
+    "亲友失联",
+    "记忆与现实混淆"
+   ],
+   "editorial": "适合关注数字生活和记忆的观众。游戏空间与城市之间的来回可以作为入口，跟着关系变化看，未必需要把一切归为解谜。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及亲友失联、记忆与现实混淆。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-013.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -2393,6 +2861,18 @@ module.exports = {
     null
    ],
    "dirO": "Hou Jue",
+   "warnings": [
+    "母子分离",
+    "儿童困境",
+    "旅途风险"
+   ],
+   "editorial": "适合喜欢儿童群像与共同冒险的观众。修车既是行动也是愿望的集合，可以留意孩子各自为什么想出发。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及母子分离、儿童困境、旅途风险。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-014.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -2445,6 +2925,18 @@ module.exports = {
     3.6
    ],
    "dirO": "Paweł Pawlikowski",
+   "warnings": [
+    "纳粹历史与战争余波",
+    "流亡",
+    "家庭旧伤"
+   ],
+   "editorial": "适合对文学、战后德国和公共责任感兴趣的观众。父女同行与东西部的历史空间可以并读，熟悉时代背景会帮助理解。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及纳粹历史与战争余波、流亡、家庭旧伤。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-015.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -2500,6 +2992,18 @@ module.exports = {
     null
    ],
    "dirO": "Zhang Xin",
+   "warnings": [
+    "育儿与学业压力",
+    "婚姻疏离",
+    "母女冲突"
+   ],
+   "editorial": "适合关注照护劳动与女性生活选择的观众。答辩和家庭琐事的并置值得留意，生活压力往往没有清楚的分界。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及育儿与学业压力、婚姻疏离、母女冲突。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-016.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -2559,6 +3063,18 @@ module.exports = {
     null
    ],
    "dirO": "Zhang Pu",
+   "warnings": [
+    "家庭暴力",
+    "性别偏见",
+    "关系创伤"
+   ],
+   "editorial": "适合关注女性重新建立生活的观众。饭馆劳动与亲密关系可以相互对照，别让喜剧和爱情标签遮住其中的暴力经历。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及家庭暴力、性别偏见、关系创伤。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-017.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -2608,6 +3124,18 @@ module.exports = {
     3.4
    ],
    "dirO": "Zao Xu",
+   "warnings": [
+    "失业与欠薪",
+    "孤独",
+    "现实与虚拟混淆"
+   ],
+   "editorial": "适合喜欢动画中的劳动与技术议题的观众。保洁员的日常和VR中的陪伴值得对照，虚拟空间的温暖也有现实代价。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及失业与欠薪、孤独、现实与虚拟混淆。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-018.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -2660,6 +3188,16 @@ module.exports = {
    "screeningNotes": {
     "11/7-19:00-xm-gr26-1-hall-2": "映后活动 · 主创映后交流（嘉宾名单待公布，以实际到场为准）"
    },
+   "warnings": [
+    "赛车与高速运动风险"
+   ],
+   "editorial": "适合想看城市赛道与运动员准备过程的观众。比赛之外也可留意澳门的空间；如对突发高音量敏感，先询问影院放映安排。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及赛车与高速运动风险。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-019.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -2719,6 +3257,17 @@ module.exports = {
     null
    ],
    "dirO": "Liu Shichuan",
+   "warnings": [
+    "经济与职场压力",
+    "情感欺瞒"
+   ],
+   "editorial": "适合喜欢都市边缘人物与偶然相遇的观众。播客、电话与虚构身份构成不同的自我表达，日常对话比成功故事更值得留意。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及经济与职场压力、情感欺瞒。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-020.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -2775,6 +3324,17 @@ module.exports = {
     3.8
    ],
    "dirO": "Zou Jing",
+   "warnings": [
+    "家庭分离",
+    "身份与归属压力"
+   ],
+   "editorial": "适合关注养育、血缘和女性成长的观众。三个家庭对同一个女孩的理解可以对照着看，避免过早替她选择一个归属答案。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及家庭分离、身份与归属压力。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-021.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -2825,6 +3385,17 @@ module.exports = {
     null
    ],
    "dirO": "Rabah Ameur-Zaïmeche",
+   "warnings": [
+    "袭击与抢劫",
+    "沙漠生存危险"
+   ],
+   "editorial": "适合喜欢公路片与陌生人关系的观众。运货途中的互助与不信任是入口，沙漠空间也会改变人物作决定的尺度。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及袭击与抢劫、沙漠生存危险。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-022.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -2878,6 +3449,18 @@ module.exports = {
     3.4
    ],
    "dirO": "Fred Cavayé",
+   "warnings": [
+    "贫困与迫害",
+    "监禁",
+    "死亡与战争"
+   ],
+   "editorial": "适合愿意投入长篇历史叙事的观众。可以沿着承诺与追捕两条线进入，长片观看前请确认体力和后续场次间隔。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及贫困与迫害、监禁、死亡与战争。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-023.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -2933,6 +3516,17 @@ module.exports = {
     3.6
    ],
    "dirO": "Patrick Tam Kar-Ming",
+   "warnings": [
+    "谋杀与暴力威胁",
+    "亲密关系危险"
+   ],
+   "editorial": "适合喜欢情感关系逐渐染上危险的悬疑片观众。可留意平静日常如何变化；近期对亲密关系暴力敏感时请谨慎选择。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及谋杀与暴力威胁、亲密关系危险。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-024.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -2982,6 +3576,17 @@ module.exports = {
     3.8
    ],
    "dirO": "Sandra Wollner",
+   "warnings": [
+    "年轻人死亡",
+    "丧亲与内疚"
+   ],
+   "editorial": "适合愿意面对失去与家人关系的观众。未成行的假期提供共同相处的空间，悲伤里的不同步比快速和解更值得理解。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及年轻人死亡、丧亲与内疚。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-025.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -3038,6 +3643,17 @@ module.exports = {
     null
    ],
    "dirO": "Gong Yiwen",
+   "warnings": [
+    "家庭变化",
+    "青春期情绪困扰"
+   ],
+   "editorial": "适合对千禧年成长经验与写作感兴趣的观众。纸笔与网络是两种向外寻找的路径，可以把少女的文字和现实处境放在一起看。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及家庭变化、青春期情绪困扰。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-026.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -3094,6 +3710,17 @@ module.exports = {
     null
    ],
    "dirO": "白润青",
+   "warnings": [
+    "身份压力",
+    "矿山劳动背景"
+   ],
+   "editorial": "适合喜欢从具体地域进入人物困境的观众。草原与矿山构成两种生活尺度，可以留意传统骑士精神如何遇到当下的选择。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及身份压力、矿山劳动背景。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-027.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -3150,6 +3777,18 @@ module.exports = {
     null,
     null
    ],
+   "warnings": [
+    "饥饿记忆",
+    "家庭创伤",
+    "母女冲突"
+   ],
+   "editorial": "适合关注女性自述与城市记忆的观众。三代母女和重庆街巷可以交叉着看，私人回忆中的空白也值得保留。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及饥饿记忆、家庭创伤、母女冲突。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-028.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -3203,6 +3842,17 @@ module.exports = {
    "screeningNotes": {
     "11/8-14:30-xm-gr26-1-hall-3": "映后活动 · 主创映后交流（嘉宾名单待公布，以实际到场为准）"
    },
+   "warnings": [
+    "疾病与住院",
+    "父女关系压力"
+   ],
+   "editorial": "适合喜欢亲情公路片的观众。离开医院带来的短暂自由是入口，沿途笑料也可以与父女各自的恐惧对照。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及疾病与住院、父女关系压力。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-029.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -3255,6 +3905,17 @@ module.exports = {
    "screeningNotes": {
     "11/8-15:50-xm-gr26-1-hall-7": "映后活动 · 主创见面会（嘉宾名单待公布，以实际到场为准）"
    },
+   "warnings": [
+    "亲密与性议题",
+    "残障歧视"
+   ],
+   "editorial": "适合愿意从残障者经验讨论亲密关系的观众。重点在欲望、自主和尊严，选片时可以把它与讨论照护权力的作品并看。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及亲密与性议题、残障歧视。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-030.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -3312,6 +3973,18 @@ module.exports = {
     null
    ],
    "dirO": "Zhong Kaifeng",
+   "warnings": [
+    "动物死亡情节",
+    "亲人失联",
+    "听觉困扰"
+   ],
+   "editorial": "适合接受奇幻日常与寻亲交织的观众。奇怪声响是进入记忆的线索，也可留意超市劳动与东北故乡之间的距离。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及动物死亡情节、亲人失联、听觉困扰。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-031.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -3364,6 +4037,18 @@ module.exports = {
    "screeningNotes": {
     "11/8-16:20-xm-gr26-1-hall-4": "映后活动 · 主创映后交流（嘉宾名单待公布，以实际到场为准）"
    },
+   "warnings": [
+    "配偶死亡",
+    "原生家庭创伤",
+    "丧亲"
+   ],
+   "editorial": "适合愿意面对哀伤与家庭秘密的观众。可以观察照顾他人与追索原因怎样同时发生，故事沉重，建议给自己留一点消化时间。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及配偶死亡、原生家庭创伤、丧亲。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-032.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -3416,6 +4101,17 @@ module.exports = {
    "screeningNotes": {
     "11/8-17:00-xm-gr26-1-hall-2": "映后活动 · 主创见面会（嘉宾名单待公布，以实际到场为准）"
    },
+   "warnings": [
+    "死亡与葬礼",
+    "宗教和家族冲突"
+   ],
+   "editorial": "适合关注迁徙、宗教和家族记忆的观众。葬礼纷争背后有不同世代的生活选择，了解马来西亚的多元背景会帮助进入。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及死亡与葬礼、宗教和家族冲突。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-033.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -3469,6 +4165,16 @@ module.exports = {
    "screeningNotes": {
     "11/8-17:30-xm-gr26-1-hall-5": "映后活动 · 主创见面会（嘉宾名单待公布，以实际到场为准）"
    },
+   "warnings": [
+    "衰老与死亡议题"
+   ],
+   "editorial": "适合愿意进入文学档案和长时间观看的观众。朗读、手稿与旅行可以交叉着看；片长尤其长，请预留充足时间并确认休息安排。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及衰老与死亡议题。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-034.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -3522,6 +4228,17 @@ module.exports = {
    "screeningNotes": {
     "11/8-19:20-xm-gr26-1-hall-4": "映后活动 · 主创映后交流（嘉宾名单待公布，以实际到场为准）"
    },
+   "warnings": [
+    "儿童教育压力",
+    "家庭与阶级焦虑"
+   ],
+   "editorial": "适合关注教育竞争与成人权力的观众。面试结果是悬念，几名大人如何解释孩子则提供另一条观察线。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及儿童教育压力、家庭与阶级焦虑。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-035.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -3573,6 +4290,18 @@ module.exports = {
    "screeningNotes": {
     "11/8-19:45-xm-gr26-1-hall-3": "映后活动 · 主创见面会（嘉宾名单待公布，以实际到场为准）"
    },
+   "warnings": [
+    "战争与抵抗",
+    "亲人失踪",
+    "长期哀伤"
+   ],
+   "editorial": "适合关注战争中的音乐与记忆的观众。小提琴连接不同年代，别因动画形式而默认内容轻松，分离和等待同样重要。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及战争与抵抗、亲人失踪、长期哀伤。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-036.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -3626,6 +4355,17 @@ module.exports = {
    "screeningNotes": {
     "11/8-20:15-xm-gr26-1-hall-2": "映后活动 · 主创映后交流（嘉宾名单待公布，以实际到场为准）"
    },
+   "warnings": [
+    "性别偏见",
+    "家庭角色压力"
+   ],
+   "editorial": "适合关注中年自我探索与身体表达的观众。把钢管舞看作学习与结伴的空间，留意主人公如何重新安排自己的时间。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及性别偏见、家庭角色压力。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-037.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -3675,6 +4415,17 @@ module.exports = {
     3.5
    ],
    "dirO": "Emmanuel Marre",
+   "warnings": [
+    "纳粹与维希政权",
+    "政治迫害议题"
+   ],
+   "editorial": "适合关注普通人如何参与压迫体系的观众。可以追踪主人公追求认可时的一次次选择，观看前了解维希时期会更有帮助。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及纳粹与维希政权、政治迫害议题。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-038.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -3730,6 +4481,17 @@ module.exports = {
     3.7
    ],
    "dirO": "Yuen Woo-ping",
+   "warnings": [
+    "武打与兵器伤害",
+    "背叛"
+   ],
+   "editorial": "适合喜欢功夫表演与人物对照的观众。君宝与天宝的不同道路是主线，可从动作如何表达权力观进入。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及武打与兵器伤害、背叛。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-039.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -3779,6 +4541,17 @@ module.exports = {
     null
    ],
    "dirO": "Andrew Fung Chih-chiang",
+   "warnings": [
+    "网络攻击与偏见",
+    "运动风险"
+   ],
+   "editorial": "适合喜欢运动与关系变化的观众。把网上的判断和现实里的相处对照着看，海上训练也是人物重新认识彼此的过程。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及网络攻击与偏见、运动风险。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-040.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -3831,6 +4604,17 @@ module.exports = {
    "screeningNotes": {
     "11/9-14:10-xm-gr26-1-hall-6": "映后活动 · 主创映后交流（嘉宾名单待公布，以实际到场为准）"
    },
+   "warnings": [
+    "婚姻与婚外关系",
+    "职场权力关系"
+   ],
+   "editorial": "适合喜欢戏中戏和创作关系的观众。排练现场与私人生活互相侵入，观看时可以持续分辨谁在表演、谁在决定规则。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及婚姻与婚外关系、职场权力关系。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-041.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -3882,6 +4666,18 @@ module.exports = {
    "screeningNotes": {
     "11/9-14:25-xm-gr26-1-hall-2": "映后活动 · 主创映后交流（嘉宾名单待公布，以实际到场为准）"
    },
+   "warnings": [
+    "死亡与罪责",
+    "软禁",
+    "关系创伤"
+   ],
+   "editorial": "适合愿意进入边缘人物与罪责议题的观众。可以从两个人为什么被排斥进入，夜色与潮汐里的靠近并不意味着伤痛轻易解决。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及死亡与罪责、软禁、关系创伤。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-042.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -3942,6 +4738,17 @@ module.exports = {
     null
    ],
    "dirO": "Wan Bo",
+   "warnings": [
+    "失踪与刑事调查",
+    "关系创伤"
+   ],
+   "editorial": "适合喜欢山村空间与旧事追查的观众。可以比较警方到访前后的人物说法，情感往事与案件线索需要一起看。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及失踪与刑事调查、关系创伤。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-043.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -3997,6 +4804,17 @@ module.exports = {
     null,
     null
    ],
+   "warnings": [
+    "儿童生活困境",
+    "训练与表演压力"
+   ],
+   "editorial": "适合关注儿童群像和集体音乐的观众。合唱的形成过程与孩子的日常同样值得看，不必只把登台当作故事唯一的价值。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及儿童生活困境、训练与表演压力。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-044.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -4047,6 +4865,17 @@ module.exports = {
     3.6
    ],
    "dirO": "Hong Sang-soo",
+   "warnings": [
+    "衰老与家庭照护",
+    "家庭疏离"
+   ],
+   "editorial": "适合喜欢日常对话与家庭细节的观众。一次探望中的相处节奏可以成为入口，创作与照护之间的牵扯值得慢慢看。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及衰老与家庭照护、家庭疏离。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-045.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -4099,6 +4928,17 @@ module.exports = {
    "screeningNotes": {
     "11/10-19:30-xm-gr26-1-hall-3": "映后活动 · 主创映后交流（嘉宾名单待公布，以实际到场为准）"
    },
+   "warnings": [
+    "报复与人际冲突",
+    "经济压力"
+   ],
+   "editorial": "适合喜欢都市黑色幽默与人物摩擦的观众。一次小误会怎样越滚越大是看点，也可留意争斗背后各自的生活窘境。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及报复与人际冲突、经济压力。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-046.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -4151,6 +4991,17 @@ module.exports = {
    "screeningNotes": {
     "11/10-19:45-xm-gr26-1-hall-2": "映后活动 · 主创见面会（嘉宾名单待公布，以实际到场为准）"
    },
+   "warnings": [
+    "犯罪与死亡",
+    "心理创伤"
+   ],
+   "editorial": "适合关注犯罪背后人物处境的观众。案件之外的生活和隐痛提供另一条路径，现有资料未披露具体暴力强度，敏感观众宜先核实。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及犯罪与死亡、心理创伤。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-047.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -4201,6 +5052,17 @@ module.exports = {
     3.2
    ],
    "dirO": "Jannis Lenz",
+   "warnings": [
+    "校园威胁与排斥",
+    "未成年人心理压力"
+   ],
+   "editorial": "适合关注少年群体与归属需求的观众。森林里的结盟和学校里的排斥可以对读，仪式与游戏未必意味着安全。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及校园威胁与排斥、未成年人心理压力。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-048.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -4253,6 +5115,17 @@ module.exports = {
     3.5
    ],
    "dirO": "Tsui Hark",
+   "warnings": [
+    "厨房与食材处理",
+    "竞争压力"
+   ],
+   "editorial": "适合喜欢美食、表演与香港喜剧的观众。厨艺竞赛之外可以看看角色如何重新学习合作，期待严肃烹饪纪录片的观众需调整预期。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及厨房与食材处理、竞争压力。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-049.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -4303,6 +5176,17 @@ module.exports = {
     3.3
    ],
    "dirO": "Erik Poppe",
+   "warnings": [
+    "伴侣分离",
+    "家庭照护压力"
+   ],
+   "editorial": "适合愿意看爱情中距离与责任的观众。海上与岸上的生活可以对照，浪漫愿望如何影响留下的人尤其值得留意。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及伴侣分离、家庭照护压力。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-050.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -4352,6 +5236,17 @@ module.exports = {
     3.6
    ],
    "dirO": "Nicolás Pereda",
+   "warnings": [
+    "性别成见",
+    "职场羞辱"
+   ],
+   "editorial": "适合喜欢艺术圈讽刺与尴尬喜剧的观众。一次采访里的技术失误和打断值得细看，别急着跳过那些难堪的停顿。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及性别成见、职场羞辱。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-051.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -4400,6 +5295,18 @@ module.exports = {
     2.9
    ],
    "dirO": "Quentin Dupieux",
+   "warnings": [
+    "过量进食情节",
+    "父女关系冲突",
+    "恐怖片元素"
+   ],
+   "editorial": "适合接受荒诞与类型混合的观众。美食和豪华酒店不是单纯的享受背景，也可以观察父女如何用安排周全的旅行回避沟通。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及过量进食情节、父女关系冲突、恐怖片元素。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-052.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -4453,6 +5360,14 @@ module.exports = {
     4.3
    ],
    "dirO": "János Zsombolyai",
+   "warnings": [],
+   "editorial": "适合想把音乐会当作集体观影经验的观众。舞台与旅途片段可以互相参照，重视音量舒适度时请提前询问影院。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "已查看现有剧情资料，尚未确认需要特别标注的敏感内容。这不代表适合所有年龄，也不等同于完整内容审查。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-053.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -4506,6 +5421,23 @@ module.exports = {
     3.9
    ],
    "dirO": "Tim Burton",
+   "warnings": [
+    "排斥与污名",
+    "身体伤害",
+    "孤独"
+   ],
+   "editorial": "适合喜欢奇幻美术与局外人故事的观众。社区最初的欢迎与后来的恐惧值得对照，童话外观下的排斥也需要情绪准备。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及排斥与污名、身体伤害、孤独。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "mpa": {
+    "rating": "PG-13",
+    "edition": "US release",
+    "checked": "2026-11-03"
+   },
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-054.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -4558,6 +5490,22 @@ module.exports = {
     4.3
    ],
    "dirO": "Joel Coen / Ethan Coen",
+   "warnings": [
+    "谋杀与血腥伤害",
+    "毒品交易背景"
+   ],
+   "editorial": "适合喜欢紧张追踪与道德困局的观众。除了杀手的行动，也可留意警长如何面对无法理解的变化，内容含暴力伤害。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及谋杀与血腥伤害、毒品交易背景。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "mpa": {
+    "rating": "R",
+    "edition": "US release, certificate 43473",
+    "checked": "2026-11-03"
+   },
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-055.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -4609,6 +5557,18 @@ module.exports = {
     4.2
    ],
    "dirO": "Andrey Zvyagintsev",
+   "warnings": [
+    "父权压迫",
+    "儿童恐惧",
+    "家庭冲突"
+   ],
+   "editorial": "适合喜欢父子关系与开放解释的观众。可以跟着两个孩子不同的反应看这次旅程，沉默与威严之间的距离很重要。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及父权压迫、儿童恐惧、家庭冲突。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-056.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -4660,6 +5620,18 @@ module.exports = {
     3.5
    ],
    "dirO": "Manuela Martelli",
+   "warnings": [
+    "失踪",
+    "儿童面对成人秘密",
+    "不安与威胁"
+   ],
+   "editorial": "适合愿意跟随儿童观察成人世界的观众。滑雪旅馆的日常与失踪后的沉默可以对照，别急于用单一解答盖过孩子的困惑。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及失踪、儿童面对成人秘密、不安与威胁。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-057.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -4713,6 +5685,17 @@ module.exports = {
     3.9
    ],
    "dirO": "Hou Hsiao-hsien",
+   "warnings": [
+    "犯罪与暴力背景",
+    "家庭冲突"
+   ],
+   "editorial": "适合喜欢流动空间与人物群像的观众。奔走、等待和失败的计划都可以细看，习惯明确目标和爽快结局的观众需要调整节奏。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及犯罪与暴力背景、家庭冲突。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-058.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -4764,6 +5747,18 @@ module.exports = {
     3.3
    ],
    "dirO": "Grzegorz Dębowski",
+   "warnings": [
+    "入室盗窃",
+    "发现死者",
+    "身份欺瞒"
+   ],
+   "editorial": "适合对身份想象与阶级处境感兴趣的观众。冒充伴侣的举动是入口，可以留意主人公借别人的生活想改变什么。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及入室盗窃、发现死者、身份欺瞒。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-059.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -4816,6 +5811,18 @@ module.exports = {
     3.5
    ],
    "dirO": "Kristina Grozeva / Petar Valchanov",
+   "warnings": [
+    "腐败与诈骗",
+    "战争背景",
+    "婚姻欺瞒"
+   ],
+   "editorial": "适合关注普通人愿望与社会现实的观众。旅行梦想和积蓄来源构成反差，追钱过程也可以当作一次婚姻关系的重读。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及腐败与诈骗、战争背景、婚姻欺瞒。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-060.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -4868,6 +5875,17 @@ module.exports = {
     3.5
    ],
    "dirO": "Wan Jen",
+   "warnings": [
+    "父权与性别压迫",
+    "婚姻伤痛"
+   ],
+   "editorial": "适合关注母女经验与社会变化的观众。可以比较两代女性面对婚姻和教育时的选择，爱与牺牲未必总是同一回事。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及父权与性别压迫、婚姻伤痛。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-061.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -4921,6 +5939,17 @@ module.exports = {
     3.8
    ],
    "dirO": "Yuen Woo-ping",
+   "warnings": [
+    "武打与惩罚性训练",
+    "饮酒"
+   ],
+   "editorial": "适合喜欢身体喜剧与功夫训练段落的观众。看动作如何从笨拙变得有节奏，饮酒情节属于人物和类型表达，请勿模仿。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及武打与惩罚性训练、饮酒。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-062.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -4976,6 +6005,22 @@ module.exports = {
     4.1
    ],
    "dirO": "Ridley Scott",
+   "warnings": [
+    "暴力与生命威胁",
+    "死亡焦虑"
+   ],
+   "editorial": "适合想在大银幕看未来城市与身份疑问的观众。请留意本次为最终剪辑版，霓虹、雨夜与声音也值得和追捕情节一起看。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及暴力与生命威胁、死亡焦虑。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "mpa": {
+    "rating": "R",
+    "edition": "The Final Cut, US release",
+    "checked": "2026-11-03"
+   },
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-063.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -5024,6 +6069,17 @@ module.exports = {
     3.3
    ],
    "dirO": "Anthony Chen",
+   "warnings": [
+    "经济压力",
+    "代际与家庭冲突"
+   ],
+   "editorial": "适合关注城市生活与重组家庭的观众。父子两代的爱情可以并看，日常开销与责任如何改变亲密关系也是入口。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及经济压力、代际与家庭冲突。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-064.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -5074,6 +6130,23 @@ module.exports = {
     4.1
    ],
    "dirO": "Brett Morgen",
+   "warnings": [
+    "闪烁影像",
+    "性与裸露片段",
+    "粗口"
+   ],
+   "editorial": "适合愿意沉入音乐与影像拼接的观众。它更接近感受艺术世界的入口；已查到闪烁影像提示，光敏观众请谨慎选择。",
+   "contentReview": {
+    "status": "official-advisory",
+    "checked": "2026-11-03",
+    "sensory": "flashing"
+   },
+   "contentNote": "已结合海外公开内容提示整理；片长、剪辑与本次放映版本可能不同，请按个人情况选择。",
+   "mpa": {
+    "rating": "PG-13",
+    "edition": "US release",
+    "checked": "2026-11-03"
+   },
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-065.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -5128,6 +6201,18 @@ module.exports = {
     4.2
    ],
    "dirO": "Clyde Bruckman / Buster Keaton",
+   "warnings": [
+    "战争与炮火",
+    "危险动作",
+    "历史立场背景"
+   ],
+   "editorial": "适合喜欢默片动作与机械空间的观众。火车与身体的配合值得细看，同时保留对南北战争叙事立场的历史距离。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及战争与炮火、危险动作、历史立场背景。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-066.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -5180,6 +6265,18 @@ module.exports = {
     3.5
    ],
    "dirO": "Joko Anwar",
+   "warnings": [
+    "监狱暴力",
+    "恐怖与超自然威胁",
+    "死亡"
+   ],
+   "editorial": "适合接受监狱与超自然类型混合的观众。囚犯之间的合作是另一条线，恐怖题材不因喜剧标签而自动变得轻松。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及监狱暴力、恐怖与超自然威胁、死亡。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-067.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -5232,6 +6329,17 @@ module.exports = {
     null
    ],
    "dirO": "Amanbek Azhymat",
+   "warnings": [
+    "年龄与职场权力冲突",
+    "创作压力"
+   ],
+   "editorial": "适合喜欢电影幕后与代际碰撞的观众。可以把每一次改写要求看成一次权力协商，荒诞之外也有创作者的自我坚持。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及年龄与职场权力冲突、创作压力。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-068.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -5282,6 +6390,18 @@ module.exports = {
     3.6
    ],
    "dirO": "Rafiki Fariala",
+   "warnings": [
+    "难民处境",
+    "父母入狱",
+    "儿童照护负担"
+   ],
+   "editorial": "适合愿意从日常劳动理解少年处境的观众。音乐愿望和照顾弟妹的责任可以并看，避免只把主人公当作励志符号。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及难民处境、父母入狱、儿童照护负担。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-069.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -5334,6 +6454,18 @@ module.exports = {
     3.8
    ],
    "dirO": "Luchino Visconti",
+   "warnings": [
+    "亲密关系控制",
+    "婴儿受害",
+    "死亡"
+   ],
+   "editorial": "适合关注占有欲、婚姻与阶级的观众。可以留意谁能够决定另一个人的命运，对婴儿受害与家庭伤痛敏感时宜慎选。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及亲密关系控制、婴儿受害、死亡。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-070.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -5383,6 +6515,18 @@ module.exports = {
     3.6
    ],
    "dirO": "Florin Şerban",
+   "warnings": [
+    "谋杀调查",
+    "年轻人暴力",
+    "丧亲"
+   ],
+   "editorial": "适合关注父母认知盲点与青年处境的观众。父亲相信自己了解孩子的前提值得持续追问，案件揭露之外也留意家庭的沉默。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及谋杀调查、年轻人暴力、丧亲。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-071.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -5435,6 +6579,24 @@ module.exports = {
     3.9
    ],
    "dirO": "Victor Fleming",
+   "warnings": [
+    "战争与伤亡",
+    "种族刻板印象与奴隶制浪漫化",
+    "亲密关系胁迫",
+    "儿童死亡"
+   ],
+   "editorial": "适合希望重看经典也愿意讨论其历史局限的观众。美术与表演可以欣赏，同时需要辨认影片对奴隶制和种族关系的立场；片长较长。",
+   "contentReview": {
+    "status": "official-advisory",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "已结合海外公开内容提示整理；片长、剪辑与本次放映版本可能不同，请按个人情况选择。",
+   "mpa": {
+    "rating": "G",
+    "edition": "US repertory release",
+    "checked": "2026-11-03"
+   },
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-072.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -5488,6 +6650,17 @@ module.exports = {
     3.3
    ],
    "dirO": "Wan Laiming / Guchan Wan",
+   "warnings": [
+    "奇幻打斗",
+    "火灾与生命威胁"
+   ],
+   "editorial": "适合对中国动画早期长片与传统故事感兴趣的观众。变化术和人物造型是好入口，也可以留意旧动画如何组织连续动作。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及奇幻打斗、火灾与生命威胁。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-073.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -5537,6 +6710,18 @@ module.exports = {
     3.9
    ],
    "dirO": "Mike Leigh",
+   "warnings": [
+    "分手与失落",
+    "衰老和健康变化",
+    "照护压力"
+   ],
+   "editorial": "适合愿意把注意力交给日常关怀的观众。工作、友情与父母的变化可以放在一起看，细微相处往往比重大事件更重要。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及分手与失落、衰老和健康变化、照护压力。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-074.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -5586,6 +6771,18 @@ module.exports = {
     3.7
    ],
    "dirO": "Abdallah Al-Khatib",
+   "warnings": [
+    "战争围困",
+    "饥饿与炮火",
+    "死亡威胁"
+   ],
+   "editorial": "适合愿意从居民生活进入战争题材的观众。朋友和家庭如何维持日常是关键，内容沉重，建议留出观后消化的时间。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及战争围困、饥饿与炮火、死亡威胁。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-075.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -5635,6 +6832,17 @@ module.exports = {
     3.3
    ],
    "dirO": "Marc Fitoussi",
+   "warnings": [
+    "职场排斥",
+    "理想受挫"
+   ],
+   "editorial": "适合喜欢演员职业与电影圈喜剧的观众。可以比较科琳如何想象主角位置、又如何面对行业壁垒，笑料中的尴尬值得留下。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及职场排斥、理想受挫。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-076.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -5689,6 +6897,23 @@ module.exports = {
     4.2
    ],
    "dirO": "Christopher Nolan",
+   "warnings": [
+    "动作暴力",
+    "丧亲与内疚",
+    "现实与梦境混淆"
+   ],
+   "editorial": "适合愿意集中注意力追随多层叙事的观众。动作场面之外可留意家庭记忆如何干扰任务；复杂规则较适合精力充足时观看。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及动作暴力、丧亲与内疚、现实与梦境混淆。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "mpa": {
+    "rating": "PG-13",
+    "edition": "US release",
+    "checked": "2026-11-03"
+   },
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-077.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -5739,6 +6964,18 @@ module.exports = {
     3.4
    ],
    "dirO": "Gábor Reisz",
+   "warnings": [
+    "居住健康隐患",
+    "怀孕议题",
+    "邻里冲突"
+   ],
+   "editorial": "适合喜欢公寓群像与社会讽刺的观众。漏水和霉斑可以当作责任推诿的入口，维修问题怎样变成权力关系值得留意。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及居住健康隐患、怀孕议题、邻里冲突。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-078.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -5788,6 +7025,18 @@ module.exports = {
     3.2
    ],
    "dirO": "Volker Schlöndorff",
+   "warnings": [
+    "纳粹迫害",
+    "战争与流亡",
+    "失去家园"
+   ],
+   "editorial": "适合关注空间记忆和德国历史的观众。可以把房屋当作贯穿年代的线索，私人居住痕迹与政治变化需要一起读。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及纳粹迫害、战争与流亡、失去家园。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-079.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -5838,6 +7087,17 @@ module.exports = {
     3.7
    ],
    "dirO": "Sébastien Laudenbach",
+   "warnings": [
+    "爱情中的威胁",
+    "悲剧与死亡议题"
+   ],
+   "editorial": "适合喜欢歌剧母题与动画改写的观众。孩子们试图改变命运提供新的观看角度；动画与音乐也可能承载危险和悲剧。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及爱情中的威胁、悲剧与死亡议题。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-080.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -5888,6 +7148,18 @@ module.exports = {
     null
    ],
    "dirO": "Xi Jin",
+   "warnings": [
+    "迫害与放逐",
+    "恋人分离",
+    "冒险危险"
+   ],
+   "editorial": "适合对中国木偶动画与民间故事感兴趣的观众。人物造型和追寻旅程值得对照，传统爱情故事也可以观察权力如何制造分离。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及迫害与放逐、恋人分离、冒险危险。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-081.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -5940,6 +7212,18 @@ module.exports = {
     3.9
    ],
    "dirO": "Wang Shuchen / Yan Dingxian / A Da",
+   "warnings": [
+    "儿童角色死亡",
+    "自我伤害与牺牲情节",
+    "奇幻暴力"
+   ],
+   "editorial": "适合想重看中国动画色彩与人物动作的观众。熟悉的神话仍有强烈的死亡与牺牲情节，带儿童观看前建议先了解内容。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及儿童角色死亡、自我伤害与牺牲情节、奇幻暴力。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-082.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -5985,6 +7269,14 @@ module.exports = {
    ],
    "st": "本片回望中国动画百年历程，也为本届动画单元提供历史参照。与《铁扇公主》《孔雀公主》《哪吒闹海》搭配观看，可以把单部作品放回更长久的创作传承之中。",
    "dirO": "Lijun Sun",
+   "warnings": [],
+   "editorial": "适合想了解中国动画创作谱系的观众。可以把档案片段与创作者讲述相互对照，若刚看过经典展映，更容易找到自己的线索。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "已查看现有剧情资料，尚未确认需要特别标注的敏感内容。这不代表适合所有年龄，也不等同于完整内容审查。",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-083.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -6043,6 +7335,18 @@ module.exports = {
     "imdb": "tt22507216",
     "douban": "36116464"
    },
+   "warnings": [
+    "战争与纳粹历史",
+    "动物猎捕",
+    "家庭冲突"
+   ],
+   "editorial": "适合从儿童视角理解历史的观众。把注意力留给孩子与母亲之间的分歧；战争结束并不意味着家庭里的旧观念会一同消失。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及战争与纳粹历史、动物猎捕、家庭冲突。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "german-film-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/amrum.jpg"
   },
@@ -6098,6 +7402,17 @@ module.exports = {
    "links": {
     "imdb": "tt37537636"
    },
+   "warnings": [
+    "亲人失踪",
+    "失落与焦虑"
+   ],
+   "editorial": "适合愿意跟随一次漫长寻访的观众。七座球场和村民的生活比破案更值得留意；不要把它当作追求快速解谜的寻人惊悚片。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及亲人失踪、失落与焦虑。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "german-film-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/dry-leaf.jpg"
   },
@@ -6137,6 +7452,17 @@ module.exports = {
     null,
     null
    ],
+   "warnings": [
+    "职场压迫",
+    "经济困境"
+   ],
+   "editorial": "适合关注劳动与社会关系的观众。留意主人公每一次协调中转移给别人的代价，选片时可以把它与劳动题材纪录片放在一起看。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及职场压迫、经济困境。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "german-film-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/i-understand-your-displeasure.jpg"
   },
@@ -6193,8 +7519,17 @@ module.exports = {
     "imdb": "tt37021896"
    },
    "warnings": [
-    "儿童受虐"
+    "儿童受虐",
+    "家庭暴力",
+    "司法压力"
    ],
+   "editorial": "适合关注儿童如何获得倾听的观众。比起等待法庭反转，更值得留意卡拉决定何时、以何种方式讲述自己的过程。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及儿童受虐、家庭暴力、司法压力。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "german-film-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/karla.jpg"
   },
@@ -6246,6 +7581,18 @@ module.exports = {
    "links": {
     "imdb": "tt32247943"
    },
+   "warnings": [
+    "交通事故",
+    "心理创伤",
+    "家庭伤痛"
+   ],
+   "editorial": "适合喜欢人物关系与心理悬念的观众。一个陌生家庭给予的照料是入口，过去如何侵入暂时的安宁则值得慢慢观察。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及交通事故、心理创伤、家庭伤痛。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "german-film-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/miroirs-no-3.jpg"
   },
@@ -6293,6 +7640,18 @@ module.exports = {
     null,
     null
    ],
+   "warnings": [
+    "育儿压力",
+    "性别压迫",
+    "亲密关系冲突"
+   ],
+   "editorial": "适合对歌舞形式和女性日常感兴趣的观众。把超现实桥段当作表达困境的方式；期待写实家庭剧的观众需要调整预期。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及育儿压力、性别压迫、亲密关系冲突。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "german-film-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/the-miserable-mother.jpg"
   },
@@ -6354,6 +7713,17 @@ module.exports = {
    "links": {
     "imdb": "tt33888334"
    },
+   "warnings": [
+    "饮酒",
+    "家庭关系压力"
+   ],
+   "editorial": "适合喜欢表演训练与成长故事的观众。学校里的角色练习与祖父母的生活仪式可以对照着看，喜剧外壳下也留有不安。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及饮酒、家庭关系压力。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "german-film-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/oh-this-unspeakable-void.jpg"
   },
@@ -6397,8 +7767,16 @@ module.exports = {
     "imdb": "tt39383613"
    },
    "warnings": [
-    "针对女性的暴力"
+    "针对女性的暴力",
+    "创伤回忆"
    ],
+   "editorial": "适合愿意倾听幸存者自述的观众。重访与追问比事件还原更重要，近期对暴力创伤较敏感时可以另择观影时机。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及针对女性的暴力、创伤回忆。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "german-film-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/sometimes-i-imagine-them-all-at-a-party.jpg"
   },
@@ -6442,6 +7820,17 @@ module.exports = {
    "links": {
     "lb": "when-pigs-fly-2026"
    },
+   "warnings": [
+    "动物死亡议题",
+    "器官移植与医疗伦理"
+   ],
+   "editorial": "适合关注动物伦理和生命科学的观众。问题落在人与猪如何被赋予不同价值；对动物与医疗题材敏感时，先展开内容提示。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及动物死亡议题、器官移植与医疗伦理。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "german-film-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/when-pigs-fly.jpg"
   },
@@ -6494,6 +7883,18 @@ module.exports = {
    "links": {
     "imdb": "tt39140264"
    },
+   "warnings": [
+    "经济困境",
+    "失去生计",
+    "家庭压力"
+   ],
+   "editorial": "适合关注迁徙、劳动和尊严的观众。家庭的互助与依赖值得放在一起看；这里的困境很难用一次成功或失败概括。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及经济困境、失去生计、家庭压力。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "prog": "german-film-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/shame-and-money.jpg"
   },
@@ -6526,6 +7927,14 @@ module.exports = {
    "screeningNotes": {
     "11/6-19:00-tp-muvie-titan-titan": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -6553,6 +7962,14 @@ module.exports = {
    "screeningNotes": {
     "11/21-18:10-tp-muvie-titan-titan": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -6579,6 +7996,14 @@ module.exports = {
    "screeningNotes": {
     "11/11-21:30-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -6614,6 +8039,14 @@ module.exports = {
    "highlights": [
     "本片仅安排业界限定场（11/19 21:00，信义11厅，不对外售票）；如有加映，请以金马官网公布为准。"
    ],
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -6641,6 +8074,14 @@ module.exports = {
     "11/16-18:40-tp-vieshow-xinyi-hall-10": "映后活动 · 影人出席（嘉宾待公布）",
     "11/19-21:00-tp-vieshow-xinyi-hall-10": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -6668,6 +8109,14 @@ module.exports = {
    "screeningNotes": {
     "11/21-20:50-tp-vieshow-xinyi-hall-10": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -6697,6 +8146,14 @@ module.exports = {
     "11/18-16:20-tp-vieshow-xinyi-hall-10": "映后活动 · 影人出席（嘉宾待公布）",
     "11/20-18:50-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -6727,6 +8184,14 @@ module.exports = {
    "ageRating": "辅15级（15+）",
    "subtitles": "原文发音，中文字幕",
    "section": "金马奖入围影片",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -6754,6 +8219,14 @@ module.exports = {
    "screeningNotes": {
     "11/20-18:30-tp-vieshow-xinyi-hall-12": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -6780,6 +8253,14 @@ module.exports = {
    "screeningNotes": {
     "11/21-21:30-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -6810,6 +8291,14 @@ module.exports = {
    "screeningNotes": {
     "11/20-19:00-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -6838,6 +8327,14 @@ module.exports = {
    "screeningNotes": {
     "11/7-21:00-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -6872,6 +8369,14 @@ module.exports = {
    "screeningNotes": {
     "11/21-17:40-tp-vieshow-xinyi-hall-10": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -6898,6 +8403,14 @@ module.exports = {
    "ageRating": "辅12级（12+）",
    "subtitles": "原文发音，中文字幕",
    "section": "金马奖入围影片",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -6926,6 +8439,14 @@ module.exports = {
    "screeningNotes": {
     "11/21-12:50-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -6960,6 +8481,14 @@ module.exports = {
    "screeningNotes": {
     "11/20-18:00-tp-muvie-titan-titan": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -6986,6 +8515,14 @@ module.exports = {
    "screeningNotes": {
     "11/7-11:10-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -7012,6 +8549,14 @@ module.exports = {
    "screeningNotes": {
     "11/10-19:10-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -7039,6 +8584,14 @@ module.exports = {
    "screeningNotes": {
     "11/12-18:40-tp-vieshow-xinyi-hall-12": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -7074,6 +8627,14 @@ module.exports = {
    "screeningNotes": {
     "11/21-15:40-tp-muvie-titan-titan": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -7106,6 +8667,14 @@ module.exports = {
    "screeningNotes": {
     "11/20-20:30-tp-muvie-titan-titan": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -7136,6 +8705,14 @@ module.exports = {
    "screeningNotes": {
     "11/8-13:10-tp-muvie-titan-titan": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -7164,6 +8741,14 @@ module.exports = {
    "screeningNotes": {
     "11/8-13:20-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -7193,6 +8778,14 @@ module.exports = {
     "11/20-21:20-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）",
     "11/21-15:30-tp-vieshow-xinyi-hall-10": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -7221,6 +8814,14 @@ module.exports = {
    "screeningNotes": {
     "11/9-19:10-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -7250,6 +8851,14 @@ module.exports = {
     "11/20-17:00-tp-vieshow-xinyi-hall-10": "映后活动 · 影人出席（嘉宾待公布）",
     "11/21-18:20-tp-vieshow-xinyi-hall-12": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -7279,6 +8888,14 @@ module.exports = {
     "11/7-18:10-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）",
     "11/12-14:00-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -7308,6 +8925,14 @@ module.exports = {
     "11/20-16:10-tp-vieshow-xinyi-hall-12": "映后活动 · 影人出席（嘉宾待公布）",
     "11/21-19:20-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -7336,6 +8961,14 @@ module.exports = {
    "screeningNotes": {
     "11/8-11:00-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -7367,6 +9000,14 @@ module.exports = {
     "11/20-13:40-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）",
     "11/21-15:30-tp-vieshow-xinyi-hall-12": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -7438,6 +9079,14 @@ module.exports = {
    "screeningNotes": {
     "11/20-21:40-tp-vieshow-xinyi-hall-10": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -7495,6 +9144,14 @@ module.exports = {
    "screeningNotes": {
     "11/21-22:10-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -7567,6 +9224,14 @@ module.exports = {
    "screeningNotes": {
     "11/8-17:30-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -7625,6 +9290,14 @@ module.exports = {
    "screeningNotes": {
     "11/20-19:30-tp-vieshow-xinyi-hall-10": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -7725,6 +9398,14 @@ module.exports = {
    "screeningNotes": {
     "11/20-21:40-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -7753,6 +9434,14 @@ module.exports = {
    "screeningNotes": {
     "11/15-16:00-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -7783,6 +9472,14 @@ module.exports = {
    "screeningNotes": {
     "11/14-18:20-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -7810,6 +9507,14 @@ module.exports = {
    "screeningNotes": {
     "11/15-13:10-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -7838,6 +9543,14 @@ module.exports = {
    "screeningNotes": {
     "11/7-13:40-tp-muvie-titan-titan": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -7863,6 +9576,14 @@ module.exports = {
    "screeningNotes": {
     "11/17-18:40-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -7896,6 +9617,14 @@ module.exports = {
     "11/8-19:00-tp-vieshow-xinyi-hall-10": "映后活动 · 影人出席（嘉宾待公布）",
     "11/9-16:00-tp-vieshow-xinyi-hall-10": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -7923,6 +9652,14 @@ module.exports = {
    "screeningNotes": {
     "11/18-18:50-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -7951,6 +9688,14 @@ module.exports = {
     "11/14-16:00-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）",
     "11/15-10:50-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -7977,6 +9722,14 @@ module.exports = {
     "11/11-18:30-tp-vieshow-xinyi-hall-12": "映后活动 · 影人出席（嘉宾待公布）",
     "11/13-15:40-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -8003,6 +9756,14 @@ module.exports = {
     "11/10-18:40-tp-muvie-titan-titan": "映后活动 · 影人出席（嘉宾待公布）",
     "11/11-17:10-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -8028,6 +9789,14 @@ module.exports = {
    "screeningNotes": {
     "11/7-18:30-tp-muvie-titan-titan": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -8096,6 +9865,14 @@ module.exports = {
     "11/12-14:00-tp-vieshow-xinyi-hall-10": "映后活动 · 影人出席（嘉宾待公布）",
     "11/14-14:00-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -8177,6 +9954,14 @@ module.exports = {
     "11/15-19:00-tp-vieshow-xinyi-hall-12": "映后活动 · 影人出席（嘉宾待公布）",
     "11/21-16:50-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -8259,6 +10044,14 @@ module.exports = {
     "11/19-16:20-tp-vieshow-xinyi-hall-12": "映后活动 · 影人出席（嘉宾待公布）",
     "11/21-14:40-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -8291,6 +10084,14 @@ module.exports = {
    "ageRating": "保护级（6+）",
    "subtitles": "原文发音，中文字幕",
    "section": "名家飨宴",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -8322,6 +10123,14 @@ module.exports = {
    "ageRating": "辅12级（12+）",
    "subtitles": "原文发音，中文字幕",
    "section": "名家飨宴",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -8353,6 +10162,14 @@ module.exports = {
    "ageRating": "辅12级（12+）",
    "subtitles": "原文发音，中文字幕",
    "section": "名家飨宴",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -8381,6 +10198,14 @@ module.exports = {
    "ageRating": "辅15级（15+）",
    "subtitles": "原文发音，中文字幕",
    "section": "名家飨宴",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -8407,6 +10232,14 @@ module.exports = {
    "ageRating": "辅15级（15+）",
    "subtitles": "原文发音，中文字幕",
    "section": "名家飨宴",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -8437,6 +10270,14 @@ module.exports = {
    "ageRating": "辅12级（12+）",
    "subtitles": "原文发音，中文字幕",
    "section": "名家飨宴",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -8465,6 +10306,14 @@ module.exports = {
    "ageRating": "辅12级（12+）",
    "subtitles": "原文发音，中文字幕",
    "section": "名家飨宴",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -8495,6 +10344,14 @@ module.exports = {
     "11/7-19:00-tp-vieshow-xinyi-hall-10": "映后活动 · 影人出席（嘉宾待公布）",
     "11/8-12:40-tp-vieshow-xinyi-hall-10": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -8525,6 +10382,14 @@ module.exports = {
    "ageRating": "辅15级（15+）",
    "subtitles": "原文发音，中文字幕",
    "section": "名家飨宴",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -8554,6 +10419,14 @@ module.exports = {
    "ageRating": "辅12级（12+）",
    "subtitles": "原文发音，中文字幕；无英文字幕",
    "section": "影迷嘉年华",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -8580,6 +10453,14 @@ module.exports = {
    "ageRating": "辅12级（12+）",
    "subtitles": "原文发音，中文字幕",
    "section": "影迷嘉年华",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -8610,6 +10491,14 @@ module.exports = {
    "ageRating": "保护级（6+）",
    "subtitles": "原文发音，中文字幕",
    "section": "影迷嘉年华",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -8637,6 +10526,14 @@ module.exports = {
    "ageRating": "辅15级（15+）",
    "subtitles": "原文发音，中文字幕",
    "section": "影迷嘉年华",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -8668,6 +10565,14 @@ module.exports = {
    "screeningNotes": {
     "11/21-21:00-tp-muvie-titan-titan": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -8694,6 +10599,14 @@ module.exports = {
    "ageRating": "保护级（6+）",
    "subtitles": "原文发音，中文字幕",
    "section": "影迷嘉年华",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -8728,6 +10641,14 @@ module.exports = {
     "11/12-18:50-tp-muvie-titan-titan": "映后活动 · 影人出席（嘉宾待公布）",
     "11/13-13:10-tp-vieshow-xinyi-hall-12": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -8755,6 +10676,14 @@ module.exports = {
    "ageRating": "保护级（6+）",
    "subtitles": "原文发音，中文字幕",
    "section": "影迷嘉年华",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -8786,6 +10715,14 @@ module.exports = {
    "screeningEnds": {
     "11/9-21:40-tp-muvie-titan-titan": "22:57"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -8819,6 +10756,14 @@ module.exports = {
    "ageRating": "辅15级（15+）",
    "subtitles": "原文发音，中文字幕",
    "section": "影迷嘉年华",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -8848,6 +10793,14 @@ module.exports = {
    "ageRating": "保护级（6+）",
    "subtitles": "原文发音，中文字幕",
    "section": "影迷嘉年华",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -8878,6 +10831,14 @@ module.exports = {
    "ageRating": "保护级（6+）",
    "subtitles": "原文发音，中文字幕",
    "section": "影迷嘉年华",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -8905,6 +10866,14 @@ module.exports = {
    "ageRating": "辅15级（15+）",
    "subtitles": "原文发音，中文字幕",
    "section": "影坛新势力",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -8935,6 +10904,14 @@ module.exports = {
    "ageRating": "保护级（6+）",
    "subtitles": "原文发音，中文字幕",
    "section": "影坛新势力",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -8960,6 +10937,14 @@ module.exports = {
    "ageRating": "辅12级（12+）",
    "subtitles": "原文发音，中文字幕",
    "section": "影坛新势力",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -8989,6 +10974,14 @@ module.exports = {
    "ageRating": "保护级（6+）",
    "subtitles": "原文发音，中文字幕",
    "section": "影坛新势力",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -9017,6 +11010,14 @@ module.exports = {
    "ageRating": "保护级（6+）",
    "subtitles": "原文发音，中文字幕",
    "section": "影坛新势力",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -9043,6 +11044,14 @@ module.exports = {
    "ageRating": "辅15级（15+）",
    "subtitles": "原文发音，中文字幕",
    "section": "影坛新势力",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -9072,6 +11081,14 @@ module.exports = {
     "11/15-13:20-tp-vieshow-xinyi-hall-10": "映后活动 · 影人出席（嘉宾待公布）",
     "11/16-12:50-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -9100,6 +11117,14 @@ module.exports = {
    "ageRating": "辅12级（12+）",
    "subtitles": "原文发音，中文字幕",
    "section": "不设防地带",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -9130,6 +11155,14 @@ module.exports = {
    "ageRating": "辅12级（12+）",
    "subtitles": "原文发音，中文字幕",
    "section": "不设防地带",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -9161,6 +11194,14 @@ module.exports = {
    "ageRating": "限制级（18+）",
    "subtitles": "原文发音，中文字幕",
    "section": "不设防地带",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -9191,6 +11232,14 @@ module.exports = {
    "ageRating": "普遍级（0+）",
    "subtitles": "原文发音，中文字幕",
    "section": "不设防地带",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -9218,6 +11267,14 @@ module.exports = {
    "ageRating": "辅15级（15+）",
    "subtitles": "原文发音，中文字幕",
    "section": "不设防地带",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -9252,6 +11309,14 @@ module.exports = {
     "11/16-18:30-tp-vieshow-xinyi-hall-12": "映后活动 · 影人出席（嘉宾待公布）",
     "11/18-15:50-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -9278,6 +11343,14 @@ module.exports = {
    "ageRating": "辅12级（12+）",
    "subtitles": "原文发音，中文字幕",
    "section": "亚洲之窗",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -9307,6 +11380,14 @@ module.exports = {
    "ageRating": "辅15级（15+）",
    "subtitles": "原文发音，中文字幕",
    "section": "亚洲之窗",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -9338,6 +11419,14 @@ module.exports = {
     "11/17-18:50-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）",
     "11/18-21:30-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -9373,6 +11462,14 @@ module.exports = {
    "screeningNotes": {
     "11/17-21:10-tp-vieshow-xinyi-hall-12": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -9404,6 +11501,14 @@ module.exports = {
     "11/18-18:30-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）",
     "11/19-13:20-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -9436,6 +11541,14 @@ module.exports = {
     "11/16-21:20-tp-vieshow-xinyi-hall-12": "映后活动 · 影人出席（嘉宾待公布）",
     "11/18-21:20-tp-vieshow-xinyi-hall-12": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -9468,6 +11581,14 @@ module.exports = {
     "11/17-16:20-tp-vieshow-xinyi-hall-10": "映后活动 · 影人出席（嘉宾待公布）",
     "11/18-19:00-tp-vieshow-xinyi-hall-10": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -9501,6 +11622,14 @@ module.exports = {
     "11/14-21:00-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）",
     "11/15-13:50-tp-muvie-titan-titan": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -9528,6 +11657,14 @@ module.exports = {
    "ageRating": "辅15级（15+）",
    "subtitles": "原文发音，中文字幕",
    "section": "日正当中",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -9556,6 +11693,14 @@ module.exports = {
     "11/14-18:20-tp-muvie-titan-titan": "映后活动 · 影人出席（嘉宾待公布）",
     "11/15-20:20-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -9584,6 +11729,14 @@ module.exports = {
     "11/7-15:10-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）",
     "11/8-10:20-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -9613,6 +11766,14 @@ module.exports = {
     "11/17-18:40-tp-vieshow-xinyi-hall-12": "映后活动 · 影人出席（嘉宾待公布）",
     "11/18-15:10-tp-vieshow-xinyi-hall-12": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -9639,6 +11800,14 @@ module.exports = {
    "ageRating": "普遍级（0+）",
    "subtitles": "原文发音，中文字幕；无英文字幕",
    "section": "日正当中",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -9668,6 +11837,14 @@ module.exports = {
     "11/7-12:30-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）",
     "11/10-18:30-tp-vieshow-xinyi-hall-12": "映后活动 · 司法讲堂（与本片连场）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -9695,6 +11872,14 @@ module.exports = {
    "screeningNotes": {
     "11/8-12:30-tp-vieshow-xinyi-hall-12": "映后活动 · 司法讲堂（与本片连场）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -9726,6 +11911,14 @@ module.exports = {
    "screeningNotes": {
     "11/9-18:50-tp-vieshow-xinyi-hall-12": "映后活动 · 司法讲堂（与本片连场）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -9760,6 +11953,14 @@ module.exports = {
     "11/8-21:00-tp-vieshow-xinyi-hall-12": "映后活动 · 影人出席（嘉宾待公布）",
     "11/10-14:20-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -9792,6 +11993,14 @@ module.exports = {
    "screeningNotes": {
     "11/8-15:50-tp-vieshow-xinyi-hall-12": "映后活动 · 司法讲堂（与本片连场）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -9822,6 +12031,14 @@ module.exports = {
    "screeningNotes": {
     "11/7-16:10-tp-vieshow-xinyi-hall-12": "映后活动 · 司法讲堂（与本片连场）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -9846,6 +12063,14 @@ module.exports = {
    "ageRating": "辅12级（12+）",
    "subtitles": "原文发音，中文字幕",
    "section": "金马×柏林新世代",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -9875,6 +12100,14 @@ module.exports = {
    "ageRating": "辅12级（12+）",
    "subtitles": "原文发音，中文字幕",
    "section": "金马×柏林新世代",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -9905,6 +12138,14 @@ module.exports = {
     "11/11-16:00-tp-vieshow-xinyi-hall-12": "映后活动 · 影人出席（嘉宾待公布）",
     "11/13-18:30-tp-vieshow-xinyi-hall-12": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -10014,6 +12255,14 @@ module.exports = {
     "11/7-10:30-tp-vieshow-xinyi-hall-12": "映后活动 · 影人出席（嘉宾待公布）",
     "11/13-18:50-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -10045,6 +12294,14 @@ module.exports = {
    "ageRating": "辅15级（15+）",
    "subtitles": "原文发音，中文字幕",
    "section": "日常酷儿",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -10073,6 +12330,14 @@ module.exports = {
    "ageRating": "保护级（6+）",
    "subtitles": "原文发音，中文字幕",
    "section": "日常酷儿",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -10104,6 +12369,14 @@ module.exports = {
    "ageRating": "辅12级（12+）",
    "subtitles": "原文发音，中文字幕",
    "section": "日常酷儿",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -10133,6 +12406,14 @@ module.exports = {
    "ageRating": "限制级（18+）",
    "subtitles": "原文发音，中文字幕",
    "section": "日常酷儿",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -10160,6 +12441,14 @@ module.exports = {
    "ageRating": "辅12级（12+）",
    "subtitles": "原文发音，中文字幕",
    "section": "日常酷儿",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -10188,6 +12477,14 @@ module.exports = {
    "ageRating": "保护级（6+）",
    "subtitles": "原文发音，中文字幕",
    "section": "日常酷儿",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -10216,6 +12513,14 @@ module.exports = {
    "ageRating": "限制级（18+）",
    "subtitles": "原文发音，中文字幕",
    "section": "日常酷儿",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -10240,6 +12545,14 @@ module.exports = {
    "ageRating": "辅12级（12+）",
    "subtitles": "原文发音，中文字幕",
    "section": "摇滚再放送",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -10262,6 +12575,14 @@ module.exports = {
    "ageRating": "保护级（6+）",
    "subtitles": "原文发音，中文字幕",
    "section": "摇滚再放送",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -10292,6 +12613,14 @@ module.exports = {
    "ageRating": "保护级（6+）",
    "subtitles": "原文发音，中文字幕",
    "section": "摇滚再放送",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -10321,6 +12650,14 @@ module.exports = {
    "ageRating": "辅15级（15+）",
    "subtitles": "原文发音，中文字幕",
    "section": "摇滚再放送",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -10350,6 +12687,14 @@ module.exports = {
    "ageRating": "辅12级（12+）",
    "subtitles": "原文发音，中文字幕",
    "section": "奇幻特快车",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -10379,6 +12724,14 @@ module.exports = {
    "ageRating": "辅12级（12+）",
    "subtitles": "原文发音，中文字幕",
    "section": "奇幻特快车",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -10409,6 +12762,14 @@ module.exports = {
    "ageRating": "辅15级（15+）",
    "subtitles": "原文发音，中文字幕",
    "section": "奇幻特快车",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -10439,6 +12800,14 @@ module.exports = {
    "ageRating": "辅15级（15+）",
    "subtitles": "原文发音，中文字幕",
    "section": "奇幻特快车",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -10468,6 +12837,14 @@ module.exports = {
    "ageRating": "辅15级（15+）",
    "subtitles": "原文发音，中文字幕",
    "section": "奇幻特快车",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -10490,6 +12867,14 @@ module.exports = {
    "ageRating": "辅12级（12+）",
    "subtitles": "原文发音，中文字幕",
    "section": "奇幻特快车",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -10523,6 +12908,14 @@ module.exports = {
    "ageRating": "辅15级（15+）",
    "subtitles": "原文发音，中文字幕",
    "section": "奇幻特快车",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -10554,6 +12947,14 @@ module.exports = {
     "11/17-19:10-tp-vieshow-xinyi-hall-10": "映后活动 · 影人出席（嘉宾待公布）",
     "11/18-11:40-tp-vieshow-xinyi-hall-10": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -10585,6 +12986,14 @@ module.exports = {
    "screeningNotes": {
     "11/14-15:20-tp-muvie-titan-titan": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -10615,6 +13024,14 @@ module.exports = {
    "screeningNotes": {
     "11/17-21:20-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -10646,6 +13063,14 @@ module.exports = {
    "ageRating": "辅12级（12+）",
    "subtitles": "原文发音，中文字幕",
    "section": "经典影事",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -10674,6 +13099,14 @@ module.exports = {
    "ageRating": "保护级（6+）",
    "subtitles": "原文发音，中文字幕",
    "section": "经典影事",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -10701,6 +13134,14 @@ module.exports = {
    "ageRating": "保护级（6+）",
    "subtitles": "原文发音，中文字幕",
    "section": "经典影事",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -10727,6 +13168,14 @@ module.exports = {
    "ageRating": "保护级（6+）",
    "subtitles": "原文发音，中文字幕",
    "section": "经典影事",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -10757,6 +13206,14 @@ module.exports = {
    "screeningNotes": {
     "11/7-16:50-tp-vieshow-xinyi-hall-10": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -10783,6 +13240,14 @@ module.exports = {
    "ageRating": "保护级（6+）",
    "subtitles": "原文发音，中文字幕",
    "section": "电影如何成为我们：策展人的再访",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -10809,6 +13274,14 @@ module.exports = {
    "ageRating": "普遍级（0+）",
    "subtitles": "原文发音，中文字幕",
    "section": "电影如何成为我们：策展人的再访",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -10840,6 +13313,14 @@ module.exports = {
    "screeningNotes": {
     "11/15-10:20-tp-vieshow-xinyi-hall-12": "映后活动 · 策展人座谈（与本片连场）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -10870,6 +13351,14 @@ module.exports = {
    "screeningNotes": {
     "11/14-12:20-tp-vieshow-xinyi-hall-10": "映后活动 · 策展人座谈（与本片连场）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -10904,6 +13393,14 @@ module.exports = {
    "screeningNotes": {
     "11/15-18:20-tp-vieshow-xinyi-hall-11": "映后活动 · 策展人座谈（与本片连场）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -10934,6 +13431,14 @@ module.exports = {
    "screeningNotes": {
     "11/12-18:50-tp-vieshow-xinyi-hall-11": "映后活动 · 今村昌平讲堂：曹仕翰（20:40，11厅）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -10963,6 +13468,14 @@ module.exports = {
    "ageRating": "辅15级（15+）",
    "subtitles": "原文发音，中文字幕",
    "section": "致敬：今村昌平",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -10995,6 +13508,14 @@ module.exports = {
    "screeningNotes": {
     "11/21-18:30-tp-vieshow-xinyi-hall-11": "映后活动 · 今村昌平讲堂：奉俊昊（21:00，11厅）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -11022,6 +13543,14 @@ module.exports = {
    "ageRating": "限制级（18+）",
    "subtitles": "原文发音，中文字幕",
    "section": "致敬：今村昌平",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -11053,6 +13582,14 @@ module.exports = {
    "screeningNotes": {
     "11/15-16:50-tp-muvie-titan-titan": "映后活动 · 今村昌平讲堂：西川美和（19:10，MUVIE TITAN）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -11084,6 +13621,14 @@ module.exports = {
    "screeningNotes": {
     "11/14-12:40-tp-vieshow-xinyi-hall-12": "映后活动 · 今村昌平讲堂：天愿大介（14:40，12厅）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -11113,6 +13658,14 @@ module.exports = {
    "ageRating": "辅15级（15+）",
    "subtitles": "原文发音，中文字幕",
    "section": "致敬：今村昌平",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -11145,6 +13698,14 @@ module.exports = {
    "screeningNotes": {
     "11/13-18:30-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -11177,6 +13738,14 @@ module.exports = {
    "screeningNotes": {
     "11/22-10:30-tp-muvie-titan-titan": "映后活动 · 大师讲堂：奉俊昊（12:30，MUVIE TITAN）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -11209,6 +13778,14 @@ module.exports = {
    "screeningNotes": {
     "11/21-10:10-tp-muvie-titan-titan": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -11238,6 +13815,14 @@ module.exports = {
    "ageRating": "辅15级（15+）",
    "subtitles": "原文发音，中文字幕",
    "section": "遇见大师",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -11270,6 +13855,14 @@ module.exports = {
    "screeningNotes": {
     "11/16-18:10-tp-muvie-titan-titan": "映后活动 · 大师讲堂：戴伦艾洛诺夫斯基（20:00，MUVIE TITAN）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -11300,6 +13893,14 @@ module.exports = {
    "screeningNotes": {
     "11/16-14:30-tp-muvie-titan-titan": "映后活动 · 大师讲堂：三谷幸喜（16:30，MUVIE TITAN）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -11328,6 +13929,14 @@ module.exports = {
     "11/14-17:40-tp-vieshow-xinyi-hall-10": "映后活动 · 大师讲堂：凯尔巴尔达（19:30，10厅）",
     "11/19-18:30-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -11353,6 +13962,14 @@ module.exports = {
    "screeningNotes": {
     "11/8-10:20-tp-muvie-titan-titan": "映后活动 · 影人出席（嘉宾待公布）"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -11384,6 +14001,14 @@ module.exports = {
    "ageRating": "保护级（6+）",
    "subtitles": "原文发音，中文字幕",
    "section": "神秘影片",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -11420,6 +14045,14 @@ module.exports = {
    "screeningNotes": {
     "11/14-21:00-tp-vieshow-xinyi-hall-10": "影片页列有本场，场次总表未列出，请以金马官网及现场公布为准"
    },
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -11448,6 +14081,14 @@ module.exports = {
    "ageRating": "辅15级（15+）",
    "subtitles": "原文发音，中文字幕",
    "section": "神秘影片",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -11473,6 +14114,14 @@ module.exports = {
    "ageRating": "辅12级（12+）",
    "subtitles": "原文发音，中文字幕",
    "section": "神秘影片",
+   "warnings": [],
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
+   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
    "prog": "golden-horse-2026"
   },
   {
@@ -11492,6 +14141,14 @@ module.exports = {
    "cast": [],
    "writers": [],
    "evId": "master-balda",
+   "warnings": [],
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "这是讲座或活动场次，不是影片放映。",
+   "editorial": "活动场次，具体安排以现场公布为准。",
    "prog": "golden-horse-2026"
   },
   {
@@ -11511,6 +14168,14 @@ module.exports = {
    "cast": [],
    "writers": [],
    "evId": "master-mitani",
+   "warnings": [],
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "这是讲座或活动场次，不是影片放映。",
+   "editorial": "活动场次，具体安排以现场公布为准。",
    "prog": "golden-horse-2026"
   },
   {
@@ -11530,6 +14195,14 @@ module.exports = {
    "cast": [],
    "writers": [],
    "evId": "master-aronofsky",
+   "warnings": [],
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "这是讲座或活动场次，不是影片放映。",
+   "editorial": "活动场次，具体安排以现场公布为准。",
    "prog": "golden-horse-2026"
   },
   {
@@ -11549,6 +14222,14 @@ module.exports = {
    "cast": [],
    "writers": [],
    "evId": "master-bong",
+   "warnings": [],
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "这是讲座或活动场次，不是影片放映。",
+   "editorial": "活动场次，具体安排以现场公布为准。",
    "prog": "golden-horse-2026"
   },
   {
@@ -11568,6 +14249,14 @@ module.exports = {
    "cast": [],
    "writers": [],
    "evId": "imamura-tsao",
+   "warnings": [],
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "这是讲座或活动场次，不是影片放映。",
+   "editorial": "活动场次，具体安排以现场公布为准。",
    "prog": "golden-horse-2026"
   },
   {
@@ -11587,6 +14276,14 @@ module.exports = {
    "cast": [],
    "writers": [],
    "evId": "imamura-tengan",
+   "warnings": [],
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "这是讲座或活动场次，不是影片放映。",
+   "editorial": "活动场次，具体安排以现场公布为准。",
    "prog": "golden-horse-2026"
   },
   {
@@ -11606,6 +14303,14 @@ module.exports = {
    "cast": [],
    "writers": [],
    "evId": "imamura-nishikawa",
+   "warnings": [],
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "这是讲座或活动场次，不是影片放映。",
+   "editorial": "活动场次，具体安排以现场公布为准。",
    "prog": "golden-horse-2026"
   },
   {
@@ -11625,6 +14330,14 @@ module.exports = {
    "cast": [],
    "writers": [],
    "evId": "imamura-bong",
+   "warnings": [],
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "这是讲座或活动场次，不是影片放映。",
+   "editorial": "活动场次，具体安排以现场公布为准。",
    "prog": "golden-horse-2026"
   },
   {
@@ -11644,6 +14357,14 @@ module.exports = {
    "cast": [],
    "writers": [],
    "evId": "salon-berlinale",
+   "warnings": [],
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "这是讲座或活动场次，不是影片放映。",
+   "editorial": "活动场次，具体安排以现场公布为准。",
    "prog": "golden-horse-2026"
   },
   {
@@ -11663,6 +14384,14 @@ module.exports = {
    "cast": [],
    "writers": [],
    "evId": "salon-netpac",
+   "warnings": [],
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "这是讲座或活动场次，不是影片放映。",
+   "editorial": "活动场次，具体安排以现场公布为准。",
    "prog": "golden-horse-2026"
   },
   {
@@ -11682,6 +14411,14 @@ module.exports = {
    "cast": [],
    "writers": [],
    "evId": "salon-curators",
+   "warnings": [],
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "这是讲座或活动场次，不是影片放映。",
+   "editorial": "活动场次，具体安排以现场公布为准。",
    "prog": "golden-horse-2026"
   },
   {
@@ -11701,6 +14438,14 @@ module.exports = {
    "cast": [],
    "writers": [],
    "evId": "academy",
+   "warnings": [],
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "这是讲座或活动场次，不是影片放映。",
+   "editorial": "活动场次，具体安排以现场公布为准。",
    "prog": "golden-horse-2026"
   },
   {
@@ -11720,6 +14465,14 @@ module.exports = {
    "cast": [],
    "writers": [],
    "evId": "forum",
+   "warnings": [],
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "这是讲座或活动场次，不是影片放映。",
+   "editorial": "活动场次，具体安排以现场公布为准。",
    "prog": "golden-horse-2026"
   }
  ],

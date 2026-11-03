@@ -137,3 +137,9 @@
 .pn { font-size: 29rpx; font-weight: 700; }
 .ps { font-size: 23rpx; color: var(--muted); }
 .pd { font-size: 26rpx; line-height: 1.75; }
+
+.content-note{font-size:24rpx;line-height:1.8;margin-bottom:30rpx}.content-note>text{display:block}.content-tags{display:flex;flex-wrap:wrap;gap:10rpx;margin-bottom:15rpx}.content-tags>text{font-size:23rpx;border:1rpx solid var(--line);border-radius:8rpx;padding:5rpx 12rpx;color:var(--accent)}.content-note .small{font-size:22rpx;color:var(--muted);margin-top:12rpx}
+
+/* Match the surrounding screening and post-screening cards. */
+.content-note{box-sizing:border-box;width:100%;padding:30rpx;border:2rpx solid var(--line);border-radius:24rpx;background:var(--surface);font-size:26rpx;line-height:1.9}
+.content-tags{gap:10rpx 18rpx;margin-bottom:18rpx}.content-tags>text{border:0;border-radius:0;padding:0;color:var(--fg);font-size:26rpx}.content-note .small{font-size:24rpx;line-height:1.9;margin-top:20rpx}

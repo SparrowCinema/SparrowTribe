@@ -147,3 +147,11 @@ Claude 与 GPT 可能使用同一 GitHub 身份，审批人数可先设为0；�
 - 网站 `loadData` 把 `ev` 影片排除出 `FILMS`（片目、专题片单、统计不含活动），但仍保留在 `F` 里供场次使用；活动详情页隐藏评分、外链、看过与映后交流。小程序在 films / programme / programmes / schedule 页同样过滤 `ev`。
 - 活动页（`#events-<专题id>` / `pages/events`）按 `evId` 找到场次并显示「加入我的行程」按钮；英文放在 `en.json` 的 `films.<伪影片id>`。
 - 冲突判断容忍 2 分钟以内的重叠（映后讲堂紧接上一场放映，片长取整会有 1–2 分钟误差）。
+
+## 每部影片必备的观影提示
+
+- 新增与修改影片必须包含 `warnings` 数组、`contentNote`、`editorial` 与 `contentReview`；英文层补对应的三项文案。未查证的内容使用 `status: "pending"`、空提示数组与明确的待核实文案，不能写成“无敏感内容”。
+- `contentReview` 包含 `status`（`synopsis-reviewed` / `official-advisory` / `pending`）、`checked`（核对日期）、`sensory`（`unverified` / 已查实闪烁提示的 `flashing`）。简介核对不等于完整审片，提示说明须保留此范围。
+- 内容提醒针对具体情节，不把性取向、身份或残障本身作为风险。光敏与音量提示无法从剧情推断。
+- 美国 MPA 分级只使用已核实的 `mpa: {rating, edition, checked}`，证据记录在内部文档。不同剪辑版不能套用旧版分级；未知时不显示破折号占位。
+- 提交前运行 `node tools/build-fallback.js`、`node tools/check-content.js`、`node tools/check-library.js`、`node tools/check-companion.js`；部署也会执行后三项，避免后续片目漏掉提醒。

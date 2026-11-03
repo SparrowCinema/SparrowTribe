@@ -51,7 +51,19 @@
     null,
     3.8
    ],
-   "dirO": "Marie-Clémentine Dusabejambo"
+   "dirO": "Marie-Clémentine Dusabejambo",
+   "warnings": [
+    "种族灭绝与历史创伤",
+    "家庭冲突",
+    "怀孕议题"
+   ],
+   "editorial": "适合关注记忆与和解的观众。留意母亲的公共信念如何面对女儿的私人处境，内容较沉重，观后可以留一点缓冲。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及种族灭绝与历史创伤、家庭冲突、怀孕议题。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-002",
@@ -101,7 +113,18 @@
     null,
     3.6
    ],
-   "dirO": "Peter Chan Ho-Sun"
+   "dirO": "Peter Chan Ho-Sun",
+   "warnings": [
+    "记忆衰退与疾病",
+    "家庭照护压力"
+   ],
+   "editorial": "适合关注家庭照护与自我认同的观众。可以对照主人公的公众身份和家庭角色，最近经历病痛照护时请留意自己的情绪。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及记忆衰退与疾病、家庭照护压力。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-003",
@@ -153,7 +176,18 @@
     null,
     null
    ],
-   "dirO": "Loden"
+   "dirO": "Loden",
+   "warnings": [
+    "配偶离世",
+    "哀伤"
+   ],
+   "editorial": "适合喜欢同行关系和旅途闲谈的观众。老人寻找转世的愿望与诗人的生活选择互相映照，目的地之外的陪伴也值得留意。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及配偶离世、哀伤。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "linka-linka",
@@ -213,7 +247,18 @@
    },
    "screeningNotes": {
     "11/6-19:45-xm-gr26-1-hall-2": "映后活动 · 导演/编剧：岗珍；制片人：张倩才（以实际到场为准）"
-   }
+   },
+   "warnings": [
+    "童年伤痛",
+    "家庭矛盾"
+   ],
+   "editorial": "适合喜欢记忆与电影创作交织的观众。可以跟着拍摄现场和少女往事的切换寻找关系，不必急于把不同记忆拼成单一答案。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及童年伤痛、家庭矛盾。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-005",
@@ -260,7 +305,19 @@
     null,
     3.4
    ],
-   "dirO": "Cristóbal León / Joaquín Cociña"
+   "dirO": "Cristóbal León / Joaquín Cociña",
+   "warnings": [
+    "丧亲",
+    "父权控制",
+    "放逐与威胁"
+   ],
+   "editorial": "适合喜欢非传统童话与手工动画的观众。把寻找恋人的冒险也看成摆脱父亲安排的过程，动画形式不等于儿童向内容。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及丧亲、父权控制、放逐与威胁。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-006",
@@ -307,7 +364,17 @@
     73,
     3.4
    ],
-   "dirO": "Bruno Dumont"
+   "dirO": "Bruno Dumont",
+   "warnings": [
+    "儿童间的敌意与排斥"
+   ],
+   "editorial": "适合对童年关系与海岸空间感兴趣的观众。结盟、嫉妒和初次心动可以一起观察，夏日冒险里并非只有轻松。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及儿童间的敌意与排斥。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-007",
@@ -355,7 +422,19 @@
     83,
     3.7
    ],
-   "dirO": "Radu Jude"
+   "dirO": "Radu Jude",
+   "warnings": [
+    "阶级歧视",
+    "移民劳动压力",
+    "母女分离"
+   ],
+   "editorial": "适合关注家政劳动与移民生活的观众。舞台里的女仆和工作中的自己构成对照，善意语言背后的距离尤其值得听。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及阶级歧视、移民劳动压力、母女分离。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-008",
@@ -403,7 +482,18 @@
     67,
     3.0
    ],
-   "dirO": "Kogonada"
+   "dirO": "Kogonada",
+   "warnings": [
+    "现实与记忆混淆",
+    "心理困扰"
+   ],
+   "editorial": "适合喜欢城市漫步和时间实验的观众。相遇、声音与记忆比快速解谜更重要，愿意接受时间边界模糊会更容易进入。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及现实与记忆混淆、心理困扰。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-009",
@@ -452,7 +542,18 @@
     84,
     4.2
    ],
-   "dirO": "Louis Clichy"
+   "dirO": "Louis Clichy",
+   "warnings": [
+    "疾病与医疗器具",
+    "身体能力焦虑"
+   ],
+   "editorial": "适合从身体经验进入成长故事的观众。农场劳动和管风琴是两条观察线，也可以留意家庭如何重新理解一个人的价值。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及疾病与医疗器具、身体能力焦虑。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-010",
@@ -500,7 +601,18 @@
     null,
     3.0
    ],
-   "dirO": "Nelson Yeo"
+   "dirO": "Nelson Yeo",
+   "warnings": [
+    "亲人失踪",
+    "冒险与生存危险"
+   ],
+   "editorial": "适合喜欢神话改写的观众。可以跟随嫦娥的寻找重新认识熟悉人物，爱情、离散和永生的愿望比神话知识测验更重要。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及亲人失踪、冒险与生存危险。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-011",
@@ -546,7 +658,19 @@
     null,
     3.8
    ],
-   "dirO": "Ang Geck Geck"
+   "dirO": "Ang Geck Geck",
+   "warnings": [
+    "父母分居",
+    "家庭争执",
+    "儿童情绪压力"
+   ],
+   "editorial": "适合想从儿童感受理解家庭变化的观众。女孩的机灵与她无法决定住处的无力感可以对照着看，成长不只有可爱的一面。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及父母分居、家庭争执、儿童情绪压力。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-012",
@@ -594,7 +718,19 @@
     null,
     null
    ],
-   "dirO": "Lingo Hsieh"
+   "dirO": "Lingo Hsieh",
+   "warnings": [
+    "恐怖与囚困",
+    "赌博债务",
+    "生命威胁"
+   ],
+   "editorial": "适合能接受诡异机构与生存威胁的观众。母女关系是悬念之外的另一条线；对疗养院和失去控制的情境敏感时请先看提示。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及恐怖与囚困、赌博债务、生命威胁。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-013",
@@ -645,7 +781,18 @@
     null,
     3.2
    ],
-   "dirO": "Dong Jie"
+   "dirO": "Dong Jie",
+   "warnings": [
+    "亲友失联",
+    "记忆与现实混淆"
+   ],
+   "editorial": "适合关注数字生活和记忆的观众。游戏空间与城市之间的来回可以作为入口，跟着关系变化看，未必需要把一切归为解谜。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及亲友失联、记忆与现实混淆。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-014",
@@ -700,7 +847,19 @@
     null,
     null
    ],
-   "dirO": "Hou Jue"
+   "dirO": "Hou Jue",
+   "warnings": [
+    "母子分离",
+    "儿童困境",
+    "旅途风险"
+   ],
+   "editorial": "适合喜欢儿童群像与共同冒险的观众。修车既是行动也是愿望的集合，可以留意孩子各自为什么想出发。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及母子分离、儿童困境、旅途风险。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-015",
@@ -750,7 +909,19 @@
     null,
     3.6
    ],
-   "dirO": "Paweł Pawlikowski"
+   "dirO": "Paweł Pawlikowski",
+   "warnings": [
+    "纳粹历史与战争余波",
+    "流亡",
+    "家庭旧伤"
+   ],
+   "editorial": "适合对文学、战后德国和公共责任感兴趣的观众。父女同行与东西部的历史空间可以并读，熟悉时代背景会帮助理解。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及纳粹历史与战争余波、流亡、家庭旧伤。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-016",
@@ -803,7 +974,19 @@
     null,
     null
    ],
-   "dirO": "Zhang Xin"
+   "dirO": "Zhang Xin",
+   "warnings": [
+    "育儿与学业压力",
+    "婚姻疏离",
+    "母女冲突"
+   ],
+   "editorial": "适合关注照护劳动与女性生活选择的观众。答辩和家庭琐事的并置值得留意，生活压力往往没有清楚的分界。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及育儿与学业压力、婚姻疏离、母女冲突。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-017",
@@ -860,7 +1043,19 @@
     null,
     null
    ],
-   "dirO": "Zhang Pu"
+   "dirO": "Zhang Pu",
+   "warnings": [
+    "家庭暴力",
+    "性别偏见",
+    "关系创伤"
+   ],
+   "editorial": "适合关注女性重新建立生活的观众。饭馆劳动与亲密关系可以相互对照，别让喜剧和爱情标签遮住其中的暴力经历。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及家庭暴力、性别偏见、关系创伤。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-018",
@@ -907,7 +1102,19 @@
     null,
     3.4
    ],
-   "dirO": "Zao Xu"
+   "dirO": "Zao Xu",
+   "warnings": [
+    "失业与欠薪",
+    "孤独",
+    "现实与虚拟混淆"
+   ],
+   "editorial": "适合喜欢动画中的劳动与技术议题的观众。保洁员的日常和VR中的陪伴值得对照，虚拟空间的温暖也有现实代价。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及失业与欠薪、孤独、现实与虚拟混淆。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-019",
@@ -957,7 +1164,17 @@
    "dirO": "Cao Jinling",
    "screeningNotes": {
     "11/7-19:00-xm-gr26-1-hall-2": "映后活动 · 主创映后交流（嘉宾名单待公布，以实际到场为准）"
-   }
+   },
+   "warnings": [
+    "赛车与高速运动风险"
+   ],
+   "editorial": "适合想看城市赛道与运动员准备过程的观众。比赛之外也可留意澳门的空间；如对突发高音量敏感，先询问影院放映安排。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及赛车与高速运动风险。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-020",
@@ -1014,7 +1231,18 @@
     null,
     null
    ],
-   "dirO": "Liu Shichuan"
+   "dirO": "Liu Shichuan",
+   "warnings": [
+    "经济与职场压力",
+    "情感欺瞒"
+   ],
+   "editorial": "适合喜欢都市边缘人物与偶然相遇的观众。播客、电话与虚构身份构成不同的自我表达，日常对话比成功故事更值得留意。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及经济与职场压力、情感欺瞒。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-021",
@@ -1068,7 +1296,18 @@
     null,
     3.8
    ],
-   "dirO": "Zou Jing"
+   "dirO": "Zou Jing",
+   "warnings": [
+    "家庭分离",
+    "身份与归属压力"
+   ],
+   "editorial": "适合关注养育、血缘和女性成长的观众。三个家庭对同一个女孩的理解可以对照着看，避免过早替她选择一个归属答案。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及家庭分离、身份与归属压力。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-022",
@@ -1116,7 +1355,18 @@
     null,
     null
    ],
-   "dirO": "Rabah Ameur-Zaïmeche"
+   "dirO": "Rabah Ameur-Zaïmeche",
+   "warnings": [
+    "袭击与抢劫",
+    "沙漠生存危险"
+   ],
+   "editorial": "适合喜欢公路片与陌生人关系的观众。运货途中的互助与不信任是入口，沙漠空间也会改变人物作决定的尺度。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及袭击与抢劫、沙漠生存危险。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-023",
@@ -1167,7 +1417,19 @@
     null,
     3.4
    ],
-   "dirO": "Fred Cavayé"
+   "dirO": "Fred Cavayé",
+   "warnings": [
+    "贫困与迫害",
+    "监禁",
+    "死亡与战争"
+   ],
+   "editorial": "适合愿意投入长篇历史叙事的观众。可以沿着承诺与追捕两条线进入，长片观看前请确认体力和后续场次间隔。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及贫困与迫害、监禁、死亡与战争。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-024",
@@ -1220,7 +1482,18 @@
     null,
     3.6
    ],
-   "dirO": "Patrick Tam Kar-Ming"
+   "dirO": "Patrick Tam Kar-Ming",
+   "warnings": [
+    "谋杀与暴力威胁",
+    "亲密关系危险"
+   ],
+   "editorial": "适合喜欢情感关系逐渐染上危险的悬疑片观众。可留意平静日常如何变化；近期对亲密关系暴力敏感时请谨慎选择。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及谋杀与暴力威胁、亲密关系危险。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-025",
@@ -1267,7 +1540,18 @@
     90,
     3.8
    ],
-   "dirO": "Sandra Wollner"
+   "dirO": "Sandra Wollner",
+   "warnings": [
+    "年轻人死亡",
+    "丧亲与内疚"
+   ],
+   "editorial": "适合愿意面对失去与家人关系的观众。未成行的假期提供共同相处的空间，悲伤里的不同步比快速和解更值得理解。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及年轻人死亡、丧亲与内疚。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-026",
@@ -1321,7 +1605,18 @@
     null,
     null
    ],
-   "dirO": "Gong Yiwen"
+   "dirO": "Gong Yiwen",
+   "warnings": [
+    "家庭变化",
+    "青春期情绪困扰"
+   ],
+   "editorial": "适合对千禧年成长经验与写作感兴趣的观众。纸笔与网络是两种向外寻找的路径，可以把少女的文字和现实处境放在一起看。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及家庭变化、青春期情绪困扰。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-027",
@@ -1375,7 +1670,18 @@
     null,
     null
    ],
-   "dirO": "白润青"
+   "dirO": "白润青",
+   "warnings": [
+    "身份压力",
+    "矿山劳动背景"
+   ],
+   "editorial": "适合喜欢从具体地域进入人物困境的观众。草原与矿山构成两种生活尺度，可以留意传统骑士精神如何遇到当下的选择。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及身份压力、矿山劳动背景。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-028",
@@ -1429,7 +1735,19 @@
     null,
     null,
     null
-   ]
+   ],
+   "warnings": [
+    "饥饿记忆",
+    "家庭创伤",
+    "母女冲突"
+   ],
+   "editorial": "适合关注女性自述与城市记忆的观众。三代母女和重庆街巷可以交叉着看，私人回忆中的空白也值得保留。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及饥饿记忆、家庭创伤、母女冲突。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-029",
@@ -1480,7 +1798,18 @@
    "dirO": "Norris Wong Yee-lam / Wong Hoi",
    "screeningNotes": {
     "11/8-14:30-xm-gr26-1-hall-3": "映后活动 · 主创映后交流（嘉宾名单待公布，以实际到场为准）"
-   }
+   },
+   "warnings": [
+    "疾病与住院",
+    "父女关系压力"
+   ],
+   "editorial": "适合喜欢亲情公路片的观众。离开医院带来的短暂自由是入口，沿途笑料也可以与父女各自的恐惧对照。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及疾病与住院、父女关系压力。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-030",
@@ -1530,7 +1859,18 @@
    "dirO": "Tam Wai-Ching",
    "screeningNotes": {
     "11/8-15:50-xm-gr26-1-hall-7": "映后活动 · 主创见面会（嘉宾名单待公布，以实际到场为准）"
-   }
+   },
+   "warnings": [
+    "亲密与性议题",
+    "残障歧视"
+   ],
+   "editorial": "适合愿意从残障者经验讨论亲密关系的观众。重点在欲望、自主和尊严，选片时可以把它与讨论照护权力的作品并看。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及亲密与性议题、残障歧视。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-031",
@@ -1585,7 +1925,19 @@
     null,
     null
    ],
-   "dirO": "Zhong Kaifeng"
+   "dirO": "Zhong Kaifeng",
+   "warnings": [
+    "动物死亡情节",
+    "亲人失联",
+    "听觉困扰"
+   ],
+   "editorial": "适合接受奇幻日常与寻亲交织的观众。奇怪声响是进入记忆的线索，也可留意超市劳动与东北故乡之间的距离。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及动物死亡情节、亲人失联、听觉困扰。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-032",
@@ -1635,7 +1987,19 @@
    "dirO": "Shen Ko-shang",
    "screeningNotes": {
     "11/8-16:20-xm-gr26-1-hall-4": "映后活动 · 主创映后交流（嘉宾名单待公布，以实际到场为准）"
-   }
+   },
+   "warnings": [
+    "配偶死亡",
+    "原生家庭创伤",
+    "丧亲"
+   ],
+   "editorial": "适合愿意面对哀伤与家庭秘密的观众。可以观察照顾他人与追索原因怎样同时发生，故事沉重，建议给自己留一点消化时间。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及配偶死亡、原生家庭创伤、丧亲。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-033",
@@ -1685,7 +2049,18 @@
    "dirO": "Lau Kek-huat",
    "screeningNotes": {
     "11/8-17:00-xm-gr26-1-hall-2": "映后活动 · 主创见面会（嘉宾名单待公布，以实际到场为准）"
-   }
+   },
+   "warnings": [
+    "死亡与葬礼",
+    "宗教和家族冲突"
+   ],
+   "editorial": "适合关注迁徙、宗教和家族记忆的观众。葬礼纷争背后有不同世代的生活选择，了解马来西亚的多元背景会帮助进入。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及死亡与葬礼、宗教和家族冲突。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-034",
@@ -1736,7 +2111,17 @@
    "dirO": "Mariano Llinás",
    "screeningNotes": {
     "11/8-17:30-xm-gr26-1-hall-5": "映后活动 · 主创见面会（嘉宾名单待公布，以实际到场为准）"
-   }
+   },
+   "warnings": [
+    "衰老与死亡议题"
+   ],
+   "editorial": "适合愿意进入文学档案和长时间观看的观众。朗读、手稿与旅行可以交叉着看；片长尤其长，请预留充足时间并确认休息安排。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及衰老与死亡议题。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-035",
@@ -1787,7 +2172,18 @@
    "dirO": "Hsu Kun-hua",
    "screeningNotes": {
     "11/8-19:20-xm-gr26-1-hall-4": "映后活动 · 主创映后交流（嘉宾名单待公布，以实际到场为准）"
-   }
+   },
+   "warnings": [
+    "儿童教育压力",
+    "家庭与阶级焦虑"
+   ],
+   "editorial": "适合关注教育竞争与成人权力的观众。面试结果是悬念，几名大人如何解释孩子则提供另一条观察线。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及儿童教育压力、家庭与阶级焦虑。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-036",
@@ -1836,7 +2232,19 @@
    "dirO": "Ervin Han / Raúl García",
    "screeningNotes": {
     "11/8-19:45-xm-gr26-1-hall-3": "映后活动 · 主创见面会（嘉宾名单待公布，以实际到场为准）"
-   }
+   },
+   "warnings": [
+    "战争与抵抗",
+    "亲人失踪",
+    "长期哀伤"
+   ],
+   "editorial": "适合关注战争中的音乐与记忆的观众。小提琴连接不同年代，别因动画形式而默认内容轻松，分离和等待同样重要。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及战争与抵抗、亲人失踪、长期哀伤。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-037",
@@ -1887,7 +2295,18 @@
    "dirO": "Wu Chui-yi",
    "screeningNotes": {
     "11/8-20:15-xm-gr26-1-hall-2": "映后活动 · 主创映后交流（嘉宾名单待公布，以实际到场为准）"
-   }
+   },
+   "warnings": [
+    "性别偏见",
+    "家庭角色压力"
+   ],
+   "editorial": "适合关注中年自我探索与身体表达的观众。把钢管舞看作学习与结伴的空间，留意主人公如何重新安排自己的时间。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及性别偏见、家庭角色压力。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-038",
@@ -1934,7 +2353,18 @@
     69,
     3.5
    ],
-   "dirO": "Emmanuel Marre"
+   "dirO": "Emmanuel Marre",
+   "warnings": [
+    "纳粹与维希政权",
+    "政治迫害议题"
+   ],
+   "editorial": "适合关注普通人如何参与压迫体系的观众。可以追踪主人公追求认可时的一次次选择，观看前了解维希时期会更有帮助。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及纳粹与维希政权、政治迫害议题。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-039",
@@ -1987,7 +2417,18 @@
     null,
     3.7
    ],
-   "dirO": "Yuen Woo-ping"
+   "dirO": "Yuen Woo-ping",
+   "warnings": [
+    "武打与兵器伤害",
+    "背叛"
+   ],
+   "editorial": "适合喜欢功夫表演与人物对照的观众。君宝与天宝的不同道路是主线，可从动作如何表达权力观进入。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及武打与兵器伤害、背叛。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-040",
@@ -2034,7 +2475,18 @@
     null,
     null
    ],
-   "dirO": "Andrew Fung Chih-chiang"
+   "dirO": "Andrew Fung Chih-chiang",
+   "warnings": [
+    "网络攻击与偏见",
+    "运动风险"
+   ],
+   "editorial": "适合喜欢运动与关系变化的观众。把网上的判断和现实里的相处对照着看，海上训练也是人物重新认识彼此的过程。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及网络攻击与偏见、运动风险。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-041",
@@ -2084,7 +2536,18 @@
    "dirO": "Keane Wong Tak-Kin",
    "screeningNotes": {
     "11/9-14:10-xm-gr26-1-hall-6": "映后活动 · 主创映后交流（嘉宾名单待公布，以实际到场为准）"
-   }
+   },
+   "warnings": [
+    "婚姻与婚外关系",
+    "职场权力关系"
+   ],
+   "editorial": "适合喜欢戏中戏和创作关系的观众。排练现场与私人生活互相侵入，观看时可以持续分辨谁在表演、谁在决定规则。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及婚姻与婚外关系、职场权力关系。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-042",
@@ -2133,7 +2596,19 @@
    "dirO": "Kethsvin Chee",
    "screeningNotes": {
     "11/9-14:25-xm-gr26-1-hall-2": "映后活动 · 主创映后交流（嘉宾名单待公布，以实际到场为准）"
-   }
+   },
+   "warnings": [
+    "死亡与罪责",
+    "软禁",
+    "关系创伤"
+   ],
+   "editorial": "适合愿意进入边缘人物与罪责议题的观众。可以从两个人为什么被排斥进入，夜色与潮汐里的靠近并不意味着伤痛轻易解决。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及死亡与罪责、软禁、关系创伤。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-043",
@@ -2191,7 +2666,18 @@
     null,
     null
    ],
-   "dirO": "Wan Bo"
+   "dirO": "Wan Bo",
+   "warnings": [
+    "失踪与刑事调查",
+    "关系创伤"
+   ],
+   "editorial": "适合喜欢山村空间与旧事追查的观众。可以比较警方到访前后的人物说法，情感往事与案件线索需要一起看。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及失踪与刑事调查、关系创伤。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-044",
@@ -2244,7 +2730,18 @@
     null,
     null,
     null
-   ]
+   ],
+   "warnings": [
+    "儿童生活困境",
+    "训练与表演压力"
+   ],
+   "editorial": "适合关注儿童群像和集体音乐的观众。合唱的形成过程与孩子的日常同样值得看，不必只把登台当作故事唯一的价值。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及儿童生活困境、训练与表演压力。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-045",
@@ -2292,7 +2789,18 @@
     null,
     3.6
    ],
-   "dirO": "Hong Sang-soo"
+   "dirO": "Hong Sang-soo",
+   "warnings": [
+    "衰老与家庭照护",
+    "家庭疏离"
+   ],
+   "editorial": "适合喜欢日常对话与家庭细节的观众。一次探望中的相处节奏可以成为入口，创作与照护之间的牵扯值得慢慢看。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及衰老与家庭照护、家庭疏离。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-046",
@@ -2342,7 +2850,18 @@
    "dirO": "Yeung Leung Chuen",
    "screeningNotes": {
     "11/10-19:30-xm-gr26-1-hall-3": "映后活动 · 主创映后交流（嘉宾名单待公布，以实际到场为准）"
-   }
+   },
+   "warnings": [
+    "报复与人际冲突",
+    "经济压力"
+   ],
+   "editorial": "适合喜欢都市黑色幽默与人物摩擦的观众。一次小误会怎样越滚越大是看点，也可留意争斗背后各自的生活窘境。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及报复与人际冲突、经济压力。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-047",
@@ -2392,7 +2911,18 @@
    "dirO": "Isabella Lam",
    "screeningNotes": {
     "11/10-19:45-xm-gr26-1-hall-2": "映后活动 · 主创见面会（嘉宾名单待公布，以实际到场为准）"
-   }
+   },
+   "warnings": [
+    "犯罪与死亡",
+    "心理创伤"
+   ],
+   "editorial": "适合关注犯罪背后人物处境的观众。案件之外的生活和隐痛提供另一条路径，现有资料未披露具体暴力强度，敏感观众宜先核实。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及犯罪与死亡、心理创伤。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-048",
@@ -2440,7 +2970,18 @@
     null,
     3.2
    ],
-   "dirO": "Jannis Lenz"
+   "dirO": "Jannis Lenz",
+   "warnings": [
+    "校园威胁与排斥",
+    "未成年人心理压力"
+   ],
+   "editorial": "适合关注少年群体与归属需求的观众。森林里的结盟和学校里的排斥可以对读，仪式与游戏未必意味着安全。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及校园威胁与排斥、未成年人心理压力。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-049",
@@ -2490,7 +3031,18 @@
     null,
     3.5
    ],
-   "dirO": "Tsui Hark"
+   "dirO": "Tsui Hark",
+   "warnings": [
+    "厨房与食材处理",
+    "竞争压力"
+   ],
+   "editorial": "适合喜欢美食、表演与香港喜剧的观众。厨艺竞赛之外可以看看角色如何重新学习合作，期待严肃烹饪纪录片的观众需调整预期。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及厨房与食材处理、竞争压力。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-050",
@@ -2538,7 +3090,18 @@
     null,
     3.3
    ],
-   "dirO": "Erik Poppe"
+   "dirO": "Erik Poppe",
+   "warnings": [
+    "伴侣分离",
+    "家庭照护压力"
+   ],
+   "editorial": "适合愿意看爱情中距离与责任的观众。海上与岸上的生活可以对照，浪漫愿望如何影响留下的人尤其值得留意。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及伴侣分离、家庭照护压力。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-051",
@@ -2585,7 +3148,18 @@
     null,
     3.6
    ],
-   "dirO": "Nicolás Pereda"
+   "dirO": "Nicolás Pereda",
+   "warnings": [
+    "性别成见",
+    "职场羞辱"
+   ],
+   "editorial": "适合喜欢艺术圈讽刺与尴尬喜剧的观众。一次采访里的技术失误和打断值得细看，别急着跳过那些难堪的停顿。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及性别成见、职场羞辱。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-052",
@@ -2631,7 +3205,19 @@
     60,
     2.9
    ],
-   "dirO": "Quentin Dupieux"
+   "dirO": "Quentin Dupieux",
+   "warnings": [
+    "过量进食情节",
+    "父女关系冲突",
+    "恐怖片元素"
+   ],
+   "editorial": "适合接受荒诞与类型混合的观众。美食和豪华酒店不是单纯的享受背景，也可以观察父女如何用安排周全的旅行回避沟通。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及过量进食情节、父女关系冲突、恐怖片元素。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-053",
@@ -2682,7 +3268,15 @@
     null,
     4.3
    ],
-   "dirO": "János Zsombolyai"
+   "dirO": "János Zsombolyai",
+   "warnings": [],
+   "editorial": "适合想把音乐会当作集体观影经验的观众。舞台与旅途片段可以互相参照，重视音量舒适度时请提前询问影院。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "已查看现有剧情资料，尚未确认需要特别标注的敏感内容。这不代表适合所有年龄，也不等同于完整内容审查。"
   },
   {
    "id": "gr26-054",
@@ -2733,7 +3327,24 @@
     74,
     3.9
    ],
-   "dirO": "Tim Burton"
+   "dirO": "Tim Burton",
+   "warnings": [
+    "排斥与污名",
+    "身体伤害",
+    "孤独"
+   ],
+   "editorial": "适合喜欢奇幻美术与局外人故事的观众。社区最初的欢迎与后来的恐惧值得对照，童话外观下的排斥也需要情绪准备。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及排斥与污名、身体伤害、孤独。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "mpa": {
+    "rating": "PG-13",
+    "edition": "US release",
+    "checked": "2026-11-03"
+   }
   },
   {
    "id": "gr26-055",
@@ -2783,7 +3394,23 @@
     92,
     4.3
    ],
-   "dirO": "Joel Coen / Ethan Coen"
+   "dirO": "Joel Coen / Ethan Coen",
+   "warnings": [
+    "谋杀与血腥伤害",
+    "毒品交易背景"
+   ],
+   "editorial": "适合喜欢紧张追踪与道德困局的观众。除了杀手的行动，也可留意警长如何面对无法理解的变化，内容含暴力伤害。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及谋杀与血腥伤害、毒品交易背景。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "mpa": {
+    "rating": "R",
+    "edition": "US release, certificate 43473",
+    "checked": "2026-11-03"
+   }
   },
   {
    "id": "gr26-056",
@@ -2832,7 +3459,19 @@
     82,
     4.2
    ],
-   "dirO": "Andrey Zvyagintsev"
+   "dirO": "Andrey Zvyagintsev",
+   "warnings": [
+    "父权压迫",
+    "儿童恐惧",
+    "家庭冲突"
+   ],
+   "editorial": "适合喜欢父子关系与开放解释的观众。可以跟着两个孩子不同的反应看这次旅程，沉默与威严之间的距离很重要。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及父权压迫、儿童恐惧、家庭冲突。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-057",
@@ -2881,7 +3520,19 @@
     null,
     3.5
    ],
-   "dirO": "Manuela Martelli"
+   "dirO": "Manuela Martelli",
+   "warnings": [
+    "失踪",
+    "儿童面对成人秘密",
+    "不安与威胁"
+   ],
+   "editorial": "适合愿意跟随儿童观察成人世界的观众。滑雪旅馆的日常与失踪后的沉默可以对照，别急于用单一解答盖过孩子的困惑。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及失踪、儿童面对成人秘密、不安与威胁。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-058",
@@ -2932,7 +3583,18 @@
     null,
     3.9
    ],
-   "dirO": "Hou Hsiao-hsien"
+   "dirO": "Hou Hsiao-hsien",
+   "warnings": [
+    "犯罪与暴力背景",
+    "家庭冲突"
+   ],
+   "editorial": "适合喜欢流动空间与人物群像的观众。奔走、等待和失败的计划都可以细看，习惯明确目标和爽快结局的观众需要调整节奏。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及犯罪与暴力背景、家庭冲突。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-059",
@@ -2981,7 +3643,19 @@
     null,
     3.3
    ],
-   "dirO": "Grzegorz Dębowski"
+   "dirO": "Grzegorz Dębowski",
+   "warnings": [
+    "入室盗窃",
+    "发现死者",
+    "身份欺瞒"
+   ],
+   "editorial": "适合对身份想象与阶级处境感兴趣的观众。冒充伴侣的举动是入口，可以留意主人公借别人的生活想改变什么。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及入室盗窃、发现死者、身份欺瞒。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-060",
@@ -3031,7 +3705,19 @@
     null,
     3.5
    ],
-   "dirO": "Kristina Grozeva / Petar Valchanov"
+   "dirO": "Kristina Grozeva / Petar Valchanov",
+   "warnings": [
+    "腐败与诈骗",
+    "战争背景",
+    "婚姻欺瞒"
+   ],
+   "editorial": "适合关注普通人愿望与社会现实的观众。旅行梦想和积蓄来源构成反差，追钱过程也可以当作一次婚姻关系的重读。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及腐败与诈骗、战争背景、婚姻欺瞒。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-061",
@@ -3081,7 +3767,18 @@
     null,
     3.5
    ],
-   "dirO": "Wan Jen"
+   "dirO": "Wan Jen",
+   "warnings": [
+    "父权与性别压迫",
+    "婚姻伤痛"
+   ],
+   "editorial": "适合关注母女经验与社会变化的观众。可以比较两代女性面对婚姻和教育时的选择，爱与牺牲未必总是同一回事。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及父权与性别压迫、婚姻伤痛。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-062",
@@ -3132,7 +3829,18 @@
     68,
     3.8
    ],
-   "dirO": "Yuen Woo-ping"
+   "dirO": "Yuen Woo-ping",
+   "warnings": [
+    "武打与惩罚性训练",
+    "饮酒"
+   ],
+   "editorial": "适合喜欢身体喜剧与功夫训练段落的观众。看动作如何从笨拙变得有节奏，饮酒情节属于人物和类型表达，请勿模仿。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及武打与惩罚性训练、饮酒。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-063",
@@ -3185,7 +3893,23 @@
     84,
     4.1
    ],
-   "dirO": "Ridley Scott"
+   "dirO": "Ridley Scott",
+   "warnings": [
+    "暴力与生命威胁",
+    "死亡焦虑"
+   ],
+   "editorial": "适合想在大银幕看未来城市与身份疑问的观众。请留意本次为最终剪辑版，霓虹、雨夜与声音也值得和追捕情节一起看。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及暴力与生命威胁、死亡焦虑。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "mpa": {
+    "rating": "R",
+    "edition": "The Final Cut, US release",
+    "checked": "2026-11-03"
+   }
   },
   {
    "id": "gr26-064",
@@ -3231,7 +3955,18 @@
     null,
     3.3
    ],
-   "dirO": "Anthony Chen"
+   "dirO": "Anthony Chen",
+   "warnings": [
+    "经济压力",
+    "代际与家庭冲突"
+   ],
+   "editorial": "适合关注城市生活与重组家庭的观众。父子两代的爱情可以并看，日常开销与责任如何改变亲密关系也是入口。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及经济压力、代际与家庭冲突。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-065",
@@ -3279,7 +4014,24 @@
     83,
     4.1
    ],
-   "dirO": "Brett Morgen"
+   "dirO": "Brett Morgen",
+   "warnings": [
+    "闪烁影像",
+    "性与裸露片段",
+    "粗口"
+   ],
+   "editorial": "适合愿意沉入音乐与影像拼接的观众。它更接近感受艺术世界的入口；已查到闪烁影像提示，光敏观众请谨慎选择。",
+   "contentReview": {
+    "status": "official-advisory",
+    "checked": "2026-11-03",
+    "sensory": "flashing"
+   },
+   "contentNote": "已结合海外公开内容提示整理；片长、剪辑与本次放映版本可能不同，请按个人情况选择。",
+   "mpa": {
+    "rating": "PG-13",
+    "edition": "US release",
+    "checked": "2026-11-03"
+   }
   },
   {
    "id": "gr26-066",
@@ -3331,7 +4083,19 @@
     null,
     4.2
    ],
-   "dirO": "Clyde Bruckman / Buster Keaton"
+   "dirO": "Clyde Bruckman / Buster Keaton",
+   "warnings": [
+    "战争与炮火",
+    "危险动作",
+    "历史立场背景"
+   ],
+   "editorial": "适合喜欢默片动作与机械空间的观众。火车与身体的配合值得细看，同时保留对南北战争叙事立场的历史距离。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及战争与炮火、危险动作、历史立场背景。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-067",
@@ -3381,7 +4145,19 @@
     null,
     3.5
    ],
-   "dirO": "Joko Anwar"
+   "dirO": "Joko Anwar",
+   "warnings": [
+    "监狱暴力",
+    "恐怖与超自然威胁",
+    "死亡"
+   ],
+   "editorial": "适合接受监狱与超自然类型混合的观众。囚犯之间的合作是另一条线，恐怖题材不因喜剧标签而自动变得轻松。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及监狱暴力、恐怖与超自然威胁、死亡。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-068",
@@ -3431,7 +4207,18 @@
     null,
     null
    ],
-   "dirO": "Amanbek Azhymat"
+   "dirO": "Amanbek Azhymat",
+   "warnings": [
+    "年龄与职场权力冲突",
+    "创作压力"
+   ],
+   "editorial": "适合喜欢电影幕后与代际碰撞的观众。可以把每一次改写要求看成一次权力协商，荒诞之外也有创作者的自我坚持。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及年龄与职场权力冲突、创作压力。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-069",
@@ -3479,7 +4266,19 @@
     null,
     3.6
    ],
-   "dirO": "Rafiki Fariala"
+   "dirO": "Rafiki Fariala",
+   "warnings": [
+    "难民处境",
+    "父母入狱",
+    "儿童照护负担"
+   ],
+   "editorial": "适合愿意从日常劳动理解少年处境的观众。音乐愿望和照顾弟妹的责任可以并看，避免只把主人公当作励志符号。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及难民处境、父母入狱、儿童照护负担。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-070",
@@ -3529,7 +4328,19 @@
     null,
     3.8
    ],
-   "dirO": "Luchino Visconti"
+   "dirO": "Luchino Visconti",
+   "warnings": [
+    "亲密关系控制",
+    "婴儿受害",
+    "死亡"
+   ],
+   "editorial": "适合关注占有欲、婚姻与阶级的观众。可以留意谁能够决定另一个人的命运，对婴儿受害与家庭伤痛敏感时宜慎选。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及亲密关系控制、婴儿受害、死亡。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-071",
@@ -3576,7 +4387,19 @@
     null,
     3.6
    ],
-   "dirO": "Florin Şerban"
+   "dirO": "Florin Şerban",
+   "warnings": [
+    "谋杀调查",
+    "年轻人暴力",
+    "丧亲"
+   ],
+   "editorial": "适合关注父母认知盲点与青年处境的观众。父亲相信自己了解孩子的前提值得持续追问，案件揭露之外也留意家庭的沉默。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及谋杀调查、年轻人暴力、丧亲。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-072",
@@ -3626,7 +4449,25 @@
     97,
     3.9
    ],
-   "dirO": "Victor Fleming"
+   "dirO": "Victor Fleming",
+   "warnings": [
+    "战争与伤亡",
+    "种族刻板印象与奴隶制浪漫化",
+    "亲密关系胁迫",
+    "儿童死亡"
+   ],
+   "editorial": "适合希望重看经典也愿意讨论其历史局限的观众。美术与表演可以欣赏，同时需要辨认影片对奴隶制和种族关系的立场；片长较长。",
+   "contentReview": {
+    "status": "official-advisory",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "已结合海外公开内容提示整理；片长、剪辑与本次放映版本可能不同，请按个人情况选择。",
+   "mpa": {
+    "rating": "G",
+    "edition": "US repertory release",
+    "checked": "2026-11-03"
+   }
   },
   {
    "id": "gr26-073",
@@ -3677,7 +4518,18 @@
     null,
     3.3
    ],
-   "dirO": "Wan Laiming / Guchan Wan"
+   "dirO": "Wan Laiming / Guchan Wan",
+   "warnings": [
+    "奇幻打斗",
+    "火灾与生命威胁"
+   ],
+   "editorial": "适合对中国动画早期长片与传统故事感兴趣的观众。变化术和人物造型是好入口，也可以留意旧动画如何组织连续动作。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及奇幻打斗、火灾与生命威胁。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-074",
@@ -3724,7 +4576,19 @@
     85,
     3.9
    ],
-   "dirO": "Mike Leigh"
+   "dirO": "Mike Leigh",
+   "warnings": [
+    "分手与失落",
+    "衰老和健康变化",
+    "照护压力"
+   ],
+   "editorial": "适合愿意把注意力交给日常关怀的观众。工作、友情与父母的变化可以放在一起看，细微相处往往比重大事件更重要。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及分手与失落、衰老和健康变化、照护压力。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-075",
@@ -3771,7 +4635,19 @@
     null,
     3.7
    ],
-   "dirO": "Abdallah Al-Khatib"
+   "dirO": "Abdallah Al-Khatib",
+   "warnings": [
+    "战争围困",
+    "饥饿与炮火",
+    "死亡威胁"
+   ],
+   "editorial": "适合愿意从居民生活进入战争题材的观众。朋友和家庭如何维持日常是关键，内容沉重，建议留出观后消化的时间。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及战争围困、饥饿与炮火、死亡威胁。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-076",
@@ -3818,7 +4694,18 @@
     null,
     3.3
    ],
-   "dirO": "Marc Fitoussi"
+   "dirO": "Marc Fitoussi",
+   "warnings": [
+    "职场排斥",
+    "理想受挫"
+   ],
+   "editorial": "适合喜欢演员职业与电影圈喜剧的观众。可以比较科琳如何想象主角位置、又如何面对行业壁垒，笑料中的尴尬值得留下。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及职场排斥、理想受挫。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-077",
@@ -3870,7 +4757,24 @@
     74,
     4.2
    ],
-   "dirO": "Christopher Nolan"
+   "dirO": "Christopher Nolan",
+   "warnings": [
+    "动作暴力",
+    "丧亲与内疚",
+    "现实与梦境混淆"
+   ],
+   "editorial": "适合愿意集中注意力追随多层叙事的观众。动作场面之外可留意家庭记忆如何干扰任务；复杂规则较适合精力充足时观看。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及动作暴力、丧亲与内疚、现实与梦境混淆。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "mpa": {
+    "rating": "PG-13",
+    "edition": "US release",
+    "checked": "2026-11-03"
+   }
   },
   {
    "id": "gr26-078",
@@ -3918,7 +4822,19 @@
     null,
     3.4
    ],
-   "dirO": "Gábor Reisz"
+   "dirO": "Gábor Reisz",
+   "warnings": [
+    "居住健康隐患",
+    "怀孕议题",
+    "邻里冲突"
+   ],
+   "editorial": "适合喜欢公寓群像与社会讽刺的观众。漏水和霉斑可以当作责任推诿的入口，维修问题怎样变成权力关系值得留意。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及居住健康隐患、怀孕议题、邻里冲突。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-079",
@@ -3965,7 +4881,19 @@
     null,
     3.2
    ],
-   "dirO": "Volker Schlöndorff"
+   "dirO": "Volker Schlöndorff",
+   "warnings": [
+    "纳粹迫害",
+    "战争与流亡",
+    "失去家园"
+   ],
+   "editorial": "适合关注空间记忆和德国历史的观众。可以把房屋当作贯穿年代的线索，私人居住痕迹与政治变化需要一起读。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及纳粹迫害、战争与流亡、失去家园。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-080",
@@ -4013,7 +4941,18 @@
     null,
     3.7
    ],
-   "dirO": "Sébastien Laudenbach"
+   "dirO": "Sébastien Laudenbach",
+   "warnings": [
+    "爱情中的威胁",
+    "悲剧与死亡议题"
+   ],
+   "editorial": "适合喜欢歌剧母题与动画改写的观众。孩子们试图改变命运提供新的观看角度；动画与音乐也可能承载危险和悲剧。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及爱情中的威胁、悲剧与死亡议题。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-081",
@@ -4061,7 +5000,19 @@
     null,
     null
    ],
-   "dirO": "Xi Jin"
+   "dirO": "Xi Jin",
+   "warnings": [
+    "迫害与放逐",
+    "恋人分离",
+    "冒险危险"
+   ],
+   "editorial": "适合对中国木偶动画与民间故事感兴趣的观众。人物造型和追寻旅程值得对照，传统爱情故事也可以观察权力如何制造分离。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及迫害与放逐、恋人分离、冒险危险。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-082",
@@ -4111,7 +5062,19 @@
     null,
     3.9
    ],
-   "dirO": "Wang Shuchen / Yan Dingxian / A Da"
+   "dirO": "Wang Shuchen / Yan Dingxian / A Da",
+   "warnings": [
+    "儿童角色死亡",
+    "自我伤害与牺牲情节",
+    "奇幻暴力"
+   ],
+   "editorial": "适合想重看中国动画色彩与人物动作的观众。熟悉的神话仍有强烈的死亡与牺牲情节，带儿童观看前建议先了解内容。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及儿童角色死亡、自我伤害与牺牲情节、奇幻暴力。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "gr26-083",
@@ -4154,7 +5117,15 @@
     "从不同年代的技术、材料与美学探索，理解“中国动画”内部的多样性。"
    ],
    "st": "本片回望中国动画百年历程，也为本届动画单元提供历史参照。与《铁扇公主》《孔雀公主》《哪吒闹海》搭配观看，可以把单部作品放回更长久的创作传承之中。",
-   "dirO": "Lijun Sun"
+   "dirO": "Lijun Sun",
+   "warnings": [],
+   "editorial": "适合想了解中国动画创作谱系的观众。可以把档案片段与创作者讲述相互对照，若刚看过经典展映，更容易找到自己的线索。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "已查看现有剧情资料，尚未确认需要特别标注的敏感内容。这不代表适合所有年龄，也不等同于完整内容审查。"
   }
  ],
  "shows": [

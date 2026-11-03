@@ -6,6 +6,7 @@
   <view class="library-search"><text>⌕</text><input type="text" confirm-type="search" placeholder="{{L.t(i,'搜索片名、导演、演员')}}" value="{{q}}" bindinput="search" /></view>
   <view class="library-filterbar">
     <view class="library-filter {{pf!=='all'?'active':''}}" data-type="programme" bindtap="openSelector"><text class="filter-label">{{L.t(i,'专题')}}</text><view class="filter-value"><text>{{programmeName}}</text><text>⌄</text></view></view>
+    <view class="library-filter" data-type="city" bindtap="openSelector"><text class="filter-label">{{L.t(i,'城市')}}</text><view class="filter-value"><text>{{cityName}}</text><text class="filter-arrow">⌄</text></view></view>
     <view class="library-filter {{mine!=='all'?'active':''}}" data-type="personal" bindtap="openSelector"><text class="filter-label">{{L.t(i,'我的')}}</text><view class="filter-value"><text>{{mineName}}</text><text>⌄</text></view></view>
   </view>
   <view wx:if="{{active}}" class="library-reset" bindtap="resetFilters">{{L.t(i,'重置筛选')}} ↺</view>

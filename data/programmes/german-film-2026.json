@@ -55,7 +55,19 @@
    "links": {
     "imdb": "tt22507216",
     "douban": "36116464"
-   }
+   },
+   "warnings": [
+    "战争与纳粹历史",
+    "动物猎捕",
+    "家庭冲突"
+   ],
+   "editorial": "适合从儿童视角理解历史的观众。把注意力留给孩子与母亲之间的分歧；战争结束并不意味着家庭里的旧观念会一同消失。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及战争与纳粹历史、动物猎捕、家庭冲突。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "dry-leaf",
@@ -108,7 +120,18 @@
    ],
    "links": {
     "imdb": "tt37537636"
-   }
+   },
+   "warnings": [
+    "亲人失踪",
+    "失落与焦虑"
+   ],
+   "editorial": "适合愿意跟随一次漫长寻访的观众。七座球场和村民的生活比破案更值得留意；不要把它当作追求快速解谜的寻人惊悚片。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及亲人失踪、失落与焦虑。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "i-understand-your-displeasure",
@@ -145,7 +168,18 @@
     null,
     null,
     null
-   ]
+   ],
+   "warnings": [
+    "职场压迫",
+    "经济困境"
+   ],
+   "editorial": "适合关注劳动与社会关系的观众。留意主人公每一次协调中转移给别人的代价，选片时可以把它与劳动题材纪录片放在一起看。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及职场压迫、经济困境。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "karla",
@@ -200,8 +234,17 @@
     "imdb": "tt37021896"
    },
    "warnings": [
-    "儿童受虐"
-   ]
+    "儿童受虐",
+    "家庭暴力",
+    "司法压力"
+   ],
+   "editorial": "适合关注儿童如何获得倾听的观众。比起等待法庭反转，更值得留意卡拉决定何时、以何种方式讲述自己的过程。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及儿童受虐、家庭暴力、司法压力。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "miroirs-no-3",
@@ -250,7 +293,19 @@
    ],
    "links": {
     "imdb": "tt32247943"
-   }
+   },
+   "warnings": [
+    "交通事故",
+    "心理创伤",
+    "家庭伤痛"
+   ],
+   "editorial": "适合喜欢人物关系与心理悬念的观众。一个陌生家庭给予的照料是入口，过去如何侵入暂时的安宁则值得慢慢观察。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及交通事故、心理创伤、家庭伤痛。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "the-miserable-mother",
@@ -295,7 +350,19 @@
     null,
     null,
     null
-   ]
+   ],
+   "warnings": [
+    "育儿压力",
+    "性别压迫",
+    "亲密关系冲突"
+   ],
+   "editorial": "适合对歌舞形式和女性日常感兴趣的观众。把超现实桥段当作表达困境的方式；期待写实家庭剧的观众需要调整预期。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及育儿压力、性别压迫、亲密关系冲突。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "oh-this-unspeakable-void",
@@ -354,7 +421,18 @@
    ],
    "links": {
     "imdb": "tt33888334"
-   }
+   },
+   "warnings": [
+    "饮酒",
+    "家庭关系压力"
+   ],
+   "editorial": "适合喜欢表演训练与成长故事的观众。学校里的角色练习与祖父母的生活仪式可以对照着看，喜剧外壳下也留有不安。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及饮酒、家庭关系压力。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "sometimes-i-imagine-them-all-at-a-party",
@@ -396,8 +474,16 @@
     "imdb": "tt39383613"
    },
    "warnings": [
-    "针对女性的暴力"
-   ]
+    "针对女性的暴力",
+    "创伤回忆"
+   ],
+   "editorial": "适合愿意倾听幸存者自述的观众。重访与追问比事件还原更重要，近期对暴力创伤较敏感时可以另择观影时机。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及针对女性的暴力、创伤回忆。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "when-pigs-fly",
@@ -438,7 +524,18 @@
    ],
    "links": {
     "lb": "when-pigs-fly-2026"
-   }
+   },
+   "warnings": [
+    "动物死亡议题",
+    "器官移植与医疗伦理"
+   ],
+   "editorial": "适合关注动物伦理和生命科学的观众。问题落在人与猪如何被赋予不同价值；对动物与医疗题材敏感时，先展开内容提示。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及动物死亡议题、器官移植与医疗伦理。具体画面与表现强度尚未核实，请结合个人情况选择。"
   },
   {
    "id": "shame-and-money",
@@ -488,7 +585,19 @@
    ],
    "links": {
     "imdb": "tt39140264"
-   }
+   },
+   "warnings": [
+    "经济困境",
+    "失去生计",
+    "家庭压力"
+   ],
+   "editorial": "适合关注迁徙、劳动和尊严的观众。家庭的互助与依赖值得放在一起看；这里的困境很难用一次成功或失败概括。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "contentNote": "剧情涉及经济困境、失去生计、家庭压力。具体画面与表现强度尚未核实，请结合个人情况选择。"
   }
  ],
  "shows": [
