@@ -7558,15 +7558,16 @@ module.exports = {
    "reg": "eu",
    "poster": "posters/amrum.jpg",
    "r": [
-    null,
+    7.1,
     7.2,
     98,
-    null,
-    null
+    76,
+    3.5
    ],
    "links": {
     "imdb": "tt22507216",
-    "douban": "36116464"
+    "douban": "36116464",
+    "lb": "amrum"
    },
    "warnings": [
     "战争与纳粹历史",
@@ -7626,14 +7627,16 @@ module.exports = {
    "reg": "eu",
    "poster": "posters/dry-leaf.jpg",
    "r": [
-    null,
-    null,
+    7.1,
+    6.6,
     82,
-    null,
+    67,
     3.8
    ],
    "links": {
-    "imdb": "tt37537636"
+    "imdb": "tt37537636",
+    "lb": "dry-leaf",
+    "douban": "35699905"
    },
    "warnings": [
     "亲人失踪",
@@ -7664,8 +7667,19 @@ module.exports = {
    ],
    "language": "德语 / 克罗地亚语 / 波斯尼亚语 / 土耳其语",
    "subtitles": "中文字幕",
-   "writers": [],
-   "cast": [],
+   "writers": [
+    "Kilian Armando Friedrich",
+    "Tünde Sautier",
+    "Daniel Kunz"
+   ],
+   "cast": [
+    "Sabine Thalau",
+    "Nada Kosturin",
+    "Werner Posselt",
+    "Sadibou Diabang",
+    "Nigyar Velagich",
+    "Thomas Sprekelsen"
+   ],
    "syn": "海克（59岁）在一家清洁公司担任客户服务经理，日常工作是在客户、公司管理层和清洁人员之间进行协调。她所在的公司目前正与一家重要的分包商发生矛盾，原因是海克违反规定，试图挖走该分包商手下的一名非正式员工。该分包商现在威胁说，除非海克能为他争取更多的工作时数和收入，否则他将停止提供支持。为了满足分包商的要求，海克不得不解雇自己的一名员工——而这位同事恰恰是她朋友塔娅非常器重的人。海克愈发感到自己陷入两难：一边是对自己员工的责任，一边是低薪行业的现实条件。",
    "honors": [
     "获奖｜2026 香港国际电影节 · 新秀电影竞赛（世界）最佳女演员",
@@ -7680,10 +7694,10 @@ module.exports = {
    "poster": "posters/i-understand-your-displeasure.jpg",
    "r": [
     null,
+    7.1,
     null,
     null,
-    null,
-    null
+    3.6
    ],
    "warnings": [
     "职场压迫",
@@ -7696,6 +7710,12 @@ module.exports = {
     "sensory": "unverified"
    },
    "contentNote": "剧情涉及职场压迫、经济困境。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "links": {
+    "lb": "i-understand-your-displeasure",
+    "imdb": "tt39368062",
+    "douban": "38197587"
+   },
+   "bio": "基利安·阿曼多·弗里德里希1995年生于德国康斯坦茨，曾在希尔德斯海姆和马德里学习表演艺术，后在慕尼黑与墨西哥城学习纪录片导演。他的纪录片《核电游牧者》（Nomades du nucléaire）于2023年在柏林国际电影节首映，并获德国短片奖中篇特别奖。《我理解您的不满》是他的首部剧情长片。",
    "prog": "german-film-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/i-understand-your-displeasure.jpg"
   },
@@ -7746,10 +7766,12 @@ module.exports = {
     7.2,
     null,
     null,
-    null
+    3.6
    ],
    "links": {
-    "imdb": "tt37021896"
+    "imdb": "tt37021896",
+    "lb": "karla-2025",
+    "douban": "35337596"
    },
    "warnings": [
     "儿童受虐",
@@ -7805,14 +7827,16 @@ module.exports = {
    "reg": "eu",
    "poster": "posters/miroirs-no-3.jpg",
    "r": [
-    null,
+    7.3,
     6.6,
     95,
     78,
     3.5
    ],
    "links": {
-    "imdb": "tt32247943"
+    "imdb": "tt32247943",
+    "lb": "miroirs-no-3",
+    "douban": "36877209"
    },
    "warnings": [
     "交通事故",
@@ -7867,8 +7891,8 @@ module.exports = {
    "reg": "eu",
    "poster": "posters/the-miserable-mother.jpg",
    "r": [
-    null,
-    null,
+    7.1,
+    6.2,
     null,
     null,
     null
@@ -7885,6 +7909,11 @@ module.exports = {
     "sensory": "unverified"
    },
    "contentNote": "剧情涉及育儿压力、性别压迫、亲密关系冲突。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "links": {
+    "lb": "the-miserable-mother",
+    "imdb": "tt43258259",
+    "douban": "37045627"
+   },
    "prog": "german-film-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/the-miserable-mother.jpg"
   },
@@ -7941,10 +7970,12 @@ module.exports = {
     7.9,
     null,
     null,
-    null
+    3.6
    ],
    "links": {
-    "imdb": "tt33888334"
+    "imdb": "tt33888334",
+    "lb": "oh-this-unspeakable-void",
+    "douban": "37202597"
    },
    "warnings": [
     "饮酒",
@@ -7975,7 +8006,9 @@ module.exports = {
    ],
    "language": "德语 / 葡萄牙语",
    "subtitles": "中文字幕",
-   "writers": [],
+   "writers": [
+    "Daniela Magnani Hüller"
+   ],
    "cast": [],
    "syn": "十四年前，电影人丹妮拉·马尼亚尼·惠勒在一次未遂的杀害女性（femicide）事件中幸存下来。如今，她回顾自己人生中那段时光的关键时刻。在慕尼黑和里约热内卢之间往返旅行中，她寻访了当时在她身边的某些人，并提出那些多年来一直萦绕在她心头的疑问。精心构图的银幕画面勾勒出她所经历的一切的复杂图景。",
    "honors": [
@@ -7991,13 +8024,15 @@ module.exports = {
    "poster": "posters/sometimes-i-imagine-them-all-at-a-party.jpg",
    "r": [
     null,
+    7.4,
     null,
     null,
-    null,
-    null
+    3.7
    ],
    "links": {
-    "imdb": "tt39383613"
+    "imdb": "tt39383613",
+    "lb": "sometimes-i-imagine-them-all-at-a-party",
+    "douban": "38208584"
    },
    "warnings": [
     "针对女性的暴力",
@@ -8010,6 +8045,7 @@ module.exports = {
     "sensory": "unverified"
    },
    "contentNote": "剧情涉及针对女性的暴力、创伤回忆。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "bio": "丹妮拉·马尼亚尼·惠勒是德国与巴西双重文化背景的电影人，1995年生于慕尼黑。她曾在里约热内卢生活，后于慕尼黑电影电视学院学习纪录片导演，创作过多部自编、自导、自剪的短片。她于2023年获慕尼黑纪录片电影节DOK.talent奖；《残存的感性》是她的自传性纪录长片首作。",
    "prog": "german-film-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/sometimes-i-imagine-them-all-at-a-party.jpg"
   },
@@ -8028,7 +8064,9 @@ module.exports = {
    ],
    "language": "德语 / 英语",
    "subtitles": "中英字幕",
-   "writers": [],
+   "writers": [
+    "Denise Riedmayr"
+   ],
    "cast": [],
    "syn": "我的心是我的一部分吗？它会分享我的经历吗？还是说它仅仅是一块肉、一块肌肉、一个泵、一个容易被另一个所取代的器官？在我们的社会中，猪只有在死后才被认为有价值——尽管它们与人类如此相似，以至于它们的心脏可以被用作捐赠器官。在一个通过猪来培育人类心脏以拯救生命的未来里，两个物种之间的界限开始模糊。现在是否是重新思考人与猪之间关系的时刻？本片跟随两位兽医，记录他们与猪之间矛盾而复杂的关系，并提供了一个亲密视角，让我们得以接近一种远比大多数人愿意承认的更接近我们的动物。",
    "honors": [
@@ -8051,7 +8089,9 @@ module.exports = {
     null
    ],
    "links": {
-    "lb": "when-pigs-fly-2026"
+    "lb": "when-pigs-fly-2026",
+    "imdb": "tt40672774",
+    "douban": "38352241"
    },
    "warnings": [
     "动物死亡议题",
@@ -8064,6 +8104,7 @@ module.exports = {
     "sensory": "unverified"
    },
    "contentNote": "剧情涉及动物死亡议题、器官移植与医疗伦理。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "bio": "丹妮丝·里德迈尔曾于慕尼黑电影电视学院学习纪录片导演，担任自由电影人，并为巴伐利亚广播公司从事创作、导演与剪辑工作。她于2021年获慕尼黑市Starter电影奖，短片作品包括《An Anna》（2020）与合导的《Swim for Good》（2018）。《当猪会飞》延续了她对生命经验与人与动物关系的关注。",
    "prog": "german-film-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/when-pigs-fly.jpg"
   },
@@ -8111,10 +8152,12 @@ module.exports = {
     7.4,
     100,
     null,
-    null
+    3.5
    ],
    "links": {
-    "imdb": "tt39140264"
+    "imdb": "tt39140264",
+    "lb": "shame-and-money",
+    "douban": "36948178"
    },
    "warnings": [
     "经济困境",
