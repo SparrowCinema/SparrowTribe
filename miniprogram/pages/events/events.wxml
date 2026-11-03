@@ -2,7 +2,7 @@
 <view wx:if="{{p}}" class="wrap">
   <view class="h1">{{L.t(i,'活动与论坛')}}</view>
   <view class="sub">{{p.name}} · {{p.period}}</view>
-  <scroll-view scroll-x class="tabs"><view wx:for="{{tabs}}" wx:key="id" class="tab {{kind===item.id ? 'on' : ''}}" data-id="{{item.id}}" bindtap="selectKind">{{item.name}}</view></scroll-view>
+  <view class="scope-btn" hover-class="hv" bindtap="openSel"><view class="scope-copy"><text class="small">{{L.t(i,'选择板块')}}</text><text class="b">{{kindName}}</text></view><text class="scope-n mono">{{kindN}} {{L.t(i,'项')}}</text><text class="scope-chev">⌄</text></view>
   <view wx:for="{{groups}}" wx:key="name" wx:for-item="g">
     <view class="ev-h">{{g.name}}</view>
     <view wx:for="{{g.items}}" wx:key="id" class="ev-card {{item.ended ? 'ev-done' : ''}}">
@@ -13,6 +13,12 @@
         <view wx:for="{{item.slots}}" wx:for-item="s" wx:key="key" class="ev-slot"><view class="ev-sw"><text class="ev-sb mono">{{s.when}}</text><text class="ev-sp">{{s.where}}</text></view>
           <text wx:if="{{s.past}}" class="ev-sd">{{L.t(i,'已结束')}}</text>
           <view wx:else class="ev-add {{s.picked ? 'on' : ''}}" data-key="{{s.key}}" bindtap="toggle">{{s.picked ? L.t(i,'已加入行程') : L.t(i,'加入我的行程')}}</view></view></view>
+    </view>
+  </view>
+  <view wx:if="{{selOpen}}" class="selector-mask" catchtap="closeSel" catchtouchmove="stopMove">
+    <view class="selector-panel" catchtap="stopMove"><view class="selector-head"><text>{{selTitle}}</text><view class="selector-close" bindtap="closeSel">×</view></view>
+      <input class="selector-search" placeholder="{{selPlaceholder}}" value="{{selQuery}}" bindinput="searchSel" />
+      <scroll-view scroll-y class="selector-results"><view wx:for="{{selRows}}" wx:key="id" class="selector-option {{item.selected?'selected':''}}" data-id="{{item.id}}" bindtap="chooseSel"><view class="selector-copy"><text class="b">{{item.name}}</text><text class="small muted">{{item.sub}}</text></view><text class="selector-check">{{item.selected?'✓':''}}</text></view><view wx:if="{{!selRows.length}}" class="selector-empty">{{L.t(i,'没有匹配的结果')}}</view></scroll-view>
     </view>
   </view>
 </view>

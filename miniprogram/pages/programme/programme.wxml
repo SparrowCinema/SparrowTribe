@@ -13,9 +13,9 @@
     </view>
     <view wx:if="{{p.blurb}}" class="blurb">{{p.blurb}}</view>
     <view wx:if="{{p.ticketUrl}}" class="jumps"><view class="btn" bindtap="copyTicket">{{L.t(i,p.ticketLabel||'购票')}}</view></view>
-    <view wx:if="{{evN}}" class="ev-wrap"><view class="ev-sum" hover-class="hv" bindtap="openEvents"><text class="ev-st">{{L.t(i,'活动与论坛')}}</text><text class="ev-n mono">{{evN}}</text><view class="gone-ar" style="transform:rotate(-90deg)" /></view></view>
+    <view wx:if="{{evN}}" class="ev-entry" hover-class="hv" bindtap="openEvents"><view class="ev-ic">✦</view><view class="ev-cp"><text class="ev-st">{{L.t(i,'活动与论坛')}}</text><text class="ev-sd">{{L.t(i,'大师讲堂、导演论导演、沙龙、论坛等')}}</text></view><text class="ev-n mono">{{evN}} {{L.t(i,'项')}}</text><text class="ev-go">›</text></view>
     <view wx:if="{{p.ticket}}" class="jumps"><view class="btn" bindtap="previewTicket">{{L.t(i,(p.ticketPlatform||'微信')+'扫码购票')}}</view></view>
-    <view wx:if="{{sections.length > 1}}" class="section-tabs"><view wx:for="{{sections}}" wx:key="value" class="btn {{section===item.value ? '' : 'ghost'}}" data-section="{{item.value}}" bindtap="selectSection">{{item.name}}</view></view>
+    <view wx:if="{{sections.length > 1}}" class="scope-btn" hover-class="hv" bindtap="openSec"><view class="scope-copy"><text class="small">{{L.t(i,'选择单元')}}</text><text class="b">{{sectionName}}</text></view><text class="scope-n mono">{{sectionN}} {{L.t(i,'部')}}</text><text class="scope-chev">⌄</text></view>
     <view class="jumps"><view class="btn" bindtap="jump" data-to="up">{{L.t(i,'即将放映')}}</view><view class="btn ghost" bindtap="jump" data-to="gone">{{L.t(i,'已结束')}}</view></view>
     <view class="blockh" id="pg-up">{{L.t(i,'即将放映')}} <text class="en">UPCOMING · {{upN}}</text></view>
     <view wx:if="{{!films.length}}" class="empty"><text class="eb">{{gone.length ? L.t(i,'暂无待映场次') : L.t(i,'片单与场次即将公布')}}</text><text class="es">{{gone.length ? L.t(i,'新场次公布后会更新到这里。') : L.t(i,'公布后会第一时间更新到这里。')}}</text></view>
@@ -41,5 +41,11 @@
         </view>
       </view>
     </block>
+  </view>
+  <view wx:if="{{selOpen}}" class="selector-mask" catchtap="closeSel" catchtouchmove="stopMove">
+    <view class="selector-panel" catchtap="stopMove"><view class="selector-head"><text>{{selTitle}}</text><view class="selector-close" bindtap="closeSel">×</view></view>
+      <input class="selector-search" placeholder="{{selPlaceholder}}" value="{{selQuery}}" bindinput="searchSel" />
+      <scroll-view scroll-y class="selector-results"><view wx:for="{{selRows}}" wx:key="id" class="selector-option {{item.selected?'selected':''}}" data-id="{{item.id}}" bindtap="chooseSel"><view class="selector-copy"><text class="b">{{item.name}}</text><text class="small muted">{{item.sub}}</text></view><text class="selector-check">{{item.selected?'✓':''}}</text></view><view wx:if="{{!selRows.length}}" class="selector-empty">{{L.t(i,'没有匹配的结果')}}</view></scroll-view>
+    </view>
   </view>
 </view>

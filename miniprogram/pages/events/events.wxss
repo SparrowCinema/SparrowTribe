@@ -1,3 +1,4 @@
+@import "../../styles/selector.wxss";
 .wrap { padding: 32rpx; }
 .h1 { font-size: 56rpx; font-weight: 900; }
 .sub { font-size: 26rpx; color: var(--muted); margin: 8rpx 0 20rpx; }

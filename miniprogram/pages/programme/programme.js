@@ -3,7 +3,7 @@ const I = require('../../utils/i18n.js');
 const t = I.tr;
 const app = getApp();
 Page({
-  data: { i: {}, evGroups: [], evN: 0, evOpen: false, p: null, films: [], gone: [], goneOpen: undefined, stats: {}, section: "", sections: [] },
+  data: { i: {}, evGroups: [], evN: 0, evOpen: false, p: null, films: [], gone: [], goneOpen: undefined, stats: {}, section: "", sections: [], selOpen: false, selRows: [], selQuery: "", selTitle: "", selPlaceholder: "", sectionName: "", sectionN: 0 },
   onLoad(q) { this.setData({ i: I.dict() }); this.id = q.id || 'style-kaleidoscope'; this.off = app.onData(() => this.build()); this.build(); },
   onUnload() { this.off && this.off(); },
   build() {
@@ -24,7 +24,7 @@ Page({
     const films = all.filter(f => !f.gone).sort((x, y) => (x.at === y.at ? 0 : x.at < y.at ? -1 : 1) || x.cn.localeCompare(y.cn, I.isEn() ? 'en' : 'zh'));
     const gone = all.filter(f => f.gone).sort((x, y) => y.lastAt - x.lastAt || x.cn.localeCompare(y.cn, I.isEn() ? 'en' : 'zh'));
     const st = U.progInfo(p, data, idx).status;
-    this.setData({ sections: [{name:t("全部单元"),value:""},...Array.from(new Set(Object.values(p.sections||{}))).map(n=>({name:t(n),value:n}))], p: Object.assign({}, p, { periodT: t(p.period), status: st, statusText: t(p.ongoing && st === 'live' ? '常设' : { live: '进行中', soon: '即将开始', ended: '已结束' }[st]) }), upN: t(films.length + ' 部'), goneN: t(gone.length + ' 部'), films, gone, goneOpen: this.data.goneOpen === undefined ? !films.length : this.data.goneOpen, stats: { f: data.films.filter(f=>!f.ev&&(idx.progOf(f).id===p.id||membership.has(f.id))).length, s: shows.filter(s=>!idx.F[s.id].ev).length, d: new Set(shows.map(s => s.d)).size, h: new Set(shows.map(s => s.v + s.h)).size } });
+    this.setData({ sectionName: this.data.section ? t(this.data.section) : t('全部单元'), sectionN: all.length, sections: [{name:t("全部单元"),value:""},...Array.from(new Set(Object.values(p.sections||{}))).map(n=>({name:t(n),value:n}))], p: Object.assign({}, p, { periodT: t(p.period), status: st, statusText: t(p.ongoing && st === 'live' ? '常设' : { live: '进行中', soon: '即将开始', ended: '已结束' }[st]) }), upN: t(films.length + ' 部'), goneN: t(gone.length + ' 部'), films, gone, goneOpen: this.data.goneOpen === undefined ? !films.length : this.data.goneOpen, stats: { f: data.films.filter(f=>!f.ev&&(idx.progOf(f).id===p.id||membership.has(f.id))).length, s: shows.filter(s=>!idx.F[s.id].ev).length, d: new Set(shows.map(s => s.d)).size, h: new Set(shows.map(s => s.v + s.h)).size } });
   },
   buildEvents(p) {
     const en = I.isEn(), now = new Date(), today = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0') + '-' + String(now.getDate()).padStart(2, '0');
@@ -39,7 +39,18 @@ Page({
     this.setData({ evGroups: groups, evN: evs.length });
   },
   openEvents() { wx.navigateTo({ url: '/pages/events/events?id=' + this.id }); },
-  selectSection(e) { this.setData({section:e.currentTarget.dataset.section}); this.build(); },
+  // 单元选择：检索弹层（与网站一致）
+  selRowsFor(q) {
+    const data = app.globalData.data, idx = U.index(data), p = idx.PG[this.id], sec = (p && p.sections) || {}, cur = this.data.section, m = (q || '').trim().toLocaleLowerCase();
+    const films = data.films.filter(f => !f.ev && (idx.progOf(f).id === p.id || sec[f.id])), names = Array.from(new Set(Object.values(sec)));
+    const rows = [{ id: '', name: t('全部单元'), sub: t(films.length + ' 部影片'), selected: cur === '' }, ...names.map(n => ({ id: n, name: t(n), sub: t(films.filter(f => sec[f.id] === n).length + ' 部影片'), selected: cur === n }))];
+    return rows.filter(x => !m || (x.name + ' ' + x.sub).toLocaleLowerCase().includes(m));
+  },
+  openSec() { this.setData({ selOpen: true, selQuery: '', selTitle: t('选择单元'), selPlaceholder: t('搜索单元'), selRows: this.selRowsFor('') }); },
+  searchSel(e) { this.setData({ selQuery: e.detail.value, selRows: this.selRowsFor(e.detail.value) }); },
+  chooseSel(e) { this.setData({ section: e.currentTarget.dataset.id || '', selOpen: false }); this.build(); },
+  closeSel() { this.setData({ selOpen: false, selQuery: '' }); },
+  stopMove() {},
   copyTicket() { wx.setClipboardData({ data: this.data.p.ticketUrl, success: () => wx.showToast({ title: t('购票链接已复制，请在浏览器打开'), icon: 'none' }) }); },
   previewTicket() { wx.previewImage({urls:["https://sparrowcinema.github.io/SparrowTribe/"+this.data.p.ticket]}); },
   toggleGone() { this.setData({ goneOpen: !this.data.goneOpen }); },

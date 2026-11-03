@@ -1,0 +1,17 @@
+/* 通用「选择器」弹层（与网站检索弹窗一致）+ 触发按钮，供专题页、活动页使用 */
+.selector-mask{position:fixed;inset:0;z-index:1000;background:rgba(25,20,15,.23);display:flex;align-items:center;justify-content:center}
+.selector-panel{width:calc(100% - 48rpx);max-height:68vh;box-sizing:border-box;border:1rpx solid var(--line);border-radius:32rpx;background:var(--surface);padding:30rpx 16rpx 16rpx;box-shadow:0 30rpx 100rpx #0002}
+.selector-head{display:flex;align-items:center;justify-content:space-between;padding:0 16rpx 22rpx;font-size:36rpx;font-weight:700}
+.selector-close{width:56rpx;height:56rpx;line-height:50rpx;text-align:center;border-radius:50%;background:var(--bg);font-size:42rpx;color:var(--muted);font-weight:400}
+.selector-search{font-size:28rpx;margin:0 16rpx 20rpx;padding:20rpx 24rpx;border:1rpx solid var(--line);border-radius:16rpx;background:var(--bg)}
+.selector-results{height:44vh;max-height:44vh}
+.selector-option{display:flex;gap:20rpx;align-items:center;min-height:88rpx;box-sizing:border-box;padding:20rpx 24rpx;border-radius:16rpx}
+.selector-option.selected{background:#2f6f6c12}
+.selector-copy{flex:1;min-width:0;font-size:26rpx;line-height:1.5}
+.selector-copy text{display:block}
+.selector-copy .small{font-size:22rpx;margin-top:5rpx}
+.selector-check{width:32rpx;color:var(--teal);flex-shrink:0}
+.selector-empty{padding:44rpx 20rpx;text-align:center;color:var(--muted);font-size:26rpx}
+.scope-btn{display:flex;align-items:center;gap:16rpx;margin:20rpx 0;padding:22rpx 26rpx;border:2rpx solid var(--line);border-radius:22rpx;background:var(--surface)}
+.scope-copy{flex:1;min-width:0}.scope-copy .small{display:block;font-size:22rpx;color:var(--muted);margin-bottom:6rpx}.scope-copy .b{display:block;font-size:30rpx;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.scope-n{font-size:22rpx;color:var(--muted)}.scope-chev{font-size:28rpx;color:var(--muted)}
