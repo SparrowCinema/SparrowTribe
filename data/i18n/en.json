@@ -6219,6 +6219,7 @@
   "备份文件过大，请检查文件": "The backup file is too large; please check it",
   "停止同步与删除": "Disconnecting and deletion",
   "完整备份已生成，请妥善保管": "Full backup created; keep the file safe",
-  "你的档案，由你保管": "Your archive, in your care"
+  "你的档案，由你保管": "Your archive, in your care",
+  "片源": "Print Source"
  }
 }
