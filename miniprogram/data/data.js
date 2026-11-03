@@ -22153,6 +22153,7 @@ module.exports = {
    "blurb": "11月6日至22日，台北。电子手册按金马影展官方单元浏览片单、主创与荣誉，查看信义威秀与 MUVIE TITAN 的完整场次，并附大师讲堂、导演论导演、电影沙龙、论坛等活动。购票请使用拓元售票系统。",
    "ticketUrl": "https://tghff.tixcraft.com",
    "ticket": "tickets/golden-horse-2026.png",
+   "noPageTicket": true,
    "ticketPlatform": "拓元",
    "ticketHint": "台北金马影展官方售票",
    "ticketLabel": "拓元购票",
