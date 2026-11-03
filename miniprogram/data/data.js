@@ -7935,6 +7935,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "兴扬电影有限公司 Renaissance Films Limited",
+   "printSourceEn": "Renaissance Films Limited",
    "prog": "golden-horse-2026"
   },
   {
@@ -7970,6 +7972,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "烈日影像制作有限公司 Scorching Sun",
+   "printSourceEn": "Scorching Sun",
    "prog": "golden-horse-2026"
   },
   {
@@ -8004,6 +8008,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "英杰哆影业股份有限公司 inJECT FILMS Co., Ltd.",
+   "printSourceEn": "inJECT FILMS Co., Ltd.",
    "prog": "golden-horse-2026"
   },
   {
@@ -8047,6 +8053,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "华文创股份有限公司 MandarinVision Co., Ltd.",
+   "printSourceEn": "MandarinVision Co., Ltd.",
    "prog": "golden-horse-2026"
   },
   {
@@ -8082,6 +8090,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "氧气电影有限公司 Oxygen Films Co., Ltd.",
+   "printSourceEn": "Oxygen Films Co., Ltd.",
    "prog": "golden-horse-2026"
   },
   {
@@ -8117,6 +8127,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "高先电影有限公司 Golden Scene Company Limited",
+   "printSourceEn": "Golden Scene Company Limited",
    "prog": "golden-horse-2026"
   },
   {
@@ -8154,6 +8166,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "高先电影有限公司 Golden Scene Company Limited",
+   "printSourceEn": "Golden Scene Company Limited",
    "prog": "golden-horse-2026"
   },
   {
@@ -8192,6 +8206,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "麻吉砥加电影股份有限公司 Machi Xcelsior Studios Co., Ltd.",
+   "printSourceEn": "Machi Xcelsior Studios Co., Ltd.",
    "prog": "golden-horse-2026"
   },
   {
@@ -8227,6 +8243,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "无限映画（中国）有限公司 Unlimited Production (China) Limited",
+   "printSourceEn": "Unlimited Production (China) Limited",
    "prog": "golden-horse-2026"
   },
   {
@@ -8261,6 +8279,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "悠悠制作有限公司 Yo Production Limited",
+   "printSourceEn": "Yo Production Limited",
    "prog": "golden-horse-2026"
   },
   {
@@ -8299,6 +8319,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "大元娱乐有限公司 IS Entertainment Co., Ltd.",
+   "printSourceEn": "IS Entertainment Co., Ltd.",
    "prog": "golden-horse-2026"
   },
   {
@@ -8335,6 +8357,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "天予电影有限公司 Gift Pictures",
+   "printSourceEn": "Gift Pictures",
    "prog": "golden-horse-2026"
   },
   {
@@ -8377,6 +8401,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "水花电影股份有限公司 Splash Pictures, Inc.",
+   "printSourceEn": "Splash Pictures, Inc.",
    "prog": "golden-horse-2026"
   },
   {
@@ -8411,6 +8437,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "三点子映画 Three Dots Films / 雪人岛电影有限公司 Snow Island Pictures Limited",
+   "printSourceEn": "Three Dots Films / Snow Island Pictures Limited",
    "prog": "golden-horse-2026"
   },
   {
@@ -8447,6 +8475,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "星光佳世文化娱乐有限公司 Star Generation Culture & Entertainment Co., Ltd.",
+   "printSourceEn": "Star Generation Culture & Entertainment Co., Ltd.",
    "prog": "golden-horse-2026"
   },
   {
@@ -8489,6 +8519,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "菲与飞工作室有限公司 Goodnight Production Limited",
+   "printSourceEn": "Goodnight Production Limited",
    "prog": "golden-horse-2026"
   },
   {
@@ -8523,6 +8555,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "瀚草文创科技股份有限公司 GrX Studio",
+   "printSourceEn": "GrX Studio",
    "prog": "golden-horse-2026"
   },
   {
@@ -8557,6 +8591,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "财团法人原住民族文化事业基金会 Indigenous Peoples Cultural Foundation",
+   "printSourceEn": "Indigenous Peoples Cultural Foundation",
    "prog": "golden-horse-2026"
   },
   {
@@ -8592,6 +8628,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "青山电影有限公司 Verdant Peak Films",
+   "printSourceEn": "Verdant Peak Films",
    "prog": "golden-horse-2026"
   },
   {
@@ -8635,6 +8673,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "一条龙虎豹国际娱乐有限公司 Yi Tiao Long Hu Bao International Entertainment Co.",
+   "printSourceEn": "Yi Tiao Long Hu Bao International Entertainment Co.",
    "prog": "golden-horse-2026"
   },
   {
@@ -8675,6 +8715,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "长景路电影工作室 Giraffe Pictures Pte. Ltd.",
+   "printSourceEn": "Giraffe Pictures Pte. Ltd.",
    "prog": "golden-horse-2026"
   },
   {
@@ -8713,6 +8755,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "秝米有限公司 MM Square Co., Ltd.",
+   "printSourceEn": "MM Square Co., Ltd.",
    "prog": "golden-horse-2026"
   },
   {
@@ -8749,6 +8793,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "财团法人公共电视文化事业基金会 Taiwan Public Television Service Foundation",
+   "printSourceEn": "Taiwan Public Television Service Foundation",
    "prog": "golden-horse-2026"
   },
   {
@@ -8786,6 +8832,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "Notrich Media Limited",
+   "printSourceEn": "Notrich Media Limited",
    "prog": "golden-horse-2026"
   },
   {
@@ -8822,6 +8870,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "秋分映象有限公司 Autumn Film Production",
+   "printSourceEn": "Autumn Film Production",
    "prog": "golden-horse-2026"
   },
   {
@@ -8859,6 +8909,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "高先电影有限公司 Golden Scene Company Limited",
+   "printSourceEn": "Golden Scene Company Limited",
    "prog": "golden-horse-2026"
   },
   {
@@ -8896,6 +8948,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "林佑恩 Lin Yu-en",
+   "printSourceEn": "Lin Yu-en",
    "prog": "golden-horse-2026"
   },
   {
@@ -8933,6 +8987,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "孙逊 Sun Xun",
+   "printSourceEn": "Sun Xun",
    "prog": "golden-horse-2026"
   },
   {
@@ -8969,6 +9025,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "深空天体有限公司 Deep Sky Object Co., Ltd.",
+   "printSourceEn": "Deep Sky Object Co., Ltd.",
    "prog": "golden-horse-2026"
   },
   {
@@ -9008,6 +9066,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "机器人乐园 Robot Playground Media",
+   "printSourceEn": "Robot Playground Media",
    "prog": "golden-horse-2026"
   },
   {
@@ -9042,7 +9102,9 @@ module.exports = {
      "synEn": "As abortion is illegal, the pregnant Siti tries everything to get rid of the foetus but fails. When she meets a charming female bus driver, who is in fact a spiritual entity, Siti realises that the only way out is to become one too.",
      "honors": [
       "提名｜2026 金马奖 · 最佳剧情短片"
-     ]
+     ],
+     "printSource": "果电影 Buah Films",
+     "printSourceEn": "Buah Films"
     },
     {
      "cn": "她说",
@@ -9056,7 +9118,9 @@ module.exports = {
      "synEn": "When her partner proposes, Ling makes a confession about her time as a scam caller. As an unpayable debt unfolds, we are left to question the line between confession and allegory and what truth Ling is revealing about her past and their future.",
      "honors": [
       "提名｜2026 金马奖 · 最佳剧情短片"
-     ]
+     ],
+     "printSource": "聂力涵 Nie Lihan",
+     "printSourceEn": "Nie Lihan"
     },
     {
      "cn": "末代僵尸",
@@ -9070,7 +9134,9 @@ module.exports = {
      "synEn": "Rooted in the ancient Xiangxi ritual of corpse-herding, Jiangshi became a global cinematic icon following the 1985 cult classic Mr. Vampire. Four decades later, a documentary filmmaker and a Taoist priest encounter Lao Li – the last living Jiangshi.",
      "honors": [
       "提名｜2026 金马奖 · 最佳剧情短片"
-     ]
+     ],
+     "printSource": "黑色高地影业有限公司 Massifilms Limited",
+     "printSourceEn": "Massifilms Limited"
     }
    ],
    "ageRating": "限制级（18+）",
@@ -9121,7 +9187,9 @@ module.exports = {
      "synEn": "Two teenagers' mission to steal a pig's head sends them on a journey through the heart of Hong Kong, culminating in an act of resistance to honour an absent friend.",
      "honors": [
       "提名｜2026 金马奖 · 最佳剧情短片"
-     ]
+     ],
+     "printSource": "郭佩绮 Kuo Pei-chi",
+     "printSourceEn": "Kuo Pei-chi"
     },
     {
      "cn": "爬坡",
@@ -9135,7 +9203,9 @@ module.exports = {
      "synEn": "Lai works as a private cook. She solves people's problems but not her own with her husband. She finds one thing that relaxes her – learning to drive in secret. During her first on-road training, a small incident unsettles her life.",
      "honors": [
       "提名｜2026 金马奖 · 最佳剧情短片"
-     ]
+     ],
+     "printSource": "郭佩绮 Kuo Pei-chi",
+     "printSourceEn": "Kuo Pei-chi"
     }
    ],
    "ageRating": "保护级（6+）",
@@ -9187,7 +9257,9 @@ module.exports = {
      "synEn": "Yoshikawa Hayao, a pioneer of amateur cinema in Asia, rediscovered a forgotten dream from his youth: to create a sci-fi film set on the Moon, and the journey became a return to the spirit of amateur cinema itself.",
      "honors": [
       "提名｜2026 金马奖 · 最佳纪录短片"
-     ]
+     ],
+     "printSource": "高雄市电影馆 Kaohsiung Film Archive",
+     "printSourceEn": "Kaohsiung Film Archive"
     },
     {
      "cn": "缅甸女孩",
@@ -9201,7 +9273,9 @@ module.exports = {
      "synEn": "Under Myanmar's repressive military regime, two teenage girls are preparing for exams to study in Taiwan and pursue a safer future their family have planned for them. As they dream about what lies ahead, they begin to question what freedom truly means.",
      "honors": [
       "提名｜2026 金马奖 · 最佳纪录短片"
-     ]
+     ],
+     "printSource": "刻廓影视文化有限公司 Island X Pictures",
+     "printSourceEn": "Island X Pictures"
     },
     {
      "cn": "屋舍上的叶仔花",
@@ -9215,7 +9289,9 @@ module.exports = {
      "synEn": "Returning to the ancestral home his grandfather built for the family, the eldest grandson finds no trace of his own childhood. Through the rhythmic cadence of his grandmother's Hakka, he begins to reclaim his identity.",
      "honors": [
       "提名｜2026 金马奖 · 最佳纪录短片"
-     ]
+     ],
+     "printSource": "叶治芳 Yeh Chih-fang",
+     "printSourceEn": "Yeh Chih-fang"
     }
    ],
    "ageRating": "普遍级（0+）",
@@ -9267,7 +9343,9 @@ module.exports = {
      "synEn": "A Farewell to Julieta records the demolition of Macau's first modern public housing estate, Edifício Julieta Nobre de Carvalho, weaving folk memories of the estate through poems crafted from children's dialogues and exploring the extensions of people, space, era, and emotion.",
      "honors": [
       "提名｜2026 金马奖 · 最佳纪录短片"
-     ]
+     ],
+     "printSource": "李卓媚 Lei Cheok-mei",
+     "printSourceEn": "Lei Cheok-mei"
     },
     {
      "cn": "夜行",
@@ -9281,7 +9359,9 @@ module.exports = {
      "synEn": "The Walker enters the dream of a small town in Eastern Europe. A cold autumn night. The townspeople have long gone to sleep. Tsai's films are also a kind of dream. People linger between sleep and waking, waiting for a mist to arrive.",
      "honors": [
       "提名｜2026 金马奖 · 最佳纪录短片"
-     ]
+     ],
+     "printSource": "汯呄霖电影有限公司 Homegreen Films Co., Ltd.",
+     "printSourceEn": "Homegreen Films Co., Ltd."
     }
    ],
    "ageRating": "普遍级（0+）",
@@ -9333,7 +9413,9 @@ module.exports = {
      "synEn": "Ping faces conflict with her girlfriend Lala's homophobic and aggressive father. Forced to take action to save herself, Ping kills him and makes him into a cake. This act severs ties and leads to a new phase of life.",
      "honors": [
       "提名｜2026 金马奖 · 最佳动画短片"
-     ]
+     ],
+     "printSource": "陈亭睿 Chen Ting-jui",
+     "printSourceEn": "Chen Ting-jui"
     },
     {
      "cn": "蝴蝶结",
@@ -9347,7 +9429,9 @@ module.exports = {
      "synEn": "Bowknot follows the protagonist, who accidentally learns to tie a bow and discovers its endless possibilities. He uses his newfound skill to solve challenges and help others in this story that combines creativity, humour, and a hopeful reflection on the world.",
      "honors": [
       "提名｜2026 金马奖 · 最佳动画短片"
-     ]
+     ],
+     "printSource": "李一洲 Li Yizhou",
+     "printSourceEn": "Li Yizhou"
     },
     {
      "cn": "我朋友的故事",
@@ -9361,7 +9445,9 @@ module.exports = {
      "synEn": "After Toothbag's friend committed suicide, Toothbag wraps her regret in anger, flipping through memories, yet still can't accept the loss. In an unexpected dream, she tries to leave behind her fantasies and obsessions with her friend and respect the fact.",
      "honors": [
       "提名｜2026 金马奖 · 最佳动画短片"
-     ]
+     ],
+     "printSource": "林奕伶 Lin Yi-ling",
+     "printSourceEn": "Lin Yi-ling"
     },
     {
      "cn": "深水区",
@@ -9375,7 +9461,9 @@ module.exports = {
      "synEn": "In the early 2000s in China, a 12-year-old girl joins a summer swimming class determined to reach the deep end. Through an unexpected bond with a classmate, she learns to overcome her fear of water and experiences her first queer awakening.",
      "honors": [
       "提名｜2026 金马奖 · 最佳动画短片"
-     ]
+     ],
+     "printSource": "张朴真 Zhang Puzhen",
+     "printSourceEn": "Zhang Puzhen"
     },
     {
      "cn": "埋葬的孩子",
@@ -9389,7 +9477,9 @@ module.exports = {
      "synEn": "The earthquake stole a mother's memories, but her child never forgets. Now buried deep underground, will the child find a way to restore her memories?",
      "honors": [
       "提名｜2026 金马奖 · 最佳动画短片"
-     ]
+     ],
+     "printSource": "烟囱文化创意有限公司 Chimney Animation",
+     "printSourceEn": "Chimney Animation"
     }
    ],
    "ageRating": "辅12级（12+）",
@@ -9442,6 +9532,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "S TAR China",
+   "printSourceEn": "S TAR China",
    "prog": "golden-horse-2026"
   },
   {
@@ -9480,6 +9572,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "群龙国际影视娱乐有限公司 Dragons Group Film Co., Ltd.",
+   "printSourceEn": "Dragons Group Film Co., Ltd.",
    "prog": "golden-horse-2026"
   },
   {
@@ -9515,6 +9609,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "龙祥育乐多媒体（股）有限公司 Long Shong Entertainment Multimedia Co., Ltd.",
+   "printSourceEn": "Long Shong Entertainment Multimedia Co., Ltd.",
    "prog": "golden-horse-2026"
   },
   {
@@ -9551,6 +9647,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "花生映社有限公司 Far Sun Film Co Ltd",
+   "printSourceEn": "Far Sun Film Co Ltd",
    "prog": "golden-horse-2026"
   },
   {
@@ -9584,6 +9682,7 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "香港都会大学伍絜宜人文社会科学院创意艺术学系",
    "prog": "golden-horse-2026"
   },
   {
@@ -9625,6 +9724,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "日映影像有限公司 Aview Images Co., Ltd.",
+   "printSourceEn": "Aview Images Co., Ltd.",
    "prog": "golden-horse-2026"
   },
   {
@@ -9660,6 +9761,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "视幻文化 Parallax Films",
+   "printSourceEn": "Parallax Films",
    "prog": "golden-horse-2026"
   },
   {
@@ -9696,6 +9799,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "飞望影像有限公司 Volos Films Co., Ltd.",
+   "printSourceEn": "Volos Films Co., Ltd.",
    "prog": "golden-horse-2026"
   },
   {
@@ -9730,6 +9835,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "潘之然 Elfie Pan",
+   "printSourceEn": "Elfie Pan",
    "prog": "golden-horse-2026"
   },
   {
@@ -9764,6 +9871,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "米神国际股份有限公司 Mission Entertainment",
+   "printSourceEn": "Mission Entertainment",
    "prog": "golden-horse-2026"
   },
   {
@@ -9797,6 +9906,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "Netflix",
+   "printSourceEn": "Netflix",
    "prog": "golden-horse-2026"
   },
   {
@@ -9829,7 +9940,9 @@ module.exports = {
      "synEn": "On a small volcanic island in the Pacific, two Yami brothers face their inner tides – one returns from the navy haunted by unspoken wounds, while the other finds solace in the same ocean that carries his brother's questions into the deep.",
      "honors": [
       "入选｜2026 瑞士真实影展"
-     ]
+     ],
+     "printSource": "刻廓影视文化有限公司 Island X Pictures",
+     "printSourceEn": "Island X Pictures"
     },
     {
      "cn": "缅甸女孩",
@@ -9841,7 +9954,9 @@ module.exports = {
      "dirO": "Flora HUANG Ling-hwa",
      "syn": "两名缅甸高中女孩，正准备赴台留学考试。课业重担、父母期盼，与彼此笑闹取暖，拼成青春片段。导演逆向走入她们将离开的城市，蛰伏静观、近陪聆听，以少女心事为轴，探问前进台湾，是否抵达自由。政变后的动荡无须直言，由停电家园、未竟功课与大人静默悄然弥漫。",
      "synEn": "Under Myanmar's repressive military regime, two teenage girls are preparing for exams to study in Taiwan and pursue a safer future their family have planned for them. As they dream about what lies ahead, they begin to question what freedom truly means.",
-     "honors": []
+     "honors": [],
+     "printSource": "刻廓影视文化有限公司 Island X Pictures",
+     "printSourceEn": "Island X Pictures"
     },
     {
      "cn": "她没说的事",
@@ -9855,7 +9970,9 @@ module.exports = {
      "synEn": "The director engages in an ongoing conversation with teenager Yu as she comes to terms with the experience of having had her intimate boundaries broken. A dialogue built on trust, it empowers Yu to reclaim her own story, transforming from a \"gazed-upon\" object to an artist with newfound strength.",
      "honors": [
       "入选｜2026 纽约亚洲影展"
-     ]
+     ],
+     "printSource": "刻廓影视文化有限公司 Island X Pictures",
+     "printSourceEn": "Island X Pictures"
     }
    ],
    "ageRating": "保护级（6+）",
@@ -9906,7 +10023,9 @@ module.exports = {
      "honors": [
       "入选｜2026 泰国普莱动画影展",
       "入选｜2026 香港MOViE MOViE动画艺术祭"
-     ]
+     ],
+     "printSource": "何历 Nic Ho",
+     "printSourceEn": "Nic Ho"
     },
     {
      "cn": "鱼羊花",
@@ -9920,7 +10039,9 @@ module.exports = {
      "synEn": "Ma Jin heads to town with his classmate to buy a birthday gift for his mother. After ruling out several options, he chooses to buy fresh flowers. Yet on the way back, Ma Jin suddenly makes a enexpected decision.",
      "honors": [
       "入选｜2026 86358贾家庄短片周"
-     ]
+     ],
+     "printSource": "宁夏宿文化传媒有限公司 Ningxia Shenxiu Culture Media Co., Ltd.",
+     "printSourceEn": "Ningxia Shenxiu Culture Media Co., Ltd."
     },
     {
      "cn": "上盖大",
@@ -9932,7 +10053,9 @@ module.exports = {
      "dirO": "CHANG Chun-yu",
      "syn": "九岁的刘皮正在度过最漫长的暑假，他被带回老家与阿公同住。两人彼此陪伴，学习著世界上有哪些东西是最臭的、最贵的、最美的……，还有最大的。饱和色彩衬托孩童纯粹，林钜以台语一字一句，道出最真挚动人的温柔诗篇。",
      "synEn": "Pi is on a long, long summer vacation. He is learning about the special things that surround him. What is the stinkiest thing? The priciest? The prettiest... and what is the biggest thing in the world?",
-     "honors": []
+     "honors": [],
+     "printSource": "财团法人公共电视文化事业基金会-公视台语台 Public Television Service Foundation, Taigi TV Station",
+     "printSourceEn": "Public Television Service Foundation, Taigi TV Station"
     },
     {
      "cn": "低头闭眼",
@@ -9944,7 +10067,9 @@ module.exports = {
      "dirO": "Joshua YANG",
      "syn": "在大程高中管乐社，智贤相信只要遵守规则、努力练习，就能成为梦想中的指挥。当机会来临，他最好的朋友却开始挑战社团奉行已久的规矩。随著两人走向不同立场，冲突一触即发，梦想与友情在低头闭眼间拉扯，化作最难吹奏的乐章。",
      "synEn": "Zhixian believes that following the rules and working hard in his high school wind band will fulfil his dream of becoming a conductor. But when the opportunity arrives, his best friend Zeming begins challenging those rules. Finding themselves on opposing sides, Zhixian must choose between his dream and their friendship.",
-     "honors": []
+     "honors": [],
+     "printSource": "杨宗桦 Joshua Yang",
+     "printSourceEn": "Joshua Yang"
     }
    ],
    "ageRating": "保护级（6+）",
@@ -9992,7 +10117,9 @@ module.exports = {
      "dirO": "NG Kai-wei",
      "syn": "秀兰是位能与动物沟通的母亲，从野外巨蜥到摊贩手中的鱼，都能透过语言了解彼此心意，唯有面对至亲骨肉时，无论如何释出善意，儿子始终不回应。一日，她偶然目睹孩子与友人亲近，意欲打探，反而引来更深的抗拒。母爱的失落，让她向菩萨祈求，盼有个愿与她说话的儿子……。",
      "synEn": "Talk to Me follows a mother and son with a tense relationship. Siew Lan can connect with any living thing, but this gift fails with her own son. Soon, her struggle turns into one desperate wish: \"Just talk to me, no matter the cost.\"",
-     "honors": []
+     "honors": [],
+     "printSource": "Graph Studio Sdn Bhd",
+     "printSourceEn": "Graph Studio Sdn Bhd"
     },
     {
      "cn": "朝日凋零",
@@ -10008,7 +10135,9 @@ module.exports = {
       "入选｜2026 温哥华影展",
       "入选｜2026 蒙特娄新电影影展",
       "入选｜2026 香港亚洲电影节"
-     ]
+     ],
+     "printSource": "聂力涵 Nie Lihan",
+     "printSourceEn": "Nie Lihan"
     },
     {
      "cn": "渺小的死亡",
@@ -10022,7 +10151,9 @@ module.exports = {
      "synEn": "Bette helps Lili, the girl she loves, escape from their boarding school to meet a boy. Bette soon realises that Lili plans to sleep with him. Caught between wanting to protect her and letting her go, Bette is forced to face her solitude, her longing for connection, and her tenderness toward Lili.",
      "honors": [
       "入选｜2026 捷克布尔诺短片影展 · 导演Director蔡沐时CAI Mushi"
-     ]
+     ],
+     "printSource": "蔡沐时 Mushi Cai",
+     "printSourceEn": "Mushi Cai"
     },
     {
      "cn": "灯火兰珊处",
@@ -10034,7 +10165,9 @@ module.exports = {
      "dirO": "Nirmala LAN HESSELLUND",
      "syn": "祖母离世，断了导演与台湾的最后亲缘。自小成长于丹麦，眼见岛屿前途未卜，她来台追溯来处，并以姓氏「兰」为引，随植物学家入山，寻访濒危兰花。寻根、寻花如藤蔓交缠，家族往事抽枝展叶，记忆传承与物种保育相依伴生。身在血缘所系、身分游离之地，归属能否落地？",
      "synEn": "In the forests of Taiwan, a botanist searches for endangered orchids while a filmmaker seeks belonging. The filmmaker's family name, Lan, meaning \"orchid\" in Mandarin, intertwines their parallel quests into a thoughtful exploration of preservation and identity on disputed land.",
-     "honors": []
+     "honors": [],
+     "printSource": "英国国家电影电视学院 The National Film and Television School",
+     "printSourceEn": "The National Film and Television School"
     }
    ],
    "ageRating": "保护级（6+）",
@@ -10092,6 +10225,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "光年映画有限公司 Light Year Images Co., Ltd.",
+   "printSourceEn": "Light Year Images Co., Ltd.",
    "prog": "golden-horse-2026"
   },
   {
@@ -10131,6 +10266,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "台湾华特迪士尼股份有限公司 The Walt Disney Company (Taiwan) Ltd.",
+   "printSourceEn": "The Walt Disney Company (Taiwan) Ltd.",
    "prog": "golden-horse-2026"
   },
   {
@@ -10170,6 +10307,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "The Festival Agency",
+   "printSourceEn": "The Festival Agency",
    "prog": "golden-horse-2026"
   },
   {
@@ -10206,6 +10345,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "Gaumont",
+   "printSourceEn": "Gaumont",
    "prog": "golden-horse-2026"
   },
   {
@@ -10240,6 +10381,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "Pyramide International",
+   "printSourceEn": "Pyramide International",
    "prog": "golden-horse-2026"
   },
   {
@@ -10278,6 +10421,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "mk2 Films",
+   "printSourceEn": "mk2 Films",
    "prog": "golden-horse-2026"
   },
   {
@@ -10314,6 +10459,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "SBS international",
+   "printSourceEn": "SBS international",
    "prog": "golden-horse-2026"
   },
   {
@@ -10352,6 +10499,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "赤角(北京)文化传播有限公司 Rediance",
+   "printSourceEn": "Rediance",
    "prog": "golden-horse-2026"
   },
   {
@@ -10390,6 +10539,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "Netflix",
+   "printSourceEn": "Netflix",
    "prog": "golden-horse-2026"
   },
   {
@@ -10427,6 +10578,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "可乐艺术文创股份有限公司 Cola Films Co., Ltd.",
+   "printSourceEn": "Cola Films Co., Ltd.",
    "prog": "golden-horse-2026"
   },
   {
@@ -10461,6 +10614,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "The Festival Agency",
+   "printSourceEn": "The Festival Agency",
    "prog": "golden-horse-2026"
   },
   {
@@ -10499,6 +10654,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "Goodfellas",
+   "printSourceEn": "Goodfellas",
    "prog": "golden-horse-2026"
   },
   {
@@ -10534,6 +10691,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "Goodfellas",
+   "printSourceEn": "Goodfellas",
    "prog": "golden-horse-2026"
   },
   {
@@ -10573,6 +10732,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "Filmbank Media",
+   "printSourceEn": "Filmbank Media",
    "prog": "golden-horse-2026"
   },
   {
@@ -10607,6 +10768,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "REASON8",
+   "printSourceEn": "REASON8",
    "prog": "golden-horse-2026"
   },
   {
@@ -10649,6 +10812,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "Lucky Number",
+   "printSourceEn": "Lucky Number",
    "prog": "golden-horse-2026"
   },
   {
@@ -10684,6 +10849,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "Paradise City Sales",
+   "printSourceEn": "Paradise City Sales",
    "prog": "golden-horse-2026"
   },
   {
@@ -10723,6 +10890,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "mk2 Films",
+   "printSourceEn": "mk2 Films",
    "prog": "golden-horse-2026"
   },
   {
@@ -10764,6 +10933,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "Filmbank Media",
+   "printSourceEn": "Filmbank Media",
    "prog": "golden-horse-2026"
   },
   {
@@ -10801,6 +10972,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "First Hand Films",
+   "printSourceEn": "First Hand Films",
    "prog": "golden-horse-2026"
   },
   {
@@ -10839,6 +11012,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "Together films",
+   "printSourceEn": "Together films",
    "prog": "golden-horse-2026"
   },
   {
@@ -10874,6 +11049,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "Filmbank Media",
+   "printSourceEn": "Filmbank Media",
    "prog": "golden-horse-2026"
   },
   {
@@ -10912,6 +11089,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "mk2 Films",
+   "printSourceEn": "mk2 Films",
    "prog": "golden-horse-2026"
   },
   {
@@ -10945,6 +11124,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "Bankside Films",
+   "printSourceEn": "Bankside Films",
    "prog": "golden-horse-2026"
   },
   {
@@ -10982,6 +11163,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "The Party Film Sales",
+   "printSourceEn": "The Party Film Sales",
    "prog": "golden-horse-2026"
   },
   {
@@ -11018,6 +11201,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "LevelK",
+   "printSourceEn": "LevelK",
    "prog": "golden-horse-2026"
   },
   {
@@ -11052,6 +11237,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "Filmbank Media",
+   "printSourceEn": "Filmbank Media",
    "prog": "golden-horse-2026"
   },
   {
@@ -11089,6 +11276,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "The Pool Films",
+   "printSourceEn": "The Pool Films",
    "prog": "golden-horse-2026"
   },
   {
@@ -11125,6 +11314,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "Magnify",
+   "printSourceEn": "Magnify",
    "prog": "golden-horse-2026"
   },
   {
@@ -11163,6 +11354,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "The Match Factory",
+   "printSourceEn": "The Match Factory",
    "prog": "golden-horse-2026"
   },
   {
@@ -11202,6 +11395,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "The Festival Agency",
+   "printSourceEn": "The Festival Agency",
    "prog": "golden-horse-2026"
   },
   {
@@ -11240,6 +11435,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "Luxbox",
+   "printSourceEn": "Luxbox",
    "prog": "golden-horse-2026"
   },
   {
@@ -11275,6 +11472,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "Lucky Number",
+   "printSourceEn": "Lucky Number",
    "prog": "golden-horse-2026"
   },
   {
@@ -11317,6 +11516,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "Best Friend Forever",
+   "printSourceEn": "Best Friend Forever",
    "prog": "golden-horse-2026"
   },
   {
@@ -11351,6 +11552,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "Lucky Number",
+   "printSourceEn": "Lucky Number",
    "prog": "golden-horse-2026"
   },
   {
@@ -11388,6 +11591,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "Surprise H",
+   "printSourceEn": "Surprise H",
    "prog": "golden-horse-2026"
   },
   {
@@ -11427,6 +11632,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "Third Floor Film Production",
+   "printSourceEn": "Third Floor Film Production",
    "prog": "golden-horse-2026"
   },
   {
@@ -11470,6 +11677,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "顶智有限公司 TOP CLEVER LIMITED",
+   "printSourceEn": "TOP CLEVER LIMITED",
    "prog": "golden-horse-2026"
   },
   {
@@ -11509,6 +11718,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "Heretic, 赖伟杰 Lai Weijie",
+   "printSourceEn": "Heretic, Lai Weijie",
    "prog": "golden-horse-2026"
   },
   {
@@ -11549,6 +11760,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "Global Constellation",
+   "printSourceEn": "Global Constellation",
    "prog": "golden-horse-2026"
   },
   {
@@ -11589,6 +11802,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "m-appeal",
+   "printSourceEn": "m-appeal",
    "prog": "golden-horse-2026"
   },
   {
@@ -11630,6 +11845,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "海鹏影业有限公司 Swallow Wings Films Co., Ltd.",
+   "printSourceEn": "Swallow Wings Films Co., Ltd.",
    "prog": "golden-horse-2026"
   },
   {
@@ -11665,6 +11882,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "Kino Films",
+   "printSourceEn": "Kino Films",
    "prog": "golden-horse-2026"
   },
   {
@@ -11701,6 +11920,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "Intramovies",
+   "printSourceEn": "Intramovies",
    "prog": "golden-horse-2026"
   },
   {
@@ -11737,6 +11958,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "K2 Pictures",
+   "printSourceEn": "K2 Pictures",
    "prog": "golden-horse-2026"
   },
   {
@@ -11774,6 +11997,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "SC Films International Ltd",
+   "printSourceEn": "SC Films International Ltd",
    "prog": "golden-horse-2026"
   },
   {
@@ -11808,6 +12033,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "天马行空数位有限公司 Sky Digi Entertainment Co.",
+   "printSourceEn": "Sky Digi Entertainment Co.",
    "prog": "golden-horse-2026"
   },
   {
@@ -11845,6 +12072,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "高二电影股份有限公司 Goer Film Co., Ltd.",
+   "printSourceEn": "Goer Film Co., Ltd.",
    "prog": "golden-horse-2026"
   },
   {
@@ -11880,6 +12109,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "政驹实业有限公司 Pigeon Co., Ltd.",
+   "printSourceEn": "Pigeon Co., Ltd.",
    "prog": "golden-horse-2026"
   },
   {
@@ -11919,6 +12150,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "Asian Shadows",
+   "printSourceEn": "Asian Shadows",
    "prog": "golden-horse-2026"
   },
   {
@@ -11961,6 +12194,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "New Europe Film Sales",
+   "printSourceEn": "New Europe Film Sales",
    "prog": "golden-horse-2026"
   },
   {
@@ -12001,6 +12236,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "Totem Films",
+   "printSourceEn": "Totem Films",
    "prog": "golden-horse-2026"
   },
   {
@@ -12039,6 +12276,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "Charades",
+   "printSourceEn": "Charades",
    "prog": "golden-horse-2026"
   },
   {
@@ -12071,6 +12310,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "Embankment Films",
+   "printSourceEn": "Embankment Films",
    "prog": "golden-horse-2026"
   },
   {
@@ -12108,6 +12349,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "Alpha Violet",
+   "printSourceEn": "Alpha Violet",
    "prog": "golden-horse-2026"
   },
   {
@@ -12146,6 +12389,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "Paradise City Sales",
+   "printSourceEn": "Paradise City Sales",
    "prog": "golden-horse-2026"
   },
   {
@@ -12182,7 +12427,9 @@ module.exports = {
       "入选｜2026 柏林影展 · 新世代",
       "入选｜2026 安锡动画影展",
       "入选｜2026 芝加哥影展"
-     ]
+     ],
+     "printSource": "Miyu Distribution",
+     "printSourceEn": "Miyu Distribution"
     },
     {
      "cn": "乘浪涛去",
@@ -12198,7 +12445,9 @@ module.exports = {
       "获奖｜2026 柏林影展 · 新世代Kplus儿童评审团最佳短片特别提及、国际评审团最佳短片特别提及",
       "获奖｜2026 奥伯豪森短片影展 · 儿童评审团奖",
       "入选｜2025 伦敦影展 · 导演Director罗柬LUO Jian"
-     ]
+     ],
+     "printSource": "Lammas Park Limited",
+     "printSourceEn": "Lammas Park Limited"
     },
     {
      "cn": "马背上的夏天",
@@ -12213,7 +12462,9 @@ module.exports = {
      "honors": [
       "入选｜2026 柏林影展 · 新世代",
       "获奖｜2025 里兹影展 · 约克郡短片竞赛评审团特别提及"
-     ]
+     ],
+     "printSource": "Roopa Gogineni",
+     "printSourceEn": "Roopa Gogineni"
     },
     {
      "cn": "抓耙仔",
@@ -12228,7 +12479,9 @@ module.exports = {
      "honors": [
       "入选｜2026 金穗奖评审团特别奖",
       "入选｜2025 高雄电影节 · 导演Director许筱玟"
-     ]
+     ],
+     "printSource": "许筱玟 HSU Hsiao-wen",
+     "printSourceEn": "HSU Hsiao-wen"
     },
     {
      "cn": "你吹 Do，我吹 Si",
@@ -12245,7 +12498,9 @@ module.exports = {
       "入选｜2026 柏林影展 · 新世代",
       "入选｜2026 维也纳短片影展",
       "入选｜2026 金穗奖"
-     ]
+     ],
+     "printSource": "财团法人富邦文教基金会 The Fubon Cultural and Educational Foundation",
+     "printSourceEn": "The Fubon Cultural and Educational Foundation"
     }
    ],
    "ageRating": "普遍级（0+）",
@@ -12302,6 +12557,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "Indie Sales",
+   "printSourceEn": "Indie Sales",
    "prog": "golden-horse-2026"
   },
   {
@@ -12338,6 +12595,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "Heretic",
+   "printSourceEn": "Heretic",
    "prog": "golden-horse-2026"
   },
   {
@@ -12377,6 +12636,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "mk2 Films",
+   "printSourceEn": "mk2 Films",
    "prog": "golden-horse-2026"
   },
   {
@@ -12414,6 +12675,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "Free Stone Productions Co., Ltd.",
+   "printSourceEn": "Free Stone Productions Co., Ltd.",
    "prog": "golden-horse-2026"
   },
   {
@@ -12449,6 +12712,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "Rocket Sheep Post Production Inc.",
+   "printSourceEn": "Rocket Sheep Post Production Inc.",
    "prog": "golden-horse-2026"
   },
   {
@@ -12485,6 +12750,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "mk2 Films",
+   "printSourceEn": "mk2 Films",
    "prog": "golden-horse-2026"
   },
   {
@@ -12521,6 +12788,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "mk2 Films",
+   "printSourceEn": "mk2 Films",
    "prog": "golden-horse-2026"
   },
   {
@@ -12553,6 +12822,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "台湾华特迪士尼股份有限公司 The Walt Disney Company (Taiwan) Ltd.",
+   "printSourceEn": "The Walt Disney Company (Taiwan) Ltd.",
    "prog": "golden-horse-2026"
   },
   {
@@ -12583,6 +12854,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "MUBI",
+   "printSourceEn": "MUBI",
    "prog": "golden-horse-2026"
   },
   {
@@ -12621,6 +12894,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "Be For Films",
+   "printSourceEn": "Be For Films",
    "prog": "golden-horse-2026"
   },
   {
@@ -12658,6 +12933,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "The Festival Agency",
+   "printSourceEn": "The Festival Agency",
    "prog": "golden-horse-2026"
   },
   {
@@ -12695,6 +12972,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "壹壹喜喜电影股份有限公司11 CC Films Company Limited",
+   "printSourceEn": "CC Films Company Limited",
    "prog": "golden-horse-2026"
   },
   {
@@ -12732,6 +13011,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "The Festival Agency",
+   "printSourceEn": "The Festival Agency",
    "prog": "golden-horse-2026"
   },
   {
@@ -12770,6 +13051,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "Normal Films LLC",
+   "printSourceEn": "Normal Films LLC",
    "prog": "golden-horse-2026"
   },
   {
@@ -12808,6 +13091,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "Goodfellas",
+   "printSourceEn": "Goodfellas",
    "prog": "golden-horse-2026"
   },
   {
@@ -12845,6 +13130,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "The Festival Agency",
+   "printSourceEn": "The Festival Agency",
    "prog": "golden-horse-2026"
   },
   {
@@ -12875,6 +13162,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "Avex Pictures Inc.",
+   "printSourceEn": "Avex Pictures Inc.",
    "prog": "golden-horse-2026"
   },
   {
@@ -12916,6 +13205,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "可乐艺术文创股份有限公司 Cola Films Co., Ltd.",
+   "printSourceEn": "Cola Films Co., Ltd.",
    "prog": "golden-horse-2026"
   },
   {
@@ -12955,6 +13246,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "mk2 Films",
+   "printSourceEn": "mk2 Films",
    "prog": "golden-horse-2026"
   },
   {
@@ -12994,6 +13287,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "东昊影业有限公司 Andrews Film Co., Ltd.",
+   "printSourceEn": "Andrews Film Co., Ltd.",
    "prog": "golden-horse-2026"
   },
   {
@@ -13032,6 +13327,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "M+",
+   "printSourceEn": "M+",
    "prog": "golden-horse-2026"
   },
   {
@@ -13071,6 +13368,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "Park Circus",
+   "printSourceEn": "Park Circus",
    "prog": "golden-horse-2026"
   },
   {
@@ -13107,6 +13406,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "Park Circus",
+   "printSourceEn": "Park Circus",
    "prog": "golden-horse-2026"
   },
   {
@@ -13142,6 +13443,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "Tohokushinsha Film Corporation",
+   "printSourceEn": "Tohokushinsha Film Corporation",
    "prog": "golden-horse-2026"
   },
   {
@@ -13176,6 +13479,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "MUBI",
+   "printSourceEn": "MUBI",
    "prog": "golden-horse-2026"
   },
   {
@@ -13214,6 +13519,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "Lightdox",
+   "printSourceEn": "Lightdox",
    "prog": "golden-horse-2026"
   },
   {
@@ -13248,6 +13555,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "mk2 Films",
+   "printSourceEn": "mk2 Films",
    "prog": "golden-horse-2026"
   },
   {
@@ -13282,6 +13591,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "海鹏影业有限公司 Swallow Wings Films Co., Ltd.",
+   "printSourceEn": "Swallow Wings Films Co., Ltd.",
    "prog": "golden-horse-2026"
   },
   {
@@ -13321,6 +13632,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "Theodoros Angelopoulos Film Production L.P.",
+   "printSourceEn": "Theodoros Angelopoulos Film Production L.P.",
    "prog": "golden-horse-2026"
   },
   {
@@ -13359,6 +13672,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "Les Films du Losange",
+   "printSourceEn": "Les Films du Losange",
    "prog": "golden-horse-2026"
   },
   {
@@ -13401,6 +13716,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "Park Circus",
+   "printSourceEn": "Park Circus",
    "prog": "golden-horse-2026"
   },
   {
@@ -13439,6 +13756,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "Nikkatsu Corporation",
+   "printSourceEn": "Nikkatsu Corporation",
    "prog": "golden-horse-2026"
   },
   {
@@ -13476,6 +13795,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "Nikkatsu Corporation",
+   "printSourceEn": "Nikkatsu Corporation",
    "prog": "golden-horse-2026"
   },
   {
@@ -13516,6 +13837,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "Nikkatsu Corporation",
+   "printSourceEn": "Nikkatsu Corporation",
    "prog": "golden-horse-2026"
   },
   {
@@ -13551,6 +13874,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "Nikkatsu Corporation",
+   "printSourceEn": "Nikkatsu Corporation",
    "prog": "golden-horse-2026"
   },
   {
@@ -13590,6 +13915,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "Shochiku Co., Ltd.",
+   "printSourceEn": "Shochiku Co., Ltd.",
    "prog": "golden-horse-2026"
   },
   {
@@ -13629,6 +13956,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "TOEI COMPANY, LTD.",
+   "printSourceEn": "TOEI COMPANY, LTD.",
    "prog": "golden-horse-2026"
   },
   {
@@ -13666,6 +13995,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "Shochiku Co., Ltd.",
+   "printSourceEn": "Shochiku Co., Ltd.",
    "prog": "golden-horse-2026"
   },
   {
@@ -13706,6 +14037,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "Nikkatsu Corporation",
+   "printSourceEn": "Nikkatsu Corporation",
    "prog": "golden-horse-2026"
   },
   {
@@ -13746,6 +14079,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "Chungeorahm Film",
+   "printSourceEn": "Chungeorahm Film",
    "prog": "golden-horse-2026"
   },
   {
@@ -13786,6 +14121,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "CJ Entertainment",
+   "printSourceEn": "CJ Entertainment",
    "prog": "golden-horse-2026"
   },
   {
@@ -13823,6 +14160,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "A24",
+   "printSourceEn": "A24",
    "prog": "golden-horse-2026"
   },
   {
@@ -13863,6 +14202,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "Park Circus",
+   "printSourceEn": "Park Circus",
    "prog": "golden-horse-2026"
   },
   {
@@ -13901,6 +14242,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "Pony Canyon Inc.",
+   "printSourceEn": "Pony Canyon Inc.",
    "prog": "golden-horse-2026"
   },
   {
@@ -13937,6 +14280,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "美商索尼影业台湾分公司 Sony Pictures Releasing Taiwan Corporation",
+   "printSourceEn": "Sony Pictures Releasing Taiwan Corporation",
    "prog": "golden-horse-2026"
   },
   {
@@ -13970,6 +14315,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "前景娱乐有限公司 Flash Forward Entertainment",
+   "printSourceEn": "Flash Forward Entertainment",
    "prog": "golden-horse-2026"
   },
   {
@@ -14009,6 +14356,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "Filmbank Media",
+   "printSourceEn": "Filmbank Media",
    "prog": "golden-horse-2026"
   },
   {
@@ -14053,6 +14402,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "Filmbank Media",
+   "printSourceEn": "Filmbank Media",
    "prog": "golden-horse-2026"
   },
   {
@@ -14089,6 +14440,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "Amazon MGM Studios",
+   "printSourceEn": "Amazon MGM Studios",
    "prog": "golden-horse-2026"
   },
   {
@@ -14122,6 +14475,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
+   "printSource": "美商索尼影业台湾分公司 Sony Pictures Releasing Taiwan Corporation",
+   "printSourceEn": "Sony Pictures Releasing Taiwan Corporation",
    "prog": "golden-horse-2026"
   },
   {
