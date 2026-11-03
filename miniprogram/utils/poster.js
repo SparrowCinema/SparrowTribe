@@ -1,6 +1,6 @@
 // 个人排片长图：与网站「排片长图」同一套版式（1080 宽），可在浏览器画布与小程序 2d 画布里运行。
 // 入参 days 与「我的」页的 days 结构一致：[{ d, wk, range, items:[{ id, t, end, cn, version, dir, min, venue, hall, color, gap }] }]
-const D = { W: 1080, P: 64, ROW: 196, GAP: 52, DAYH: 104, HEAD: 360, STATS: 150, FOOT: 420 };
+const D = { W: 1080, P: 64, ROW: 196, GAP: 52, DAYH: 104, HEAD: 360, STATS: 150, FOOT: 384 };
 // 画布无法加载网站的网页字体，按系统字体就近匹配：苹果用 Songti / PingFang / Menlo，安卓用思源系
 const SERIF = '"Noto Serif SC","Songti SC","STSong","Source Han Serif SC","Noto Serif CJK SC",serif', SANS = '"Noto Sans SC","PingFang SC","Source Han Sans SC","Noto Sans CJK SC","Microsoft YaHei",sans-serif', MONO = '"IBM Plex Mono",Menlo,"SF Mono",Consolas,monospace';
 
@@ -119,18 +119,19 @@ function draw(c, o) {
     y += 24;
   });
 
-  // 页脚：小程序里没有网站二维码，改为品牌与引导语
-  const fy = y + 20; c.fillStyle = '#2b2117'; rr(c, P, fy, W - 2 * P, FOOT - 84, 20); c.fill();
-  const fx = P + 36; c.fillStyle = '#fffaf0'; c.font = '700 38px ' + SANS; c.fillText(EN ? 'Search “麻雀观影护照” on WeChat' : '微信搜索「麻雀观影护照」', fx, fy + 96);
-  c.font = '400 24px ' + SANS; c.globalAlpha = .8; wrapCanvas(c, T('小程序里查看完整片目 · 最新排片 · 选择想看的电影'), fx, fy + 146, W - 2 * P - 72, 34); c.globalAlpha = 1;
+  // 页脚：小程序里没有网站二维码，改为品牌与引导语。卡片与日程同宽，内边距上下左右一致（40）
+  const CH = 300, PAD = 40, fy = y + 20; c.fillStyle = '#2b2117'; rr(c, P, fy, W - 2 * P, CH, 20); c.fill();
+  const fx = P + PAD; c.fillStyle = '#fffaf0'; c.font = '700 38px ' + SANS; c.fillText(EN ? 'Search “麻雀观影护照” on WeChat' : '微信搜索「麻雀观影护照」', fx, fy + PAD + 36);
+  c.font = '400 24px ' + SANS; c.globalAlpha = .8; wrapCanvas(c, T('小程序里查看完整片目 · 最新排片 · 选择想看的电影'), fx, fy + PAD + 82, W - 2 * P - 2 * PAD, 34); c.globalAlpha = 1;
+  const R = 48, cy = fy + CH - PAD - R;
   (o.marks || []).forEach((im, i) => {
-    const R = 54, cx = fx + R + i * (R * 2 + 24), cy = fy + 236;
+    const cx = fx + R + i * (R * 2 + 20);
     c.fillStyle = '#fffaf0'; c.beginPath(); c.arc(cx, cy, R, 0, Math.PI * 2); c.fill();
-    if (im) { const s = Math.min((R * 1.5) / im.width, (R * 1.5) / im.height), w = im.width * s, h = im.height * s; c.drawImage(im, cx - w / 2, cy - h / 2, w, h); }
+    if (im) { const k = Math.min((R * 1.5) / im.width, (R * 1.5) / im.height), w = im.width * k, h = im.height * k; c.drawImage(im, cx - w / 2, cy - h / 2, w, h); }
   });
-  const tx2 = fx + 2 * (54 * 2) + 24 + 40;
-  c.fillStyle = '#e0b9a6'; c.font = 'italic 900 30px ' + SERIF; c.fillText(T('麻雀观影护照'), tx2, fy + 228);
-  c.fillStyle = '#fffaf0'; c.globalAlpha = .7; c.font = '400 22px ' + SANS; c.fillText(T('麻雀映画 × 麻雀部落'), tx2, fy + 268); c.globalAlpha = 1;
+  const tx2 = fx + 4 * R + 20 + 36;
+  c.fillStyle = '#e0b9a6'; c.font = 'italic 900 30px ' + SERIF; c.fillText(T('麻雀观影护照'), tx2, cy - 2);
+  c.fillStyle = '#fffaf0'; c.globalAlpha = .7; c.font = '400 22px ' + SANS; c.fillText(T('麻雀映画 × 麻雀部落'), tx2, cy + 34); c.globalAlpha = 1;
 }
 
 module.exports = { D, heightOf, layout, draw };
