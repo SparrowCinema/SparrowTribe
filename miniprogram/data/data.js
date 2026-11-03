@@ -2087,7 +2087,14 @@ module.exports = {
    ],
    "writers": [],
    "honors": [
-    "获奖｜第79届戛纳国际电影节 · 最佳首作"
+    "获奖｜第79届戛纳国际电影节 · 最佳首作",
+    "入选｜2027 奥斯卡金像奖 · 最佳国际影片卢安达代表",
+    "获奖｜2026 戛纳影展 · 金摄影机奖、一种注目影评人费比西奖",
+    "入选｜2026 多伦多影展",
+    "入选｜2026 卡罗维瓦利影展",
+    "入选｜2026 墨尔本影展",
+    "入选｜2026 悉尼影展",
+    "入选｜2026 釜山影展"
    ],
    "highlights": [
     "和解并非一句口号：母亲的公共信念，如何承受女儿处境带来的私人考验？",
@@ -2124,6 +2131,16 @@ module.exports = {
     "sensory": "unverified"
    },
    "contentNote": "剧情涉及种族灭绝与历史创伤、家庭冲突、怀孕议题。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "ageRating": "保护级（6+）",
+   "subtitles": "原文发音，中文字幕",
+   "printSource": "mk2 Films",
+   "printSourceEn": "mk2 Films",
+   "links": {
+    "imdb": "tt38820979",
+    "lb": "benimana",
+    "douban": "36976760"
+   },
+   "cnDb": "神之子",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-001.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -2337,7 +2354,14 @@ module.exports = {
    ],
    "writers": [],
    "honors": [
-    "入围｜第79届戛纳国际电影节 · 导演双周单元"
+    "入围｜第79届戛纳国际电影节 · 导演双周单元",
+    "入选｜2026 戛纳影展 · 导演双周",
+    "入选｜2026 圣塞巴斯蒂安影展",
+    "入选｜2026 纽约影展",
+    "入选｜2026 波兰新地平线影展",
+    "入选｜2026 耶路撒冷影展",
+    "入选｜2026 悉尼影展",
+    "入选｜2026 釜山影展"
    ],
    "highlights": [
     "孩子间的结盟、敌意与嫉妒，让海边假期成为一个缩小的社会。",
@@ -2372,6 +2396,16 @@ module.exports = {
     "sensory": "unverified"
    },
    "contentNote": "剧情涉及儿童间的敌意与排斥。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "ageRating": "普遍级（0+）",
+   "subtitles": "原文发音，中文字幕",
+   "printSource": "Luxbox",
+   "printSourceEn": "Luxbox",
+   "links": {
+    "imdb": "tt31383175",
+    "lb": "red-rocks-2026",
+    "douban": "36778280"
+   },
+   "cnDb": "夏日红炎",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-006.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -2397,7 +2431,12 @@ module.exports = {
    ],
    "writers": [],
    "honors": [
-    "入围｜第79届戛纳国际电影节 · 导演双周单元"
+    "入围｜第79届戛纳国际电影节 · 导演双周单元",
+    "入选｜2026 戛纳影展 · 导演双周",
+    "入选｜2026 多伦多影展",
+    "入选｜2026 罗马尼亚外西凡尼亚影展",
+    "入选｜2026 纽约影展",
+    "入选｜2026 墨尔本影展"
    ],
    "highlights": [
     "现实家政劳动与舞台上的“女仆”角色互相映照，观察表演怎样改变主人公看待自己的方式。",
@@ -2434,6 +2473,16 @@ module.exports = {
     "sensory": "unverified"
    },
    "contentNote": "剧情涉及阶级歧视、移民劳动压力、母女分离。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "ageRating": "辅12级（12+）",
+   "subtitles": "原文发音，中文字幕",
+   "printSource": "SBS international",
+   "printSourceEn": "SBS international",
+   "links": {
+    "imdb": "tt38785098",
+    "lb": "the-diary-of-a-chambermaid-2026",
+    "douban": "37331353"
+   },
+   "cnDb": "女仆日记",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-007.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -2582,7 +2631,13 @@ module.exports = {
    ],
    "writers": [],
    "honors": [
-    "入围｜第79届洛迦诺电影节 · “国际竞赛单元”入围"
+    "入围｜第79届洛迦诺电影节 · “国际竞赛单元”入围",
+    "入选｜2026 洛迦诺影展 · 正式竞赛",
+    "入选｜2026 西班牙锡切斯奇幻影展",
+    "入选｜2026 新加坡电影节",
+    "入选｜2026 曼谷影展",
+    "入选｜2026 蒙特娄新电影影展",
+    "入选｜2026 夏威夷影展"
    ],
    "highlights": [
     "熟悉的神话角色进入陌生的月球旅程，观察爱情故事如何被重新安排。",
@@ -2618,6 +2673,19 @@ module.exports = {
     "sensory": "unverified"
    },
    "contentNote": "剧情涉及亲人失踪、冒险与生存危险。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "ageRating": "辅12级（12+）",
+   "subtitles": "原文发音，中文字幕",
+   "screeningNotes": {
+    "11/8-19:00-tp-vieshow-xinyi-hall-10": "映后活动 · 影人出席（嘉宾待公布）",
+    "11/9-16:00-tp-vieshow-xinyi-hall-10": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "printSource": "日映影像有限公司 Aview Images Co., Ltd.",
+   "printSourceEn": "Aview Images Co., Ltd.",
+   "links": {
+    "imdb": "tt39334277",
+    "lb": "the-house-on-the-moon-2026",
+    "douban": "37314633"
+   },
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-010.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -2642,7 +2710,10 @@ module.exports = {
    ],
    "writers": [],
    "honors": [
-    "获奖｜第55届鹿特丹国际电影节 · 青年评审团奖"
+    "获奖｜第55届鹿特丹国际电影节 · 青年评审团奖",
+    "提名｜2026 金马奖 · 最佳新导演",
+    "提名｜2026 金马奖 · 最佳新演员",
+    "提名｜2026 金马奖 · 最佳改编剧本"
    ],
    "highlights": [
     "女孩在学校经营泡泡糖小生意的机灵，与她无法决定家庭安排的无力感形成反差。",
@@ -2678,6 +2749,19 @@ module.exports = {
     "sensory": "unverified"
    },
    "contentNote": "剧情涉及父母分居、家庭争执、儿童情绪压力。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "ageRating": "普遍级（0+）",
+   "subtitles": "原文发音，中文字幕",
+   "screeningNotes": {
+    "11/18-16:20-tp-vieshow-xinyi-hall-10": "映后活动 · 影人出席（嘉宾待公布）",
+    "11/20-18:50-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "printSource": "高先电影有限公司 Golden Scene Company Limited",
+   "printSourceEn": "Golden Scene Company Limited",
+   "links": {
+    "imdb": "tt35683770",
+    "lb": "ah-girl",
+    "douban": "37030720"
+   },
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-011.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -4263,7 +4347,10 @@ module.exports = {
    ],
    "writers": [],
    "honors": [
-    "获奖｜第50届安纳西国际动画电影节 · 长片水晶奖"
+    "获奖｜第50届安纳西国际动画电影节 · 长片水晶奖",
+    "提名｜2026 金马奖 · 最佳动画片",
+    "提名｜2026 金马奖 · 最佳改编剧本",
+    "提名｜2026 金马奖 · 最佳原创电影音乐"
    ],
    "highlights": [
     "同一把琴在不同时代中流转，声音如何连接未能相见的人？",
@@ -4288,7 +4375,9 @@ module.exports = {
    ],
    "dirO": "Ervin Han / Raúl García",
    "screeningNotes": {
-    "11/8-19:45-xm-gr26-1-hall-3": "映后活动 · 主创见面会（嘉宾名单待公布，以实际到场为准）"
+    "11/8-19:45-xm-gr26-1-hall-3": "映后活动 · 主创见面会（嘉宾名单待公布，以实际到场为准）",
+    "11/20-13:40-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）",
+    "11/21-15:30-tp-vieshow-xinyi-hall-12": "映后活动 · 影人出席（嘉宾待公布）"
    },
    "warnings": [
     "战争与抵抗",
@@ -4302,6 +4391,15 @@ module.exports = {
     "sensory": "unverified"
    },
    "contentNote": "剧情涉及战争与抵抗、亲人失踪、长期哀伤。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "ageRating": "保护级（6+）",
+   "subtitles": "原文发音，中文字幕",
+   "printSource": "机器人乐园 Robot Playground Media",
+   "printSourceEn": "Robot Playground Media",
+   "links": {
+    "imdb": "tt30388264",
+    "lb": "the-violinist-2026",
+    "douban": "36575404"
+   },
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-036.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -4390,7 +4488,13 @@ module.exports = {
    ],
    "writers": [],
    "honors": [
-    "获奖｜第79届戛纳国际电影节 · 最佳编剧"
+    "获奖｜第79届戛纳国际电影节 · 最佳编剧",
+    "获奖｜2026 戛纳影展 · 最佳剧本、CST艺术家技术奖",
+    "入选｜2026 卡罗维瓦利影展",
+    "入选｜2026 耶路撒冷影展",
+    "入选｜2026 波兰新地平线影展",
+    "入选｜2026 纽约影展",
+    "入选｜2026 釜山影展"
    ],
    "highlights": [
     "一个希望被权力认可的人，怎样一步步把技术理想和个人野心交给压迫性的制度？",
@@ -4426,6 +4530,15 @@ module.exports = {
     "sensory": "unverified"
    },
    "contentNote": "剧情涉及纳粹与维希政权、政治迫害议题。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "ageRating": "辅12级（12+）",
+   "subtitles": "原文发音，中文字幕；无英文字幕",
+   "printSource": "可乐艺术文创股份有限公司 Cola Films Co., Ltd.",
+   "printSourceEn": "Cola Films Co., Ltd.",
+   "links": {
+    "imdb": "tt41593304",
+    "lb": "a-man-of-his-time",
+    "douban": "36660162"
+   },
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-038.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -4576,7 +4689,9 @@ module.exports = {
    ],
    "writers": [],
    "honors": [
-    "入选｜2026金鸡影展 · 拾光：华语新片展映"
+    "入选｜2026金鸡影展 · 拾光：华语新片展映",
+    "提名｜2026 金马奖 · 最佳女主角",
+    "提名｜2026 金马奖 · 最佳原著剧本"
    ],
    "highlights": [
     "戏剧角色与演员自身的关系逐渐重叠，留意哪些话是“台词”，哪些已越过排练的边界。",
@@ -4602,7 +4717,8 @@ module.exports = {
    ],
    "dirO": "Keane Wong Tak-Kin",
    "screeningNotes": {
-    "11/9-14:10-xm-gr26-1-hall-6": "映后活动 · 主创映后交流（嘉宾名单待公布，以实际到场为准）"
+    "11/9-14:10-xm-gr26-1-hall-6": "映后活动 · 主创映后交流（嘉宾名单待公布，以实际到场为准）",
+    "11/20-18:30-tp-vieshow-xinyi-hall-12": "映后活动 · 影人出席（嘉宾待公布）"
    },
    "warnings": [
     "婚姻与婚外关系",
@@ -4615,6 +4731,15 @@ module.exports = {
     "sensory": "unverified"
    },
    "contentNote": "剧情涉及婚姻与婚外关系、职场权力关系。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "ageRating": "保护级（6+）",
+   "subtitles": "原文发音，中文字幕",
+   "printSource": "无限映画（中国）有限公司 Unlimited Production (China) Limited",
+   "printSourceEn": "Unlimited Production (China) Limited",
+   "links": {
+    "imdb": "tt38798617",
+    "lb": "afterpiece",
+    "douban": "37817037"
+   },
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-041.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -4638,7 +4763,12 @@ module.exports = {
    ],
    "writers": [],
    "honors": [
-    "入围｜第10届平遥国际电影展 · “藏龙”竞赛单元"
+    "入围｜第10届平遥国际电影展 · “藏龙”竞赛单元",
+    "提名｜2026 金马奖 · 最佳男主角",
+    "提名｜2026 金马奖 · 最佳摄影",
+    "提名｜2026 金马奖 · 最佳美术设计",
+    "提名｜2026 金马奖 · 最佳原创电影音乐",
+    "提名｜2026 金马奖 · 最佳原创电影歌曲"
    ],
    "highlights": [
     "一个背负罪疚的出狱者与一个受困的女人，如何建立既脆弱又具体的信任？",
@@ -4664,7 +4794,8 @@ module.exports = {
    ],
    "dirO": "Kethsvin Chee",
    "screeningNotes": {
-    "11/9-14:25-xm-gr26-1-hall-2": "映后活动 · 主创映后交流（嘉宾名单待公布，以实际到场为准）"
+    "11/9-14:25-xm-gr26-1-hall-2": "映后活动 · 主创映后交流（嘉宾名单待公布，以实际到场为准）",
+    "11/8-13:10-tp-muvie-titan-titan": "映后活动 · 影人出席（嘉宾待公布）"
    },
    "warnings": [
     "死亡与罪责",
@@ -4678,6 +4809,15 @@ module.exports = {
     "sensory": "unverified"
    },
    "contentNote": "剧情涉及死亡与罪责、软禁、关系创伤。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "ageRating": "辅12级（12+）",
+   "subtitles": "原文发音，中文字幕",
+   "printSource": "秝米有限公司 MM Square Co., Ltd. / 香港商甲上娱乐有限公司台湾分公司",
+   "printSourceEn": "MM Square Co., Ltd. / 香港商甲上娱乐有限公司台湾分公司",
+   "links": {
+    "imdb": "tt35486825",
+    "lb": "dead-tide-2026",
+    "douban": "37207215"
+   },
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-042.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -4900,7 +5040,16 @@ module.exports = {
    ],
    "writers": [],
    "honors": [
-    "入围｜第51届多伦多国际电影节 · 发现单元"
+    "入围｜第51届多伦多国际电影节 · 发现单元",
+    "提名｜2026 金马奖 · 最佳剧情片",
+    "提名｜2026 金马奖 · 最佳造型设计",
+    "提名｜2026 金马奖 · 最佳男主角",
+    "提名｜2026 金马奖 · 最佳原创电影歌曲",
+    "提名｜2026 金马奖 · 最佳女主角",
+    "提名｜2026 金马奖 · 最佳剪辑",
+    "提名｜2026 金马奖 · 最佳女配角",
+    "提名｜2026 金马奖 · 最佳新导演",
+    "提名｜2026 金马奖 · 最佳原著剧本"
    ],
    "highlights": [
     "一次出错餐怎样升级成连续报复，观察每个人为自己寻找的理由。",
@@ -4926,7 +5075,8 @@ module.exports = {
    ],
    "dirO": "Yeung Leung Chuen",
    "screeningNotes": {
-    "11/10-19:30-xm-gr26-1-hall-3": "映后活动 · 主创映后交流（嘉宾名单待公布，以实际到场为准）"
+    "11/10-19:30-xm-gr26-1-hall-3": "映后活动 · 主创映后交流（嘉宾名单待公布，以实际到场为准）",
+    "11/20-18:00-tp-muvie-titan-titan": "映后活动 · 影人出席（嘉宾待公布）"
    },
    "warnings": [
     "报复与人际冲突",
@@ -4939,6 +5089,15 @@ module.exports = {
     "sensory": "unverified"
    },
    "contentNote": "剧情涉及报复与人际冲突、经济压力。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "ageRating": "保护级（6+）",
+   "subtitles": "原文发音，中文字幕",
+   "printSource": "菲与飞工作室有限公司 Goodnight Production Limited",
+   "printSourceEn": "Goodnight Production Limited",
+   "links": {
+    "imdb": "tt36563084",
+    "lb": "we-are-born-good",
+    "douban": "37114070"
+   },
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-046.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -4963,7 +5122,8 @@ module.exports = {
    ],
    "writers": [],
    "honors": [
-    "入围｜第31届釜山国际电影节 · “展望·亚洲”竞赛单元"
+    "入围｜第31届釜山国际电影节 · “展望·亚洲”竞赛单元",
+    "提名｜2026 金马奖 · 最佳动作设计"
    ],
    "highlights": [
     "追索案件时，不妨同时观察人物怎样回避自己的过去。",
@@ -4981,15 +5141,16 @@ module.exports = {
     "11/19-20:00-xm-gr26-8-hall-1": "21:27"
    },
    "r": [
-    null,
-    null,
+    5.3,
+    6,
     null,
     null,
     null
    ],
    "dirO": "Isabella Lam",
    "screeningNotes": {
-    "11/10-19:45-xm-gr26-1-hall-2": "映后活动 · 主创见面会（嘉宾名单待公布，以实际到场为准）"
+    "11/10-19:45-xm-gr26-1-hall-2": "映后活动 · 主创见面会（嘉宾名单待公布，以实际到场为准）",
+    "11/11-21:30-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）"
    },
    "warnings": [
     "犯罪与死亡",
@@ -5002,6 +5163,14 @@ module.exports = {
     "sensory": "unverified"
    },
    "contentNote": "剧情涉及犯罪与死亡、心理创伤。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "ageRating": "辅12级（12+）",
+   "subtitles": "原文发音，中文字幕",
+   "printSource": "英杰哆影业股份有限公司 inJECT FILMS Co., Ltd.",
+   "printSourceEn": "inJECT FILMS Co., Ltd.",
+   "links": {
+    "imdb": "tt40868707",
+    "douban": "37394940"
+   },
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-047.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -5270,7 +5439,13 @@ module.exports = {
    ],
    "writers": [],
    "honors": [
-    "入围｜第79届戛纳国际电影节 · 午夜展映单元"
+    "入围｜第79届戛纳国际电影节 · 午夜展映单元",
+    "入选｜2026 戛纳影展 · 午夜单元",
+    "入选｜2026 西班牙锡切斯奇幻影展",
+    "入选｜2026 奥斯汀奇幻影展",
+    "入选｜2026 赫尔辛基影展",
+    "入选｜2026 德国奥登堡影展",
+    "入选｜2026 富川奇幻影展"
    ],
    "highlights": [
     "食物不断增加，父女关系却未必因此更亲近：注意“补偿”怎样变成新的障碍。",
@@ -5307,6 +5482,16 @@ module.exports = {
     "sensory": "unverified"
    },
    "contentNote": "剧情涉及过量进食情节、父女关系冲突、恐怖片元素。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "ageRating": "辅12级（12+）",
+   "subtitles": "原文发音，中文字幕",
+   "printSource": "The Festival Agency",
+   "printSourceEn": "The Festival Agency",
+   "links": {
+    "imdb": "tt38607959",
+    "lb": "full-phil",
+    "douban": "37645032"
+   },
+   "cnDb": "吃饱的菲尔",
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-052.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -5660,7 +5845,12 @@ module.exports = {
    ],
    "writers": [],
    "honors": [
-    "入选｜2026金鸡影展 · 功夫·功夫：华语经典展映"
+    "入选｜2026金鸡影展 · 功夫·功夫：华语经典展映",
+    "入选｜2000 法国电影笔记1990年代最佳影片",
+    "获奖｜1996 金马奖 · 最佳电影歌曲",
+    "入选｜1996 戛纳影展 · 正式竞赛",
+    "入选｜1996 多伦多影展",
+    "入选｜1996 东京影展"
    ],
    "highlights": [
     "公路、火车与摩托车不断带人物向前，计划却屡屡原地打转。",
@@ -5696,6 +5886,18 @@ module.exports = {
     "sensory": "unverified"
    },
    "contentNote": "剧情涉及犯罪与暴力背景、家庭冲突。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "ageRating": "辅12级（12+）",
+   "subtitles": "原文发音，中文字幕",
+   "screeningNotes": {
+    "11/14-15:20-tp-muvie-titan-titan": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "printSource": "东昊影业有限公司 Andrews Film Co., Ltd.",
+   "printSourceEn": "Andrews Film Co., Ltd.",
+   "links": {
+    "imdb": "tt0117151",
+    "lb": "goodbye-south-goodbye",
+    "douban": "1303458"
+   },
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-058.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -6045,7 +6247,14 @@ module.exports = {
    ],
    "writers": [],
    "honors": [
-    "入选｜2026金鸡影展 · 拾光：华语新片展映"
+    "入选｜2026金鸡影展 · 拾光：华语新片展映",
+    "提名｜2026 金马奖 · 最佳剧情片",
+    "提名｜2026 金马奖 · 最佳剪辑",
+    "提名｜2026 金马奖 · 最佳导演",
+    "提名｜2026 金马奖 · 最佳女主角",
+    "提名｜2026 金马奖 · 最佳男配角",
+    "提名｜2026 金马奖 · 最佳造型设计",
+    "提名｜2026 金马奖 · 最佳原创电影音乐"
    ],
    "highlights": [
     "父亲和儿子的感情选择互相映照，年纪不同并不意味着更懂得如何成为家人。",
@@ -6080,6 +6289,18 @@ module.exports = {
     "sensory": "unverified"
    },
    "contentNote": "剧情涉及经济压力、代际与家庭冲突。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "ageRating": "保护级（6+）",
+   "subtitles": "原文发音，中文字幕",
+   "screeningNotes": {
+    "11/20-20:30-tp-muvie-titan-titan": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "printSource": "长景路电影工作室 Giraffe Pictures Pte. Ltd.",
+   "printSourceEn": "Giraffe Pictures Pte. Ltd.",
+   "links": {
+    "imdb": "tt13848364",
+    "lb": "we-are-all-strangers",
+    "douban": "35328629"
+   },
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-064.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -6490,7 +6711,10 @@ module.exports = {
    ],
    "writers": [],
    "honors": [
-    "获奖｜第79届洛迦诺国际电影节 · 主竞赛单元金豹奖"
+    "获奖｜第79届洛迦诺国际电影节 · 主竞赛单元金豹奖",
+    "获奖｜2026 洛迦诺影展 · 金豹奖、欧洲电影院发行奖",
+    "获奖｜2026 洛迦诺影展 · 青少年评审团首奖、演出特别提及",
+    "获奖｜2026 塞拉耶佛影展 · 最佳男演员"
    ],
    "highlights": [
     "父亲作为医院负责人时的自信，与他对儿子夜间生活的无知形成反差。",
@@ -6527,6 +6751,15 @@ module.exports = {
     "sensory": "unverified"
    },
    "contentNote": "剧情涉及谋杀调查、年轻人暴力、丧亲。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "ageRating": "保护级（6+）",
+   "subtitles": "原文发音，中文字幕",
+   "printSource": "REASON8",
+   "printSourceEn": "REASON8",
+   "links": {
+    "imdb": "tt39228759",
+    "lb": "you-dont-belong-here-2026",
+    "douban": "37834764"
+   },
    "prog": "golden-rooster-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-rooster-gr26-071.jpg",
    "ticketUrl": "https://sparrowcinema.github.io/SparrowTribe/tickets/golden-rooster-2026.jpg"
@@ -7954,7 +8187,9 @@ module.exports = {
     null
    ],
    "posterDb": "p2936872033",
-   "prog": "golden-horse-2026"
+   "poster": "posters/golden-horse-gh63-001.jpg",
+   "prog": "golden-horse-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-horse-gh63-001.jpg"
   },
   {
    "id": "gh63-002",
@@ -8000,57 +8235,6 @@ module.exports = {
    },
    "cnDb": "花脸猫",
    "posterDb": "p2935443868",
-   "prog": "golden-horse-2026"
-  },
-  {
-   "id": "gh63-003",
-   "cn": "死亡赌局",
-   "o": "Dead End",
-   "en": "Dead End",
-   "y": 2026,
-   "c": "中国台湾",
-   "min": 96,
-   "reg": "cn",
-   "dir": "詹淳皓",
-   "dirO": "CHAN Chun-hao",
-   "syn": "地下组织以老人互助为名，操办人命赌局。当老父亲成了秤台上明码标价的肉，前职棒投手林胜毅不再能一去不回头。弟弟负气相抗、情人暗藏秘辛，绝命小镇狂飙夜不停。天亮以前，他能否撞开迷局？导演詹淳皓改编真实事件，以风格手持摄影，玩转有限类型时空，揭破台湾乡间暗黑的人性角落。春风领衔主演，搭档姚以缇、黄奇斌、丁宁，赌上性命直面存亡习题。",
-   "writers": [],
-   "cast": [],
-   "genre": [],
-   "honors": [
-    "提名｜2026 金马奖 · 最佳动作设计"
-   ],
-   "ageRating": "辅12级（12+）",
-   "subtitles": "原文发音，中文字幕",
-   "section": "金马奖入围影片",
-   "screeningNotes": {
-    "11/11-21:30-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）"
-   },
-   "warnings": [
-    "谋杀与暴力",
-    "经济压力"
-   ],
-   "contentReview": {
-    "status": "synopsis-reviewed",
-    "checked": "2026-11-03",
-    "sensory": "unverified"
-   },
-   "contentNote": "剧情涉及谋杀与暴力、经济压力。依据简介与公开资料整理，具体画面与表现强度尚未核实，请结合个人情况选择。",
-   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
-   "printSource": "英杰哆影业股份有限公司 inJECT FILMS Co., Ltd.",
-   "printSourceEn": "inJECT FILMS Co., Ltd.",
-   "links": {
-    "imdb": "tt40868707",
-    "douban": "37394940"
-   },
-   "r": [
-    5.3,
-    6,
-    null,
-    null,
-    null
-   ],
-   "posterDb": "p2930455642",
    "prog": "golden-horse-2026"
   },
   {
@@ -8212,60 +8396,6 @@ module.exports = {
    "prog": "golden-horse-2026"
   },
   {
-   "id": "gh63-007",
-   "cn": "泡泡糖女孩",
-   "o": "Ah Girl",
-   "en": "Ah Girl",
-   "y": 2026,
-   "c": "新加坡",
-   "min": 99,
-   "reg": "cn",
-   "dir": "洪玉桔",
-   "dirO": "Priscilla ANG Geck-geck",
-   "syn": "七岁女孩在父母分居后由祖母照顾，深谙吊儿郎当的爸爸和不快乐的妈妈都是骗人精。刚入小学就被迫早熟的她，偷偷在校园兜售泡泡糖，也为心仪的男孩执意留起长发；更试图在失序生活中，为了守护烦人又黏人的妹妹奋力一搏。新加坡导演洪玉桔长片首作，召唤童年记忆，再塑九○年代孩提时光，以儿童视角窥看破碎家庭的烟火，洞穿荒谬的成人世界，小演员王宣静灵动演活成长的笑怒哀愁。",
-   "writers": [],
-   "cast": [],
-   "genre": [],
-   "honors": [
-    "提名｜2026 金马奖 · 最佳新导演",
-    "提名｜2026 金马奖 · 最佳新演员",
-    "提名｜2026 金马奖 · 最佳改编剧本"
-   ],
-   "ageRating": "普遍级（0+）",
-   "subtitles": "原文发音，中文字幕",
-   "section": "金马奖入围影片",
-   "screeningNotes": {
-    "11/18-16:20-tp-vieshow-xinyi-hall-10": "映后活动 · 影人出席（嘉宾待公布）",
-    "11/20-18:50-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）"
-   },
-   "warnings": [
-    "家庭冲突"
-   ],
-   "contentReview": {
-    "status": "synopsis-reviewed",
-    "checked": "2026-11-03",
-    "sensory": "unverified"
-   },
-   "contentNote": "剧情涉及家庭冲突。依据简介与公开资料整理，具体画面与表现强度尚未核实，请结合个人情况选择。",
-   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
-   "printSource": "高先电影有限公司 Golden Scene Company Limited",
-   "printSourceEn": "Golden Scene Company Limited",
-   "links": {
-    "imdb": "tt35683770",
-    "lb": "ah-girl",
-    "douban": "37030720"
-   },
-   "r": [
-    8.5,
-    7.4,
-    null,
-    null,
-    3.76
-   ],
-   "posterDb": "p2930610622",
-   "prog": "golden-horse-2026"
-  },
-  {
    "id": "gh63-008",
    "cn": "功夫",
    "o": "Kung Fu",
@@ -8318,59 +8448,9 @@ module.exports = {
     3.03
    ],
    "posterDb": "p2928817567",
-   "prog": "golden-horse-2026"
-  },
-  {
-   "id": "gh63-009",
-   "cn": "第四幕",
-   "o": "Afterpiece",
-   "en": "Afterpiece",
-   "y": 2026,
-   "c": "中国香港",
-   "min": 113,
-   "reg": "cn",
-   "dir": "王德健",
-   "dirO": "Keane T.K WONG",
-   "syn": "假作真时真亦假，没人比江郎才尽的舞台剧导演欧文更懂虚无滋味。决心东山再起的他为新剧征选女角，相中素人汉娜分饰三角，编演昔日情事。知己反目、妻子离心、新欢忐忑，只是本以为一手主导大戏，怎料演进去的是他自己。尔冬升监制，新锐编导王德健大玩戏中戏局中局，寻摸戏剧与现实的疯狂边界，冯德伦、袁澧林、胡杏儿、周秀娜同台竞演，吟讽人生第四幕的痴嗔狂想。",
-   "writers": [],
-   "cast": [],
-   "genre": [],
-   "honors": [
-    "提名｜2026 金马奖 · 最佳女主角",
-    "提名｜2026 金马奖 · 最佳原著剧本"
-   ],
-   "ageRating": "保护级（6+）",
-   "subtitles": "原文发音，中文字幕",
-   "section": "金马奖入围影片",
-   "screeningNotes": {
-    "11/20-18:30-tp-vieshow-xinyi-hall-12": "映后活动 · 影人出席（嘉宾待公布）"
-   },
-   "warnings": [
-    "婚外关系"
-   ],
-   "contentReview": {
-    "status": "synopsis-reviewed",
-    "checked": "2026-11-03",
-    "sensory": "unverified"
-   },
-   "contentNote": "剧情涉及婚外关系。依据简介与公开资料整理，具体画面与表现强度尚未核实，请结合个人情况选择。",
-   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
-   "printSource": "无限映画（中国）有限公司 Unlimited Production (China) Limited",
-   "printSourceEn": "Unlimited Production (China) Limited",
-   "links": {
-    "imdb": "tt38798617",
-    "lb": "afterpiece",
-    "douban": "37817037"
-   },
-   "r": [
-    null,
-    7.7,
-    null,
-    null,
-    null
-   ],
-   "posterDb": "p2937102148",
-   "prog": "golden-horse-2026"
+   "poster": "posters/golden-horse-gh63-008.jpg",
+   "prog": "golden-horse-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-horse-gh63-008.jpg"
   },
   {
    "id": "gh63-010",
@@ -8699,66 +8779,6 @@ module.exports = {
    "prog": "golden-horse-2026"
   },
   {
-   "id": "gh63-016",
-   "cn": "善男信女",
-   "o": "We Are Born Good",
-   "en": "We Are Born Good",
-   "y": 2026,
-   "c": "中国香港",
-   "min": 97,
-   "reg": "cn",
-   "dir": "杨两全",
-   "dirO": "YEUNG Leung-chuen",
-   "syn": "好人坏人，谁才懂如何做人？出狱后的荣吉改头换面，勤恳经营茶餐厅，却被家人视作眼中钉。离家出走的若蕾独立谋生，积极试镜角色，却总被生活还以颜色。一次出错餐的插曲，让两人意外交恶，弱弱相残一触即发，好在压不死人的，终成救命稻草。香港新锐编导杨两全首部长片，以精巧叙事搬演城市边缘的躁动角落，《正义回廊》杨伟伦、《看我今天怎么说》钟雪莹荒诞交锋。",
-   "writers": [],
-   "cast": [],
-   "genre": [],
-   "honors": [
-    "提名｜2026 金马奖 · 最佳剧情片",
-    "提名｜2026 金马奖 · 最佳造型设计",
-    "提名｜2026 金马奖 · 最佳男主角",
-    "提名｜2026 金马奖 · 最佳原创电影歌曲",
-    "提名｜2026 金马奖 · 最佳女主角",
-    "提名｜2026 金马奖 · 最佳剪辑",
-    "提名｜2026 金马奖 · 最佳女配角",
-    "提名｜2026 金马奖 · 最佳新导演",
-    "提名｜2026 金马奖 · 最佳原著剧本"
-   ],
-   "ageRating": "保护级（6+）",
-   "subtitles": "原文发音，中文字幕",
-   "section": "金马奖入围影片",
-   "screeningNotes": {
-    "11/20-18:00-tp-muvie-titan-titan": "映后活动 · 影人出席（嘉宾待公布）"
-   },
-   "warnings": [
-    "监禁与司法压力",
-    "家庭冲突"
-   ],
-   "contentReview": {
-    "status": "synopsis-reviewed",
-    "checked": "2026-11-03",
-    "sensory": "unverified"
-   },
-   "contentNote": "剧情涉及监禁与司法压力、家庭冲突。依据简介与公开资料整理，具体画面与表现强度尚未核实，请结合个人情况选择。",
-   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
-   "printSource": "菲与飞工作室有限公司 Goodnight Production Limited",
-   "printSourceEn": "Goodnight Production Limited",
-   "links": {
-    "imdb": "tt36563084",
-    "lb": "we-are-born-good",
-    "douban": "37114070"
-   },
-   "r": [
-    7.9,
-    7.5,
-    null,
-    null,
-    3.56
-   ],
-   "posterDb": "p2936799439",
-   "prog": "golden-horse-2026"
-  },
-  {
    "id": "gh63-017",
    "cn": "那张照片里的我们",
    "o": "The Photo from 1977",
@@ -8963,122 +8983,9 @@ module.exports = {
     3.53
    ],
    "posterDb": "p2932229167",
-   "prog": "golden-horse-2026"
-  },
-  {
-   "id": "gh63-021",
-   "cn": "我们不是陌生人",
-   "o": "We Are All Strangers",
-   "en": "We Are All Strangers",
-   "y": 2026,
-   "c": "新加坡",
-   "min": 157,
-   "reg": "cn",
-   "dir": "陈哲艺",
-   "dirO": "Anthony CHEN",
-   "syn": "这座城，是不是只爱有钱人？即将退伍的俊阳和卖福建面的父亲蜗居组屋，相看两厌，直到接踵举办的两场婚礼，让俊阳女友和父亲新妻先后住进同一屋檐下。经济拮据磨蚀人心，也考验两代羁绊。然而当变故顿生，才是一夜长大的伊始。《爸妈不在家》新加坡导演陈哲艺，以绵延十多年的创作跨度，拆解一座城与两个人，写就「成长三部曲」终篇，杨雁雁、许家乐与林伟文、林咏谊再创家庭新章。",
-   "writers": [],
-   "cast": [],
-   "genre": [],
-   "honors": [
-    "提名｜2026 金马奖 · 最佳剧情片",
-    "提名｜2026 金马奖 · 最佳剪辑",
-    "提名｜2026 金马奖 · 最佳导演",
-    "提名｜2026 金马奖 · 最佳女主角",
-    "提名｜2026 金马奖 · 最佳男配角",
-    "提名｜2026 金马奖 · 最佳造型设计",
-    "提名｜2026 金马奖 · 最佳原创电影音乐"
-   ],
-   "ageRating": "保护级（6+）",
-   "subtitles": "原文发音，中文字幕",
-   "section": "金马奖入围影片",
-   "screeningNotes": {
-    "11/20-20:30-tp-muvie-titan-titan": "映后活动 · 影人出席（嘉宾待公布）"
-   },
-   "warnings": [
-    "经济压力",
-    "家庭冲突"
-   ],
-   "contentReview": {
-    "status": "synopsis-reviewed",
-    "checked": "2026-11-03",
-    "sensory": "unverified"
-   },
-   "contentNote": "剧情涉及经济压力、家庭冲突。依据简介与公开资料整理，具体画面与表现强度尚未核实，请结合个人情况选择。",
-   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
-   "printSource": "长景路电影工作室 Giraffe Pictures Pte. Ltd.",
-   "printSourceEn": "Giraffe Pictures Pte. Ltd.",
-   "links": {
-    "imdb": "tt13848364",
-    "lb": "we-are-all-strangers",
-    "douban": "35328629"
-   },
-   "r": [
-    5.8,
-    7.2,
-    null,
-    null,
-    3.33
-   ],
-   "posterDb": "p2929810703",
-   "prog": "golden-horse-2026"
-  },
-  {
-   "id": "gh63-022",
-   "cn": "黑潮",
-   "o": "Dead Tide",
-   "en": "Dead Tide",
-   "y": 2026,
-   "c": "马来西亚",
-   "min": 106,
-   "reg": "cn",
-   "dir": "池家庆",
-   "dirO": "Kethsvin CHEE",
-   "syn": "小渔村里的人心就像幽黑夜潮，让人无法轻易遁逃。因误杀入狱的阿忠刑满返家，愧疚却未曾放过他；被家人视作精神病患、禁锢在海上高脚屋的阿雪，暗藏无法倾诉的秘密。长夜一弯扁舟摆渡，让两个灵魂不期而遇，久违相拥。《嗨！神兽》马来西亚编导池家庆改编家乡真人真事，李心洁、王礼霖监制，陈泽耀、李沐演出一双各拥沉痛过往的折翼恋人，描绘社会压迫下的救赎悲歌。",
-   "writers": [],
-   "cast": [],
-   "genre": [],
-   "honors": [
-    "提名｜2026 金马奖 · 最佳男主角",
-    "提名｜2026 金马奖 · 最佳摄影",
-    "提名｜2026 金马奖 · 最佳美术设计",
-    "提名｜2026 金马奖 · 最佳原创电影音乐",
-    "提名｜2026 金马奖 · 最佳原创电影歌曲"
-   ],
-   "ageRating": "辅12级（12+）",
-   "subtitles": "原文发音，中文字幕",
-   "section": "金马奖入围影片",
-   "screeningNotes": {
-    "11/8-13:10-tp-muvie-titan-titan": "映后活动 · 影人出席（嘉宾待公布）"
-   },
-   "warnings": [
-    "谋杀与暴力",
-    "心理创伤与精神困扰",
-    "监禁与司法压力"
-   ],
-   "contentReview": {
-    "status": "synopsis-reviewed",
-    "checked": "2026-11-03",
-    "sensory": "unverified"
-   },
-   "contentNote": "剧情涉及谋杀与暴力、心理创伤与精神困扰、监禁与司法压力。依据简介与公开资料整理，具体画面与表现强度尚未核实，请结合个人情况选择。",
-   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
-   "printSource": "秝米有限公司 MM Square Co., Ltd. / 香港商甲上娱乐有限公司台湾分公司",
-   "printSourceEn": "MM Square Co., Ltd. / 香港商甲上娱乐有限公司台湾分公司",
-   "links": {
-    "imdb": "tt35486825",
-    "lb": "dead-tide-2026",
-    "douban": "37207215"
-   },
-   "r": [
-    5.2,
-    null,
-    null,
-    null,
-    null
-   ],
-   "posterDb": "p2936814573",
-   "prog": "golden-horse-2026"
+   "poster": "posters/golden-horse-gh63-020.jpg",
+   "prog": "golden-horse-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-horse-gh63-020.jpg"
   },
   {
    "id": "gh63-023",
@@ -9428,63 +9335,6 @@ module.exports = {
     2.79
    ],
    "posterDb": "p2935361100",
-   "prog": "golden-horse-2026"
-  },
-  {
-   "id": "gh63-030",
-   "cn": "沧海琴声",
-   "o": "The Violinist",
-   "en": "The Violinist",
-   "y": 2026,
-   "c": "新加坡 / 西班牙 / 义大利",
-   "min": 114,
-   "reg": "cn",
-   "dir": "韩蕴光 / 劳尔加西亚",
-   "dirO": "Ervin HAN / Raúl GARCÍA",
-   "syn": "一张童年合照，让新加坡传奇小提琴家李菲揭开尘封一生的往事。1930年代初期，英殖时期新加坡，李菲在家苦练琴艺，琴声吸引仆役养子阿凯，意外让他显露非凡天赋，从此走上音乐路。但随著二战日军进逼南洋，阿凯痛失养母，愤而弃琴加入盟军。临走前，他将小提琴与未完成的奏鸣曲讬付李菲，承诺战后归来合奏。李菲怀抱希望在战争中求生，但这场音乐梦是否早已破灭？叙事横跨殖民至战后，琴声寄情亦记人，动人心弦。",
-   "writers": [],
-   "cast": [],
-   "genre": [
-    "动画"
-   ],
-   "honors": [
-    "提名｜2026 金马奖 · 最佳动画片",
-    "提名｜2026 金马奖 · 最佳改编剧本",
-    "提名｜2026 金马奖 · 最佳原创电影音乐"
-   ],
-   "ageRating": "保护级（6+）",
-   "subtitles": "原文发音，中文字幕",
-   "section": "金马奖入围影片",
-   "screeningNotes": {
-    "11/20-13:40-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）",
-    "11/21-15:30-tp-vieshow-xinyi-hall-12": "映后活动 · 影人出席（嘉宾待公布）"
-   },
-   "warnings": [
-    "战争与历史创伤",
-    "死亡与哀伤"
-   ],
-   "contentReview": {
-    "status": "synopsis-reviewed",
-    "checked": "2026-11-03",
-    "sensory": "unverified"
-   },
-   "contentNote": "剧情涉及战争与历史创伤、死亡与哀伤。依据简介与公开资料整理，具体画面与表现强度尚未核实，请结合个人情况选择。",
-   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
-   "printSource": "机器人乐园 Robot Playground Media",
-   "printSourceEn": "Robot Playground Media",
-   "links": {
-    "imdb": "tt30388264",
-    "lb": "the-violinist-2026",
-    "douban": "36575404"
-   },
-   "r": [
-    null,
-    7.4,
-    null,
-    null,
-    3.46
-   ],
-   "posterDb": "p2937118909",
    "prog": "golden-horse-2026"
   },
   {
@@ -10145,7 +9995,9 @@ module.exports = {
     null
    ],
    "posterDb": "p2930326258",
-   "prog": "golden-horse-2026"
+   "poster": "posters/golden-horse-gh63-038.jpg",
+   "prog": "golden-horse-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-horse-gh63-038.jpg"
   },
   {
    "id": "gh63-039",
@@ -10230,65 +10082,9 @@ module.exports = {
     "douban": "37469796"
    },
    "posterDb": "p2936024609",
-   "prog": "golden-horse-2026"
-  },
-  {
-   "id": "gh63-041",
-   "cn": "明月共此时",
-   "o": "The House on the Moon",
-   "en": "The House on the Moon",
-   "y": 2026,
-   "c": "新加坡 / 中国台湾",
-   "min": 104,
-   "reg": "cn",
-   "dir": "杨国瑞",
-   "dirO": "Nelson YEO",
-   "syn": "世人皆知奔月传说，却不知其后悲喜汹涌。嫦娥为寻挚爱后羿，与地球来的盗贼共赴月球暗面之旅；蓬蒙弑师之外，原也藏著烈爱情事。当时间逐渐褪色，往昔时光映现，也望见暮年缠绵，更与酒鬼月老红绳相舞，谜语对酌。直至行过千年孤寂，穿越宇宙边界，顿悟生命与爱的真谛。",
-   "st": "《好久不见》新加坡编导杨国瑞再出奇作，以台星跨国合制复闯洛迦诺影展。延续独树一帜的魔幻笔法与作者风格，搭衬迷离的电子乐，打造另类公路电影。翻写嫦娥奔月、后羿射日、蓬蒙杀羿等经典神话，以跳跃的意识流时间线，勾勒神话人物内在的情感旅程。于台湾实地取景，并融合虚拟科技，重构月球壮景，揭开华语科幻武侠新页。黄冠智、张怀秋、李康生惊艳加盟，携手新加坡演员林诗安，再塑悲剧角色，追问世间真情。",
-   "writers": [],
-   "cast": [],
-   "genre": [],
-   "honors": [
-    "入选｜2026 洛迦诺影展 · 正式竞赛",
-    "入选｜2026 西班牙锡切斯奇幻影展",
-    "入选｜2026 新加坡电影节",
-    "入选｜2026 曼谷影展",
-    "入选｜2026 蒙特娄新电影影展",
-    "入选｜2026 夏威夷影展"
-   ],
-   "ageRating": "辅12级（12+）",
-   "subtitles": "原文发音，中文字幕",
-   "section": "华语首映",
-   "screeningNotes": {
-    "11/8-19:00-tp-vieshow-xinyi-hall-10": "映后活动 · 影人出席（嘉宾待公布）",
-    "11/9-16:00-tp-vieshow-xinyi-hall-10": "映后活动 · 影人出席（嘉宾待公布）"
-   },
-   "warnings": [
-    "谋杀与暴力"
-   ],
-   "contentReview": {
-    "status": "synopsis-reviewed",
-    "checked": "2026-11-03",
-    "sensory": "unverified"
-   },
-   "contentNote": "剧情涉及谋杀与暴力。依据简介与公开资料整理，具体画面与表现强度尚未核实，请结合个人情况选择。",
-   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
-   "printSource": "日映影像有限公司 Aview Images Co., Ltd.",
-   "printSourceEn": "Aview Images Co., Ltd.",
-   "links": {
-    "imdb": "tt39334277",
-    "lb": "the-house-on-the-moon-2026",
-    "douban": "37314633"
-   },
-   "r": [
-    null,
-    5.2,
-    null,
-    null,
-    3.05
-   ],
-   "posterDb": "p2934115518",
-   "prog": "golden-horse-2026"
+   "poster": "posters/golden-horse-gh63-040.jpg",
+   "prog": "golden-horse-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-horse-gh63-040.jpg"
   },
   {
    "id": "gh63-042",
@@ -10374,7 +10170,9 @@ module.exports = {
     "douban": "36883933"
    },
    "posterDb": "p2937175634",
-   "prog": "golden-horse-2026"
+   "poster": "posters/golden-horse-gh63-043.jpg",
+   "prog": "golden-horse-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-horse-gh63-043.jpg"
   },
   {
    "id": "gh63-044",
@@ -10506,7 +10304,9 @@ module.exports = {
    },
    "cnDb": "急诊室的奇迹",
    "posterDb": "p2936818941",
-   "prog": "golden-horse-2026"
+   "poster": "posters/golden-horse-gh63-046.jpg",
+   "prog": "golden-horse-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-horse-gh63-046.jpg"
   },
   {
    "id": "gh63-047",
@@ -11169,60 +10969,6 @@ module.exports = {
    "prog": "golden-horse-2026"
   },
   {
-   "id": "gh63-056",
-   "cn": "豪宅女仆日记",
-   "o": "The Diary of a Chambermaid",
-   "en": "The Diary of a Chambermaid",
-   "y": 2026,
-   "c": "法国 / 罗马尼亚",
-   "min": 93,
-   "reg": "eu",
-   "dir": "哈都裘德",
-   "dirO": "Radu JUDE",
-   "syn": "来自罗马尼亚的她，将幼女留在乡下娘家，只身在法国大城波尔多的豪宅帮佣。她打扫屋里的各国古董，依照雇主的喜好备餐，更是独生子眼中的说书高手。雇主待她不薄，不但邀她同桌用餐，更引介她担任名著〈女仆日记〉话剧主角。但在视讯另一头，女儿思母心切，焦急地关心她何时回家。眼见承诺女儿的年假就要来到，一通电话却打乱了所有安排。",
-   "st": "继尚雷诺瓦、布纽尔与班诺贾克后，法国小说家米尔博的经典著作第四度搬上银幕。哈都裘德暂别近作的癫狂尖锐，聚焦家务移工日常，紧扣欧洲政局时事，点出法国中产阶级看似开放进步底下的矛盾思维，以及移工的步步为营，不但与原著的道德讽刺遥相呼应，亦带入当代诠释与作者印记，笔触朴实却不失锋利。文森玛耿与米兰妮蒂莉共演夫妻，《绿光》女主角玛莉希维耶客串一角，更添惊喜。",
-   "writers": [],
-   "cast": [],
-   "genre": [],
-   "honors": [
-    "入选｜2026 戛纳影展 · 导演双周",
-    "入选｜2026 多伦多影展",
-    "入选｜2026 罗马尼亚外西凡尼亚影展",
-    "入选｜2026 纽约影展",
-    "入选｜2026 墨尔本影展"
-   ],
-   "ageRating": "辅12级（12+）",
-   "subtitles": "原文发音，中文字幕",
-   "section": "名家飨宴",
-   "warnings": [
-    "家庭冲突"
-   ],
-   "contentReview": {
-    "status": "synopsis-reviewed",
-    "checked": "2026-11-03",
-    "sensory": "unverified"
-   },
-   "contentNote": "剧情涉及家庭冲突。依据简介与公开资料整理，具体画面与表现强度尚未核实，请结合个人情况选择。",
-   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
-   "printSource": "SBS international",
-   "printSourceEn": "SBS international",
-   "links": {
-    "imdb": "tt38785098",
-    "lb": "the-diary-of-a-chambermaid-2026",
-    "douban": "37331353"
-   },
-   "cnDb": "女仆日记",
-   "r": [
-    7.3,
-    7,
-    null,
-    null,
-    3.7
-   ],
-   "posterDb": "p2934910303",
-   "prog": "golden-horse-2026"
-  },
-  {
    "id": "gh63-057",
    "cn": "疯癫老人日记",
    "o": "Diary of a Mad Old Man",
@@ -11333,61 +11079,6 @@ module.exports = {
     4.16
    ],
    "posterDb": "p2935488630",
-   "prog": "golden-horse-2026"
-  },
-  {
-   "id": "gh63-059",
-   "cn": "我们的救赎",
-   "o": "A Man of His Time",
-   "en": "A Man of His Time",
-   "y": 2026,
-   "c": "法国 / 比利时",
-   "min": 158,
-   "reg": "eu",
-   "dir": "艾曼纽马赫",
-   "dirO": "Emmanuel MARRE",
-   "syn": "1940年，纳粹入侵法国后成立亲德政权。事业失意、家庭失和的中年男子，从国难嗅到翻身良机。他带著自费出版的政治论著，前往新首都毛遂自荐、兜售理念、讨好权贵，深信只要成功上位，就能救国救己。一份劳动部差事果真到手，然而当寻常公职一步步被卷入时代暗流，他还能看见公文与数字背后活生生的「人」吗？",
-   "st": "邪恶并非骤然降临，而是在日常琐务中渐渐理所当然。取材自导演曾祖父真实经历，不拍摄战场与血光，仅以纪实跟拍与冷调幽默，捕捉二战期间的官僚齿轮运作。没有张牙舞爪的坏人，只有明哲保身、依法行政的普通人，任暴力于效率、服从与漂亮话间成形，喜剧悄然滑向惊悚，令人心底发寒。《坠恶真相》史旺亚劳德克制而深邃，演活虚荣与自欺，越想证明自己的价值，越显可悲而危险。",
-   "writers": [],
-   "cast": [],
-   "genre": [],
-   "honors": [
-    "获奖｜2026 戛纳影展 · 最佳剧本、CST艺术家技术奖",
-    "入选｜2026 卡罗维瓦利影展",
-    "入选｜2026 耶路撒冷影展",
-    "入选｜2026 波兰新地平线影展",
-    "入选｜2026 纽约影展",
-    "入选｜2026 釜山影展"
-   ],
-   "ageRating": "辅12级（12+）",
-   "subtitles": "原文发音，中文字幕；无英文字幕",
-   "section": "影迷嘉年华",
-   "warnings": [
-    "战争与历史创伤",
-    "政治压迫"
-   ],
-   "contentReview": {
-    "status": "synopsis-reviewed",
-    "checked": "2026-11-03",
-    "sensory": "unverified"
-   },
-   "contentNote": "剧情涉及战争与历史创伤、政治压迫。依据简介与公开资料整理，具体画面与表现强度尚未核实，请结合个人情况选择。",
-   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
-   "printSource": "可乐艺术文创股份有限公司 Cola Films Co., Ltd.",
-   "printSourceEn": "Cola Films Co., Ltd.",
-   "links": {
-    "imdb": "tt41593304",
-    "lb": "a-man-of-his-time",
-    "douban": "36660162"
-   },
-   "r": [
-    6.7,
-    7,
-    null,
-    null,
-    3.52
-   ],
-   "posterDb": "p2935124161",
    "prog": "golden-horse-2026"
   },
   {
@@ -11612,59 +11303,6 @@ module.exports = {
    "prog": "golden-horse-2026"
   },
   {
-   "id": "gh63-064",
-   "cn": "你不属于这里",
-   "o": "You Don't Belong Here",
-   "en": "You Don't Belong Here",
-   "y": 2026,
-   "c": "罗马尼亚",
-   "min": 154,
-   "reg": "eu",
-   "dir": "佛罗林瑟班",
-   "dirO": "Florin ȘERBAN",
-   "syn": "德高望重的小镇医生在妻子过世后独自抚养儿子，早已功成名就的他，满心期盼软弱的儿子能像自己一样优秀。当一具罗姆人的尸体被送往医院等候警方调查，醒目的黄色脚踏车成了被指控杀人的铁证。随著儿子不为人知的一面曝光，他完美无瑕的世界与仅存的盼望，也随之瓦解。",
-   "st": "承袭罗马尼亚新浪潮的叙事风格，《如果我想吹口哨》导演佛罗林瑟班以唯美诗意的冷冽长镜头，深度凝视当代社会在种族冲突与代际隔阂下的暗潮汹涌。历经两年选角、无数次反复排练，除了大胆启用大量素人演员，更特别找来罗马尼亚家喻户晓的喜剧演员亚德里安凡西卡担纲主角，打破过往幽默形象，以极度压抑的惊艳表现，完美诠释亲情暴力下的有毒期待，一举夺下洛迦诺影展最高荣誉金豹奖。",
-   "writers": [],
-   "cast": [],
-   "genre": [],
-   "honors": [
-    "获奖｜2026 洛迦诺影展 · 金豹奖、欧洲电影院发行奖",
-    "获奖｜2026 洛迦诺影展 · 青少年评审团首奖、演出特别提及",
-    "获奖｜2026 塞拉耶佛影展 · 最佳男演员"
-   ],
-   "ageRating": "保护级（6+）",
-   "subtitles": "原文发音，中文字幕",
-   "section": "影迷嘉年华",
-   "warnings": [
-    "谋杀与暴力",
-    "歧视与排斥",
-    "死亡与哀伤"
-   ],
-   "contentReview": {
-    "status": "synopsis-reviewed",
-    "checked": "2026-11-03",
-    "sensory": "unverified"
-   },
-   "contentNote": "剧情涉及谋杀与暴力、歧视与排斥、死亡与哀伤。依据简介与公开资料整理，具体画面与表现强度尚未核实，请结合个人情况选择。",
-   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
-   "printSource": "REASON8",
-   "printSourceEn": "REASON8",
-   "links": {
-    "imdb": "tt39228759",
-    "lb": "you-dont-belong-here-2026",
-    "douban": "37834764"
-   },
-   "r": [
-    null,
-    7.3,
-    null,
-    null,
-    3.58
-   ],
-   "posterDb": "p2934714013",
-   "prog": "golden-horse-2026"
-  },
-  {
    "id": "gh63-065",
    "cn": "热带庄园魅影",
    "o": "Death Has No Master",
@@ -11835,7 +11473,9 @@ module.exports = {
     4.55
    ],
    "posterDb": "p2936133407",
-   "prog": "golden-horse-2026"
+   "poster": "posters/golden-horse-gh63-067.jpg",
+   "prog": "golden-horse-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-horse-gh63-067.jpg"
   },
   {
    "id": "gh63-068",
@@ -12006,7 +11646,9 @@ module.exports = {
     3.61
    ],
    "posterDb": "p2931536028",
-   "prog": "golden-horse-2026"
+   "poster": "posters/golden-horse-gh63-070.jpg",
+   "prog": "golden-horse-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-horse-gh63-070.jpg"
   },
   {
    "id": "gh63-071",
@@ -12060,63 +11702,6 @@ module.exports = {
    "prog": "golden-horse-2026"
   },
   {
-   "id": "gh63-072",
-   "cn": "行过微光之路",
-   "o": "Ben'Imana",
-   "en": "Ben'Imana",
-   "y": 2026,
-   "c": "卢安达 / 加彭 / 法国 / 挪威",
-   "min": 101,
-   "reg": "me",
-   "dir": "玛丽克莱门汀杜萨贝詹博 / DUSABEJAMBO",
-   "dirO": "Marie-Clémentine / DUSABEJAMBO",
-   "syn": "1994年卢安达大屠杀，邻居反目成屠夫，国土沦为人间炼狱；18年过去，受害者与加害者亲属依然比邻而居，以静默遮隐伤痛。幸存者维内兰达相信唯有放下过去，才能走向未来，虽遭妹妹大力反对，仍在法庭公开原谅被告，并鼓励村民展开对话、修补关系。宽恕说得出口，不代表心中已无伤口，女儿突如其来的人生转折，终使她长年深埋的秘密纸包不住火。",
-   "st": "创下非洲电影首例，卢安达导演玛丽克莱门汀杜萨贝詹博首度入选戛纳影展一种注目，即勇夺金摄影机奖。以内敛镜头凝视劫后余生，藉三代女性碰撞承接历史重量：有人急于跨越、有人坚持究责、有人追问身世、有人困在往日，真相未必换来圆满，和解不是标准答案，转型正义之路从不平坦。电影拒做裁量，让众声于记忆与遗忘、揭露与承受之间激荡，在裂痕中寻觅共生微光。",
-   "writers": [],
-   "cast": [],
-   "genre": [],
-   "honors": [
-    "入选｜2027 奥斯卡金像奖 · 最佳国际影片卢安达代表",
-    "获奖｜2026 戛纳影展 · 金摄影机奖、一种注目影评人费比西奖",
-    "入选｜2026 多伦多影展",
-    "入选｜2026 卡罗维瓦利影展",
-    "入选｜2026 墨尔本影展",
-    "入选｜2026 悉尼影展",
-    "入选｜2026 釜山影展"
-   ],
-   "ageRating": "保护级（6+）",
-   "subtitles": "原文发音，中文字幕",
-   "section": "影坛新势力",
-   "warnings": [
-    "战争与历史创伤",
-    "死亡与哀伤"
-   ],
-   "contentReview": {
-    "status": "synopsis-reviewed",
-    "checked": "2026-11-03",
-    "sensory": "unverified"
-   },
-   "contentNote": "剧情涉及战争与历史创伤、死亡与哀伤。依据简介与公开资料整理，具体画面与表现强度尚未核实，请结合个人情况选择。",
-   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
-   "printSource": "mk2 Films",
-   "printSourceEn": "mk2 Films",
-   "links": {
-    "imdb": "tt38820979",
-    "lb": "benimana",
-    "douban": "36976760"
-   },
-   "cnDb": "神之子",
-   "r": [
-    7.7,
-    7.4,
-    null,
-    null,
-    3.79
-   ],
-   "posterDb": "p2936190804",
-   "prog": "golden-horse-2026"
-  },
-  {
    "id": "gh63-073",
    "cn": "爱×死×艺术家",
    "o": "The End of It",
@@ -12166,7 +11751,9 @@ module.exports = {
     3.17
    ],
    "posterDb": "p2932693855",
-   "prog": "golden-horse-2026"
+   "poster": "posters/golden-horse-gh63-073.jpg",
+   "prog": "golden-horse-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-horse-gh63-073.jpg"
   },
   {
    "id": "gh63-074",
@@ -12276,7 +11863,9 @@ module.exports = {
     3.56
    ],
    "posterDb": "p2934111593",
-   "prog": "golden-horse-2026"
+   "poster": "posters/golden-horse-gh63-075.jpg",
+   "prog": "golden-horse-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-horse-gh63-075.jpg"
   },
   {
    "id": "gh63-076",
@@ -12382,7 +11971,9 @@ module.exports = {
     3.46
    ],
    "posterDb": "p2934676211",
-   "prog": "golden-horse-2026"
+   "poster": "posters/golden-horse-gh63-077.jpg",
+   "prog": "golden-horse-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-horse-gh63-077.jpg"
   },
   {
    "id": "gh63-078",
@@ -12491,7 +12082,9 @@ module.exports = {
     3.3
    ],
    "posterDb": "p2932693157",
-   "prog": "golden-horse-2026"
+   "poster": "posters/golden-horse-gh63-079.jpg",
+   "prog": "golden-horse-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-horse-gh63-079.jpg"
   },
   {
    "id": "gh63-080",
@@ -12546,60 +12139,6 @@ module.exports = {
     3.25
    ],
    "posterDb": "p2933972321",
-   "prog": "golden-horse-2026"
-  },
-  {
-   "id": "gh63-081",
-   "cn": "红岩小鬼大激斗",
-   "o": "Red Rocks",
-   "en": "Red Rocks",
-   "y": 2026,
-   "c": "葡萄牙 / 法国 / 义大利 / 西班牙 / 卡达",
-   "min": 91,
-   "reg": "eu",
-   "dir": "布鲁诺杜蒙",
-   "dirO": "Bruno DUMONT",
-   "syn": "仲夏法国南部蔚蓝海岸小镇，吉奥与死党每天骑著迷你越野车四处晃荡，分赃游客背包里的玩具和糖，在海边耸立的红岩跳水逐浪。另一阵营的小鬼们也不遑多让，双方约在红岩再比一场，相互叫阵之时，小女孩却对吉奥一见钟情，让敌方老大百般不是滋味。一段跨越敌我的纯爱旅程，在妒火的埋伏之下，于蓝宝石般耀眼的地中海边展开。",
-   "st": "法国名导布鲁诺杜蒙离开肃穆的北海岸，在风光明媚的南法反璞归真。全片大人近乎缺席，超广角贴身拍摄素人儿童演员，钜细靡遗捕捉本能的原始冲动及直接的情绪反应，人小鬼大的互呛，有模有样的恋爱，令人莞尔。刻意保留粗糙质地的环境音，衬托奔放的野性，透过孩童澄澈心灵延续犀利人性哲思，余韵格外悠长。",
-   "writers": [],
-   "cast": [],
-   "genre": [],
-   "honors": [
-    "入选｜2026 戛纳影展 · 导演双周",
-    "入选｜2026 圣塞巴斯蒂安影展",
-    "入选｜2026 纽约影展",
-    "入选｜2026 波兰新地平线影展",
-    "入选｜2026 耶路撒冷影展",
-    "入选｜2026 悉尼影展",
-    "入选｜2026 釜山影展"
-   ],
-   "ageRating": "普遍级（0+）",
-   "subtitles": "原文发音，中文字幕",
-   "section": "不设防地带",
-   "warnings": [],
-   "contentReview": {
-    "status": "pending",
-    "checked": "2026-11-03",
-    "sensory": "unverified"
-   },
-   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
-   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
-   "printSource": "Luxbox",
-   "printSourceEn": "Luxbox",
-   "links": {
-    "imdb": "tt31383175",
-    "lb": "red-rocks-2026",
-    "douban": "36778280"
-   },
-   "cnDb": "夏日红炎",
-   "r": [
-    7.8,
-    6.5,
-    null,
-    null,
-    3.43
-   ],
-   "posterDb": "p2935557577",
    "prog": "golden-horse-2026"
   },
   {
@@ -12814,7 +12353,9 @@ module.exports = {
     3.65
    ],
    "posterDb": "p2935294322",
-   "prog": "golden-horse-2026"
+   "poster": "posters/golden-horse-gh63-085.jpg",
+   "prog": "golden-horse-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-horse-gh63-085.jpg"
   },
   {
    "id": "gh63-086",
@@ -12929,7 +12470,9 @@ module.exports = {
     3.48
    ],
    "posterDb": "p2929719783",
-   "prog": "golden-horse-2026"
+   "poster": "posters/golden-horse-gh63-087.jpg",
+   "prog": "golden-horse-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-horse-gh63-087.jpg"
   },
   {
    "id": "gh63-088",
@@ -13040,7 +12583,9 @@ module.exports = {
     3.46
    ],
    "posterDb": "p2933320777",
-   "prog": "golden-horse-2026"
+   "poster": "posters/golden-horse-gh63-089.jpg",
+   "prog": "golden-horse-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-horse-gh63-089.jpg"
   },
   {
    "id": "gh63-090",
@@ -13154,7 +12699,9 @@ module.exports = {
     3.17
    ],
    "posterDb": "p2931442507",
-   "prog": "golden-horse-2026"
+   "poster": "posters/golden-horse-gh63-091.jpg",
+   "prog": "golden-horse-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-horse-gh63-091.jpg"
   },
   {
    "id": "gh63-092",
@@ -13263,7 +12810,9 @@ module.exports = {
     3.6
    ],
    "posterDb": "p2934482771",
-   "prog": "golden-horse-2026"
+   "poster": "posters/golden-horse-gh63-093.jpg",
+   "prog": "golden-horse-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-horse-gh63-093.jpg"
   },
   {
    "id": "gh63-094",
@@ -13362,7 +12911,9 @@ module.exports = {
     3.71
    ],
    "posterDb": "p2930652446",
-   "prog": "golden-horse-2026"
+   "poster": "posters/golden-horse-gh63-095.jpg",
+   "prog": "golden-horse-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-horse-gh63-095.jpg"
   },
   {
    "id": "gh63-096",
@@ -13514,7 +13065,9 @@ module.exports = {
    },
    "cnDb": "影中的她们",
    "posterDb": "p2932424538",
-   "prog": "golden-horse-2026"
+   "poster": "posters/golden-horse-gh63-098.jpg",
+   "prog": "golden-horse-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-horse-gh63-098.jpg"
   },
   {
    "id": "gh63-099",
@@ -13629,7 +13182,9 @@ module.exports = {
     3.7
    ],
    "posterDb": "p2929987549",
-   "prog": "golden-horse-2026"
+   "poster": "posters/golden-horse-gh63-100.jpg",
+   "prog": "golden-horse-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-horse-gh63-100.jpg"
   },
   {
    "id": "gh63-101",
@@ -13740,7 +13295,9 @@ module.exports = {
     3.43
    ],
    "posterDb": "p2934422730",
-   "prog": "golden-horse-2026"
+   "poster": "posters/golden-horse-gh63-102.jpg",
+   "prog": "golden-horse-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-horse-gh63-102.jpg"
   },
   {
    "id": "gh63-103",
@@ -14128,7 +13685,9 @@ module.exports = {
     3.45
    ],
    "posterDb": "p2929875325",
-   "prog": "golden-horse-2026"
+   "poster": "posters/golden-horse-gh63-107.jpg",
+   "prog": "golden-horse-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-horse-gh63-107.jpg"
   },
   {
    "id": "gh63-108",
@@ -14290,7 +13849,9 @@ module.exports = {
     3.5
    ],
    "posterDb": "p2924896639",
-   "prog": "golden-horse-2026"
+   "poster": "posters/golden-horse-gh63-110.jpg",
+   "prog": "golden-horse-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-horse-gh63-110.jpg"
   },
   {
    "id": "gh63-111",
@@ -14496,7 +14057,9 @@ module.exports = {
     4.27
    ],
    "posterDb": "p2935139062",
-   "prog": "golden-horse-2026"
+   "poster": "posters/golden-horse-gh63-114.jpg",
+   "prog": "golden-horse-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-horse-gh63-114.jpg"
   },
   {
    "id": "gh63-115",
@@ -14596,7 +14159,9 @@ module.exports = {
     3.68
    ],
    "posterDb": "p2933748416",
-   "prog": "golden-horse-2026"
+   "poster": "posters/golden-horse-gh63-116.jpg",
+   "prog": "golden-horse-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-horse-gh63-116.jpg"
   },
   {
    "id": "gh63-117",
@@ -14702,59 +14267,6 @@ module.exports = {
     3.68
    ],
    "posterDb": "p2934502832",
-   "prog": "golden-horse-2026"
-  },
-  {
-   "id": "gh63-119",
-   "cn": "肚皮拉警报",
-   "o": "Full Phil",
-   "en": "Full Phil",
-   "y": 2026,
-   "c": "法国",
-   "min": 76,
-   "reg": "eu",
-   "dir": "昆汀杜皮尔",
-   "dirO": "Quentin DUPIEUX",
-   "syn": "为了修复破碎亲情，富商菲利普邀请爱女玛德莲一同游巴黎，女儿却只想看电脑萤幕里的宅宅科学家与鱼头丑恐龙魔法对轰。顾人怨老爸碎嘴念不停，玛德莲忍无可忍暴饮暴食应喙应舌，战况升级引来爱管闲事的服务生露西，以预防家暴为名勾勾缠。眼见与女儿的相处时光彻底被毁，菲利普气噗噗跑回房间耍自闭，才发现冤家父女没有心连心只剩肚连肚，失控场面一触即发。",
-   "st": "法国鬼才昆汀杜皮尔继《洛城警察坏坏事件》后全新英语长片，融合五○年代低成本特摄怪兽片及肉体恐怖元素，双线叙事无厘头串连剑拔弩张的父女关系，恶搞一众好莱坞明星，宛如邪典版《艾蜜莉在巴黎》。克莉丝汀史都华霸气吃相帅成女同天菜，潇洒煞到《妮基的重生》夏洛特勒彭，顺便把伍迪哈里逊气到膨风。歪到无可救药，保证教坏全家大小。",
-   "writers": [],
-   "cast": [],
-   "genre": [],
-   "honors": [
-    "入选｜2026 戛纳影展 · 午夜单元",
-    "入选｜2026 西班牙锡切斯奇幻影展",
-    "入选｜2026 奥斯汀奇幻影展",
-    "入选｜2026 赫尔辛基影展",
-    "入选｜2026 德国奥登堡影展",
-    "入选｜2026 富川奇幻影展"
-   ],
-   "ageRating": "辅12级（12+）",
-   "subtitles": "原文发音，中文字幕",
-   "section": "奇幻特快车",
-   "warnings": [],
-   "contentReview": {
-    "status": "pending",
-    "checked": "2026-11-03",
-    "sensory": "unverified"
-   },
-   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
-   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
-   "printSource": "The Festival Agency",
-   "printSourceEn": "The Festival Agency",
-   "links": {
-    "imdb": "tt38607959",
-    "lb": "full-phil",
-    "douban": "37645032"
-   },
-   "cnDb": "吃饱的菲尔",
-   "r": [
-    null,
-    6.1,
-    null,
-    null,
-    2.91
-   ],
-   "posterDb": "p2932520743",
    "prog": "golden-horse-2026"
   },
   {
@@ -14923,7 +14435,9 @@ module.exports = {
     3.05
    ],
    "posterDb": "p2931816349",
-   "prog": "golden-horse-2026"
+   "poster": "posters/golden-horse-gh63-122.jpg",
+   "prog": "golden-horse-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-horse-gh63-122.jpg"
   },
   {
    "id": "gh63-123",
@@ -15027,7 +14541,9 @@ module.exports = {
     3.51
    ],
    "posterDb": "p2934199283",
-   "prog": "golden-horse-2026"
+   "poster": "posters/golden-horse-gh63-124.jpg",
+   "prog": "golden-horse-2026",
+   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/golden-horse-gh63-124.jpg"
   },
   {
    "id": "gh63-125",
@@ -15081,60 +14597,6 @@ module.exports = {
     3.43
    ],
    "posterDb": "p2928975357",
-   "prog": "golden-horse-2026"
-  },
-  {
-   "id": "gh63-126",
-   "cn": "南国再见，南国",
-   "o": "Goodbye South, Goodbye",
-   "en": "Goodbye South, Goodbye",
-   "y": 1996,
-   "c": "中国台湾",
-   "min": 112,
-   "reg": "cn",
-   "dir": "侯孝贤",
-   "dirO": "HOU Hsiao-hsien",
-   "syn": "黑的不够彻底也洗不白，高哥顶头还有大哥大，开个餐厅都得带上手下小弟小妹。挂起黑框墨镜仁，南国阳光凶猛，活著本身就让人无处可躲。替黑道围事、找白道寻仇，KTV搓圆仔、乔官商勾结，高哥站在人生转折口，岛国正逢变动之际，眼看就要被时代抛到后头。一跨上车，速可达尬野狼，女人烟视媚行，男人公路蛇行；油门一催，催出江山万里，排气管轰轰，风中的我犹原是那个飘撇少年兄。",
-   "st": "玩转各色滤镜，手持、POV、长镜头轮番上阵，南国就要土，镜头低到地里，偏拍出世纪末抒情，如一首华丽的诗。配乐混搭各路曲风放大加乘，林强与伊能静、高捷齐尬车，两分多钟一镜到底成影史经典，长镜头随山道盘旋，越来越逼近侯孝贤，越来越悠远深邃台湾电影。九○年代最后一瞥，未来在后退中缓缓向前。",
-   "writers": [],
-   "cast": [],
-   "genre": [],
-   "honors": [
-    "入选｜2000 法国电影笔记1990年代最佳影片",
-    "获奖｜1996 金马奖 · 最佳电影歌曲",
-    "入选｜1996 戛纳影展 · 正式竞赛",
-    "入选｜1996 多伦多影展",
-    "入选｜1996 东京影展"
-   ],
-   "ageRating": "辅12级（12+）",
-   "subtitles": "原文发音，中文字幕",
-   "section": "经典影事",
-   "screeningNotes": {
-    "11/14-15:20-tp-muvie-titan-titan": "映后活动 · 影人出席（嘉宾待公布）"
-   },
-   "warnings": [],
-   "contentReview": {
-    "status": "pending",
-    "checked": "2026-11-03",
-    "sensory": "unverified"
-   },
-   "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
-   "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
-   "printSource": "东昊影业有限公司 Andrews Film Co., Ltd.",
-   "printSourceEn": "Andrews Film Co., Ltd.",
-   "links": {
-    "imdb": "tt0117151",
-    "lb": "goodbye-south-goodbye",
-    "douban": "1303458"
-   },
-   "r": [
-    8.1,
-    7.2,
-    100,
-    null,
-    3.9
-   ],
-   "posterDb": "p2412811816",
    "prog": "golden-horse-2026"
   },
   {
@@ -18663,7 +18125,7 @@ module.exports = {
   {
    "d": "11/6",
    "t": "22:20",
-   "id": "gh63-119",
+   "id": "gr26-052",
    "v": "tp-muvie-titan",
    "h": "titan"
   },
@@ -18831,7 +18293,7 @@ module.exports = {
   {
    "d": "11/7",
    "t": "22:00",
-   "id": "gh63-056",
+   "id": "gr26-007",
    "v": "tp-vieshow-xinyi",
    "h": "hall-10"
   },
@@ -18887,7 +18349,7 @@ module.exports = {
   {
    "d": "11/8",
    "t": "13:10",
-   "id": "gh63-022",
+   "id": "gr26-042",
    "v": "tp-muvie-titan",
    "h": "titan"
   },
@@ -18957,7 +18419,7 @@ module.exports = {
   {
    "d": "11/8",
    "t": "19:00",
-   "id": "gh63-041",
+   "id": "gr26-010",
    "v": "tp-vieshow-xinyi",
    "h": "hall-10"
   },
@@ -19076,7 +18538,7 @@ module.exports = {
   {
    "d": "11/9",
    "t": "16:00",
-   "id": "gh63-041",
+   "id": "gr26-010",
    "v": "tp-vieshow-xinyi",
    "h": "hall-10"
   },
@@ -19104,7 +18566,7 @@ module.exports = {
   {
    "d": "11/9",
    "t": "17:20",
-   "id": "gh63-003",
+   "id": "gr26-047",
    "v": "tp-vieshow-xinyi",
    "h": "hall-13"
   },
@@ -19139,7 +18601,7 @@ module.exports = {
   {
    "d": "11/9",
    "t": "19:30",
-   "id": "gh63-081",
+   "id": "gr26-006",
    "v": "tp-vieshow-xinyi",
    "h": "hall-13"
   },
@@ -19223,7 +18685,7 @@ module.exports = {
   {
    "d": "11/10",
    "t": "14:40",
-   "id": "gh63-056",
+   "id": "gr26-007",
    "v": "tp-vieshow-xinyi",
    "h": "hall-10"
   },
@@ -19349,7 +18811,7 @@ module.exports = {
   {
    "d": "11/11",
    "t": "11:50",
-   "id": "gh63-022",
+   "id": "gr26-042",
    "v": "tp-vieshow-xinyi",
    "h": "hall-13"
   },
@@ -19363,7 +18825,7 @@ module.exports = {
   {
    "d": "11/11",
    "t": "13:30",
-   "id": "gh63-064",
+   "id": "gr26-071",
    "v": "tp-vieshow-xinyi",
    "h": "hall-10"
   },
@@ -19475,7 +18937,7 @@ module.exports = {
   {
    "d": "11/11",
    "t": "21:30",
-   "id": "gh63-003",
+   "id": "gr26-047",
    "v": "tp-vieshow-xinyi",
    "h": "hall-13"
   },
@@ -19622,7 +19084,7 @@ module.exports = {
   {
    "d": "11/12",
    "t": "18:50",
-   "id": "gh63-059",
+   "id": "gr26-038",
    "v": "tp-vieshow-xinyi",
    "h": "hall-13"
   },
@@ -19650,7 +19112,7 @@ module.exports = {
   {
    "d": "11/12",
    "t": "21:50",
-   "id": "gh63-081",
+   "id": "gr26-006",
    "v": "tp-vieshow-xinyi",
    "h": "hall-11"
   },
@@ -19860,7 +19322,7 @@ module.exports = {
   {
    "d": "11/14",
    "t": "11:00",
-   "id": "gh63-072",
+   "id": "gr26-001",
    "v": "tp-vieshow-xinyi",
    "h": "hall-13"
   },
@@ -19909,7 +19371,7 @@ module.exports = {
   {
    "d": "11/14",
    "t": "15:20",
-   "id": "gh63-126",
+   "id": "gr26-058",
    "v": "tp-muvie-titan",
    "h": "titan"
   },
@@ -20126,7 +19588,7 @@ module.exports = {
   {
    "d": "11/15",
    "t": "18:40",
-   "id": "gh63-064",
+   "id": "gr26-071",
    "v": "tp-vieshow-xinyi",
    "h": "hall-10"
   },
@@ -20147,7 +19609,7 @@ module.exports = {
   {
    "d": "11/15",
    "t": "20:30",
-   "id": "gh63-059",
+   "id": "gr26-038",
    "v": "tp-muvie-titan",
    "h": "titan"
   },
@@ -20245,7 +19707,7 @@ module.exports = {
   {
    "d": "11/16",
    "t": "16:50",
-   "id": "gh63-119",
+   "id": "gr26-052",
    "v": "tp-vieshow-xinyi",
    "h": "hall-10"
   },
@@ -20259,7 +19721,7 @@ module.exports = {
   {
    "d": "11/16",
    "t": "17:30",
-   "id": "gh63-126",
+   "id": "gr26-058",
    "v": "tp-vieshow-xinyi",
    "h": "hall-13"
   },
@@ -20308,7 +19770,7 @@ module.exports = {
   {
    "d": "11/16",
    "t": "21:30",
-   "id": "gh63-016",
+   "id": "gr26-046",
    "v": "tp-vieshow-xinyi",
    "h": "hall-11"
   },
@@ -20336,7 +19798,7 @@ module.exports = {
   {
    "d": "11/17",
    "t": "12:10",
-   "id": "gh63-081",
+   "id": "gr26-006",
    "v": "tp-vieshow-xinyi",
    "h": "hall-12"
   },
@@ -20462,7 +19924,7 @@ module.exports = {
   {
    "d": "11/18",
    "t": "11:00",
-   "id": "gh63-009",
+   "id": "gr26-041",
    "v": "tp-vieshow-xinyi",
    "h": "hall-11"
   },
@@ -20532,7 +19994,7 @@ module.exports = {
   {
    "d": "11/18",
    "t": "16:20",
-   "id": "gh63-007",
+   "id": "gr26-011",
    "v": "tp-vieshow-xinyi",
    "h": "hall-10"
   },
@@ -20707,7 +20169,7 @@ module.exports = {
   {
    "d": "11/19",
    "t": "18:40",
-   "id": "gh63-072",
+   "id": "gr26-001",
    "v": "tp-vieshow-xinyi",
    "h": "hall-13"
   },
@@ -20770,7 +20232,7 @@ module.exports = {
   {
    "d": "11/20",
    "t": "13:40",
-   "id": "gh63-030",
+   "id": "gr26-036",
    "v": "tp-vieshow-xinyi",
    "h": "hall-11"
   },
@@ -20826,21 +20288,21 @@ module.exports = {
   {
    "d": "11/20",
    "t": "18:00",
-   "id": "gh63-016",
+   "id": "gr26-046",
    "v": "tp-muvie-titan",
    "h": "titan"
   },
   {
    "d": "11/20",
    "t": "18:30",
-   "id": "gh63-009",
+   "id": "gr26-041",
    "v": "tp-vieshow-xinyi",
    "h": "hall-12"
   },
   {
    "d": "11/20",
    "t": "18:50",
-   "id": "gh63-007",
+   "id": "gr26-011",
    "v": "tp-vieshow-xinyi",
    "h": "hall-11"
   },
@@ -20861,7 +20323,7 @@ module.exports = {
   {
    "d": "11/20",
    "t": "20:30",
-   "id": "gh63-021",
+   "id": "gr26-064",
    "v": "tp-muvie-titan",
    "h": "titan"
   },
@@ -20924,7 +20386,7 @@ module.exports = {
   {
    "d": "11/21",
    "t": "10:50",
-   "id": "gh63-072",
+   "id": "gr26-001",
    "v": "tp-vieshow-xinyi",
    "h": "hall-12"
   },
@@ -20938,7 +20400,7 @@ module.exports = {
   {
    "d": "11/21",
    "t": "12:40",
-   "id": "gh63-056",
+   "id": "gr26-007",
    "v": "tp-vieshow-xinyi",
    "h": "hall-13"
   },
@@ -20980,7 +20442,7 @@ module.exports = {
   {
    "d": "11/21",
    "t": "15:30",
-   "id": "gh63-030",
+   "id": "gr26-036",
    "v": "tp-vieshow-xinyi",
    "h": "hall-12"
   },
@@ -21120,7 +20582,7 @@ module.exports = {
   {
    "d": "11/22",
    "t": "13:00",
-   "id": "gh63-021",
+   "id": "gr26-064",
    "v": "tp-vieshow-xinyi",
    "h": "hall-11"
   },
@@ -21197,7 +20659,7 @@ module.exports = {
   {
    "d": "11/22",
    "t": "19:30",
-   "id": "gh63-119",
+   "id": "gr26-052",
    "v": "tp-vieshow-xinyi",
    "h": "hall-10"
   },
@@ -22048,26 +21510,26 @@ module.exports = {
    "sections": {
     "gh63-001": "开幕片",
     "gh63-002": "闭幕片",
-    "gh63-003": "金马奖入围影片",
+    "gr26-047": "金马奖入围影片",
     "gh63-004": "金马奖入围影片",
     "gh63-005": "金马奖入围影片",
     "gh63-006": "金马奖入围影片",
-    "gh63-007": "金马奖入围影片",
+    "gr26-011": "金马奖入围影片",
     "gh63-008": "金马奖入围影片",
-    "gh63-009": "金马奖入围影片",
+    "gr26-041": "金马奖入围影片",
     "gh63-010": "金马奖入围影片",
     "gh63-011": "金马奖入围影片",
     "gh63-012": "金马奖入围影片",
     "gh63-013": "金马奖入围影片",
     "gh63-014": "金马奖入围影片",
     "gh63-015": "金马奖入围影片",
-    "gh63-016": "金马奖入围影片",
+    "gr26-046": "金马奖入围影片",
     "gh63-017": "金马奖入围影片",
     "gh63-018": "金马奖入围影片",
     "gh63-019": "金马奖入围影片",
     "gh63-020": "金马奖入围影片",
-    "gh63-021": "金马奖入围影片",
-    "gh63-022": "金马奖入围影片",
+    "gr26-064": "金马奖入围影片",
+    "gr26-042": "金马奖入围影片",
     "gh63-023": "金马奖入围影片",
     "gh63-024": "金马奖入围影片",
     "gh63-025": "金马奖入围影片",
@@ -22075,7 +21537,7 @@ module.exports = {
     "gh63-027": "金马奖入围影片",
     "gh63-028": "金马奖入围影片",
     "gh63-029": "金马奖入围影片",
-    "gh63-030": "金马奖入围影片",
+    "gr26-036": "金马奖入围影片",
     "gh63-031": "金马奖入围影片",
     "gh63-032": "金马奖入围影片",
     "gh63-033": "金马奖入围影片",
@@ -22086,7 +21548,7 @@ module.exports = {
     "gh63-038": "金马奖终身成就奖：虞戡平",
     "gh63-039": "华语首映",
     "gh63-040": "华语首映",
-    "gh63-041": "华语首映",
+    "gr26-010": "华语首映",
     "gh63-042": "华语首映",
     "gh63-043": "华语首映",
     "gh63-044": "华语首映",
@@ -22101,15 +21563,15 @@ module.exports = {
     "gh63-053": "名家飨宴",
     "gh63-054": "名家飨宴",
     "gh63-055": "名家飨宴",
-    "gh63-056": "名家飨宴",
+    "gr26-007": "名家飨宴",
     "gh63-057": "名家飨宴",
     "gh63-058": "名家飨宴",
-    "gh63-059": "影迷嘉年华",
+    "gr26-038": "影迷嘉年华",
     "gh63-060": "影迷嘉年华",
     "gh63-061": "影迷嘉年华",
     "gh63-062": "影迷嘉年华",
     "gh63-063": "影迷嘉年华",
-    "gh63-064": "影迷嘉年华",
+    "gr26-071": "影迷嘉年华",
     "gh63-065": "影迷嘉年华",
     "gh63-066": "影迷嘉年华",
     "gh63-067": "影迷嘉年华",
@@ -22117,7 +21579,7 @@ module.exports = {
     "gh63-069": "影迷嘉年华",
     "gh63-070": "影迷嘉年华",
     "gh63-071": "影坛新势力",
-    "gh63-072": "影坛新势力",
+    "gr26-001": "影坛新势力",
     "gh63-073": "影坛新势力",
     "gh63-074": "影坛新势力",
     "gh63-075": "影坛新势力",
@@ -22126,7 +21588,7 @@ module.exports = {
     "gh63-078": "不设防地带",
     "gh63-079": "不设防地带",
     "gh63-080": "不设防地带",
-    "gh63-081": "不设防地带",
+    "gr26-006": "不设防地带",
     "gh63-082": "不设防地带",
     "gh63-083": "亚洲之窗",
     "gh63-084": "亚洲之窗",
@@ -22164,14 +21626,14 @@ module.exports = {
     "gh63-116": "摇滚再放送",
     "gh63-117": "摇滚再放送",
     "gh63-118": "奇幻特快车",
-    "gh63-119": "奇幻特快车",
+    "gr26-052": "奇幻特快车",
     "gh63-120": "奇幻特快车",
     "gh63-121": "奇幻特快车",
     "gh63-122": "奇幻特快车",
     "gh63-123": "奇幻特快车",
     "gh63-124": "奇幻特快车",
     "gh63-125": "奇幻特快车",
-    "gh63-126": "经典影事",
+    "gr26-058": "经典影事",
     "gh63-127": "经典影事",
     "gh63-128": "经典影事",
     "gh63-129": "经典影事",
@@ -22968,6 +22430,23 @@ module.exports = {
    "cardCover": ""
   }
  ],
+ "aliases": {
+  "gh63-072": "gr26-001",
+  "gh63-081": "gr26-006",
+  "gh63-056": "gr26-007",
+  "gh63-041": "gr26-010",
+  "gh63-007": "gr26-011",
+  "gh63-030": "gr26-036",
+  "gh63-059": "gr26-038",
+  "gh63-009": "gr26-041",
+  "gh63-022": "gr26-042",
+  "gh63-003": "gr26-047",
+  "gh63-119": "gr26-052",
+  "gh63-126": "gr26-058",
+  "gh63-021": "gr26-064",
+  "gh63-064": "gr26-071",
+  "gh63-016": "gr26-046"
+ },
  "reg": {
   "cn": {
    "n": "华语",

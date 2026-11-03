@@ -9,7 +9,7 @@ App({
   _waiters: [],
 
   onLaunch() {
-    I.init(); this.globalData.data = I.localize(LOCAL); this.chrome();
+    I.init(); this.globalData.data = I.localize(LOCAL); this.chrome(); try { watched.migrate(LOCAL.aliases); } catch (e) { }
     if (wx.cloud) {
       wx.cloud.init({ env: 'cloud1-d9gvudh6vc59007ac', traceUser: true });
       this.loadRemote();
@@ -28,6 +28,7 @@ App({
         this.globalData.raw = Object.assign({}, LOCAL, r, { reg: LOCAL.reg });
         this.globalData.data = I.localize(this.globalData.raw);
         this.globalData.source = 'cloud';
+        try { watched.migrate(this.globalData.raw.aliases); } catch (e) { }
         this._waiters.forEach(fn => fn(this.globalData.data));
       }
     }).catch(() => {});

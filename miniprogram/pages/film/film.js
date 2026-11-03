@@ -23,10 +23,10 @@ Page({
     if (!f) { wx.showToast({ title: t('没有找到这部影片'), icon: 'none' }); return; }
     wx.setNavigationBarTitle({ title: f.cn });
     const picked = plan.get(), p = idx.progOf(f);
-    const allShows = data.shows.filter(s => s.id === f.id);
+    const allShows = data.shows.filter(s => s.id === f.id), multi = idx.progsOf(f).length > 1;
     const shows = allShows.filter(s => !U.ended(s, idx)).map(s => {
       const v = U.showView(s, idx, data, picked); const [m, d] = s.d.split('/');
-      return Object.assign(v, { m, dd: d, mon: t(m + '月'), vid: s.v, geo: !!U.geoOf(idx.VN[s.v]) });
+      return Object.assign(v, { progTag: multi ? U.progForShow(s, idx).name : '', m, dd: d, mon: t(m + '月'), vid: s.v, geo: !!U.geoOf(idx.VN[s.v]) });
     });
     const ratings = (f.r || []).map((v, i) => ({
       l: t(RT[i][0]), na: v == null,
@@ -44,7 +44,7 @@ Page({
         id: f.id, ev: !!f.ev, cn: f.cn, cnDb: (!I.isEn() && f.cnDb && f.cnDb !== f.cn) ? f.cnDb : '',warnings:f.warnings||[],contentNote:f.contentNote||t('具体内容尚待核实，不代表没有敏感内容或适合所有年龄。'),sensory:f.contentReview?.sensory==='flashing', en: f.en || f.o, minText: t(f.min ? f.min + ' 分钟' : '片长待定'), release: t(f.release || ''), o: f.o !== f.cn && f.o !== (f.en || f.o) ? f.o : '', y: f.y, c: t(f.c), min: f.min, lang: t(f.language),
         version: t(f.version || ''), genre: (f.genre || []).map(t), dir: f.dir, dirO: f.dirO, dirLife: f.dirLife,
         color: (data.reg[f.reg] || {}).c, reg: t((data.reg[f.reg] || {}).n || ''), poster: U.poster(f), ticket: U.ticket(f), ticketHint: t([f.ticketPlatform ? f.ticketPlatform + "扫码" + (f.ticketLabel || "购票") : "", (f.ticketHint || "").replace(/^淘票票扫码购票\s*[·・]?\s*/, "")].filter(Boolean).join(" · ")), section: t(f.section || ""), ticketLabel: t(f.ticketLabel || '购票'),
-        prog: { id: p.id, name: p.name, kind: t(p.kind) }, section: t(f.section || ''),
+        prog: { id: p.id, name: p.name, kind: t(p.kind) }, progs: idx.progsOf(f).map(x => ({ id: x.p.id, name: x.p.name, kind: t(x.p.kind), section: t(x.sec || '') })), multi: idx.progsOf(f).length > 1, section: t(f.section || ''),
         syn: para(f.syn), bio: para(f.bio), st: para(f.st), long: String(f.syn || '').length > 220,
         ini: (f.dir || '').charAt(0), highlights: [f.editorial,...(f.highlights || [])].filter(Boolean).map((x, k) => ({ n: String(k + 1).padStart(2, '0'), x })),
         honors: (f.honors || []).map(honor),
@@ -93,7 +93,7 @@ Page({
   previewTicket() { const u = this.data.f && this.data.f.ticket; if (u) wx.previewImage({ urls: [u], current: u }); },
   more() { this.setData({ open: !this.data.open }); },
   openFilm(e) { wx.redirectTo({ url: '/pages/film/film?id=' + e.currentTarget.dataset.id }); },
-  openProg() { wx.navigateTo({ url: '/pages/programme/programme?id=' + this.data.f.prog.id }); },
+  openProg(e) { wx.navigateTo({ url: '/pages/programme/programme?id=' + ((e && e.currentTarget.dataset.id) || this.data.f.prog.id) }); },
   toSchedule() { wx.switchTab({ url: '/pages/schedule/schedule' }); },
   seeDay(e) { app.globalData.jumpDay = e.currentTarget.dataset.d; wx.switchTab({ url: '/pages/schedule/schedule' }); },
   onShareAppMessage() { const f = this.data.f || {}; return { title: (I.isEn() ? f.cn + (f.version ? ' ' + f.version : '') : `《${f.cn}》${f.version ? f.version : ''}`) + ' · ' + t('麻雀观影护照'), path: '/pages/film/film?id=' + this.id, imageUrl: f.poster || undefined }; },

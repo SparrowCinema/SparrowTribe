@@ -54,7 +54,7 @@ async function fromSite(ms) {
   });
   if (!films.length || !shows.length) throw new Error('empty site data');
   const en = await getJSON(SITE + 'data/i18n/en.json', ms).catch(() => null); // 英文层：读不到时小程序用安装包里的
-  return { films, shows, venues: cat.venues || [], programmes, en, source: 'site' };
+  return { films, shows, venues: cat.venues || [], programmes, aliases: cat.aliases || {}, en, source: 'site' };
 }
 
 async function all(name) {
