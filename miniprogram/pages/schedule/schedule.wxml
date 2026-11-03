@@ -11,11 +11,16 @@
 <view class="wrap">
   <view wx:if="{{myToday.length}}" class="today card">
     <view class="today-h"><text class="b">{{todayHead}}</text><text class="muted small">{{myTodayTitle}}</text></view>
-    <view class="tl">
-      <view wx:for="{{myToday}}" wx:key="key" wx:if="{{todayOpen || index === 0}}" class="tl-item" data-id="{{item.id}}" bindtap="openFilm">
-        <view class="tl-time"><text class="mono b">{{item.t}}</text><text class="mono muted small">{{item.endTxt}}</text></view>
-        <view class="tl-dot" style="background:{{item.tone.ink}}" />
-        <view class="tl-body"><text class="b">{{item.cn}}</text><text class="muted small">{{item.venue}} · {{item.hall}}</text></view>
+    <view class="tp-day"><text class="tp-d mono">{{myTodayDay}}</text><text class="tp-r mono">{{myToday.length}} {{L.t(i,'场')}} · {{myTodayRange}}</text></view>
+    <view wx:for="{{myToday}}" wx:key="key" wx:if="{{todayOpen || index === 0}}" class="tp-item" data-id="{{item.id}}" bindtap="openFilm">
+      <view class="tp-tm mono"><text class="b">{{item.t}}</text><text>{{item.end}}</text></view>
+      <view class="tp-card" style="--c:{{item.color}}">
+        <image wx:if="{{item.poster}}" class="tp-th" src="{{item.poster}}" mode="aspectFill" />
+        <view class="tp-info">
+          <view class="tp-t">{{item.cn}}<text wx:if="{{item.version}}" class="ed">{{item.version}}</text></view>
+          <text class="tp-s">{{item.dir}} · {{item.minTxt}}</text>
+          <text class="tp-v">{{item.venue}}<text class="htag">{{item.hall}}</text></text>
+        </view>
       </view>
     </view>
     <view wx:if="{{myToday.length > 1}}" class="today-toggle {{todayOpen ? 'open' : ''}}" hover-class="hv" bindtap="toggleToday">

@@ -137,3 +137,19 @@
 .sched-tools{display:flex;align-items:center;justify-content:space-between;gap:16rpx;margin:20rpx 0 20rpx;width:100%;box-sizing:border-box}
 .sched-tools .mine-only{margin:0;flex:1;min-width:0}
 .sched-tools .view-switch{margin:0;flex:none;width:auto;justify-content:flex-start}
+
+/* 首页「近期我的排片」：与网站一致的海报卡片 */
+.tp-day { display: flex; align-items: baseline; justify-content: space-between; padding: 6rpx 0 16rpx; margin-bottom: 18rpx; border-bottom: 2rpx solid var(--line); }
+.tp-d { font-size: 40rpx; font-weight: 700; color: var(--accent); }
+.tp-r { font-size: 22rpx; color: var(--muted); }
+.tp-item { display: flex; gap: 18rpx; margin-bottom: 16rpx; }
+.tp-tm { flex: none; width: 96rpx; display: flex; flex-direction: column; padding-top: 18rpx; font-size: 22rpx; color: var(--muted); }
+.tp-tm .b { font-size: 32rpx; color: var(--fg); font-weight: 700; }
+.tp-card { position: relative; flex: 1; min-width: 0; display: flex; align-items: center; gap: 20rpx; padding: 18rpx 18rpx 18rpx 26rpx; border: 2rpx solid var(--line-soft); border-radius: 24rpx; background: var(--surface); }
+.tp-card::before { content: ""; position: absolute; left: 0; top: 18rpx; bottom: 18rpx; width: 8rpx; border-radius: 0 6rpx 6rpx 0; background: var(--c); }
+.tp-th { flex: none; width: 88rpx; height: 132rpx; border-radius: 8rpx; }
+.tp-info { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.tp-t { font-size: 30rpx; font-weight: 700; line-height: 1.35; }
+.tp-s { font-size: 22rpx; color: var(--muted); }
+.tp-v { font-size: 22rpx; color: var(--teal); }
+.htag { display: inline-block; margin-left: 10rpx; padding: 0 14rpx; border-radius: 12rpx; background: rgba(47,111,108,.12); font-weight: 600; line-height: 1.6; }
