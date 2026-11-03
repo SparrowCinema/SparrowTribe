@@ -10,12 +10,12 @@ background:radial-gradient(120% 120% at 30% 18%,#b13a2f 0%,#8e2a22 46%,#5e1712 1
 .g{position:absolute;inset:0;transform:scale(${scale});transform-origin:50% 50%}
 .frame{position:absolute;inset:54px;border-radius:84px;border:5px solid rgba(232,196,118,.85);display:${frame ? 'block' : 'none'}}
 .frame:after{content:"";position:absolute;inset:14px;border-radius:70px;border:2px solid rgba(232,196,118,.45)}
-.reel{position:absolute;left:50%;top:372px;width:640px;height:640px;margin-left:-320px;margin-top:-320px;border-radius:50%;border:6px solid rgba(232,196,118,.38)}
+.reel{position:absolute;left:50%;top:330px;width:600px;height:600px;margin-left:-300px;margin-top:-300px;border-radius:50%;border:6px solid rgba(232,196,118,.38)}
 .reel i{position:absolute;width:92px;height:92px;border-radius:50%;background:rgba(232,196,118,.26);left:274px;top:274px}
 .reel b{position:absolute;inset:150px;border-radius:50%;border:3px solid rgba(232,196,118,.3)}
-.que{position:absolute;left:0;right:0;top:128px;text-align:center;font-size:520px;font-weight:900;line-height:1;color:#fbf3e2;text-shadow:0 10px 0 rgba(60,12,8,.35),0 0 60px rgba(255,214,140,.18)}
-.sub{position:absolute;left:0;right:0;top:690px;text-align:center;font-size:104px;font-weight:700;letter-spacing:.28em;padding-left:.28em;color:#ecc979}
-.en{position:absolute;left:0;right:0;top:830px;text-align:center;font:600 31px "DejaVu Sans Mono",monospace;letter-spacing:.42em;padding-left:.42em;color:rgba(251,243,226,.7)}
+.que{position:absolute;left:0;right:0;top:84px;text-align:center;font-size:470px;font-weight:900;line-height:1;color:#fbf3e2;text-shadow:0 10px 0 rgba(60,12,8,.35),0 0 60px rgba(255,214,140,.18)}
+.sub{position:absolute;left:0;right:0;top:608px;text-align:center;font-size:176px;font-weight:900;letter-spacing:.12em;padding-left:.12em;color:#ecc979}
+.en{position:absolute;left:0;right:0;top:858px;text-align:center;font:600 36px "DejaVu Sans Mono",monospace;letter-spacing:.42em;padding-left:.42em;color:rgba(251,243,226,.7)}
 .perf{position:absolute;left:150px;right:150px;top:806px;height:3px;background:repeating-linear-gradient(90deg,rgba(232,196,118,.7) 0 16px,transparent 16px 30px)}
 </style><div class="stripe"></div><div class="frame"></div>
 <div class="g"><div class="reel"><b></b></div>
