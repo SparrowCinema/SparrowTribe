@@ -1226,7 +1226,7 @@ const keyOf = s => `${s.d}-${s.t}-${s.v}-${s.h}`;
 let vfilt = "all", cityFilt = "all", venueQuery = "";
 const editionOf = f => f.version||"";
 const fhue = id => { const i=Object.keys(F).indexOf(id); return Math.round((i<0?0:i)*137.508%360); };
-const langSub = f => [f.language, f.subtitles].filter(Boolean).join(" ｜ ");
+const langSub = f => f.langTag || [f.language, f.subtitles].filter(Boolean).join(" ｜ ");
 const editionHTML = f => f.version ? ` <small class="edition">${esc(f.version)}</small>` : "";
 const progOf = f => PG[f.prog||"style-kaleidoscope"];
 /* 同一部影片可出现在多个影展：主影展 f.prog 加上 catalog 里 sections 登记过的影展 */
