@@ -90,9 +90,31 @@ function budget(context) {
 }
 const within = (p, ms) => Promise.race([p, new Promise((_, rej) => setTimeout(() => rej(new Error('site budget ' + ms + 'ms')), ms))]);
 
+// 缓存分块保存：云数据库单条记录有大小上限（约 1MB），整份数据超过后一次写入会失败。
+// site 文档只存元信息 {at, n}，数据切成 n 段存在 site_0 … site_{n-1}；旧版单文档格式（含 json 字段）仍可读取。
+const CHUNK = 100000;
 async function readCache() {
-  try { const c = await db.collection('cache').doc('site').get(); if (c.data && c.data.json) return { data: JSON.parse(c.data.json), at: c.data.at || 0 }; } catch (e) {}
+  try {
+    const c = await db.collection('cache').doc('site').get();
+    if (!c.data) return null;
+    if (c.data.n > 0) {
+      const parts = await Promise.all(Array.from({ length: c.data.n }, (_, i) => db.collection('cache').doc('site_' + i).get().then(r => r.data && r.data.json)));
+      if (parts.some(x => typeof x !== 'string')) return null;
+      return { data: JSON.parse(parts.join('')), at: c.data.at || 0 };
+    }
+    if (c.data.json) return { data: JSON.parse(c.data.json), at: c.data.at || 0 };
+  } catch (e) { console.warn('读取缓存失败', e && e.message); }
   return null;
+}
+async function writeCache(data) {
+  const json = JSON.stringify(data), n = Math.ceil(json.length / CHUNK), col = db.collection('cache');
+  const put = async (id, doc) => {
+    try { await col.doc(id).set({ data: doc }); }
+    catch (e) { try { await db.createCollection('cache'); } catch (e2) {} await col.doc(id).set({ data: doc }); }
+  };
+  for (let i = 0; i < n; i++) await put('site_' + i, { json: json.slice(i * CHUNK, (i + 1) * CHUNK) });
+  await put('site', { at: Date.now(), n }); // 最后写元信息：读到新 n 时各段一定已写好
+  console.log('缓存已写入', n + ' 段，共 ' + json.length + ' 字符');
 }
 
 exports.main = async (event, context) => {
@@ -106,9 +128,7 @@ exports.main = async (event, context) => {
     const ms = budget(context);
     console.log('读取网站，时限', ms + 'ms', isTimer ? '（定时触发）' : '');
     const data = await within(fromSite(ms), ms);
-    const doc = { data: { json: JSON.stringify(data), at: Date.now() } };
-    try { await db.collection('cache').doc('site').set(doc); }
-    catch (e) { try { await db.createCollection('cache'); await db.collection('cache').doc('site').set(doc); } catch (e2) {} }
+    try { await writeCache(data); } catch (e) { console.error('缓存写入失败', e && e.message); }
     console.log('网站数据已更新到缓存', data.films.length + ' 部', data.shows.length + ' 场');
     return isTimer ? { ok: true, films: data.films.length, shows: data.shows.length } : data;
   } catch (e) {
