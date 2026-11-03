@@ -2,7 +2,7 @@ const fs=require('fs'),vm=require('vm'),path=require('path'),assert=require('ass
 const root=path.resolve(__dirname,'..'),data=require(path.join(root,'miniprogram/data/data.js')),U=require(path.join(root,'miniprogram/utils/util.js'));
 const pack=JSON.parse(fs.readFileSync(path.join(root,'data/programmes/golden-rooster-2026.json'))),en=JSON.parse(fs.readFileSync(path.join(root,'data/i18n/en.json'))),idx=U.index(data);
 for(const f of pack.films){assert(f.syn&&f.bio&&f.st&&f.highlights.length>=2&&f.honors.length);assert.equal(f.r.length,5);assert(f.r.every((x,i)=>x===null||typeof x==='number'&&x>=0&&x<=[10,10,100,100,5][i]));assert(!f.ticketHint.includes('淘票票扫码购票'));if(f.id!=='linka-linka'){const e=en.films[f.id];assert(e.bio&&e.st&&e.highlights.length>=2);}}
-for(const v of data.venues)assert(['杭州','厦门','嘉兴'].includes(v.city));
+for(const v of data.venues)assert(['杭州','厦门','嘉兴','台北'].includes(v.city));
 let page;const store=new Map(),plan={get:()=>new Set(),onChange:()=>()=>{}},I={tr:x=>x,isEn:()=>false,dict:()=>({})};
 const now=new Date(2026,10,6,0,15).getTime(),RealDate=Date;
 class FakeDate extends RealDate{constructor(...args){super(...(args.length?args:[now]));}static now(){return now;}}
