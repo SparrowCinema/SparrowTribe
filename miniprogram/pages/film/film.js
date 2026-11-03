@@ -52,7 +52,7 @@ Page({
       },
       qa: (q => q ? { label: f.qaStart + ' – ' + f.qaEnd, guest: t(f.qaGuest) } : null)(U.qaOf(f)),
       cnt: t(shows.length + ' 场'),
-      shows, ratings, credits, nav, ended: allShows.length > 0 && !shows.length
+      shows, ratings, credits, nav, parts: (f.parts || []).map(m => { const en = I.isEn(); return { n: en ? m.en : m.cn, sub: [en ? m.cn : m.en, m.y, m.min ? m.min + t('分钟') : '', m.c].filter(Boolean).join(' · '), dir: (en && m.dirO) || m.dir || '', syn: (en ? m.synEn : m.syn) || '', honors: (m.honors || []).map(honor) }; }), ended: allShows.length > 0 && !shows.length
     });
     this.buildMine();
   },

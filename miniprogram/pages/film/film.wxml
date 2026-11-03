@@ -97,6 +97,10 @@
       <view wx:for="{{credits}}" wx:key="k" class="cr"><text class="ck">{{item.k}}</text><text class="cv">{{item.v}}</text></view>
     </view>
 
+    <block wx:if="{{parts.length}}">
+      <view class="sec-h">{{L.t(i,'收录短片')}}</view>
+      <view wx:for="{{parts}}" wx:key="n" class="part"><text class="pn">{{item.n}}</text><text class="ps">{{item.sub}}</text><text wx:if="{{item.dir}}" class="ps">{{L.t(i,'导演')}}：{{item.dir}}</text><text wx:if="{{item.syn}}" class="pd">{{item.syn}}</text><view wx:for="{{item.honors}}" wx:for-item="h" wx:key="a" class="ps">{{h.t}} {{h.yr}} {{h.a}} {{h.b}}</view></view>
+    </block>
     <view class="st"><text class="stt">{{L.t(i,'剧情简介')}}</text><text class="ste mono">SYNOPSIS</text></view>
     <view class="syn {{f.long && !open ? 'clamp' : ''}}">
       <view wx:for="{{f.syn}}" wx:key="index" class="p">{{item}}</view>

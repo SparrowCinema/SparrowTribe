@@ -132,3 +132,8 @@
 
 .tvrow { display: flex; align-items: center; gap: 16rpx; flex-wrap: wrap; }
 .tmap { font-size: 22rpx; font-weight: 700; color: var(--accent); padding: 4rpx 14rpx; border: 2rpx solid var(--accent); border-radius: 99rpx; }
+
+.part { border-top: 2rpx solid var(--line-soft); padding: 18rpx 0; display: flex; flex-direction: column; gap: 6rpx; }
+.pn { font-size: 29rpx; font-weight: 700; }
+.ps { font-size: 23rpx; color: var(--muted); }
+.pd { font-size: 26rpx; line-height: 1.75; }

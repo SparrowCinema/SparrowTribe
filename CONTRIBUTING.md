@@ -135,3 +135,8 @@ Claude 与 GPT 可能使用同一 GitHub 身份，审批人数可先设为0；�
 - 内容提示只作参考，不是官方分级；正文简介里不再写「观影前请知悉」。
 - 分享预览卡片与订阅日历在部署时由 `node tools/build-extras.js` 生成（`s/` 分享页、`cal/` 的 `.ics`，均已在 `.gitignore`，不要提交）。默认分享图由 `node tools/make-og-default.js` 生成 `brand/og-default.jpg`。
 - 英文名规范：片名优先用国际发行英文名（对照 IMDb / 影展官方英文手册）；内地导演用拼音、姓在前，港台导演用本人惯用拼法（如 Tsui Hark）。
+
+## 影展活动与短片合辑（金马影展专题）
+
+- 专题可带 `eventKinds` 与 `events`（见 docs/golden-horse-2026-notes.md），网站 `eventsHTML` 与小程序 `pages/programme` 同步显示；英文放在 `en.json` 的 `programmes.<id>.kindEn` / `evEn`。
+- 影片可带 `parts`（合辑收录的短片，字段 cn/en/y/c/min/dir/dirO/syn/synEn/honors），影片页显示「收录短片」。专题可带 `ticketUrl` / `ticketLabel`（购票链接）。

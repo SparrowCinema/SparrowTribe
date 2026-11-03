@@ -36,3 +36,18 @@
 .jumps{flex-wrap:wrap}
 
 .section-tabs{display:flex;flex-wrap:wrap;gap:12rpx;padding:20rpx;border:1rpx solid var(--line);border-radius:24rpx;margin:30rpx 0}.section-tabs .btn{font-size:22rpx;padding:14rpx 20rpx;line-height:1.4;border-radius:40rpx;margin:0}
+
+.ev-wrap { margin: 0 0 28rpx; border: 2rpx solid var(--line-soft); border-radius: 16rpx; padding: 0 24rpx; }
+.ev-sum { display: flex; align-items: center; gap: 16rpx; padding: 24rpx 0; }
+.ev-st { font-size: 30rpx; font-weight: 700; flex: 1; }
+.ev-n { font-size: 24rpx; color: var(--muted); }
+.ev-h { font-size: 26rpx; color: var(--muted); margin: 20rpx 0 8rpx; }
+.ev-card { border-top: 2rpx solid var(--line-soft); padding: 20rpx 0; }
+.ev-done { opacity: .65; }
+.ev-t { font-size: 29rpx; font-weight: 700; line-height: 1.5; }
+.ev-tag { font-size: 20rpx; margin-left: 12rpx; padding: 2rpx 12rpx; border-radius: 99rpx; background: rgba(200,160,60,.2); font-weight: 400; }
+.ev-end { background: rgba(120,120,120,.2); }
+.ev-d { font-size: 26rpx; line-height: 1.75; margin: 8rpx 0; }
+.ev-l { display: flex; gap: 16rpx; font-size: 24rpx; line-height: 1.6; margin-top: 4rpx; }
+.ev-k { width: 112rpx; flex: none; color: var(--muted); }
+.ev-v { flex: 1; }

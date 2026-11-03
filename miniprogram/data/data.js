@@ -6496,6 +6496,4984 @@ module.exports = {
    },
    "prog": "german-film-2026",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/shame-and-money.jpg"
+  },
+  {
+   "id": "gh63-001",
+   "cn": "告别的年代",
+   "o": "The Age of Goodbyes",
+   "en": "The Age of Goodbyes",
+   "y": 2026,
+   "c": "中国台湾 / 马来西亚",
+   "min": 142,
+   "reg": "cn",
+   "dir": "杨毅恒",
+   "dirO": "Edmund YEO",
+   "syn": "小说从第513页起头，这是马来西亚历史上的至暗时刻，也是故事分岔口。1990年，孤独马来少年凯依循母亲遗言指引，寻获一本题为〈告别的年代〉的小说，也让他一头闯入主角杜丽安的岁月。1969年的怡保，杜丽安在戏院柜台的日子百无聊赖，直到邂逅中学教师连生。然而心怀无解的家族诅咒，终让缘分戛然而止。命运捉弄，当故人重逢，男子竟唤作望生。时代齿轮翻滚，真相牵起冥冥因果，生起慨叹无穷。",
+   "st": "马来西亚导演杨毅恒继《阿奇洛》再推新作，改编马华作家黎紫书同名小说，以双轨叙事精致铺排原书的非线性时空，巧妙缝接幽微情感细节，层层拂开被尘封的恢宏生命篇章。杂揉家国创痛与家族神话，也探讨记忆的代际传承与虚构再生。宋芸桦唯妙唯肖诠释大马女子，携手MIRROR成员邱士缙、新生代演员刘子铨，铭刻一个家族近百年的宿命交错与壮阔离合。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "提名｜2026 金马奖 · 最佳导演",
+    "提名｜2026 金马奖 · 最佳改编剧本",
+    "提名｜2026 金马奖 · 最佳摄影",
+    "提名｜2026 金马奖 · 最佳美术设计",
+    "入选｜2026 多伦多影展"
+   ],
+   "ageRating": "辅12级（12+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "开幕片",
+   "screeningNotes": {
+    "11/6-19:00-tp-muvie-titan-titan": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-002",
+   "cn": "花脸猫：修罗道",
+   "o": "The Scar-faced Cat: Way of Asura",
+   "en": "The Scar-faced Cat: Way of Asura",
+   "y": 2026,
+   "c": "中国台湾",
+   "min": 113,
+   "reg": "cn",
+   "dir": "王逸帆",
+   "dirO": "WANG I-fan",
+   "syn": "警察接连惨死，所有线索都指向是同一人所为──一名脸带伤疤、来无影去无踪的神秘女子，江湖人称「花脸猫」。她手持双刀，为了帮心爱的人讨回公道，踏上不归路。日警清水奉命缉捕花脸猫，深入调查后发现案情并不单纯。依法缉凶的他，遇上私刑报复的她，两人的命运就此有了微妙难解的交会。而她的复仇之路，究竟会通向何方？",
+   "st": "《逃出立法院》导演王逸帆再展类型电影长才，一手包办导演、摄影、编剧、剪辑、动作设计，找来《女孩不平凡》韩宁苦练俐落拳脚和超杀眼神，交手日本人气男星福士苍汰，展开一场猫系女和犬系男的追捕大战。以日治时期台湾为背景，融合饶舌、电音、摇滚、传统音乐、日本民谣和J-Pop，交织华丽影像，考究在地武术，将女性复仇故事杀出新局。刀光剑影，血溅银幕，修罗道难行。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "入选｜2026 釜山影展"
+   ],
+   "ageRating": "辅15级（15+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "闭幕片",
+   "screeningNotes": {
+    "11/21-18:10-tp-muvie-titan-titan": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-003",
+   "cn": "死亡赌局",
+   "o": "Dead End",
+   "en": "Dead End",
+   "y": 2026,
+   "c": "中国台湾",
+   "min": 96,
+   "reg": "cn",
+   "dir": "詹淳皓",
+   "dirO": "CHAN Chun-hao",
+   "syn": "地下组织以老人互助为名，操办人命赌局。当老父亲成了秤台上明码标价的肉，前职棒投手林胜毅不再能一去不回头。弟弟负气相抗、情人暗藏秘辛，绝命小镇狂飙夜不停。天亮以前，他能否撞开迷局？导演詹淳皓改编真实事件，以风格手持摄影，玩转有限类型时空，揭破台湾乡间暗黑的人性角落。春风领衔主演，搭档姚以缇、黄奇斌、丁宁，赌上性命直面存亡习题。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "提名｜2026 金马奖 · 最佳动作设计"
+   ],
+   "ageRating": "辅12级（12+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "金马奖入围影片",
+   "screeningNotes": {
+    "11/11-21:30-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-004",
+   "cn": "女孩",
+   "o": "Girl",
+   "en": "Girl",
+   "y": 2025,
+   "c": "中国台湾",
+   "min": 124,
+   "reg": "cn",
+   "dir": "舒淇",
+   "dirO": "SHU Qi",
+   "syn": "1988年的基隆港，在女孩林小丽的梦里起了雾。衣橱是避风港，暴戾的阴霾是日常，直到另个女孩带她看见青春的色彩。只是蓦然回首，母亲还在原地徘徊。攀过未知的藤蔓，她是否就能拥抱未来的微光？舒淇编导首部长片，真挚取材个人成长经验，以看不见的童年梦魇，照见女孩与女人的际遇交错。白小樱、邱泽、9m88、林品彤倾情融入旧日时空，共演一首成长的悲欢诗。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "提名｜2026 金马奖 · 最佳剧情片",
+    "提名｜2026 金马奖 · 最佳造型设计",
+    "提名｜2026 金马奖 · 最佳女配角",
+    "提名｜2026 金马奖 · 最佳原创电影音乐",
+    "提名｜2026 金马奖 · 最佳新导演",
+    "提名｜2026 金马奖 · 最佳剪辑",
+    "提名｜2026 金马奖 · 最佳新演员",
+    "提名｜2026 金马奖 · 最佳音效",
+    "提名｜2026 金马奖 · 最佳摄影",
+    "提名｜2026 金马奖 · 最佳美术设计"
+   ],
+   "ageRating": "辅12级（12+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "金马奖入围影片",
+   "highlights": [
+    "本片仅安排业界限定场（11/19 21:00，信义11厅，不对外售票）；如有加映，请以金马官网公布为准。"
+   ],
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-005",
+   "cn": "我亲爱的怪孩子",
+   "o": "The Canary's Lullaby",
+   "en": "The Canary's Lullaby",
+   "y": 2026,
+   "c": "中国台湾 / 日本",
+   "min": 108,
+   "reg": "cn",
+   "dir": "池田晓",
+   "dirO": "IKEDA Akira",
+   "syn": "多年前的暴风雨还烙印在村民心中。以贩卖丸子维生的独居老妇人Tae，意外捡到一个怪形婴孩，取名Haru，悉心呵护，却遭到众人猎巫围剿，唯恐灾厄再度降临小村。当谣言四起，哪里是他们的归处？日本导演池田晓台日合制奇幻之作，金门取景架空魔幻村庄，玩转独具一格的奇异幽默，雕琢肢体表演与妙趣台词，馀贵美子、小田切让、刘冠廷、孙可芳、庹宗华跨国对戏，烘染跨物种真情。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "提名｜2026 金马奖 · 最佳音效"
+   ],
+   "ageRating": "辅12级（12+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "金马奖入围影片",
+   "screeningNotes": {
+    "11/16-18:40-tp-vieshow-xinyi-hall-10": "映后活动 · 影人出席（嘉宾待公布）",
+    "11/19-21:00-tp-vieshow-xinyi-hall-10": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-006",
+   "cn": "我们不是什么",
+   "o": "We're Nothing at All",
+   "en": "We're Nothing at All",
+   "y": 2026,
+   "c": "中国香港",
+   "min": 128,
+   "reg": "cn",
+   "dir": "邱礼涛",
+   "dirO": "Herman YAU",
+   "syn": "「当雪崩的时候，没有一片雪花是无辜的。」一起情人节巴士爆炸案震惊全港，前鉴识专家龙Sir复出协查，在灰烬中锁定疑犯，发现唯有两具遗体无人闻问，是一对年轻同性恋人。当真相逐渐显影，龙Sir惊觉，原来往事未必如烟。香港名导邱礼涛编导，取材真实事件，以今昔两个时空抽丝剥茧拼凑悲剧源流，戏骨谭耀文领军新生代江𤒹生、陈毅燊，为边缘疾呼，扣问漠然世道。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "提名｜2026 金马奖 · 最佳导演",
+    "提名｜2026 金马奖 · 最佳男配角"
+   ],
+   "ageRating": "限制级（18+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "金马奖入围影片",
+   "screeningNotes": {
+    "11/21-20:50-tp-vieshow-xinyi-hall-10": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-007",
+   "cn": "泡泡糖女孩",
+   "o": "Ah Girl",
+   "en": "Ah Girl",
+   "y": 2026,
+   "c": "新加坡",
+   "min": 99,
+   "reg": "cn",
+   "dir": "洪玉桔",
+   "dirO": "Priscilla ANG Geck-geck",
+   "syn": "七岁女孩在父母分居后由祖母照顾，深谙吊儿郎当的爸爸和不快乐的妈妈都是骗人精。刚入小学就被迫早熟的她，偷偷在校园兜售泡泡糖，也为心仪的男孩执意留起长发；更试图在失序生活中，为了守护烦人又黏人的妹妹奋力一搏。新加坡导演洪玉桔长片首作，召唤童年记忆，再塑九○年代孩提时光，以儿童视角窥看破碎家庭的烟火，洞穿荒谬的成人世界，小演员王宣静灵动演活成长的笑怒哀愁。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "提名｜2026 金马奖 · 最佳新导演",
+    "提名｜2026 金马奖 · 最佳新演员",
+    "提名｜2026 金马奖 · 最佳改编剧本"
+   ],
+   "ageRating": "普遍级（0+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "金马奖入围影片",
+   "screeningNotes": {
+    "11/18-16:20-tp-vieshow-xinyi-hall-10": "映后活动 · 影人出席（嘉宾待公布）",
+    "11/20-18:50-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-008",
+   "cn": "功夫",
+   "o": "Kung Fu",
+   "en": "Kung Fu",
+   "y": 2026,
+   "c": "中国台湾",
+   "min": 127,
+   "reg": "cn",
+   "dir": "九把刀（柯景腾）",
+   "dirO": "Giddens KO",
+   "syn": "衰尾高中生渊仔和阿义手无缚鸡之力，却路遇流浪汉黄骏自称身怀绝技。夜半神秘现身窗外，一展白日破墙的盖世神功，让两人甘拜下风，更引来女同学乙晶汲汲加入师门，欲行正义之事。未料黄骏与师弟蓝金的五百年情仇，竟翻出意料之外的惊世版本。九把刀延续少年热血题材改编同名小说，以绚丽特效打造现代江湖，柯震东、朱轩洋、王净结伴拜师，戴立忍、刘冠廷黑白相克。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "提名｜2026 金马奖 · 最佳男主角",
+    "提名｜2026 金马奖 · 最佳原创电影音乐",
+    "提名｜2026 金马奖 · 最佳男配角",
+    "提名｜2026 金马奖 · 最佳音效",
+    "提名｜2026 金马奖 · 最佳视觉效果",
+    "提名｜2026 金马奖 · 最佳美术设计",
+    "提名｜2026 金马奖 · 最佳造型设计",
+    "提名｜2026 金马奖 · 最佳动作设计"
+   ],
+   "ageRating": "辅15级（15+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "金马奖入围影片",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-009",
+   "cn": "第四幕",
+   "o": "Afterpiece",
+   "en": "Afterpiece",
+   "y": 2026,
+   "c": "中国香港",
+   "min": 113,
+   "reg": "cn",
+   "dir": "王德健",
+   "dirO": "Keane T.K WONG",
+   "syn": "假作真时真亦假，没人比江郎才尽的舞台剧导演欧文更懂虚无滋味。决心东山再起的他为新剧征选女角，相中素人汉娜分饰三角，编演昔日情事。知己反目、妻子离心、新欢忐忑，只是本以为一手主导大戏，怎料演进去的是他自己。尔冬升监制，新锐编导王德健大玩戏中戏局中局，寻摸戏剧与现实的疯狂边界，冯德伦、袁澧林、胡杏儿、周秀娜同台竞演，吟讽人生第四幕的痴嗔狂想。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "提名｜2026 金马奖 · 最佳女主角",
+    "提名｜2026 金马奖 · 最佳原著剧本"
+   ],
+   "ageRating": "保护级（6+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "金马奖入围影片",
+   "screeningNotes": {
+    "11/20-18:30-tp-vieshow-xinyi-hall-12": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-010",
+   "cn": "UFO离奇命案",
+   "o": "Unidentified Murder",
+   "en": "Unidentified Murder",
+   "y": 2025,
+   "c": "中国香港",
+   "min": 86,
+   "reg": "cn",
+   "dir": "郭家禧 / 李振杰",
+   "dirO": "KWOK Ka-hei / Jack LEE Chun-kit",
+   "syn": "25年前一起外星人绑架幼童案，成了玄之又玄的都市传说。25年后幸存同学重返旧地流量直播，却惊见老友还魂归来。有人设局整蛊，有人浪漫过头，有人私心诈财，有人装神弄鬼，还有人想混口饭吃都难！倒霉惊魂夜荒诞齐飞，当恶作剧闹出人命，真相始料未及。香港双导演郭家禧、李振杰共推黑色幽默之作，以小成本妙玩计中计，混搭多重类型元素，悬疑怪诞又不失纯真可爱。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "提名｜2026 金马奖 · 最佳原著剧本"
+   ],
+   "ageRating": "辅12级（12+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "金马奖入围影片",
+   "screeningNotes": {
+    "11/21-21:30-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-011",
+   "cn": "沙央",
+   "o": "SAYANG",
+   "en": "SAYANG",
+   "y": 2026,
+   "c": "马来西亚 / 中国台湾",
+   "min": 100,
+   "reg": "cn",
+   "dir": "汤湘竹",
+   "dirO": "TANG Hsiang-chu",
+   "syn": "「沙央」是爱与疼惜，在有著鲸鲨传说的马来西亚东海岸，大人们企盼大鱼归来，聋人少男少女们则要面对各自的家庭羁绊。印度裔少年阿杰热爱跳舞，马来女孩米娜向往泰拳，华人女孩珊珊醉心海洋、爱打醒狮鼓，但生活总危机暗伏。当际遇如浪潮彼此交会，他们终将奏响生命之歌。金马奖最佳纪录片导演汤湘竹首部剧情长片，酝酿十数年，写就跨越种族与文化的温暖成长篇章。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "提名｜2026 金马奖 · 最佳女配角",
+    "提名｜2026 金马奖 · 最佳新演员",
+    "提名｜2026 金马奖 · 最佳原著剧本",
+    "提名｜2026 金马奖 · 最佳视觉效果",
+    "提名｜2026 金马奖 · 最佳音效"
+   ],
+   "ageRating": "保护级（6+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "金马奖入围影片",
+   "screeningNotes": {
+    "11/20-19:00-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-012",
+   "cn": "泥娃娃",
+   "o": "Mudborn",
+   "en": "Mudborn",
+   "y": 2025,
+   "c": "中国台湾",
+   "min": 111,
+   "reg": "cn",
+   "dir": "解孟儒",
+   "dirO": "SHIEH Meng-ju",
+   "syn": "「泥娃娃，泥娃娃，一个泥娃娃……。」午夜时分，当童谣幽幽响起，游戏企画旭川与怀孕的文物修护师妻子慕华的生活却早已变了调。那尊来自凶宅的泥娃娃暗中牵引怪事频发，唯能请讬通灵驱魔人阿生相助，不料泥娃娃背后的秘密更叫人毛骨悚然。《缉魂》金马最佳剪辑解孟儒首执导筒，取材同名儿歌，融合虚拟实境，并巧以空间营造极致恐怖，杨佑宁、蔡思韵、张轩睿合演附身惊悚。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "提名｜2026 金马奖 · 最佳新导演",
+    "提名｜2026 金马奖 · 最佳视觉效果",
+    "提名｜2026 金马奖 · 最佳动作设计"
+   ],
+   "ageRating": "辅15级（15+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "金马奖入围影片",
+   "screeningNotes": {
+    "11/7-21:00-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-013",
+   "cn": "双囍",
+   "o": "Double Happiness",
+   "en": "Double Happiness",
+   "y": 2025,
+   "c": "中国台湾",
+   "min": 130,
+   "reg": "cn",
+   "dir": "许承杰",
+   "dirO": "Joseph HSU Chen-chieh",
+   "syn": "终身大事从不只是两人的事。为了搞定离异多年、王不见王的父母，饭店主厨庭生只好联合未婚妻黛玲、香港岳父、婚顾和伴郎伴娘团，在大喜之日上演同时举办两场婚礼的超级任务。但当插曲接踵而至，童年创伤却让他无所遁逃。《孤味》导演许承杰家庭喜剧新作，紧凑调度回廊时空，集结刘冠廷、馀香凝、杨贵媚、田启文、庹宗华等实力阵容，上演荒诞婚礼谍对谍。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "提名｜2026 金马奖 · 最佳剧情片",
+    "提名｜2026 金马奖 · 最佳摄影",
+    "提名｜2026 金马奖 · 最佳导演",
+    "提名｜2026 金马奖 · 最佳原创电影歌曲",
+    "提名｜2026 金马奖 · 最佳男主角",
+    "提名｜2026 金马奖 · 最佳剪辑",
+    "提名｜2026 金马奖 · 最佳女主角",
+    "提名｜2026 金马奖 · 最佳男配角",
+    "提名｜2026 金马奖 · 最佳原著剧本"
+   ],
+   "ageRating": "普遍级（0+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "金马奖入围影片",
+   "screeningNotes": {
+    "11/21-17:40-tp-vieshow-xinyi-hall-10": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-014",
+   "cn": "谎言生活",
+   "o": "Big Little Things",
+   "en": "Big Little Things",
+   "y": 2026,
+   "c": "中国香港 / 美国",
+   "min": 110,
+   "reg": "cn",
+   "dir": "周彤",
+   "dirO": "Michelle ZHOU",
+   "syn": "肖蕾染著一头俏丽粉发，与女友李北亲密同居，却始终无法向家人袒露同性秘密。年节将近，肖蕾找上公司客户陈尧假扮男友，同返哈尔滨过年。固执守旧的父母、孤身过年的女友、另怀心思的假男友，让她在一派其乐融融中负重前行。重重堆砌的谎言，终将她推向崩溃边缘。新锐编导周彤首部长片，以哈尔滨的冷冽雪景，细腻包裹人物的幽微心绪，触摸传统框架下的亲密难题。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "提名｜2026 金马奖 · 最佳女主角",
+    "提名｜2026 金马奖 · 最佳女配角",
+    "提名｜2026 金马奖 · 最佳新导演",
+    "提名｜2026 金马奖 · 最佳改编剧本"
+   ],
+   "ageRating": "辅12级（12+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "金马奖入围影片",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-015",
+   "cn": "阳光女子合唱团",
+   "o": "Sunshine Women's Choir",
+   "en": "Sunshine Women's Choir",
+   "y": 2025,
+   "c": "中国台湾",
+   "min": 134,
+   "reg": "cn",
+   "dir": "林孝谦",
+   "dirO": "Gavin LIN",
+   "syn": "狱友惠贞、阿佩、阿兰和玉英奶奶各有不堪过往，为惠贞女儿庆生却是亲密相扶的日常。直到笑闹参半的生活被新来的宥芯打破，从冲撞到接纳，才是最真实的形状。随著女婴被送养的时间倒数，她们决心以合唱团寄予最深情的礼物。《比悲伤更悲伤的故事》导演林孝谦以层层翻转的催泪叙事深探母爱，陈意涵、翁倩玉、孙淑媚、安心亚、钟欣凌、苗可丽、陈庭妮、何曼希携手真情共演。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "提名｜2026 金马奖 · 最佳女配角",
+    "提名｜2026 金马奖 · 最佳新演员",
+    "提名｜2026 金马奖 · 最佳原创电影歌曲"
+   ],
+   "ageRating": "辅12级（12+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "金马奖入围影片",
+   "screeningNotes": {
+    "11/21-12:50-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-016",
+   "cn": "善男信女",
+   "o": "We Are Born Good",
+   "en": "We Are Born Good",
+   "y": 2026,
+   "c": "中国香港",
+   "min": 97,
+   "reg": "cn",
+   "dir": "杨两全",
+   "dirO": "YEUNG Leung-chuen",
+   "syn": "好人坏人，谁才懂如何做人？出狱后的荣吉改头换面，勤恳经营茶餐厅，却被家人视作眼中钉。离家出走的若蕾独立谋生，积极试镜角色，却总被生活还以颜色。一次出错餐的插曲，让两人意外交恶，弱弱相残一触即发，好在压不死人的，终成救命稻草。香港新锐编导杨两全首部长片，以精巧叙事搬演城市边缘的躁动角落，《正义回廊》杨伟伦、《看我今天怎么说》钟雪莹荒诞交锋。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "提名｜2026 金马奖 · 最佳剧情片",
+    "提名｜2026 金马奖 · 最佳造型设计",
+    "提名｜2026 金马奖 · 最佳男主角",
+    "提名｜2026 金马奖 · 最佳原创电影歌曲",
+    "提名｜2026 金马奖 · 最佳女主角",
+    "提名｜2026 金马奖 · 最佳剪辑",
+    "提名｜2026 金马奖 · 最佳女配角",
+    "提名｜2026 金马奖 · 最佳新导演",
+    "提名｜2026 金马奖 · 最佳原著剧本"
+   ],
+   "ageRating": "保护级（6+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "金马奖入围影片",
+   "screeningNotes": {
+    "11/20-18:00-tp-muvie-titan-titan": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-017",
+   "cn": "那张照片里的我们",
+   "o": "The Photo from 1977",
+   "en": "The Photo from 1977",
+   "y": 2025,
+   "c": "中国台湾",
+   "min": 141,
+   "reg": "cn",
+   "dir": "汤升荣 / 郑乃方",
+   "dirO": "Phil TANG / Frank CHENG",
+   "syn": "七○年代的台湾街头，政治角力风起云涌。热爱摄影的相馆女孩贤英无法识字，但有青梅竹马弘国陪伴，以歌吟唱青春。直到某日，来台交流的韩国跆拳道教练浩熙闯进贤英的生活。当情窦初开的婉转试探，遇上选举造势的暗流涌动，时代的离合或许唯能以照片定格。双导演汤升荣、郑乃方以一段凄美台韩时代恋曲，为充满热力的动荡年代写下注脚，李沐、振永、宋柏纬挥洒无悔青涩年华。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "提名｜2026 金马奖 · 最佳视觉效果"
+   ],
+   "ageRating": "辅12级（12+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "金马奖入围影片",
+   "screeningNotes": {
+    "11/7-11:10-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-018",
+   "cn": "熊山记 Sinisusu Tua Pucumayan",
+   "o": "The Last Hunter",
+   "en": "The Last Hunter",
+   "y": 2026,
+   "c": "中国台湾",
+   "min": 89,
+   "reg": "cn",
+   "dir": "马志翔",
+   "dirO": "Umin Boya",
+   "syn": "北大武山云雾缭绕，森林员警阿森与盗猎人撒给努一同追捕排湾族青年拔路。即将成为父亲的拔路为了现实生计，隐身山间非法狩猎，然而往日父亲关于山林的谆谆教诲，却成了他举步维艰的梦魇。当黑熊现身，也为这场旷日追逐写下终点。《KANO》马志翔执导，魏德圣监制，以原住民族正名运动为依讬，音乐人保卜．巴督路跨界担纲主演，伴同《进行曲》牧森，辩证山林祖训与现代抉择。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "提名｜2026 金马奖 · 最佳视觉效果"
+   ],
+   "ageRating": "辅12级（12+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "金马奖入围影片",
+   "screeningNotes": {
+    "11/10-19:10-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-019",
+   "cn": "日光",
+   "o": "Will You Still Be My Friend",
+   "en": "Will You Still Be My Friend",
+   "y": 2026,
+   "c": "中国台湾 / 新加坡",
+   "min": 101,
+   "reg": "cn",
+   "dir": "吕柏勋",
+   "dirO": "LU Po-shun",
+   "syn": "13岁的彦霆随开发光电的父母，从新加坡搬进了台湾南部小渔村，父母要求他与村长孙子俊佑交好。彦霆斯文固执，俊佑胆大率真，大人世界复杂难懂，小孩却不知不觉成为密友，闲晃漫游。直到成人冲突在孩子群里掀起波澜，曾经的四手联弹是算计，还是青春萌动？新锐导演吕柏勋长片首作，以绿能发展为背景，将两个男孩的纯粹情思娓娓道来，混血新秀王杰登伙同马来西亚童星雷丰铭，共抒全球化下的青春悸动。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "提名｜2026 金马奖 · 最佳新演员",
+    "提名｜2026 金马奖 · 最佳改编剧本"
+   ],
+   "ageRating": "普遍级（0+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "金马奖入围影片",
+   "screeningNotes": {
+    "11/12-18:40-tp-vieshow-xinyi-hall-12": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-020",
+   "cn": "狂忘警探",
+   "o": "Arrested Memory",
+   "en": "Arrested Memory",
+   "y": 2026,
+   "c": "中国台湾 / 日本",
+   "min": 87,
+   "reg": "cn",
+   "dir": "SABU",
+   "syn": "传奇刑警罹患早发性失忆症，因一次行动失利深陷自责，症状更甚。他调职偏乡即遇上日本富商儿子遭绑，随著记忆崩解，唯有与时间赛跑，才能救回人命。好在灵敏直觉竟指引他一夜狂奔，惊见万事水到渠成。日本鬼才导演SABU执导台日合制新作，驰骋日式冷幽默与爽感动作，集结阮经天、《旅与日子》堤真一、《在车上》雾岛丽香、黄冠智、谢盈萱、李沐翻转警匪身分，紧凑上演荒诞救援。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "提名｜2026 金马奖 · 最佳剧情片",
+    "提名｜2026 金马奖 · 最佳造型设计",
+    "提名｜2026 金马奖 · 最佳导演",
+    "提名｜2026 金马奖 · 最佳动作设计",
+    "提名｜2026 金马奖 · 最佳男主角",
+    "提名｜2026 金马奖 · 最佳原创电影歌曲",
+    "提名｜2026 金马奖 · 最佳男配角",
+    "提名｜2026 金马奖 · 最佳剪辑",
+    "提名｜2026 金马奖 · 最佳摄影",
+    "提名｜2026 金马奖 · 最佳音效",
+    "提名｜2026 金马奖 · 最佳美术设计"
+   ],
+   "ageRating": "辅15级（15+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "金马奖入围影片",
+   "screeningNotes": {
+    "11/21-15:40-tp-muvie-titan-titan": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-021",
+   "cn": "我们不是陌生人",
+   "o": "We Are All Strangers",
+   "en": "We Are All Strangers",
+   "y": 2026,
+   "c": "新加坡",
+   "min": 157,
+   "reg": "cn",
+   "dir": "陈哲艺",
+   "dirO": "Anthony CHEN",
+   "syn": "这座城，是不是只爱有钱人？即将退伍的俊阳和卖福建面的父亲蜗居组屋，相看两厌，直到接踵举办的两场婚礼，让俊阳女友和父亲新妻先后住进同一屋檐下。经济拮据磨蚀人心，也考验两代羁绊。然而当变故顿生，才是一夜长大的伊始。《爸妈不在家》新加坡导演陈哲艺，以绵延十多年的创作跨度，拆解一座城与两个人，写就「成长三部曲」终篇，杨雁雁、许家乐与林伟文、林咏谊再创家庭新章。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "提名｜2026 金马奖 · 最佳剧情片",
+    "提名｜2026 金马奖 · 最佳剪辑",
+    "提名｜2026 金马奖 · 最佳导演",
+    "提名｜2026 金马奖 · 最佳女主角",
+    "提名｜2026 金马奖 · 最佳男配角",
+    "提名｜2026 金马奖 · 最佳造型设计",
+    "提名｜2026 金马奖 · 最佳原创电影音乐"
+   ],
+   "ageRating": "保护级（6+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "金马奖入围影片",
+   "screeningNotes": {
+    "11/20-20:30-tp-muvie-titan-titan": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-022",
+   "cn": "黑潮",
+   "o": "Dead Tide",
+   "en": "Dead Tide",
+   "y": 2026,
+   "c": "马来西亚",
+   "min": 106,
+   "reg": "cn",
+   "dir": "池家庆",
+   "dirO": "Kethsvin CHEE",
+   "syn": "小渔村里的人心就像幽黑夜潮，让人无法轻易遁逃。因误杀入狱的阿忠刑满返家，愧疚却未曾放过他；被家人视作精神病患、禁锢在海上高脚屋的阿雪，暗藏无法倾诉的秘密。长夜一弯扁舟摆渡，让两个灵魂不期而遇，久违相拥。《嗨！神兽》马来西亚编导池家庆改编家乡真人真事，李心洁、王礼霖监制，陈泽耀、李沐演出一双各拥沉痛过往的折翼恋人，描绘社会压迫下的救赎悲歌。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "提名｜2026 金马奖 · 最佳男主角",
+    "提名｜2026 金马奖 · 最佳摄影",
+    "提名｜2026 金马奖 · 最佳美术设计",
+    "提名｜2026 金马奖 · 最佳原创电影音乐",
+    "提名｜2026 金马奖 · 最佳原创电影歌曲"
+   ],
+   "ageRating": "辅12级（12+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "金马奖入围影片",
+   "screeningNotes": {
+    "11/8-13:10-tp-muvie-titan-titan": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-023",
+   "cn": "独奏者之舞",
+   "o": "The Dance of a Soloist",
+   "en": "The Dance of a Soloist",
+   "y": 2026,
+   "c": "中国台湾",
+   "min": 130,
+   "reg": "cn",
+   "dir": "李立劭",
+   "dirO": "LEE Li-shao",
+   "syn": "一记白恐枪响夺走父亲，李哲洋的命运骤然变调，自此遭情治紧盯，强制退学、留学受阻、乐途崎岖。但他自学成才，学院无路，山林起步，成为原民歌谣采集先驱，又藉编刊、翻译与著述，为乐迷引介世界音乐。他为岛国留声开窗，名字却隐没史册。《独舞者的乐章》导演李立劭为父立传，使其贡献重见天日，更重访当年采声现场，搜罗跨代回响，让孤行一生的独奏者，终获迟来伴奏。",
+   "writers": [],
+   "cast": [],
+   "genre": [
+    "纪录片"
+   ],
+   "honors": [
+    "提名｜2026 金马奖 · 最佳纪录片"
+   ],
+   "ageRating": "普遍级（0+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "金马奖入围影片",
+   "screeningNotes": {
+    "11/8-13:20-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-024",
+   "cn": "那道阳光在外明媚",
+   "o": "The Whisper of Sunlight",
+   "en": "The Whisper of Sunlight",
+   "y": 2026,
+   "c": "中国香港",
+   "min": 84,
+   "reg": "cn",
+   "dir": "黄肇邦",
+   "dirO": "WONG Siu-pong",
+   "syn": "窗外阳光高挂，屋内生命倒数。三名年轻女子罹患罕见脑癌，高价实验药成了病患与家属的仅存生机。以药为引，让孤注希望与沉重负荷随之流转，编成三段交会又分岔的抗病历程。冷色近拍共感愁容，幽暗斗室囚禁倦影，不催泪、不造梦，静守照护日常。面对挥之不去的死亡阴霾，信念在机率里摇晃，爱在失去前发亮。纵然暖意难握、韶光难留，依然照见求生代价、托住相伴重量。",
+   "writers": [],
+   "cast": [],
+   "genre": [
+    "纪录片"
+   ],
+   "honors": [
+    "提名｜2026 金马奖 · 最佳纪录片"
+   ],
+   "ageRating": "保护级（6+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "金马奖入围影片",
+   "screeningNotes": {
+    "11/20-21:20-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）",
+    "11/21-15:30-tp-vieshow-xinyi-hall-10": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-025",
+   "cn": "离开即景",
+   "o": "Scenes from Departure",
+   "en": "Scenes from Departure",
+   "y": 2026,
+   "c": "中国台湾 / 中国香港",
+   "min": 82,
+   "reg": "cn",
+   "dir": "陈淦熙",
+   "dirO": "Ray CHAN Kam-hei",
+   "syn": "2019年香港局势紧张，导演赴台求学前，又逢家人巨变。翌年疫情封关，父子隔海视讯。距远心近，话少情真，心结渐开，牵挂渐深，才惊觉眼前人已是仅剩至亲。私电影为体，大时代为底，从家事到城事，多场离别叠景成墙，横成绕不开的人生课题。风格克制，问而不逼，隙而不补，保留两个男人慢慢靠近时的尴尬与沉默。故地可返，时光难挽，身披已逝与未愈，人总得带著缺口继续向前。",
+   "writers": [],
+   "cast": [],
+   "genre": [
+    "纪录片"
+   ],
+   "honors": [
+    "提名｜2026 金马奖 · 最佳纪录片"
+   ],
+   "ageRating": "普遍级（0+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "金马奖入围影片",
+   "screeningNotes": {
+    "11/9-19:10-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-026",
+   "cn": "快要到达家了",
+   "o": "Almost Home",
+   "en": "Almost Home",
+   "y": 2026,
+   "c": "中国香港",
+   "min": 96,
+   "reg": "cn",
+   "dir": "姜雯洁",
+   "dirO": "JIANG Wenjie",
+   "syn": "当家不恢原貌，何以自处？韩丽珠与家猫白果共居，在搬迁间寻归处；李维怡驻守深水埗小店，把来往过客结成街坊；叶晓文入住山野，向草木鸟兽学栖居。许鞍华、文念中监制，延续《诗》的本土关怀，随三位作家穿城入村，记下笔耕、维生、安身。她们以文字筑巢，在香港变幻时如树生根，由失所、结群与生态，扩写归属边界。家非座标，亦非终点，于离散间重组、相遇里生成，总在到达中。",
+   "writers": [],
+   "cast": [],
+   "genre": [
+    "纪录片"
+   ],
+   "honors": [
+    "提名｜2026 金马奖 · 最佳纪录片"
+   ],
+   "ageRating": "保护级（6+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "金马奖入围影片",
+   "screeningNotes": {
+    "11/20-17:00-tp-vieshow-xinyi-hall-10": "映后活动 · 影人出席（嘉宾待公布）",
+    "11/21-18:20-tp-vieshow-xinyi-hall-12": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-027",
+   "cn": "回山",
+   "o": "Etude",
+   "en": "Etude",
+   "y": 2026,
+   "c": "中国台湾",
+   "min": 109,
+   "reg": "cn",
+   "dir": "林佑恩",
+   "dirO": "LIN Yu-en",
+   "syn": "父亲在他幼时赴中国工作、另筑新家，长期缺席留下难填空白；母亲独力扶养子女，求好心切反令亲情紧绷。二十多年后，他持摄影机来回母亲与姊姊的家，欲补家庭裂缝，未料父亲重病返台，往日伏流再起漩涡。拍家人好难，太近难看明、太亲难说清。《度日》导演林佑恩长片首作，家似一座山，众人各自绕行，各守风景，难有交集。纵使未能一跃翻山，仍愿执镜入山，在迂回中走近彼此。",
+   "writers": [],
+   "cast": [],
+   "genre": [
+    "纪录片"
+   ],
+   "honors": [
+    "提名｜2026 金马奖 · 最佳纪录片"
+   ],
+   "ageRating": "保护级（6+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "金马奖入围影片",
+   "screeningNotes": {
+    "11/7-18:10-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）",
+    "11/12-14:00-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-028",
+   "cn": "魔法星图",
+   "o": "Magic Atlas",
+   "en": "Magic Atlas",
+   "y": 2026,
+   "c": "新加坡",
+   "min": 85,
+   "reg": "cn",
+   "dir": "孙逊",
+   "dirO": "SUN Xun",
+   "syn": "煤炭帝国「螺刹」即将迎来六十年一度的迷梦节。举国欢腾筹备，殊不知暗地里有使人民失去记忆的帝国阴谋。手握「魔法星图」的魔术师乘飞艇周游至此，却遭逮捕入狱，进而邂逅孤儿小之。在迷梦节的狂乱中，魔术师将地图交予小之，改变了他的命运……。费时十年，集合木刻板画及山水墨等复合媒材，汇聚历史经典的绘画、壁画与书法，宛如人类艺术史大爆炸，交织成奇幻寓言。",
+   "writers": [],
+   "cast": [],
+   "genre": [
+    "动画"
+   ],
+   "honors": [
+    "提名｜2026 金马奖 · 最佳动画片"
+   ],
+   "ageRating": "辅12级（12+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "金马奖入围影片",
+   "screeningNotes": {
+    "11/20-16:10-tp-vieshow-xinyi-hall-12": "映后活动 · 影人出席（嘉宾待公布）",
+    "11/21-19:20-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-029",
+   "cn": "欢迎来到朵莉之家",
+   "o": "Welcome to Dolly's House",
+   "en": "Welcome to Dolly's House",
+   "y": 2026,
+   "c": "中国台湾",
+   "min": 88,
+   "reg": "cn",
+   "dir": "游智皓 / 傅睿邨 / 刘育树",
+   "dirO": "Seven YCH / Rady FU / LIU Yu-shu",
+   "syn": "网红玛莉亚公主与男友经营都市传说频道，但因一次取材失败，人气暴跌。此时，制偶大师朵莉夫人要为娃娃举办「回家派对」；玛莉亚因持有娃娃而受邀，两人视此为事业翻身的机会，要一起挖掘宅邸的秘密。然而，越是深入宅邸，怪事却接二连三发生；与此同时，朵莉夫人似乎也在幕后操控一切……。结合真人转描与2D手绘动画技术，绚丽与黑暗并存，探寻自我与爱的真相。",
+   "writers": [],
+   "cast": [],
+   "genre": [
+    "动画"
+   ],
+   "honors": [
+    "提名｜2026 金马奖 · 最佳动画片"
+   ],
+   "ageRating": "辅12级（12+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "金马奖入围影片",
+   "screeningNotes": {
+    "11/8-11:00-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-030",
+   "cn": "沧海琴声",
+   "o": "The Violinist",
+   "en": "The Violinist",
+   "y": 2026,
+   "c": "新加坡 / 西班牙 / 义大利",
+   "min": 114,
+   "reg": "cn",
+   "dir": "韩蕴光 / 劳尔加西亚",
+   "dirO": "Ervin HAN / Raúl GARCÍA",
+   "syn": "一张童年合照，让新加坡传奇小提琴家李菲揭开尘封一生的往事。1930年代初期，英殖时期新加坡，李菲在家苦练琴艺，琴声吸引仆役养子阿凯，意外让他显露非凡天赋，从此走上音乐路。但随著二战日军进逼南洋，阿凯痛失养母，愤而弃琴加入盟军。临走前，他将小提琴与未完成的奏鸣曲讬付李菲，承诺战后归来合奏。李菲怀抱希望在战争中求生，但这场音乐梦是否早已破灭？叙事横跨殖民至战后，琴声寄情亦记人，动人心弦。",
+   "writers": [],
+   "cast": [],
+   "genre": [
+    "动画"
+   ],
+   "honors": [
+    "提名｜2026 金马奖 · 最佳动画片",
+    "提名｜2026 金马奖 · 最佳改编剧本",
+    "提名｜2026 金马奖 · 最佳原创电影音乐"
+   ],
+   "ageRating": "保护级（6+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "金马奖入围影片",
+   "screeningNotes": {
+    "11/20-13:40-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）",
+    "11/21-15:30-tp-vieshow-xinyi-hall-12": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-031",
+   "cn": "金马奖入围剧情短片A",
+   "o": "Golden Horse Awards Nominated Live Action Short Films A",
+   "en": "Golden Horse Awards Nominated Live Action Short Films A",
+   "y": 2026,
+   "min": 56,
+   "c": "新加坡 / 中国内地 / 中国香港 / 中国台湾",
+   "reg": "cn",
+   "dir": "林镌霓 / 陈见明 / 游智杰",
+   "syn": "合辑放映，共 3 部短片，总片长 56 分钟。依序为：《果》、《她说》、《末代僵尸》。",
+   "writers": [],
+   "cast": [],
+   "genre": [
+    "短片"
+   ],
+   "honors": [
+    "提名｜2026 金马奖 · 最佳剧情短片"
+   ],
+   "parts": [
+    {
+     "cn": "果",
+     "en": "Fruit",
+     "y": 2025,
+     "c": "新加坡",
+     "min": 15,
+     "dir": "林镌霓",
+     "dirO": "LIM Jen-nee",
+     "syn": "疯狂跑跳、吃凤梨、看巫医，我就不信这样不流产！在堕胎被视为逆天且违法的环境里，人人祝贺惜娣怀孕，只有她如临恶梦。历经多次徒劳无功，却又不甘放弃，此时惜娣邂逅神秘妩媚的女公车司机，被她的独立与自由所吸引。香蕉树下，这位似灵似鬼的女郎，能否帮惜娣找到新出路？",
+     "synEn": "As abortion is illegal, the pregnant Siti tries everything to get rid of the foetus but fails. When she meets a charming female bus driver, who is in fact a spiritual entity, Siti realises that the only way out is to become one too.",
+     "honors": [
+      "提名｜2026 金马奖 · 最佳剧情短片"
+     ]
+    },
+    {
+     "cn": "她说",
+     "en": "She Said",
+     "y": 2026,
+     "c": "新加坡",
+     "min": 21,
+     "dir": "陈见明",
+     "dirO": "Ivan TAN",
+     "syn": "当伴侣求婚时，赵玲没有给出答案，而是开始讲述一段自白。她说，她曾是受困的诈骗电话接线员，却对通话的另一方付出真心，埋下洗心革面的决心。但随著过去阴影被揭开，她的故事却游移在忏悔与寓言之间，这段关系究竟会通往怎样的未来？范冰冰主演，真假难辨的自我辩白更显暧昧。",
+     "synEn": "When her partner proposes, Ling makes a confession about her time as a scam caller. As an unpayable debt unfolds, we are left to question the line between confession and allegory and what truth Ling is revealing about her past and their future.",
+     "honors": [
+      "提名｜2026 金马奖 · 最佳剧情短片"
+     ]
+    },
+    {
+     "cn": "末代僵尸",
+     "en": "The Last Jiangshi",
+     "y": 2026,
+     "c": "中国内地 / 中国香港 / 中国台湾",
+     "min": 20,
+     "dir": "游智杰",
+     "dirO": "YU Chih-chieh",
+     "syn": "八○年代僵尸随著香港电影风靡四方，成为一代文化记忆。如今年轻导演阿杰为了拍毕制，住进末代僵尸老李家。谁知长生不老等于生活枯燥，拍摄没完没了。直到昔日冤家登门，让老李最后一游紫禁城……。《僵尸先生》陈友重拾道袍上阵，伪纪录片手法，玩心之下是感性，留下身影莫遗忘。",
+     "synEn": "Rooted in the ancient Xiangxi ritual of corpse-herding, Jiangshi became a global cinematic icon following the 1985 cult classic Mr. Vampire. Four decades later, a documentary filmmaker and a Taoist priest encounter Lao Li – the last living Jiangshi.",
+     "honors": [
+      "提名｜2026 金马奖 · 最佳剧情短片"
+     ]
+    }
+   ],
+   "ageRating": "限制级（18+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "金马奖入围影片",
+   "screeningNotes": {
+    "11/20-21:40-tp-vieshow-xinyi-hall-10": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-032",
+   "cn": "金马奖入围剧情短片B",
+   "o": "Golden Horse Awards Nominated Live Action Short Films B",
+   "en": "Golden Horse Awards Nominated Live Action Short Films B",
+   "y": 2026,
+   "min": 61,
+   "c": "中国香港 / 中国台湾",
+   "reg": "cn",
+   "dir": "仲锦妮 / 郭佩绮",
+   "syn": "合辑放映，共 2 部短片，总片长 61 分钟。依序为：《三只小猪》、《爬坡》。",
+   "writers": [],
+   "cast": [],
+   "genre": [
+    "短片"
+   ],
+   "honors": [
+    "提名｜2026 金马奖 · 最佳剧情短片"
+   ],
+   "parts": [
+    {
+     "cn": "三只小猪",
+     "en": "Three Little Pigs",
+     "y": 2026,
+     "c": "中国香港",
+     "min": 24,
+     "dir": "仲锦妮",
+     "dirO": "CHUNG Kam-nei",
+     "syn": "两位年轻人游走在香港夜间街头，想买猪头进行一场别开生面的拜山行动。眼见买不到拜神烧猪，只好自己偷刀与猪，断头后亲自为猪点妆，画上小丑迷人微笑，再攀山涉水抵终点，祝福似远似近的彼方。",
+     "synEn": "Two teenagers' mission to steal a pig's head sends them on a journey through the heart of Hong Kong, culminating in an act of resistance to honour an absent friend.",
+     "honors": [
+      "提名｜2026 金马奖 · 最佳剧情短片"
+     ]
+    },
+    {
+     "cn": "爬坡",
+     "en": "Her Slope",
+     "y": 2025,
+     "c": "中国台湾",
+     "min": 37,
+     "dir": "郭佩绮",
+     "dirO": "KUO Pei-chi",
+     "syn": "身为家庭厨师的赖姐，靠双脚与公车穿梭家户厨房，煮出各家口味菜肴之余，也陪著一起东家长西家短。但回到家里，与老公之间的隔阂却难以化解。当她偷偷报名驾训班，手握方向盘，才彷佛掌握了人生。婚姻天天如爬坡，总要留口气喘息。李宜珊监制，杨丽音、夏靖庭再续欢喜冤家。",
+     "synEn": "Lai works as a private cook. She solves people's problems but not her own with her husband. She finds one thing that relaxes her – learning to drive in secret. During her first on-road training, a small incident unsettles her life.",
+     "honors": [
+      "提名｜2026 金马奖 · 最佳剧情短片"
+     ]
+    }
+   ],
+   "ageRating": "保护级（6+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "金马奖入围影片",
+   "screeningNotes": {
+    "11/21-22:10-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-033",
+   "cn": "金马奖入围纪录短片A",
+   "o": "Golden Horse Awards Nominated Documentary Short Films A",
+   "en": "Golden Horse Awards Nominated Documentary Short Films A",
+   "y": 2026,
+   "min": 72,
+   "c": "中国台湾",
+   "reg": "cn",
+   "dir": "黄邦铨 / 林君昵 / 黄令华 / 叶治芳",
+   "syn": "合辑放映，共 3 部短片，总片长 72 分钟。依序为：《月亮上的业余者》、《缅甸女孩》、《屋舍上的叶仔花》。",
+   "writers": [],
+   "cast": [],
+   "genre": [
+    "短片",
+    "纪录片"
+   ],
+   "honors": [
+    "提名｜2026 金马奖 · 最佳纪录短片"
+   ],
+   "parts": [
+    {
+     "cn": "月亮上的业余者",
+     "en": "Amateur in the Moon",
+     "y": 2025,
+     "c": "中国台湾",
+     "min": 22,
+     "dir": "黄邦铨 / 林君昵",
+     "dirO": "HUANG Pang-chuan / LIN Chun-ni",
+     "syn": "近百年前的业余者拍片梦，如何再发光？三○年代小规格电影推手吉川速男，本片取材其著作书信，9.5毫米胶卷重演身影，从日本漫游台湾、黑白飞入彩色，续拍未完成的登月电影，追索被遗忘的同好社群。史料相逢科幻，古今热情互燃，齿轮再转、银盐复燃，映尘埃为晨星。",
+     "synEn": "Yoshikawa Hayao, a pioneer of amateur cinema in Asia, rediscovered a forgotten dream from his youth: to create a sci-fi film set on the Moon, and the journey became a return to the spirit of amateur cinema itself.",
+     "honors": [
+      "提名｜2026 金马奖 · 最佳纪录短片"
+     ]
+    },
+    {
+     "cn": "缅甸女孩",
+     "en": "Myanmar Girls",
+     "y": 2026,
+     "c": "中国台湾",
+     "min": 20,
+     "dir": "黄令华",
+     "dirO": "Flora HUANG Ling-hwa",
+     "syn": "两名缅甸高中女孩，正准备赴台留学考试。课业重担、父母期盼，与彼此笑闹取暖，拼成青春片段。导演逆向走入她们将离开的城市，蛰伏静观、近陪聆听，以少女心事为轴，探问前进台湾，是否抵达自由。政变后的动荡无须直言，由停电家园、未竟功课与大人静默悄然弥漫。",
+     "synEn": "Under Myanmar's repressive military regime, two teenage girls are preparing for exams to study in Taiwan and pursue a safer future their family have planned for them. As they dream about what lies ahead, they begin to question what freedom truly means.",
+     "honors": [
+      "提名｜2026 金马奖 · 最佳纪录短片"
+     ]
+    },
+    {
+     "cn": "屋舍上的叶仔花",
+     "en": "The Paperflower Still Blooms",
+     "y": 2025,
+     "c": "中国台湾",
+     "min": 30,
+     "dir": "叶治芳",
+     "dirO": "YEH Chih-fang",
+     "syn": "离家的长孙重返杨梅老家，爷爷栽下的叶仔花仍爬满鸡舍，家人却已随岁月老去。他跟著奶奶学客语，也把摄影机停驻宅内，从家常絮叨、泛黄旧照与斑驳墙面，拾回失落的母语与记忆。坦率呈现与细腻编织，让同一屋檐下的生疏留痕、怨怼有声、牵挂生根，枝蔓般长出家的形状。",
+     "synEn": "Returning to the ancestral home his grandfather built for the family, the eldest grandson finds no trace of his own childhood. Through the rhythmic cadence of his grandmother's Hakka, he begins to reclaim his identity.",
+     "honors": [
+      "提名｜2026 金马奖 · 最佳纪录短片"
+     ]
+    }
+   ],
+   "ageRating": "普遍级（0+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "金马奖入围影片",
+   "screeningNotes": {
+    "11/8-17:30-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-034",
+   "cn": "金马奖入围纪录短片B",
+   "o": "Golden Horse Awards Nominated Documentary Short Films B",
+   "en": "Golden Horse Awards Nominated Documentary Short Films B",
+   "y": 2026,
+   "min": 67,
+   "c": "中国澳门 / 中国台湾 / 捷克",
+   "reg": "cn",
+   "dir": "李卓媚 / 蔡明亮",
+   "syn": "合辑放映，共 2 部短片，总片长 67 分钟。依序为：《嘉翠丽》、《夜行》。",
+   "writers": [],
+   "cast": [],
+   "genre": [
+    "短片",
+    "纪录片"
+   ],
+   "honors": [
+    "提名｜2026 金马奖 · 最佳纪录短片"
+   ],
+   "parts": [
+    {
+     "cn": "嘉翠丽",
+     "en": "A Farewell to Julieta",
+     "y": 2026,
+     "c": "中国澳门",
+     "min": 29,
+     "dir": "李卓媚",
+     "dirO": "LEI Cheok-mei",
+     "syn": "名为嘉翠丽，曾供长者相依；如今清拆在即，却似催人离。这栋殖民时期落成的澳门公宅，政府以老旧为由拆楼迁户，孰料住民流连不离、日日返回聚集。砖瓦落地，旧情难移；新居虽完善，街坊难替代。以粤葡双语童声作诗，串起孤老絮语与屋宇角落，向将逝空间依依惜别。",
+     "synEn": "A Farewell to Julieta records the demolition of Macau's first modern public housing estate, Edifício Julieta Nobre de Carvalho, weaving folk memories of the estate through poems crafted from children's dialogues and exploring the extensions of people, space, era, and emotion.",
+     "honors": [
+      "提名｜2026 金马奖 · 最佳纪录短片"
+     ]
+    },
+    {
+     "cn": "夜行",
+     "en": "Night Journey",
+     "y": 2025,
+     "c": "中国台湾 / 捷克",
+     "min": 38,
+     "dir": "蔡明亮",
+     "dirO": "TSAI Ming-liang",
+     "syn": "捷克小城，夜深、雾沉、街空。红袍僧人赤足踏寒，缓缓穿行红叶暗巷，从城外走向戏院。居民或安然入睡、或聚银幕前，有人凝神，有人阖眼。电影如梦亦如雾，行者穿雾入夜，观众隔幕入梦；戏上戏下、梦内梦外，界线消融。蔡明亮「行者」新篇，从快慢走入寤寐，回望观影本身。",
+     "synEn": "The Walker enters the dream of a small town in Eastern Europe. A cold autumn night. The townspeople have long gone to sleep. Tsai's films are also a kind of dream. People linger between sleep and waking, waiting for a mist to arrive.",
+     "honors": [
+      "提名｜2026 金马奖 · 最佳纪录短片"
+     ]
+    }
+   ],
+   "ageRating": "普遍级（0+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "金马奖入围影片",
+   "screeningNotes": {
+    "11/20-19:30-tp-vieshow-xinyi-hall-10": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-035",
+   "cn": "金马奖入围动画短片",
+   "o": "Golden Horse Awards Nominated Animated Short Films",
+   "en": "Golden Horse Awards Nominated Animated Short Films",
+   "y": 2026,
+   "min": 46,
+   "c": "中国台湾 / 英国 / 中国内地 / 日本",
+   "reg": "cn",
+   "dir": "陈亭睿 / 李一洲 / 林奕伶 / 张朴真 / 王登钰 / 杨雅婷",
+   "syn": "合辑放映，共 5 部短片，总片长 46 分钟。依序为：《你不在这个蛋糕里》、《蝴蝶结》、《我朋友的故事》、《深水区》、《埋葬的孩子》。",
+   "writers": [],
+   "cast": [],
+   "genre": [
+    "短片",
+    "动画"
+   ],
+   "honors": [
+    "提名｜2026 金马奖 · 最佳动画短片"
+   ],
+   "parts": [
+    {
+     "cn": "你不在这个蛋糕里",
+     "en": "You Are Not Part of the Cake",
+     "y": 2025,
+     "c": "中国台湾 / 英国",
+     "min": 5,
+     "dir": "陈亭睿",
+     "dirO": "CHEN Ting-jui",
+     "syn": "父亲是基底，总要女儿当蛋糕上的乖巧人偶。平在历经多次恐吓后，选在女友的恐同父亲生日时，以蛋糕正面对决，用他的血肉与躯干做出新蛋糕。黑色幽默上演复仇幻想，细笔勾勒画面，人物随情绪变化延展；俐落节奏使杀戮宛如仪式，映照出三人关系的爱恨角力。谁在这块蛋糕里？",
+     "synEn": "Ping faces conflict with her girlfriend Lala's homophobic and aggressive father. Forced to take action to save herself, Ping kills him and makes him into a cake. This act severs ties and leads to a new phase of life.",
+     "honors": [
+      "提名｜2026 金马奖 · 最佳动画短片"
+     ]
+    },
+    {
+     "cn": "蝴蝶结",
+     "en": "Bowknot",
+     "y": 2026,
+     "c": "中国内地 / 日本",
+     "min": 8,
+     "dir": "李一洲",
+     "dirO": "LI Yizhou",
+     "syn": "谁说蝴蝶结只能绑鞋带？男孩学会打结后，用它帮助小孩绑汽球、解决只考十分的考卷、拯救绝育的忧郁小狗，还让云朵下雨扑灭森林大火、让对峙的士兵不再打架。只要运用想像力、幽默与正向思考，一个蝴蝶结也可以让世界更美好。平面极简卡通造型，让创意与纯粹成为最大武器，蝴蝶结救世界！",
+     "synEn": "Bowknot follows the protagonist, who accidentally learns to tie a bow and discovers its endless possibilities. He uses his newfound skill to solve challenges and help others in this story that combines creativity, humour, and a hopeful reflection on the world.",
+     "honors": [
+      "提名｜2026 金马奖 · 最佳动画短片"
+     ]
+    },
+    {
+     "cn": "我朋友的故事",
+     "en": "Stacy",
+     "y": 2025,
+     "c": "中国台湾",
+     "min": 9,
+     "dir": "林奕伶",
+     "dirO": "LIN Yi-ling",
+     "syn": "新闻传出女大学生坠楼事件，牙包的朋友留下一句「我要去冒险了」，再也不回来。牙包难以止歇的愤怒与埋怨，实则是回忆、遗憾、无法接受与替朋友松口气。一次意料之外的梦里相见，牙包终于有机会将千言万语倾吐而出。以2D动画呈现人物与空间变形，赭红、橄榄绿等暖色调为感伤垫底，温柔接住生者的哀伤。",
+     "synEn": "After Toothbag's friend committed suicide, Toothbag wraps her regret in anger, flipping through memories, yet still can't accept the loss. In an unexpected dream, she tries to leave behind her fantasies and obsessions with her friend and respect the fact.",
+     "honors": [
+      "提名｜2026 金马奖 · 最佳动画短片"
+     ]
+    },
+    {
+     "cn": "深水区",
+     "en": "Deep End",
+     "y": 2026,
+     "c": "英国",
+     "min": 8,
+     "dir": "张朴真",
+     "dirO": "ZHANG Puzhen",
+     "syn": "2000年代初的中国，12岁女孩加入暑期游泳培训班。尽管胆怯害怕、总抱著泳圈不放，但浅水区人潮拥挤，深水区安静空旷，令女孩渴望跨界游玩。在活泼女同学的鼓励下，她逐渐克服对水的恐惧，并与她一起游向深水区。调度灵活的停格偶动画，将这个夏日的成长与情愫永恒留存。",
+     "synEn": "In the early 2000s in China, a 12-year-old girl joins a summer swimming class determined to reach the deep end. Through an unexpected bond with a classmate, she learns to overcome her fear of water and experiences her first queer awakening.",
+     "honors": [
+      "提名｜2026 金马奖 · 最佳动画短片"
+     ]
+    },
+    {
+     "cn": "埋葬的孩子",
+     "en": "The Buried Baby",
+     "y": 2026,
+     "c": "中国台湾",
+     "min": 16,
+     "dir": "王登钰 / 杨雅婷",
+     "dirO": "Fish WANG / YANG Ya-ting",
+     "syn": "一场大地震让母子分离，母亲因故遗忘爱子，困囿于记忆中模糊缠绕的黑影。沉于地底的孩子，在无数黑夜里，向睡魔与黑狗诉说对妈妈的思念。碎纸传情，旋律指引，透过睡魔施法，孩子的心愿能否成真？金马奖得主王登钰合导新作，邀请雷光夏配乐，以幽暗奇幻编织爱的童话。",
+     "synEn": "The earthquake stole a mother's memories, but her child never forgets. Now buried deep underground, will the child find a way to restore her memories?",
+     "honors": [
+      "提名｜2026 金马奖 · 最佳动画短片"
+     ]
+    }
+   ],
+   "ageRating": "辅12级（12+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "金马奖入围影片",
+   "screeningNotes": {
+    "11/20-21:40-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-036",
+   "cn": "搭错车",
+   "o": "Papa, Can You Hear Me Sing?",
+   "en": "Papa, Can You Hear Me Sing?",
+   "y": 1983,
+   "c": "中国台湾 / 中国香港",
+   "min": 93,
+   "reg": "cn",
+   "dir": "虞戡平",
+   "dirO": "YU Kan-ping",
+   "syn": "在战场上失去声带的老兵，以捡拾旧货自食其力，某日在街角发现被弃养的女婴，带回抚养，相依为命。女孩长大后，被发掘歌唱才华一炮而红，却也被迫埋藏出身及爱情。相对于无声的父爱，舞台上一首首的歌曲，呐喊出她的思念与愧疚。通俗剧式的煽情戏码包藏社会议题，强大编导演制阵容，罗大佑、李寿全、侯德健、梁弘志、陈志远、吴念真的词曲，苏芮横空出世演唱，更成流行歌曲分水岭。本次放映为歌词字幕变色K歌版，观众可随歌曲跟唱。",
+   "bio": "虞戡平，1950 年生于台南，1979 年《要命的小方》首执导演筒，1981 年《顽皮鬼》造成票房旋风，1983 年《搭错车》荣获金马奖最佳男主角等四项大奖，并获香港电影金像奖最佳电影配乐及最佳电影歌曲，1990 年后投入原住民纪录工作，亦致力培育影视人才。作品尚有《三毛流浪记》、《孽子》、《海峡两岸》、《两个油漆匠》等。2026 年获颁金马奖终身成就奖。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "获奖｜1984 香港金像奖 · 最佳电影歌曲、配乐",
+    "获奖｜1983 金马奖 · 最佳男主角、电影插曲、原作电影音乐、录音"
+   ],
+   "ageRating": "辅12级（12+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "金马奖终身成就奖：虞戡平",
+   "screeningNotes": {
+    "11/15-16:00-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-037",
+   "cn": "孽子",
+   "o": "The Outsiders",
+   "en": "The Outsiders",
+   "y": 1986,
+   "c": "中国台湾",
+   "min": 106,
+   "reg": "cn",
+   "dir": "虞戡平",
+   "dirO": "YU Kan-ping",
+   "syn": "高中生阿青被发现与同性教职员私通而遭退学，颜面尽失的老兵父亲把他扫地出门，他只好前往台北新公园寻找一席之地。在杨师傅收容下，他结交一帮同志知己，邂逅同遭放逐的龙子，但过往的不堪童年记忆和家族阴影，却让他陷入无尽遗憾。改编白先勇代表作，4K数位修复经典再现，挑战戒严时期保守社会，邀请苏芮再度献唱，金马影帝孙越更开金嗓，为疼痛压抑的青春唱出最无畏禁忌的旋律。",
+   "bio": "虞戡平，1950 年生于台南，1979 年《要命的小方》首执导演筒，1981 年《顽皮鬼》造成票房旋风，1983 年《搭错车》荣获金马奖最佳男主角等四项大奖，并获香港电影金像奖最佳电影配乐及最佳电影歌曲，1990 年后投入原住民纪录工作，亦致力培育影视人才。作品尚有《三毛流浪记》、《孽子》、《海峡两岸》、《两个油漆匠》等。2026 年获颁金马奖终身成就奖。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "入选｜1988 波士顿同志影展",
+    "入选｜1987 多伦多影展",
+    "入选｜1987 旧金山同志影展",
+    "提名｜1986 金马奖 · 最佳女配角"
+   ],
+   "ageRating": "辅12级（12+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "金马奖终身成就奖：虞戡平",
+   "screeningNotes": {
+    "11/14-18:20-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-038",
+   "cn": "两个油漆匠",
+   "o": "Two Painters",
+   "en": "Two Painters",
+   "y": 1990,
+   "c": "中国台湾",
+   "min": 120,
+   "reg": "cn",
+   "dir": "虞戡平",
+   "dirO": "YU Kan-ping",
+   "syn": "抑郁寡言的退役老兵，对妻儿不满仅以沉默抗议；为爱北上的泰雅青年，在挚友丧命后一蹶不起。两个油漆看板工人各怀忧虑，从互看不顺眼到互相谅解，原来彼此都有不如意。坐在鹰架远眺夕阳，酒意让两人看似摇摇欲坠，行人的误解引来大批人群，原本的玩笑竟演变成难以收拾的混乱残局……。携手吴念真编剧，将黄春明小说放入台湾解严后时空，嘲讽媒体乱象之余，亦关怀原住民困境，孙越在拍摄完成后宣布息影投身公益，更添本片深意。",
+   "bio": "虞戡平，1950 年生于台南，1979 年《要命的小方》首执导演筒，1981 年《顽皮鬼》造成票房旋风，1983 年《搭错车》荣获金马奖最佳男主角等四项大奖，并获香港电影金像奖最佳电影配乐及最佳电影歌曲，1990 年后投入原住民纪录工作，亦致力培育影视人才。作品尚有《三毛流浪记》、《孽子》、《海峡两岸》、《两个油漆匠》等。2026 年获颁金马奖终身成就奖。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "提名｜1990 金马奖 · 最佳男配角"
+   ],
+   "ageRating": "辅12级（12+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "金马奖终身成就奖：虞戡平",
+   "screeningNotes": {
+    "11/15-13:10-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-039",
+   "cn": "中场休息",
+   "o": "Intermission",
+   "en": "Intermission",
+   "y": 2026,
+   "c": "中国香港",
+   "min": 226,
+   "reg": "cn",
+   "dir": "杨凡",
+   "dirO": "Yonfan",
+   "syn": "1964年，在香港大会堂看演出，中场休息时间与朋友的笑语，开启了如梦境的时光隧道：《泪王子》的革命情怀、《继园台七号》的动荡错爱、《少女日记》的不食烟火、《玫瑰的故事》的手足暧昧、《海上花》的异国恋曲、《意乱情迷》的突破惊异、《流金岁月》的姐妹情谊、《三画二郎情》的异色情欲、《美少年之恋》的同志秘恋、《游园惊梦》的华美颓败、《桃色》的前卫艳情……。斑斓纷飞的年华回忆，聚成对电影的一往深情。",
+   "st": "导演杨凡回望创作生平，将毕生长片作品浓缩成近四小时的史诗宏作。清亮旁白重新解构场景，跳接游走丰沛影像剧情，或对时代背景旁征博引，偶诉幕后制作甘苦秘辛，亦为分歧抉择反思深省，道出专属于导演的电影笔记。回味张曼玉、钟楚红、周润发、冯德伦、吴彦祖等封存在影像中的青涩光阴，在黑暗的空间里，顺著那一道白光，一起寻梦。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "入选｜2026 威尼斯影展",
+    "入选｜2026 多伦多影展"
+   ],
+   "ageRating": "限制级（18+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "华语首映",
+   "screeningNotes": {
+    "11/7-13:40-tp-muvie-titan-titan": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-040",
+   "cn": "顺风顺水",
+   "o": "The Water Will Carry Us",
+   "en": "The Water Will Carry Us",
+   "y": 2026,
+   "c": "中国香港",
+   "min": 89,
+   "reg": "cn",
+   "dir": "郑世匡",
+   "dirO": "CHENG Sei-hong",
+   "syn": "龙舟会船工风平寄居海边，偶然在暗夜瞥见不明魂魄，却非多年前失踪的爱子入梦。风平有感于心，点起长明灯，助意外溺水的冲浪手家属呼盼亡魂。只是思念绵长，十年回声在耳际回荡，离开与归返的抉择也将众人笼罩。当年幸存的爱子女友已组建新家，即将回流澳洲，却不知该如何向风平开口；与风平交心的菲律宾移工准备远赴加国，但似有若无的情愫仍牵绊两人。在抵达彼岸前，他们皆望海忧愁。",
+   "st": "香港导演郑世匡以悠缓的笔触，平实勾描这片漫上愁绪的海滩，以际遇交会的迷惘众生，书写海的浩渺未知，也掂起思恋与负疚的重量。《虎毒不》谈善言举重若轻演绎内心挣扎的幸存者，搭档香港剧帝张锦程，一同在茫茫海岸遥望故人，将顾念融于日常朝夕之间，吟唱缓步向前走的生命之诗。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [],
+   "ageRating": "普遍级（0+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "华语首映",
+   "screeningNotes": {
+    "11/17-18:40-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-041",
+   "cn": "明月共此时",
+   "o": "The House on the Moon",
+   "en": "The House on the Moon",
+   "y": 2026,
+   "c": "新加坡 / 中国台湾",
+   "min": 104,
+   "reg": "cn",
+   "dir": "杨国瑞",
+   "dirO": "Nelson YEO",
+   "syn": "世人皆知奔月传说，却不知其后悲喜汹涌。嫦娥为寻挚爱后羿，与地球来的盗贼共赴月球暗面之旅；蓬蒙弑师之外，原也藏著烈爱情事。当时间逐渐褪色，往昔时光映现，也望见暮年缠绵，更与酒鬼月老红绳相舞，谜语对酌。直至行过千年孤寂，穿越宇宙边界，顿悟生命与爱的真谛。",
+   "st": "《好久不见》新加坡编导杨国瑞再出奇作，以台星跨国合制复闯洛迦诺影展。延续独树一帜的魔幻笔法与作者风格，搭衬迷离的电子乐，打造另类公路电影。翻写嫦娥奔月、后羿射日、蓬蒙杀羿等经典神话，以跳跃的意识流时间线，勾勒神话人物内在的情感旅程。于台湾实地取景，并融合虚拟科技，重构月球壮景，揭开华语科幻武侠新页。黄冠智、张怀秋、李康生惊艳加盟，携手新加坡演员林诗安，再塑悲剧角色，追问世间真情。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "入选｜2026 洛迦诺影展 · 正式竞赛",
+    "入选｜2026 西班牙锡切斯奇幻影展",
+    "入选｜2026 新加坡电影节",
+    "入选｜2026 曼谷影展",
+    "入选｜2026 蒙特娄新电影影展",
+    "入选｜2026 夏威夷影展"
+   ],
+   "ageRating": "辅12级（12+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "华语首映",
+   "screeningNotes": {
+    "11/8-19:00-tp-vieshow-xinyi-hall-10": "映后活动 · 影人出席（嘉宾待公布）",
+    "11/9-16:00-tp-vieshow-xinyi-hall-10": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-042",
+   "cn": "一路狂奔",
+   "o": "Running Wild",
+   "en": "Running Wild",
+   "y": 2026,
+   "c": "中国台湾",
+   "min": 92,
+   "reg": "cn",
+   "dir": "王逸铃",
+   "dirO": "WANG Yi-ling",
+   "syn": "夜场青红闪烁，女同情侣李依与钟汶为寻刺激，随机找上阿凯三人肉搏。从床上到车里，你进我退试探分际。玩不起，就喊停。交货倒数，二女一男穿梭台北街头，任暴力随欲望走火，荒地楼顶贪欢。小情小爱，小赢小败，厢型车开到荼蘼，烧不尽年少嗔痴男女迷情。枪与玫瑰相生相克，为爱痴狂的赌徒难舍难分，夜色掩映下一路狂奔，奔向全有全无的梦醒时分。",
+   "st": "《台北过手无暝无日》原班人马如约而至，续写台北漂泊灵魂夜曲，生猛力道不减。王渝萱与李雪不疯魔不算爱，潘纲大飘忽神性再添三分邪气，交缠出若即若离的恐怖平衡，亡命探索记忆极限。电子音乐共燃霓虹美学，侧写城市旮旯的不甘与不安，打磨成一趟台味十足的黑色公路之旅。孤注一掷的堕落天使、迷幻扭曲的权力游戏，天一亮，皆成泡影。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "入选｜2026 塔林黑夜影展"
+   ],
+   "ageRating": "辅15级（15+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "华语首映",
+   "screeningNotes": {
+    "11/18-18:50-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-043",
+   "cn": "歌舞的我们",
+   "o": "The Songs from Within",
+   "en": "The Songs from Within",
+   "y": 2026,
+   "c": "中国台湾",
+   "min": 85,
+   "reg": "cn",
+   "dir": "卢盈良",
+   "dirO": "Elvis LU A-liang",
+   "syn": "屏东三地门排湾部落，群山叠翠、河谷环抱。牧凡跟陈薇自小在此生活，笑闹貌似响亮，心事却压低声量，一身阴柔气质，总与旁人期待对不上拍。庆典鼓声一开，两人盛妆登场，将不守规矩的身体扭成舞姿、说不出口的秘密飙成高音；歌舞越飞扬，暗伤越发烫。当自我认同卡在宗教信仰与原民传统之间，只好把困惑写成字，幻灭谱成歌；借节奏倾吐，靠创作寻路。边唱边跳边自问：这副身子，究竟能不能照自己的意思活？",
+   "st": "谁说勇士只能阳刚披甲，不能涂亮嘴唇、扭腰摆臀？《神人之家》导演卢盈良新作，长年陪伴南国玫瑰少年，一同走进家门、祭典及教会，由青涩守候至成人，看青春一边妖娆、一边煎熬。成规如绳，性别转身；祖灵上帝在天，爱欲真我在心。来路难断，去路未明，唯有抓准节拍、唱亮跳开，勇敢活出来。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "入选｜2026 捷克伊赫拉瓦影展"
+   ],
+   "ageRating": "辅12级（12+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "华语首映",
+   "screeningNotes": {
+    "11/14-16:00-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）",
+    "11/15-10:50-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-044",
+   "cn": "我的意思是",
+   "o": "On the Edge",
+   "en": "On the Edge",
+   "y": 2026,
+   "c": "中国台湾",
+   "min": 134,
+   "reg": "cn",
+   "dir": "潘之然",
+   "dirO": "Elfie PAN",
+   "syn": "一嗑入瘾，世界失衡，越想抽身，越陷越深。男同志Jay习惯用药助性，长年下来快感渐淡、妄想趋真，经常深夜失神游荡、找不著家门，这才有了病识感，想将脱序人生绑好。偏偏百日撞墙，瘾又上头，复用、失控、后遗症，醒了又坠，悔了再犯。明知欢愉抵不过代价，仍逃不出无间循环。自责成圈，愧疚缠身，只觉自己烂透，友情、爱情与亲情全都拖进泥淖。",
+   "st": "撕掉标签，放下成见，先把人看清，再把话讲明。导演潘之然贴身拍摄大学挚友，不仅带观众行过药瘾、感染与身心共病交织的幽谷，更联手众友用陪伴织网、友情承接、对话舒心。不猎奇，不定罪，不将被摄者简化成病例，也不让污名抢先定义。把时间还给未被好好聆听的受困心灵，直视一个敏感、聪明、会痛也会爱的平凡人，如何反复跌落，又一次次挣扎想活。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [],
+   "ageRating": "辅15级（15+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "华语首映",
+   "screeningNotes": {
+    "11/11-18:30-tp-vieshow-xinyi-hall-12": "映后活动 · 影人出席（嘉宾待公布）",
+    "11/13-15:40-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-045",
+   "cn": "我们的蓝调时光：第 1-2 集",
+   "o": "Our Blues: Ep.1-2",
+   "en": "Our Blues: Ep.1-2",
+   "y": 2026,
+   "c": "中国台湾",
+   "min": 96,
+   "reg": "cn",
+   "dir": "林子平",
+   "dirO": "LIN Tzu-ping",
+   "syn": "渔人之岛海水正蓝，25年前一起长大的同学，如今各自背著伤痛旧地重逢──回乡取暖的落魄负债男、真心换绝情的海产老板娘、走不出创伤的暴躁杂货郎……，一个个伤心灵魂今昔交错穿插，视角随章节更迭流转，各自课题互起化学变化。在你的世界里我只是个过客，她的人生景框却在我身上定格。无忧青春已不复返，但求抱著遗憾平心前行，找回属于自己的蓝调时光。",
+   "st": "偶像剧教母柴智屏领军翻拍同名大热韩剧，将故事背景从济州岛移至澎湖，忠实转拓原作独到的多线群戏结构，巧妙置换在地元素，揉入浓浓台湾味。超豪华阵容火花四射，周渝民与张钧宁旧情人狭路再逢；钟欣凌与苏见信欢喜冤家纠缠，再续难解之缘；王柏杰、安心亚、郭泓志、郑人硕、詹子萱、邱以太一同搬演海海人生，携手谱出当代亲密关系的多元形状。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [],
+   "ageRating": "保护级（6+）",
+   "subtitles": "原文发音，中文字幕；无英文字幕",
+   "section": "华语首映",
+   "screeningNotes": {
+    "11/10-18:40-tp-muvie-titan-titan": "映后活动 · 影人出席（嘉宾待公布）",
+    "11/11-17:10-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-046",
+   "cn": "急诊室的奇迹：第 1-2 集",
+   "o": "Miracles of the ER: Ep.1-2",
+   "en": "Miracles of the ER: Ep.1-2",
+   "y": 2026,
+   "c": "中国台湾",
+   "min": 93,
+   "reg": "cn",
+   "dir": "李志蔷 / 黄靖祖",
+   "dirO": "Isaac LI / HUANG Ching-tsu",
+   "syn": "疼痛叫喊此起彼落，救护车响呼啸而过，央大医院急诊室忙碌依旧，今天迎来三位住院医师报到上工。不论是名列前茅资质优秀，还是满腔热血勤能补拙，在急诊室里待遇都相同。听从前辈调派上阵助手，面对病患设法治疗伤口，目睹生死交关奋力抢救，血肉模糊更要冷静沉著。医疗纠纷争执不休，同侪竞合权力争斗，跌撞在复杂人性和垂危人命中，又有什么样的奇迹在等候？",
+   "st": "《火神的眼泪》团队再战职人类型，还原急诊现场第一线情境，打造原汁原味的本土医疗剧。霍建华、杨谨华行事果决医术高明，蔡凡熙、詹子萱、彭千佑新手上路各自努力，与死神拔河令人胆战心惊。众多案例点出医疗困境，病人、医师、家属立场各异，在一触即发的冲突之际，更能感受生命最纯粹的重量。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [],
+   "ageRating": "辅12级（12+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "华语首映",
+   "screeningNotes": {
+    "11/7-18:30-tp-muvie-titan-titan": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-047",
+   "cn": "短片A：未来未来",
+   "o": "Shorts A: Almost Adult",
+   "en": "Shorts A: Almost Adult",
+   "y": 2026,
+   "min": 63,
+   "c": "中国台湾",
+   "reg": "cn",
+   "dir": "吴璠 / 黄令华 / 许雅婷",
+   "syn": "合辑放映，共 3 部短片，总片长 63 分钟。依序为：《刺水》、《缅甸女孩》、《她没说的事》。",
+   "writers": [],
+   "cast": [],
+   "genre": [
+    "短片"
+   ],
+   "honors": [],
+   "parts": [
+    {
+     "cn": "刺水",
+     "en": "Piercing Water",
+     "y": 2026,
+     "c": "中国台湾",
+     "min": 25,
+     "dir": "吴璠",
+     "dirO": "WU Fan",
+     "syn": "刚回乡的雅美青年，夜夜沿环岛公路孤身慢跑，试图甩开服役阴影，却逃不出漫长失眠。不似弟弟悠然入海、安然入睡，他向大海投出瓶中信，扣问自己为何破碎不安。精巧视听捕捉兰屿的海陆交界、晨昏流转、醒寐如梦，兄弟一阴一阳、相互映照，触碰男性成长难言的脆弱与躁动。",
+     "synEn": "On a small volcanic island in the Pacific, two Yami brothers face their inner tides – one returns from the navy haunted by unspoken wounds, while the other finds solace in the same ocean that carries his brother's questions into the deep.",
+     "honors": [
+      "入选｜2026 瑞士真实影展"
+     ]
+    },
+    {
+     "cn": "缅甸女孩",
+     "en": "Myanmar Girls",
+     "y": 2026,
+     "c": "中国台湾",
+     "min": 20,
+     "dir": "黄令华",
+     "dirO": "Flora HUANG Ling-hwa",
+     "syn": "两名缅甸高中女孩，正准备赴台留学考试。课业重担、父母期盼，与彼此笑闹取暖，拼成青春片段。导演逆向走入她们将离开的城市，蛰伏静观、近陪聆听，以少女心事为轴，探问前进台湾，是否抵达自由。政变后的动荡无须直言，由停电家园、未竟功课与大人静默悄然弥漫。",
+     "synEn": "Under Myanmar's repressive military regime, two teenage girls are preparing for exams to study in Taiwan and pursue a safer future their family have planned for them. As they dream about what lies ahead, they begin to question what freedom truly means.",
+     "honors": []
+    },
+    {
+     "cn": "她没说的事",
+     "en": "Girl Talk",
+     "y": 2026,
+     "c": "中国台湾",
+     "min": 18,
+     "dir": "许雅婷",
+     "dirO": "HSU Ya-ting",
+     "syn": "记录导演与少女小雨一年的长谈。面对私密边界遭打破的痛楚与性别反思，小雨在跨越年龄的对话里，选择掌握诠释主权，从被观看的客体，转以创作回看世界。这场生命交会，见证她如何将过往转化为追寻未来的力量。",
+     "synEn": "The director engages in an ongoing conversation with teenager Yu as she comes to terms with the experience of having had her intimate boundaries broken. A dialogue built on trust, it empowers Yu to reclaim her own story, transforming from a \"gazed-upon\" object to an artist with newfound strength.",
+     "honors": [
+      "入选｜2026 纽约亚洲影展"
+     ]
+    }
+   ],
+   "ageRating": "保护级（6+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "华语首映",
+   "screeningNotes": {
+    "11/12-14:00-tp-vieshow-xinyi-hall-10": "映后活动 · 影人出席（嘉宾待公布）",
+    "11/14-14:00-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-048",
+   "cn": "短片B：假以时日",
+   "o": "Shorts B: Not Quite There",
+   "en": "Shorts B: Not Quite There",
+   "y": 2026,
+   "min": 87,
+   "c": "中国香港 / 中国内地 / 中国台湾",
+   "reg": "cn",
+   "dir": "何历 / 陈谦 / 张均瑜 / 杨宗桦",
+   "syn": "合辑放映，共 4 部短片，总片长 87 分钟。依序为：《不轨剧场》、《鱼羊花》、《上盖大》、《低头闭眼》。",
+   "writers": [],
+   "cast": [],
+   "genre": [
+    "短片"
+   ],
+   "honors": [],
+   "parts": [
+    {
+     "cn": "不轨剧场",
+     "en": "The Nonsense Play",
+     "y": 2026,
+     "c": "中国香港",
+     "min": 15,
+     "dir": "何历",
+     "dirO": "Nic HO",
+     "syn": "升学主义挂帅，老旦校长挥舞偃月刀，强迫学生听话追高分。当姜思与小美出言顶撞，反抗的不仅是升学，还是规训的思想。惨遭校方点名追捕的他们患难生情谊，但谁能逃出当代血滴子的制裁？《铁臂猫黑别》导演新作，改编漫画家杨学德同名作品，侠义与赛博混搭，谈校园纯爱与自由。",
+     "synEn": "The Nonsense Play is an adaptation of Hong Kong comic artist Yeung Hok-tak's work. In school, Keung Si and May are singled out and hunted down, yet under pressure, they build trust and preserve a quiet sense of self, emotion, and freedom.",
+     "honors": [
+      "入选｜2026 泰国普莱动画影展",
+      "入选｜2026 香港MOViE MOViE动画艺术祭"
+     ]
+    },
+    {
+     "cn": "鱼羊花",
+     "en": "A Romantic Death",
+     "y": 2026,
+     "c": "中国内地",
+     "min": 21,
+     "dir": "陈谦",
+     "dirO": "Jesse CHAN",
+     "syn": "乡间少年马进存了半年零钱，趁父母外出农忙时，与班长一同进城，要为母亲买一份生日礼物。从务实的保温瓶，到班长建议的女鞋与丝巾，再到有牌又实用的包包，马进始终没找到合意的礼物。直到一车鲜花经过，马进真挚浪漫的心突然涌现，这将会是他送给母亲的礼物吗？",
+     "synEn": "Ma Jin heads to town with his classmate to buy a birthday gift for his mother. After ruling out several options, he chooses to buy fresh flowers. Yet on the way back, Ma Jin suddenly makes a enexpected decision.",
+     "honors": [
+      "入选｜2026 86358贾家庄短片周"
+     ]
+    },
+    {
+     "cn": "上盖大",
+     "en": "Biggest Thing in the World",
+     "y": 2026,
+     "c": "中国台湾",
+     "min": 22,
+     "dir": "张均瑜",
+     "dirO": "CHANG Chun-yu",
+     "syn": "九岁的刘皮正在度过最漫长的暑假，他被带回老家与阿公同住。两人彼此陪伴，学习著世界上有哪些东西是最臭的、最贵的、最美的……，还有最大的。饱和色彩衬托孩童纯粹，林钜以台语一字一句，道出最真挚动人的温柔诗篇。",
+     "synEn": "Pi is on a long, long summer vacation. He is learning about the special things that surround him. What is the stinkiest thing? The priciest? The prettiest... and what is the biggest thing in the world?",
+     "honors": []
+    },
+    {
+     "cn": "低头闭眼",
+     "en": "Quieto",
+     "y": 2026,
+     "c": "中国台湾",
+     "min": 29,
+     "dir": "杨宗桦",
+     "dirO": "Joshua YANG",
+     "syn": "在大程高中管乐社，智贤相信只要遵守规则、努力练习，就能成为梦想中的指挥。当机会来临，他最好的朋友却开始挑战社团奉行已久的规矩。随著两人走向不同立场，冲突一触即发，梦想与友情在低头闭眼间拉扯，化作最难吹奏的乐章。",
+     "synEn": "Zhixian believes that following the rules and working hard in his high school wind band will fulfil his dream of becoming a conductor. But when the opportunity arrives, his best friend Zeming begins challenging those rules. Finding themselves on opposing sides, Zhixian must choose between his dream and their friendship.",
+     "honors": []
+    }
+   ],
+   "ageRating": "保护级（6+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "华语首映",
+   "screeningNotes": {
+    "11/15-19:00-tp-vieshow-xinyi-hall-12": "映后活动 · 影人出席（嘉宾待公布）",
+    "11/21-16:50-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-049",
+   "cn": "短片C：她年她月",
+   "o": "Shorts C: In Her Time",
+   "en": "Shorts C: In Her Time",
+   "y": 2026,
+   "min": 69,
+   "c": "马来西亚 / 加拿大 / 中国香港 / 中国内地 / 英国 / 中国台湾 / 丹麦",
+   "reg": "cn",
+   "dir": "黄凯蔚 / 霍佩瑜 / 蔡沐时 / 兰仙",
+   "syn": "合辑放映，共 4 部短片，总片长 69 分钟。依序为：《和我说话》、《朝日凋零》、《渺小的死亡》、《灯火兰珊处》。",
+   "writers": [],
+   "cast": [],
+   "genre": [
+    "短片"
+   ],
+   "honors": [],
+   "parts": [
+    {
+     "cn": "和我说话",
+     "en": "Talk to Me",
+     "y": 2025,
+     "c": "马来西亚",
+     "min": 8,
+     "dir": "黄凯蔚",
+     "dirO": "NG Kai-wei",
+     "syn": "秀兰是位能与动物沟通的母亲，从野外巨蜥到摊贩手中的鱼，都能透过语言了解彼此心意，唯有面对至亲骨肉时，无论如何释出善意，儿子始终不回应。一日，她偶然目睹孩子与友人亲近，意欲打探，反而引来更深的抗拒。母爱的失落，让她向菩萨祈求，盼有个愿与她说话的儿子……。",
+     "synEn": "Talk to Me follows a mother and son with a tense relationship. Siew Lan can connect with any living thing, but this gift fails with her own son. Soon, her struggle turns into one desperate wish: \"Just talk to me, no matter the cost.\"",
+     "honors": []
+    },
+    {
+     "cn": "朝日凋零",
+     "en": "The Fading of Morning Light",
+     "y": 2026,
+     "c": "加拿大 / 中国香港",
+     "min": 17,
+     "dir": "霍佩瑜",
+     "dirO": "Jessamine FOK",
+     "syn": "火车掠过铁轨，声响穿透早晨。他被女儿轻声唤醒，她心爱的种子已经发芽，今日正是将它埋入土壤的时候。16毫米保留影像质地，太保内敛堆叠悲伤逝去，袁澧林清澈灵动灌溉回忆。即便见月开花，朝日凋零，一起绽放过的，仍永存心里。",
+     "synEn": "A grieving father awakens to find his late daughter's ghost beside him. She reminds him that the seeds of her favourite flower have sprouted and must be planted before day's end. As they reminisce about their time together, he struggles to let go and fulfil her final wish.",
+     "honors": [
+      "入选｜2026 温哥华影展",
+      "入选｜2026 蒙特娄新电影影展",
+      "入选｜2026 香港亚洲电影节"
+     ]
+    },
+    {
+     "cn": "渺小的死亡",
+     "en": "Small Death",
+     "y": 2026,
+     "c": "中国内地",
+     "min": 19,
+     "dir": "蔡沐时",
+     "dirO": "CAI Mushi",
+     "syn": "午夜12点，17岁的贝提陪心仪的女孩莉莉逃出宿舍，她以为这是属于她们的夜晚。殊不知莉莉打算与情人会面共度夜晚，留她独自一人。漫漫长夜，贝提打发无聊，她与陌生人相遇、一个人吃宵夜，等待中翻搅恋爱的矛盾与苦涩，思索她与她的关系，柔情在黑白影像中沉静发酵。",
+     "synEn": "Bette helps Lili, the girl she loves, escape from their boarding school to meet a boy. Bette soon realises that Lili plans to sleep with him. Caught between wanting to protect her and letting her go, Bette is forced to face her solitude, her longing for connection, and her tenderness toward Lili.",
+     "honors": [
+      "入选｜2026 捷克布尔诺短片影展 · 导演Director蔡沐时CAI Mushi"
+     ]
+    },
+    {
+     "cn": "灯火兰珊处",
+     "en": "Searching for Orchids",
+     "y": 2026,
+     "c": "英国 / 中国台湾 / 丹麦",
+     "min": 25,
+     "dir": "兰仙",
+     "dirO": "Nirmala LAN HESSELLUND",
+     "syn": "祖母离世，断了导演与台湾的最后亲缘。自小成长于丹麦，眼见岛屿前途未卜，她来台追溯来处，并以姓氏「兰」为引，随植物学家入山，寻访濒危兰花。寻根、寻花如藤蔓交缠，家族往事抽枝展叶，记忆传承与物种保育相依伴生。身在血缘所系、身分游离之地，归属能否落地？",
+     "synEn": "In the forests of Taiwan, a botanist searches for endangered orchids while a filmmaker seeks belonging. The filmmaker's family name, Lan, meaning \"orchid\" in Mandarin, intertwines their parallel quests into a thoughtful exploration of preservation and identity on disputed land.",
+     "honors": []
+    }
+   ],
+   "ageRating": "保护级（6+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "华语首映",
+   "screeningNotes": {
+    "11/19-16:20-tp-vieshow-xinyi-hall-12": "映后活动 · 影人出席（嘉宾待公布）",
+    "11/21-14:40-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-050",
+   "cn": "完美家庭风暴",
+   "o": "Fjord",
+   "en": "Fjord",
+   "y": 2026,
+   "c": "罗马尼亚 / 法国 / 挪威 / 瑞典 / 丹麦",
+   "min": 146,
+   "reg": "eu",
+   "dir": "克里斯汀穆基",
+   "dirO": "Cristian MUNGIU",
+   "syn": "罗马尼亚一家七口搬来挪威，恪守基督教保守教义的他们深信这里能过上更好的生活。一日，老师注意到大女儿身上的瘀青，旋即通报儿保机构，警方很快找上门，孩子们全数被带走安置。错愕的父母诚实配合调查，对日常管教的陈述却成为「呈堂证供」。当虔诚信仰被置于强调开放、包容与儿童自主的主流社会中放大检视，一场争回孩子的攻防，也逐渐演变为保守宗教信念与世俗进步价值的正面交锋。",
+   "st": "罗马尼亚新浪潮大师克里斯汀穆基首次离开家乡拍摄，延续《仇恨谜林》对全球化、跨国迁徙与言论自由的议题关注，长期田调媒体争议相关事件，大胆探问传统观点与开放进步的权衡界线。戛纳影后蕾娜特莱茵斯薇及「酷寒战士」赛巴斯汀史坦强大卡司助阵，在环环相扣的叙事与精准群戏调度下，为导演时隔二十年再度夺下戛纳影展金棕榈奖。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "入选｜2027 奥斯卡金像奖 · 最佳国际影片罗马尼亚代表",
+    "获奖｜2026 戛纳影展 · 金棕榈奖、影评人费比西奖",
+    "入选｜2026 多伦多影展",
+    "入选｜2026 卡罗维瓦利影展",
+    "入选｜2026 圣塞巴斯蒂安影展",
+    "入选｜2026 特柳赖德影展",
+    "入选｜2026 釜山影展",
+    "入选｜2026 纽约影展",
+    "入选｜2026 伦敦影展"
+   ],
+   "ageRating": "保护级（6+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "名家飨宴",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-051",
+   "cn": "野马九号",
+   "o": "Wild Horse Nine",
+   "en": "Wild Horse Nine",
+   "y": 2026,
+   "c": "英国 / 美国 / 智利",
+   "min": 119,
+   "reg": "eu",
+   "dir": "马丁麦多纳",
+   "dirO": "Martin McDONAGH",
+   "syn": "1973年智利政变看似迈向民主，窗外满天彩纸街头庆祝，房内CIA探员正被派往下一个任务。年长的克里斯脑子清楚记忆模糊，与搭档李互相嫌弃互相照顾，一起踏上往复活节岛的旅途。对摩艾石像品头论足，满口谬论把女学生惹怒，两人表面看似和平共处，却各自暗怀不同企图。上司来电密谋部署，子弹打穿汽车窗户，过往的秘密才正要被揭露……。",
+   "st": "马丁麦多纳再写黑色喜剧，从故乡爱尔兰转移阵地，以七○年代美洲政局暗流打底，在阳光明媚的复活节岛考验分歧友谊。约翰马可维奇老年失控尚待处理，山姆洛克威尔婚姻职涯处处危机，绝妙双簧言词犀利，史蒂夫布希米、汤姆威兹、帕克波西加入战局，相爱相杀对谁都不容易。老马就算走上最后一途，也要让大家见识如何为自己做主。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "获奖｜2026 威尼斯影展 · 最佳男演员",
+    "入选｜2026 多伦多影展",
+    "入选｜2026 圣塞巴斯蒂安影展",
+    "入选｜2026 特柳赖德影展",
+    "入选｜2026 伦敦影展",
+    "入选｜2026 苏黎世影展",
+    "入选｜2026 釜山影展",
+    "入选｜2026 东京影展"
+   ],
+   "ageRating": "辅12级（12+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "名家飨宴",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-052",
+   "cn": "双生狂花",
+   "o": "Bucking Fastard",
+   "en": "Bucking Fastard",
+   "y": 2026,
+   "c": "爱尔兰 / 美国",
+   "min": 109,
+   "reg": "eu",
+   "dir": "韦纳荷索",
+   "dirO": "Werner HERZOG",
+   "syn": "宛如双生的姊妹琼和琴，穿同套洋装梳同一发型，写同一封信享同一梦境，爱上同个男人热恋三人行。男子突然步入婚姻，妒火燃烧姊妹复仇之心，感情纠纷闹上法庭，连抗辩答复都是叠音。奇异行径吸引媒体追寻，被人群簇拥却更感疏离，心力交瘁的她们踏上远行，两人无法分开却又过度亲近，难道彼此就是此生无法摆脱的宿命？",
+   "st": "纪录片巨匠韦纳荷索事隔七年再战剧情编导，取材自真实人物经历，承袭古怪鲜明风格，以一则诡谲魔幻的写实寓言，向大卫林区致敬。亲生姊妹鲁妮玛拉和凯特玛拉演绎孪生羁绊，肢体言语同步到令人不安又著迷；奥兰多布鲁、多姆纳尔格里森各具魅力，在不同阶段动摇双姝心绪。穿越现实步入幻影，携手寻觅理想之地，拥有同一灵魂的不同躯体相存相依，唯有我们能理解我们的孤寂。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "入选｜2026 威尼斯影展 · 正式竞赛",
+    "入选｜2026 多伦多影展",
+    "入选｜2026 特柳赖德影展",
+    "入选｜2026 圣塞巴斯蒂安影展",
+    "入选｜2026 苏黎世影展",
+    "入选｜2026 纽约影展",
+    "入选｜2026 比利时根特影展",
+    "入选｜2026 釜山影展"
+   ],
+   "ageRating": "辅12级（12+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "名家飨宴",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-053",
+   "cn": "克里姆林宫的巫师",
+   "o": "The Wizard of the Kremlin",
+   "en": "The Wizard of the Kremlin",
+   "y": 2025,
+   "c": "法国",
+   "min": 145,
+   "reg": "eu",
+   "dir": "奥利维耶阿萨亚斯",
+   "dirO": "Olivier ASSAYAS",
+   "syn": "苏联解体后，旧秩序崩塌、新资本崛起。青年瓦汀乘著时代巨浪，从剧场文青跃身电视圈鬼才，最终被招揽进入权力核心，以高超的舆论操弄手腕，助政坛新秀普丁登上总理宝座，打造新一代强人神话。他见证俄罗斯的华丽蜕变，却也在谎言与野心中迷失自我，一步步成为独裁体制、侵略战争的帮凶。深陷权力漩涡的他，能否从凶险的斗争中全身而退？",
+   "st": "阿萨亚斯携手知名编剧艾曼纽卡瑞，将畅销同名小说搬上银幕。保罗丹诺敬业增肥演出，裘德洛传神化身普丁，艾莉西亚薇坎德同台飙戏。从服务权贵的「共谋者」视角，冷冽审视后苏联时期的威权复苏与自由崩解。超越传统政治电影框架，探问独裁者如何操弄真相，并以分享权力作为诱饵，织就一张无人可逃的共业之网。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "入选｜2025 威尼斯影展 · 正式竞赛",
+    "入选｜2025 多伦多影展",
+    "入选｜2025 釜山影展",
+    "入选｜2025 圣塞巴斯蒂安影展",
+    "入选｜2025 塔林黑夜影展"
+   ],
+   "ageRating": "辅15级（15+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "名家飨宴",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-054",
+   "cn": "橘子味婚礼",
+   "o": "Orange-Flavoured Wedding",
+   "en": "Orange-Flavoured Wedding",
+   "y": 2026,
+   "c": "法国",
+   "min": 115,
+   "reg": "eu",
+   "dir": "克里斯多福欧诺黑",
+   "dirO": "Christophe HONORÉ",
+   "syn": "1978年春日，一场大家族婚礼如期而至。众兄妹齐聚一堂，为最小的弟弟备上礼车鲜花，但歌舞升平的欢腾背后，却是散不开的旧日哀愁。妈妈在怪诞仪式上褪去灯笼裤、哥哥被炒鱿鱼、姊姊离婚抑郁、外甥女想逃离家庭，爱与伤害总是接踵而来，笑泪之外，是缺席父亲留下的暴戾阴霾。在流行歌手克劳德方索的骤然离世之际，太平的假象泛起涟漪。",
+   "st": "《巴黎小情歌》导演克里斯多福欧诺黑取材其2021年自传体戏剧，灵活调度高达16位核心演员，《蓝色是最温暖的颜色》阿黛儿艾萨卓普洛斯、《冬日男孩》文森拉寇斯特、《进化症候群》保罗基歇尔等惊喜集结，演绎破碎相扶的手足情谊。一场几近失控的漫长婚宴，以喧闹疾速的群戏能量，搬演出复杂的家族三代群像，抽丝剥茧揭开每个家庭成员的童年创伤，更以结尾神来一笔，感伤透见家族宿命。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "入选｜2026 戛纳影展 · 首映单元",
+    "入选｜2026 耶路撒冷影展",
+    "入选｜2026 釜山影展"
+   ],
+   "ageRating": "辅15级（15+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "名家飨宴",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-055",
+   "cn": "亲密怪物",
+   "o": "Gentle Monster",
+   "en": "Gentle Monster",
+   "y": 2026,
+   "c": "奥地利 / 德国 / 法国",
+   "min": 115,
+   "reg": "eu",
+   "dir": "玛利克洛泽",
+   "dirO": "Marie KREUTZER",
+   "syn": "为了让身心俱疲的丈夫获得喘息，法国演奏家露西一家三口搬至慕尼黑乡间。还没来得及安顿，一场突如其来的破门搜索，警方便将丈夫带走。当得知他涉嫌犯罪遭到拘留，露西的世界瞬间崩解。置身语言不通的异乡，连求助都是折磨；尽管丈夫再三否认，看著年幼的孩子，恐惧与怀疑不断啃噬著她：一直以来同床共枕的究竟是亲密爱人，还是骇人怪物？",
+   "st": "《束缚》名导以震惊德国的恋童犯罪案件为灵感，冷静克制的视角，避开猎奇与剥削性的观看，将镜头对准无辜的孩子与被留下来的人。明媚的日常光影与逐渐蔓延的恐惧形成强烈对比，细腻描绘一位妻子与母亲在否认、愤怒与自责间逐渐失序的内心世界。蕾雅瑟杜深具厚度的灵魂演出，与传奇影后凯萨琳丹妮芙同台交锋，撑起全片最沉重的情感重量。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "入选｜2026 戛纳影展 · 正式竞赛",
+    "入选｜2026 多伦多影展",
+    "入选｜2026 伦敦影展",
+    "入选｜2026 特柳赖德影展",
+    "入选｜2026 悉尼影展",
+    "入选｜2026 卡罗维瓦利影展",
+    "入选｜2026 釜山影展"
+   ],
+   "ageRating": "辅12级（12+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "名家飨宴",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-056",
+   "cn": "豪宅女仆日记",
+   "o": "The Diary of a Chambermaid",
+   "en": "The Diary of a Chambermaid",
+   "y": 2026,
+   "c": "法国 / 罗马尼亚",
+   "min": 93,
+   "reg": "eu",
+   "dir": "哈都裘德",
+   "dirO": "Radu JUDE",
+   "syn": "来自罗马尼亚的她，将幼女留在乡下娘家，只身在法国大城波尔多的豪宅帮佣。她打扫屋里的各国古董，依照雇主的喜好备餐，更是独生子眼中的说书高手。雇主待她不薄，不但邀她同桌用餐，更引介她担任名著〈女仆日记〉话剧主角。但在视讯另一头，女儿思母心切，焦急地关心她何时回家。眼见承诺女儿的年假就要来到，一通电话却打乱了所有安排。",
+   "st": "继尚雷诺瓦、布纽尔与班诺贾克后，法国小说家米尔博的经典著作第四度搬上银幕。哈都裘德暂别近作的癫狂尖锐，聚焦家务移工日常，紧扣欧洲政局时事，点出法国中产阶级看似开放进步底下的矛盾思维，以及移工的步步为营，不但与原著的道德讽刺遥相呼应，亦带入当代诠释与作者印记，笔触朴实却不失锋利。文森玛耿与米兰妮蒂莉共演夫妻，《绿光》女主角玛莉希维耶客串一角，更添惊喜。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "入选｜2026 戛纳影展 · 导演双周",
+    "入选｜2026 多伦多影展",
+    "入选｜2026 罗马尼亚外西凡尼亚影展",
+    "入选｜2026 纽约影展",
+    "入选｜2026 墨尔本影展"
+   ],
+   "ageRating": "辅12级（12+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "名家飨宴",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-057",
+   "cn": "疯癫老人日记",
+   "o": "Diary of a Mad Old Man",
+   "en": "Diary of a Mad Old Man",
+   "y": 2026,
+   "c": "美国",
+   "min": 120,
+   "reg": "us",
+   "dir": "王颖",
+   "dirO": "Wayne WANG",
+   "syn": "富裕老人宇津木中风后半身瘫痪，由中国媳妇苏苏朝夕照顾。当两人独守宅邸，一扇未掩的浴门、一双濡湿的裸足、一次次搀扶复健及贴身介护，都被他读成暗示，肉身越不听唤，欲火越烧不断。他拿珠宝换亲密，她以若即若离掌控距离；他仗目光金钱进占，她藉被看反向夺权。一对孤独男女，于试探、幻想与攻受间暧昧周旋，心意难判、界线大乱。",
+   "st": "《喜福会》名导王颖改编谷崎润一郎同名著作，将自身暮年心境揉入创作，把原著的禁断「恋足癖」一脚踩向存在焦虑。Lily Franky撕下色老头标签，让无耻、天真与痴迷共栖失能病体，旁人斥之疯癫，他偏在晚景春心逆流，豁达活出风流；范冰冰在天使看护、蛇蝎魅影、异乡求生与霸道女王间移形换位。禁忌不为挑衅，而为剥去体面；让欲望返其野蛮，真我裸裎相见。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "入选｜2026 多伦多影展",
+    "入选｜2026 釜山影展",
+    "入选｜2026 东京影展"
+   ],
+   "ageRating": "辅15级（15+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "名家飨宴",
+   "screeningNotes": {
+    "11/7-19:00-tp-vieshow-xinyi-hall-10": "映后活动 · 影人出席（嘉宾待公布）",
+    "11/8-12:40-tp-vieshow-xinyi-hall-10": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-058",
+   "cn": "假如爱有如果",
+   "o": "Possible Love",
+   "en": "Possible Love",
+   "y": 2026,
+   "c": "南韩",
+   "min": 164,
+   "reg": "as",
+   "dir": "李沧东",
+   "dirO": "LEE Chang-dong",
+   "syn": "罢工败阵，浩锡失业后一蹶不振，全家生计由妻子美玉苦撑。纪录片导演艺智被浩锡的悲伤吸引，欲助社会底层的失声者发声。她心怀善意，与高富帅丈夫尚佑走向阶级彼岸，邀请共度夏日假期。两段贫富悬殊、本无交集的婚姻，由镜头搭桥，隔岸靠近。然而往来越深，差异越明，当四人目光交错，关怀与向往染上欲念，亲近也失了分寸……。",
+   "st": "名导李沧东睽违八年再推力作，从工运创伤起笔，刻入创作自省：拍片是否消费苦难？同理能否免于侵犯？全度妍、薛景求、赵寅成、曹汝贞四星交锋，入镜与掌镜、无路可退与坐拥特权，在同一景框内遥望相映。不同于《寄生上流》以黑色喜剧引爆冲突，转而用绵密叙事展开阶级矛盾与亲密裂痕。冷眼望穿世情，目角仍透悲悯；不急于论断，将「如果」交予观众，在不可能里寻思爱靠岸的可能。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "入选｜2027 奥斯卡金像奖 · 最佳国际影片南韩代表",
+    "获奖｜2026 威尼斯影展 · 评审团大奖、影评人费比西奖",
+    "入选｜2026 圣塞巴斯蒂安影展",
+    "入选｜2026 多伦多影展",
+    "入选｜2026 伦敦影展",
+    "入选｜2026 纽约影展",
+    "入选｜2026 釜山影展"
+   ],
+   "ageRating": "辅15级（15+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "名家飨宴",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-059",
+   "cn": "我们的救赎",
+   "o": "A Man of His Time",
+   "en": "A Man of His Time",
+   "y": 2026,
+   "c": "法国 / 比利时",
+   "min": 158,
+   "reg": "eu",
+   "dir": "艾曼纽马赫",
+   "dirO": "Emmanuel MARRE",
+   "syn": "1940年，纳粹入侵法国后成立亲德政权。事业失意、家庭失和的中年男子，从国难嗅到翻身良机。他带著自费出版的政治论著，前往新首都毛遂自荐、兜售理念、讨好权贵，深信只要成功上位，就能救国救己。一份劳动部差事果真到手，然而当寻常公职一步步被卷入时代暗流，他还能看见公文与数字背后活生生的「人」吗？",
+   "st": "邪恶并非骤然降临，而是在日常琐务中渐渐理所当然。取材自导演曾祖父真实经历，不拍摄战场与血光，仅以纪实跟拍与冷调幽默，捕捉二战期间的官僚齿轮运作。没有张牙舞爪的坏人，只有明哲保身、依法行政的普通人，任暴力于效率、服从与漂亮话间成形，喜剧悄然滑向惊悚，令人心底发寒。《坠恶真相》史旺亚劳德克制而深邃，演活虚荣与自欺，越想证明自己的价值，越显可悲而危险。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "获奖｜2026 戛纳影展 · 最佳剧本、CST艺术家技术奖",
+    "入选｜2026 卡罗维瓦利影展",
+    "入选｜2026 耶路撒冷影展",
+    "入选｜2026 波兰新地平线影展",
+    "入选｜2026 纽约影展",
+    "入选｜2026 釜山影展"
+   ],
+   "ageRating": "辅12级（12+）",
+   "subtitles": "原文发音，中文字幕；无英文字幕",
+   "section": "影迷嘉年华",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-060",
+   "cn": "醉爱每一天",
+   "o": "Another Day",
+   "en": "Another Day",
+   "y": 2026,
+   "c": "法国",
+   "min": 115,
+   "reg": "eu",
+   "dir": "珍妮荷莉",
+   "dirO": "Jeanne HERRY",
+   "syn": "才华横溢的女演员嘉杭丝迟迟等不到伯乐赏识，长年倚靠酒精度日，在狂欢夜场与暧昧关系间挥霍青春。从玻璃杯望出去的天地如梦幻泡影，得过且过的是迷航人生。戒不掉的瘾，终于让嘉杭丝丢了剧团工作与身心健康，与挚爱宝琳的感情也陷入危机。眼看生命就要被酒精腐蚀殆尽，坐困愁城的嘉杭丝，能否重启人生？",
+   "st": "《那些受伤的脸孔》导演珍妮荷莉聚焦法国酗酒社会问题，将酒精成瘾者的日常碎片拼贴成斑斓万花筒，照见迷失灵魂的美丽与哀愁。阿黛儿艾萨卓普洛斯宛如《蓝色是最温暖的颜色》近乎无痕演活失意女伶，细腻诠释成瘾者的挣扎、失去自制的焦虑，以及被接纳的渴望，与《巴黎情报局》莎拉吉哈度携手演绎女同爱侣，漫漫戒断路上共谱温柔恋曲。与心魔正面交锋，从迷醉中觉醒，在爱意里重生。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "入选｜2026 戛纳影展 · 正式竞赛",
+    "入选｜2026 耶路撒冷影展",
+    "入选｜2026 法国比亚里茨新浪潮影展"
+   ],
+   "ageRating": "辅12级（12+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "影迷嘉年华",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-061",
+   "cn": "爱的对峙",
+   "o": "The Beloved",
+   "en": "The Beloved",
+   "y": 2026,
+   "c": "西班牙 / 法国",
+   "min": 135,
+   "reg": "eu",
+   "dir": "罗德里哥索罗格耶",
+   "dirO": "Rodrigo SOROGOYEN",
+   "syn": "极具争议的奥斯卡名导回归故土西班牙拍摄，首站是邀约13年未见、早已疏远的女儿演出。一边是功成名就的暴戾父亲，一边是星途不顺的压抑女儿，权力关系在餐桌上伸展，最伤人的是彼此怀揣著截然不同的回忆。电影拍摄于荒漠揭开序幕，然而摄影机内外的戮力诠释与残酷凝视，是否真能让未言的伤口弥合半分？最终成就的，是否只是跃动于银幕上的光采？",
+   "st": "《野兽们》导演罗德里哥索罗格耶新作，直探男性作者权威，叠合亲子关系与片场权力，以紧凑且多元的镜头语言，逐格放大人物心绪，真实捕捉情感脉动。玩转黑白、调度画幅，更穿插纪录影像，将职业与亲情的摆渡、艺术与生活的交织，犀利揭露于影格上。影帝哈维尔巴登演技令人不寒而栗，对弈《隔壁的房间》薇姬卢恩戈，父女直面家庭黑洞疼痛拉锯，戏里戏外将彼此逼入绝境。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "入选｜2026 戛纳影展 · 正式竞赛",
+    "入选｜2026 多伦多影展",
+    "入选｜2026 卡罗维瓦利影展",
+    "入选｜2026 耶路撒冷影展",
+    "入选｜2026 墨尔本影展",
+    "入选｜2026 纽西兰影展",
+    "入选｜2026 釜山影展"
+   ],
+   "ageRating": "保护级（6+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "影迷嘉年华",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-062",
+   "cn": "蝴蝶果酱的滋味",
+   "o": "Butterfly Jam",
+   "en": "Butterfly Jam",
+   "y": 2026,
+   "c": "法国 / 美国",
+   "min": 102,
+   "reg": "eu",
+   "dir": "坎特米尔巴拉果夫",
+   "dirO": "Kantemir BALAGOV",
+   "syn": "父亲夸口说他能创造出这世界上任何的果酱，男孩也曾如此坚信不移。在纽泽西州，身上流著高加索切尔克斯裔血统，意味著永远得在弱肉强食中力争上游，男孩在摔角场上奋力翻滚，也在场下为父亲的未来奔走烦忧。颓丧失意的父亲、即将临盆的姑姑，以及性情不定的父亲友人，拼凑出自家餐馆的萎靡一隅；而那个藏著秘密的摔角女孩，吸引了男孩的注意，但悲剧总是猝不及防地降临。",
+   "st": "《裂爱》导演坎特米尔巴拉果夫，以手持摄影、窄仄景框，逼视迷离混乱的人物状态，也撕破远离故土的离散移民社群所面临的社会现实，直指坠落的美国梦。在交错流动的人物关系中，探讨脆弱与暴力的男性气质以及代际传承。《圣鹿之死》爱尔兰男星贝瑞柯根以精湛的微醺演技，演绎精明又怯懦的矛盾父亲，堪称全片灵魂。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "入选｜2026 戛纳影展 · 导演双周开幕片",
+    "入选｜2026 纽西兰影展",
+    "入选｜2026 法国杜维尔影展",
+    "入选｜2026 蒙特娄新电影影展"
+   ],
+   "ageRating": "辅15级（15+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "影迷嘉年华",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-063",
+   "cn": "爱到舞春",
+   "o": "Ha-Chan, Shake Your Booty!",
+   "en": "Ha-Chan, Shake Your Booty!",
+   "y": 2026,
+   "c": "美国",
+   "min": 122,
+   "reg": "us",
+   "dir": "约瑟夫久保田瓦莱达",
+   "dirO": "Josef Kubota WLADYKA",
+   "syn": "爱侣小春与路易斯征服了情海，更纵横东京各大舞池，路易斯却在比赛中猝死。小春顿失灵魂伴侣及舞伴，万念俱灰、以泪洗面的夜里，彷佛看见曾被挖苦是鸟仔脚的路易斯化成巨鸟回归。姐妹逼著小春要哭回练舞室哭，俊美性感的老师费迪尔让她燃起热情找回动力。被爱情簇拥时跳恰恰、忘情的时候还有森巴。新欢迷人，挚爱难忘，小春的舞步，是有旧爱同步的缠绵双人舞，或者昂首阔步跳出自己的路？",
+   "st": "知名影集导演继《东京之恶》后再次联手菊地凛子，召集YOU、吉田羊，在东洋基底中引入西洋潮流，提炼彷佛日系洋食的醍醐味。汇流多元音乐、舞蹈元素撞击出艳丽浓郁的视觉体验，大胆鲜明以舞姿展现内心的波涛汹涌。喜剧为基底，添入奇幻元素，描绘女性爱恨拉扯，在悲伤中仍努力舞出自我的独特姿态，动人而疗愈。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "获奖｜2026 日舞影展 · 美国剧情片类最佳导演",
+    "入选｜2026 多伦多影展",
+    "入选｜2026 伦敦影展",
+    "入选｜2026 加拿大卡加利影展",
+    "入选｜2026 墨尔本影展"
+   ],
+   "ageRating": "辅12级（12+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "影迷嘉年华",
+   "screeningNotes": {
+    "11/21-21:00-tp-muvie-titan-titan": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-064",
+   "cn": "你不属于这里",
+   "o": "You Don't Belong Here",
+   "en": "You Don't Belong Here",
+   "y": 2026,
+   "c": "罗马尼亚",
+   "min": 154,
+   "reg": "eu",
+   "dir": "佛罗林瑟班",
+   "dirO": "Florin ȘERBAN",
+   "syn": "德高望重的小镇医生在妻子过世后独自抚养儿子，早已功成名就的他，满心期盼软弱的儿子能像自己一样优秀。当一具罗姆人的尸体被送往医院等候警方调查，醒目的黄色脚踏车成了被指控杀人的铁证。随著儿子不为人知的一面曝光，他完美无瑕的世界与仅存的盼望，也随之瓦解。",
+   "st": "承袭罗马尼亚新浪潮的叙事风格，《如果我想吹口哨》导演佛罗林瑟班以唯美诗意的冷冽长镜头，深度凝视当代社会在种族冲突与代际隔阂下的暗潮汹涌。历经两年选角、无数次反复排练，除了大胆启用大量素人演员，更特别找来罗马尼亚家喻户晓的喜剧演员亚德里安凡西卡担纲主角，打破过往幽默形象，以极度压抑的惊艳表现，完美诠释亲情暴力下的有毒期待，一举夺下洛迦诺影展最高荣誉金豹奖。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "获奖｜2026 洛迦诺影展 · 金豹奖、欧洲电影院发行奖",
+    "获奖｜2026 洛迦诺影展 · 青少年评审团首奖、演出特别提及",
+    "获奖｜2026 塞拉耶佛影展 · 最佳男演员"
+   ],
+   "ageRating": "保护级（6+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "影迷嘉年华",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-065",
+   "cn": "热带庄园魅影",
+   "o": "Death Has No Master",
+   "en": "Death Has No Master",
+   "y": 2026,
+   "c": "委内瑞拉 / 加拿大 / 义大利 / 卢森堡",
+   "min": 105,
+   "reg": "la",
+   "dir": "豪尔赫蒂伦阿尔芒",
+   "dirO": "Jorge THIELEN ARMAND",
+   "syn": "父亲去世后，长居欧洲的卡萝返抵委内瑞拉。踏上这片全然陌生的故土，欲把继承得来的可可庄园脱手出售，却见父亲的旧雇工索妮亚一家早已落地生根，甚至据地为主，把祖厝分租他人。卡萝按契约索产，索妮亚凭岁月守园，一方有法，一方有情，谁才有权拥有此地？当协商破局、求警无援，暴力终成清算手段。主仆恩怨、父辈遗毒与历史幽灵，也沿墙缝逐一渗出。",
+   "st": "义大利女星艾莎阿基多领衔主演，披一身欧陆邪气闯入拉美湿热，以咆哮、惊惧与失魂轮替的著魔演出，晃荡于荒屋、阴林与梦魇之间。低语缠耳、幻影逼眼、血泊沾身，将产权之争炼成殖民恐怖与西部迷幻。老宅宛如法律、血缘、阶级与种族互噬的修罗场，人人争地作主，生死不由人主。故园呢喃、魅影盘桓、轮回未完，上一代埋下的债，下一代拿血偿还。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "入选｜2027 奥斯卡金像奖 · 最佳国际影片委内瑞拉代表",
+    "入选｜2026 戛纳影展 · 导演双周",
+    "入选｜2026 洛迦诺影展",
+    "入选｜2026 圣保罗影展",
+    "入选｜2026 温哥华影展",
+    "入选｜2026 奥斯汀奇幻影展",
+    "入选｜2026 史特拉斯堡奇幻影展"
+   ],
+   "ageRating": "限制级（18+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "影迷嘉年华",
+   "screeningNotes": {
+    "11/12-18:50-tp-muvie-titan-titan": "映后活动 · 影人出席（嘉宾待公布）",
+    "11/13-13:10-tp-vieshow-xinyi-hall-12": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-066",
+   "cn": "崩塌之家",
+   "o": "Falling House",
+   "en": "Falling House",
+   "y": 2026,
+   "c": "伊朗 / 美国 / 德国",
+   "min": 130,
+   "reg": "as",
+   "dir": "莫森加拉伊",
+   "dirO": "Mohsen GHARAEI",
+   "syn": "家园即将拆除进行都更重建，从事狱警工作几十年的老父被指控收贿，停职期间，他意外得知大女儿为了模特儿梦早已买好机票要闯荡世界，连妻小都默许把欺骗当成彼此共业。内忧外患搞得他心烦意乱理智断线，竟把监狱生活原封不动搬回家当作考验。房屋拆迁迫在咫尺，他不顾一切想要阻止，当爱变质成无止尽的控制，摇摇欲坠的是房子，还是记忆中家的样子？",
+   "st": "将濒临崩毁的家庭化为国家缩影，导演灵活调度场面，逐步限缩场域空间。演员高张力来回对峙，在密闭高压的环境中，逼出角色瓦解内心的惊人蜕变，成就一则反讽极权体制的惊悚寓言。拉勒马兹班以层次丰富的演技与《缉毒风暴》影帝法哈德阿斯拉尼绝妙演绎父女交锋，荣登威尼斯地平线单元影后。《哈姆奈特》马克斯李希特弦乐衬托加持，在最亲密的牢笼，为自由发出最震撼的血泪声援。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "获奖｜2026 威尼斯影展 · 地平线最佳女演员",
+    "入选｜2026 汉堡影展",
+    "入选｜2026 华沙影展",
+    "入选｜2026 里约热内卢影展"
+   ],
+   "ageRating": "保护级（6+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "影迷嘉年华",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-067",
+   "cn": "NAZA：附带损伤",
+   "o": "NAZA",
+   "en": "NAZA",
+   "y": 2026,
+   "c": "英国",
+   "min": 80,
+   "reg": "eu",
+   "dir": "尤瓦尔亚伯拉罕 / 瑞秋索尔",
+   "dirO": "Yuval ABRAHAM / Rachel SZOR",
+   "syn": "NAZA是以色列军方术语，意即在攻击前，标示可接受平民死亡人数的「附带损伤」。深夜里，24名士兵与情报人员在特拉维夫屋顶匿名受访，说明他们是如何监听加萨居民的手机，并以人工智慧筛选目标，等待疑似哈玛斯成员返家时刻发动空袭。连孩子喊出的「爸爸」，都成为确认攻击时机的引线。为了消灭一个目标，多少平民的死亡可以被预估获准？",
+   "st": "《梦想集中营》导演监制，《你的国，我的家》两位以色列导演将多年调查报导搬上大银幕。历史影像与手绘图交代监控系统的由来及运作，长焦镜头望进特拉维夫公寓，居民吃饭、看电视、做瑜伽，生活如常；但在六十公里外，加萨正遭受轰炸。从操作流程一路到个人责任，揭露执行者在迟疑、炫耀与自我辩解之间，如何把人命数字当成工作日常，机密内幕震惊国际，一举擒下威尼斯影展评审团特别奖。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "获奖｜2026 威尼斯影展 · 评审团特别奖",
+    "获奖｜2026 圣塞巴斯蒂安影展 · 观众票选奖最佳欧洲影片",
+    "入选｜2026 纽约影展",
+    "入选｜2026 苏黎世影展",
+    "入选｜2026 香港亚洲电影节"
+   ],
+   "ageRating": "辅15级（15+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "影迷嘉年华",
+   "screeningEnds": {
+    "11/9-21:40-tp-muvie-titan-titan": "22:57"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-068",
+   "cn": "革命练习曲",
+   "o": "Rehearsals for a Revolution",
+   "en": "Rehearsals for a Revolution",
+   "y": 2026,
+   "c": "捷克 / 西班牙 / 英国",
+   "min": 101,
+   "reg": "eu",
+   "dir": "佩嘉阿罕贾拉尼",
+   "dirO": "Pegah AHANGARANI",
+   "syn": "佩嘉的童年穿梭在电影剧组间，一切如梦似幻，直到战争爆发。爸爸满心向往奔赴前线，新政治却开启了另一个极权时代；作风自由的老师令她倾慕，一场西式派对竟在保守校园掀起风波；满怀抱负的叔叔进城攻读新闻，不料在学运中遭受镇压；担任运动领袖的友人下落不明，只能透过网路上的街头动乱影片逐格寻踪。多年后，佩嘉虽已身在他乡，目光仍始终遥望割舍不下的故土。",
+   "st": "从个人记忆和亲友切身故事出发，以五段章节交织家庭影像、新闻画面与录音资料等真实素材，拼贴一部跨越四十年的伊朗近代史。从七○年代末伊斯兰革命、女性运动，千禧年间的七月学运与绿色革命，到2026年初的血腥屠杀，政治巨浪反复袭来，离散流转之间，人们一次次疗伤再重新站起，续写通往自由与正义的练习曲。",
+   "writers": [],
+   "cast": [],
+   "genre": [
+    "纪录片"
+   ],
+   "honors": [
+    "入选｜2027 奥斯卡金像奖 · 最佳国际影片英国代表",
+    "获奖｜2026 戛纳影展 · 最佳纪录片金眼睛奖",
+    "入选｜2026 卡罗维瓦利影展",
+    "入选｜2026 多伦多影展",
+    "入选｜2026 特柳赖德影展",
+    "入选｜2026 釜山影展",
+    "入选｜2026 墨尔本影展",
+    "入选｜2026 汉堡影展"
+   ],
+   "ageRating": "辅15级（15+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "影迷嘉年华",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-069",
+   "cn": "我盖了一座小屋想你",
+   "o": "Yo (Love Is a Rebellious Bird)",
+   "en": "Yo (Love Is a Rebellious Bird)",
+   "y": 2026,
+   "c": "美国",
+   "min": 78,
+   "reg": "us",
+   "dir": "安娜费奇 / 班克怀特",
+   "dirO": "Anna FITCH / Banker WHITE",
+   "syn": "失去挚友悠之后，安娜花费十年打造一座故居的模型，一个足以让她亲身走入的微缩世界。在这座由记忆与想像构筑的空间里，悠以木偶之姿再次存在，延续她们跨越半世纪的深厚羁绊。当73岁的悠与24岁的安娜相识时，两人年龄与人生经验的差距，成为一段独特连结的起点。交织悠生命最后一年的真实纪录与安娜对故人的创造性重现，在爱、失落与回忆之间，藉由艺术保存情谊，与逝者重新相遇。",
+   "st": "透过亲密贴身的纪录、微缩场景与实验性手法，突破传统人物传记框架，重构出独特的电影语言，拒绝以悲剧视角观看老年与死亡，而是捕捉主人翁自由不羁的人生姿态，挑战性别、母性与年龄的既定想像。以温柔而革新的形式，回应当代社会对生命阶段的框架限制，让记忆在创作中重新绽放。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "获奖｜2026 柏林影展 · 杰出艺术贡献奖",
+    "获奖｜2026 旧金山影展 · Kirby Walker纪录片奖荣誉提及",
+    "获奖｜2026 南塔克特影展 · 观众票选最佳纪录长片",
+    "入选｜2026 西雅图影展",
+    "入选｜2026 伊斯坦堡影展",
+    "入选｜2026 香港夏日电影节"
+   ],
+   "ageRating": "保护级（6+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "影迷嘉年华",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-070",
+   "cn": "噤声：她们的故事",
+   "o": "Silenced",
+   "en": "Silenced",
+   "y": 2026,
+   "c": "澳洲 / 英国 / 南非 / 瑞士 / 墨西哥",
+   "min": 97,
+   "reg": "as",
+   "dir": "瑟琳娜迈尔斯",
+   "dirO": "Selina MILES",
+   "syn": "她与前夫打了一场全球直播的世纪官司；她是关键选战前揭发国会性侵案的吹哨者；她则揭露了代表国家角逐奥斯卡名导的性骚扰指控。每天，她们都在衡量风险：该不该公开自己的名字？该不该说出曾经发生的一切？今天能不能平安回家？当#MeToo打破性别暴力长久以来的沉默，勇敢发声的女性，却很快迎来另一段更漫长的战役。等待她们的不一定是真相大白，而是一场场足以耗尽人生的诽谤诉讼、舆论攻击与公众审判。",
+   "st": "国际人权律师珍妮佛罗宾森，因担任安柏赫德与强尼戴普诽谤诉讼代理人而家喻户晓。镜头跟随她穿梭英国、澳洲、哥伦比亚与南非，带领观众出入法庭，也走进新闻头条之外，看见每一次发声背后，女性所承受的代价。当法律逐渐成为噤声的工具、当说出自己的故事如此艰难，我们是否仍愿意倾听？",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "入选｜2026 日舞影展",
+    "入选｜2026 铁萨隆尼基纪录片影展",
+    "入选｜2026 慕尼黑纪录片影展",
+    "入选｜2026 悉尼影展",
+    "入选｜2026 墨尔本影展",
+    "入选｜2026 哥本哈根纪录片影展",
+    "入选｜2026 英国雪菲尔纪录片影展"
+   ],
+   "ageRating": "保护级（6+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "影迷嘉年华",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-071",
+   "cn": "当恋爱显化时",
+   "o": "Wishful Thinking",
+   "en": "Wishful Thinking",
+   "y": 2026,
+   "c": "美国",
+   "min": 102,
+   "reg": "us",
+   "dir": "格雷姆帕克斯",
+   "dirO": "Graham PARKES",
+   "syn": "她是野心勃勃的游戏设计师，他则是不得赏识的音乐人，在同个屋檐下，他们总是前一秒甜蜜下一刻争吵，相爱也相杀。为了挽救摇摇欲坠的关系，朋友推荐他们参加双胞胎网红所举办的伴侣疗愈讲座，疗程中虽回想起当初如何坠入爱河，却也触发了两人与宇宙间的神秘力量。当他们的感情状态开始影响周遭世界，天雷勾动地火不再只是形容词，这场恋爱到底该怎么谈？",
+   "st": "独立游戏创作者格雷姆帕克斯跨足电影圈，首部长片自编自导脑洞全开，将焦虑的情感关系结合浪漫爱情与魔幻写实元素，大胆直捣爱情核心。好莱坞实力派星二代玛雅霍克与路易斯普曼相互拉扯，碰撞出充满默契与张力的表演能量，在长镜头、分割画面的视觉效果催化下，如爱的云霄飞车在痛苦与狂喜间摆荡。当恋爱显化，爱是世界上最强大的力量。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "获奖｜2026 SXSW影展 · 最佳剧情长片",
+    "入选｜2026 墨尔本影展",
+    "入选｜2026 汉堡影展",
+    "入选｜2026 荷兰莱登影展"
+   ],
+   "ageRating": "辅15级（15+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "影坛新势力",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-072",
+   "cn": "行过微光之路",
+   "o": "Ben'Imana",
+   "en": "Ben'Imana",
+   "y": 2026,
+   "c": "卢安达 / 加彭 / 法国 / 挪威",
+   "min": 101,
+   "reg": "me",
+   "dir": "玛丽克莱门汀杜萨贝詹博 / DUSABEJAMBO",
+   "dirO": "Marie-Clémentine / DUSABEJAMBO",
+   "syn": "1994年卢安达大屠杀，邻居反目成屠夫，国土沦为人间炼狱；18年过去，受害者与加害者亲属依然比邻而居，以静默遮隐伤痛。幸存者维内兰达相信唯有放下过去，才能走向未来，虽遭妹妹大力反对，仍在法庭公开原谅被告，并鼓励村民展开对话、修补关系。宽恕说得出口，不代表心中已无伤口，女儿突如其来的人生转折，终使她长年深埋的秘密纸包不住火。",
+   "st": "创下非洲电影首例，卢安达导演玛丽克莱门汀杜萨贝詹博首度入选戛纳影展一种注目，即勇夺金摄影机奖。以内敛镜头凝视劫后余生，藉三代女性碰撞承接历史重量：有人急于跨越、有人坚持究责、有人追问身世、有人困在往日，真相未必换来圆满，和解不是标准答案，转型正义之路从不平坦。电影拒做裁量，让众声于记忆与遗忘、揭露与承受之间激荡，在裂痕中寻觅共生微光。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "入选｜2027 奥斯卡金像奖 · 最佳国际影片卢安达代表",
+    "获奖｜2026 戛纳影展 · 金摄影机奖、一种注目影评人费比西奖",
+    "入选｜2026 多伦多影展",
+    "入选｜2026 卡罗维瓦利影展",
+    "入选｜2026 墨尔本影展",
+    "入选｜2026 悉尼影展",
+    "入选｜2026 釜山影展"
+   ],
+   "ageRating": "保护级（6+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "影坛新势力",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-073",
+   "cn": "爱×死×艺术家",
+   "o": "The End of It",
+   "en": "The End of It",
+   "y": 2026,
+   "c": "英国 / 西班牙 / 挪威",
+   "min": 102,
+   "reg": "eu",
+   "dir": "玛丽亚马汀内兹巴约纳",
+   "dirO": "Maria MARTÍNEZ BAYONA",
+   "syn": "近未来的世界，人类终于参透长生不老的秘密，艺术家克莱儿却越活越没意思。250岁大寿前夕，换下最后一块原生骨骼的她，下定决心结束生命。友人与丈夫轮番相劝，都唤不回克莱儿想死的心，只有疏远多年的女儿支持自己，在早已忘却衰老与死亡的世人面前，拿命完成一场探索生死真谛的终极展演。",
+   "st": "当永恒肉身沦为灵魂牢笼，没有终点的生命谈何意义？西班牙新锐导演首部长片，邀来《暴蜂尼亚》美术指导打造精巧骇人的死亡舞台；蕾贝卡霍尔独挑大梁，与盖尔贾西亚贝纳同台飙戏，在享乐至上的倦怠日常中，死出众人皆醉我独醒的架势，乖张挑衅主流社会对延寿的信仰；《A+瞎妹》比妮费尔德斯坦化身比人更像人的AI助理，犀利扣问人性本质，层层辩证生死难题。为看似虚无的结局染上一抹存在主义色彩，写就一则后现代科幻寓言。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "入选｜2026 戛纳影展 · 首映单元",
+    "入选｜2026 西班牙锡切斯奇幻影展"
+   ],
+   "ageRating": "辅12级（12+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "影坛新势力",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-074",
+   "cn": "余烬青春",
+   "o": "Dua",
+   "en": "Dua",
+   "y": 2026,
+   "c": "科索沃 / 瑞士 / 法国",
+   "min": 101,
+   "reg": "eu",
+   "dir": "毕列塔巴索里",
+   "dirO": "Blerta BASHOLLI",
+   "syn": "1990年代末，战火逼近科索沃首都，种族冲突日益升高。街头不再安全，学校与住宅无一幸免，正值青春期的杜娃即便面临身体与情感的剧烈变化，也没有余裕慢慢长大，深怕自己成为下一个被盯上的目标。某次意外，她结识了无所畏惧的玛琪，玛琪带她学习柔道，唤醒她心底压抑已久的愤怒与反抗。当族群迫害与暴力阴影逐渐笼罩家庭，在逃离与留下、沉默与反击之间，杜娃如何找到属于自己的力量？",
+   "st": "延续前作《红椒酱的滋味》对科索沃女性处境的关注，导演毕列塔巴索里将个人记忆交叠国族创伤，企图捕捉战争渗入女孩成长日常的种种痕迹，刻意摒弃暴力场景于画框之外，更使压迫气息无所不在。手持长镜头紧贴角色心境，主角皮涅雅马托希初试啼声便一鸣惊人，以倔强坚毅的眼神穿透人心，勾勒出动荡世界里的青春缩影。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "入选｜2027 奥斯卡金像奖 · 最佳国际影片科索沃代表",
+    "获奖｜2026 戛纳影展 · 影评人周SACD奖",
+    "入选｜2026 塞拉耶佛影展",
+    "入选｜2026 汉堡影展",
+    "入选｜2026 赫尔辛基影展",
+    "入选｜2026 苏黎世影展"
+   ],
+   "ageRating": "保护级（6+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "影坛新势力",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-075",
+   "cn": "亲爱的不速之客",
+   "o": "The Guest",
+   "en": "The Guest",
+   "y": 2026,
+   "c": "丹麦",
+   "min": 99,
+   "reg": "eu",
+   "dir": "迈兹门格尔",
+   "dirO": "Mads MENGEL",
+   "syn": "海景渡假饭店内，新手爸爸一家正热烈讨论儿子的命名派对，疏远多年的母亲却意外出现。初次见面的亲家对她敞开双臂，他却板著脸无言以对，姊姊向他保证母亲早已洗心革面，母亲也希望证明自己可以改变。而当派对当天脱序的迹象又渐渐浮现，他必须保护眼前所有一切，但该如何对又爱又恨的母亲说再见？",
+   "st": "丹麦新锐导演迈兹门格尔，将精神疾病置于更深层、难以言明的家庭脉络中，柏林影后崔娜蒂虹精准演绎深受病痛所困的母亲，在一次次情绪拉扯间，将亲情关系逐步推向崩溃边缘。手持摄影与特写镜头来回紧逼角色心绪，难以割舍的血缘情深，从未抚平的伤痕跨越世代，看见爱与伤害真的会同时存在。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "获奖｜2026 卡罗维瓦利影展 · 最佳导演、评审团特别奖",
+    "入选｜2026 以色列海法影展",
+    "入选｜2026 苏黎世影展",
+    "入选｜2026 温哥华影展",
+    "入选｜2026 釜山影展"
+   ],
+   "ageRating": "保护级（6+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "影坛新势力",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-076",
+   "cn": "破碎之后我们相拥",
+   "o": "Bedford Park",
+   "en": "Bedford Park",
+   "y": 2026,
+   "c": "美国",
+   "min": 121,
+   "reg": "us",
+   "dir": "史蒂芬妮安",
+   "dirO": "Stephanie AHN",
+   "syn": "一场车祸事故后，女人与男人的世界意外交会。同是在纽泽西的韩裔，他们的生活从不安稳。有孕在身的女人，挣扎于传统移民父母的期望；曾是摔角选手的男人，背负著被白人父母收养的创伤过去。本是针锋相对的肇事双方，当插曲接二连三地迸发，两颗破碎柔软的心，却因而逐渐靠近，开始相拥呼吸。只是这回，他们能否触摸到爱的形状？",
+   "st": "衍生自其2023年的短片，新锐编导史蒂芬妮安以韩裔美籍的个人身分经验切入创作，处理跨文化的碰撞与交融。集结美、韩、台三地制片团队，编织出其不意的生活节拍，牵引观众走进主角私密的内心疆土。《朴烈：逆权年代》崔嬉序搭档《我的出走日记》孙锡求，让爱在行车路上与小屋里蔓生，直到心灵荒草被真心慢慢抚平，举手投足皆是戏。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "获奖｜2026 日舞影展 · 美国剧情片类评审团特别奖最佳首作",
+    "入选｜2026 多伦多影展",
+    "入选｜2026 釜山影展"
+   ],
+   "ageRating": "辅15级（15+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "影坛新势力",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-077",
+   "cn": "蓝色是太阳的颜色",
+   "o": "The Color of the Sun",
+   "en": "The Color of the Sun",
+   "y": 2026,
+   "c": "加拿大 / 义大利 / 日本",
+   "min": 110,
+   "reg": "as",
+   "dir": "札维耶特拉",
+   "dirO": "Xavier TERA",
+   "syn": "冲绳的湛蓝天空与蔚蓝海面连成一线，军机划过天际的低沉轰鸣，居民早已习以为常。高中最后一个暑假，忧郁的龟生与朋友们成日在海边悠游晃荡，随心思索著逃离岛屿的未来；住在美军基地的金发少年柯林闯入他们的世界，却只想留在岛上独享一方天地。随著当地居民与驻军关系日益紧张，两人既矛盾又相似的微妙关系，令龟生深埋心中的不安全感蠢蠢欲动。",
+   "st": "长年旅居日本的加拿大籍导演札维耶特拉首部长片，将目光锁定拥有特殊历史与地域性的冲绳群岛，以及在世代间回荡的殖民文化。《以你的名字呼唤我》摄影师萨永普穆克迪普罗操刀拍摄，35毫米底片收揽炙热阳光、蓊郁树林与粼粼海面。在色彩饱满的灿烂影格中，铺垫充满叙事力量的声音设计，精准映照年少的迷惘与欲望，在海天相接的世界里，探索属于自己的太阳之色。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "获奖｜2026 威尼斯影展 · 地平线影评人费比西奖",
+    "入选｜2026 蒙特娄新电影影展"
+   ],
+   "ageRating": "辅12级（12+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "影坛新势力",
+   "screeningNotes": {
+    "11/15-13:20-tp-vieshow-xinyi-hall-10": "映后活动 · 影人出席（嘉宾待公布）",
+    "11/16-12:50-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-078",
+   "cn": "腥红女爵",
+   "o": "The Blood Countess",
+   "en": "The Blood Countess",
+   "y": 2026,
+   "c": "奥地利 / 卢森堡 / 德国",
+   "min": 119,
+   "reg": "eu",
+   "dir": "乌尔里克奥廷格",
+   "dirO": "Ulrike OTTINGER",
+   "syn": "血色披风、腥红驳船、地下湖与迎面而来的观光船，传说中的血腥女爵自地底风光重返当代维也纳。她与忠心女仆从墓穴穿梭到摩天轮，追寻终结血族命运的神秘古书；还有吃素又厌世的吸血鬼侄子、反效果十足的心理治疗师、荒腔走板的吸血鬼学家与永远慢半拍的警探一路相伴，加入混战。",
+   "st": "德国新电影与酷儿传奇导演乌尔里克奥廷格，联手《钢琴教师》诺贝尔文学奖原著作者，将惊世骇俗的巴托里神话、奥匈历史与维也纳幽暗地景，搅拌成一场极致坎普风的吸血鬼狂欢，如同浸泡在口红、番茄酱与B级片特效般的亮红色里，华服、骷髅、盛宴轮番登场。伊莎贝雨蓓招牌冷脸统御全场，高贵荒谬又时髦得不可一世，《我去死一下》拉斯艾丁格窝囊出场，连欧洲歌唱大赛传奇变装皇后伍斯特都惊喜客串，疯到不能再疯，颠复经典吸血鬼传说。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "入选｜2026 柏林影展",
+    "入选｜2026 布宜诺斯艾利斯独立影展",
+    "入选｜2026 悉尼影展",
+    "入选｜2026 墨尔本影展",
+    "入选｜2026 耶路撒冷影展"
+   ],
+   "ageRating": "辅12级（12+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "不设防地带",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-079",
+   "cn": "梦回险路",
+   "o": "The Dreamed Adventure",
+   "en": "The Dreamed Adventure",
+   "y": 2026,
+   "c": "德国 / 法国 / 保加利亚 / 奥地利",
+   "min": 163,
+   "reg": "eu",
+   "dir": "瓦莱斯卡格里瑟巴赫",
+   "dirO": "Valeska GRISEBACH",
+   "syn": "保加利亚与土耳其交界的小镇，考古学家薇丝卡与多年未见的旧识塞德意外重逢。塞德为了一桩黑市交易返回故地，抵达后座车却遭窃，所幸薇丝卡出手相助，不仅担任司机，还邀其参访挖掘现场、加入家常话局。情愫流动之际，塞德却突然不知去向，面对未知的险路，薇丝卡选择接续前行，深入小镇盘根错节的犯罪网络，也不得不直面过往的历史暗影……。",
+   "st": "睽违九年新作，德国导演瓦莱斯卡以自然表演与沉稳节奏，细腻描绘后社会主义时代的边境风景，亦在昼夜影像风格切换间，凝炼出西部片、黑帮犯罪电影与爱情故事等多重类型美学。氛围流转自如，叙事舒缓而精准，看似女性漫游，所经地景却映照出权力、欲望与暴力的反复伤害；历史未曾远去，在重新检视昔日英雄叙事与男性权威的幻影之余，从伤痕中走出新路。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "入选｜2027 奥斯卡金像奖 · 最佳国际影片保加利亚代表",
+    "获奖｜2026 戛纳影展 · 评审团奖",
+    "入选｜2026 卡罗维瓦利影展",
+    "入选｜2026 多伦多影展",
+    "入选｜2026 耶路撒冷影展",
+    "入选｜2026 悉尼影展",
+    "入选｜2026 慕尼黑影展"
+   ],
+   "ageRating": "辅12级（12+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "不设防地带",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-080",
+   "cn": "灵魂未知数",
+   "o": "The Unknown",
+   "en": "The Unknown",
+   "y": 2026,
+   "c": "法国",
+   "min": 141,
+   "reg": "eu",
+   "dir": "亚瑟哈拉利",
+   "dirO": "Arthur HARARI",
+   "syn": "寡言内向的摄影师大卫深居简出，唯一兴趣是以底片记录巴黎市容变化。某夜，他被友人拉进一场喧闹派对，与周身狂欢格格不入的他，在人群中瞥见一位神秘女子，著魔般尾随她来到地下室忘我缠绵，却不知一夜春宵的代价竟是互换灵魂。惶惑的大卫一面调查女子的真实身分，一面寻找自己的肉身。想不到费尽心思寻回的自我与真相，竟比想像中更加骇人……。",
+   "st": "延伸自原创图像小说，《坠恶真相》奥斯卡编剧亚瑟哈拉利以带有奇幻色彩的写实主义笔触渲染悬疑氛围，层层堆叠出卡夫卡式困境，剖析现代都会逐步裂解的人际关系及身分建构危机。实力派影后蕾雅瑟杜与《迷情苏珊娜》尼斯许奈德灵魂交锋，模糊性别及肉体疆界，以错困躯壳的意识与记忆挑战自我认同，共创演技高峰，交织出一则惊悚迷幻的存在主义寓言。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "入选｜2026 戛纳影展 · 正式竞赛",
+    "入选｜2026 多伦多影展",
+    "入选｜2026 卡罗维瓦利影展",
+    "入选｜2026 伦敦影展",
+    "入选｜2026 特柳赖德影展",
+    "入选｜2026 纽约影展",
+    "入选｜2026 波兰新地平线影展",
+    "入选｜2026 釜山影展"
+   ],
+   "ageRating": "限制级（18+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "不设防地带",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-081",
+   "cn": "红岩小鬼大激斗",
+   "o": "Red Rocks",
+   "en": "Red Rocks",
+   "y": 2026,
+   "c": "葡萄牙 / 法国 / 义大利 / 西班牙 / 卡达",
+   "min": 91,
+   "reg": "eu",
+   "dir": "布鲁诺杜蒙",
+   "dirO": "Bruno DUMONT",
+   "syn": "仲夏法国南部蔚蓝海岸小镇，吉奥与死党每天骑著迷你越野车四处晃荡，分赃游客背包里的玩具和糖，在海边耸立的红岩跳水逐浪。另一阵营的小鬼们也不遑多让，双方约在红岩再比一场，相互叫阵之时，小女孩却对吉奥一见钟情，让敌方老大百般不是滋味。一段跨越敌我的纯爱旅程，在妒火的埋伏之下，于蓝宝石般耀眼的地中海边展开。",
+   "st": "法国名导布鲁诺杜蒙离开肃穆的北海岸，在风光明媚的南法反璞归真。全片大人近乎缺席，超广角贴身拍摄素人儿童演员，钜细靡遗捕捉本能的原始冲动及直接的情绪反应，人小鬼大的互呛，有模有样的恋爱，令人莞尔。刻意保留粗糙质地的环境音，衬托奔放的野性，透过孩童澄澈心灵延续犀利人性哲思，余韵格外悠长。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "入选｜2026 戛纳影展 · 导演双周",
+    "入选｜2026 圣塞巴斯蒂安影展",
+    "入选｜2026 纽约影展",
+    "入选｜2026 波兰新地平线影展",
+    "入选｜2026 耶路撒冷影展",
+    "入选｜2026 悉尼影展",
+    "入选｜2026 釜山影展"
+   ],
+   "ageRating": "普遍级（0+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "不设防地带",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-082",
+   "cn": "人间坏格",
+   "o": "Vertiginous",
+   "en": "Vertiginous",
+   "y": 2026,
+   "c": "法国",
+   "min": 67,
+   "reg": "eu",
+   "dir": "昆汀杜皮尔",
+   "dirO": "Quentin DUPIEUX",
+   "syn": "清晨五点天微亮，杰基硬闯损友布鲁诺家，只为分享自己调查许久的惊人大发现：全人类都活在充满bug的模拟世界中！卡在水沟原地飞的鸟、八根手指的面包店大婶、塞纳河里长年漂浮的帽子、闪动后自动消失的狗屎，还有一秒顺产的无脐带婴儿，都是证据。没有本钱上演《骇客任务》，无奈接受现实的二人正心烦意乱商讨对策，迎面走来硬要参一脚的神秘大叔，竟带来意想不到的真相……。",
+   "st": "黑色喜剧能手昆汀杜皮尔再出奇招，以潦草卡顿的CG动画戏谑探讨存在主义与身分焦虑，向AI时代证明手工的还是最对味。粗犷画风宛如撞邪版《侠盗猎车手》，高度实验性的影像风格结合超展开剧情，灵活拆解虚实，狡黠辩证真假，看似唬烂却一本正经，举手投足尽是正宗杜皮尔式荒诞猎奇，连掉帧都能掉出人生真谛。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "入选｜2026 戛纳影展 · 导演双周",
+    "入选｜2026 西班牙锡切斯奇幻影展",
+    "入选｜2026 奥斯汀奇幻影展",
+    "入选｜2026 德国奇幻影展"
+   ],
+   "ageRating": "辅15级（15+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "不设防地带",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-083",
+   "cn": "迷雾中的大象",
+   "o": "Elephants in the Fog",
+   "en": "Elephants in the Fog",
+   "y": 2026,
+   "c": "尼泊尔 / 法国 / 德国 / 巴西 / 挪威",
+   "min": 108,
+   "reg": "as",
+   "dir": "阿比纳什比克拉姆夏",
+   "dirO": "Abinash Bikram SHAH",
+   "syn": "夜幕降临，尼泊尔森林边境的村民手持火炬，驱赶闯入农田的野象，而另一场更幽微的追寻也悄然展开。琵拉蒂生活于传统第三性别社群，与被收留的跨性别孩子们组成彼此扶持的家族。当养女奥萨拉失踪，只留下一顶遗落森林的金色假发，琵拉蒂踏上寻人之旅，也逐步揭开偏见、暴力与制度冷漠如何吞噬边缘者的生命，在爱、愧疚与母职之间，寻找属于自己的答案。",
+   "st": "细腻交织写实寓言与悬疑元素，导演阿比纳什比克拉姆夏以精准的叙事节奏，将家族日常转化为张力十足的寻人悬案，在静默中层层堆叠情绪与不安。以尼泊尔「Kinnar」第三性别文化为核心，跳脱酷儿角色的符号化再现，刻划其作为家庭、信仰与情感共同体的复杂样貌。迷雾、森林、火光与野象构成充满灵性的影像语汇，映照人物内心与社会裂痕。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "获奖｜2026 戛纳影展 · 一种注目评审团奖",
+    "入选｜2026 多伦多影展",
+    "入选｜2026 卡罗维瓦利影展",
+    "入选｜2026 墨尔本影展",
+    "入选｜2026 纽西兰影展",
+    "入选｜2026 伦敦影展",
+    "入选｜2026 釜山影展"
+   ],
+   "ageRating": "辅12级（12+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "亚洲之窗",
+   "screeningNotes": {
+    "11/16-18:30-tp-vieshow-xinyi-hall-12": "映后活动 · 影人出席（嘉宾待公布）",
+    "11/18-15:50-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-084",
+   "cn": "燃烧幻梦",
+   "o": "The Burning Giants",
+   "en": "The Burning Giants",
+   "y": 2026,
+   "c": "泰国 / 新加坡 / 法国 / 荷兰",
+   "min": 118,
+   "reg": "as",
+   "dir": "普帝邦阿朗潘",
+   "dirO": "Phuttiphong AROONPHENG",
+   "syn": "泰国西部丛林深处不断吐出谜样的白色烟雾，凡是吸入烟雾的人，身体会出现如遭无形烈火灼烧的伤痕。警察在森林中捕获满身烧痕的克伦族青年，将他送进隔离设施，沦为囚徒的他却不发一语，让警察开始怀疑眼前的疫情，究竟是疾病还是更深层的迫害。当青年的妻子循著踪迹回到森林，现实逐渐崩解，烟雾、失踪、驱逐与古老神话彼此交缠，一场关于土地与记忆的幽暗寓言悄然浮现。",
+   "st": "延续对边缘族群与身分议题的关注，导演普帝邦阿朗潘从克伦族群遭强制迁徙的真实事件出发，将当代泰国的土地冲突与国家暴力，错置于一个介于现实与神话之间的幻境。以浓雾、幽暗丛林与封闭空间，建立压迫而迷离的影像视觉，极简声响让人物对故土的呼唤如幽灵般回荡。随后取自〈罗摩衍那〉的神话剧场，也让殖民、国家暴力与族群驱逐，从当下延伸至更漫长的历史循环。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "入选｜2026 威尼斯影展 · 地平线",
+    "入选｜2026 釜山影展",
+    "入选｜2026 新加坡电影节"
+   ],
+   "ageRating": "辅12级（12+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "亚洲之窗",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-085",
+   "cn": "通灵少年神游中",
+   "o": "Levitating",
+   "en": "Levitating",
+   "y": 2026,
+   "c": "印尼 / 新加坡 / 法国 / 中国台湾",
+   "min": 119,
+   "reg": "as",
+   "dir": "韦加斯巴努特加",
+   "dirO": "Wregas BHANUTEJA",
+   "syn": "乐队阵列，灵媒召唤动物生灵附身于村民，藉此获得迷幻欢愉。巴尤苦练唢呐锻炼身心，目标是成为独当一面的引灵者。财团野心入侵，家园即将变成富人们的后花园，令巴尤无法专心。他遇见来到乡下疗伤的女孩，自愿成为入梦者帮助巴尤练习，他能否通过考验得到灵媒认证？与此同时，资本主义的毒手，正伸向万灵栖息的圣地……。",
+   "st": "擅长以犀利角度关注人间百态的导演韦加斯巴努特加，继《真相影印店》、《取消你的人生》后，将目光投向印尼传统文化与当代社会的碰撞，带来一出绝妙好戏。彷佛一场大型民俗锐舞派对，摇滚电吉他与诡谲唢呐声互尬，信徒狂舞不断法喜充满；当人们的精神状态陷入超脱，极具创意的视觉呈现更令人拍案。以独一无二的手法突破类型界线，在魔幻写实中，幽默舞出青年成长、价值冲突等议题。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "入选｜2026 日舞影展",
+    "入选｜2026 加拿大奇幻影展",
+    "入选｜2026 巴西Fantaspoa奇幻影展",
+    "入选｜2026 波兰新地平线影展",
+    "入选｜2026 迈阿密影展",
+    "入选｜2026 香港亚洲电影节"
+   ],
+   "ageRating": "辅15级（15+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "亚洲之窗",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-086",
+   "cn": "果树下的恋爱梦",
+   "o": "Fruit Gathering",
+   "en": "Fruit Gathering",
+   "y": 2026,
+   "c": "缅甸 / 捷克 / 法国",
+   "min": 97,
+   "reg": "as",
+   "dir": "昂漂",
+   "dirO": "Aung Phyoe",
+   "syn": "仰光的成衣厂里，年轻的珊姬为了勉强维持生计，弯腰埋首缝纫机前，在遭主管责难时，遇见了替她解围的温柔新同事婷婷。两人在日复一日的乏味工作间偷得片刻闲暇，或在夜里并肩同睡一张床榻，珊姬的情感如芒果树般无声滋长，悄然结出满树果实，甚至暗自盘算带著婷婷一起回到梦想中的北方家园，共筑生活。然而，婷婷突然神秘失联，让一切都乱了套……。",
+   "st": "缅甸导演昂漂的首部长片，刻划一段在当地仍被视为禁忌的恋情。暧昧在日常间流转，暗涌在波光中粼粼，唯美的色调光影、引人遐想的隐喻，细腻呈现人物心情，将观众带入由沉默与凝视交织而成的诗意。不仅描绘缅甸当代女性的劳动处境，也展现同性情谊仍遭压抑的困局，成为缅甸首部入选卡罗维瓦利影展的作品，更一举抱回最佳影片水晶球奖。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "获奖｜2026 卡罗维瓦利影展 · 最佳影片",
+    "入选｜2026 伦敦影展",
+    "入选｜2026 温哥华影展",
+    "入选｜2026 曼谷影展"
+   ],
+   "ageRating": "辅12级（12+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "亚洲之窗",
+   "screeningNotes": {
+    "11/17-18:50-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）",
+    "11/18-21:30-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-087",
+   "cn": "菲律宾女孩",
+   "o": "Filipiñana",
+   "en": "Filipiñana",
+   "y": 2026,
+   "c": "新加坡 / 英国 / 菲律宾 / 法国 / 荷兰",
+   "min": 100,
+   "reg": "cn",
+   "dir": "拉斐尔曼纽",
+   "dirO": "Rafael MANUEL",
+   "syn": "高级俱乐部，蓝粉亮制服，初来乍到的少女忙里偷闲，兜转在明媚高尔夫球场间，满怀期待寻觅心仪老板，渴望能一飞冲天。有钱叔叔带侄女体验阶级飨宴，球场清一色女职员，排排站蹲胯间，球放前面腿站两边，嘻笑打屁回以笑颜。酷暑干旱在这里无须操烦，源源不绝土芒果什么都能解决，不论服侍哪一颗球，欢迎光临美丽新世界。制服一穿，人人都是菲律宾女孩。",
+   "st": "菲律宾新锐导演初试啼声之作，延伸其夺得柏林银熊奖的同名短片，以别具风格化的视觉设计讽刺阶级人性，变焦长镜头缓慢凝视静谧球场间的权势流动。承袭监制及创作导师贾樟柯的社会写实，将底层的日常劳动转化为高张力的政治控诉，高尔夫球场化为国家掠夺机器的缩影，在强烈现代感的荒谬氛围中，冷酷地撕开富权体制下最精致也最野蛮的剥削面具。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "入选｜2027 奥斯卡金像奖 · 最佳国际影片菲律宾代表",
+    "获奖｜2026 日舞影展 · 创意视野评审团特别奖",
+    "入选｜2026 柏林影展 · 视角单元",
+    "入选｜2026 平遥国际电影展",
+    "入选｜2026 多伦多影展",
+    "入选｜2026 卡罗维瓦利影展",
+    "入选｜2026 釜山影展",
+    "入选｜2026 东京影展",
+    "入选｜2026 伦敦影展"
+   ],
+   "ageRating": "辅12级（12+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "亚洲之窗",
+   "screeningNotes": {
+    "11/17-21:10-tp-vieshow-xinyi-hall-12": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-088",
+   "cn": "失落残响",
+   "o": "Hearing",
+   "en": "Hearing",
+   "y": 2026,
+   "c": "新加坡 / 越南 / 挪威 / 法国 / 印尼 / 沙乌地阿拉伯 / 柬埔寨 / 泰国 / 中国台湾",
+   "min": 128,
+   "reg": "cn",
+   "dir": "黎豹",
+   "dirO": "LÊ Bảo",
+   "syn": "夜里的躁动划破沉默，人群喧哗的餐馆、猴群聚集的森林。离群索居的住宅，工程师阿宁游走各地，在纷闹之处装上一只只探测声音的「耳朵」。吵杂的地方渴望宁静，宁静的地方害怕孤寂，当他深入那些濒临失控的轰鸣，内心过往难以平复的噪音涌现。他努力修复父母破碎的关系、弥补对妻子和家庭的亏欠，纵使一切无法回到过去，难以抹灭的残响仍持续回荡。",
+   "st": "承袭首作《失落边境》强烈的实验色彩，越南导演黎豹集结国际金奖团队跨国合制，用更为深沉的笔触，将生猛影像风格转为内敛温柔的叙事。以家为引，将有形的监视化作无声的指控，梳理家庭伤痕的同时，也暗讽蛮横专权影响下的市井日常。光影与声息穿透世代生命，在深刻描绘人际疏离与创伤轮回的同时，谱写出一段回望童年与家乡的隽永诗篇。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "入选｜2026 洛迦诺影展 · 正式竞赛",
+    "入选｜2026 温哥华影展",
+    "入选｜2026 釜山影展",
+    "入选｜2026 伦敦影展"
+   ],
+   "ageRating": "辅12级（12+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "亚洲之窗",
+   "screeningNotes": {
+    "11/18-18:30-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）",
+    "11/19-13:20-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-089",
+   "cn": "沙河下的秘密",
+   "o": "Our Share of Sand",
+   "en": "Our Share of Sand",
+   "y": 2026,
+   "c": "英国 / 印度 / 希腊",
+   "min": 95,
+   "reg": "eu",
+   "dir": "莎里妮阿德娜尼",
+   "dirO": "Shalini ADNANI",
+   "syn": "12岁女孩跟随母亲从英国返回印度家乡，和经营砂石事业有成、许久未见的父亲重聚。还无法习惯的陌生日常让她感到不适，与她年龄相仿的工人男孩，成为她异地中唯一的心灵陪伴。夜晚，在好奇心驱使下，她与父亲一同前往河中央的工作地。一场意外发生，男孩的身体恐受到永久伤害，随著警方介入，身为目击证人的她，该选择相信亲人的闪烁言词，还是说出真实所见？",
+   "st": "启发自切身童年经验，导演以克制冷静的凝视镜头，直视印度长久以来的阶级陋习与过度开发的环境危机。迷人的棕暖色调，照映出维系生命命脉的河流之下，却也隐藏残酷的现实；更透视整个社会追求经济背后，所付出的沉重道德代价。实力派男星穆罕默德齐尚艾尤布诠释蛮横懦弱的父亲，新人演员玛雅梅塔自然且极具爆发力的内敛演出，撑起全片核心，共同扣问暗潮汹涌的人性。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "获奖｜2026 威尼斯影展 · 影评人周观众票选奖",
+    "提名｜2026 亚太电影大奖 · 最佳青少年影片",
+    "入选｜2026 伦敦影展",
+    "入选｜2026 苏黎世影展",
+    "入选｜2026 荷兰莱登影展"
+   ],
+   "ageRating": "保护级（6+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "亚洲之窗",
+   "screeningNotes": {
+    "11/16-21:20-tp-vieshow-xinyi-hall-12": "映后活动 · 影人出席（嘉宾待公布）",
+    "11/18-21:20-tp-vieshow-xinyi-hall-12": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-090",
+   "cn": "最初的世界",
+   "o": "The World Before",
+   "en": "The World Before",
+   "y": 2026,
+   "c": "南韩",
+   "min": 115,
+   "reg": "as",
+   "dir": "尹丹菲",
+   "dirO": "YOON Dan-bi",
+   "syn": "少女从没离开过岛，海的另一端是城市，那是她未曾到过的地方。当青梅竹马的他因奶奶离世重回故乡，两人睽违五年再次相遇，他身上截然不同的气息，也悄然滋长了她的青春暗恋。她开始留心打扮、妒忌他身边的其他女孩，偷偷贪恋著他的味道，而少年眼底望去的，始终是那片无垠的海。他们渴望彼此相伴，但两颗心却各自向往著不同的世界。",
+   "st": "擅以温柔视角观照家庭关系与生命逝去课题，韩国新锐导演尹丹菲将镜头对准少男少女的成长蜕变。情窦初开的悸动，与历经现实洗礼后渴望被纯真拥抱的灵魂相互映衬，表面是爱情的萌芽与心碎，内里却细藏著不同想望的世代凝望。独立电影圈亮眼新星沈秀彬搭档《Fragile脆弱的青春》金语真，自然且真挚地演绎出一段对青春世界的夏日告别。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "获奖｜2026 圣塞巴斯蒂安影展 · 新导演奖特别提及",
+    "入选｜2026 多伦多影展 · 平台单元",
+    "入选｜2026 圣塞巴斯蒂安影展",
+    "入选｜2026 釜山影展",
+    "入选｜2026 香港亚洲电影节"
+   ],
+   "ageRating": "保护级（6+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "亚洲之窗",
+   "screeningNotes": {
+    "11/17-16:20-tp-vieshow-xinyi-hall-10": "映后活动 · 影人出席（嘉宾待公布）",
+    "11/18-19:00-tp-vieshow-xinyi-hall-10": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-091",
+   "cn": "当风吹来奈义町",
+   "o": "Nagi Notes",
+   "en": "Nagi Notes",
+   "y": 2026,
+   "c": "日本 / 法国 / 新加坡 / 菲律宾",
+   "min": 110,
+   "reg": "as",
+   "dir": "深田晃司",
+   "dirO": "FUKADA Koji",
+   "syn": "单身的寄子留在奈义町经营酪农牧场，她虽是雕刻家，作品却从不展售，艺术只是与自己相处的方式。友梨刚结束与寄子弟弟的婚姻，从东京来访成为她的模特儿。两人是旧友、是前妯娌，如今是雕刻家与模特儿；她观察，她被观看，也在彼此目光中重新检视自己。各自背负著失落与失败的爱，她们能否藉由对方重新确认人生的位置？",
+   "st": "改编自平田织佐知名舞台剧〈东京笔记〉，深田晃司以静谧而余韵悠长的笔触，将难以名状的情感与欲望寄讬于雕塑、素描、摄影与建筑之中，藉此映照人物幽微的内心。松隆子、石桥静河、松山研一细腻演出，在含蓄留白间交织耐人寻味的人际风景。导演更亲自填词，邀台湾音乐人沛沛作曲、郑宜农献唱台语片尾曲〈路边开花〉，让奈义町未竟的感情温柔回荡。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "入选｜2026 戛纳影展 · 正式竞赛",
+    "入选｜2026 墨尔本影展",
+    "入选｜2026 耶路撒冷影展",
+    "入选｜2026 纽西兰影展",
+    "入选｜2026 温哥华影展",
+    "入选｜2026 釜山影展"
+   ],
+   "ageRating": "普遍级（0+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "日正当中",
+   "screeningNotes": {
+    "11/14-21:00-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）",
+    "11/15-13:50-tp-muvie-titan-titan": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-092",
+   "cn": "尼尔森先生，你杀过人吗？",
+   "o": "Mr. Nelson, Did You Kill People?",
+   "en": "Mr. Nelson, Did You Kill People?",
+   "y": 2026,
+   "c": "日本 / 美国 / 泰国 / 越南",
+   "min": 116,
+   "reg": "as",
+   "dir": "冢本晋也",
+   "dirO": "TSUKAMOTO Shinya",
+   "syn": "少年尼尔森自愿从戎，逃离贫穷与家暴，随海军飘荡至冲绳美军基地，却身陷另一座人间炼狱。他被送往越战前线，雨林燠热烟硝无情，被母国不平等对待的黑人大兵，炮火指向寻常百姓。尼尔森的枪下亡魂积累成没有止境的幽冥，夜不成寐让他永不得安宁。杀人一举，返家后流离失所，心灵也难以靠岸，谘商师频频扣问他为何举枪，杀与被杀之间却难有答案。",
+   "st": "冢本晋也于拍摄《野火》期间深受原作震撼，酝酿十年推出首部英语作品，改编真实越战经历，回归创作本格初心，再次映照战争的残酷与恐怖。冷静平实却更显残忍的影像，佐以被战火侵蚀的第一手自述，看尽一个为了生存的少年如何挣扎余生，见证毫不修饰的血腥与心灵磨难。在战火从未停歇的当代，带给世界一语不该遗忘的箴言。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "入选｜2026 威尼斯影展 · 正式竞赛",
+    "入选｜2026 多伦多影展",
+    "入选｜2026 里约热内卢影展",
+    "入选｜2026 蒙特娄新电影影展"
+   ],
+   "ageRating": "辅15级（15+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "日正当中",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-093",
+   "cn": "无人知晓的孩子们",
+   "o": "Children Untold",
+   "en": "Children Untold",
+   "y": 2026,
+   "c": "日本",
+   "min": 150,
+   "reg": "as",
+   "dir": "西川美和",
+   "dirO": "NISHIKAWA Miwa",
+   "syn": "二战结束前夕，12岁女孩的兄长从军、父母生死未卜，她传承音乐家父亲弹得一手好琴，却在肃穆的军国主义教育下被视为禁音。战火毁了一座城，日本战败的消息来得猝不及防，也让女孩一夕成了孤儿。硝烟散去，却是生存的伊始。为了求生，她不得不剪去头发、伪装男孩，加入东京地下街头的孤儿小团体，卖报纸、偷窃，也寻求帮派庇护。未来茫茫，但她的老师怀著救赎之心，决定要找到她。",
+   "st": "日本导演西川美和改编个人未出版的同名小说，以克制但饱含情感的电影语汇，看见在时代洪流中被遗忘的孩童，也揭开复杂残破的战后现实。亮眼新人小八重葵美交出扣人心弦的灵动演出，与《群山淡景》二阶堂富美演绎人生交会的师生，役所广司、竹野内丰、冈田准一惊喜助阵，共演一出哀而不伤、发人深省的战后小人物史诗。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "入选｜2026 多伦多影展 · 平台单元开幕片"
+   ],
+   "ageRating": "辅12级（12+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "日正当中",
+   "screeningNotes": {
+    "11/14-18:20-tp-muvie-titan-titan": "映后活动 · 影人出席（嘉宾待公布）",
+    "11/15-20:20-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-094",
+   "cn": "事到如今还谈什么爱",
+   "o": "Between Two Lovers",
+   "en": "Between Two Lovers",
+   "y": 2026,
+   "c": "日本 / 中国台湾",
+   "min": 128,
+   "reg": "as",
+   "dir": "广濑奈奈子",
+   "dirO": "HIROSE Nanako",
+   "syn": "童书作家小诗与丈夫杜夫结婚三年，感情亲密，唯独对生子没有共识。杜夫体贴持家，包办料理家事；任性却惹人怜爱的小诗，竟在某日突然坦承自己与编辑润奈已交往六年。虽然多年来「妾身未明」，润奈对小诗始终深情专一；若论先来后到，她才是「元配」。不愿放开相知多年的恋人，也舍不得深爱自己的丈夫，小诗索性提出一个异想天开的解方：要不就三个人一起生活吧！",
+   "st": "师承是枝裕和，曾执导《拂晓》的广濑奈奈子，新作结合同志主题与多元家庭想像，细腻刻划一段非典型三角关系。联手《刻在你心底的名字》摄影师姚宏易等一众台湾实力派班底，以低饱和色调轻描一对一的挣扎，淡写二对一的角力。长泽雅美任性游走在石桥静河与柄本佑之间，共同试探亲密关系的底线与弹性。摒弃独占即幸福的童话，以爱为凭，三个人的关系，可以不是折磨人的东西。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "入选｜2026 釜山影展"
+   ],
+   "ageRating": "保护级（6+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "日正当中",
+   "screeningNotes": {
+    "11/7-15:10-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）",
+    "11/8-10:20-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-095",
+   "cn": "富士子不能输",
+   "o": "Fujiko",
+   "en": "Fujiko",
+   "y": 2026,
+   "c": "日本",
+   "min": 95,
+   "reg": "as",
+   "dir": "木村太一",
+   "dirO": "KIMURA Taichi",
+   "syn": "1977年，雷雨交加的夜里，富士子在一片漆黑的医院产下女儿，期许她如向日葵般绽放。无奈育儿与劳动难以两全，婆婆想强硬分离母女，富士子却坚持夺回女儿。为母的喜悦与单亲的煎熬让她在保守的年代里独自升级，为了生活兜转挣扎一度铤而走险，艰难的日子偶有温暖降临，让她仍能抱持著与女儿共同迎向阳光的盼望。一切历程，只在她换上保险业务身分时，娓娓道来。",
+   "st": "受英日文化背景薰陶、影音双栖的新锐导演木村太一，以影像回望母亲的一生。报知映画赏最佳新人片山友希独挑大梁，《不良一族寻爱记》王牌企划MEGUMI跨刀制作并参与演出，YOU、Lily Franky现身力挺。在昭和风景之间，叙事如一首摇滚乐般鲜活自由、狂放不羁，看见激励人心的女性觉醒。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "获奖｜2026 义大利远东影展 · 金桑树观众票选奖、黑龙影评人奖",
+    "获奖｜2026 纽约亚洲影展 · 新视野最佳影片"
+   ],
+   "ageRating": "普遍级（0+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "日正当中",
+   "screeningNotes": {
+    "11/17-18:40-tp-vieshow-xinyi-hall-12": "映后活动 · 影人出席（嘉宾待公布）",
+    "11/18-15:10-tp-vieshow-xinyi-hall-12": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-096",
+   "cn": "无用之人",
+   "o": "In My Father's Room",
+   "en": "In My Father's Room",
+   "y": 2026,
+   "c": "日本",
+   "min": 109,
+   "reg": "as",
+   "dir": "原田舞叶",
+   "dirO": "HARADA Maha",
+   "syn": "在美术馆工作多年的聪美，生日当天收到亡父寄来的包裹，里面只有一把钥匙。父母结缡五十年后分开，问起原因，母亲只答：找不到继续在一起的理由。内向沉默、长年从事基层工作的父亲，正是她口中的「无用之人」。一把钥匙开启父亲未曾示人的另一面，聪美循著零星记忆、遗物与旁人的讲述，逐渐走进那个熟悉又陌生、孤独却丰饶的内在世界。",
+   "st": "日本小说家原田舞叶首执导演筒，改编自己的同名短篇小说，以诗、茶道、陶器与马克罗斯科画作，构筑幽静别致的艺术世界。苍井优沉静内敛，引领观众走向迟来的理解，《一一》尾形一成游走质朴与机趣，为静默的父亲一角注入神采，永山瑛太亦以细腻演出相衬，在《邪恶根本不存在》摄影北川喜雄的捕捉下，更显自然、空间与器物之美。当艺术成为通往灵魂的窗口，未及说出口的心意，终在凝视中悄然显现。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "获奖｜2026 圣塞巴斯蒂安影展 · 影评人费比西奖",
+    "入选｜2026 釜山影展",
+    "入选｜2026 香港亚洲电影节"
+   ],
+   "ageRating": "普遍级（0+）",
+   "subtitles": "原文发音，中文字幕；无英文字幕",
+   "section": "日正当中",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-097",
+   "cn": "有用的人",
+   "o": "To Be Ordinary",
+   "en": "To Be Ordinary",
+   "y": 2026,
+   "c": "中国台湾",
+   "min": 111,
+   "reg": "cn",
+   "dir": "李芸婵",
+   "dirO": "LEE Yun-chan",
+   "syn": "一场突如其来的意外车祸，打破一家四口的如常生活。哥哥以失去知觉的下半身，换来肇事老先生的房子。虽代价沉重，却也为一家人拾回难得的晚餐时光。妈妈满怀希望，继续扛起这个家；爸爸失业颓丧，仍全力照护爱子；妹妹遭到忽视，想努力快点长大；哥哥竭力复健，更邂逅知心的她。然而命运无常，总叫人雾里看花。",
+   "st": "《人鱼朵朵》导演李芸婵睽违多年执导新作，调度有条不紊的白描手法，刻绘一家四口在突逢巨变后的家庭日常，另辟蹊径呈现非一般的加害人与受害人关系。以肇事老先生赔上房产的负疚补偿，以及一家人领受与否的人性两难，侧写造化弄人的难解习题，更以此追问究竟何为有用的人。杨一展、张诗盈、谢展荣、陈品嫙合力演绎相怨又相亲的平凡一家，梁修身以老练演技凝望生命困局。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "获奖｜2026 釜山影展 · 最佳导演",
+    "入选｜2026 东京影展"
+   ],
+   "ageRating": "普遍级（0+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "罪与罚之外",
+   "screeningNotes": {
+    "11/7-12:30-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）",
+    "11/10-18:30-tp-vieshow-xinyi-hall-12": "映后活动 · 司法讲堂（与本片连场）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-098",
+   "cn": "暗影天使",
+   "o": "Shadow Work",
+   "en": "Shadow Work",
+   "y": 2026,
+   "c": "日本",
+   "min": 129,
+   "reg": "as",
+   "dir": "吉野龙平",
+   "dirO": "YOSHINO Ryohei",
+   "syn": "长期遭受家暴阴影的纪子，走投无路下逃进一处专门收容受暴女性的隐密庇护所。这里的住户共同分担日常起居，彼此守护，也让她逐渐找回久违的平静。然而，她发现维系起这座「天堂」的，是一项项不能对外透露的秘密任务。与此同时，追查连环命案的刑警薰循著蛛丝马迹一路逼近，所有线索竟都指向这处被世界遗忘的角落。一座庇护受伤灵魂的天堂，究竟藏著什么不为人知的真相？",
+   "st": "改编江户川乱步奖得主佐野广实同名小说，导演吉野龙平以悬疑犯罪类型包裹女性生存困境，将庇护所化作道德与人性的灰色地带。吉冈里帆与奈绪首度大银幕双主演，以内敛而充满爆发力的演出，刻划创伤恐惧却又彼此扶持；北村匠海突破形象饰演菁英恶警，与原嘉孝、风吹纯同台飙戏。当法律无法及时伸出援手，她们选择踏入暗影，是为了复仇，还是为了活下去？",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "入选｜2026 夏威夷影展"
+   ],
+   "ageRating": "辅12级（12+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "罪与罚之外",
+   "screeningNotes": {
+    "11/8-12:30-tp-vieshow-xinyi-hall-12": "映后活动 · 司法讲堂（与本片连场）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-099",
+   "cn": "首尔守护者",
+   "o": "The Seoul Guardians",
+   "en": "The Seoul Guardians",
+   "y": 2026,
+   "c": "南韩",
+   "min": 72,
+   "reg": "as",
+   "dir": "金钟佑 / 金信完 / 赵哲煐",
+   "dirO": "KIM Jong-woo / KIM Shin-wan / CHO Chul-young",
+   "syn": "2024年12月3日深夜，韩国总统尹锡悦无预警宣布戒严，军警突袭封锁国会，手无寸铁的民众与记者出于本能冲向现场，用肉身筑起人墙阻挡军队推进。为了阻止戒严令生效，国会议员们从各地连夜赶往首尔，不惜冲破拒马、翻墙进入议场，在枪管与刺刀的威胁下与时间赛跑，只为凑齐解除戒严的法定人数。",
+   "st": "这份守护民主的本能，源自45年前光州事件留下的集体记忆。三位韩国MBC电视台记者当晚同样身处第一线，在搬运路障的同时扛起摄影机，从新闻现场走进历史现场。没有流水帐式的纪录，而是将镜头对准那些没有名字的人们，重新建构国会内外最惊心动魄的六小时：混乱、恐惧、犹疑，以及宪政秩序濒临失守之际，人民彼此守护的瞬间。真实事件所累积出的强大张力，让本片拿下多个国际影展的观众票选奖。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "获奖｜2026 鹿特丹影展 · 奈派克奖特别提及",
+    "获奖｜2026 西雅图影展 · 纪录片类评审团特别提及",
+    "获奖｜2026 加拿大奇幻影展 · 纪录片类观众票选奖",
+    "获奖｜2026 纽西兰影展 · 纪录片类观众票选奖",
+    "入选｜2026 加拿大Hot Docs影展"
+   ],
+   "ageRating": "保护级（6+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "罪与罚之外",
+   "screeningNotes": {
+    "11/9-18:50-tp-vieshow-xinyi-hall-12": "映后活动 · 司法讲堂（与本片连场）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-100",
+   "cn": "检察追缉令",
+   "o": "Prosecution",
+   "en": "Prosecution",
+   "y": 2026,
+   "c": "德国",
+   "min": 114,
+   "reg": "eu",
+   "dir": "法拉兹沙里亚特",
+   "dirO": "Faraz SHARIAT",
+   "syn": "德国东部，初出茅庐的韩裔检察官在接下极右翼案件侦查后，竟遭遇一场死里逃生的袭击事件。当案件被草率视为单一暴力事件，上级要求身为被害者的她停止介入。她决定违抗命令，潜入尘封的卷宗亲自追查真相。摊开其他案证，她赫然发现这是一张盘根错节、长年与体系暧昧并存的共犯结构。当真相一一揭露，究竟体制会扮演称职的正义天秤，还是文过饰非的遮羞布？",
+   "st": "德裔伊朗导演浓缩德国多起种族歧视真实事件，以惊悚类型片的节奏，层层揭开隐藏于司法体系中的沉默与失职。紧凑的调查推进与法庭攻防交错展开，真正的威胁不只是被告席上的嫌犯，更是制度缝隙中日渐正常化的极端势力。当国家自诩为「最客观的司法机关」，保持中立是否反而成为另一种偏袒？《帝国大审判》柏林影后尤莉亚嫣琪携手首次演出却爆发力惊人的陈艾蜜莉延，成为柏林影展电影大观观众心水之选。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "获奖｜2026 柏林影展 · 电影大观观众票选奖、国际艺术戏院联盟奖",
+    "入选｜2026 伊斯坦堡影展",
+    "入选｜2026 温哥华影展",
+    "入选｜2026 里斯本酷儿影展",
+    "入选｜2026 纽西兰影展"
+   ],
+   "medium": "DCP",
+   "ageRating": "辅12级（12+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "罪与罚之外",
+   "screeningNotes": {
+    "11/7-13:00-tp-vieshow-xinyi-hall-12": "映后活动 · 司法讲堂（与本片连场）",
+    "11/8-21:00-tp-vieshow-xinyi-hall-12": "映后活动 · 影人出席（嘉宾待公布）",
+    "11/10-14:20-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-101",
+   "cn": "破碎十七",
+   "o": "17",
+   "en": "17",
+   "y": 2026,
+   "c": "北马其顿 / 塞尔维亚 / 斯洛维尼亚",
+   "min": 106,
+   "reg": "eu",
+   "dir": "科萨拉米提奇",
+   "dirO": "Kosara MITIĆ",
+   "syn": "17岁的莎拉不情愿地踏上校外教学之旅，她顶著褪色金发，以尖锐的怒气与层层堆叠的衣著武装自己，只想熬过这趟旅程。从北马其顿前往希腊的巴士路上，尽管老师告诫同学注意行为举止，但血气方刚的年纪，怎抵挡得了那些青春正盛的躁动？当饭店里的派对逐渐失控，她目睹室友遭到残酷对待，一切彷佛似曾相识，而那个死命守护的秘密，也开始一步步崩解……。",
+   "st": "携手《我的彩虹拼凑家庭》摄影，北马其顿导演首部长片以达顿兄弟式的手持凝视镜头，直视主角创伤的显影过程。伊娃科斯提奇首次演出，将主角从身体蔓延至内心的伤痛刻入骨髓，最后十分钟的演出张力更令人揪心。不只描述年轻女性遭受的日常暴力如何在噤声、羞辱与权力失衡中不断复制，更提醒著当旁观者选择沉默、制度选择视而不见，受伤的不只是个体，而是一整个世代。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "入选｜2027 奥斯卡金像奖 · 最佳国际影片北马其顿代表",
+    "获奖｜2026 耶路撒冷影展 · 最佳国际首作",
+    "获奖｜2026 塞拉耶佛影展 · 最佳女演员、平权特别奖",
+    "获奖｜2026 波兰TOFIFEST影展 · 最佳女演员",
+    "入选｜2026 柏林影展 · 视角单元",
+    "入选｜2026 香港电影节"
+   ],
+   "ageRating": "辅15级（15+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "罪与罚之外",
+   "screeningNotes": {
+    "11/8-15:50-tp-vieshow-xinyi-hall-12": "映后活动 · 司法讲堂（与本片连场）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-102",
+   "cn": "无处安放的青春",
+   "o": "A Place to Heal",
+   "en": "A Place to Heal",
+   "y": 2026,
+   "c": "法国",
+   "min": 105,
+   "reg": "eu",
+   "dir": "塞德烈卡恩",
+   "dirO": "Cédric KAHN",
+   "syn": "露西亚被警方送回公立医院的青少年精神病房。重返这个再熟悉不过的地方，17岁的她与长期住院的好友及其他少年再次相聚。他们彼此陪伴，在混乱与不安中熬过漫长的日子，也在医护团队的陪伴下，试着与各自的创伤共处。然而，新来的少年不只来意不单纯，更掀起一场情感风暴，让病房里原本脆弱的平衡逐渐瓦解……。",
+   "st": "历时多年田野调查，法国名导塞德烈卡恩以充满同理的目光与冷静的观察，将镜头深入精神医疗机构的治疗室、交谊厅、病房与晤谈室。不让精神疾患成为故事的主角，而是细腻描绘一段失衡、脆弱却充满生命力的青春情事。近乎纪录片的写实风格，令人想起《我和我的小鬼们》，一众年轻演员浑然天成的演出，让病房里每一次自我毁灭、痛哭与拥抱都彷佛真实发生眼前，也让潜力新秀玛路克比锡勇夺威尼斯影展最佳新演员奖。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "获奖｜2026 威尼斯影展 · 最佳新演员",
+    "入选｜2026 汉堡影展",
+    "入选｜2026 釜山影展",
+    "入选｜2026 伦敦影展"
+   ],
+   "ageRating": "辅12级（12+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "罪与罚之外",
+   "screeningNotes": {
+    "11/7-16:10-tp-vieshow-xinyi-hall-12": "映后活动 · 司法讲堂（与本片连场）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-103",
+   "cn": "生命中最美好的夏令营",
+   "o": "Sunny Dancer",
+   "en": "Sunny Dancer",
+   "y": 2026,
+   "c": "英国",
+   "min": 106,
+   "reg": "eu",
+   "dir": "乔治贾克斯",
+   "dirO": "George JAQUES",
+   "syn": "最讨厌被贴上癌症病人标签的少女艾薇，像刺猬般拒绝所有关心，父母却偏偏替她报名为期一个月的病友夏令营，以为可以让她重拾生活热情。在这个人人以病历当开场白、热情得令人招架不住的营队里，艾薇对规范和团康一概嗤之以鼻，直到遇见一群同样不想乖乖当「病人」的叛逆伙伴。他们闯祸、冒险、谈恋爱，把营队搞得天翻地复，也在彼此身上找到一个不必坚强、无须解释自己的地方。",
+   "st": "打破生死题材惯有的悲情与励志，导演乔治贾克斯将病痛远远抛走，创造出独树一格的成长喜剧，让这群少年有权胡闹、任性，也有害怕的权利。《最后生还者》贝拉拉姆齐带头造反，一众新血大闹营队，《追爱总动员》尼尔派翠克哈里斯和洁西卡甘宁、詹姆斯诺顿各有怪招，却也逼出你的眼泪。当生命被迫提早面对期限，他们偏要证明：生病并没有让青春的那些美好停止发生。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "入选｜2026 柏林影展 · 新世代14plus开幕片"
+   ],
+   "ageRating": "辅12级（12+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "金马×柏林新世代",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-104",
+   "cn": "池畔的夏日忧伤",
+   "o": "Sad Girlz",
+   "en": "Sad Girlz",
+   "y": 2026,
+   "c": "墨西哥 / 法国 / 西班牙",
+   "min": 91,
+   "reg": "la",
+   "dir": "费南达托瓦尔",
+   "dirO": "Fernanda TOVAR",
+   "syn": "那年夏天，是顶楼的彩虹充气池和划过天际的飞机。16岁的宝拉与小麦是最好的朋友，也是泳队最出色的两名选手。为了从看飞机的人变成搭飞机的人，她们努力练习，想取得代表国家出赛资格。一次派对上，宝拉终于和心仪已久的男孩独处；一夜过去，两人之间却有什么悄悄变了。沉默与疏离成了新日常，薄荷冰淇淋和巧克力牛奶再甜，也掩盖不了心底的悲伤，而小麦只想知道，好友究竟发生了什么事。",
+   "st": "墨西哥导演费南达托瓦尔首部长片，以少女友谊为核心，凝视创伤之后难以言说的情绪与挣扎。流动的水下摄影映照著自由与困境，捕捉青春期对身体、自我与关系的迷惘，当制度与成人失语，陪伴成了承接彼此的力量。以克制而同理的镜头，捕捉青春的脆弱与坚韧，一举夺得柏林影展新世代单元双料大奖。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "获奖｜2026 柏林影展 · 新世代14plus青少年评审团水晶熊奖、国际评审团大奖",
+    "获奖｜2026 哥伦比亚卡塔赫纳影展 · 伊比利美洲电影评审团奖",
+    "入选｜2026 翠贝卡影展",
+    "入选｜2026 圣塞巴斯蒂安影展",
+    "入选｜2026 墨尔本影展",
+    "入选｜2026 釜山影展"
+   ],
+   "ageRating": "辅12级（12+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "金马×柏林新世代",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-105",
+   "cn": "家的形状",
+   "o": "A Family",
+   "en": "A Family",
+   "y": 2026,
+   "c": "荷兰 / 比利时",
+   "min": 89,
+   "reg": "eu",
+   "dir": "梅斯贝能堡",
+   "dirO": "Mees PEIJNENBURG",
+   "syn": "父母婚姻走向破裂，姊弟俩拎著行李穿梭于两个家之间，被迫面对「想要跟谁一起生活」的艰难抉择。隔墙的激烈争吵、调解庭上的攻防，让他们成为父母角力下最无助的受害者。在日常的静默与压抑中，两人深陷迷茫的未来，手足间亦隔著一道冰冷的墙。直到家庭瓦解崩塌，他们才明白对方是唯一的陪伴，在裂痕中寻回彼此。",
+   "st": "《亲密》名导卢卡斯东特联合制片，导演梅斯贝能堡以双视角叙事，呈现同一事件的不同诠释与理解，细腻描述姊弟俩各自的困境与挣扎，透过大量特写镜头捕捉细微神情变化，深入孩子难以言说的内心世界。《冰与火之歌：权力游戏》卡莉丝凡荷登携手两位年轻演员，动人演绎亲情失衡之际仍难以割舍的羁绊。离婚家庭关系的崩解与复杂情感，在眼神交会间堆叠起不安与伤痛，在沉默中留下令人揪心的余韵。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "获奖｜2026 柏林影展 · 新世代14plus青少年评审团特别提及",
+    "获奖｜2026 乌拉圭影展 · 儿童评审团最佳演出",
+    "入选｜2026 纽西兰影展"
+   ],
+   "ageRating": "保护级（6+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "金马×柏林新世代",
+   "screeningNotes": {
+    "11/11-16:00-tp-vieshow-xinyi-hall-12": "映后活动 · 影人出席（嘉宾待公布）",
+    "11/13-18:30-tp-vieshow-xinyi-hall-12": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-106",
+   "cn": "新世代短片集",
+   "o": "Generation Shorts",
+   "en": "Generation Shorts",
+   "y": 2026,
+   "min": 80,
+   "c": "捷克 / 斯洛伐克 / 英国 / 法国 / 中国台湾",
+   "reg": "eu",
+   "dir": "安卓雅谢拉索娃 / 罗柬 / 鲁帕戈吉内尼 / 法罕穆塔兹 / 许筱玟 / 庄荣祚",
+   "syn": "合辑放映，共 5 部短片，总片长 80 分钟。依序为：《云朵上的点点名》、《乘浪涛去》、《马背上的夏天》、《抓耙仔》、《你吹 Do，我吹 Si》。",
+   "writers": [],
+   "cast": [],
+   "genre": [
+    "短片"
+   ],
+   "honors": [],
+   "parts": [
+    {
+     "cn": "云朵上的点点名",
+     "en": "Eeny, Meeny, Miny, Moe!",
+     "y": 2026,
+     "c": "捷克 / 斯洛伐克",
+     "min": 13,
+     "dir": "安卓雅谢拉索娃",
+     "dirO": "Andrea SZELESOVÁ",
+     "syn": "云端上奇妙的游乐园里，怪物与众神的孩子在这里一起玩耍，太阳神之子伊欧斯也好想跟大家一起玩点名游戏，但无法控制头上的锐利光芒，让其他孩子避之唯恐不及。一场恶作剧让伊欧斯坠落地球，孤单的他要怎样面对这个充满未知的人类世界？",
+     "synEn": "High above Earth, young Greek gods and monsters gather to play. Among them is Yios, a boy with a shining sun on his head. Unable to control his rays, he causes mishaps that alienate those around him. When a prank sends him tumbling from the clouds to Earth, Yios meets someone unexpected.",
+     "honors": [
+      "获奖｜2026 翠贝卡影展 · 评审团特别提及",
+      "获奖｜2026 斯洛维尼亚FeKKids影展 · 儿童观众票选奖",
+      "入选｜2026 柏林影展 · 新世代",
+      "入选｜2026 安锡动画影展",
+      "入选｜2026 芝加哥影展"
+     ]
+    },
+    {
+     "cn": "乘浪涛去",
+     "en": "Under the Wave off Little Dragon",
+     "y": 2025,
+     "c": "英国",
+     "min": 14,
+     "dir": "罗柬",
+     "dirO": "LUO Jian",
+     "syn": "英国威尔斯海滨小镇上，一间华人餐厅里，一条金鱼跳出了鱼缸，引发小女孩肥肥的大哉问。妈妈尝试用鱼跃龙门的神话安慰她，可是只写过信给圣诞老人、未曾去过中国的她不买帐。为了寻找心中的答案，肥肥踏上她的找鱼旅程，童稚言语直指核心，而踏出的每一步都闪烁著灵光。",
+     "synEn": "Why would a goldfish leap from its bowl? Mum consoles Feifei with a Chinese folktale, but Feifei isn't convinced. As she searches for answers in a small Welsh town, she comes to reimagine the story from her mother's homeland.",
+     "honors": [
+      "获奖｜2026 柏林影展 · 新世代Kplus儿童评审团最佳短片特别提及、国际评审团最佳短片特别提及",
+      "获奖｜2026 奥伯豪森短片影展 · 儿童评审团奖",
+      "入选｜2025 伦敦影展 · 导演Director罗柬LUO Jian"
+     ]
+    },
+    {
+     "cn": "马背上的夏天",
+     "en": "Riding Time",
+     "y": 2025,
+     "c": "英国 / 法国",
+     "min": 19,
+     "dir": "鲁帕戈吉内尼 / 法罕穆塔兹",
+     "dirO": "Roopa GOGINENI / Farhaan MUMTAZ",
+     "syn": "英国北部的男孩贾利尔，和朋友练习著一种来自南亚的传统马术。对他们来说，骑马不只是刺激的比赛、与亲戚朋友的打闹时光，更是家乡文化与记忆传承。三个夏天过去，贾利尔开始有了新的梦想：他想试试完全不同的马术，看看自己能骑多远……。",
+     "synEn": "Horse-obsessed Jaleal comes of age in West Yorkshire through Neza Bazi, an ancient South Asian cavalry sport thriving among Britain's Pakistani community. Filmed over three summers, he cares for horses, competes with fellow riders, and dreams of show jumping, navigating between tradition and aspiration, childhood and adulthood.",
+     "honors": [
+      "入选｜2026 柏林影展 · 新世代",
+      "获奖｜2025 里兹影展 · 约克郡短片竞赛评审团特别提及"
+     ]
+    },
+    {
+     "cn": "抓耙仔",
+     "en": "The Snitch",
+     "y": 2025,
+     "c": "中国台湾",
+     "min": 15,
+     "dir": "许筱玟",
+     "dirO": "HSU Hsiao-wen",
+     "syn": "十岁的莉莉抓到同学作弊，她悄悄通知了同样身为老师的妈妈。这个看似正确的举动，却在同学试着揪出谁是「抓耙仔」时，使她开始担心自己被孤立、怀疑而陷入两难……。金马新演员郑又菲再展自然演技，一道眼神藏著千言万语。",
+     "synEn": "After doing the right thing, a 10-year-old is cast as the snitch everyone's hunting. Caught between guilt and defiance, she walks a tightrope of peer pressure and self-doubt in this semi- autobiographical film of awakening.",
+     "honors": [
+      "入选｜2026 金穗奖评审团特别奖",
+      "入选｜2025 高雄电影节 · 导演Director许筱玟"
+     ]
+    },
+    {
+     "cn": "你吹 Do，我吹 Si",
+     "en": "Tutti",
+     "y": 2026,
+     "c": "中国台湾",
+     "min": 19,
+     "dir": "庄荣祚",
+     "dirO": "ZHUANG Rong-zuo",
+     "syn": "容辰是个努力但始终无法进步的直笛队成员；因练习时出错太多次，被警告不能参加公演。容辰遇见了绍瑜，那位宣称自己因肺活量不足，不能继续参加直笛队的男孩。容辰向他求助，就在两人渐渐熟识后，她发现绍瑜退出另有原因。",
+     "synEn": "While Rong-chen hopes to maintain her place in the recorder ensemble, Shao-yu wants to quit. Rong-chen asks him for advice, and as they practice together, they not only hone their technique, but also learn something far more profound from one another.",
+     "honors": [
+      "获奖｜2026 汉堡短片影展 · 儿童单元特别提及",
+      "入选｜2026 柏林影展 · 新世代",
+      "入选｜2026 维也纳短片影展",
+      "入选｜2026 金穗奖"
+     ]
+    }
+   ],
+   "ageRating": "普遍级（0+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "金马×柏林新世代",
+   "screeningNotes": {
+    "11/7-10:30-tp-vieshow-xinyi-hall-12": "映后活动 · 影人出席（嘉宾待公布）",
+    "11/13-18:50-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-107",
+   "cn": "跨出温室的爱恋",
+   "o": "Iván & Hadoum",
+   "en": "Iván & Hadoum",
+   "y": 2026,
+   "c": "西班牙 / 德国 / 比利时",
+   "min": 103,
+   "reg": "eu",
+   "dir": "伊恩德拉罗沙",
+   "dirO": "Ian de la ROSA",
+   "syn": "西班牙南方小镇，伊凡靠著温室工作安稳度日，酷儿身分看似被认同，生活中歧视却如影随形。直到旧识荷朵以新同事之姿出现，两人迅速坠入爱河，他才第一次觉得被完整接纳，不料现实考验接踵而来。为了撑持家中经济，想升职的伊凡不得不向资方投诚，而荷朵和女工们酝酿的劳权运动却迅速升温。夹在社会有色眼镜、劳资对立、家人期待与心中所爱的缝隙之间，伊凡该如何活出自己？",
+   "st": "西班牙跨性别导演伊恩德拉罗沙一鸣惊人首作，镜头对准阳光洒落的地中海滨与草原，田野间细腻捕捉自然环境音，谱出一首炙热的苦涩恋曲。温室里萌芽的爱情越备受呵护，面临现实压力时便更显脆弱。跳脱当代酷儿叙事套路，直视身分、种族间难以跨越的隔阂，化作对劳动阶级处境的温柔凝视，一举拿下柏林影展泰迪熊奖。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "获奖｜2026 柏林影展 · 泰迪熊奖最佳剧情片",
+    "获奖｜2026 西班牙马拉加影展 · 评审团特别奖、最佳剧本、男演员特别提及",
+    "获奖｜2026 印度KASHISH酷儿影展 · 最佳主角、剧本",
+    "入选｜2026 墨西哥瓜达拉哈拉影展",
+    "入选｜2026 旧金山同志影展",
+    "入选｜2026 西雅图影展",
+    "入选｜2026 纽西兰影展",
+    "入选｜2026 耶路撒冷影展"
+   ],
+   "ageRating": "辅15级（15+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "日常酷儿",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-108",
+   "cn": "以你的记忆审判我",
+   "o": "Trial of Hein",
+   "en": "Trial of Hein",
+   "y": 2026,
+   "c": "德国",
+   "min": 122,
+   "reg": "eu",
+   "dir": "凯斯坦尼克",
+   "dirO": "Kai STÄNICKE",
+   "syn": "北海小岛遗世独立，离家14年的海恩改头换面重回故乡，久病的妈妈与妹妹竟认不得他，儿时亲密好友也冷漠以待，村民们更是排外，对陌生脸孔心生疑惧。为平息猜忌，村长召开审判验证其身分，把记忆当作呈堂证供逐一比对，但众人历历在目的场景，却和他自己的回忆大相迳庭。当疑虑蔓延成敌意，海恩唯有直面过去的阴影，才能解开这场诡谲的身分之谜……。",
+   "st": "德国新锐导演打造虚构时空，宛如《厄夜变奏曲》的极简场景，在剧场般的空间里，将审判化为一场辩证记忆本质的展演。手持跟拍却沉静节制的摄影，精准捕捉个人与群体信念的冲突，在邪教般的集体压迫氛围中，层层堆叠出酷儿认同的心理试炼。当主流大众夺走同志族群定义自我的权利，真实便在意识形态下扭曲，正是本片最精彩绝伦的冷冽讽刺。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "获奖｜2026 柏林影展 · 泰迪熊评审团奖",
+    "获奖｜2026 旧金山同志影展 · Out in the Silence奖",
+    "获奖｜2026 普罗温斯敦影展 · 最佳新导演、观众票选奖",
+    "入选｜2026 西雅图影展",
+    "入选｜2026 纽西兰影展"
+   ],
+   "ageRating": "保护级（6+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "日常酷儿",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-109",
+   "cn": "纽约同志情与欲",
+   "o": "The Man I Love",
+   "en": "The Man I Love",
+   "y": 2026,
+   "c": "美国 / 法国",
+   "min": 97,
+   "reg": "us",
+   "dir": "艾拉萨克斯",
+   "dirO": "Ira SACHS",
+   "syn": "八○年代纽约公寓，楼下搬来了新邻居，吉米也刚大病初愈，打算重振旗鼓排演一出新戏。家人远道而来关心，朋友作陪热闹相聚，男友更是无微不至地照应，生活看似能就此平稳过下去。然而病情仍在悄悄侵袭，吉米的记忆力开始模糊不清，亲友小心翼翼令人备感压抑，邻居的暧昧追求，更让他不由自主想靠近……。",
+   "st": "延续《纽约摄影师的日与夜》的时空气息，长期关注LGBTQ+族群的导演艾拉萨克斯再度将镜头瞄准艺文同志族群，描绘深情亦深刻的生命终曲。雷米马利克姿态恣意游走爱欲，再展醇厚歌喉勾人于无形；汤姆史特瑞吉、卢瑟福特、蕾贝卡霍尔、艾邦摩斯贝克许把握有限光阴，以亲情、友情、爱情承接破碎的心。当所爱的人即将离去，那些疼痛却又亲密的往昔，终将化为一声声温柔的叹息。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "入选｜2026 戛纳影展 · 正式竞赛",
+    "入选｜2026 多伦多影展",
+    "入选｜2026 卡罗维瓦利影展",
+    "入选｜2026 特柳赖德影展",
+    "入选｜2026 圣塞巴斯蒂安影展",
+    "入选｜2026 悉尼影展",
+    "入选｜2026 釜山影展",
+    "入选｜2026 伦敦影展"
+   ],
+   "ageRating": "辅12级（12+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "日常酷儿",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-110",
+   "cn": "男优阿虎",
+   "o": "Tiger",
+   "en": "Tiger",
+   "y": 2025,
+   "c": "日本",
+   "min": 126,
+   "reg": "as",
+   "dir": "安舒乔汉",
+   "dirO": "Anshul CHAUHAN",
+   "syn": "同志情欲按摩师大河转职男优阿虎，换一个名字便换一个人生。镜头前一丝不挂，真实人生千丝万缕，大河因父亲病重返乡，却怕向家人出柜。在城市里做自己，终究只剩下自己；梦想有个孩子，却发现自己还是个孩子；盼能爱上一个人，只能在片中爱上一个人；以为没有关系，最后和谁都没有关系。身是蔷薇，心有猛虎，爱里我是唯一，孤独时我们都是同志。",
+   "st": "城市底层、中年旁徨、性别弱势，导演安舒乔汉汲取日本真实经验，以边缘视角，层层逼近当代LGBTQ+生活蕊心。褪去激情爱欲，面对社会困境，同志婚姻对策拆解保守价值政策，发展场中找发展，风俗业中遍历世情风俗，镜头下男孩脱得干脆，再用情节叫他们把羞耻一件一件穿回来。空穴来风，对号入座，玻璃大炮，一发入魂。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "入选｜2026 义大利远东影展",
+    "入选｜2026 旧金山同志影展",
+    "入选｜2026 汉堡同志影展",
+    "入选｜2026 香港同志影展",
+    "获奖｜2025 釜山影展 · Hylife视野奖最佳影片",
+    "入选｜2025 圣保罗影展"
+   ],
+   "ageRating": "限制级（18+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "日常酷儿",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-111",
+   "cn": "超派妖姬救地球",
+   "o": "Zsazsa Zaturnnah",
+   "en": "Zsazsa Zaturnnah",
+   "y": 2026,
+   "c": "菲律宾 / 法国",
+   "min": 90,
+   "reg": "as",
+   "dir": "艾维李昂戈伦",
+   "dirO": "Avid LIONGOREN",
+   "syn": "害羞的美发师老被叫娘炮，能断别人三千烦恼丝，独忧自己多一根。某日稀哩呼噜吞下太空异物，竟摇身一变神力女尤物，就此该大的大，该小的小，遇人不淑金衰小，一朝飞天独揽众山小。性感动作派，伪娘男高音，魔兽开挂我开胯，漫威都没老娘威。不管闯入镇上的是反同丧尸还男凝幽灵，超派女战士一路打通关，要让癞蛤蟆倒头栽，还要让你笑嗨嗨。",
+   "st": "菲律宾著名超级女英雄漫画角色性转颠复，激战大银幕！保力达套莎莎亚，草根又女力，沁入你心脾。集政治不正确之大成，是性别童话，更直面现实自嘲当笑话，不管胸前多澎湃，心底还是那个受伤小男孩，爱到卡惨死难道还要踹？想起小时候披上床单的自己，有翅膀，好自在。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "获奖｜2026 加拿大奇幻影展 · 动画长片类观众票选奖",
+    "入选｜2026 安锡动画影展",
+    "入选｜2026 富川奇幻影展",
+    "入选｜2026 香港同志影展"
+   ],
+   "ageRating": "辅12级（12+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "日常酷儿",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-112",
+   "cn": "装扮游戏",
+   "o": "Tomboy",
+   "en": "Tomboy",
+   "y": 2011,
+   "c": "法国",
+   "min": 82,
+   "reg": "eu",
+   "dir": "瑟琳席安玛",
+   "dirO": "Céline SCIAMMA",
+   "syn": "那年夏天，洛儿搬了新家，全新的生活宛如白纸一张，自己的性别似乎也可以趁机涂掉重画。洛儿向新朋友丽莎自称「米克」，举止打扮看起来跟其他男孩没两样，自成一格的可爱帅气却令丽莎芳心荡漾。新身分带来空前快乐，但眼看秘密就要穿帮……。要是扑朔的初夏年华可以永远暂停，「新来的男孩」就不用忧烦长大。",
+   "st": "长年以性别及女性情感为创作核心，瑟琳席安玛早在《燃烧女子的画像》前便以古典画作般的光影风格，开展出女性凝视的百合沃野。适逢泰迪熊奖四十周年，席安玛获颁泰迪熊特别奖并受邀重新剪辑本片，考量对社会的影响及对青少年的启发意义，剔除认为不再适切的画面，用更温柔的镜头语言，承接年少时代对性别及性向认同的懵懂旁徨。不论正在寻找归属，或曾觉得格格不入，都能在此照见自己内心的小孩。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "获奖｜2011 柏林影展 · 泰迪熊评审团奖",
+    "获奖｜2011 纽约同志影展 · 最佳演出",
+    "获奖｜2011 旧金山同志影展 · 观众票选最佳剧情长片",
+    "获奖｜2011 费城同志影展 · 评审团奖最佳剧情片",
+    "入选｜2011 墨尔本影展"
+   ],
+   "ageRating": "保护级（6+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "日常酷儿",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-113",
+   "cn": "高档货",
+   "o": "High Art",
+   "en": "High Art",
+   "y": 1998,
+   "c": "美国",
+   "min": 103,
+   "reg": "us",
+   "dir": "莉莎蔻洛丹柯",
+   "dirO": "Lisa CHOLODENKO",
+   "syn": "一片渗水的天花板，让初出茅庐的杂志编辑席德邂逅隐退多年的知名摄影师露西。被解构的是作品，被读懂的是灵魂，野心勃勃的席德重新点燃露西对创作与生活的热情，允诺为她的杂志拍摄封面。显影剂混海洛因，洗出扑朔迷离的性倾向，才看清心之所向。谈性说爱，各怀鬼胎，缪思之位易主，搞不定的女友男友都得为高级艺术让步，任藏匿于胶片的炽恋显影，烙进心底，再沦为荒芜。",
+   "st": "美国名导莉莎蔻洛丹柯编导首作，藏不住的才气在镜头间蒸腾流转，慑人心魄，淬炼成女同志不败经典。全新4K修复重返独立电影与波士顿摄影流派的黄金年代，贴身记录海洛因时尚与私摄影背后的欲望与放逐，折射出酷儿影史最浪漫奔放的灵光，余韵无穷。《早餐俱乐部》艾莉希迪狂野性感，暧昧周旋于兰妲米契尔与派翠西亚克拉克森间，颓靡姿态堪称生涯最佳演出。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "获奖｜1999 美国独立精神奖 · 最佳制片、女主角",
+    "入选｜1998 美国国家影评人协会最佳女主角",
+    "入选｜1998 洛杉矶影评人协会最佳女主角",
+    "获奖｜1998 日舞影展 · Waldo Salt编剧奖",
+    "入选｜1998 戛纳影展 · 导演双周"
+   ],
+   "ageRating": "限制级（18+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "日常酷儿",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-114",
+   "cn": "绿洲合唱团：莫带愤怒回首",
+   "o": "Oasis: Don't Look Back in Anger",
+   "en": "Oasis: Don't Look Back in Anger",
+   "y": 2026,
+   "c": "英国",
+   "min": 122,
+   "reg": "eu",
+   "dir": "迪伦桑森 / 威尔洛夫雷斯",
+   "dirO": "Dylan SOUTHERN / Will LOVELACE",
+   "syn": "枪声平息，繁星对齐，这不是演习，绿洲合唱团回归正式来袭！从1991年如超新星般窜起，到2009年闹翻后分崩离析，绿洲缔造无数傲人成绩，却戛然而止让乐迷心碎一地。如今长达16年的烟硝散去，隔空叫骂的兄弟终于和解重聚，绕了半个世界的巡回超音速再起，让音乐成为你的信仰皈依，让演出震撼你的节奏神经，今晚台上台下都是摇滚巨星！",
+   "st": "复出消息轰动本世纪，走遍三大州12个场地，出动上万台摄影机，《闭嘴听音乐》双导演为英摇纪录再添一笔。看盖勒格兄弟从一开始彼此怀疑猜忌，到老班底登台后无须多言的默契，大银幕见证乐团再创摇滚传奇。响彻灵魂的金曲旋律，跨越世代的狂热记忆，回想曾被音乐救赎的自己，万人齐唱轰鸣令人痛哭流涕。诏告所有的乐迷和莎莉，等待已然过去，所有过往的愤怒怨气，回首都将云淡风轻。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "入选｜2026 威尼斯影展"
+   ],
+   "ageRating": "辅12级（12+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "摇滚再放送",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-115",
+   "cn": "Pulp：安可要唱哪一首",
+   "o": "Pulp: What Do You Do for an Encore?",
+   "en": "Pulp: What Do You Do for an Encore?",
+   "y": 2026,
+   "c": "英国",
+   "min": 99,
+   "reg": "eu",
+   "dir": "葛斯詹宁斯",
+   "dirO": "Garth JENNINGS",
+   "syn": "今晚的演出是一场安可，安可表示你想要更多，现在开始尖叫拍手，好戏马上就要开播！事隔24年的漫长等候，英摇代表Pulp终于回锅，带著新专辑升起舞台霓虹闪烁，随节奏四肢扭动跳迪斯可，低沉气泡音开启时空穿梭。儿时看电视幻想太空生活，乐团成员不断来了又走，救济金信封写满歌词创作，沉寂多年终于迎来成果，登上巅峰后面对坠落，现实人生已改变太多，未来又该往哪里走？",
+   "st": "超越现实的流行，纪录与演出并进，叙事与歌词呼应，主唱贾维斯库克亲口述说近半世纪的乐团经历。拼贴过往访谈召唤零碎记忆，对望英摇盛况作风异军突起，缅怀故人离去和弦交杂悲喜，千禧年的约定早已过期，太阳坠落了又升起，普通人在超市找寻意义，当年女友抱著孩子出席，所有的乐迷都在此相遇，听Pulp为我们再唱一曲。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [],
+   "ageRating": "保护级（6+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "摇滚再放送",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-116",
+   "cn": "世界上最寂寞的蓝调",
+   "o": "The Loneliest Man in Town",
+   "en": "The Loneliest Man in Town",
+   "y": 2026,
+   "c": "奥地利",
+   "min": 86,
+   "reg": "eu",
+   "dir": "缇莎蔻维 / 雷纳傅立梅",
+   "dirO": "Tizza COVI / Rainer FRIMMEL",
+   "syn": "八十岁的艾尔从没离开过维也纳，却将自己的人生活成密西西比蓝调。老公寓里听黑胶、弹吉他；塞满地下工作室的书籍、录影带和老照片，就是他的私人小宇宙。在这里时间彷佛静止，而外面的世界早已不断前行。随著建商收购大楼、住户陆续搬离，他不得不在失去家园的过程中，重新整理那些陪伴自己一生的物件，也再次想起那个未竟之梦……。",
+   "st": "创作再度游走在纪录与剧情之间，奥地利双人组导演找来蓝调歌手艾尔库克重新走入自己的生命，以近乎观察的镜头，缓缓勾勒一位老人与时间共处的日常。一身猫王造型与神韵为角色增添魅力，冷调幽默宛如郭利斯马基，更唤醒类比与纸本年代的独特气味。叙事虽轻如鸿毛，但当生活一点一滴地被搬空，生命的重量被留在16毫米胶卷中，这不只是全世界最寂寞的人物肖像，更是一曲写给旧时代的温柔蓝调。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "入选｜2026 柏林影展 · 正式竞赛",
+    "入选｜2026 圣塞巴斯蒂安影展",
+    "入选｜2026 布宜诺斯艾利斯独立影展",
+    "入选｜2026 悉尼影展",
+    "入选｜2026 墨尔本影展",
+    "入选｜2026 纽约影展",
+    "入选｜2026 耶路撒冷影展"
+   ],
+   "ageRating": "保护级（6+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "摇滚再放送",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-117",
+   "cn": "我就爱摇滚",
+   "o": "Mile End Kicks",
+   "en": "Mile End Kicks",
+   "y": 2025,
+   "c": "加拿大",
+   "min": 111,
+   "reg": "as",
+   "dir": "钱德勒乐瓦克",
+   "dirO": "Chandler LEVACK",
+   "syn": "列出今年夏天的待办清单，乐评葛蕾丝凭著一股毅然决然，裸辞离乡到蒙特娄发展。写一本书谈场恋爱登一座山，目标说得容易起头难。参加朋友派对那一晚，她的命运竟就此转弯，和禁欲贝斯手彻夜相谈甚欢，被混蛋主唱迷得芳心大乱，甚至一口答应帮乐团宣传。追爱路上磕磕绊绊，追求理想进度中断，眼看爱情友情事业通通都要完蛋，她该怎么重整人生的一团混乱？",
+   "st": "从电影宅进攻音乐迷，《我就爱电影》导演钱德勒乐瓦克再以幽默轻喜剧包装成长酸甘甜，搜罗加拿大独立乐团单曲接力，梦回千禧自我追寻。芭比费雷拉少女情怀总是失意，在文章里写艾拉妮丝莫莉塞特女权自立，在现实中仍为一席之地挣扎碰壁，凡曾挫败旁徨都能共鸣。过往旋律不断回响，逐梦路上难免迷惘，褪下不切实际的虚浮表象，才能蜕变成自己最真实的模样。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "入选｜2026 SXSW影展",
+    "入选｜2026 悉尼影展",
+    "入选｜2026 墨尔本影展",
+    "入选｜2025 多伦多影展",
+    "入选｜2025 温哥华影展",
+    "入选｜2025 斯德哥尔摩影展"
+   ],
+   "ageRating": "辅15级（15+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "摇滚再放送",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-118",
+   "cn": "就是柳柳的他",
+   "o": "Wicker",
+   "en": "Wicker",
+   "y": 2026,
+   "c": "美国",
+   "min": 105,
+   "reg": "us",
+   "dir": "艾力克斯休斯顿费雪 / 艾莉诺威尔森",
+   "dirO": "Alex Huston FISCHER / Eleanor WILSON",
+   "syn": "小镇居民各司其职，无不以婚配嫁娶为志，一生期盼被颈圈套牢白纱的大喜之日。大龄渔妇小姑独处招来讪笑，新娘抛出的喜蛋却预言她将走上红毯，渔妇就此向织柳匠许愿一个丈夫。柳树制成的情郎从天而降，渔妇从鱼腥中脱身，陶醉于鱼水之欢。专情又勇猛的柳树男激起地方太太们的欲望、人夫们的嫉妒，异端夫妇将保守小镇搞得天翻地复，若完美情人能量身打造，还有什么将横空出世？",
+   "st": "改编自英国作家乌斯拉琼斯知名短篇小说，编导夫妻档联手推出奇幻浪漫喜剧。奥斯卡影后奥莉薇雅柯尔曼生动鲜活诠释渔妇，《后座力》瑞典男神亚历山大史柯斯嘉面目全非变身柳条男，在如传奇野史的故事中，以百无禁忌的黑色幽默，挑战世俗对情爱与婚姻的定义，荒谬又精妙绝伦。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "入选｜2026 日舞影展",
+    "入选｜2026 伦敦影展",
+    "入选｜2026 西班牙锡切斯奇幻影展",
+    "入选｜2026 墨尔本影展",
+    "入选｜2026 温哥华影展",
+    "入选｜2026 西雅图影展"
+   ],
+   "ageRating": "辅12级（12+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "奇幻特快车",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-119",
+   "cn": "肚皮拉警报",
+   "o": "Full Phil",
+   "en": "Full Phil",
+   "y": 2026,
+   "c": "法国",
+   "min": 76,
+   "reg": "eu",
+   "dir": "昆汀杜皮尔",
+   "dirO": "Quentin DUPIEUX",
+   "syn": "为了修复破碎亲情，富商菲利普邀请爱女玛德莲一同游巴黎，女儿却只想看电脑萤幕里的宅宅科学家与鱼头丑恐龙魔法对轰。顾人怨老爸碎嘴念不停，玛德莲忍无可忍暴饮暴食应喙应舌，战况升级引来爱管闲事的服务生露西，以预防家暴为名勾勾缠。眼见与女儿的相处时光彻底被毁，菲利普气噗噗跑回房间耍自闭，才发现冤家父女没有心连心只剩肚连肚，失控场面一触即发。",
+   "st": "法国鬼才昆汀杜皮尔继《洛城警察坏坏事件》后全新英语长片，融合五○年代低成本特摄怪兽片及肉体恐怖元素，双线叙事无厘头串连剑拔弩张的父女关系，恶搞一众好莱坞明星，宛如邪典版《艾蜜莉在巴黎》。克莉丝汀史都华霸气吃相帅成女同天菜，潇洒煞到《妮基的重生》夏洛特勒彭，顺便把伍迪哈里逊气到膨风。歪到无可救药，保证教坏全家大小。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "入选｜2026 戛纳影展 · 午夜单元",
+    "入选｜2026 西班牙锡切斯奇幻影展",
+    "入选｜2026 奥斯汀奇幻影展",
+    "入选｜2026 赫尔辛基影展",
+    "入选｜2026 德国奥登堡影展",
+    "入选｜2026 富川奇幻影展"
+   ],
+   "ageRating": "辅12级（12+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "奇幻特快车",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-120",
+   "cn": "终极杀镇",
+   "o": "Normal",
+   "en": "Normal",
+   "y": 2025,
+   "c": "美国 / 加拿大",
+   "min": 91,
+   "reg": "us",
+   "dir": "班伟特利",
+   "dirO": "Ben WHEATLEY",
+   "syn": "月黑风高夜，小镇警长冰钓途中意外暴毙，尤里西斯顶著结屎脸临危受命，来到冰天雪地的「正常镇」消极代打。近日婚姻触礁的他萎靡不振，只想简单处理居民口角违停，直觉却让他嗅到好山好水好无聊背后的一丝不对劲。随著暴风雪来袭，一对来自外地的天兵鸳鸯抢劫银行失利，竟意外揭开小镇的致富密码，将全员卷入嗜血杀机。",
+   "st": "正常小镇不正常，一言不合就开枪。英国怪杰班伟特利携手《捍卫任务》系列编剧火力全开，融合惊悚悬疑与黑色喜剧元素，打造新式西部动作传奇。鲍勃奥登科克继《无名弑》后战力升级，浴血突围丧心小镇。五○年代乡村乐一下，落魄英雄左右开弓，枪炮随刀械齐飞，尸块混血浆四射，连邻家阿嬷都来暴力上膛，更有日本黑帮跨海乱入，层层反转出比《玩命枪火》还荒谬的花式走火现场。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "入选｜2026 SXSW影展",
+    "入选｜2026 伊斯坦堡影展",
+    "入选｜2026 迈阿密影展",
+    "入选｜2026 克里夫兰影展",
+    "入选｜2026 佛罗里达影展",
+    "入选｜2026 香港夏日电影节",
+    "入选｜2025 多伦多影展"
+   ],
+   "ageRating": "辅15级（15+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "奇幻特快车",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-121",
+   "cn": "暗夜魔婴",
+   "o": "Nightborn",
+   "en": "Nightborn",
+   "y": 2026,
+   "c": "芬兰 / 立陶宛 / 法国 / 英国",
+   "min": 92,
+   "reg": "eu",
+   "dir": "汉娜贝格琼",
+   "dirO": "Hanna BERGHOLM",
+   "syn": "怀著为人母的美梦，莎嘉与丈夫搬回幼时和祖母同住的芬兰森林老屋，然而新生儿到来后的生活，却不如想像中甜蜜。生产造成的撕裂伤、不分昼夜的哭声、被咬得血肉模糊的乳头，让莎嘉的精神日渐衰弱。眼看婴儿化身嗜血怪物，爱侣难逃同床异梦，育儿生活沦为人间炼狱。随著婴儿房内腐朽木地板下传出异响，祖母口中古老而神秘的力量，慢慢从森林里走出……。",
+   "st": "以《孵魔》惊艳各大奇幻影展的芬兰新锐导演汉娜贝格琼，延续前作对亲子关系的反思，以北欧山怪神话为引，生猛挖掘人类野性本能，再写一则打破亲情滤镜的冷冽寓言。《邂逅在六号车厢》塞迪哈尔拉高压诠释新手母亲的焦虑疯狂，携手「荣恩」鲁伯葛林特演绎离心鸳鸯，犀利剖析母职阴暗面，拆解理性与道德框架，让凋零的爱浴血重生。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "获奖｜2026 加拿大奇幻影展 · 最佳影片、演出",
+    "入选｜2026 柏林影展 · 正式竞赛",
+    "入选｜2026 卡罗维瓦利影展",
+    "入选｜2026 布鲁塞尔奇幻影展",
+    "入选｜2026 罗马尼亚外西凡尼亚影展",
+    "入选｜2026 瑞士纽沙特奇幻影展",
+    "入选｜2026 伦敦影展"
+   ],
+   "ageRating": "辅15级（15+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "奇幻特快车",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-122",
+   "cn": "瘦怨",
+   "o": "Saccharine",
+   "en": "Saccharine",
+   "y": 2026,
+   "c": "澳洲",
+   "min": 112,
+   "reg": "as",
+   "dir": "娜塔莉艾瑞卡詹姆士",
+   "dirO": "Natalie Erika JAMES",
+   "syn": "棉花糖女孩哈娜单恋校园健身教练艾拉妮雅，两人之间却存在著癞蛤蟆与天鹅的距离。曾经同样丰腴的老友因神秘药丸判若两人，吞下试用品的哈娜体重瞬间创新低。药品昂贵负担不起，她利用医学院设备尝试自制，一手以诡异原料提炼私药，一脚踏进艾拉妮雅的12周变身课程，哈娜急速脱胎换骨跻身辣妹行列，但她的饥渴也愈发膨胀肆虐，一具浮烂尸鬼如影随形，直到她美得要命、辣得要死。",
+   "st": "如《整容液》追求美貌、《惧裂》害怕衰老，本片紧抓对肥胖的恐惧与憎恨，反思瘦即是美的极端代价，将容貌焦虑议题发挥至极致。细细反刍每一勺油脂、每一寸皮肉，既有肉体恐怖的切身之痛，亦有心理惊悚的梦魇压抑，连饥饿的声响都成为魔咒。生理心理双面夹击，尽管胃口再好，仍需小心服用。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "入选｜2026 柏林影展",
+    "入选｜2026 日舞影展",
+    "入选｜2026 悉尼影展",
+    "入选｜2026 布鲁塞尔奇幻影展",
+    "入选｜2026 瑞士纽沙特奇幻影展",
+    "入选｜2026 香港电影节"
+   ],
+   "ageRating": "辅15级（15+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "奇幻特快车",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-123",
+   "cn": "坂本日常",
+   "o": "Sakamoto Days",
+   "en": "Sakamoto Days",
+   "y": 2026,
+   "c": "日本",
+   "min": 129,
+   "reg": "as",
+   "dir": "福田雄一",
+   "dirO": "FUKUDA Yuichi",
+   "syn": "传奇杀手坂本太郎，武器信手捻来被誉为史上最强，却在陷入爱河后告别江湖转行，结婚生子开店还发福变胖。本以为能就此退休纳凉，谁知道过往却紧追不放，后辈突然登门造访，警告杀手联盟已祭出十亿悬赏，要和擅自脱离组织的坂本你死我亡。为了守护得来不易的平凡日常，坂本只好与伙伴联手反抗，却发现追杀的背后有更大的阴谋即将曝光！",
+   "st": "漫改模范生导演福田雄一再战超人气作品，以一贯的爆笑胡闹将热血少年漫画搬上大银幕。Snowman目黑莲挑战特殊化妆，兼具精实的帅及灵活的胖，上户彩、北村匠海、高桥文哉、户冢纯贵、横田真悠、生见爱瑠轮番登场，从原子笔到狙击枪，超狂武器俐落打斗超乎想像，浴血奋战之余不忘吐槽互呛，还有老班底惊喜亮相，就算拚尽所有力量，也要守护与家人的幸福时光。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [],
+   "ageRating": "辅12级（12+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "奇幻特快车",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-124",
+   "cn": "鼠门秀",
+   "o": "Decorado",
+   "en": "Decorado",
+   "y": 2025,
+   "c": "西班牙",
+   "min": 95,
+   "reg": "eu",
+   "dir": "亚伯托瓦奎兹",
+   "dirO": "Alberto VÁZQUEZ",
+   "syn": "长期失业的阿诺颓废终日，觉得这世界越看越不对劲。他怀疑周遭一切其实全是精心编排的假象，自己的人生也只是被操弄的烂戏一场，而幕后黑手铁定是那势力无孔不入的巨无霸财团！他不禁揣想，医生叮嘱他日日服用的精神药物，是否根本是迷魂维稳用的蓝药丸？在严禁擅闯的死亡森林外头，会不会存在著自由和真相？横竖已被社会铁拳砸到血肉模糊，阿诺决心展开逃亡，看看发疯的究竟是他，还是这该死的鬼地方。",
+   "st": "《熊霸天下》导演亚伯托瓦奎兹再次以血色异想反映现实，打造暗黑成人动画。极权控制、心理健康、资本巨兽等多重议题冲撞银幕，宛如包裹著《1984》的《楚门的世界》，快乐童话终归大梦一场。虚无主义一刀捅烂乌托邦，挖出可爱动物皮囊底下的险恶心肠，沾满国家机器的糖霜后，熬成一碗血泪斑斑、热辣滚烫的孟婆汤。",
+   "writers": [],
+   "cast": [],
+   "genre": [
+    "动画"
+   ],
+   "honors": [
+    "入选｜2026 西班牙哥雅奖最佳动画片",
+    "获奖｜2026 安锡动画影展 · 保罗葛林莫特别奖",
+    "入选｜2026 瑞士纽沙特奇幻影展",
+    "入选｜2026 德国奇幻影展",
+    "入选｜2025 西班牙锡切斯奇幻影展",
+    "入选｜2025 奥斯汀奇幻影展",
+    "入选｜2025 伦敦影展",
+    "入选｜2025 东京影展"
+   ],
+   "ageRating": "辅15级（15+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "奇幻特快车",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-125",
+   "cn": "牧一：女人村传奇",
+   "o": "Muyi",
+   "en": "Muyi",
+   "y": 2026,
+   "c": "法国",
+   "min": 93,
+   "reg": "eu",
+   "dir": "陈静仁",
+   "dirO": "Julien CHHENG",
+   "syn": "云雾缭绕的昆仑山藏著一座女人村，村民几乎全是迷信神佛、规矩一堆的老奶奶。叛逆少女牧一天天骑牛下山，向游览车载来的观光客兜售纪念品。某日巡演戏班来访，牧一在阴错阳差中戴上戏班带来的神秘头盔，竟就此穿越到古代中国，也窥见女人村的由来与将军的秘密。牧一必须借助奇兽与神灵之力，寻回将军的秘宝，方能重新定义属于自己的人生。",
+   "st": "法国华裔导演陈静仁继《熊熊遇见小小鼠：拯救音乐大冒险》后，与Studio La Cachette动画工作室合力打造奇幻史诗钜作。以传奇神话外衣、少女成长冒险包装农村困境及性别议题，藉时空穿越对照古代民间传说与现代价值观。深受水墨书法与《辉耀姬物语》启发，创出兼蓄东西美学的手绘卷轴山水画风，墨笔在动静与留白之间清雅流转，飘逸脱俗却又深富入世关怀。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "入选｜2026 安锡动画影展",
+    "入选｜2026 瑞士动画影展",
+    "入选｜2026 多伦多影展",
+    "入选｜2026 波兰TAURON青少年地平线影展"
+   ],
+   "ageRating": "保护级（6+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "奇幻特快车",
+   "screeningNotes": {
+    "11/17-19:10-tp-vieshow-xinyi-hall-10": "映后活动 · 影人出席（嘉宾待公布）",
+    "11/18-11:40-tp-vieshow-xinyi-hall-10": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-126",
+   "cn": "南国再见，南国",
+   "o": "Goodbye South, Goodbye",
+   "en": "Goodbye South, Goodbye",
+   "y": 1996,
+   "c": "中国台湾",
+   "min": 112,
+   "reg": "cn",
+   "dir": "侯孝贤",
+   "dirO": "HOU Hsiao-hsien",
+   "syn": "黑的不够彻底也洗不白，高哥顶头还有大哥大，开个餐厅都得带上手下小弟小妹。挂起黑框墨镜仁，南国阳光凶猛，活著本身就让人无处可躲。替黑道围事、找白道寻仇，KTV搓圆仔、乔官商勾结，高哥站在人生转折口，岛国正逢变动之际，眼看就要被时代抛到后头。一跨上车，速可达尬野狼，女人烟视媚行，男人公路蛇行；油门一催，催出江山万里，排气管轰轰，风中的我犹原是那个飘撇少年兄。",
+   "st": "玩转各色滤镜，手持、POV、长镜头轮番上阵，南国就要土，镜头低到地里，偏拍出世纪末抒情，如一首华丽的诗。配乐混搭各路曲风放大加乘，林强与伊能静、高捷齐尬车，两分多钟一镜到底成影史经典，长镜头随山道盘旋，越来越逼近侯孝贤，越来越悠远深邃台湾电影。九○年代最后一瞥，未来在后退中缓缓向前。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "入选｜2000 法国电影笔记1990年代最佳影片",
+    "获奖｜1996 金马奖 · 最佳电影歌曲",
+    "入选｜1996 戛纳影展 · 正式竞赛",
+    "入选｜1996 多伦多影展",
+    "入选｜1996 东京影展"
+   ],
+   "ageRating": "辅12级（12+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "经典影事",
+   "screeningNotes": {
+    "11/14-15:20-tp-muvie-titan-titan": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-127",
+   "cn": "蝶变",
+   "o": "The Butterfly Murders",
+   "en": "The Butterfly Murders",
+   "y": 1979,
+   "c": "中国香港",
+   "min": 89,
+   "reg": "cn",
+   "dir": "徐克",
+   "dirO": "TSUI Hark",
+   "syn": "沈家堡堡主沈青向绝世高手求援，堡外杀人蝶影翩翩，派系内部谍影深深，而屏风上叠影重重更是人心乱错，美人如玉剑如虹。当高手逐一步入死局，都说蝴蝶杀人，唯一看透真相的，是武功一如凡人，智慧过于常人的书生方红叶。局中局生出计中计，密室机关百变怎堪敌人心机关算尽，斗奇招，工心计，解连环，纵逐鹿天下，不过蝶恋花，空笑梦。",
+   "st": "研西部片及恐怖片元素为墨，以侦探悬疑作笔，展武侠为纸，一抹江山，无限嫣红。如古龙笔下豪侠全被关入暴风雨山庄，希区考克群鸟化蝶，多方势力博弈似可窥见龙门客栈窗上照影，金钟罩变成无敌铁甲，轻功是钢索吊威亚，前武林接轨上近现代，你有神功，我有科技，狄仁杰看了都说赞。数半世纪港片风流，回看最初的徐克，一如电影开场：武林的新纪元要开始了。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "入选｜2011 香港电影资料馆百部不可不看的香港电影",
+    "获奖｜2005 香港金像奖 · 最佳华语片一百部",
+    "入选｜1980 西雅图影展",
+    "入选｜1979 伦敦影展"
+   ],
+   "ageRating": "保护级（6+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "经典影事",
+   "screeningNotes": {
+    "11/17-21:20-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-128",
+   "cn": "盗梦侦探",
+   "o": "Paprika",
+   "en": "Paprika",
+   "y": 2006,
+   "c": "日本",
+   "min": 90,
+   "reg": "as",
+   "dir": "今敏",
+   "dirO": "KON Satoshi",
+   "syn": "研究所开发仪器「DC Mini」，能深入梦中窥探内心，进而治疗心理疾病，如今却遭窃下落不明。医师千叶敦子展开搜寻，化身盗梦侦探小辣椒调查解谜，线索指向天才科学家的研究助理，以恶梦横行让人昏睡不醒。眼看同事相继遇袭，警官深陷未竟过去，梦魇吞噬现实心灵，敦子才发现幕后主使另有算计……。",
+   "st": "改编筒井康隆科幻小说，日本传奇动画大师今敏大展脑内妄想，超越近未来架空科技观，结合手绘笔触与电绘层次，打造出动画史上最绚丽缤纷的梦境。融会心理学，贯穿潜意识，在虚构与真实、自我和本我中来回辩证；在理想与创伤、梦游和清醒中重获新生。玩偶电器百鬼夜行，穿梭跳转经典电影，疯言呓语却带玄机，斑斓暗藏扭曲人心。二十周年4K修复版重映，在现实和梦境的空隙，留下最华美狂放的幻影。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "获奖｜2007 葡萄牙波多奇幻影展 · 影评人奖",
+    "入选｜2007 安锡动画影展",
+    "入选｜2007 鹿特丹影展",
+    "入选｜2006 东京动画奖优秀作品及音乐奖",
+    "获奖｜2006 蒙特娄影展 · 观众票选奖",
+    "入选｜2006 威尼斯影展 · 正式竞赛",
+    "入选｜2006 釜山影展",
+    "入选｜2006 东京影展"
+   ],
+   "ageRating": "辅12级（12+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "经典影事",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-129",
+   "cn": "理性与感性",
+   "o": "Sense and Sensibility",
+   "en": "Sense and Sensibility",
+   "y": 1995,
+   "c": "美国 / 英国",
+   "min": 136,
+   "reg": "us",
+   "dir": "李安",
+   "dirO": "Ang LEE",
+   "syn": "姊姊冷静自持，妹妹热烈奔放，她们本与母亲和小妹安生于一座庄园，却在父亲去世后顿失居所。姊妹俩戮力重拾生活，却也情路颠簸。姊姊恋上灵魂相契的腼腆绅士，妹妹倾心雨中相救的骑马青年，但对安稳守护的年长上校视而未见。爱的变奏总在转瞬之间，不论是隐而未言的婚约，又或让人哭断肠的现实抉择，皆将她们推向理性与感性的边缘。",
+   "st": "李安闯荡好莱坞之代表作，4K修复重返大银幕。改编珍奥斯汀的经典小说，由艾玛汤普逊历时五年操刀剧本，与凯特温丝蕾演绎一对亲密相依的姊妹，一同经历爱的萌芽、失落与再生，更有休葛兰、艾伦瑞克曼等浪漫助阵，被誉为史上最成功的珍奥斯汀改编电影。以润物细无声般的温煦影像，再现19世纪英国女性生活与乡村图景，情节百转千回，幽默讽刺信手拈来，亦不失古典优雅。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "获奖｜1996 奥斯卡金像奖 · 最佳改编剧本",
+    "获奖｜1996 金球奖 · 戏剧类最佳影片、剧本",
+    "获奖｜1996 柏林影展 · 金熊奖",
+    "获奖｜1996 英国金像奖 · 最佳影片、女主角、女配角",
+    "获奖｜1995 美国国家评论协会 · 最佳影片、导演、女主角"
+   ],
+   "ageRating": "保护级（6+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "经典影事",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-130",
+   "cn": "凡尔赛拜金女",
+   "o": "Marie Antoinette",
+   "en": "Marie Antoinette",
+   "y": 2006,
+   "c": "美国 / 法国 / 日本",
+   "min": 122,
+   "reg": "us",
+   "dir": "苏菲亚柯波拉",
+   "dirO": "Sofia COPPOLA",
+   "syn": "那年她年方14。奥地利公主远嫁法国成为政治筹码，被迫褪去家乡的一切，连爱犬都不能留下，从此成了王妃「玛丽安东尼」。进了凡尔赛宫，连更衣都得裸身任人伺候，15岁的丈夫却只爱打猎研究锁。两个孩子同床像扮家家酒，整座宫廷却盯著他们传宗接代。当爱情与自由都无从谈起，她只好从华服甜点与彻夜派对中，找回属于自己的快乐。",
+   "st": "颠复传统历史叙事，导演苏菲亚柯波拉将皇室悲剧重塑成青春绚烂的成长挽歌。克丝汀邓斯特操著美国口音穿梭凡尔赛宫，宫廷变成时尚游乐场、王后化身派对女孩，大胆穿插后庞克摇滚与快节奏蒙太奇。每个构图都宛如一盒精致法式点心，甜腻糖衣下包裹的尽是孤独。当年在戛纳嘘声与掌声中引爆争议，二十年后重看这场永不褪色的青春派对，曾被斥为肤浅的粉红美学，早已翻转成时代印记。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "获奖｜2007 奥斯卡金像奖 · 最佳服装设计",
+    "入选｜2007 义大利记者协会银缎带奖最佳服装设计",
+    "获奖｜2006 戛纳影展 · 狗狗金棕榈、法国国民教育电影奖",
+    "入选｜2006 纽约影展"
+   ],
+   "ageRating": "保护级（6+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "经典影事",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-131",
+   "cn": "镜头之外：凡尔赛拜金女",
+   "o": "Making Marie Antoinette",
+   "en": "Making Marie Antoinette",
+   "y": 2026,
+   "c": "美国",
+   "min": 86,
+   "reg": "us",
+   "dir": "艾琳诺柯波拉",
+   "dirO": "Eleanor COPPOLA",
+   "syn": "华服、甜点、摇滚乐，2006年苏菲亚柯波拉以《凡尔赛拜金女》颠复古装宫廷片，不仅勇夺奥斯卡最佳服装设计，更以华丽迷幻的视觉与跨时代配乐，成为千禧世代难以复制的流行文化印记。母亲艾琳诺当年跟随剧组，留下八十小时纪录素材，事隔多年于疫情期间开始整理影像，直至她2024年离世。苏菲亚结合母亲日记，找来黛安莲恩旁白，重返那场华美迷梦。",
+   "st": "尽管艾琳诺始终站在摄影机后，她的凝视却成了电影核心：看女儿扛下钜资、远赴异乡指挥庞大剧组，她既骄傲担忧，也反身追问：当丈夫与子女都是艺术家，长年作为妻子、母亲与纪录者的自己，创作又在何方？镜头捕捉克丝汀邓斯特盛世美颜、太后玛莉安菲丝佛气场全开、Phoenix乐团惊喜现身，也收进演员们打盹偷吃的宫廷拍摄日常。二十年前，母亲用摄影机留住女儿的创作身影；二十年后，女儿循著母亲的目光回望，才发现被时间留下的，从来不只一部电影。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "入选｜2026 特柳赖德影展",
+    "入选｜2026 纽约影展",
+    "入选｜2026 伦敦影展"
+   ],
+   "ageRating": "保护级（6+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "经典影事",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-132",
+   "cn": "克里斯马克：未来式乡愁",
+   "o": "Nostalgia for the Future",
+   "en": "Nostalgia for the Future",
+   "y": 2026,
+   "c": "比利时 / 荷兰 / 义大利",
+   "min": 76,
+   "reg": "eu",
+   "dir": "布雷希特德巴克尔",
+   "dirO": "Brecht DEBACKERE",
+   "syn": "一趟从大量影像档案展开的旅程，一部穿越克里斯马克创作的宇宙探索。这位「最知名的不知名电影作者」，一生作风低调神秘，坚信左翼信念，刻意隐匿于作品、化名与猫的身影之后，身后留下数百箱档案，也留下关于记忆、时间与身分的无数谜题。夏绿蒂兰普琳低沉磁性的迷人嗓音为向导，悠游于《堤》、《日月无光》等经典作品，漫步在未公开的私人文件与影像碎片，带领观众穿梭这座深邃的记忆迷宫。",
+   "st": "导演布雷希特德巴克尔费时八年，重访克里斯马克留下的档案与作品，透过散文电影式的剪接与声音设计，试图捕捉这位神秘作者的精神与思维，将电影变成穿越时空的媒介，延续大师对叙事美学以及影像技术之间的实验探索。这是一场诗意的致敬，邀请观众再次进入「千面作者」的电影宇宙。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "入选｜2026 戛纳影展 · 经典单元",
+    "入选｜2026 比利时根特影展",
+    "入选｜2026 西班牙锡切斯奇幻影展",
+    "入选｜2026 墨尔本影展"
+   ],
+   "ageRating": "保护级（6+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "经典影事",
+   "screeningNotes": {
+    "11/7-16:50-tp-vieshow-xinyi-hall-10": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-133",
+   "cn": "南特杰克",
+   "o": "Jacquot de Nantes",
+   "en": "Jacquot de Nantes",
+   "y": 1991,
+   "c": "法国",
+   "min": 118,
+   "reg": "eu",
+   "dir": "安妮华达",
+   "dirO": "Agnès VARDA",
+   "syn": "华达对丈夫杰克德米的深情告别，灵动诉说同为法国新浪潮杰出编导的他，如何在战争纷扰的年代成长茁壮，不屈不挠追求梦想的感人故事。影片虚实交错，点出德米作品灵感出处，并不时切入现实中的病容，用镜头细抚日益衰败的发肤，试图以胶卷将挚爱的身影永留人间。",
+   "st": "「本片于1990年德米重病后紧急开拍，杀青后十天德米过世。隔年影片于戛纳影展世界首映，精彩动人，自然纳入我的首选片单，同时启发了当届的『女性导演电影』专题──彷若与两年后创立的女性影展遥遥招手。我与华达之间的未了因缘，随著时间开展持续发酵，最后终于在2004年底与大师在台北会首小叙而无憾！\n\n幕似已落，故事却未结束：2008年华达对外公布德米死于爱滋的真相！回头探看，影片确实藏有她对病情秘而不宣的告白，带有一抹沉重的爱滋阴影，或可视为1991年影展中得助于香港同志影展策展人林奕华所一同合作的『爱在爱滋蔓延时』专题的隐身前导……。」",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "入选｜1991 戛纳影展 · 正式竞赛",
+    "入选｜1991 多伦多影展",
+    "入选｜1991 纽约影展"
+   ],
+   "ageRating": "保护级（6+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "电影如何成为我们：策展人的再访",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-134",
+   "cn": "樱桃的滋味",
+   "o": "Taste of Cherry",
+   "en": "Taste of Cherry",
+   "y": 1997,
+   "c": "伊朗",
+   "min": 99,
+   "reg": "as",
+   "dir": "阿巴斯基亚罗斯塔米",
+   "dirO": "Abbas KIAROSTAMI",
+   "syn": "打算结束生命的巴迪，开著旅行车在郊区，沿途高价寻人为自己填土收尸。待业青年、逃兵、工寮警卫、神学生一一拒绝，只有老人为了儿子医药费愿意赴约。行车路途，老人口中甜酸的樱桃滋味，却让他开始犹豫不决……。",
+   "st": "「1993年初接下金马策展，已被《何处是我朋友的家》的天然纯粹与诗意深深触动，遂决定在金马影展做导演专题，并纳入阿巴斯早期的儿童纪录片，这应是台湾第一次以专题聚焦伊朗电影。当年媒体试映造成轰动，秋末当他携新片《橄榄树下的情人》抵台，观众的热情冀盼转为面对面的真挚互动，映后掌声久久不息，导演更谦称他从未在其他影展体会过如此热情。作品能量所触动的人事，及导演虚怀若谷的风范，常驻心头。\n\n三十多年后再回温此片，真诚向结尾手法敬礼，他直接戳破了影像幻觉。总总机遇、苦乐意识，皆妄。如幻的生命经验，众人各自解读成所谓现实。原来，樱桃，非樱桃，是名樱桃。」",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "入选｜1998 美国国家影评人协会最佳外语片",
+    "入选｜1998 波士顿影评人协会最佳外语片",
+    "获奖｜1997 戛纳影展 · 金棕榈奖"
+   ],
+   "ageRating": "普遍级（0+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "电影如何成为我们：策展人的再访",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-135",
+   "cn": "尤里西斯生命之旅",
+   "o": "Ulysses' Gaze",
+   "en": "Ulysses' Gaze",
+   "y": 1995,
+   "c": "希腊",
+   "min": 175,
+   "reg": "eu",
+   "dir": "狄奥安哲罗普洛斯",
+   "dirO": "Theo ANGELOPOULOS",
+   "syn": "电影导演返回家乡，寻找电影发明之初佚失的胶卷。宛如〈奥德赛〉中的尤里西斯历经艰险，他沿著巴尔干半岛一路向前，遇见知己红颜，看遍战火蔓延，漂浪游历田野，家国历史记忆与个人生命经验，都编织入天地苍茫之间。",
+   "st": "「1995年，电影发明一百年，也是巴尔干半岛战火不断的年代。我们策划电影百年专题，触角伸向许多国家电影中心，其中之一就位在半岛上某个陌生城市。在那个国际沟通以传真为主的二十世纪末，信函一直没有得到回应，不死心地算好时差拨电话，对方回复他们的资料库位在交战区，要等停火时才能过去清点。原来电影中的魔幻情节竟是如此写实！\n\n当年安哲罗普洛斯翩然而至，对各种安排一概欣然应对，唯一的要求是与观众见面时，需要一杯威士忌助他撑过时差。不只一位观众紧握他的手，喃喃告白：『您的电影改变了我的生命！』那是我们最美好的记忆。」──游惠贞｜策展任期1995 - 1997",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "入选｜1996 奥斯卡金像奖 · 最佳外语片希腊代表",
+    "入选｜1996 义大利记者协会银缎带奖最佳欧洲影片、外语片导演",
+    "获奖｜1995 戛纳影展 · 评审团大奖、影评人费比西奖",
+    "入选｜1995 欧洲电影奖影评人费比西奖",
+    "入选｜1995 多伦多影展"
+   ],
+   "ageRating": "保护级（6+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "电影如何成为我们：策展人的再访",
+   "screeningNotes": {
+    "11/15-10:20-tp-vieshow-xinyi-hall-12": "映后活动 · 策展人座谈（与本片连场）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-136",
+   "cn": "追逐蝴蝶",
+   "o": "Chasing Butterflies",
+   "en": "Chasing Butterflies",
+   "y": 1992,
+   "c": "法国 / 德国 / 义大利",
+   "min": 118,
+   "reg": "eu",
+   "dir": "欧塔依奥塞里安尼",
+   "dirO": "Otar IOSSELIANI",
+   "syn": "在遥远的法国乡野，老人们住在城堡中。他们老得没有能力再去追逐时间，以各自独特姿态过活。坐轮椅打靶射鱼、闲来吹簧风琴，翻老照片回忆过往、收音机里传来伤亡。偶尔有鬼魂到处走动，独留一座孤零零的空屋。",
+   "st": "「像一则寓言故事，流亡法国的乔治亚导演欧塔依奥塞里安尼，有种诗意和冷冷的幽默，宛若游戏，不愠不火，不亢不卑，一如东方名士派的人生态度，豁达寡言。自诩喝影展奶水长大的我，2000年在香港电影节和他初次相遇，惊为天人，随即将他恭请来台。电影果真一如人生，何其浩瀚，尚有无尽的未知，待你发现！怎可不谦卑以对？\n\n我记得欧塔在映后座谈时，被问起乔治亚的民谣传统，他还现场即兴清唱了一段，他说，歌唱是他们生活的日常。搜寻他的中文维基百科，生平和作品栏，果然依旧空白一片。倒是寻得纽约此刻正在放映他的4K数位修复版。2023年12月17日，导演以89岁高龄逝世于乔治亚，他的故乡。」──王耿瑜｜策展任期2000 - 2001",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "入选｜1993 柏林影展",
+    "入选｜1993 鹿特丹影展",
+    "获奖｜1992 威尼斯影展 · 艺术戏院联盟奖",
+    "入选｜1992 法国电影笔记年度十大影片"
+   ],
+   "ageRating": "保护级（6+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "电影如何成为我们：策展人的再访",
+   "screeningNotes": {
+    "11/14-12:20-tp-vieshow-xinyi-hall-10": "映后活动 · 策展人座谈（与本片连场）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-137",
+   "cn": "大象",
+   "o": "Elephant",
+   "en": "Elephant",
+   "y": 2003,
+   "c": "美国",
+   "min": 81,
+   "reg": "us",
+   "dir": "葛斯范桑",
+   "dirO": "Gus VAN SANT",
+   "syn": "源于1999年美国科伦拜高中枪击案，两名12年级的学生在校园内无差别扫射，最终夺取13条生命。《大象》以静谧冷冽的长镜头跟拍，时空交错的叙事，穿梭于多位高中生看似平淡的日常，直至最终在平静中爆发的枪击，震撼呈现出校园悲剧背后的集体盲点与疏离。",
+   "st": "「从《药店牛仔》和《男人的一半还是男人》起，就成为导演葛斯范桑的影迷，自然不会错过他的任何一部电影，更何况是荣获戛纳影展金棕榈奖、最佳导演的《大象》。可惜当年和葛斯范桑并无交集，却是在数年后只身一人在沙漠中踽踽独行时，被眼前的夕阳景象震撼，又因夜幕将至的恐惧而想起《痞子逛沙漠》，以及因《迷幻公园》发行而有缘和导演电话访问。\n\n我想，他的电影之所以让人著迷，也许是从中窥见他对待世界的方式吧。真诚且温柔。」",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "入选｜2004 法国凯萨奖最佳外语片提名",
+    "提名｜2004 美国独立精神奖 · 最佳导演、摄影",
+    "获奖｜2003 戛纳影展 · 金棕榈奖、最佳导演、法国教育电影奖",
+    "入选｜2003 纽约影评人协会最佳摄影",
+    "入选｜2003 卡罗维瓦利影展",
+    "入选｜2003 纽约影展",
+    "入选｜2003 特柳赖德影展",
+    "入选｜2003 多伦多影展"
+   ],
+   "ageRating": "辅15级（15+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "电影如何成为我们：策展人的再访",
+   "screeningNotes": {
+    "11/15-18:20-tp-vieshow-xinyi-hall-11": "映后活动 · 策展人座谈（与本片连场）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-138",
+   "cn": "猪与军舰",
+   "o": "Pigs and Battleships",
+   "en": "Pigs and Battleships",
+   "y": 1961,
+   "c": "日本",
+   "min": 108,
+   "reg": "as",
+   "dir": "今村昌平",
+   "dirO": "IMAMURA Shohei",
+   "syn": "战后横须贺基地周边，满足驻日美军需求的地下经济遍地丛生，黑帮、娼妓、掮客寄生其间，人人妄想一步登天。经营非法妓院的日森帮被警方抄家，陷入困境，转而打起回收基地厨余养猪的「馊」主意，旗下混混欣太一夕间由皮条客变身养猪户，结伙帮众压榨邻里筹资，大做发财美梦，唯独他的女友春子却渴望逃离这座人吃人的海港。当满载大兵的航空母舰朝港口驶来，日森帮的养猪捞钱计画竟横生枝节，濒临失控。",
+   "st": "灵感来自真实新闻报导，今村昌平结合详实田野调查与早年混迹黑市买卖的自身经验，藉由地方帮派投机倒把的荒诞事迹，犀利嘲讽战后日本攀附韩战特需与美国资本的屈从世态。大量实景拍摄留下横须贺港繁华与贫穷交织的时代剪影，片尾高潮的混乱场面更标志今村式「重喜剧」的成型。今村昌平日后作品的重要主题：人的动物性本质、女性的求生意志与后殖民暴力等皆于本片奠定根基，被视为其导演生涯里程碑杰作。",
+   "bio": "今村昌平被誉为「电影界的人类学家」，曾担任小津安二郎的助导，却成为彻头彻尾的小津逆反者。在长达四十多年的创作生涯中，他将摄影机深入妓院、黑市、偏乡与杀人犯的社会边缘，不带道德批判地标示由性欲、食欲、迷信与求生本能交织而成的底层人生。他自言：「我关心的是人的下半身及社会的低下阶层。」",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "入选｜1999 电影旬报 · 二十世纪百大日片",
+    "获奖｜1961 日本蓝丝带奖 · 最佳影片",
+    "入选｜1960 电影旬报 · 年度十大影片"
+   ],
+   "ageRating": "辅15级（15+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "致敬：今村昌平",
+   "screeningNotes": {
+    "11/12-18:50-tp-vieshow-xinyi-hall-11": "映后活动 · 今村昌平讲堂：曹仕翰（20:40，11厅）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-139",
+   "cn": "日本昆虫记",
+   "o": "The Insect Woman",
+   "en": "The Insect Woman",
+   "y": 1963,
+   "c": "日本",
+   "min": 123,
+   "reg": "as",
+   "dir": "今村昌平",
+   "dirO": "IMAMURA Shohei",
+   "syn": "寒冬中出生的阿留，成长在贫穷的山形农村，她与情人众多的母亲关系冷淡，独对无血缘的父亲异乎寻常地依恋。历经逼婚、强暴、产子和情伤，阿留只身离乡远走东京，靠帮佣收入抚养留在家乡的女儿。一场意外终将她推向卖春之路，尝尽被剥削利用的磨难后，阿留蜕变成心狠手辣的女人。",
+   "st": "由于《猪与军舰》拍摄大幅超支，今村昌平遭制作公司日活冷冻近三年。在这段空窗期，今村受柳田国男民俗学启发，走访远离中心都市的南方离岛及东北农村，探寻仍由性欲与土俗信仰支配的原生日本，和现代资本、道德礼教间的冲撞磨擦，成为其六○年代创作的核心命题。藉由祖孙三代的际遇流转，刻划战前至战后底层女性的生命动荡，怀孕演出的左幸子以传神的东北口音、生机勃勃的丰沛能量，诠释如昆虫般在粗砺世界顽强前行的女子，成为日本首位于欧洲三大影展获奖的女演员。打破日活制片传统，采用全实景拍摄，意外创下票房佳绩，促成今村实现《赤色杀意》的制作。",
+   "bio": "今村昌平被誉为「电影界的人类学家」，曾担任小津安二郎的助导，却成为彻头彻尾的小津逆反者。在长达四十多年的创作生涯中，他将摄影机深入妓院、黑市、偏乡与杀人犯的社会边缘，不带道德批判地标示由性欲、食欲、迷信与求生本能交织而成的底层人生。他自言：「我关心的是人的下半身及社会的低下阶层。」",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "入选｜1999 电影旬报 · 二十世纪百大日片",
+    "获奖｜1964 柏林影展 · 最佳女演员",
+    "获奖｜1963 电影旬报 · 年度十大影片、最佳导演、剧本、女主角",
+    "入选｜1963 每日映画赏最佳导演、女主角、配乐",
+    "获奖｜1963 日本蓝丝带奖 · 最佳影片、导演、剧本、女主角"
+   ],
+   "ageRating": "辅15级（15+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "致敬：今村昌平",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-140",
+   "cn": "赤色杀意",
+   "o": "Intentions of Murder",
+   "en": "Intentions of Murder",
+   "y": 1964,
+   "c": "日本",
+   "min": 150,
+   "reg": "as",
+   "dir": "今村昌平",
+   "dirO": "IMAMURA Shohei",
+   "syn": "出身卑微的贞子与地方望族之子结婚后，定居在仙台郊区铁道旁。她任劳任怨却地位低下，既是外遇腥夫的泄欲工具，也是婆婆眼中照养家族血脉的佣仆。某夜，贞子遭入室盗窃的陌生男子侵犯，万念俱灰下寻死未果。面对男子一再纠缠，忍无可忍的贞子与他登上驶向东京的列车，决心亲手了结一切。",
+   "st": "《日本昆虫记》票房大卖后，原本被束之高阁的《赤色杀意》得以付诸制作。剧本改编自藤原审尔同名小说，故事舞台从原著的东京下北泽搬移至东北地区。今村昌平与御用摄影师姬田真佐久运用暗调布光，具象化前现代传统家族遗绪的无形压迫，透视父权结构下女性家庭地位的边缘化与从属性；变幻流畅的手持摄影，捕捉险象环生的火车行动与东北雪地的凛冽严寒，冷峻肃杀的影像，见证女性主体意志逐步觉醒的强韧力量。今村坚持起用非人气演员春川真澄主演，与日活发生冲突，成为其自立门户走向独立制片的导火线。",
+   "bio": "今村昌平被誉为「电影界的人类学家」，曾担任小津安二郎的助导，却成为彻头彻尾的小津逆反者。在长达四十多年的创作生涯中，他将摄影机深入妓院、黑市、偏乡与杀人犯的社会边缘，不带道德批判地标示由性欲、食欲、迷信与求生本能交织而成的底层人生。他自言：「我关心的是人的下半身及社会的低下阶层。」",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "入选｜1999 电影旬报 · 二十世纪百大日片",
+    "入选｜1964 电影旬报 · 年度十大影片",
+    "入选｜1964 每日映画赏最佳男主角、女配角、摄影、录音",
+    "获奖｜1964 日本蓝丝带奖 · 最佳男配角",
+    "入选｜1964 日本电影技术奖最佳摄影"
+   ],
+   "ageRating": "辅15级（15+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "致敬：今村昌平",
+   "screeningNotes": {
+    "11/21-18:30-tp-vieshow-xinyi-hall-11": "映后活动 · 今村昌平讲堂：奉俊昊（21:00，11厅）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-141",
+   "cn": "人类学入门",
+   "o": "The Pornographers",
+   "en": "The Pornographers",
+   "y": 1966,
+   "c": "日本",
+   "min": 128,
+   "reg": "as",
+   "dir": "今村昌平",
+   "dirO": "IMAMURA Shohei",
+   "syn": "佛门出身的绪方因缘际会投身地下成人产业，拍A片、卖黄书、拉皮条，慰藉芸芸男众生，也赚钱供养同居情人阿春的儿女幸一和惠子。绪方不满阿春对幸一的亲昵娇宠，自己却难以克制对惠子的偏爱和迷恋。阿春深信家中养的鲫鱼是亡夫转世，时刻监视她的操守，不以为然的绪方将鱼放生，岂料此后事业、家庭双双陷入危机。",
+   "st": "今村昌平自主成立制作公司后的首部作品，与老东家日活共同合作。改编自《萤火虫之墓》作家野坂昭如出道小说，一如片名「人类学入门」的踏查精神，剧组以侦探式的缜密田调进行前制作业，甚至不惜跟踪原型人物，留下远超出拍摄所需的厚重笔记，成为启发今村朝纪录片领域拓展的转捩点。片中亦穿插大量窥视视角，与观众一同成为窥探人类非理性行为的共犯。著名配角演员小泽昭一挑梁饰演为家事与性无能迷惘的色事师，展露战后男性威权崩塌后的软弱和自我怀疑，获得电影旬报、每日映画赏双影帝。",
+   "bio": "今村昌平被誉为「电影界的人类学家」，曾担任小津安二郎的助导，却成为彻头彻尾的小津逆反者。在长达四十多年的创作生涯中，他将摄影机深入妓院、黑市、偏乡与杀人犯的社会边缘，不带道德批判地标示由性欲、食欲、迷信与求生本能交织而成的底层人生。他自言：「我关心的是人的下半身及社会的低下阶层。」",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "获奖｜1966 电影旬报 · 年度十大影片、最佳男主角",
+    "入选｜1966 每日映画赏最佳男主角、女配角",
+    "入选｜1966 日本电影技术奖最佳摄影"
+   ],
+   "ageRating": "限制级（18+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "致敬：今村昌平",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-142",
+   "cn": "我要复仇",
+   "o": "Vengeance Is Mine",
+   "en": "Vengeance Is Mine",
+   "y": 1979,
+   "c": "日本",
+   "min": 141,
+   "reg": "as",
+   "dir": "今村昌平",
+   "dirO": "IMAMURA Shohei",
+   "syn": "九州乡间惊传双尸命案，凶手旋即被警方锁定，他的过去、交友和家庭关系，一一成为盘查重点。通缉令遍布全国大街小巷，凶手却不断变换身分躲过天罗地网，持续流窜各地犯下诈骗和杀人恶行。正当警方追捕行动一筹莫展，他已乔装成大学教授，落脚千里之外的隐密旅店，旅店女主人被他的风度深深吸引，丝毫不察连环杀人魔近在眼前。",
+   "st": "改编自佐木隆三的同名小说，创作来自曾被喻为「战后最恶连环杀人案」的1963年西口彰事件。今村循线查访案件关系人和犯罪现场，更于实际案发公寓取景拍摄，追索行凶者深不见底的无因之恶，也透视东京奥运前的经济荣景背后，日本社会的千疮百孔。硬汉男星绪形拳精湛演绎乖戾狡猾又冷静沉著的千面罪徒，宛如梭巡人间的死神，一言一行令人胆寒。于《诸神的欲望》票房失利后债台高筑的今村昌平，时隔11年再执剧情片导筒，随著本片创下票房佳绩，预示了下一段创作高峰的到来。\n\n「我能在他的身上看见当今日本人的孤寂灵魂。」──今村昌平",
+   "bio": "今村昌平被誉为「电影界的人类学家」，曾担任小津安二郎的助导，却成为彻头彻尾的小津逆反者。在长达四十多年的创作生涯中，他将摄影机深入妓院、黑市、偏乡与杀人犯的社会边缘，不带道德批判地标示由性欲、食欲、迷信与求生本能交织而成的底层人生。他自言：「我关心的是人的下半身及社会的低下阶层。」",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "获奖｜1980 日本电影金像奖 · 最佳影片、导演、剧本、摄影、灯光、女配角",
+    "获奖｜1979 电影旬报 · 年度十大影片第一名、最佳导演、编剧、男配角、女配角",
+    "入选｜1979 报知映画赏最佳男配角、女配角",
+    "获奖｜1979 日本蓝丝带奖 · 最佳影片、导演、男配角"
+   ],
+   "ageRating": "限制级（18+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "致敬：今村昌平",
+   "screeningNotes": {
+    "11/15-16:50-tp-muvie-titan-titan": "映后活动 · 今村昌平讲堂：西川美和（19:10，MUVIE TITAN）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-143",
+   "cn": "黑雨",
+   "o": "Black Rain",
+   "en": "Black Rain",
+   "y": 1989,
+   "c": "日本",
+   "min": 122,
+   "reg": "as",
+   "dir": "今村昌平",
+   "dirO": "IMAMURA Shohei",
+   "syn": "1945年8月6日，原子弹在广岛上空引爆，目睹蕈状云升起的矢须子被辐射落尘「黑雨」波及。混乱中，她和舅父、舅母穿越城市废墟，举目所及宛如人间炼狱。五年后，三人在福山市乡村平静度日，矢须子背负著原爆受害者标签，婚事一再告吹，战争创伤仍残留在每个日常角落，原爆放射性后遗症逐渐浮现，忧虑在村民间蔓延，看似健康的矢须子也察觉身体的异样。",
+   "st": "改编自井伏鳟二发表于1965年的同名小说，出版之初今村昌平即有意搬上银幕，直至二十年后始得作者首肯。联手新浪潮编剧石堂淑朗执笔，转化原著复调性日记体形式，大幅扩充战后原爆幸存者的边缘化处境，和如影随形的身心阴影。笔触一改既往的粗犷张扬，佐以黑白摄影及武满彻忧伤不安的乐音，将时代暴力隐没于无形的沉默间，成功翻拍被认为难以电影化的文本。影片上映之际，正值日本由剧烈动荡的昭和走入平成时代，无疑是曾亲历战争的今村昌平留给后世的警语。",
+   "bio": "今村昌平被誉为「电影界的人类学家」，曾担任小津安二郎的助导，却成为彻头彻尾的小津逆反者。在长达四十多年的创作生涯中，他将摄影机深入妓院、黑市、偏乡与杀人犯的社会边缘，不带道德批判地标示由性欲、食欲、迷信与求生本能交织而成的底层人生。他自言：「我关心的是人的下半身及社会的低下阶层。」",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "获奖｜1990 日本电影金像奖 · 最佳影片、导演、剧本、女主角、女配角、摄影、灯光、剪辑",
+    "入选｜1990 每日映画赏最佳影片、导演、女主角",
+    "获奖｜1989 戛纳影展 · 高等技术大奖、天主教人道精神奖特别提及",
+    "获奖｜1989 电影旬报 · 年度十大影片、最佳导演、女主角"
+   ],
+   "ageRating": "辅15级（15+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "致敬：今村昌平",
+   "screeningNotes": {
+    "11/14-12:40-tp-vieshow-xinyi-hall-12": "映后活动 · 今村昌平讲堂：天愿大介（14:40，12厅）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-144",
+   "cn": "鳗鱼",
+   "o": "The Eel",
+   "en": "The Eel",
+   "y": 1997,
+   "c": "日本",
+   "min": 117,
+   "reg": "as",
+   "dir": "今村昌平",
+   "dirO": "IMAMURA Shohei",
+   "syn": "杀妻服刑的拓郎假释出狱后，独自在僻静河畔经营理发店。他彻底埋葬过去，与人保持不失礼貌的距离，身边仅有一条宠物鳗鱼。一天，拓郎救起试图自杀的桂子，桂子却在数日后上门求职，意外闯进他自我封闭的平静日子。几坪大的小店成了他们重启新生的角落，一帮邻里闲人也在此找到一片天地。正当一切步上轨道，不速之客的现身，揭开两人各自尘封的伤疤，也投下意料之外的变数。",
+   "st": "1990年代日本泡沫经济破裂，走入萧条的「失落十年」。今村昌平历经八年创作空窗，《鳗鱼》拍摄计画亦因筹资困难一度难产，彼时社会的投机风潮与渐失活力的景象，也成为重要时空背景。改编吉村昭的小说，今村与儿子天愿大介共同编剧，故事充斥他作品常见的人物与元素：出走的女人、罪犯、黑道、投机客与动物，却大幅褪去过往的冷峻粗砺，以温润的影像质地与魔幻写实手法，为消沉的时代探寻人性的救赎，于生涯晚期再创高峰，不仅凭本片再度获得戛纳影展金棕榈奖，更助役所广司夺下多个男主角奖。",
+   "bio": "今村昌平被誉为「电影界的人类学家」，曾担任小津安二郎的助导，却成为彻头彻尾的小津逆反者。在长达四十多年的创作生涯中，他将摄影机深入妓院、黑市、偏乡与杀人犯的社会边缘，不带道德批判地标示由性欲、食欲、迷信与求生本能交织而成的底层人生。他自言：「我关心的是人的下半身及社会的低下阶层。」",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "获奖｜1998 日本电影金像奖 · 最佳导演、男主角、女配角",
+    "获奖｜1997 戛纳影展 · 金棕榈奖",
+    "获奖｜1997 电影旬报 · 年度十大影片、最佳男主角",
+    "入选｜1997 每日映画赏日本电影优秀奖、最佳导演、女配角、男配角",
+    "获奖｜1997 亚太影展 · 最佳导演、男主角"
+   ],
+   "ageRating": "辅15级（15+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "致敬：今村昌平",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-145",
+   "cn": "红桥下的暖流",
+   "o": "Warm Water Under a Red Bridge",
+   "en": "Warm Water Under a Red Bridge",
+   "y": 2001,
+   "c": "日本",
+   "min": 119,
+   "reg": "as",
+   "dir": "今村昌平",
+   "dirO": "IMAMURA Shohei",
+   "syn": "失业中年男子从东京远赴能登半岛滨海小镇，经济压力沉重的他依循老游民的遗言，来到一处红桥旁的老屋，寻找多年前遗留的值钱宝物。屋里住著神智不清的古怪老太太和体质特异的美丽女子，每当女子达到性高潮，体内积存的丰沛泉水就会喷涌而出滋养大地，而他也在两人一次次交欢中重新振作。随著男人融入小镇生活，关于女人的蜚短流长也传至他的耳际，猜疑与秘密是否会冲击这段建立在肉体上的关系？",
+   "st": "改编自边见庸同名小说，在日本经济持续低迷的背景下，年逾七旬的今村昌平交出最后一部长片。收敛早年透视社会症候的锐利目光，揉合萨满神话元素与水的生命意象，包裹洋溢明朗色调的奇幻喜剧叙事，为失业、污染与家庭危机充斥的新世纪，注入重生的泉源，揶揄荒诞的笔触亦不失其一贯的反骨精神。继《鳗鱼》之后，役所广司、清水美砂再度携手，共演官能情欲奇观，在无穷的欢愉中绽放旺盛生命力，为今村昌平导演生涯的尾声留下标志性注解。",
+   "bio": "今村昌平被誉为「电影界的人类学家」，曾担任小津安二郎的助导，却成为彻头彻尾的小津逆反者。在长达四十多年的创作生涯中，他将摄影机深入妓院、黑市、偏乡与杀人犯的社会边缘，不带道德批判地标示由性欲、食欲、迷信与求生本能交织而成的底层人生。他自言：「我关心的是人的下半身及社会的低下阶层。」",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "入选｜2001 戛纳影展 · 正式竞赛",
+    "入选｜2001 多伦多影展",
+    "入选｜2001 伦敦影展",
+    "入选｜2001 纽约影展",
+    "入选｜2001 釜山影展"
+   ],
+   "ageRating": "辅15级（15+）",
+   "subtitles": "原文发音，中文字幕；无英文字幕",
+   "section": "致敬：今村昌平",
+   "screeningNotes": {
+    "11/13-18:30-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-146",
+   "cn": "骇人怪物",
+   "o": "The Host",
+   "en": "The Host",
+   "y": 2006,
+   "c": "南韩",
+   "min": 120,
+   "reg": "as",
+   "dir": "奉俊昊",
+   "dirO": "BONG Joon-ho",
+   "syn": "美军倾倒有毒废料，汉江河边浮现巨型怪物，整个城市陷入恐慌。杂货店江斗的女儿被怪物所掳，全家决定闯入隔离禁区，展开营救任务。宋康昊携手裴斗娜深入敌营，藉怪物残酷讽人类可恶，对生态省悟批国家制度，创南韩影史票房纪录。",
+   "bio": "奉俊昊，1969 年生于南韩，导演、制片、编剧。1999 年首部长片《绑架门口狗》即入选圣塞巴斯蒂安影展，2003 年《杀人回忆》横扫韩国电影奖项，2006 年《骇人怪物》入选戛纳影展导演双周，2009 年《非常母亲》获选为奥斯卡最佳外语片韩国代表，2019 年《寄生上流》勇夺戛纳影展金棕榈奖及奥斯卡最佳影片等四项大奖，成为首位获得奥斯卡最佳导演的韩国导演。作品尚有《末日列车》、《玉子》、《米奇 17 号》等，首部动画长片《Ally》预计于 2027 年推出。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "获奖｜2007 亚洲电影大奖 · 最佳影片、男主角、摄影、视觉效果",
+    "获奖｜2007 南韩大钟奖 · 最佳导演、剪辑",
+    "获奖｜2006 南韩青龙奖 · 最佳影片、男配角、新演员、灯光、技术、观众票选奖",
+    "获奖｜2006 亚太影展 · 最佳男配角、剪辑、音效",
+    "入选｜2006 戛纳影展 · 导演双周",
+    "入选｜2006 多伦多影展"
+   ],
+   "ageRating": "辅12级（12+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "遇见大师",
+   "screeningNotes": {
+    "11/22-10:30-tp-muvie-titan-titan": "映后活动 · 大师讲堂：奉俊昊（12:30，MUVIE TITAN）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-147",
+   "cn": "非常母亲",
+   "o": "Mother",
+   "en": "Mother",
+   "y": 2009,
+   "c": "南韩",
+   "min": 129,
+   "reg": "as",
+   "dir": "奉俊昊",
+   "dirO": "BONG Joon-ho",
+   "syn": "惠子与智能障碍的儿子相依为命，当镇上废墟发现了女学生尸体，儿子被屈打成招羁押入狱，惠子决定不择手段追查真相，却也因此深陷疯狂。奉俊昊首度代表南韩角逐奥斯卡最佳外语片，金惠子献出影后级精「颤」演技，挑战道德三观，母爱推向极端，善恶的模糊界线，又有谁能分辨？",
+   "bio": "奉俊昊，1969 年生于南韩，导演、制片、编剧。1999 年首部长片《绑架门口狗》即入选圣塞巴斯蒂安影展，2003 年《杀人回忆》横扫韩国电影奖项，2006 年《骇人怪物》入选戛纳影展导演双周，2009 年《非常母亲》获选为奥斯卡最佳外语片韩国代表，2019 年《寄生上流》勇夺戛纳影展金棕榈奖及奥斯卡最佳影片等四项大奖，成为首位获得奥斯卡最佳导演的韩国导演。作品尚有《末日列车》、《玉子》、《米奇 17 号》等，首部动画长片《Ally》预计于 2027 年推出。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "获奖｜2010 亚洲电影大奖 · 最佳影片、女主角、剧本",
+    "获奖｜2009 亚太电影大奖 · 最佳女演员",
+    "获奖｜2009 南韩青龙奖 · 最佳影片、男配角、灯光",
+    "获奖｜2009 南韩大钟奖 · 最佳男配角",
+    "入选｜2009 戛纳影展 · 一种注目",
+    "入选｜2009 多伦多影展"
+   ],
+   "ageRating": "辅12级（12+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "遇见大师",
+   "screeningNotes": {
+    "11/21-10:10-tp-muvie-titan-titan": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-148",
+   "cn": "死亡密码",
+   "o": "Pi",
+   "en": "Pi",
+   "y": 1998,
+   "c": "美国",
+   "min": 84,
+   "reg": "us",
+   "dir": "戴伦艾洛诺夫斯基",
+   "dirO": "Darren ARONOFSKY",
+   "syn": "天才数学家麦克斯执著定理，深信万物都能以数字解密，孤寡一人独居公寓，头痛妄想如影随形。一日发现216位数能破解宇宙运行，引来各路人马争相追缉，让他沉溺谜题却又身陷危机……。戴伦艾洛诺夫斯基一鸣惊人首作，黑白反差脑内震动，电子节拍狂乱惊悚，直探恐惧心灵角落。",
+   "bio": "戴伦艾洛诺夫斯基，1969 年生于纽约，导演、制片、编剧。1998 年首部剧情长片《死亡密码》即获日舞影展最佳导演，2000 年《噩梦挽歌》入选戛纳影展，2008 年《力挽狂澜》获威尼斯影展金狮奖，2010 年《黑天鹅》获奥斯卡五项提名并由娜塔莉波曼夺下最佳女主角，2023 年再以《我的鲸鱼老爸》助布兰登费雪登上奥斯卡影帝宝座。作品尚有《真爱永恒》、《挪亚方舟》、《母亲！》、《偷天盗日》等。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "获奖｜1999 美国独立精神奖 · 最佳首部剧本",
+    "获奖｜1998 日舞影展 · 剧情片类最佳导演",
+    "获奖｜1998 美国国家评论协会 · 特别表扬",
+    "获奖｜1998 铁萨隆尼基影展 · 影评人费比西奖特别提及",
+    "入选｜1998 加拿大奇幻影展"
+   ],
+   "version": "4K修复",
+   "ageRating": "辅15级（15+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "遇见大师",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-149",
+   "cn": "黑天鹅",
+   "o": "Black Swan",
+   "en": "Black Swan",
+   "y": 2010,
+   "c": "美国",
+   "min": 108,
+   "reg": "us",
+   "dir": "戴伦艾洛诺夫斯基",
+   "dirO": "Darren ARONOFSKY",
+   "syn": "纽约芭蕾舞团为天鹅湖选角，要求一人分饰黑白天鹅两种样貌，让舞艺精湛却拘谨乖巧的妮娜十分苦恼。导演对她要求甚高，母亲掌控让她烦躁，对手的奔放热情更叫她妒火中烧，在重重压力之下，她的精神也开始动摇。娜塔莉波曼、蜜拉库妮丝孪生对舞，黑暗从光明破茧而出。",
+   "bio": "戴伦艾洛诺夫斯基，1969 年生于纽约，导演、制片、编剧。1998 年首部剧情长片《死亡密码》即获日舞影展最佳导演，2000 年《噩梦挽歌》入选戛纳影展，2008 年《力挽狂澜》获威尼斯影展金狮奖，2010 年《黑天鹅》获奥斯卡五项提名并由娜塔莉波曼夺下最佳女主角，2023 年再以《我的鲸鱼老爸》助布兰登费雪登上奥斯卡影帝宝座。作品尚有《真爱永恒》、《挪亚方舟》、《母亲！》、《偷天盗日》等。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "获奖｜2011 奥斯卡金像奖 · 最佳女主角",
+    "获奖｜2011 金球奖 · 戏剧类最佳女主角",
+    "获奖｜2011 美国独立精神奖 · 最佳影片、导演、女主角、摄影",
+    "获奖｜2011 英国金像奖 · 最佳女主角",
+    "入选｜2010 威尼斯影展 · 开幕片",
+    "入选｜2010 多伦多影展"
+   ],
+   "ageRating": "限制级（18+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "遇见大师",
+   "screeningNotes": {
+    "11/16-18:10-tp-muvie-titan-titan": "映后活动 · 大师讲堂：戴伦艾洛诺夫斯基（20:00，MUVIE TITAN）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-150",
+   "cn": "笑之大学",
+   "o": "University of Laughs",
+   "en": "University of Laughs",
+   "y": 2004,
+   "c": "日本",
+   "min": 121,
+   "reg": "as",
+   "dir": "星护",
+   "dirO": "HOSHI Mamoru",
+   "syn": "昭和政府加强监管文化，剧本都得通过认证审查。作家桩与不苟言笑的署长斗智斗法，在百般刁难下被迫妙笔生花，随著每次修改两人开始一唱一搭，本应对立的关系也起了变化……。三谷幸喜编剧作品，将舞台剧搬上银幕，役所广司、稻垣吾郎双簧演出，笑闹之余亦动人肺腑。",
+   "bio": "编剧三谷幸喜：1961年生于东京，导演、编剧、演员。作品横跨电影、电视剧、舞台剧，屡获日本各大奖项肯定，1997年首部执导长片《心情直播不NG》获日本电影金像奖最佳剧本及男配角，后编导《有顶天大饭店》、《魔幻时刻》、《鬼压床了没》皆横扫日本各大电影奖项，并创下票房佳绩。作品尚有电影《清须会议》、《银河街道》、《失意的总理大臣》、《消失的豪门妻》等。",
+   "writers": [
+    "三谷幸喜"
+   ],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "提名｜2005 日本电影金像奖 · 最佳男演员、编剧",
+    "获奖｜2005 横滨影展 · 最佳男主角"
+   ],
+   "ageRating": "普遍级（0+）",
+   "subtitles": "原文发音，中文字幕；无英文字幕",
+   "section": "遇见大师",
+   "screeningNotes": {
+    "11/16-14:30-tp-muvie-titan-titan": "映后活动 · 大师讲堂：三谷幸喜（16:30，MUVIE TITAN）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-151",
+   "cn": "绵羊侦探团",
+   "o": "The Sheep Detectives",
+   "en": "The Sheep Detectives",
+   "y": 2026,
+   "c": "英国 / 美国",
+   "min": 109,
+   "reg": "eu",
+   "dir": "凯尔巴尔达",
+   "dirO": "Kyle BALDA",
+   "syn": "牧羊人乔治独活在小镇牧场，兴趣是念推理小说给自己的绵羊。一日清晨乔治竟离奇死亡，相关人士纷纷来访，争夺遗产满口雌黄，没一个人帮得上忙。羊群们决定忍住悲伤，自立自强找出真相！超萌侦探办案奇想，动物视角看尽世人荒唐，没有一只羊会被遗忘。",
+   "bio": "凯尔巴尔达：1971年生于美国，动画师、导演。作品横跨电影、电视、广告，曾任职于卢卡斯影业光影魔幻工业、皮克斯动画工作室，现为照明娱乐动画导演。2012年首次联合执导动画长片《罗雷司》，2015年《小小兵》及系列作品《神偷奶爸3》、《小小兵2：格鲁的崛起》皆获票房好评。《绵羊侦探团》为其首部执导之真人演出剧情长片。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "获奖｜2026 美国哈特兰影展 · 最动人电影奖"
+   ],
+   "ageRating": "普遍级（0+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "遇见大师",
+   "screeningNotes": {
+    "11/14-17:40-tp-vieshow-xinyi-hall-10": "映后活动 · 大师讲堂：凯尔巴尔达（19:30，10厅）",
+    "11/19-18:30-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-152",
+   "cn": "幸福便利贴",
+   "o": "A List for Tomorrow",
+   "en": "A List for Tomorrow",
+   "y": 2026,
+   "c": "日本 / 中国台湾",
+   "min": 114,
+   "reg": "as",
+   "dir": "外山文治",
+   "dirO": "SOTOYAMA Bunji",
+   "syn": "强震过后，59岁的太郎终于走出暗无天日的精神病院。被偷走的四十年难以挽回，为了让迟钝又寡言的太郎尽快回归社会，区公所福祉课员小岬邀请他把想完成的愿望写在便利贴上：去海边游泳、找到工作、交女朋友、前往海底龙宫、出演时代剧、见母亲一面。太郎对新生活的天真盼望，鼓舞著对人生失去热忱的小岬，决定陪他一一完成心愿。只是太郎的重生之旅，远比想像中艰难许多……。",
+   "st": "失而复得的人生，每一天都犹如新生。《茶饮友达》编导外山文治再展人道关怀，以社会性住院议题为引，照见城市角落奋力求生的小人物悲喜。阿部宽演活纯良新鲜人，浮沉世间尝尽冷暖，仍保赤子之心，直面低谷与创伤，携手人气偶像永濑廉蹒跚前行。日台金奖制作团队合璧，以真挚的镜头语言提炼复杂人性中的善意与爱意，凝聚成一篇温暖疗愈的成人童话。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [],
+   "ageRating": "普遍级（0+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "神秘影片",
+   "screeningNotes": {
+    "11/8-10:20-tp-muvie-titan-titan": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-153",
+   "cn": "地堡危情",
+   "o": "Bunker",
+   "en": "Bunker",
+   "y": 2026,
+   "c": "法国 / 西班牙",
+   "min": 119,
+   "reg": "eu",
+   "dir": "弗洛里安泽勒",
+   "dirO": "Florian ZELLER",
+   "syn": "隔壁凿墙声一响，上流金窝的安稳假象随之走样。旅居伦敦的西班牙建筑师米格尔事业风光，跟妻女安居玻璃豪宅，偏有邻居擅自在共用墙上开窗，声称想借点阳光，令他忧心隐私曝光，双方关系剑拔弩张。正为自家安全焦虑之际，科技巨富又开出天价，邀他赴夏威夷打造奢华地下堡垒，抵御末日危机。米格尔心动不已，妻子却不齿权贵只顾自己，长年积累的婚姻委屈与职场失意，亦随争执难再压抑。",
+   "st": "《父亲》导演弗洛里安泽勒首度执笔原创剧本，将伴侣角力、室内惊悚及阶级观察揉成当代寓言。冷寂构图映见疏离，紧绷音景酝酿猜疑，透亮别墅悄生幽闭气息。奥斯卡夫妻档哈维尔巴登、潘妮洛普克鲁兹同台飙戏，演活貌合神离、相爱相疑；《混沌少年时》史蒂芬葛拉翰、保罗丹诺分饰难缠邻居、神秘金主，双双抢戏增添惊喜。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "入选｜2026 威尼斯影展 · 正式竞赛",
+    "入选｜2026 多伦多影展",
+    "入选｜2026 伦敦影展",
+    "入选｜2026 芝加哥影展",
+    "入选｜2026 苏黎世影展",
+    "入选｜2026 维也纳影展",
+    "入选｜2026 法国杜维尔影展",
+    "入选｜2026 美国电影学会影展"
+   ],
+   "ageRating": "保护级（6+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "神秘影片",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-154",
+   "cn": "纽约最后一个扒手",
+   "o": "The Only Living Pickpocket in New York",
+   "en": "The Only Living Pickpocket in New York",
+   "y": 2026,
+   "c": "美国",
+   "min": 88,
+   "reg": "us",
+   "dir": "诺亚赛根",
+   "dirO": "Noah SEGAN",
+   "syn": "满城刷卡成日常，钱包钞票没几张，还能偷出什么名堂？职业扒手哈利纵横纽约地铁数十年，眼明手快不减当年，无奈电子支付当道，收入大不如前，还得照护失能伴侣。一夜盯上开跑车的富家少爷，以为圈中肥羊，哪知惹上黑帮；对科技一窍不通的他，更把连结钜款的随身碟不识货地卖掉。对方登门索讨、挟持爱妻，他只能跟时间赛跑追回赃物。",
+   "st": "当扒窃成了夕阳产业，老江湖偷不回岁月，也摸不透眼前世界。《巴顿芬克》戛纳影帝约翰特托罗担纲主角，将偷不逢时的街头老手，演得世故而温厚、落魄不低头、过气不放弃；并钻研布列松经典《扒手》，向魔术专家请教障眼妙手。行窃优雅如舞，指尖翻飞尽显机巧，眉宇难掩暮色煎熬。承袭七○年代新好莱坞风情，穿梭纽约五大区巷弄拍摄，宛如献给城市老灵魂的温柔情书。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "入选｜2026 柏林影展",
+    "入选｜2026 多伦多影展",
+    "入选｜2026 日舞影展",
+    "入选｜2026 纽约影展",
+    "入选｜2026 特柳赖德影展",
+    "入选｜2026 卡罗维瓦利影展",
+    "入选｜2026 温哥华影展",
+    "入选｜2026 芝加哥影展",
+    "入选｜2026 墨尔本影展",
+    "入选｜2026 苏黎世影展"
+   ],
+   "ageRating": "保护级（6+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "神秘影片",
+   "screeningNotes": {
+    "11/14-21:00-tp-vieshow-xinyi-hall-10": "影片页列有本场，场次总表未列出，请以金马官网及现场公布为准"
+   },
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-155",
+   "cn": "Your Mother Your Mother Your Mother",
+   "o": "Your Mother Your Mother Your Mother",
+   "en": "Your Mother Your Mother Your Mother",
+   "y": 2026,
+   "c": "美国",
+   "min": 112,
+   "reg": "us",
+   "dir": "巴萨姆塔里克",
+   "dirO": "Bassam TARIQ",
+   "syn": "激烈打斗手起刀落，目标身亡倒在厕所，一片血泊中铃声大作，噩耗随啜泣恍惚渐弱。妻子意外过世让杀手拉迪夫决心振作，回归家庭展开单亲生活，却发现青春期姊弟各有困惑，婴儿吵著喝母奶哭声没停过。无计可施的他四处求救，亲戚教友全都不置可否，前雇主更胁迫他再回头，为了家人安危他不愿搅和，但各路人马都不肯放过，眼看即将飞来横祸，拉迪夫该怎么从这一团混乱中逃脱？",
+   "st": "「谁值得拥有最好的你？」备受瞩目的新锐编导巴萨姆塔里克以圣训开展亲情困境，家庭冲突混搭武打血腥，挑战新一代最强老爸电影。奥斯卡最佳男配角马赫夏拉阿里左手长刀右手尿布，周约翰满口金牙自诩教主，杀手、黑帮、网红全出笼，穆斯林、摩门、神迹大乱斗，不能金盆洗手只能痛下杀手，已然走投无路只好走回老路，当信仰迷途，当是非模糊，什么才能成为真正的救赎？",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "入选｜2026 多伦多影展",
+    "入选｜2026 伦敦影展",
+    "入选｜2026 斯德哥尔摩影展",
+    "入选｜2026 温哥华影展",
+    "入选｜2026 加拿大卡加利影展"
+   ],
+   "ageRating": "辅15级（15+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "神秘影片",
+   "prog": "golden-horse-2026"
+  },
+  {
+   "id": "gh63-156",
+   "cn": "袒裎相见",
+   "o": "You Can See Everything",
+   "en": "You Can See Everything",
+   "y": 2026,
+   "c": "美国",
+   "min": 174,
+   "reg": "us",
+   "dir": "内森费尔德 / 兰斯奥本海姆",
+   "dirO": "Nathan FIELDER / Lance OPPENHEIM",
+   "syn": "曾以「一滴血就能检测上百种疾病」震撼硅谷的赛拉诺斯（Theranos）创办人伊莉莎白霍姆斯，从备受追捧的新创女王跌落神坛，最终因诈欺罪名成立。入狱前夕，她邀请拍摄团队走进家中，在镜头前吐露真心。导演原想挖掘骗局背后的秘辛，没想到随著朝夕相处，她与丈夫坚定的说词，竟让原本抱持怀疑的导演也逐渐动摇。",
+   "st": "继《新创大骗局》成功改编后，硅谷最离奇骗局再度成为镜头焦点。实境喜剧演员内森费尔德联手新锐导演兰斯奥本海姆，近距离揭开争议新创总裁入狱前的最后告白。当镜头越靠近，真相反而越难辨认，《袒裎相见》游走于纪录与虚构之间，展开一场真假难辨的心理攻防。这究竟是真心澄清，还是另一场精心设计的谎言？言语不可尽信，眼见也未必为凭。",
+   "writers": [],
+   "cast": [],
+   "genre": [],
+   "honors": [
+    "入选｜2026 特柳赖德影展",
+    "入选｜2026 纽约影展"
+   ],
+   "ageRating": "辅12级（12+）",
+   "subtitles": "原文发音，中文字幕",
+   "section": "神秘影片",
+   "prog": "golden-horse-2026"
   }
  ],
  "shows": [
@@ -7975,6 +12953,2631 @@ module.exports = {
    "id": "i-understand-your-displeasure",
    "v": "hz-cinema-circle",
    "h": "festival"
+  },
+  {
+   "d": "11/6",
+   "t": "12:10",
+   "id": "gh63-058",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/6",
+   "t": "15:30",
+   "id": "gh63-058",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/6",
+   "t": "18:50",
+   "id": "gh63-078",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/6",
+   "t": "19:00",
+   "id": "gh63-063",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/6",
+   "t": "19:00",
+   "id": "gh63-001",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/6",
+   "t": "19:00",
+   "id": "gh63-001",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/6",
+   "t": "21:20",
+   "id": "gh63-108",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/6",
+   "t": "21:30",
+   "id": "gh63-138",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/6",
+   "t": "21:50",
+   "id": "gh63-062",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/6",
+   "t": "22:00",
+   "id": "gh63-148",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/6",
+   "t": "22:20",
+   "id": "gh63-119",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/7",
+   "t": "10:10",
+   "id": "gh63-090",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/7",
+   "t": "10:20",
+   "id": "gh63-074",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/7",
+   "t": "10:20",
+   "id": "gh63-058",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/7",
+   "t": "10:30",
+   "id": "gh63-106",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/7",
+   "t": "11:10",
+   "id": "gh63-017",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/7",
+   "t": "12:30",
+   "id": "gh63-097",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/7",
+   "t": "12:40",
+   "id": "gh63-112",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/7",
+   "t": "13:00",
+   "id": "gh63-100",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/7",
+   "t": "13:40",
+   "id": "gh63-039",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/7",
+   "t": "14:30",
+   "id": "gh63-105",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/7",
+   "t": "15:10",
+   "id": "gh63-094",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/7",
+   "t": "16:10",
+   "id": "gh63-102",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/7",
+   "t": "16:40",
+   "id": "gh63-089",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/7",
+   "t": "16:50",
+   "id": "gh63-132",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/7",
+   "t": "18:10",
+   "id": "gh63-027",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/7",
+   "t": "18:30",
+   "id": "gh63-046",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/7",
+   "t": "18:50",
+   "id": "gh63-070",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/7",
+   "t": "19:00",
+   "id": "gh63-057",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/7",
+   "t": "19:00",
+   "id": "gh63-139",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/7",
+   "t": "21:00",
+   "id": "gh63-012",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/7",
+   "t": "21:10",
+   "id": "gh63-140",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/7",
+   "t": "21:10",
+   "id": "gh63-123",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/7",
+   "t": "21:40",
+   "id": "gh63-060",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/7",
+   "t": "22:00",
+   "id": "gh63-056",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/8",
+   "t": "10:20",
+   "id": "gh63-077",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/8",
+   "t": "10:20",
+   "id": "gh63-094",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/8",
+   "t": "10:20",
+   "id": "gh63-152",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/8",
+   "t": "10:30",
+   "id": "gh63-046",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/8",
+   "t": "11:00",
+   "id": "gh63-029",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/8",
+   "t": "12:30",
+   "id": "gh63-098",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/8",
+   "t": "12:40",
+   "id": "gh63-057",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/8",
+   "t": "13:10",
+   "id": "gh63-022",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/8",
+   "t": "13:20",
+   "id": "gh63-104",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/8",
+   "t": "13:20",
+   "id": "gh63-023",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/8",
+   "t": "15:20",
+   "id": "gh63-075",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/8",
+   "t": "15:50",
+   "id": "gh63-101",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/8",
+   "t": "16:00",
+   "id": "gh63-114",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/8",
+   "t": "16:30",
+   "id": "gh63-060",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/8",
+   "t": "17:30",
+   "id": "gh63-033",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/8",
+   "t": "18:40",
+   "id": "gh63-148",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/8",
+   "t": "18:50",
+   "id": "gh63-120",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/8",
+   "t": "19:00",
+   "id": "gh63-041",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/8",
+   "t": "19:00",
+   "id": "gh63-062",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/8",
+   "t": "19:40",
+   "id": "gh63-054",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/8",
+   "t": "20:40",
+   "id": "gh63-058",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/8",
+   "t": "21:00",
+   "id": "gh63-100",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/8",
+   "t": "21:20",
+   "id": "gh63-076",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/8",
+   "t": "21:40",
+   "id": "gh63-122",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/8",
+   "t": "22:00",
+   "id": "gh63-116",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/9",
+   "t": "11:00",
+   "id": "gh63-055",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/9",
+   "t": "11:50",
+   "id": "gh63-006",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/9",
+   "t": "12:00",
+   "id": "gh63-111",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/9",
+   "t": "12:20",
+   "id": "gh63-141",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/9",
+   "t": "13:30",
+   "id": "gh63-080",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/9",
+   "t": "14:10",
+   "id": "gh63-067",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/9",
+   "t": "14:30",
+   "id": "gh63-017",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/9",
+   "t": "15:00",
+   "id": "gh63-019",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/9",
+   "t": "15:20",
+   "id": "gh63-137",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/9",
+   "t": "16:00",
+   "id": "gh63-041",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/9",
+   "t": "16:30",
+   "id": "gh63-115",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/9",
+   "t": "17:10",
+   "id": "gh63-010",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/9",
+   "t": "17:10",
+   "id": "gh63-032",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/9",
+   "t": "17:20",
+   "id": "gh63-003",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/9",
+   "t": "18:40",
+   "id": "gh63-121",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/9",
+   "t": "18:40",
+   "id": "gh63-050",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/9",
+   "t": "18:50",
+   "id": "gh63-099",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/9",
+   "t": "19:10",
+   "id": "gh63-025",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/9",
+   "t": "19:30",
+   "id": "gh63-081",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/9",
+   "t": "20:50",
+   "id": "gh63-053",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/9",
+   "t": "21:20",
+   "id": "gh63-150",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/9",
+   "t": "21:20",
+   "id": "gh63-130",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/9",
+   "t": "21:30",
+   "id": "gh63-087",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/9",
+   "t": "21:40",
+   "id": "gh63-067",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/10",
+   "t": "10:40",
+   "id": "gh63-114",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/10",
+   "t": "11:50",
+   "id": "gh63-038",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/10",
+   "t": "12:20",
+   "id": "gh63-136",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/10",
+   "t": "13:20",
+   "id": "gh63-051",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/10",
+   "t": "13:50",
+   "id": "gh63-122",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/10",
+   "t": "14:20",
+   "id": "gh63-100",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/10",
+   "t": "14:40",
+   "id": "gh63-056",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/10",
+   "t": "14:50",
+   "id": "gh63-123",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/10",
+   "t": "16:00",
+   "id": "gh63-143",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/10",
+   "t": "16:20",
+   "id": "gh63-068",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/10",
+   "t": "16:50",
+   "id": "gh63-149",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/10",
+   "t": "17:10",
+   "id": "gh63-029",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/10",
+   "t": "17:30",
+   "id": "gh63-033",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/10",
+   "t": "18:30",
+   "id": "gh63-097",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/10",
+   "t": "18:40",
+   "id": "gh63-045",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/10",
+   "t": "19:10",
+   "id": "gh63-018",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/10",
+   "t": "19:10",
+   "id": "gh63-069",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/10",
+   "t": "19:20",
+   "id": "gh63-067",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/10",
+   "t": "21:00",
+   "id": "gh63-008",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/10",
+   "t": "21:10",
+   "id": "gh63-146",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/10",
+   "t": "21:20",
+   "id": "gh63-129",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/10",
+   "t": "21:30",
+   "id": "gh63-113",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/10",
+   "t": "21:40",
+   "id": "gh63-109",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/11",
+   "t": "11:20",
+   "id": "gh63-102",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/11",
+   "t": "11:50",
+   "id": "gh63-022",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/11",
+   "t": "13:00",
+   "id": "gh63-116",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/11",
+   "t": "13:30",
+   "id": "gh63-064",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/11",
+   "t": "13:30",
+   "id": "gh63-142",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/11",
+   "t": "13:40",
+   "id": "gh63-025",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/11",
+   "t": "14:10",
+   "id": "gh63-037",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/11",
+   "t": "15:00",
+   "id": "gh63-124",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/11",
+   "t": "16:00",
+   "id": "gh63-105",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/11",
+   "t": "16:20",
+   "id": "gh63-008",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/11",
+   "t": "16:30",
+   "id": "gh63-133",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/11",
+   "t": "16:30",
+   "id": "gh63-144",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/11",
+   "t": "17:10",
+   "id": "gh63-045",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/11",
+   "t": "18:30",
+   "id": "gh63-044",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/11",
+   "t": "19:00",
+   "id": "gh63-092",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/11",
+   "t": "19:00",
+   "id": "gh63-108",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/11",
+   "t": "19:00",
+   "id": "gh63-096",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/11",
+   "t": "19:40",
+   "id": "gh63-074",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/11",
+   "t": "21:30",
+   "id": "gh63-117",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/11",
+   "t": "21:30",
+   "id": "gh63-003",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/11",
+   "t": "21:30",
+   "id": "gh63-071",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/11",
+   "t": "21:40",
+   "id": "gh63-073",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/11",
+   "t": "21:50",
+   "id": "gh63-049",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/12",
+   "t": "10:30",
+   "id": "gh63-128",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/12",
+   "t": "10:50",
+   "id": "gh63-152",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/12",
+   "t": "12:10",
+   "id": "gh63-132",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/12",
+   "t": "12:40",
+   "id": "gh63-099",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/12",
+   "t": "12:40",
+   "id": "gh63-135",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/12",
+   "t": "13:10",
+   "id": "gh63-050",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/12",
+   "t": "14:00",
+   "id": "gh63-047",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/12",
+   "t": "14:00",
+   "id": "gh63-027",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/12",
+   "t": "14:30",
+   "id": "gh63-120",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/12",
+   "t": "16:10",
+   "id": "gh63-085",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/12",
+   "t": "16:10",
+   "id": "gh63-015",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/12",
+   "t": "16:10",
+   "id": "gh63-114",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/12",
+   "t": "16:30",
+   "id": "gh63-062",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/12",
+   "t": "16:40",
+   "id": "gh63-070",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/12",
+   "t": "18:40",
+   "id": "gh63-079",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/12",
+   "t": "18:40",
+   "id": "gh63-019",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/12",
+   "t": "18:50",
+   "id": "gh63-138",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/12",
+   "t": "18:50",
+   "id": "gh63-059",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/12",
+   "t": "18:50",
+   "id": "gh63-065",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/12",
+   "t": "21:10",
+   "id": "gh63-080",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/12",
+   "t": "21:30",
+   "id": "gh63-051",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/12",
+   "t": "21:50",
+   "id": "gh63-081",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/12",
+   "t": "22:00",
+   "id": "gh63-082",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/12",
+   "t": "22:00",
+   "id": "gh63-104",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/13",
+   "t": "10:40",
+   "id": "gh63-018",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/13",
+   "t": "11:00",
+   "id": "gh63-078",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/13",
+   "t": "11:00",
+   "id": "gh63-146",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/13",
+   "t": "11:10",
+   "id": "gh63-112",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/13",
+   "t": "12:40",
+   "id": "gh63-023",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/13",
+   "t": "13:00",
+   "id": "gh63-113",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/13",
+   "t": "13:10",
+   "id": "gh63-065",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/13",
+   "t": "13:40",
+   "id": "gh63-073",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/13",
+   "t": "13:40",
+   "id": "gh63-147",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/13",
+   "t": "15:20",
+   "id": "gh63-075",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/13",
+   "t": "15:40",
+   "id": "gh63-044",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/13",
+   "t": "15:50",
+   "id": "gh63-110",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/13",
+   "t": "16:00",
+   "id": "gh63-092",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/13",
+   "t": "16:30",
+   "id": "gh63-052",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/13",
+   "t": "18:30",
+   "id": "gh63-053",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/13",
+   "t": "18:30",
+   "id": "gh63-145",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/13",
+   "t": "18:30",
+   "id": "gh63-105",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/13",
+   "t": "18:50",
+   "id": "gh63-106",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/13",
+   "t": "19:00",
+   "id": "gh63-115",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/13",
+   "t": "21:00",
+   "id": "gh63-066",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/13",
+   "t": "21:10",
+   "id": "gh63-114",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/13",
+   "t": "21:20",
+   "id": "gh63-083",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/13",
+   "t": "21:30",
+   "id": "gh63-055",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/13",
+   "t": "21:30",
+   "id": "gh63-111",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/14",
+   "t": "10:10",
+   "id": "gh63-153",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/14",
+   "t": "10:30",
+   "id": "gh63-069",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/14",
+   "t": "10:30",
+   "id": "gh63-134",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/14",
+   "t": "11:00",
+   "id": "gh63-072",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/14",
+   "t": "12:20",
+   "id": "gh63-136",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/14",
+   "t": "12:40",
+   "id": "gh63-143",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/14",
+   "t": "12:40",
+   "id": "gh63-130",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/14",
+   "t": "13:10",
+   "id": "gh63-111",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/14",
+   "t": "14:00",
+   "id": "gh63-047",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/14",
+   "t": "15:20",
+   "id": "gh63-103",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/14",
+   "t": "15:20",
+   "id": "gh63-126",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/14",
+   "t": "15:40",
+   "id": "gh63-066",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/14",
+   "t": "16:00",
+   "id": "gh63-043",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/14",
+   "t": "16:20",
+   "id": "gh63-084",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/14",
+   "t": "17:40",
+   "id": "gh63-151",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/14",
+   "t": "18:20",
+   "id": "gh63-037",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/14",
+   "t": "18:20",
+   "id": "gh63-093",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/14",
+   "t": "18:50",
+   "id": "gh63-080",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/14",
+   "t": "18:50",
+   "id": "gh63-107",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/14",
+   "t": "21:00",
+   "id": "gh63-154",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/14",
+   "t": "21:00",
+   "id": "gh63-110",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/14",
+   "t": "21:00",
+   "id": "gh63-091",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/14",
+   "t": "21:40",
+   "id": "gh63-054",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/14",
+   "t": "22:00",
+   "id": "gh63-128",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/15",
+   "t": "10:20",
+   "id": "gh63-135",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/15",
+   "t": "10:30",
+   "id": "gh63-061",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/15",
+   "t": "10:50",
+   "id": "gh63-043",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/15",
+   "t": "10:50",
+   "id": "gh63-095",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/15",
+   "t": "11:00",
+   "id": "gh63-129",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/15",
+   "t": "13:00",
+   "id": "gh63-116",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/15",
+   "t": "13:10",
+   "id": "gh63-038",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/15",
+   "t": "13:20",
+   "id": "gh63-077",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/15",
+   "t": "13:50",
+   "id": "gh63-091",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/15",
+   "t": "14:20",
+   "id": "gh63-068",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/15",
+   "t": "15:00",
+   "id": "gh63-088",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/15",
+   "t": "16:00",
+   "id": "gh63-036",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/15",
+   "t": "16:10",
+   "id": "gh63-055",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/15",
+   "t": "16:30",
+   "id": "gh63-133",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/15",
+   "t": "16:50",
+   "id": "gh63-142",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/15",
+   "t": "17:40",
+   "id": "gh63-087",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/15",
+   "t": "18:20",
+   "id": "gh63-137",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/15",
+   "t": "18:40",
+   "id": "gh63-064",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/15",
+   "t": "19:00",
+   "id": "gh63-048",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/15",
+   "t": "20:20",
+   "id": "gh63-093",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/15",
+   "t": "20:30",
+   "id": "gh63-059",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/15",
+   "t": "20:40",
+   "id": "gh63-098",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/15",
+   "t": "21:50",
+   "id": "gh63-121",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/16",
+   "t": "11:10",
+   "id": "gh63-079",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/16",
+   "t": "11:20",
+   "id": "gh63-117",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/16",
+   "t": "12:20",
+   "id": "gh63-036",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/16",
+   "t": "12:50",
+   "id": "gh63-077",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/16",
+   "t": "13:10",
+   "id": "gh63-031",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/16",
+   "t": "13:50",
+   "id": "gh63-076",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/16",
+   "t": "14:20",
+   "id": "gh63-139",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/16",
+   "t": "14:30",
+   "id": "gh63-150",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/16",
+   "t": "15:10",
+   "id": "gh63-082",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/16",
+   "t": "15:40",
+   "id": "gh63-148",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/16",
+   "t": "16:20",
+   "id": "gh63-042",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/16",
+   "t": "16:50",
+   "id": "gh63-119",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/16",
+   "t": "16:50",
+   "id": "gh63-127",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/16",
+   "t": "17:30",
+   "id": "gh63-126",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/16",
+   "t": "18:10",
+   "id": "gh63-149",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/16",
+   "t": "18:30",
+   "id": "gh63-083",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/16",
+   "t": "18:40",
+   "id": "gh63-005",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/16",
+   "t": "18:50",
+   "id": "gh63-141",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/16",
+   "t": "20:00",
+   "id": "gh63-131",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/16",
+   "t": "21:20",
+   "id": "gh63-089",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/16",
+   "t": "21:30",
+   "id": "gh63-016",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/16",
+   "t": "21:40",
+   "id": "gh63-052",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/16",
+   "t": "22:00",
+   "id": "gh63-047",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/17",
+   "t": "11:10",
+   "id": "gh63-063",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/17",
+   "t": "12:10",
+   "id": "gh63-081",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/17",
+   "t": "12:50",
+   "id": "gh63-035",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/17",
+   "t": "13:50",
+   "id": "gh63-084",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/17",
+   "t": "13:50",
+   "id": "gh63-054",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/17",
+   "t": "14:10",
+   "id": "gh63-138",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/17",
+   "t": "14:10",
+   "id": "gh63-048",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/17",
+   "t": "16:10",
+   "id": "gh63-060",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/17",
+   "t": "16:20",
+   "id": "gh63-090",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/17",
+   "t": "16:20",
+   "id": "gh63-061",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/17",
+   "t": "16:30",
+   "id": "gh63-034",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/17",
+   "t": "18:40",
+   "id": "gh63-040",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/17",
+   "t": "18:40",
+   "id": "gh63-095",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/17",
+   "t": "18:50",
+   "id": "gh63-086",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/17",
+   "t": "19:10",
+   "id": "gh63-125",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/17",
+   "t": "19:10",
+   "id": "gh63-118",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/17",
+   "t": "21:10",
+   "id": "gh63-087",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/17",
+   "t": "21:20",
+   "id": "gh63-127",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/17",
+   "t": "21:40",
+   "id": "gh63-052",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/18",
+   "t": "11:00",
+   "id": "gh63-009",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/18",
+   "t": "11:40",
+   "id": "gh63-125",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/18",
+   "t": "13:00",
+   "id": "gh63-121",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/18",
+   "t": "13:30",
+   "id": "gh63-012",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/18",
+   "t": "13:40",
+   "id": "gh63-114",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/18",
+   "t": "14:00",
+   "id": "gh63-104",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/18",
+   "t": "14:10",
+   "id": "gh63-071",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/18",
+   "t": "15:10",
+   "id": "gh63-095",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/18",
+   "t": "15:50",
+   "id": "gh63-083",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/18",
+   "t": "16:00",
+   "id": "gh63-094",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/18",
+   "t": "16:20",
+   "id": "gh63-007",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/18",
+   "t": "16:20",
+   "id": "gh63-109",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/18",
+   "t": "18:30",
+   "id": "gh63-088",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/18",
+   "t": "18:30",
+   "id": "gh63-144",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/18",
+   "t": "18:50",
+   "id": "gh63-042",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/18",
+   "t": "19:00",
+   "id": "gh63-090",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/18",
+   "t": "21:20",
+   "id": "gh63-089",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/18",
+   "t": "21:30",
+   "id": "gh63-086",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/18",
+   "t": "21:50",
+   "id": "gh63-112",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/19",
+   "t": "10:50",
+   "id": "gh63-140",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/19",
+   "t": "11:20",
+   "id": "gh63-053",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/19",
+   "t": "11:20",
+   "id": "gh63-108",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/19",
+   "t": "13:10",
+   "id": "gh63-130",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/19",
+   "t": "13:20",
+   "id": "gh63-088",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/19",
+   "t": "13:50",
+   "id": "gh63-011",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/19",
+   "t": "13:50",
+   "id": "gh63-150",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/19",
+   "t": "14:20",
+   "id": "gh63-103",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/19",
+   "t": "15:50",
+   "id": "gh63-051",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/19",
+   "t": "16:00",
+   "id": "gh63-145",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/19",
+   "t": "16:20",
+   "id": "gh63-049",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/19",
+   "t": "16:40",
+   "id": "gh63-131",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/19",
+   "t": "18:30",
+   "id": "gh63-151",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/19",
+   "t": "18:30",
+   "id": "gh63-076",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/19",
+   "t": "18:30",
+   "id": "gh63-155",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/19",
+   "t": "18:40",
+   "id": "gh63-052",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/19",
+   "t": "18:40",
+   "id": "gh63-072",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/19",
+   "t": "20:50",
+   "id": "gh63-118",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/19",
+   "t": "21:00",
+   "id": "gh63-005",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/19",
+   "t": "21:00",
+   "id": "gh63-044",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/20",
+   "t": "10:40",
+   "id": "gh63-154",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/20",
+   "t": "10:50",
+   "id": "gh63-129",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/20",
+   "t": "11:20",
+   "id": "gh63-151",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/20",
+   "t": "12:30",
+   "id": "gh63-155",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/20",
+   "t": "13:20",
+   "id": "gh63-066",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/20",
+   "t": "13:40",
+   "id": "gh63-030",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/20",
+   "t": "13:40",
+   "id": "gh63-153",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/20",
+   "t": "14:40",
+   "id": "gh63-129",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/20",
+   "t": "14:50",
+   "id": "gh63-107",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/20",
+   "t": "16:00",
+   "id": "gh63-093",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/20",
+   "t": "16:10",
+   "id": "gh63-028",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/20",
+   "t": "16:30",
+   "id": "gh63-020",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/20",
+   "t": "17:00",
+   "id": "gh63-026",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/20",
+   "t": "18:00",
+   "id": "gh63-016",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/20",
+   "t": "18:30",
+   "id": "gh63-009",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/20",
+   "t": "18:50",
+   "id": "gh63-007",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/20",
+   "t": "19:00",
+   "id": "gh63-011",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/20",
+   "t": "19:30",
+   "id": "gh63-034",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/20",
+   "t": "20:30",
+   "id": "gh63-021",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/20",
+   "t": "21:20",
+   "id": "gh63-024",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/20",
+   "t": "21:20",
+   "id": "gh63-014",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/20",
+   "t": "21:40",
+   "id": "gh63-031",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/20",
+   "t": "21:40",
+   "id": "gh63-035",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/21",
+   "t": "10:10",
+   "id": "gh63-147",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/21",
+   "t": "10:20",
+   "id": "gh63-096",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/21",
+   "t": "10:40",
+   "id": "gh63-134",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/21",
+   "t": "10:50",
+   "id": "gh63-069",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/21",
+   "t": "10:50",
+   "id": "gh63-072",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/21",
+   "t": "12:40",
+   "id": "gh63-061",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/21",
+   "t": "12:40",
+   "id": "gh63-056",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/21",
+   "t": "12:50",
+   "id": "gh63-015",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/21",
+   "t": "13:00",
+   "id": "gh63-085",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/21",
+   "t": "13:30",
+   "id": "gh63-128",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/21",
+   "t": "14:40",
+   "id": "gh63-049",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/21",
+   "t": "15:30",
+   "id": "gh63-024",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/21",
+   "t": "15:30",
+   "id": "gh63-030",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/21",
+   "t": "15:40",
+   "id": "gh63-020",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/21",
+   "t": "15:50",
+   "id": "gh63-141",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/21",
+   "t": "16:50",
+   "id": "gh63-048",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/21",
+   "t": "17:40",
+   "id": "gh63-013",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/21",
+   "t": "18:10",
+   "id": "gh63-002",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/21",
+   "t": "18:20",
+   "id": "gh63-026",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/21",
+   "t": "18:30",
+   "id": "gh63-140",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/21",
+   "t": "19:20",
+   "id": "gh63-028",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/21",
+   "t": "20:50",
+   "id": "gh63-006",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/21",
+   "t": "20:50",
+   "id": "gh63-155",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/21",
+   "t": "21:00",
+   "id": "gh63-063",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/21",
+   "t": "21:30",
+   "id": "gh63-010",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/21",
+   "t": "22:10",
+   "id": "gh63-032",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/22",
+   "t": "10:30",
+   "id": "gh63-139",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/22",
+   "t": "10:30",
+   "id": "gh63-002",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/22",
+   "t": "10:30",
+   "id": "gh63-146",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/22",
+   "t": "11:20",
+   "id": "gh63-037",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/22",
+   "t": "12:40",
+   "id": "gh63-154",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/22",
+   "t": "12:40",
+   "id": "gh63-113",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/22",
+   "t": "13:00",
+   "id": "gh63-021",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/22",
+   "t": "13:40",
+   "id": "gh63-153",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/22",
+   "t": "14:10",
+   "id": "gh63-051",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/22",
+   "t": "14:40",
+   "id": "gh63-117",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/22",
+   "t": "15:00",
+   "id": "gh63-073",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-13"
+  },
+  {
+   "d": "11/22",
+   "t": "16:10",
+   "id": "gh63-123",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/22",
+   "t": "16:10",
+   "id": "gh63-122",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/22",
+   "t": "16:30",
+   "id": "gh63-156",
+   "v": "tp-muvie-titan",
+   "h": "titan"
+  },
+  {
+   "d": "11/22",
+   "t": "17:10",
+   "id": "gh63-071",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/22",
+   "t": "18:40",
+   "id": "gh63-109",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-12"
+  },
+  {
+   "d": "11/22",
+   "t": "18:50",
+   "id": "gh63-124",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/22",
+   "t": "19:30",
+   "id": "gh63-119",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
+  },
+  {
+   "d": "11/22",
+   "t": "21:00",
+   "id": "gh63-145",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-11"
+  },
+  {
+   "d": "11/22",
+   "t": "21:20",
+   "id": "gh63-137",
+   "v": "tp-vieshow-xinyi",
+   "h": "hall-10"
   }
  ],
  "venues": [
@@ -8447,6 +16050,62 @@ module.exports = {
     }
    ],
    "city": "杭州"
+  },
+  {
+   "id": "tp-vieshow-xinyi",
+   "short": "信义威秀",
+   "name": "台北信义威秀影城",
+   "brand": "台北信义威秀影城",
+   "store": "信义",
+   "fmt": [],
+   "addr": "台北市松寿路20号",
+   "halls": [
+    {
+     "id": "hall-10",
+     "short": "10厅",
+     "name": "10厅"
+    },
+    {
+     "id": "hall-11",
+     "short": "11厅",
+     "name": "11厅"
+    },
+    {
+     "id": "hall-12",
+     "short": "12厅",
+     "name": "12厅"
+    },
+    {
+     "id": "hall-13",
+     "short": "13厅",
+     "name": "13厅"
+    },
+    {
+     "id": "hall-15",
+     "short": "15厅",
+     "name": "15厅"
+    }
+   ],
+   "city": "台北"
+  },
+  {
+   "id": "tp-muvie-titan",
+   "short": "MUVIE TITAN",
+   "name": "MUVIE CINEMAS TAIPEI",
+   "brand": "MUVIE CINEMAS",
+   "store": "TITAN",
+   "fmt": [
+    "TITAN"
+   ],
+   "addr": "台北市松仁路58号10楼（远百信义A13）",
+   "halls": [
+    {
+     "id": "titan",
+     "short": "TITAN",
+     "name": "MUVIE TITAN 厅"
+    }
+   ],
+   "city": "台北"
   }
  ],
  "programmes": [
@@ -8605,6 +16264,942 @@ module.exports = {
    "end": "2026-11-23",
    "city": "杭州",
    "blurb": "2026年德国电影展·杭州站将于11月14日至23日在CINEMA CIRCLE（杭州恒隆店）举办，选取自近两年在各大国际电影节展中大放异彩的十部佳作。德国电影展由德国电影协会和北京德国文化中心·歌德学院（中国）联合举办，百老汇系列影城协办，并得到德国驻华大使馆的支持。",
+   "cardCover": ""
+  },
+  {
+   "id": "golden-horse-2026",
+   "name": "2026金马影展",
+   "sub": "第63届台北金马影展",
+   "en": "TAIPEI GOLDEN HORSE FILM FESTIVAL 2026",
+   "kind": "影展专题",
+   "period": "2026.11.06 – 11.22",
+   "start": "2026-11-06",
+   "end": "2026-11-22",
+   "city": "台北",
+   "cover": "/images/brand/prog-golden-horse-2026.jpg",
+   "blurb": "11月6日至22日，台北。电子手册按金马影展官方单元浏览片单、主创与荣誉，查看信义威秀与 MUVIE TITAN 的完整场次，并附大师讲堂、导演论导演、电影沙龙、论坛等活动。购票请使用拓元售票系统。",
+   "ticketUrl": "https://tghff.tixcraft.com",
+   "ticketLabel": "拓元购票",
+   "sections": {
+    "gh63-001": "开幕片",
+    "gh63-002": "闭幕片",
+    "gh63-003": "金马奖入围影片",
+    "gh63-004": "金马奖入围影片",
+    "gh63-005": "金马奖入围影片",
+    "gh63-006": "金马奖入围影片",
+    "gh63-007": "金马奖入围影片",
+    "gh63-008": "金马奖入围影片",
+    "gh63-009": "金马奖入围影片",
+    "gh63-010": "金马奖入围影片",
+    "gh63-011": "金马奖入围影片",
+    "gh63-012": "金马奖入围影片",
+    "gh63-013": "金马奖入围影片",
+    "gh63-014": "金马奖入围影片",
+    "gh63-015": "金马奖入围影片",
+    "gh63-016": "金马奖入围影片",
+    "gh63-017": "金马奖入围影片",
+    "gh63-018": "金马奖入围影片",
+    "gh63-019": "金马奖入围影片",
+    "gh63-020": "金马奖入围影片",
+    "gh63-021": "金马奖入围影片",
+    "gh63-022": "金马奖入围影片",
+    "gh63-023": "金马奖入围影片",
+    "gh63-024": "金马奖入围影片",
+    "gh63-025": "金马奖入围影片",
+    "gh63-026": "金马奖入围影片",
+    "gh63-027": "金马奖入围影片",
+    "gh63-028": "金马奖入围影片",
+    "gh63-029": "金马奖入围影片",
+    "gh63-030": "金马奖入围影片",
+    "gh63-031": "金马奖入围影片",
+    "gh63-032": "金马奖入围影片",
+    "gh63-033": "金马奖入围影片",
+    "gh63-034": "金马奖入围影片",
+    "gh63-035": "金马奖入围影片",
+    "gh63-036": "金马奖终身成就奖：虞戡平",
+    "gh63-037": "金马奖终身成就奖：虞戡平",
+    "gh63-038": "金马奖终身成就奖：虞戡平",
+    "gh63-039": "华语首映",
+    "gh63-040": "华语首映",
+    "gh63-041": "华语首映",
+    "gh63-042": "华语首映",
+    "gh63-043": "华语首映",
+    "gh63-044": "华语首映",
+    "gh63-045": "华语首映",
+    "gh63-046": "华语首映",
+    "gh63-047": "华语首映",
+    "gh63-048": "华语首映",
+    "gh63-049": "华语首映",
+    "gh63-050": "名家飨宴",
+    "gh63-051": "名家飨宴",
+    "gh63-052": "名家飨宴",
+    "gh63-053": "名家飨宴",
+    "gh63-054": "名家飨宴",
+    "gh63-055": "名家飨宴",
+    "gh63-056": "名家飨宴",
+    "gh63-057": "名家飨宴",
+    "gh63-058": "名家飨宴",
+    "gh63-059": "影迷嘉年华",
+    "gh63-060": "影迷嘉年华",
+    "gh63-061": "影迷嘉年华",
+    "gh63-062": "影迷嘉年华",
+    "gh63-063": "影迷嘉年华",
+    "gh63-064": "影迷嘉年华",
+    "gh63-065": "影迷嘉年华",
+    "gh63-066": "影迷嘉年华",
+    "gh63-067": "影迷嘉年华",
+    "gh63-068": "影迷嘉年华",
+    "gh63-069": "影迷嘉年华",
+    "gh63-070": "影迷嘉年华",
+    "gh63-071": "影坛新势力",
+    "gh63-072": "影坛新势力",
+    "gh63-073": "影坛新势力",
+    "gh63-074": "影坛新势力",
+    "gh63-075": "影坛新势力",
+    "gh63-076": "影坛新势力",
+    "gh63-077": "影坛新势力",
+    "gh63-078": "不设防地带",
+    "gh63-079": "不设防地带",
+    "gh63-080": "不设防地带",
+    "gh63-081": "不设防地带",
+    "gh63-082": "不设防地带",
+    "gh63-083": "亚洲之窗",
+    "gh63-084": "亚洲之窗",
+    "gh63-085": "亚洲之窗",
+    "gh63-086": "亚洲之窗",
+    "gh63-087": "亚洲之窗",
+    "gh63-088": "亚洲之窗",
+    "gh63-089": "亚洲之窗",
+    "gh63-090": "亚洲之窗",
+    "gh63-091": "日正当中",
+    "gh63-092": "日正当中",
+    "gh63-093": "日正当中",
+    "gh63-094": "日正当中",
+    "gh63-095": "日正当中",
+    "gh63-096": "日正当中",
+    "gh63-097": "罪与罚之外",
+    "gh63-098": "罪与罚之外",
+    "gh63-099": "罪与罚之外",
+    "gh63-100": "罪与罚之外",
+    "gh63-101": "罪与罚之外",
+    "gh63-102": "罪与罚之外",
+    "gh63-103": "金马×柏林新世代",
+    "gh63-104": "金马×柏林新世代",
+    "gh63-105": "金马×柏林新世代",
+    "gh63-106": "金马×柏林新世代",
+    "gh63-107": "日常酷儿",
+    "gh63-108": "日常酷儿",
+    "gh63-109": "日常酷儿",
+    "gh63-110": "日常酷儿",
+    "gh63-111": "日常酷儿",
+    "gh63-112": "日常酷儿",
+    "gh63-113": "日常酷儿",
+    "gh63-114": "摇滚再放送",
+    "gh63-115": "摇滚再放送",
+    "gh63-116": "摇滚再放送",
+    "gh63-117": "摇滚再放送",
+    "gh63-118": "奇幻特快车",
+    "gh63-119": "奇幻特快车",
+    "gh63-120": "奇幻特快车",
+    "gh63-121": "奇幻特快车",
+    "gh63-122": "奇幻特快车",
+    "gh63-123": "奇幻特快车",
+    "gh63-124": "奇幻特快车",
+    "gh63-125": "奇幻特快车",
+    "gh63-126": "经典影事",
+    "gh63-127": "经典影事",
+    "gh63-128": "经典影事",
+    "gh63-129": "经典影事",
+    "gh63-130": "经典影事",
+    "gh63-131": "经典影事",
+    "gh63-132": "经典影事",
+    "gh63-133": "电影如何成为我们：策展人的再访",
+    "gh63-134": "电影如何成为我们：策展人的再访",
+    "gh63-135": "电影如何成为我们：策展人的再访",
+    "gh63-136": "电影如何成为我们：策展人的再访",
+    "gh63-137": "电影如何成为我们：策展人的再访",
+    "gh63-138": "致敬：今村昌平",
+    "gh63-139": "致敬：今村昌平",
+    "gh63-140": "致敬：今村昌平",
+    "gh63-141": "致敬：今村昌平",
+    "gh63-142": "致敬：今村昌平",
+    "gh63-143": "致敬：今村昌平",
+    "gh63-144": "致敬：今村昌平",
+    "gh63-145": "致敬：今村昌平",
+    "gh63-146": "遇见大师",
+    "gh63-147": "遇见大师",
+    "gh63-148": "遇见大师",
+    "gh63-149": "遇见大师",
+    "gh63-150": "遇见大师",
+    "gh63-151": "遇见大师",
+    "gh63-152": "神秘影片",
+    "gh63-153": "神秘影片",
+    "gh63-154": "神秘影片",
+    "gh63-155": "神秘影片",
+    "gh63-156": "神秘影片"
+   },
+   "eventKinds": [
+    {
+     "id": "guide",
+     "name": "选片指南"
+    },
+    {
+     "id": "carpet",
+     "name": "星光首映"
+    },
+    {
+     "id": "market",
+     "name": "电影市集"
+    },
+    {
+     "id": "masters",
+     "name": "大师讲堂"
+    },
+    {
+     "id": "imamura",
+     "name": "导演论导演｜今村昌平讲堂"
+    },
+    {
+     "id": "salon",
+     "name": "电影沙龙"
+    },
+    {
+     "id": "forum",
+     "name": "金马电影论坛与大师课"
+    },
+    {
+     "id": "academy",
+     "name": "金马电影学院"
+    },
+    {
+     "id": "justice",
+     "name": "金马 × 司法影展"
+    },
+    {
+     "id": "youth",
+     "name": "青少年选片指南与影迷新世代"
+    },
+    {
+     "id": "vote",
+     "name": "金马影展观众票选"
+    },
+    {
+     "id": "ceremony",
+     "name": "金马奖颁奖典礼"
+    },
+    {
+     "id": "goods",
+     "name": "限定周边与集点活动"
+    },
+    {
+     "id": "info",
+     "name": "购票与场馆资讯"
+    },
+    {
+     "id": "industry",
+     "name": "业界限定场"
+    }
+   ],
+   "events": [
+    {
+     "id": "guide",
+     "kind": "guide",
+     "title": "金马影展选片指南",
+     "desc": "金马影展执行团队亲自说明本届片单与亮点。无现场直播，活动后将于金马官方 Facebook 提供文字版内容。完成报到并至金马摊位出示金马官方 LINE 好友者，可获统一满汉御品「𤆵烧牛肉面」1 碗（限量 200 名）。",
+     "lines": [
+      [
+       "时间",
+       "10 月 21 日〈三〉19:30 ─ 21:30"
+      ],
+      [
+       "地点",
+       "台北文创大楼 6 楼多功能厅（台北市菸厂路 88 号）"
+      ],
+      [
+       "讲者",
+       "闻天祥（执行长）、陈俊蓉（副执行长）、陈晓佩（影展总监）、杨晴絮（影展副总监）"
+      ],
+      [
+       "参加方式",
+       "金马官网「年度活动」页面报名，或活动当日现场登记候补入场，额满为止。"
+      ]
+     ],
+     "dates": [
+      "2026-10-21"
+     ]
+    },
+    {
+     "id": "carpet",
+     "kind": "carpet",
+     "title": "星光首映",
+     "desc": "信义威秀中庭搭起华丽舞台，影人翩然现身。开幕片《告别的年代》、闭幕片《花脸猫：修罗道》、世界首映剧集《我们的蓝调时光》、《急诊室的奇迹》等，还有众多闪耀星光。详细时间及出席影人，请见金马官网及 Facebook 粉丝专页。",
+     "lines": [
+      [
+       "时间",
+       "11 月 06 日〈五〉─ 11 月 22 日〈日〉（集点活动指定红毯日：11/07、11/08、11/14）"
+      ],
+      [
+       "地点",
+       "信义威秀中庭广场（台北市松寿路 20 号）"
+      ]
+     ],
+     "dates": [
+      "2026-11-06",
+      "2026-11-22"
+     ]
+    },
+    {
+     "id": "market",
+     "kind": "market",
+     "title": "电影市集",
+     "desc": "影展首周末，集结金马影展、电影公司、特色品牌热闹开市，影展商品、电影周边、联名好物，众多惊喜一起来挖宝。",
+     "lines": [
+      [
+       "时间",
+       "11 月 07 日〈六〉12:00 ─ 20:00；11 月 08 日〈日〉12:00 ─ 18:30"
+      ],
+      [
+       "地点",
+       "信义威秀中庭广场（台北市松寿路 20 号）"
+      ]
+     ],
+     "dates": [
+      "2026-11-07",
+      "2026-11-08"
+     ]
+    },
+    {
+     "id": "master-balda",
+     "kind": "masters",
+     "title": "大师讲堂：凯尔巴尔达",
+     "desc": "《绵羊侦探团》导演、全球卖座动画导演凯尔巴尔达亲口分享创作经历与幕后秘密。",
+     "lines": [
+      [
+       "时间",
+       "11 月 14 日〈六〉19:30（60 分钟，《绵羊侦探团》放映结束后）"
+      ],
+      [
+       "地点",
+       "台北信义威秀影城 10 厅"
+      ],
+      [
+       "参加方式",
+       "须购票观影入场；映后讲堂视现场情况安排候补排队入场，额满为止。"
+      ]
+     ],
+     "dates": [
+      "2026-11-14"
+     ],
+     "hall": "hall-10",
+     "start": "19:30"
+    },
+    {
+     "id": "master-mitani",
+     "kind": "masters",
+     "title": "大师讲堂：三谷幸喜",
+     "desc": "日本国民喜剧大师三谷幸喜，谈《笑之大学》与他的编剧创作。",
+     "lines": [
+      [
+       "时间",
+       "11 月 16 日〈一〉16:30（60 分钟，《笑之大学》放映结束后）"
+      ],
+      [
+       "地点",
+       "MUVIE CINEMAS TITAN SCREEN"
+      ],
+      [
+       "参加方式",
+       "须购票观影入场；映后讲堂视现场情况安排候补排队入场，额满为止。"
+      ]
+     ],
+     "dates": [
+      "2026-11-16"
+     ],
+     "hall": "titan",
+     "start": "16:30"
+    },
+    {
+     "id": "master-aronofsky",
+     "kind": "masters",
+     "title": "大师讲堂：戴伦艾洛诺夫斯基",
+     "desc": "《黑天鹅》导演戴伦艾洛诺夫斯基亲临金马，分享创作历程。",
+     "lines": [
+      [
+       "时间",
+       "11 月 16 日〈一〉20:00（60 分钟，《黑天鹅》放映结束后）"
+      ],
+      [
+       "地点",
+       "MUVIE CINEMAS TITAN SCREEN"
+      ],
+      [
+       "参加方式",
+       "须购票观影入场；映后讲堂视现场情况安排候补排队入场，额满为止。"
+      ]
+     ],
+     "dates": [
+      "2026-11-16"
+     ],
+     "hall": "titan",
+     "start": "20:00"
+    },
+    {
+     "id": "master-bong",
+     "kind": "masters",
+     "title": "大师讲堂：奉俊昊",
+     "desc": "韩国奥斯卡大导奉俊昊，在《骇人怪物》放映后现身讲堂。",
+     "lines": [
+      [
+       "时间",
+       "11 月 22 日〈日〉12:30（60 分钟，《骇人怪物》放映结束后）"
+      ],
+      [
+       "地点",
+       "MUVIE CINEMAS TITAN SCREEN"
+      ],
+      [
+       "参加方式",
+       "须购票观影入场；映后讲堂视现场情况安排候补排队入场，额满为止。"
+      ]
+     ],
+     "dates": [
+      "2026-11-22"
+     ],
+     "hall": "titan",
+     "start": "12:30"
+    },
+    {
+     "id": "imamura-tsao",
+     "kind": "imamura",
+     "title": "今村昌平讲堂：曹仕翰",
+     "desc": "日韩台导演齐聚金马论导演，说他们如何从今村昌平的电影中汲取养分，灌溉至个人作品里。",
+     "lines": [
+      [
+       "时间",
+       "11 月 12 日〈四〉20:40（40 分钟，《猪与军舰》放映结束后）"
+      ],
+      [
+       "地点",
+       "台北信义威秀影城 11 厅"
+      ],
+      [
+       "参加方式",
+       "须购票观影入场；映后讲堂视现场情况安排候补排队入场，额满为止。"
+      ]
+     ],
+     "dates": [
+      "2026-11-12"
+     ],
+     "hall": "hall-11",
+     "start": "20:40"
+    },
+    {
+     "id": "imamura-tengan",
+     "kind": "imamura",
+     "title": "今村昌平讲堂：天愿大介",
+     "desc": "导演天愿大介谈今村昌平。",
+     "lines": [
+      [
+       "时间",
+       "11 月 14 日〈六〉14:40（60 分钟，《黑雨》放映结束后）"
+      ],
+      [
+       "地点",
+       "台北信义威秀影城 12 厅"
+      ],
+      [
+       "参加方式",
+       "须购票观影入场；映后讲堂视现场情况安排候补排队入场，额满为止。"
+      ]
+     ],
+     "dates": [
+      "2026-11-14"
+     ],
+     "hall": "hall-12",
+     "start": "14:40"
+    },
+    {
+     "id": "imamura-nishikawa",
+     "kind": "imamura",
+     "title": "今村昌平讲堂：西川美和",
+     "desc": "导演西川美和谈今村昌平。",
+     "lines": [
+      [
+       "时间",
+       "11 月 15 日〈日〉19:10（40 分钟，《我要复仇》放映结束后）"
+      ],
+      [
+       "地点",
+       "MUVIE CINEMAS TITAN SCREEN"
+      ],
+      [
+       "参加方式",
+       "须购票观影入场；映后讲堂视现场情况安排候补排队入场，额满为止。"
+      ]
+     ],
+     "dates": [
+      "2026-11-15"
+     ],
+     "hall": "titan",
+     "start": "19:10"
+    },
+    {
+     "id": "imamura-bong",
+     "kind": "imamura",
+     "title": "今村昌平讲堂：奉俊昊",
+     "desc": "导演奉俊昊谈今村昌平。",
+     "lines": [
+      [
+       "时间",
+       "11 月 21 日〈六〉21:00（40 分钟，《赤色杀意》放映结束后）"
+      ],
+      [
+       "地点",
+       "台北信义威秀影城 11 厅"
+      ],
+      [
+       "参加方式",
+       "须购票观影入场；映后讲堂视现场情况安排候补排队入场，额满为止。"
+      ]
+     ],
+     "dates": [
+      "2026-11-21"
+     ],
+     "hall": "hall-11",
+     "start": "21:00"
+    },
+    {
+     "id": "salon-berlinale",
+     "kind": "salon",
+     "title": "电影沙龙：金马 × 柏林新世代｜电影如何与年轻观众相遇？",
+     "desc": "柏林影展新世代单元在寻找什么样的影片？如何理解儿童与青少年的观影经验，又是什么让一部电影真正与年轻观众建立关系？总监塞巴斯蒂安马克特以本届「金马 × 柏林新世代」选片为例，分享策展思考与选片经验。",
+     "lines": [
+      [
+       "时间",
+       "11 月 08 日〈日〉16:00 ─ 17:30"
+      ],
+      [
+       "讲者",
+       "塞巴斯蒂安马克特（Sebastian Markt）｜柏林影展新世代单元总监"
+      ],
+      [
+       "地点",
+       "台北信义威秀影城 15 厅"
+      ],
+      [
+       "参加方式",
+       "10 月 27 日〈二〉中午 12:00 起于金马官网「年度活动」页面报名，或于活动当日现场候补入场；座位有限，额满为止。"
+      ]
+     ],
+     "dates": [
+      "2026-11-08"
+     ],
+     "free": true,
+     "hall": "hall-15",
+     "start": "16:00"
+    },
+    {
+     "id": "salon-netpac",
+     "kind": "salon",
+     "title": "电影沙龙：金马 × 奈派克｜亚洲电影新锐面对面（A／B／C）",
+     "desc": "亚洲影坛新秀齐聚金马武林：漫漫创作路、层层闯关卡，化常规类型为功法秘笈，努力走出自己的叙事。三场讲座邀请入选奈派克奖各国好手，共享心法所学，带领观众回望创作记忆的酸甘甜。",
+     "lines": [
+      [
+       "时间",
+       "A：11 月 17 日〈二〉16:30 ─ 17:30；B：11 月 18 日〈三〉15:00 ─ 16:00；C：11 月 18 日〈三〉16:30 ─ 17:30"
+      ],
+      [
+       "地点",
+       "台北信义威秀影城 15 厅"
+      ],
+      [
+       "参加方式",
+       "10 月 27 日〈二〉中午 12:00 起于金马官网「年度活动」页面报名，或于活动当日现场候补入场；座位有限，额满为止。"
+      ]
+     ],
+     "dates": [
+      "2026-11-17",
+      "2026-11-18"
+     ],
+     "free": true,
+     "hall": "hall-15",
+     "start": "16:30"
+    },
+    {
+     "id": "salon-curators",
+     "kind": "salon",
+     "title": "电影沙龙：电影如何成为我们｜策展人的来访",
+     "desc": "历届金马策展人重返影展现场，从各自选回的一部电影谈起，分享当年如何选片、又曾如何想像观众，也回望那些改变策展人与影迷观看方向的时刻。",
+     "lines": [
+      [
+       "时间",
+       "11 月 15 日〈日〉15:00 ─ 16:30"
+      ],
+      [
+       "讲者",
+       "游惠贞、王耿瑜、刘蔚然（历届策展人）"
+      ],
+      [
+       "地点",
+       "台北信义威秀影城 15 厅"
+      ],
+      [
+       "参加方式",
+       "10 月 27 日〈二〉中午 12:00 起于金马官网「年度活动」页面报名，或于活动当日现场候补入场；座位有限，额满为止。"
+      ]
+     ],
+     "dates": [
+      "2026-11-15"
+     ],
+     "free": true,
+     "hall": "hall-15",
+     "start": "15:00"
+    },
+    {
+     "id": "forum",
+     "kind": "forum",
+     "title": "金马电影论坛",
+     "desc": "本届金马奖入围影人齐聚，携手回溯电影诞生的旅程，畅谈创意与现实的碰撞取舍，幕前幕后如何汇聚心力，将最初的一念灵光化为银幕上的万千光景。",
+     "lines": [
+      [
+       "时间",
+       "11 月 20 日〈五〉15:00 ─ 17:00"
+      ],
+      [
+       "地点",
+       "台北文创大楼 14 楼文创会所（台北市菸厂路 88 号）"
+      ],
+      [
+       "参加方式",
+       "11 月 03 日〈二〉13:00 起于金马官网报名。"
+      ]
+     ],
+     "dates": [
+      "2026-11-20"
+     ]
+    },
+    {
+     "id": "masterclass",
+     "kind": "forum",
+     "title": "金马电影大师课｜工作坊",
+     "desc": "邀集享誉国际的影坛巨擘亲临台湾，传授淬炼多年的创作哲学与实务经验，将变局与限制转化为叙事底蕴，让真挚动人的故事跨越藩篱，与世界共振回响。",
+     "lines": [
+      [
+       "时间",
+       "11 月 14 日〈六〉─ 11 月 21 日〈六〉"
+      ],
+      [
+       "地点",
+       "台北文创大楼 14 楼文创会所（台北市菸厂路 88 号）"
+      ],
+      [
+       "参加方式",
+       "10 月 14 日〈三〉13:00 起于金马官网报名。"
+      ]
+     ],
+     "dates": [
+      "2026-11-14",
+      "2026-11-21"
+     ]
+    },
+    {
+     "id": "academy",
+     "kind": "academy",
+     "title": "金马电影学院 作品放映暨结业典礼（含新世代及奈派克颁奖典礼）",
+     "desc": "九位来自不同文化背景与创作风格的华语创作者，藉由为期 79 天的集体创作拍摄短片，激发更大的创作能量与视野，欢迎见证成果。",
+     "lines": [
+      [
+       "时间",
+       "11 月 18 日〈三〉19:00 ─ 20:35（95 分钟）"
+      ],
+      [
+       "讲者",
+       "导师：刘国瑞；学员：潘敏逸、谢家忻、朱临惟、佘彦霆、李梦飞、游智杰、毋必成、吉米、林育嫺"
+      ],
+      [
+       "地点",
+       "台北信义威秀影城 12 厅"
+      ],
+      [
+       "参加方式",
+       "凭票入场，放映当日中午 12:00 起于信义威秀金马服务台开放索票，索完为止。"
+      ]
+     ],
+     "dates": [
+      "2026-11-18"
+     ],
+     "free": true,
+     "hall": "hall-12",
+     "start": "19:00"
+    },
+    {
+     "id": "justice",
+     "kind": "justice",
+     "title": "金马 × 司法影展「罪与罚之外」",
+     "desc": "从个人的选择到社会与国家的难题，透过电影打开司法的不同面向。台北场座谈后，巡回台中及高雄，并举办映后讲堂，邀请观众与法官一起交换观点、交流思辨。单元影片见本专题「罪与罚之外」。",
+     "lines": [
+      [
+       "时间",
+       "台北场：11 月 07 日〈六〉─ 11 月 10 日〈二〉；中南部巡回：11 月 14 日〈六〉─ 11 月 15 日〈日〉"
+      ],
+      [
+       "地点",
+       "台北信义威秀影城；台中 iFG 远雄广场威秀影城（台中市东区复兴路四段 186 号 4F）；高雄大远百威秀影城（高雄市苓雅区三多四路 21 号 13F）"
+      ],
+      [
+       "备注",
+       "司法影展巡回相关资讯，请见司法影展官方网站及 Facebook 粉丝专页。"
+      ]
+     ],
+     "dates": [
+      "2026-11-07",
+      "2026-11-15"
+     ]
+    },
+    {
+     "id": "teen-guide",
+     "kind": "youth",
+     "title": "青少年选片指南（金马 × 富邦文教基金会）",
+     "desc": "金马影展与富邦文教基金会携手推出青少年选片指南，一起认识片单、找到想看的电影；并新增新世代青春观点奖与新世代教育推广奖，由青少年及教育工作者分别评选，获奖作品也有机会延伸至校园推广。",
+     "lines": [
+      [
+       "时间",
+       "10 月 24 日〈六〉13:00 ─ 15:00"
+      ],
+      [
+       "地点",
+       "富邦文教基金会（台北市铜山街 13 号 B1）"
+      ],
+      [
+       "参加方式",
+       "即日起至 10 月 21 日〈三〉于金马官网「年度活动」页面报名，额满为止。"
+      ]
+     ],
+     "dates": [
+      "2026-10-24"
+     ]
+    },
+    {
+     "id": "new-current",
+     "kind": "youth",
+     "title": "影迷新世代",
+     "desc": "金马影展这么多电影，从哪一部开始？「影迷新世代」特别为年轻影迷精选推荐作品，可能贴近友情、家庭、身体与成长，也可能通往陌生的生活、文化与电影形式，提供另一个观看影展的位置。推荐影片见手册「靑少年」标记及官网。",
+     "lines": [
+      [
+       "备注",
+       "推荐片单请见影展专刊 P.276 或官网。"
+      ]
+     ],
+     "dates": []
+    },
+    {
+     "id": "vote",
+     "kind": "vote",
+     "title": "金马影展观众票选",
+     "desc": "看完电影后扫描 QR Code 为电影评分（1–5 分，5 分最高），就有机会抽中「金马礼袋」，一次带走五样金马联名礼品。非 2025 至 2026 年之新片不列入票选计分，仅参加抽奖；11 月 21 日至 22 日之场次仅列入票选计分，不参加抽奖。11 月 06 日至 15 日场次另有机会抽「金马 63 颁奖典礼三楼观众席入场券」共 100 张；影展期间额外抽出 Readmoo mooInk Chill 彩色电子书阅读器金马 63 联名纪念款一名。",
+     "lines": [
+      [
+       "时间",
+       "11 月 06 日〈五〉─ 11 月 22 日〈日〉；结果与得奖名单自 11 月 09 日〈一〉起每日公布"
+      ],
+      [
+       "地点",
+       "信义威秀金马服务台（12 厅前）；领奖时间为每日首场电影放映前 30 分钟起至末场开演后 20 分钟止"
+      ]
+     ],
+     "dates": [
+      "2026-11-06",
+      "2026-11-22"
+     ]
+    },
+    {
+     "id": "vote-audience",
+     "kind": "vote",
+     "title": "观众票选最佳影片：现场票选活动（花莲、新竹、高雄）",
+     "desc": "入选者需连续两天完整观看五部「第 63 届金马奖入围最佳剧情片」并完成投票；完成投票后各场地现场抽出「物外 YSTUDIO 联名风格透明钢珠笔及工艺纹连结和纸」一名、「金马 63 颁奖典礼三楼观众席入场券」三名。",
+     "lines": [
+      [
+       "时间",
+       "11 月 07 日〈六〉─ 11 月 08 日〈日〉"
+      ],
+      [
+       "地点",
+       "花莲铁道电影院、新竹市影像博物馆、高雄内惟艺术中心"
+      ],
+      [
+       "参加方式",
+       "即日起至 10 月 15 日〈四〉止于金马官网「年度活动」页面报名。"
+      ]
+     ],
+     "dates": [
+      "2026-11-07",
+      "2026-11-08"
+     ]
+    },
+    {
+     "id": "ceremony",
+     "kind": "ceremony",
+     "title": "第 63 届金马奖颁奖典礼暨星光大道",
+     "desc": "第 63 届金马奖星光大道与颁奖典礼，由台视频道及 MyVideo 转播。",
+     "lines": [
+      [
+       "时间",
+       "11 月 22 日〈日〉17:00 星光大道；18:30 颁奖典礼"
+      ],
+      [
+       "地点",
+       "台北流行音乐中心"
+      ],
+      [
+       "备注",
+       "台视频道｜MyVideo 转播"
+      ]
+     ],
+     "dates": [
+      "2026-11-22"
+     ]
+    },
+    {
+     "id": "goods",
+     "kind": "goods",
+     "title": "限定周边商品",
+     "desc": "贩售联名气泡水（80 元）、饮料杯袋（280 元）、联名透明冷水瓶（350／450 元）、联名 T-SHIRT、限定款赛博小火箭、麻将外带组、金马影展纪念专刊、金马 63 海报组等；单笔消费满 1,200 元可于集点卡盖章并获全家 Let’s Café 咖啡卡一张（单笔最高可盖 2 点，咖啡卡限领一张且不累赠）。",
+     "lines": [
+      [
+       "时间",
+       "11 月 06 日〈五〉─ 11 月 08 日〈日〉在信义威秀中庭广场；11 月 09 日〈一〉─ 11 月 22 日〈日〉在信义威秀金马服务台"
+      ],
+      [
+       "地点",
+       "信义威秀中庭广场／信义威秀金马服务台（12 厅前）"
+      ]
+     ],
+     "dates": [
+      "2026-11-06",
+      "2026-11-22"
+     ]
+    },
+    {
+     "id": "stamp",
+     "kind": "goods",
+     "title": "江湖集印帖｜集点活动",
+     "desc": "手册即集点卡。完成指定任务（参加选片指南、追踪官方社群、加入 LINE、下载电子专刊、红毯首映 11/07、11/08、11/14、与乐高金马奖座合照、购买周边、市集、论坛、大师讲堂、今村昌平讲堂、电影沙龙、电影学院放映等）即可获得点数：集满 7、9、12 点可兑换不同等级的联名好礼（如联名 FOLK 托特包、金马复古摄影机等，数量有限，换完为止）。",
+     "lines": [
+      [
+       "时间",
+       "兑换时间：11 月 14 日〈六〉─ 11 月 22 日〈日〉14:00"
+      ],
+      [
+       "地点",
+       "信义威秀金马服务台（12 厅前）"
+      ],
+      [
+       "备注",
+       "选片指南、论坛、沙龙、学院放映、大师讲堂、今村昌平讲堂须于入场时集点；未入场、候补映后、入场时未集点者恕不补发。未满 18 岁者不得兑换酒类赠品。"
+      ]
+     ],
+     "dates": [
+      "2026-11-06",
+      "2026-11-22"
+     ]
+    },
+    {
+     "id": "tickets",
+     "kind": "info",
+     "title": "售票资讯",
+     "desc": "网路购票：拓元售票系统 tghff.tixcraft.com（02-7737-2432），须登入金马影展会员帐号；11 月 06 日 00:00 起销售，各场次开演前 30 分钟线上停售。预售优惠 10 月 25 日 13:00 起至 11 月 05 日 23:59。现场购票：11 月 03 日起至信义威秀（12 厅前）影展售票处，或 MUVIE CINEMAS TAIPEI（TITAN 厅）。每笔订单以 8 张为限；影片开演 20 分钟后不再开放入场。",
+     "lines": [
+      [
+       "备注",
+       "全票 280 元（TITAN 320）；学生票 240（TITAN 270）；日场票 200（TITAN 230，限周一至周五 17:59 前开演）；敬老爱心票、青春无敌票 140（TITAN 160）。预售票 210（TITAN 240）；日场预售 170（TITAN 200）。单位：新台币元／张。"
+      ],
+      [
+       "备注",
+       "退票最迟须于开演 3 天前办理，每张酌收 10% 手续费。"
+      ]
+     ],
+     "dates": [
+      "2026-11-06"
+     ]
+    },
+    {
+     "id": "venues",
+     "kind": "info",
+     "title": "影展场馆",
+     "desc": "影展放映于台北信义威秀影城（10、11、12、13、15 厅）与 MUVIE CINEMAS TAIPEI（TITAN 厅）。所有影厅皆有无障碍设施；除特别标示者，所有影片皆为原文发音、中文字幕。影片级数、影人出席、场次及活动异动讯息请以官网及现场公布为准。",
+     "lines": [
+      [
+       "地点",
+       "台北信义威秀影城：台北市松寿路 20 号；MUVIE CINEMAS TAIPEI：台北市松仁路 58 号 10 楼（远百信义 A13）"
+      ],
+      [
+       "备注",
+       "影展售票处电话：信义威秀（12 厅前）0905-476-119；TITAN 0905-476-307"
+      ]
+     ],
+     "dates": []
+    },
+    {
+     "id": "industry",
+     "kind": "industry",
+     "title": "业界限定场",
+     "desc": "以下场次仅限媒体与业界人士（Press & Industry）观赏，不对公众售票，因此未列入排片表。",
+     "lines": [
+      [
+       "场次",
+       "11/17 11:30 13厅｜泡泡糖女孩"
+      ],
+      [
+       "场次",
+       "11/17 13:40 13厅｜我们不是陌生人"
+      ],
+      [
+       "场次",
+       "11/17 16:50 13厅｜狂忘警探"
+      ],
+      [
+       "场次",
+       "11/17 21:00 11厅｜谎言生活"
+      ],
+      [
+       "场次",
+       "11/17 21:30 MUVIE TITAN｜终极杀镇"
+      ],
+      [
+       "场次",
+       "11/18 11:00 13厅｜谎言生活"
+      ],
+      [
+       "场次",
+       "11/18 21:00 MUVIE TITAN｜坂本日常"
+      ],
+      [
+       "场次",
+       "11/18 21:10 11厅｜顺风顺水"
+      ],
+      [
+       "场次",
+       "11/19 11:10 13厅｜日光"
+      ],
+      [
+       "场次",
+       "11/19 16:20 13厅｜善男信女"
+      ],
+      [
+       "场次",
+       "11/19 21:00 MUVIE TITAN｜绿洲合唱团：莫带愤怒回首"
+      ],
+      [
+       "场次",
+       "11/19 21:00 11厅｜女孩"
+      ]
+     ],
+     "dates": [
+      "2026-11-17",
+      "2026-11-19"
+     ]
+    }
+   ],
    "cardCover": ""
   }
  ],
