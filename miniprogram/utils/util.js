@@ -23,7 +23,7 @@ const nextShowOf = (f, shows) => shows.filter(s => s.id === f.id && showDate(s).
 const filmOrder = shows => (a, b) => { const na = nextShowOf(a, shows), nb = nextShowOf(b, shows); if (!!na !== !!nb) return na ? -1 : 1; if (na && nb) return showDate(na) - showDate(nb); return relTime(b) - relTime(a); };
 // 专题是否为影展类（影展在前，院线在后）
 const isFest = p => !!p && /影展|festival/i.test(p.kind || '');
-const langSub = f => I.tr([f.language, f.subtitles].filter(Boolean).join(' ｜ '));
+const langSub = f => I.tr(f.langTag || [f.language, f.subtitles].filter(Boolean).join(' ｜ '));
 
 function index(data) {
   const F = {}; const ORD = {}; data.films.forEach((f, i) => { F[f.id] = f; ORD[f.id] = i; });
