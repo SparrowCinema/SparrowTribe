@@ -51,7 +51,7 @@ Page({
     const off = Math.round((new Date(d1.getFullYear(), d1.getMonth(), d1.getDate()) - t0) / 864e5);
     const myToday = upc.filter(s => s.d === nkey)
       .sort((a, b) => U.toMin(a.t) - U.toMin(b.t))
-      .map(s => { const vw = U.showView(s, idx, data, picked); return { key: vw.key, id: s.id, t: vw.t, end: vw.end, endTxt: I.isEn() ? 'ends ' + vw.end : vw.end + ' 散场', cn: vw.cn, venue: vw.venue, hall: vw.hall, tone: vw.tone }; });
+      .map(s => { const vw = U.showView(s, idx, data, picked); return { key: vw.key, id: s.id, t: vw.t, end: vw.end, endTxt: I.isEn() ? 'ends ' + vw.end : vw.end + ' 散场', cn: vw.cn, venue: vw.venue, hall: vw.hall, tone: vw.tone, color: vw.color, poster: vw.poster, dir: vw.dir, minTxt: vw.minTxt, version: vw.version }; });
     const allDays = [...new Set(data.shows.map(s => s.d))];
     const ds = allDays.filter(d => list.some(s => s.d === d));
     let day = this.data.day;
@@ -61,7 +61,7 @@ Page({
     }
     let lastM = '';
     const days = ds.map(d => {
-      const [m, dd] = d.split('/'); const mon = m !== lastM ? t(m + '月') : ''; lastM = m;
+      const [m, dd] = d.split('/'); const mon = (m !== lastM || d === day) ? t(m + '月') : ''; lastM = m;
       return { d, mon, dd, wk: U.wk(d), n: list.filter(s => s.d === d).length, mine: data.shows.some(s => s.d === d && picked.has(U.keyOf(s))) };
     });
 
@@ -110,6 +110,7 @@ Page({
     const venueGroups=data.venues.filter(v=>dl.some(s=>s.v===v.id)).map(v=>({id:v.id,name:vShort(v),halls:v.halls.filter(h=>dl.some(s=>s.v===v.id&&s.h===h.id)).map(h=>({id:h.id,name:h.short||h.name,rows:dl.filter(s=>s.v===v.id&&s.h===h.id).map(s=>{const r=U.showView(s,idx,data,picked);r.mpa=idx.F[s.id].mpa?.rating||'';return r;})}))}));
     this.setData({
       venueGroups,day, days, cols, ticks, H, nowLine, progs, venues, myToday, cities, cityIndex: Math.max(0,cities.findIndex(c=>c.id===city)), venueName: vf==='all'?t('全部影院'):vShort(idx.VN[vf]), programmeName: pf==='all'?t('全部专题'):idx.PG[pf].name, cityName:city==='all'?t('全部城市'):t(city),
+      myTodayDay: nkey.replace('/', '/') + ' ' + U.wk(nkey), myTodayRange: myToday.length ? myToday[0].t + ' – ' + myToday[myToday.length - 1].end : '',
       todayHead: t(off <= 0 ? '今日我的排片' : off === 1 ? '明日我的排片' : '近期我的排片'),
       myTodayTitle: t(nkey.replace('/', '月') + '日') + ' ' + U.wk(nkey) + ' · ' + t(off <= 0 ? '接下来 ' + myToday.length + ' 场' : off === 1 ? myToday.length + ' 场' : off + ' 天后 · ' + myToday.length + ' 场'),
       todayToggle: t(this.data.todayOpen ? '收起' : '还有 ' + Math.max(0, myToday.length - 1) + ' 场 · 展开全部'),
