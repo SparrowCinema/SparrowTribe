@@ -95,9 +95,9 @@
 
 </style>
 <title>麻雀观影护照</title>
-<link rel="manifest" href="manifest.webmanifest">
-<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
-<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest?v=3">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png?v=3">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png?v=3">
 <meta name="theme-color" content="#f8f2e6" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#211b15" media="(prefers-color-scheme: dark)">
 <meta name="mobile-web-app-capable" content="yes">
@@ -1851,7 +1851,7 @@ function installPage(){
   }
   main.innerHTML='<section class="view gut in-view"><div class="page-heading"><div><small>ADD TO HOME SCREEN</small><h2 class="sec">添加到手机</h2></div><button class="text-button" data-tab="my">返回我的</button></div>'+
   (ENV.standalone?'<div class="in-done"><b>✓ 已经在 App 模式中打开</b><p>以后从桌面的「观影护照」图标进入即可。</p></div>':
-  '<div class="in-hero"><img src="icons/icon-192.png" alt="" width="64" height="64"><div><b>把「麻雀观影护照」放到手机桌面</b><p>全屏打开，没有地址栏，看排片就像用 App；个人排片也会一直保存在这台手机上。</p></div></div>')+
+  '<div class="in-hero"><img src="icons/icon-192.png?v=3" alt="" width="64" height="64"><div><b>把「麻雀观影护照」放到手机桌面</b><p>全屏打开，没有地址栏，看排片就像用 App；个人排片也会一直保存在这台手机上。</p></div></div>')+
   '<div class="in-tabs" role="tablist">'+T.map(([k,n])=>'<button role="tab" aria-selected="'+(k===tab)+'" data-itab="'+k+'">'+n+((k==="wechat"&&ENV.wechat)||(k==="ios"&&ENV.ios&&!ENV.wechat)||(k==="android"&&ENV.android&&!ENV.wechat)?'<i>当前</i>':'')+'</button>').join("")+'</div>'+
   '<div class="in-panel">'+body+'</div><p class="local-note">添加到桌面后，排片保存在桌面版自己的存储里，可能和浏览器里的不互通。需要搬过去时，用「导出与分享」里的日程链接导入。</p></section>';
 }
