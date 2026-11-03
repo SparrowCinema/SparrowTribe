@@ -2162,18 +2162,25 @@ let pngBusy=false;
 async function exportPNG(){const list=currentExport;if(!list.length||pngBusy)return;pngBusy=true;toast('正在生成排片长图…');
   try{try{await Promise.all(['900 64px "Noto Serif SC"','700 30px "Noto Sans SC"','500 24px "IBM Plex Mono"'].map(f=>document.fonts.load(f,'麻雀映画部落排片0123')));}catch(e){}
   const SERIF='"Noto Serif SC","Songti SC",serif',SANS='"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif',MONO='"IBM Plex Mono",Menlo,monospace';
-  const W=1080,P=64,ROW=196,GAP=52,DAYH=104,HEAD=360,STATS=150,FOOT=420;
+  const W=1080,P=64,ROW=196,GAP=52,DAYH=104,STATS=150,FOOT=420;
   const groups=byDay(list),imgs={};const marks=await Promise.all(['brand/mark-movies.png','brand/mark-tribe.png'].map(loadImg));await Promise.all([...new Set(list.map(s=>s.id))].map(async id=>{imgs[id]=await loadImg(pst(id));}));
+  const pids=[...new Set(list.map(x=>x.p))].filter(id=>PG[id]),mc=document.createElement('canvas').getContext('2d');
+  let TS=pids.length===1?92:68,titleLines=[];const fitT=()=>{mc.font='900 '+TS+'px '+SERIF;const mw=W-2*P;titleLines=[];
+    if(pids.length<=1)titleLines=wrapLines(mc,pids.length?PG[pids[0]].name:kickT,mw);
+    else{const show=pids.length>3?pids.slice(0,2):pids;show.forEach(id=>{const ls=wrapLines(mc,PG[id].name,mw);titleLines.push(ls.length>1?ls[0].replace(/\s+$/,'')+'…':ls[0]);});if(pids.length>3)titleLines.push(LANG==='en'?'+ '+(pids.length-2)+' more':'等 '+pids.length+' 个专题');}};
+  const kickT=LANG==='en'?'Screening plan':'观影日程';fitT();while(titleLines.length>3&&TS>52){TS-=6;fitT();}if(pids.length>1){TS=60;fitT();while(titleLines.some(l=>l.endsWith('…'))&&TS>44){TS-=4;fitT();}}
+  const TLH=Math.round(TS*1.2),TY0=152+14+TS,HEAD=TY0+(titleLines.length-1)*TLH+64;
   const H=HEAD+STATS+groups.reduce((n,[,it])=>n+DAYH+it.length*ROW+(it.length-1)*GAP+24,0)+FOOT;
   const cv=document.createElement('canvas'),scale=1;cv.width=W*scale;cv.height=H*scale;const c=cv.getContext('2d');c.scale(scale,scale);c.textBaseline='alphabetic';
   c.fillStyle='#efe6d4';c.fillRect(0,0,W,H);
-  // header band
-  c.fillStyle='#8e2a22';c.fillRect(0,0,W,HEAD);c.fillStyle='rgba(255,255,255,.06)';for(let x=-HEAD;x<W;x+=46){c.beginPath();c.moveTo(x,HEAD);c.lineTo(x+HEAD*.47,0);c.lineTo(x+HEAD*.47+2,0);c.lineTo(x+2,HEAD);c.fill();}
-  c.fillStyle='#fffaf0';c.font='italic 900 68px '+SERIF;c.fillText('麻雀观影护照',P,140);
-  marks.forEach((im,i)=>{const R=62,cx=W-P-R-(1-i)*(R*2-16),cy=118;c.fillStyle='#fffaf0';c.beginPath();c.arc(cx,cy,R,0,Math.PI*2);c.fill();c.strokeStyle='#8e2a22';c.lineWidth=4;c.stroke();if(im){const s=Math.min((R*1.5)/im.width,(R*1.5)/im.height),w=im.width*s,h=im.height*s;c.drawImage(im,cx-w/2,cy-h/2,w,h);}});
-  c.font='500 22px '+MONO;c.globalAlpha=.85;c.fillText('SPARROW FILM PASSPORT · 麻雀映画 × 麻雀部落',P,196);c.globalAlpha=1;
-  c.fillStyle='#fffaf0';c.fillRect(P,240,56,3);c.font='700 46px '+SANS;c.fillText(location.hash.startsWith('#share=')?'观影日程':'我的观影日程',P,310);
-  if(!location.hash.startsWith('#share=')&&planFilt!=='all'&&PG[planFilt]&&list.every(s=>s.p===planFilt)){c.globalAlpha=.85;c.fillStyle='#fffaf0';c.font='400 24px '+SANS;c.fillText('专题：'+PG[planFilt].name,P,346);c.globalAlpha=1;}
+  // header band：专题名最大，品牌与 Logo 缩小放角落
+    c.fillStyle='#8e2a22';c.fillRect(0,0,W,HEAD);c.fillStyle='rgba(255,255,255,.06)';for(let x=-HEAD;x<W;x+=46){c.beginPath();c.moveTo(x,HEAD);c.lineTo(x+HEAD*.47,0);c.lineTo(x+HEAD*.47+2,0);c.lineTo(x+2,HEAD);c.fill();}
+  const R0=24;marks.forEach((im,i)=>{const cx=P+R0+i*(R0*2-10),cy=70;c.fillStyle='#fffaf0';c.beginPath();c.arc(cx,cy,R0,0,Math.PI*2);c.fill();c.strokeStyle='#8e2a22';c.lineWidth=3;c.stroke();if(im){const k=Math.min((R0*1.5)/im.width,(R0*1.5)/im.height),w=im.width*k,h=im.height*k;c.drawImage(im,cx-w/2,cy-h/2,w,h);}});
+  const bx=P+R0*3-10+30;c.fillStyle='#fffaf0';c.font='italic 900 26px '+SERIF;c.fillText('麻雀观影护照',bx,78);
+  if(LANG!=='en'){c.globalAlpha=.7;c.font='500 17px '+MONO;c.textAlign='right';c.fillText('SPARROW FILM PASSPORT',W-P,76);c.textAlign='left';c.globalAlpha=1;}
+  const kick=LANG==='en'?(location.hash.startsWith('#share=')?'Screening plan':'My screening plan'):(location.hash.startsWith('#share=')?'观影日程':'我的观影日程');
+  c.fillStyle='#fffaf0';c.fillRect(P,142,48,3);c.globalAlpha=.9;c.font='600 26px '+SANS;c.fillText(kick,P+64,152);c.globalAlpha=1;
+  c.fillStyle='#fffaf0';c.font='900 '+TS+'px '+SERIF;titleLines.forEach((l,i)=>c.fillText(l,P,TY0+i*TLH));
   // stats
   const st=planStats(list);let sx=P;[[st.n,'场放映'],[st.days,'天行程'],[st.hm,'银幕时长']].forEach(([v,l])=>{c.fillStyle='#2b2117';c.font='600 56px '+MONO;c.fillText(String(v),sx,HEAD+92);const w=c.measureText(String(v)).width;c.fillStyle='#7a6a55';c.font='400 24px '+SANS;c.fillText(l,sx+w+10,HEAD+92);sx+=Math.max(250,w+150);});
   c.fillStyle='#d8cbb1';c.fillRect(P,HEAD+STATS-24,W-2*P,2);
