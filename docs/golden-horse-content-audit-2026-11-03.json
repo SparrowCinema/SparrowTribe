@@ -1,0 +1,1902 @@
+{
+ "checked": "2026-11-03",
+ "scope": 156,
+ "sources": [
+  {
+   "id": "gh63-001",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4430?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4430?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-002",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4444?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4444?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gr26-047",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4410?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4410?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-004",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4414?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4414?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-005",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4417?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4417?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-006",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4420?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4420?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gr26-011",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4424?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4424?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-008",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4427?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4427?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gr26-041",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4432?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4432?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-010",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4436?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4436?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-011",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4441?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4441?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-012",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4408?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4408?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-013",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4412?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4412?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-014",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4426?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4426?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-015",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4438?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4438?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gr26-046",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4464?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4464?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-017",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4480?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4480?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-018",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4499?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4499?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-019",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4508?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4508?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-020",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4516?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4516?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gr26-064",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4521?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4521?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gr26-042",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4530?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4530?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-023",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4547?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4547?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-024",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4551?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4551?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-025",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4552?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4552?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-026",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4554?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4554?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-027",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4555?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4555?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-028",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4556?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4556?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-029",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4557?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4557?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gr26-036",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4562?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4562?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-031",
+   "part": "Fruit",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4565?search_year=2026",
+   "fields": [
+    "director profile"
+   ],
+   "method": "Factual compact paraphrase; collective credits preserved."
+  },
+  {
+   "id": "gh63-031",
+   "part": "She Said",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4569?search_year=2026",
+   "fields": [
+    "director profile"
+   ],
+   "method": "Factual compact paraphrase; collective credits preserved."
+  },
+  {
+   "id": "gh63-031",
+   "part": "The Last Jiangshi",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4571?search_year=2026",
+   "fields": [
+    "director profile"
+   ],
+   "method": "Factual compact paraphrase; collective credits preserved."
+  },
+  {
+   "id": "gh63-032",
+   "part": "Three Little Pigs",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4577?search_year=2026",
+   "fields": [
+    "director profile"
+   ],
+   "method": "Factual compact paraphrase; collective credits preserved."
+  },
+  {
+   "id": "gh63-032",
+   "part": "Her Slope",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4578?search_year=2026",
+   "fields": [
+    "director profile"
+   ],
+   "method": "Factual compact paraphrase; collective credits preserved."
+  },
+  {
+   "id": "gh63-033",
+   "part": "Amateur in the Moon",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4540?search_year=2026",
+   "fields": [
+    "director profile"
+   ],
+   "method": "Factual compact paraphrase; collective credits preserved."
+  },
+  {
+   "id": "gh63-033",
+   "part": "Myanmar Girls",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4502?search_year=2026",
+   "fields": [
+    "director profile"
+   ],
+   "method": "Factual compact paraphrase; collective credits preserved."
+  },
+  {
+   "id": "gh63-033",
+   "part": "The Paperflower Still Blooms",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4550?search_year=2026",
+   "fields": [
+    "director profile"
+   ],
+   "method": "Factual compact paraphrase; collective credits preserved."
+  },
+  {
+   "id": "gh63-034",
+   "part": "A Farewell to Julieta",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4553?search_year=2026",
+   "fields": [
+    "director profile"
+   ],
+   "method": "Factual compact paraphrase; collective credits preserved."
+  },
+  {
+   "id": "gh63-034",
+   "part": "Night Journey",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4559?search_year=2026",
+   "fields": [
+    "director profile"
+   ],
+   "method": "Factual compact paraphrase; collective credits preserved."
+  },
+  {
+   "id": "gh63-035",
+   "part": "You Are Not Part of the Cake",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4558?search_year=2026",
+   "fields": [
+    "director profile"
+   ],
+   "method": "Factual compact paraphrase; collective credits preserved."
+  },
+  {
+   "id": "gh63-035",
+   "part": "Bowknot",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4561?search_year=2026",
+   "fields": [
+    "director profile"
+   ],
+   "method": "Factual compact paraphrase; collective credits preserved."
+  },
+  {
+   "id": "gh63-035",
+   "part": "Stacy",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4564?search_year=2026",
+   "fields": [
+    "director profile"
+   ],
+   "method": "Factual compact paraphrase; collective credits preserved."
+  },
+  {
+   "id": "gh63-035",
+   "part": "Deep End",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4566?search_year=2026",
+   "fields": [
+    "director profile"
+   ],
+   "method": "Factual compact paraphrase; collective credits preserved."
+  },
+  {
+   "id": "gh63-035",
+   "part": "The Buried Baby",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4567?search_year=2026",
+   "fields": [
+    "director profile"
+   ],
+   "method": "Factual compact paraphrase; collective credits preserved."
+  },
+  {
+   "id": "gh63-036",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4496?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4496?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-037",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4534?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4534?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-038",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4543?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4543?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-039",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4445?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4445?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-040",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4451?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4451?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gr26-010",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4455?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4455?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-042",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4460?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4460?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-043",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4466?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4466?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-044",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4470?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4470?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-045",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4478?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4478?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-046",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4484?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4484?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-047",
+   "part": "Piercing Water",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4497?search_year=2026",
+   "fields": [
+    "director profile"
+   ],
+   "method": "Factual compact paraphrase; collective credits preserved."
+  },
+  {
+   "id": "gh63-047",
+   "part": "Myanmar Girls",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4502?search_year=2026",
+   "fields": [
+    "director profile"
+   ],
+   "method": "Factual compact paraphrase; collective credits preserved."
+  },
+  {
+   "id": "gh63-047",
+   "part": "Girl Talk",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4511?search_year=2026",
+   "fields": [
+    "director profile"
+   ],
+   "method": "Factual compact paraphrase; collective credits preserved."
+  },
+  {
+   "id": "gh63-048",
+   "part": "The Nonsense Play",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4514?search_year=2026",
+   "fields": [
+    "director profile"
+   ],
+   "method": "Factual compact paraphrase; collective credits preserved."
+  },
+  {
+   "id": "gh63-048",
+   "part": "A Romantic Death",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4522?search_year=2026",
+   "fields": [
+    "director profile"
+   ],
+   "method": "Factual compact paraphrase; collective credits preserved."
+  },
+  {
+   "id": "gh63-048",
+   "part": "Biggest Thing in the World",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4524?search_year=2026",
+   "fields": [
+    "director profile"
+   ],
+   "method": "Factual compact paraphrase; collective credits preserved."
+  },
+  {
+   "id": "gh63-048",
+   "part": "Quieto",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4536?search_year=2026",
+   "fields": [
+    "director profile"
+   ],
+   "method": "Factual compact paraphrase; collective credits preserved."
+  },
+  {
+   "id": "gh63-049",
+   "part": "Talk to Me",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4542?search_year=2026",
+   "fields": [
+    "director profile"
+   ],
+   "method": "Factual compact paraphrase; collective credits preserved."
+  },
+  {
+   "id": "gh63-049",
+   "part": "The Fading of Morning Light",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4544?search_year=2026",
+   "fields": [
+    "director profile"
+   ],
+   "method": "Factual compact paraphrase; collective credits preserved."
+  },
+  {
+   "id": "gh63-049",
+   "part": "Small Death",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4546?search_year=2026",
+   "fields": [
+    "director profile"
+   ],
+   "method": "Factual compact paraphrase; collective credits preserved."
+  },
+  {
+   "id": "gh63-049",
+   "part": "Searching for Orchids",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4549?search_year=2026",
+   "fields": [
+    "director profile"
+   ],
+   "method": "Factual compact paraphrase; collective credits preserved."
+  },
+  {
+   "id": "gh63-050",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4409?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4409?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-051",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4411?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4411?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-052",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4413?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4413?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-053",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4416?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4416?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-054",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4418?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4418?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-055",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4421?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4421?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gr26-007",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4422?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4422?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-057",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4429?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4429?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-058",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4435?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4435?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gr26-038",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4415?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4415?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-060",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4419?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4419?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-061",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4423?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4423?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-062",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4428?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4428?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-063",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4437?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4437?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gr26-071",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4443?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4443?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-065",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4449?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4449?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-066",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4456?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4456?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-067",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4469?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4469?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-068",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4477?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4477?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-069",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4483?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4483?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-070",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4491?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4491?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-071",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4501?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4501?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gr26-001",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4505?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4505?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-073",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4512?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4512?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-074",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4517?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4517?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-075",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4525?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4525?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-076",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4528?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4528?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-077",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4538?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4538?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-078",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4431?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4431?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-079",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4450?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4450?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-080",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4462?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4462?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gr26-006",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4473?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4473?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-082",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4489?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4489?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-083",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4442?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4442?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-084",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4448?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4448?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-085",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4454?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4454?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-086",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4457?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4457?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-087",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4461?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4461?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-088",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4468?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4468?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-089",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4474?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4474?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-090",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4476?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4476?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-091",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4507?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4507?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-092",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4519?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4519?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-093",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4523?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4523?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-094",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4535?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4535?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-095",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4545?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4545?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-096",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4548?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4548?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-097",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4482?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4482?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-098",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4487?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4487?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-099",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4490?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4490?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-100",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4498?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4498?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-101",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4503?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4503?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-102",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4506?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4506?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-103",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4433?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4433?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-104",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4439?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4439?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-105",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4446?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4446?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-106",
+   "part": "Eeny, Meeny, Miny, Moe!",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4453?search_year=2026",
+   "fields": [
+    "director profile"
+   ],
+   "method": "Factual compact paraphrase; collective credits preserved."
+  },
+  {
+   "id": "gh63-106",
+   "part": "Under the Wave off Little Dragon",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4459?search_year=2026",
+   "fields": [
+    "director profile"
+   ],
+   "method": "Factual compact paraphrase; collective credits preserved."
+  },
+  {
+   "id": "gh63-106",
+   "part": "Riding Time",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4465?search_year=2026",
+   "fields": [
+    "director profile"
+   ],
+   "method": "Factual compact paraphrase; collective credits preserved."
+  },
+  {
+   "id": "gh63-106",
+   "part": "The Snitch",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4472?search_year=2026",
+   "fields": [
+    "director profile"
+   ],
+   "method": "Factual compact paraphrase; collective credits preserved."
+  },
+  {
+   "id": "gh63-106",
+   "part": "Tutti",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4485?search_year=2026",
+   "fields": [
+    "director profile"
+   ],
+   "method": "Factual compact paraphrase; collective credits preserved."
+  },
+  {
+   "id": "gh63-107",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4494?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4494?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-108",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4500?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4500?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-109",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4504?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4504?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-110",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4509?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4509?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-111",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4515?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4515?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-112",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4520?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4520?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-113",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4531?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4531?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-114",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4583?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4583?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-115",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4584?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4584?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-116",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4586?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4586?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-117",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4585?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4585?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-118",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4434?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4434?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gr26-052",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4440?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4440?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-120",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4452?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4452?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-121",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4463?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4463?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-122",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4475?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4475?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-123",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4481?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4481?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-124",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4488?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4488?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-125",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4492?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4492?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gr26-058",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4563?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4563?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-127",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4568?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4568?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-128",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4572?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4572?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-129",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4573?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4573?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-130",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4576?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4576?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-131",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4581?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4581?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-132",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4582?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4582?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-133",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4560?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4560?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-134",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4570?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4570?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-135",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4574?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4574?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-136",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4579?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4579?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-137",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4580?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4580?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-138",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4458?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4458?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-139",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4467?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4467?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-140",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4471?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4471?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-141",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4486?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4486?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-142",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4493?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4493?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-143",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4495?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4495?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-144",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4510?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4510?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-145",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4513?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4513?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-146",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4518?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4518?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-147",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4526?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4526?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-148",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4527?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4527?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-149",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4533?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4533?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-150",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4537?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4537?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-151",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4541?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4541?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-152",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4587?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4587?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-153",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4590?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4590?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-154",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4588?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4588?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-155",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4589?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4589?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  },
+  {
+   "id": "gh63-156",
+   "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4591?search_year=2026",
+   "englishSource": "https://www.goldenhorse.org.tw/film/programme/films/detail/4591?search_year=2026&r=en",
+   "fields": [
+    "identity",
+    "director biography",
+    "individual viewing note"
+   ],
+   "method": "Concise editorial paraphrase of official profile and supplied synopsis; film credits are separately cross-checked against platform metadata."
+  }
+ ]
+}
