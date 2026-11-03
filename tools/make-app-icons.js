@@ -3,23 +3,24 @@
 const { chromium } = require('playwright'); const path = require('path');
 const root = path.join(__dirname, '..');
 // scale：内容缩放（maskable 留出 80% 安全区）；frame：是否画外边框
+const fs = require('fs');
+const AP = fs.readFileSync(path.join(root, 'brand/passport-aperture.svg'), 'utf8').replace(/<svg[^>]*>|<\/svg>/g, '')
+  .replace(/<polyline points="\d+,222[^>]*\/>\n?/g, '')
+  .replace(/<polyline points="160,237[^>]*\/>\n?/g, '').replace(/<polyline points="160,11[^>]*\/>\n?/g, '')                       // 去掉底部细刻度，小尺寸看不清
+  .replace(/stroke="#6f795e"/g, 'stroke="#8f9a77"')
+  .replace(/stroke-width="([0-9.]+)"/g, (m, w) => 'stroke-width="' + ({ 0.8: 2.2, 0.7: 2.2, 1: 2.6, 1.2: 3.2, 1.4: 4.4 }[+w] || w * 2.5) + '"'); // 线条加粗
+// 图标用观影护照封面上的光圈胶片 logo 放大；scale：内容缩放（maskable 留 80% 安全区）；frame：是否画金色外框
 const page = (scale, frame) => `<!doctype html><meta charset=utf8><style>*{margin:0;box-sizing:border-box}
 body{width:1024px;height:1024px;overflow:hidden;position:relative;font-family:"Noto Serif CJK SC","Noto Serif SC",serif;
-background:radial-gradient(120% 120% at 30% 18%,#b13a2f 0%,#8e2a22 46%,#5e1712 100%)}
-.stripe{position:absolute;inset:0;background:repeating-linear-gradient(115deg,rgba(255,235,210,.05) 0 2px,transparent 2px 34px)}
+background:radial-gradient(120% 120% at 30% 14%,#24574b 0%,#173d34 48%,#0d241f 100%)}
+.grid{position:absolute;inset:0;background:linear-gradient(rgba(217,195,143,.05) 1px,transparent 1px) 0 0/32px 32px,linear-gradient(90deg,rgba(217,195,143,.05) 1px,transparent 1px) 0 0/32px 32px}
 .g{position:absolute;inset:0;transform:scale(${scale});transform-origin:50% 50%}
-.frame{position:absolute;inset:54px;border-radius:84px;border:5px solid rgba(232,196,118,.85);display:${frame ? 'block' : 'none'}}
-.frame:after{content:"";position:absolute;inset:14px;border-radius:70px;border:2px solid rgba(232,196,118,.45)}
-.reel{position:absolute;left:50%;top:330px;width:600px;height:600px;margin-left:-300px;margin-top:-300px;border-radius:50%;border:6px solid rgba(232,196,118,.38)}
-.reel i{position:absolute;width:92px;height:92px;border-radius:50%;background:rgba(232,196,118,.26);left:274px;top:274px}
-.reel b{position:absolute;inset:150px;border-radius:50%;border:3px solid rgba(232,196,118,.3)}
-.que{position:absolute;left:0;right:0;top:84px;text-align:center;font-size:470px;font-weight:900;line-height:1;color:#fbf3e2;text-shadow:0 10px 0 rgba(60,12,8,.35),0 0 60px rgba(255,214,140,.18)}
-.sub{position:absolute;left:0;right:0;top:608px;text-align:center;font-size:176px;font-weight:900;letter-spacing:.12em;padding-left:.12em;color:#ecc979}
-.en{position:absolute;left:0;right:0;top:858px;text-align:center;font:600 36px "DejaVu Sans Mono",monospace;letter-spacing:.42em;padding-left:.42em;color:rgba(251,243,226,.7)}
-.perf{position:absolute;left:150px;right:150px;top:806px;height:3px;background:repeating-linear-gradient(90deg,rgba(232,196,118,.7) 0 16px,transparent 16px 30px)}
-</style><div class="stripe"></div><div class="frame"></div>
-<div class="g"><div class="reel"><b></b></div>
-<div class="que">雀</div><div class="sub">观影护照</div><div class="en">FILM PASSPORT</div></div>`;
+.frame{position:absolute;inset:54px;border-radius:84px;border:5px solid rgba(217,195,143,.8);display:${frame ? 'block' : 'none'}}
+.frame:after{content:"";position:absolute;inset:14px;border-radius:70px;border:2px solid rgba(217,195,143,.4)}
+svg{position:absolute;left:62px;top:120px;width:900px;height:731px}
+.sub{position:absolute;left:0;right:0;top:760px;text-align:center;font-size:150px;font-weight:900;letter-spacing:.14em;padding-left:.14em;line-height:1;color:#e6cf97;text-shadow:0 6px 0 rgba(0,0,0,.25)}
+</style><div class="grid"></div><div class="frame"></div>
+<div class="g"><svg viewBox="0 0 320 260" fill="none">${AP}</svg><div class="sub">观影护照</div></div>`;
 (async () => {
   const br = await chromium.launch({ executablePath: process.env.CHROME || undefined }); const pg = await br.newPage({ viewport: { width: 1024, height: 1024 } });
   const shot = async (scale, frame, out, size) => { await pg.setContent(page(scale, frame)); await pg.waitForTimeout(500); const buf = await pg.screenshot({ type: 'png' });
@@ -29,7 +30,7 @@ background:radial-gradient(120% 120% at 30% 18%,#b13a2f 0%,#8e2a22 46%,#5e1712 1
   await shot(1, true, 'icons/icon-192.png', 192);
   await shot(1, false, 'icons/apple-touch-icon.png', 180); // iOS 自己加圆角，不画外边框
   await shot(.8, false, 'icons/maskable-512.png', 512);    // Android 自适应图标：内容在 80% 安全区内
-  await pg.setContent(`<style>*{margin:0}body{width:1024px;height:1024px;background:#8e2a22;display:flex;align-items:center;justify-content:center;font:900 760px "Noto Serif CJK SC",serif;color:#fbf3e2}</style>雀`); await pg.waitForTimeout(300);
+  await pg.setContent(`<style>*{margin:0}body{width:1024px;height:1024px;background:#173d34;display:flex;align-items:center;justify-content:center}svg{width:900px;height:731px}</style><svg viewBox="59 29 202 202" fill="none" style="width:860px;height:860px">${AP}</svg>`); await pg.waitForTimeout(300);
   const b = await pg.screenshot({ type: 'png' }); const p3 = await br.newPage({ viewport: { width: 32, height: 32 } }); await p3.setContent(`<body style="margin:0"><img src="data:image/png;base64,${b.toString('base64')}" style="width:32px;height:32px;display:block">`); await p3.screenshot({ path: path.join(root, 'icons/favicon-32.png') });
   await br.close(); console.log('ok');
 })();
