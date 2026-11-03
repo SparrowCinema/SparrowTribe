@@ -15,6 +15,8 @@ Page({
   onUnload() { this.off1 && this.off1(); this.off2 && this.off2(); this.off3 && this.off3(); },
   onShow() { wx.setNavigationBarTitle({ title: t('我的观影护照') }); this.build(); this.buildPassport(); this.buildSync(); if (!this.offS) this.offS = SY.onStatus(() => this.buildSync()); if (SY.stale()) SY.quiet(); },
   onHide() { this.offS && this.offS(); this.offS = null; },
+  // 菜单「个人排片」「导出与分享」：滚动到页面下方对应位置（与网站「我的」菜单一致）
+  toPlan(e){const id=(e&&e.currentTarget.dataset.to)||'plan';wx.pageScrollTo({selector:'#'+id,offsetTop:-12,duration:300});},
   toggleCollection(){this.setData({collectionOpen:!this.data.collectionOpen});},
   toggleToday(){this.setData({todayExpanded:!this.data.todayExpanded});},
   toggleCare(){this.setData({careOpen:!this.data.careOpen});},
