@@ -6,14 +6,14 @@
     <view class="hin">
       <view class="progrow" wx:for="{{f.progs}}" wx:key="id"><view class="prog" data-id="{{item.id}}" bindtap="openProg">{{item.kind}} · {{item.name}} ›</view><view wx:if="{{item.section}}" class="unit"><text class="ud">◆</text>{{item.section}}</view></view>
       <view class="hrow">
-      <image wx:if="{{f.poster}}" class="pst" src="{{f.poster}}" mode="aspectFill" />
-      <view class="tt">
-        <view class="eyebrow mono"><text class="reg">{{f.reg}}</text>{{f.y}} · {{f.c}}</view>
-        <view class="h1">{{f.cn}}</view>
-        <view wx:if="{{f.cnDb}}" class="native">{{L.t(i,'豆瓣译名')}} {{f.cnDb}}</view>
-        <view class="en">{{f.en}}</view>
-        <view wx:if="{{f.o}}" class="native">{{L.t(i,'原名')}} {{f.o}}</view>
-        <view class="tags">
+      <image wx:if="{{f.poster}}" id="hero-pst" class="pst" src="{{f.poster}}" mode="aspectFill" />
+      <view class="tt" id="hero-tt">
+        <view class="eyebrow mono"><text class="reg">{{f.reg}}</text><text class="eyc">{{f.y}} · {{f.c}}</text></view>
+        <view class="h1" style="font-size:{{44*fs}}rpx">{{f.cn}}</view>
+        <view wx:if="{{f.cnDb}}" class="native" style="font-size:{{22*fs}}rpx">{{L.t(i,'豆瓣译名')}} {{f.cnDb}}</view>
+        <view class="en" style="font-size:{{24*fs}}rpx">{{f.en}}</view>
+        <view wx:if="{{f.o}}" class="native" style="font-size:{{22*fs}}rpx">{{L.t(i,'原名')}} {{f.o}}</view>
+        <view class="tags" style="font-size:{{fs<0.8?17:20}}rpx">
           <text wx:if="{{f.version}}" class="tg ed2">{{f.version}}</text>
           <text class="tg">{{f.minText}}</text>
           <text class="tg">{{f.lang}}</text>

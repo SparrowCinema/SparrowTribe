@@ -486,11 +486,12 @@ html.sheet-open,html.sheet-open body{overflow:hidden}
 .fd-hin>.fd-progrow{grid-column:1/-1;margin:0}
 .fd-title{display:flex;flex-direction:column;align-items:flex-start}
 .fd-title .fd-acts{margin-top:auto;padding-top:8px}
+.fd-tight .fd-chips{margin-top:5px;gap:4px}.fd-tight .fd-chips span{padding:2px 6px}.fd-tight .fd-acts{padding-top:5px}.fd-tight .fd-act{padding:4px 10px 4px 8px}.fd-tight h1{margin:3px 0 1px}
 .fd-poster{align-self:start;width:116px;max-width:100%;aspect-ratio:2/3;object-fit:cover;border-radius:6px;box-shadow:0 14px 34px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.12)}
 .fd-ph{display:grid;place-items:center;background:var(--fc)}
 .fd-ph b{font:900 44px var(--f-display)}
 .fd-title{min-width:0}
-.fd-eyebrow{font:500 11px var(--f-mono);letter-spacing:.08em;opacity:.85;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.fd-eyebrow{font:500 11px var(--f-mono);letter-spacing:.08em;opacity:.85;display:flex;align-items:center;gap:8px;max-width:100%;min-width:0}.fd-eyebrow>span:last-child{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}.fd-reg{flex:none}
 .fd-reg{font:600 10px var(--f-body);letter-spacing:.1em;padding:2px 7px;border-radius:4px;background:var(--fc);color:#fffaf0}
 .fd-title h1{font:900 24px/1.2 var(--f-display);margin:6px 0 2px;text-wrap:balance;letter-spacing:.01em}
 .fd-orig{font:italic 400 13px/1.35 var(--f-display);opacity:.9}
@@ -1589,7 +1590,7 @@ function detail(id){
 <div class="fd-progrow">${filmProgsOf(f).map(x=>`<button class="fd-prog" data-prog="${x.p.id}">${esc(x.p.kind)} · ${esc(x.p.name)} ›</button>${x.sec?`<span class="fd-unit"><i aria-hidden="true">◆</i><span class="sr-only">展映单元：</span>${esc(x.sec)}</span>`:""}`).join("")}</div>
       ${P?`<img class="fd-poster" src="${P}" alt="${esc(f.cn)} 海报">`:`<div class="fd-poster fd-ph"><b>${esc(f.cn[0])}</b></div>`}
       <div class="fd-title">
-        <div class="fd-eyebrow"><span class="fd-reg">${REG[f.reg].n}</span>${[f.y,f.c].filter(Boolean).map(esc).join(" · ")}</div>
+        <div class="fd-eyebrow"><span class="fd-reg">${REG[f.reg].n}</span><span title="${esc([f.y,f.c].filter(Boolean).join(" · "))}">${[f.y,f.c].filter(Boolean).map(esc).join(" · ")}</span></div>
         <h1>${esc(f.cn)}</h1>
         ${f.cnDb&&LANG!=="en"&&f.cnDb!==f.cn?`<div class="fd-native">豆瓣译名 ${esc(f.cnDb)}</div>`:""}
         <div class="fd-orig">${esc(f.en||f.o||"")}</div>${f.o&&f.o!==f.cn&&f.o!==(f.en||f.o)?`<div class="fd-native">原名 ${esc(f.o)}</div>`:""}
@@ -1621,7 +1622,17 @@ function detail(id){
     </div>
     <div class="gut">${presentersHTML()}</div>
   </div></article>`;
+  fitHero(); document.fonts?.ready.then(fitHero);
 }
+// 头图：片名等文字较多时逐步缩小字号，使文字区上下与海报对齐（不超过海报高度）
+function fitHero(){
+  const t=main.querySelector('.fd-title'), p=main.querySelector('.fd-poster'); if(!t||!p) return;
+  t.classList.remove('fd-tight'); const parts=[...t.querySelectorAll('h1,.fd-orig,.fd-native,.fd-chips span')]; parts.forEach(x=>x.style.fontSize='');
+  const base=parts.map(x=>parseFloat(getComputedStyle(x).fontSize)), fits=()=>t.scrollHeight<=p.offsetHeight+1;
+  for(let k=.94; !fits() && k>=.5; k-=.06) parts.forEach((x,i)=>x.style.fontSize=Math.max(x.tagName==='H1'?15:9.5, base[i]*k)+'px');
+  t.classList.toggle('fd-tight', !fits());
+}
+window.addEventListener('resize',()=>{clearTimeout(fitHero.t);fitHero.t=setTimeout(fitHero,150);});
 document.addEventListener("click",e=>{
   const s=e.target.closest("[data-scroll]");if(s){e.preventDefault();const t=document.getElementById(s.dataset.scroll);if(t){const top=t.getBoundingClientRect().top+window.scrollY-(document.getElementById("topbar").offsetHeight+12);window.scrollTo({top,behavior:matchMedia("(prefers-reduced-motion:reduce)").matches?"auto":"smooth"});}return;}
   const x=e.target.closest("[data-expand]");if(x){const b=x.previousElementSibling;b.classList.toggle("clamp");x.textContent=b.classList.contains("clamp")?"展开全文":"收起";}

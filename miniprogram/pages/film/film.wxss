@@ -10,13 +10,14 @@
 .progrow { display: flex; flex-wrap: wrap; align-items: center; gap: 10rpx; margin-bottom: 12rpx; }
 .unit { display: inline-flex; align-items: center; gap: 8rpx; font-size: 20rpx; font-weight: 700; padding: 4rpx 18rpx 4rpx 14rpx; border-radius: 99rpx; color: #ffe7a6; background: rgba(255,214,110,.16); border: 2rpx solid rgba(255,214,110,.5); }
 .unit .ud { font-size: 12rpx; color: #ffd66e; }
-.eyebrow { font-size: 20rpx; opacity: .85; }
-.reg { font-size: 18rpx; padding: 2rpx 12rpx; border-radius: 6rpx; background: var(--fc); margin-right: 10rpx; }
+.eyebrow { font-size: 20rpx; opacity: .85; display: flex; align-items: center; max-width: 100%; }
+.eyc { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.reg { flex: none; font-size: 18rpx; padding: 2rpx 12rpx; border-radius: 6rpx; background: var(--fc); margin-right: 10rpx; }
 .h1 { font-size: 44rpx; font-weight: 900; line-height: 1.2; margin: 10rpx 0 4rpx; }
 .en { font-size: 24rpx; font-style: italic; opacity: .9; }
 .native { font-size: 22rpx; opacity: .7; }
 .tags { display: flex; flex-wrap: wrap; gap: 10rpx; margin-top: auto; padding-top: 14rpx; }
-.tg { font-size: 20rpx; padding: 4rpx 14rpx; border-radius: 8rpx; background: rgba(255,250,240,.14); border: 2rpx solid rgba(255,250,240,.22); }
+.tg { font-size: inherit; padding: 4rpx 14rpx; border-radius: 8rpx; background: rgba(255,250,240,.14); border: 2rpx solid rgba(255,250,240,.22); }
 .ed2 { background: #fffaf0; color: #2b2117; font-weight: 700; }
 .by { margin-top: 16rpx; font-size: 24rpx; opacity: .9; }
 .b { font-weight: 700; }
