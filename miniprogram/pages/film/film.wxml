@@ -4,9 +4,10 @@
     <image wx:if="{{f.poster}}" class="bg" src="{{f.poster}}" mode="aspectFill" />
     <view class="shade" />
     <view class="hin">
+      <view class="progrow" wx:for="{{f.progs}}" wx:key="id"><view class="prog" data-id="{{item.id}}" bindtap="openProg">{{item.kind}} · {{item.name}} ›</view><view wx:if="{{item.section}}" class="unit"><text class="ud">◆</text>{{item.section}}</view></view>
+      <view class="hrow">
       <image wx:if="{{f.poster}}" class="pst" src="{{f.poster}}" mode="aspectFill" />
       <view class="tt">
-        <view class="progrow" wx:for="{{f.progs}}" wx:key="id"><view class="prog" data-id="{{item.id}}" bindtap="openProg">{{item.kind}} · {{item.name}} ›</view><view wx:if="{{item.section}}" class="unit"><text class="ud">◆</text>{{item.section}}</view></view>
         <view class="eyebrow mono"><text class="reg">{{f.reg}}</text>{{f.y}} · {{f.c}}</view>
         <view class="h1">{{f.cn}}</view>
         <view wx:if="{{f.cnDb}}" class="native">{{L.t(i,'豆瓣译名')}} {{f.cnDb}}</view>
@@ -18,7 +19,7 @@
           <text class="tg">{{f.lang}}</text>
           <text wx:for="{{f.genre}}" wx:key="*this" class="tg">{{item}}</text>
         </view>
-        <view class="by">{{L.t(i,'导演')}} <text class="b">{{f.dir}}</text></view>
+      </view>
       </view>
     </view>
   </view>
