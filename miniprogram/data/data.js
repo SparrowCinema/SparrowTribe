@@ -8755,8 +8755,8 @@ module.exports = {
    },
    "contentNote": "具体内容尚待核实，不代表没有敏感内容或适合所有年龄。",
    "editorial": "选片笔记待整理；可先查看影片简介、放映版本与场次。",
-   "printSource": "秝米有限公司 MM Square Co., Ltd.",
-   "printSourceEn": "MM Square Co., Ltd.",
+   "printSource": "秝米有限公司 MM Square Co., Ltd. / 香港商甲上娱乐有限公司台湾分公司",
+   "printSourceEn": "MM Square Co., Ltd. / 香港商甲上娱乐有限公司台湾分公司",
    "prog": "golden-horse-2026"
   },
   {
@@ -10040,7 +10040,7 @@ module.exports = {
      "honors": [
       "入选｜2026 86358贾家庄短片周"
      ],
-     "printSource": "宁夏宿文化传媒有限公司 Ningxia Shenxiu Culture Media Co., Ltd.",
+     "printSource": "宁夏参宿文化传媒有限公司 Ningxia Shenxiu Culture Media Co., Ltd.",
      "printSourceEn": "Ningxia Shenxiu Culture Media Co., Ltd."
     },
     {
