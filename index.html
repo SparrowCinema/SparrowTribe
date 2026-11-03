@@ -2136,7 +2136,7 @@ const viewPositions=new Map();
 if("scrollRestoration" in history)history.scrollRestoration="manual";
 function rememberView(h){if(!h)return;viewPositions.set(h,{x:window.scrollX,y:window.scrollY,gantt:document.getElementById("gantt")?.scrollLeft||0,filters:[...document.querySelectorAll(".filters")].map(el=>el.scrollLeft)});}
 function restoreView(h){const p=viewPositions.get(h);if(!p)return;const apply=()=>{if(activeRoute!==h)return;window.scrollTo(p.x,p.y);const g=document.getElementById("gantt");if(g)g.scrollLeft=p.gantt;document.querySelectorAll(".filters").forEach((el,i)=>{el.scrollLeft=p.filters[i]||0;});};apply();requestAnimationFrame(apply);}
-function exitFilm(){go(filmReturn||lastList);}
+function exitFilm(){goBack(filmReturn||lastList);}
 function filmDismissDirection(dx,dy,atTop){if(Math.abs(dx)>=84&&Math.abs(dx)>Math.abs(dy)*1.4)return dx<0?"left":"right";if(atTop&&dy>=110&&dy>Math.abs(dx)*1.5)return "down";return "";}
 let filmSwipe=null,suppressFilmClickUntil=0;
 function resetFilmSwipe(){const el=filmSwipe?.el;if(el){el.style.transform="";el.style.opacity="";el.style.willChange="";}filmSwipe=null;}
@@ -2146,13 +2146,17 @@ document.addEventListener("touchend",e=>{const s=filmSwipe;if(!s)return;const t=
 document.addEventListener("touchcancel",resetFilmSwipe,{passive:true});
 document.addEventListener("click",e=>{if(Date.now()<suppressFilmClickUntil){e.preventDefault();e.stopImmediatePropagation();}},true);
 
-function go(h){if(activeRoute&&h!==activeRoute){rememberView(activeRoute);capturedRoute=activeRoute;}location.hash=h;}
+let navFwd=false,navBack=false;
+document.addEventListener("click",e=>{if(e.target.closest&&e.target.closest('a[href^="#"]'))navFwd=true;},true);
+function goBack(h){navBack=true;go(h);}
+function go(h){navFwd=true;if(activeRoute&&h!==activeRoute){rememberView(activeRoute);capturedRoute=activeRoute;}location.hash=h;}
 function route(){
   if(!READY) return;
   const h = location.hash.slice(1) || "schedule";
   const changing=activeRoute!==h;
   if(changing){if(capturedRoute!==activeRoute)rememberView(activeRoute);capturedRoute="";resetFilmSwipe();if(h.startsWith("film-")&&activeRoute&&!activeRoute.startsWith("film-"))filmReturn=activeRoute;}
-  const returning=changing&&activeRoute.startsWith("film-")&&h===filmReturn;
+  const fwd=navFwd,bk=navBack;navFwd=false;navBack=false;
+  const returning=changing&&viewPositions.has(h)&&(bk||!fwd||(activeRoute.startsWith("film-")&&h===filmReturn));
   activeRoute=h;
   const tab = ["plan","export","about","install"].includes(h)||h.startsWith("share=") ? "my" : h==="gantt" ? "schedule" : h.startsWith("prog-")||h.startsWith("events-") ? "programmes" : h.startsWith("film-") ? null : h;
   document.querySelectorAll(".tab").forEach(t=>t.setAttribute("aria-current", t.dataset.tab===(tab||lastList)?"page":"false"));
@@ -2180,7 +2184,7 @@ document.addEventListener("click",e=>{
   else if(t.dataset.progSched){ pfilt=t.dataset.progSched; vfilt="all"; cityFilt="all"; venueQuery=""; sday=null; go("schedule"); }
   else if(t.dataset.progJump){ const el=document.getElementById(t.dataset.progJump==="gone"?"pg-gone":"pg-up"); if(el){ if(el.tagName==="DETAILS") el.open=true; el.scrollIntoView({behavior:"smooth",block:"start"}); } else toast("暂无已结束的影片"); }
   else if(t.dataset.progFilms){ ffilt=t.dataset.progFilms; fmine="all"; fq=""; go("films"); }
-  else if(t.hasAttribute("data-back")){if(activeRoute.startsWith("film-"))exitFilm();else go(lastList);}
+  else if(t.hasAttribute("data-back")){if(activeRoute.startsWith("film-"))exitFilm();else if(activeRoute.startsWith("events-"))goBack("prog-"+activeRoute.slice(7));else goBack(lastList);}
   else if(t.dataset.jump){ const js=SH.find(x=>keyOf(x)===t.dataset.jump); pfilt=js?js.p:"all"; vfilt="all"; cityFilt="all"; venueQuery=""; pendingFlash=t.dataset.jump; sday=t.dataset.jump.split("-")[0]; if(location.hash==="#schedule"||location.hash===""){schedule();}else go("schedule"); }
   else if(t.dataset.ppf){ planFilt=t.dataset.ppf; const y=window.scrollY; route(); window.scrollTo(0,y); }
   else if(t.dataset.day){ sday=t.dataset.day; const y=window.scrollY; schedule(); window.scrollTo(0,y); }
