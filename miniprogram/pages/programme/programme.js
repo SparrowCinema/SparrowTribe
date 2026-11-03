@@ -63,5 +63,5 @@ Page({
   },
   onPageScroll(e) { this.scrollTop = e.scrollTop; },
   toSchedule() { app.globalData.jumpProg = this.id; wx.switchTab({ url: '/pages/schedule/schedule' }); },
-  onShareAppMessage() { const p = this.data.p || {}; return { title: `${p.name} · ${p.sub}`, path: '/pages/programme/programme?id=' + this.id }; }
+  onShareAppMessage() { const p = this.data.p || {}; return { title: p.name, path: '/pages/programme/programme?id=' + this.id }; }
 });

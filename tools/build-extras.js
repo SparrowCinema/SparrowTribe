@@ -32,12 +32,12 @@ const progName = (p, L) => lang(L) && EN.programmes[p.id] && EN.programmes[p.id]
 const venueOf = (s, L) => { const v = VN[s.v], o = lang(L) && EN.venues[s.v] || {}, h = (v.halls || []).find(x => x.id === s.h) || {}, oh = o.halls && o.halls[s.h] || {}; return `${o.name || v.name} · ${oh.name || h.name || ''}`; };
 
 // ---------- 分享页 ----------
-const page = ({ L, kind, id, ttl, desc, img, wide, hash }) => {
+const page = ({ L, kind, id, ttl, desc, img, wide, hash, bare }) => {
   const rel = (lang(L) ? 's/en/' : 's/') + kind + '/' + id + '.html', url = SITE + rel;
   const home = SITE + 'index.html' + (lang(L) ? '?lang=en' : '') + hash;
   const name = lang(L) ? 'Sparrow Film Passport' : '麻雀观影护照';
   return `<!doctype html><html lang="${lang(L) ? 'en' : 'zh-CN'}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>${esc(ttl)} | ${name}</title><meta name="description" content="${esc(desc)}"><link rel="canonical" href="${url}">
+<title>${esc(ttl)}${bare ? '' : ' | ' + name}</title><meta name="description" content="${esc(desc)}"><link rel="canonical" href="${url}">
 <meta property="og:site_name" content="${name}"><meta property="og:type" content="${kind === 'f' ? 'video.movie' : 'website'}"><meta property="og:title" content="${esc(ttl)}"><meta property="og:description" content="${esc(desc)}"><meta property="og:url" content="${url}">${img ? `<meta property="og:image" content="${esc(img)}"><meta property="og:image:alt" content="${esc(ttl)}">` : ''}<meta property="og:locale" content="${lang(L) ? 'en_US' : 'zh_CN'}">
 <meta name="twitter:card" content="${img && wide ? 'summary_large_image' : 'summary'}"><meta name="twitter:title" content="${esc(ttl)}"><meta name="twitter:description" content="${esc(desc)}">${img ? `<meta name="twitter:image" content="${esc(img)}">` : ''}
 <style>body{font:16px/1.7 system-ui,-apple-system,"PingFang SC",sans-serif;max-width:640px;margin:0 auto;padding:32px 20px;color:#2b2117;background:#f8f2e6}img{max-width:240px;border-radius:8px}a{color:#8e2a22}</style></head><body>
@@ -59,7 +59,7 @@ for (const L of ['zh', 'en']) {
   });
   progs.forEach(p => {
     const o = lang(L) && EN.programmes[p.id] || {}, cover = o.cover || p.cardCover || p.cover;
-    out(`s/${lang(L) ? 'en/' : ''}p/${p.id}.html`, page({ L, kind: 'p', id: p.id, ttl: `${o.name || p.name} · ${p.period}`, desc: clip(o.blurb || p.blurb || o.sub || p.sub, 160), img: abs(cover), wide: true, hash: '#prog-' + p.id })); nShare++;
+    out(`s/${lang(L) ? 'en/' : ''}p/${p.id}.html`, page({ L, kind: 'p', id: p.id, ttl: o.name || p.name, bare: true, desc: clip(`${p.period} · ${o.blurb || p.blurb || o.sub || p.sub}`, 160), img: abs(cover), wide: true, hash: '#prog-' + p.id })); nShare++;
   });
 }
 
