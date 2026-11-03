@@ -42,7 +42,7 @@ const programmes = progs.map(p => {
 });
 if (!films.length || !shows.length) throw new Error('网站数据为空，未生成');
 
-const data = { films, shows, venues: cat.venues || [], programmes, reg: Object.assign({}, prev.reg, cat.reg || {}) };
+const data = { films, shows, venues: cat.venues || [], programmes, aliases: cat.aliases || {}, reg: Object.assign({}, prev.reg, cat.reg || {}) };
 fs.writeFileSync(OUT, '/* 本地内置数据：云数据库为空或网络不可用时使用。由 tools/build-fallback.js 从网站 data/ 生成，规则与 getData 云函数一致。 */\nmodule.exports = ' + JSON.stringify(data, null, 1) + ';\n');
 console.log('films', films.length, 'shows', shows.length, 'venues', data.venues.length, 'programmes', programmes.length);
 

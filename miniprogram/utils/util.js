@@ -27,6 +27,7 @@ const langSub = f => I.tr([f.language, f.subtitles].filter(Boolean).join(' ｜ '
 
 function index(data) {
   const F = {}; const ORD = {}; data.films.forEach((f, i) => { F[f.id] = f; ORD[f.id] = i; });
+  Object.entries(data.aliases || {}).forEach(([o, n]) => { if (F[n] && !F[o]) F[o] = F[n]; }); // 旧影片 id → 合并后的影片
   // 杭州影院固定排最前（甘特图列与影院/城市选择器），其余按原顺序
   const vrank = new Map(data.venues.map((v, i) => [v.id, (v.city === '杭州' ? 0 : 1000) + i]));
   data.venues.sort((a, b) => vrank.get(a.id) - vrank.get(b.id));
@@ -35,7 +36,8 @@ function index(data) {
   const hallName = s => { const v = VN[s.v]; const h = v && v.halls.find(x => x.id === s.h); return h ? h.name : s.h; };
   const venueName = s => { const v=VN[s.v]; if(!v)return s.v; const c=I.tr(v.city||""),name=v.name.replace(new RegExp("^("+[v.city,c].filter(Boolean).join("|")+")\\s*[·・]?\\s*"),""); return (c?c+" · ":"")+name; };
   const progOf = f => PG[f.prog || 'style-kaleidoscope'] || data.programmes[0];
-  return { F, ORD, VN, PG, hallName, venueName, progOf };
+  const progsOf = f => { const main = progOf(f), out = [{ p: main, sec: f.section || (main.sections || {})[f.id] || '' }]; data.programmes.forEach(p => { if (p.id !== main.id && (p.sections || {})[f.id]) out.push({ p, sec: p.sections[f.id] }); }); return out; };
+  return { F, ORD, VN, PG, hallName, venueName, progOf, progsOf };
 }
 
 // 映后交流：片目里有起止时间与嘉宾，且结束晚于开始，才在时刻表上显示

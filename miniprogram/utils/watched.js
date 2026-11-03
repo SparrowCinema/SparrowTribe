@@ -18,6 +18,12 @@ function save(push = true) {
 }
 const get = id => { const r = all()[id]; return r && !r.del && r.d ? r : null; };
 function set(id, rec) { all()[id] = { d: rec.d, r: rec.r || 0, k: rec.k || '', t: Date.now() }; save(); }
+// 影展间重复影片合并后，把旧 id 的观影记录并入新 id（旧记录留删除标记，便于多设备合并）
+function migrate(aliases) {
+  const c = all(); let ch = false;
+  Object.keys(aliases || {}).forEach(o => { const n = aliases[o], r = c[o]; if (!r || r.del || !r.d) return; if (!c[n] || c[n].del || !c[n].d) c[n] = Object.assign({}, r, { t: Date.now() }); c[o] = { del: 1, t: Date.now() }; ch = true; });
+  if (ch) save();
+}
 function remove(id) { all()[id] = { del: 1, t: Date.now() }; save(); }
 function onChange(fn) { listeners.push(fn); return () => { const i = listeners.indexOf(fn); if (i >= 0) listeners.splice(i, 1); }; }
 
@@ -59,4 +65,4 @@ function syncFromCloud() {
   }).catch(() => { });
 }
 
-module.exports = { all, get, set, remove, onChange, guess, showOf, entries, iso, vShort, holder, setHolder, photo, setPhoto, meta, touch, setMeta, replaceAll, syncFromCloud };
+module.exports = { migrate, all, get, set, remove, onChange, guess, showOf, entries, iso, vShort, holder, setHolder, photo, setPhoto, meta, touch, setMeta, replaceAll, syncFromCloud };
