@@ -1613,7 +1613,7 @@ function detail(id){
   topEl.innerHTML = `<div class="row"><button class="back" data-back><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m15 6-6 6 6 6"/></svg>返回</button><span class="sp"></span><span class="pill">${f.ev?esc(tr("活动场次")):String(idx+1).padStart(2,"0")+" / "+sib.length}</span></div>`;
   const syn = String(f.syn||""), long = syn.length > 220;
   const has = {syn:!!syn, watch:!!f.editorial||f.highlights.length>0, hon:f.honors.length>0, dir:!!(f.dir&&(f.bio||f.dirO||f.dirLife)), ctx:!!f.st};
-  const secs = [["fd-syn","剧情",has.syn],["fd-watch","看点",has.watch],["fd-hon","荣誉",has.hon],["fd-dir","导演",has.dir],["fd-ctx","背景",has.ctx]].filter(x=>x[2]);
+  const secs = [["fd-syn","剧情",has.syn],["fd-watch","荐片",has.watch],["fd-hon","荣誉",has.hon],["fd-dir","导演",has.dir],["fd-ctx","背景",has.ctx]].filter(x=>x[2]);
   const navBtn = (x,lab) => x?`<button class="fd-nb" data-film="${x.id}">${pst(x.id)?`<img src="${pst(x.id)}" alt="">`:`<span class="fd-nbs" style="background:${REG[x.reg].c}">${esc(x.cn[0])}</span>`}<span><small>${lab}</small><b>${esc(x.cn)}</b></span></button>`:"<span></span>";
   main.innerHTML = `<article class="fd" style="--fc:${col}">
   <header class="fd-hero">${P?`<img class="fd-bg" src="${P}" alt="">`:""}<div class="fd-shade"></div>
@@ -1645,7 +1645,7 @@ function detail(id){
     <div class="fd-main">
       <nav class="fd-jump" aria-label="页面目录">${secs.map(([a,l])=>`<button data-scroll="${a}">${l}</button>`).join("")}</nav>
       ${!secs.length?`<p class="fd-empty">影片介绍整理中，排片与场次信息已可查看。</p>`:""}${!has.syn?"":`<section class="fd-sec" id="fd-syn"><h2 class="fd-st"><span>剧情简介</span><small>SYNOPSIS</small></h2><div class="fd-syn${long?" clamp":""}">${paragraphsHTML(syn)}</div>${long?`<button class="fd-more" data-expand>展开全文</button>`:""}</section>`}
-      ${!has.watch?"":`<section class="fd-sec" id="fd-watch"><h2 class="fd-st"><span>观影看点</span><small>WHAT TO WATCH</small></h2><ol class="fd-watch">${[f.editorial,...f.highlights].filter(Boolean).map((x,i)=>`<li><span>${String(i+1).padStart(2,"0")}</span><p>${esc(x)}</p></li>`).join("")}</ol></section>`}
+      ${!has.watch?"":`<section class="fd-sec" id="fd-watch"><h2 class="fd-st"><span>荐片笔记</span><small>CURATOR'S NOTES</small></h2><ol class="fd-watch">${[f.editorial,...f.highlights].filter(Boolean).map((x,i)=>`<li><span>${String(i+1).padStart(2,"0")}</span><p>${esc(x)}</p></li>`).join("")}</ol></section>`}
       ${f.honors.length?`<section class="fd-sec" id="fd-hon"><h2 class="fd-st"><span>影展与荣誉</span><small>FESTIVALS & AWARDS</small></h2><ul class="fd-honors">${f.honors.map(honorHTML).join("")}</ul></section>`:""}
       ${!has.dir?"":`<section class="fd-sec" id="fd-dir"><h2 class="fd-st"><span>导演介绍</span><small>DIRECTOR</small></h2><div class="fd-dcard"><div class="fd-dhead"><span class="fd-av">${esc(f.dir[0])}</span><span><b>${esc(f.dir)}</b>${f.dirO&&f.dirO!==f.dir?`<small>${esc(f.dirO)}</small>`:""}${f.dirLife?`<small>${esc(f.dirLife)}</small>`:""}</span></div>${paragraphsHTML(f.bio)}</div></section>`}
       ${!has.ctx?"":`<section class="fd-sec" id="fd-ctx"><h2 class="fd-st"><span>创作背景</span><small>CONTEXT</small></h2><blockquote class="fd-ctx">${paragraphsHTML(f.st)}</blockquote></section>`}
