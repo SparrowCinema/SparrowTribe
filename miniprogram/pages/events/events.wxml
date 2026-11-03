@@ -9,6 +9,10 @@
       <view class="ev-t">{{item.title}}<text wx:if="{{item.free}}" class="ev-tag">{{L.t(i,'免费')}}</text><text wx:if="{{item.ended}}" class="ev-tag ev-end">{{L.t(i,'已结束')}}</text></view>
       <view wx:if="{{item.desc}}" class="ev-d">{{item.desc}}</view>
       <view wx:for="{{item.lines}}" wx:for-item="l" wx:key="k" class="ev-l"><text class="ev-k">{{l.k}}</text><text class="ev-v">{{l.v}}</text></view>
+      <view wx:if="{{item.slots.length}}" class="ev-slots"><text class="ev-sl">{{L.t(i,'可加入个人行程')}}</text>
+        <view wx:for="{{item.slots}}" wx:for-item="s" wx:key="key" class="ev-slot"><view class="ev-sw"><text class="ev-sb mono">{{s.when}}</text><text class="ev-sp">{{s.where}}</text></view>
+          <text wx:if="{{s.past}}" class="ev-sd">{{L.t(i,'已结束')}}</text>
+          <view wx:else class="ev-add {{s.picked ? 'on' : ''}}" data-key="{{s.key}}" bindtap="toggle">{{s.picked ? L.t(i,'已加入行程') : L.t(i,'加入我的行程')}}</view></view></view>
     </view>
   </view>
 </view>

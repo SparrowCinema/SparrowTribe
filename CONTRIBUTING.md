@@ -140,3 +140,10 @@ Claude 与 GPT 可能使用同一 GitHub 身份，审批人数可先设为0；�
 
 - 专题可带 `eventKinds` 与 `events`（见 docs/golden-horse-2026-notes.md），网站 `eventsHTML` 与小程序 `pages/programme` 同步显示；英文放在 `en.json` 的 `programmes.<id>.kindEn` / `evEn`。
 - 影片可带 `parts`（合辑收录的短片，字段 cn/en/y/c/min/dir/dirO/syn/synEn/honors），影片页显示「收录短片」。专题可带 `ticketUrl` / `ticketLabel`（购票链接）。
+
+## 活动场次（可加入个人行程）
+
+- 有明确时间、地点的影展活动（如金马大师讲堂、沙龙、论坛）做成「活动场次」：在专题文件的 `films` 里加一条带 `ev:1`、`evId:<活动id>` 的伪影片（id 形如 `gh63-ev-<活动id>`，`min` 为时长，`syn` 为简介），再在 `shows` 里按常规写场次，场地在 `data/catalog.json` 的 venues 登记（如台北文创大楼）。个人排片、排片表、甘特图、日历、分享沿用现有机制。
+- 网站 `loadData` 把 `ev` 影片排除出 `FILMS`（片目、专题片单、统计不含活动），但仍保留在 `F` 里供场次使用；活动详情页隐藏评分、外链、看过与映后交流。小程序在 films / programme / programmes / schedule 页同样过滤 `ev`。
+- 活动页（`#events-<专题id>` / `pages/events`）按 `evId` 找到场次并显示「加入我的行程」按钮；英文放在 `en.json` 的 `films.<伪影片id>`。
+- 冲突判断容忍 2 分钟以内的重叠（映后讲堂紧接上一场放映，片长取整会有 1–2 分钟误差）。

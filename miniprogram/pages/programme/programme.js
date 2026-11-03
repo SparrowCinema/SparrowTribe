@@ -19,12 +19,12 @@ Page({
         at: next ? U.showDate(next).getTime() : Infinity, lastAt: last ? U.showDate(last).getTime() : 0, gone: !!mine.length && !next };
     };
     const membership=new Set(Object.keys(p.sections||{}));
-    const all = data.films.filter(f => idx.progOf(f).id === p.id || membership.has(f.id)).filter(f=>!this.data.section||(p.sections||{})[f.id]===this.data.section).map(mk);
+    const all = data.films.filter(f => !f.ev && idx.progOf(f).id === p.id || membership.has(f.id)).filter(f=>!this.data.section||(p.sections||{})[f.id]===this.data.section).map(mk);
     // 即将放映（含场次待公布）按下一场先后；已结束按最近一场由近及远（与网站一致）
     const films = all.filter(f => !f.gone).sort((x, y) => (x.at === y.at ? 0 : x.at < y.at ? -1 : 1) || x.cn.localeCompare(y.cn, I.isEn() ? 'en' : 'zh'));
     const gone = all.filter(f => f.gone).sort((x, y) => y.lastAt - x.lastAt || x.cn.localeCompare(y.cn, I.isEn() ? 'en' : 'zh'));
     const st = U.progInfo(p, data, idx).status;
-    this.setData({ sections: [{name:t("全部单元"),value:""},...Array.from(new Set(Object.values(p.sections||{}))).map(n=>({name:t(n),value:n}))], p: Object.assign({}, p, { periodT: t(p.period), status: st, statusText: t(p.ongoing && st === 'live' ? '常设' : { live: '进行中', soon: '即将开始', ended: '已结束' }[st]) }), upN: t(films.length + ' 部'), goneN: t(gone.length + ' 部'), films, gone, goneOpen: this.data.goneOpen === undefined ? !films.length : this.data.goneOpen, stats: { f: data.films.filter(f=>idx.progOf(f).id===p.id||membership.has(f.id)).length, s: shows.length, d: new Set(shows.map(s => s.d)).size, h: new Set(shows.map(s => s.v + s.h)).size } });
+    this.setData({ sections: [{name:t("全部单元"),value:""},...Array.from(new Set(Object.values(p.sections||{}))).map(n=>({name:t(n),value:n}))], p: Object.assign({}, p, { periodT: t(p.period), status: st, statusText: t(p.ongoing && st === 'live' ? '常设' : { live: '进行中', soon: '即将开始', ended: '已结束' }[st]) }), upN: t(films.length + ' 部'), goneN: t(gone.length + ' 部'), films, gone, goneOpen: this.data.goneOpen === undefined ? !films.length : this.data.goneOpen, stats: { f: data.films.filter(f=>!f.ev&&(idx.progOf(f).id===p.id||membership.has(f.id))).length, s: shows.filter(s=>!idx.F[s.id].ev).length, d: new Set(shows.map(s => s.d)).size, h: new Set(shows.map(s => s.v + s.h)).size } });
   },
   buildEvents(p) {
     const en = I.isEn(), now = new Date(), today = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0') + '-' + String(now.getDate()).padStart(2, '0');

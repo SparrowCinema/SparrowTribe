@@ -36,12 +36,12 @@ Page({
     const credits = [['导演', f.dir], ['联合导演', f.coDirector], [f.writerLabel || '编剧', (f.writers || []).join(' / ')], ['原著', t(f.book || '')],
       [(f.genre || []).includes('纪录片') ? '出镜' : '主演', (f.cast || []).join(' / ')], ['类型', (f.genre || []).map(t).join(' / ')], ['原始语言', t(f.language)]]
       .filter(x => x[1]).map(x => ({ k: t(x[0]), v: x[1] }));
-    const all = data.films, i = all.indexOf(f);
-    const nav = [all[i - 1], all[i + 1]].map(x => x ? { id: x.id, cn: x.cn, poster: U.poster(x) } : null);
+    const all = data.films.filter(x => !x.ev), i = all.indexOf(f);
+    const nav = (f.ev ? [null, null] : [all[i - 1], all[i + 1]]).map(x => x ? { id: x.id, cn: x.cn, poster: U.poster(x) } : null);
     const para = s => String(s || '').split(/\n{2,}/).filter(Boolean);
     this.setData({
       f: {
-        id: f.id, cn: f.cn, en: f.en || f.o, minText: t(f.min ? f.min + ' 分钟' : '片长待定'), release: t(f.release || ''), o: f.o !== f.cn && f.o !== (f.en || f.o) ? f.o : '', y: f.y, c: t(f.c), min: f.min, lang: t(f.language),
+        id: f.id, ev: !!f.ev, cn: f.cn, en: f.en || f.o, minText: t(f.min ? f.min + ' 分钟' : '片长待定'), release: t(f.release || ''), o: f.o !== f.cn && f.o !== (f.en || f.o) ? f.o : '', y: f.y, c: t(f.c), min: f.min, lang: t(f.language),
         version: t(f.version || ''), genre: (f.genre || []).map(t), dir: f.dir, dirO: f.dirO, dirLife: f.dirLife,
         color: (data.reg[f.reg] || {}).c, reg: t((data.reg[f.reg] || {}).n || ''), poster: U.poster(f), ticket: U.ticket(f), ticketHint: t([f.ticketPlatform ? f.ticketPlatform + "扫码" + (f.ticketLabel || "购票") : "", (f.ticketHint || "").replace(/^淘票票扫码购票\s*[·・]?\s*/, "")].filter(Boolean).join(" · ")), section: t(f.section || ""), ticketLabel: t(f.ticketLabel || '购票'),
         prog: { id: p.id, name: p.name, kind: t(p.kind) }, section: t(f.section || ''),

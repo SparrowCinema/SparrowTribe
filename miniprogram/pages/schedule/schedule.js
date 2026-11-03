@@ -94,7 +94,7 @@ Page({
     // 专题筛选：已结束的专题不再列出（当前选中的除外），与网站一致
     const progs = data.programmes.map(p => {
       const info = U.progInfo(p, data, idx);
-      const fn = data.films.filter(f => idx.progOf(f).id === p.id || (p.sections||{})[f.id]).length;
+      const fn = data.films.filter(f => !f.ev && idx.progOf(f).id === p.id || (p.sections||{})[f.id]).length;
       return Object.assign({}, p, { n: info.shows.length, fn, status: info.status });
     }).filter(p => p.status !== 'ended' || p.id === pf);
     // 影院筛选：只列出当前专题里还有待放映场次的影院；只有一家时不显示
