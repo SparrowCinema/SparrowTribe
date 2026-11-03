@@ -34,7 +34,7 @@
       <image class="qr" src="{{f.ticket}}" mode="aspectFit" show-menu-by-longpress />
     </view>
 
-    <view class="ratings card">
+    <view wx:if="{{!f.ev}}" class="ratings card">
       <view wx:for="{{ratings}}" wx:key="l" class="rt {{item.na?'na':''}}">
         <text class="rl">{{item.l}}</text>
         <text class="rv mono">{{item.v}}</text>
@@ -42,7 +42,7 @@
       </view>
     </view>
 
-    <view class="mr card {{mine.seen ? 'on' : ''}}">
+    <view wx:if="{{!f.ev}}" class="mr card {{mine.seen ? 'on' : ''}}">
       <view class="mr-h"><text class="mr-t">{{L.t(i,'我的观影')}}</text><text class="mr-en mono">MY FILM PASSPORT</text></view>
       <view class="mr-row">
         <view class="mr-seen" hover-class="hv" bindtap="toggleSeen">{{mine.seenTxt}}</view>
@@ -80,7 +80,7 @@
 
     <view class="sec-h">{{L.t(i,'内容提示')}}</view><view class="content-note"><view class="content-tags"><text wx:for="{{f.warnings}}" wx:key="*this">{{item}}</text></view><text>{{f.contentNote}}</text><text class="small">{{f.sensory?L.t(i,'已查到闪烁影像提示；光敏观众请谨慎选择。'):L.t(i,'闪烁与突发音量尚未核实；有需要请提前询问影院。')}}</text></view>
     <view class="sec-h">{{L.t(i,'映后交流')}} <text class="muted small">POST-SCREENING</text></view>
-    <view class="qapanel {{qa ? '' : 'qa-empty'}}">
+    <view wx:if="{{!f.ev}}" class="qapanel {{qa ? '' : 'qa-empty'}}">
       <view class="qap-h"><text class="qap-l">✦ {{qa ? L.t(i,'映后交流 · DIRECTOR Q&A') : L.t(i,'映后信息')}}</text><text wx:if="{{qa}}" class="qap-t mono">{{qa.label}}</text></view>
       <text class="qap-b">{{qa ? qa.guest : L.t(i,'暂无映后交流安排')}}</text>
     </view>
@@ -130,7 +130,7 @@
     <view class="st"><text class="stt">{{L.t(i,'创作背景')}}</text><text class="ste mono">CONTEXT</text></view>
     <view class="ctx"><view wx:for="{{f.st}}" wx:key="index" class="p">{{item}}</view></view>
 
-    <view class="nav">
+    <view wx:if="{{!f.ev}}" class="nav">
       <view wx:for="{{nav}}" wx:key="index" class="nb {{index===1?'r':''}}">
         <block wx:if="{{item}}">
           <view class="nbi" data-id="{{item.id}}" bindtap="openFilm">

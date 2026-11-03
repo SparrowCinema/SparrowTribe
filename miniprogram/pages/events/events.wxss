@@ -14,3 +14,12 @@
 .ev-l { display: flex; gap: 16rpx; font-size: 24rpx; line-height: 1.6; margin-top: 4rpx; }
 .ev-k { width: 112rpx; flex: none; color: var(--muted); }
 .ev-v { flex: 1; }
+.ev-slots { margin-top: 16rpx; padding-top: 12rpx; border-top: 2rpx dashed var(--line-soft); }
+.ev-sl { display: block; font-size: 22rpx; color: var(--muted); margin-bottom: 8rpx; }
+.ev-slot { display: flex; align-items: center; justify-content: space-between; gap: 16rpx; padding: 8rpx 0; }
+.ev-sw { flex: 1; min-width: 0; }
+.ev-sb { display: block; font-size: 26rpx; font-weight: 700; }
+.ev-sp { display: block; font-size: 22rpx; color: var(--muted); }
+.ev-sd { font-size: 22rpx; color: var(--muted); }
+.ev-add { flex: none; border: 2rpx solid var(--accent); color: var(--accent); border-radius: 99rpx; padding: 10rpx 24rpx; font-size: 24rpx; font-weight: 700; }
+.ev-add.on { background: var(--accent); color: #fff; }

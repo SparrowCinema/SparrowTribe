@@ -177,7 +177,7 @@ Page({
           const prev = g.items[i - 1], tr = U.transfer(prev, s, idx), gap = tr.gap, en = I.isEn(), vb = idx.VN[s.v];
           const gapTxt = (en ? 'gap ' : '间隔 ') + U.durText(Math.max(gap, 0));
           let cls = 'ok', txt;
-          if (gap < 0) { cls = 'clash'; txt = t('⚠ 与上一场重叠 ' + (-gap) + ' 分钟'); }
+          if (gap < -2) { cls = 'clash'; txt = t('⚠ 与上一场重叠 ' + (-gap) + ' 分钟'); }
           else if (tr.kind === 'same') {
             cls = gap < tr.need ? 'tight' : 'ok';
             txt = en ? 'Same cinema · ~' + tr.need + ' min to change halls · ' + gapTxt + (gap < tr.need ? ' — tight' : '') : '同影院 · 换厅约 ' + tr.need + ' 分钟 · ' + gapTxt + (gap < tr.need ? '，时间偏紧' : '');
@@ -189,7 +189,7 @@ Page({
             txt = (gap < tr.need ? (en ? '⚠ Transfer may be too tight · ' : '⚠ 转场可能来不及 · ') : '') + (en ? 'To ' : '转场 → ') + W.vShort(vb) + ' · ' + how + ' · ' + gapTxt;
           }
           v.gap = { cls, txt, mapName: U.geoOf(vb) ? vb.id : '' };
-          if (gap < 0) clash++;
+          if (gap < -2) clash++;
         }
         return v;
       });
