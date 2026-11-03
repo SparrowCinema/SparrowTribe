@@ -755,10 +755,13 @@ html.sheet-open,html.sheet-open body{overflow:hidden}
 .pres-upd{margin:2px 0 0;font:500 10px var(--f-mono);letter-spacing:.14em;color:var(--muted)}
 .pb-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
 .pb-top>div{min-width:0}
+.paper-band .pb-brand{display:flex;align-items:center;gap:10px}.paper-band .pb-brand .seal{width:26px;height:26px}.paper-band .pb-brand .seal+.seal{margin-left:-6px}.paper-band .pb-brand b{font:italic 900 15px/1 var(--f-display);display:inline}
+.paper-band .pb-en{font:500 9px var(--f-mono);letter-spacing:.1em;opacity:.7;margin:0}
+.paper-band em{order:0}.paper-band .pb-title{margin:0;font:900 clamp(30px,9vw,40px)/1.2 var(--f-display);color:#fffaf0;display:flex;flex-direction:column;gap:2px;overflow-wrap:anywhere}.paper-band .pb-title span{display:block;margin:0;font:inherit;letter-spacing:0;opacity:1}.paper-band .pb-title.multi{font-size:clamp(20px,6vw,26px)}
 .paper-band .duo{display:inline-flex;margin:0}
 .paper-band .seal{display:grid;margin-top:0;width:46px;height:46px;background:#fffaf0;box-shadow:0 0 0 1.5px rgba(255,250,240,.55)}
 .paper-band .seal+.seal{margin-left:-10px}
-.share-paper .paper-band b{font-size:24px}
+.share-paper .paper-band b{font-size:15px}
 
 /* ---- Header lockup & refined presenters (claude/header-lockup) ---- */
 :root{--f-din:"Barlow","DIN Alternate","DIN Next","Helvetica Neue",Arial,sans-serif;--f-logo-cn:"Noto Sans SC","PingFang SC","Source Han Sans SC","Microsoft YaHei",sans-serif}
@@ -2138,6 +2141,9 @@ function shareURL(list){return location.origin+location.pathname+'#share='+encod
 function shareURLShort(list){return location.origin+location.pathname+'#share='+list.map(keyOf).join('~');}
 function qrMatrix(text){if(!window.QRCodeLib)return null;try{const {QRCode,ECL}=window.QRCodeLib;const q=new QRCode(-1,ECL.L);q.addData(text);q.make();const n=q.getModuleCount(),m=[];for(let r=0;r<n;r++){m.push([]);for(let c=0;c<n;c++)m[r].push(q.isDark(r,c));}return m;}catch(e){return null;}}
 function qrSVG(text){const m=qrMatrix(text);if(!m)return '';const n=m.length,q=4;let d='';for(let r=0;r<n;r++)for(let c=0;c<n;c++)if(m[r][c])d+='M'+(c+q)+' '+(r+q)+'h1v1h-1z';return '<svg viewBox="0 0 '+(n+2*q)+' '+(n+2*q)+'" role="img" aria-label="分享二维码" shape-rendering="crispEdges"><rect width="100%" height="100%" fill="#fff"/><path d="'+d+'" fill="#1d1712"/></svg>';}
+function exportTitleHTML(list){const ids=[...new Set(list.map(x=>x.p))].filter(id=>PG[id]),names=ids.map(id=>PG[id].name);if(!names.length)return '';
+  const lines=names.length>3?[names[0],names[1],(LANG==='en'?'+ '+(names.length-2)+' more':'等 '+(names.length)+' 个专题')]:names;
+  return '<h3 class="pb-title'+(names.length>1?' multi':'')+'">'+lines.map(l=>'<span>'+esc(l)+'</span>').join('')+'</h3>';}
 function exportPage(shared){let list;
   if(shared!==undefined){try{const raw=decodeURIComponent(shared);const keys=raw.split('~');if(!keys.length||keys.some(k=>!validKeys.has(k)))throw Error();list=selectedRows(keys);}catch{main.innerHTML='<section class="view gut"><h2 class="sec">这个分享链接无法读取</h2><p>链接可能不完整，或其中场次已更新。</p><button class="primary-button" data-tab="my">打开我的影展</button></section>';currentExport=[];return;}}
   else list=scopedRows();
@@ -2151,7 +2157,7 @@ function exportPage(shared){let list;
   (isShared?'<div class="shared-banner"><b>'+st.n+' 场电影 · '+st.days+' 天</b><p>这是一份别人分享给你的观影日程。加入后会和你自己的排片合并。</p><button class="primary-button" data-action="import-plan">全部加入我的排片</button></div>':'')+
   '<div class="share-panel">'+(qr?'<div class="qr-box">'+qr+'</div>':'')+'<div class="share-body"><b>扫码直达排片首页</b><small>二维码打开网站首页，查看完整片目与最新排片。下方链接可分享这份个人日程。</small><div class="link-row"><input id="share-url" readonly value="'+esc(shareURL(list))+'" aria-label="分享链接"><button class="secondary-button" data-action="copy-link">复制链接</button></div>'+(canShare?'<button class="text-button share-sys" data-action="system-share">'+IC.share+' 通过手机分享…</button>':'')+'</div></div>'+
   '<div class="export-grid">'+tile('png',IC.img,'排片长图','含海报与二维码 · PNG','main')+tile('calendar',IC.cal,'导入日历','.ics · 手机/电脑日历')+tile('print',IC.pdf,'打印 / PDF','A4 排版')+'</div>'+
-  '<h3 class="blockh">预览 <small>PREVIEW</small></h3><div class="share-paper"><div class="paper-band"><div class="pb-top"><div><b>麻雀观影护照</b><span>SPARROW FILM PASSPORT · 麻雀映画 × 麻雀部落</span></div>'+DUO_PRINT+'</div><em>'+(isShared?'观影日程':'我的观影日程')+'</em></div><div class="paper-stats"><span><b>'+st.n+'</b>场</span><span><b>'+st.days+'</b>天</span><span><b>'+st.hm+'</b>银幕时长</span></div><div class="plan-days">'+planRowsHTML(list,false)+'</div><footer>'+(qr?'<div class="paper-qr">'+qr+'</div>':'')+'<div><b>扫码进入排片首页</b><span>麻雀观影护照 · 麻雀映画 × 麻雀部落</span></div></footer></div>'+
+  '<h3 class="blockh">预览 <small>PREVIEW</small></h3><div class="share-paper"><div class="paper-band"><div class="pb-top"><div class="pb-brand">'+DUO_PRINT+'<b>'+tr('麻雀观影护照')+'</b></div>'+(LANG==='en'?'':'<span class="pb-en">SPARROW FILM PASSPORT</span>')+'</div><em>'+(isShared?'观影日程':'我的观影日程')+'</em>'+exportTitleHTML(list)+'</div><div class="paper-stats"><span><b>'+st.n+'</b>场</span><span><b>'+st.days+'</b>天</span><span><b>'+st.hm+'</b>银幕时长</span></div><div class="plan-days">'+planRowsHTML(list,false)+'</div><footer>'+(qr?'<div class="paper-qr">'+qr+'</div>':'')+'<div><b>扫码进入排片首页</b><span>麻雀观影护照 · 麻雀映画 × 麻雀部落</span></div></footer></div>'+
   '<p class="local-note">二维码直达网站首页；分享链接保存此刻的场次选择，之后修改个人排片不会改变已发出的日程。</p></section>';}
 function downloadBlob(blob,filename){const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),60000);}
 function wrapLines(ctx,text,maxWidth){text=tr(String(text));const out=[];let line='';const toks=CJK.test(text)||!/\s/.test(text)?Array.from(text):text.split(/(?<=\s)/);for(const ch of toks){if(ctx.measureText(line+ch).width>maxWidth&&line){out.push(line.trimEnd());line=ch;}else line+=ch;}if(line)out.push(line.trimEnd());return out;}
