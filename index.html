@@ -1577,6 +1577,7 @@ function detail(id){
         <div class="fd-progrow"><button class="fd-prog" data-prog="${progOf(f).id}">${esc(progOf(f).kind)} · ${esc(progOf(f).name)} ›</button>${f.section?`<span class="fd-unit"><i aria-hidden="true">◆</i><span class="sr-only">展映单元：</span>${esc(f.section)}</span>`:""}</div>
         <div class="fd-eyebrow"><span class="fd-reg">${REG[f.reg].n}</span>${[f.y,f.c].filter(Boolean).map(esc).join(" · ")}</div>
         <h1>${esc(f.cn)}</h1>
+        ${f.cnDb&&LANG!=="en"&&f.cnDb!==f.cn?`<div class="fd-native">豆瓣译名 ${esc(f.cnDb)}</div>`:""}
         <div class="fd-orig">${esc(f.en||f.o||"")}</div>${f.o&&f.o!==f.cn&&f.o!==(f.en||f.o)?`<div class="fd-native">原名 ${esc(f.o)}</div>`:""}
         <div class="fd-chips">${f.version?`<span class="fd-ed">${esc(f.version)}</span>`:""}<span>${minText(f)}</span>${f.language?`<span>${esc(f.language)}</span>`:""}${f.genre.map(g=>`<span>${esc(g)}</span>`).join("")}</div>
         ${f.dir?`<div class="fd-by">导演 <b>${esc(f.dir)}</b>${f.coDirector?` / ${esc(f.coDirector)}`:""}</div>`:""}

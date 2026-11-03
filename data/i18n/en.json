@@ -2858,8 +2858,12 @@
     "11/6-19:00-tp-muvie-titan-titan": "Post-screening event · Filmmakers attending (guests to be announced)"
    },
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "War and historical trauma",
+    "Family conflict",
+    "Death and grief"
+   ],
+   "contentNote": "Story information indicates: War and historical trauma; Family conflict; Death and grief. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-002": {
    "title": "The Scar-faced Cat: Way of Asura",
@@ -2869,8 +2873,10 @@
     "11/21-18:10-tp-muvie-titan-titan": "Post-screening event · Filmmakers attending (guests to be announced)"
    },
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Murder and violence"
+   ],
+   "contentNote": "Story information indicates: Murder and violence. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-003": {
    "title": "Dead End",
@@ -2880,16 +2886,23 @@
     "11/11-21:30-tp-vieshow-xinyi-hall-13": "Post-screening event · Filmmakers attending (guests to be announced)"
    },
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Murder and violence",
+    "Financial hardship"
+   ],
+   "contentNote": "Story information indicates: Murder and violence; Financial hardship. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-004": {
    "title": "Girl",
    "syn": "Taiwan, 1988. Hsiao-lee, a quiet and withdrawn girl, grows up in silent gloom. Her encounter with Li- li, vibrant and carefree, reawakens the long-buried dreams. But just as she begins to open up to the world, her mother Chuan's past resurfaces, echoing her own pain. Caught between inherited sorrow and a longing for freedom, Hsiao-lee must navigate the shadows of a life she never chose.",
    "dir": "SHU Qi",
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Domestic violence and abuse",
+    "Psychological trauma and distress",
+    "Family conflict"
+   ],
+   "contentNote": "Story information indicates: Domestic violence and abuse; Psychological trauma and distress; Family conflict. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-005": {
    "title": "The Canary's Lullaby",
@@ -2900,8 +2913,10 @@
     "11/19-21:00-tp-vieshow-xinyi-hall-10": "Post-screening event · Filmmakers attending (guests to be announced)"
    },
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Discrimination and exclusion"
+   ],
+   "contentNote": "Story information indicates: Discrimination and exclusion. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-006": {
    "title": "We're Nothing at All",
@@ -2911,8 +2926,11 @@
     "11/21-20:50-tp-vieshow-xinyi-hall-10": "Post-screening event · Filmmakers attending (guests to be announced)"
    },
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Murder and violence",
+    "Death and grief"
+   ],
+   "contentNote": "Story information indicates: Murder and violence; Death and grief. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-007": {
    "title": "Ah Girl",
@@ -2923,16 +2941,20 @@
     "11/20-18:50-tp-vieshow-xinyi-hall-11": "Post-screening event · Filmmakers attending (guests to be announced)"
    },
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Family conflict"
+   ],
+   "contentNote": "Story information indicates: Family conflict. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-008": {
    "title": "Kung Fu",
    "syn": "A high-school underdog, Yuan, and his buddy, Ah-Yi, try to help a homeless man – only to get beaten up. The vagrant claims to be Huang Jun, a once-great warrior, and later appears outside Yuan's 4th-floor window, demanding: \"Make Me Your Master.\"",
    "dir": "Giddens KO",
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Murder and violence"
+   ],
+   "contentNote": "Story information indicates: Murder and violence. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-009": {
    "title": "Afterpiece",
@@ -2942,8 +2964,10 @@
     "11/20-18:30-tp-vieshow-xinyi-hall-12": "Post-screening event · Filmmakers attending (guests to be announced)"
    },
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Infidelity"
+   ],
+   "contentNote": "Story information indicates: Infidelity. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-010": {
    "title": "Unidentified Murder",
@@ -2953,8 +2977,11 @@
     "11/21-21:30-tp-vieshow-xinyi-hall-13": "Post-screening event · Filmmakers attending (guests to be announced)"
    },
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Murder and violence",
+    "Horror and suspense"
+   ],
+   "contentNote": "Story information indicates: Murder and violence; Horror and suspense. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-011": {
    "title": "SAYANG",
@@ -2964,8 +2991,10 @@
     "11/20-19:00-tp-vieshow-xinyi-hall-13": "Post-screening event · Filmmakers attending (guests to be announced)"
    },
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Family conflict"
+   ],
+   "contentNote": "Story information indicates: Family conflict. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-012": {
    "title": "Mudborn",
@@ -2975,8 +3004,11 @@
     "11/7-21:00-tp-vieshow-xinyi-hall-13": "Post-screening event · Filmmakers attending (guests to be announced)"
    },
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Horror and suspense",
+    "Death and grief"
+   ],
+   "contentNote": "Story information indicates: Horror and suspense; Death and grief. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-013": {
    "title": "Double Happiness",
@@ -2986,16 +3018,20 @@
     "11/21-17:40-tp-vieshow-xinyi-hall-10": "Post-screening event · Filmmakers attending (guests to be announced)"
    },
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Family conflict"
+   ],
+   "contentNote": "Story information indicates: Family conflict. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-014": {
    "title": "Big Little Things",
    "syn": "A seemingly perfect middle-class Chinese family faces an unprecedented situation when their daughter Lei brings a man home on Lunar New Year's Eve to pretend to be her boyfriend. Her girlfriend's unexpected visit intertwines her with a real intimacy crisis.",
    "dir": "Michelle ZHOU",
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Family conflict"
+   ],
+   "contentNote": "Story information indicates: Family conflict. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-015": {
    "title": "Sunshine Women's Choir",
@@ -3005,8 +3041,11 @@
     "11/21-12:50-tp-vieshow-xinyi-hall-11": "Post-screening event · Filmmakers attending (guests to be announced)"
    },
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Family conflict",
+    "Imprisonment and legal pressure"
+   ],
+   "contentNote": "Story information indicates: Family conflict; Imprisonment and legal pressure. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-016": {
    "title": "We Are Born Good",
@@ -3016,8 +3055,11 @@
     "11/20-18:00-tp-muvie-titan-titan": "Post-screening event · Filmmakers attending (guests to be announced)"
    },
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Imprisonment and legal pressure",
+    "Family conflict"
+   ],
+   "contentNote": "Story information indicates: Imprisonment and legal pressure; Family conflict. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-017": {
    "title": "The Photo from 1977",
@@ -3027,8 +3069,10 @@
     "11/7-11:10-tp-vieshow-xinyi-hall-13": "Post-screening event · Filmmakers attending (guests to be announced)"
    },
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Political oppression"
+   ],
+   "contentNote": "Story information indicates: Political oppression. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-018": {
    "title": "The Last Hunter",
@@ -3038,8 +3082,10 @@
     "11/10-19:10-tp-vieshow-xinyi-hall-11": "Post-screening event · Filmmakers attending (guests to be announced)"
    },
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Harm to animals"
+   ],
+   "contentNote": "Story information indicates: Harm to animals. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-019": {
    "title": "Will You Still Be My Friend",
@@ -3049,8 +3095,10 @@
     "11/12-18:40-tp-vieshow-xinyi-hall-12": "Post-screening event · Filmmakers attending (guests to be announced)"
    },
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Family conflict"
+   ],
+   "contentNote": "Story information indicates: Family conflict. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-020": {
    "title": "Arrested Memory",
@@ -3060,8 +3108,11 @@
     "11/21-15:40-tp-muvie-titan-titan": "Post-screening event · Filmmakers attending (guests to be announced)"
    },
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Murder and violence",
+    "Illness and caregiving"
+   ],
+   "contentNote": "Story information indicates: Murder and violence; Illness and caregiving. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-021": {
    "title": "We Are All Strangers",
@@ -3071,8 +3122,11 @@
     "11/20-20:30-tp-muvie-titan-titan": "Post-screening event · Filmmakers attending (guests to be announced)"
    },
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Financial hardship",
+    "Family conflict"
+   ],
+   "contentNote": "Story information indicates: Financial hardship; Family conflict. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-022": {
    "title": "Dead Tide",
@@ -3082,8 +3136,12 @@
     "11/8-13:10-tp-muvie-titan-titan": "Post-screening event · Filmmakers attending (guests to be announced)"
    },
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Murder and violence",
+    "Psychological trauma and distress",
+    "Imprisonment and legal pressure"
+   ],
+   "contentNote": "Story information indicates: Murder and violence; Psychological trauma and distress; Imprisonment and legal pressure. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-023": {
    "title": "The Dance of a Soloist",
@@ -3093,8 +3151,11 @@
     "11/8-13:20-tp-vieshow-xinyi-hall-13": "Post-screening event · Filmmakers attending (guests to be announced)"
    },
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Political oppression",
+    "Death and grief"
+   ],
+   "contentNote": "Story information indicates: Political oppression; Death and grief. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-024": {
    "title": "The Whisper of Sunlight",
@@ -3105,8 +3166,11 @@
     "11/21-15:30-tp-vieshow-xinyi-hall-10": "Post-screening event · Filmmakers attending (guests to be announced)"
    },
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Illness and caregiving",
+    "Death and grief"
+   ],
+   "contentNote": "Story information indicates: Illness and caregiving; Death and grief. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-025": {
    "title": "Scenes from Departure",
@@ -3116,8 +3180,10 @@
     "11/9-19:10-tp-vieshow-xinyi-hall-11": "Post-screening event · Filmmakers attending (guests to be announced)"
    },
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Death and grief"
+   ],
+   "contentNote": "Story information indicates: Death and grief. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-026": {
    "title": "Almost Home",
@@ -3140,8 +3206,10 @@
     "11/12-14:00-tp-vieshow-xinyi-hall-11": "Post-screening event · Filmmakers attending (guests to be announced)"
    },
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Family conflict"
+   ],
+   "contentNote": "Story information indicates: Family conflict. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-028": {
    "title": "Magic Atlas",
@@ -3152,8 +3220,10 @@
     "11/21-19:20-tp-vieshow-xinyi-hall-13": "Post-screening event · Filmmakers attending (guests to be announced)"
    },
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Political oppression"
+   ],
+   "contentNote": "Story information indicates: Political oppression. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-029": {
    "title": "Welcome to Dolly's House",
@@ -3163,8 +3233,10 @@
     "11/8-11:00-tp-vieshow-xinyi-hall-13": "Post-screening event · Filmmakers attending (guests to be announced)"
    },
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Horror and suspense"
+   ],
+   "contentNote": "Story information indicates: Horror and suspense. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-030": {
    "title": "The Violinist",
@@ -3175,8 +3247,11 @@
     "11/21-15:30-tp-vieshow-xinyi-hall-12": "Post-screening event · Filmmakers attending (guests to be announced)"
    },
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "War and historical trauma",
+    "Death and grief"
+   ],
+   "contentNote": "Story information indicates: War and historical trauma; Death and grief. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-031": {
    "title": "Golden Horse Awards Nominated Live Action Short Films A",
@@ -3237,8 +3312,11 @@
     "11/15-16:00-tp-vieshow-xinyi-hall-11": "Post-screening event · Filmmakers attending (guests to be announced)"
    },
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Family conflict",
+    "Disappearance and family separation"
+   ],
+   "contentNote": "Story information indicates: Family conflict; Disappearance and family separation. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-037": {
    "title": "The Outsiders",
@@ -3249,8 +3327,12 @@
     "11/14-18:20-tp-vieshow-xinyi-hall-11": "Post-screening event · Filmmakers attending (guests to be announced)"
    },
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Family conflict",
+    "War and historical trauma",
+    "Discrimination and exclusion"
+   ],
+   "contentNote": "Story information indicates: Family conflict; War and historical trauma; Discrimination and exclusion. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-038": {
    "title": "Two Painters",
@@ -3261,8 +3343,11 @@
     "11/15-13:10-tp-vieshow-xinyi-hall-11": "Post-screening event · Filmmakers attending (guests to be announced)"
    },
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Death and grief",
+    "Psychological trauma and distress"
+   ],
+   "contentNote": "Story information indicates: Death and grief; Psychological trauma and distress. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-039": {
    "title": "Intermission",
@@ -3283,8 +3368,11 @@
     "11/17-18:40-tp-vieshow-xinyi-hall-11": "Post-screening event · Filmmakers attending (guests to be announced)"
    },
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Death and grief",
+    "Disappearance and family separation"
+   ],
+   "contentNote": "Story information indicates: Death and grief; Disappearance and family separation. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-041": {
    "title": "The House on the Moon",
@@ -3295,8 +3383,10 @@
     "11/9-16:00-tp-vieshow-xinyi-hall-10": "Post-screening event · Filmmakers attending (guests to be announced)"
    },
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Murder and violence"
+   ],
+   "contentNote": "Story information indicates: Murder and violence. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-042": {
    "title": "Running Wild",
@@ -3306,8 +3396,11 @@
     "11/18-18:50-tp-vieshow-xinyi-hall-11": "Post-screening event · Filmmakers attending (guests to be announced)"
    },
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Sexual content and nudity",
+    "Murder and violence"
+   ],
+   "contentNote": "Story information indicates: Sexual content and nudity; Murder and violence. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-043": {
    "title": "The Songs from Within",
@@ -3330,8 +3423,11 @@
     "11/13-15:40-tp-vieshow-xinyi-hall-13": "Post-screening event · Filmmakers attending (guests to be announced)"
    },
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Substance use and addiction",
+    "Psychological trauma and distress"
+   ],
+   "contentNote": "Story information indicates: Substance use and addiction; Psychological trauma and distress. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-045": {
    "title": "Our Blues: Ep.1-2",
@@ -3342,8 +3438,12 @@
     "11/11-17:10-tp-vieshow-xinyi-hall-11": "Post-screening event · Filmmakers attending (guests to be announced)"
    },
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Financial hardship",
+    "Psychological trauma and distress",
+    "Death and grief"
+   ],
+   "contentNote": "Story information indicates: Financial hardship; Psychological trauma and distress; Death and grief. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-046": {
    "title": "Miracles of the ER: Ep.1-2",
@@ -3353,8 +3453,11 @@
     "11/7-18:30-tp-muvie-titan-titan": "Post-screening event · Filmmakers attending (guests to be announced)"
    },
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Illness and caregiving",
+    "Death and grief"
+   ],
+   "contentNote": "Story information indicates: Illness and caregiving; Death and grief. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-047": {
    "title": "Shorts A: Almost Adult",
@@ -3394,56 +3497,78 @@
    "syn": "The Gheorghius, a devout Romanian-Norwegian couple, resettle in a village set in a distant fjord where they become close to their neighbours, the Halbergs. Their children bond despite their different upbringings. When adolescent Elia Gheorghiu shows up at school with some bruises on her body, the community asks itself if the traditional education that the Gheorghiu children get from their parents might have anything to do with it.",
    "dir": "Cristian MUNGIU",
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Child abuse",
+    "Family conflict",
+    "Imprisonment and legal pressure"
+   ],
+   "contentNote": "Story information indicates: Child abuse; Family conflict; Imprisonment and legal pressure. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-051": {
    "title": "Wild Horse Nine",
    "syn": "Shortly before the 1973 Chilean coup, CIA agents Chris and Lee are sent from Santiago to Easter Island by their bureau chief, MJ. Amid the island's iconic statues, the longtime partners grapple with dark pasts and present conspiracies. When Chris forms an unexpected bond with two rebellious students, their mission begins to unravel, threatening to send everyone's stay in this remote paradise dangerously off course.",
    "dir": "Martin McDONAGH",
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "War and historical trauma",
+    "Murder and violence"
+   ],
+   "contentNote": "Story information indicates: War and historical trauma; Murder and violence. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-052": {
    "title": "Bucking Fastard",
    "syn": "Sisters Jean and Joan Holbrooke are inseparable: they speak in unison, share the same dreams, and fall in love with the same man. Living entirely by their own social and emotional rules, they eventually end up in court and attracts intense media scrutiny. Seeking refuge from the trial and their heartbreak, the sisters embark on a journey together, confronting a world that struggles to understand them.",
    "dir": "Werner HERZOG",
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Psychological trauma and distress",
+    "Imprisonment and legal pressure"
+   ],
+   "contentNote": "Story information indicates: Psychological trauma and distress; Imprisonment and legal pressure. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-053": {
    "title": "The Wizard of the Kremlin",
    "syn": "In the aftermath of the Soviet Union's collapse, Vadim Baranov rises from avant-garde artist to the unofficial advisor of a former KGB agent destined to become Vladimir Putin. As the spin doctor behind a new Russia, he shapes power through image and illusion, yet finds himself drawn to the elusive Ksenia. Years later, Baranov recounts a story where truth, fiction, and political strategy become inseparable.",
    "dir": "Olivier ASSAYAS",
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Political oppression",
+    "War and historical trauma"
+   ],
+   "contentNote": "Story information indicates: Political oppression; War and historical trauma. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-054": {
    "title": "Orange-Flavoured Wedding",
    "syn": "The Puig family has seven children, and today is the wedding of the youngest, Jacques. It is March 1978 in the suburbs of Nantes. The father is not attending the wedding, as he has been banished from the family. The brothers and sisters, however, are all there, happy to be reunited. Jacques is marrying Martine, a love match for them both. But can love heal the wounds of childhood?",
    "dir": "Christophe HONORÉ",
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Domestic violence and abuse",
+    "Death and grief",
+    "Family conflict"
+   ],
+   "contentNote": "Story information indicates: Domestic violence and abuse; Death and grief; Family conflict. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-055": {
    "title": "Gentle Monster",
    "syn": "Lucy, a concert pianist, has relocated her family from the city to a country house, hoping to ease her husband Philip's severe burnout. Before they can settle into their new home, an early morning police visit tears their world apart. Isolated and desperate to protect her young son, Lucy must face the situation alone, trapped between the man she loves and the fear of what he may have done.",
    "dir": "Marie KREUTZER",
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Imprisonment and legal pressure",
+    "Psychological trauma and distress"
+   ],
+   "contentNote": "Story information indicates: Imprisonment and legal pressure; Psychological trauma and distress. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-056": {
    "title": "The Diary of a Chambermaid",
    "syn": "Gianina, a young Romanian, works as a housekeeper for a bourgeois family in Bordeaux. By night, she rehearses the role of a maid in an amateur stage adaptation of The Diary of a Chambermaid. As she cares for her employers' son, her own daughter grows up far away in Romania. With Christmas approaching, the hope of a long-awaited reunion begins to take shape.",
    "dir": "Radu JUDE",
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Family conflict"
+   ],
+   "contentNote": "Story information indicates: Family conflict. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-057": {
    "title": "Diary of a Mad Old Man",
@@ -3454,48 +3579,66 @@
     "11/8-12:40-tp-vieshow-xinyi-hall-10": "Post-screening event · Filmmakers attending (guests to be announced)"
    },
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Sexual content and nudity",
+    "Illness and caregiving"
+   ],
+   "contentNote": "Story information indicates: Sexual content and nudity; Illness and caregiving. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-058": {
    "title": "Possible Love",
    "syn": "Mi-ok lives quietly with her unemployed husband Ho-seok and their young son until a funeral brings them into the orbit of affluent couple Ye-ji and Sang-woo. When Ye-ji, a documentary filmmaker chronicling laid-off workers, begins filming Mi-ok, the two women grow close. Meanwhile, Mi-ok finds herself drawn to Sang-woo, as hidden desires and contrasting circumstances begin to unsettle both marriages.",
    "dir": "LEE Chang-dong",
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Financial hardship",
+    "Infidelity"
+   ],
+   "contentNote": "Story information indicates: Financial hardship; Infidelity. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-059": {
    "title": "A Man of His Time",
    "syn": "September 1940. Henri Marre arrives alone in Vichy, determined to secure a place in the new regime after France's defeat. Armed with his self-published manifesto and convinced of his patriotic mission, he rises through the machinery of the authoritarian state with increasing efficiency. But beneath his ambition lies a more desperate pursuit: escape from the failures and ruin of his own life.",
    "dir": "Emmanuel MARRE",
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "War and historical trauma",
+    "Political oppression"
+   ],
+   "contentNote": "Story information indicates: War and historical trauma; Political oppression. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-060": {
    "title": "Another Day",
    "syn": "Garance is a gifted young actress whose talent has yet to bring her the recognition she craves. Living paycheck to paycheck in Paris while struggling with anxiety and alcohol addiction, she finds solace in caring for her sick younger sister and a blossoming romance with Pauline. As these relationships deepen, Garance begins a difficult but transformative journey towards confronting her past and rebuilding her life.",
    "dir": "Jeanne HERRY",
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Substance use and addiction",
+    "Psychological trauma and distress"
+   ],
+   "contentNote": "Story information indicates: Substance use and addiction; Psychological trauma and distress. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-061": {
    "title": "The Beloved",
    "syn": "The acclaimed film director Esteban Martínez is a legend both for his films and for his past marked by violence and excess. For his new project, he offers his daughter Emilia a role under the pretext of helping her with her stalled acting career. Living together on set will foster a closeness they haven't shared for years, but it will also reopen old wounds that never healed.",
    "dir": "Rodrigo SOROGOYEN",
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Domestic violence and abuse",
+    "Family conflict"
+   ],
+   "contentNote": "Story information indicates: Domestic violence and abuse; Family conflict. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-062": {
    "title": "Butterfly Jam",
    "syn": "Sixteen-year-old Pyteh splits his time between the wrestling mat and his family's struggling Circassian diner in Newark. A single impulsive decision by his hustling father changes the course of his life, shaping a tale of pride, legacy, and masculinity.",
    "dir": "Kantemir BALAGOV",
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Family conflict",
+    "Financial hardship"
+   ],
+   "contentNote": "Story information indicates: Family conflict; Financial hardship. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-063": {
    "title": "Ha-Chan, Shake Your Booty!",
@@ -3505,16 +3648,22 @@
     "11/21-21:00-tp-muvie-titan-titan": "Post-screening event · Filmmakers attending (guests to be announced)"
    },
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Death and grief"
+   ],
+   "contentNote": "Story information indicates: Death and grief. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-064": {
    "title": "You Don't Belong Here",
    "syn": "Marius is the chief medical officer at a hospital in his hometown, raising a teenage son alone after the death of his wife. A respected and confident professional, he has no idea that his son spends the nights cycling through town, vandalising cars with a gang of masked vigilantes. Marius's world is shaken when he learns that the police have come to suspect his son of murder.",
    "dir": "Florin ȘERBAN",
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Murder and violence",
+    "Discrimination and exclusion",
+    "Death and grief"
+   ],
+   "contentNote": "Story information indicates: Murder and violence; Discrimination and exclusion; Death and grief. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-065": {
    "title": "Death Has No Master",
@@ -3525,48 +3674,64 @@
     "11/13-13:10-tp-vieshow-xinyi-hall-12": "Post-screening event · Filmmakers attending (guests to be announced)"
    },
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Family conflict",
+    "Financial hardship"
+   ],
+   "contentNote": "Story information indicates: Family conflict; Financial hardship. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-066": {
    "title": "Falling House",
    "syn": "A modest family on the outskirts of Tehran faces the imminent destruction of their home as part of a vast redevelopment project. While Rashid, the father and a prison guard, is being accused of corruption, he discovers that his eldest daughter is secretly planning to leave Iran to become a model. As the bulldozers draw ever closer, the tensions within the household start to rise.",
    "dir": "Mohsen GHARAEI",
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Imprisonment and legal pressure",
+    "Family conflict"
+   ],
+   "contentNote": "Story information indicates: Imprisonment and legal pressure; Family conflict. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-067": {
    "title": "NAZA",
    "syn": "Filmed at night on the rooftops of Tel Aviv, this documentary investigates the systems and decision- making behind Israeli military strikes in Gaza. Through secret conversations with 24 military and intelligence insiders, two Israeli filmmakers examine targeting practices, surveillance technology, and calculations of anticipated civilian casualties, while questioning the mechanisms that enable the dehumanisation and mass killing of Palestinian civilians.",
    "dir": "Yuval ABRAHAM / Rachel SZOR",
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "War and historical trauma",
+    "Murder and violence"
+   ],
+   "contentNote": "Story information indicates: War and historical trauma; Murder and violence. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-068": {
    "title": "Rehearsals for a Revolution",
    "syn": "Through five portraits of relatives and mentors, five expressions of resistance, Pegah Ahangarani sketches her life story. Drawing from personal archives, home videos, protest footage, newspapers, and recorded voices, she retraces 40 years of Iran's history. From the early days of 1979 until the war that began in 2026, she pieces together intimate and collective memories, forming the portrait of a country shaped by political repression and in constant hope for revolution.",
    "dir": "Pegah AHANGARANI",
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "War and historical trauma",
+    "Political oppression"
+   ],
+   "contentNote": "Story information indicates: War and historical trauma; Political oppression. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-069": {
    "title": "Yo (Love Is a Rebellious Bird)",
    "syn": "After the death of her beloved friend Yo, filmmaker Anna Fitch spends a decade building a one-third- scale replica of Yo's house, where memories and imagination intertwine. Blending intimate footage from Yo's final year with creative reimaginings of her remarkable life, the film celebrates a friendship that transcends age and death while exploring the power of artistic creation to transform grief into love.",
    "dir": "Anna FITCH / Banker WHITE",
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Death and grief"
+   ],
+   "contentNote": "Story information indicates: Death and grief. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-070": {
    "title": "Silenced",
    "syn": "After #MeToo shattered the silence surrounding gendered violence, survivors found themselves facing a new threat as defamation laws were weaponised against those who spoke out. International human rights lawyer Jennifer Robinson follows high-profile legal battles across the world, exposing how the justice system is used to silence, discredit, and financially ruin survivors and the journalists reporting their stories.",
    "dir": "Selina MILES",
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Sexual violence and harassment"
+   ],
+   "contentNote": "Story information indicates: Sexual violence and harassment. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-071": {
    "title": "Wishful Thinking",
@@ -3581,40 +3746,55 @@
    "syn": "Rwanda, 2012. As community-led trials seek justice and reconciliation in the aftermath of the Genocide against the Tutsi, survivor Vénéranda helps victims' and perpetrators' families rebuild their lives through dialogue. But when her teenage daughter becomes unexpectedly pregnant, Vénéranda is forced to confront the painful limits of her own convictions, testing her beliefs about forgiveness, healing, and the possibility of moving forward.",
    "dir": "Marie-Clémentine / DUSABEJAMBO",
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "War and historical trauma",
+    "Death and grief"
+   ],
+   "contentNote": "Story information indicates: War and historical trauma; Death and grief. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-073": {
    "title": "The End of It",
    "syn": "In a future where ageing has been cured and death is optional, Claire decides to end her life as she approaches her 250th birthday. Her choice unsettles her husband, daughter, and AI assistant, exposing the complexities of their relationships. As Claire embraces death as her final artistic act, she is forced to confront what it truly means to live, die, and create.",
    "dir": "Maria MARTÍNEZ BAYONA",
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Suicide or ending one's life",
+    "Family conflict"
+   ],
+   "contentNote": "Story information indicates: Suicide or ending one's life; Family conflict. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-074": {
    "title": "Dua",
    "syn": "Prishtina, Kosovo, late 1990s. As war looms and ethnic tensions escalate, 13-year-old Dua struggles to find her place among her peers and within her changing body. After an incident shakes her community, she becomes a target herself and bonds with a fearless girl, Maki, who draws her toward an unexpected form of resistance. Between the violence and the growing threat of exile, there is little room for quiet awakenings.",
    "dir": "Blerta BASHOLLI",
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "War and historical trauma",
+    "Murder and violence",
+    "Discrimination and exclusion"
+   ],
+   "contentNote": "Story information indicates: War and historical trauma; Murder and violence; Discrimination and exclusion. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-075": {
    "title": "The Guest",
    "syn": "The day before the naming party for Karl and Emilie's son, Karl's estranged mother, Vibeke, arrives unannounced, determined to rejoin the family and prove herself as a grandmother. While Karl is furious, his sister Rikke insists Vibeke deserves another chance. Over a weekend at a seaside hotel, old patterns and unresolved wounds resurface, turning an intimate family celebration into a confrontation with the past.",
    "dir": "Mads MENGEL",
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Family conflict"
+   ],
+   "contentNote": "Story information indicates: Family conflict. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-076": {
    "title": "Bedford Park",
    "syn": "Haunted by an abusive childhood, Korean American Audrey returns to her parents' home after her mother's car accident. There she meets Eli, the man responsible for the crash, and an unexpected bond begins to grow between them. As they confront the lingering wounds of their past, Audrey and Eli discover the possibility of healing through love, despite the weight of family, guilt, and loss.",
    "dir": "Stephanie AHN",
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Family conflict",
+    "Death and grief"
+   ],
+   "contentNote": "Story information indicates: Family conflict; Death and grief. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-077": {
    "title": "The Color of the Sun",
@@ -3633,8 +3813,11 @@
    "syn": "Decades after her mysterious disappearance, the Blood Countess re-emerges in modern-day Vienna, where she reunites with her devoted maid Hermine to track down a dangerous book with the power to destroy all evil – including vampires like themselves. Joined by the countess's melancholic nephew, a vegetarian vampire, they embark on a scavenger hunt through Vienna and Bohemia while vampirologists and the police remain hot on their trail.",
    "dir": "Ulrike OTTINGER",
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Murder and violence",
+    "Horror and suspense"
+   ],
+   "contentNote": "Story information indicates: Murder and violence; Horror and suspense. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-079": {
    "title": "The Dreamed Adventure",
@@ -3693,8 +3876,10 @@
    "syn": "In a remote Indonesian village where trance parties allow residents to become possessed by animal spirits, 20-year-old Bayu dreams of becoming Head Shaman. Hoping to save his home from eviction, he enters a tournament to prove his powers as a spirit channeler. But as developers threaten the village's sacred spring, Bayu must confront family tensions and his own past to protect his community.",
    "dir": "Wregas BHANUTEJA",
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Horror and suspense"
+   ],
+   "contentNote": "Story information indicates: Horror and suspense. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-086": {
    "title": "Fruit Gathering",
@@ -3705,8 +3890,10 @@
     "11/18-21:30-tp-vieshow-xinyi-hall-13": "Post-screening event · Filmmakers attending (guests to be announced)"
    },
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Financial hardship"
+   ],
+   "contentNote": "Story information indicates: Financial hardship. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-087": {
    "title": "Filipiñana",
@@ -3752,8 +3939,10 @@
     "11/18-19:00-tp-vieshow-xinyi-hall-10": "Post-screening event · Filmmakers attending (guests to be announced)"
    },
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Death and grief"
+   ],
+   "contentNote": "Story information indicates: Death and grief. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-091": {
    "title": "Nagi Notes",
@@ -3772,8 +3961,11 @@
    "syn": "Born into poverty in New York, Allen Nelson joins the Marine Corps at 18 and is sent to Vietnam, where the brutal realities of combat shatter his dreams of military glory. Returning home at 23, he is haunted by memories of the battlefield and struggles to reconnect with his family. As his life unravels, a psychiatrist at a veterans' hospital offers him a lifeline.",
    "dir": "TSUKAMOTO Shinya",
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "War and historical trauma",
+    "Murder and violence"
+   ],
+   "contentNote": "Story information indicates: War and historical trauma; Murder and violence. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-093": {
    "title": "Children Untold",
@@ -3784,8 +3976,11 @@
     "11/15-20:20-tp-vieshow-xinyi-hall-13": "Post-screening event · Filmmakers attending (guests to be announced)"
    },
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Family conflict",
+    "Disappearance and family separation"
+   ],
+   "contentNote": "Story information indicates: Family conflict; Disappearance and family separation. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-094": {
    "title": "Between Two Lovers",
@@ -3808,16 +4003,20 @@
     "11/18-15:10-tp-vieshow-xinyi-hall-12": "Post-screening event · Filmmakers attending (guests to be announced)"
    },
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Family conflict"
+   ],
+   "contentNote": "Story information indicates: Family conflict. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-096": {
    "title": "In My Father's Room",
    "syn": "Satomi works at an art museum until a mysterious key arrives in an envelope, leading her to a hidden room that once belonged to her father, who died alone a month earlier. Retracing his final days, she discovers a man seemingly left behind by society yet sustained by his devotion to words, the art of tea, and subtle beauty, gradually uncovering the quiet grace of his solitary world.",
    "dir": "HARADA Maha",
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Family conflict"
+   ],
+   "contentNote": "Story information indicates: Family conflict. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-097": {
    "title": "To Be Ordinary",
@@ -3828,8 +4027,11 @@
     "11/10-18:30-tp-vieshow-xinyi-hall-12": "Post-screening event · Judicial Lecture (screened together with the film)"
    },
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Death and grief",
+    "Financial hardship"
+   ],
+   "contentNote": "Story information indicates: Death and grief; Financial hardship. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-098": {
    "title": "Shadow Work",
@@ -3839,8 +4041,11 @@
     "11/8-12:30-tp-vieshow-xinyi-hall-12": "Post-screening event · Judicial Lecture (screened together with the film)"
    },
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Domestic violence and abuse",
+    "Murder and violence"
+   ],
+   "contentNote": "Story information indicates: Domestic violence and abuse; Murder and violence. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-099": {
    "title": "The Seoul Guardians",
@@ -3863,8 +4068,10 @@
     "11/10-14:20-tp-vieshow-xinyi-hall-13": "Post-screening event · Filmmakers attending (guests to be announced)"
    },
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Murder and violence"
+   ],
+   "contentNote": "Story information indicates: Murder and violence. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-101": {
    "title": "17",
@@ -3885,16 +4092,20 @@
     "11/7-16:10-tp-vieshow-xinyi-hall-12": "Post-screening event · Judicial Lecture (screened together with the film)"
    },
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Psychological trauma and distress"
+   ],
+   "contentNote": "Story information indicates: Psychological trauma and distress. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-103": {
    "title": "Sunny Dancer",
    "syn": "After 17-year-old Ivy beats cancer, she can think of nothing worse than becoming a Make-A-Wish kid. Sent by her overbearing parents to a summer camp for young people affected by cancer, she struggles to fit in. But as the weeks pass, Ivy finds unexpected friendship among a group of like-minded misfits determined to live life to the fullest.",
    "dir": "George JAQUES",
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Death and grief"
+   ],
+   "contentNote": "Story information indicates: Death and grief. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-104": {
    "title": "Sad Girlz",
@@ -3913,8 +4124,10 @@
     "11/13-18:30-tp-vieshow-xinyi-hall-12": "Post-screening event · Filmmakers attending (guests to be announced)"
    },
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Family conflict"
+   ],
+   "contentNote": "Story information indicates: Family conflict. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-106": {
    "title": "Generation Shorts",
@@ -3932,8 +4145,10 @@
    "syn": "In the industrial greenhouses of southern Spain, trans man Iván falls in love with Hadoum, a Moroccan- born seasonal worker. But when a long-awaited promotion makes him her supervisor, their relationship is tested by family, workplace, and social expectations. As love collides with ambition and prejudice, Iván embarks on a journey of self-discovery, questioning the future he has long believed was his only path.",
    "dir": "Ian de la ROSA",
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Discrimination and exclusion"
+   ],
+   "contentNote": "Story information indicates: Discrimination and exclusion. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-108": {
    "title": "Trial of Hein",
@@ -3956,8 +4171,10 @@
    "syn": "In contemporary Tokyo, 35-year-old Taiga juggles work as an erotic masseur with auditions for the gay porn industry while searching for connection. When his father's declining health draws him back home, a dispute over the family inheritance reopens old wounds. His domineering sister argues that, as a gay man without children, he deserves less, threatening to reveal the secret he has kept from their father.",
    "dir": "Anshul CHAUHAN",
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Sexual content and nudity"
+   ],
+   "contentNote": "Story information indicates: Sexual content and nudity. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-111": {
    "title": "Zsazsa Zaturnnah",
@@ -3980,8 +4197,11 @@
    "syn": "Fresh-faced Syd, an assistant at a New York photography magazine, discovers Lucy Berliner, a once- renowned photographer now living in seclusion with her lover. Hoping to revive Lucy's career, Syd becomes drawn into her world of art, addiction, and desire. As professional ambition and personal attraction become increasingly entangled, both women are forced to confront the cost of love, creativity, and reinvention.",
    "dir": "Lisa CHOLODENKO",
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Substance use and addiction",
+    "Sexual content and nudity"
+   ],
+   "contentNote": "Story information indicates: Substance use and addiction; Sexual content and nudity. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-114": {
    "title": "Oasis: Don't Look Back in Anger",
@@ -4036,32 +4256,41 @@
    "syn": "For Sheriff Ulysses, his provisional posting to the quaint Midwestern American town of Normal was meant to be a welcome respite from both his marital woes and recent moral injuries in the line of duty. But when a botched bank robbery interrupts the municipality's tranquil pace, a dark secret is inadvertently exposed, and Ulysses soon discovers that the town is anything but its namesake.",
    "dir": "Ben WHEATLEY",
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Murder and violence"
+   ],
+   "contentNote": "Story information indicates: Murder and violence. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-121": {
    "title": "Nightborn",
    "syn": "With dreams of starting a perfect family, Saga and her British husband Jon move to the isolated house where she spent much of her childhood, deep in the Finnish forest. But as soon as their baby is born, despite the reassurance of all around her, Saga knows there's something terribly wrong with her son. As their marriage starts to crack, Jon struggles to support his wife, yet only Saga suspects the terrible truth about her newborn.",
    "dir": "Hanna BERGHOLM",
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Horror and suspense",
+    "Psychological trauma and distress"
+   ],
+   "contentNote": "Story information indicates: Horror and suspense; Psychological trauma and distress. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-122": {
    "title": "Saccharine",
    "syn": "First-year medical student Hana becomes obsessed with losing weight after meeting an old friend transformed by diet pills. Encouraged by her crush, a fitness influencer, she embarks on a body transformation programme before uncovering the pills' disturbing secret. As Hana's body shrinks, she is drawn into increasingly macabre acts while a sinister ghost grows ever stronger, blurring the line between physical transformation and psychological horror.",
    "dir": "Natalie Erika JAMES",
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Horror and suspense"
+   ],
+   "contentNote": "Story information indicates: Horror and suspense. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-123": {
    "title": "Sakamoto Days",
    "syn": "Once known as the greatest hitman in history, Taro Sakamoto abandons his deadly career after falling in love, marrying, and starting a family. Now the overweight owner of a small neighbourhood store, he finds his peaceful life shattered when a billion-yen bounty is placed on his head. As assassins descend from around the world, Sakamoto must protect his family while taking extreme care not to accidentally kill his attackers.",
    "dir": "FUKUDA Yuichi",
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Murder and violence"
+   ],
+   "contentNote": "Story information indicates: Murder and violence. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-124": {
    "title": "Decorado",
@@ -4102,16 +4331,20 @@
     "11/17-21:20-tp-vieshow-xinyi-hall-13": "Post-screening event · Filmmakers attending (guests to be announced)"
    },
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Murder and violence"
+   ],
+   "contentNote": "Story information indicates: Murder and violence. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-128": {
    "title": "Paprika",
    "syn": "By day, Dr. Chiba Atsuko is a research psychologist developing a revolutionary device that allows therapists to enter their patients' dreams. By night, she becomes the dream detective Paprika. When a prototype is stolen, Paprika must track down the culprit before the technology falls into the wrong hands and threatens to destroy people's minds.",
    "dir": "KON Satoshi",
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Psychological trauma and distress"
+   ],
+   "contentNote": "Story information indicates: Psychological trauma and distress. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-129": {
    "title": "Sense and Sensibility",
@@ -4161,8 +4394,10 @@
    "syn": "Middle-aged Mr. Badii wishes to die, but in a society where suicide is considered an abomination, he needs someone willing to bury him after his death. Driving through the hills above Tehran, he approaches a succession of strangers for help, only to be turned down. Eventually, an elderly Turkish taxidermist agrees but first takes Badii on a scenic detour, offering him a different perspective on life.",
    "dir": "Abbas KIAROSTAMI",
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Suicide or ending one's life"
+   ],
+   "contentNote": "Story information indicates: Suicide or ending one's life. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-135": {
    "title": "Ulysses' Gaze",
@@ -4194,8 +4429,10 @@
     "11/15-18:20-tp-vieshow-xinyi-hall-11": "Post-screening event · Curators’ Talk (screened together with the film)"
    },
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Murder and violence"
+   ],
+   "contentNote": "Story information indicates: Murder and violence. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-138": {
    "title": "Pigs and Battleships",
@@ -4205,16 +4442,21 @@
     "11/12-18:50-tp-vieshow-xinyi-hall-11": "Post-screening event · Imamura Talk: Tsao Shih-han (20:40, Hall 11)"
    },
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Murder and violence"
+   ],
+   "contentNote": "Story information indicates: Murder and violence. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-139": {
    "title": "The Insect Woman",
    "syn": "Born into a poor farming family in rural Japan, Tome endures hardship from childhood through the war years and post-war reconstruction. Leaving her village for the city, she enters a life of prostitution and eventually rises to become the madam of a brothel. Along the way, she survives betrayal, exploitation, and the deaths of those closest to her through an unrelenting instinct for self-preservation. As the years pass, Tome watches her own illegitimate daughter follow a strikingly similar path, suggesting that the cycle of struggle and survival may never truly end.",
    "dir": "IMAMURA Shohei",
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Sexual violence and harassment",
+    "Financial hardship"
+   ],
+   "contentNote": "Story information indicates: Sexual violence and harassment; Financial hardship. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-140": {
    "title": "Intentions of Murder",
@@ -4224,16 +4466,20 @@
     "11/21-18:30-tp-vieshow-xinyi-hall-11": "Post-screening event · Imamura Talk: Bong Joon-ho (21:00, Hall 11)"
    },
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Sexual violence and harassment"
+   ],
+   "contentNote": "Story information indicates: Sexual violence and harassment. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-141": {
    "title": "The Pornographers",
    "syn": "Small-time pornographer Ogata lives in Osaka with his widowed landlady Haru, her family, and an unusual household fixture – a carp Haru believes to be her reincarnated late husband. While producing illicit films for a growing underground market, Ogata becomes increasingly infatuated with Haru's daughter Keiko, even as tension simmers with her son Koichi. As the police tighten their crackdown on pornography, Ogata struggles to maintain control while desire, obsession, and absurdity consume the fragile world he has built.",
    "dir": "IMAMURA Shohei",
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Sexual content and nudity"
+   ],
+   "contentNote": "Story information indicates: Sexual content and nudity. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-142": {
    "title": "Vengeance Is Mine",
@@ -4243,8 +4489,10 @@
     "11/15-16:50-tp-muvie-titan-titan": "Post-screening event · Imamura Talk: Nishikawa Miwa (19:10, MUVIE TITAN)"
    },
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Murder and violence"
+   ],
+   "contentNote": "Story information indicates: Murder and violence. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-143": {
    "title": "Black Rain",
@@ -4254,16 +4502,22 @@
     "11/14-12:40-tp-vieshow-xinyi-hall-12": "Post-screening event · Imamura Talk: Tengan Daisuke (14:40, Hall 12)"
    },
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "War and historical trauma",
+    "Illness and caregiving"
+   ],
+   "contentNote": "Story information indicates: War and historical trauma; Illness and caregiving. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-144": {
    "title": "The Eel",
    "syn": "After serving a prison sentence for murdering his unfaithful wife, Yamashita Takuro is released on parole and opens a barber shop in a quiet seaside town. Keeping mostly to himself, he finds solace in caring for his pet eel, his only confidant. His carefully ordered life begins to change when he rescues Keiko from a suicide attempt and offers her a job. But as Keiko grows closer to him, the arrival of former associates, old enemies, and painful memories threatens to shatter the fragile peace Takuro has struggled so hard to build.",
    "dir": "IMAMURA Shohei",
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Murder and violence",
+    "Imprisonment and legal pressure"
+   ],
+   "contentNote": "Story information indicates: Murder and violence; Imprisonment and legal pressure. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-145": {
    "title": "Warm Water Under a Red Bridge",
@@ -4284,8 +4538,11 @@
     "11/22-10:30-tp-muvie-titan-titan": "Post-screening event · Master’s Talk: Bong Joon-ho (12:30, MUVIE TITAN)"
    },
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Murder and violence",
+    "Death and grief"
+   ],
+   "contentNote": "Story information indicates: Murder and violence; Death and grief. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-147": {
    "title": "Mother",
@@ -4295,16 +4552,21 @@
     "11/21-10:10-tp-muvie-titan-titan": "Post-screening event · Filmmakers attending (guests to be announced)"
    },
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Murder and violence",
+    "Imprisonment and legal pressure"
+   ],
+   "contentNote": "Story information indicates: Murder and violence; Imprisonment and legal pressure. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-148": {
    "title": "Pi",
    "syn": "A paranoid mathematician searches for a key number that will unlock the universal patterns found in nature. As his obsession deepens, he attracts the attention of both a Hasidic group and a Wall Street firm, each determined to obtain the secret he may have uncovered.",
    "dir": "Darren ARONOFSKY",
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Psychological trauma and distress"
+   ],
+   "contentNote": "Story information indicates: Psychological trauma and distress. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-149": {
    "title": "Black Swan",
@@ -4314,8 +4576,12 @@
     "11/16-18:10-tp-muvie-titan-titan": "Post-screening event · Master’s Talk: Darren Aronofsky (20:00, MUVIE TITAN)"
    },
    "editorial": "Selection note pending; consult the synopsis, screening edition and showtimes.",
-   "warnings": [],
-   "contentNote": "Content details have not yet been reviewed. This is not an assurance of no sensitive material or suitability for all ages."
+   "warnings": [
+    "Psychological trauma and distress",
+    "Sexual content and nudity",
+    "Self-harm imagery"
+   ],
+   "contentNote": "Story information indicates: Psychological trauma and distress; Sexual content and nudity; Self-harm imagery. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs."
   },
   "gh63-150": {
    "title": "University of Laughs",
@@ -5607,6 +5873,7 @@
   "看点": "Highlights",
   "背景": "Background",
   "原名": "Original title",
+  "豆瓣译名": "Douban title (mainland)",
   "放映场次": "Screenings",
   "排片待公布": "Schedule TBA",
   "本片场次已全部放映结束": "All screenings of this film have ended",
