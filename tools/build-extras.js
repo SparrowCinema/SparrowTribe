@@ -34,7 +34,7 @@ const venueOf = (s, L) => { const v = VN[s.v], o = lang(L) && EN.venues[s.v] || 
 // ---------- 分享页 ----------
 const page = ({ L, kind, id, ttl, desc, img, wide, hash, bare }) => {
   const rel = (lang(L) ? 's/en/' : 's/') + kind + '/' + id + '.html', url = SITE + rel;
-  const home = SITE + 'index.html' + (lang(L) ? '?lang=en' : '') + hash;
+  const home = SITE + 'index.html?' + (lang(L) ? 'lang=en&' : '') + 'go=' + hash.slice(1) + hash; // go= 是备用：部分内置浏览器跳转时会丢掉 # 后面的部分
   const name = lang(L) ? 'Sparrow Film Passport' : '麻雀观影护照';
   return `<!doctype html><html lang="${lang(L) ? 'en' : 'zh-CN'}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>${esc(ttl)}${bare ? '' : ' | ' + name}</title><meta name="description" content="${esc(desc)}"><link rel="canonical" href="${url}">
