@@ -1,7 +1,8 @@
 // 个人排片长图：与网站「排片长图」同一套版式（1080 宽），可在浏览器画布与小程序 2d 画布里运行。
 // 入参 days 与「我的」页的 days 结构一致：[{ d, wk, range, items:[{ id, t, end, cn, version, dir, min, venue, hall, color, gap }] }]
 const D = { W: 1080, P: 64, ROW: 196, GAP: 52, DAYH: 104, HEAD: 360, STATS: 150, FOOT: 420 };
-const SERIF = 'serif', SANS = 'sans-serif', MONO = 'monospace';
+// 画布无法加载网站的网页字体，按系统字体就近匹配：苹果用 Songti / PingFang / Menlo，安卓用思源系
+const SERIF = '"Noto Serif SC","Songti SC","STSong","Source Han Serif SC","Noto Serif CJK SC",serif', SANS = '"Noto Sans SC","PingFang SC","Source Han Sans SC","Noto Sans CJK SC","Microsoft YaHei",sans-serif', MONO = '"IBM Plex Mono",Menlo,"SF Mono",Consolas,monospace';
 
 // 顶部标题区：专题名最大（与网站一致），品牌与 Logo 缩小放角落；返回 { TS, TLH, TY0, HEAD, lines }
 function layout(c, o) {
