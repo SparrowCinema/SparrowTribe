@@ -1,8 +1,9 @@
 <wxs src="../../utils/l.wxs" module="L" />
 <view class="wrap">
  <view class="h1">{{L.t(i,'我的')}}</view><view class="sub">{{L.t(i,'带着日程出发，带着电影回来。')}}</view>
- <view class="collection-head card" bindtap="toggleCollection"><view class="mini-passport">✦</view><view class="collection-copy"><text class="b">{{L.t(i,'我的观影护照')}}</text><text class="small">{{pp.st.n}} {{L.t(i,'部影片')}} · {{L.t(i,'展开封面与电影印章')}}</text></view><text>{{collectionOpen?'⌃':'⌄'}}</text></view>
- <block wx:if="{{collectionOpen}}">
+ <view class="menu card">
+  <view class="me-row" hover-class="hv" bindtap="toggleCollection"><image class="me-ic" src="/images/menu/passport.svg" mode="aspectFit" /><view class="me-copy"><text class="me-t">{{L.t(i,'我的观影护照')}}</text><text class="me-s">{{pp.st.n}} {{L.t(i,'部影片')}} · {{L.t(i,'展开封面与电影印章')}}</text></view><text class="me-go {{collectionOpen?'on':''}}">›</text></view>
+  <view wx:if="{{collectionOpen}}" class="me-body">
   <view class="fp">
     <view class="k mono">YOUR LIFE IN CINEMA</view>
     <view class="h1 fp-h1">{{L.t(i,'我的观影护照')}}</view>
@@ -89,14 +90,15 @@ ONE STAMP</text><text class="fp-open-icon">↗</text></view>
       </view>
       <view class="fp-close"><text>{{L.t(i,'左右滑动翻页')}}</text><text class="lk" bindtap="ppClose">{{L.t(i,'合上护照')}}</text></view>
     </block>
-  </view></block>
-  <view class="fp-recap" hover-class="hv" bindtap="openRecap"><view class="recap-emblem">✦</view><view class="recap-copy"><text class="k">{{L.t(i,'我的银幕足迹')}}</text><text class="b">{{L.t(i,'生成我的影院观影结算')}}</text><text class="s">{{L.t(i,'按年份与专题，收藏印章与评分。')}}</text></view><text class="ar">↗</text></view>
-
+  </view>
   <view class="my-library-links"><view data-mode="planned" bindtap="openLibrary">{{L.t(i,'已加入排片')}} ↗</view><view data-mode="watched" bindtap="openLibrary">{{L.t(i,'已看过')}} ↗</view><view data-mode="qa" bindtap="openLibrary">{{L.t(i,'主创映后场')}} ↗</view></view>
-
-  <view class="sy card" wx:if="{{sy}}">
-    <view class="sy-h" bindtap="toggleSync"><text>{{L.t(i,'个人档案云端同步')}}</text><text>{{syncExpanded||sy.on?'−':'＋'}}</text></view>
-    <block wx:if="{{syncExpanded||sy.on}}">
+  </view>
+  <view class="me-row" hover-class="hv" bindtap="openRecap"><image class="me-ic" src="/images/menu/recap.svg" mode="aspectFit" /><view class="me-copy"><text class="me-t">{{L.t(i,'我的影院观影结算')}}</text><text class="me-s">{{L.t(i,'按年份与专题，收藏印章与评分。')}}</text></view><text class="me-go">›</text></view>
+  <view class="me-row" hover-class="hv" bindtap="toPlan" data-to="plan"><image class="me-ic" src="/images/menu/plan.svg" mode="aspectFit" /><view class="me-copy"><text class="me-t">{{L.t(i,'个人排片')}}</text><text class="me-s">{{stats.n ? stats.n + ' ' + L.t(i,'场放映') + ' · ' + stats.d + ' ' + L.t(i,'天行程') : L.t(i,'按天查看日程 · 自动检查时间冲突')}}</text></view><text class="me-go">›</text></view>
+  <view class="me-row" hover-class="hv" bindtap="toPlan" data-to="plan-tools"><image class="me-ic" src="/images/menu/export.svg" mode="aspectFit" /><view class="me-copy"><text class="me-t">{{L.t(i,'导出与分享')}}</text><text class="me-s">{{L.t(i,'排片长图 · 分享给朋友')}}</text></view><text class="me-go">›</text></view>
+  <view class="me-row" hover-class="hv" bindtap="toggleSync"><image class="me-ic" src="/images/menu/sync.svg" mode="aspectFit" /><view class="me-copy"><text class="me-t">{{L.t(i,'个人档案云端同步')}}</text><text class="me-s">{{sy.on ? sy.line : L.t(i,'同步、备份与档案保管')}}</text></view><text class="me-go {{syncExpanded?'on':''}}">›</text></view>
+  <view wx:if="{{syncExpanded}}" class="me-body sync-body">
+   <block wx:if="{{sy}}">
     <block wx:if="{{!sy.on}}">
       <view class="sy-lead">{{L.t(i,'用一串同步码，在手机、电脑和小程序之间同步看过记录、评分、护照照片和个人排片。不用注册账号。')}}</view>
       <view class="sy-row"><view class="btn" hover-class="hv" bindtap="syStart">{{L.t(i,'开启同步')}}</view><view class="btn ghost" hover-class="hv" bindtap="syJoin">{{L.t(i,'我已有同步码')}}</view></view>
@@ -108,35 +110,30 @@ ONE STAMP</text><text class="fp-open-icon">↗</text></view>
       <view class="sy-row"><view class="btn" hover-class="hv" bindtap="syNow">{{L.t(i,'立即同步')}}</view><text class="sy-stop" bindtap="syStop">{{L.t(i,'停止同步')}}</text></view>
       <view class="sy-note">{{L.t(i,'在另一台设备（网站或小程序）的「我的」页选「我已有同步码」，输入这串码即可。同步码就是钥匙，请自己保存好；知道它的人都能读写这份档案。')}}</view>
     </block>
-    </block>
-  </view>
+   </block>
+   <view class="care-h">{{L.t(i,'你的档案，由你保管')}}</view>
 
- <view class="card profile-care"><view class="sy-h" bindtap="toggleCare">{{L.t(i,'你的档案，由你保管')}} <text>{{careOpen?'−':'＋'}}</text></view><block wx:if="{{careOpen}}">
  <text class="care-p">{{L.t(i,'小程序记录保存在本机，个人排片与看过记录也会按微信用户同步。启用同步码后，姓名、照片与完整档案会另存入 Supabase，用于网站和多设备同步。')}}</text>
  <text class="care-p">{{L.t(i,'完整备份包含观影记录、评分、照片、姓名和个人排片，不包含同步码。导入会合并已有排片，同一影片以导入记录为准；备份文件请自行妥善保管。')}}</text>
  <view class="sy-row"><view class="btn ghost" bindtap="backupProfile">{{L.t(i,'下载完整备份')}}</view><view class="btn ghost" bindtap="restoreProfile">{{L.t(i,'导入备份')}}</view></view>
  <text class="care-p">{{L.t(i,'同步码丢失时可在另一台已连接设备查看。没有同步码和已连接设备时，无法凭姓名找回；备份文件仍可恢复本机档案。')}}</text>
  <text class="care-p">{{L.t(i,'停止同步只断开本设备。清空同步码对应的云端内容前，请先在其他设备停止同步；本机副本保留，微信用户下的排片与看过记录不受影响。匿名同步记录和删除标记仍保留；彻底删除请联系维护者。')}}</text>
  <view wx:if="{{sy.on}}" class="care-danger" bindtap="clearCloudProfile">{{L.t(i,'清空云端内容并断开同步')}}</view>
- </block></view>
- <view wx:if="{{planSelectorOpen}}" class="selector-mask" catchtouchmove="noop" catchtap="closePlanSelector"><view class="selector-panel" catchtap="noop"><view class="selector-head"><text>{{L.t(i,'选择专题')}}</text><text bindtap="closePlanSelector">×</text></view><input class="selector-search" placeholder="{{L.t(i,'搜索专题')}}" value="{{planQuery}}" bindinput="searchPlanSelector"/><scroll-view scroll-y class="selector-results"><view wx:for="{{planOptions}}" wx:key="id" data-id="{{item.id}}" bindtap="choosePlanScope" class="selector-option"><view><text class="b">{{item.n}}</text><text class="small">{{item.lab}}</text></view><text>{{pf===item.id?'✓':''}}</text></view><view wx:if="{{!planOptions.length}}" class="small">{{L.t(i,'没有匹配的专题')}}</view></scroll-view></view></view>
-  <view class="card guide">
-    <view class="sy-h" bindtap="toggleGuide">{{L.t(i,'观影护照使用指南')}} <text class="gtog">{{guideOpen ? '−' : '+'}}</text></view>
-    <block wx:if="{{guideOpen}}">
-      <view class="gi" wx:for="{{guide}}" wx:key="k"><text class="gk">{{index + 1}}</text><view><text class="gb">{{L.t(i,item.k)}}</text><text class="gs">{{L.t(i,item.s)}}</text></view></view>
-    </block>
   </view>
-
-  <view class="card fb">
-    <view class="sy-h" bindtap="toggleFb">{{L.t(i,'反馈与纠错')}} <text class="gtog">{{fbOpen ? '−' : '+'}}</text></view>
-    <block wx:if="{{fbOpen}}">
+  <view class="me-row" hover-class="hv" bindtap="toggleGuide"><image class="me-ic" src="/images/menu/guide.svg" mode="aspectFit" /><view class="me-copy"><text class="me-t">{{L.t(i,'观影护照使用指南')}}</text><text class="me-s">{{L.t(i,'盖章、评分与保存记录')}}</text></view><text class="me-go {{guideOpen?'on':''}}">›</text></view>
+  <view wx:if="{{guideOpen}}" class="me-body guide">
+      <view class="gi" wx:for="{{guide}}" wx:key="k"><text class="gk">{{index + 1}}</text><view><text class="gb">{{L.t(i,item.k)}}</text><text class="gs">{{L.t(i,item.s)}}</text></view></view>
+  </view>
+  <view class="me-row" hover-class="hv" bindtap="toggleFb"><image class="me-ic" src="/images/menu/feedback.svg" mode="aspectFit" /><view class="me-copy"><text class="me-t">{{L.t(i,'反馈与纠错')}}</text><text class="me-s">{{L.t(i,'排片问题与使用建议')}}</text></view><text class="me-go {{fbOpen?'on':''}}">›</text></view>
+  <view wx:if="{{fbOpen}}" class="me-body fb">
     <view class="fb-p">{{L.t(i,'排片、片名、人名或功能有问题？欢迎告诉我们，附上截图和页面名称会更快处理。')}}</view>
     <view class="fb-row" hover-class="hv" data-v="2165.yan@gmail.com" data-n="Email" bindtap="copyContact"><text class="fb-k mono">EMAIL</text><text class="fb-v mono">2165.yan@gmail.com</text><text class="fb-go">{{L.t(i,'复制')}}</text></view>
     <view class="fb-row" hover-class="hv" data-v="BFAFILM" data-n="WeChat" bindtap="copyContact"><text class="fb-k mono">WECHAT</text><text class="fb-v mono">BFAFILM</text><text class="fb-go">{{L.t(i,'复制')}}</text></view>
-    </block>
   </view>
+ </view>
+ <view wx:if="{{planSelectorOpen}}" class="selector-mask" catchtouchmove="noop" catchtap="closePlanSelector"><view class="selector-panel" catchtap="noop"><view class="selector-head"><text>{{L.t(i,'选择专题')}}</text><text bindtap="closePlanSelector">×</text></view><input class="selector-search" placeholder="{{L.t(i,'搜索专题')}}" value="{{planQuery}}" bindinput="searchPlanSelector"/><scroll-view scroll-y class="selector-results"><view wx:for="{{planOptions}}" wx:key="id" data-id="{{item.id}}" bindtap="choosePlanScope" class="selector-option"><view><text class="b">{{item.n}}</text><text class="small">{{item.lab}}</text></view><text>{{pf===item.id?'✓':''}}</text></view><view wx:if="{{!planOptions.length}}" class="small">{{L.t(i,'没有匹配的专题')}}</view></scroll-view></view></view>
 
-  <view class="blockh">{{L.t(i,'个人排片')}} <text class="en">MY PLAN</text></view>
+  <view id="plan" class="blockh">{{L.t(i,'个人排片')}} <text class="en">MY PLAN</text></view>
   <view class="stats card">
     <view><text class="n mono">{{stats.n}}</text><text class="l">{{L.t(i,'场放映')}}</text></view>
     <view><text class="n mono">{{stats.d}}</text><text class="l">{{L.t(i,'天行程')}}</text></view>
@@ -157,7 +154,7 @@ ONE STAMP</text><text class="fp-open-icon">↗</text></view>
       <view class="plan-scope" bindtap="openPlanSelector"><view><text class="small">{{L.t(i,'选择专题')}}</text><text class="b">{{planScopeName}}</text></view><text>⌄</text></view>
 
     </view>
-    <view class="tools">
+    <view id="plan-tools" class="tools">
       <view class="btn" hover-class="hv" bindtap="makeImage">{{L.t(i,'生成长图')}}</view>
       <button class="btn ghost" open-type="share">{{L.t(i,'分享给朋友')}}</button>
       <view class="btn ghost" bindtap="toSchedule">{{L.t(i,'继续选片')}}</view>
