@@ -8,6 +8,8 @@
     <view class="library-filter {{pf!=='all'?'active':''}}" data-type="programme" bindtap="openSelector"><text class="filter-label">{{L.t(i,'专题')}}</text><view class="filter-value"><text>{{programmeName}}</text><text>⌄</text></view></view>
     <view class="library-filter {{year!=='all'?'active':''}}" data-type="year" bindtap="openSelector"><text class="filter-label">{{L.t(i,'年份')}}</text><view class="filter-value"><text>{{yearName}}</text><text class="filter-arrow">⌄</text></view></view>
     <view class="library-filter" data-type="city" bindtap="openSelector"><text class="filter-label">{{L.t(i,'城市')}}</text><view class="filter-value"><text>{{cityName}}</text><text class="filter-arrow">⌄</text></view></view>
+    <view class="library-filter {{reg!=='all'?'active':''}}" data-type="region" bindtap="openSelector"><text class="filter-label">{{L.t(i,'地区')}}</text><view class="filter-value"><text>{{regName}}</text><text class="filter-arrow">⌄</text></view></view>
+    <view class="library-filter {{len!=='all'?'active':''}}" data-type="length" bindtap="openSelector"><text class="filter-label">{{L.t(i,'片长')}}</text><view class="filter-value"><text>{{lenName}}</text><text class="filter-arrow">⌄</text></view></view>
     <view class="library-filter {{mine!=='all'?'active':''}}" data-type="personal" bindtap="openSelector"><text class="filter-label">{{L.t(i,'我的')}}</text><view class="filter-value"><text>{{mineName}}</text><text>⌄</text></view></view>
   </view>
   <view wx:if="{{active}}" class="library-reset" bindtap="resetFilters">{{L.t(i,'重置筛选')}} ↺</view>
