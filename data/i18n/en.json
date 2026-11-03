@@ -2692,7 +2692,21 @@
     "Social inequality or workplace mistreatment",
     "Financial hardship or exploitation"
    ],
-   "contentNote": "Available story information indicates: Social inequality or workplace mistreatment; Financial hardship or exploitation. Detailed depiction and intensity have not been verified; consider your individual needs."
+   "contentNote": "Available story information indicates: Social inequality or workplace mistreatment; Financial hardship or exploitation. Detailed depiction and intensity have not been verified; consider your individual needs.",
+   "bio": "Born in Konstanz in 1995, Kilian Armando Friedrich studied performing arts in Hildesheim and Madrid, then documentary directing in Munich and Mexico City. His documentary Nomades du nucléaire premiered at the 2023 Berlinale and received the German Short Film Award special prize for medium-length films. I Understand Your Displeasure is his fiction feature debut.",
+   "writers": [
+    "Kilian Armando Friedrich",
+    "Tünde Sautier",
+    "Daniel Kunz"
+   ],
+   "cast": [
+    "Sabine Thalau",
+    "Nada Kosturin",
+    "Werner Posselt",
+    "Sadibou Diabang",
+    "Nigyar Velagich",
+    "Thomas Sprekelsen"
+   ]
   },
   "karla": {
    "title": "Karla",
@@ -2816,7 +2830,11 @@
     "Violence against women or domestic abuse",
     "Emotional distress or trauma"
    ],
-   "contentNote": "Available story information indicates: Violence against women or domestic abuse; Emotional distress or trauma. Detailed depiction and intensity have not been verified; consider your individual needs."
+   "contentNote": "Available story information indicates: Violence against women or domestic abuse; Emotional distress or trauma. Detailed depiction and intensity have not been verified; consider your individual needs.",
+   "bio": "Daniela Magnani Hüller is a German-Brazilian filmmaker born in Munich in 1995. After living in Rio de Janeiro, she studied documentary directing at HFF Munich and wrote, directed and edited several short films. She received the DOK.talent Award at DOK.fest Munich in 2023. Sometimes, I Imagine Them All at a Party is her autobiographical documentary feature debut.",
+   "writers": [
+    "Daniela Magnani Hüller"
+   ]
   },
   "when-pigs-fly": {
    "title": "When Pigs Fly",
@@ -2837,7 +2855,11 @@
     "Animal harm or death themes",
     "Illness, treatment or care"
    ],
-   "contentNote": "Available story information indicates: Animal harm or death themes; Illness, treatment or care. Detailed depiction and intensity have not been verified; consider your individual needs."
+   "contentNote": "Available story information indicates: Animal harm or death themes; Illness, treatment or care. Detailed depiction and intensity have not been verified; consider your individual needs.",
+   "bio": "Denise Riedmayr studied documentary directing at HFF Munich. She works as a freelance filmmaker and as an author, director and editor at Bayerischer Rundfunk. In 2021, she received the City of Munich Starter Film Award. Her short films include An Anna (2020) and the co-directed Swim for Good (2018). When Pigs Fly examines the relationship between humans and pigs.",
+   "writers": [
+    "Denise Riedmayr"
+   ]
   },
   "shame-and-money": {
    "title": "Shame and Money",
