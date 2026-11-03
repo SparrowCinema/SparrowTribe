@@ -23,8 +23,8 @@ Page({
   onShow() {const mode=app.globalData.jumpLibraryMine;if(mode){app.globalData.jumpLibraryMine='';this.setData({mine:mode,pf:'all',q:''});}this.build();},
   context() {const data=app.globalData.data,idx=U.index(data);return {shows:data.shows,picked:plan.get(),watched:W.all(),keyOf:U.keyOf,programme:this.data.pf,city:this.data.city,cityOfShow:s=>idx.VN[s.v]?.city,programmeOf:f=>idx.progOf(f).id,showProgramme:s=>U.progForShow(s,idx).id};},
 
-  row(f, data, idx, withNext) {
-    const nx = withNext ? data.shows.filter(s=>s.id===f.id&&!U.ended(s,idx)&&(this.data.pf==='all'||U.progForShow(s,idx).id===this.data.pf)&&(this.data.city==='all'||idx.VN[s.v]?.city===this.data.city)).sort((a,b)=>U.showDate(a)-U.showDate(b))[0] : null,status=Library.status(f,this.context());
+  row(f, data, idx, withNext, pid) {
+    const nx = withNext ? data.shows.filter(s=>s.id===f.id&&!U.ended(s,idx)&&(pid?U.progForShow(s,idx).id===pid:(this.data.pf==='all'||U.progForShow(s,idx).id===this.data.pf))&&(this.data.city==='all'||idx.VN[s.v]?.city===this.data.city)).sort((a,b)=>U.showDate(a)-U.showDate(b))[0] : null,status=Library.status(f,this.context());
     return {planned:status.planned,watched:status.watched,event:status.event,id:f.id, cn: f.cn, en: f.en || f.o, dir: f.dir, c: t(f.c), y: f.y, version: t(f.version || ''), db: f.r && f.r[0] != null ? f.r[0] : '—',
       release: t(f.release || ''), poster: U.poster(f), color: (data.reg[f.reg] || {}).c, next: nx ? nx.d + ' ' + nx.t : '' };
   },
@@ -32,22 +32,23 @@ Page({
     const data = app.globalData.data, idx = U.index(data), {mine,pf,q}=this.data,ctx=this.context();
     const fest = p => U.isFest(p) ? 0 : 1;
     const base=data.films.filter(f=>!f.ev).filter(f=>Library.inProgramme(f,pf,ctx)&&Library.inCity(f,this.data.city,ctx)&&(this.data.year==='all'||String(f.y)===this.data.year)&&Library.category(f,mine,ctx)&&Library.matches(f,q));
-    const pidOf = f => pf !== 'all' ? pf : idx.progOf(f).id;
+    const inP = (f, p) => idx.progsOf(f).some(x => x.p.id === p.id) || data.shows.some(s => s.id === f.id && U.progForShow(s, idx).id === p.id); // 跨影展影片在每个所属专题都列出
     const info = {}; data.programmes.forEach(p => { info[p.id] = U.progInfo(p, data, idx); });
-    const hasShows = f => data.shows.some(s => s.id === f.id);
-    const isLive = f => !!U.nextShowOf(f, data.shows) || (!hasShows(f) && info[idx.progOf(f).id].status !== 'ended');
+    const showsIn = (f, p) => data.shows.filter(s => s.id === f.id && U.progForShow(s, idx).id === p.id);
+    const isLiveIn = (f, p) => { const ss = showsIn(f, p); return ss.some(s => !U.ended(s, idx)) || (!ss.length && info[p.id].status !== 'ended'); };
     const order = data.programmes.slice().sort((a, b) => fest(a) - fest(b));
     const kind = p => t(U.isFest(p) ? '影展' : p.kind || '专题');
     const stack = rows => rows.slice(0, 4).map(r => ({ id: r.id, poster: r.poster, color: r.color, ch: r.cn[0] }));
     const secs = [], past = [];
     order.forEach(p => {
-      const mine = base.filter(f => pidOf(f) === p.id); if (!mine.length) return;
+      if (pf !== 'all' && pf !== p.id) return;
+      const ms = base.filter(f => inP(f, p)); if (!ms.length) return;
       if (info[p.id].status === 'ended') {
-        const rows = mine.sort((a, b) => U.relTime(b) - U.relTime(a)).map(f => this.row(f, data, idx, false));
+        const rows = ms.sort((a, b) => U.relTime(b) - U.relTime(a)).map(f => this.row(f, data, idx, false, p.id));
         past.push({ id: p.id, kind: kind(p), name: p.name, period: p.period || '', n: rows.length, rows, stack: stack(rows), open:!!q||mine!=='all'||!!this.pastOpen[p.id], end: info[p.id].b || 0 });
       } else {
-        const live = mine.filter(isLive).sort(U.filmOrder(data.shows)).map(f => this.row(f, data, idx, true));
-        const gone = mine.filter(f => !isLive(f)).sort((a, b) => U.relTime(b) - U.relTime(a)).map(f => this.row(f, data, idx, false));
+        const live = ms.filter(f => isLiveIn(f, p)).sort(U.filmOrder(data.shows.filter(s => U.progForShow(s, idx).id === p.id))).map(f => this.row(f, data, idx, true, p.id));
+        const gone = ms.filter(f => !isLiveIn(f, p)).sort((a, b) => U.relTime(b) - U.relTime(a)).map(f => this.row(f, data, idx, false, p.id));
         const all = live.concat(gone);
         secs.push({ id: p.id, kind: kind(p), name: p.name, meta: all.length, en: p.en || '', live, gone, stack: stack(all), open:!!q||mine!=='all'||this.folds[p.id]!==0, goneOpen:!!q||mine!=='all'||!!this.goneOpen[p.id] });
       }

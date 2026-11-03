@@ -1121,7 +1121,7 @@ input:not([type=checkbox]):not([type=radio]),select,textarea{font-size:16px!impo
 @media(max-width:650px){.fp-collection{grid-template-columns:1fr;gap:24px;padding:28px 22px 22px}.fp-collection-copy{max-width:none;width:100%}.fp-collection-copy h3,.fp-collection-copy>p,.fp-archive-label{display:none}.fp-collection .fp-tallies{grid-template-columns:repeat(4,minmax(0,1fr));margin:0;padding:13px 0 10px;border-top:1px solid var(--line)}.fp-collection .fp-tallies span{padding:5px 0;font-size:9px}.fp-collection .fp-tallies b{font-size:22px}.fp-collection .fp-explore{font-size:11px;padding-top:14px}.my-dashboard .my-menu{grid-template-columns:1fr;gap:0;border:1px solid var(--line);border-radius:4px;overflow:hidden}.my-dashboard .my-menu .my-entry{display:grid;grid-template-columns:32px 1fr auto;align-items:center;border:0;border-bottom:1px solid var(--line);padding:16px}.my-dashboard .my-menu .my-entry:last-child{border-bottom:0}.my-dashboard .me-go{position:static}.fp-collection .fp-cover{width:min(78%,250px)}.my-dashboard .fp-recap b{font-size:15px}.my-dashboard .fp-recap small{font-size:10px}}
 
 </style>
-<link rel="stylesheet" href="styles/companion.css">
+<link rel="stylesheet" href="styles/companion.css?v=71">
 </head>
 <body>
 <div class="app">
@@ -1523,18 +1523,19 @@ function saveFolds(){try{localStorage.setItem('sparrow-fold-v1',JSON.stringify(f
 const CHEV='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>';
 function stackHTML(rows){return '<span class="fstack" aria-hidden="true">'+rows.slice(0,4).map(f=>pst(f.id)?'<img src="'+pst(f.id)+'" alt="" loading="lazy">':'<i style="background:'+REG[f.reg].c+'">'+esc(f.cn[0])+'</i>').join('')+'</span>';}
 function filmsListHTML(){
-  const scopedNext=f=>SH.find(s=>s.id===f.id&&!isPast(s)&&(fcity==="all"||VN[s.v]?.city===fcity)&&(ffilt==="all"||(s.p||F[s.id]?.prog)===ffilt));
-  const scopedOrder=(a,b)=>{const x=scopedNext(a),y=scopedNext(b);return x&&y?showDate(x)-showDate(y)||a.cn.localeCompare(b.cn,"zh"):x?-1:y?1:filmOrder(a,b);};
+  // 跨影展影片在每个所属专题里都列出；「下一场」只取该专题的场次
+  const showPid=s=>s.p||F[s.id]?.prog;
+  const nextIn=(f,pid)=>SH.find(s=>s.id===f.id&&!isPast(s)&&(fcity==="all"||VN[s.v]?.city===fcity)&&showPid(s)===pid);
+  const orderIn=pid=>(a,b)=>{const x=nextIn(a,pid),y=nextIn(b,pid);return x&&y?showDate(x)-showDate(y)||a.cn.localeCompare(b.cn,"zh"):x?-1:y?1:filmOrder(a,b);};
   const base = FILMS.filter(f=>window.SparrowLibrary.inProgramme(f,ffilt,libraryContext())&&window.SparrowLibrary.inCity(f,fcity,libraryContext())&&yearOk(f)&&window.SparrowLibrary.category(f,fmine,libraryContext())&&filmMatches(f,fq));
-  const pidOf=f=>ffilt!=="all"?ffilt:(f.prog||"style-kaleidoscope");
-  const live=[], gone=[];
-  base.forEach(f=>{ if(scopedNext(f) || (!SH.some(s=>s.id===f.id)&&progStatus(PG[f.prog])!=="ended")) live.push(f); else gone.push(f); });
+  const members=p=>ffilt!=="all"&&ffilt!==p.id?[]:base.filter(f=>filmProgsOf(f).some(x=>x.p.id===p.id)||SH.some(s=>s.id===f.id&&showPid(s)===p.id));
+  const isLiveIn=(f,p)=>!!nextIn(f,p.id)||(!SH.some(s=>s.id===f.id&&showPid(s)===p.id)&&progStatus(p)!=="ended");
   const endedP=p=>progStatus(p)==="ended";
-  const groups = progGroupOrder().filter(p=>!endedP(p)).map(p=>[p,live.filter(f=>pidOf(f)===p.id).sort(scopedOrder),gone.filter(f=>pidOf(f)===p.id).sort((a,b)=>relTime(b)-relTime(a))]).filter(([,r,g])=>r.length||g.length);
+  const groups = progGroupOrder().filter(p=>!endedP(p)).map(p=>{const m=members(p);return [p,m.filter(f=>isLiveIn(f,p)).sort(orderIn(p.id)),m.filter(f=>!isLiveIn(f,p)).sort((a,b)=>relTime(b)-relTime(a))];}).filter(([,r,g])=>r.length||g.length);
   const grpHTML = ([p,rows,old]) => { const key='g:'+p.id, open=!!fq||fmine!=="all"||folds[key]!==0, all=rows.concat(old);
     return `<section class="fsec${open?"":" closed"}" data-fsec="${key}"><header class="fgrp fgrp2"><div class="fgrp-main"><span class="fgrp-kind">${isFest(p)?"影展":esc(p.kind||"专题")}</span><h3>${esc(p.name)}</h3><small class="fgrp-meta">${all.length} 部 · ${esc(p.en||p.kind||"")}</small></div><div class="fgrp-side">${stackHTML(all)}<button class="fold-btn" data-fold="${key}" aria-expanded="${open}" aria-label="${tr(open?"收起":"展开")} ${esc(p.name)}">${CHEV}</button></div></header>
-      <div class="fsec-body">${rows.length?`<div class="flist">${rows.map(f=>filmCardHTML(f,scopedNext(f))).join("")}</div>`:""}${old.length?`<details class="fgone"${fq||fmine!=="all"?" open":""}><summary><span>本专题已放映</span><b>${old.length}</b><span>部</span>${CHEV}</summary><div class="flist">${old.map(f=>filmCardHTML(f,null)).join("")}</div></details>`:""}</div></section>`; };
-  const endedGroups = progGroupOrder().filter(endedP).map(p=>[p,gone.filter(f=>pidOf(f)===p.id).sort((a,b)=>relTime(b)-relTime(a))]).filter(([,r])=>r.length).sort((x,y)=>(progRange(y[0])[1]||0)-(progRange(x[0])[1]||0));
+      <div class="fsec-body">${rows.length?`<div class="flist">${rows.map(f=>filmCardHTML(f,nextIn(f,p.id))).join("")}</div>`:""}${old.length?`<details class="fgone"${fq||fmine!=="all"?" open":""}><summary><span>本专题已放映</span><b>${old.length}</b><span>部</span>${CHEV}</summary><div class="flist">${old.map(f=>filmCardHTML(f,null)).join("")}</div></details>`:""}</div></section>`; };
+  const endedGroups = progGroupOrder().filter(endedP).map(p=>[p,members(p).sort((a,b)=>relTime(b)-relTime(a))]).filter(([,r])=>r.length).sort((x,y)=>(progRange(y[0])[1]||0)-(progRange(x[0])[1]||0));
   const pastHTML = endedGroups.length?`<header class="fpast-h"><h3>往期专题</h3><small>${endedGroups.reduce((n,[,r])=>n+r.length,0)} 部 · 已结束的专题收在这里</small></header>`+endedGroups.map(([p,rows])=>`<details class="fold-prog"${fq||fmine!=="all"?" open":""}><summary><span class="fp-t"><span class="fgrp-kind">${isFest(p)?"影展":esc(p.kind||"专题")}</span><b>${esc(p.name)}</b><small class="fp-n">${rows.length} 部${p.period?" · "+esc(p.period):""}</small></span>${stackHTML(rows)}<span class="fold-btn" aria-hidden="true">${CHEV}</span></summary><div class="flist">${rows.map(f=>filmCardHTML(f,null)).join("")}</div></details>`).join(""):"";
   const body = groups.map(grpHTML).join("")+pastHTML;
   return `<p class="library-result-count" aria-live="polite">${base.length} 部影片${fmine!=="all"?" · "+LIBRARY_MODES.find(x=>x[0]===fmine)[1]:""}</p>`+(body || `<div class="g-empty"><b>${fq?`没有找到「${esc(fq)}」`:"当前分类暂无影片"}</b><span>${fmine==="planned"?"在排片表中加入场次，就会出现在这里。":fmine==="watched"?"在影片页点「看过」，开始收集你的电影印章。":"换个分类，或试试片名、导演、演员。"}</span></div>`);
