@@ -1761,7 +1761,7 @@ function progActsHTML(p){if(!p||!p.file)return "";return `<div class="pg-acts"><
 document.addEventListener('click',async e=>{
   const sh=e.target.closest('[data-share]');
   if(sh){const [k,id]=sh.dataset.share.split(':'),f=k==='f'?F[id]:null,p=k==='p'?PG[id]:null,title=(f?f.cn:p&&p.name)||'',url=pageShareURL(k,id);
-    if(navigator.share){try{await navigator.share({title:title+' | '+tr('麻雀观影护照'),url});return;}catch(err){if(err&&err.name==='AbortError')return;}}
+    if(navigator.share){try{await navigator.share({title:p?title:title+' | '+tr('麻雀观影护照'),url});return;}catch(err){if(err&&err.name==='AbortError')return;}}
     await copyText(url);toast('分享链接已复制');return;}
   const cu=e.target.closest('[data-copyurl]');
   if(cu){await copyText(cu.dataset.copyurl);toast('订阅链接已复制');}
