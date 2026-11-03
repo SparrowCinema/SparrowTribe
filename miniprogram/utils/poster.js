@@ -1,6 +1,6 @@
 // 个人排片长图：与网站「排片长图」同一套版式（1080 宽），可在浏览器画布与小程序 2d 画布里运行。
 // 入参 days 与「我的」页的 days 结构一致：[{ d, wk, range, items:[{ id, t, end, cn, version, dir, min, venue, hall, color, gap }] }]
-const D = { W: 1080, P: 64, ROW: 196, GAP: 52, DAYH: 104, HEAD: 360, STATS: 150, FOOT: 384 };
+const D = { W: 1080, P: 64, ROW: 196, GAP: 52, DAYH: 104, HEAD: 360, STATS: 150, FOOT: 364 };
 // 画布无法加载网站的网页字体，按系统字体就近匹配：苹果用 Songti / PingFang / Menlo，安卓用思源系
 const SERIF = '"Noto Serif SC","Songti SC","STSong","Source Han Serif SC","Noto Serif CJK SC",serif', SANS = '"Noto Sans SC","PingFang SC","Source Han Sans SC","Noto Sans CJK SC","Microsoft YaHei",sans-serif', MONO = '"IBM Plex Mono",Menlo,"SF Mono",Consolas,monospace';
 
@@ -119,16 +119,16 @@ function draw(c, o) {
     y += 24;
   });
 
-  // 页脚：小程序里没有网站二维码，改为品牌与引导语。卡片与日程同宽，内边距上下左右一致（40）
-  const CH = 300, PAD = 40, fy = y + 20; c.fillStyle = '#2b2117'; rr(c, P, fy, W - 2 * P, CH, 20); c.fill();
-  const fx = P + PAD; c.fillStyle = '#fffaf0'; c.font = '700 38px ' + SANS; c.fillText(EN ? 'Search “麻雀观影护照” on WeChat' : '微信搜索「麻雀观影护照」', fx, fy + PAD + 36);
-  c.font = '400 24px ' + SANS; c.globalAlpha = .8; wrapCanvas(c, T('小程序里查看完整片目 · 最新排片 · 选择想看的电影'), fx, fy + PAD + 82, W - 2 * P - 2 * PAD - (o.qr ? 250 : 0), 34); c.globalAlpha = 1;
+  // 页脚：深色通栏，左右与底边铺满（与顶部色带呼应）；内容仍按页边距 P 对齐
+  const BH = 340, PY = 52, fy = y + 24; c.fillStyle = '#2b2117'; c.fillRect(0, fy, W, H - fy);
+  const fx = P; c.fillStyle = '#fffaf0'; c.font = '700 38px ' + SANS; c.fillText(EN ? 'Search “麻雀观影护照” on WeChat' : '微信搜索「麻雀观影护照」', fx, fy + PY + 36);
+  c.font = '400 24px ' + SANS; c.globalAlpha = .8; wrapCanvas(c, T('小程序里查看完整片目 · 最新排片 · 选择想看的电影'), fx, fy + PY + 82, W - 2 * P - (o.qr ? 270 : 0), 34); c.globalAlpha = 1;
   if (o.qr) { // 右侧：小程序码（圆形码，白底垫底，与卡片等内边距）
-    const Q = CH - 2 * PAD, qx = W - P - PAD - Q, qy = fy + PAD;
+    const Q = BH - 2 * PY, qx = W - P - Q, qy = fy + PY;
     c.fillStyle = '#fffaf0'; rr(c, qx, qy, Q, Q, Q / 2); c.fill();
     const m = 10; c.save(); c.beginPath(); c.arc(qx + Q / 2, qy + Q / 2, Q / 2 - m, 0, Math.PI * 2); c.clip(); c.drawImage(o.qr, qx + m, qy + m, Q - 2 * m, Q - 2 * m); c.restore();
   }
-  const R = 48, cy = fy + CH - PAD - R;
+  const R = 48, cy = fy + BH - PY - R;
   (o.marks || []).forEach((im, i) => {
     const cx = fx + R + i * (R * 2 + 20);
     c.fillStyle = '#fffaf0'; c.beginPath(); c.arc(cx, cy, R, 0, Math.PI * 2); c.fill();
