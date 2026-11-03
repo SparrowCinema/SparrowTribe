@@ -71,6 +71,19 @@ Page({
     this.setData({ planSub: list.length ? (en ? list.length + (list.length === 1 ? ' show' : ' shows') + ' · ' + (next ? 'next ' + md : 'all screened') : list.length + ' 场 · ' + (next ? '下一场 ' + md : '已全部放映')) : t('按天查看日程 · 自动检查时间冲突') });
   },
   toPlan(e) { const to = e && e.currentTarget.dataset.to; wx.navigateTo({ url: '/pages/plan/plan' + (to ? '?to=' + to : '') }); },
+  showImage(path) {
+    wx.showActionSheet({ itemList: [t('保存到相册'), t('预览并发给朋友')], success: r => { if (r.tapIndex === 0) this.saveImage(path); else wx.previewImage({ urls: [path] }); } });
+  },
+  saveImage(path) {
+    wx.saveImageToPhotosAlbum({ filePath: path,
+      success: () => wx.showToast({ title: t('已保存到相册'), icon: 'success' }),
+      fail: err => {
+        const m = (err && err.errMsg) || '';
+        if (/cancel/.test(m)) return;
+        if (/auth/.test(m)) wx.showModal({ title: t('需要相册权限'), content: t('请在设置里允许保存到相册；或选择「预览并发给朋友」后长按图片保存。'), confirmText: t('去设置'), success: r => { if (r.confirm) wx.openSetting(); } });
+        else wx.showToast({ title: t('保存失败'), icon: 'none' });
+      } });
+  },
   openLibrary(e) {app.globalData.jumpLibraryMine=e.currentTarget.dataset.mode;wx.switchTab({url:'/pages/films/films'});},
   toggleSync() {this.setData({syncExpanded:!this.data.syncExpanded});},
   ppOpen() { this.setData({ ppOpen: true, ppPage: 0 }); },
