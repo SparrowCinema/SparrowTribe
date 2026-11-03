@@ -111,7 +111,7 @@
     <view wx:if="{{f.long}}" class="more" bindtap="more">{{open ? L.t(i,'收起') : L.t(i,'展开全文')}}</view>
 
     <block wx:if="{{f.highlights.length}}">
-      <view class="st"><text class="stt">{{L.t(i,'观影看点')}}</text><text class="ste mono">WHAT TO WATCH</text></view>
+      <view class="st"><text class="stt">{{L.t(i,'荐片笔记')}}</text><text class="ste mono">CURATOR'S NOTES</text></view>
       <view wx:for="{{f.highlights}}" wx:key="n" class="hl card"><text class="hn">{{item.n}}</text><text class="hx">{{item.x}}</text></view>
     </block>
 
