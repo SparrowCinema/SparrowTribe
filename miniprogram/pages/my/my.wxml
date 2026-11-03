@@ -94,6 +94,8 @@ ONE STAMP</text><text class="fp-open-icon">↗</text></view>
   <view class="my-library-links"><view data-mode="planned" bindtap="openLibrary">{{L.t(i,'已加入排片')}} ↗</view><view data-mode="watched" bindtap="openLibrary">{{L.t(i,'已看过')}} ↗</view><view data-mode="qa" bindtap="openLibrary">{{L.t(i,'主创映后场')}} ↗</view></view>
   </view>
   <view class="me-row" hover-class="hv" bindtap="openRecap"><image class="me-ic" src="/images/menu/recap.svg" mode="aspectFit" /><view class="me-copy"><text class="me-t">{{L.t(i,'我的影院观影结算')}}</text><text class="me-s">{{L.t(i,'按年份与专题，收藏印章与评分。')}}</text></view><text class="me-go">›</text></view>
+  <view class="me-row" hover-class="hv" bindtap="toPlan"><image class="me-ic" src="/images/menu/plan.svg" mode="aspectFit" /><view class="me-copy"><text class="me-t">{{L.t(i,'个人排片')}}</text><text class="me-s">{{planSub}}</text></view><text class="me-go">›</text></view>
+  <view class="me-row" hover-class="hv" data-to="tools" bindtap="toPlan"><image class="me-ic" src="/images/menu/export.svg" mode="aspectFit" /><view class="me-copy"><text class="me-t">{{L.t(i,'导出与分享')}}</text><text class="me-s">{{L.t(i,'带二维码的排片长图 · 分享给朋友')}}</text></view><text class="me-go">›</text></view>
   <view class="me-row" hover-class="hv" bindtap="toggleSync"><image class="me-ic" src="/images/menu/sync.svg" mode="aspectFit" /><view class="me-copy"><text class="me-t">{{L.t(i,'个人档案云端同步')}}</text><text class="me-s">{{sy.on ? sy.line : L.t(i,'同步、备份与档案保管')}}</text></view><text class="me-go {{syncExpanded?'on':''}}">›</text></view>
   <view wx:if="{{syncExpanded}}" class="me-body sync-body">
    <block wx:if="{{sy}}">
@@ -129,68 +131,6 @@ ONE STAMP</text><text class="fp-open-icon">↗</text></view>
     <view class="fb-row" hover-class="hv" data-v="BFAFILM" data-n="WeChat" bindtap="copyContact"><text class="fb-k mono">WECHAT</text><text class="fb-v mono">BFAFILM</text><text class="fb-go">{{L.t(i,'复制')}}</text></view>
   </view>
  </view>
- <view wx:if="{{planSelectorOpen}}" class="selector-mask" catchtouchmove="noop" catchtap="closePlanSelector"><view class="selector-panel" catchtap="noop"><view class="selector-head"><text>{{L.t(i,'选择专题')}}</text><text bindtap="closePlanSelector">×</text></view><input class="selector-search" placeholder="{{L.t(i,'搜索专题')}}" value="{{planQuery}}" bindinput="searchPlanSelector"/><scroll-view scroll-y class="selector-results"><view wx:for="{{planOptions}}" wx:key="id" data-id="{{item.id}}" bindtap="choosePlanScope" class="selector-option"><view><text class="b">{{item.n}}</text><text class="small">{{item.lab}}</text></view><text>{{pf===item.id?'✓':''}}</text></view><view wx:if="{{!planOptions.length}}" class="small">{{L.t(i,'没有匹配的专题')}}</view></scroll-view></view></view>
-
-  <view id="plan" class="blockh">{{L.t(i,'个人排片')}} <text class="en">MY PLAN</text></view>
-  <view class="stats card">
-    <view><text class="n mono">{{stats.n}}</text><text class="l">{{L.t(i,'场放映')}}</text></view>
-    <view><text class="n mono">{{stats.d}}</text><text class="l">{{L.t(i,'天行程')}}</text></view>
-    <view><text class="n mono">{{stats.hm}}</text><text class="l">{{L.t(i,'银幕时长')}}</text></view>
-    <view class="{{clash?'bad':'good'}}"><text class="n mono">{{clash}}</text><text class="l">{{L.t(i,'时间冲突')}}</text></view>
-  </view>
-
-  <view wx:if="{{empty}}" class="empty">
-    <text class="plus">＋</text>
-    <text class="et">{{L.t(i,'还没有加入场次')}}</text>
-    <text class="es">{{L.t(i,'在排片表或影片页点「加入排片」')}}</text>
-    <view class="btn" bindtap="toSchedule">{{L.t(i,'去选电影')}}</view>
-  </view>
-
-  <block wx:else>
-    <view wx:if="{{progs.length}}" class="pfbox">
-      <view class="pf-head"><text class="pf-t">{{L.t(i,'选择专题')}}</text><text class="pf-s">{{L.t(i,'排片与分享只含所选内容')}}</text></view>
-      <view class="plan-scope" bindtap="openPlanSelector"><view><text class="small">{{L.t(i,'选择专题')}}</text><text class="b">{{planScopeName}}</text></view><text>⌄</text></view>
-
-    </view>
-    <view id="plan-tools" class="tools">
-      <view class="btn" hover-class="hv" bindtap="makeImage">{{L.t(i,'生成长图')}}</view>
-      <button class="btn ghost" open-type="share">{{L.t(i,'分享给朋友')}}</button>
-      <view class="btn ghost" bindtap="toSchedule">{{L.t(i,'继续选片')}}</view>
-      <view class="clear" bindtap="clear">{{L.t(i,'清空')}}</view>
-    </view>
-    <view wx:if="{{pfEmpty}}" class="pf-empty card"><text class="b">{{L.t(i,'这个专题还没有加入场次')}}</text><text class="muted small">{{L.t(i,'切换到「全部专题」，或去排片表挑选。')}}</text></view>
-    <view wx:if="{{clash}}" class="conflict"><text class="b">{{clashTxt}}</text>{{L.t(i,'，已在日程中标红，移出其中一场即可。')}}</view>
-    <view wx:for="{{days}}" wx:for-item="day" wx:key="d" class="day">
-      <view class="dh"><text class="dd mono">{{day.d}}</text><text class="dw">{{day.wk}}</text><text class="dr">{{day.cnt}} · {{day.range}}</text></view>
-      <block wx:for="{{day.items}}" wx:key="key">
-        <view wx:if="{{item.gap}}" class="gap {{item.gap.cls}}"><text>{{item.gap.txt}}</text><text wx:if="{{item.gap.mapName}}" class="gap-map" data-v="{{item.gap.mapName}}" bindtap="openMap">{{L.t(i,'地图')}} ›</text></view>
-        <view class="it">
-          <view class="tm mono"><text class="b">{{item.t}}</text><text>{{item.end}}</text></view>
-          <view class="pc card" style="--c:{{item.color}}" data-id="{{item.id}}" bindtap="open">
-            <image wx:if="{{item.poster}}" class="th" src="{{item.poster}}" mode="aspectFill" />
-            <view class="pi">
-              <view class="pt">{{item.cn}}<text wx:if="{{item.version}}" class="ed">{{item.version}}</text></view>
-              <text class="ps">{{item.dir}} · {{item.minTxt}}</text>
-              <text class="pv">{{item.venue}}<text class="htag">{{item.hall}}</text></text>
-            </view>
-            <view class="rm" data-key="{{item.key}}" catchtap="remove">✕</view>
-          </view>
-        </view>
-      </block>
-    </view>
-    <canvas type="2d" id="poster" class="poster-cv" />
-    <view class="note">{{L.t(i,'散场时间按片长计算，不含映前广告与映后交流。跨影院观影请另留交通时间。')}}</view>
-  </block>
-
-  <view class="makers">
-    <text class="k2">{{L.t(i, '制作设计 · PRODUCED ' + '&' + ' DESIGNED BY')}}</text>
-    <view class="row">
-      <image src="/images/brand/sparrow-movies-sq.png" mode="aspectFit" />
-      <text class="x">×</text>
-      <image src="/images/brand/sparrow-tribe-sq.png" mode="aspectFit" />
-    </view>
-    <text class="d">{{L.t(i,'电影放映与策展')}}</text>
-  </view>
 </view>
 
 <view wx:if="{{rcOpen}}" class="rc-mask" bindtap="closeRecap">
