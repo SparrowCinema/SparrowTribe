@@ -1,0 +1,14 @@
+<wxs src="../../utils/l.wxs" module="L" />
+<view wx:if="{{p}}" class="wrap">
+  <view class="h1">{{L.t(i,'活动与论坛')}}</view>
+  <view class="sub">{{p.name}} · {{p.period}}</view>
+  <scroll-view scroll-x class="tabs"><view wx:for="{{tabs}}" wx:key="id" class="tab {{kind===item.id ? 'on' : ''}}" data-id="{{item.id}}" bindtap="selectKind">{{item.name}}</view></scroll-view>
+  <view wx:for="{{groups}}" wx:key="name" wx:for-item="g">
+    <view class="ev-h">{{g.name}}</view>
+    <view wx:for="{{g.items}}" wx:key="id" class="ev-card {{item.ended ? 'ev-done' : ''}}">
+      <view class="ev-t">{{item.title}}<text wx:if="{{item.free}}" class="ev-tag">{{L.t(i,'免费')}}</text><text wx:if="{{item.ended}}" class="ev-tag ev-end">{{L.t(i,'已结束')}}</text></view>
+      <view wx:if="{{item.desc}}" class="ev-d">{{item.desc}}</view>
+      <view wx:for="{{item.lines}}" wx:for-item="l" wx:key="k" class="ev-l"><text class="ev-k">{{l.k}}</text><text class="ev-v">{{l.v}}</text></view>
+    </view>
+  </view>
+</view>

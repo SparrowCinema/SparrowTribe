@@ -6,6 +6,7 @@
     "pages/my/my",
     "pages/film/film",
     "pages/programme/programme",
+    "pages/events/events",
     "pages/share/share"
   ],
   "window": {
@@ -21,10 +22,30 @@
     "backgroundColor": "#f8f2e6",
     "borderStyle": "white",
     "list": [
-      { "pagePath": "pages/schedule/schedule", "text": "排片", "iconPath": "images/tab/schedule.png", "selectedIconPath": "images/tab/schedule-on.png" },
-      { "pagePath": "pages/programmes/programmes", "text": "专题", "iconPath": "images/tab/programmes.png", "selectedIconPath": "images/tab/programmes-on.png" },
-      { "pagePath": "pages/films/films", "text": "片目", "iconPath": "images/tab/films.png", "selectedIconPath": "images/tab/films-on.png" },
-      { "pagePath": "pages/my/my", "text": "我的", "iconPath": "images/tab/my.png", "selectedIconPath": "images/tab/my-on.png" }
+      {
+        "pagePath": "pages/schedule/schedule",
+        "text": "排片",
+        "iconPath": "images/tab/schedule.png",
+        "selectedIconPath": "images/tab/schedule-on.png"
+      },
+      {
+        "pagePath": "pages/programmes/programmes",
+        "text": "专题",
+        "iconPath": "images/tab/programmes.png",
+        "selectedIconPath": "images/tab/programmes-on.png"
+      },
+      {
+        "pagePath": "pages/films/films",
+        "text": "片目",
+        "iconPath": "images/tab/films.png",
+        "selectedIconPath": "images/tab/films-on.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "iconPath": "images/tab/my.png",
+        "selectedIconPath": "images/tab/my-on.png"
+      }
     ]
   },
   "style": "v2",

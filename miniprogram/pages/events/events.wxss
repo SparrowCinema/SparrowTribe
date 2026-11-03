@@ -1,0 +1,16 @@
+.wrap { padding: 32rpx; }
+.h1 { font-size: 56rpx; font-weight: 900; }
+.sub { font-size: 26rpx; color: var(--muted); margin: 8rpx 0 20rpx; }
+.tabs { white-space: nowrap; margin-bottom: 12rpx; }
+.tab { display: inline-block; padding: 12rpx 26rpx; margin-right: 14rpx; border-radius: 99rpx; border: 2rpx solid var(--line-soft); font-size: 26rpx; }
+.tab.on { background: var(--accent); color: #fff; border-color: var(--accent); }
+.ev-h { font-size: 26rpx; color: var(--muted); margin: 20rpx 0 8rpx; }
+.ev-card { border-top: 2rpx solid var(--line-soft); padding: 20rpx 0; }
+.ev-done { opacity: .65; }
+.ev-t { font-size: 29rpx; font-weight: 700; line-height: 1.5; }
+.ev-tag { font-size: 20rpx; margin-left: 12rpx; padding: 2rpx 12rpx; border-radius: 99rpx; background: rgba(200,160,60,.2); font-weight: 400; }
+.ev-end { background: rgba(120,120,120,.2); }
+.ev-d { font-size: 26rpx; line-height: 1.75; margin: 8rpx 0; }
+.ev-l { display: flex; gap: 16rpx; font-size: 24rpx; line-height: 1.6; margin-top: 4rpx; }
+.ev-k { width: 112rpx; flex: none; color: var(--muted); }
+.ev-v { flex: 1; }
