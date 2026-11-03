@@ -129,6 +129,12 @@ Claude 与 GPT 可能使用同一 GitHub 身份，审批人数可先设为0；�
 
 - 影厅名在影片页、专题页、个人排片里以独立小标签显示（网站 `placeHTML()` / `.hall-tag`，小程序 `.thall` / `.htag`），名称很长（如「5号Dolby Cinema 杜比影院厅」）时整体换行，不会挤乱影院名。甘特图列头用 `short`，请给长影厅名填一个简短的 `short`。
 
+## 小程序包体积（主包上限 2MB）
+
+- 微信小程序主包（含 data、images）不能超过 2MB，上传前用 `find miniprogram -type f -printf '%s\n' | awk '{s+=$1}END{print s/1024" KB"}'` 自查，建议 ≤ 1900KB。
+- `node tools/build-fallback.js` 生成的离线兜底数据是精简版（去掉简介、荣誉、内容提示、收录短片等长文字段；英文层同理），完整内容联网后由 getData / 网站数据补全。需要新增离线必备字段时，注意别让包体积再次超限。
+- 包内海报宽 300px、专题封面不超过 930px 宽、小程序码为灰度 JPEG；新增图片请按此压缩。
+
 ## 国际化字段（内容提示 / 外链 / 分享 / 日历）
 
 - 影片可选字段：`warnings`（内容提示数组，如 `["儿童受虐"]`，影片页显示「内容提示」，需在 `data/i18n/en.json` 的 `ui` 里给英文）、`medium`（放映格式）、`ageRating`（年龄提示）、`access`（无障碍信息数组，如听障字幕场）、`links`（`{imdb:"tt…", lb:"letterboxd-slug", douban:"id"}`，填了就是直达链接，没填则跳转各站搜索结果）。

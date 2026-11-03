@@ -42,12 +42,19 @@ const programmes = progs.map(p => {
 });
 if (!films.length || !shows.length) throw new Error('网站数据为空，未生成');
 
+// 离线兜底只保留列表/排片/护照所需字段：长文字段（简介、荣誉、内容提示等）联网后由 getData / 网站数据补全。
+// 原因：小程序主包上限 2MB，完整数据会让源码包超限。
+const LEAN_DROP = ['syn', 'bio', 'honors', 'parts', 'contentReview', 'contentNote', 'editorial', 'highlights', 'links'];
+films.forEach(f => LEAN_DROP.forEach(k => { delete f[k]; }));
 const data = { films, shows, venues: cat.venues || [], programmes, aliases: cat.aliases || {}, reg: Object.assign({}, prev.reg, cat.reg || {}) };
-fs.writeFileSync(OUT, '/* 本地内置数据：云数据库为空或网络不可用时使用。由 tools/build-fallback.js 从网站 data/ 生成，规则与 getData 云函数一致。 */\nmodule.exports = ' + JSON.stringify(data, null, 1) + ';\n');
+fs.writeFileSync(OUT, '/* 本地内置数据：云数据库为空或网络不可用时使用。由 tools/build-fallback.js 从网站 data/ 生成，规则与 getData 云函数一致。 */\nmodule.exports = ' + JSON.stringify(data) + ';\n');
 console.log('films', films.length, 'shows', shows.length, 'venues', data.venues.length, 'programmes', programmes.length);
 
 // 英文层：data/i18n/en.json → miniprogram/data/en.js（小程序离线兜底；联网时 getData 会带回网站最新的英文层）
 const en = readJSON('data/i18n/en.json'); delete en._readme;
+// 同理：离线英文层去掉影片长文字段（联网时 getData 带回完整英文层）
+const EN_DROP = ['syn', 'contentNote', 'editorial', 'bio', 'highlights', 'honors', 'warnings', 'parts', 'contentReview'];
+Object.values(en.films || {}).forEach(o => EN_DROP.forEach(k => { delete o[k]; }));
 fs.writeFileSync(path.join(root, 'miniprogram/data/en.js'), '/* 英文层：由 tools/build-fallback.js 从 data/i18n/en.json 生成。 */\nmodule.exports = ' + JSON.stringify(en) + ';\n');
 console.log('en.js films', Object.keys(en.films).length, 'ui', Object.keys(en.ui).length);
 
