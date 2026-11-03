@@ -1,0 +1,5853 @@
+{
+  "checked": "2026-11-03",
+  "doulist": "https://www.douban.com/doulist/165148655/",
+  "imdbDataset": "https://datasets.imdbws.com/title.ratings.tsv.gz",
+  "notes": [
+    "83 existing Golden Rooster films checked; the list has 84 entries: 82 existing films plus two extras. Linka Linka is verified from Douban home/showing entry, director and cast. No new festival films were added.",
+    "Ratings are dated snapshots; null means no verified public aggregate, never zero. Missing direct links retain existing site search fallback.",
+    "Rotten Tomatoes is critics Tomatometer only; Metacritic is critics Metascore only. Audience scores are not substituted.",
+    "Platform release dates can describe a local/reissue release; different same-title films are rejected by director and cast.",
+    "Title variants verified manually: Queen Live in Budapest / Queen Budapest; Blade Runner Final Cut / Blade Runner; Princess Peacock / The Peacock Princess; Nezha international title variants.",
+    "All prior film IDs and all screening keys remain stable; layout and saved personal plans unchanged."
+  ],
+  "summary": {
+    "films": 83,
+    "directLinks": {
+      "douban": 83,
+      "imdb": 76,
+      "lb": 82,
+      "rt": 46,
+      "mc": 25
+    },
+    "ratings": {
+      "douban": 38,
+      "imdb": 68,
+      "rt": 26,
+      "mc": 17,
+      "lb": 60
+    }
+  },
+  "films": [
+    {
+      "id": "gr26-001",
+      "title": "神之子",
+      "before": {
+        "links": {
+          "imdb": "tt38820979",
+          "lb": "benimana",
+          "douban": "36976760"
+        },
+        "r": [
+          7.7,
+          7.4,
+          null,
+          null,
+          3.79
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/36976760/",
+        "source": "https://www.douban.com/doulist/165148655/?start=75&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": 7.7
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/benimana/",
+        "status": "verified",
+        "name": "Ben'Imana",
+        "directors": [
+          "Marie-Clémentine Dusabejambo"
+        ],
+        "rating": 3.79
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt38820979/",
+        "identitySource": "https://letterboxd.com/film/benimana/",
+        "status": "verified",
+        "rating": 7.4,
+        "votes": 160
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/ben_imana",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/ben-imana/",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "36976760",
+          "lb": "benimana",
+          "imdb": "tt38820979"
+        },
+        "r": [
+          7.7,
+          7.4,
+          null,
+          null,
+          3.79
+        ]
+      }
+    },
+    {
+      "id": "gr26-002",
+      "title": "明天，会更好",
+      "before": {
+        "links": null,
+        "r": [
+          null,
+          6.4,
+          null,
+          null,
+          3.6
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/35556002/",
+        "source": "https://www.douban.com/doulist/165148655/?start=0&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": null
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/the-road-not-taken-2026/",
+        "status": "verified",
+        "name": "The Road Not Taken",
+        "directors": [
+          "Peter Chan Ho-Sun"
+        ],
+        "rating": 3.56
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt42478876/",
+        "identitySource": "https://letterboxd.com/film/the-road-not-taken-2026/",
+        "status": "verified",
+        "rating": 6.4,
+        "votes": 20
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/the_road_not_taken_2018",
+          "status": "director-mismatch",
+          "name": "The Road Not Taken (2018)",
+          "directors": [
+            "Gaopeng Tang"
+          ],
+          "rating": null
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/the-road-not-taken/",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "35556002",
+          "lb": "the-road-not-taken-2026",
+          "imdb": "tt42478876"
+        },
+        "r": [
+          null,
+          6.4,
+          null,
+          null,
+          3.56
+        ]
+      }
+    },
+    {
+      "id": "gr26-003",
+      "title": "当瓶子转动时",
+      "before": {
+        "links": null,
+        "r": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/36714368/",
+        "source": "https://www.douban.com/doulist/165148655/?start=25&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": null
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/when-the-bottle-turns/",
+        "status": "verified",
+        "name": "When the Bottle Turns",
+        "directors": [
+          "Loden"
+        ],
+        "rating": null
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt30809332/",
+        "identitySource": "https://www.boxofficemojo.com/title/tt30809332/credits/",
+        "status": "verified",
+        "rating": null,
+        "votes": null
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/when_the_bottle_turns",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/when-the-bottle-turns/",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "36714368",
+          "lb": "when-the-bottle-turns",
+          "imdb": "tt30809332"
+        },
+        "r": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      }
+    },
+    {
+      "id": "linka-linka",
+      "title": "一个夜晚与三个夏天",
+      "before": {
+        "links": null,
+        "r": [
+          7.2,
+          6.8,
+          null,
+          null,
+          3.4
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/36449264/",
+        "source": "https://movie.douban.com/",
+        "status": "verified",
+        "rating": 7.2
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/linka-linka/",
+        "status": "verified",
+        "name": "Linka Linka",
+        "directors": [
+          "Kangdrun"
+        ],
+        "rating": 3.37
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt38574217/",
+        "identitySource": "https://letterboxd.com/film/linka-linka/",
+        "status": "verified",
+        "rating": 6.8,
+        "votes": 29
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/linka_linka",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/linka-linka/",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "36449264",
+          "lb": "linka-linka",
+          "imdb": "tt38574217"
+        },
+        "r": [
+          7.2,
+          6.8,
+          null,
+          null,
+          3.37
+        ]
+      }
+    },
+    {
+      "id": "gr26-005",
+      "title": "驴公主",
+      "before": {
+        "links": null,
+        "r": [
+          null,
+          6.2,
+          null,
+          null,
+          3.4
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/38548764/",
+        "source": "https://www.douban.com/doulist/165148655/?start=75&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": null
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/donkey-princess/",
+        "status": "verified",
+        "name": "Donkey Princess",
+        "directors": [
+          "Cristóbal León",
+          "Joaquín Cociña"
+        ],
+        "rating": 3.42
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt43660976/",
+        "identitySource": "https://letterboxd.com/film/donkey-princess/",
+        "status": "verified",
+        "rating": 6.2,
+        "votes": 58
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/donkey_princess",
+          "status": "verified",
+          "name": "Donkey Princess",
+          "directors": [
+            "Cristóbal León",
+            "Joaquín Cociña"
+          ],
+          "rating": null
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/donkey-princess/",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "38548764",
+          "lb": "donkey-princess",
+          "imdb": "tt43660976",
+          "rt": "https://www.rottentomatoes.com/m/donkey_princess"
+        },
+        "r": [
+          null,
+          6.2,
+          null,
+          null,
+          3.42
+        ]
+      }
+    },
+    {
+      "id": "gr26-006",
+      "title": "夏日红炎",
+      "before": {
+        "links": {
+          "imdb": "tt31383175",
+          "lb": "red-rocks-2026",
+          "douban": "36778280",
+          "rt": "https://www.rottentomatoes.com/m/red_rocks",
+          "mc": "https://www.metacritic.com/movie/red-rocks/"
+        },
+        "r": [
+          7.8,
+          6.4,
+          null,
+          73.0,
+          3.43
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/36778280/",
+        "source": "https://www.douban.com/doulist/165148655/?start=75&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": 7.8
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/red-rocks-2026/",
+        "status": "verified",
+        "name": "Red Rocks",
+        "directors": [
+          "Bruno Dumont"
+        ],
+        "rating": 3.43
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt31383175/",
+        "identitySource": "https://letterboxd.com/film/red-rocks-2026/",
+        "status": "verified",
+        "rating": 6.4,
+        "votes": 180
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/red_rocks",
+          "status": "verified",
+          "name": "Red Rocks",
+          "directors": [
+            "Bruno Dumont"
+          ],
+          "rating": null
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/red-rocks/",
+          "status": "verified",
+          "name": "Red Rocks",
+          "directors": [
+            "Bruno Dumont"
+          ],
+          "rating": 73.0
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "36778280",
+          "lb": "red-rocks-2026",
+          "imdb": "tt31383175",
+          "rt": "https://www.rottentomatoes.com/m/red_rocks",
+          "mc": "https://www.metacritic.com/movie/red-rocks/"
+        },
+        "r": [
+          7.8,
+          6.4,
+          null,
+          73.0,
+          3.43
+        ]
+      }
+    },
+    {
+      "id": "gr26-007",
+      "title": "女仆日记",
+      "before": {
+        "links": {
+          "imdb": "tt38785098",
+          "lb": "the-diary-of-a-chambermaid-2026",
+          "douban": "37331353",
+          "rt": "https://www.rottentomatoes.com/m/diary_of_a_chambermaid_2026",
+          "mc": "https://www.metacritic.com/movie/the-diary-of-a-chambermaid/"
+        },
+        "r": [
+          7.3,
+          7.0,
+          96.0,
+          83.0,
+          3.7
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/37331353/",
+        "source": "https://www.douban.com/doulist/165148655/?start=75&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": 7.3
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/the-diary-of-a-chambermaid-2026/",
+        "status": "verified",
+        "name": "The Diary of a Chambermaid",
+        "directors": [
+          "Radu Jude"
+        ],
+        "rating": 3.7
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt38785098/",
+        "identitySource": "https://letterboxd.com/film/the-diary-of-a-chambermaid-2026/",
+        "status": "verified",
+        "rating": 7.0,
+        "votes": 355
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/diary_of_a_chambermaid_2026",
+          "status": "verified",
+          "name": "Diary of a Chambermaid (2026)",
+          "directors": [
+            "Radu Jude"
+          ],
+          "rating": 96.0
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/the-diary-of-a-chambermaid/",
+          "status": "verified",
+          "name": "The Diary of a Chambermaid",
+          "directors": [
+            "Radu Jude"
+          ],
+          "rating": 83.0
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "37331353",
+          "lb": "the-diary-of-a-chambermaid-2026",
+          "imdb": "tt38785098",
+          "rt": "https://www.rottentomatoes.com/m/diary_of_a_chambermaid_2026",
+          "mc": "https://www.metacritic.com/movie/the-diary-of-a-chambermaid/"
+        },
+        "r": [
+          7.3,
+          7.0,
+          96.0,
+          83.0,
+          3.7
+        ]
+      }
+    },
+    {
+      "id": "gr26-008",
+      "title": "子",
+      "before": {
+        "links": null,
+        "r": [
+          null,
+          5.8,
+          63,
+          67,
+          3.0
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/37923995/",
+        "source": "https://www.douban.com/doulist/165148655/?start=25&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": null
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/zi-2026/",
+        "status": "verified",
+        "name": "Zi",
+        "directors": [
+          "Kogonada"
+        ],
+        "rating": 3.0
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt39150111/",
+        "identitySource": "https://letterboxd.com/film/zi-2026/",
+        "status": "verified",
+        "rating": 5.8,
+        "votes": 144
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/zi",
+          "status": "verified",
+          "name": "zi",
+          "directors": [
+            "Kogonada"
+          ],
+          "rating": 63.0
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/zi/",
+          "status": "verified",
+          "name": "Zi",
+          "directors": [
+            "Kogonada"
+          ],
+          "rating": 67.0
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "37923995",
+          "lb": "zi-2026",
+          "imdb": "tt39150111",
+          "rt": "https://www.rottentomatoes.com/m/zi",
+          "mc": "https://www.metacritic.com/movie/zi/"
+        },
+        "r": [
+          null,
+          5.8,
+          63.0,
+          67.0,
+          3.0
+        ]
+      }
+    },
+    {
+      "id": "gr26-009",
+      "title": "钢铁男孩",
+      "before": {
+        "links": null,
+        "r": [
+          7.9,
+          8.0,
+          100,
+          84,
+          4.2
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/36614615/",
+        "source": "https://www.douban.com/doulist/165148655/?start=50&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": 7.9
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/iron-boy/",
+        "status": "verified",
+        "name": "Iron Boy",
+        "directors": [
+          "Louis Clichy"
+        ],
+        "rating": 4.15
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt36639956/",
+        "identitySource": "https://letterboxd.com/film/iron-boy/",
+        "status": "verified",
+        "rating": 8.0,
+        "votes": 539
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/iron_boy",
+          "status": "verified",
+          "name": "Iron Boy",
+          "directors": [
+            "Louis Clichy"
+          ],
+          "rating": 100.0
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/iron-boy/",
+          "status": "verified",
+          "name": "Iron Boy",
+          "directors": [
+            "Louis Clichy"
+          ],
+          "rating": 84.0
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "36614615",
+          "lb": "iron-boy",
+          "imdb": "tt36639956",
+          "rt": "https://www.rottentomatoes.com/m/iron_boy",
+          "mc": "https://www.metacritic.com/movie/iron-boy/"
+        },
+        "r": [
+          7.9,
+          8.0,
+          100.0,
+          84.0,
+          4.15
+        ]
+      }
+    },
+    {
+      "id": "gr26-010",
+      "title": "明月共此时",
+      "before": {
+        "links": {
+          "imdb": "tt39334277",
+          "lb": "the-house-on-the-moon-2026",
+          "douban": "37314633",
+          "rt": "https://www.rottentomatoes.com/m/the_house_on_the_moon"
+        },
+        "r": [
+          null,
+          5.2,
+          null,
+          null,
+          3.05
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/37314633/",
+        "source": "https://www.douban.com/doulist/165148655/?start=0&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": null
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/the-house-on-the-moon-2026/",
+        "status": "verified",
+        "name": "The House on the Moon",
+        "directors": [
+          "Nelson Yeo"
+        ],
+        "rating": 3.05
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt39334277/",
+        "identitySource": "https://letterboxd.com/film/the-house-on-the-moon-2026/",
+        "status": "verified",
+        "rating": 5.2,
+        "votes": 20
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/the_house_on_the_moon",
+          "status": "verified",
+          "name": "The House on the Moon",
+          "directors": [
+            "Nelson Yeo"
+          ],
+          "rating": null
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/the-house-on-the-moon/",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "37314633",
+          "lb": "the-house-on-the-moon-2026",
+          "imdb": "tt39334277",
+          "rt": "https://www.rottentomatoes.com/m/the_house_on_the_moon"
+        },
+        "r": [
+          null,
+          5.2,
+          null,
+          null,
+          3.05
+        ]
+      }
+    },
+    {
+      "id": "gr26-011",
+      "title": "泡泡糖女孩",
+      "before": {
+        "links": {
+          "imdb": "tt35683770",
+          "lb": "ah-girl",
+          "douban": "37030720",
+          "rt": "https://www.rottentomatoes.com/m/ah_girl",
+          "mc": "https://www.metacritic.com/movie/ah-girl/"
+        },
+        "r": [
+          8.5,
+          7.5,
+          100.0,
+          null,
+          3.76
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/37030720/",
+        "source": "https://www.douban.com/doulist/165148655/?start=0&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": 8.5
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/ah-girl/",
+        "status": "verified",
+        "name": "Ah Girl",
+        "directors": [
+          "Ang Geck Geck"
+        ],
+        "rating": 3.76
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt35683770/",
+        "identitySource": "https://letterboxd.com/film/ah-girl/",
+        "status": "verified",
+        "rating": 7.5,
+        "votes": 71
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/ah_girl",
+          "status": "verified",
+          "name": "Ah Girl",
+          "directors": [
+            "Ang Geck Geck"
+          ],
+          "rating": 100.0
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/ah-girl/",
+          "status": "verified",
+          "name": "Ah Girl",
+          "directors": [
+            "Geck Geck Priscilla Ang"
+          ],
+          "rating": null
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "37030720",
+          "lb": "ah-girl",
+          "imdb": "tt35683770",
+          "rt": "https://www.rottentomatoes.com/m/ah_girl",
+          "mc": "https://www.metacritic.com/movie/ah-girl/"
+        },
+        "r": [
+          8.5,
+          7.5,
+          100.0,
+          null,
+          3.76
+        ]
+      }
+    },
+    {
+      "id": "gr26-012",
+      "title": "消失的金凤娜",
+      "before": {
+        "links": null,
+        "r": [
+          null,
+          6.3,
+          null,
+          null,
+          null
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/37354971/",
+        "source": "https://www.douban.com/doulist/165148655/?start=0&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": null
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/the-evil-inside-2026/",
+        "status": "verified",
+        "name": "The Evil Inside",
+        "directors": [
+          "Lingo Hsieh"
+        ],
+        "rating": null
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt36958624/",
+        "identitySource": "https://letterboxd.com/film/the-evil-inside-2026/",
+        "status": "verified",
+        "rating": 6.3,
+        "votes": 10
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/the_evil_inside",
+          "status": "year-mismatch",
+          "name": "Dead Inside",
+          "directors": [
+            "Pearry Reginald Teo"
+          ],
+          "rating": null
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/the-evil-inside/",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "37354971",
+          "lb": "the-evil-inside-2026",
+          "imdb": "tt36958624"
+        },
+        "r": [
+          null,
+          6.3,
+          null,
+          null,
+          null
+        ]
+      }
+    },
+    {
+      "id": "gr26-013",
+      "title": "发现之旅",
+      "before": {
+        "links": null,
+        "r": [
+          null,
+          null,
+          null,
+          null,
+          3.2
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/36146113/",
+        "source": "https://www.douban.com/doulist/165148655/?start=25&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": null
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/zoom-in-zoom-out/",
+        "status": "verified",
+        "name": "Zoom In, Zoom Out",
+        "directors": [
+          "Dong Jie"
+        ],
+        "rating": 3.22
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt43729090/",
+        "identitySource": "https://www.boxofficemojo.com/title/tt43729090/credits/",
+        "status": "verified",
+        "rating": 6.7,
+        "votes": 22
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/zoom_in_zoom_out",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/zoom-in-zoom-out/",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "36146113",
+          "lb": "zoom-in-zoom-out",
+          "imdb": "tt43729090"
+        },
+        "r": [
+          null,
+          6.7,
+          null,
+          null,
+          3.22
+        ]
+      }
+    },
+    {
+      "id": "gr26-014",
+      "title": "向莲花镇出发",
+      "before": {
+        "links": null,
+        "r": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/37315764/",
+        "source": "https://www.douban.com/doulist/165148655/?start=25&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": null
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/starting-towards-the-finish-line/",
+        "status": "verified",
+        "name": "Starting Towards the Finish Line",
+        "directors": [
+          "Hou Jue"
+        ],
+        "rating": null
+      },
+      "imdb": {
+        "url": null,
+        "identitySource": "https://letterboxd.com/film/starting-towards-the-finish-line/",
+        "status": "no-verified-entry",
+        "rating": null,
+        "votes": null
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/starting_towards_the_finish_line",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/starting-towards-the-finish-line/",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "37315764",
+          "lb": "starting-towards-the-finish-line"
+        },
+        "r": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      }
+    },
+    {
+      "id": "gr26-015",
+      "title": "故土",
+      "before": {
+        "links": null,
+        "r": [
+          7.6,
+          7.4,
+          null,
+          null,
+          3.6
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/37487816/",
+        "source": "https://www.douban.com/doulist/165148655/?start=75&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": 7.6
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/fatherland-2026/",
+        "status": "verified",
+        "name": "Fatherland",
+        "directors": [
+          "Paweł Pawlikowski"
+        ],
+        "rating": 3.65
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt37304295/",
+        "identitySource": "https://letterboxd.com/film/fatherland-2026/",
+        "status": "verified",
+        "rating": 7.4,
+        "votes": 3952
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/fatherland_2026",
+          "status": "verified",
+          "name": "Fatherland (2026)",
+          "directors": [
+            "Paweł Pawlikowski"
+          ],
+          "rating": 93.0
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/fatherland/",
+          "status": "verified",
+          "name": "Fatherland",
+          "directors": [
+            "Pawel Pawlikowski"
+          ],
+          "rating": 87.0
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "37487816",
+          "lb": "fatherland-2026",
+          "imdb": "tt37304295",
+          "rt": "https://www.rottentomatoes.com/m/fatherland_2026",
+          "mc": "https://www.metacritic.com/movie/fatherland/"
+        },
+        "r": [
+          7.6,
+          7.4,
+          93.0,
+          87.0,
+          3.65
+        ]
+      }
+    },
+    {
+      "id": "gr26-016",
+      "title": "七分熟",
+      "before": {
+        "links": null,
+        "r": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/37028607/",
+        "source": "https://www.douban.com/doulist/165148655/?start=25&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": null
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/gold-life/",
+        "status": "verified",
+        "name": "Gold Life",
+        "directors": [
+          "Zhang Xin"
+        ],
+        "rating": null
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt50133994/",
+        "identitySource": "https://www.boxofficemojo.com/title/tt50133994/credits/",
+        "status": "verified",
+        "rating": null,
+        "votes": null
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/gold_life",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/gold-life/",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "37028607",
+          "lb": "gold-life",
+          "imdb": "tt50133994"
+        },
+        "r": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      }
+    },
+    {
+      "id": "gr26-017",
+      "title": "逆光绽放",
+      "before": {
+        "links": null,
+        "r": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/37317256/",
+        "source": "https://www.douban.com/doulist/165148655/?start=25&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": null
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/steadfast-woman/",
+        "status": "verified",
+        "name": "Steadfast Woman",
+        "directors": [
+          "Zhang Pu"
+        ],
+        "rating": null
+      },
+      "imdb": {
+        "url": null,
+        "identitySource": "https://letterboxd.com/film/steadfast-woman/",
+        "status": "no-verified-entry",
+        "rating": null,
+        "votes": null
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/steadfast_woman",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/steadfast-woman/",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "37317256",
+          "lb": "steadfast-woman"
+        },
+        "r": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      }
+    },
+    {
+      "id": "gr26-018",
+      "title": "寒夜灯柱",
+      "before": {
+        "links": null,
+        "r": [
+          null,
+          6.7,
+          null,
+          null,
+          3.4
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/36650614/",
+        "source": "https://www.douban.com/doulist/165148655/?start=50&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": null
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/light-pillar/",
+        "status": "verified",
+        "name": "Light Pillar",
+        "directors": [
+          "Zao Xu"
+        ],
+        "rating": 3.44
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt32409947/",
+        "identitySource": "https://letterboxd.com/film/light-pillar/",
+        "status": "verified",
+        "rating": 6.7,
+        "votes": 109
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/light_pillar",
+          "status": "verified",
+          "name": "Light Pillar",
+          "directors": [
+            "Xu Zao"
+          ],
+          "rating": null
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/light-pillar/",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "36650614",
+          "lb": "light-pillar",
+          "imdb": "tt32409947",
+          "rt": "https://www.rottentomatoes.com/m/light_pillar"
+        },
+        "r": [
+          null,
+          6.7,
+          null,
+          null,
+          3.44
+        ]
+      }
+    },
+    {
+      "id": "gr26-019",
+      "title": "澳门大赛车",
+      "before": {
+        "links": null,
+        "r": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/38905085/",
+        "source": "https://www.douban.com/doulist/165148655/?start=0&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": null
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/mgp-the-untamed-circuit/",
+        "status": "verified",
+        "name": "MGP: The Untamed Circuit",
+        "directors": [
+          "Cao Jinling"
+        ],
+        "rating": null
+      },
+      "imdb": {
+        "url": null,
+        "identitySource": "https://letterboxd.com/film/mgp-the-untamed-circuit/",
+        "status": "no-verified-entry",
+        "rating": null,
+        "votes": null
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/mgp_the_untamed_circuit",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/mgp-the-untamed-circuit/",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "38905085",
+          "lb": "mgp-the-untamed-circuit"
+        },
+        "r": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      }
+    },
+    {
+      "id": "gr26-020",
+      "title": "最佳状态",
+      "before": {
+        "links": null,
+        "r": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/36847314/",
+        "source": "https://www.douban.com/doulist/165148655/?start=25&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": null
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/no-hard-feelings-2026/",
+        "status": "verified",
+        "name": "No Hard Feelings",
+        "directors": [
+          "Liu Shichuan"
+        ],
+        "rating": null
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt43338368/",
+        "identitySource": "https://letterboxd.com/film/no-hard-feelings-2026/",
+        "status": "verified",
+        "rating": null,
+        "votes": null
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/sans_rancune_",
+          "status": "title-variant",
+          "name": "Sans rancune!",
+          "directors": [
+            "Yves Hanchar"
+          ],
+          "rating": null
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/no-hard-feelings/",
+          "status": "year-mismatch",
+          "name": "No Hard Feelings",
+          "directors": [
+            "Gene Stupnitsky"
+          ],
+          "rating": null
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "36847314",
+          "lb": "no-hard-feelings-2026",
+          "imdb": "tt43338368"
+        },
+        "r": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      }
+    },
+    {
+      "id": "gr26-021",
+      "title": "无名女孩",
+      "before": {
+        "links": null,
+        "r": [
+          null,
+          6.9,
+          null,
+          null,
+          3.8
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/36686123/",
+        "source": "https://www.douban.com/doulist/165148655/?start=25&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": null
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/a-girl-unknown/",
+        "status": "verified",
+        "name": "A Girl Unknown",
+        "directors": [
+          "Zou Jing"
+        ],
+        "rating": 3.78
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt32459280/",
+        "identitySource": "https://letterboxd.com/film/a-girl-unknown/",
+        "status": "verified",
+        "rating": 6.9,
+        "votes": 96
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/a_girl_unknown",
+          "status": "verified",
+          "name": "A Girl Unknown",
+          "directors": [
+            "Jing Zou"
+          ],
+          "rating": null
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/a-girl-unknown/",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "36686123",
+          "lb": "a-girl-unknown",
+          "imdb": "tt32459280",
+          "rt": "https://www.rottentomatoes.com/m/a_girl_unknown"
+        },
+        "r": [
+          null,
+          6.9,
+          null,
+          null,
+          3.78
+        ]
+      }
+    },
+    {
+      "id": "gr26-022",
+      "title": "阿尔及利卡之路",
+      "before": {
+        "links": null,
+        "r": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/38184846/",
+        "source": "https://www.douban.com/doulist/165148655/?start=75&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": null
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/algerican-road/",
+        "status": "verified",
+        "name": "Algerican Road",
+        "directors": [
+          "Rabah Ameur-Zaïmeche"
+        ],
+        "rating": null
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt43459267/",
+        "identitySource": "https://letterboxd.com/film/algerican-road/",
+        "status": "verified",
+        "rating": null,
+        "votes": null
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/algerican_road",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/algerican-road/",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "38184846",
+          "lb": "algerican-road",
+          "imdb": "tt43459267"
+        },
+        "r": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      }
+    },
+    {
+      "id": "gr26-023",
+      "title": "悲惨世界",
+      "before": {
+        "links": null,
+        "r": [
+          null,
+          7.1,
+          null,
+          null,
+          3.4
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/36778103/",
+        "source": "https://www.douban.com/doulist/165148655/?start=75&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": null
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/les-miserables-2026/",
+        "status": "verified",
+        "name": "Les Misérables",
+        "directors": [
+          "Fred Cavayé"
+        ],
+        "rating": 3.44
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt35518109/",
+        "identitySource": "https://letterboxd.com/film/les-miserables-2026/",
+        "status": "verified",
+        "rating": 7.1,
+        "votes": 486
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/les_miserables",
+          "status": "director-mismatch",
+          "name": "Les Misérables",
+          "directors": [
+            "Henri Fescourt"
+          ],
+          "rating": null
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/les-miserables/",
+          "status": "year-mismatch",
+          "name": "Les Miserables",
+          "directors": [
+            "Tom Hooper"
+          ],
+          "rating": null
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "36778103",
+          "lb": "les-miserables-2026",
+          "imdb": "tt35518109"
+        },
+        "r": [
+          null,
+          7.1,
+          null,
+          null,
+          3.44
+        ]
+      }
+    },
+    {
+      "id": "gr26-024",
+      "title": "爱杀",
+      "before": {
+        "links": null,
+        "r": [
+          6.9,
+          6.5,
+          null,
+          null,
+          3.6
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/1353744/",
+        "source": "https://www.douban.com/doulist/165148655/?start=0&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": 6.9
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/love-massacre/",
+        "status": "verified",
+        "name": "Love Massacre",
+        "directors": [
+          "Patrick Tam Kar-Ming"
+        ],
+        "rating": 3.62
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt0081992/",
+        "identitySource": "https://letterboxd.com/film/love-massacre/",
+        "status": "verified",
+        "rating": 6.5,
+        "votes": 356
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/love_massacre",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/love-massacre/",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "1353744",
+          "lb": "love-massacre",
+          "imdb": "tt0081992"
+        },
+        "r": [
+          6.9,
+          6.5,
+          null,
+          null,
+          3.62
+        ]
+      }
+    },
+    {
+      "id": "gr26-025",
+      "title": "每时每刻",
+      "before": {
+        "links": null,
+        "r": [
+          7.8,
+          7.3,
+          96,
+          90,
+          3.8
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/36159749/",
+        "source": "https://www.douban.com/doulist/165148655/?start=75&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": 7.8
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/everytime/",
+        "status": "verified",
+        "name": "Everytime",
+        "directors": [
+          "Sandra Wollner"
+        ],
+        "rating": 3.8
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt41592057/",
+        "identitySource": "https://letterboxd.com/film/everytime/",
+        "status": "verified",
+        "rating": 7.3,
+        "votes": 700
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/everytime",
+          "status": "verified",
+          "name": "Everytime",
+          "directors": [
+            "Sandra Wollner"
+          ],
+          "rating": 96.0
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/everytime/",
+          "status": "verified",
+          "name": "Everytime",
+          "directors": [
+            "Sandra Wollner"
+          ],
+          "rating": 90.0
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "36159749",
+          "lb": "everytime",
+          "imdb": "tt41592057",
+          "rt": "https://www.rottentomatoes.com/m/everytime",
+          "mc": "https://www.metacritic.com/movie/everytime/"
+        },
+        "r": [
+          7.8,
+          7.3,
+          96.0,
+          90.0,
+          3.8
+        ]
+      }
+    },
+    {
+      "id": "gr26-026",
+      "title": "语文的滋味",
+      "before": {
+        "links": null,
+        "r": [
+          null,
+          5.6,
+          null,
+          null,
+          null
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/35765251/",
+        "source": "https://www.douban.com/doulist/165148655/?start=25&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": null
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/her-first-taste/",
+        "status": "verified",
+        "name": "Her First Taste",
+        "directors": [
+          "Gong Yiwen"
+        ],
+        "rating": null
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt29508955/",
+        "identitySource": "https://letterboxd.com/film/her-first-taste/",
+        "status": "verified",
+        "rating": 5.6,
+        "votes": 7
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/her_first_taste",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/her-first-taste/",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "35765251",
+          "lb": "her-first-taste",
+          "imdb": "tt29508955"
+        },
+        "r": [
+          null,
+          5.6,
+          null,
+          null,
+          null
+        ]
+      }
+    },
+    {
+      "id": "gr26-027",
+      "title": "斯琴图的秋天",
+      "before": {
+        "links": null,
+        "r": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/36995421/",
+        "source": "https://www.douban.com/doulist/165148655/?start=25&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": null
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/roaming-over-the-horseback/",
+        "status": "verified",
+        "name": "Roaming over the Horseback",
+        "directors": [
+          "白润青"
+        ],
+        "rating": null
+      },
+      "imdb": {
+        "url": null,
+        "identitySource": "https://letterboxd.com/film/roaming-over-the-horseback/",
+        "status": "no-verified-entry",
+        "rating": null,
+        "votes": null
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/roaming_over_the_horseback",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/roaming-over-the-horseback/",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "36995421",
+          "lb": "roaming-over-the-horseback"
+        },
+        "r": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      }
+    },
+    {
+      "id": "gr26-028",
+      "title": "河的女儿",
+      "before": {
+        "links": null,
+        "r": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/38902954/",
+        "source": "https://www.douban.com/doulist/165148655/?start=25&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": null
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/daughter-of-the-river-2026/",
+        "status": "verified",
+        "name": "Daughter of the River",
+        "directors": [
+          "Hong Ying"
+        ],
+        "rating": null
+      },
+      "imdb": {
+        "url": null,
+        "identitySource": "https://letterboxd.com/film/daughter-of-the-river-2026/",
+        "status": "no-verified-entry",
+        "rating": null,
+        "votes": null
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/daughter_of_the_river",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/daughter-of-the-river/",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "38902954",
+          "lb": "daughter-of-the-river-2026"
+        },
+        "r": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      }
+    },
+    {
+      "id": "gr26-029",
+      "title": "我阿爹想旅行",
+      "before": {
+        "links": null,
+        "r": [
+          7.8,
+          7.5,
+          null,
+          null,
+          3.6
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/37663724/",
+        "source": "https://www.douban.com/doulist/165148655/?start=0&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": 7.8
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/good-trip-2026/",
+        "status": "verified",
+        "name": "Good Trip",
+        "directors": [
+          "Norris Wong Yee-lam",
+          "Wong Hoi"
+        ],
+        "rating": 3.64
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt38489397/",
+        "identitySource": "https://letterboxd.com/film/good-trip-2026/",
+        "status": "verified",
+        "rating": 7.5,
+        "votes": 115
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/good_trip",
+          "status": "verified",
+          "name": "Good Trip",
+          "directors": [
+            "Norris Wong",
+            "Wong Hoi"
+          ],
+          "rating": null
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/good-trip/",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "37663724",
+          "lb": "good-trip-2026",
+          "imdb": "tt38489397",
+          "rt": "https://www.rottentomatoes.com/m/good_trip"
+        },
+        "r": [
+          7.8,
+          7.5,
+          null,
+          null,
+          3.64
+        ]
+      }
+    },
+    {
+      "id": "gr26-030",
+      "title": "像我这样的爱情",
+      "before": {
+        "links": null,
+        "r": [
+          7.1,
+          6.3,
+          null,
+          null,
+          3.2
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/36219411/",
+        "source": "https://www.douban.com/doulist/165148655/?start=0&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": 7.1
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/someone-like-me-2025/",
+        "status": "verified",
+        "name": "Someone Like Me",
+        "directors": [
+          "Tam Wai-Ching"
+        ],
+        "rating": 3.22
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt36217308/",
+        "identitySource": "https://letterboxd.com/film/someone-like-me-2025/",
+        "status": "verified",
+        "rating": 6.3,
+        "votes": 193
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/someone_like_me_2025",
+          "status": "verified",
+          "name": "Someone Like Me (2025)",
+          "directors": [
+            "Wai Ching Tam"
+          ],
+          "rating": null
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/someone-like-me/",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "36219411",
+          "lb": "someone-like-me-2025",
+          "imdb": "tt36217308",
+          "rt": "https://www.rottentomatoes.com/m/someone_like_me_2025"
+        },
+        "r": [
+          7.1,
+          6.3,
+          null,
+          null,
+          3.22
+        ]
+      }
+    },
+    {
+      "id": "gr26-031",
+      "title": "大西洋",
+      "before": {
+        "links": null,
+        "r": [
+          null,
+          5.8,
+          null,
+          null,
+          null
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/36671189/",
+        "source": "https://www.douban.com/doulist/165148655/?start=25&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": null
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/atlantic-rhapsody-2026/",
+        "status": "verified",
+        "name": "Atlantic Rhapsody",
+        "directors": [
+          "Zhong Kaifeng"
+        ],
+        "rating": null
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt32272953/",
+        "identitySource": "https://letterboxd.com/film/atlantic-rhapsody-2026/",
+        "status": "verified",
+        "rating": 5.8,
+        "votes": 16
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/atlantic_rhapsody",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/atlantic-rhapsody/",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "36671189",
+          "lb": "atlantic-rhapsody-2026",
+          "imdb": "tt32272953"
+        },
+        "r": [
+          null,
+          5.8,
+          null,
+          null,
+          null
+        ]
+      }
+    },
+    {
+      "id": "gr26-032",
+      "title": "深度安静",
+      "before": {
+        "links": null,
+        "r": [
+          6.8,
+          6.9,
+          null,
+          null,
+          3.4
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/35211934/",
+        "source": "https://www.douban.com/doulist/165148655/?start=25&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": 6.8
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/deep-quiet-room/",
+        "status": "verified",
+        "name": "Deep Quiet Room",
+        "directors": [
+          "Shen Ko-shang"
+        ],
+        "rating": 3.41
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt36354070/",
+        "identitySource": "https://letterboxd.com/film/deep-quiet-room/",
+        "status": "verified",
+        "rating": 6.9,
+        "votes": 115
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/deep_quiet_room",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/deep-quiet-room/",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "35211934",
+          "lb": "deep-quiet-room",
+          "imdb": "tt36354070"
+        },
+        "r": [
+          6.8,
+          6.9,
+          null,
+          null,
+          3.41
+        ]
+      }
+    },
+    {
+      "id": "gr26-033",
+      "title": "人生海海",
+      "before": {
+        "links": null,
+        "r": [
+          6.9,
+          6.5,
+          null,
+          null,
+          3.4
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/37227392/",
+        "source": "https://www.douban.com/doulist/165148655/?start=0&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": 6.9
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/the-waves-will-carry-us/",
+        "status": "verified",
+        "name": "The Waves Will Carry Us",
+        "directors": [
+          "Lau Kek-huat"
+        ],
+        "rating": 3.37
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt38589615/",
+        "identitySource": "https://letterboxd.com/film/the-waves-will-carry-us/",
+        "status": "verified",
+        "rating": 6.5,
+        "votes": 82
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/the_waves_will_carry_us",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/the-waves-will-carry-us/",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "37227392",
+          "lb": "the-waves-will-carry-us",
+          "imdb": "tt38589615"
+        },
+        "r": [
+          6.9,
+          6.5,
+          null,
+          null,
+          3.37
+        ]
+      }
+    },
+    {
+      "id": "gr26-034",
+      "title": "豪·路·博尔赫斯传",
+      "before": {
+        "links": null,
+        "r": [
+          null,
+          7.2,
+          null,
+          null,
+          3.8
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/38569845/",
+        "source": "https://www.douban.com/doulist/165148655/?start=50&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": null
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/life-of-jorge-luis-borges/",
+        "status": "verified",
+        "name": "Life of Jorge Luis Borges",
+        "directors": [
+          "Mariano Llinás"
+        ],
+        "rating": 3.83
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt43704443/",
+        "identitySource": "https://letterboxd.com/film/life-of-jorge-luis-borges/",
+        "status": "verified",
+        "rating": 7.2,
+        "votes": 21
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/life_of_jorge_luis_borges",
+          "status": "verified",
+          "name": "Life of Jorge Luis Borges",
+          "directors": [
+            "Mariano Llinás"
+          ],
+          "rating": null
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/life-of-jorge-luis-borges/",
+          "status": "verified",
+          "name": "Life of Jorge Luis Borges",
+          "directors": [
+            "Mariano Llinás"
+          ],
+          "rating": null
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "38569845",
+          "lb": "life-of-jorge-luis-borges",
+          "imdb": "tt43704443",
+          "rt": "https://www.rottentomatoes.com/m/life_of_jorge_luis_borges",
+          "mc": "https://www.metacritic.com/movie/life-of-jorge-luis-borges/"
+        },
+        "r": [
+          null,
+          7.2,
+          null,
+          null,
+          3.83
+        ]
+      }
+    },
+    {
+      "id": "gr26-035",
+      "title": "入学许可",
+      "before": {
+        "links": null,
+        "r": [
+          null,
+          7.3,
+          null,
+          null,
+          null
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/36764640/",
+        "source": "https://www.douban.com/doulist/165148655/?start=0&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": null
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/admission-2025/",
+        "status": "verified",
+        "name": "Admission",
+        "directors": [
+          "Hsu Kun-hua"
+        ],
+        "rating": null
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt38854615/",
+        "identitySource": "https://letterboxd.com/film/admission-2025/",
+        "status": "verified",
+        "rating": 7.3,
+        "votes": 13
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/admission",
+          "status": "year-mismatch",
+          "name": "Admission",
+          "directors": [
+            "Paul Weitz"
+          ],
+          "rating": null
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/admission/",
+          "status": "year-mismatch",
+          "name": "Admission",
+          "directors": [
+            "Paul Weitz"
+          ],
+          "rating": null
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "36764640",
+          "lb": "admission-2025",
+          "imdb": "tt38854615"
+        },
+        "r": [
+          null,
+          7.3,
+          null,
+          null,
+          null
+        ]
+      }
+    },
+    {
+      "id": "gr26-036",
+      "title": "沧海琴声",
+      "before": {
+        "links": {
+          "imdb": "tt30388264",
+          "lb": "the-violinist-2026",
+          "douban": "36575404"
+        },
+        "r": [
+          null,
+          7.4,
+          null,
+          null,
+          3.46
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/36575404/",
+        "source": "https://www.douban.com/doulist/165148655/?start=50&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": null
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/the-violinist-2026/",
+        "status": "verified",
+        "name": "The Violinist",
+        "directors": [
+          "Ervin Han",
+          "Raúl García"
+        ],
+        "rating": 3.46
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt30388264/",
+        "identitySource": "https://letterboxd.com/film/the-violinist-2026/",
+        "status": "verified",
+        "rating": 7.4,
+        "votes": 133
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/the_violinist_2026",
+          "status": "verified",
+          "name": "The Violinist (2026)",
+          "directors": [
+            "Ervin Han",
+            "Raul Garcia"
+          ],
+          "rating": null
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/the-violinist/",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "36575404",
+          "lb": "the-violinist-2026",
+          "imdb": "tt30388264",
+          "rt": "https://www.rottentomatoes.com/m/the_violinist_2026"
+        },
+        "r": [
+          null,
+          7.4,
+          null,
+          null,
+          3.46
+        ]
+      }
+    },
+    {
+      "id": "gr26-037",
+      "title": "妈样年华",
+      "before": {
+        "links": null,
+        "r": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/36149740/",
+        "source": "https://www.douban.com/doulist/165148655/?start=0&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": null
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/bird-of-paradise-2026/",
+        "status": "verified",
+        "name": "Bird of Paradise",
+        "directors": [
+          "Wu Chui-yi"
+        ],
+        "rating": null
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt36505446/",
+        "identitySource": "https://www.boxofficemojo.com/title/tt36505446/credits/",
+        "status": "verified",
+        "rating": 6.5,
+        "votes": 31
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/bird_of_paradise_2026",
+          "status": "verified",
+          "name": "Bird of Paradise (2026)",
+          "directors": [
+            "Chui-Yi Wu"
+          ],
+          "rating": null
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/bird-of-paradise/",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "36149740",
+          "lb": "bird-of-paradise-2026",
+          "imdb": "tt36505446",
+          "rt": "https://www.rottentomatoes.com/m/bird_of_paradise_2026"
+        },
+        "r": [
+          null,
+          6.5,
+          null,
+          null,
+          null
+        ]
+      }
+    },
+    {
+      "id": "gr26-038",
+      "title": "我们的救赎",
+      "before": {
+        "links": {
+          "imdb": "tt41593304",
+          "lb": "a-man-of-his-time",
+          "douban": "36660162",
+          "rt": "https://www.rottentomatoes.com/m/a_man_of_his_time",
+          "mc": "https://www.metacritic.com/movie/a-man-of-his-time/"
+        },
+        "r": [
+          6.7,
+          7.0,
+          80.0,
+          69.0,
+          3.52
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/36660162/",
+        "source": "https://www.douban.com/doulist/165148655/?start=50&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": 6.7
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/a-man-of-his-time/",
+        "status": "verified",
+        "name": "A Man of His Time",
+        "directors": [
+          "Emmanuel Marre"
+        ],
+        "rating": 3.52
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt41593304/",
+        "identitySource": "https://letterboxd.com/film/a-man-of-his-time/",
+        "status": "verified",
+        "rating": 7.0,
+        "votes": 852
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/a_man_of_his_time",
+          "status": "verified",
+          "name": "A Man of His Time",
+          "directors": [
+            "Emmanuel Marre"
+          ],
+          "rating": 80.0
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/a-man-of-his-time/",
+          "status": "verified",
+          "name": "A Man of His Time",
+          "directors": [
+            "Emmanuel Marre"
+          ],
+          "rating": 69.0
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "36660162",
+          "lb": "a-man-of-his-time",
+          "imdb": "tt41593304",
+          "rt": "https://www.rottentomatoes.com/m/a_man_of_his_time",
+          "mc": "https://www.metacritic.com/movie/a-man-of-his-time/"
+        },
+        "r": [
+          6.7,
+          7.0,
+          80.0,
+          69.0,
+          3.52
+        ]
+      }
+    },
+    {
+      "id": "gr26-039",
+      "title": "太极张三丰",
+      "before": {
+        "links": null,
+        "r": [
+          8.1,
+          7.2,
+          null,
+          null,
+          3.7
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/1294561/",
+        "source": "https://www.douban.com/doulist/165148655/?start=0&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": 8.1
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/tai-chi-master/",
+        "status": "verified",
+        "name": "Tai-Chi Master",
+        "directors": [
+          "Yuen Woo-ping"
+        ],
+        "rating": 3.69
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt0108281/",
+        "identitySource": "https://letterboxd.com/film/tai-chi-master/",
+        "status": "verified",
+        "rating": 7.2,
+        "votes": 11891
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/tai_chi_master",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/tai-chi-master/",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "1294561",
+          "lb": "tai-chi-master",
+          "imdb": "tt0108281"
+        },
+        "r": [
+          8.1,
+          7.2,
+          null,
+          null,
+          3.69
+        ]
+      }
+    },
+    {
+      "id": "gr26-040",
+      "title": "浪花男女",
+      "before": {
+        "links": null,
+        "r": [
+          null,
+          5.4,
+          null,
+          null,
+          null
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/37296842/",
+        "source": "https://www.douban.com/doulist/165148655/?start=0&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": null
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/wakesurf-lovers/",
+        "status": "verified",
+        "name": "Wakesurf Lovers",
+        "directors": [
+          "Andrew Fung Chih-chiang"
+        ],
+        "rating": null
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt37615065/",
+        "identitySource": "https://letterboxd.com/film/wakesurf-lovers/",
+        "status": "verified",
+        "rating": 5.4,
+        "votes": 24
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/wakesurf_lovers",
+          "status": "verified",
+          "name": "Wakesurf Lovers",
+          "directors": [
+            "Fung Chih Chiang"
+          ],
+          "rating": null
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/wakesurf-lovers/",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "37296842",
+          "lb": "wakesurf-lovers",
+          "imdb": "tt37615065",
+          "rt": "https://www.rottentomatoes.com/m/wakesurf_lovers"
+        },
+        "r": [
+          null,
+          5.4,
+          null,
+          null,
+          null
+        ]
+      }
+    },
+    {
+      "id": "gr26-041",
+      "title": "第四幕",
+      "before": {
+        "links": {
+          "imdb": "tt38798617",
+          "lb": "afterpiece",
+          "douban": "37817037"
+        },
+        "r": [
+          null,
+          7.7,
+          null,
+          null,
+          null
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/37817037/",
+        "source": "https://www.douban.com/doulist/165148655/?start=0&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": null
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/afterpiece/",
+        "status": "verified",
+        "name": "Afterpiece",
+        "directors": [
+          "Keane Wong Tak-Kin"
+        ],
+        "rating": null
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt38798617/",
+        "identitySource": "https://letterboxd.com/film/afterpiece/",
+        "status": "verified",
+        "rating": 7.7,
+        "votes": 23
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/afterpiece",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/afterpiece/",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "37817037",
+          "lb": "afterpiece",
+          "imdb": "tt38798617"
+        },
+        "r": [
+          null,
+          7.7,
+          null,
+          null,
+          null
+        ]
+      }
+    },
+    {
+      "id": "gr26-042",
+      "title": "黑潮",
+      "before": {
+        "links": {
+          "imdb": "tt35486825",
+          "lb": "dead-tide-2026",
+          "douban": "37207215"
+        },
+        "r": [
+          5.2,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/37207215/",
+        "source": "https://www.douban.com/doulist/165148655/?start=0&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": 5.2
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/dead-tide-2026/",
+        "status": "verified",
+        "name": "Dead Tide",
+        "directors": [
+          "Kethsvin Chee"
+        ],
+        "rating": null
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt35486825/",
+        "identitySource": "https://letterboxd.com/film/dead-tide-2026/",
+        "status": "verified",
+        "rating": null,
+        "votes": null
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/dead_tide",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/dead-tide/",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "37207215",
+          "lb": "dead-tide-2026",
+          "imdb": "tt35486825"
+        },
+        "r": [
+          5.2,
+          null,
+          null,
+          null,
+          null
+        ]
+      }
+    },
+    {
+      "id": "gr26-043",
+      "title": "山中来客",
+      "before": {
+        "links": null,
+        "r": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/36909176/",
+        "source": "https://www.douban.com/doulist/165148655/?start=25&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": null
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/strangers-in-the-mountain/",
+        "status": "verified",
+        "name": "Strangers in the Mountain",
+        "directors": [
+          "Wan Bo"
+        ],
+        "rating": null
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt43300436/",
+        "identitySource": "https://www.boxofficemojo.com/title/tt43300436/credits/",
+        "status": "verified",
+        "rating": null,
+        "votes": null
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/strangers_in_the_mountain",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/strangers-in-the-mountain/",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "36909176",
+          "lb": "strangers-in-the-mountain",
+          "imdb": "tt43300436"
+        },
+        "r": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      }
+    },
+    {
+      "id": "gr26-044",
+      "title": "马兰花开的声音",
+      "before": {
+        "links": null,
+        "r": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/37297313/",
+        "source": "https://www.douban.com/doulist/165148655/?start=25&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": null
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/when-malan-blooms/",
+        "status": "unavailable",
+        "name": null,
+        "directors": [],
+        "rating": null
+      },
+      "imdb": {
+        "url": null,
+        "identitySource": null,
+        "status": "no-verified-entry",
+        "rating": null,
+        "votes": null
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/when_malan_blooms",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/when-malan-blooms/",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "37297313"
+        },
+        "r": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      }
+    },
+    {
+      "id": "gr26-045",
+      "title": "无处安放我的双眼",
+      "before": {
+        "links": null,
+        "r": [
+          7.8,
+          6.8,
+          null,
+          null,
+          3.6
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/38208000/",
+        "source": "https://www.douban.com/doulist/165148655/?start=75&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": 7.8
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/nowhere-to-lay-my-eyes/",
+        "status": "verified",
+        "name": "Nowhere to Lay My Eyes",
+        "directors": [
+          "Hong Sang-soo"
+        ],
+        "rating": 3.6
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt43663820/",
+        "identitySource": "https://letterboxd.com/film/nowhere-to-lay-my-eyes/",
+        "status": "verified",
+        "rating": 6.8,
+        "votes": 61
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/nowhere_to_lay_my_eyes",
+          "status": "verified",
+          "name": "Nowhere to Lay My Eyes",
+          "directors": [
+            "Hong Sang-soo"
+          ],
+          "rating": null
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/nowhere-to-lay-my-eyes/",
+          "status": "verified",
+          "name": "Nowhere to Lay My Eyes",
+          "directors": [
+            "Hong Sang-soo"
+          ],
+          "rating": null
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "38208000",
+          "lb": "nowhere-to-lay-my-eyes",
+          "imdb": "tt43663820",
+          "rt": "https://www.rottentomatoes.com/m/nowhere_to_lay_my_eyes",
+          "mc": "https://www.metacritic.com/movie/nowhere-to-lay-my-eyes/"
+        },
+        "r": [
+          7.8,
+          6.8,
+          null,
+          null,
+          3.6
+        ]
+      }
+    },
+    {
+      "id": "gr26-046",
+      "title": "善男信女",
+      "before": {
+        "links": {
+          "imdb": "tt36563084",
+          "lb": "we-are-born-good",
+          "douban": "37114070",
+          "rt": "https://www.rottentomatoes.com/m/we_are_born_good"
+        },
+        "r": [
+          7.9,
+          7.5,
+          null,
+          null,
+          3.56
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/37114070/",
+        "source": "https://www.douban.com/doulist/165148655/?start=0&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": 7.9
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/we-are-born-good/",
+        "status": "verified",
+        "name": "We Are Born Good",
+        "directors": [
+          "Yeung Leung Chuen"
+        ],
+        "rating": 3.56
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt36563084/",
+        "identitySource": "https://letterboxd.com/film/we-are-born-good/",
+        "status": "verified",
+        "rating": 7.5,
+        "votes": 51
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/we_are_born_good",
+          "status": "verified",
+          "name": "We Are Born Good",
+          "directors": [
+            "Leung Chuen Yeung"
+          ],
+          "rating": null
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/we-are-born-good/",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "37114070",
+          "lb": "we-are-born-good",
+          "imdb": "tt36563084",
+          "rt": "https://www.rottentomatoes.com/m/we_are_born_good"
+        },
+        "r": [
+          7.9,
+          7.5,
+          null,
+          null,
+          3.56
+        ]
+      }
+    },
+    {
+      "id": "gr26-047",
+      "title": "被杀的那天",
+      "before": {
+        "links": {
+          "imdb": "tt40868707",
+          "douban": "37394940"
+        },
+        "r": [
+          5.3,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/36149739/",
+        "source": "https://www.douban.com/doulist/165148655/?start=0&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": null
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/dead-end-2026-4/",
+        "status": "verified",
+        "name": "Dead End",
+        "directors": [
+          "Isabella Lam"
+        ],
+        "rating": null
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt36524315/",
+        "identitySource": "https://letterboxd.com/film/dead-end-2026-4/",
+        "status": "verified",
+        "rating": null,
+        "votes": null
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/dead_end",
+          "status": "title-variant",
+          "name": "False Pretense",
+          "directors": [
+            "Douglas Jackson"
+          ],
+          "rating": null
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/dead-end/",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "36149739",
+          "lb": "dead-end-2026-4",
+          "imdb": "tt36524315"
+        },
+        "r": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "correction": "Hong Kong Dead End, Isabella Lam, Yeung Lok-man/Hedwig Tam/Maggie Shiu. Previous IMDb tt40868707 / Douban 37394940 refer to Taiwan Dead End (CHAN Chun-hao); replace, do not transfer its score."
+    },
+    {
+      "id": "gr26-048",
+      "title": "林中绿洲",
+      "before": {
+        "links": null,
+        "r": [
+          null,
+          7.5,
+          null,
+          null,
+          3.2
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/37895396/",
+        "source": "https://www.douban.com/doulist/165148655/?start=50&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": null
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/oasis-2026/",
+        "status": "verified",
+        "name": "Oasis",
+        "directors": [
+          "Jannis Lenz"
+        ],
+        "rating": 3.22
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt43704174/",
+        "identitySource": "https://letterboxd.com/film/oasis-2026/",
+        "status": "verified",
+        "rating": 7.5,
+        "votes": 26
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/oasis_2026",
+          "status": "verified",
+          "name": "Oasis (2026)",
+          "directors": [
+            "Jannis Lenz"
+          ],
+          "rating": null
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/oasis/",
+          "status": "year-mismatch",
+          "name": "Oasis",
+          "directors": [
+            "Lee Chang-dong"
+          ],
+          "rating": null
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "37895396",
+          "lb": "oasis-2026",
+          "imdb": "tt43704174",
+          "rt": "https://www.rottentomatoes.com/m/oasis_2026"
+        },
+        "r": [
+          null,
+          7.5,
+          null,
+          null,
+          3.22
+        ]
+      }
+    },
+    {
+      "id": "gr26-049",
+      "title": "金玉满堂",
+      "before": {
+        "links": null,
+        "r": [
+          8.1,
+          6.7,
+          64,
+          null,
+          3.5
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/1295374/",
+        "source": "https://www.douban.com/doulist/165148655/?start=0&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": 8.1
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/the-chinese-feast/",
+        "status": "verified",
+        "name": "The Chinese Feast",
+        "directors": [
+          "Tsui Hark"
+        ],
+        "rating": 3.55
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt0113475/",
+        "identitySource": "https://letterboxd.com/film/the-chinese-feast/",
+        "status": "verified",
+        "rating": 6.7,
+        "votes": 1670
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/the_chinese_feast",
+          "status": "verified",
+          "name": "The Chinese Feast",
+          "directors": [
+            "Hark Tsui"
+          ],
+          "rating": null
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/the-chinese-feast/",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "1295374",
+          "lb": "the-chinese-feast",
+          "imdb": "tt0113475",
+          "rt": "https://www.rottentomatoes.com/m/the_chinese_feast"
+        },
+        "r": [
+          8.1,
+          6.7,
+          null,
+          null,
+          3.55
+        ]
+      }
+    },
+    {
+      "id": "gr26-050",
+      "title": "深爱",
+      "before": {
+        "links": null,
+        "r": [
+          null,
+          6.3,
+          null,
+          null,
+          3.3
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/36787770/",
+        "source": "https://www.douban.com/doulist/165148655/?start=50&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": null
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/beloved-2026/",
+        "status": "verified",
+        "name": "Beloved",
+        "directors": [
+          "Erik Poppe"
+        ],
+        "rating": 3.34
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt31451181/",
+        "identitySource": "https://letterboxd.com/film/beloved-2026/",
+        "status": "verified",
+        "rating": 6.3,
+        "votes": 109
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/beloved",
+          "status": "year-mismatch",
+          "name": "Beloved",
+          "directors": [
+            "Victor Schertzinger"
+          ],
+          "rating": null
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/beloved/",
+          "status": "year-mismatch",
+          "name": "Beloved",
+          "directors": [
+            "Jonathan Demme"
+          ],
+          "rating": null
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "36787770",
+          "lb": "beloved-2026",
+          "imdb": "tt31451181"
+        },
+        "r": [
+          null,
+          6.3,
+          null,
+          null,
+          3.34
+        ]
+      }
+    },
+    {
+      "id": "gr26-051",
+      "title": "其余皆噪音",
+      "before": {
+        "links": null,
+        "r": [
+          null,
+          6.9,
+          100,
+          null,
+          3.6
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/37363613/",
+        "source": "https://www.douban.com/doulist/165148655/?start=50&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": null
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/everything-else-is-noise/",
+        "status": "verified",
+        "name": "Everything Else Is Noise",
+        "directors": [
+          "Nicolás Pereda"
+        ],
+        "rating": 3.64
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt39383384/",
+        "identitySource": "https://letterboxd.com/film/everything-else-is-noise/",
+        "status": "verified",
+        "rating": 6.9,
+        "votes": 89
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/everything_else_is_noise",
+          "status": "verified",
+          "name": "Everything Else Is Noise",
+          "directors": [
+            "Nicolás Pereda"
+          ],
+          "rating": 100.0
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/everything-else-is-noise/",
+          "status": "verified",
+          "name": "Everything Else Is Noise",
+          "directors": [
+            "Nicolás Pereda"
+          ],
+          "rating": null
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "37363613",
+          "lb": "everything-else-is-noise",
+          "imdb": "tt39383384",
+          "rt": "https://www.rottentomatoes.com/m/everything_else_is_noise",
+          "mc": "https://www.metacritic.com/movie/everything-else-is-noise/"
+        },
+        "r": [
+          null,
+          6.9,
+          100.0,
+          null,
+          3.64
+        ]
+      }
+    },
+    {
+      "id": "gr26-052",
+      "title": "吃饱的菲尔",
+      "before": {
+        "links": {
+          "imdb": "tt38607959",
+          "lb": "full-phil",
+          "douban": "37645032",
+          "rt": "https://www.rottentomatoes.com/m/full_phil",
+          "mc": "https://www.metacritic.com/movie/full-phil/"
+        },
+        "r": [
+          null,
+          6.1,
+          71.0,
+          60.0,
+          2.91
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/37645032/",
+        "source": "https://www.douban.com/doulist/165148655/?start=50&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": null
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/full-phil/",
+        "status": "verified",
+        "name": "Full Phil",
+        "directors": [
+          "Quentin Dupieux"
+        ],
+        "rating": 2.91
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt38607959/",
+        "identitySource": "https://letterboxd.com/film/full-phil/",
+        "status": "verified",
+        "rating": 6.1,
+        "votes": 131
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/full_phil",
+          "status": "verified",
+          "name": "Full Phil",
+          "directors": [
+            "Quentin Dupieux"
+          ],
+          "rating": 71.0
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/full-phil/",
+          "status": "verified",
+          "name": "Full Phil",
+          "directors": [
+            "Quentin Dupieux"
+          ],
+          "rating": 60.0
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "37645032",
+          "lb": "full-phil",
+          "imdb": "tt38607959",
+          "rt": "https://www.rottentomatoes.com/m/full_phil",
+          "mc": "https://www.metacritic.com/movie/full-phil/"
+        },
+        "r": [
+          null,
+          6.1,
+          71.0,
+          60.0,
+          2.91
+        ]
+      }
+    },
+    {
+      "id": "gr26-053",
+      "title": "匈牙利狂想曲",
+      "before": {
+        "links": null,
+        "r": [
+          9.3,
+          8.6,
+          null,
+          null,
+          4.3
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/19966691/",
+        "source": "https://www.douban.com/doulist/165148655/?start=25&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": 9.3
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/queen-live-in-budapest/",
+        "status": "verified",
+        "name": "Queen: Live in Budapest",
+        "directors": [
+          "János Zsombolyai"
+        ],
+        "rating": 4.32
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt0093427/",
+        "identitySource": "https://letterboxd.com/film/queen-live-in-budapest/",
+        "status": "verified",
+        "rating": 8.6,
+        "votes": 1532
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/queen_budapest",
+          "status": "verified",
+          "name": "Queen Budapest",
+          "directors": [
+            "János Zsombolyai"
+          ],
+          "rating": 83.0,
+          "identityNote": "1986 Budapest concert film rereleased in 2026 under Queen Budapest; title, director and band verified. Platform release date is the rerelease date."
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/queen-live-in-budapest/",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "19966691",
+          "lb": "queen-live-in-budapest",
+          "imdb": "tt0093427",
+          "rt": "https://www.rottentomatoes.com/m/queen_budapest"
+        },
+        "r": [
+          9.3,
+          8.6,
+          83.0,
+          null,
+          4.32
+        ]
+      }
+    },
+    {
+      "id": "gr26-054",
+      "title": "剪刀手爱德华",
+      "before": {
+        "links": null,
+        "r": [
+          8.7,
+          7.8,
+          93,
+          74,
+          3.9
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/1292370/",
+        "source": "https://www.douban.com/doulist/165148655/?start=25&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": 8.7
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/edward-scissorhands/",
+        "status": "verified",
+        "name": "Edward Scissorhands",
+        "directors": [
+          "Tim Burton"
+        ],
+        "rating": 3.91
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt0099487/",
+        "identitySource": "https://letterboxd.com/film/edward-scissorhands/",
+        "status": "verified",
+        "rating": 7.8,
+        "votes": 573430
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/edward_scissorhands",
+          "status": "verified",
+          "name": "Edward Scissorhands",
+          "directors": [
+            "Tim Burton"
+          ],
+          "rating": 93.0
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/edward-scissorhands/",
+          "status": "verified",
+          "name": "Edward Scissorhands",
+          "directors": [
+            "Tim Burton"
+          ],
+          "rating": 74.0
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "1292370",
+          "lb": "edward-scissorhands",
+          "imdb": "tt0099487",
+          "rt": "https://www.rottentomatoes.com/m/edward_scissorhands",
+          "mc": "https://www.metacritic.com/movie/edward-scissorhands/"
+        },
+        "r": [
+          8.7,
+          7.8,
+          93.0,
+          74.0,
+          3.91
+        ]
+      }
+    },
+    {
+      "id": "gr26-055",
+      "title": "老无所依",
+      "before": {
+        "links": null,
+        "r": [
+          8.4,
+          8.2,
+          93,
+          92,
+          4.3
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/1857099/",
+        "source": "https://www.douban.com/doulist/165148655/?start=25&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": 8.4
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/no-country-for-old-men/",
+        "status": "verified",
+        "name": "No Country for Old Men",
+        "directors": [
+          "Joel Coen",
+          "Ethan Coen"
+        ],
+        "rating": 4.3
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt0477348/",
+        "identitySource": "https://letterboxd.com/film/no-country-for-old-men/",
+        "status": "verified",
+        "rating": 8.2,
+        "votes": 1220897
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/no_country_for_old_men",
+          "status": "verified",
+          "name": "No Country for Old Men",
+          "directors": [
+            "Joel Coen",
+            "Ethan Coen"
+          ],
+          "rating": 93.0
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/no-country-for-old-men/",
+          "status": "verified",
+          "name": "No Country for Old Men",
+          "directors": [
+            "Ethan Coen",
+            "Joel Coen"
+          ],
+          "rating": 92.0
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "1857099",
+          "lb": "no-country-for-old-men",
+          "imdb": "tt0477348",
+          "rt": "https://www.rottentomatoes.com/m/no_country_for_old_men",
+          "mc": "https://www.metacritic.com/movie/no-country-for-old-men/"
+        },
+        "r": [
+          8.4,
+          8.2,
+          93.0,
+          92.0,
+          4.3
+        ]
+      }
+    },
+    {
+      "id": "gr26-056",
+      "title": "回归",
+      "before": {
+        "links": null,
+        "r": [
+          8.5,
+          7.9,
+          95,
+          82,
+          4.2
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/1308074/",
+        "source": "https://www.douban.com/doulist/165148655/?start=25&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": 8.5
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/the-return/",
+        "status": "verified",
+        "name": "The Return",
+        "directors": [
+          "Andrey Zvyagintsev"
+        ],
+        "rating": 4.16
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt0376968/",
+        "identitySource": "https://letterboxd.com/film/the-return/",
+        "status": "verified",
+        "rating": 7.9,
+        "votes": 50095
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/the_return",
+          "status": "verified",
+          "name": "The Return",
+          "directors": [
+            "Andrey Zvyagintsev"
+          ],
+          "rating": 95.0
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/the-return-2004/",
+          "status": "verified",
+          "name": "The Return",
+          "directors": [
+            "Andrey Zvyagintsev"
+          ],
+          "rating": 82.0
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "1308074",
+          "lb": "the-return",
+          "imdb": "tt0376968",
+          "rt": "https://www.rottentomatoes.com/m/the_return",
+          "mc": "https://www.metacritic.com/movie/the-return-2004/"
+        },
+        "r": [
+          8.5,
+          7.9,
+          95.0,
+          82.0,
+          4.16
+        ]
+      }
+    },
+    {
+      "id": "gr26-057",
+      "title": "冰释雪融",
+      "before": {
+        "links": null,
+        "r": [
+          null,
+          6.7,
+          88,
+          null,
+          3.5
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/36131687/",
+        "source": "https://www.douban.com/doulist/165148655/?start=50&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": null
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/the-meltdown/",
+        "status": "verified",
+        "name": "The Meltdown",
+        "directors": [
+          "Manuela Martelli"
+        ],
+        "rating": 3.51
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt39571626/",
+        "identitySource": "https://letterboxd.com/film/the-meltdown/",
+        "status": "verified",
+        "rating": 6.7,
+        "votes": 262
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/the_meltdown",
+          "status": "verified",
+          "name": "The Meltdown",
+          "directors": [
+            "Manuela Martelli"
+          ],
+          "rating": 88.0
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/the-meltdown/",
+          "status": "verified",
+          "name": "The Meltdown",
+          "directors": [
+            "Manuela Martelli"
+          ],
+          "rating": null
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "36131687",
+          "lb": "the-meltdown",
+          "imdb": "tt39571626",
+          "rt": "https://www.rottentomatoes.com/m/the_meltdown",
+          "mc": "https://www.metacritic.com/movie/the-meltdown/"
+        },
+        "r": [
+          null,
+          6.7,
+          88.0,
+          null,
+          3.51
+        ]
+      }
+    },
+    {
+      "id": "gr26-058",
+      "title": "南国再见，南国",
+      "before": {
+        "links": {
+          "imdb": "tt0117151",
+          "lb": "goodbye-south-goodbye",
+          "douban": "1303458",
+          "rt": "https://www.rottentomatoes.com/m/goodbye_south_goodbye"
+        },
+        "r": [
+          8.1,
+          7.2,
+          100.0,
+          null,
+          3.9
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/1303458/",
+        "source": "https://www.douban.com/doulist/165148655/?start=0&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": 8.1
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/goodbye-south-goodbye/",
+        "status": "verified",
+        "name": "Goodbye South, Goodbye",
+        "directors": [
+          "Hou Hsiao-hsien"
+        ],
+        "rating": 3.9
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt0117151/",
+        "identitySource": "https://letterboxd.com/film/goodbye-south-goodbye/",
+        "status": "verified",
+        "rating": 7.2,
+        "votes": 2183
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/goodbye_south_goodbye",
+          "status": "verified",
+          "name": "Goodbye South, Goodbye",
+          "directors": [
+            "Hsiao-hsien Hou"
+          ],
+          "rating": 100.0
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/goodbye-south-goodbye/",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "1303458",
+          "lb": "goodbye-south-goodbye",
+          "imdb": "tt0117151",
+          "rt": "https://www.rottentomatoes.com/m/goodbye_south_goodbye"
+        },
+        "r": [
+          8.1,
+          7.2,
+          100.0,
+          null,
+          3.9
+        ]
+      }
+    },
+    {
+      "id": "gr26-059",
+      "title": "别人的东西",
+      "before": {
+        "links": null,
+        "r": [
+          null,
+          6.7,
+          null,
+          null,
+          3.3
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/37352209/",
+        "source": "https://www.douban.com/doulist/165148655/?start=50&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": null
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/what-belongs-to-others/",
+        "status": "verified",
+        "name": "What Belongs to Others",
+        "directors": [
+          "Grzegorz Dębowski"
+        ],
+        "rating": 3.33
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt43704165/",
+        "identitySource": "https://letterboxd.com/film/what-belongs-to-others/",
+        "status": "verified",
+        "rating": 6.7,
+        "votes": 42
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/what_belongs_to_others",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/what-belongs-to-others/",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "37352209",
+          "lb": "what-belongs-to-others",
+          "imdb": "tt43704165"
+        },
+        "r": [
+          null,
+          6.7,
+          null,
+          null,
+          3.33
+        ]
+      }
+    },
+    {
+      "id": "gr26-060",
+      "title": "白夜黑金",
+      "before": {
+        "links": null,
+        "r": [
+          null,
+          7.0,
+          100,
+          null,
+          3.5
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/27666621/",
+        "source": "https://www.douban.com/doulist/165148655/?start=50&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": null
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/black-money-for-white-nights/",
+        "status": "verified",
+        "name": "Black Money For White Nights",
+        "directors": [
+          "Kristina Grozeva",
+          "Petar Valchanov"
+        ],
+        "rating": 3.48
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt38799410/",
+        "identitySource": "https://letterboxd.com/film/black-money-for-white-nights/",
+        "status": "verified",
+        "rating": 7.0,
+        "votes": 54
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/black_money_for_white_nights",
+          "status": "verified",
+          "name": "Black Money for White Nights",
+          "directors": [
+            "Kristina Grozeva",
+            "Petar Valchanov"
+          ],
+          "rating": 100.0
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/black-money-for-white-nights/",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "27666621",
+          "lb": "black-money-for-white-nights",
+          "imdb": "tt38799410",
+          "rt": "https://www.rottentomatoes.com/m/black_money_for_white_nights"
+        },
+        "r": [
+          null,
+          7.0,
+          100.0,
+          null,
+          3.48
+        ]
+      }
+    },
+    {
+      "id": "gr26-061",
+      "title": "油麻菜籽",
+      "before": {
+        "links": null,
+        "r": [
+          7.8,
+          7.3,
+          null,
+          null,
+          3.5
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/1308633/",
+        "source": "https://www.douban.com/doulist/165148655/?start=0&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": 7.8
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/ah-fei/",
+        "status": "verified",
+        "name": "Ah Fei",
+        "directors": [
+          "Wan Jen"
+        ],
+        "rating": 3.55
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt0337507/",
+        "identitySource": "https://letterboxd.com/film/ah-fei/",
+        "status": "verified",
+        "rating": 7.3,
+        "votes": 164
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/ah_fei",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/ah-fei/",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "1308633",
+          "lb": "ah-fei",
+          "imdb": "tt0337507"
+        },
+        "r": [
+          7.8,
+          7.3,
+          null,
+          null,
+          3.55
+        ]
+      }
+    },
+    {
+      "id": "gr26-062",
+      "title": "醉拳",
+      "before": {
+        "links": null,
+        "r": [
+          7.8,
+          7.4,
+          80,
+          68,
+          3.8
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/1296693/",
+        "source": "https://www.douban.com/doulist/165148655/?start=0&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": 7.8
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/drunken-master/",
+        "status": "verified",
+        "name": "Drunken Master",
+        "directors": [
+          "Yuen Woo-ping"
+        ],
+        "rating": 3.81
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt0080179/",
+        "identitySource": "https://letterboxd.com/film/drunken-master/",
+        "status": "verified",
+        "rating": 7.4,
+        "votes": 48619
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/drunken_master",
+          "status": "verified",
+          "name": "Drunken Master - The Beginning",
+          "directors": [
+            "Woo-Ping Yuen"
+          ],
+          "rating": 80.0
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/drunken-master/",
+          "status": "verified",
+          "name": "Drunken Master",
+          "directors": [
+            "Woo-Ping Yuen"
+          ],
+          "rating": 68.0
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "1296693",
+          "lb": "drunken-master",
+          "imdb": "tt0080179",
+          "rt": "https://www.rottentomatoes.com/m/drunken_master",
+          "mc": "https://www.metacritic.com/movie/drunken-master/"
+        },
+        "r": [
+          7.8,
+          7.4,
+          80.0,
+          68.0,
+          3.81
+        ]
+      }
+    },
+    {
+      "id": "gr26-063",
+      "title": "银翼杀手（最终剪辑版）",
+      "before": {
+        "links": null,
+        "r": [
+          8.6,
+          8.1,
+          89,
+          84,
+          4.1
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/1291839/",
+        "source": "https://www.douban.com/doulist/165148655/?start=25&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": 8.6
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/blade-runner/",
+        "status": "verified",
+        "name": "Blade Runner",
+        "directors": [
+          "Ridley Scott"
+        ],
+        "rating": 4.09
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt0083658/",
+        "identitySource": "https://letterboxd.com/film/blade-runner/",
+        "status": "verified",
+        "rating": 8.1,
+        "votes": 895745
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/blade_runner",
+          "status": "verified",
+          "name": "Blade Runner",
+          "directors": [
+            "Ridley Scott"
+          ],
+          "rating": 89.0
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/blade-runner/",
+          "status": "verified",
+          "name": "Blade Runner",
+          "directors": [
+            "Ridley Scott"
+          ],
+          "rating": 84.0
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "1291839",
+          "lb": "blade-runner",
+          "imdb": "tt0083658",
+          "rt": "https://www.rottentomatoes.com/m/blade_runner",
+          "mc": "https://www.metacritic.com/movie/blade-runner/"
+        },
+        "r": [
+          8.6,
+          8.1,
+          89.0,
+          84.0,
+          4.09
+        ]
+      }
+    },
+    {
+      "id": "gr26-064",
+      "title": "我们不是陌生人",
+      "before": {
+        "links": {
+          "imdb": "tt13848364",
+          "lb": "we-are-all-strangers",
+          "douban": "35328629",
+          "rt": "https://www.rottentomatoes.com/m/we_are_all_strangers",
+          "mc": "https://www.metacritic.com/movie/we-are-all-strangers/"
+        },
+        "r": [
+          5.8,
+          7.2,
+          79.0,
+          null,
+          3.33
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/35328629/",
+        "source": "https://www.douban.com/doulist/165148655/?start=0&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": 5.8
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/we-are-all-strangers/",
+        "status": "verified",
+        "name": "We Are All Strangers",
+        "directors": [
+          "Anthony Chen"
+        ],
+        "rating": 3.33
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt13848364/",
+        "identitySource": "https://letterboxd.com/film/we-are-all-strangers/",
+        "status": "verified",
+        "rating": 7.2,
+        "votes": 212
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/we_are_all_strangers",
+          "status": "verified",
+          "name": "We Are All Strangers",
+          "directors": [
+            "Anthony Chen"
+          ],
+          "rating": 79.0
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/we-are-all-strangers/",
+          "status": "verified",
+          "name": "We Are All Strangers",
+          "directors": [
+            "Anthony Chen"
+          ],
+          "rating": null
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "35328629",
+          "lb": "we-are-all-strangers",
+          "imdb": "tt13848364",
+          "rt": "https://www.rottentomatoes.com/m/we_are_all_strangers",
+          "mc": "https://www.metacritic.com/movie/we-are-all-strangers/"
+        },
+        "r": [
+          5.8,
+          7.2,
+          79.0,
+          null,
+          3.33
+        ]
+      }
+    },
+    {
+      "id": "gr26-065",
+      "title": "月球时代白日梦",
+      "before": {
+        "links": null,
+        "r": [
+          8.5,
+          7.6,
+          92,
+          83,
+          4.1
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/35869654/",
+        "source": "https://www.douban.com/doulist/165148655/?start=25&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": 8.5
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/moonage-daydream/",
+        "status": "verified",
+        "name": "Moonage Daydream",
+        "directors": [
+          "Brett Morgen"
+        ],
+        "rating": 4.06
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt9883832/",
+        "identitySource": "https://letterboxd.com/film/moonage-daydream/",
+        "status": "verified",
+        "rating": 7.6,
+        "votes": 16780
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/moonage_daydream",
+          "status": "verified",
+          "name": "Moonage Daydream",
+          "directors": [
+            "Brett Morgen"
+          ],
+          "rating": 92.0
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/moonage-daydream/",
+          "status": "verified",
+          "name": "Moonage Daydream",
+          "directors": [
+            "Brett Morgen"
+          ],
+          "rating": 83.0
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "35869654",
+          "lb": "moonage-daydream",
+          "imdb": "tt9883832",
+          "rt": "https://www.rottentomatoes.com/m/moonage_daydream",
+          "mc": "https://www.metacritic.com/movie/moonage-daydream/"
+        },
+        "r": [
+          8.5,
+          7.6,
+          92.0,
+          83.0,
+          4.06
+        ]
+      }
+    },
+    {
+      "id": "gr26-066",
+      "title": "将军号",
+      "before": {
+        "links": null,
+        "r": [
+          9.0,
+          8.1,
+          92,
+          null,
+          4.2
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/1292778/",
+        "source": "https://www.douban.com/doulist/165148655/?start=25&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": 9.0
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/the-general/",
+        "status": "verified",
+        "name": "The General",
+        "directors": [
+          "Clyde Bruckman",
+          "Buster Keaton"
+        ],
+        "rating": 4.18
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt0017925/",
+        "identitySource": "https://letterboxd.com/film/the-general/",
+        "status": "verified",
+        "rating": 8.1,
+        "votes": 106650
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/1008166-general",
+          "status": "verified",
+          "name": "The General",
+          "directors": [
+            "Clyde Bruckman",
+            "Buster Keaton"
+          ],
+          "rating": 92.0
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/the-general/",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "1292778",
+          "lb": "the-general",
+          "imdb": "tt0017925",
+          "rt": "https://www.rottentomatoes.com/m/1008166-general"
+        },
+        "r": [
+          9.0,
+          8.1,
+          92.0,
+          null,
+          4.18
+        ]
+      }
+    },
+    {
+      "id": "gr26-067",
+      "title": "囚魂之地",
+      "before": {
+        "links": null,
+        "r": [
+          6.7,
+          6.5,
+          93,
+          null,
+          3.5
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/36146114/",
+        "source": "https://www.douban.com/doulist/165148655/?start=50&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": 6.7
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/ghost-in-the-cell/",
+        "status": "verified",
+        "name": "Ghost in the Cell",
+        "directors": [
+          "Joko Anwar"
+        ],
+        "rating": 3.48
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt9000310/",
+        "identitySource": "https://letterboxd.com/film/ghost-in-the-cell/",
+        "status": "verified",
+        "rating": 6.5,
+        "votes": 4932
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/ghost_in_the_cell",
+          "status": "verified",
+          "name": "Ghost in the Cell",
+          "directors": [
+            "Joko Anwar"
+          ],
+          "rating": 93.0
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/ghost-in-the-cell/",
+          "status": "verified",
+          "name": "Ghost in the Cell",
+          "directors": [
+            "Joko Anwar"
+          ],
+          "rating": null
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "36146114",
+          "lb": "ghost-in-the-cell",
+          "imdb": "tt9000310",
+          "rt": "https://www.rottentomatoes.com/m/ghost_in_the_cell",
+          "mc": "https://www.metacritic.com/movie/ghost-in-the-cell/"
+        },
+        "r": [
+          6.7,
+          6.5,
+          93.0,
+          null,
+          3.48
+        ]
+      }
+    },
+    {
+      "id": "gr26-068",
+      "title": "后台疯暴",
+      "before": {
+        "links": null,
+        "r": [
+          null,
+          5.8,
+          null,
+          null,
+          null
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/37656471/",
+        "source": "https://www.douban.com/doulist/165148655/?start=50&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": null
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/backstage-madness/",
+        "status": "verified",
+        "name": "Backstage Madness",
+        "directors": [
+          "Amanbek Azhymat"
+        ],
+        "rating": null
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt38978986/",
+        "identitySource": "https://letterboxd.com/film/backstage-madness/",
+        "status": "verified",
+        "rating": 5.8,
+        "votes": 13
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/backstage_madness",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/backstage-madness/",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "37656471",
+          "lb": "backstage-madness",
+          "imdb": "tt38978986"
+        },
+        "r": [
+          null,
+          5.8,
+          null,
+          null,
+          null
+        ]
+      }
+    },
+    {
+      "id": "gr26-069",
+      "title": "刚果男孩",
+      "before": {
+        "links": null,
+        "r": [
+          7.0,
+          6.9,
+          null,
+          null,
+          3.6
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/36903388/",
+        "source": "https://www.douban.com/doulist/165148655/?start=50&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": 7.0
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/congo-boy/",
+        "status": "verified",
+        "name": "Congo Boy",
+        "directors": [
+          "Rafiki Fariala"
+        ],
+        "rating": 3.63
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt41592086/",
+        "identitySource": "https://letterboxd.com/film/congo-boy/",
+        "status": "verified",
+        "rating": 6.9,
+        "votes": 107
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/congo_boy",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/congo-boy/",
+          "status": "verified",
+          "name": "Congo Boy",
+          "directors": [
+            "Rafiki Fariala"
+          ],
+          "rating": null
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "36903388",
+          "lb": "congo-boy",
+          "imdb": "tt41592086",
+          "mc": "https://www.metacritic.com/movie/congo-boy/"
+        },
+        "r": [
+          7.0,
+          6.9,
+          null,
+          null,
+          3.63
+        ]
+      }
+    },
+    {
+      "id": "gr26-070",
+      "title": "无辜",
+      "before": {
+        "links": null,
+        "r": [
+          7.7,
+          7.4,
+          80,
+          null,
+          3.8
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/1302922/",
+        "source": "https://www.douban.com/doulist/165148655/?start=25&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": 7.7
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/the-innocent-1976/",
+        "status": "verified",
+        "name": "The Innocent",
+        "directors": [
+          "Luchino Visconti"
+        ],
+        "rating": 3.81
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt0074686/",
+        "identitySource": "https://letterboxd.com/film/the-innocent-1976/",
+        "status": "verified",
+        "rating": 7.4,
+        "votes": 4933
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/the_innocent_1979",
+          "status": "verified",
+          "name": "The Innocent",
+          "directors": [
+            "Luchino Visconti"
+          ],
+          "rating": 80.0
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/the-innocent/",
+          "status": "year-mismatch",
+          "name": "The Innocent",
+          "directors": [
+            "Louis Garrel"
+          ],
+          "rating": null
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "1302922",
+          "lb": "the-innocent-1976",
+          "imdb": "tt0074686",
+          "rt": "https://www.rottentomatoes.com/m/the_innocent_1979"
+        },
+        "r": [
+          7.7,
+          7.4,
+          80.0,
+          null,
+          3.81
+        ]
+      }
+    },
+    {
+      "id": "gr26-071",
+      "title": "无处容身",
+      "before": {
+        "links": {
+          "imdb": "tt39228759",
+          "lb": "you-dont-belong-here-2026",
+          "douban": "37834764"
+        },
+        "r": [
+          null,
+          7.3,
+          null,
+          null,
+          3.58
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/37834764/",
+        "source": "https://www.douban.com/doulist/165148655/?start=50&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": null
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/you-dont-belong-here-2026/",
+        "status": "verified",
+        "name": "You Don't Belong Here",
+        "directors": [
+          "Florin Şerban"
+        ],
+        "rating": 3.58
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt39228759/",
+        "identitySource": "https://letterboxd.com/film/you-dont-belong-here-2026/",
+        "status": "verified",
+        "rating": 7.3,
+        "votes": 101
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/you_don_t_belong_here",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/you-don-t-belong-here/",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "37834764",
+          "lb": "you-dont-belong-here-2026",
+          "imdb": "tt39228759"
+        },
+        "r": [
+          null,
+          7.3,
+          null,
+          null,
+          3.58
+        ]
+      }
+    },
+    {
+      "id": "gr26-072",
+      "title": "乱世佳人",
+      "before": {
+        "links": null,
+        "r": [
+          9.3,
+          8.2,
+          90,
+          97,
+          3.9
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/1300267/",
+        "source": "https://www.douban.com/doulist/165148655/?start=25&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": 9.3
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/gone-with-the-wind/",
+        "status": "verified",
+        "name": "Gone with the Wind",
+        "directors": [
+          "Victor Fleming"
+        ],
+        "rating": 3.86
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt0031381/",
+        "identitySource": "https://letterboxd.com/film/gone-with-the-wind/",
+        "status": "verified",
+        "rating": 8.2,
+        "votes": 360019
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/gone_with_the_wind",
+          "status": "verified",
+          "name": "Gone with the Wind",
+          "directors": [
+            "Victor Fleming"
+          ],
+          "rating": 90.0
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/gone-with-the-wind/",
+          "status": "verified",
+          "name": "Gone with the Wind",
+          "directors": [
+            "Victor Fleming"
+          ],
+          "rating": 97.0
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "1300267",
+          "lb": "gone-with-the-wind",
+          "imdb": "tt0031381",
+          "rt": "https://www.rottentomatoes.com/m/gone_with_the_wind",
+          "mc": "https://www.metacritic.com/movie/gone-with-the-wind/"
+        },
+        "r": [
+          9.3,
+          8.2,
+          90.0,
+          97.0,
+          3.86
+        ]
+      }
+    },
+    {
+      "id": "gr26-073",
+      "title": "铁扇公主",
+      "before": {
+        "links": null,
+        "r": [
+          8.6,
+          6.3,
+          null,
+          null,
+          3.3
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/1466022/",
+        "source": "https://www.douban.com/doulist/165148655/?start=50&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": 8.6
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/princess-iron-fan/",
+        "status": "verified",
+        "name": "Princess Iron Fan",
+        "directors": [
+          "Wan Laiming",
+          "Guchan Wan"
+        ],
+        "rating": 3.27
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt0471945/",
+        "identitySource": "https://letterboxd.com/film/princess-iron-fan/",
+        "status": "verified",
+        "rating": 6.3,
+        "votes": 388
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/princess_iron_fan",
+          "status": "verified",
+          "name": "Princess Iron Fan",
+          "directors": [
+            "Wan Laiming",
+            "Wan Guchan"
+          ],
+          "rating": null
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/princess-iron-fan/",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "1466022",
+          "lb": "princess-iron-fan",
+          "imdb": "tt0471945",
+          "rt": "https://www.rottentomatoes.com/m/princess_iron_fan"
+        },
+        "r": [
+          8.6,
+          6.3,
+          null,
+          null,
+          3.27
+        ]
+      }
+    },
+    {
+      "id": "gr26-074",
+      "title": "温柔以待",
+      "before": {
+        "links": null,
+        "r": [
+          null,
+          7.6,
+          null,
+          85,
+          3.9
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/37077011/",
+        "source": "https://www.douban.com/doulist/165148655/?start=50&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": null
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/tender-loving-care-2026/",
+        "status": "verified",
+        "name": "Tender Loving Care",
+        "directors": [
+          "Mike Leigh"
+        ],
+        "rating": 3.88
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt35638092/",
+        "identitySource": "https://letterboxd.com/film/tender-loving-care-2026/",
+        "status": "verified",
+        "rating": 7.6,
+        "votes": 300
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/tender_loving_care_2026",
+          "status": "verified",
+          "name": "Tender Loving Care (2026)",
+          "directors": [
+            "Mike Leigh"
+          ],
+          "rating": 100.0
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/tender-loving-care/",
+          "status": "verified",
+          "name": "Tender Loving Care",
+          "directors": [
+            "Mike Leigh"
+          ],
+          "rating": 85.0
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "37077011",
+          "lb": "tender-loving-care-2026",
+          "imdb": "tt35638092",
+          "rt": "https://www.rottentomatoes.com/m/tender_loving_care_2026",
+          "mc": "https://www.metacritic.com/movie/tender-loving-care/"
+        },
+        "r": [
+          null,
+          7.6,
+          100.0,
+          85.0,
+          3.88
+        ]
+      }
+    },
+    {
+      "id": "gr26-075",
+      "title": "围城纪事",
+      "before": {
+        "links": null,
+        "r": [
+          null,
+          6.2,
+          null,
+          null,
+          3.7
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/37202681/",
+        "source": "https://www.douban.com/doulist/165148655/?start=50&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": null
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/chronicles-from-the-siege/",
+        "status": "verified",
+        "name": "Chronicles from the Siege",
+        "directors": [
+          "Abdallah Al-Khatib"
+        ],
+        "rating": 3.67
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt34734549/",
+        "identitySource": "https://letterboxd.com/film/chronicles-from-the-siege/",
+        "status": "verified",
+        "rating": 6.2,
+        "votes": 144
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/chronicles_from_the_siege",
+          "status": "verified",
+          "name": "Chronicles from the Siege",
+          "directors": [
+            "Abdallah Al-Khatib"
+          ],
+          "rating": null
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/chronicles-from-the-siege/",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "37202681",
+          "lb": "chronicles-from-the-siege",
+          "imdb": "tt34734549",
+          "rt": "https://www.rottentomatoes.com/m/chronicles_from_the_siege"
+        },
+        "r": [
+          null,
+          6.2,
+          null,
+          null,
+          3.67
+        ]
+      }
+    },
+    {
+      "id": "gr26-076",
+      "title": "杰出的无名氏",
+      "before": {
+        "links": null,
+        "r": [
+          null,
+          6.6,
+          null,
+          null,
+          3.3
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/37354880/",
+        "source": "https://www.douban.com/doulist/165148655/?start=50&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": null
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/all-about-corinne/",
+        "status": "verified",
+        "name": "All About Corinne",
+        "directors": [
+          "Marc Fitoussi"
+        ],
+        "rating": 3.26
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt37799310/",
+        "identitySource": "https://letterboxd.com/film/all-about-corinne/",
+        "status": "verified",
+        "rating": 6.6,
+        "votes": 193
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/all_about_corinne",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/all-about-corinne/",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "37354880",
+          "lb": "all-about-corinne",
+          "imdb": "tt37799310"
+        },
+        "r": [
+          null,
+          6.6,
+          null,
+          null,
+          3.26
+        ]
+      }
+    },
+    {
+      "id": "gr26-077",
+      "title": "盗梦空间",
+      "before": {
+        "links": null,
+        "r": [
+          9.4,
+          8.8,
+          86,
+          74,
+          4.2
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/3541415/",
+        "source": "https://www.douban.com/doulist/165148655/?start=25&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": 9.4
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/inception/",
+        "status": "verified",
+        "name": "Inception",
+        "directors": [
+          "Christopher Nolan"
+        ],
+        "rating": 4.24
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt1375666/",
+        "identitySource": "https://letterboxd.com/film/inception/",
+        "status": "verified",
+        "rating": 8.8,
+        "votes": 2885675
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/inception",
+          "status": "verified",
+          "name": "Inception",
+          "directors": [
+            "Christopher Nolan"
+          ],
+          "rating": 86.0
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/inception/",
+          "status": "verified",
+          "name": "Inception",
+          "directors": [
+            "Christopher Nolan"
+          ],
+          "rating": 74.0
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "3541415",
+          "lb": "inception",
+          "imdb": "tt1375666",
+          "rt": "https://www.rottentomatoes.com/m/inception",
+          "mc": "https://www.metacritic.com/movie/inception/"
+        },
+        "r": [
+          9.4,
+          8.8,
+          86.0,
+          74.0,
+          4.24
+        ]
+      }
+    },
+    {
+      "id": "gr26-078",
+      "title": "霉变人生",
+      "before": {
+        "links": null,
+        "r": [
+          null,
+          7.0,
+          null,
+          null,
+          3.4
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/38463469/",
+        "source": "https://www.douban.com/doulist/165148655/?start=50&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": null
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/ground-floor-2026/",
+        "status": "verified",
+        "name": "Ground Floor",
+        "directors": [
+          "Gábor Reisz"
+        ],
+        "rating": 3.4
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt42685861/",
+        "identitySource": "https://letterboxd.com/film/ground-floor-2026/",
+        "status": "verified",
+        "rating": 7.0,
+        "votes": 254
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/ground_floor",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/ground-floor/",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "38463469",
+          "lb": "ground-floor-2026",
+          "imdb": "tt42685861"
+        },
+        "r": [
+          null,
+          7.0,
+          null,
+          null,
+          3.4
+        ]
+      }
+    },
+    {
+      "id": "gr26-079",
+      "title": "客乡",
+      "before": {
+        "links": null,
+        "r": [
+          null,
+          6.8,
+          null,
+          null,
+          3.2
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/37496434/",
+        "source": "https://www.douban.com/doulist/165148655/?start=50&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": null
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/visitation-2026-1/",
+        "status": "verified",
+        "name": "Visitation",
+        "directors": [
+          "Volker Schlöndorff"
+        ],
+        "rating": 3.21
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt38805050/",
+        "identitySource": "https://letterboxd.com/film/visitation-2026-1/",
+        "status": "verified",
+        "rating": 6.8,
+        "votes": 231
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/visitation_2026",
+          "status": "verified",
+          "name": "Visitation (2026)",
+          "directors": [
+            "Volker Schlöndorff"
+          ],
+          "rating": null
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/visitation/",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "37496434",
+          "lb": "visitation-2026-1",
+          "imdb": "tt38805050",
+          "rt": "https://www.rottentomatoes.com/m/visitation_2026"
+        },
+        "r": [
+          null,
+          6.8,
+          null,
+          null,
+          3.21
+        ]
+      }
+    },
+    {
+      "id": "gr26-080",
+      "title": "浓情卡门",
+      "before": {
+        "links": null,
+        "r": [
+          null,
+          7.0,
+          null,
+          null,
+          3.7
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/36308708/",
+        "source": "https://www.douban.com/doulist/165148655/?start=50&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": null
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/viva-carmen/",
+        "status": "verified",
+        "name": "Viva Carmen",
+        "directors": [
+          "Sébastien Laudenbach"
+        ],
+        "rating": 3.71
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt29034109/",
+        "identitySource": "https://letterboxd.com/film/viva-carmen/",
+        "status": "verified",
+        "rating": 7.0,
+        "votes": 56
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/viva_carmen",
+          "status": "verified",
+          "name": "Viva Carmen",
+          "directors": [
+            "Sébastien Laudenbach"
+          ],
+          "rating": null
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/viva-carmen/",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "36308708",
+          "lb": "viva-carmen",
+          "imdb": "tt29034109",
+          "rt": "https://www.rottentomatoes.com/m/viva_carmen"
+        },
+        "r": [
+          null,
+          7.0,
+          null,
+          null,
+          3.71
+        ]
+      }
+    },
+    {
+      "id": "gr26-081",
+      "title": "孔雀公主",
+      "before": {
+        "links": null,
+        "r": [
+          8.3,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/1431959/",
+        "source": "https://www.douban.com/doulist/165148655/?start=50&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": 8.3
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/the-peacock-princess/",
+        "status": "verified",
+        "name": "The Peacock Princess",
+        "directors": [
+          "Xi Jin"
+        ],
+        "rating": null
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt34174838/",
+        "identitySource": "https://www.boxofficemojo.com/title/tt34174838/credits/",
+        "status": "verified",
+        "rating": null,
+        "votes": null
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/princess_peacock",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/princess-peacock/",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "1431959",
+          "lb": "the-peacock-princess",
+          "imdb": "tt34174838"
+        },
+        "r": [
+          8.3,
+          null,
+          null,
+          null,
+          null
+        ]
+      }
+    },
+    {
+      "id": "gr26-082",
+      "title": "哪吒闹海",
+      "before": {
+        "links": null,
+        "r": [
+          9.2,
+          7.7,
+          null,
+          null,
+          3.9
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/1307315/",
+        "source": "https://www.douban.com/doulist/165148655/?start=50&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": 9.2
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/nezha-conquers-the-dragon-king/",
+        "status": "verified",
+        "name": "Nezha Conquers the Dragon King",
+        "directors": [
+          "Yan Dingxian",
+          "Wang Shuchen",
+          "A Da"
+        ],
+        "rating": 3.9
+      },
+      "imdb": {
+        "url": "https://www.imdb.com/title/tt0354770/",
+        "identitySource": "https://letterboxd.com/film/nezha-conquers-the-dragon-king/",
+        "status": "verified",
+        "rating": 7.7,
+        "votes": 1652
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/nezha_conquers_the_dragon_king",
+          "status": "verified",
+          "name": "Nezha Conquers The Dragon King",
+          "directors": [
+            "Shuchen Wang",
+            "Jingda Xu"
+          ],
+          "rating": null
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/nezha-conquers-the-dragon-king/",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "1307315",
+          "lb": "nezha-conquers-the-dragon-king",
+          "imdb": "tt0354770",
+          "rt": "https://www.rottentomatoes.com/m/nezha_conquers_the_dragon_king"
+        },
+        "r": [
+          9.2,
+          7.7,
+          null,
+          null,
+          3.9
+        ]
+      }
+    },
+    {
+      "id": "gr26-083",
+      "title": "中国动画100年",
+      "before": {
+        "links": null,
+        "r": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "douban": {
+        "url": "https://movie.douban.com/subject/38465275/",
+        "source": "https://www.douban.com/doulist/165148655/?start=0&sort=seq&playable=0&sub_type=",
+        "status": "verified",
+        "rating": null
+      },
+      "letterboxd": {
+        "url": "https://letterboxd.com/film/chinese-animation-a-century/",
+        "status": "verified",
+        "name": "Chinese Animation: A Century",
+        "directors": [
+          "Lijun Sun"
+        ],
+        "rating": null
+      },
+      "imdb": {
+        "url": null,
+        "identitySource": "https://letterboxd.com/film/chinese-animation-a-century/",
+        "status": "no-verified-entry",
+        "rating": null,
+        "votes": null
+      },
+      "critics": {
+        "rt": {
+          "url": "https://www.rottentomatoes.com/m/chinese_animation_a_century",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        },
+        "mc": {
+          "url": "https://www.metacritic.com/movie/chinese-animation-a-century/",
+          "status": "unavailable",
+          "name": null,
+          "directors": [],
+          "rating": null
+        }
+      },
+      "after": {
+        "links": {
+          "douban": "38465275",
+          "lb": "chinese-animation-a-century"
+        },
+        "r": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      }
+    }
+  ],
+  "identityCorrection": {
+    "goldenRooster": {
+      "id": "gr26-047",
+      "cn": "被杀的那天",
+      "director": "Isabella Lam",
+      "imdb": "tt36524315",
+      "douban": "36149739"
+    },
+    "goldenHorse": {
+      "id": "gh63-003",
+      "cn": "死亡赌局",
+      "director": "CHAN Chun-hao",
+      "imdb": "tt40868707",
+      "douban": "37394940",
+      "source": "https://www.goldenhorse.org.tw/film/programme/films/detail/4410?search_year=2026",
+      "ratingSource": "https://www.douban.com/doulist/164788398/",
+      "rating": 5.3
+    },
+    "compatibility": "Only the two Taipei screening film references change; all date/time/venue/auditorium keys, personal plan storage, and original Golden Rooster ID stay intact."
+  }
+}

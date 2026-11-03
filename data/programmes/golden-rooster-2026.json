@@ -135,7 +135,7 @@
     6.4,
     null,
     null,
-    3.6
+    3.56
    ],
    "dirO": "Peter Chan Ho-Sun",
    "warnings": [
@@ -148,7 +148,13 @@
     "checked": "2026-11-03",
     "sensory": "unverified"
    },
-   "contentNote": "剧情涉及记忆衰退与疾病、家庭照护压力。具体画面与表现强度尚未核实，请结合个人情况选择。"
+   "contentNote": "剧情涉及记忆衰退与疾病、家庭照护压力。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "links": {
+    "douban": "35556002",
+    "lb": "the-road-not-taken-2026",
+    "imdb": "tt42478876"
+   },
+   "ratingChecked": "2026-11-03"
   },
   {
    "id": "gr26-003",
@@ -211,7 +217,13 @@
     "checked": "2026-11-03",
     "sensory": "unverified"
    },
-   "contentNote": "剧情涉及配偶离世、哀伤。具体画面与表现强度尚未核实，请结合个人情况选择。"
+   "contentNote": "剧情涉及配偶离世、哀伤。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "links": {
+    "douban": "36714368",
+    "lb": "when-the-bottle-turns",
+    "imdb": "tt30809332"
+   },
+   "ratingChecked": "2026-11-03"
   },
   {
    "id": "linka-linka",
@@ -231,7 +243,7 @@
     6.8,
     null,
     null,
-    3.4
+    3.37
    ],
    "syn": "在北京待了多年的年轻导演桑吉回到拉萨，想用自己的第一部长片重现少女时代。拍摄一点点推进，她和父亲之间没解开的结、童年好友拉姆曾经的遭遇，也跟着浮了上来。\n\n一次偶然的重逢，让两个女孩对同一段过去的不同记忆正面相撞。影片在拍摄现场与回忆之间来回穿梭，用一个夜晚连起三个夏天。片名「林卡」是拉萨人夏天到林间野餐、过林卡的传统。",
    "bio": "岗珍是藏族编剧、导演。她的短片《Orlo with Karma》聚焦拉萨年轻一代，入选 2025 年 FIRST 青年电影展与温哥华国际电影节。《一个夜晚与三个夏天》是她的长片首作，曾参加上海国际电影节创投训练营与 WIP 单元、FIRST 青年电影展 WIP 市场。",
@@ -282,7 +294,13 @@
     "checked": "2026-11-03",
     "sensory": "unverified"
    },
-   "contentNote": "剧情涉及童年伤痛、家庭矛盾。具体画面与表现强度尚未核实，请结合个人情况选择。"
+   "contentNote": "剧情涉及童年伤痛、家庭矛盾。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "links": {
+    "douban": "36449264",
+    "lb": "linka-linka",
+    "imdb": "tt38574217"
+   },
+   "ratingChecked": "2026-11-03"
   },
   {
    "id": "gr26-005",
@@ -327,7 +345,7 @@
     6.2,
     null,
     null,
-    3.4
+    3.42
    ],
    "dirO": "Cristóbal León / Joaquín Cociña",
    "warnings": [
@@ -342,7 +360,14 @@
     "sensory": "unverified"
    },
    "contentNote": "剧情涉及丧亲、父权控制、放逐与威胁。具体画面与表现强度尚未核实，请结合个人情况选择。",
-   "langTag": "原声｜中英字幕"
+   "langTag": "原声｜中英字幕",
+   "links": {
+    "douban": "38548764",
+    "lb": "donkey-princess",
+    "imdb": "tt43660976",
+    "rt": "https://www.rottentomatoes.com/m/donkey_princess"
+   },
+   "ratingChecked": "2026-11-03"
   },
   {
    "id": "gr26-006",
@@ -568,7 +593,15 @@
     "checked": "2026-11-03",
     "sensory": "unverified"
    },
-   "contentNote": "剧情涉及现实与记忆混淆、心理困扰。具体画面与表现强度尚未核实，请结合个人情况选择。"
+   "contentNote": "剧情涉及现实与记忆混淆、心理困扰。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "links": {
+    "douban": "37923995",
+    "lb": "zi-2026",
+    "imdb": "tt39150111",
+    "rt": "https://www.rottentomatoes.com/m/zi",
+    "mc": "https://www.metacritic.com/movie/zi/"
+   },
+   "ratingChecked": "2026-11-03"
   },
   {
    "id": "gr26-009",
@@ -613,9 +646,9 @@
    "r": [
     7.9,
     8.0,
-    100,
-    84,
-    4.2
+    100.0,
+    84.0,
+    4.15
    ],
    "dirO": "Louis Clichy",
    "warnings": [
@@ -629,7 +662,15 @@
     "sensory": "unverified"
    },
    "contentNote": "剧情涉及疾病与医疗器具、身体能力焦虑。具体画面与表现强度尚未核实，请结合个人情况选择。",
-   "langTag": "原声｜中英字幕"
+   "langTag": "原声｜中英字幕",
+   "links": {
+    "douban": "36614615",
+    "lb": "iron-boy",
+    "imdb": "tt36639956",
+    "rt": "https://www.rottentomatoes.com/m/iron_boy",
+    "mc": "https://www.metacritic.com/movie/iron-boy/"
+   },
+   "ratingChecked": "2026-11-03"
   },
   {
    "id": "gr26-010",
@@ -857,7 +898,13 @@
     "checked": "2026-11-03",
     "sensory": "unverified"
    },
-   "contentNote": "剧情涉及恐怖与囚困、赌博债务、生命威胁。具体画面与表现强度尚未核实，请结合个人情况选择。"
+   "contentNote": "剧情涉及恐怖与囚困、赌博债务、生命威胁。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "links": {
+    "douban": "37354971",
+    "lb": "the-evil-inside-2026",
+    "imdb": "tt36958624"
+   },
+   "ratingChecked": "2026-11-03"
   },
   {
    "id": "gr26-013",
@@ -903,10 +950,10 @@
    },
    "r": [
     null,
+    6.7,
     null,
     null,
-    null,
-    3.2
+    3.22
    ],
    "dirO": "Dong Jie",
    "warnings": [
@@ -919,7 +966,13 @@
     "checked": "2026-11-03",
     "sensory": "unverified"
    },
-   "contentNote": "剧情涉及亲友失联、记忆与现实混淆。具体画面与表现强度尚未核实，请结合个人情况选择。"
+   "contentNote": "剧情涉及亲友失联、记忆与现实混淆。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "links": {
+    "douban": "36146113",
+    "lb": "zoom-in-zoom-out",
+    "imdb": "tt43729090"
+   },
+   "ratingChecked": "2026-11-03"
   },
   {
    "id": "gr26-014",
@@ -986,7 +1039,12 @@
     "checked": "2026-11-03",
     "sensory": "unverified"
    },
-   "contentNote": "剧情涉及母子分离、儿童困境、旅途风险。具体画面与表现强度尚未核实，请结合个人情况选择。"
+   "contentNote": "剧情涉及母子分离、儿童困境、旅途风险。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "links": {
+    "douban": "37315764",
+    "lb": "starting-towards-the-finish-line"
+   },
+   "ratingChecked": "2026-11-03"
   },
   {
    "id": "gr26-015",
@@ -1032,9 +1090,9 @@
    "r": [
     7.6,
     7.4,
-    null,
-    null,
-    3.6
+    93.0,
+    87.0,
+    3.65
    ],
    "dirO": "Paweł Pawlikowski",
    "warnings": [
@@ -1049,7 +1107,15 @@
     "sensory": "unverified"
    },
    "contentNote": "剧情涉及纳粹历史与战争余波、流亡、家庭旧伤。具体画面与表现强度尚未核实，请结合个人情况选择。",
-   "langTag": "原声｜中英字幕"
+   "langTag": "原声｜中英字幕",
+   "links": {
+    "douban": "37487816",
+    "lb": "fatherland-2026",
+    "imdb": "tt37304295",
+    "rt": "https://www.rottentomatoes.com/m/fatherland_2026",
+    "mc": "https://www.metacritic.com/movie/fatherland/"
+   },
+   "ratingChecked": "2026-11-03"
   },
   {
    "id": "gr26-016",
@@ -1114,7 +1180,13 @@
     "checked": "2026-11-03",
     "sensory": "unverified"
    },
-   "contentNote": "剧情涉及育儿与学业压力、婚姻疏离、母女冲突。具体画面与表现强度尚未核实，请结合个人情况选择。"
+   "contentNote": "剧情涉及育儿与学业压力、婚姻疏离、母女冲突。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "links": {
+    "douban": "37028607",
+    "lb": "gold-life",
+    "imdb": "tt50133994"
+   },
+   "ratingChecked": "2026-11-03"
   },
   {
    "id": "gr26-017",
@@ -1183,7 +1255,12 @@
     "checked": "2026-11-03",
     "sensory": "unverified"
    },
-   "contentNote": "剧情涉及家庭暴力、性别偏见、关系创伤。具体画面与表现强度尚未核实，请结合个人情况选择。"
+   "contentNote": "剧情涉及家庭暴力、性别偏见、关系创伤。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "links": {
+    "douban": "37317256",
+    "lb": "steadfast-woman"
+   },
+   "ratingChecked": "2026-11-03"
   },
   {
    "id": "gr26-018",
@@ -1228,7 +1305,7 @@
     6.7,
     null,
     null,
-    3.4
+    3.44
    ],
    "dirO": "Zao Xu",
    "warnings": [
@@ -1242,7 +1319,14 @@
     "checked": "2026-11-03",
     "sensory": "unverified"
    },
-   "contentNote": "剧情涉及失业与欠薪、孤独、现实与虚拟混淆。具体画面与表现强度尚未核实，请结合个人情况选择。"
+   "contentNote": "剧情涉及失业与欠薪、孤独、现实与虚拟混淆。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "links": {
+    "douban": "36650614",
+    "lb": "light-pillar",
+    "imdb": "tt32409947",
+    "rt": "https://www.rottentomatoes.com/m/light_pillar"
+   },
+   "ratingChecked": "2026-11-03"
   },
   {
    "id": "gr26-019",
@@ -1302,7 +1386,12 @@
     "checked": "2026-11-03",
     "sensory": "unverified"
    },
-   "contentNote": "剧情涉及赛车与高速运动风险。具体画面与表现强度尚未核实，请结合个人情况选择。"
+   "contentNote": "剧情涉及赛车与高速运动风险。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "links": {
+    "douban": "38905085",
+    "lb": "mgp-the-untamed-circuit"
+   },
+   "ratingChecked": "2026-11-03"
   },
   {
    "id": "gr26-020",
@@ -1370,7 +1459,13 @@
     "checked": "2026-11-03",
     "sensory": "unverified"
    },
-   "contentNote": "剧情涉及经济与职场压力、情感欺瞒。具体画面与表现强度尚未核实，请结合个人情况选择。"
+   "contentNote": "剧情涉及经济与职场压力、情感欺瞒。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "links": {
+    "douban": "36847314",
+    "lb": "no-hard-feelings-2026",
+    "imdb": "tt43338368"
+   },
+   "ratingChecked": "2026-11-03"
   },
   {
    "id": "gr26-021",
@@ -1422,7 +1517,7 @@
     6.9,
     null,
     null,
-    3.8
+    3.78
    ],
    "dirO": "Zou Jing",
    "warnings": [
@@ -1435,7 +1530,14 @@
     "checked": "2026-11-03",
     "sensory": "unverified"
    },
-   "contentNote": "剧情涉及家庭分离、身份与归属压力。具体画面与表现强度尚未核实，请结合个人情况选择。"
+   "contentNote": "剧情涉及家庭分离、身份与归属压力。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "links": {
+    "douban": "36686123",
+    "lb": "a-girl-unknown",
+    "imdb": "tt32459280",
+    "rt": "https://www.rottentomatoes.com/m/a_girl_unknown"
+   },
+   "ratingChecked": "2026-11-03"
   },
   {
    "id": "gr26-022",
@@ -1495,7 +1597,13 @@
     "sensory": "unverified"
    },
    "contentNote": "剧情涉及袭击与抢劫、沙漠生存危险。具体画面与表现强度尚未核实，请结合个人情况选择。",
-   "langTag": "原声｜中英字幕"
+   "langTag": "原声｜中英字幕",
+   "links": {
+    "douban": "38184846",
+    "lb": "algerican-road",
+    "imdb": "tt43459267"
+   },
+   "ratingChecked": "2026-11-03"
   },
   {
    "id": "gr26-023",
@@ -1544,7 +1652,7 @@
     7.1,
     null,
     null,
-    3.4
+    3.44
    ],
    "dirO": "Fred Cavayé",
    "warnings": [
@@ -1559,7 +1667,13 @@
     "sensory": "unverified"
    },
    "contentNote": "剧情涉及贫困与迫害、监禁、死亡与战争。具体画面与表现强度尚未核实，请结合个人情况选择。",
-   "langTag": "原声｜中英字幕"
+   "langTag": "原声｜中英字幕",
+   "links": {
+    "douban": "36778103",
+    "lb": "les-miserables-2026",
+    "imdb": "tt35518109"
+   },
+   "ratingChecked": "2026-11-03"
   },
   {
    "id": "gr26-024",
@@ -1610,7 +1724,7 @@
     6.5,
     null,
     null,
-    3.6
+    3.62
    ],
    "dirO": "Patrick Tam Kar-Ming",
    "warnings": [
@@ -1623,7 +1737,13 @@
     "checked": "2026-11-03",
     "sensory": "unverified"
    },
-   "contentNote": "剧情涉及谋杀与暴力威胁、亲密关系危险。具体画面与表现强度尚未核实，请结合个人情况选择。"
+   "contentNote": "剧情涉及谋杀与暴力威胁、亲密关系危险。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "links": {
+    "douban": "1353744",
+    "lb": "love-massacre",
+    "imdb": "tt0081992"
+   },
+   "ratingChecked": "2026-11-03"
   },
   {
    "id": "gr26-025",
@@ -1682,7 +1802,15 @@
     "sensory": "unverified"
    },
    "contentNote": "剧情涉及年轻人死亡、丧亲与内疚。具体画面与表现强度尚未核实，请结合个人情况选择。",
-   "langTag": "原声｜中英字幕"
+   "langTag": "原声｜中英字幕",
+   "links": {
+    "douban": "36159749",
+    "lb": "everytime",
+    "imdb": "tt41592057",
+    "rt": "https://www.rottentomatoes.com/m/everytime",
+    "mc": "https://www.metacritic.com/movie/everytime/"
+   },
+   "ratingChecked": "2026-11-03"
   },
   {
    "id": "gr26-026",
@@ -1747,7 +1875,13 @@
     "checked": "2026-11-03",
     "sensory": "unverified"
    },
-   "contentNote": "剧情涉及家庭变化、青春期情绪困扰。具体画面与表现强度尚未核实，请结合个人情况选择。"
+   "contentNote": "剧情涉及家庭变化、青春期情绪困扰。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "links": {
+    "douban": "35765251",
+    "lb": "her-first-taste",
+    "imdb": "tt29508955"
+   },
+   "ratingChecked": "2026-11-03"
   },
   {
    "id": "gr26-027",
@@ -1812,7 +1946,12 @@
     "checked": "2026-11-03",
     "sensory": "unverified"
    },
-   "contentNote": "剧情涉及身份压力、矿山劳动背景。具体画面与表现强度尚未核实，请结合个人情况选择。"
+   "contentNote": "剧情涉及身份压力、矿山劳动背景。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "links": {
+    "douban": "36995421",
+    "lb": "roaming-over-the-horseback"
+   },
+   "ratingChecked": "2026-11-03"
   },
   {
    "id": "gr26-028",
@@ -1878,7 +2017,12 @@
     "checked": "2026-11-03",
     "sensory": "unverified"
    },
-   "contentNote": "剧情涉及饥饿记忆、家庭创伤、母女冲突。具体画面与表现强度尚未核实，请结合个人情况选择。"
+   "contentNote": "剧情涉及饥饿记忆、家庭创伤、母女冲突。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "links": {
+    "douban": "38902954",
+    "lb": "daughter-of-the-river-2026"
+   },
+   "ratingChecked": "2026-11-03"
   },
   {
    "id": "gr26-029",
@@ -1924,7 +2068,7 @@
     7.5,
     null,
     null,
-    3.6
+    3.64
    ],
    "dirO": "Norris Wong Yee-lam / Wong Hoi",
    "screeningNotes": {
@@ -1940,7 +2084,14 @@
     "checked": "2026-11-03",
     "sensory": "unverified"
    },
-   "contentNote": "剧情涉及疾病与住院、父女关系压力。具体画面与表现强度尚未核实，请结合个人情况选择。"
+   "contentNote": "剧情涉及疾病与住院、父女关系压力。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "links": {
+    "douban": "37663724",
+    "lb": "good-trip-2026",
+    "imdb": "tt38489397",
+    "rt": "https://www.rottentomatoes.com/m/good_trip"
+   },
+   "ratingChecked": "2026-11-03"
   },
   {
    "id": "gr26-030",
@@ -1985,7 +2136,7 @@
     6.3,
     null,
     null,
-    3.2
+    3.22
    ],
    "dirO": "Tam Wai-Ching",
    "screeningNotes": {
@@ -2001,7 +2152,14 @@
     "checked": "2026-11-03",
     "sensory": "unverified"
    },
-   "contentNote": "剧情涉及亲密与性议题、残障歧视。具体画面与表现强度尚未核实，请结合个人情况选择。"
+   "contentNote": "剧情涉及亲密与性议题、残障歧视。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "links": {
+    "douban": "36219411",
+    "lb": "someone-like-me-2025",
+    "imdb": "tt36217308",
+    "rt": "https://www.rottentomatoes.com/m/someone_like_me_2025"
+   },
+   "ratingChecked": "2026-11-03"
   },
   {
    "id": "gr26-031",
@@ -2068,7 +2226,13 @@
     "checked": "2026-11-03",
     "sensory": "unverified"
    },
-   "contentNote": "剧情涉及动物死亡情节、亲人失联、听觉困扰。具体画面与表现强度尚未核实，请结合个人情况选择。"
+   "contentNote": "剧情涉及动物死亡情节、亲人失联、听觉困扰。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "links": {
+    "douban": "36671189",
+    "lb": "atlantic-rhapsody-2026",
+    "imdb": "tt32272953"
+   },
+   "ratingChecked": "2026-11-03"
   },
   {
    "id": "gr26-032",
@@ -2113,7 +2277,7 @@
     6.9,
     null,
     null,
-    3.4
+    3.41
    ],
    "dirO": "Shen Ko-shang",
    "screeningNotes": {
@@ -2130,7 +2294,13 @@
     "checked": "2026-11-03",
     "sensory": "unverified"
    },
-   "contentNote": "剧情涉及配偶死亡、原生家庭创伤、丧亲。具体画面与表现强度尚未核实，请结合个人情况选择。"
+   "contentNote": "剧情涉及配偶死亡、原生家庭创伤、丧亲。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "links": {
+    "douban": "35211934",
+    "lb": "deep-quiet-room",
+    "imdb": "tt36354070"
+   },
+   "ratingChecked": "2026-11-03"
   },
   {
    "id": "gr26-033",
@@ -2175,7 +2345,7 @@
     6.5,
     null,
     null,
-    3.4
+    3.37
    ],
    "dirO": "Lau Kek-huat",
    "screeningNotes": {
@@ -2191,7 +2361,13 @@
     "checked": "2026-11-03",
     "sensory": "unverified"
    },
-   "contentNote": "剧情涉及死亡与葬礼、宗教和家族冲突。具体画面与表现强度尚未核实，请结合个人情况选择。"
+   "contentNote": "剧情涉及死亡与葬礼、宗教和家族冲突。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "links": {
+    "douban": "37227392",
+    "lb": "the-waves-will-carry-us",
+    "imdb": "tt38589615"
+   },
+   "ratingChecked": "2026-11-03"
   },
   {
    "id": "gr26-034",
@@ -2237,7 +2413,7 @@
     7.2,
     null,
     null,
-    3.8
+    3.83
    ],
    "dirO": "Mariano Llinás",
    "screeningNotes": {
@@ -2253,7 +2429,15 @@
     "sensory": "unverified"
    },
    "contentNote": "剧情涉及衰老与死亡议题。具体画面与表现强度尚未核实，请结合个人情况选择。",
-   "langTag": "原声｜中英字幕"
+   "langTag": "原声｜中英字幕",
+   "links": {
+    "douban": "38569845",
+    "lb": "life-of-jorge-luis-borges",
+    "imdb": "tt43704443",
+    "rt": "https://www.rottentomatoes.com/m/life_of_jorge_luis_borges",
+    "mc": "https://www.metacritic.com/movie/life-of-jorge-luis-borges/"
+   },
+   "ratingChecked": "2026-11-03"
   },
   {
    "id": "gr26-035",
@@ -2315,7 +2499,13 @@
     "checked": "2026-11-03",
     "sensory": "unverified"
    },
-   "contentNote": "剧情涉及儿童教育压力、家庭与阶级焦虑。具体画面与表现强度尚未核实，请结合个人情况选择。"
+   "contentNote": "剧情涉及儿童教育压力、家庭与阶级焦虑。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "links": {
+    "douban": "36764640",
+    "lb": "admission-2025",
+    "imdb": "tt38854615"
+   },
+   "ratingChecked": "2026-11-03"
   },
   {
    "id": "gr26-036",
@@ -2390,9 +2580,10 @@
    "printSource": "机器人乐园 Robot Playground Media",
    "printSourceEn": "Robot Playground Media",
    "links": {
-    "imdb": "tt30388264",
+    "douban": "36575404",
     "lb": "the-violinist-2026",
-    "douban": "36575404"
+    "imdb": "tt30388264",
+    "rt": "https://www.rottentomatoes.com/m/the_violinist_2026"
    },
    "posterDb": "p2937118909",
    "ratingChecked": "2026-11-03",
@@ -2440,7 +2631,7 @@
    },
    "r": [
     null,
-    null,
+    6.5,
     null,
     null,
     null
@@ -2459,7 +2650,14 @@
     "checked": "2026-11-03",
     "sensory": "unverified"
    },
-   "contentNote": "剧情涉及性别偏见、家庭角色压力。具体画面与表现强度尚未核实，请结合个人情况选择。"
+   "contentNote": "剧情涉及性别偏见、家庭角色压力。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "links": {
+    "douban": "36149740",
+    "lb": "bird-of-paradise-2026",
+    "imdb": "tt36505446",
+    "rt": "https://www.rottentomatoes.com/m/bird_of_paradise_2026"
+   },
+   "ratingChecked": "2026-11-03"
   },
   {
    "id": "gr26-038",
@@ -2592,7 +2790,7 @@
     7.2,
     null,
     null,
-    3.7
+    3.69
    ],
    "dirO": "Yuen Woo-ping",
    "warnings": [
@@ -2605,7 +2803,13 @@
     "checked": "2026-11-03",
     "sensory": "unverified"
    },
-   "contentNote": "剧情涉及武打与兵器伤害、背叛。具体画面与表现强度尚未核实，请结合个人情况选择。"
+   "contentNote": "剧情涉及武打与兵器伤害、背叛。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "links": {
+    "douban": "1294561",
+    "lb": "tai-chi-master",
+    "imdb": "tt0108281"
+   },
+   "ratingChecked": "2026-11-03"
   },
   {
    "id": "gr26-040",
@@ -2663,7 +2867,14 @@
     "checked": "2026-11-03",
     "sensory": "unverified"
    },
-   "contentNote": "剧情涉及网络攻击与偏见、运动风险。具体画面与表现强度尚未核实，请结合个人情况选择。"
+   "contentNote": "剧情涉及网络攻击与偏见、运动风险。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "links": {
+    "douban": "37296842",
+    "lb": "wakesurf-lovers",
+    "imdb": "tt37615065",
+    "rt": "https://www.rottentomatoes.com/m/wakesurf_lovers"
+   },
+   "ratingChecked": "2026-11-03"
   },
   {
    "id": "gr26-041",
@@ -2894,7 +3105,13 @@
     "checked": "2026-11-03",
     "sensory": "unverified"
    },
-   "contentNote": "剧情涉及失踪与刑事调查、关系创伤。具体画面与表现强度尚未核实，请结合个人情况选择。"
+   "contentNote": "剧情涉及失踪与刑事调查、关系创伤。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "links": {
+    "douban": "36909176",
+    "lb": "strangers-in-the-mountain",
+    "imdb": "tt43300436"
+   },
+   "ratingChecked": "2026-11-03"
   },
   {
    "id": "gr26-044",
@@ -2958,7 +3175,11 @@
     "checked": "2026-11-03",
     "sensory": "unverified"
    },
-   "contentNote": "剧情涉及儿童生活困境、训练与表演压力。具体画面与表现强度尚未核实，请结合个人情况选择。"
+   "contentNote": "剧情涉及儿童生活困境、训练与表演压力。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "links": {
+    "douban": "37297313"
+   },
+   "ratingChecked": "2026-11-03"
   },
   {
    "id": "gr26-045",
@@ -3018,7 +3239,15 @@
     "sensory": "unverified"
    },
    "contentNote": "剧情涉及衰老与家庭照护、家庭疏离。具体画面与表现强度尚未核实，请结合个人情况选择。",
-   "langTag": "原声｜中英字幕"
+   "langTag": "原声｜中英字幕",
+   "links": {
+    "douban": "38208000",
+    "lb": "nowhere-to-lay-my-eyes",
+    "imdb": "tt43663820",
+    "rt": "https://www.rottentomatoes.com/m/nowhere_to_lay_my_eyes",
+    "mc": "https://www.metacritic.com/movie/nowhere-to-lay-my-eyes/"
+   },
+   "ratingChecked": "2026-11-03"
   },
   {
    "id": "gr26-046",
@@ -3127,8 +3356,7 @@
    ],
    "writers": [],
    "honors": [
-    "入围｜第31届釜山国际电影节 · “展望·亚洲”竞赛单元",
-    "提名｜2026 金马奖 · 最佳动作设计"
+    "入围｜第31届釜山国际电影节 · “展望·亚洲”竞赛单元"
    ],
    "highlights": [
     "一边追案子，一边看看人物怎么躲自己的过去。",
@@ -3141,13 +3369,13 @@
    "ticket": "tickets/golden-rooster-2026.jpg",
    "ticketPlatform": "淘票票",
    "ticketHint": "购票城市选择厦门",
-   "poster": "posters/golden-horse-gr26-047.jpg",
+   "poster": "posters/golden-rooster-gr26-047.jpg",
    "screeningEnds": {
     "11/10-19:45-xm-gr26-1-hall-2": "21:12",
     "11/19-20:00-xm-gr26-8-hall-1": "21:27"
    },
    "r": [
-    5.3,
+    null,
     null,
     null,
     null,
@@ -3155,8 +3383,7 @@
    ],
    "dirO": "Isabella Lam",
    "screeningNotes": {
-    "11/10-19:45-xm-gr26-1-hall-2": "映后活动 · 主创见面会（嘉宾名单待公布，以实际到场为准）",
-    "11/11-21:30-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）"
+    "11/10-19:45-xm-gr26-1-hall-2": "映后活动 · 主创见面会（嘉宾名单待公布，以实际到场为准）"
    },
    "warnings": [
     "犯罪与死亡",
@@ -3169,16 +3396,14 @@
     "sensory": "unverified"
    },
    "contentNote": "剧情涉及犯罪与死亡、心理创伤。具体画面与表现强度尚未核实，请结合个人情况选择。",
-   "ageRating": "辅12级（12+）",
    "subtitles": "原文发音，中文字幕",
-   "printSource": "英杰哆影业股份有限公司 inJECT FILMS Co., Ltd.",
-   "printSourceEn": "inJECT FILMS Co., Ltd.",
    "links": {
-    "imdb": "tt40868707",
-    "douban": "37394940"
+    "douban": "36149739",
+    "lb": "dead-end-2026-4",
+    "imdb": "tt36524315"
    },
-   "cnDb": "死亡赌局",
-   "posterDb": "p2930455642",
+   "cnDb": "被杀的那天",
+   "posterDb": "p2935865708",
    "ratingChecked": "2026-11-03",
    "metadataChecked": "2026-11-03"
   },
@@ -3226,7 +3451,7 @@
     7.5,
     null,
     null,
-    3.2
+    3.22
    ],
    "dirO": "Jannis Lenz",
    "warnings": [
@@ -3240,7 +3465,14 @@
     "sensory": "unverified"
    },
    "contentNote": "剧情涉及校园威胁与排斥、未成年人心理压力。具体画面与表现强度尚未核实，请结合个人情况选择。",
-   "langTag": "原声｜中英字幕"
+   "langTag": "原声｜中英字幕",
+   "links": {
+    "douban": "37895396",
+    "lb": "oasis-2026",
+    "imdb": "tt43704174",
+    "rt": "https://www.rottentomatoes.com/m/oasis_2026"
+   },
+   "ratingChecked": "2026-11-03"
   },
   {
    "id": "gr26-049",
@@ -3286,9 +3518,9 @@
    "r": [
     8.1,
     6.7,
-    64,
     null,
-    3.5
+    null,
+    3.55
    ],
    "dirO": "Tsui Hark",
    "warnings": [
@@ -3301,7 +3533,14 @@
     "checked": "2026-11-03",
     "sensory": "unverified"
    },
-   "contentNote": "剧情涉及厨房与食材处理、竞争压力。具体画面与表现强度尚未核实，请结合个人情况选择。"
+   "contentNote": "剧情涉及厨房与食材处理、竞争压力。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "links": {
+    "douban": "1295374",
+    "lb": "the-chinese-feast",
+    "imdb": "tt0113475",
+    "rt": "https://www.rottentomatoes.com/m/the_chinese_feast"
+   },
+   "ratingChecked": "2026-11-03"
   },
   {
    "id": "gr26-050",
@@ -3347,7 +3586,7 @@
     6.3,
     null,
     null,
-    3.3
+    3.34
    ],
    "dirO": "Erik Poppe",
    "warnings": [
@@ -3361,7 +3600,13 @@
     "sensory": "unverified"
    },
    "contentNote": "剧情涉及伴侣分离、家庭照护压力。具体画面与表现强度尚未核实，请结合个人情况选择。",
-   "langTag": "原声｜中英字幕"
+   "langTag": "原声｜中英字幕",
+   "links": {
+    "douban": "36787770",
+    "lb": "beloved-2026",
+    "imdb": "tt31451181"
+   },
+   "ratingChecked": "2026-11-03"
   },
   {
    "id": "gr26-051",
@@ -3404,9 +3649,9 @@
    "r": [
     null,
     6.9,
-    100,
+    100.0,
     null,
-    3.6
+    3.64
    ],
    "dirO": "Nicolás Pereda",
    "warnings": [
@@ -3420,7 +3665,15 @@
     "sensory": "unverified"
    },
    "contentNote": "剧情涉及性别成见、职场羞辱。具体画面与表现强度尚未核实，请结合个人情况选择。",
-   "langTag": "原声｜中英字幕"
+   "langTag": "原声｜中英字幕",
+   "links": {
+    "douban": "37363613",
+    "lb": "everything-else-is-noise",
+    "imdb": "tt39383384",
+    "rt": "https://www.rottentomatoes.com/m/everything_else_is_noise",
+    "mc": "https://www.metacritic.com/movie/everything-else-is-noise/"
+   },
+   "ratingChecked": "2026-11-03"
   },
   {
    "id": "gr26-052",
@@ -3550,9 +3803,9 @@
    "r": [
     9.3,
     8.6,
+    83.0,
     null,
-    null,
-    4.3
+    4.32
    ],
    "dirO": "János Zsombolyai",
    "warnings": [],
@@ -3563,7 +3816,14 @@
     "sensory": "unverified"
    },
    "contentNote": "已查看现有剧情资料，尚未确认需要特别标注的敏感内容。这不代表适合所有年龄，也不等同于完整内容审查。",
-   "langTag": "原声｜中英字幕"
+   "langTag": "原声｜中英字幕",
+   "links": {
+    "douban": "19966691",
+    "lb": "queen-live-in-budapest",
+    "imdb": "tt0093427",
+    "rt": "https://www.rottentomatoes.com/m/queen_budapest"
+   },
+   "ratingChecked": "2026-11-03"
   },
   {
    "id": "gr26-054",
@@ -3610,9 +3870,9 @@
    "r": [
     8.7,
     7.8,
-    93,
-    74,
-    3.9
+    93.0,
+    74.0,
+    3.91
    ],
    "dirO": "Tim Burton",
    "warnings": [
@@ -3632,7 +3892,15 @@
     "edition": "US release",
     "checked": "2026-11-03"
    },
-   "langTag": "原声｜中英字幕"
+   "langTag": "原声｜中英字幕",
+   "links": {
+    "douban": "1292370",
+    "lb": "edward-scissorhands",
+    "imdb": "tt0099487",
+    "rt": "https://www.rottentomatoes.com/m/edward_scissorhands",
+    "mc": "https://www.metacritic.com/movie/edward-scissorhands/"
+   },
+   "ratingChecked": "2026-11-03"
   },
   {
    "id": "gr26-055",
@@ -3699,7 +3967,15 @@
     "edition": "US release, certificate 43473",
     "checked": "2026-11-03"
    },
-   "langTag": "原声｜中英字幕"
+   "langTag": "原声｜中英字幕",
+   "links": {
+    "douban": "1857099",
+    "lb": "no-country-for-old-men",
+    "imdb": "tt0477348",
+    "rt": "https://www.rottentomatoes.com/m/no_country_for_old_men",
+    "mc": "https://www.metacritic.com/movie/no-country-for-old-men/"
+   },
+   "ratingChecked": "2026-11-03"
   },
   {
    "id": "gr26-056",
@@ -3744,9 +4020,9 @@
    "r": [
     8.5,
     7.9,
-    95,
-    82,
-    4.2
+    95.0,
+    82.0,
+    4.16
    ],
    "dirO": "Andrey Zvyagintsev",
    "warnings": [
@@ -3761,7 +4037,15 @@
     "sensory": "unverified"
    },
    "contentNote": "剧情涉及父权压迫、儿童恐惧、家庭冲突。具体画面与表现强度尚未核实，请结合个人情况选择。",
-   "langTag": "原声｜中英字幕"
+   "langTag": "原声｜中英字幕",
+   "links": {
+    "douban": "1308074",
+    "lb": "the-return",
+    "imdb": "tt0376968",
+    "rt": "https://www.rottentomatoes.com/m/the_return",
+    "mc": "https://www.metacritic.com/movie/the-return-2004/"
+   },
+   "ratingChecked": "2026-11-03"
   },
   {
    "id": "gr26-057",
@@ -3806,9 +4090,9 @@
    "r": [
     null,
     6.7,
-    88,
+    88.0,
     null,
-    3.5
+    3.51
    ],
    "dirO": "Manuela Martelli",
    "warnings": [
@@ -3823,7 +4107,15 @@
     "sensory": "unverified"
    },
    "contentNote": "剧情涉及失踪、儿童面对成人秘密、不安与威胁。具体画面与表现强度尚未核实，请结合个人情况选择。",
-   "langTag": "原声｜中英字幕"
+   "langTag": "原声｜中英字幕",
+   "links": {
+    "douban": "36131687",
+    "lb": "the-meltdown",
+    "imdb": "tt39571626",
+    "rt": "https://www.rottentomatoes.com/m/the_meltdown",
+    "mc": "https://www.metacritic.com/movie/the-meltdown/"
+   },
+   "ratingChecked": "2026-11-03"
   },
   {
    "id": "gr26-058",
@@ -3956,7 +4248,7 @@
     6.7,
     null,
     null,
-    3.3
+    3.33
    ],
    "dirO": "Grzegorz Dębowski",
    "warnings": [
@@ -3971,7 +4263,13 @@
     "sensory": "unverified"
    },
    "contentNote": "剧情涉及入室盗窃、发现死者、身份欺瞒。具体画面与表现强度尚未核实，请结合个人情况选择。",
-   "langTag": "原声｜中英字幕"
+   "langTag": "原声｜中英字幕",
+   "links": {
+    "douban": "37352209",
+    "lb": "what-belongs-to-others",
+    "imdb": "tt43704165"
+   },
+   "ratingChecked": "2026-11-03"
   },
   {
    "id": "gr26-060",
@@ -4017,9 +4315,9 @@
    "r": [
     null,
     7.0,
-    100,
+    100.0,
     null,
-    3.5
+    3.48
    ],
    "dirO": "Kristina Grozeva / Petar Valchanov",
    "warnings": [
@@ -4034,7 +4332,14 @@
     "sensory": "unverified"
    },
    "contentNote": "剧情涉及腐败与诈骗、战争背景、婚姻欺瞒。具体画面与表现强度尚未核实，请结合个人情况选择。",
-   "langTag": "原声｜中英字幕"
+   "langTag": "原声｜中英字幕",
+   "links": {
+    "douban": "27666621",
+    "lb": "black-money-for-white-nights",
+    "imdb": "tt38799410",
+    "rt": "https://www.rottentomatoes.com/m/black_money_for_white_nights"
+   },
+   "ratingChecked": "2026-11-03"
   },
   {
    "id": "gr26-061",
@@ -4082,7 +4387,7 @@
     7.3,
     null,
     null,
-    3.5
+    3.55
    ],
    "dirO": "Wan Jen",
    "warnings": [
@@ -4095,7 +4400,13 @@
     "checked": "2026-11-03",
     "sensory": "unverified"
    },
-   "contentNote": "剧情涉及父权与性别压迫、婚姻伤痛。具体画面与表现强度尚未核实，请结合个人情况选择。"
+   "contentNote": "剧情涉及父权与性别压迫、婚姻伤痛。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "links": {
+    "douban": "1308633",
+    "lb": "ah-fei",
+    "imdb": "tt0337507"
+   },
+   "ratingChecked": "2026-11-03"
   },
   {
    "id": "gr26-062",
@@ -4142,9 +4453,9 @@
    "r": [
     7.8,
     7.4,
-    80,
-    68,
-    3.8
+    80.0,
+    68.0,
+    3.81
    ],
    "dirO": "Yuen Woo-ping",
    "warnings": [
@@ -4157,7 +4468,15 @@
     "checked": "2026-11-03",
     "sensory": "unverified"
    },
-   "contentNote": "剧情涉及武打与惩罚性训练、饮酒。具体画面与表现强度尚未核实，请结合个人情况选择。"
+   "contentNote": "剧情涉及武打与惩罚性训练、饮酒。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "links": {
+    "douban": "1296693",
+    "lb": "drunken-master",
+    "imdb": "tt0080179",
+    "rt": "https://www.rottentomatoes.com/m/drunken_master",
+    "mc": "https://www.metacritic.com/movie/drunken-master/"
+   },
+   "ratingChecked": "2026-11-03"
   },
   {
    "id": "gr26-063",
@@ -4206,9 +4525,9 @@
    "r": [
     8.6,
     8.1,
-    89,
-    84,
-    4.1
+    89.0,
+    84.0,
+    4.09
    ],
    "dirO": "Ridley Scott",
    "warnings": [
@@ -4227,7 +4546,15 @@
     "edition": "The Final Cut, US release",
     "checked": "2026-11-03"
    },
-   "langTag": "原声｜中英字幕"
+   "langTag": "原声｜中英字幕",
+   "links": {
+    "douban": "1291839",
+    "lb": "blade-runner",
+    "imdb": "tt0083658",
+    "rt": "https://www.rottentomatoes.com/m/blade_runner",
+    "mc": "https://www.metacritic.com/movie/blade-runner/"
+   },
+   "ratingChecked": "2026-11-03"
   },
   {
    "id": "gr26-064",
@@ -4355,9 +4682,9 @@
    "r": [
     8.5,
     7.6,
-    92,
-    83,
-    4.1
+    92.0,
+    83.0,
+    4.06
    ],
    "dirO": "Brett Morgen",
    "warnings": [
@@ -4377,7 +4704,15 @@
     "edition": "US release",
     "checked": "2026-11-03"
    },
-   "langTag": "原声｜中英字幕"
+   "langTag": "原声｜中英字幕",
+   "links": {
+    "douban": "35869654",
+    "lb": "moonage-daydream",
+    "imdb": "tt9883832",
+    "rt": "https://www.rottentomatoes.com/m/moonage_daydream",
+    "mc": "https://www.metacritic.com/movie/moonage-daydream/"
+   },
+   "ratingChecked": "2026-11-03"
   },
   {
    "id": "gr26-066",
@@ -4425,9 +4760,9 @@
    "r": [
     9.0,
     8.1,
-    92,
+    92.0,
     null,
-    4.2
+    4.18
    ],
    "dirO": "Clyde Bruckman / Buster Keaton",
    "warnings": [
@@ -4442,7 +4777,14 @@
     "sensory": "unverified"
    },
    "contentNote": "剧情涉及战争与炮火、危险动作、历史立场背景。具体画面与表现强度尚未核实，请结合个人情况选择。",
-   "langTag": "原声｜中英字幕"
+   "langTag": "原声｜中英字幕",
+   "links": {
+    "douban": "1292778",
+    "lb": "the-general",
+    "imdb": "tt0017925",
+    "rt": "https://www.rottentomatoes.com/m/1008166-general"
+   },
+   "ratingChecked": "2026-11-03"
   },
   {
    "id": "gr26-067",
@@ -4488,9 +4830,9 @@
    "r": [
     6.7,
     6.5,
-    93,
+    93.0,
     null,
-    3.5
+    3.48
    ],
    "dirO": "Joko Anwar",
    "warnings": [
@@ -4505,7 +4847,15 @@
     "sensory": "unverified"
    },
    "contentNote": "剧情涉及监狱暴力、恐怖与超自然威胁、死亡。具体画面与表现强度尚未核实，请结合个人情况选择。",
-   "langTag": "原声｜中英字幕"
+   "langTag": "原声｜中英字幕",
+   "links": {
+    "douban": "36146114",
+    "lb": "ghost-in-the-cell",
+    "imdb": "tt9000310",
+    "rt": "https://www.rottentomatoes.com/m/ghost_in_the_cell",
+    "mc": "https://www.metacritic.com/movie/ghost-in-the-cell/"
+   },
+   "ratingChecked": "2026-11-03"
   },
   {
    "id": "gr26-068",
@@ -4567,7 +4917,13 @@
     "sensory": "unverified"
    },
    "contentNote": "剧情涉及年龄与职场权力冲突、创作压力。具体画面与表现强度尚未核实，请结合个人情况选择。",
-   "langTag": "原声｜中英字幕"
+   "langTag": "原声｜中英字幕",
+   "links": {
+    "douban": "37656471",
+    "lb": "backstage-madness",
+    "imdb": "tt38978986"
+   },
+   "ratingChecked": "2026-11-03"
   },
   {
    "id": "gr26-069",
@@ -4613,7 +4969,7 @@
     6.9,
     null,
     null,
-    3.6
+    3.63
    ],
    "dirO": "Rafiki Fariala",
    "warnings": [
@@ -4628,7 +4984,14 @@
     "sensory": "unverified"
    },
    "contentNote": "剧情涉及难民处境、父母入狱、儿童照护负担。具体画面与表现强度尚未核实，请结合个人情况选择。",
-   "langTag": "原声｜中英字幕"
+   "langTag": "原声｜中英字幕",
+   "links": {
+    "douban": "36903388",
+    "lb": "congo-boy",
+    "imdb": "tt41592086",
+    "mc": "https://www.metacritic.com/movie/congo-boy/"
+   },
+   "ratingChecked": "2026-11-03"
   },
   {
    "id": "gr26-070",
@@ -4674,9 +5037,9 @@
    "r": [
     7.7,
     7.4,
-    80,
+    80.0,
     null,
-    3.8
+    3.81
    ],
    "dirO": "Luchino Visconti",
    "warnings": [
@@ -4691,7 +5054,14 @@
     "sensory": "unverified"
    },
    "contentNote": "剧情涉及亲密关系控制、婴儿受害、死亡。具体画面与表现强度尚未核实，请结合个人情况选择。",
-   "langTag": "原声｜中英字幕"
+   "langTag": "原声｜中英字幕",
+   "links": {
+    "douban": "1302922",
+    "lb": "the-innocent-1976",
+    "imdb": "tt0074686",
+    "rt": "https://www.rottentomatoes.com/m/the_innocent_1979"
+   },
+   "ratingChecked": "2026-11-03"
   },
   {
    "id": "gr26-071",
@@ -4816,9 +5186,9 @@
    "r": [
     9.3,
     8.2,
-    90,
-    97,
-    3.9
+    90.0,
+    97.0,
+    3.86
    ],
    "dirO": "Victor Fleming",
    "warnings": [
@@ -4839,7 +5209,15 @@
     "edition": "US repertory release",
     "checked": "2026-11-03"
    },
-   "langTag": "原声｜中英字幕"
+   "langTag": "原声｜中英字幕",
+   "links": {
+    "douban": "1300267",
+    "lb": "gone-with-the-wind",
+    "imdb": "tt0031381",
+    "rt": "https://www.rottentomatoes.com/m/gone_with_the_wind",
+    "mc": "https://www.metacritic.com/movie/gone-with-the-wind/"
+   },
+   "ratingChecked": "2026-11-03"
   },
   {
    "id": "gr26-073",
@@ -4888,7 +5266,7 @@
     6.3,
     null,
     null,
-    3.3
+    3.27
    ],
    "dirO": "Wan Laiming / Guchan Wan",
    "warnings": [
@@ -4901,7 +5279,14 @@
     "checked": "2026-11-03",
     "sensory": "unverified"
    },
-   "contentNote": "剧情涉及奇幻打斗、火灾与生命威胁。具体画面与表现强度尚未核实，请结合个人情况选择。"
+   "contentNote": "剧情涉及奇幻打斗、火灾与生命威胁。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "links": {
+    "douban": "1466022",
+    "lb": "princess-iron-fan",
+    "imdb": "tt0471945",
+    "rt": "https://www.rottentomatoes.com/m/princess_iron_fan"
+   },
+   "ratingChecked": "2026-11-03"
   },
   {
    "id": "gr26-074",
@@ -4944,9 +5329,9 @@
    "r": [
     null,
     7.6,
-    null,
-    85,
-    3.9
+    100.0,
+    85.0,
+    3.88
    ],
    "dirO": "Mike Leigh",
    "warnings": [
@@ -4961,7 +5346,15 @@
     "sensory": "unverified"
    },
    "contentNote": "剧情涉及分手与失落、衰老和健康变化、照护压力。具体画面与表现强度尚未核实，请结合个人情况选择。",
-   "langTag": "原声｜中英字幕"
+   "langTag": "原声｜中英字幕",
+   "links": {
+    "douban": "37077011",
+    "lb": "tender-loving-care-2026",
+    "imdb": "tt35638092",
+    "rt": "https://www.rottentomatoes.com/m/tender_loving_care_2026",
+    "mc": "https://www.metacritic.com/movie/tender-loving-care/"
+   },
+   "ratingChecked": "2026-11-03"
   },
   {
    "id": "gr26-075",
@@ -5006,7 +5399,7 @@
     6.2,
     null,
     null,
-    3.7
+    3.67
    ],
    "dirO": "Abdallah Al-Khatib",
    "warnings": [
@@ -5021,7 +5414,14 @@
     "sensory": "unverified"
    },
    "contentNote": "剧情涉及战争围困、饥饿与炮火、死亡威胁。具体画面与表现强度尚未核实，请结合个人情况选择。",
-   "langTag": "原声｜中英字幕"
+   "langTag": "原声｜中英字幕",
+   "links": {
+    "douban": "37202681",
+    "lb": "chronicles-from-the-siege",
+    "imdb": "tt34734549",
+    "rt": "https://www.rottentomatoes.com/m/chronicles_from_the_siege"
+   },
+   "ratingChecked": "2026-11-03"
   },
   {
    "id": "gr26-076",
@@ -5066,7 +5466,7 @@
     6.6,
     null,
     null,
-    3.3
+    3.26
    ],
    "dirO": "Marc Fitoussi",
    "warnings": [
@@ -5080,7 +5480,13 @@
     "sensory": "unverified"
    },
    "contentNote": "剧情涉及职场排斥、理想受挫。具体画面与表现强度尚未核实，请结合个人情况选择。",
-   "langTag": "原声｜中英字幕"
+   "langTag": "原声｜中英字幕",
+   "links": {
+    "douban": "37354880",
+    "lb": "all-about-corinne",
+    "imdb": "tt37799310"
+   },
+   "ratingChecked": "2026-11-03"
   },
   {
    "id": "gr26-077",
@@ -5128,9 +5534,9 @@
    "r": [
     9.4,
     8.8,
-    86,
-    74,
-    4.2
+    86.0,
+    74.0,
+    4.24
    ],
    "dirO": "Christopher Nolan",
    "warnings": [
@@ -5150,7 +5556,15 @@
     "edition": "US release",
     "checked": "2026-11-03"
    },
-   "langTag": "原声｜中英字幕"
+   "langTag": "原声｜中英字幕",
+   "links": {
+    "douban": "3541415",
+    "lb": "inception",
+    "imdb": "tt1375666",
+    "rt": "https://www.rottentomatoes.com/m/inception",
+    "mc": "https://www.metacritic.com/movie/inception/"
+   },
+   "ratingChecked": "2026-11-03"
   },
   {
    "id": "gr26-078",
@@ -5211,7 +5625,13 @@
     "sensory": "unverified"
    },
    "contentNote": "剧情涉及居住健康隐患、怀孕议题、邻里冲突。具体画面与表现强度尚未核实，请结合个人情况选择。",
-   "langTag": "原声｜中英字幕"
+   "langTag": "原声｜中英字幕",
+   "links": {
+    "douban": "38463469",
+    "lb": "ground-floor-2026",
+    "imdb": "tt42685861"
+   },
+   "ratingChecked": "2026-11-03"
   },
   {
    "id": "gr26-079",
@@ -5256,7 +5676,7 @@
     6.8,
     null,
     null,
-    3.2
+    3.21
    ],
    "dirO": "Volker Schlöndorff",
    "warnings": [
@@ -5271,7 +5691,14 @@
     "sensory": "unverified"
    },
    "contentNote": "剧情涉及纳粹迫害、战争与流亡、失去家园。具体画面与表现强度尚未核实，请结合个人情况选择。",
-   "langTag": "原声｜中英字幕"
+   "langTag": "原声｜中英字幕",
+   "links": {
+    "douban": "37496434",
+    "lb": "visitation-2026-1",
+    "imdb": "tt38805050",
+    "rt": "https://www.rottentomatoes.com/m/visitation_2026"
+   },
+   "ratingChecked": "2026-11-03"
   },
   {
    "id": "gr26-080",
@@ -5317,7 +5744,7 @@
     7.0,
     null,
     null,
-    3.7
+    3.71
    ],
    "dirO": "Sébastien Laudenbach",
    "warnings": [
@@ -5331,7 +5758,14 @@
     "sensory": "unverified"
    },
    "contentNote": "剧情涉及爱情中的威胁、悲剧与死亡议题。具体画面与表现强度尚未核实，请结合个人情况选择。",
-   "langTag": "原声｜中英字幕"
+   "langTag": "原声｜中英字幕",
+   "links": {
+    "douban": "36308708",
+    "lb": "viva-carmen",
+    "imdb": "tt29034109",
+    "rt": "https://www.rottentomatoes.com/m/viva_carmen"
+   },
+   "ratingChecked": "2026-11-03"
   },
   {
    "id": "gr26-081",
@@ -5391,7 +5825,13 @@
     "checked": "2026-11-03",
     "sensory": "unverified"
    },
-   "contentNote": "剧情涉及迫害与放逐、恋人分离、冒险危险。具体画面与表现强度尚未核实，请结合个人情况选择。"
+   "contentNote": "剧情涉及迫害与放逐、恋人分离、冒险危险。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "links": {
+    "douban": "1431959",
+    "lb": "the-peacock-princess",
+    "imdb": "tt34174838"
+   },
+   "ratingChecked": "2026-11-03"
   },
   {
    "id": "gr26-082",
@@ -5453,7 +5893,14 @@
     "checked": "2026-11-03",
     "sensory": "unverified"
    },
-   "contentNote": "剧情涉及儿童角色死亡、自我伤害与牺牲情节、奇幻暴力。具体画面与表现强度尚未核实，请结合个人情况选择。"
+   "contentNote": "剧情涉及儿童角色死亡、自我伤害与牺牲情节、奇幻暴力。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "links": {
+    "douban": "1307315",
+    "lb": "nezha-conquers-the-dragon-king",
+    "imdb": "tt0354770",
+    "rt": "https://www.rottentomatoes.com/m/nezha_conquers_the_dragon_king"
+   },
+   "ratingChecked": "2026-11-03"
   },
   {
    "id": "gr26-083",
@@ -5504,7 +5951,12 @@
     "checked": "2026-11-03",
     "sensory": "unverified"
    },
-   "contentNote": "已查看现有剧情资料，尚未确认需要特别标注的敏感内容。这不代表适合所有年龄，也不等同于完整内容审查。"
+   "contentNote": "已查看现有剧情资料，尚未确认需要特别标注的敏感内容。这不代表适合所有年龄，也不等同于完整内容审查。",
+   "links": {
+    "douban": "38465275",
+    "lb": "chinese-animation-a-century"
+   },
+   "ratingChecked": "2026-11-03"
   }
  ],
  "shows": [

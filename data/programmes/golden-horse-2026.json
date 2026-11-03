@@ -140,6 +140,74 @@
    "metadataChecked": "2026-11-03"
   },
   {
+   "id": "gh63-003",
+   "cn": "死亡赌局",
+   "cnDb": "死亡赌局",
+   "en": "Dead End",
+   "o": "Dead End",
+   "y": 2026,
+   "c": "中国台湾",
+   "min": 96,
+   "reg": "cn",
+   "dir": "詹淳皓",
+   "dirO": "CHAN Chun-hao",
+   "genre": [
+    "犯罪",
+    "惊悚"
+   ],
+   "cast": [
+    "春风",
+    "姚以缇",
+    "黄奇斌",
+    "丁宁"
+   ],
+   "writers": [],
+   "syn": "前职棒投手林胜毅回乡后，发现父亲卷入以老人互助为幌子的人命赌局。他必须在一个夜晚追查背后的组织，同时面对弟弟与情人各自隐藏的秘密。",
+   "bio": "詹淳皓毕业于台湾艺术大学电影研究所，作品包括《残值》《我是自愿让他杀了我》，也参与执导剧集《化外之医》。本片延续他在犯罪与悬疑类型中的创作。",
+   "st": "影片改编自真实事件，以乡镇中的地下赌博组织为背景，在一个夜晚的有限时空中展开追查。",
+   "honors": [
+    "提名｜2026 金马奖 · 最佳动作设计"
+   ],
+   "highlights": [
+    "留意手持摄影如何建立小镇夜晚的压迫感。",
+    "父子与兄弟的关系使生存危机同时成为家庭抉择。"
+   ],
+   "warnings": [
+    "赌博与犯罪",
+    "死亡威胁",
+    "家庭冲突"
+   ],
+   "contentNote": "官方剧情资料涉及人命赌局、死亡威胁与家庭冲突。尚未完整审片，具体画面强度及光敏信息未核实。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-03",
+    "sensory": "unverified"
+   },
+   "editorial": "适合关注台湾犯罪类型片的观众。可以留意一夜追查中的摄影与动作设计；涉及生死威胁，情绪疲惫时请结合自身情况选择。",
+   "ageRating": "辅12级（12+）",
+   "subtitles": "原文发音，中文字幕",
+   "printSource": "英杰哆影业股份有限公司 inJECT FILMS Co., Ltd.",
+   "printSourceEn": "inJECT FILMS Co., Ltd.",
+   "poster": "posters/golden-horse-gr26-047.jpg",
+   "posterDb": "p2930455642",
+   "links": {
+    "douban": "37394940",
+    "imdb": "tt40868707"
+   },
+   "r": [
+    5.3,
+    null,
+    null,
+    null,
+    null
+   ],
+   "ratingChecked": "2026-11-03",
+   "metadataChecked": "2026-11-03",
+   "screeningNotes": {
+    "11/11-21:30-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）"
+   }
+  },
+  {
    "id": "gh63-004",
    "cn": "女孩",
    "o": "Girl",
@@ -11179,7 +11247,7 @@
   [
    "11/9",
    "17:20",
-   "gr26-047",
+   "gh63-003",
    "tp-vieshow-xinyi",
    "hall-13"
   ],
@@ -11550,7 +11618,7 @@
   [
    "11/11",
    "21:30",
-   "gr26-047",
+   "gh63-003",
    "tp-vieshow-xinyi",
    "hall-13"
   ],
