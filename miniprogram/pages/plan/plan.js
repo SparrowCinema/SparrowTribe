@@ -78,8 +78,8 @@ Page({
         const items = days.reduce((a, g) => a.concat(g.items), []), imgs = {};
         await Promise.all([...new Set(items.map(i => i.id))].map(async id => { imgs[id] = await load((items.find(i => i.id === id) || {}).poster); }));
         const marks = await Promise.all(['/images/brand/sparrow-movies-sq.png', '/images/brand/sparrow-tribe-sq.png'].map(load));
-        const cur = this.data.progs.find(p => p.id === this.data.pf);
-        poster.draw(c, { days, head, pgs: this.pgs, stats: this.data.stats, title: t('我的观影日程'), imgs, marks, T: t, en: I.isEn() });
+        const qr = await load('/images/brand/miniprogram-code.jpg');
+        poster.draw(c, { days, head, pgs: this.pgs, stats: this.data.stats, title: t('我的观影日程'), imgs, marks, qr, T: t, en: I.isEn() });
         wx.canvasToTempFilePath({ canvas, fileType: 'png', success: r => { this.busy = false; wx.hideLoading(); this.showImage(r.tempFilePath); }, fail: () => fail() });
       } catch (e) { fail(); }
     });

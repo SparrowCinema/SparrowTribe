@@ -122,7 +122,12 @@ function draw(c, o) {
   // 页脚：小程序里没有网站二维码，改为品牌与引导语。卡片与日程同宽，内边距上下左右一致（40）
   const CH = 300, PAD = 40, fy = y + 20; c.fillStyle = '#2b2117'; rr(c, P, fy, W - 2 * P, CH, 20); c.fill();
   const fx = P + PAD; c.fillStyle = '#fffaf0'; c.font = '700 38px ' + SANS; c.fillText(EN ? 'Search “麻雀观影护照” on WeChat' : '微信搜索「麻雀观影护照」', fx, fy + PAD + 36);
-  c.font = '400 24px ' + SANS; c.globalAlpha = .8; wrapCanvas(c, T('小程序里查看完整片目 · 最新排片 · 选择想看的电影'), fx, fy + PAD + 82, W - 2 * P - 2 * PAD, 34); c.globalAlpha = 1;
+  c.font = '400 24px ' + SANS; c.globalAlpha = .8; wrapCanvas(c, T('小程序里查看完整片目 · 最新排片 · 选择想看的电影'), fx, fy + PAD + 82, W - 2 * P - 2 * PAD - (o.qr ? 250 : 0), 34); c.globalAlpha = 1;
+  if (o.qr) { // 右侧：小程序码（圆形码，白底垫底，与卡片等内边距）
+    const Q = CH - 2 * PAD, qx = W - P - PAD - Q, qy = fy + PAD;
+    c.fillStyle = '#fffaf0'; rr(c, qx, qy, Q, Q, Q / 2); c.fill();
+    const m = 10; c.save(); c.beginPath(); c.arc(qx + Q / 2, qy + Q / 2, Q / 2 - m, 0, Math.PI * 2); c.clip(); c.drawImage(o.qr, qx + m, qy + m, Q - 2 * m, Q - 2 * m); c.restore();
+  }
   const R = 48, cy = fy + CH - PAD - R;
   (o.marks || []).forEach((im, i) => {
     const cx = fx + R + i * (R * 2 + 20);
