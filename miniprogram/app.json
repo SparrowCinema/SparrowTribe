@@ -7,7 +7,8 @@
     "pages/film/film",
     "pages/programme/programme",
     "pages/events/events",
-    "pages/share/share"
+    "pages/share/share",
+    "pages/plan/plan"
   ],
   "window": {
     "navigationBarBackgroundColor": "#f8f2e6",

@@ -93,7 +93,7 @@ Page({
     const data = app.globalData.data, idx = U.index(data), s = data.shows.find(x => x.id === this.id && W.iso(U.showDate(x)) === d && U.ended(x, idx));
     W.set(this.id, Object.assign({}, rec, { d, k: s ? U.keyOf(s) : '' })); wx.showToast({ title: t('观影日期已更新'), icon: 'none' });
   },
-  toMy() { wx.switchTab({ url: '/pages/my/my' }); },
+  toMy() { wx.navigateTo({ url: '/pages/plan/plan' }); },
   openMap(e) { const v = app.globalData.data.venues.find(x => x.id === e.currentTarget.dataset.v); if (v) U.openMap(v); },
   toggle(e) { const on = plan.toggle(e.currentTarget.dataset.key); wx.showToast({ title: t(on ? '已加入排片' : '已移出排片'), icon: 'none' }); },
   calendar(e) {

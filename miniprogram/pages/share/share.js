@@ -13,7 +13,7 @@ Page({
     this.keys = list.map(U.keyOf);
     this.setData({ i: I.dict(), cnt: t(list.length + ' 场电影 · ' + new Set(list.map(s => s.d)).size + ' 天'), bad: !list.length, items: list.map(s => U.showView(s, idx, data, plan.get())), days: new Set(list.map(s => s.d)).size });
   },
-  importAll() { plan.addMany(this.keys); wx.showToast({ title: t('已加入我的排片'), icon: 'success' }); setTimeout(() => wx.switchTab({ url: '/pages/my/my' }), 700); },
+  importAll() { plan.addMany(this.keys); wx.showToast({ title: t('已加入我的排片'), icon: 'success' }); setTimeout(() => wx.navigateTo({ url: '/pages/plan/plan' }), 700); },
   home() { wx.switchTab({ url: '/pages/schedule/schedule' }); },
   open(e) { wx.navigateTo({ url: '/pages/film/film?id=' + e.currentTarget.dataset.id }); }
 });
