@@ -15,7 +15,7 @@ function honor(x) {
 }
 
 Page({
-  data: { i: {}, f: null, open: false },
+  data: { i: {}, f: null, open: false, fs: 1 },
   onLoad(q) { this.setData({ i: I.dict() }); this.id = q.id; this.off1 = app.onData(() => this.build()); this.off2 = plan.onChange(() => this.build()); this.off3 = W.onChange(() => this.buildMine()); this.build(); },
   onUnload() { this.off1 && this.off1(); this.off2 && this.off2(); this.off3 && this.off3(); },
   build() {
@@ -55,6 +55,14 @@ Page({
       shows, ratings, credits, nav, parts: (f.parts || []).map(m => { const en = I.isEn(); return { n: en ? m.en : m.cn, sub: [en ? m.cn : m.en, m.y, m.min ? m.min + t('分钟') : '', m.c].filter(Boolean).join(' · '), dir: (en && m.dirO) || m.dir || '', src: (en && m.printSourceEn) || m.printSource || '', syn: (en ? m.synEn : m.syn) || '', honors: (m.honors || []).map(honor) }; }), ended: allShows.length > 0 && !shows.length
     });
     this.buildMine();
+    this.setData({ fs: 1 }, () => this.fitHero());
+  },
+  // 头图：文字较多时逐步缩小字号，使文字区高度不超过海报（上下对齐）
+  fitHero() {
+    wx.createSelectorQuery().in(this).select('#hero-tt').boundingClientRect().select('#hero-pst').boundingClientRect().exec(r => {
+      const t = r && r[0], p = r && r[1]; if (!t || !p) return;
+      if (t.height > p.height + 1 && this.data.fs > 0.55) this.setData({ fs: Math.round((this.data.fs - 0.08) * 100) / 100 }, () => this.fitHero());
+    });
   },
   // 我的观影：看过 + 五星十分制评分（每颗星 2 分，可半颗）
   buildMine() {

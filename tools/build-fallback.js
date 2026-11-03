@@ -31,7 +31,7 @@ progs.forEach(p => {
   });
   (pk.shows || []).forEach(r => {
     const [d, t, id, v = 'premiere', h = 'luxe'] = Array.isArray(r) ? r : [r.d, r.t, r.id, r.v, r.h];
-    shows.push({ d, t, id, v, h });
+    shows.push({ d, t, id, v, h, p: p.id }); // p：场次所属专题（跨影展合并影片按此区分）
   });
 });
 const programmes = progs.map(p => {
