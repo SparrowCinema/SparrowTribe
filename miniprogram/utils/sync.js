@@ -42,6 +42,14 @@ function apply(d) {
   } finally { applying = false; }
 }
 
+// 云函数报错原文很长且看不懂，转成一句人话（完整原文仍在控制台）
+function friendly(m) {
+  m = String(m || ''); try { console.warn('[sync]', m); } catch (e) { }
+  if (/FUNCTION_NOT_FOUND|-501000|FunctionName/.test(m)) return '云函数 psync 还没部署到当前云环境（需在开发者工具里上传并部署）';
+  if (/-501007|INVALID_ENV|env not exist|-501001/.test(m)) return '云开发环境不可用，请检查环境 ID';
+  if (/timeout|time out|-504003|-501002/i.test(m)) return '网络超时，稍后再试';
+  return m.length > 60 ? m.slice(0, 60) + '…' : m;
+}
 function run() {
   const st = state(); if (!st || !st.code) return Promise.resolve();
   status.state = 'busy'; emit();
@@ -50,7 +58,7 @@ function run() {
     if (r.changed) apply(S.clean(r.merged));
     setState(Object.assign({}, st, { rev: r.rev, at: Date.now() }));
     status.state = 'ok'; status.msg = ''; status.at = Date.now(); emit(); return r;
-  }).catch(e => { status.state = 'error'; status.msg = (e && (e.message || e.errMsg)) || String(e); emit(); throw e; });
+  }).catch(e => { status.state = 'error'; status.msg = friendly((e && (e.message || e.errMsg)) || String(e)); emit(); throw e; });
 }
 function sync() { if(clearing)return Promise.resolve();if (busy) return busy; busy = run().finally(() => { busy = null; }); return busy; }
 const quiet = () => sync().catch(() => { });
