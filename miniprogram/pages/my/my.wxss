@@ -94,7 +94,7 @@
 .fp-tallies > view + view { border-left: calc(2 * var(--r)) solid var(--line-soft); }
 .fp-tallies .n { font-size: calc(34.2 * var(--r)); font-weight: 700; }
 .fp-tallies .l, .fp-tally .l { font-size: calc(20 * var(--r)); color: var(--muted); white-space: nowrap; }
-.fp-fx { width: 100%; will-change: transform; backface-visibility: hidden; }
+.fp-fx { width: 100%; }
 .fp-book { height: calc(880 * var(--r)); margin-top: calc(24 * var(--r)); }
 .fp-page { position: relative; width: calc(600 * var(--r)); height: calc(852 * var(--r)); margin: 0 auto; box-sizing: border-box; padding: calc(40 * var(--r)) calc(40 * var(--r)) calc(34 * var(--r)); display: flex; flex-direction: column; color: var(--ink); border-radius: calc(8 * var(--r)) calc(24 * var(--r)) calc(24 * var(--r)) calc(8 * var(--r)); overflow: hidden;
   background: radial-gradient(circle at 50% 118%, rgba(142,42,34,.08), transparent 58%), repeating-linear-gradient(60deg, rgba(130,100,60,.05) 0 calc(2 * var(--r)), transparent calc(2 * var(--r)) calc(16 * var(--r))), repeating-linear-gradient(-60deg, rgba(47,111,108,.045) 0 calc(2 * var(--r)), transparent calc(2 * var(--r)) calc(16 * var(--r))), var(--paper);
