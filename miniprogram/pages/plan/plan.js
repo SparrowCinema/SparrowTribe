@@ -70,7 +70,14 @@ Page({
   // 一键把当前所选排片里还没放映的场次加入手机日历（逐场写入；已加过的记住，重复点不会重复添加）
   addAllCalendar() {
     const en = I.isEn();
-    wx.showActionSheet({ itemList: [en ? 'Import all at once (calendar file)' : '一次导入全部（生成日历文件）', en ? 'Add one by one to phone calendar' : '逐场写入手机日历'], success: r => { if (r.tapIndex === 0) this.shareIcs(); else this.addEachCalendar(); } });
+    wx.showActionSheet({ itemList: [en ? 'Recommended: one-tap import on the web (copy link)' : '推荐：网页版一键导入（复制网址）', en ? 'Import all at once (calendar file)' : '一次导入全部（生成日历文件）', en ? 'Add one by one to phone calendar' : '逐场写入手机日历'], success: r => {
+      if (r.tapIndex === 0) this.webImportTip(); else if (r.tapIndex === 1) this.shareIcs(); else this.addEachCalendar();
+    } });
+  },
+  // 推荐路线：网页版「导出与分享」里点「导入日历」，一步生成 .ics 并交给系统日历。网页要先用同步码连上这份排片
+  webImportTip() {
+    wx.setClipboardData({ data: 'https://sparrowcinema.github.io/SparrowTribe/#export', success: () => wx.showModal({ title: t('网址已复制'),
+      content: t('用手机浏览器打开刚复制的网址，进入「导出与分享」，点「导入日历」，就能一次把全部排片导入系统日历。首次使用，请先在网页「我的」里用同步码连接：在小程序「我的 → 个人档案云端同步」复制同步码即可。'), showCancel: false, confirmText: t('知道了') }) });
   },
   // 生成 .ics 日历文件，通过微信「发送文件」交给聊天（文件传输助手/自己），点开后用系统日历一次导入全部
   shareIcs() {
