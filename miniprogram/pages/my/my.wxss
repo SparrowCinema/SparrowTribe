@@ -269,3 +269,24 @@
 .fp-navw { width: 60% !important; max-width: 560px; }
 .fp-stage.wide { position: relative; }
 .fp-stage.wide .fp-cover { position: absolute; left: 50%; top: 0; margin-left: -230rpx; transform-origin: top center; }
+
+/* 护照分册：封面换色 + 书架 */
+.fp-cover.cv2, .fp-vcard.cv2 { background: linear-gradient(100deg, #2a0a08 0, #5c1d16 5%, #6e251c 9%, #5a1a13 62%, #3d0f0b 100%); }
+.fp-cover.cv3, .fp-vcard.cv3 { background: linear-gradient(100deg, #0a1626 0, #1d3556 5%, #183050 9%, #14294a 62%, #0c1b33 100%); }
+.fp-cover.cv4, .fp-vcard.cv4 { background: linear-gradient(100deg, #0e0e0e 0, #262219 5%, #1e1b14 9%, #1a1812 62%, #0f0e0a 100%); }
+.fp-cover.cv5, .fp-vcard.cv5 { background: linear-gradient(100deg, #1c0f24 0, #3b2250 5%, #33204a 9%, #2c1a40 62%, #1a0e26 100%); }
+.fp-shelf { padding: 24rpx 0 0; }
+.fp-shelf-h { display: flex; justify-content: space-between; align-items: flex-start; gap: 20rpx; margin-bottom: 24rpx; }
+.fp-sk { display: block; font-size: 16rpx; letter-spacing: 6rpx; color: var(--muted); }
+.fp-st { display: block; font-size: 38rpx; font-weight: 800; margin: 6rpx 0; font-family: "Songti SC", "Noto Serif SC", serif; }
+.fp-ss { display: block; font-size: 22rpx; color: var(--muted); line-height: 1.5; }
+.fp-back, .fp-cl .lk { font-size: 22rpx; color: var(--muted); text-decoration: underline; }
+.fp-cl { display: flex; gap: 24rpx; }
+.fp-vgrid { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24rpx 0; }
+.fp-vcard { position: relative; width: calc(50% - 12rpx); height: 472rpx; box-sizing: border-box; border-radius: 6rpx 22rpx 22rpx 6rpx; color: #d9c38f; padding: 34rpx 28rpx 26rpx 40rpx; display: flex; flex-direction: column; gap: 8rpx; background: linear-gradient(100deg, #061b1a 0, #193733 5%, #122d2a 9%, #16322f 62%, #102623 100%); box-shadow: inset 6rpx 0 8rpx #0007, 8rpx 8rpx 0 -2rpx #d7cdb4, 0 30rpx 40rpx -28rpx #0008; }
+.fp-vcard::before { content: ""; position: absolute; left: 22rpx; right: 16rpx; top: 16rpx; bottom: 16rpx; border: 2rpx solid rgba(217, 195, 138, .3); border-radius: 2rpx 14rpx 14rpx 2rpx; pointer-events: none; }
+.fp-vc-no { font-size: 18rpx; letter-spacing: 5rpx; opacity: .85; }
+.fp-vc-t { margin-top: auto; font-size: 38rpx; font-weight: 900; letter-spacing: 8rpx; font-family: "Songti SC", "Noto Serif SC", serif; }
+.fp-vc-r { font-size: 18rpx; opacity: .8; }
+.fp-vc-n { font-size: 21rpx; font-weight: 600; }
+.fp-shelfbtn { margin-top: 24rpx; padding: 18rpx 32rpx; border-radius: 99rpx; border: 2rpx solid var(--line); background: var(--surface); font-size: 24rpx; font-weight: 600; color: var(--fg); }

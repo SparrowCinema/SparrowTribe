@@ -8,10 +8,21 @@
     <view class="k mono">YOUR LIFE IN CINEMA</view>
     <view class="h1 fp-h1">{{L.t(i,'我的观影护照')}}</view>
     <view class="sub">{{L.t(i,'把每一次银幕相遇，收进自己的电影档案。')}}</view>
-    <view wx:if="{{!ppOpen}}" class="fp-stage {{wide?'wide':''}}" style="{{wide?'height:'+ppCH+'px':''}}">
-      <view class="fp-cover {{i.__en?'en':''}}" style="{{wide?'transform:scale('+ppCK+')':''}}" hover-class="fp-press" bindtap="ppOpen">
+    <view wx:if="{{ppShelf}}" class="fp-shelf">
+      <view class="fp-shelf-h"><view><text class="fp-sk mono">BOOKSHELF</text><text class="fp-st">{{L.t(i,'我的护照书架')}}</text><text class="fp-ss">{{L.t(i,'每册最多 285 枚印章，满了自动换下一册。')}}</text></view><text class="fp-back" bindtap="ppShelfClose">{{L.t(i,'返回')}}</text></view>
+      <view class="fp-vgrid">
+        <view wx:for="{{pp.vols}}" wx:for-item="v" wx:key="k" class="fp-vcard cv{{v.cv}}" hover-class="fp-press" data-v="{{v.k}}" bindtap="ppPickVol">
+          <text class="fp-vc-no mono">VOL. {{v.no}}</text>
+          <text class="fp-vc-t">{{L.t(i,'观影护照')}}</text>
+          <text class="fp-vc-r mono">{{v.range}}</text>
+          <text class="fp-vc-n mono">{{v.nTxt}}</text>
+        </view>
+      </view>
+    </view>
+    <view wx:elif="{{!ppOpen}}" class="fp-stage {{wide?'wide':''}}" style="{{wide?'height:'+ppCH+'px':''}}">
+      <view class="fp-cover cv{{pp.cv}} {{i.__en?'en':''}}" style="{{wide?'transform:scale('+ppCK+')':''}}" hover-class="fp-press" bindtap="ppOpen">
         <view class="fp-cb" />
-        <view class="fp-edition mono"><text>SPARROW CINEMA</text><text>VOL. 01</text></view>
+        <view class="fp-edition mono"><text>SPARROW CINEMA</text><text>VOL. {{pp.volNo}}</text></view>
         <text class="fp-name">{{i.__en?'PERSONAL EDITION':'观影护照'}}</text>
         <text class="fp-title-en">FILM
 PASSPORT</text>
@@ -21,13 +32,14 @@ PASSPORT</text>
 ONE STAMP</text><text class="fp-open-icon">↗</text></view>
         <text class="fp-publishers">{{L.t(i,'麻雀映画 × 麻雀部落')}}</text>
       </view>
-      <text class="fp-cap">{{L.t(i,'轻触封面，翻开你的银幕旅程 ↗')}}</text>
+      <text class="fp-cap">{{pp.capPre}}{{L.t(i,'轻触封面，翻开你的银幕旅程 ↗')}}</text>
       <view class="fp-tallies card">
         <view><text class="n mono">{{pp.st.n}}</text><text class="l">{{L.t(i,'看过影片')}}</text></view>
         <view><text class="n mono">{{pp.st.progs}}</text><text class="l">{{L.t(i,'专题')}}</text></view>
         <view><text class="n mono">{{pp.st.venues}}</text><text class="l">{{L.t(i,'影院')}}</text></view>
         <view><text class="n mono">{{pp.st.avg}}</text><text class="l">{{L.t(i,'平均评分')}}</text></view>
       </view>
+      <view wx:if="{{pp.nv>1}}" class="fp-shelfbtn" hover-class="hv" bindtap="ppShelfOpen">{{pp.shelfTxt}}</view>
     </view>
     <block wx:elif="{{!wide}}">
       <swiper class="fp-book" current="{{ppPage}}" bindchange="ppChange" easing-function="easeOutCubic" duration="420">
@@ -43,7 +55,7 @@ ONE STAMP</text><text class="fp-open-icon">↗</text></view>
         <text class="mono">{{ppPage + 1}} / {{pp.n}}</text>
         <view class="nb {{ppPage === pp.n - 1 ? 'dis' : ''}}" bindtap="ppNext">{{L.t(i,'下一页 →')}}</view>
       </view>
-      <view class="fp-close"><text>{{L.t(i,'左右滑动翻页')}}</text><text class="lk" bindtap="ppClose">{{L.t(i,'合上护照')}}</text></view>
+      <view class="fp-close"><text>{{L.t(i,'左右滑动翻页')}}</text><view class="fp-cl"><text wx:if="{{pp.nv>1}}" class="lk" bindtap="ppShelfOpen">{{pp.shelfLk}}</text><text class="lk" bindtap="ppClose">{{L.t(i,'合上护照')}}</text></view></view>
     </block>
     <block wx:else>
       <view class="fp-sw" style="height:{{ppH}}px">
@@ -62,7 +74,7 @@ ONE STAMP</text><text class="fp-open-icon">↗</text></view>
         <text class="mono">{{ppLabel}}</text>
         <view class="nb {{ppSp >= spreads.length - 1 ? 'dis' : ''}}" bindtap="ppNext">{{L.t(i,'下一页 →')}}</view>
       </view>
-      <view class="fp-close fp-navw"><text>{{L.t(i,'左右滑动翻页')}}</text><text class="lk" bindtap="ppClose">{{L.t(i,'合上护照')}}</text></view>
+      <view class="fp-close fp-navw"><text>{{L.t(i,'左右滑动翻页')}}</text><view class="fp-cl"><text wx:if="{{pp.nv>1}}" class="lk" bindtap="ppShelfOpen">{{pp.shelfLk}}</text><text class="lk" bindtap="ppClose">{{L.t(i,'合上护照')}}</text></view></view>
     </block>
   </view>
   <view class="my-library-links"><view data-mode="planned" bindtap="openLibrary">{{L.t(i,'已加入排片')}} ↗</view><view data-mode="watched" bindtap="openLibrary">{{L.t(i,'已看过')}} ↗</view><view data-mode="qa" bindtap="openLibrary">{{L.t(i,'主创映后场')}} ↗</view></view>
@@ -155,9 +167,11 @@ ONE STAMP</text><text class="fp-open-icon">↗</text></view>
     <view><text class="n mono">{{pp.st.venues}}</text><text class="l">{{L.t(i,'影院')}}</text></view>
     <view><text class="n mono">{{pp.st.avg}}</text><text class="l">{{L.t(i,'平均评分')}}</text></view>
   </view>
-  <view class="fp-dl"><text class="dt mono">{{L.t(i,'首枚印章 / FIRST STAMP')}}</text><text class="dd mono">{{pp.first}}</text></view>
+  <view class="fp-dl"><text class="dt mono">{{L.t(i,'册号 / VOLUME')}}</text><text class="dd mono">{{pp.volTxt}}</text></view>
+            <view class="fp-dl"><text class="dt mono">{{L.t(i,'本册印章 / IN THIS VOLUME')}}</text><text class="dd mono">{{pp.vn}}</text></view>
+            <view class="fp-dl"><text class="dt mono">{{L.t(i,'首枚印章 / FIRST STAMP')}}</text><text class="dd mono">{{pp.first}}</text></view>
   <view class="fp-dl"><text class="dt mono">{{L.t(i,'最近印章 / LATEST')}}</text><text class="dd mono">{{pp.last}}</text></view>
-  <view class="fp-dl"><text class="dt mono">{{L.t(i,'银幕时长 / SCREEN TIME')}}</text><text class="dd mono">{{pp.st.hm}}</text></view>
+  <view class="fp-dl"><text class="dt mono">{{L.t(i,'累计时长 / SCREEN TIME')}}</text><text class="dd mono">{{pp.st.hm}}</text></view>
   <view class="fp-sign"><text class="mono">{{L.t(i,'签名 / SIGNATURE')}}</text><text class="sig">See you at the cinema.</text></view>
   <view class="fp-mrz mono"><text>{{pp.mrz1}}</text><text>{{pp.mrz2}}</text></view>
 </view>
