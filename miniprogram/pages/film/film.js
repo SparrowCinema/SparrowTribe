@@ -1,3 +1,4 @@
+const T = require('../../utils/totop.js');
 const U = require('../../utils/util.js');
 const plan = require('../../utils/plan.js');
 const W = require('../../utils/watched.js');
@@ -16,6 +17,8 @@ function honor(x) {
 }
 
 Page({
+  onPageScroll(e) { T.scroll(this, e); },
+  toTop() { T.go(); },
   data: { i: {}, f: null, open: false, fs: 1 },
   onLoad(q) { this.setData({ i: I.dict() }); this.id = q.id; this.off1 = app.onData(() => this.build()); this.off2 = plan.onChange(() => this.build()); this.off3 = W.onChange(() => this.buildMine()); this.build(); },
   onUnload() { this.off1 && this.off1(); this.off2 && this.off2(); this.off3 && this.off3(); },

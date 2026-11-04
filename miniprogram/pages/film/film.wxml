@@ -167,3 +167,4 @@
     <button class="btn ghost share" open-type="share">{{L.t(i,'分享这部影片')}}</button>
   </view>
 </view>
+<view class="to-top {{topOn ? 'show' : ''}}" hover-class="to-top-hv" bindtap="toTop"><view class="tt-arr" /></view>

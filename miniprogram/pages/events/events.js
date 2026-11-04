@@ -1,9 +1,12 @@
+const T = require('../../utils/totop.js');
 const U = require('../../utils/util.js');
 const I = require('../../utils/i18n.js');
 const t = I.tr;
 const plan = require('../../utils/plan.js');
 const app = getApp();
 Page({
+  onPageScroll(e) { T.scroll(this, e); },
+  toTop() { T.go(); },
   data: { i: {}, p: null, tabs: [], kind: '', groups: [], selOpen: false, selRows: [], selQuery: '', selTitle: '', selPlaceholder: '', kindName: '', kindN: 0 },
   onLoad(q) { this.setData({ i: I.dict() }); this.id = q.id || 'golden-horse-2026'; this.off = app.onData(() => this.build()); this.off2 = plan.onChange(() => this.build()); this.build(); },
   onUnload() { this.off && this.off(); this.off2 && this.off2(); },
