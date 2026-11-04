@@ -388,3 +388,5 @@
 .gg-c { font-size: 22rpx; color: var(--muted); }
 .gg-a { color: var(--muted); font-size: 32rpx; transition: transform .2s; } .gg.open .gg-a { transform: rotate(90deg); }
 .gg-b { padding: 0 4rpx 28rpx; } .gg-v { display: block; margin-bottom: 16rpx; font-size: 22rpx; color: var(--muted); }
+
+.st-x { position: absolute; top: -8rpx; right: -8rpx; min-width: 68rpx; height: 52rpx; padding: 0 10rpx; box-sizing: border-box; border-radius: 26rpx; background: #8e2a22; color: #fff6e4; border: 5rpx solid #f8f2e6; font-size: 26rpx; font-weight: 700; line-height: 42rpx; text-align: center; }

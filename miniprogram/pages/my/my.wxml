@@ -214,6 +214,7 @@ ONE STAMP</text><text class="fp-open-icon">↗</text></view>
     <text class="st-date">{{s.date}}</text>
     <view wx:if="{{s.r}}" class="st-stars"><view wx:for="{{s.stars}}" wx:for-item="w" wx:key="index" class="ss"><text class="s0">☆</text><view class="s1" style="width:{{w}}%"><text>★</text></view></view></view>
     <text class="st-venue">{{s.venue}}</text>
+    <text wx:if="{{s.x}}" class="st-x mono">{{s.x}}</text>
   </view>
     </view>
     <view wx:for="{{pg.slots}}" wx:key="*this" class="fp-cell"><view class="fp-slot {{index ? 'dim' : ''}}"><text wx:if="{{pp.empty && index === 0}}" class="b">{{L.t(i,'第一枚印章')}}</text><text class="mono">NEXT STAMP</text></view></view>

@@ -75,10 +75,43 @@ Page({
   },
   // 我的观影：看过 + 五星十分制评分（每颗星 2 分，可半颗）
   buildMine() {
-    const data = app.globalData.data, idx = U.index(data), rec = W.get(this.id), r = rec ? rec.r || 0 : 0, s = rec ? W.showOf(rec, data) : null;
-    this.setData({ mine: { seen: !!rec, r, d: rec ? rec.d : '', today: W.iso(new Date()), stars: [1, 2, 3, 4, 5].map(i => Math.max(0, Math.min(2, r - (i - 1) * 2)) * 50),
-      at: s ? W.vShort(idx.VN[s.v]) + ' · ' + s.t : t('未关联场次'), seenTxt: t(rec ? '已看过 · 已盖章' : '＋ 看过'), scoreTxt: r ? r + '/10' : t('点星打分'),
-      fmt: this.fmtModel(rec && rec.f) } });
+    const data = app.globalData.data, idx = U.index(data), rec = W.get(this.id), r = rec ? rec.r || 0 : 0, s = rec ? W.showOf(rec, data) : null, en = I.isEn();
+    const vs = rec ? G.views(rec) : [], n = vs.length, multi = n > 1, ed = multi && this.ed >= 0 && this.ed < n ? this.ed : -1, open = multi && !!this.rwOpen;
+    const rated = vs.filter(v => v.r), avg = rated.length ? (rated.reduce((a, v) => a + v.r, 0) / rated.length).toFixed(1) : '';
+    const fname = id => { const x = G.FMT[id]; return x ? (en ? x.en : x.zh) : ''; };
+    const rw = multi ? { n, open, txt: (en ? 'Watched ' + n + '×' : '看过 ' + n + ' 次'), sub: (avg ? (en ? 'avg ' : '均分 ') + avg + ' · ' : '') + (en ? 'last ' : '最近 ') + vs[n - 1].d.slice(5).replace('-', '.'),
+      dots: Array.from({ length: Math.min(n, 10) }, (_, k) => k),
+      rows: vs.map((v, i) => { const sh = v.k && data.shows.find(x => U.keyOf(x) === v.k); return { i, no: '#' + (i + 1), d: v.d.replace(/-/g, '.'), raw: v.d, r: v.r, rs: v.r ? String(v.r) : '—', stars: [1, 2, 3, 4, 5].map(k => Math.max(0, Math.min(2, v.r - (k - 1) * 2)) * 50), edit: i === ed, last: i === n - 1,
+        tag: i === 0 ? (en ? 'First' : '首刷') : i === n - 1 ? (en ? 'Latest' : '最近') : '', line: [fname(v.f) || (en ? 'Format not set' : '版本未填'), sh ? W.vShort(idx.VN[sh.v]) : ''].filter(Boolean).join(' · ') }; }) } : null;
+    this.setData({ mine: { seen: !!rec, multi, rw, r, d: rec ? rec.d : '', today: W.iso(new Date()), stars: [1, 2, 3, 4, 5].map(i => Math.max(0, Math.min(2, r - (i - 1) * 2)) * 50),
+      at: s ? W.vShort(idx.VN[s.v]) + ' · ' + s.t : t('未关联场次'), seenTxt: t(rec ? '已看过 · 已盖章' : '＋ 看过'), scoreTxt: r ? r + '/10' : multi ? t('给最近一次打分') : t('点星打分'),
+      fmt: this.fmtModel(multi ? (ed >= 0 ? vs[ed].f : '') : rec && rec.f) } });
+  },
+  // 多次观影：保存时让顶层字段与各次观影一致
+  saveViews(vs, extra) {
+    const rec = W.get(this.id); if (!rec) return;
+    const o = Object.assign({}, rec, extra || {}); delete o.v;
+    if (vs.length >= 2) o.v = vs; G.normRec(o);
+    if (vs.length < 2) { const x = vs[0]; o.d = x.d; o.r = x.r; o.k = x.k || ''; if (x.f) o.f = x.f; else delete o.f; }
+    W.set(this.id, o);
+  },
+  rwAgain() {
+    const rec = W.get(this.id); if (!rec) return; const vs = G.views(rec), today = W.iso(new Date());
+    vs.push({ d: today, r: 0, k: '' }); vs.sort((a, b) => a.d.localeCompare(b.d)); this.rwOpen = true; this.ed = vs.map(x => x.d).lastIndexOf(today);
+    this.saveViews(vs); wx.showToast({ title: t('已加一次观影 · 可补日期、版本和评分'), icon: 'none' });
+  },
+  rwToggle() { this.rwOpen = !this.rwOpen; this.ed = -1; this.buildMine(); },
+  rwEdit(e) { this.ed = +e.currentTarget.dataset.i; this.buildMine(); },
+  rwDone() { this.ed = -1; this.buildMine(); },
+  rwRate(e) { const rec = W.get(this.id), i = this.ed, v = +e.currentTarget.dataset.v; if (!rec || i < 0) return; const vs = G.views(rec); if (!vs[i]) return; vs[i].r = vs[i].r === v ? 0 : v; this.saveViews(vs); },
+  rwDate(e) {
+    const rec = W.get(this.id), i = this.ed, d = e.detail.value; if (!rec || i < 0 || !/^\d{4}-\d{2}-\d{2}$/.test(d)) return; const vs = G.views(rec); if (!vs[i]) return;
+    const data = app.globalData.data, idx = U.index(data), sh = data.shows.find(x => x.id === this.id && W.iso(U.showDate(x)) === d && U.ended(x, idx));
+    vs[i].d = d; vs[i].k = sh ? U.keyOf(sh) : ''; const key = vs[i]; vs.sort((a, b) => a.d.localeCompare(b.d)); this.ed = Math.max(0, vs.indexOf(key)); this.saveViews(vs);
+  },
+  rwDel(e) {
+    const rec = W.get(this.id), i = +e.currentTarget.dataset.i; if (!rec) return;
+    wx.showModal({ title: t('删除这一次观影记录？'), confirmColor: '#8e2a22', success: r => { if (!r.confirm) return; const vs = G.views(rec).filter((x, k) => k !== i); this.ed = -1; if (vs.length < 2) this.rwOpen = false; this.saveViews(vs); } });
   },
   // 放映版本：两列选择器（类型 → 具体版本）
   fmtModel(cur) {
@@ -95,8 +128,9 @@ Page({
   },
   setFmt(e) {
     const rec = W.get(this.id), v = e.detail.value; if (!rec || !this._fm) return;
-    const it = (this._fm[v[0]] || { items: [] }).items[v[1]], o = Object.assign({}, rec); delete o.f; if (it && it.id) o.f = it.id;
-    W.set(this.id, o); wx.showToast({ title: t('放映版本已更新'), icon: 'none' });
+    const it = (this._fm[v[0]] || { items: [] }).items[v[1]], vs = G.views(rec);
+    if (vs.length > 1) { if (this.ed < 0 || !vs[this.ed]) return; if (it && it.id) vs[this.ed].f = it.id; else delete vs[this.ed].f; this.saveViews(vs); }
+    else { const o = Object.assign({}, rec); delete o.f; if (it && it.id) o.f = it.id; W.set(this.id, o); } wx.showToast({ title: t('放映版本已更新'), icon: 'none' });
   },
   toggleSeen() {
     if (W.get(this.id)) {
@@ -105,7 +139,9 @@ Page({
   },
   rate(e) {
     const v = +e.currentTarget.dataset.v, data = app.globalData.data, old = W.get(this.id), rec = old || W.guess(this.id, data, U.index(data), plan.get());
-    W.set(this.id, Object.assign({}, rec, { r: rec.r === v ? 0 : v }));
+    const vs = G.views(rec);
+    if (old && vs.length > 1) { vs[vs.length - 1].r = vs[vs.length - 1].r === v ? 0 : v; this.saveViews(vs); }
+    else W.set(this.id, Object.assign({}, rec, { r: rec.r === v ? 0 : v }));
     if (!old) wx.showToast({ title: t('已盖章 · 加入观影护照'), icon: 'none' });
   },
   setSeenDate(e) {

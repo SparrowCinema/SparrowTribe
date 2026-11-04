@@ -34,7 +34,7 @@ Page({
       avg: rated.length ? (rated.reduce((n, e) => n + e.rec.r, 0) / rated.length).toFixed(1) : '—', hm: Math.floor(mins / 60) + 'h' + String(mins % 60).padStart(2, '0') };
     const stamps = list.map((e, k) => {
       const lk = R.look(e.id), p = idx.progOf(e.f), r = e.rec.r || 0;
-      return { id: e.id, title: e.f.cn, date: R.dstamp(e.rec.d), top: String((p && p.en) || 'SPARROW FILM PASSPORT').toUpperCase().split(/ · | & /)[0], venue: e.venue || t('影院观影'),
+      return { id: e.id, x: G.views(e.rec).length > 1 ? '×' + G.views(e.rec).length : '', title: e.f.cn, date: R.dstamp(e.rec.d), top: String((p && p.en) || 'SPARROW FILM PASSPORT').toUpperCase().split(/ · | & /)[0], venue: e.venue || t('影院观影'),
         shape: lk.shape, tilt: Math.round((((R.hash(e.id) % 21) - 10) * 1.1) * 10) / 10, dx: ((R.hash(e.id) >>> 5) % 9 - 4) * 3 + (Math.floor(k % 15 / 3) % 2 ? 10 : -2), dy: ((R.hash(e.id) >>> 9) % 7 - 3) * 3, ink: lk.ink, r, stars: r ? [1, 2, 3, 4, 5].map(i => Math.max(0, Math.min(2, r - (i - 1) * 2)) * 50) : [] };
     });
     // 分册：每册 285 枚（1 资料页 + 19 印章页），按观影日期从早到晚，满了换下一册
@@ -54,7 +54,10 @@ Page({
   // ===== 成长：影迷等级 / 全球足迹 / 旅程纪念章（计算在 utils/growth.js，与网站共用） =====
   buildGrowth(list, idx) {
     const en = I.isEn(), nm = x => en ? x.en : x.zh, K = n => n >= 1000 ? (n % 1000 === 0 ? n / 1000 : +(n / 1000).toFixed(1)) + 'k' : String(n);
-    const rows = list.map(e => { const p = idx.progOf(e.f), v = e.s ? idx.VN[e.s.v] : null; return { id: e.id, d: e.rec.d, r: e.rec.r || 0, fmt: e.rec.f || '', min: e.f.min || 0, prog: p.id, city: (v && v.city) || p.city || '', venue: e.s ? e.s.v : '' }; });
+    const rows = [], sh = app.globalData.data.shows;
+    list.forEach(e => { const p = idx.progOf(e.f), v = e.s ? idx.VN[e.s.v] : null, base = { id: e.id, min: e.f.min || 0, prog: p.id, city: (v && v.city) || p.city || '', venue: e.s ? e.s.v : '' };
+      G.views(e.rec).forEach((x, k) => { const s2 = x.k && sh.find(y => U.keyOf(y) === x.k), v2 = s2 ? idx.VN[s2.v] : null;
+        rows.push(Object.assign({}, base, { d: x.d, r: x.r || 0, fmt: x.f || '', re: k > 0, city: k === 0 ? base.city : ((v2 && v2.city) || base.city), venue: k === 0 ? base.venue : (s2 ? s2.v : base.venue) })); }); });
     const progs = (app.globalData.data.programmes || []).map(p => ({ id: p.id, name: p.name, en: p.en || '', kind: p.kind, city: p.city || '', total: Object.keys(idx.F).filter(k => idx.progOf(idx.F[k]).id === p.id).length }));
     const g = G.compute(rows, { progs }), L = g.level, nb = g.nextBadge, lo = Math.max(0, L.index - 1);
     const op = this.data.gOpen || [nb && nb.group !== 'level' ? nb.group : g.groups[0].id];
