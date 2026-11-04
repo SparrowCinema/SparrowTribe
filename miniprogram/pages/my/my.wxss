@@ -397,3 +397,8 @@
 .gm-wrap { display: flex; flex-direction: row; flex-wrap: wrap; row-gap: 22rpx; }
 .gm-ic { font-size: 44rpx; line-height: 1; }
 .gm.far .gm-ic { filter: grayscale(1); opacity: .45; }
+
+.mc { display: flex; flex-direction: row; white-space: nowrap; margin-bottom: 18rpx; }
+.mc-b { flex: none; display: flex; flex-direction: column; align-items: center; gap: 4rpx; padding: 14rpx 28rpx; margin-right: 12rpx; border-radius: 24rpx; border: 2rpx solid var(--line); background: var(--surface); color: var(--muted); }
+.mc-n { font-size: 26rpx; font-weight: 600; } .mc-c { font-size: 20rpx; opacity: .8; }
+.mc-b.on { color: var(--accent); border-color: var(--accent); }
