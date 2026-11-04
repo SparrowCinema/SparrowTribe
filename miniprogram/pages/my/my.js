@@ -155,7 +155,7 @@ Page({
   ppShelfOpen() { this.setData({ ppOpen: false, ppShelf: true }); },
   ppShelfClose() { this.setData({ ppShelf: false, ppVol: 0 }); this.buildPassport(); },
   ppPickVol(e) { this.setData({ ppVol: +e.currentTarget.dataset.v || 0, ppShelf: false, ppOpen: true, ppPage: 0, ppSp: 0 }); this.buildPassport(); this.spLabel(); },
-  ppChange(e) { this.ppSettle(); if (this.data.wide) { this.setData({ ppSp: e.detail.current }); this.spLabel(); } else this.setData({ ppPage: e.detail.current }); },
+  ppChange(e) { if (this.data.wide) { this.setData({ ppSp: e.detail.current }); this.spLabel(); } else this.setData({ ppPage: e.detail.current }); },
   // 窄屏护照翻页：滑动时当前页以左侧书脊为轴翻转，下一页留在原位等待露出
   ppTrans(e) {
     const wide = this.data.wide, W = this._bw;
