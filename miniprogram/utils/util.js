@@ -108,7 +108,7 @@ const calSub = (id, en, t) => {
     success: r => { if (r.confirm) wx.setClipboardData({ data: sub, success: () => wx.showToast({ title: t('订阅链接已复制'), icon: 'none' }) }); } });
   wx.showActionSheet({ itemList: [t('推荐：网页版一键订阅（iPhone 用 Safari）'), t('手动添加（复制订阅链接）')], success: r => {
     if (r.tapIndex === 1) return manual();
-    webTip(id === 'all' ? '#programmes' : '#prog-' + id, ['① iPhone 请用自带的 Safari 打开这个网址（谷歌等浏览器无法一键订阅）。', '② 在专题页点「订阅日历」，一键订阅到系统日历，场次有调整会自动更新。', '③ 建议先点底部「分享」→「添加到主屏幕」，以后像 App 一样直接打开。'], t);
+    webTip(id === 'all' ? '#programmes' : '#prog-' + id, ['① iPhone 请用自带的 Safari 打开这个网址（谷歌等浏览器无法一键订阅）；安卓用谷歌浏览器或自带浏览器都可以。', '② 在专题页点「订阅日历」，一键订阅到系统日历，场次有调整会自动更新。', '③ 建议先添加到手机桌面（iPhone 点「分享」→「添加到主屏幕」），以后像 App 一样直接打开。'], t);
   } });
 };
 // 网页版引导：复制网页地址，并说明用 iPhone 自带 Safari 打开、添加到手机桌面后像 App 一样用（一键导入个人排片 / 一键订阅专题日历）
