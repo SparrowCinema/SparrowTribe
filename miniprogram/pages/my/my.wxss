@@ -422,3 +422,4 @@
 .fp-stage.wide .fp-tallies > view:nth-child(n+3) { border-top: calc(2 * var(--r)) solid var(--line-soft); }
 .fp-stage.wide .fp-shelfbtn { text-align: center; }
 .fp-stage.wide { align-items: flex-start; }
+.fp-sbook .fp-fx { height: 100%; }
