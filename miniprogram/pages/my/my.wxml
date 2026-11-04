@@ -133,7 +133,7 @@ ONE STAMP</text><text class="fp-open-icon">↗</text></view>
   <view class="me-row" hover-class="hv" bindtap="toggleFriend"><image class="me-ic" src="/images/menu/link.svg" mode="aspectFit" /><view class="me-copy"><text class="me-t">{{L.t(i,'友情链接')}}</text><text class="me-s">{{L.t(i,'伙伴站点 · 更多陆续加入')}}</text></view><text class="me-go {{friendOpen?'on':''}}">›</text></view>
   <view wx:if="{{friendOpen}}" class="me-body fb">
     <view class="fb-p">{{L.t(i,'点按复制链接，到浏览器打开。')}}</view>
-    <view class="fr-item" hover-class="hv" wx:for="{{friends}}" wx:key="u" data-v="{{item.u}}" bindtap="copyContact"><text class="fr-mark">{{item.m}}</text><view class="fl-t"><text class="fl-n">{{L.t(i,item.n)}}</text><text class="fl-d">{{L.t(i,item.d)}}</text></view><text class="fb-go">{{L.t(i,'复制')}}</text></view>
+    <view class="fr-item" hover-class="hv" wx:for="{{friends}}" wx:key="u" data-v="{{item.u}}" bindtap="copyContact"><image class="fr-mark" src="{{item.img}}" mode="aspectFill" /><view class="fl-t"><text class="fl-n">{{L.t(i,item.n)}}</text><text class="fl-d">{{L.t(i,item.d)}}</text></view><text class="fb-go">{{L.t(i,'复制')}}</text></view>
   </view>
  </view>
 </view>
