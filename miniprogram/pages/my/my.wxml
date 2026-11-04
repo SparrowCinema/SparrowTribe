@@ -134,7 +134,7 @@ ONE STAMP</text><text class="fp-open-icon">↗</text></view>
  <text class="care-p">{{L.t(i,'停止同步只断开本设备。清空同步码对应的云端内容前，请先在其他设备停止同步；本机副本保留，微信用户下的排片与看过记录不受影响。匿名同步记录和删除标记仍保留；彻底删除请联系维护者。')}}</text>
  <view wx:if="{{sy.on}}" class="care-danger" bindtap="clearCloudProfile">{{L.t(i,'清空云端内容并断开同步')}}</view>
   </view>
-  <view class="me-row" hover-class="hv" bindtap="toggleGuide"><image class="me-ic" src="/images/menu/guide.svg" mode="aspectFit" /><view class="me-copy"><text class="me-t">{{L.t(i,'使用指南')}}</text><text class="me-s">{{L.t(i,'排片、专题、片目与我的护照怎么用')}}</text></view><text class="me-go {{guideOpen?'on':''}}">›</text></view>
+  <view class="me-row" hover-class="hv" bindtap="toggleGuide"><image class="me-ic" src="/images/menu/guide.svg" mode="aspectFit" /><view class="me-copy"><text class="me-t">{{L.t(i,'观影护照使用指南')}}</text><text class="me-s">{{L.t(i,'排片、专题、片目与我的护照怎么用')}}</text></view><text class="me-go {{guideOpen?'on':''}}">›</text></view>
   <view wx:if="{{guideOpen}}" class="me-body guide">
       <view class="gi" wx:for="{{guide}}" wx:key="k"><text class="gk">{{index + 1}}</text><view><text class="gb">{{L.t(i,item.k)}}</text><text class="gs">{{L.t(i,item.s)}}</text></view></view>
   </view>
