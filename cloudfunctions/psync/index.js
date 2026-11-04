@@ -1,6 +1,7 @@
 // 个人档案同步码同步：小程序通过本云函数读写 Supabase（与网站、米其林全球名录共用同一个后端）。
 // 合并规则见 psync.js（由 tools/build-fallback.js 从 shared/psync.js 复制，请勿直接改）。
-// action: 'new' → 生成同步码；'sync' { code, state } → 与云端合并并返回合并结果。
+// action: 'new' → 生成同步码；'sync' { code, state } → 与云端合并并返回合并结果；
+//         'wx' → 用微信登录身份（openid）取得/创建该用户绑定的同步码；'bind' { code } → 把该微信绑定到指定同步码（与网站已有档案合并用）。
 const cloud = require('wx-server-sdk');
 const https = require('https');
 const crypto = require('crypto');
@@ -27,7 +28,26 @@ function rpc(fn, body) {
   });
 }
 
+const db = cloud.database();
+const col = db.collection('psync_bind');
+async function getBind(OPENID) { try { const r = await col.doc(OPENID).get(); return r.data && r.data.code || ''; } catch (e) { return ''; } }
+async function setBind(OPENID, code) {
+  const data = { code, at: Date.now() };
+  try { await col.doc(OPENID).set({ data }); }
+  catch (e) { try { await db.createCollection('psync_bind'); } catch (x) { } await col.doc(OPENID).set({ data }); }
+}
+
 exports.main = async (event) => {
+  if (event.action === 'wx' || event.action === 'bind') {
+    const { OPENID } = cloud.getWXContext();
+    if (!OPENID) return { ok: false, msg: 'no openid' };
+    try {
+      if (event.action === 'bind') { const c = S.normalize(event.code); if (!c) return { ok: false, msg: 'bad code' }; await setBind(OPENID, c); return { ok: true, code: c }; }
+      let code = S.normalize(await getBind(OPENID));
+      if (!code) { code = S.newCode(n => Array.from(crypto.randomBytes(n))); await setBind(OPENID, code); }
+      return { ok: true, code };
+    } catch (e) { return { ok: false, msg: String((e && e.message) || e) }; }
+  }
   if (event.action === 'new') return { ok: true, code: S.newCode(n => Array.from(crypto.randomBytes(n))) };
   if (event.action === 'sync') {
     const code = S.normalize(event.code);

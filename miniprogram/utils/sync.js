@@ -54,17 +54,26 @@ function run() {
 }
 function sync() { if(clearing)return Promise.resolve();if (busy) return busy; busy = run().finally(() => { busy = null; }); return busy; }
 const quiet = () => sync().catch(() => { });
+const OFF = 'sk-sync-off';
+const setOff = v => { try { v ? wx.setStorageSync(OFF, 1) : wx.removeStorageSync(OFF); } catch (e) { } };
+const isOff = () => { try { return !!wx.getStorageSync(OFF); } catch (e) { return false; } };
+// 微信登录：以微信身份（openid）在云端绑定一串同步码，换手机、重装后自动取回；取不到身份时退回随机同步码
+function wxLogin() {
+  return call({ action: 'wx' }).then(r => { if (!r.ok || !r.code) throw new Error(r.msg || 'fail'); setOff(false); setState({ code: r.code, rev: 0, at: 0, wx: 1 }); return sync(); });
+}
 function start() {
-  return call({ action: 'new' }).then(r => { if (!r.code) throw new Error('fail'); setState({ code: r.code, rev: 0, at: 0 }); return sync(); });
+  return wxLogin().catch(() => call({ action: 'new' }).then(r => { if (!r.code) throw new Error('fail'); setOff(false); setState({ code: r.code, rev: 0, at: 0 }); return sync(); }));
 }
 function join(input) {
   const code = S.normalize(input); if (!code) return Promise.reject(new Error('bad'));
-  setState({ code, rev: 0, at: 0 }); return sync();
+  setOff(false); setState({ code, rev: 0, at: 0 });
+  // 同步把这个微信账号绑定到该同步码，以后在其他手机用同一微信登录会自动连到同一份档案
+  return call({ action: 'bind', code }).then(r => { if (r.ok) setState(Object.assign({}, state(), { wx: 1 })); }, () => { }).then(() => sync());
 }
-function stop() { setState(null); status.state = 'idle'; status.msg = ''; status.at = 0; emit(); }
+function stop() { setOff(true); setState(null); status.state = 'idle'; status.msg = ''; status.at = 0; emit(); }
 // 本机有改动时 3 秒后自动同步；应用从后台回来或进入「我的」页时拉取一次
 function changed() { if (applying||clearing) return; const st = state(); if (!st || !st.code) return; clearTimeout(timer); timer = setTimeout(quiet, 3000); }
-function init() { W.onChange(changed); plan.onChange(changed); const st = state(); if (st && st.code) quiet(); }
+function init() { W.onChange(changed); plan.onChange(changed); const st = state(); if (st && st.code) quiet(); else if (!isOff() && !clearing) wxLogin().catch(() => { }); }
 function stale() { const st = state(); return !!(st && st.code && Date.now() - (st.at || 0) > 30000); }
 
 async function restore(value){if(busy)await busy;const next=Backup.restore(snapshot(),value);apply(next);changed();}

@@ -8168,7 +8168,7 @@
   "片目页收录全部影片，可以搜片名、导演、演员，并按专题、城市、放映版本筛选；点进影片页看简介、主创、获奖和放映场次。": "Films lists every title. Search by title, director or cast, filter by programme, city or format, and open a film for its synopsis, credits, honours and screenings.",
   "影片页 · 看过与重刷": "Film page · Watched and rewatches",
   "在影片页点「看过」盖下印章，可以打分、选放映版本；再看一次就点「再看一次」，每次观影的日期、评分和版本都会单独记录。": "Tap Watched on a film page to stamp it, rate it and pick a format. Watch it again and tap “Watch again”; each viewing keeps its own date, rating and format.",
-  "放映版本": "Screening formats",
+  "放映版本": "Format",
   "可以记录你是在普通影厅、胶片、IMAX、杜比、巨幕、LED 还是沉浸厅看的，之后会计入「银幕与版本」类纪念章。": "Record whether you watched in a standard hall, on film, IMAX, Dolby, a large-format, LED or immersive screen; it counts toward the Screens & formats medals.",
   "成长 · 等级与纪念章": "Growth · Levels and medals",
   "护照里的「成长」按看过的不同影片数升级（最高 20 级），并按奖项、口味、习惯、银幕、重温、足迹、彩蛋七类点亮纪念章；每枚章展开后都写着点亮规则。": "Growth in the passport levels you up by distinct films watched (up to 20 levels) and lights medals in seven categories: awards, taste, habits, screens, rewatching, journeys and easter eggs. Each medal explains how to earn it.",
@@ -8179,7 +8179,6 @@
   "已加一次观影 · 可补日期、版本和评分": "Viewing added — set its date, format and rating",
   "删除这一次观影记录？": "Delete this viewing?",
   "回到顶部": "Back to top",
-  "放映版本": "Format",
   "我的影迷等级": "MY CINEPHILE LEVEL",
   "银幕小时": "hours",
   "枚纪念章": "medals",
@@ -8199,7 +8198,7 @@
   "本册印章 / IN THIS VOLUME": "IN THIS VOLUME",
   "累计时长 / SCREEN TIME": "SCREEN TIME",
   "分册与书架": "Volumes & shelf",
-  "每本护照最多 285 枚印章（20 页），满了自动换下一册；按观影日期从早到晚排，第 2 册起封面会换颜色。看过的影片多了，在「我的」里点「护照书架」切换不同册。": "Each passport holds up to 285 stamps (20 pages); when it is full a new volume begins. Stamps run by viewing date, and covers change colour from Volume 2. Open \u201cPassport shelf\u201d under Me to switch volumes once you have more than one.",
+  "每本护照最多 285 枚印章（20 页），满了自动换下一册；按观影日期从早到晚排，第 2 册起封面会换颜色。看过的影片多了，在「我的」里点「护照书架」切换不同册。": "Each passport holds up to 285 stamps (20 pages); when it is full a new volume begins. Stamps run by viewing date, and covers change colour from Volume 2. Open “Passport shelf” under Me to switch volumes once you have more than one.",
   "翻开护照": "Open the passport",
   "在「我的」里展开「我的观影护照」，点封面即可翻开；左右滑动或点上一页 / 下一页翻页。iPad 横屏、折叠屏展开时，会像书一样左右两页同时翻开。": "Expand “My film passport” under Me and tap the cover. Swipe or use Previous / Next to turn pages. On iPad landscape or an unfolded foldable it opens as a two-page spread, like a real book.",
   "在影片页点「看过」，护照里就会盖下这部片的印章；每部片的印章形状和颜色各不相同，点印章可以回到影片页。": "Tap “Watched” on a film page to stamp it into your passport. Every film gets its own stamp shape and colour; tap a stamp to jump back to the film.",
@@ -8466,6 +8465,10 @@
   "个伙伴站点 · 更多陆续加入": "partner sites · more to come",
   "点按复制链接，到浏览器打开。": "Tap to copy the link, then open it in a browser.",
   "去全球看电影，别忘了顺路吃点美食。": "Watching films around the world? Save room for a great meal.",
-  "收录全球米其林餐厅，可标记想去、记录去过，让每座城市的电影与美味同行。": "A global Michelin restaurant directory: mark places you want to try, log the ones you've been, and pair every city's cinema with its table."
+  "收录全球米其林餐厅，可标记想去、记录去过，让每座城市的电影与美味同行。": "A global Michelin restaurant directory: mark places you want to try, log the ones you've been, and pair every city's cinema with its table.",
+  "用微信登录自动保存档案：换手机、重装小程序都不会丢，也可以用同步码和网站互通。": "Sign in with WeChat to keep your passport safe — switching phones or reinstalling the mini program won't lose it, and you can link the website with a sync code.",
+  "用微信登录并同步": "Sign in with WeChat & sync",
+  "微信已登录 · ": "WeChat signed in · ",
+  "同一个微信在任何手机上打开小程序都会自动连到这份档案。网站没有微信登录：在网站「我的」页选「我已有同步码」，输入这串码即可。同步码就是钥匙，请自己保存好；知道它的人都能读写这份档案。": "Opening the mini program with the same WeChat account on any phone reconnects to this passport automatically. The website has no WeChat sign-in: on its My page choose \"I have a sync code\" and enter this code. The code is the key — keep it safe; anyone who has it can read and write this passport."
  }
 }
