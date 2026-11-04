@@ -135,3 +135,26 @@ button:focus-visible,summary:focus-visible,a:focus-visible{outline:3px solid var
   .dchip b{font-size:18px}
   .tt-cap b{font-size:15px}
 }
+
+/* 手机窄屏：影片详情页字号缩小一档 */
+@media(max-width:650px){
+  .fd-st{margin-bottom:10px;padding-bottom:6px}
+  .fd-st span{font-size:17px}
+  .fd-syn p,.fd-dcard p,.fd-ctx p{font-size:14px;line-height:1.8;margin-bottom:10px}
+  .fd-syn>p:first-child::first-letter{font-size:2.2em}
+  .fd-watch li{grid-template-columns:34px 1fr;gap:10px;padding:12px}
+  .fd-watch span{font-size:22px}
+  .fd-watch p{font-size:13.5px;line-height:1.7}
+  .fd-dcard{padding:14px}.fd-av{width:44px;height:44px;font-size:18px}
+  .fd-dcard b{font-size:15px}
+  .fd-ctx::before{font-size:44px;top:-14px}
+  .fd-h{font-size:12.5px}
+  .fd-rt b{font-size:16px}
+  .fd-tdate b{font-size:24px}.fd-tdate small{font-size:10.5px}.fd-tdate span{font-size:11px}
+  .fd-ticket{grid-template-columns:64px 1fr}
+  .fd-ttime b{font-size:17px}.fd-ttime .end{font-size:14px}.fd-ttime span{font-size:13px}
+  .fd-tbody{padding:10px 12px}
+  .fd-tbody>small{font-size:11.5px}
+  .fd-add,.fd-see{height:30px;font-size:12px;padding:0 10px}
+  .fd-hy{font-size:12px}
+}
