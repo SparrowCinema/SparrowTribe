@@ -8505,6 +8505,7 @@
   "① iPhone 请用自带的 Safari 打开这个网址（谷歌等浏览器无法一键导入日历）；安卓用谷歌浏览器或自带浏览器都可以。": "① On iPhone, open this link in Safari (Chrome and other browsers cannot import to the calendar in one tap); on Android, Chrome or the built-in browser both work.",
   "② 进入「导出与分享」，点「导入日历」：iPhone 直接导入；安卓会下载日历文件，点开用「日历」打开，全部排片一次导入。": "② Go to \"Export & share\" and tap \"Add to calendar\": iPhone imports directly; Android downloads a calendar file — open it with Calendar to import every screening at once.",
   "③ 建议先添加到手机桌面（iPhone 点「分享」→「添加到主屏幕」），以后像 App 一样直接打开。": "③ Tip: add it to your Home Screen first (iPhone: Share → \"Add to Home Screen\") so you can open it like an app later.",
-  "① 用手机浏览器打开这个网址：Safari、谷歌浏览器、安卓自带浏览器都可以一键订阅。": "① Open this link in your phone browser — Safari, Chrome and the Android built-in browser can all subscribe in one tap."
+  "① 用手机浏览器打开这个网址：Safari、谷歌浏览器、安卓自带浏览器都可以一键订阅。": "① Open this link in your phone browser — Safari, Chrome and the Android built-in browser can all subscribe in one tap.",
+  "排片表批量导入日历": "Batch-add schedule to calendar"
  }
 }
