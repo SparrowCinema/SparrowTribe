@@ -9,7 +9,7 @@ const showDate = s => { const [m, d] = s.d.split('/').map(Number); const [h, mi]
 const POSTERS = 'wild-strawberries dogville sirat swordsman swordsman-2 leningrad-cowboys turin-horse a-better-tomorrow long-live-the-missus bullets-over-broadway green-green-grass blood-simple spring-in-a-small-town mon-oncle where-is-the-friends-house the-sacrifice faces-places kill-bill-whole-bloody-affair the-odyssey linka-linka happy-birthday dune-part-three avengers-doomsday john-wick we-live-in-time for-better-or-worse resident-evil'.split(' ');
 const poster = f => f.posterUrl || (POSTERS.includes(f.id) ? `/images/posters/${f.id}.jpg` : '');
 const TICKETS = POSTERS.slice(0, 17); // 只有风格万相 17 部有购票码
-const ticket = f => f.ticketUrl || (TICKETS.includes(f.id) ? `/images/tickets/${f.id}.jpg` : '');
+const ticket = f => f.ticketUrl || ''; // 购票码走网站在线图（离线时不显示），不再打进小程序包
 const durText = m => I.tr(m < 60 ? m + ' 分钟' : Math.floor(m / 60) + ' 小时' + (m % 60 ? ' ' + (m % 60) + ' 分' : ''));
 
 // 每部影片一种柔和浅色：按片目顺序以黄金角拉开色相
