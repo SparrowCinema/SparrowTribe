@@ -188,6 +188,22 @@
     }
 
     // 页脚
+    if (o.qrImg) { // 小程序：深色通栏铺满左右与底边，右侧小程序码
+      const fy = y + 30, hb = H - fy; c.fillStyle = C.ink; c.fillRect(0, fy, W, hb);
+      const Q = 270, qx = W - P - Q, qy = fy + (hb - Q) / 2, tw = qx - P - 40;
+      c.fillStyle = '#fffaf0'; c.font = '700 38px ' + SANS; c.fillText(o.en ? 'Search “麻雀观影护照”' : '微信搜索「麻雀观影护照」', P, fy + 92);
+      c.font = '400 24px ' + SANS; c.globalAlpha = 0.8; wrapLines(c, T('盖下你的下一枚观影印章 · 记录每一场银幕'), tw).slice(0, 2).forEach((l, i) => c.fillText(l, P, fy + 140 + i * 34)); c.globalAlpha = 1;
+      c.fillStyle = '#fffaf0'; rr(c, qx, qy, Q, Q, Q / 2); c.fill();
+      c.save(); c.beginPath(); c.arc(qx + Q / 2, qy + Q / 2, Q / 2 - 10, 0, Math.PI * 2); c.clip(); c.drawImage(o.qrImg, qx + 10, qy + 10, Q - 20, Q - 20); c.restore();
+      const R = 44, cy = fy + hb - 52 - R;
+      (o.marks || []).forEach((im, i) => {
+        const cx = P + R + i * (R * 2 + 18); c.fillStyle = '#fffaf0'; c.beginPath(); c.arc(cx, cy, R, 0, Math.PI * 2); c.fill();
+        if (im) { const k = Math.min((R * 1.5) / im.width, (R * 1.5) / im.height), w = im.width * k, h = im.height * k; c.drawImage(im, cx - w / 2, cy - h / 2, w, h); }
+      });
+      const bx = P + 2 * (R * 2 + 18) + 12; c.fillStyle = '#e0b9a6'; c.font = 'italic 900 28px ' + SERIF; c.fillText(T('麻雀观影护照'), bx, cy - 4);
+      c.fillStyle = '#fffaf0'; c.globalAlpha = 0.7; c.font = '400 20px ' + SANS; c.fillText(T('麻雀映画 × 麻雀部落'), bx, cy + 30); c.globalAlpha = 1;
+      return;
+    }
     const fy = y + 30; c.fillStyle = C.ink; rr(c, P, fy, W - 2 * P, L.FOOT - 90, 20); c.fill();
     let fx = P + 36;
     if (o.qr) {
