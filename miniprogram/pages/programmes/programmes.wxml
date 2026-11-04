@@ -18,18 +18,18 @@
 
   <block wx:if="{{live.length}}">
     <view class="blockh">{{L.t(i,'进行中')}} <text class="en">{{live.length}} · NOW ON</text></view>
-    <block wx:for="{{live}}" wx:key="id"><template is="pc" data="{{...item}}" /></block>
+    <view class="pgrid"><block wx:for="{{live}}" wx:key="id"><template is="pc" data="{{...item}}" /></block></view>
   </block>
   <block wx:if="{{soon.length}}">
     <view class="blockh">{{L.t(i,'即将开始')}} <text class="en">{{soon.length}} · COMING UP</text></view>
-    <block wx:for="{{soon}}" wx:key="id"><template is="pc" data="{{...item}}" /></block>
+    <view class="pgrid"><block wx:for="{{soon}}" wx:key="id"><template is="pc" data="{{...item}}" /></block></view>
   </block>
   <block wx:if="{{past.length}}">
     <view class="past-h" hover-class="hv" bindtap="togglePast">
       <text class="past-t">{{L.t(i,'往期专题')}}</text><text class="past-n">{{pastN}}</text>
       <view class="past-go"><text>{{pastOpen ? L.t(i,'收起') : L.t(i,'展开')}}</text><view class="past-ar {{pastOpen ? 'open' : ''}}" /></view>
     </view>
-    <block wx:if="{{pastOpen}}"><block wx:for="{{past}}" wx:key="id"><template is="pc" data="{{...item}}" /></block></block>
+    <view wx:if="{{pastOpen}}" class="pgrid"><block wx:for="{{past}}" wx:key="id"><template is="pc" data="{{...item}}" /></block></view>
   </block>
   <view wx:if="{{!total}}" class="empty card"><text class="eb">{{L.t(i,'专题整理中')}}</text><text class="es">{{L.t(i,'新的影展与放映专题会陆续上线。')}}</text></view>
 </view>
