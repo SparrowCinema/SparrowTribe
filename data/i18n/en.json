@@ -8484,6 +8484,7 @@
   "网址已复制": "Link copied",
   "用手机浏览器打开刚复制的网址，在专题页点「订阅日历」，就能一键订阅到系统日历，场次有调整会自动更新。": "Open the copied link in your phone browser and tap \"Subscribe calendar\" on the programme page to subscribe in one tap. Schedule changes update automatically.",
   "知道了": "Got it",
-  "用手机浏览器打开刚复制的网址，进入「导出与分享」，点「导入日历」，就能一次把全部排片导入系统日历。首次使用，请先在网页「我的」里用同步码连接：在小程序「我的 → 个人档案云端同步」复制同步码即可。": "Open the copied link in your phone browser, go to \"Export & share\" and tap \"Add to calendar\" to import every screening at once. First time only: connect the web page with your sync code (copy it from My › Personal archive sync in the mini program)."
+  "用手机浏览器打开刚复制的网址，进入「导出与分享」，点「导入日历」，就能一次把全部排片导入系统日历。首次使用，请先在网页「我的」里用同步码连接：在小程序「我的 → 个人档案云端同步」复制同步码即可。": "Open the copied link in your phone browser, go to \"Export & share\" and tap \"Add to calendar\" to import every screening at once. First time only: connect the web page with your sync code (copy it from My › Personal archive sync in the mini program).",
+  "按天查看日程 · 导出长图 · 导入日历 · 分享": "Daily schedule · long image · add to calendar · share"
  }
 }
