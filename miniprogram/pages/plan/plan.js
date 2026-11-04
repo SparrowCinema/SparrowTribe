@@ -108,7 +108,7 @@ Page({
     let done = {}; try { done = wx.getStorageSync('sk-cal-done') || {}; } catch (e) { }
     const todo = (this._list || []).filter(s => !U.ended(s, idx) && !done[U.keyOf(s)]);
     if (!todo.length) { wx.showToast({ title: t((this._list || []).length ? '没有需要新加入的场次' : '这个专题还没有加入场次'), icon: 'none' }); return; }
-    wx.showModal({ title: t('导入手机日历'), content: I.isEn() ? 'Add ' + todo.length + ' upcoming screenings to your phone calendar (1-hour reminder)? Ones already added are skipped.' : '把 ' + todo.length + ' 场还没放映的排片加入手机日历（开场前 1 小时提醒）？已加入过的不会重复添加。', confirmText: t('导入'), cancelText: t('取消'), success: async r => {
+    wx.showModal({ title: t('排片表批量导入日历'), content: I.isEn() ? 'Add ' + todo.length + ' upcoming screenings to your phone calendar (1-hour reminder)? Ones already added are skipped.' : '把 ' + todo.length + ' 场还没放映的排片加入手机日历（开场前 1 小时提醒）？已加入过的不会重复添加。', confirmText: t('导入'), cancelText: t('取消'), success: async r => {
       if (!r.confirm) return;
       this.calBusy = true; let ok = 0, stop = false;
       for (const s of todo) {
