@@ -8,12 +8,13 @@ const _ = db.command;
 function cleanWatched(w) {
   const out = {};
   if (!w || typeof w !== 'object') return out;
-  Object.keys(w).slice(0, 2000).forEach(id => {
+  Object.keys(w).slice(0, 12000).forEach(id => {
     const r = w[id]; if (!/^[\w-]{1,80}$/.test(id) || !r || typeof r !== 'object') return;
     const t = Number(r.t) || 0;
     if (r.del) { out[id] = { del: 1, t }; return; }
     if (!/^\d{4}-\d{2}-\d{2}$/.test(String(r.d || ''))) return;
     out[id] = { d: r.d, r: Math.max(0, Math.min(10, Math.round(Number(r.r) || 0))), k: typeof r.k === 'string' ? r.k.slice(0, 80) : '', t };
+    if (typeof r.f === 'string' && /^[\w-]{1,20}$/.test(r.f)) out[id].f = r.f;   // 放映版本（可选）
   });
   return out;
 }

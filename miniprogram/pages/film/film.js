@@ -1,6 +1,7 @@
 const U = require('../../utils/util.js');
 const plan = require('../../utils/plan.js');
 const W = require('../../utils/watched.js');
+const G = require('../../utils/growth.js');
 const I = require('../../utils/i18n.js');
 const t = I.tr;
 const app = getApp();
@@ -76,7 +77,13 @@ Page({
   buildMine() {
     const data = app.globalData.data, idx = U.index(data), rec = W.get(this.id), r = rec ? rec.r || 0 : 0, s = rec ? W.showOf(rec, data) : null;
     this.setData({ mine: { seen: !!rec, r, d: rec ? rec.d : '', today: W.iso(new Date()), stars: [1, 2, 3, 4, 5].map(i => Math.max(0, Math.min(2, r - (i - 1) * 2)) * 50),
-      at: s ? W.vShort(idx.VN[s.v]) + ' · ' + s.t : t('未关联场次'), seenTxt: t(rec ? '已看过 · 已盖章' : '＋ 看过'), scoreTxt: r ? r + '/10' : t('点星打分') } });
+      at: s ? W.vShort(idx.VN[s.v]) + ' · ' + s.t : t('未关联场次'), seenTxt: t(rec ? '已看过 · 已盖章' : '＋ 看过'), scoreTxt: r ? r + '/10' : t('点星打分'),
+      fmtRange: [I.isEn() ? 'Not set' : '未填写'].concat(G.FORMATS.map(x => I.isEn() ? x.en : x.zh)), fmtIdx: rec && rec.f ? 1 + G.FORMATS.findIndex(x => x.id === rec.f) : 0 } });
+  },
+  setFmt(e) {
+    const rec = W.get(this.id), k = +e.detail.value; if (!rec) return;
+    const o = Object.assign({}, rec); delete o.f; if (k > 0) o.f = G.FORMATS[k - 1].id;
+    W.set(this.id, o); wx.showToast({ title: t('放映版本已更新'), icon: 'none' });
   },
   toggleSeen() {
     if (W.get(this.id)) {

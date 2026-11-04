@@ -6,11 +6,12 @@ const R = require('../../utils/recap.js');
 const I = require('../../utils/i18n.js');
 const SY = require('../../utils/sync.js');
 const Backup=require('../../utils/profile-backup.js');
+const G = require('../../utils/growth.js');
 const t = I.tr;
 const app = getApp();
 
 Page({
-  data: {friendOpen:false,friends:[{u:'https://sparrowcinema.github.io/michelin-guide/',img:'/images/brand/friend-michelin.png',n:'全球米其林美食护照',g:'去全球看电影，别忘了顺路吃点美食。',d:'收录全球米其林餐厅，可标记想去、记录去过，让每座城市的电影与美味同行。'}],collectionOpen:false,todayExpanded:false,careOpen:false,todayRows:[], i: {}, pp: {}, ppOpen: false, ppPage: 0, ppVol: 0, ppShelf: false, wide: false, ppSp: 0, ppK: 1, ppH: 0, ppCH: 0, ppCK: 1, spreads: [], ppLabel: '', rc: {}, rcOpen: false, rcY: 'all', rcM: 'all', rcP: 'all', guideOpen: false, fbOpen: false, guide: [{ k: '翻开护照', s: '在「我的」里展开「我的观影护照」，点封面即可翻开；左右滑动或点上一页 / 下一页翻页。iPad 横屏、折叠屏展开时，会像书一样左右两页同时翻开。' }, { k: '看过 · 盖章', s: '在影片页点「看过」，护照里就会盖下这部片的印章；每部片的印章形状和颜色各不相同，点印章可以回到影片页。' }, { k: '评分与观影日期', s: '每部片可打 0–10 分（半颗星为 1 分），分数会印在章上；观影日期默认取你已放映的排片场次，也可以手动改成真正看的那天。' }, { k: '写下持有人', s: '护照首页点姓名可以改成自己的名字，也能从相册放一张照片；姓名会同步显示在护照底部的机读码里。' }, { k: '资料页与印章页', s: '资料页汇总看过影片、专题、影院数、平均评分、首枚与最近印章和银幕总时长；印章每页最多 15 枚，满页后自动翻到下一页。' }, { k: '分册与书架', s: '每本护照最多 285 枚印章（20 页），满了自动换下一册；按观影日期从早到晚排，第 2 册起封面会换颜色。看过的影片多了，在「我的」里点「护照书架」切换不同册。' }, { k: '个人排片', s: '在排片表点色块右上角的 + 加入场次；「我的」里会按天列出日程并自动检查时间冲突，首页甘特图可以只看我的排片，也能按专题筛选。' }, { k: '筛选多选', s: '排片页和片目页的筛选都可以多选，比如同时看几天、几家影院或几个专题，更快找到想看的场次。' }, { k: '已加入与已看过', s: '在「我的」里可以单独打开「已加入排片」和「已看过」两份片单，回顾想看的与看过的。' }, { k: '导出与分享', s: '把排片生成带二维码的长图、分享链接或加入日历（网页版另支持 PDF），发给一起看片的朋友。' }, { k: '结算长图', s: '护照页底部「生成我的影院观影结算」，可按年份、月份、专题筛选，生成一张印章墙长图，适合年终或每个影展后分享。' }, { k: '换设备不丢', s: '开启上方云端同步，另一台设备用同步码即可带走看过记录、评分、照片和排片。同步码请自己保管，丢失后无法凭姓名找回。' }, { k: '备份与恢复', s: '可以下载一份完整备份（含观影记录、评分、照片、姓名和排片，不含同步码），导入时会合并已有排片，同一影片以备份记录为准。' }, { k: '中英文与添加到手机', s: '右上角可切换中文 / English；网页版可「添加到手机」放到桌面像 App 一样用，在微信里则用浮窗；排片有误可在「反馈与纠错」告诉我们。' }] },
+  data: {friendOpen:false,friends:[{u:'https://sparrowcinema.github.io/michelin-guide/',img:'/images/brand/friend-michelin.png',n:'全球米其林美食护照',g:'去全球看电影，别忘了顺路吃点美食。',d:'收录全球米其林餐厅，可标记想去、记录去过，让每座城市的电影与美味同行。'}],collectionOpen:false,todayExpanded:false,careOpen:false,todayRows:[], i: {}, pp: {}, ppOpen: false, ppPage: 0, ppVol: 0, ppShelf: false, ppTab: 'stamps', lvAll: false, gr: {}, wide: false, ppSp: 0, ppK: 1, ppH: 0, ppCH: 0, ppCK: 1, spreads: [], ppLabel: '', rc: {}, rcOpen: false, rcY: 'all', rcM: 'all', rcP: 'all', guideOpen: false, fbOpen: false, guide: [{ k: '翻开护照', s: '在「我的」里展开「我的观影护照」，点封面即可翻开；左右滑动或点上一页 / 下一页翻页。iPad 横屏、折叠屏展开时，会像书一样左右两页同时翻开。' }, { k: '看过 · 盖章', s: '在影片页点「看过」，护照里就会盖下这部片的印章；每部片的印章形状和颜色各不相同，点印章可以回到影片页。' }, { k: '评分与观影日期', s: '每部片可打 0–10 分（半颗星为 1 分），分数会印在章上；观影日期默认取你已放映的排片场次，也可以手动改成真正看的那天。' }, { k: '写下持有人', s: '护照首页点姓名可以改成自己的名字，也能从相册放一张照片；姓名会同步显示在护照底部的机读码里。' }, { k: '资料页与印章页', s: '资料页汇总看过影片、专题、影院数、平均评分、首枚与最近印章和银幕总时长；印章每页最多 15 枚，满页后自动翻到下一页。' }, { k: '分册与书架', s: '每本护照最多 285 枚印章（20 页），满了自动换下一册；按观影日期从早到晚排，第 2 册起封面会换颜色。看过的影片多了，在「我的」里点「护照书架」切换不同册。' }, { k: '个人排片', s: '在排片表点色块右上角的 + 加入场次；「我的」里会按天列出日程并自动检查时间冲突，首页甘特图可以只看我的排片，也能按专题筛选。' }, { k: '筛选多选', s: '排片页和片目页的筛选都可以多选，比如同时看几天、几家影院或几个专题，更快找到想看的场次。' }, { k: '已加入与已看过', s: '在「我的」里可以单独打开「已加入排片」和「已看过」两份片单，回顾想看的与看过的。' }, { k: '导出与分享', s: '把排片生成带二维码的长图、分享链接或加入日历（网页版另支持 PDF），发给一起看片的朋友。' }, { k: '结算长图', s: '护照页底部「生成我的影院观影结算」，可按年份、月份、专题筛选，生成一张印章墙长图，适合年终或每个影展后分享。' }, { k: '换设备不丢', s: '开启上方云端同步，另一台设备用同步码即可带走看过记录、评分、照片和排片。同步码请自己保管，丢失后无法凭姓名找回。' }, { k: '备份与恢复', s: '可以下载一份完整备份（含观影记录、评分、照片、姓名和排片，不含同步码），导入时会合并已有排片，同一影片以备份记录为准。' }, { k: '中英文与添加到手机', s: '右上角可切换中文 / English；网页版可「添加到手机」放到桌面像 App 一样用，在微信里则用浮窗；排片有误可在「反馈与纠错」告诉我们。' }] },
   onLoad() { this.setData({ i: I.dict() }); this.measure(); this._rz = () => { this.measure(); this.buildSpreads(); }; wx.onWindowResize && wx.onWindowResize(this._rz); this.off1 = plan.onChange(() => this.build()); this.off2 = app.onData(() => { this.build(); this.buildPassport(); }); this.off3 = W.onChange(() => this.buildPassport()); },
   onUnload() { this._rz && wx.offWindowResize && wx.offWindowResize(this._rz); this.off1 && this.off1(); this.off2 && this.off2(); this.off3 && this.off3(); },
   onShow() { wx.setNavigationBarTitle({ title: t('我的观影护照') }); this.openPassportFromFilm(); this.build(); this.buildPassport(); this.buildSync(); if (!this.offS) this.offS = SY.onStatus(() => this.buildSync()); if (SY.stale()) SY.quiet(); },
@@ -45,7 +46,28 @@ Page({
       mrz1: 'P<SPARROW<FILM<PASSPORT<<' + (hn && !/[^\x00-\x7f]/.test(hn) ? hn.toUpperCase().replace(/[^A-Z]/g, '<').slice(0, 14) : 'CINEPHILE') + '<<<',
       mrz2: 'FILMS<' + String(st.n).padStart(3, '0') + '<<PROGS<' + String(st.progs).padStart(2, '0') + '<<AVG<' + (rated.length ? Math.round(st.avg * 10) : '00') + '<<' + (last ? last.rec.d.replace(/-/g, '') : '00000000') } });
     this.buildSpreads();
+    this.buildGrowth(list, idx);
   },
+  // ===== 成长：影迷等级 / 全球足迹 / 旅程纪念章（计算在 utils/growth.js，与网站共用） =====
+  buildGrowth(list, idx) {
+    const en = I.isEn(), nm = x => en ? x.en : x.zh, K = n => n >= 1000 ? (n % 1000 === 0 ? n / 1000 : +(n / 1000).toFixed(1)) + 'k' : String(n);
+    const rows = list.map(e => { const p = idx.progOf(e.f), v = e.s ? idx.VN[e.s.v] : null; return { id: e.id, d: e.rec.d, r: e.rec.r || 0, fmt: e.rec.f || '', min: e.f.min || 0, prog: p.id, city: (v && v.city) || p.city || '', venue: e.s ? e.s.v : '' }; });
+    const progs = (app.globalData.data.programmes || []).map(p => ({ id: p.id, name: p.name, en: p.en || '', kind: p.kind, city: p.city || '', total: Object.keys(idx.F).filter(k => idx.progOf(idx.F[k]).id === p.id).length }));
+    const g = G.compute(rows, { progs }), L = g.level, nb = g.nextBadge, lo = Math.max(0, L.index - 1);
+    const nbTxt = !nb ? '' : nb.group === 'collect' ? (en ? nb.left + '% to go' : '还差 ' + nb.left + '% 完成度') : nb.group === 'daily' ? (en ? '+' + nb.left + ' more in one day' : '单日再多看 ' + nb.left + ' 部') : en ? nb.left + nb.unit[1] + ' to go' : '还差 ' + nb.left + nb.unit[0];
+    this.setData({ gr: { n: g.n, lvName: L.cur ? nm(L.cur) : t('尚未入场'), lvSub: L.cur && !en ? L.cur.en : '', pct: L.pct,
+      lvLeft: !L.next ? t('已抵达最高等级') : !g.n ? t('盖下第一枚印章，就此入场') : en ? L.left + ' more to reach ' + L.next.en : '再看 ' + L.left + ' 部，升为「' + L.next.zh + '」',
+      stats: [[g.festivals, en ? 'festivals' : '影展'], [g.cities, en ? 'cities' : '城市'], [g.hours, t('银幕小时')], [g.earned, t('枚纪念章')]],
+      next: nb ? { grp: en ? nb.groupEn : nb.groupZh, name: nm(nb), txt: nbTxt, pct: nb.pct } : null,
+      ladder: (this.data.lvAll ? g.levels : g.levels.slice(lo, lo + 5)).map(l => ({ name: nm(l), sub: (en ? '' : l.en + ' · ') + l.n + (en ? (l.n === 1 ? ' film' : ' films') : ' 部'), st: l.current ? 'cur' : l.earned ? 'on' : l.next ? 'nx' : '', tag: l.current ? (en ? 'NOW' : '当前') : l.next ? (en ? 'NEXT' : '下一级') : '' })),
+      lvMore: this.data.lvAll ? (en ? 'Collapse' : '收起') : (en ? 'All ' + g.levels.length + ' levels · up to 10,000 films' : '查看全部 ' + g.levels.length + ' 个等级 · 最高 10000 部'),
+      geo: en ? g.countries + ' countries / regions · ' + g.continents + ' continents' : g.countries + ' 个国家 / 地区 · ' + g.continents + ' 个大洲',
+      cities: g.cityCards.map(c => ({ name: en ? c.en : c.name, country: en ? c.countryEn : c.country, n: c.n, bars: c.progs.map(p => ({ name: en && p.en ? p.en : p.name, seen: p.seen, total: p.total, pct: p.pct })) })),
+      medalSum: g.earned + ' / ' + g.total,
+      groups: g.groups.map(gr => ({ name: nm(gr), val: gr.value + (gr.id === 'collect' ? '' : ' ') + (en ? gr.unit[1] : gr.unit[0]), medals: gr.tiers.map(x => ({ n: K(x.n) + (gr.id === 'collect' ? '%' : ''), name: nm(x), st: x.earned ? 'on' : x.next ? 'next' : 'far', pct: x.pct })) })) } });
+  },
+  ppTabSw(e) { this.setData({ ppTab: e.currentTarget.dataset.t === 'growth' ? 'growth' : 'stamps' }); },
+  lvToggle() { this.setData({ lvAll: !this.data.lvAll }); this.buildPassport(); },
   // ===== 个人档案云端同步（同步码，与网站共用） =====
   buildSync() {
     const st = SY.state(), s = SY.status, rev = this._syShow;
