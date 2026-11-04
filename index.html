@@ -231,7 +231,14 @@ h2.sec{font-family:var(--f-display);font-weight:900;font-size:22px;margin:0 0 4p
 .pg-slot-count{font-size:10px;color:var(--muted)}
 .pg-slots .pg-slot{display:flex;flex-wrap:wrap;gap:3px 8px;margin:0;padding:5px 0;border-top:1px solid var(--line-soft)}
 .pg-slots .pg-slot small{flex-basis:100%;font:10px/1.5 var(--f-body);color:var(--muted);white-space:normal}
-.pg-slot-past{opacity:.65}
+.pg-slot-past{opacity:.5}
+.pg-past-t{display:inline-block;margin-top:6px;font-size:11px;color:var(--muted);cursor:pointer;padding:2px 0}
+.pg-past-t i{font-style:normal;display:inline-block;transition:transform .2s}
+.pg-past.open .pg-past-t i{transform:rotate(180deg)}
+.pg-past-l{display:none;flex-direction:column;gap:5px;opacity:.55}
+.pg-past.open .pg-past-l{display:flex}
+.pg-past-l .pg-slot-past{opacity:1}
+.pg-past{display:block}
 /* films list */
 .film-language{display:block;margin-top:4px;color:var(--teal);font-size:11px;line-height:1.7;overflow-wrap:anywhere}
 
@@ -1355,6 +1362,7 @@ const PATS=[
  [/(\d+)\s*家/g,(m,n)=>pl(n,"cinema","cinemas")],
  [/(\d+)\s*天行程/g,(m,n)=>pl(n,"day","days")],
  [/(\d+)\s*天/g,(m,n)=>pl(n,"day","days")],
+ [/已放映 (\d+) 场/g,(m,n)=>"Screened "+n],
  [/(\d+)\s*个已结束/g,(m,n)=>n+" ended"],
  [/(\d+)\s*个进行中或即将开始/g,(m,n)=>n+" now showing or coming soon"],
  [/(\d+)\s*小时/g,(m,n)=>n+"h"],
@@ -2650,10 +2658,16 @@ window.addEventListener("online",refreshProgrammeData);
 window.addEventListener("pageshow",refreshProgrammeData);
 function programmeFilmSlots(f,pid){
  const all=SH.filter(s=>s.id===f.id&&s.p===pid).sort((a,b)=>showDate(a)-showDate(b));
- const upcoming=all.filter(s=>!isPast(s)),list=upcoming.length?upcoming:all;
- if(!list.length)return '<span class="pg-slot pg-unscheduled">场次待公布</span>';
- return '<span class="pg-slots"><span class="pg-slot-count">'+(upcoming.length?"待映 ":"已放映 ")+list.length+' 场</span>'+list.map(s=>'<span class="pg-slot'+(isPast(s)?' pg-slot-past':'')+'" aria-label="'+esc(s.d+' '+s.t+' '+placeOf(s))+'"><time>'+esc(s.d.split("/").map(n=>n.padStart(2,"0")).join("."))+'</time><time>'+esc(s.t)+'</time><small>'+placeHTML(s)+'</small></span>').join("")+'</span>';
+ const upcoming=all.filter(s=>!isPast(s)),past=all.filter(isPast),fest=isFest(PG[pid]);
+ const list=(upcoming.length&&fest)||!upcoming.length?(upcoming.length?upcoming:all):upcoming;
+ if(!all.length)return '<span class="pg-slot pg-unscheduled">场次待公布</span>';
+ const row=s=>'<span class="pg-slot'+(isPast(s)?' pg-slot-past':'')+'" aria-label="'+esc(s.d+' '+s.t+' '+placeOf(s))+'"><time>'+esc(s.d.split("/").map(n=>n.padStart(2,"0")).join("."))+'</time><time>'+esc(s.t)+'</time><small>'+placeHTML(s)+'</small></span>';
+ // 影展：已放映的场次折叠保留（变暗），点「已放映 N 场」展开；院线片不显示
+ const fold=fest&&upcoming.length&&past.length?'<span class="pg-past"><span class="pg-past-t" role="button" tabindex="0" data-pgpast aria-expanded="false">已放映 '+past.length+' 场 <i>▾</i></span><span class="pg-past-l">'+past.map(row).join("")+'</span></span>':"";
+ return '<span class="pg-slots"><span class="pg-slot-count">'+(upcoming.length?"待映 ":"已放映 ")+list.length+' 场</span>'+list.map(row).join("")+fold+'</span>';
 }
+document.addEventListener("click",e=>{const b=e.target.closest("[data-pgpast]");if(!b)return;e.preventDefault();e.stopPropagation();const w=b.parentElement,o=w.classList.toggle("open");b.setAttribute("aria-expanded",o);},true);
+document.addEventListener("keydown",e=>{if((e.key==="Enter"||e.key===" ")&&e.target.matches&&e.target.matches("[data-pgpast]")){e.preventDefault();e.stopPropagation();e.target.click();}},true);
 async function boot(){
   await startI18n();
   topEl.innerHTML=brandBar();
