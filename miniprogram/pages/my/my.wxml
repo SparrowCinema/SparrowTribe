@@ -120,7 +120,6 @@ ONE STAMP</text><text class="fp-open-icon">↗</text></view>
   </view>
   <view class="me-row" hover-class="hv" bindtap="openRecap"><image class="me-ic" src="/images/menu/recap.svg" mode="aspectFit" /><view class="me-copy"><text class="me-t">{{L.t(i,'我的影院观影结算')}}</text><text class="me-s">{{L.t(i,'按年份与专题，收藏印章与评分。')}}</text></view><text class="me-go">›</text></view>
   <view class="me-row" hover-class="hv" bindtap="toPlan"><image class="me-ic" src="/images/menu/plan.svg" mode="aspectFit" /><view class="me-copy"><text class="me-t">{{L.t(i,'个人排片')}}</text><text class="me-s">{{planSub}}</text></view><text class="me-go">›</text></view>
-  <view class="me-row" hover-class="hv" bindtap="toDesktop"><image class="me-ic" src="/images/menu/desktop.svg" mode="aspectFit" /><view class="me-copy"><text class="me-t">{{L.t(i,'添加到手机桌面')}}</text><text class="me-s">{{L.t(i,'网页版像 App 一样用 · 一键导入日历、订阅专题')}}</text></view><text class="me-go">›</text></view>
   <view class="me-row" hover-class="hv" bindtap="toggleSync"><image class="me-ic" src="/images/menu/sync.svg" mode="aspectFit" /><view class="me-copy"><text class="me-t">{{L.t(i,'个人档案云端同步')}}</text><text class="me-s">{{sy.on ? sy.line : L.t(i,'同步、备份与档案保管')}}</text></view><text class="me-go {{syncExpanded?'on':''}}">›</text></view>
   <view wx:if="{{syncExpanded}}" class="me-body sync-body">
    <block wx:if="{{sy}}">
