@@ -78,12 +78,12 @@ ONE STAMP</text><text class="fp-open-icon">↗</text></view>
       <view wx:if="{{pp.nv>1}}" class="fp-shelfbtn" hover-class="hv" bindtap="ppShelfOpen">{{pp.shelfTxt}}</view>
     </view>
     <block wx:elif="{{!wide}}">
-      <swiper class="fp-book" current="{{ppPage}}" bindchange="ppChange" easing-function="easeOutCubic" duration="420">
-        <swiper-item>
-          <template is="fp-id" data="{{pp,i}}" />
+      <swiper class="fp-book" current="{{ppPage}}" bindchange="ppChange" bindtransition="ppTrans" bindanimationfinish="ppSettle" easing-function="easeOutCubic" duration="420">
+        <swiper-item style="z-index:{{fz[0]||0}}">
+          <view class="fp-fx" style="{{fx[0]||''}}"><template is="fp-id" data="{{pp,i}}" /></view>
         </swiper-item>
-        <swiper-item wx:for="{{pp.pages}}" wx:for-item="pg" wx:key="no">
-          <template is="fp-visa" data="{{pg,pp,i}}" />
+        <swiper-item wx:for="{{pp.pages}}" wx:for-item="pg" wx:key="no" style="z-index:{{fz[index + 1]||0}}">
+          <view class="fp-fx" style="{{fx[index + 1]||''}}"><template is="fp-visa" data="{{pg,pp,i}}" /></view>
         </swiper-item>
       </swiper>
       <view class="fp-nav">
