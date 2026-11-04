@@ -114,3 +114,24 @@ button:focus-visible,summary:focus-visible,a:focus-visible{outline:3px solid var
 
 /* 片目筛选条：宽屏一排 6 项，字号小一档 */
 @media(min-width:760px){.library-filterbar{grid-template-columns:repeat(6,minmax(0,1fr))}.library-filterbar>.schedule-filter{padding:9px 11px;gap:5px}.library-filterbar>.schedule-filter:nth-child(n+4){border-top:0}.library-filterbar>.schedule-filter:nth-child(3n+1){border-left:1px solid var(--line)}.library-filterbar>.schedule-filter:first-child{border-left:0}.library-filterbar .schedule-filter small{font-size:9px;margin-bottom:4px}.library-filterbar .schedule-filter b{font-size:12px}}
+
+/* 手机窄屏：标题与卡片字号整体缩小一档（我的 / 排片首页） */
+@media(max-width:650px){
+  h2.sec{font-size:21px;line-height:1.3}
+  .sub,.my-page-head p{font-size:12.5px;line-height:1.6;margin-bottom:12px}
+  .my-page-head{margin-bottom:16px}
+  .my-dashboard .my-menu .my-entry{min-height:72px;padding:14px 16px;gap:13px}
+  .my-dashboard .my-menu .menu-copy b,.my-dashboard .my-entry b{font-size:15px;line-height:1.4}
+  .my-dashboard .my-menu .menu-copy small,.my-dashboard .my-entry small{font-size:12px;line-height:1.5}
+  .my-dashboard .guide-card>summary{font-size:15px;padding:14px 16px}
+  .me-go{font-size:20px}
+  .my-today .blockh,.my-dashboard .my-today .blockh{font-size:16px;margin-bottom:10px}
+  .my-dashboard .my-today .blockh small,.my-today .blockh small{font-size:12px}
+  .pday-h b{font-size:16px}.pday-h span{font-size:13px}.pday-h small{font-size:11.5px}
+  .ptime b{font-size:15px}.ptime small{font-size:11px}
+  .ptitle b,.my-dashboard .my-today .ptitle{font-size:14.5px}
+  .my-dashboard .my-today .pvenue{font-size:12.5px}.my-dashboard .my-today .pinfo>small{font-size:12px}
+  .my-today{padding:12px 12px 10px}
+  .dchip b{font-size:18px}
+  .tt-cap b{font-size:15px}
+}
