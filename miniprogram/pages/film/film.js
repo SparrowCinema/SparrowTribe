@@ -34,7 +34,7 @@ Page({
       return Object.assign(v, { progTag: multi ? U.progForShow(s, idx).name : '', m, dd: d, mon: t(m + '月'), vid: s.v, geo: !!U.geoOf(idx.VN[s.v]) });
     });
     // 影展内已放映的场次：窄条保留（黑白、无操作按钮）；院线片不显示
-    const goneShows = allShows.filter(s => U.ended(s, idx) && U.isFest(U.progForShow(s, idx))).sort((a, b) => U.showDate(a) - U.showDate(b)).map(s => {
+    const goneShows = allShows.filter(s => U.ended(s, idx) && U.keepPast(U.progForShow(s, idx))).sort((a, b) => U.showDate(a) - U.showDate(b)).map(s => {
       const v = U.showView(s, idx, data, picked);
       return { key: v.key, d: s.d.replace('/', '.'), wk: v.wk, t: v.t, end: v.end, place: [v.venue, v.hall].filter(Boolean).join(' · ') };
     });

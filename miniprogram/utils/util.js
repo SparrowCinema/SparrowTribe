@@ -20,6 +20,7 @@ const nextShowOf = (f, shows) => shows.filter(s => s.id === f.id && showDate(s).
 // 片单排序：有待放映场次的在前，按下一场放映时间先后；无场次的按上映日期从新到旧
 const filmOrder = shows => (a, b) => { const na = nextShowOf(a, shows), nb = nextShowOf(b, shows); if (!!na !== !!nb) return na ? -1 : 1; if (na && nb) return showDate(na) - showDate(nb); return relTime(b) - relTime(a); };
 // 专题是否为影展类（影展在前，院线在后）
+const keepPast = p => !!p && /影展|festival|艺术电影空间/i.test(p.kind || '');
 const isFest = p => !!p && /影展|festival/i.test(p.kind || '');
 const langSub = f => I.tr(f.langTag || [f.language, f.subtitles].filter(Boolean).join(' ｜ '));
 
@@ -116,4 +117,4 @@ const SITE_URL = 'https://sparrowcinema.github.io/SparrowTribe/';
 const webTip = (hash, lines, t, title) => {
   wx.setClipboardData({ data: SITE_URL + (hash || ''), success: () => wx.showModal({ title: t(title || '网页版地址已复制'), content: lines.map(x => t(x)).join('\n'), showCancel: false, confirmText: t('知道了') }) });
 };
-module.exports = { webTip, calSub, geoOf, distKm, transfer, openMap, progForShow, durationOf, progInfo, qaOf, ended, isFest, relTime, nextShowOf, filmOrder, filmTone, langSub, WK, year, wk, toMin, fmt, keyOf, showDate, poster, ticket, durText, index, showView };
+module.exports = { webTip, calSub, geoOf, distKm, transfer, openMap, progForShow, durationOf, progInfo, qaOf, ended, isFest, keepPast, relTime, nextShowOf, filmOrder, filmTone, langSub, WK, year, wk, toMin, fmt, keyOf, showDate, poster, ticket, durText, index, showView };
