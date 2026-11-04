@@ -402,3 +402,22 @@
 .mc-b { flex: none; display: flex; flex-direction: column; align-items: center; gap: calc(4 * var(--r)); padding: calc(14 * var(--r)) calc(28 * var(--r)); margin-right: calc(12 * var(--r)); border-radius: calc(24 * var(--r)); border: calc(2 * var(--r)) solid var(--line); background: var(--surface); color: var(--muted); }
 .mc-n { font-size: calc(26 * var(--r)); font-weight: 600; } .mc-c { font-size: calc(20 * var(--r)); opacity: .8; }
 .mc-b.on { color: var(--accent); border-color: var(--accent); }
+
+/* 横屏 / 折叠屏内屏（>600px）：「我的」菜单两列，与网页横版一致；展开的内容占满整行 */
+@media (min-width: 600px) {
+  .menu.card { display: grid; grid-template-columns: 1fr 1fr; grid-auto-flow: row dense; gap: calc(24 * var(--r)); background: transparent; border: 0; border-radius: 0; overflow: visible; box-shadow: none; }
+  .menu > .me-row { border: calc(2 * var(--r)) solid var(--line); border-radius: calc(24 * var(--r)); background: var(--surface); box-sizing: border-box; }
+  .menu > .me-row:first-child { border-top: calc(2 * var(--r)) solid var(--line); }
+  .menu > .me-body { grid-column: 1 / -1; border: calc(2 * var(--r)) solid var(--line); border-radius: calc(24 * var(--r)); overflow: hidden; }
+}
+/* 宽窗口（≥840px）护照封面页：封面在左，数据在右 */
+.fp-stage.wide .fp-cover { left: 26%; }
+.fp-stage.wide .fp-cap, .fp-stage.wide .fp-tallies, .fp-stage.wide .fp-shelfbtn { margin-left: 52%; width: 44%; box-sizing: border-box; }
+.fp-stage.wide .fp-cap { margin-top: calc(40 * var(--r)); text-align: left; }
+.fp-stage.wide .fp-tallies { flex-wrap: wrap; margin-top: calc(28 * var(--r)); }
+.fp-stage.wide .fp-tallies > view { flex: 0 0 50%; box-sizing: border-box; padding: calc(22 * var(--r)) calc(28 * var(--r)); }
+.fp-stage.wide .fp-tallies > view + view { border-left: 0; }
+.fp-stage.wide .fp-tallies > view:nth-child(even) { border-left: calc(2 * var(--r)) solid var(--line-soft); }
+.fp-stage.wide .fp-tallies > view:nth-child(n+3) { border-top: calc(2 * var(--r)) solid var(--line-soft); }
+.fp-stage.wide .fp-shelfbtn { text-align: center; }
+.fp-stage.wide { align-items: flex-start; }

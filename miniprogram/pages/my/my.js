@@ -135,9 +135,9 @@ Page({
   // 折叠屏展开 / 宽窗口（≥840px）：护照像书一样左右两页；rpx 随屏宽放大，所以按 px 计算缩放
   measure() {
     let w = 375, h = 667; try { const wi = wx.getWindowInfo ? wx.getWindowInfo() : wx.getSystemInfoSync(); w = wi.windowWidth; h = wi.windowHeight; } catch (e) { }
-    const wide = w >= 840, nat = 1.6 * w;
+    const rp = w > 600 ? 0.552 : w / 750, wide = w >= 840, nat = 1200 * rp;
     const B = Math.min(w * 0.92, 940, Math.max(560, (h - 300) * 1.408)), k = B / nat;
-    const cw = Math.min(340, w * 0.4), ck = cw / (0.6133 * w);
+    const cw = Math.min(340, w * 0.4), ck = cw / (460 * rp);
     const d = { wide, ppK: k, ppH: Math.round(B * 0.71) + 4, ppCK: ck, ppCH: Math.round(cw * 1.422) + 6 };
     if (wide !== this.data.wide) { if (wide) d.ppSp = Math.floor(this.data.ppPage / 2); else d.ppPage = this.data.ppSp * 2; }
     this.setData(d);
