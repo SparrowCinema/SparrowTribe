@@ -1,9 +1,9 @@
 /* 通用「选择器」弹层（与网站检索弹窗一致）+ 触发按钮，供专题页、活动页使用 */
 .selector-mask{position:fixed;inset:0;z-index:1000;background:rgba(25,20,15,.23);display:flex;align-items:center;justify-content:center}
 .selector-panel{width:calc(100% - calc(48 * var(--r)));max-height:68vh;box-sizing:border-box;border:calc(1 * var(--r)) solid var(--line);border-radius:calc(32 * var(--r));background:var(--surface);padding:calc(30 * var(--r)) calc(16 * var(--r)) calc(16 * var(--r));box-shadow:0 calc(30 * var(--r)) calc(100 * var(--r)) #0002}
-.selector-head{display:flex;align-items:center;justify-content:space-between;padding:0 calc(16 * var(--r)) calc(22 * var(--r));font-size:calc(36 * var(--r));font-weight:700}
-.selector-close{width:calc(56 * var(--r));height:calc(56 * var(--r));line-height:calc(50 * var(--r));text-align:center;border-radius:50%;background:var(--bg);font-size:calc(42 * var(--r));color:var(--muted);font-weight:400}
-.selector-search{font-size:calc(28 * var(--r));margin:0 calc(16 * var(--r)) calc(20 * var(--r));padding:calc(20 * var(--r)) calc(24 * var(--r));border:calc(1 * var(--r)) solid var(--line);border-radius:calc(16 * var(--r));background:var(--bg)}
+.selector-head{display:flex;align-items:center;justify-content:space-between;padding:0 calc(16 * var(--r)) calc(22 * var(--r));font-size: calc(32.4 * var(--r));font-weight:700}
+.selector-close{width:calc(56 * var(--r));height:calc(56 * var(--r));line-height:calc(50 * var(--r));text-align:center;border-radius:50%;background:var(--bg);font-size: calc(35.3 * var(--r));color:var(--muted);font-weight:400}
+.selector-search{font-size: calc(26.3 * var(--r));margin:0 calc(16 * var(--r)) calc(20 * var(--r));padding:calc(20 * var(--r)) calc(24 * var(--r));border:calc(1 * var(--r)) solid var(--line);border-radius:calc(16 * var(--r));background:var(--bg)}
 .selector-results{height:44vh;max-height:44vh}
 .selector-option{display:flex;gap:calc(20 * var(--r));align-items:center;min-height:calc(88 * var(--r));box-sizing:border-box;padding:calc(20 * var(--r)) calc(24 * var(--r));border-radius:calc(16 * var(--r))}
 .selector-option.selected{background:#2f6f6c12}
@@ -13,5 +13,5 @@
 .selector-check{width:calc(32 * var(--r));color:var(--teal);flex-shrink:0}
 .selector-empty{padding:calc(44 * var(--r)) calc(20 * var(--r));text-align:center;color:var(--muted);font-size:calc(26 * var(--r))}
 .scope-btn{display:flex;align-items:center;gap:calc(16 * var(--r));margin:calc(20 * var(--r)) 0;padding:calc(22 * var(--r)) calc(26 * var(--r));border:calc(2 * var(--r)) solid var(--line);border-radius:calc(22 * var(--r));background:var(--surface)}
-.scope-copy{flex:1;min-width:0}.scope-copy .small{display:block;font-size:calc(22 * var(--r));color:var(--muted);margin-bottom:calc(6 * var(--r))}.scope-copy .b{display:block;font-size:calc(30 * var(--r));font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.scope-n{font-size:calc(22 * var(--r));color:var(--muted)}.scope-chev{font-size:calc(28 * var(--r));color:var(--muted)}
+.scope-copy{flex:1;min-width:0}.scope-copy .small{display:block;font-size:calc(22 * var(--r));color:var(--muted);margin-bottom:calc(6 * var(--r))}.scope-copy .b{display:block;font-size: calc(27 * var(--r));font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.scope-n{font-size:calc(22 * var(--r));color:var(--muted)}.scope-chev{font-size: calc(26.3 * var(--r));color:var(--muted)}
