@@ -1,7 +1,11 @@
 const U = require('../../utils/util.js');
 const plan = require('../../utils/plan.js');
 const I = require('../../utils/i18n.js');
+const Lib = require('../../utils/library.js');
 const t = I.tr;
+// 多选：pf / city / vf 是 'all' 或逗号连接的多个 id（同一筛选内为「或」）
+const sl = Lib.list, sh = Lib.has;
+const summ = (v, all, one, unit) => { const a = sl(v); return !a.length ? all : a.length === 1 ? one(a[0]) : t(a.length + ' ' + (I.isEn() && unit === '家影院' ? '家' : unit)); };
 const app = getApp();
 const K = 3.4; // 每分钟 3.4rpx（每小时约 204rpx，片名与版本标签都能完整显示）
 
@@ -42,7 +46,7 @@ Page({
   build() {
     const data = app.globalData.data, idx = U.index(data), picked = plan.get();
     const { pf, vf, city, venueQuery } = this.data;
-    const list = data.shows.filter(s => idx.F[s.id] && !U.ended(s, idx) && (pf === 'all' || U.progForShow(s, idx).id === pf) && (vf === 'all' || s.v === vf) && (city === 'all' || idx.VN[s.v].city === city) && (!this.data.onlyMine || picked.has(U.keyOf(s))));
+    const list = data.shows.filter(s => idx.F[s.id] && !U.ended(s, idx) && sh(pf, U.progForShow(s, idx).id) && sh(vf, s.v) && sh(city, idx.VN[s.v].city) && (!this.data.onlyMine || picked.has(U.keyOf(s))));
     // 首页顶部：今天我的排片中尚未散场的场次，按时间线排列
     const tk = new Date(), tkey = (tk.getMonth() + 1) + '/' + tk.getDate();
     // 今天还有没散场的就显示今天；今天都散场后顺延到之后最近一个有排片的日子（到了当天自动变回「今日」）
@@ -97,19 +101,19 @@ Page({
       const info = U.progInfo(p, data, idx);
       const fn = data.films.filter(f => !f.ev && idx.progOf(f).id === p.id || (p.sections||{})[f.id]).length;
       return Object.assign({}, p, { n: info.shows.length, fn, status: info.status });
-    }).filter(p => p.status !== 'ended' || p.id === pf);
+    }).filter(p => p.status !== 'ended' || sl(pf).includes(p.id));
     // 影院筛选：只列出当前专题里还有待放映场次的影院；只有一家时不显示
-    const upInProg = data.shows.filter(s => idx.F[s.id] && !U.ended(s, idx) && (pf === 'all' || U.progForShow(s, idx).id === pf));
-    const vlist = data.venues.filter(v => upInProg.some(s => s.v === v.id) || v.id === vf);
+    const upInProg = data.shows.filter(s => idx.F[s.id] && !U.ended(s, idx) && sh(pf, U.progForShow(s, idx).id));
+    const vlist = data.venues.filter(v => upInProg.some(s => s.v === v.id) || sl(vf).includes(v.id));
     const cities = [{id:'all', name:t('全部城市')}].concat([...new Set(data.venues.map(v => v.city).filter(Boolean))].map(id=>({id,name:t(id)})));
-    const venues = data.venues.filter(v => (city==='all'||v.city===city) && (!venueQuery || [v.city,v.name,v.short,...v.halls.map(h=>h.name)].join(' ').toLowerCase().includes(venueQuery.toLowerCase()))).map(v => {
+    const venues = data.venues.filter(v => sh(city, v.city) && (!venueQuery || [v.city,v.name,v.short,...v.halls.map(h=>h.name)].join(' ').toLowerCase().includes(venueQuery.toLowerCase()))).map(v => {
       const n = upInProg.filter(s => s.v === v.id).length;
       return { id: v.id, short: vShort(v), name: v.name, city: t(v.city||''), label: v.name.replace(new RegExp('^'+(v.city||'$^')),''), fmt: t((v.fmt || []).join(' · ')), n, halls: v.halls.length ? v.halls.map(h => h.name).join(' · ') : t('影厅待补充') };
     });
-    const vname = vf !== 'all' && idx.VN[vf] ? idx.VN[vf].name : t('当前筛选');
+    const vname = sl(vf).length === 1 && idx.VN[sl(vf)[0]] ? idx.VN[sl(vf)[0]].name : t('当前筛选');
     const venueGroups=data.venues.filter(v=>dl.some(s=>s.v===v.id)).map(v=>({id:v.id,name:vShort(v),halls:v.halls.filter(h=>dl.some(s=>s.v===v.id&&s.h===h.id)).map(h=>({id:h.id,name:h.short||h.name,rows:dl.filter(s=>s.v===v.id&&s.h===h.id).map(s=>{const r=U.showView(s,idx,data,picked);r.mpa=idx.F[s.id].mpa?.rating||'';return r;})}))}));
     this.setData({
-      venueGroups,day, days, cols, ticks, H, nowLine, progs, venues, myToday, cities, cityIndex: Math.max(0,cities.findIndex(c=>c.id===city)), venueName: vf==='all'?t('全部影院'):vShort(idx.VN[vf]), programmeName: pf==='all'?t('全部专题'):idx.PG[pf].name, cityName:city==='all'?t('全部城市'):t(city),
+      venueGroups,day, days, cols, ticks, H, nowLine, progs, venues, myToday, cities, cityIndex: Math.max(0,cities.findIndex(c=>c.id===city)), venueName: summ(vf, t('全部影院'), i => idx.VN[i] ? vShort(idx.VN[i]) : i, '家影院'), programmeName: summ(pf, t('全部专题'), i => idx.PG[i] ? idx.PG[i].name : i, '个专题'), cityName: summ(city, t('全部城市'), i => t(i), '座城市'),
       myTodayDay: nkey.replace('/', '/') + ' ' + U.wk(nkey), myTodayRange: myToday.length ? myToday[0].t + ' – ' + myToday[myToday.length - 1].end : '',
       todayHead: t(off <= 0 ? '今日我的排片' : off === 1 ? '明日我的排片' : '近期我的排片'),
       myTodayTitle: t(nkey.replace('/', '月') + '日') + ' ' + U.wk(nkey) + ' · ' + t(off <= 0 ? '接下来 ' + myToday.length + ' 场' : off === 1 ? myToday.length + ' 场' : off + ' 天后 · ' + myToday.length + ' 场'),
@@ -118,7 +122,7 @@ Page({
       dayList: dl.map(s => U.showView(s, idx, data, picked)),
       dayTitle: day ? t(day.replace('/', '月') + '日') + ' ' + U.wk(day) : '',
       hallCount: new Set(dl.map(s => s.v + s.h)).size,
-      empty: ds.length ? '' : (this.data.onlyMine ? t('当前筛选下还没有你加入的场次') : t(vname + '暂无排片')), mineN: data.shows.filter(s => idx.F[s.id] && !U.ended(s, idx) && picked.has(U.keyOf(s)) && (pf === 'all' || U.progForShow(s, idx).id === pf)).length,
+      empty: ds.length ? '' : (this.data.onlyMine ? t('当前筛选下还没有你加入的场次') : t(vname + '暂无排片')), mineN: data.shows.filter(s => idx.F[s.id] && !U.ended(s, idx) && picked.has(U.keyOf(s)) && sh(pf, U.progForShow(s, idx).id)).length,
       legend: Object.keys(data.reg).map(k => data.reg[k]),
       span: ds.length ? ds[0] + ' – ' + ds[ds.length - 1] : '', count: list.length,
       scrollInto: 'd' + (ds.indexOf(day) > 1 ? ds.indexOf(day) - 1 : 0)
@@ -127,16 +131,22 @@ Page({
 
   selectorOptions(type, query) {
     const data=app.globalData.data, idx=U.index(data), q=(query||'').trim().toLowerCase();let rows;
-    if(type==='programme')rows=[{id:'all',name:t('全部专题'),sub:t('查看所有专题的排片'),selected:this.data.pf==='all'},...this.data.progs.map(p=>({id:p.id,name:p.name,sub:[p.city,p.period].filter(Boolean).join(' · '),selected:this.data.pf===p.id}))];
-    else if(type==='city')rows=this.data.cities.map(c=>({id:c.id,name:c.name,sub:'',selected:this.data.city===c.id}));
-    else rows=[{id:'all',name:t('全部影院'),sub:this.data.cityName,selected:this.data.vf==='all'},...data.venues.filter(v=>this.data.city==='all'||v.city===this.data.city).map(v=>{const n=data.shows.filter(s=>s.v===v.id&&!U.ended(s,idx)&&(this.data.pf==='all'||U.progForShow(s,idx).id===this.data.pf)).length;return {id:v.id,n,name:vShort(v),sub:[t(n+' 场'),...v.halls.map(h=>h.name)].filter(Boolean).join(' · '),selected:this.data.vf===v.id};}).sort((a,b)=>Number(b.n>0)-Number(a.n>0))];
+    if(type==='programme')rows=[{id:'all',name:t('全部专题'),sub:t('查看所有专题的排片'),selected:!sl(this.data.pf).length},...this.data.progs.map(p=>({id:p.id,name:p.name,sub:[p.city,p.period].filter(Boolean).join(' · '),selected:sl(this.data.pf).includes(p.id)}))];
+    else if(type==='city')rows=this.data.cities.map(c=>({id:c.id,name:c.name,sub:'',selected:c.id==='all'?!sl(this.data.city).length:sl(this.data.city).includes(c.id)}));
+    else rows=[{id:'all',name:t('全部影院'),sub:this.data.cityName,selected:!sl(this.data.vf).length},...data.venues.filter(v=>sh(this.data.city,v.city)).map(v=>{const n=data.shows.filter(s=>s.v===v.id&&!U.ended(s,idx)&&sh(this.data.pf,U.progForShow(s,idx).id)).length;return {id:v.id,n,name:vShort(v),sub:[t(n+' 场'),...v.halls.map(h=>h.name)].filter(Boolean).join(' · '),selected:sl(this.data.vf).includes(v.id)};}).sort((a,b)=>Number(b.n>0)-Number(a.n>0))];
     return rows.filter(x=>!q||(x.name+' '+x.sub).toLowerCase().includes(q));
   },
   openSelector(e) { const type=e.currentTarget.dataset.type;this.setData({selectorType:type,selectorQuery:'',selectorTitle:t({programme:'选择专题',city:'选择城市',venue:'选择影院'}[type]),selectorPlaceholder:t({programme:'搜索专题',city:'搜索城市',venue:'搜索影院、城市或影厅'}[type]),selectorRows:this.selectorOptions(type,'')}); },
   searchSelector(e) {this.setData({selectorQuery:e.detail.value,selectorRows:this.selectorOptions(this.data.selectorType,e.detail.value)});},
   closeSelector() {this.setData({selectorType:'',selectorQuery:''});},
   stopMove() {},
-  chooseFilter(e) {const id=e.currentTarget.dataset.id,type=this.data.selectorType;if(type==='programme')this.setProg(e);else if(type==='city'){this.setData({city:id,vf:'all',day:''});this.build();}else this.setVenue(e);this.closeSelector();},
+  chooseFilter(e) {
+    const id = e.currentTarget.dataset.id, type = this.data.selectorType, all = id === 'all', d = this.data, o = { day: '' };
+    if (type === 'programme') { o.pf = all ? 'all' : Lib.toggle(d.pf, id); o.vf = 'all'; o.city = 'all'; o.venueQuery = ''; }
+    else if (type === 'city') { o.city = all ? 'all' : Lib.toggle(d.city, id); const cs = sl(o.city), VN = U.index(app.globalData.data).VN; o.vf = sl(d.vf).filter(v => !cs.length || (VN[v] && cs.includes(VN[v].city))).join(',') || 'all'; }
+    else o.vf = all ? 'all' : Lib.toggle(d.vf, id);
+    this.setData(o); this.build(); this.setData({ selectorRows: this.selectorOptions(type, this.data.selectorQuery) });
+  },
   resetFilters() {this.setData({pf:'all',city:'all',vf:'all',day:'',venueQuery:''});this.build();},
   setProg(e) { this.setData({ pf: e.currentTarget.dataset.id, vf: 'all', city: 'all', venueQuery: '', day: '' }); this.build(); },
   setVenue(e) { this.setData({ vf: e.currentTarget.dataset.id, vOpen: false }); this.build(); },
