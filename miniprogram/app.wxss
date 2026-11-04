@@ -41,3 +41,13 @@ button.btn::after { border: none; }
 .to-top.show { opacity: 1; transform: none; pointer-events: auto; }
 .to-top-hv { transform: scale(.92); }
 .tt-arr { width: calc(22 * var(--r)); height: calc(22 * var(--r)); margin-top: calc(8 * var(--r)); border-left: calc(5 * var(--r)) solid var(--fg); border-top: calc(5 * var(--r)) solid var(--fg); transform: rotate(45deg); }
+
+/* 顶部品牌栏 + 中英文切换：四个底栏页共用 */
+.brandbar { display: flex; align-items: center; gap: calc(12 * var(--r)); padding: calc(16 * var(--r)) calc(32 * var(--r)); background: var(--surface); border-bottom: calc(2 * var(--r)) solid var(--line); }
+.brandbar .sq { width: calc(76 * var(--r)); height: calc(76 * var(--r)); }
+.brandbar .x { color: var(--muted); font-size: calc(24 * var(--r)); }
+.brandbar .sp { flex: 1; }
+.brandbar .tag { font-size: calc(20 * var(--r)); letter-spacing: calc(6 * var(--r)); color: var(--muted); text-align: right; padding-left: calc(20 * var(--r)); border-left: calc(2 * var(--r)) solid var(--line); line-height: 1.3; }
+.lang { display: flex; align-items: center; border: calc(2 * var(--r)) solid var(--line); border-radius: calc(999 * var(--r)); background: var(--surface, #f8f2e6); padding: calc(4 * var(--r)); margin-right: calc(16 * var(--r)); }
+.lang text { font-size: calc(20 * var(--r)); font-weight: 600; padding: calc(10 * var(--r)) calc(18 * var(--r)); border-radius: calc(999 * var(--r)); color: var(--muted); font-family: ui-monospace, Menlo, monospace; }
+.lang text.on { background: var(--accent); color: #fffaf0; }

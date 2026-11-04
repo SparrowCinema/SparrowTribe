@@ -1,8 +1,3 @@
-.brandbar { display: flex; align-items: center; gap: calc(12 * var(--r)); padding: calc(16 * var(--r)) calc(32 * var(--r)); background: var(--surface); border-bottom: calc(2 * var(--r)) solid var(--line); }
-.brandbar .sq { width: calc(76 * var(--r)); height: calc(76 * var(--r)); }
-.brandbar .x { color: var(--muted); font-size: calc(24 * var(--r)); }
-.brandbar .sp { flex: 1; }
-.brandbar .tag { font-size: calc(20 * var(--r)); letter-spacing: calc(6 * var(--r)); color: var(--muted); text-align: right; padding-left: calc(20 * var(--r)); border-left: calc(2 * var(--r)) solid var(--line); line-height: 1.3; }
 .prog { position: relative; overflow: hidden; margin-bottom: calc(20 * var(--r)); }
 .prog .cover { width: 100%; height: calc(250 * var(--r)); display: block; }
 .pbody { display: flex; flex-direction: column; padding: calc(20 * var(--r)) calc(28 * var(--r)) calc(24 * var(--r)); }
@@ -106,9 +101,6 @@
 .qa-b { font-size: calc(24 * var(--r)); font-weight: 700; }
 .qa-t { font-size: calc(20 * var(--r)); }
 
-.lang { display: flex; align-items: center; border: calc(2 * var(--r)) solid var(--line); border-radius: calc(999 * var(--r)); background: var(--surface, #f8f2e6); padding: calc(4 * var(--r)); margin-right: calc(16 * var(--r)); }
-.lang text { font-size: calc(20 * var(--r)); font-weight: 600; padding: calc(10 * var(--r)) calc(18 * var(--r)); border-radius: calc(999 * var(--r)); color: var(--muted); font-family: ui-monospace, Menlo, monospace; }
-.lang text.on { background: var(--accent); color: #fffaf0; }
 
 
 .schedule-filterbar{display:flex;border:calc(1 * var(--r)) solid var(--line);border-radius:calc(22 * var(--r));background:var(--surface);margin:calc(28 * var(--r)) 0 calc(32 * var(--r));overflow:hidden}.schedule-filter{flex:1.15;min-width:0;padding:calc(22 * var(--r)) calc(18 * var(--r))}.schedule-filter:nth-child(2){flex:.8}.schedule-filter+.schedule-filter{border-left:calc(1 * var(--r)) solid var(--line)}.filter-label{display:block;font-size:calc(18 * var(--r));color:var(--muted);margin-bottom:calc(10 * var(--r))}.filter-value{display:flex;gap:calc(8 * var(--r));align-items:center;font-size:calc(24 * var(--r));font-weight:600}.filter-value>text:first-child{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}.filter-arrow{color:var(--muted);font-size:calc(22 * var(--r));flex-shrink:0}.filter-reset{text-align:right;font-size:calc(22 * var(--r));color:var(--muted);margin:calc(-20 * var(--r)) 0 calc(22 * var(--r))}
