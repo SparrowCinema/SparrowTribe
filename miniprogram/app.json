@@ -15,7 +15,8 @@
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "麻雀观影护照",
     "backgroundColor": "#efe6d4",
-    "backgroundTextStyle": "dark"
+    "backgroundTextStyle": "dark",
+    "pageOrientation": "auto"
   },
   "tabBar": {
     "color": "#7a6a55",
@@ -51,5 +52,8 @@
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json",
-  "lazyCodeLoading": "requiredComponents"
+  "lazyCodeLoading": "requiredComponents",
+  "resizable": true,
+  "rpxCalcMaxDeviceWidth": 600,
+  "rpxCalcBaseDeviceWidth": 414
 }
