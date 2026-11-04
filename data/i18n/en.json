@@ -8477,6 +8477,12 @@
   "复制订阅链接后，在手机日历里添加「订阅日历」并粘贴：iPhone 在 设置 › 日历 › 账户 › 添加账户 › 其他 › 添加已订阅的日历；安卓在日历 App 的「添加日历 / 订阅」。订阅后场次有调整会自动同步。": "Copy the link, then add it as a subscribed calendar: on iPhone go to Settings › Calendar › Accounts › Add Account › Other › Add Subscribed Calendar; on Android use \"Add calendar / Subscribe\" in your calendar app. Schedule changes sync automatically.",
   "日历文件生成失败": "Could not create the calendar file",
   "当前微信版本不支持发送文件，请改用「逐场写入」": "This WeChat version cannot send files — use \"one by one\" instead",
-  "未能发送文件，请改用「逐场写入」": "Could not send the file — use \"one by one\" instead"
+  "未能发送文件，请改用「逐场写入」": "Could not send the file — use \"one by one\" instead",
+  "手动添加订阅": "Add manually",
+  "推荐：网页版一键订阅（复制网址）": "Recommended: one-tap subscribe on the web (copy link)",
+  "手动添加（复制订阅链接）": "Add manually (copy subscription link)",
+  "网址已复制": "Link copied",
+  "用手机浏览器打开刚复制的网址，在专题页点「订阅日历」，就能一键订阅到系统日历，场次有调整会自动更新。": "Open the copied link in your phone browser and tap \"Subscribe calendar\" on the programme page to subscribe in one tap. Schedule changes update automatically.",
+  "知道了": "Got it"
  }
 }
