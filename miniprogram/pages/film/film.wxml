@@ -9,11 +9,11 @@
       <image wx:if="{{f.poster}}" id="hero-pst" class="pst" src="{{f.poster}}" mode="aspectFill" />
       <view class="tt" id="hero-tt">
         <view class="eyebrow mono"><text class="reg">{{f.reg}}</text><text class="eyc">{{f.y}} · {{f.c}}</text></view>
-        <view class="h1" style="font-size:{{44*fs}}rpx">{{f.cn}}</view>
-        <view wx:if="{{f.cnDb}}" class="native" style="font-size:{{22*fs}}rpx">{{L.t(i,'豆瓣译名')}} {{f.cnDb}}</view>
-        <view class="en" style="font-size:{{24*fs}}rpx">{{f.en}}</view>
-        <view wx:if="{{f.o}}" class="native" style="font-size:{{22*fs}}rpx">{{L.t(i,'原名')}} {{f.o}}</view>
-        <view class="tags" style="font-size:{{fs<0.8?17:20}}rpx">
+        <view class="h1" style="font-size:calc({{44*fs}} * var(--r))">{{f.cn}}</view>
+        <view wx:if="{{f.cnDb}}" class="native" style="font-size:calc({{22*fs}} * var(--r))">{{L.t(i,'豆瓣译名')}} {{f.cnDb}}</view>
+        <view class="en" style="font-size:calc({{24*fs}} * var(--r))">{{f.en}}</view>
+        <view wx:if="{{f.o}}" class="native" style="font-size:calc({{22*fs}} * var(--r))">{{L.t(i,'原名')}} {{f.o}}</view>
+        <view class="tags" style="font-size:calc({{fs<0.8?17:20}} * var(--r))">
           <text wx:if="{{f.version}}" class="tg ed2">{{f.version}}</text>
           <text class="tg">{{f.minText}}</text>
           <text class="tg">{{f.lang}}</text>
@@ -89,7 +89,7 @@
     <view class="sec-h">{{L.t(i,'放映场次')}} <text class="muted small">{{cnt}}</text></view>
     <view wx:if="{{!shows.length}}" class="noshow card"><text class="b">{{ended ? L.t(i,'本片场次已全部放映结束') : (f.release || L.t(i,'上映信息待公布'))}}</text><text class="muted small">{{ended ? L.t(i,'已放映的场次不再显示在这里。') : L.t(i,'场次公布后会更新到这里，也可以先在各影院售票平台查看。')}}</text></view>
     <view wx:for="{{shows}}" wx:key="key" class="ticket card">
-      <view class="td" style="background:{{item.tone.bg}};color:{{item.tone.ink}};border-right:2rpx solid {{item.tone.line}}"><text class="tm">{{item.mon}}</text><text class="tdd mono">{{item.dd}}</text><text class="tw">{{item.wk}}</text></view>
+      <view class="td" style="background:{{item.tone.bg}};color:{{item.tone.ink}};border-right:calc(2 * var(--r)) solid {{item.tone.line}}"><text class="tm">{{item.mon}}</text><text class="tdd mono">{{item.dd}}</text><text class="tw">{{item.wk}}</text></view>
       <view class="tb">
         <view class="ttime mono"><text class="b">{{item.t}}</text> – {{item.end}}</view>
         <view class="tvrow"><text class="tv">{{item.venue}}</text><text wx:if="{{item.geo}}" class="tmap" data-v="{{item.vid}}" bindtap="openMap">📍 {{L.t(i,'地图')}}</text></view>

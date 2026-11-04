@@ -77,18 +77,18 @@
     <view wx:if="{{view==='gantt'}}" class="tt card">
       <view class="axis">
         <view class="th corner">{{L.t(i,'时间')}}</view>
-        <view class="ticks" style="height:{{H}}rpx">
-          <text wx:for="{{ticks}}" wx:key="t" class="tick mono" style="top:{{item.y}}rpx">{{item.t}}</text>
-          <view wx:if="{{nowLine}}" class="nowlab mono" style="top:{{nowLine.top}}rpx">{{nowLine.label}}</view>
+        <view class="ticks" style="height:calc({{H}} * var(--r))">
+          <text wx:for="{{ticks}}" wx:key="t" class="tick mono" style="top:calc({{item.y}} * var(--r))">{{item.t}}</text>
+          <view wx:if="{{nowLine}}" class="nowlab mono" style="top:calc({{nowLine.top}} * var(--r))">{{nowLine.label}}</view>
         </view>
       </view>
       <scroll-view scroll-x class="cols-scroll" enhanced show-scrollbar="{{false}}">
         <view class="cols">
-          <view wx:if="{{nowLine}}" class="nowline" style="top:{{92 + nowLine.top}}rpx"><view class="nowdot" /></view>
+          <view wx:if="{{nowLine}}" class="nowline" style="top:calc({{92 + nowLine.top}} * var(--r))"><view class="nowdot" /></view>
           <view wx:for="{{cols}}" wx:for-item="col" wx:key="key" class="col {{cols.length===1?'solo':''}}">
             <view class="th"><text class="tv">{{col.vn}}</text><text class="thn">{{col.hn}}</text></view>
-            <view class="body" style="height:{{H}}rpx">
-              <view wx:for="{{col.blocks}}" wx:key="key" class="blk {{item.picked?'mine':''}} {{item.past?'past':''}}" style="top:{{item.top}}rpx;height:{{item.h}}rpx;background:{{item.tone.bg}};color:{{item.tone.ink}};border:2rpx solid {{item.tone.line}};{{item.picked?'box-shadow:inset 0 0 0 4rpx '+item.tone.ink:''}}" data-id="{{item.id}}" bindtap="openFilm">
+            <view class="body" style="height:calc({{H}} * var(--r))">
+              <view wx:for="{{col.blocks}}" wx:key="key" class="blk {{item.picked?'mine':''}} {{item.past?'past':''}}" style="top:calc({{item.top}} * var(--r));height:calc({{item.h}} * var(--r));background:{{item.tone.bg}};color:{{item.tone.ink}};border:calc(2 * var(--r)) solid {{item.tone.line}};{{item.picked?'box-shadow:inset 0 0 0 calc(4 * var(--r)) '+item.tone.ink:''}}" data-id="{{item.id}}" bindtap="openFilm">
                 <view class="bhd"><text class="bs mono">{{item.t}}</text><text wx:if="{{item.ev}}" class="bev">{{L.t(i,'映后')}}</text></view>
                 <text class="bn">{{item.cn}}</text>
                 <text wx:if="{{item.version}}" class="bv mono">{{item.version}}</text>
@@ -96,7 +96,7 @@
                 <text class="be mono">{{item.past ? L.t(i,'已放映') : L.t(i,'至') + ' ' + item.end + ' · ' + item.min + '′'}}</text>
                 <view wx:if="{{!item.past||item.picked}}" class="badd {{item.picked?'on':''}}" style="{{item.picked?'background:'+item.tone.ink+';color:'+item.tone.bg+';border-color:'+item.tone.ink:'background:'+item.tone.bg+';color:'+item.tone.ink+';border-color:'+item.tone.ink}}" data-key="{{item.key}}" catchtap="toggle" aria-role="button" aria-label="{{item.picked ? L.t(i,'移出排片') : L.t(i,'加入排片')}}">{{item.picked?'✓':'+'}}</view>
               </view>
-              <view wx:for="{{col.qas}}" wx:for-item="qa" wx:key="key" class="qa" style="top:{{qa.top}}rpx;height:{{qa.h}}rpx" data-id="{{qa.id}}" bindtap="openFilm"><text class="qa-b">{{L.t(i,qa.nm)}}</text><text class="qa-t mono">{{qa.label}}</text></view>
+              <view wx:for="{{col.qas}}" wx:for-item="qa" wx:key="key" class="qa" style="top:calc({{qa.top}} * var(--r));height:calc({{qa.h}} * var(--r))" data-id="{{qa.id}}" bindtap="openFilm"><text class="qa-b">{{L.t(i,qa.nm)}}</text><text class="qa-t mono">{{qa.label}}</text></view>
             </view>
           </view>
         </view>
