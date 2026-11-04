@@ -130,6 +130,10 @@ ONE STAMP</text><text class="fp-open-icon">↗</text></view>
     <view class="fb-row" hover-class="hv" data-v="2165.yan@gmail.com" data-n="Email" bindtap="copyContact"><text class="fb-k mono">EMAIL</text><text class="fb-v mono">2165.yan@gmail.com</text><text class="fb-go">{{L.t(i,'复制')}}</text></view>
     <view class="fb-row" hover-class="hv" data-v="BFAFILM" data-n="WeChat" bindtap="copyContact"><text class="fb-k mono">WECHAT</text><text class="fb-v mono">BFAFILM</text><text class="fb-go">{{L.t(i,'复制')}}</text></view>
   </view>
+  <view class="friend">
+    <view class="friend-h">{{L.t(i,'友情链接')}}</view>
+    <view class="fb-row" hover-class="hv" data-v="https://sparrowcinema.github.io/michelin-guide/" data-n="" bindtap="copyContact"><text class="fb-k mono">LINK</text><view class="fl-t"><text class="fl-n">{{L.t(i,'全球米其林美食护照')}}</text><text class="fl-d">{{L.t(i,'点按复制链接，到浏览器打开')}}</text></view><text class="fb-go">{{L.t(i,'复制')}}</text></view>
+  </view>
  </view>
 </view>
 

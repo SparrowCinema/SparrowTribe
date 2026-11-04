@@ -8392,6 +8392,11 @@
   "微信里更适配 · 可同步个人云档案": "Better fit inside WeChat · syncs your cloud profile",
   "观影护照微信小程序码": "Mini programme code for the Film Passport",
   "在微信里长按识别小程序码，或用微信扫一扫打开。": "In WeChat, long-press the code or use Scan to open it.",
-  "微信里使用更适配，也可以同步个人云档案。小程序内的排片更新比网页稍慢，以网页为准。": "It fits WeChat better and can sync your cloud profile. Schedule updates arrive in the mini programme slightly later than on the web; the web version is the reference."
+  "微信里使用更适配，也可以同步个人云档案。小程序内的排片更新比网页稍慢，以网页为准。": "It fits WeChat better and can sync your cloud profile. Schedule updates arrive in the mini programme slightly later than on the web; the web version is the reference.",
+  "友情链接": "Friend links",
+  "全球米其林美食护照": "Global Michelin Passport",
+  "米其林餐厅名录 · 想去 / 去过 / 美食护照": "Michelin restaurant directory · want to go / been / food passport",
+  "点按复制链接，到浏览器打开": "Tap to copy the link, then open it in a browser",
+  "链接已复制": "Link copied"
  }
 }

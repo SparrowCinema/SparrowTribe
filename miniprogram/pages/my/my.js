@@ -138,7 +138,7 @@ Page({
   },
   closeRecap() { this.setData({ rcOpen: false }); },
   setRcM(e) { const d = e.currentTarget.dataset; if (d.c === 0) return; this.setData({ rcM: d.v }); this.buildRecap(); },
-  copyContact(e) { const v = e.currentTarget.dataset.v; wx.setClipboardData({ data: v, success: () => wx.showToast({ title: t('已复制') + ' ' + v, icon: 'none' }) }); },
+  copyContact(e) { const v = e.currentTarget.dataset.v; wx.setClipboardData({ data: v, success: () => wx.showToast({ title: /^https?:/.test(v) ? t('链接已复制') : t('已复制') + ' ' + v, icon: 'none' }) }); },
   toggleFb() { this.setData({ fbOpen: !this.data.fbOpen }); },
   toggleGuide() { this.setData({ guideOpen: !this.data.guideOpen }); },
   setRcY(e) { this.setData({ rcY: e.currentTarget.dataset.v }); this.buildRecap(); },
