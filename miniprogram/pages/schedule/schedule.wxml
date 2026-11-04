@@ -3,7 +3,7 @@
   <image class="sq" src="/images/brand/sparrow-movies-sq.png" mode="aspectFit" />
   <text class="x">×</text>
   <image class="sq" src="/images/brand/sparrow-tribe-sq.png" mode="aspectFit" />
-  <view class="sp" />
+  <view class="bb-sp" />
   <view class="lang" hover-class="hv" bindtap="switchLang"><text class="{{en ? '' : 'on'}}">中</text><text class="{{en ? 'on' : ''}}">EN</text></view>
   <view class="tag"><text>{{L.t(i,'观影')}}\n{{L.t(i,'护照')}}</text></view>
 </view>
