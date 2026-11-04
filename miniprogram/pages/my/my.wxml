@@ -95,12 +95,14 @@ ONE STAMP</text><text class="fp-open-icon">↗</text></view>
     </block>
     <block wx:else>
       <view class="fp-sw" style="height:{{ppH}}px">
-        <swiper class="fp-sbook" current="{{ppSp}}" bindchange="ppChange" easing-function="easeOutCubic" duration="460">
-          <swiper-item wx:for="{{spreads}}" wx:for-item="sp" wx:key="k">
+        <swiper class="fp-sbook" current="{{ppSp}}" bindchange="ppChange" bindtransition="ppTrans" bindanimationfinish="ppSettle" easing-function="easeOutCubic" duration="460">
+          <swiper-item wx:for="{{spreads}}" wx:for-item="sp" wx:key="k" style="z-index:{{fz[index]||0}}">
+            <view class="fp-fx" style="{{fx[index]||''}}">
             <view class="fp-spread" style="transform:scale({{ppK}})">
-              <view class="fp-sl"><template wx:if="{{sp.l === 0}}" is="fp-id" data="{{pp,i}}" /><template wx:else is="fp-visa" data="{{pg:pp.pages[sp.l - 1],pp,i}}" /></view>
-              <view class="fp-sr"><template wx:if="{{sp.r < pp.n}}" is="fp-visa" data="{{pg:pp.pages[sp.r - 1],pp,i}}" /><view wx:else class="fp-page fp-blank"><view class="fp-ph mono"><text>SPARROW FILM PASSPORT</text><text>{{sp.rno}}</text></view></view></view>
+              <view class="fp-sl" style="{{fl[index]||''}}"><template wx:if="{{sp.l === 0}}" is="fp-id" data="{{pp,i}}" /><template wx:else is="fp-visa" data="{{pg:pp.pages[sp.l - 1],pp,i}}" /></view>
+              <view class="fp-sr" style="{{fr[index]||''}}"><template wx:if="{{sp.r < pp.n}}" is="fp-visa" data="{{pg:pp.pages[sp.r - 1],pp,i}}" /><view wx:else class="fp-page fp-blank"><view class="fp-ph mono"><text>SPARROW FILM PASSPORT</text><text>{{sp.rno}}</text></view></view></view>
               <view class="fp-spine" />
+            </view>
             </view>
           </swiper-item>
         </swiper>

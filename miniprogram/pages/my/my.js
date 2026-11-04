@@ -14,7 +14,7 @@ const app = getApp();
 Page({
   onPageScroll(e) { T.scroll(this, e); },
   toTop() { T.go(); },
-  data: {fx:[],fz:[],friendOpen:false,friends:[{u:'https://sparrowcinema.github.io/michelin-guide/',img:'/images/brand/friend-michelin.png',n:'全球米其林餐厅名录',g:'去全球看电影，别忘了顺路吃点美食。',d:'收录全球米其林餐厅，可标记想去、记录去过，让每座城市的电影与美味同行。'}],collectionOpen:false,todayExpanded:false,careOpen:false,todayRows:[], i: {}, pp: {}, ppOpen: false, ppPage: 0, ppVol: 0, ppShelf: false, ppTab: 'stamps', lvAll: false, gt: 'level', cAll: false, gOpen: null, mcat: '', gr: {}, wide: false, ppSp: 0, ppK: 1, ppH: 0, ppCH: 0, ppCK: 1, spreads: [], ppLabel: '', rc: {}, rcOpen: false, rcY: [], rcM: [], rcP: [], guideOpen: false, fbOpen: false, guide: [{ k: '四个页面', s: '底栏四个入口：「排片」看每天每家影院的场次，「专题」按影展、单元浏览，「片目」查全部影片，「我的」放你的日程、护照和设置。' }, { k: '排片 · 看场次', s: '排片页把每天每家影院的场次排成时间表，一个色块就是一场放映；点色块看影片详情与购票、报名信息，可按日期、影院、专题多选筛选。' }, { k: '排片 · 加入我的日程', s: '点色块右上角的 + 把场次加入个人排片；「我的」里会按天列出日程并自动检查时间冲突，排片页也能只看我的排片。' }, { k: '专题 · 影展与单元', s: '专题页把影片按影展、单元归档，点进去看简介和片单，也能看到自己在这个专题里看过几部、完成度多少。' }, { k: '片目 · 找电影', s: '片目页收录全部影片，可以搜片名、导演、演员，并按专题、城市、放映版本筛选；点进影片页看简介、主创、获奖和放映场次。' }, { k: '影片页 · 看过与重刷', s: '在影片页点「看过」盖下印章，可以打分、选放映版本；再看一次就点「再看一次」，每次观影的日期、评分和版本都会单独记录。' }, { k: '放映版本', s: '可以记录你是在普通影厅、胶片、IMAX、杜比、巨幕、LED 还是沉浸厅看的，之后会计入「银幕与版本」类纪念章。' }, { k: '成长 · 等级与纪念章', s: '护照里的「成长」按看过的不同影片数升级（最高 20 级），并按奖项、口味、习惯、银幕、重温、足迹、彩蛋七类点亮纪念章；每枚章展开后都写着点亮规则。' }, { k: '成长 · 全球足迹', s: '放映所在的城市、国家和大洲会自动在「足迹」里点亮，每座城市还会显示各专题的观看进度。' }] },
+  data: {fx:[],fz:[],fl:[],fr:[],friendOpen:false,friends:[{u:'https://sparrowcinema.github.io/michelin-guide/',img:'/images/brand/friend-michelin.png',n:'全球米其林餐厅名录',g:'去全球看电影，别忘了顺路吃点美食。',d:'收录全球米其林餐厅，可标记想去、记录去过，让每座城市的电影与美味同行。'}],collectionOpen:false,todayExpanded:false,careOpen:false,todayRows:[], i: {}, pp: {}, ppOpen: false, ppPage: 0, ppVol: 0, ppShelf: false, ppTab: 'stamps', lvAll: false, gt: 'level', cAll: false, gOpen: null, mcat: '', gr: {}, wide: false, ppSp: 0, ppK: 1, ppH: 0, ppCH: 0, ppCK: 1, spreads: [], ppLabel: '', rc: {}, rcOpen: false, rcY: [], rcM: [], rcP: [], guideOpen: false, fbOpen: false, guide: [{ k: '四个页面', s: '底栏四个入口：「排片」看每天每家影院的场次，「专题」按影展、单元浏览，「片目」查全部影片，「我的」放你的日程、护照和设置。' }, { k: '排片 · 看场次', s: '排片页把每天每家影院的场次排成时间表，一个色块就是一场放映；点色块看影片详情与购票、报名信息，可按日期、影院、专题多选筛选。' }, { k: '排片 · 加入我的日程', s: '点色块右上角的 + 把场次加入个人排片；「我的」里会按天列出日程并自动检查时间冲突，排片页也能只看我的排片。' }, { k: '专题 · 影展与单元', s: '专题页把影片按影展、单元归档，点进去看简介和片单，也能看到自己在这个专题里看过几部、完成度多少。' }, { k: '片目 · 找电影', s: '片目页收录全部影片，可以搜片名、导演、演员，并按专题、城市、放映版本筛选；点进影片页看简介、主创、获奖和放映场次。' }, { k: '影片页 · 看过与重刷', s: '在影片页点「看过」盖下印章，可以打分、选放映版本；再看一次就点「再看一次」，每次观影的日期、评分和版本都会单独记录。' }, { k: '放映版本', s: '可以记录你是在普通影厅、胶片、IMAX、杜比、巨幕、LED 还是沉浸厅看的，之后会计入「银幕与版本」类纪念章。' }, { k: '成长 · 等级与纪念章', s: '护照里的「成长」按看过的不同影片数升级（最高 20 级），并按奖项、口味、习惯、银幕、重温、足迹、彩蛋七类点亮纪念章；每枚章展开后都写着点亮规则。' }, { k: '成长 · 全球足迹', s: '放映所在的城市、国家和大洲会自动在「足迹」里点亮，每座城市还会显示各专题的观看进度。' }] },
   switchLang() { app.switchLang(); },
   onLoad() { this.setData({ i: I.dict(), en: I.isEn() }); this.measure(); this._rz = () => { this._bw = 0; this.measure(); this.buildSpreads(); }; wx.onWindowResize && wx.onWindowResize(this._rz); this.off1 = plan.onChange(() => this.build()); this.off2 = app.onData(() => { this.build(); this.buildPassport(); }); this.off3 = W.onChange(() => this.buildPassport()); },
   onUnload() { this._rz && wx.offWindowResize && wx.offWindowResize(this._rz); this.off1 && this.off1(); this.off2 && this.off2(); this.off3 && this.off3(); },
@@ -158,21 +158,25 @@ Page({
   ppChange(e) { if (this.data.wide) { this.setData({ ppSp: e.detail.current }); this.spLabel(); } else this.setData({ ppPage: e.detail.current }); },
   // 窄屏护照翻页：滑动时当前页以左侧书脊为轴翻转，下一页留在原位等待露出
   ppTrans(e) {
-    const W = this._bw;
-    if (!W) { wx.createSelectorQuery().select('.fp-book').boundingClientRect(r => { if (r && r.width) this._bw = r.width; }).exec(); return; }
-    const p = Math.max(0, e.detail.dx / W), n = this.data.pp.n, d = {}, z = {}, hot = this._hot || [];
+    const wide = this.data.wide, W = this._bw;
+    if (!W) { wx.createSelectorQuery().select(wide ? '.fp-sbook' : '.fp-book').boundingClientRect(r => { if (r && r.width) this._bw = r.width; }).exec(); return; }
+    const p = Math.max(0, e.detail.dx / W), n = wide ? this.data.spreads.length : this.data.pp.n, d = {}, hot = this._hot || [];
     const lo = Math.max(0, Math.floor(p) - 1), hi = Math.min(n - 1, Math.ceil(p) + 1), now = [];
     for (let k = lo; k <= hi; k++) {
-      const x = k - p; let s = '', zi = 0;
-      if (x < 0 && x > -1) { s = 'transform:translateX(' + (-x * W) + 'px) perspective(1500px) rotateY(' + (x * 105) + 'deg);transform-origin:left center;opacity:' + (1 + x * 0.55).toFixed(3) + ';'; zi = 2; }
+      const x = k - p; let s = '', zi = 0, sl = '', sr = '';
+      if (wide) {
+        // 双页：整本书留在原位，右页以书脊为轴翻过去；翻过一半后左页换成下一对的左页
+        if (x < 0 && x > -1) { s = 'transform:translateX(' + (-x * W) + 'px);'; zi = 2; sr = 'transform-origin:left center;transform:perspective(1800px) rotateY(' + (x * 170) + 'deg);opacity:' + (x < -0.55 ? 0 : 1) + ';'; sl = x < -0.5 ? 'opacity:0;' : ''; }
+        else if (x > 0 && x < 1) { s = 'transform:translateX(' + (-x * W) + 'px);filter:brightness(' + (0.85 + 0.15 * (1 - x)).toFixed(3) + ');'; zi = 1; }
+      } else if (x < 0 && x > -1) { s = 'transform:translateX(' + (-x * W) + 'px) perspective(1500px) rotateY(' + (x * 105) + 'deg);transform-origin:left center;opacity:' + (1 + x * 0.55).toFixed(3) + ';'; zi = 2; }
       else if (x > 0 && x < 1) { s = 'transform:translateX(' + (-x * W) + 'px) scale(' + (0.94 + 0.06 * (1 - x)).toFixed(3) + ');filter:brightness(' + (0.82 + 0.18 * (1 - x)).toFixed(3) + ');'; zi = 1; }
-      d['fx[' + k + ']'] = s; z['fz[' + k + ']'] = zi; now.push(k);
+      d['fx[' + k + ']'] = s; d['fz[' + k + ']'] = zi; d['fl[' + k + ']'] = sl; d['fr[' + k + ']'] = sr; now.push(k);
     }
-    hot.forEach(k => { if (now.indexOf(k) < 0) { d['fx[' + k + ']'] = ''; z['fz[' + k + ']'] = 0; } });
-    this._hot = now; this.setData(Object.assign(d, z));
+    hot.forEach(k => { if (now.indexOf(k) < 0) { d['fx[' + k + ']'] = ''; d['fz[' + k + ']'] = 0; d['fl[' + k + ']'] = ''; d['fr[' + k + ']'] = ''; } });
+    this._hot = now; this.setData(d);
   },
   ppSettle() {
-    const d = {}; (this._hot || []).forEach(k => { d['fx[' + k + ']'] = ''; d['fz[' + k + ']'] = 0; });
+    const d = {}; (this._hot || []).forEach(k => { d['fx[' + k + ']'] = ''; d['fz[' + k + ']'] = 0; d['fl[' + k + ']'] = ''; d['fr[' + k + ']'] = ''; });
     this._hot = []; this.setData(d);
   },
   ppPrev() { if (this.data.wide) { if (this.data.ppSp > 0) { this.setData({ ppSp: this.data.ppSp - 1 }); this.spLabel(); } return; } if (this.data.ppPage > 0) this.setData({ ppPage: this.data.ppPage - 1 }); },
