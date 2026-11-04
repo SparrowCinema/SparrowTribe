@@ -21,6 +21,7 @@ Page({
   toTop() { T.go(); },
   data: { i: {}, f: null, open: false, fs: 1 },
   onLoad(q) { this.setData({ i: I.dict() }); this.id = q.id; this.off1 = app.onData(() => this.build()); this.off2 = plan.onChange(() => this.build()); this.off3 = W.onChange(() => this.buildMine()); this.build(); },
+  toggleGone() { this.setData({ goneOpen: !this.data.goneOpen }); },
   onUnload() { this.off1 && this.off1(); this.off2 && this.off2(); this.off3 && this.off3(); },
   build() {
     const data = app.globalData.data, idx = U.index(data), f = idx.F[this.id];
@@ -31,6 +32,11 @@ Page({
     const shows = allShows.filter(s => !U.ended(s, idx)).map(s => {
       const v = U.showView(s, idx, data, picked); const [m, d] = s.d.split('/');
       return Object.assign(v, { progTag: multi ? U.progForShow(s, idx).name : '', m, dd: d, mon: t(m + '月'), vid: s.v, geo: !!U.geoOf(idx.VN[s.v]) });
+    });
+    // 影展内已放映的场次：窄条保留（黑白、无操作按钮）；院线片不显示
+    const goneShows = allShows.filter(s => U.ended(s, idx) && U.isFest(U.progForShow(s, idx))).sort((a, b) => U.showDate(a) - U.showDate(b)).map(s => {
+      const v = U.showView(s, idx, data, picked);
+      return { key: v.key, d: s.d.replace('/', '.'), wk: v.wk, t: v.t, end: v.end, place: [v.venue, v.hall].filter(Boolean).join(' · ') };
     });
     const ratings = (f.r || []).map((v, i) => ({
       l: t(RT[i][0]), na: v == null,
@@ -64,7 +70,7 @@ Page({
       },
       qa: (q => q ? { label: f.qaStart + ' – ' + f.qaEnd, guest: t(f.qaGuest) } : null)(U.qaOf(f)),
       cnt: t(shows.length + ' 场'),
-      shows, ratings, credits, nav, parts: (f.parts || []).map(m => { const en = I.isEn(); return { n: en ? m.en : m.cn, sub: [en ? m.cn : m.en, m.y, m.min ? m.min + t('分钟') : '', m.c].filter(Boolean).join(' · '), dir: (en && m.dirO) || m.dir || '', src: (en && m.printSourceEn) || m.printSource || '', syn: (en ? m.synEn : m.syn) || '', bio:(en?m.bioEn:m.bio)||'', honors: (m.honors || []).map(honor) }; }), ended: allShows.length > 0 && !shows.length
+      shows, goneShows, goneN: t(goneShows.length + ' 场'), goneOpen: this.data.goneOpen === undefined ? !shows.length : this.data.goneOpen, ratings, credits, nav, parts: (f.parts || []).map(m => { const en = I.isEn(); return { n: en ? m.en : m.cn, sub: [en ? m.cn : m.en, m.y, m.min ? m.min + t('分钟') : '', m.c].filter(Boolean).join(' · '), dir: (en && m.dirO) || m.dir || '', src: (en && m.printSourceEn) || m.printSource || '', syn: (en ? m.synEn : m.syn) || '', bio:(en?m.bioEn:m.bio)||'', honors: (m.honors || []).map(honor) }; }), ended: allShows.length > 0 && !shows.length
     });
     this.buildMine();
     this.setData({ fs: 1 }, () => this.fitHero());

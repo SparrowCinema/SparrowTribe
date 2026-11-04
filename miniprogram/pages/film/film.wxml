@@ -102,6 +102,9 @@
       </view>
     </view>
 
+    <view wx:if="{{goneShows.length}}" class="gs-h" hover-class="hv" bindtap="toggleGone"><text>{{L.t(i,'已放映')}} {{goneN}}</text><text class="gs-ar {{goneOpen ? 'open' : ''}}">▾</text></view>
+    <block wx:if="{{goneShows.length && goneOpen}}"><view wx:for="{{goneShows}}" wx:key="key" class="gs-row"><text class="gs-d mono">{{item.d}} {{item.wk}}</text><text class="gs-t mono">{{item.t}}–{{item.end}}</text><text class="gs-p">{{item.place}}</text><text class="gs-tag">{{L.t(i,'已放映')}}</text></view></block>
+
     <view class="sec-h">{{L.t(i,'内容提示')}}</view><view class="content-note"><view class="content-tags"><text wx:for="{{f.warnings}}" wx:key="*this">{{item}}</text></view><text>{{f.contentNote}}</text><text class="small">{{f.sensory?L.t(i,'已查到闪烁影像提示；光敏观众请谨慎选择。'):L.t(i,'闪烁与突发音量尚未核实；有需要请提前询问影院。')}}</text></view>
     <view class="sec-h">{{L.t(i,'映后交流')}} <text class="muted small">POST-SCREENING</text></view>
     <view wx:if="{{!f.ev}}" class="qapanel {{qa ? '' : 'qa-empty'}}">
