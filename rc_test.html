@@ -1,7 +1,0 @@
-<meta charset=utf-8>
-<canvas id=c></canvas><script src="/shared/recap.js"></script><script>
-const L=s=>new Promise(r=>{const i=new Image();i.onload=()=>r(i);i.src=s});
-(async()=>{const [q,a,b]=await Promise.all([L('/qr.jpg'),L('/m1.png'),L('/m2.png')]);const R=SparrowRecap;
-const items=[1,2].map(i=>({id:'x'+i,title:'片'+i,en:'En',date:'2026-11-04',dstamp:'04 NOV 2026',venue:'影院',vs:'影院',score:8,...R.look('x'+i),color:'#8e2a22'}));
-const o={title:'我的影院观影结算',sub:'2026',kicker:'K',yearTag:'2026',stats:[[1,'a'],[2,'b'],[3,'c'],[4,'d'],[5,'e'],[6,'f']],fav:null,progs:[],items,qr:null,qrImg:q,marks:[a,b],T:x=>x,en:false};
-const c=document.getElementById('c');c.width=R.W;c.height=R.heightOf(o);R.draw(c.getContext('2d'),o);window.done=1})()</script>
