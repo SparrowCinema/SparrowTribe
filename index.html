@@ -1718,8 +1718,8 @@ function detail(id){
       ${!has.ctx?"":`<section class="fd-sec" id="fd-ctx"><h2 class="fd-st"><span>创作背景</span><small>CONTEXT</small></h2><blockquote class="fd-ctx">${paragraphsHTML(f.st)}</blockquote></section>`}
       ${f.ev?"":`<nav class="fd-nav">${navBtn(prev,"上一部")}${navBtn(next,"下一部")}</nav>`}
     </div>
-    <div class="gut">${presentersHTML()}</div>
-  </div></article>`;
+  </div>
+  <div class="gut">${presentersHTML()}</div></article>`;
   fitHero(); document.fonts?.ready.then(fitHero);
 }
 // 头图：片名等文字较多时逐步缩小字号，使文字区上下与海报对齐（不超过海报高度）
