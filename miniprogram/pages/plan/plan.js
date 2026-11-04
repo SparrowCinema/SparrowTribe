@@ -3,7 +3,10 @@ const plan = require('../../utils/plan.js');
 const poster = require('../../utils/poster.js');
 const W = require('../../utils/watched.js');
 const I = require('../../utils/i18n.js');
+const Lib = require('../../utils/library.js');
 const t = I.tr;
+// 多选：pf 是 'all' 或逗号连接的多个专题 id（「或」关系）
+const sl = Lib.list, sh = Lib.has;
 const app = getApp();
 
 Page({
@@ -16,7 +19,7 @@ Page({
   openPlanSelector(){this.setData({planSelectorOpen:true,planQuery:'',planOptions:this.data.progs});},
   closePlanSelector(){this.setData({planSelectorOpen:false});},
   searchPlanSelector(e){const q=e.detail.value.toLocaleLowerCase();this.setData({planQuery:e.detail.value,planOptions:this.data.progs.filter(p=>p.n.toLocaleLowerCase().includes(q))});},
-  choosePlanScope(e){this.setProg(e);this.closePlanSelector();},
+  choosePlanScope(e){const id=e.currentTarget.dataset.id;this.setData({pf:id==='all'?'all':Lib.toggle(this.data.pf,id)});this.build();const q=(this.data.planQuery||'').toLocaleLowerCase();this.setData({planOptions:this.data.progs.filter(p=>p.n.toLocaleLowerCase().includes(q))});},
   openMap(e) { const v = app.globalData.data.venues.find(x => x.id === e.currentTarget.dataset.v); if (v) U.openMap(v); },
 
   build() {
@@ -26,8 +29,9 @@ Page({
     // 专题筛选：只要个人排片不为空就显示；列出所有有放映场次的专题（未加入的显示「未加入」），与网站一致
     const pids = data.programmes.map(p => p.id).filter(id => data.shows.some(s => idx.F[s.id] && U.progForShow(s, idx).id === id));
     const progs = all.length ? [{ id: 'all', n: t('全部专题'), c: all.length, lab: t('合并 ' + all.length + ' 场') }].concat(pids.map(id => { const c = all.filter(s => U.progForShow(s, idx).id === id).length; return { id, n: idx.PG[id].name, c, lab: c ? t(c + ' 场') : t('未加入') }; })) : [];
-    const pf = pids.includes(this.data.pf) ? this.data.pf : 'all';
-    const list = pf === 'all' ? all : all.filter(s => U.progForShow(s, idx).id === pf);
+    const pf = sl(this.data.pf).filter(id => pids.includes(id)).join(',') || 'all';
+    const list = all.filter(s => sh(pf, U.progForShow(s, idx).id));
+    progs.forEach(p => { p.selected = p.id === 'all' ? !sl(pf).length : sl(pf).includes(p.id); });
     const minutes = list.reduce((n, s) => n + idx.F[s.id].min, 0);
     let clash = 0;
     const byDay = [];
@@ -59,7 +63,7 @@ Page({
     });
     this.keys = list.map(U.keyOf);
     this.pgs = [...new Set(list.map(x => U.progForShow(x, idx).name))];
-    this.setData({planScopeName:(progs.find(p=>p.id===pf)||{n:t('全部专题')}).n, clashTxt: t('有 ' + clash + ' 组场次时间重叠'), progs, pf, days, clash, empty: !all.length, pfEmpty: !!all.length && !list.length, stats: { n: list.length, d: byDay.length, hm: Math.floor(minutes / 60) + 'h' + String(minutes % 60).padStart(2, '0') } });
+    this.setData({planScopeName: !sl(pf).length ? t('全部专题') : sl(pf).length === 1 ? ((progs.find(p => p.id === pf) || {}).n || t('全部专题')) : t(sl(pf).length + ' 个专题'), clashTxt: t('有 ' + clash + ' 组场次时间重叠'), progs, pf, days, clash, empty: !all.length, pfEmpty: !!all.length && !list.length, stats: { n: list.length, d: byDay.length, hm: Math.floor(minutes / 60) + 'h' + String(minutes % 60).padStart(2, '0') } });
   },
   // 排片长图：与网站同版式，只含当前所选专题；保存到相册，或预览后发给朋友
   makeImage() {
@@ -107,7 +111,7 @@ Page({
   toSchedule() { wx.switchTab({ url: '/pages/schedule/schedule' }); },
   onShareAppMessage(res) {
     if (res.from === 'button' && this.keys && this.keys.length) {
-      return { title: t('我的观影日程') + (this.data.pf !== 'all' && this.data.progs.length ? ' · ' + (this.data.progs.find(p => p.id === this.data.pf) || {}).n : '') + ' · ' + t(this.keys.length + ' 场电影'), path: '/pages/share/share?k=' + encodeURIComponent(this.keys.join('~')) };
+      return { title: t('我的观影日程') + (this.data.pf !== 'all' && this.data.progs.length ? ' · ' + this.data.planScopeName : '') + ' · ' + t(this.keys.length + ' 场电影'), path: '/pages/share/share?k=' + encodeURIComponent(this.keys.join('~')) };
     }
     return { title: t('麻雀观影护照 · 影展排片与观影日程'), path: '/pages/schedule/schedule' };
   }

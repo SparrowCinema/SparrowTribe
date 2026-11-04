@@ -79,3 +79,10 @@
 .selector-option .small{font-size:24rpx;color:var(--muted)}
 .gap-map { margin-left: 16rpx; color: var(--accent); font-weight: 700; text-decoration: underline; }
 .htag { display: inline-block; margin-left: 10rpx; padding: 0 14rpx; border-radius: 12rpx; background: rgba(47,111,108,.12); font-weight: 600; line-height: 1.6; }
+
+/* 多选弹层：勾选框 + 完成按钮 */
+.selector-check.box{width:40rpx;height:40rpx;box-sizing:border-box;border:3rpx solid var(--line);border-radius:10rpx;display:flex;align-items:center;justify-content:center;font-size:26rpx;line-height:1;color:#fffaf0;flex:none}
+.selector-check.box.on{background:var(--accent);border-color:var(--accent)}
+.selector-foot{display:flex;align-items:center;justify-content:space-between;gap:20rpx;padding:18rpx 16rpx 6rpx;border-top:1rpx solid var(--line-soft);margin-top:8rpx}
+.selector-foot text{font-size:23rpx;color:var(--muted)}
+.selector-done{min-width:200rpx;height:76rpx;border-radius:99rpx;background:var(--accent);color:#fffaf0;font-size:28rpx;font-weight:700;display:flex;align-items:center;justify-content:center}
