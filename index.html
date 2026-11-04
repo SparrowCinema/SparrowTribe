@@ -1300,6 +1300,9 @@ input:not([type=checkbox]):not([type=radio]),select,textarea{font-size:16px!impo
 .gcat{display:flex;align-items:baseline;gap:8px;margin:18px 0 6px;font-size:12px;letter-spacing:.08em;color:var(--muted);font-weight:600}.gcat small{font-weight:500;font-size:11px;color:var(--accent)}.gcat:first-of-type{margin-top:6px}
 .gg-r{font-size:12px;line-height:1.5;color:var(--muted);margin:0 0 8px}
 .gm-set{flex-wrap:wrap;overflow:visible;row-gap:12px}.gm-i.far .gm-disc{filter:grayscale(1);opacity:.4}.gm-i .gm-disc b{font-size:22px;font-weight:400}
+.mc{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin:2px -2px 10px;padding:2px}.mc::-webkit-scrollbar{display:none}
+.mc button{flex:none;display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 14px;border-radius:12px;border:1px solid var(--line-soft);background:var(--surface);font:600 13px var(--f-body);color:var(--muted);white-space:nowrap}.mc button small{font:500 10px var(--f-mono);opacity:.8}
+.mc button[aria-selected=true]{color:var(--accent);border-color:var(--accent);box-shadow:0 2px 8px -3px rgba(60,40,20,.3)}
 </style>
 <link rel="stylesheet" href="styles/companion.css?v=73">
 </head>
@@ -2117,7 +2120,7 @@ function stampSVG(e){const R=window.SparrowRecap,lk=R.look(e.id),col=lk.ink,p=pr
   return '<svg class="st-svg" viewBox="0 0 200 200" role="img" aria-label="'+esc(e.f.cn)+' · '+date+(r?' · '+r+'/10':'')+'" style="--ink:'+col+'"><g class="st-g" filter="url(#pp-ink)" fill="'+col+'" stroke="'+col+'">'+frame+side+lines+'<text class="st-d" x="100" y="'+dy+'">'+date+'</text>'+sc+'</g>'+((window.SparrowGrowth&&window.SparrowGrowth.views(e.rec).length>1)?'<g class="st-x"><circle cx="172" cy="28" r="19" fill="#8e2a22" stroke="#f8f2e6" stroke-width="3"/><text x="172" y="34" text-anchor="middle" font-size="16" font-weight="700" fill="#fff6e4" font-family="ui-monospace,Menlo,monospace">×'+window.SparrowGrowth.views(e.rec).length+'</text></g>':'')+'</svg>';}
 
 // —— 护照（封面 → 资料页 → 印章页，单页翻动）——
-const PP={open:false,page:0,busy:false,vol:0,shelf:false,tab:'stamps',lvAll:false,gt:'level',cAll:false,gOpen:null},PP_PER=15,PP_VOL=285; // 每册 = 1 资料页 + 19 印章页（每页 15 枚）= 20 页 = 10 个跨页；满册自动换下一册
+const PP={mc:'',open:false,page:0,busy:false,vol:0,shelf:false,tab:'stamps',lvAll:false,gt:'level',cAll:false,gOpen:null},PP_PER=15,PP_VOL=285; // 每册 = 1 资料页 + 19 印章页（每页 15 枚）= 20 页 = 10 个跨页；满册自动换下一册
 const ppV=(zh,en)=>LANG==='en'?en:zh;
 function ppVols(all){const v=[];for(let i=0;i<Math.max(1,all.length);i+=PP_VOL)v.push(all.slice(i,i+PP_VOL));return v;}
 function ppCur(){const all=watchEntries(),vols=ppVols(all);PP.vol=Math.min(Math.max(PP.vol||vols.length,1),vols.length);return {all,vols,list:vols[PP.vol-1],vol:PP.vol,nv:vols.length};}
@@ -2179,7 +2182,9 @@ function growthHTML(){const g=growthData();if(!g)return '';const en=LANG==='en',
   const body=gr=>gr.kind==='set'?'<div class="gg-b"><div class="gg-r">'+esc(en?gr.rule[1]:gr.rule[0])+'</div><ul class="gm-row gm-set">'+gr.items.map((it,k)=>'<li class="gm gm-i '+(it.earned?'on':'far')+'" style="--p:'+(it.earned?100:0)+';--i:'+k+'" title="'+esc(gNm(it))+'"><span class="gm-disc"><b>'+it.ic+'</b></span><small>'+esc(gNm(it))+'</small></li>').join('')+'</ul></div>'
     :'<div class="gg-b"><div class="gg-r">'+esc(en?gr.rule[1]:gr.rule[0])+'</div><div class="gg-v mono">'+gr.value+(gr.id==='collect'?'':' ')+esc(en?gr.unit[1]:gr.unit[0])+'</div><ul class="gm-row">'+gr.tiers.map((t,k)=>gMedal(t,gr.id==='collect',t.earned?'on':t.next?'next':'far',k)).join('')+'</ul></div>';
   const grp=gr=>{const op=openG.has(gr.id);return '<div class="gg'+(op?' open':'')+'"><button class="gg-h" data-pp="g-tog" data-g="'+gr.id+'" aria-expanded="'+op+'"><b>'+esc(gNm(gr))+'</b><span class="gg-dots" aria-hidden="true">'+dots(gr)+'</span><span class="gg-c mono">'+gr.earned+'/'+gr.total+'</span><em aria-hidden="true">›</em></button>'+(op?body(gr):'')+'</div>';};
-  const badges='<section class="gs"><div class="gs-h"><h3>'+ppV('纪念章','Medals')+'</h3><span>'+g.earned+' / '+g.total+'</span></div>'+CATS.map(c=>{const gs=g.groups.filter(x=>x.cat===c.id);if(!gs.length)return '';const e=gs.reduce((a,x)=>a+x.earned,0);return '<h4 class="gcat">'+esc(en?c.en:c.zh)+'<small>'+e+'</small></h4>'+gs.map(grp).join('');}).join('')+'</section>';
+  const catOf=id=>(g.groups.find(x=>x.id===id)||{}).cat,cs=CATS.filter(c=>g.groups.some(x=>x.cat===c.id)),cstat=c=>{const gs=g.groups.filter(x=>x.cat===c.id);return [gs.reduce((a,x)=>a+x.earned,0),gs.reduce((a,x)=>a+x.total,0)];};
+  const curCat=cs.some(c=>c.id===PP.mc)?PP.mc:(nb&&nb.kind==='badge'&&catOf(nb.group))||cs.slice().sort((a,b)=>cstat(b)[0]-cstat(a)[0])[0].id;
+  const badges='<section class="gs"><div class="gs-h"><h3>'+ppV('纪念章','Medals')+'</h3><span>'+g.earned+' / '+g.total+'</span></div><div class="mc" role="tablist">'+cs.map(c=>{const st=cstat(c);return '<button role="tab" aria-selected="'+(c.id===curCat)+'" data-pp="mc" data-c="'+c.id+'">'+esc(gNm(c))+'<small>'+st[0]+'/'+st[1]+'</small></button>';}).join('')+'</div>'+g.groups.filter(x=>x.cat===curCat).map(grp).join('')+'</section>';
   const subs=[['level',ppV('等级','Levels'),(L.cur?L.index+1:0)+'/'+g.levels.length],['trail',ppV('足迹','Footprints'),g.cities],['medals',ppV('纪念章','Medals'),g.earned+'/'+g.total]];
   const subnav='<div class="gt" role="tablist">'+subs.map(x=>'<button role="tab" aria-selected="'+(PP.gt===x[0])+'" data-pp="gt" data-t="'+x[0]+'">'+x[1]+'<small>'+x[2]+'</small></button>').join('')+'</div>';
   return '<div class="fp-growth">'+hero+next+subnav+(PP.gt==='trail'?cities:PP.gt==='medals'?badges:ladder)+'</div>';}
@@ -2246,6 +2251,7 @@ document.addEventListener('click',e=>{
     if(a==='tab'){PP.tab=pp.dataset.t==='growth'?'growth':'stamps';renderPassport();return;}
     if(a==='gt'){PP.gt=pp.dataset.t;renderPassport();return;}
     if(a==='c-all'){PP.cAll=!PP.cAll;renderPassport();return;}
+    if(a==='mc'){PP.mc=pp.dataset.c;renderPassport();return;}
     if(a==='g-tog'){const nbg=(growthData()||{}).nextBadge,cur=PP.gOpen||new Set([nbg&&nbg.group!=='level'?nbg.group:'festivals']);cur.has(pp.dataset.g)?cur.delete(pp.dataset.g):cur.add(pp.dataset.g);PP.gOpen=cur;renderPassport();return;}
     if(a==='lv-all'){PP.lvAll=!PP.lvAll;renderPassport();return;}
     if(a==='shelf'){PP.open=false;PP.shelf=true;renderPassport();return;}
