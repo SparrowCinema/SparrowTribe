@@ -255,3 +255,17 @@
 
 .fl-t { flex: 1; min-width: 0; display: flex; flex-direction: column; } .fl-n { font-size: 28rpx; font-weight: 700; } .fl-d { font-size: 21rpx; color: var(--muted); margin-top: 4rpx; line-height: 1.5; }
 .fr-item { display: flex; align-items: center; gap: 20rpx; padding: 22rpx 24rpx; margin-top: 14rpx; border: 2rpx solid var(--line); border-radius: 20rpx; background: var(--bg); } .fr-mark { flex: none; width: 76rpx; height: 76rpx; border-radius: 18rpx; background: var(--accent); color: #fff; font-size: 32rpx; font-weight: 900; display: flex; align-items: center; justify-content: center; }
+
+/* 折叠屏展开 / 宽窗口：双页翻开（页宽 600rpx × 2，由 JS 按 px 缩放） */
+.fp-sw { position: relative; width: 100%; margin-top: 24rpx; }
+.fp-sbook { width: 100%; height: 100%; }
+.fp-spread { position: absolute; left: 50%; top: 0; width: 1200rpx; height: 852rpx; margin-left: -600rpx; transform-origin: top center; display: flex; }
+.fp-spread .fp-sl, .fp-spread .fp-sr { width: 600rpx; height: 852rpx; flex: none; }
+.fp-spread .fp-page { margin: 0; }
+.fp-spread .fp-sl .fp-page { border-radius: 24rpx 4rpx 4rpx 24rpx; box-shadow: inset -26rpx 0 30rpx -22rpx rgba(60,40,20,.32), 0 20rpx 40rpx -20rpx rgba(60,40,20,.45), -6rpx 6rpx 0 -2rpx #e9e0cc; }
+.fp-spread .fp-sr .fp-page { border-radius: 4rpx 24rpx 24rpx 4rpx; box-shadow: inset 26rpx 0 30rpx -22rpx rgba(60,40,20,.32), 0 20rpx 40rpx -20rpx rgba(60,40,20,.45), 6rpx 6rpx 0 -2rpx #e9e0cc; }
+.fp-spine { position: absolute; left: 599rpx; top: 8rpx; bottom: 8rpx; width: 2rpx; background: linear-gradient(rgba(60,40,20,0), rgba(60,40,20,.38) 12%, rgba(60,40,20,.38) 88%, rgba(60,40,20,0)); }
+.fp-blank { opacity: .9; }
+.fp-navw { width: 60% !important; max-width: 560px; }
+.fp-stage.wide { position: relative; }
+.fp-stage.wide .fp-cover { position: absolute; left: 50%; top: 0; margin-left: -230rpx; transform-origin: top center; }

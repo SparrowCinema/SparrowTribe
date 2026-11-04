@@ -10,9 +10,9 @@ const t = I.tr;
 const app = getApp();
 
 Page({
-  data: {friendOpen:false,friends:[{u:'https://sparrowcinema.github.io/michelin-guide/',img:'/images/brand/friend-michelin.png',n:'全球米其林美食护照',d:'去全球电影节看电影，别忘了顺路吃点美食。收录全球米其林餐厅，可标记想去、记录去过，让每座城市的电影与美味同行。'}],collectionOpen:false,todayExpanded:false,careOpen:false,todayRows:[], i: {}, pp: {}, ppOpen: false, ppPage: 0, rc: {}, rcOpen: false, rcY: 'all', rcM: 'all', rcP: 'all', guideOpen: false, fbOpen: false, guide: [{ k: '看过 · 盖章', s: '在影片页点「看过」，护照里就会盖下这部片的印章；可以打星评分、改观影日期。' }, { k: '写下持有人', s: '护照首页可以填姓名、从相册放一张照片，印章每页最多 15 枚。' }, { k: '个人排片', s: '在排片表点色块右上角的 + 加入场次，「我的」里会自动检查时间冲突；首页甘特图可以只看我的排片。' }, { k: '导出与分享', s: '把排片生成带二维码的长图、分享链接或加入日历。' }, { k: '结算长图', s: '护照页底部「生成我的影院观影结算」，可按年份、月份、专题筛选，生成一张印章墙长图。' }, { k: '换设备不丢', s: '开启上方云端同步，另一台设备用同步码即可带走看过记录、评分、照片和排片。' }] },
-  onLoad() { this.setData({ i: I.dict() }); this.off1 = plan.onChange(() => this.build()); this.off2 = app.onData(() => { this.build(); this.buildPassport(); }); this.off3 = W.onChange(() => this.buildPassport()); },
-  onUnload() { this.off1 && this.off1(); this.off2 && this.off2(); this.off3 && this.off3(); },
+  data: {friendOpen:false,friends:[{u:'https://sparrowcinema.github.io/michelin-guide/',img:'/images/brand/friend-michelin.png',n:'全球米其林美食护照',d:'去全球电影节看电影，别忘了顺路吃点美食。收录全球米其林餐厅，可标记想去、记录去过，让每座城市的电影与美味同行。'}],collectionOpen:false,todayExpanded:false,careOpen:false,todayRows:[], i: {}, pp: {}, ppOpen: false, ppPage: 0, wide: false, ppSp: 0, ppK: 1, ppH: 0, ppCH: 0, ppCK: 1, spreads: [], ppLabel: '', rc: {}, rcOpen: false, rcY: 'all', rcM: 'all', rcP: 'all', guideOpen: false, fbOpen: false, guide: [{ k: '看过 · 盖章', s: '在影片页点「看过」，护照里就会盖下这部片的印章；可以打星评分、改观影日期。' }, { k: '写下持有人', s: '护照首页可以填姓名、从相册放一张照片，印章每页最多 15 枚。' }, { k: '个人排片', s: '在排片表点色块右上角的 + 加入场次，「我的」里会自动检查时间冲突；首页甘特图可以只看我的排片。' }, { k: '导出与分享', s: '把排片生成带二维码的长图、分享链接或加入日历。' }, { k: '结算长图', s: '护照页底部「生成我的影院观影结算」，可按年份、月份、专题筛选，生成一张印章墙长图。' }, { k: '换设备不丢', s: '开启上方云端同步，另一台设备用同步码即可带走看过记录、评分、照片和排片。' }] },
+  onLoad() { this.setData({ i: I.dict() }); this.measure(); this._rz = () => { this.measure(); this.buildSpreads(); }; wx.onWindowResize && wx.onWindowResize(this._rz); this.off1 = plan.onChange(() => this.build()); this.off2 = app.onData(() => { this.build(); this.buildPassport(); }); this.off3 = W.onChange(() => this.buildPassport()); },
+  onUnload() { this._rz && wx.offWindowResize && wx.offWindowResize(this._rz); this.off1 && this.off1(); this.off2 && this.off2(); this.off3 && this.off3(); },
   onShow() { wx.setNavigationBarTitle({ title: t('我的观影护照') }); this.openPassportFromFilm(); this.build(); this.buildPassport(); this.buildSync(); if (!this.offS) this.offS = SY.onStatus(() => this.buildSync()); if (SY.stale()) SY.quiet(); },
   onHide() { this.offS && this.offS(); this.offS = null; },
   toggleCollection(){this.setData({collectionOpen:!this.data.collectionOpen});},
@@ -33,12 +33,13 @@ Page({
       return { id: e.id, title: e.f.cn, date: R.dstamp(e.rec.d), top: String((p && p.en) || 'SPARROW FILM PASSPORT').toUpperCase().split(/ · | & /)[0], venue: e.venue || t('影院观影'),
         shape: lk.shape, tilt: Math.round((((R.hash(e.id) % 21) - 10) * 1.1) * 10) / 10, dx: ((R.hash(e.id) >>> 5) % 9 - 4) * 3 + (Math.floor(k % 15 / 3) % 2 ? 10 : -2), dy: ((R.hash(e.id) >>> 9) % 7 - 3) * 3, ink: lk.ink, r, stars: r ? [1, 2, 3, 4, 5].map(i => Math.max(0, Math.min(2, r - (i - 1) * 2)) * 50) : [] };
     });
-    const pages = []; for (let k = 0; k < Math.max(1, stamps.length); k += 15) { const items = stamps.slice(k, k + 15); pages.push({ no: String(pages.length + 2).padStart(2, '0'), items, slots: Array.from({ length: Math.min(1, 15 - items.length) }, (x, j) => j) }); }
+    const pages = []; for (let k = 0; k < Math.max(1, stamps.length); k += 15) { const items = stamps.slice(k, k + 15); pages.push({ k: pages.length + 1, no: String(pages.length + 2).padStart(2, '0'), items, slots: Array.from({ length: Math.min(1, 15 - items.length) }, (x, j) => j) }); }
     const hn = W.holder(), first = list[0], last = list[list.length - 1];
     this.setData({ pp: { st, pages, n: pages.length + 1, empty: !list.length, holder: hn || t('影迷'), photo: W.photo(), holderEn: hn ? '' : 'CINEPHILE',
       first: first ? R.dstamp(first.rec.d) : '—', last: last ? R.dstamp(last.rec.d) : '—',
       mrz1: 'P<SPARROW<FILM<PASSPORT<<' + (hn && !/[^\x00-\x7f]/.test(hn) ? hn.toUpperCase().replace(/[^A-Z]/g, '<').slice(0, 14) : 'CINEPHILE') + '<<<',
       mrz2: 'FILMS<' + String(st.n).padStart(3, '0') + '<<PROGS<' + String(st.progs).padStart(2, '0') + '<<AVG<' + (rated.length ? Math.round(st.avg * 10) : '00') + '<<' + (last ? last.rec.d.replace(/-/g, '') : '00000000') } });
+    this.buildSpreads();
   },
   // ===== 个人档案云端同步（同步码，与网站共用） =====
   buildSync() {
@@ -87,11 +88,28 @@ Page({
   },
   openLibrary(e) {app.globalData.jumpLibraryMine=e.currentTarget.dataset.mode;wx.switchTab({url:'/pages/films/films'});},
   toggleSync() {this.setData({syncExpanded:!this.data.syncExpanded});},
-  ppOpen() { this.setData({ ppOpen: true, ppPage: 0 }); },
+  // 折叠屏展开 / 宽窗口（≥840px）：护照像书一样左右两页；rpx 随屏宽放大，所以按 px 计算缩放
+  measure() {
+    let w = 375, h = 667; try { const wi = wx.getWindowInfo ? wx.getWindowInfo() : wx.getSystemInfoSync(); w = wi.windowWidth; h = wi.windowHeight; } catch (e) { }
+    const wide = w >= 840, nat = 1.6 * w;
+    const B = Math.min(w * 0.92, 940, Math.max(560, (h - 300) * 1.408)), k = B / nat;
+    const cw = Math.min(340, w * 0.4), ck = cw / (0.6133 * w);
+    const d = { wide, ppK: k, ppH: Math.round(B * 0.71) + 4, ppCK: ck, ppCH: Math.round(cw * 1.422) + 6 };
+    if (wide !== this.data.wide) { if (wide) d.ppSp = Math.floor(this.data.ppPage / 2); else d.ppPage = this.data.ppSp * 2; }
+    this.setData(d);
+  },
+  buildSpreads() {
+    const n = (this.data.pp && this.data.pp.n) || 1, c = Math.ceil(n / 2), spreads = [];
+    for (let j = 0; j < c; j++) spreads.push({ k: j, l: 2 * j, r: 2 * j + 1, rno: String(2 * j + 2).padStart(2, '0') });
+    const sp = Math.min(this.data.ppSp, c - 1);
+    this.setData({ spreads, ppSp: sp }); this.spLabel();
+  },
+  spLabel() { const n = this.data.pp.n, l = this.data.ppSp * 2 + 1; this.setData({ ppLabel: l + 1 <= n ? l + '–' + (l + 1) + ' / ' + n : l + ' / ' + n }); },
+  ppOpen() { this.setData({ ppOpen: true, ppPage: 0, ppSp: 0 }); this.spLabel(); },
   ppClose() { this.setData({ ppOpen: false }); },
-  ppChange(e) { this.setData({ ppPage: e.detail.current }); },
-  ppPrev() { if (this.data.ppPage > 0) this.setData({ ppPage: this.data.ppPage - 1 }); },
-  ppNext() { if (this.data.ppPage < this.data.pp.n - 1) this.setData({ ppPage: this.data.ppPage + 1 }); },
+  ppChange(e) { if (this.data.wide) { this.setData({ ppSp: e.detail.current }); this.spLabel(); } else this.setData({ ppPage: e.detail.current }); },
+  ppPrev() { if (this.data.wide) { if (this.data.ppSp > 0) { this.setData({ ppSp: this.data.ppSp - 1 }); this.spLabel(); } return; } if (this.data.ppPage > 0) this.setData({ ppPage: this.data.ppPage - 1 }); },
+  ppNext() { if (this.data.wide) { if (this.data.ppSp < this.data.spreads.length - 1) { this.setData({ ppSp: this.data.ppSp + 1 }); this.spLabel(); } return; } if (this.data.ppPage < this.data.pp.n - 1) this.setData({ ppPage: this.data.ppPage + 1 }); },
   openStamp(e) { wx.navigateTo({ url: '/pages/film/film?id=' + e.currentTarget.dataset.id }); },
   pickPhoto() {
     const choose = () => wx.chooseMedia({ count: 1, mediaType: ['image'], sourceType: ['album', 'camera'], sizeType: ['compressed'], success: r => {

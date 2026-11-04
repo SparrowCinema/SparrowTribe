@@ -8,8 +8,8 @@
     <view class="k mono">YOUR LIFE IN CINEMA</view>
     <view class="h1 fp-h1">{{L.t(i,'我的观影护照')}}</view>
     <view class="sub">{{L.t(i,'把每一次银幕相遇，收进自己的电影档案。')}}</view>
-    <view wx:if="{{!ppOpen}}" class="fp-stage">
-      <view class="fp-cover {{i.__en?'en':''}}" hover-class="fp-press" bindtap="ppOpen">
+    <view wx:if="{{!ppOpen}}" class="fp-stage {{wide?'wide':''}}" style="{{wide?'height:'+ppCH+'px':''}}">
+      <view class="fp-cover {{i.__en?'en':''}}" style="{{wide?'transform:scale('+ppCK+')':''}}" hover-class="fp-press" bindtap="ppOpen">
         <view class="fp-cb" />
         <view class="fp-edition mono"><text>SPARROW CINEMA</text><text>VOL. 01</text></view>
         <text class="fp-name">{{i.__en?'PERSONAL EDITION':'观影护照'}}</text>
@@ -29,58 +29,13 @@ ONE STAMP</text><text class="fp-open-icon">↗</text></view>
         <view><text class="n mono">{{pp.st.avg}}</text><text class="l">{{L.t(i,'平均评分')}}</text></view>
       </view>
     </view>
-    <block wx:else>
+    <block wx:elif="{{!wide}}">
       <swiper class="fp-book" current="{{ppPage}}" bindchange="ppChange" easing-function="easeOutCubic" duration="420">
         <swiper-item>
-          <view class="fp-page fp-id">
-            <view class="fp-ph mono"><text>{{L.t(i,'FILM PASSPORT / 资料页')}}</text><text>01</text></view>
-            <view class="fp-idhead">
-              <view class="fp-portrait" bindtap="pickPhoto">
-                <image wx:if="{{pp.photo}}" class="fp-photo" src="{{pp.photo}}" mode="aspectFill" />
-                <block wx:else><view class="reel sm"><view wx:for="{{[0,1,2,3,4,5]}}" wx:key="*this" class="hole h{{item}}" /><view class="hub" /></view><text class="fp-padd mono">{{L.t(i,'添加照片')}}</text></block>
-              </view>
-              <view class="fp-fields">
-                <text class="fp-l mono">{{L.t(i,'类型 / TYPE · P')}}</text>
-                <text class="fp-l mono">{{L.t(i,'持有人 / HOLDER')}}</text>
-                <view class="fp-holder" bindtap="editHolder">{{pp.holder}} <text class="pen">✎</text></view>
-                <text wx:if="{{pp.holderEn}}" class="fp-en mono">{{pp.holderEn}}</text>
-                <text class="fp-l mono">{{L.t(i,'签发 / ISSUED BY')}}</text>
-                <text class="fp-iss">{{L.t(i,'麻雀映画 × 麻雀部落')}}</text>
-              </view>
-            </view>
-            <view class="fp-tally">
-              <view><text class="n mono">{{pp.st.n}}</text><text class="l">{{L.t(i,'看过影片')}}</text></view>
-              <view><text class="n mono">{{pp.st.progs}}</text><text class="l">{{L.t(i,'专题')}}</text></view>
-              <view><text class="n mono">{{pp.st.venues}}</text><text class="l">{{L.t(i,'影院')}}</text></view>
-              <view><text class="n mono">{{pp.st.avg}}</text><text class="l">{{L.t(i,'平均评分')}}</text></view>
-            </view>
-            <view class="fp-dl"><text class="dt mono">{{L.t(i,'首枚印章 / FIRST STAMP')}}</text><text class="dd mono">{{pp.first}}</text></view>
-            <view class="fp-dl"><text class="dt mono">{{L.t(i,'最近印章 / LATEST')}}</text><text class="dd mono">{{pp.last}}</text></view>
-            <view class="fp-dl"><text class="dt mono">{{L.t(i,'银幕时长 / SCREEN TIME')}}</text><text class="dd mono">{{pp.st.hm}}</text></view>
-            <view class="fp-sign"><text class="mono">{{L.t(i,'签名 / SIGNATURE')}}</text><text class="sig">See you at the cinema.</text></view>
-            <view class="fp-mrz mono"><text>{{pp.mrz1}}</text><text>{{pp.mrz2}}</text></view>
-          </view>
+          <template is="fp-id" data="{{pp,i}}" />
         </swiper-item>
         <swiper-item wx:for="{{pp.pages}}" wx:for-item="pg" wx:key="no">
-          <view class="fp-page fp-visa">
-            <view class="fp-ph mono"><text>{{L.t(i,'VISAS / 观影印章')}}</text><text>{{pg.no}}</text></view>
-            <view class="fp-vh">{{pp.empty ? L.t(i,'这本护照还没有印章') : L.t(i,'一部电影，一枚印章。')}}</view>
-            <view class="fp-sub">{{pp.empty ? L.t(i,'在影片页点「看过」，就会在这里盖章。') : L.t(i,'点印章回到影片 · 评分印在章上')}}</view>
-            <view class="fp-grid">
-              <view wx:for="{{pg.items}}" wx:for-item="s" wx:key="id" class="fp-cell">
-            <view class="st st{{s.shape}}" style="--ink:{{s.ink}};transform:translate({{s.dx}}rpx,{{s.dy}}rpx) rotate({{s.tilt}}deg) scale(.5)" data-id="{{s.id}}" bindtap="openStamp">
-              <view class="st-in" />
-              <text class="st-top">{{s.top}}</text>
-              <text class="st-title">{{s.title}}</text>
-              <text class="st-date">{{s.date}}</text>
-              <view wx:if="{{s.r}}" class="st-stars"><view wx:for="{{s.stars}}" wx:for-item="w" wx:key="index" class="ss"><text class="s0">☆</text><view class="s1" style="width:{{w}}%"><text>★</text></view></view></view>
-              <text class="st-venue">{{s.venue}}</text>
-            </view>
-              </view>
-              <view wx:for="{{pg.slots}}" wx:key="*this" class="fp-cell"><view class="fp-slot {{index ? 'dim' : ''}}"><text wx:if="{{pp.empty && index === 0}}" class="b">{{L.t(i,'第一枚印章')}}</text><text class="mono">NEXT STAMP</text></view></view>
-            </view>
-            <view class="fp-pf mono"><text>{{L.t(i,'印章')}} {{index + 1}} / {{pp.pages.length}}</text><text>SPARROW FILM PASSPORT</text></view>
-          </view>
+          <template is="fp-visa" data="{{pg,pp,i}}" />
         </swiper-item>
       </swiper>
       <view class="fp-nav">
@@ -89,6 +44,25 @@ ONE STAMP</text><text class="fp-open-icon">↗</text></view>
         <view class="nb {{ppPage === pp.n - 1 ? 'dis' : ''}}" bindtap="ppNext">{{L.t(i,'下一页 →')}}</view>
       </view>
       <view class="fp-close"><text>{{L.t(i,'左右滑动翻页')}}</text><text class="lk" bindtap="ppClose">{{L.t(i,'合上护照')}}</text></view>
+    </block>
+    <block wx:else>
+      <view class="fp-sw" style="height:{{ppH}}px">
+        <swiper class="fp-sbook" current="{{ppSp}}" bindchange="ppChange" easing-function="easeOutCubic" duration="460">
+          <swiper-item wx:for="{{spreads}}" wx:for-item="sp" wx:key="k">
+            <view class="fp-spread" style="transform:scale({{ppK}})">
+              <view class="fp-sl"><template wx:if="{{sp.l === 0}}" is="fp-id" data="{{pp,i}}" /><template wx:else is="fp-visa" data="{{pg:pp.pages[sp.l - 1],pp,i}}" /></view>
+              <view class="fp-sr"><template wx:if="{{sp.r < pp.n}}" is="fp-visa" data="{{pg:pp.pages[sp.r - 1],pp,i}}" /><view wx:else class="fp-page fp-blank"><view class="fp-ph mono"><text>SPARROW FILM PASSPORT</text><text>{{sp.rno}}</text></view></view></view>
+              <view class="fp-spine" />
+            </view>
+          </swiper-item>
+        </swiper>
+      </view>
+      <view class="fp-nav fp-navw">
+        <view class="nb {{ppSp === 0 ? 'dis' : ''}}" bindtap="ppPrev">{{L.t(i,'← 上一页')}}</view>
+        <text class="mono">{{ppLabel}}</text>
+        <view class="nb {{ppSp >= spreads.length - 1 ? 'dis' : ''}}" bindtap="ppNext">{{L.t(i,'下一页 →')}}</view>
+      </view>
+      <view class="fp-close fp-navw"><text>{{L.t(i,'左右滑动翻页')}}</text><text class="lk" bindtap="ppClose">{{L.t(i,'合上护照')}}</text></view>
     </block>
   </view>
   <view class="my-library-links"><view data-mode="planned" bindtap="openLibrary">{{L.t(i,'已加入排片')}} ↗</view><view data-mode="watched" bindtap="openLibrary">{{L.t(i,'已看过')}} ↗</view><view data-mode="qa" bindtap="openLibrary">{{L.t(i,'主创映后场')}} ↗</view></view>
@@ -158,3 +132,54 @@ ONE STAMP</text><text class="fp-open-icon">↗</text></view>
   </view>
 </view>
 <canvas type="2d" id="recap" class="poster-cv" />
+<template name="fp-id">
+          <view class="fp-page fp-id">
+  <view class="fp-ph mono"><text>{{L.t(i,'FILM PASSPORT / 资料页')}}</text><text>01</text></view>
+  <view class="fp-idhead">
+    <view class="fp-portrait" bindtap="pickPhoto">
+      <image wx:if="{{pp.photo}}" class="fp-photo" src="{{pp.photo}}" mode="aspectFill" />
+      <block wx:else><view class="reel sm"><view wx:for="{{[0,1,2,3,4,5]}}" wx:key="*this" class="hole h{{item}}" /><view class="hub" /></view><text class="fp-padd mono">{{L.t(i,'添加照片')}}</text></block>
+    </view>
+    <view class="fp-fields">
+      <text class="fp-l mono">{{L.t(i,'类型 / TYPE · P')}}</text>
+      <text class="fp-l mono">{{L.t(i,'持有人 / HOLDER')}}</text>
+      <view class="fp-holder" bindtap="editHolder">{{pp.holder}} <text class="pen">✎</text></view>
+      <text wx:if="{{pp.holderEn}}" class="fp-en mono">{{pp.holderEn}}</text>
+      <text class="fp-l mono">{{L.t(i,'签发 / ISSUED BY')}}</text>
+      <text class="fp-iss">{{L.t(i,'麻雀映画 × 麻雀部落')}}</text>
+    </view>
+  </view>
+  <view class="fp-tally">
+    <view><text class="n mono">{{pp.st.n}}</text><text class="l">{{L.t(i,'看过影片')}}</text></view>
+    <view><text class="n mono">{{pp.st.progs}}</text><text class="l">{{L.t(i,'专题')}}</text></view>
+    <view><text class="n mono">{{pp.st.venues}}</text><text class="l">{{L.t(i,'影院')}}</text></view>
+    <view><text class="n mono">{{pp.st.avg}}</text><text class="l">{{L.t(i,'平均评分')}}</text></view>
+  </view>
+  <view class="fp-dl"><text class="dt mono">{{L.t(i,'首枚印章 / FIRST STAMP')}}</text><text class="dd mono">{{pp.first}}</text></view>
+  <view class="fp-dl"><text class="dt mono">{{L.t(i,'最近印章 / LATEST')}}</text><text class="dd mono">{{pp.last}}</text></view>
+  <view class="fp-dl"><text class="dt mono">{{L.t(i,'银幕时长 / SCREEN TIME')}}</text><text class="dd mono">{{pp.st.hm}}</text></view>
+  <view class="fp-sign"><text class="mono">{{L.t(i,'签名 / SIGNATURE')}}</text><text class="sig">See you at the cinema.</text></view>
+  <view class="fp-mrz mono"><text>{{pp.mrz1}}</text><text>{{pp.mrz2}}</text></view>
+</view>
+</template>
+<template name="fp-visa">
+          <view class="fp-page fp-visa">
+  <view class="fp-ph mono"><text>{{L.t(i,'VISAS / 观影印章')}}</text><text>{{pg.no}}</text></view>
+  <view class="fp-vh">{{pp.empty ? L.t(i,'这本护照还没有印章') : L.t(i,'一部电影，一枚印章。')}}</view>
+  <view class="fp-sub">{{pp.empty ? L.t(i,'在影片页点「看过」，就会在这里盖章。') : L.t(i,'点印章回到影片 · 评分印在章上')}}</view>
+  <view class="fp-grid">
+    <view wx:for="{{pg.items}}" wx:for-item="s" wx:key="id" class="fp-cell">
+  <view class="st st{{s.shape}}" style="--ink:{{s.ink}};transform:translate({{s.dx}}rpx,{{s.dy}}rpx) rotate({{s.tilt}}deg) scale(.5)" data-id="{{s.id}}" bindtap="openStamp">
+    <view class="st-in" />
+    <text class="st-top">{{s.top}}</text>
+    <text class="st-title">{{s.title}}</text>
+    <text class="st-date">{{s.date}}</text>
+    <view wx:if="{{s.r}}" class="st-stars"><view wx:for="{{s.stars}}" wx:for-item="w" wx:key="index" class="ss"><text class="s0">☆</text><view class="s1" style="width:{{w}}%"><text>★</text></view></view></view>
+    <text class="st-venue">{{s.venue}}</text>
+  </view>
+    </view>
+    <view wx:for="{{pg.slots}}" wx:key="*this" class="fp-cell"><view class="fp-slot {{index ? 'dim' : ''}}"><text wx:if="{{pp.empty && index === 0}}" class="b">{{L.t(i,'第一枚印章')}}</text><text class="mono">NEXT STAMP</text></view></view>
+  </view>
+  <view class="fp-pf mono"><text>{{L.t(i,'印章')}} {{pg.k}} / {{pp.pages.length}}</text><text>SPARROW FILM PASSPORT</text></view>
+</view>
+</template>
