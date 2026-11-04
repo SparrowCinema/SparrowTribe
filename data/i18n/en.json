@@ -8485,6 +8485,21 @@
   "用手机浏览器打开刚复制的网址，在专题页点「订阅日历」，就能一键订阅到系统日历，场次有调整会自动更新。": "Open the copied link in your phone browser and tap \"Subscribe calendar\" on the programme page to subscribe in one tap. Schedule changes update automatically.",
   "知道了": "Got it",
   "用手机浏览器打开刚复制的网址，进入「导出与分享」，点「导入日历」，就能一次把全部排片导入系统日历。首次使用，请先在网页「我的」里用同步码连接：在小程序「我的 → 个人档案云端同步」复制同步码即可。": "Open the copied link in your phone browser, go to \"Export & share\" and tap \"Add to calendar\" to import every screening at once. First time only: connect the web page with your sync code (copy it from My › Personal archive sync in the mini program).",
-  "按天查看日程 · 导出长图 · 导入日历 · 分享": "Daily schedule · long image · add to calendar · share"
+  "按天查看日程 · 导出长图 · 导入日历 · 分享": "Daily schedule · long image · add to calendar · share",
+  "添加到手机桌面": "Add to Home Screen",
+  "网页版像 App 一样用 · 一键导入日历、订阅专题": "Use the web app like an app · one-tap calendar import & subscribe",
+  "网页版地址已复制 · 添加到手机桌面": "Web link copied · Add to Home Screen",
+  "网页版地址已复制": "Web link copied",
+  "推荐：网页版一键订阅（iPhone 用 Safari）": "Recommended: one-tap subscribe on the web (Safari on iPhone)",
+  "① iPhone 请用自带的 Safari 打开（谷歌等浏览器暂时无法一键导入日历）。": "① On iPhone, open it in Safari (Chrome and other browsers cannot import to the calendar in one tap).",
+  "② 点底部「分享」按钮 →「添加到主屏幕」。": "② Tap Share at the bottom → \"Add to Home Screen\".",
+  "③ 之后像 App 一样从桌面打开：个人排片可一键导入日历，专题可一键订阅日历，不用再进小程序。": "③ Then open it from your Home Screen like an app: import your plan to the calendar and subscribe to programmes in one tap.",
+  "安卓请用手机自带浏览器，在菜单里选「添加到主屏幕」。": "On Android, use the built-in browser and choose \"Add to Home screen\" in its menu.",
+  "① iPhone 请用自带的 Safari 打开这个网址（谷歌等浏览器无法一键导入日历）。": "① On iPhone, open this link in Safari (Chrome and other browsers cannot import to the calendar in one tap).",
+  "② 进入「导出与分享」，点「导入日历」，全部排片一次导入系统日历。": "② Go to \"Export & share\" and tap \"Add to calendar\" to import every screening at once.",
+  "③ 建议先点底部「分享」→「添加到主屏幕」，以后像 App 一样直接打开。": "③ Tip: tap Share → \"Add to Home Screen\" first, so you can open it like an app later.",
+  "首次使用，请先在网页「我的」里用同步码连接：在小程序「我的 → 个人档案云端同步」复制同步码。": "First time only: connect the web page with your sync code (copy it from My › Personal archive sync in the mini program).",
+  "① iPhone 请用自带的 Safari 打开这个网址（谷歌等浏览器无法一键订阅）。": "① On iPhone, open this link in Safari (Chrome and other browsers cannot subscribe in one tap).",
+  "② 在专题页点「订阅日历」，一键订阅到系统日历，场次有调整会自动更新。": "② On the programme page tap \"Subscribe calendar\" to subscribe in one tap; schedule changes update automatically."
  }
 }

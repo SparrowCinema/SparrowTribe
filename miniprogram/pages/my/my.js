@@ -117,6 +117,10 @@ Page({
     const en = I.isEn(), md = next ? next.d.slice(5).replace('-', '/') + ' ' + U.wk(next.d) + ' ' + next.t : '';
     this.setData({ planSub: list.length ? (en ? list.length + (list.length === 1 ? ' show' : ' shows') + ' · ' + (next ? 'next ' + md : 'all screened') : list.length + ' 场 · ' + (next ? '下一场 ' + md : '已全部放映')) : t('按天查看日程 · 导出长图 · 导入日历 · 分享') });
   },
+  // 添加到手机桌面：小程序里做不到，引导去网页版（Safari「添加到主屏幕」），网页版有分步骤的安装页
+  toDesktop() {
+    U.webTip('#install', ['① iPhone 请用自带的 Safari 打开（谷歌等浏览器暂时无法一键导入日历）。', '② 点底部「分享」按钮 →「添加到主屏幕」。', '③ 之后像 App 一样从桌面打开：个人排片可一键导入日历，专题可一键订阅日历，不用再进小程序。', '安卓请用手机自带浏览器，在菜单里选「添加到主屏幕」。'], t, '网页版地址已复制 · 添加到手机桌面');
+  },
   toPlan(e) { const to = e && e.currentTarget.dataset.to; wx.navigateTo({ url: '/pages/plan/plan' + (to ? '?to=' + to : '') }); },
   showImage(path) {
     wx.showActionSheet({ itemList: [t('保存到相册'), t('预览并发给朋友')], success: r => { if (r.tapIndex === 0) this.saveImage(path); else wx.previewImage({ urls: [path] }); } });
