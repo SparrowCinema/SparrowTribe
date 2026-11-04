@@ -15,6 +15,14 @@ function cleanWatched(w) {
     if (!/^\d{4}-\d{2}-\d{2}$/.test(String(r.d || ''))) return;
     out[id] = { d: r.d, r: Math.max(0, Math.min(10, Math.round(Number(r.r) || 0))), k: typeof r.k === 'string' ? r.k.slice(0, 80) : '', t };
     if (typeof r.f === 'string' && /^[\w-]{1,20}$/.test(r.f)) out[id].f = r.f;   // 放映版本（可选）
+    if (Array.isArray(r.v)) {   // 多次观影（可选）：≥2 次才保存
+      const vs = r.v.slice(0, 30).map(x => {
+        if (!x || !/^\d{4}-\d{2}-\d{2}$/.test(String(x.d || ''))) return null;
+        const o = { d: x.d, r: Math.max(0, Math.min(10, Math.round(Number(x.r) || 0))), k: typeof x.k === 'string' ? x.k.slice(0, 80) : '' };
+        if (typeof x.f === 'string' && /^[\w-]{1,20}$/.test(x.f)) o.f = x.f; return o;
+      }).filter(Boolean).sort((a, b) => (a.d < b.d ? -1 : a.d > b.d ? 1 : 0));
+      if (vs.length >= 2) out[id].v = vs;
+    }
   });
   return out;
 }

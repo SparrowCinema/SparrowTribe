@@ -56,12 +56,33 @@
         </view>
         <text class="mr-score mono {{mine.r ? 'has' : ''}}">{{mine.scoreTxt}}</text></view>
       </view>
-      <view wx:if="{{mine.seen}}" class="mr-meta">
-        <picker mode="date" value="{{mine.d}}" end="{{mine.today}}" bindchange="setSeenDate"><view class="mr-date">{{L.t(i,'观影日期')}} <text class="mono">{{mine.d}}</text> ▾</view></picker>
-        <text class="mr-at">{{mine.at}}</text>
-        <text class="mr-go" bindtap="toMy">{{L.t(i,'查看护照 ›')}}</text>
-      </view>
-      <picker wx:if="{{mine.seen}}" mode="multiSelector" range="{{mine.fmt.cols}}" value="{{mine.fmt.val}}" bindchange="setFmt" bindcolumnchange="fmtCol"><view class="mr-fmt"><text>{{L.t(i,'放映版本')}} <text class="muted">{{i.__en?'optional':'可选'}}</text></text><text class="mr-fv {{mine.fmt.on ? 'has' : ''}}">{{mine.fmt.txt}} ▾</text></view></picker>
+      <block wx:if="{{mine.seen && !mine.multi}}">
+        <view class="mr-meta">
+          <picker mode="date" value="{{mine.d}}" end="{{mine.today}}" bindchange="setSeenDate"><view class="mr-date">{{L.t(i,'观影日期')}} <text class="mono">{{mine.d}}</text> ▾</view></picker>
+          <text class="mr-at">{{mine.at}}</text>
+          <text class="mr-again" bindtap="rwAgain">＋ {{i.__en?'Watch again':'再看一次'}}</text>
+          <text class="mr-go" bindtap="toMy">{{L.t(i,'查看护照 ›')}}</text>
+        </view>
+        <picker mode="multiSelector" range="{{mine.fmt.cols}}" value="{{mine.fmt.val}}" bindchange="setFmt" bindcolumnchange="fmtCol"><view class="mr-fmt"><text>{{L.t(i,'放映版本')}} <text class="muted">{{i.__en?'optional':'可选'}}</text></text><text class="mr-fv {{mine.fmt.on ? 'has' : ''}}">{{mine.fmt.txt}} ▾</text></view></picker>
+      </block>
+      <block wx:elif="{{mine.seen && mine.multi}}">
+        <view class="rw-strip" bindtap="rwToggle"><view class="rw-dots"><view wx:for="{{mine.rw.dots}}" wx:key="*this" class="rw-dot" /><text wx:if="{{mine.rw.n > 10}}" class="rw-more mono">+{{mine.rw.n - 10}}</text></view><text class="rw-b">{{mine.rw.txt}}</text><text class="rw-sub">{{mine.rw.sub}}</text><text class="rw-tg">{{mine.rw.open ? (i.__en ? 'Hide ▴' : '收起 ▴') : (i.__en ? 'Show ▾' : '展开 ▾')}}</text></view>
+        <view wx:if="{{mine.rw.open}}" class="rw-tl">
+          <block wx:for="{{mine.rw.rows}}" wx:key="i">
+            <view wx:if="{{!item.edit}}" class="rw-v {{item.last ? 'last' : ''}}" data-i="{{item.i}}" bindtap="rwEdit"><text class="rw-n mono">{{item.no}}</text><text class="rw-d">{{item.d}}</text><view class="rw-s"><text class="rw-sb {{item.r ? '' : 'nil'}}">{{item.rs}}</text><text wx:if="{{item.tag}}" class="rw-st">{{item.tag}}</text></view><text class="rw-f">{{item.line}}</text></view>
+            <view wx:else class="rw-v edit">
+              <view class="rw-eh"><text class="rw-n mono">{{item.no}}</text>
+                <view class="mr-stars"><view wx:for="{{item.stars}}" wx:for-item="st" wx:for-index="k" wx:key="k" class="mr-star"><text class="s0">★</text><view class="s1" style="width:{{st}}%"><text>★</text></view><view class="hz l" data-v="{{k * 2 + 1}}" bindtap="rwRate" /><view class="hz r" data-v="{{k * 2 + 2}}" bindtap="rwRate" /></view></view></view>
+              <view class="rw-fm">
+                <picker mode="date" value="{{item.raw}}" end="{{mine.today}}" bindchange="rwDate"><view class="mr-date">{{item.raw}} ▾</view></picker>
+                <picker mode="multiSelector" range="{{mine.fmt.cols}}" value="{{mine.fmt.val}}" bindchange="setFmt" bindcolumnchange="fmtCol"><view class="mr-fv {{mine.fmt.on ? 'has' : ''}}">{{mine.fmt.txt}} ▾</view></picker>
+              </view>
+              <view class="rw-act"><text class="rw-done" bindtap="rwDone">{{i.__en ? 'Done' : '完成'}}</text><text class="rw-del" data-i="{{item.i}}" bindtap="rwDel">{{i.__en ? 'Delete' : '删除这一次'}}</text></view>
+            </view>
+          </block>
+          <view class="rw-add" bindtap="rwAgain">＋ {{i.__en ? 'Watch again' : '再看一次'}}</view>
+        </view>
+      </block>
       <text wx:else class="mr-tip">{{L.t(i,'看过后会在「我的 → 观影护照」盖下这部电影的印章；评分为五星十分制，可打半颗星。')}}</text>
     </view>
 
