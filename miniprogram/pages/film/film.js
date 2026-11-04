@@ -35,8 +35,8 @@ Page({
     });
     // 影展内已放映的场次：窄条保留（黑白、无操作按钮）；院线片不显示
     const goneShows = allShows.filter(s => U.ended(s, idx) && U.keepPast(U.progForShow(s, idx))).sort((a, b) => U.showDate(a) - U.showDate(b)).map(s => {
-      const v = U.showView(s, idx, data, picked);
-      return { key: v.key, d: s.d.replace('/', '.'), wk: v.wk, t: v.t, end: v.end, place: [v.venue, v.hall].filter(Boolean).join(' · ') };
+      const v = idx.VN[s.v] || {}, h = (v.halls || []).find(x => x.id === s.h), nm = (v.short || v.brand || v.name || '').replace(new RegExp('^' + (v.city || '@@') + '\\s*[·・]?\\s*'), '');
+      return { key: U.keyOf(s), d: s.d.replace('/', '.'), t: s.t, end: U.fmt(U.toMin(s.t) + U.durationOf(s, idx)), place: [nm, h && (h.short || h.name)].filter(Boolean).join(' · ') };
     });
     const ratings = (f.r || []).map((v, i) => ({
       l: t(RT[i][0]), na: v == null,

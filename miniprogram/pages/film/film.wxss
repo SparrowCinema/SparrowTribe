@@ -180,7 +180,6 @@
 .gs-h { display: flex; justify-content: space-between; align-items: center; margin-top: calc(16 * var(--r)); padding: calc(12 * var(--r)) calc(4 * var(--r)); font-size: calc(24 * var(--r)); color: var(--muted); }
 .gs-ar { display: inline-block; transition: transform .2s; }
 .gs-ar.open { transform: rotate(180deg); }
-.gs-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: calc(4 * var(--r)) calc(18 * var(--r)); margin-top: calc(12 * var(--r)); padding: calc(16 * var(--r)) calc(22 * var(--r)); border: calc(2 * var(--r)) solid var(--line); border-radius: calc(16 * var(--r)); filter: grayscale(1); opacity: .62; font-size: calc(24 * var(--r)); color: var(--muted); }
-.gs-d, .gs-t { color: var(--fg); }
-.gs-p { flex: 1 1 calc(240 * var(--r)); min-width: 0; }
-.gs-tag { margin-left: auto; font-size: calc(22 * var(--r)); padding: 0 calc(10 * var(--r)); border: calc(2 * var(--r)) solid var(--line); border-radius: calc(8 * var(--r)); }
+.gs-row { display: flex; align-items: baseline; gap: calc(22 * var(--r)); margin-top: calc(10 * var(--r)); padding: calc(14 * var(--r)) calc(22 * var(--r)); border: calc(2 * var(--r)) solid var(--line); border-radius: calc(14 * var(--r)); filter: grayscale(1); opacity: .6; font-size: calc(24 * var(--r)); color: var(--muted); white-space: nowrap; overflow: hidden; }
+.gs-d, .gs-t { color: var(--fg); flex: none; }
+.gs-p { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
