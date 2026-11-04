@@ -17,12 +17,14 @@
     var out = { v: 1, watched: {}, holder: { n: '', t: 0 }, photo: { d: '', t: 0 }, picks: { k: [], t: 0 } };
     if (!d || typeof d !== 'object') return out;
     var w = d.watched && typeof d.watched === 'object' ? d.watched : {};
-    Object.keys(w).slice(0, 3000).forEach(function (id) {
+    Object.keys(w).slice(0, 12000).forEach(function (id) {
       var r = w[id]; if (!/^[\w-]{1,80}$/.test(id) || !r || typeof r !== 'object') return;
       var t = num(r.t);
       if (r.del) { out.watched[id] = { del: 1, t: t }; return; }
       if (!/^\d{4}-\d{2}-\d{2}$/.test(String(r.d || ''))) return;
       out.watched[id] = { d: r.d, r: Math.max(0, Math.min(10, Math.round(num(r.r)))), k: typeof r.k === 'string' ? r.k.slice(0, 80) : '', t: t };
+      // 放映版本（可选，如 4k / 35mm / imax-gt）；没有就不写这个键，旧记录保持原样
+      if (typeof r.f === 'string' && /^[\w-]{1,20}$/.test(r.f)) out.watched[id].f = r.f;
     });
     if (d.holder && typeof d.holder.n === 'string') out.holder = { n: d.holder.n.slice(0, 20), t: num(d.holder.t) };
     if (d.photo && typeof d.photo.d === 'string' && (d.photo.d === '' || (/^data:image\/jpeg;base64,/.test(d.photo.d) && d.photo.d.length < 400000))) out.photo = { d: d.photo.d, t: num(d.photo.t) };

@@ -7,7 +7,7 @@
   if(!input||input.format!=='sparrow-film-passport'||input.version!==1||!input.profile||input.profile.v!==1)throw new Error('Invalid passport backup');
   const d=input.profile;
   if(!d.watched||typeof d.watched!=='object'||Array.isArray(d.watched)||!d.holder||typeof d.holder.n!=='string'||!d.photo||typeof d.photo.d!=='string'||!d.picks||!Array.isArray(d.picks.k))throw new Error('Incomplete passport backup');
-  if(JSON.stringify(d).length>2500000||Object.keys(d.watched).length>3000||d.picks.k.length>2000)throw new Error('Backup too large');
+  if(JSON.stringify(d).length>2500000||Object.keys(d.watched).length>12000||d.picks.k.length>2000)throw new Error('Backup too large');
   for(const id of Object.keys(d.watched)){if(['__proto__','constructor','prototype'].includes(id))throw new Error('Invalid film key');const r=d.watched[id];if(r&&!r.del){const dt=new Date(String(r.d)+'T12:00:00Z');if(!Number.isFinite(dt.getTime())||dt.toISOString().slice(0,10)!==r.d)throw new Error('Invalid viewing date');}}
   const out=S.clean(d);
   // Never silently discard part of a purportedly complete backup.

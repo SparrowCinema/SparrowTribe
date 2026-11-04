@@ -73,3 +73,4 @@ console.log('psync.js copied');
 fs.writeFileSync(path.join(root, 'miniprogram/utils/library.js'), fs.readFileSync(path.join(root, 'shared/library.js'), 'utf8'));
 
 fs.copyFileSync(path.join(root,'shared/profile-backup.js'),path.join(root,'miniprogram/utils/profile-backup.js'));
+fs.copyFileSync(path.join(root,'shared/growth.js'),path.join(root,'miniprogram/utils/growth.js'));
