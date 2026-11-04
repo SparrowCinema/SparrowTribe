@@ -1,6 +1,6 @@
 @import "../../styles/selector.wxss";
 .wrap { padding: calc(32 * var(--r)); }
-.h1 { font-size: calc(56 * var(--r)); font-weight: 900; }
+.h1 { font-size: calc(43.7 * var(--r)); font-weight: 900; }
 .sub { font-size: calc(26 * var(--r)); color: var(--muted); margin: calc(8 * var(--r)) 0 calc(20 * var(--r)); }
 .tabs { white-space: nowrap; margin-bottom: calc(12 * var(--r)); }
 .tab { display: inline-block; padding: calc(12 * var(--r)) calc(26 * var(--r)); margin-right: calc(14 * var(--r)); border-radius: calc(99 * var(--r)); border: calc(2 * var(--r)) solid var(--line-soft); font-size: calc(26 * var(--r)); }
@@ -8,7 +8,7 @@
 .ev-h { font-size: calc(26 * var(--r)); color: var(--muted); margin: calc(20 * var(--r)) 0 calc(8 * var(--r)); }
 .ev-card { border-top: calc(2 * var(--r)) solid var(--line-soft); padding: calc(20 * var(--r)) 0; }
 .ev-done { opacity: .65; }
-.ev-t { font-size: calc(29 * var(--r)); font-weight: 700; line-height: 1.5; }
+.ev-t { font-size: calc(27.3 * var(--r)); font-weight: 700; line-height: 1.5; }
 .ev-tag { font-size: calc(20 * var(--r)); margin-left: calc(12 * var(--r)); padding: calc(2 * var(--r)) calc(12 * var(--r)); border-radius: calc(99 * var(--r)); background: rgba(200,160,60,.2); font-weight: 400; }
 .ev-end { background: rgba(120,120,120,.2); }
 .ev-d { font-size: calc(26 * var(--r)); line-height: 1.75; margin: calc(8 * var(--r)) 0; }
