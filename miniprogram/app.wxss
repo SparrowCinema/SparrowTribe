@@ -51,3 +51,7 @@ button.btn::after { border: none; }
 .lang { display: flex; align-items: center; border: calc(2 * var(--r)) solid var(--line); border-radius: calc(999 * var(--r)); background: var(--surface, #f8f2e6); padding: calc(4 * var(--r)); margin-right: calc(16 * var(--r)); }
 .lang text { font-size: calc(20 * var(--r)); font-weight: 600; padding: calc(10 * var(--r)) calc(18 * var(--r)); border-radius: calc(999 * var(--r)); color: var(--muted); font-family: ui-monospace, Menlo, monospace; }
 .lang text.on { background: var(--accent); color: #fffaf0; }
+
+/* 标题字体：与网页一致的宋体系衬线（iOS 宋体-简、安卓思源宋体等），正文仍用无衬线 */
+page { --f-display: "Songti SC", "Noto Serif SC", "Source Han Serif SC", "STSongti-SC-Black", "Noto Serif CJK SC", serif; }
+.h1, .h2, .blockh, .today-h .b, .pn, .ct, .bh, .stt, .pc-name, .gh, .past-t, .gone-t, .bt, .mr-t, .me-t, .fi-stats .fn, .care-h { font-family: var(--f-display); }
