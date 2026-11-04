@@ -1130,8 +1130,60 @@ input:not([type=checkbox]):not([type=radio]),select,textarea{font-size:16px!impo
 :lang(en) .fp-name{font-size:calc(var(--u)*4);letter-spacing:.08em}:lang(en) .fp-nen{display:block}:lang(en) .fp-collection-copy h3{font-size:32px}
 @media(max-width:650px){.fp-collection{grid-template-columns:1fr;gap:24px;padding:28px 22px 22px}.fp-collection-copy{max-width:none;width:100%}.fp-collection-copy h3,.fp-collection-copy>p,.fp-archive-label{display:none}.fp-collection .fp-tallies{grid-template-columns:repeat(4,minmax(0,1fr));margin:0;padding:13px 0 10px;border-top:1px solid var(--line)}.fp-collection .fp-tallies span{padding:5px 0;font-size:9px}.fp-collection .fp-tallies b{font-size:22px}.fp-collection .fp-explore{font-size:11px;padding-top:14px}.my-dashboard .my-menu{grid-template-columns:1fr;gap:0;border:1px solid var(--line);border-radius:4px;overflow:hidden}.my-dashboard .my-menu .my-entry{display:grid;grid-template-columns:32px 1fr auto;align-items:center;border:0;border-bottom:1px solid var(--line);padding:16px}.my-dashboard .my-menu .my-entry:last-child{border-bottom:0}.my-dashboard .me-go{position:static}.fp-collection .fp-cover{width:min(78%,250px)}.my-dashboard .fp-recap b{font-size:15px}.my-dashboard .fp-recap small{font-size:10px}}
 
+/* 平板竖屏 / 折叠屏展开（640–899px）：把 480px 单栏放宽到 780px，列表两列，影片页左右分栏 */
+@media (min-width:640px) and (max-width:899px){
+  .app,.tabbar .in{max-width:780px}
+  .flist{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:24px}
+  .agenda{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 24px}.agenda .blockh{grid-column:1/-1;margin:0}
+  .venues{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.venues .blockh{grid-column:1/-1}
+  .prog-strip{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .fd-hin{grid-template-columns:180px 1fr;gap:28px;padding-block:44px 32px}.fd-poster{width:180px}.fd-title h1{font-size:34px}
+  .fd-body{display:grid;grid-template-columns:280px minmax(0,1fr);gap:28px;align-items:start}.fd-side .ticket-card{flex-direction:column;align-items:flex-start;gap:14px}.fd-side .ticket-code{width:150px;order:-1;align-self:center}
+  .fd-side{position:sticky;top:calc(env(safe-area-inset-top,0px) + 76px);padding-bottom:20px}.fd-main{min-width:0}
+  .fd-jump{margin:16px 0 0;padding:8px 0}
+}
+/* 宽屏专题卡：「查看专题」不再压在文字上 */
+@media (min-width:640px){.pc-go{position:static;justify-self:end;padding:0 14px 12px;margin-top:-6px}}
+
+/* ===== 平板 / 折叠屏精修：图文比例协调，字号随屏幕放大 ===== */
+.pc-blurb{display:none}
+@media (min-width:768px){
+  .tabbar .in{max-width:560px}
+  /* 专题列表卡片：文字区加厚，加入两行简介，避免“大图小字” */
+  .pc-body{padding:16px 20px 8px;gap:5px}.pc-body small{font-size:11.5px;line-height:1.7}.pc-body b{font-size:24px;line-height:1.25}.pc-body>span{font-size:14px;line-height:1.6}
+  .pc-body .pc-blurb{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-top:4px;font-size:13px;line-height:1.7;color:var(--muted);opacity:.9}
+  .pc-go{font-size:13px;padding:0 20px 16px}
+  /* 片目列表：海报放大，标题与信息同步放大 */
+  .fcard{grid-template-columns:88px 1fr auto;gap:22px;padding:20px 0}.slate{width:88px}.slate b{font-size:24px}
+  .fcard .info b{font-size:19px}.fcard .info .o,.fcard .info .d{font-size:13.5px}.score{font-size:14px}
+  /* 专题页：标题、简介放大；片单海报网格 + 更大的片名与场次文字 */
+  .pg-head{padding-top:28px}.pg-head small{font-size:11px}.pg-head h1{font-size:46px}.pg-sub{font-size:16px}
+  .pg-blurb{font-size:17px;line-height:1.9;max-width:62ch}
+  .pg-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:36px 20px}
+  .pg-film .pg-name{font-size:17px}.pg-slot-count{font-size:12px}.pg-slots{font-size:13px}.pg-slots .pg-slot small{font-size:12px}
+  /* 影片页头：海报与片名放大 */
+  .fd-hin{grid-template-columns:200px 1fr;gap:32px;padding-block:48px 36px}.fd-poster{width:200px}
+  .fd-title{align-self:center}.fd-title .fd-acts{margin-top:22px;padding-top:0}.pg-film .pg-name{min-height:2.7em}
+  .fd-title h1{font-size:44px}.fd-orig{font-size:19px}.fd-eyebrow{font-size:12.5px}.fd-chips span{font-size:13px;padding:4px 10px}
+}
+@media (min-width:768px) and (max-width:899px){.prog-strip>.prog-card:last-child:nth-child(odd){grid-column:1/-1}}
+@media (min-width:900px){
+  .pg-grid{grid-template-columns:repeat(5,minmax(0,1fr))}
+  .fd-hin{grid-template-columns:260px 1fr;gap:48px;padding-block:68px 52px}.fd-poster{width:260px}.fd-title h1{font-size:58px}.fd-orig{font-size:23px}
+  .fcard .info b{font-size:20px}
+}
+@media (min-width:1280px){.pg-grid{grid-template-columns:repeat(6,minmax(0,1fr))}}
+/* 专题页：有购票码时，简介在左、购票码在右，竖排大码 */
+@media (min-width:840px){
+  .pg>.gut:has(>.ticket-card){display:grid;grid-template-columns:minmax(0,1fr) 340px;column-gap:48px;align-items:start}
+  .pg>.gut:has(>.ticket-card)>*{grid-column:1/-1}
+  .pg>.gut:has(>.ticket-card)>:is(.pg-head,.pg-stats,.pg-blurb,.pg-acts,.pg-ticketlink){grid-column:1}
+  .pg>.gut:has(>.ticket-card)>.ticket-card{grid-column:2;grid-row:1/span 4;margin:28px 0 0;flex-direction:column;align-items:stretch;gap:16px;padding:26px 24px}
+  .pg>.gut:has(>.ticket-card)>.ticket-card .ticket-code{order:-1;width:200px;align-self:center}
+  .pg>.gut:has(>.ticket-card)>.ticket-card h2{font-size:26px}.pg>.gut:has(>.ticket-card)>.ticket-card p{font-size:12.5px}
+}
 </style>
-<link rel="stylesheet" href="styles/companion.css?v=72">
+<link rel="stylesheet" href="styles/companion.css?v=73">
 </head>
 <body>
 <div style="position:absolute;left:-9999px;top:0;width:0;height:0;overflow:hidden" aria-hidden="true"><img src="brand/og-square.jpg" alt="" width="300" height="300"></div>
@@ -1260,7 +1312,7 @@ function defaultProg(){ const open=progOrdered().filter(p=>progStatus(p)!=="ende
 const statusTag = p => { const st=progStatus(p); return `<i class="pst pst-${st}">${p.ongoing&&st==="live"?"常设":STATUS[st]}</i>`; };
 const progChips = (cur=pfilt) => { const open=progOrdered().filter(p=>progStatus(p)!=="ended"||p.id===cur); return `<div class="filters prog-chips">${[["all","全部专题"],...open.map(p=>[p.id,p.name])].map(([k,n])=>`<button class="fchip" data-pf="${k}" aria-pressed="${cur===k}">${esc(n)}</button>`).join("")}</div>`; };
 const dateSpan = list => { if(!list.length) return ""; const ds=[...new Set(list.map(x=>x.d))]; return ds[0]+" – "+ds[ds.length-1]; };
-function progCardHTML(p){ const n=progShows(p.id).length, fn=FILMS.filter(f=>f.prog===p.id||p.sections?.[f.id]).length; return `<button class="prog-card pc-${progStatus(p)}" data-prog="${p.id}">${p.cover?`<img src="${p.cardCover||p.cover}" alt="" loading="lazy">`:""}<span class="pc-body"><small>${statusTag(p)}${esc(p.kind)} · ${esc(p.period)}${p.city?` · ${esc(p.city)}`:""}</small><b>${esc(p.name)}</b><span>${esc(p.sub)} · ${fn} 部${n?` / ${n} 场`:""}</span></span><span class="pc-go">专题 ›</span></button>`; }
+function progCardHTML(p){ const n=progShows(p.id).length, fn=FILMS.filter(f=>f.prog===p.id||p.sections?.[f.id]).length; return `<button class="prog-card pc-${progStatus(p)}" data-prog="${p.id}">${p.cover?`<img src="${p.cardCover||p.cover}" alt="" loading="lazy">`:""}<span class="pc-body"><small>${statusTag(p)}${esc(p.kind)} · ${esc(p.period)}${p.city?` · ${esc(p.city)}`:""}</small><b>${esc(p.name)}</b><span>${esc(p.sub)} · ${fn} 部${n?` / ${n} 场`:""}</span>${p.blurb?`<span class="pc-blurb">${esc(tr(p.blurb))}</span>`:""}</span><span class="pc-go">专题 ›</span></button>`; }
 function programmesPage(){
   const all=progOrdered(), live=all.filter(p=>progStatus(p)==="live"), soon=all.filter(p=>progStatus(p)==="soon"), past=all.filter(p=>progStatus(p)==="ended");
   const sec=(t,en,list)=>list.length?`<h3 class="blockh pgl-h">${t} <small>${list.length} · ${en}</small></h3><div class="prog-strip">${list.map(progCardHTML).join("")}</div>`:"";
@@ -2130,7 +2182,7 @@ function feedbackHTML(){const sub=encodeURIComponent('麻雀观影护照 · 反�
   '<a class="fb-row" href="mailto:'+FB_MAIL+'?subject='+sub+'"><span class="fb-k">Email</span><b translate="no">'+FB_MAIL+'</b><span class="fb-go" aria-hidden="true">↗</span></a>'+
   '<button class="fb-row" type="button" data-copy="'+FB_WX+'"><span class="fb-k">WeChat</span><b translate="no">'+FB_WX+'</b><span class="fb-go">复制</span></button></div></details>';}
 document.addEventListener('click',async e=>{const b=e.target.closest('[data-copy]');if(!b)return;const v=b.dataset.copy;try{await navigator.clipboard.writeText(v);}catch{const i=document.createElement('textarea');i.value=v;i.style.cssText='position:fixed;opacity:0';document.body.appendChild(i);i.select();try{document.execCommand('copy');}catch{}i.remove();}toast('已复制：'+v);});
-const FRIEND_LINKS=[{img:'brand/friend-michelin.png',m:'M',n:'全球米其林美食护照',d:'米其林餐厅名录 · 想去 / 去过 / 美食护照',u:'https://sparrowcinema.github.io/michelin-guide/'}];
+const FRIEND_LINKS=[{img:'brand/friend-michelin.png',m:'M',n:'全球米其林美食护照',d:'去全球电影节看电影，别忘了顺路吃点美食。收录全球米其林餐厅，可标记想去、记录去过，让每座城市的电影与美味同行。',u:'https://sparrowcinema.github.io/michelin-guide/'}];
 function friendHTML(){return `<details class="menu-disclosure guide-card friend-card" id="friend-card"><summary class="my-entry">${menuIcon('link')}<span class="menu-copy"><b>友情链接</b><small>${FRIEND_LINKS.length} 个伙伴站点 · 更多陆续加入</small></span><span class="me-go" aria-hidden="true">›</span></summary><div class="friend-body">`+FRIEND_LINKS.map(x=>'<a class="friend-item" href="'+x.u+'" target="_blank" rel="noopener">'+(x.img?'<img class="fi-mark fi-img" src="'+x.img+'" alt="" width="42" height="42" loading="lazy">':'<span class="fi-mark" aria-hidden="true">'+esc(x.m||x.n.slice(0,1))+'</span>')+'<span class="fi-t"><b>'+esc(x.n)+'</b><small>'+esc(x.d)+'</small></span><span class="fb-go" aria-hidden="true">↗</span></a>').join('')+'</div></details>';}
 function guideHTML(){const S=[['看过 · 盖章','在影片页点「看过」，护照里就会盖下这部片的印章；可以打星评分、改观影日期。'],['写下持有人','护照首页可以填姓名、从相册放一张照片，印章每页最多 15 枚。'],['个人排片','在排片表点色块右上角的 + 加入场次，「我的」里会自动检查时间冲突；首页甘特图可以只看我的排片。'],['导出与分享','把排片生成带二维码的长图、分享链接或加入日历。'],['结算长图','护照页底部「生成我的影院观影结算」，可按年份、月份、专题筛选，生成一张印章墙长图。'],['换设备不丢','开启上方云端同步，另一台设备用同步码即可带走看过记录、评分、照片和排片。']];
   return '<details class="guide-card" id="guide-card"><summary>观影护照使用指南</summary><ol>'+S.map(x=>'<li><b>'+x[0]+'</b><span>'+x[1]+'</span></li>').join('')+'</ol></details>';}
