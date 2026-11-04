@@ -8,6 +8,28 @@
     <view class="k mono">YOUR LIFE IN CINEMA</view>
     <view class="h1 fp-h1">{{L.t(i,'我的观影护照')}}</view>
     <view class="sub">{{L.t(i,'把每一次银幕相遇，收进自己的电影档案。')}}</view>
+  <view class="fp-tabs"><view class="fp-tab {{ppTab!=='growth'?'on':''}}" data-t="stamps" bindtap="ppTabSw">{{i.__en?'Stamps':'签章'}}</view><view class="fp-tab {{ppTab==='growth'?'on':''}}" data-t="growth" bindtap="ppTabSw">{{i.__en?'Growth':'成长'}}</view></view>
+  <view wx:if="{{ppTab==='growth'}}" class="gw">
+    <view class="gh">
+      <text class="gh-k mono">{{L.t(i,'我的影迷等级')}}</text>
+      <view class="gh-row"><view class="gh-n"><text class="gh-nb">{{gr.n}}</text><text class="gh-nu">{{i.__en?'films':'部'}}</text></view><view class="gh-lv"><text class="gh-name">{{gr.lvName}}</text><text wx:if="{{gr.lvSub}}" class="gh-sub">{{gr.lvSub}}</text></view></view>
+      <view class="gh-bar"><view class="gh-fill" style="width:{{gr.pct}}%" /></view>
+      <text class="gh-left">{{gr.lvLeft}}</text>
+      <view class="gh-stats"><view wx:for="{{gr.stats}}" wx:key="index" class="gh-st"><text class="gh-sn">{{item[0]}}</text><text class="gh-sl">{{item[1]}}</text></view></view>
+    </view>
+    <view wx:if="{{gr.next}}" class="gn"><view class="gn-c"><text class="gn-k mono">{{L.t(i,'下一枚')}} · {{gr.next.grp}}</text><text class="gn-n">{{gr.next.name}}</text><text class="gn-t">{{gr.next.txt}}</text><view class="gn-bar"><view class="gn-fill" style="width:{{gr.next.pct}}%" /></view></view><text class="gn-p mono">{{gr.next.pct}}%</text></view>
+    <view class="gs"><view class="gs-h"><text class="gs-t">{{i.__en?'Levels':'影迷等级'}}</text><text class="gs-s">{{L.t(i,'按看过的不同影片数')}}</text></view>
+      <view class="gl"><view wx:for="{{gr.ladder}}" wx:key="name" class="gl-i {{item.st}}"><view class="gl-dot" /><text class="gl-n">{{item.name}}</text><text class="gl-sub">{{item.sub}}</text><text wx:if="{{item.tag}}" class="gl-tag">{{item.tag}}</text></view></view>
+      <view class="gl-more" bindtap="lvToggle">{{gr.lvMore}}</view></view>
+    <view class="gs"><view class="gs-h"><text class="gs-t">{{L.t(i,'全球足迹')}}</text><text class="gs-s">{{gr.geo}}</text></view>
+      <view wx:for="{{gr.cities}}" wx:key="name" class="gc"><view class="gc-h"><view><text class="gc-n">{{item.name}}</text><text class="gc-c">{{item.country}}</text></view><view class="gc-cnt"><text class="gc-cn">{{item.n}}</text><text class="gc-cu">{{i.__en?'films':'部'}}</text></view></view>
+        <view wx:for="{{item.bars}}" wx:for-item="b" wx:key="name" class="gc-b"><view class="gc-bt"><text class="gc-bn">{{b.name}}</text><text class="gc-be mono">{{b.seen}}/{{b.total}}</text></view><view class="gc-bar"><view class="gc-bf" style="width:{{b.pct}}%" /></view></view></view>
+      <text wx:if="{{!gr.cities.length}}" class="gs-empty">{{L.t(i,'看过的影片落在哪座城市，这里就会点亮一座城市。')}}</text></view>
+    <view class="gs"><view class="gs-h"><text class="gs-t">{{L.t(i,'旅程纪念章')}}</text><text class="gs-s mono">{{gr.medalSum}}</text></view>
+      <view wx:for="{{gr.groups}}" wx:for-item="g" wx:key="name" class="gg"><view class="gg-h"><text class="gg-n">{{g.name}}</text><text class="gg-v mono">{{g.val}}</text></view>
+        <scroll-view scroll-x enable-flex class="gm-row"><view wx:for="{{g.medals}}" wx:for-item="m" wx:key="name" class="gm {{m.st}}"><view class="gm-d"><text class="gm-b">{{m.n}}</text></view><text class="gm-t">{{m.name}}</text><text wx:if="{{m.st==='next'}}" class="gm-p mono">{{m.pct}}%</text></view></scroll-view></view></view>
+  </view>
+  <block wx:if="{{ppTab!=='growth'}}">
     <view wx:if="{{ppShelf}}" class="fp-shelf">
       <view class="fp-shelf-h"><view><text class="fp-sk mono">BOOKSHELF</text><text class="fp-st">{{L.t(i,'我的护照书架')}}</text><text class="fp-ss">{{L.t(i,'每册最多 285 枚印章，满了自动换下一册。')}}</text></view><text class="fp-back" bindtap="ppShelfClose">{{L.t(i,'返回')}}</text></view>
       <view class="fp-vgrid">
@@ -76,6 +98,7 @@ ONE STAMP</text><text class="fp-open-icon">↗</text></view>
       </view>
       <view class="fp-close fp-navw"><text>{{L.t(i,'左右滑动翻页')}}</text><view class="fp-cl"><text wx:if="{{pp.nv>1}}" class="lk" bindtap="ppShelfOpen">{{pp.shelfLk}}</text><text class="lk" bindtap="ppClose">{{L.t(i,'合上护照')}}</text></view></view>
     </block>
+  </block>
   </view>
   <view class="my-library-links"><view data-mode="planned" bindtap="openLibrary">{{L.t(i,'已加入排片')}} ↗</view><view data-mode="watched" bindtap="openLibrary">{{L.t(i,'已看过')}} ↗</view><view data-mode="qa" bindtap="openLibrary">{{L.t(i,'主创映后场')}} ↗</view></view>
   </view>

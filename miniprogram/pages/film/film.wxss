@@ -126,6 +126,9 @@
 .mr-score { flex: none; min-width: 84rpx; text-align: right; font-size: 20rpx; color: var(--muted); }
 .mr-score.has { font-size: 30rpx; font-weight: 700; color: #c8862a; }
 .mr-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 8rpx 20rpx; margin-top: 20rpx; padding-top: 18rpx; border-top: 2rpx dashed var(--line); font-size: 22rpx; color: var(--muted); }
+.mr-fmt { display: flex; align-items: center; justify-content: space-between; gap: 16rpx; margin-top: 18rpx; padding-top: 18rpx; border-top: 2rpx dashed var(--line); font-size: 24rpx; }
+.mr-fv { padding: 8rpx 18rpx; border-radius: 10rpx; border: 2rpx solid var(--line); background: var(--bg); color: var(--muted); }
+.mr-fv.has { color: var(--fg); border-color: var(--accent); }
 .mr-date { padding: 6rpx 14rpx; border-radius: 10rpx; border: 2rpx solid var(--line); background: var(--bg); color: var(--fg); }
 .mr-go { margin-left: auto; color: var(--accent); white-space: nowrap; }
 .mr-at { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }

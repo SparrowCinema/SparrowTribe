@@ -61,6 +61,7 @@
         <text class="mr-at">{{mine.at}}</text>
         <text class="mr-go" bindtap="toMy">{{L.t(i,'查看护照 ›')}}</text>
       </view>
+      <picker wx:if="{{mine.seen}}" mode="selector" range="{{mine.fmtRange}}" value="{{mine.fmtIdx}}" bindchange="setFmt"><view class="mr-fmt"><text>{{L.t(i,'放映版本')}} <text class="muted">{{i.__en?'optional':'可选'}}</text></text><text class="mr-fv {{mine.fmtIdx ? 'has' : ''}}">{{mine.fmtRange[mine.fmtIdx]}} ▾</text></view></picker>
       <text wx:else class="mr-tip">{{L.t(i,'看过后会在「我的 → 观影护照」盖下这部电影的印章；评分为五星十分制，可打半颗星。')}}</text>
     </view>
 
