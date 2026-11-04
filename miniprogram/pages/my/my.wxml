@@ -125,15 +125,15 @@ ONE STAMP</text><text class="fp-open-icon">↗</text></view>
   <view wx:if="{{syncExpanded}}" class="me-body sync-body">
    <block wx:if="{{sy}}">
     <block wx:if="{{!sy.on}}">
-      <view class="sy-lead">{{L.t(i,'用一串同步码，在手机、电脑和小程序之间同步看过记录、评分、护照照片和个人排片。不用注册账号。')}}</view>
-      <view class="sy-row"><view class="btn" hover-class="hv" bindtap="syStart">{{L.t(i,'开启同步')}}</view><view class="btn ghost" hover-class="hv" bindtap="syJoin">{{L.t(i,'我已有同步码')}}</view></view>
+      <view class="sy-lead">{{L.t(i,'用微信登录自动保存档案：换手机、重装小程序都不会丢，也可以用同步码和网站互通。')}}</view>
+      <view class="sy-row"><view class="btn" hover-class="hv" bindtap="syStart">{{L.t(i,'用微信登录并同步')}}</view><view class="btn ghost" hover-class="hv" bindtap="syJoin">{{L.t(i,'我已有同步码')}}</view></view>
     </block>
     <block wx:else>
-      <view class="sy-st"><view class="dot {{sy.state}}" /><text>{{sy.line}}</text></view>
+      <view class="sy-st"><view class="dot {{sy.state}}" /><text>{{sy.wx ? L.t(i,'微信已登录 · ') : ''}}{{sy.line}}</text></view>
       <view class="sy-code"><text class="sy-l">{{L.t(i,'同步码')}}</text><text class="mono sy-c" user-select>{{sy.shown}}</text>
         <view class="sy-ops"><text bindtap="syReveal">{{sy.rev ? L.t(i,'隐藏') : L.t(i,'显示')}}</text><text bindtap="syCopy">{{L.t(i,'复制')}}</text></view></view>
       <view class="sy-row"><view class="btn" hover-class="hv" bindtap="syNow">{{L.t(i,'立即同步')}}</view><text class="sy-stop" bindtap="syStop">{{L.t(i,'停止同步')}}</text></view>
-      <view class="sy-note">{{L.t(i,'在另一台设备（网站或小程序）的「我的」页选「我已有同步码」，输入这串码即可。同步码就是钥匙，请自己保存好；知道它的人都能读写这份档案。')}}</view>
+      <view class="sy-note">{{L.t(i,'同一个微信在任何手机上打开小程序都会自动连到这份档案。网站没有微信登录：在网站「我的」页选「我已有同步码」，输入这串码即可。同步码就是钥匙，请自己保存好；知道它的人都能读写这份档案。')}}</view>
     </block>
    </block>
    <view class="care-h">{{L.t(i,'你的档案，由你保管')}}</view>
