@@ -30,8 +30,22 @@ App({
         this.globalData.source = 'cloud';
         try { watched.migrate(this.globalData.raw.aliases); } catch (e) { }
         this._waiters.forEach(fn => fn(this.globalData.data));
+        if (r.lean && r.detailParts) this.loadDetail(r.detailParts, r.en);
       }
     }).catch(() => {});
+  },
+
+  // 剧情简介、影人介绍、获奖等长文字段分段取回（云函数单次返回有大小上限），取到一段合并一段
+  loadDetail(n, en) {
+    const raw = this.globalData.raw, byId = {}; raw.films.forEach(f => { byId[f.id] = f; });
+    let done = 0;
+    const merge = r => {
+      Object.keys(r.d || {}).forEach(id => { if (byId[id]) Object.assign(byId[id], r.d[id]); });
+      const ef = en && en.films; if (ef) Object.keys(r.e || {}).forEach(id => { ef[id] = Object.assign(ef[id] || {}, r.e[id]); });
+    };
+    const refresh = () => { if (en) I.setEN(en); this.globalData.data = I.localize(raw); this._waiters.forEach(fn => fn(this.globalData.data)); };
+    const one = i => wx.cloud.callFunction({ name: 'getData', data: { part: i } }).then(res => { const r = res.result || {}; if (r.ok) { merge(r); if (++done % 2 === 0) refresh(); } }).catch(() => {});
+    (async () => { for (let i = 0; i < n; i += 2) await Promise.all([one(i), i + 1 < n ? one(i + 1) : null]); refresh(); })();
   },
 
   // 底部标签栏文字随语言切换（页面标题由各页 onShow 设置）

@@ -117,24 +117,42 @@ async function writeCache(data) {
   console.log('缓存已写入', n + ' 段，共 ' + json.length + ' 字符');
 }
 
+// 云函数返回值有大小上限（约 1MB），完整数据（含剧情简介等长文）已超过，所以首屏只返回精简版，
+// 长文字段按 PART 部一段，由小程序用 {part:i} 再逐段取回并合并。
+const HEAVY = ['syn', 'bio', 'st', 'honors', 'parts', 'contentNote', 'contentReview', 'editorial', 'highlights', 'links', 'warnings'];
+const PART = 40;
+const pick = (o, ks) => { const r = {}; ks.forEach(k => { if (o && o[k] !== undefined) r[k] = o[k]; }); return r; };
+const drop = (o, ks) => { const r = Object.assign({}, o); ks.forEach(k => { delete r[k]; }); return r; };
+function slim(data) {
+  const out = Object.assign({}, data, { films: data.films.map(f => drop(f, HEAVY)), lean: true, detailParts: Math.ceil(data.films.length / PART) });
+  if (data.en && data.en.films) { const ef = {}; Object.keys(data.en.films).forEach(id => { ef[id] = drop(data.en.films[id], HEAVY); }); out.en = Object.assign({}, data.en, { films: ef }); }
+  return out;
+}
+function detailPart(data, i) {
+  const d = {}, e = {};
+  data.films.slice(i * PART, (i + 1) * PART).forEach(f => { d[f.id] = pick(f, HEAVY); const en = data.en && data.en.films && data.en.films[f.id]; if (en) e[f.id] = pick(en, HEAVY); });
+  return { ok: true, part: i, d, e };
+}
+const shape = (data, event) => (event && event.part !== undefined ? detailPart(data, +event.part || 0) : slim(data));
+
 exports.main = async (event, context) => {
   // 定时触发器（每 10 分钟）或 {"refresh":true}：去网站取最新数据并更新缓存
   const isTimer = !!(event && (event.Type === 'Timer' || event.TriggerName || event.Time));
   const force = isTimer || !!(event && event.refresh);
   const cached = await readCache();
   // 小程序打开时：有缓存就直接返回，不等网站（缓存由定时触发器在后台更新）
-  if (!force && cached) return Object.assign(cached.data, { source: 'cache', cachedAt: cached.at });
+  if (!force && cached) return shape(Object.assign(cached.data, { source: 'cache', cachedAt: cached.at }), event);
   try {
     const ms = budget(context);
     console.log('读取网站，时限', ms + 'ms', isTimer ? '（定时触发）' : '');
     const data = await within(fromSite(ms), ms);
     try { await writeCache(data); } catch (e) { console.error('缓存写入失败', e && e.message); }
     console.log('网站数据已更新到缓存', data.films.length + ' 部', data.shows.length + ' 场');
-    return isTimer ? { ok: true, films: data.films.length, shows: data.shows.length } : data;
+    return isTimer ? { ok: true, films: data.films.length, shows: data.shows.length } : shape(data, event);
   } catch (e) {
     console.warn('网站数据读取失败，改用缓存', e && e.message);
   }
   if (isTimer) return { ok: false };
-  if (cached) return Object.assign(cached.data, { source: 'cache-stale', cachedAt: cached.at });
-  return fromDatabase();
+  if (cached) return shape(Object.assign(cached.data, { source: 'cache-stale', cachedAt: cached.at }), event);
+  return shape(await fromDatabase(), event);
 };
