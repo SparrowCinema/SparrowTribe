@@ -1182,6 +1182,20 @@ input:not([type=checkbox]):not([type=radio]),select,textarea{font-size:16px!impo
   .pg>.gut:has(>.ticket-card)>.ticket-card .ticket-code{order:-1;width:200px;align-self:center}
   .pg>.gut:has(>.ticket-card)>.ticket-card h2{font-size:26px}.pg>.gut:has(>.ticket-card)>.ticket-card p{font-size:12.5px}
 }
+
+/* ===== 护照双页（平板横屏 / 折叠屏展开）===== */
+.fp-book.fp-spread{width:min(100%,940px,max(560px,calc((100dvh - 250px)*1.408)));aspect-ratio:176/125}
+.fp-spread .fp-page{inset:0 auto 0 auto;width:50%;box-sizing:border-box}
+.fp-spread .fp-left{left:0;border-radius:14px 4px 4px 14px;box-shadow:inset -18px 0 22px -16px rgba(60,40,20,.4),inset 0 0 0 1px rgba(0,0,0,.04),0 18px 36px -14px rgba(60,40,20,.45),-3px 3px 0 -1px #e9e0cc,-6px 6px 0 -2px #ded2ba}
+.fp-spread .fp-right{left:50%;border-radius:4px 14px 14px 4px;box-shadow:inset 18px 0 22px -16px rgba(60,40,20,.4),inset 0 0 0 1px rgba(0,0,0,.04),0 18px 36px -14px rgba(60,40,20,.45),3px 3px 0 -1px #e9e0cc,6px 6px 0 -2px #ded2ba}
+.fp-spread::after{content:"";position:absolute;top:0;bottom:0;left:50%;width:2px;margin-left:-1px;background:linear-gradient(180deg,rgba(90,60,30,.25),rgba(90,60,30,.45),rgba(90,60,30,.25));z-index:2;pointer-events:none}
+.fp-blank{align-items:center}.fp-blank .fp-ph{align-self:stretch}.fp-blank-mark{margin:auto;width:calc(var(--u)*30);opacity:.12;color:var(--pp-ink)}.fp-blank-mark svg{width:100%;height:auto;display:block}
+.fp-spread .fp-leaf{inset:0 0 0 50%;z-index:4}
+.fp-spread .fp-leaf-b.pg{display:block;background:none;box-shadow:none;border-radius:0}
+.fp-spread .fp-leaf-f>.fp-page,.fp-spread .fp-leaf-b>.fp-page{inset:0;left:0;width:100%}
+.fp-spread .fp-leaf-f>.fp-cover{width:100%;height:100%}
+.fp-spread .fp-ghost{z-index:1}
+.fp:has(.fp-spread) .fp-nav,.fp:has(.fp-spread) .fp-close-row{max-width:560px}
 </style>
 <link rel="stylesheet" href="styles/companion.css?v=73">
 </head>
@@ -1999,29 +2013,48 @@ function ppPageHTML(list,pg,n){const R=window.SparrowRecap,st=passportStats(list
   const cells=items.map((e,i)=>'<button class="fp-stamp" data-film="'+e.id+'" style="--tilt:'+stampPose(e.id,i).tilt+'deg;--dx:calc(var(--u)*'+stampPose(e.id,i).dx+');--dy:calc(var(--u)*'+stampPose(e.id,i).dy+');--i:'+i+'">'+stampSVG(e)+'</button>').join('')+
     Array.from({length:Math.min(1,PP_PER-items.length)},(x,i)=>'<span class="fp-slot'+(i?' dim':'')+'">'+(i===0&&!list.length?'<b>第一枚印章</b><small>在影片页点「看过」</small>':'<small>NEXT STAMP</small>')+'</span>').join('');
   return '<section class="fp-page fp-visa" aria-label="观影印章页"><div class="fp-ph"><span>VISAS / 观影印章</span><span>'+no+'</span></div><h4>'+(list.length?'一部电影，一枚印章。':'这本护照还没有印章')+'</h4><p class="fp-sub">'+(list.length?'点印章回到影片 · 评分印在章上':'在影片页点「看过」，就会在这里盖章。')+'</p><div class="fp-grid">'+cells+'</div><div class="fp-pf"><span><span>印章</span> '+pg+' / '+(n-1)+'</span><span>SPARROW FILM PASSPORT</span></div></section>';}
+// 平板横屏 / 折叠屏展开（≥840px）：像翻开真护照一样左右两页（1·2、3·4、5·6…）
+const ppSpread=()=>matchMedia('(min-width:840px)').matches;
+function ppBlank(no){return '<section class="fp-page fp-blank fp-right" aria-hidden="true"><div class="fp-ph"><span>SPARROW FILM PASSPORT</span><span>'+String(no).padStart(2,'0')+'</span></div><div class="fp-blank-mark">'+PP_EMBLEM+'</div></section>';}
+function bookHTML(list,n){const sp=ppSpread(),b=sp?PP.page-PP.page%2:PP.page,last=sp?b+2>=n:b>=n-1;
+  const side=(h,c)=>h.replace('class="fp-page ','class="fp-page '+c+' ');
+  const book=sp?'<div class="fp-book fp-spread">'+side(ppPageHTML(list,b,n),'fp-left')+(b+1<n?side(ppPageHTML(list,b+1,n),'fp-right'):ppBlank(b+2))+'</div>':'<div class="fp-book">'+ppPageHTML(list,b,n)+'</div>';
+  const label=sp&&b+1<n?(b+1)+'–'+(b+2)+' / '+n:(b+1)+' / '+n;
+  return '<div class="fp-stage">'+book+'</div><div class="fp-nav"><button data-pp="prev" '+(b===0?'disabled':'')+' aria-label="上一页">← 上一页</button><span>'+label+'</span><button data-pp="next" '+(last?'disabled':'')+' aria-label="下一页">下一页 →</button></div>';}
 function passportHTML(){const list=watchEntries(),pages=passportPages(list),n=pages.length;PP.page=Math.min(PP.page,n-1);const st=passportStats(list);
   const cover='<button type="button" class="fp-cover" data-pp="open" aria-label="翻开我的观影护照"><span class="fp-cb"></span><span class="fp-edition"><span>SPARROW CINEMA</span><span>VOL. 01</span></span><span class="fp-name">'+(LANG==='en'?'PERSONAL EDITION':'观影护照')+'</span><span class="fp-nen">FILM<br>PASSPORT</span><img class="fp-cover-art" src="brand/passport-aperture.svg" alt="" aria-hidden="true"><span class="fp-cover-rule"></span><span class="fp-cover-bottom"><span>ONE FILM<br>ONE STAMP</span><span class="fp-open-icon" aria-hidden="true">↗</span></span><span class="fp-publishers">麻雀映画 × 麻雀部落</span></button>';
   const tallies='<div class="fp-tallies"><span><b>'+st.n+'</b>看过影片</span><span><b>'+st.progs+'</b>专题</span><span><b>'+st.venues+'</b>影院</span><span><b>'+(st.avg?st.avg.toFixed(1):'—')+'</b>平均评分</span></div>';
   return '<section class="fp" id="fp"><div class="fp-heading"><small>YOUR LIFE IN CINEMA</small><h2>我的观影护照</h2><p>把每一次银幕相遇，收进自己的电影档案。</p></div>'+
-    (PP.open?'<div class="fp-stage"><div class="fp-book">'+ppPageHTML(list,PP.page,n)+'</div></div><div class="fp-nav"><button data-pp="prev" '+(PP.page===0?'disabled':'')+' aria-label="上一页">← 上一页</button><span>'+(PP.page+1)+' / '+n+'</span><button data-pp="next" '+(PP.page===n-1?'disabled':'')+' aria-label="下一页">下一页 →</button></div><div class="fp-close-row"><span>左右滑动翻页</span><button class="text-button" data-pp="close">合上护照</button></div>'
+    (PP.open?bookHTML(list,n)+'<div class="fp-close-row"><span>左右滑动翻页</span><button class="text-button" data-pp="close">合上护照</button></div>'
       :'<div class="fp-collection"><div class="fp-cover-stage">'+cover+'<p class="fp-cap">轻触封面，翻开你的银幕旅程 ↗</p></div><div class="fp-collection-copy"><span class="fp-archive-label">A PERSONAL FILM ARCHIVE</span><h3>每一场，<br>都值得留下。</h3><p>看过、评分、盖章。<br>让喜欢的电影，成为你的独家收藏。</p>'+tallies+'<button class="fp-explore" data-library-mine="watched">查看我的已看影片 <span>↗</span></button></div></div>')+
     '<button class="fp-recap" data-pp="recap"><span class="recap-emblem" aria-hidden="true">'+PP_EMBLEM+'</span><span class="recap-copy"><small>我的银幕足迹</small><b>生成我的影院观影结算</b><span>按年份与专题，收藏印章与评分。</span></span><i aria-hidden="true">↗</i></button>'+
     '<svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="pp-ink" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="4" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="1.1" result="d"/><feTurbulence type="fractalNoise" baseFrequency=".05" numOctaves="3" seed="11" result="b"/><feColorMatrix in="b" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -2.2 2.05" result="m"/><feComposite in="d" in2="m" operator="in"/></filter></svg></section>';}
-function sizeBook(){const b=document.querySelector('.fp-book,.fp-cover');if(!b)return;const set=el=>el.style.setProperty('--u',(el.clientWidth/100)+'px');document.querySelectorAll('.fp-book,.fp-cover').forEach(set);}
-window.addEventListener('resize',()=>sizeBook());
+function sizeBook(){const b=document.querySelector('.fp-book,.fp-cover');if(!b)return;const set=el=>el.style.setProperty('--u',(el.clientWidth/(el.classList.contains('fp-spread')?200:100))+'px');document.querySelectorAll('.fp-book,.fp-cover').forEach(set);}
+let ppWasSpread=ppSpread();
+window.addEventListener('resize',()=>{if(PP.open&&ppSpread()!==ppWasSpread&&document.getElementById('fp'))renderPassport();ppWasSpread=ppSpread();sizeBook();});
 function renderPassport(){const el=document.getElementById('fp');if(!el)return;el.outerHTML=passportHTML();sizeBook();}
 function turnPassport(action){if(PP.busy)return;const root=document.getElementById('fp');if(!root)return;
-  const list=watchEntries(),n=passportPages(list).length,oldPage=root.querySelector('.fp-page'),oldCover=root.querySelector('.fp-cover');
+  const list=watchEntries(),n=passportPages(list).length,sp=ppSpread(),oldPages=[...root.querySelectorAll('.fp-book>.fp-page')],oldPage=oldPages[0],oldCover=root.querySelector('.fp-cover');
   if(action==='open'){PP.open=true;PP.page=0;}else if(action==='close'){PP.open=false;}
-  else{const next=PP.page+(action==='next'?1:-1);if(next<0||next>n-1)return;PP.page=next;}
+  else{const base=sp?PP.page-PP.page%2:PP.page,next=base+(action==='next'?(sp?2:1):-(sp?2:1));if(next<0||next>n-1)return;PP.page=next;}
+  const oldClones=oldPages.map(x=>x.cloneNode(true)),coverClone=oldCover&&oldCover.cloneNode(true);
   const front=(action==='open'?oldCover:action==='next'?oldPage:null);const frontClone=front&&front.cloneNode(true);
   renderPassport();if(action==='close')return;
   const book=document.querySelector('#fp .fp-book');if(!book||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
   const leaf=document.createElement('div');leaf.className='fp-leaf';leaf.setAttribute('aria-hidden','true');leaf.inert=true;
   const f=document.createElement('div'),b=document.createElement('div');f.className='fp-leaf-f';b.className='fp-leaf-b';
+  const rev=action==='prev';
+  if(book.classList.contains('fp-spread')){ // 双页：右页整页翻向左侧（向后翻）或左页翻回右侧（向前翻）
+    const L=book.querySelector('.fp-left'),Rg=book.querySelector('.fp-right'),ghost=[];
+    if(action==='open'){if(coverClone){coverClone.style.setProperty('--u',book.style.getPropertyValue('--u'));f.append(coverClone);}if(L)L.animate([{opacity:0},{opacity:0,offset:.5},{opacity:1}],{duration:620});b.append(L.cloneNode(true));}
+    else if(rev){f.append(Rg.cloneNode(true));if(oldClones[0])b.append(oldClones[0]);if(oldClones[1]){oldClones[1].classList.add('fp-ghost');ghost.push(oldClones[1]);}}
+    else{if(oldClones[1])f.append(oldClones[1]);b.append(L.cloneNode(true));if(oldClones[0]){oldClones[0].classList.add('fp-ghost');ghost.push(oldClones[0]);}}
+    b.classList.add('pg');leaf.append(f,b);ghost.forEach(g=>book.append(g));book.append(leaf);PP.busy=true;
+    const an=leaf.animate([{transform:'rotateY('+(rev?-180:0)+'deg)'},{transform:'rotateY('+(rev?0:-180)+'deg)'}],{duration:640,easing:'cubic-bezier(.22,.7,.25,1)',fill:'forwards'});
+    const done=()=>{leaf.remove();ghost.forEach(g=>g.remove());PP.busy=false;};an.finished.then(done,done);return;}
   if(action==='prev'){f.append(book.querySelector('.fp-page').cloneNode(true));}else if(frontClone){f.append(frontClone);}
   b.innerHTML='<span>SPARROW FILM PASSPORT</span>';leaf.append(f,b);book.append(leaf);PP.busy=true;
-  const rev=action==='prev';const an=leaf.animate([{transform:'rotateY('+(rev?-180:0)+'deg)'},{transform:'rotateY('+(rev?0:-180)+'deg)'}],{duration:620,easing:'cubic-bezier(.22,.7,.25,1)',fill:'forwards'});
+  const an=leaf.animate([{transform:'rotateY('+(rev?-180:0)+'deg)'},{transform:'rotateY('+(rev?0:-180)+'deg)'}],{duration:620,easing:'cubic-bezier(.22,.7,.25,1)',fill:'forwards'});
   const done=()=>{leaf.remove();PP.busy=false;};an.finished.then(done,done);}
 let ppGesture=null,ppSuppress=0;
 document.addEventListener('touchstart',e=>{ppGesture=null;if(e.touches.length!==1||!e.target.closest('#fp .fp-book,#fp .fp-cover'))return;ppGesture={x:e.touches[0].clientX,y:e.touches[0].clientY};},{passive:true});
