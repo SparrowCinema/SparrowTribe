@@ -2062,7 +2062,7 @@ function myRateHTML(f){const rec=watched[f.id],on=!!(rec&&rec.d),r=on?(rec.r||0)
 // 放映版本（可选）：2K / 4K / 胶片 / IMAX 各版本 / 杜比 / 4DX 等，用于「成长」里的版本收藏与胶片、IMAX 纪念章
 function fmtPickHTML(id,cur){const G=window.SparrowGrowth;if(!G)return '';const en=LANG==='en';
   return '<label class="mr-fmt"><span>'+ppV('放映版本','Format')+' <small>'+ppV('可选','optional')+'</small></span><select data-seen-fmt="'+id+'"><option value="">'+ppV('未填写','Not set')+'</option>'+
-    G.FORMAT_GROUPS.map(g=>'<optgroup label="'+(en?g.en:g.zh)+'">'+G.FORMATS.filter(x=>x.group===g.id).map(x=>'<option value="'+x.id+'"'+(x.id===cur?' selected':'')+'>'+(en?x.en:x.zh)+'</option>').join('')+'</optgroup>').join('')+'</select></label>';}
+    (pl=>G.FORMAT_GROUPS.map(g=>pl.some(x=>x.group===g.id)?'<optgroup label="'+(en?g.en:g.zh)+'">'+pl.filter(x=>x.group===g.id).map(x=>'<option value="'+x.id+'"'+(x.id===cur?' selected':'')+'>'+(en?x.en:x.zh)+'</option>').join('')+'</optgroup>':'').join(''))(G.pickList(cur))+'</select></label>';}
 function refreshMyRate(id){const b=document.getElementById('my-rate');if(b&&F[id])b.outerHTML=myRateHTML(F[id]);}
 
 // —— 印章（SVG）——
