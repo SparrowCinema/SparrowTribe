@@ -26,6 +26,15 @@
       out.watched[id] = { d: r.d, r: Math.max(0, Math.min(10, Math.round(num(r.r)))), k: typeof r.k === 'string' ? r.k.slice(0, 80) : '', t: t };
       // 放映版本（可选，如 4k / 35mm / imax-gt）；没有就不写这个键，旧记录保持原样
       if (typeof r.f === 'string' && /^[\w-]{1,20}$/.test(r.f)) out.watched[id].f = r.f;
+      // 多次观影（可选）：第 1 次起的完整列表，≥2 次才写；顶层 d/k/f/r 由客户端保持一致
+      if (Array.isArray(r.v)) {
+        var vs = r.v.slice(0, 30).map(function (x) {
+          if (!x || !/^\d{4}-\d{2}-\d{2}$/.test(String(x.d || ''))) return null;
+          var o = { d: x.d, r: Math.max(0, Math.min(10, Math.round(num(x.r)))), k: typeof x.k === 'string' ? x.k.slice(0, 80) : '' };
+          if (typeof x.f === 'string' && /^[\w-]{1,20}$/.test(x.f)) o.f = x.f; return o;
+        }).filter(Boolean).sort(function (a, b) { return a.d < b.d ? -1 : a.d > b.d ? 1 : 0; });
+        if (vs.length >= 2) out.watched[id].v = vs;
+      }
     });
     if (d.holder && typeof d.holder.n === 'string') out.holder = { n: d.holder.n.slice(0, 20), t: num(d.holder.t) };
     if (d.photo && typeof d.photo.d === 'string' && (d.photo.d === '' || (/^data:image\/jpeg;base64,/.test(d.photo.d) && d.photo.d.length < 400000))) out.photo = { d: d.photo.d, t: num(d.photo.t) };

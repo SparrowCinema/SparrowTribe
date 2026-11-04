@@ -67,6 +67,8 @@
     { id: 'rated', zh: '评分与品味', en: 'Ratings', unit: ['次评分', ' ratings'], tiers: T([[1, '初次打分', 'First Rating'], [10, '十次评分', 'Ten Ratings'], [25, '二十五次评分', '25 Ratings'], [100, '百次评分', '100 Ratings'], [250, '品味家', 'Taste-maker']]) },
     { id: 'hours', zh: '银幕时长', en: 'Screen time', unit: ['小时', ' hours'], tiers: T([[10, '十小时', '10 Hours'], [50, '五十小时', '50 Hours'], [100, '百小时', '100 Hours'], [250, '二百五十小时', '250 Hours'], [500, '五百小时', '500 Hours'], [1000, '千小时', '1000 Hours']]) },
     { id: 'daily', zh: '一天的电影', en: 'One day, many films', unit: ['部（单日最多）', ' in one day'], tiers: T([[2, '一日双片', 'Double Feature'], [3, '一日三片', 'Triple Feature'], [4, '影展马拉松', 'Festival Marathon'], [5, '五连映', 'Five in a Day'], [6, '极限观影', 'Extreme Viewing']]) },
+    { id: 'rewatch', zh: '重温片单', en: 'Rewatched films', unit: ['部重温过的影片', ' films rewatched'], tiers: T([[1, '二刷初体验', 'First Rewatch'], [5, '重温常客', 'Rewatch Regular'], [10, '重温行家', 'Rewatch Aficionado'], [25, '重温收藏家', 'Rewatch Collector'], [50, '重温宗师', 'Rewatch Master']]) },
+    { id: 'loop', zh: '一部片的刷数', en: 'Times on one film', unit: ['次（单片最多）', ' viewings of one film'], tiers: T([[2, '二刷', 'Second Viewing'], [3, '三刷', 'Third Viewing'], [5, '五刷', 'Fifth Viewing'], [10, '十刷', 'Ten Viewings'], [20, '二十刷', 'Twenty Viewings']]) },
     { id: 'formats', zh: '版本收藏', en: 'Formats', unit: ['种放映版本', ' formats'], tiers: T([[1, '初识版本', 'First Format'], [3, '三种银幕', 'Three Formats'], [5, '五种银幕', 'Five Formats'], [8, '八种银幕', 'Eight Formats'], [12, '全球银幕收藏家', 'Screen Collector'], [20, '寰宇银幕收藏家', 'Universal Screen Collector']]) },
     { id: 'filmprint', zh: '胶片信徒', en: 'Film prints', unit: ['场胶片放映', ' film screenings'], tiers: T([[1, '胶片初见', 'First Print'], [5, '胶片常客', 'Print Regular'], [10, '胶片信徒', 'Film Devotee'], [25, '胶片守护者', 'Print Keeper'], [50, '胶片传人', 'Print Disciple']]) },
     { id: 'premium', zh: '特效厅之旅', en: 'Premium screens', unit: ['场特效厅', ' premium screenings'], tiers: T([[1, '特效厅初见', 'First Premium'], [5, '特效厅常客', 'Premium Regular'], [10, '特效厅行家', 'Premium Aficionado'], [25, '特效厅骨灰', 'Premium Devotee']]) },
@@ -80,6 +82,22 @@
     const cur = i >= 0 ? LEVELS[i] : null, next = LEVELS[i + 1] || null, from = cur ? cur.n : 0;
     return { index: i, cur, next, left: next ? next.n - n : 0, pct: next ? Math.max(0, Math.min(100, Math.round((n - from) / (next.n - from) * 100))) : 100 };
   }
+  // —— 多次观影：记录 rec = { d,r,k,f,t, v?:[{d,r,f,k}…] }。v 只在看过 ≥2 次时存在（含第 1 次）；
+  //    顶层 d/k/f = 最早一次（印章日期与排序），顶层 r = 最近一次的评分（印章与主星星显示）。 —
+  const DATE = /^\d{4}-\d{2}-\d{2}$/;
+  function cleanView(x) { if (!x || !DATE.test(String(x.d || ''))) return null; const o = { d: x.d, r: Math.max(0, Math.min(10, Math.round(num(x.r)))), k: typeof x.k === 'string' ? x.k.slice(0, 80) : '' }; if (typeof x.f === 'string' && /^[\w-]{1,20}$/.test(x.f)) o.f = x.f; return o; }
+  function views(rec) {
+    if (!rec) return [];
+    const vs = Array.isArray(rec.v) ? rec.v.map(cleanView).filter(Boolean) : [];
+    if (vs.length >= 2) return vs.slice(0, 30).sort((a, b) => a.d.localeCompare(b.d));
+    const one = cleanView(rec); return one ? [one] : [];
+  }
+  function normRec(rec) {   // 修改 rec.v 之后调用：让顶层字段与各次观影保持一致
+    const vs = views(rec);
+    if (vs.length >= 2) { rec.v = vs; rec.d = vs[0].d; rec.k = vs[0].k || ''; if (vs[0].f) rec.f = vs[0].f; else delete rec.f; rec.r = vs[vs.length - 1].r || 0; }
+    else { delete rec.v; }
+    return rec;
+  }
   function cityInfo(name) {
     if (CITY[name]) return CITY[name];
     for (const k in CITY) if (CITY[k].en === name) return CITY[k];   // 英文界面下城市名可能已被翻译
@@ -88,22 +106,24 @@
 
   function compute(rows, ctx) {
     rows = (rows || []).filter(r => r && r.d); const progs = (ctx && ctx.progs) || [];
-    const n = rows.length, mins = rows.reduce((s, r) => s + num(r.min), 0);
+    const first = rows.filter(r => !r.re), n = new Set(rows.map(r => r.id)).size, mins = rows.reduce((s, r) => s + num(r.min), 0);
     const festIds = new Set(progs.filter(p => p.kind === '影展专题').map(p => p.id));
-    const festivals = new Set(rows.filter(r => festIds.has(r.prog)).map(r => r.prog));
-    const cityCount = {}; rows.forEach(r => { if (r.city) cityCount[r.city] = (cityCount[r.city] || 0) + 1; });
+    const festivals = new Set(first.filter(r => festIds.has(r.prog)).map(r => r.prog));
+    const cityCount = {}; first.forEach(r => { if (r.city) cityCount[r.city] = (cityCount[r.city] || 0) + 1; }); rows.forEach(r => { if (r.city && !cityCount[r.city]) cityCount[r.city] = 0; });
     const cities = Object.keys(cityCount);
     const countries = new Set(cities.map(c => cityInfo(c).c).filter(Boolean)), continents = new Set(cities.map(c => cityInfo(c).cont).filter(Boolean));
-    const seenBy = {}; rows.forEach(r => { seenBy[r.prog] = (seenBy[r.prog] || 0) + 1; });
+    const seenBy = {}; first.forEach(r => { seenBy[r.prog] = (seenBy[r.prog] || 0) + 1; });
     const progRows = progs.map(p => ({ id: p.id, name: p.name, en: p.en || '', kind: p.kind, city: p.city || '', total: p.total || 0, seen: seenBy[p.id] || 0 }))
       .map(p => Object.assign(p, { pct: p.total ? Math.min(100, Math.round(p.seen / p.total * 100)) : 0 }));
     const bestPct = progRows.filter(p => p.total >= 5).reduce((m, p) => Math.max(m, p.pct), 0);
     const venues = new Set(rows.map(r => r.venue).filter(Boolean));
     const days = {}; rows.forEach(r => { days[r.d] = (days[r.d] || 0) + 1; });
     const fmts = new Set(rows.map(r => r.fmt).filter(Boolean));
+    const timesOf = {}; rows.forEach(r => { timesOf[r.id] = (timesOf[r.id] || 0) + 1; });
     const val = {
       festivals: festivals.size, cities: cities.length, countries: countries.size, continents: continents.size, collect: bestPct,
       venues: venues.size, rated: rows.filter(r => r.r > 0).length, hours: hmOf(mins), daily: Math.max(0, ...Object.values(days)),
+      rewatch: Object.values(timesOf).filter(c => c >= 2).length, loop: Math.max(0, ...Object.values(timesOf)),
       formats: fmts.size, filmprint: rows.filter(r => FILM_FMT.includes(r.fmt)).length, premium: rows.filter(r => isPremium(r.fmt)).length, imax: rows.filter(r => IMAX_FMT.includes(r.fmt)).length
     };
     const groups = GROUPS.map(g => {
@@ -126,6 +146,6 @@
     };
   }
 
-  const api = { compute, levelOf, LEVELS, GROUPS, FORMATS, FORMAT_GROUPS, FMT, CITY, PER_VOL, pickList };
+  const api = { views, normRec, compute, levelOf, LEVELS, GROUPS, FORMATS, FORMAT_GROUPS, FMT, CITY, PER_VOL, pickList };
   if (typeof module !== 'undefined' && module.exports) module.exports = api; else root.SparrowGrowth = api;
 })(typeof window !== 'undefined' ? window : this);
