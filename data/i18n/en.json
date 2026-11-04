@@ -7717,7 +7717,7 @@
   "新场次公布后会更新到这里。": "New screenings will appear here once announced.",
   "片单与场次即将公布": "Films and screenings to be announced",
   "公布后会第一时间更新到这里。": "They’ll be added here as soon as they’re announced.",
-  "这个专题还没有加入场次": "No screenings added from this programme",
+  "这个专题还没有加入场次": "No screenings added yet",
   "可以切换到「全部专题」，或去排片表挑选。": "Switch to “All programmes”, or pick from the schedule.",
   "去看这个专题的排片": "See this programme’s schedule",
   "没有找到": "Nothing found for",
@@ -8302,7 +8302,7 @@
   "2026德国电影展": "2026 German Film Festival",
   "分享影片": "Share film",
   "分享专题": "Share programme",
-  "订阅日历": "Subscribe to calendar",
+  "订阅日历": "Subscribe calendar",
   "复制订阅链接": "Copy subscription link",
   "订阅后，场次有调整会自动同步到你的日历。": "Once subscribed, schedule changes sync to your calendar automatically.",
   "订阅链接已复制": "Subscription link copied",
@@ -8469,6 +8469,11 @@
   "用微信登录自动保存档案：换手机、重装小程序都不会丢，也可以用同步码和网站互通。": "Sign in with WeChat to keep your passport safe — switching phones or reinstalling the mini program won't lose it, and you can link the website with a sync code.",
   "用微信登录并同步": "Sign in with WeChat & sync",
   "微信已登录 · ": "WeChat signed in · ",
-  "同一个微信在任何手机上打开小程序都会自动连到这份档案。网站没有微信登录：在网站「我的」页选「我已有同步码」，输入这串码即可。同步码就是钥匙，请自己保存好；知道它的人都能读写这份档案。": "Opening the mini program with the same WeChat account on any phone reconnects to this passport automatically. The website has no WeChat sign-in: on its My page choose \"I have a sync code\" and enter this code. The code is the key — keep it safe; anyone who has it can read and write this passport."
+  "同一个微信在任何手机上打开小程序都会自动连到这份档案。网站没有微信登录：在网站「我的」页选「我已有同步码」，输入这串码即可。同步码就是钥匙，请自己保存好；知道它的人都能读写这份档案。": "Opening the mini program with the same WeChat account on any phone reconnects to this passport automatically. The website has no WeChat sign-in: on its My page choose \"I have a sync code\" and enter this code. The code is the key — keep it safe; anyone who has it can read and write this passport.",
+  "订阅全部专题日历": "Subscribe to all programmes' calendar",
+  "导入手机日历": "Add to phone calendar",
+  "导入": "Add",
+  "没有需要新加入的场次": "Nothing new to add",
+  "复制订阅链接后，在手机日历里添加「订阅日历」并粘贴：iPhone 在 设置 › 日历 › 账户 › 添加账户 › 其他 › 添加已订阅的日历；安卓在日历 App 的「添加日历 / 订阅」。订阅后场次有调整会自动同步。": "Copy the link, then add it as a subscribed calendar: on iPhone go to Settings › Calendar › Accounts › Add Account › Other › Add Subscribed Calendar; on Android use \"Add calendar / Subscribe\" in your calendar app. Schedule changes sync automatically."
  }
 }

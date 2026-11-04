@@ -30,6 +30,7 @@ Page({
     const past = list.filter(p => p.status === 'ended').sort((x, y) => (y.b - x.b) || x.ord - y.ord);
     this.setData({ live, soon, past, total: list.length, subline: t('影展、院线新片与艺术影院 · ' + (live.length + soon.length) + ' 个进行中或即将开始'), liveH: t('进行中') + ' ', pastN: t(past.length + ' 个已结束') });
   },
+  subAll() { U.calSub('all', I.isEn(), t); },
   togglePast() { this.setData({ pastOpen: !this.data.pastOpen }); },
   open(e) { wx.navigateTo({ url: '/pages/programme/programme?id=' + e.currentTarget.dataset.id }); },
   onShareAppMessage() { return { title: t('专题 · 麻雀观影护照'), path: '/pages/programmes/programmes' }; }

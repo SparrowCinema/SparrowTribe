@@ -23,6 +23,7 @@
 <view class="wrap">
   <view class="h2">{{L.t(i,'专题')}}</view>
   <view class="sub">{{subline}}</view>
+  <view class="sub-cal" hover-class="hv" bindtap="subAll">{{L.t(i,'订阅全部专题日历')}} <text>›</text></view>
 
   <block wx:if="{{live.length}}">
     <view class="blockh">{{L.t(i,'进行中')}} <text class="en">{{live.length}} · NOW ON</text></view>

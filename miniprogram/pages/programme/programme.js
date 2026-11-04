@@ -51,6 +51,7 @@ Page({
   chooseSel(e) { this.setData({ section: e.currentTarget.dataset.id || '', selOpen: false }); this.build(); },
   closeSel() { this.setData({ selOpen: false, selQuery: '' }); },
   stopMove() {},
+  subCal() { U.calSub(this.id, I.isEn(), t); },
   copyTicket() { wx.setClipboardData({ data: this.data.p.ticketUrl, success: () => wx.showToast({ title: t('购票链接已复制，请在浏览器打开'), icon: 'none' }) }); },
   previewTicket() { wx.previewImage({urls:["https://sparrowcinema.github.io/SparrowTribe/"+this.data.p.ticket]}); },
   toggleGone() { this.setData({ goneOpen: !this.data.goneOpen }); },
