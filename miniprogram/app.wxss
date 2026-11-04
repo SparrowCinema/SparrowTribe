@@ -33,7 +33,7 @@ button.btn::after { border: none; }
 .makers .d { font-size: 20rpx; letter-spacing: 8rpx; color: var(--muted); }
 
 /* 回到顶部 */
-.to-top { position: fixed; right: 32rpx; bottom: 40rpx; z-index: 50; width: 88rpx; height: 88rpx; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: rgba(248, 242, 230, .94); border: 2rpx solid var(--line); box-shadow: 0 16rpx 40rpx -16rpx rgba(40, 25, 10, .5); opacity: 0; transform: translateY(20rpx) scale(.9); pointer-events: none; transition: opacity .22s, transform .22s; }
+.to-top { box-sizing: border-box; flex: none; min-width: 88rpx; min-height: 88rpx; padding: 0; position: fixed; right: 32rpx; bottom: 40rpx; z-index: 50; width: 88rpx; height: 88rpx; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: rgba(248, 242, 230, .94); border: 2rpx solid var(--line); box-shadow: 0 16rpx 40rpx -16rpx rgba(40, 25, 10, .5); opacity: 0; transform: translateY(20rpx) scale(.9); pointer-events: none; transition: opacity .22s, transform .22s; }
 .to-top.show { opacity: 1; transform: none; pointer-events: auto; }
 .to-top-hv { transform: scale(.92); }
 .tt-arr { width: 22rpx; height: 22rpx; margin-top: 8rpx; border-left: 5rpx solid var(--fg); border-top: 5rpx solid var(--fg); transform: rotate(45deg); }

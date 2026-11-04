@@ -12,11 +12,10 @@
 
   // 影迷等级：按「看过的不同影片数」，写死在代码里，片库变大不用改
   const LEVELS = [
-    [1, '入场', 'Ticket Holder'], [10, '常客', 'Regular'], [25, '影迷', 'Cinephile'], [50, '资深观众', 'Devotee'],
-    [100, '百片影迷', 'Centurion'], [250, '银幕行者', 'Screen Walker'], [500, '资深影迷', 'Veteran Cinephile'],
-    [1000, '千片俱乐部', 'Thousand-Film Club'], [1500, '光影收藏家', 'Light Collector'], [2000, '影史行家', 'Film Scholar'],
-    [3000, '光影策展人', 'Cinema Curator'], [4000, '影史守望者', 'Cinema Keeper'], [5000, '银幕传奇', 'Screen Legend'],
-    [7500, '殿堂影迷', 'Hall-of-Fame Cinephile'], [10000, '万象宗师', 'Grand Master of Cinema']
+    [1, '入场', 'Ticket Holder'], [5, '初识银幕', 'Newcomer'], [10, '常客', 'Regular'], [25, '影迷', 'Cinephile'], [50, '资深观众', 'Devotee'],
+    [75, '迷影青年', 'Film Buff'], [100, '百片影迷', 'Centurion'], [150, '银幕熟客', 'Screen Familiar'], [250, '银幕行者', 'Screen Walker'], [350, '影院常驻', 'Cinema Resident'],
+    [500, '资深影迷', 'Veteran Cinephile'], [750, '光影行家', 'Light Connoisseur'], [1000, '千片俱乐部', 'Thousand-Film Club'], [1500, '光影收藏家', 'Light Collector'], [2000, '影史行家', 'Film Scholar'],
+    [3000, '光影策展人', 'Cinema Curator'], [4000, '影史守望者', 'Cinema Keeper'], [5000, '银幕传奇', 'Screen Legend'], [7500, '殿堂影迷', 'Hall-of-Fame Cinephile'], [10000, '万象宗师', 'Grand Master of Cinema']
   ].map(x => ({ n: x[0], zh: x[1], en: x[2] }));
 
   // 放映版本：全球常见的影厅与格式（hide = 旧版本留下的 id，不再出现在选项里，已记录的仍正常显示和计数）
@@ -44,7 +43,7 @@
   const FMT = {}; FORMATS.forEach(f => { FMT[f.id] = f; });
   // 选项列表：不含已淘汰 id；若这条记录用的就是旧 id，则把它临时带上，避免选项里“消失”
   const pickList = cur => FORMATS.filter(f => !f.hide || f.id === cur);
-  const FILM_FMT = ['16mm', '35mm', '70mm', 'imax-film', 'imax-70'], IMAX_FMT = ['imax', 'imax-laser', 'imax-gt', 'imax-film', 'imax-70'];
+  const FILM_FMT = ['16mm', '35mm', '70mm', 'imax-film', 'imax-70'], DOLBY_FMT = ['dolby', 'dolby-va'], IMAX_FMT = ['imax', 'imax-laser', 'imax-gt', 'imax-film', 'imax-70'];
   const PREMIUM_GROUPS = ['dolby', 'plf', 'immersive', 'sound'], isPremium = id => !!FMT[id] && PREMIUM_GROUPS.includes(FMT[id].group);
 
   // 放映城市 → 国家 / 地区 / 大洲（新城市在这里补一行即可）
@@ -72,6 +71,7 @@
     { id: 'formats', zh: '版本收藏', en: 'Formats', unit: ['种放映版本', ' formats'], tiers: T([[1, '初识版本', 'First Format'], [3, '三种银幕', 'Three Formats'], [5, '五种银幕', 'Five Formats'], [8, '八种银幕', 'Eight Formats'], [12, '全球银幕收藏家', 'Screen Collector'], [20, '寰宇银幕收藏家', 'Universal Screen Collector']]) },
     { id: 'filmprint', zh: '胶片信徒', en: 'Film prints', unit: ['场胶片放映', ' film screenings'], tiers: T([[1, '胶片初见', 'First Print'], [5, '胶片常客', 'Print Regular'], [10, '胶片信徒', 'Film Devotee'], [25, '胶片守护者', 'Print Keeper'], [50, '胶片传人', 'Print Disciple']]) },
     { id: 'premium', zh: '特效厅之旅', en: 'Premium screens', unit: ['场特效厅', ' premium screenings'], tiers: T([[1, '特效厅初见', 'First Premium'], [5, '特效厅常客', 'Premium Regular'], [10, '特效厅行家', 'Premium Aficionado'], [25, '特效厅骨灰', 'Premium Devotee']]) },
+    { id: 'dolbyfan', zh: '杜比信徒', en: 'Dolby devotee', unit: ['场杜比影院 / V+A', ' Dolby Cinema / V+A screenings'], tiers: T([[1, '杜比初见', 'First Dolby'], [5, '杜比常客', 'Dolby Regular'], [10, '杜比行家', 'Dolby Aficionado'], [25, '杜比信徒', 'Dolby Devotee'], [50, '杜比传教士', 'Dolby Evangelist']]) },
     { id: 'imax', zh: 'IMAX 之旅', en: 'IMAX', unit: ['场 IMAX', ' IMAX screenings'], tiers: T([[1, 'IMAX 初见', 'First IMAX'], [5, 'IMAX 常客', 'IMAX Regular'], [10, 'IMAX 行家', 'IMAX Aficionado'], [25, 'IMAX 骨灰', 'IMAX Devotee']]) }
   ];
 
@@ -83,10 +83,10 @@
     { id: 'habit', zh: '观影习惯', en: 'Habits' }, { id: 'screen', zh: '银幕与版本', en: 'Screens & formats' },
     { id: 'rewatch', zh: '重温与多刷', en: 'Rewatching' }, { id: 'journey', zh: '足迹与进度', en: 'Journeys & progress' }, { id: 'fun', zh: '趣味彩蛋', en: 'Easter eggs' }
   ];
-  const CAT_OF = { festivals: 'awards', cities: 'journey', countries: 'journey', continents: 'journey', collect: 'journey', venues: 'journey', rated: 'habit', hours: 'habit', daily: 'habit', formats: 'screen', filmprint: 'screen', premium: 'screen', imax: 'screen', rewatch: 'rewatch', loop: 'rewatch' };
+  const CAT_OF = { festivals: 'awards', cities: 'journey', countries: 'journey', continents: 'journey', collect: 'journey', venues: 'journey', rated: 'habit', hours: 'habit', daily: 'habit', formats: 'screen', filmprint: 'screen', premium: 'screen', imax: 'screen', dolbyfan: 'screen', rewatch: 'rewatch', loop: 'rewatch' };
   const RULE = {
     festivals: ['看过的影展专题数', 'Festival programmes you attended'], cities: ['放映所在城市数', 'Cities where you watched'], countries: ['放映所在国家 / 地区数', 'Countries / regions'], continents: ['放映所在大洲数', 'Continents'], collect: ['任一专题（≥5 部）的完成度', 'Best programme completion (≥5 films)'], venues: ['去过的影院数', 'Cinemas visited'],
-    rated: ['打过分的次数', 'Ratings given'], hours: ['累计银幕时长', 'Total screen time'], daily: ['一天里看的最多部数', 'Most films in one day'], formats: ['记录过的放映版本种数', 'Distinct formats'], filmprint: ['胶片放映场次', 'Film-print screenings'], premium: ['杜比 / 巨幕 / 沉浸 / 特色声场场次', 'Premium-format screenings'], imax: ['IMAX 场次', 'IMAX screenings'],
+    rated: ['打过分的次数', 'Ratings given'], hours: ['累计银幕时长', 'Total screen time'], daily: ['一天里看的最多部数', 'Most films in one day'], formats: ['记录过的放映版本种数', 'Distinct formats'], filmprint: ['胶片放映场次', 'Film-print screenings'], premium: ['杜比 / 巨幕 / 沉浸 / 特色声场场次', 'Premium-format screenings'], imax: ['IMAX 场次', 'IMAX screenings'], dolbyfan: ['杜比影院（视界 + 全景声）与杜比 V+A 场次', 'Dolby Cinema and Dolby V+A screenings'],
     rewatch: ['重温过的影片数', 'Films watched more than once'], loop: ['同一部片看的最多次数', 'Most viewings of one film']
   };
   const FEST = [['戛纳', 'cannes', 'Cannes'], ['威尼斯', 'venice', 'Venice'], ['柏林', 'berlin', 'Berlin'], ['奥斯卡', 'oscar', 'Oscars'], ['金马', 'gh', 'Golden Horse'], ['金鸡', 'gr', 'Golden Rooster'], ['香港电影金像', 'hkfa', 'HK Film Awards'], ['金球', 'globe', 'Golden Globes'], ['英国电影学院', 'bafta', 'BAFTA'], ['多伦多', 'tiff', 'TIFF'], ['釜山', 'busan', 'Busan'], ['圣塞巴斯蒂安', 'ss', 'San Sebastián'], ['洛迦诺', 'locarno', 'Locarno'], ['东京', 'tokyo', 'Tokyo'], ['鹿特丹', 'rotterdam', 'Rotterdam'], ['圣丹斯', 'sundance', 'Sundance'], ['翠贝卡', 'tribeca', 'Tribeca'], ['独立精神', 'spirit', 'Independent Spirit'], ['欧洲电影奖', 'efa', 'European Film Awards']];
@@ -241,7 +241,7 @@
       festivals: festivals.size, cities: cities.length, countries: countries.size, continents: continents.size, collect: bestPct,
       venues: venues.size, rated: rows.filter(r => r.r > 0).length, hours: hmOf(mins), daily: Math.max(0, ...Object.values(days)),
       rewatch: Object.values(timesOf).filter(c => c >= 2).length, loop: Math.max(0, ...Object.values(timesOf)),
-      formats: fmts.size, filmprint: rows.filter(r => FILM_FMT.includes(r.fmt)).length, premium: rows.filter(r => isPremium(r.fmt)).length, imax: rows.filter(r => IMAX_FMT.includes(r.fmt)).length
+      formats: fmts.size, filmprint: rows.filter(r => FILM_FMT.includes(r.fmt)).length, premium: rows.filter(r => isPremium(r.fmt)).length, imax: rows.filter(r => IMAX_FMT.includes(r.fmt)).length, dolbyfan: rows.filter(r => DOLBY_FMT.includes(r.fmt)).length
     };
     const X = { F: first, rows, festIds, progRows, year: (ctx && ctx.year) || new Date().getFullYear() };
     const tierCalc = (g, v) => { let nextSeen = false; return g.tiers.map(t => { const earned = v >= t.n, next = !earned && !nextSeen; if (next) nextSeen = true; return Object.assign({}, t, { earned, next, pct: earned ? 100 : Math.min(99, Math.round(v / t.n * 100)) }); }); };
