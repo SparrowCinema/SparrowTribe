@@ -39,7 +39,7 @@ App({
     ['排片', '专题', '片目', '我的'].forEach((t, i) => { try { wx.setTabBarItem({ index: i, text: I.tr(t) }); } catch (e) { } });
   },
   // 切换中英文：记住选择，重新进入首页，所有页面按新语言重建
-  switchLang() { I.set(I.isEn() ? 'zh' : 'en'); this.globalData.data = I.localize(this.globalData.raw); this.chrome(); wx.reLaunch({ url: '/pages/schedule/schedule' }); },
+  switchLang() { I.set(I.isEn() ? 'zh' : 'en'); this.globalData.data = I.localize(this.globalData.raw); this.chrome(); const ps = getCurrentPages(), r = ps.length === 1 && ps[0].route; wx.reLaunch({ url: '/' + (/^pages\/(schedule|programmes|films|my)\//.test(r || '') ? r : 'pages/schedule/schedule') }); },
 
   // 页面订阅数据更新
   onData(fn) { this._waiters.push(fn); return () => { this._waiters = this._waiters.filter(f => f !== fn); }; }

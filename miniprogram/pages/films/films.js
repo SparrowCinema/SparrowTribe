@@ -22,10 +22,11 @@ Page({
   onPageScroll(e) { T.scroll(this, e); },
   toTop() { T.go(); },
   data: { reg:'all',len:'all',year:'all',city:'all',mine:'all',q:'',selectorType:'',selectorQuery:'',selectorRows:[],pf: 'all', progs: [], secs: [], past: [], pastN: 0, n: 0 },
+  switchLang() { app.switchLang(); },
   onLoad() {
     let f = {}; try { f = wx.getStorageSync(FOLD_KEY) || {}; } catch (e) { }
     this.folds = f; this.pastOpen = {}; this.goneOpen = {};
-    this.setData({ i: I.dict() }); wx.setNavigationBarTitle({ title: t('片目') });
+    this.setData({ i: I.dict(), en: I.isEn() }); wx.setNavigationBarTitle({ title: t('片目') });
     this.off = app.onData(() => this.build());this.offPlan=plan.onChange(()=>this.build());this.offWatched=W.onChange(()=>this.build());this.build();
   },
   onUnload() {this.off&&this.off();this.offPlan&&this.offPlan();this.offWatched&&this.offWatched();},
