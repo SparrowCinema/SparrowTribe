@@ -31,6 +31,7 @@ Page({
     const progs = all.length ? [{ id: 'all', n: t('全部专题'), c: all.length, lab: t('合并 ' + all.length + ' 场') }].concat(pids.map(id => { const c = all.filter(s => U.progForShow(s, idx).id === id).length; return { id, n: idx.PG[id].name, c, lab: c ? t(c + ' 场') : t('未加入') }; })) : [];
     const pf = sl(this.data.pf).filter(id => pids.includes(id)).join(',') || 'all';
     const list = all.filter(s => sh(pf, U.progForShow(s, idx).id));
+    this._list = list;
     progs.forEach(p => { p.selected = p.id === 'all' ? !sl(pf).length : sl(pf).includes(p.id); });
     const minutes = list.reduce((n, s) => n + idx.F[s.id].min, 0);
     let clash = 0;
@@ -66,6 +67,29 @@ Page({
     this.setData({planScopeName: !sl(pf).length ? t('全部专题') : sl(pf).length === 1 ? ((progs.find(p => p.id === pf) || {}).n || t('全部专题')) : t(sl(pf).length + ' 个专题'), clashTxt: t('有 ' + clash + ' 组场次时间重叠'), progs, pf, days, clash, empty: !all.length, pfEmpty: !!all.length && !list.length, stats: { n: list.length, d: byDay.length, hm: Math.floor(minutes / 60) + 'h' + String(minutes % 60).padStart(2, '0') } });
   },
   // 排片长图：与网站同版式，只含当前所选专题；保存到相册，或预览后发给朋友
+  // 一键把当前所选排片里还没放映的场次加入手机日历（逐场写入；已加过的记住，重复点不会重复添加）
+  addAllCalendar() {
+    if (this.calBusy) return;
+    const data = app.globalData.data, idx = U.index(data);
+    let done = {}; try { done = wx.getStorageSync('sk-cal-done') || {}; } catch (e) { }
+    const todo = (this._list || []).filter(s => !U.ended(s, idx) && !done[U.keyOf(s)]);
+    if (!todo.length) { wx.showToast({ title: t((this._list || []).length ? '没有需要新加入的场次' : '这个专题还没有加入场次'), icon: 'none' }); return; }
+    wx.showModal({ title: t('导入手机日历'), content: I.isEn() ? 'Add ' + todo.length + ' upcoming screenings to your phone calendar (1-hour reminder)? Ones already added are skipped.' : '把 ' + todo.length + ' 场还没放映的排片加入手机日历（开场前 1 小时提醒）？已加入过的不会重复添加。', confirmText: t('导入'), cancelText: t('取消'), success: async r => {
+      if (!r.confirm) return;
+      this.calBusy = true; let ok = 0, stop = false;
+      for (const s of todo) {
+        const f = idx.F[s.id], start = Math.floor(U.showDate(s).getTime() / 1000);
+        const res = await new Promise(rs => wx.addPhoneCalendar({
+          title: I.isEn() ? f.cn + (f.version ? ' · ' + t(f.version) : '') : `《${f.cn}》${f.version ? ' · ' + f.version : ''}`, startTime: start, endTime: start + U.durationOf(s, idx) * 60,
+          location: idx.venueName(s) + ' · ' + idx.hallName(s), description: t('麻雀观影护照'), alarm: true, alarmOffset: 3600,
+          success: () => rs(1), fail: err => rs(/cancel/.test((err && err.errMsg) || '') ? -1 : 0) }));
+        if (res === 1) { ok++; done[U.keyOf(s)] = 1; } else if (res === -1) { stop = true; break; }
+      }
+      try { wx.setStorageSync('sk-cal-done', done); } catch (e) { }
+      this.calBusy = false;
+      wx.showToast({ title: I.isEn() ? (stop ? ok + ' added, the rest cancelled' : ok === todo.length ? ok + ' screenings added to your calendar' : ok + ' added, some failed') : (stop ? '已加入 ' + ok + ' 场，其余已取消' : ok === todo.length ? '已加入 ' + ok + ' 场到手机日历' : '已加入 ' + ok + ' 场，部分未成功'), icon: 'none', duration: 2500 });
+    } });
+  },
   makeImage() {
     if (this.busy) return;
     if (!this.data.days.length) { wx.showToast({ title: t('这个专题还没有加入场次'), icon: 'none' }); return; }

@@ -100,4 +100,10 @@ function openMap(v) {
   return true;
 }
 const EV_RE = /^(映后活动|Post-screening event)\s*·\s*/;
-module.exports = { geoOf, distKm, transfer, openMap, progForShow, durationOf, progInfo, qaOf, ended, isFest, relTime, nextShowOf, filmOrder, filmTone, langSub, WK, year, wk, toMin, fmt, keyOf, showDate, poster, ticket, durText, index, showView };
+// 日历订阅：小程序不能直接打开 webcal，所以复制订阅链接，并提示在手机日历里「添加订阅日历」粘贴
+const calSub = (id, en, t) => {
+  const url = 'https://sparrowcinema.github.io/SparrowTribe/cal/' + (en ? 'en/' : '') + id + '.ics';
+  wx.showModal({ title: t('订阅日历'), content: t('复制订阅链接后，在手机日历里添加「订阅日历」并粘贴：iPhone 在 设置 › 日历 › 账户 › 添加账户 › 其他 › 添加已订阅的日历；安卓在日历 App 的「添加日历 / 订阅」。订阅后场次有调整会自动同步。'), confirmText: t('复制链接'), cancelText: t('取消'),
+    success: r => { if (r.confirm) wx.setClipboardData({ data: url, success: () => wx.showToast({ title: t('订阅链接已复制'), icon: 'none' }) }); } });
+};
+module.exports = { calSub, geoOf, distKm, transfer, openMap, progForShow, durationOf, progInfo, qaOf, ended, isFest, relTime, nextShowOf, filmOrder, filmTone, langSub, WK, year, wk, toMin, fmt, keyOf, showDate, poster, ticket, durText, index, showView };

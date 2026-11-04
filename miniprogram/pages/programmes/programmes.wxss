@@ -26,3 +26,5 @@
 /* 横屏 / 折叠屏内屏：专题卡片两列（更宽时三列），与网页横版一致 */
 @media (min-width: 600px) { .pgrid { display: grid; grid-template-columns: 1fr 1fr; gap: calc(32 * var(--r)); align-items: start; } .pgrid .prog { margin-bottom: 0; } }
 @media (min-width: 1100px) { .pgrid { grid-template-columns: 1fr 1fr 1fr; } }
+
+.sub-cal { display: inline-flex; align-items: center; gap: calc(8 * var(--r)); margin: calc(4 * var(--r)) 0 calc(8 * var(--r)); padding: calc(10 * var(--r)) calc(22 * var(--r)); border: calc(2 * var(--r)) solid var(--line); border-radius: 999px; background: var(--surface); color: var(--accent); font-size: calc(24 * var(--r)); font-weight: 600; }

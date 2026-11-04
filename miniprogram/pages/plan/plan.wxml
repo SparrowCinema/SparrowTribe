@@ -25,6 +25,7 @@
     </view>
     <view id="plan-tools" class="tools">
       <view class="btn" hover-class="hv" bindtap="makeImage">{{L.t(i,'生成长图')}}</view>
+      <view class="btn ghost" hover-class="hv" bindtap="addAllCalendar">{{L.t(i,'导入日历')}}</view>
       <button class="btn ghost" open-type="share">{{L.t(i,'分享给朋友')}}</button>
       <view class="btn ghost" bindtap="toSchedule">{{L.t(i,'继续选片')}}</view>
       <view class="clear" bindtap="clear">{{L.t(i,'清空')}}</view>
