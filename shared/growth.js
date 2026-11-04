@@ -35,7 +35,7 @@
     ['cgs', 'plf', '中国巨幕 CGS', 'China Giant Screen (CGS)'], ['dmax', 'plf', 'DMAX 巨幕', 'DMAX'], ['xd', 'plf', 'Cinemark XD', 'Cinemark XD'], ['rpx', 'plf', 'Regal RPX', 'Regal RPX'],
     ['ultraavx', 'plf', 'Cineplex UltraAVX', 'Cineplex UltraAVX'], ['amc-prime', 'plf', 'AMC Prime', 'AMC Prime'], ['tcx', 'plf', 'TOHO TCX', 'TOHO TCX'],
     ['super-plex', 'plf', '乐天 SUPER PLEX', 'Lotte SUPER PLEX'], ['klu', 'plf', 'Kinepolis Laser ULTRA', 'Kinepolis Laser ULTRA'], ['superscreen', 'plf', 'Cineworld Superscreen', 'Cineworld Superscreen'],
-    ['luxe', 'plf', 'Odeon Luxe', 'Odeon Luxe'], ['led', 'plf', 'LED 类银幕', 'LED screen'],
+    ['luxe', 'plf', 'Odeon Luxe', 'Odeon Luxe'], ['led', 'plf', 'LED 类银幕', 'LED screen'], ['cinity-led', 'plf', 'Cinity LED', 'Cinity LED'],
     ['4dx', 'immersive', '4DX', '4DX'], ['screenx', 'immersive', 'ScreenX', 'ScreenX'], ['ultra4dx', 'immersive', 'ULTRA 4DX', 'ULTRA 4DX'], ['dbox', 'immersive', 'D-BOX 动感座椅', 'D-BOX'],
     ['mx4d', 'immersive', 'MX4D', 'MX4D'], ['escape', 'immersive', 'Barco Escape 三面银幕', 'Barco Escape'], ['dome', 'immersive', '球幕 / 穹幕', 'Dome / fulldome'], ['sphere', 'immersive', 'Sphere', 'Sphere'], ['3d', 'immersive', '3D 立体', '3D'],
     ['dtsx', 'sound', 'DTS:X 影厅', 'DTS:X'], ['auro', 'sound', 'Auro 11.1', 'Auro 11.1'],
