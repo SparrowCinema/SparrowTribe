@@ -1,9 +1,12 @@
+const T = require('../../utils/totop.js');
 const U = require('../../utils/util.js');
 const plan = require('../../utils/plan.js');
 const I = require('../../utils/i18n.js');
 const t = I.tr;
 const app = getApp();
 Page({
+  onPageScroll(e) { T.scroll(this, e); },
+  toTop() { T.go(); },
   data: { i: {}, items: [], days: 0, bad: false },
   onLoad(q) {
     wx.setNavigationBarTitle({ title: t('朋友分享的排片') });

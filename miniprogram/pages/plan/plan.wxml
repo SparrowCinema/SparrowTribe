@@ -64,3 +64,4 @@
     <text class="d">{{L.t(i,'电影放映与策展')}}</text>
   </view>
 </view>
+<view class="to-top {{topOn ? 'show' : ''}}" hover-class="to-top-hv" bindtap="toTop"><view class="tt-arr" /></view>

@@ -1,3 +1,4 @@
+const T = require('../../utils/totop.js');
 const U = require('../../utils/util.js');
 const I = require('../../utils/i18n.js');
 const t = I.tr;
@@ -62,7 +63,8 @@ Page({
     const go = () => wx.createSelectorQuery().select(to === 'gone' ? '#pg-gone' : '#pg-up').boundingClientRect(r => { if (!r) return; wx.pageScrollTo({ scrollTop: Math.max(0, r.top + (this.scrollTop || 0) - 8), duration: 300 }); }).selectViewport().scrollOffset(s => { this.scrollTop = s.scrollTop; }).exec();
     if (to === 'gone' && !this.data.goneOpen) this.setData({ goneOpen: true }, go); else go();
   },
-  onPageScroll(e) { this.scrollTop = e.scrollTop; },
+  onPageScroll(e) { this.scrollTop = e.scrollTop; T.scroll(this, e); },
+  toTop() { T.go(); },
   toSchedule() { app.globalData.jumpProg = this.id; wx.switchTab({ url: '/pages/schedule/schedule' }); },
   onShareAppMessage() { const p = this.data.p || {}; return { title: p.name, path: '/pages/programme/programme?id=' + this.id }; }
 });

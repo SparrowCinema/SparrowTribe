@@ -1,3 +1,4 @@
+const T = require('../../utils/totop.js');
 const U = require('../../utils/util.js');
 const plan = require('../../utils/plan.js');
 const poster = require('../../utils/poster.js');
@@ -10,6 +11,8 @@ const sl = Lib.list, sh = Lib.has;
 const app = getApp();
 
 Page({
+  onPageScroll(e) { T.scroll(this, e); },
+  toTop() { T.go(); },
   data: { i: {}, planSelectorOpen: false, planQuery: '', planOptions: [], stats: {}, days: [], clash: 0, empty: true, pf: 'all', progs: [] },
   onLoad(q) { this.to = q && q.to; this.setData({ i: I.dict() }); this.off1 = plan.onChange(() => this.build()); this.off2 = app.onData(() => this.build()); },
   onUnload() { this.off1 && this.off1(); this.off2 && this.off2(); },
