@@ -69,6 +69,31 @@ Page({
   // 排片长图：与网站同版式，只含当前所选专题；保存到相册，或预览后发给朋友
   // 一键把当前所选排片里还没放映的场次加入手机日历（逐场写入；已加过的记住，重复点不会重复添加）
   addAllCalendar() {
+    const en = I.isEn();
+    wx.showActionSheet({ itemList: [en ? 'Import all at once (calendar file)' : '一次导入全部（生成日历文件）', en ? 'Add one by one to phone calendar' : '逐场写入手机日历'], success: r => { if (r.tapIndex === 0) this.shareIcs(); else this.addEachCalendar(); } });
+  },
+  // 生成 .ics 日历文件，通过微信「发送文件」交给聊天（文件传输助手/自己），点开后用系统日历一次导入全部
+  shareIcs() {
+    const data = app.globalData.data, idx = U.index(data), en = I.isEn();
+    let list = this._list || []; const up = list.filter(s => !U.ended(s, idx)); if (up.length) list = up;
+    if (!list.length) { wx.showToast({ title: t('这个专题还没有加入场次'), icon: 'none' }); return; }
+    const esc = x => String(x == null ? '' : x).replace(/\\/g, '\\\\').replace(/\n/g, '\\n').replace(/,/g, '\\,').replace(/;/g, '\\;');
+    const z = n => ('0' + n).slice(-2), st = d => d.getFullYear() + z(d.getMonth() + 1) + z(d.getDate()) + 'T' + z(d.getHours()) + z(d.getMinutes()) + '00';
+    const stamp = new Date().toISOString().replace(/[-:]/g, '').replace(/\.\d+Z/, 'Z');
+    const L = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//SparrowCinema//Sparrow Film Passport//ZH', 'CALSCALE:GREGORIAN', 'X-WR-CALNAME:' + t('麻雀观影护照'), 'X-WR-TIMEZONE:Asia/Shanghai', 'BEGIN:VTIMEZONE', 'TZID:Asia/Shanghai', 'BEGIN:STANDARD', 'DTSTART:19700101T000000', 'TZOFFSETFROM:+0800', 'TZOFFSETTO:+0800', 'TZNAME:CST', 'END:STANDARD', 'END:VTIMEZONE'];
+    list.forEach(s => {
+      const f = idx.F[s.id], a = U.showDate(s), b = new Date(a.getTime() + U.durationOf(s, idx) * 60000), pg = U.progForShow(s, idx);
+      L.push('BEGIN:VEVENT', 'UID:' + encodeURIComponent(U.keyOf(s)) + '@style-kaleidoscope', 'DTSTAMP:' + stamp, 'DTSTART;TZID=Asia/Shanghai:' + st(a), 'DTEND;TZID=Asia/Shanghai:' + st(b),
+        'SUMMARY:' + esc(en ? f.cn + (f.version ? ' · ' + t(f.version) : '') : `《${f.cn}》${f.version ? ' · ' + f.version : ''}`), 'LOCATION:' + esc(idx.venueName(s) + ' · ' + idx.hallName(s)),
+        'DESCRIPTION:' + esc((pg && pg.name ? pg.name : '') + '\n' + t('麻雀观影护照')), 'BEGIN:VALARM', 'ACTION:DISPLAY', 'DESCRIPTION:' + esc(f.cn), 'TRIGGER:-PT1H', 'END:VALARM', 'END:VEVENT');
+    });
+    L.push('END:VCALENDAR');
+    const name = (en ? 'Sparrow-Film-Passport-My-Schedule' : '麻雀观影护照_我的观影日程') + '.ics', path = wx.env.USER_DATA_PATH + '/' + name;
+    try { wx.getFileSystemManager().writeFileSync(path, L.join('\r\n') + '\r\n', 'utf8'); } catch (e) { wx.showToast({ title: t('日历文件生成失败'), icon: 'none' }); return; }
+    if (!wx.shareFileMessage) { wx.showToast({ title: t('当前微信版本不支持发送文件，请改用「逐场写入」'), icon: 'none', duration: 2500 }); return; }
+    wx.shareFileMessage({ filePath: path, fileName: name, fail: err => { if (!/cancel/.test((err && err.errMsg) || '')) wx.showToast({ title: t('未能发送文件，请改用「逐场写入」'), icon: 'none', duration: 2500 }); } });
+  },
+  addEachCalendar() {
     if (this.calBusy) return;
     const data = app.globalData.data, idx = U.index(data);
     let done = {}; try { done = wx.getStorageSync('sk-cal-done') || {}; } catch (e) { }

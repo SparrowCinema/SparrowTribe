@@ -8474,6 +8474,9 @@
   "导入手机日历": "Add to phone calendar",
   "导入": "Add",
   "没有需要新加入的场次": "Nothing new to add",
-  "复制订阅链接后，在手机日历里添加「订阅日历」并粘贴：iPhone 在 设置 › 日历 › 账户 › 添加账户 › 其他 › 添加已订阅的日历；安卓在日历 App 的「添加日历 / 订阅」。订阅后场次有调整会自动同步。": "Copy the link, then add it as a subscribed calendar: on iPhone go to Settings › Calendar › Accounts › Add Account › Other › Add Subscribed Calendar; on Android use \"Add calendar / Subscribe\" in your calendar app. Schedule changes sync automatically."
+  "复制订阅链接后，在手机日历里添加「订阅日历」并粘贴：iPhone 在 设置 › 日历 › 账户 › 添加账户 › 其他 › 添加已订阅的日历；安卓在日历 App 的「添加日历 / 订阅」。订阅后场次有调整会自动同步。": "Copy the link, then add it as a subscribed calendar: on iPhone go to Settings › Calendar › Accounts › Add Account › Other › Add Subscribed Calendar; on Android use \"Add calendar / Subscribe\" in your calendar app. Schedule changes sync automatically.",
+  "日历文件生成失败": "Could not create the calendar file",
+  "当前微信版本不支持发送文件，请改用「逐场写入」": "This WeChat version cannot send files — use \"one by one\" instead",
+  "未能发送文件，请改用「逐场写入」": "Could not send the file — use \"one by one\" instead"
  }
 }
