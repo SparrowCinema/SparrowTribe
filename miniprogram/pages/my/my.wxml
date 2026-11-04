@@ -211,7 +211,7 @@ ONE STAMP</text><text class="fp-open-icon">↗</text></view>
   <view class="fp-sub">{{pp.empty ? L.t(i,'在影片页点「看过」，就会在这里盖章。') : L.t(i,'点印章回到影片 · 评分印在章上')}}</view>
   <view class="fp-grid">
     <view wx:for="{{pg.items}}" wx:for-item="s" wx:key="id" class="fp-cell">
-  <view class="st st{{s.shape}}" style="--ink:{{s.ink}};transform:translate({{s.dx}}rpx,{{s.dy}}rpx) rotate({{s.tilt}}deg) scale(.5)" data-id="{{s.id}}" bindtap="openStamp">
+  <view class="st st{{s.shape}}" style="--ink:{{s.ink}};transform:translate(calc({{s.dx}} * var(--r)),calc({{s.dy}} * var(--r))) rotate({{s.tilt}}deg) scale(.5)" data-id="{{s.id}}" bindtap="openStamp">
     <view class="st-in" />
     <text class="st-top">{{s.top}}</text>
     <text class="st-title">{{s.title}}</text>

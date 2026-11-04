@@ -53,8 +53,5 @@
   "style": "v2",
   "sitemapLocation": "sitemap.json",
   "lazyCodeLoading": "requiredComponents",
-  "resizable": true,
-  "rpxCalcMaxDeviceWidth": 600,
-  "rpxCalcBaseDeviceWidth": 414,
-  "rpxCalcIncludeWidth": 0
+  "resizable": true
 }
