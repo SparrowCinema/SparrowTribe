@@ -91,3 +91,4 @@
     </view>
   </block>
 </view>
+<view class="to-top {{topOn ? 'show' : ''}}" hover-class="to-top-hv" bindtap="toTop"><view class="tt-arr" /></view>

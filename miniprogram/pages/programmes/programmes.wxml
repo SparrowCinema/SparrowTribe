@@ -33,3 +33,4 @@
   </block>
   <view wx:if="{{!total}}" class="empty card"><text class="eb">{{L.t(i,'专题整理中')}}</text><text class="es">{{L.t(i,'新的影展与放映专题会陆续上线。')}}</text></view>
 </view>
+<view class="to-top {{topOn ? 'show' : ''}}" hover-class="to-top-hv" bindtap="toTop"><view class="tt-arr" /></view>
