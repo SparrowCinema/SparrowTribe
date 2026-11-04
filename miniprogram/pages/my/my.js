@@ -55,9 +55,9 @@ Page({
   buildGrowth(list, idx) {
     const en = I.isEn(), nm = x => en ? x.en : x.zh, K = n => n >= 1000 ? (n % 1000 === 0 ? n / 1000 : +(n / 1000).toFixed(1)) + 'k' : String(n);
     const rows = [], sh = app.globalData.data.shows;
-    list.forEach(e => { const p = idx.progOf(e.f), v = e.s ? idx.VN[e.s.v] : null, base = { id: e.id, min: e.f.min || 0, prog: p.id, city: (v && v.city) || p.city || '', venue: e.s ? e.s.v : '' };
+    list.forEach(e => { const p = idx.progOf(e.f), v = e.s ? idx.VN[e.s.v] : null, base = { id: e.id, min: e.f.min || 0, prog: p.id, city: (v && v.city) || p.city || '', venue: e.s ? e.s.v : '', f: { y: e.f.y, c: e.f.c, dir: e.f.dir, genre: e.f.genre, language: e.f.language, honors: e.f.honors, r: e.f.r, o: e.f.o, en: e.f.en }, time: e.s ? e.s.t : '' };
       G.views(e.rec).forEach((x, k) => { const s2 = x.k && sh.find(y => U.keyOf(y) === x.k), v2 = s2 ? idx.VN[s2.v] : null;
-        rows.push(Object.assign({}, base, { d: x.d, r: x.r || 0, fmt: x.f || '', re: k > 0, city: k === 0 ? base.city : ((v2 && v2.city) || base.city), venue: k === 0 ? base.venue : (s2 ? s2.v : base.venue) })); }); });
+        rows.push(Object.assign({}, base, { time: k === 0 ? base.time : (s2 ? s2.t : ''), d: x.d, r: x.r || 0, fmt: x.f || '', re: k > 0, city: k === 0 ? base.city : ((v2 && v2.city) || base.city), venue: k === 0 ? base.venue : (s2 ? s2.v : base.venue) })); }); });
     const progs = (app.globalData.data.programmes || []).map(p => ({ id: p.id, name: p.name, en: p.en || '', kind: p.kind, city: p.city || '', total: Object.keys(idx.F).filter(k => idx.progOf(idx.F[k]).id === p.id).length }));
     const g = G.compute(rows, { progs }), L = g.level, nb = g.nextBadge, lo = Math.max(0, L.index - 1);
     const op = this.data.gOpen || [nb && nb.group !== 'level' ? nb.group : g.groups[0].id];
@@ -73,12 +73,14 @@ Page({
       subs: [['level', en ? 'Levels' : '等级', (L.cur ? L.index + 1 : 0) + '/' + g.levels.length], ['trail', en ? 'Footprints' : '足迹', g.cities], ['medals', en ? 'Medals' : '纪念章', g.earned + '/' + g.total]].map(x => ({ k: x[0], n: x[1], c: x[2] })),
       cities: (this.data.cAll ? g.cityCards : g.cityCards.slice(0, 4)).map(c => ({ name: en ? c.en : c.name, country: en ? c.countryEn : c.country, n: c.n, bars: c.progs.map(p => ({ name: en && p.en ? p.en : p.name, seen: p.seen, total: p.total, pct: p.pct })) })),
       medalSum: g.earned + ' / ' + g.total,
-      groups: g.groups.map(gr => ({ id: gr.id, open: op.includes(gr.id), earned: gr.earned + '/' + gr.total, dots: gr.tiers.map(x => x.earned ? 'on' : x.next ? 'nx' : ''), name: nm(gr), val: gr.value + (gr.id === 'collect' ? '' : ' ') + (en ? gr.unit[1] : gr.unit[0]), medals: gr.tiers.map(x => ({ n: K(x.n) + (gr.id === 'collect' ? '%' : ''), name: nm(x), st: x.earned ? 'on' : x.next ? 'next' : 'far', pct: x.pct })) })) } });
+      cats: G.CATS.map(c => { const gs = g.groups.filter(x => x.cat === c.id); return { id: c.id, name: nm(c), n: gs.reduce((s, x) => s + x.earned, 0), groups: gs.map(gr => gr.kind === 'set'
+        ? { id: gr.id, set: true, open: op.includes(gr.id), earned: gr.earned + '/' + gr.total, dots: gr.items.filter(x => x.earned).slice(0, 8).map(() => 'on').concat(gr.items.some(x => !x.earned) ? [''] : []), name: nm(gr), rule: en ? gr.rule[1] : gr.rule[0], medals: gr.items.map(x => ({ n: x.ic, name: nm(x), st: x.earned ? 'on' : 'far' })) }
+        : { id: gr.id, open: op.includes(gr.id), earned: gr.earned + '/' + gr.total, dots: gr.tiers.map(x => x.earned ? 'on' : x.next ? 'nx' : ''), name: nm(gr), rule: en ? gr.rule[1] : gr.rule[0], val: gr.value + (gr.id === 'collect' ? '' : ' ') + (en ? gr.unit[1] : gr.unit[0]), medals: gr.tiers.map(x => ({ n: K(x.n) + (gr.id === 'collect' ? '%' : ''), name: nm(x), st: x.earned ? 'on' : x.next ? 'next' : 'far', pct: x.pct })) }) }; }).filter(c => c.groups.length) } });
   },
   ppTabSw(e) { this.setData({ ppTab: e.currentTarget.dataset.t === 'growth' ? 'growth' : 'stamps' }); },
   grSub(e) { this.setData({ gt: e.currentTarget.dataset.t }); },
   cToggle() { this.setData({ cAll: !this.data.cAll }); this.buildPassport(); },
-  gTog(e) { const id = e.currentTarget.dataset.g, cur = (this.data.gr.groups.filter(x => x.open).map(x => x.id)), nx = cur.includes(id) ? cur.filter(x => x !== id) : cur.concat(id); this.setData({ gOpen: nx }); this.buildPassport(); },
+  gTog(e) { const id = e.currentTarget.dataset.g, cur = [].concat(...this.data.gr.cats.map(c => c.groups)).filter(x => x.open).map(x => x.id), nx = cur.includes(id) ? cur.filter(x => x !== id) : cur.concat(id); this.setData({ gOpen: nx }); this.buildPassport(); },
   lvToggle() { this.setData({ lvAll: !this.data.lvAll }); this.buildPassport(); },
   // ===== 个人档案云端同步（同步码，与网站共用） =====
   buildSync() {
