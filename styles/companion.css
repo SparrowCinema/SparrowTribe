@@ -111,3 +111,6 @@ button:focus-visible,summary:focus-visible,a:focus-visible{outline:3px solid var
   .my-dashboard .my-menu>details[open]{grid-column:1/-1}
   .my-dashboard .my-menu .my-entry{min-height:96px;padding:22px}
 }
+
+/* 片目筛选条：宽屏一排 6 项，字号小一档 */
+@media(min-width:760px){.library-filterbar{grid-template-columns:repeat(6,minmax(0,1fr))}.library-filterbar>.schedule-filter{padding:9px 11px;gap:5px}.library-filterbar>.schedule-filter:nth-child(n+4){border-top:0}.library-filterbar>.schedule-filter:nth-child(3n+1){border-left:1px solid var(--line)}.library-filterbar>.schedule-filter:first-child{border-left:0}.library-filterbar .schedule-filter small{font-size:9px;margin-bottom:4px}.library-filterbar .schedule-filter b{font-size:12px}}
