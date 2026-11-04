@@ -8490,7 +8490,6 @@
   "网页版像 App 一样用 · 一键导入日历、订阅专题": "Use the web app like an app · one-tap calendar import & subscribe",
   "网页版地址已复制 · 添加到手机桌面": "Web link copied · Add to Home Screen",
   "网页版地址已复制": "Web link copied",
-  "推荐：网页版一键订阅（iPhone 用 Safari）": "Recommended: one-tap subscribe on the web (Safari on iPhone)",
   "① iPhone 请用自带的 Safari 打开（谷歌等浏览器暂时无法一键导入日历）。": "① On iPhone, open it in Safari (Chrome and other browsers cannot import to the calendar in one tap).",
   "② 点底部「分享」按钮 →「添加到主屏幕」。": "② Tap Share at the bottom → \"Add to Home Screen\".",
   "③ 之后像 App 一样从桌面打开：个人排片可一键导入日历，专题可一键订阅日历，不用再进小程序。": "③ Then open it from your Home Screen like an app: import your plan to the calendar and subscribe to programmes in one tap.",
@@ -8506,6 +8505,6 @@
   "① iPhone 请用自带的 Safari 打开这个网址（谷歌等浏览器无法一键导入日历）；安卓用谷歌浏览器或自带浏览器都可以。": "① On iPhone, open this link in Safari (Chrome and other browsers cannot import to the calendar in one tap); on Android, Chrome or the built-in browser both work.",
   "② 进入「导出与分享」，点「导入日历」：iPhone 直接导入；安卓会下载日历文件，点开用「日历」打开，全部排片一次导入。": "② Go to \"Export & share\" and tap \"Add to calendar\": iPhone imports directly; Android downloads a calendar file — open it with Calendar to import every screening at once.",
   "③ 建议先添加到手机桌面（iPhone 点「分享」→「添加到主屏幕」），以后像 App 一样直接打开。": "③ Tip: add it to your Home Screen first (iPhone: Share → \"Add to Home Screen\") so you can open it like an app later.",
-  "① iPhone 请用自带的 Safari 打开这个网址（谷歌等浏览器无法一键订阅）；安卓用谷歌浏览器或自带浏览器都可以。": "① On iPhone, open this link in Safari (Chrome and other browsers cannot subscribe in one tap); on Android, Chrome or the built-in browser both work."
+  "① 用手机浏览器打开这个网址：Safari、谷歌浏览器、安卓自带浏览器都可以一键订阅。": "① Open this link in your phone browser — Safari, Chrome and the Android built-in browser can all subscribe in one tap."
  }
 }

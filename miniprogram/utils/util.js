@@ -106,9 +106,9 @@ const calSub = (id, en, t) => {
   const sub = SITE + 'cal/' + (en ? 'en/' : '') + id + '.ics', page = SITE + (id === 'all' ? '#programmes' : '#prog-' + id);
   const manual = () => wx.showModal({ title: t('手动添加订阅'), content: t('复制链接后，在手机日历里添加「订阅日历」并粘贴：iPhone 在 设置 › 日历 › 账户 › 添加账户 › 其他 › 添加已订阅的日历；安卓在日历 App 的「添加日历 / 订阅」。订阅后场次有调整会自动同步。'), confirmText: t('复制链接'), cancelText: t('取消'),
     success: r => { if (r.confirm) wx.setClipboardData({ data: sub, success: () => wx.showToast({ title: t('订阅链接已复制'), icon: 'none' }) }); } });
-  wx.showActionSheet({ itemList: [t('推荐：网页版一键订阅（iPhone 用 Safari）'), t('手动添加（复制订阅链接）')], success: r => {
+  wx.showActionSheet({ itemList: [t('推荐：网页版一键订阅（复制网址）'), t('手动添加（复制订阅链接）')], success: r => {
     if (r.tapIndex === 1) return manual();
-    webTip(id === 'all' ? '#programmes' : '#prog-' + id, ['① iPhone 请用自带的 Safari 打开这个网址（谷歌等浏览器无法一键订阅）；安卓用谷歌浏览器或自带浏览器都可以。', '② 在专题页点「订阅日历」，一键订阅到系统日历，场次有调整会自动更新。', '③ 建议先添加到手机桌面（iPhone 点「分享」→「添加到主屏幕」），以后像 App 一样直接打开。'], t);
+    webTip(id === 'all' ? '#programmes' : '#prog-' + id, ['① 用手机浏览器打开这个网址：Safari、谷歌浏览器、安卓自带浏览器都可以一键订阅。', '② 在专题页点「订阅日历」，一键订阅到系统日历，场次有调整会自动更新。', '③ 建议先添加到手机桌面（iPhone 点「分享」→「添加到主屏幕」），以后像 App 一样直接打开。'], t);
   } });
 };
 // 网页版引导：复制网页地址，并说明用 iPhone 自带 Safari 打开、添加到手机桌面后像 App 一样用（一键导入个人排片 / 一键订阅专题日历）
