@@ -8500,6 +8500,12 @@
   "③ 建议先点底部「分享」→「添加到主屏幕」，以后像 App 一样直接打开。": "③ Tip: tap Share → \"Add to Home Screen\" first, so you can open it like an app later.",
   "首次使用，请先在网页「我的」里用同步码连接：在小程序「我的 → 个人档案云端同步」复制同步码。": "First time only: connect the web page with your sync code (copy it from My › Personal archive sync in the mini program).",
   "① iPhone 请用自带的 Safari 打开这个网址（谷歌等浏览器无法一键订阅）。": "① On iPhone, open this link in Safari (Chrome and other browsers cannot subscribe in one tap).",
-  "② 在专题页点「订阅日历」，一键订阅到系统日历，场次有调整会自动更新。": "② On the programme page tap \"Subscribe calendar\" to subscribe in one tap; schedule changes update automatically."
+  "② 在专题页点「订阅日历」，一键订阅到系统日历，场次有调整会自动更新。": "② On the programme page tap \"Subscribe calendar\" to subscribe in one tap; schedule changes update automatically.",
+  "① iPhone 请用自带的 Safari 打开（谷歌等浏览器无法一键导入日历）；安卓用谷歌浏览器或自带浏览器都可以。": "① On iPhone, open it in Safari (Chrome and other browsers cannot import to the calendar in one tap); on Android, Chrome or the built-in browser both work.",
+  "② iPhone 点底部「分享」→「添加到主屏幕」；安卓在浏览器菜单里选「添加到主屏幕」。": "② iPhone: tap Share → \"Add to Home Screen\"; Android: choose \"Add to Home screen\" in the browser menu.",
+  "① iPhone 请用自带的 Safari 打开这个网址（谷歌等浏览器无法一键导入日历）；安卓用谷歌浏览器或自带浏览器都可以。": "① On iPhone, open this link in Safari (Chrome and other browsers cannot import to the calendar in one tap); on Android, Chrome or the built-in browser both work.",
+  "② 进入「导出与分享」，点「导入日历」：iPhone 直接导入；安卓会下载日历文件，点开用「日历」打开，全部排片一次导入。": "② Go to \"Export & share\" and tap \"Add to calendar\": iPhone imports directly; Android downloads a calendar file — open it with Calendar to import every screening at once.",
+  "③ 建议先添加到手机桌面（iPhone 点「分享」→「添加到主屏幕」），以后像 App 一样直接打开。": "③ Tip: add it to your Home Screen first (iPhone: Share → \"Add to Home Screen\") so you can open it like an app later.",
+  "① iPhone 请用自带的 Safari 打开这个网址（谷歌等浏览器无法一键订阅）；安卓用谷歌浏览器或自带浏览器都可以。": "① On iPhone, open this link in Safari (Chrome and other browsers cannot subscribe in one tap); on Android, Chrome or the built-in browser both work."
  }
 }
