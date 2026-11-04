@@ -103,3 +103,11 @@ button:focus-visible,summary:focus-visible,a:focus-visible{outline:3px solid var
 
 /* User-supplied Golden Horse artwork: retain the title, dates and full composition. */
 .prog-card>img[src*="golden-horse-2026"],.pg-cover>img[src*="golden-horse-2026"]{object-fit:contain;object-position:center!important;background:#190e19}
+/* 平板 / 折叠屏：「我的」菜单改为两列卡片，展开项占满整行 */
+@media (min-width:768px){
+  .my-dashboard .my-menu{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;border:0;border-radius:0;background:none;overflow:visible;align-items:stretch}
+  .my-dashboard .my-menu>*,.my-dashboard .my-menu>.menu-disclosure,.my-dashboard .my-menu>.my-entry{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;min-width:0;margin:0}
+  .my-dashboard .my-menu>*+*,.my-dashboard .my-menu>.my-entry{border-top:1px solid var(--line)}
+  .my-dashboard .my-menu>details[open]{grid-column:1/-1}
+  .my-dashboard .my-menu .my-entry{min-height:96px;padding:22px}
+}

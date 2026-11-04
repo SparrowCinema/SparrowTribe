@@ -1144,8 +1144,46 @@ input:not([type=checkbox]):not([type=radio]),select,textarea{font-size:16px!impo
 }
 /* 宽屏专题卡：「查看专题」不再压在文字上 */
 @media (min-width:640px){.pc-go{position:static;justify-self:end;padding:0 14px 12px;margin-top:-6px}}
+
+/* ===== 平板 / 折叠屏精修：图文比例协调，字号随屏幕放大 ===== */
+.pc-blurb{display:none}
+@media (min-width:768px){
+  .tabbar .in{max-width:560px}
+  /* 专题列表卡片：文字区加厚，加入两行简介，避免“大图小字” */
+  .pc-body{padding:16px 20px 8px;gap:5px}.pc-body small{font-size:11.5px;line-height:1.7}.pc-body b{font-size:24px;line-height:1.25}.pc-body>span{font-size:14px;line-height:1.6}
+  .pc-body .pc-blurb{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-top:4px;font-size:13px;line-height:1.7;color:var(--muted);opacity:.9}
+  .pc-go{font-size:13px;padding:0 20px 16px}
+  /* 片目列表：海报放大，标题与信息同步放大 */
+  .fcard{grid-template-columns:88px 1fr auto;gap:22px;padding:20px 0}.slate{width:88px}.slate b{font-size:24px}
+  .fcard .info b{font-size:19px}.fcard .info .o,.fcard .info .d{font-size:13.5px}.score{font-size:14px}
+  /* 专题页：标题、简介放大；片单海报网格 + 更大的片名与场次文字 */
+  .pg-head{padding-top:28px}.pg-head small{font-size:11px}.pg-head h1{font-size:46px}.pg-sub{font-size:16px}
+  .pg-blurb{font-size:17px;line-height:1.9;max-width:62ch}
+  .pg-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:36px 20px}
+  .pg-film .pg-name{font-size:17px}.pg-slot-count{font-size:12px}.pg-slots{font-size:13px}.pg-slots .pg-slot small{font-size:12px}
+  /* 影片页头：海报与片名放大 */
+  .fd-hin{grid-template-columns:200px 1fr;gap:32px;padding-block:48px 36px}.fd-poster{width:200px}
+  .fd-title{align-self:center}.fd-title .fd-acts{margin-top:22px;padding-top:0}.pg-film .pg-name{min-height:2.7em}
+  .fd-title h1{font-size:44px}.fd-orig{font-size:19px}.fd-eyebrow{font-size:12.5px}.fd-chips span{font-size:13px;padding:4px 10px}
+}
+@media (min-width:768px) and (max-width:899px){.prog-strip>.prog-card:last-child:nth-child(odd){grid-column:1/-1}}
+@media (min-width:900px){
+  .pg-grid{grid-template-columns:repeat(5,minmax(0,1fr))}
+  .fd-hin{grid-template-columns:260px 1fr;gap:48px;padding-block:68px 52px}.fd-poster{width:260px}.fd-title h1{font-size:58px}.fd-orig{font-size:23px}
+  .fcard .info b{font-size:20px}
+}
+@media (min-width:1280px){.pg-grid{grid-template-columns:repeat(6,minmax(0,1fr))}}
+/* 专题页：有购票码时，简介在左、购票码在右，竖排大码 */
+@media (min-width:840px){
+  .pg>.gut:has(>.ticket-card){display:grid;grid-template-columns:minmax(0,1fr) 340px;column-gap:48px;align-items:start}
+  .pg>.gut:has(>.ticket-card)>*{grid-column:1/-1}
+  .pg>.gut:has(>.ticket-card)>:is(.pg-head,.pg-stats,.pg-blurb,.pg-acts,.pg-ticketlink){grid-column:1}
+  .pg>.gut:has(>.ticket-card)>.ticket-card{grid-column:2;grid-row:1/span 4;margin:28px 0 0;flex-direction:column;align-items:stretch;gap:16px;padding:26px 24px}
+  .pg>.gut:has(>.ticket-card)>.ticket-card .ticket-code{order:-1;width:200px;align-self:center}
+  .pg>.gut:has(>.ticket-card)>.ticket-card h2{font-size:26px}.pg>.gut:has(>.ticket-card)>.ticket-card p{font-size:12.5px}
+}
 </style>
-<link rel="stylesheet" href="styles/companion.css?v=72">
+<link rel="stylesheet" href="styles/companion.css?v=73">
 </head>
 <body>
 <div style="position:absolute;left:-9999px;top:0;width:0;height:0;overflow:hidden" aria-hidden="true"><img src="brand/og-square.jpg" alt="" width="300" height="300"></div>
@@ -1274,7 +1312,7 @@ function defaultProg(){ const open=progOrdered().filter(p=>progStatus(p)!=="ende
 const statusTag = p => { const st=progStatus(p); return `<i class="pst pst-${st}">${p.ongoing&&st==="live"?"常设":STATUS[st]}</i>`; };
 const progChips = (cur=pfilt) => { const open=progOrdered().filter(p=>progStatus(p)!=="ended"||p.id===cur); return `<div class="filters prog-chips">${[["all","全部专题"],...open.map(p=>[p.id,p.name])].map(([k,n])=>`<button class="fchip" data-pf="${k}" aria-pressed="${cur===k}">${esc(n)}</button>`).join("")}</div>`; };
 const dateSpan = list => { if(!list.length) return ""; const ds=[...new Set(list.map(x=>x.d))]; return ds[0]+" – "+ds[ds.length-1]; };
-function progCardHTML(p){ const n=progShows(p.id).length, fn=FILMS.filter(f=>f.prog===p.id||p.sections?.[f.id]).length; return `<button class="prog-card pc-${progStatus(p)}" data-prog="${p.id}">${p.cover?`<img src="${p.cardCover||p.cover}" alt="" loading="lazy">`:""}<span class="pc-body"><small>${statusTag(p)}${esc(p.kind)} · ${esc(p.period)}${p.city?` · ${esc(p.city)}`:""}</small><b>${esc(p.name)}</b><span>${esc(p.sub)} · ${fn} 部${n?` / ${n} 场`:""}</span></span><span class="pc-go">专题 ›</span></button>`; }
+function progCardHTML(p){ const n=progShows(p.id).length, fn=FILMS.filter(f=>f.prog===p.id||p.sections?.[f.id]).length; return `<button class="prog-card pc-${progStatus(p)}" data-prog="${p.id}">${p.cover?`<img src="${p.cardCover||p.cover}" alt="" loading="lazy">`:""}<span class="pc-body"><small>${statusTag(p)}${esc(p.kind)} · ${esc(p.period)}${p.city?` · ${esc(p.city)}`:""}</small><b>${esc(p.name)}</b><span>${esc(p.sub)} · ${fn} 部${n?` / ${n} 场`:""}</span>${p.blurb?`<span class="pc-blurb">${esc(tr(p.blurb))}</span>`:""}</span><span class="pc-go">专题 ›</span></button>`; }
 function programmesPage(){
   const all=progOrdered(), live=all.filter(p=>progStatus(p)==="live"), soon=all.filter(p=>progStatus(p)==="soon"), past=all.filter(p=>progStatus(p)==="ended");
   const sec=(t,en,list)=>list.length?`<h3 class="blockh pgl-h">${t} <small>${list.length} · ${en}</small></h3><div class="prog-strip">${list.map(progCardHTML).join("")}</div>`:"";
