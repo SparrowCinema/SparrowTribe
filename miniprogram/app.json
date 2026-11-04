@@ -55,5 +55,6 @@
   "lazyCodeLoading": "requiredComponents",
   "resizable": true,
   "rpxCalcMaxDeviceWidth": 600,
-  "rpxCalcBaseDeviceWidth": 414
+  "rpxCalcBaseDeviceWidth": 414,
+  "rpxCalcIncludeWidth": 0
 }
