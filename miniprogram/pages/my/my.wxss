@@ -390,3 +390,10 @@
 .gg-b { padding: 0 4rpx 28rpx; } .gg-v { display: block; margin-bottom: 16rpx; font-size: 22rpx; color: var(--muted); }
 
 .st-x { position: absolute; top: -8rpx; right: -8rpx; min-width: 68rpx; height: 52rpx; padding: 0 10rpx; box-sizing: border-box; border-radius: 26rpx; background: #8e2a22; color: #fff6e4; border: 5rpx solid #f8f2e6; font-size: 26rpx; font-weight: 700; line-height: 42rpx; text-align: center; }
+
+.gcat { display: flex; flex-direction: row; align-items: baseline; gap: 14rpx; margin: 34rpx 0 8rpx; font-size: 24rpx; letter-spacing: 2rpx; color: var(--muted); font-weight: 600; }
+.gcat-n { font-size: 22rpx; color: var(--accent); font-weight: 500; }
+.gg-r { display: block; font-size: 22rpx; line-height: 1.5; color: var(--muted); margin-bottom: 14rpx; }
+.gm-wrap { display: flex; flex-direction: row; flex-wrap: wrap; row-gap: 22rpx; }
+.gm-ic { font-size: 44rpx; line-height: 1; }
+.gm.far .gm-ic { filter: grayscale(1); opacity: .45; }
