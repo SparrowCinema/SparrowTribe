@@ -78,11 +78,24 @@ Page({
     const data = app.globalData.data, idx = U.index(data), rec = W.get(this.id), r = rec ? rec.r || 0 : 0, s = rec ? W.showOf(rec, data) : null;
     this.setData({ mine: { seen: !!rec, r, d: rec ? rec.d : '', today: W.iso(new Date()), stars: [1, 2, 3, 4, 5].map(i => Math.max(0, Math.min(2, r - (i - 1) * 2)) * 50),
       at: s ? W.vShort(idx.VN[s.v]) + ' · ' + s.t : t('未关联场次'), seenTxt: t(rec ? '已看过 · 已盖章' : '＋ 看过'), scoreTxt: r ? r + '/10' : t('点星打分'),
-      fmtRange: [I.isEn() ? 'Not set' : '未填写'].concat(G.FORMATS.map(x => I.isEn() ? x.en : x.zh)), fmtIdx: rec && rec.f ? 1 + G.FORMATS.findIndex(x => x.id === rec.f) : 0 } });
+      fmt: this.fmtModel(rec && rec.f) } });
+  },
+  // 放映版本：两列选择器（类型 → 具体版本）
+  fmtModel(cur) {
+    const en = I.isEn(), pl = G.pickList(cur || ''), gs = G.FORMAT_GROUPS.filter(g => pl.some(x => x.group === g.id)), none = en ? 'Not set' : '未填写';
+    const groups = [{ id: '', n: none, items: [{ id: '', n: none }] }].concat(gs.map(g => ({ id: g.id, n: en ? g.en : g.zh, items: pl.filter(x => x.group === g.id).map(x => ({ id: x.id, n: en ? x.en : x.zh })) })));
+    this._fm = groups;
+    const gi = cur ? Math.max(0, groups.findIndex(g => g.items.some(x => x.id === cur))) : 0, ii = cur && gi ? groups[gi].items.findIndex(x => x.id === cur) : 0;
+    return { cols: [groups.map(g => g.n), groups[gi].items.map(x => x.n)], val: [gi, ii], txt: cur ? groups[gi].items[ii].n : none, on: !!cur };
+  },
+  fmtCol(e) {
+    if (e.detail.column !== 0 || !this._fm) return;
+    const g = this._fm[e.detail.value]; if (!g) return;
+    this.setData({ 'mine.fmt.cols[1]': g.items.map(x => x.n), 'mine.fmt.val': [e.detail.value, 0] });
   },
   setFmt(e) {
-    const rec = W.get(this.id), k = +e.detail.value; if (!rec) return;
-    const o = Object.assign({}, rec); delete o.f; if (k > 0) o.f = G.FORMATS[k - 1].id;
+    const rec = W.get(this.id), v = e.detail.value; if (!rec || !this._fm) return;
+    const it = (this._fm[v[0]] || { items: [] }).items[v[1]], o = Object.assign({}, rec); delete o.f; if (it && it.id) o.f = it.id;
     W.set(this.id, o); wx.showToast({ title: t('放映版本已更新'), icon: 'none' });
   },
   toggleSeen() {

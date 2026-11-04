@@ -19,21 +19,33 @@
     [7500, '殿堂影迷', 'Hall-of-Fame Cinephile'], [10000, '万象宗师', 'Grand Master of Cinema']
   ].map(x => ({ n: x[0], zh: x[1], en: x[2] }));
 
-  // 放映版本：全球常见的银幕与格式
+  // 放映版本：全球常见的影厅与格式（hide = 旧版本留下的 id，不再出现在选项里，已记录的仍正常显示和计数）
   const FORMAT_GROUPS = [
-    { id: 'digital', zh: '数字放映', en: 'Digital' }, { id: 'film', zh: '胶片', en: 'Film' },
-    { id: 'imax', zh: 'IMAX', en: 'IMAX' }, { id: 'premium', zh: '特效厅 / 大银幕', en: 'Premium formats' }, { id: 'other', zh: '其他', en: 'Other' }
+    { id: 'std', zh: '普通影厅', en: 'Standard' }, { id: 'film', zh: '胶片', en: 'Film' }, { id: 'imax', zh: 'IMAX', en: 'IMAX' },
+    { id: 'dolby', zh: '杜比', en: 'Dolby' }, { id: 'plf', zh: '巨幕与 LED', en: 'Large format & LED' },
+    { id: 'immersive', zh: '沉浸与动感', en: 'Immersive & motion' }, { id: 'sound', zh: '特色声场', en: 'Sound' }, { id: 'other', zh: '其他', en: 'Other' }
   ];
   const FORMATS = [
-    ['2k', 'digital', '2K 数字', '2K Digital'], ['4k', 'digital', '4K 数字', '4K Digital'], ['laser', 'digital', '激光放映', 'Laser projection'],
+    ['2k-laser', 'std', '2K 激光厅', '2K Laser'], ['4k-laser', 'std', '4K 激光厅', '4K Laser'],
     ['16mm', 'film', '16mm 胶片', '16mm film'], ['35mm', 'film', '35mm 胶片', '35mm film'], ['70mm', 'film', '70mm 胶片', '70mm film'],
-    ['imax', 'imax', 'IMAX 数字', 'IMAX Digital'], ['imax-laser', 'imax', 'IMAX 激光', 'IMAX with Laser'], ['imax-gt', 'imax', 'IMAX GT', 'IMAX GT'],
-    ['imax-film', 'imax', 'IMAX 胶片', 'IMAX film'], ['imax-70', 'imax', 'IMAX 70mm', 'IMAX 70mm'],
-    ['dolby', 'premium', '杜比影院', 'Dolby Cinema'], ['4dx', 'premium', '4DX', '4DX'], ['screenx', 'premium', 'ScreenX', 'ScreenX'],
-    ['cinity', 'premium', 'CINITY', 'CINITY'], ['led', 'premium', 'LED 银幕', 'LED screen'], ['other', 'other', '其他版本', 'Other']
-  ].map(x => ({ id: x[0], group: x[1], zh: x[2], en: x[3] }));
+    ['imax', 'imax', 'IMAX 数字', 'IMAX Digital'], ['imax-laser', 'imax', 'IMAX 激光', 'IMAX with Laser'], ['imax-gt', 'imax', 'IMAX GT 激光', 'IMAX GT Laser'], ['imax-70', 'imax', 'IMAX 70mm 胶片（15/70）', 'IMAX 70mm film (15/70)'],
+    ['dolby', 'dolby', '杜比影院（视界 + 全景声）', 'Dolby Cinema'], ['dolby-va', 'dolby', '杜比 V+A（视界 + 全景声）', 'Dolby Vision + Atmos (V+A)'],
+    ['dolby-atmos', 'dolby', '杜比全景声厅', 'Dolby Atmos'], ['dolby-atmos-giant', 'dolby', '杜比全景声巨幕厅', 'Dolby Atmos giant screen'],
+    ['cgs', 'plf', '中国巨幕 CGS', 'China Giant Screen (CGS)'], ['dmax', 'plf', 'DMAX 巨幕', 'DMAX'], ['xd', 'plf', 'Cinemark XD', 'Cinemark XD'], ['rpx', 'plf', 'Regal RPX', 'Regal RPX'],
+    ['ultraavx', 'plf', 'Cineplex UltraAVX', 'Cineplex UltraAVX'], ['amc-prime', 'plf', 'AMC Prime', 'AMC Prime'], ['tcx', 'plf', 'TOHO TCX', 'TOHO TCX'],
+    ['super-plex', 'plf', '乐天 SUPER PLEX', 'Lotte SUPER PLEX'], ['klu', 'plf', 'Kinepolis Laser ULTRA', 'Kinepolis Laser ULTRA'], ['superscreen', 'plf', 'Cineworld Superscreen', 'Cineworld Superscreen'],
+    ['luxe', 'plf', 'Odeon Luxe', 'Odeon Luxe'], ['led', 'plf', 'LED 类银幕', 'LED screen'],
+    ['4dx', 'immersive', '4DX', '4DX'], ['screenx', 'immersive', 'ScreenX', 'ScreenX'], ['ultra4dx', 'immersive', 'ULTRA 4DX', 'ULTRA 4DX'], ['dbox', 'immersive', 'D-BOX 动感座椅', 'D-BOX'],
+    ['mx4d', 'immersive', 'MX4D', 'MX4D'], ['escape', 'immersive', 'Barco Escape 三面银幕', 'Barco Escape'], ['dome', 'immersive', '球幕 / 穹幕', 'Dome / fulldome'], ['sphere', 'immersive', 'Sphere', 'Sphere'], ['3d', 'immersive', '3D 立体', '3D'],
+    ['dtsx', 'sound', 'DTS:X 影厅', 'DTS:X'], ['auro', 'sound', 'Auro 11.1', 'Auro 11.1'],
+    ['other', 'other', '其他版本', 'Other'],
+    ['2k', 'std', '2K 数字', '2K Digital', 1], ['4k', 'std', '4K 数字', '4K Digital', 1], ['laser', 'std', '激光放映', 'Laser projection', 1], ['cinity', 'plf', 'LED 类银幕', 'LED screen', 1], ['imax-film', 'imax', 'IMAX 胶片', 'IMAX film', 1]
+  ].map(x => ({ id: x[0], group: x[1], zh: x[2], en: x[3], hide: !!x[4] }));
   const FMT = {}; FORMATS.forEach(f => { FMT[f.id] = f; });
+  // 选项列表：不含已淘汰 id；若这条记录用的就是旧 id，则把它临时带上，避免选项里“消失”
+  const pickList = cur => FORMATS.filter(f => !f.hide || f.id === cur);
   const FILM_FMT = ['16mm', '35mm', '70mm', 'imax-film', 'imax-70'], IMAX_FMT = ['imax', 'imax-laser', 'imax-gt', 'imax-film', 'imax-70'];
+  const PREMIUM_GROUPS = ['dolby', 'plf', 'immersive', 'sound'], isPremium = id => !!FMT[id] && PREMIUM_GROUPS.includes(FMT[id].group);
 
   // 放映城市 → 国家 / 地区 / 大洲（新城市在这里补一行即可）
   const CITY = {
@@ -55,8 +67,9 @@
     { id: 'rated', zh: '评分与品味', en: 'Ratings', unit: ['次评分', ' ratings'], tiers: T([[1, '初次打分', 'First Rating'], [10, '十次评分', 'Ten Ratings'], [25, '二十五次评分', '25 Ratings'], [100, '百次评分', '100 Ratings'], [250, '品味家', 'Taste-maker']]) },
     { id: 'hours', zh: '银幕时长', en: 'Screen time', unit: ['小时', ' hours'], tiers: T([[10, '十小时', '10 Hours'], [50, '五十小时', '50 Hours'], [100, '百小时', '100 Hours'], [250, '二百五十小时', '250 Hours'], [500, '五百小时', '500 Hours'], [1000, '千小时', '1000 Hours']]) },
     { id: 'daily', zh: '一天的电影', en: 'One day, many films', unit: ['部（单日最多）', ' in one day'], tiers: T([[2, '一日双片', 'Double Feature'], [3, '一日三片', 'Triple Feature'], [4, '影展马拉松', 'Festival Marathon'], [5, '五连映', 'Five in a Day'], [6, '极限观影', 'Extreme Viewing']]) },
-    { id: 'formats', zh: '版本收藏', en: 'Formats', unit: ['种放映版本', ' formats'], tiers: T([[1, '初识版本', 'First Format'], [3, '三种银幕', 'Three Formats'], [5, '五种银幕', 'Five Formats'], [8, '八种银幕', 'Eight Formats'], [12, '全球银幕收藏家', 'Screen Collector']]) },
+    { id: 'formats', zh: '版本收藏', en: 'Formats', unit: ['种放映版本', ' formats'], tiers: T([[1, '初识版本', 'First Format'], [3, '三种银幕', 'Three Formats'], [5, '五种银幕', 'Five Formats'], [8, '八种银幕', 'Eight Formats'], [12, '全球银幕收藏家', 'Screen Collector'], [20, '寰宇银幕收藏家', 'Universal Screen Collector']]) },
     { id: 'filmprint', zh: '胶片信徒', en: 'Film prints', unit: ['场胶片放映', ' film screenings'], tiers: T([[1, '胶片初见', 'First Print'], [5, '胶片常客', 'Print Regular'], [10, '胶片信徒', 'Film Devotee'], [25, '胶片守护者', 'Print Keeper'], [50, '胶片传人', 'Print Disciple']]) },
+    { id: 'premium', zh: '特效厅之旅', en: 'Premium screens', unit: ['场特效厅', ' premium screenings'], tiers: T([[1, '特效厅初见', 'First Premium'], [5, '特效厅常客', 'Premium Regular'], [10, '特效厅行家', 'Premium Aficionado'], [25, '特效厅骨灰', 'Premium Devotee']]) },
     { id: 'imax', zh: 'IMAX 之旅', en: 'IMAX', unit: ['场 IMAX', ' IMAX screenings'], tiers: T([[1, 'IMAX 初见', 'First IMAX'], [5, 'IMAX 常客', 'IMAX Regular'], [10, 'IMAX 行家', 'IMAX Aficionado'], [25, 'IMAX 骨灰', 'IMAX Devotee']]) }
   ];
 
@@ -91,7 +104,7 @@
     const val = {
       festivals: festivals.size, cities: cities.length, countries: countries.size, continents: continents.size, collect: bestPct,
       venues: venues.size, rated: rows.filter(r => r.r > 0).length, hours: hmOf(mins), daily: Math.max(0, ...Object.values(days)),
-      formats: fmts.size, filmprint: rows.filter(r => FILM_FMT.includes(r.fmt)).length, imax: rows.filter(r => IMAX_FMT.includes(r.fmt)).length
+      formats: fmts.size, filmprint: rows.filter(r => FILM_FMT.includes(r.fmt)).length, premium: rows.filter(r => isPremium(r.fmt)).length, imax: rows.filter(r => IMAX_FMT.includes(r.fmt)).length
     };
     const groups = GROUPS.map(g => {
       const v = val[g.id] || 0; let nextSeen = false;
@@ -113,6 +126,6 @@
     };
   }
 
-  const api = { compute, levelOf, LEVELS, GROUPS, FORMATS, FORMAT_GROUPS, FMT, CITY, PER_VOL };
+  const api = { compute, levelOf, LEVELS, GROUPS, FORMATS, FORMAT_GROUPS, FMT, CITY, PER_VOL, pickList };
   if (typeof module !== 'undefined' && module.exports) module.exports = api; else root.SparrowGrowth = api;
 })(typeof window !== 'undefined' ? window : this);
