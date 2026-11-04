@@ -1,3 +1,4 @@
+const T = require('../../utils/totop.js');
 const U = require('../../utils/util.js');
 const I = require('../../utils/i18n.js');
 const plan = require('../../utils/plan.js');
@@ -18,6 +19,8 @@ const lenOk = (f, k) => { const a = sl(k); if (!a.length) return true; return a.
    · 进行中/即将开始的专题：标题右侧圆形折叠按钮（状态记在本机）；组内已放映完的片子收进底部「本专题已放映」小折叠。
    · 整个专题结束后：整组移到最底部「往期专题」，每个专题一张折叠卡片（默认收起），按结束时间由近到远。 */
 Page({
+  onPageScroll(e) { T.scroll(this, e); },
+  toTop() { T.go(); },
   data: { reg:'all',len:'all',year:'all',city:'all',mine:'all',q:'',selectorType:'',selectorQuery:'',selectorRows:[],pf: 'all', progs: [], secs: [], past: [], pastN: 0, n: 0 },
   onLoad() {
     let f = {}; try { f = wx.getStorageSync(FOLD_KEY) || {}; } catch (e) { }

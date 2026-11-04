@@ -1,3 +1,4 @@
+const T = require('../../utils/totop.js');
 const U = require('../../utils/util.js');
 const I = require('../../utils/i18n.js');
 const t = I.tr;
@@ -5,6 +6,8 @@ const app = getApp();
 
 // 专题底栏：影展在前，院线与艺术影院在后；有待放映场次的专题排在同类前面
 Page({
+  onPageScroll(e) { T.scroll(this, e); },
+  toTop() { T.go(); },
   data: { live: [], soon: [], past: [], total: 0, pastOpen: false },
   onLoad() { this.setData({ i: I.dict() }); this.off = app.onData(() => this.build()); this.build(); },
   onShow() { wx.setNavigationBarTitle({ title: t('专题') }); this.build(); },

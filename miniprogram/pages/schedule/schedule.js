@@ -1,3 +1,4 @@
+const T = require('../../utils/totop.js');
 const U = require('../../utils/util.js');
 const plan = require('../../utils/plan.js');
 const I = require('../../utils/i18n.js');
@@ -13,6 +14,8 @@ const vShort = v => (v.city ? t(v.city) + ' · ' : '') + (v.short || v.brand || 
 const hShort = h => h.short || h.name;
 
 Page({
+  onPageScroll(e) { T.scroll(this, e); },
+  toTop() { T.go(); },
   setView(e){const view=e.currentTarget.dataset.view;this.setData({view});try{wx.setStorageSync('sk-schedule-view',view);}catch{}},
   data: {view:wx.getStorageSync('sk-schedule-view')||'gantt', onlyMine: false, selectorType: '', selectorQuery: '', selectorRows: [], programmeName: '', cityName: '', city: 'all', cityIndex: 0, cities: [], venueQuery: '', venueName: '', pf: 'all', vf: 'all', day: '', days: [], nowLine: null, todayOpen: false, myToday: [], myTodayTitle: '', progs: [], vchips: [], venues: [], vOpen: false, cols: [], ticks: [], H: 0, dayList: [], legend: [], span: '', count: 0, dayTitle: '', empty: '', scrollInto: '' },
 
