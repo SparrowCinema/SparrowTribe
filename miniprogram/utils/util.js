@@ -100,10 +100,15 @@ function openMap(v) {
   return true;
 }
 const EV_RE = /^(映后活动|Post-screening event)\s*·\s*/;
-// 日历订阅：小程序不能直接打开 webcal，所以复制订阅链接，并提示在手机日历里「添加订阅日历」粘贴
+// 日历订阅：小程序不能直接打开 webcal。推荐去网页版一键订阅（复制网页地址到手机浏览器打开）；也可复制订阅链接手动添加
 const calSub = (id, en, t) => {
-  const url = 'https://sparrowcinema.github.io/SparrowTribe/cal/' + (en ? 'en/' : '') + id + '.ics';
-  wx.showModal({ title: t('订阅日历'), content: t('复制订阅链接后，在手机日历里添加「订阅日历」并粘贴：iPhone 在 设置 › 日历 › 账户 › 添加账户 › 其他 › 添加已订阅的日历；安卓在日历 App 的「添加日历 / 订阅」。订阅后场次有调整会自动同步。'), confirmText: t('复制链接'), cancelText: t('取消'),
-    success: r => { if (r.confirm) wx.setClipboardData({ data: url, success: () => wx.showToast({ title: t('订阅链接已复制'), icon: 'none' }) }); } });
+  const SITE = 'https://sparrowcinema.github.io/SparrowTribe/';
+  const sub = SITE + 'cal/' + (en ? 'en/' : '') + id + '.ics', page = SITE + (id === 'all' ? '#programmes' : '#prog-' + id);
+  const manual = () => wx.showModal({ title: t('手动添加订阅'), content: t('复制链接后，在手机日历里添加「订阅日历」并粘贴：iPhone 在 设置 › 日历 › 账户 › 添加账户 › 其他 › 添加已订阅的日历；安卓在日历 App 的「添加日历 / 订阅」。订阅后场次有调整会自动同步。'), confirmText: t('复制链接'), cancelText: t('取消'),
+    success: r => { if (r.confirm) wx.setClipboardData({ data: sub, success: () => wx.showToast({ title: t('订阅链接已复制'), icon: 'none' }) }); } });
+  wx.showActionSheet({ itemList: [t('推荐：网页版一键订阅（复制网址）'), t('手动添加（复制订阅链接）')], success: r => {
+    if (r.tapIndex === 1) return manual();
+    wx.setClipboardData({ data: page, success: () => wx.showModal({ title: t('网址已复制'), content: t('用手机浏览器打开刚复制的网址，在专题页点「订阅日历」，就能一键订阅到系统日历，场次有调整会自动更新。'), showCancel: false, confirmText: t('知道了') }) });
+  } });
 };
 module.exports = { calSub, geoOf, distKm, transfer, openMap, progForShow, durationOf, progInfo, qaOf, ended, isFest, relTime, nextShowOf, filmOrder, filmTone, langSub, WK, year, wk, toMin, fmt, keyOf, showDate, poster, ticket, durText, index, showView };
