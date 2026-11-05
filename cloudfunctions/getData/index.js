@@ -137,12 +137,15 @@ function detailPart(data, i) {
 const shape = (data, event) => (event && event.part !== undefined ? detailPart(data, +event.part || 0) : slim(data));
 
 exports.main = async (event, context) => {
-  // 定时触发器（每 10 分钟）或 {"refresh":true}：去网站取最新数据并更新缓存
+  // 定时触发器（每 10 分钟，需在云开发控制台「上传触发器」才会生效）或 {"refresh":true}：去网站取最新数据并更新缓存
   const isTimer = !!(event && (event.Type === 'Timer' || event.TriggerName || event.Time));
   const force = isTimer || !!(event && event.refresh);
   const cached = await readCache();
-  // 小程序打开时：有缓存就直接返回，不等网站（缓存由定时触发器在后台更新）
-  if (!force && cached) return shape(Object.assign(cached.data, { source: 'cache', cachedAt: cached.at }), event);
+  // 小程序打开时：缓存在 3 分钟内直接返回；超过 3 分钟就顺手去网站取一次最新的（即使定时触发器没部署，更新也不会拖到几小时后）。
+  // 分段请求（part）只读缓存，保证与首次返回一致。取网站失败则退回缓存。
+  const STALE = 3 * 60 * 1000, isPart = !!(event && event.part !== undefined);
+  const fresh = cached && (isPart || Date.now() - (cached.at || 0) < STALE);
+  if (!force && fresh) return shape(Object.assign(cached.data, { source: 'cache', cachedAt: cached.at }), event);
   try {
     const ms = budget(context);
     console.log('读取网站，时限', ms + 'ms', isTimer ? '（定时触发）' : '');
