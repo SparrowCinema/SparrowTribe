@@ -73,7 +73,7 @@ Page({
     });
 
     // 单日时刻表：纵轴时间，横向影厅
-    const dl = list.filter(s => s.d === day);
+    const dl = list.filter(s => s.d === day).sort((x, y) => U.toMin(x.t) - U.toMin(y.t));
     let cols = [], ticks = [], H = 0, nowLine = null;
     this.ttCtx = null;
     if (dl.length) {

@@ -1682,7 +1682,7 @@ function schedule(){
   sday = pickDay(ds);
   const pl = SH.filter(x=>inProg(x)&&!isPast(x)), cur = selList(pfilt).length===1?PG[pfilt]:null;
   const vlist = VENUES.filter(v=>pl.some(x=>x.v===v.id)||selList(vfilt).includes(v.id));
-  const dayList = list.filter(x=>x.d===sday);
+  const dayList = list.filter(x=>x.d===sday).sort((a,b)=>toMin(a.t)-toMin(b.t));
   main.innerHTML = `<section class="view gut">
     ${myTodayHTML()}
     <h2 class="sec">排片表</h2><p class="sub">${cur?`${esc(cur.name)}${cur.city?` · ${esc(cur.city)}`:""} · `:""}${list.length?`${dateSpan(list)} · ${list.length} 场 · `:""}按日期查看，点击色块看影片</p>
