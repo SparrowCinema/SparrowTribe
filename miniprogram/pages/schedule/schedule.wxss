@@ -152,3 +152,5 @@
 .selector-foot{display:flex;align-items:center;justify-content:space-between;gap:calc(20 * var(--r));padding:calc(18 * var(--r)) calc(16 * var(--r)) calc(6 * var(--r));border-top:calc(1 * var(--r)) solid var(--line-soft);margin-top:calc(8 * var(--r))}
 .selector-foot text{font-size:calc(23 * var(--r));color:var(--muted)}
 .selector-done{min-width:calc(200 * var(--r));height:calc(76 * var(--r));border-radius:calc(99 * var(--r));background:var(--accent);color:#fffaf0;font-size: calc(26.3 * var(--r));font-weight:700;display:flex;align-items:center;justify-content:center}
+
+.cfg-notice { margin: calc(16 * var(--r)) calc(32 * var(--r)) 0; padding: calc(16 * var(--r)) calc(22 * var(--r)); border-radius: calc(16 * var(--r)); background: var(--surface); border: calc(2 * var(--r)) solid var(--line); border-left: calc(8 * var(--r)) solid var(--accent); font-size: calc(24 * var(--r)); line-height: 1.6; }

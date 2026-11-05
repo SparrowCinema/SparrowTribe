@@ -54,7 +54,8 @@ async function fromSite(ms) {
   });
   if (!films.length || !shows.length) throw new Error('empty site data');
   const en = await getJSON(SITE + 'data/i18n/en.json', ms).catch(() => null); // 英文层：读不到时小程序用安装包里的
-  return { films, shows, venues: cat.venues || [], programmes, aliases: cat.aliases || {}, en, source: 'site' };
+  const config = await getJSON(SITE + 'data/config.json', ms).catch(() => null); // 云端配置：字号缩放、公告、提示文案
+  return { films, shows, venues: cat.venues || [], programmes, aliases: cat.aliases || {}, en, config, source: 'site' };
 }
 
 async function all(name) {

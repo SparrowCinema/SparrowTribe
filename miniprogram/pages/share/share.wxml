@@ -1,3 +1,4 @@
+<page-meta page-style="{{ps}}" />
 <wxs src="../../utils/l.wxs" module="L" />
 <view class="wrap">
   <view wx:if="{{bad}}" class="empty">

@@ -1,3 +1,4 @@
+<page-meta page-style="{{ps}}" />
 <wxs src="../../utils/l.wxs" module="L" />
 <view wx:if="{{f}}" style="--fc:{{f.color}}">
   <view class="hero">

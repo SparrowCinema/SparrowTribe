@@ -1,3 +1,4 @@
+<page-meta page-style="{{ps}}" />
 <wxs src="../../utils/l.wxs" module="L" />
 <view wx:if="{{p}}">
   <image wx:if="{{p.cover}}" class="cover" src="{{p.cover}}" mode="widthFix" />

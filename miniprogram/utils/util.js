@@ -1,3 +1,4 @@
+const CFG = require('./cfg.js');
 const I = require('./i18n.js');
 const WK = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
 const year = d => (+d.split('/')[0] >= 10 ? 2026 : 2027);
@@ -109,7 +110,7 @@ const calSub = (id, en, t) => {
     success: r => { if (r.confirm) wx.setClipboardData({ data: sub, success: () => wx.showToast({ title: t('订阅链接已复制'), icon: 'none' }) }); } });
   wx.showActionSheet({ itemList: [t('推荐：网页版一键订阅（复制网址）'), t('手动添加（复制订阅链接）')], success: r => {
     if (r.tapIndex === 1) return manual();
-    webTip(id === 'all' ? '#programmes' : '#prog-' + id, ['① 用手机浏览器打开这个网址：Safari、谷歌浏览器、安卓自带浏览器都可以一键订阅。', '② 在专题页点「订阅日历」，一键订阅到系统日历，场次有调整会自动更新。'], t);
+    webTip(id === 'all' ? '#programmes' : '#prog-' + id, CFG.tip('calsub', ['① 用手机浏览器打开这个网址：Safari、谷歌浏览器、安卓自带浏览器都可以一键订阅。', '② 在专题页点「订阅日历」，一键订阅到系统日历，场次有调整会自动更新。']), t);
   } });
 };
 // 网页版引导：复制网页地址，并说明用 iPhone 自带 Safari 打开、添加到手机桌面后像 App 一样用（一键导入个人排片 / 一键订阅专题日历）

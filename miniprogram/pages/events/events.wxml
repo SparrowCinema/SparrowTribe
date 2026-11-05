@@ -1,3 +1,4 @@
+<page-meta page-style="{{ps}}" />
 <wxs src="../../utils/l.wxs" module="L" />
 <view wx:if="{{p}}" class="wrap">
   <view class="h1">{{L.t(i,'活动与论坛')}}</view>

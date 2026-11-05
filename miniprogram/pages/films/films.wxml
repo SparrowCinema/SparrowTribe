@@ -1,3 +1,4 @@
+<page-meta page-style="{{ps}}" />
 <wxs src="../../utils/l.wxs" module="L" />
 <view class="brandbar">
   <image class="sq" src="/images/brand/sparrow-movies-sq.png" mode="aspectFit" />
