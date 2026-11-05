@@ -140,11 +140,15 @@ async function writeCache(data) {
 // 云函数返回值有大小上限（约 1MB），完整数据（含剧情简介等长文）已超过，所以首屏只返回精简版，
 // 长文字段按 PART 部一段，由小程序用 {part:i} 再逐段取回并合并。
 const HEAVY = ['syn', 'bio', 'st', 'honors', 'parts', 'contentNote', 'contentReview', 'editorial', 'highlights', 'links', 'warnings'];
+// 旧版小程序不会再取分段，只认首屏数据：把最常看的剧情简介(syn)、导演介绍(bio)中文部分留在首屏（约 160KB，仍远低于上限），
+// 其余长文只在新版里分段补齐。
+const KEEP_EARLY = ['syn', 'bio'];
+const LEAN_DROP = HEAVY.filter(k => !KEEP_EARLY.includes(k));
 const PART = 40;
 const pick = (o, ks) => { const r = {}; ks.forEach(k => { if (o && o[k] !== undefined) r[k] = o[k]; }); return r; };
 const drop = (o, ks) => { const r = Object.assign({}, o); ks.forEach(k => { delete r[k]; }); return r; };
 function slim(data) {
-  const out = Object.assign({}, data, { films: data.films.map(f => drop(f, HEAVY)), lean: true, detailParts: Math.ceil(data.films.length / PART) });
+  const out = Object.assign({}, data, { films: data.films.map(f => drop(f, LEAN_DROP)), lean: true, detailParts: Math.ceil(data.films.length / PART) });
   if (data.en && data.en.films) { const ef = {}; Object.keys(data.en.films).forEach(id => { ef[id] = drop(data.en.films[id], HEAVY); }); out.en = Object.assign({}, data.en, { films: ef }); }
   return out;
 }
