@@ -28,12 +28,18 @@ function getOnce(url, ms) {
         } catch (e) { reject(e); }
       });
     });
-    req.setTimeout(ms, () => req.destroy(new Error('timeout ' + url)));
+    req.setTimeout(ms, () => req.destroy(new Error('stalled ' + url)));
     req.on('error', reject);
   });
 }
+// 这里的 ms 是「连接空闲多久没数据就放弃」，不是总时长：大文件一直有数据不会被中断，卡住或被重置的连接 5 秒内换新连接重试，最多 3 次
 async function getJSON(url, ms = 6000) {
-  try { return await getOnce(url, ms); } catch (e) { console.warn('重试', url, e && e.message); return getOnce(url, ms); }
+  const idle = Math.min(ms, 5000);
+  let err;
+  for (let i = 0; i < 3; i++) {
+    try { return await getOnce(url, idle); } catch (e) { err = e; console.warn('重试', i + 1, url.replace(SITE, ''), e && e.message); }
+  }
+  throw err;
 }
 
 // 把网站数据转换成小程序使用的格式；安装包里已有的图片用本地路径，其余图片直接用网站地址
