@@ -79,16 +79,6 @@ async function fromDatabase() {
 }
 
 // 读取网站的时间预算：getData 超时时间在控制台设为 30 秒。能读到运行时剩余时间时按它留 1.5 秒兜底，读不到时按 12 秒。
-// 剩余运行时间（毫秒）；读不到返回 0
-function remaining(context) {
-  let limit = 0;
-  try {
-    if (context && typeof context.getRemainingTimeInMillis === 'function') limit = +context.getRemainingTimeInMillis();
-    if (!(limit > 0) && context) limit = +(context.time_limit_in_ms || context.timeLimitInMs || 0);
-    if (!(limit > 0)) limit = +(process.env.SCF_FUNCTIONTIMEOUT || 0) * 1000;
-  } catch (e) {}
-  return limit > 0 ? limit : 0;
-}
 function budget(context) {
   let limit = 0;
   try {
@@ -151,12 +141,9 @@ exports.main = async (event, context) => {
   const isTimer = !!(event && (event.Type === 'Timer' || event.TriggerName || event.Time));
   const force = isTimer || !!(event && event.refresh);
   const cached = await readCache();
-  // 小程序打开时：缓存在 3 分钟内直接返回；超过 3 分钟就顺手去网站取一次最新的（即使定时触发器没部署，更新也不会拖到几小时后）。
-  // 分段请求（part）只读缓存，保证与首次返回一致。取网站失败则退回缓存。
-  const STALE = 3 * 60 * 1000, isPart = !!(event && event.part !== undefined);
-  // 超时时间设得太短（读网站+写缓存来不及）时不在请求里刷新，避免整个调用失败；此时由小程序用 {refresh:true} 单独触发
-  const fresh = cached && (isPart || Date.now() - (cached.at || 0) < STALE || remaining(context) < 15000);
-  if (!force && fresh) return shape(Object.assign(cached.data, { source: 'cache', cachedAt: cached.at }), event);
+  // 小程序打开时：有缓存就直接返回，不等网站。刷新只由定时触发器、{"refresh":true}，
+  // 以及小程序检测到缓存超过 3 分钟后单独发起的强制刷新来完成，普通请求不读网站，避免调用失败。
+  if (!force && cached) return shape(Object.assign(cached.data, { source: 'cache', cachedAt: cached.at }), event);
   try {
     const ms = budget(context);
     console.log('读取网站，时限', ms + 'ms', isTimer ? '（定时触发）' : '');
