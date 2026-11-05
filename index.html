@@ -1712,7 +1712,7 @@ const LEN_BINS=[["s","60 分钟以内",0,60],["m","60–90 分钟",61,90],["l","
 const lenOk=(f,k=flen)=>{const a=selList(k);if(!a.length)return true;return a.some(x=>{const b=LEN_BINS.find(y=>y[0]===x);return !!(b&&f.min&&!f.minTbd&&f.min>=b[2]&&f.min<=b[3]);});};
 const regOk=(f,k=freg)=>selHas(k,f.reg);
 const LIBRARY_MODES=[['all','全部影片','浏览完整片目'],['planned','已加入排片','已保存在个人排片中的影片'],['watched','已看过','收进观影护照的影片'],['unwatched','还没看过','继续探索新的银幕相遇'],['qa','主创映后场','有主创映后活动的影片']];
-function libraryContext(){return {shows:SH,picked,watched,keyOf,city:fcity,cityOfShow:s=>VN[s.v]?.city,programme:ffilt,programmeOf:f=>f.prog,showProgramme:s=>s.p||F[s.id]?.prog};}
+function libraryContext(){return {shows:SH,picked,watched,keyOf,city:fcity,cityOfShow:s=>VN[s.v]?.city,programme:ffilt,programmeOf:f=>f.prog,programmeIds:f=>filmProgsOf(f).map(x=>x.p.id),showProgramme:s=>s.p||F[s.id]?.prog};}
 function filmSelectorOptions(type,query=''){
  const ctx=libraryContext(),q=query.trim().toLocaleLowerCase();let rows;
  if(type==='programme')rows=[{id:'all',name:tr('全部专题'),sub:tr('浏览完整片目'),selected:!selList(ffilt).length},...progGroupOrder().map(p=>({id:p.id,name:p.name,sub:[tr(FILMS.filter(f=>window.SparrowLibrary.inProgramme(f,p.id,ctx)).length+' 部影片'),p.city].filter(Boolean).join(' · '),selected:selList(ffilt).includes(p.id)}))];
@@ -1939,7 +1939,7 @@ document.addEventListener("click",e=>{const b=e.target.closest("[data-evkind]");
 function progPage(pid){
   if(sectionProgramme!==pid){sectionFilter="";sectionProgramme=pid;}
   const p=PG[pid]; if(!p){ go("schedule"); return; }
-  const shows=progShows(pid), fids=[...new Set(shows.map(x=>x.id))], films=FILMS.filter(f=>f.prog===pid||fids.includes(f.id)).sort(filmOrder);
+  const shows=progShows(pid), fids=[...new Set(shows.map(x=>x.id))], films=FILMS.filter(f=>f.prog===pid||p.sections?.[f.id]||fids.includes(f.id)).sort(filmOrder);
   topEl.innerHTML = `<div class="row"><button class="back" data-back><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m15 6-6 6 6 6"/></svg>返回</button><span class="sp"></span><span class="pill">${esc(p.kind)}</span></div>`;
   main.innerHTML = `<article class="pg">
     ${p.cover?`<div class="pg-cover"><img src="${p.cover}"${p.coverPos?` style="object-position:${p.coverPos}"`:""} alt="${esc(p.name)} 主视觉"></div>`:""}
