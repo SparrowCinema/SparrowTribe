@@ -158,3 +158,13 @@ button:focus-visible,summary:focus-visible,a:focus-visible{outline:3px solid var
   .fd-add,.fd-see{height:30px;font-size:12px;padding:0 10px}
   .fd-hy{font-size:12px}
 }
+
+/* 影片页放映场次卡片：整体再缩小（所有宽度） */
+.fd-ticket{grid-template-columns:58px 1fr;border-radius:10px}
+.fd-ticket+.fd-ticket{margin-top:6px}
+.fd-tdate{padding:8px 2px}.fd-tdate b{font-size:20px}.fd-tdate small{font-size:10px}.fd-tdate span{font-size:10.5px;margin-top:2px}
+.fd-tbody{padding:8px 11px;gap:2px}
+.fd-ttime b{font-size:15px}.fd-ttime .end{font-size:12.5px}.fd-ttime span{font-size:12px}
+.fd-tbody>small{font-size:11px}
+.fd-add,.fd-see{height:27px;font-size:11.5px;padding:0 9px;border-radius:7px}
+.fd-tact{margin-top:6px;gap:6px}
