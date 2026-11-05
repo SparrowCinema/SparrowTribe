@@ -160,4 +160,4 @@ Claude 与 GPT 可能使用同一 GitHub 身份，审批人数可先设为0；�
 - `contentReview` 包含 `status`（`synopsis-reviewed` / `official-advisory` / `pending`）、`checked`（核对日期）、`sensory`（`unverified` / 已查实闪烁提示的 `flashing`）。简介核对不等于完整审片，提示说明须保留此范围。
 - 内容提醒针对具体情节，不把性取向、身份或残障本身作为风险。光敏与音量提示无法从剧情推断。
 - 美国 MPA 分级只使用已核实的 `mpa: {rating, edition, checked}`，证据记录在内部文档。不同剪辑版不能套用旧版分级；未知时不显示破折号占位。
-- 提交前运行 `node tools/build-fallback.js`、`node tools/check-content.js`、`node tools/check-library.js`、`node tools/check-companion.js、`node tools/check-config.js`（改小程序云端配置 data/config.json 后）`；部署也会执行后三项，避免后续片目漏掉提醒。
+- 提交前运行 `node tools/build-fallback.js`、`node tools/check-content.js`、`node tools/check-library.js`、`node tools/check-companion.js`、`node tools/check-config.js`（改小程序云端配置 data/config.json 后）`；部署也会执行后三项，避免后续片目漏掉提醒。
