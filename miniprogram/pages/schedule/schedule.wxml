@@ -1,3 +1,4 @@
+<page-meta page-style="{{ps}}" />
 <wxs src="../../utils/l.wxs" module="L" />
 <view class="brandbar">
   <image class="sq" src="/images/brand/sparrow-movies-sq.png" mode="aspectFit" />
@@ -8,6 +9,7 @@
   <view class="tag"><text>{{L.t(i,'观影')}}\n{{L.t(i,'护照')}}</text></view>
 </view>
 
+<view wx:if="{{notice}}" class="cfg-notice">{{notice}}</view>
 <view class="wrap">
   <view wx:if="{{myToday.length}}" class="today card">
     <view class="today-h"><text class="b">{{todayHead}}</text><text class="muted small">{{myTodayTitle}}</text></view>

@@ -3,6 +3,16 @@ const plan = require('./utils/plan.js');
 const watched = require('./utils/watched.js');
 const I = require('./utils/i18n.js');
 const sync = require('./utils/sync.js');
+const CFG = require('./utils/cfg.js');
+
+// 每个页面自动绑定云端配置（页面根节点 page-meta 用 ps 设置 --r 缩放，notice 为公告）
+const _Page = Page;
+try { Page = function (o) {
+  const on = o.onLoad, off = o.onUnload;
+  o.onLoad = function (q) { try { CFG.bind(this); } catch (e) { } return on && on.call(this, q); };
+  o.onUnload = function () { try { this.__cfgOff && this.__cfgOff(); } catch (e) { } return off && off.call(this); };
+  return _Page(o);
+}; } catch (e) { }
 
 App({
   globalData: { data: LOCAL, source: 'local', raw: LOCAL },
@@ -23,6 +33,7 @@ App({
   loadRemote() {
     wx.cloud.callFunction({ name: 'getData' }).then(res => {
       const r = res.result || {};
+      if (r.config) CFG.set(r.config);
       if (r.films && r.films.length && r.shows && r.shows.length) {
         if (r.en) I.setEN(r.en);
         this.globalData.raw = Object.assign({}, LOCAL, r, { reg: LOCAL.reg });

@@ -1,5 +1,6 @@
 const T = require('../../utils/totop.js');
 const U = require('../../utils/util.js');
+const CFG = require('../../utils/cfg.js');
 const plan = require('../../utils/plan.js');
 const poster = require('../../utils/poster.js');
 const W = require('../../utils/watched.js');
@@ -79,7 +80,7 @@ Page({
   },
   // 推荐路线：网页版「导出与分享」里点「导入日历」，iPhone 自带 Safari 可一键导入全部（谷歌浏览器不行）。网页要先用同步码连上这份排片
   webImportTip() {
-    U.webTip('#export', ['① iPhone 请用自带的 Safari 打开这个网址（谷歌等浏览器无法一键导入日历）；安卓用谷歌浏览器或自带浏览器都可以。', '② 进入「导出与分享」，点「导入日历」：iPhone 直接导入；安卓会下载日历文件，点开用「日历」打开，全部排片一次导入。', '首次使用，请先在网页「我的」里用同步码连接：在小程序「我的 → 个人档案云端同步」复制同步码。'], t);
+    U.webTip('#export', CFG.tip('export', ['① iPhone 请用自带的 Safari 打开这个网址（谷歌等浏览器无法一键导入日历）；安卓用谷歌浏览器或自带浏览器都可以。', '② 进入「导出与分享」，点「导入日历」：iPhone 直接导入；安卓会下载日历文件，点开用「日历」打开，全部排片一次导入。', '首次使用，请先在网页「我的」里用同步码连接：在小程序「我的 → 个人档案云端同步」复制同步码。']), t);
   },
   // 生成 .ics 日历文件，通过微信「发送文件」交给聊天（文件传输助手/自己），点开后用系统日历一次导入全部
   shareIcs() {
