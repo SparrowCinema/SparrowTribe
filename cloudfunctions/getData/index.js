@@ -139,20 +139,25 @@ const shape = (data, event) => (event && event.part !== undefined ? detailPart(d
 // 诊断模式：开发者工具里的默认测试（event.name === 'test'）会逐步执行「读网站 → 转换 → 写缓存」并把每步耗时与报错返回，
 // 用于排查调用失败。小程序不会传 name，不受影响。
 async function diagnose(context) {
-  const out = { diag: true, steps: [], note: '这是诊断结果；缓存若显示 ok:true 即已刷新' };
-  const step = async (name, fn) => {
-    const t0 = Date.now();
-    try { const r = await fn(); out.steps.push({ name, ms: Date.now() - t0, ok: true, info: r }); return r; }
-    catch (e) { out.steps.push({ name, ms: Date.now() - t0, ok: false, error: String(e && e.message || e).slice(0, 300) }); return undefined; }
-  };
-  await step('读 catalog.json', async () => { const c = await getJSON(SITE + 'data/catalog.json', 10000); return (c.programmes || []).length + ' 个专题'; });
-  await step('读 config.json', async () => { const c = await getJSON(SITE + 'data/config.json', 10000); return Object.keys(c).join(','); });
-  const data = await step('读取并转换全部数据', async () => fromSite(15000).then(d => { out.data = d; return d.films.length + ' 部 / ' + d.shows.length + ' 场'; }));
-  if (out.data) {
-    const d = out.data; delete out.data;
-    await step('写入缓存', async () => { await writeCache(d); return '完成'; });
-  }
-  out.ok = out.steps.every(x => x.ok);
+  // 并行探测云函数到各站点的网络（每个最多 6 秒，总共不会超过 8 秒），再单独试写缓存
+  const probe = (name, url) => new Promise(resolve => {
+    const t0 = Date.now(); let done = false;
+    const fin = r => { if (done) return; done = true; resolve(Object.assign({ name, ms: Date.now() - t0 }, r)); };
+    try {
+      const req = https.get(url, res => { res.resume(); fin({ ok: res.statusCode === 200, status: res.statusCode }); });
+      req.setTimeout(6000, () => { fin({ ok: false, error: 'timeout 6s' }); req.destroy(); });
+      req.on('error', e => fin({ ok: false, error: String(e && e.message || e).slice(0, 120) }));
+    } catch (e) { fin({ ok: false, error: String(e && e.message || e).slice(0, 120) }); }
+    setTimeout(() => fin({ ok: false, error: 'hard timeout 7s' }), 7000);
+  });
+  const stamp = '?t=' + Date.now();
+  const probes = await Promise.all([
+    probe('GitHub Pages（当前使用）', SITE + 'data/config.json' + stamp),
+    probe('jsDelivr', 'https://cdn.jsdelivr.net/gh/SparrowCinema/SparrowTribe@main/data/config.json' + stamp),
+    probe('raw.githubusercontent', 'https://raw.githubusercontent.com/SparrowCinema/SparrowTribe/main/data/config.json' + stamp),
+    probe('baidu（对照：国内站点）', 'https://www.baidu.com/')
+  ]);
+  const out = { diag: true, probes, ok: probes[0].ok };
   try { out.remainingMs = context && typeof context.getRemainingTimeInMillis === 'function' ? context.getRemainingTimeInMillis() : null; } catch (e) {}
   return out;
 }
