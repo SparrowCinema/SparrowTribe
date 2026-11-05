@@ -136,7 +136,29 @@ function detailPart(data, i) {
 }
 const shape = (data, event) => (event && event.part !== undefined ? detailPart(data, +event.part || 0) : slim(data));
 
+// 诊断模式：开发者工具里的默认测试（event.name === 'test'）会逐步执行「读网站 → 转换 → 写缓存」并把每步耗时与报错返回，
+// 用于排查调用失败。小程序不会传 name，不受影响。
+async function diagnose(context) {
+  const out = { diag: true, steps: [], note: '这是诊断结果；缓存若显示 ok:true 即已刷新' };
+  const step = async (name, fn) => {
+    const t0 = Date.now();
+    try { const r = await fn(); out.steps.push({ name, ms: Date.now() - t0, ok: true, info: r }); return r; }
+    catch (e) { out.steps.push({ name, ms: Date.now() - t0, ok: false, error: String(e && e.message || e).slice(0, 300) }); return undefined; }
+  };
+  await step('读 catalog.json', async () => { const c = await getJSON(SITE + 'data/catalog.json', 10000); return (c.programmes || []).length + ' 个专题'; });
+  await step('读 config.json', async () => { const c = await getJSON(SITE + 'data/config.json', 10000); return Object.keys(c).join(','); });
+  const data = await step('读取并转换全部数据', async () => fromSite(15000).then(d => { out.data = d; return d.films.length + ' 部 / ' + d.shows.length + ' 场'; }));
+  if (out.data) {
+    const d = out.data; delete out.data;
+    await step('写入缓存', async () => { await writeCache(d); return '完成'; });
+  }
+  out.ok = out.steps.every(x => x.ok);
+  try { out.remainingMs = context && typeof context.getRemainingTimeInMillis === 'function' ? context.getRemainingTimeInMillis() : null; } catch (e) {}
+  return out;
+}
+
 exports.main = async (event, context) => {
+  if (event && event.name === 'test') return diagnose(context);
   // 定时触发器（每 10 分钟，需在云开发控制台「上传触发器」才会生效）或 {"refresh":true}：去网站取最新数据并更新缓存
   const isTimer = !!(event && (event.Type === 'Timer' || event.TriggerName || event.Time));
   const force = isTimer || !!(event && event.refresh);
