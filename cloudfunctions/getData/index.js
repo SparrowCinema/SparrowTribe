@@ -136,8 +136,8 @@ function detailPart(data, i) {
 }
 const shape = (data, event) => (event && event.part !== undefined ? detailPart(data, +event.part || 0) : slim(data));
 
-// 诊断模式：开发者工具里的默认测试（event.name === 'test'）会逐步执行「读网站 → 转换 → 写缓存」并把每步耗时与报错返回，
-// 用于排查调用失败。小程序不会传 name，不受影响。
+// 诊断模式：测试参数为 {"diag":true} 时会逐步执行「读网站 → 转换 → 写缓存」并把每步耗时与报错返回，
+// 用于排查调用失败。小程序不会传 diag，不受影响。
 async function diagnose(context) {
   // 网络已验证可用。这里分步执行「读网站 → 写缓存」，每步都有硬性时限，保证总耗时 < 25 秒、一定能把结果返回
   const out = { diag: true, steps: [] };
@@ -165,7 +165,7 @@ async function diagnose(context) {
 }
 
 exports.main = async (event, context) => {
-  if (event && event.name === 'test') return diagnose(context);
+  if (event && event.diag === true) return diagnose(context); // 排查问题时在测试参数里写 {"diag":true}；默认测试恢复为正常返回
   // 定时触发器（每 10 分钟，需在云开发控制台「上传触发器」才会生效）或 {"refresh":true}：去网站取最新数据并更新缓存
   const isTimer = !!(event && (event.Type === 'Timer' || event.TriggerName || event.Time));
   const force = isTimer || !!(event && event.refresh);
