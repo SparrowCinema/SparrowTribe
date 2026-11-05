@@ -139,26 +139,28 @@ const shape = (data, event) => (event && event.part !== undefined ? detailPart(d
 // 诊断模式：开发者工具里的默认测试（event.name === 'test'）会逐步执行「读网站 → 转换 → 写缓存」并把每步耗时与报错返回，
 // 用于排查调用失败。小程序不会传 name，不受影响。
 async function diagnose(context) {
-  // 并行探测云函数到各站点的网络（每个最多 6 秒，总共不会超过 8 秒），再单独试写缓存
-  const probe = (name, url) => new Promise(resolve => {
-    const t0 = Date.now(); let done = false;
-    const fin = r => { if (done) return; done = true; resolve(Object.assign({ name, ms: Date.now() - t0 }, r)); };
-    try {
-      const req = https.get(url, res => { res.resume(); fin({ ok: res.statusCode === 200, status: res.statusCode }); });
-      req.setTimeout(6000, () => { fin({ ok: false, error: 'timeout 6s' }); req.destroy(); });
-      req.on('error', e => fin({ ok: false, error: String(e && e.message || e).slice(0, 120) }));
-    } catch (e) { fin({ ok: false, error: String(e && e.message || e).slice(0, 120) }); }
-    setTimeout(() => fin({ ok: false, error: 'hard timeout 7s' }), 7000);
-  });
-  const stamp = '?t=' + Date.now();
-  const probes = await Promise.all([
-    probe('GitHub Pages（当前使用）', SITE + 'data/config.json' + stamp),
-    probe('jsDelivr', 'https://cdn.jsdelivr.net/gh/SparrowCinema/SparrowTribe@main/data/config.json' + stamp),
-    probe('raw.githubusercontent', 'https://raw.githubusercontent.com/SparrowCinema/SparrowTribe/main/data/config.json' + stamp),
-    probe('baidu（对照：国内站点）', 'https://www.baidu.com/')
-  ]);
-  const out = { diag: true, probes, ok: probes[0].ok };
-  try { out.remainingMs = context && typeof context.getRemainingTimeInMillis === 'function' ? context.getRemainingTimeInMillis() : null; } catch (e) {}
+  // 网络已验证可用。这里分步执行「读网站 → 写缓存」，每步都有硬性时限，保证总耗时 < 25 秒、一定能把结果返回
+  const out = { diag: true, steps: [] };
+  const race = (p, ms, label) => Promise.race([p, new Promise((_, rej) => setTimeout(() => rej(new Error(label + ' 超过 ' + ms / 1000 + ' 秒仍未完成')), ms))]);
+  const T0 = Date.now();
+  let data = null;
+  try {
+    const t = Date.now(); data = await race(fromSite(8000), 10000, '读取网站');
+    out.steps.push({ name: '读取网站并转换', ms: Date.now() - t, ok: true, info: data.films.length + ' 部 / ' + data.shows.length + ' 场' });
+  } catch (e) { out.steps.push({ name: '读取网站并转换', ms: Date.now() - T0, ok: false, error: String(e && e.message || e).slice(0, 200) }); }
+  if (data) {
+    const json = JSON.stringify(data), n = Math.ceil(json.length / CHUNK), col = db.collection('cache');
+    out.steps.push({ name: '缓存体积', ok: true, info: Math.round(json.length / 1024) + 'K 字符，分 ' + n + ' 段' });
+    const res = [];
+    const one = async i => { const t = Date.now(); try { await col.doc('site_' + i).set({ data: { json: json.slice(i * CHUNK, (i + 1) * CHUNK) } }); res[i] = (Date.now() - t) + 'ms'; } catch (e) { res[i] = '失败:' + String(e && e.message || e).slice(0, 80); } };
+    try { await race(Promise.all(Array.from({ length: n }, (_, i) => one(i))), 12000, '写入缓存分段'); } catch (e) { out.steps.push({ name: '写入缓存分段', ok: false, error: String(e.message) }); }
+    out.steps.push({ name: '各段写入', ok: res.length === n && res.every(x => x && !String(x).startsWith('失败')), info: res.map((x, i) => i + ':' + (x || '未完成')).join(' ') });
+    if (out.steps[out.steps.length - 1].ok) {
+      try { await race(col.doc('site').set({ data: { at: Date.now(), n } }), 5000, '写入元信息'); out.steps.push({ name: '写入元信息(缓存生效)', ok: true }); }
+      catch (e) { out.steps.push({ name: '写入元信息', ok: false, error: String(e.message) }); }
+    }
+  }
+  out.ok = out.steps.every(x => x.ok); out.totalMs = Date.now() - T0;
   return out;
 }
 
