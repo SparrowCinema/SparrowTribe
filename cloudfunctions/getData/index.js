@@ -37,7 +37,12 @@ async function getJSON(url, ms = 6000) {
 }
 
 // 把网站数据转换成小程序使用的格式；安装包里已有的图片用本地路径，其余图片直接用网站地址
-async function fromSite(ms) {
+async function fromSite(ms, prev) {
+  const deadline = Date.now() + ms;
+  // 英文层和云端配置是可选的：与节目文件同时开始读；读不完就沿用上一次缓存里的，绝不拖垮整次刷新
+  const enP = getJSON(SITE + 'data/i18n/en.json', ms).catch(() => null);
+  const cfgP = getJSON(SITE + 'data/config.json', ms).catch(() => null);
+  const optional = p => Promise.race([p, new Promise(r => setTimeout(() => r(null), Math.max(0, deadline - Date.now() - 1500)))]);
   const cat = await getJSON(SITE + 'data/catalog.json', ms);
   const progs = cat.programmes || [];
   const packs = await Promise.all(progs.map(p => p.file ? getJSON(SITE + p.file, ms).catch(() => null) : null));
@@ -67,8 +72,8 @@ async function fromSite(ms) {
     return o;
   });
   if (!films.length || !shows.length) throw new Error('empty site data');
-  const en = await getJSON(SITE + 'data/i18n/en.json', ms).catch(() => null); // 英文层：读不到时小程序用安装包里的
-  const config = await getJSON(SITE + 'data/config.json', ms).catch(() => null); // 云端配置：字号缩放、公告、提示文案
+  const en = (await optional(enP)) || (prev && prev.en) || null; // 英文层：读不到时沿用上次缓存，再不行小程序用安装包里的
+  const config = (await optional(cfgP)) || (prev && prev.config) || null; // 云端配置：字号缩放、公告、提示文案
   return { films, shows, venues: cat.venues || [], programmes, aliases: cat.aliases || {}, en, config, source: 'site' };
 }
 
@@ -190,7 +195,7 @@ exports.main = async (event, context) => {
   try {
     const ms = budget(context, isTimer || (event && event.refresh) ? 20000 : 12000);
     console.log('读取网站，时限', ms + 'ms', isTimer ? '（定时触发）' : '');
-    const data = await within(fromSite(ms), ms);
+    const data = await within(fromSite(ms, cached && cached.data), ms);
     try { await writeCache(data); } catch (e) { console.error('缓存写入失败', e && e.message); }
     console.log('网站数据已更新到缓存', data.films.length + ' 部', data.shows.length + ' 场');
     // quiet：只刷新缓存、返回很小的结果（小程序随后再用普通请求读缓存；排查问题时也用它）
