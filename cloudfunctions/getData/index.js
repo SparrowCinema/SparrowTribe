@@ -113,7 +113,7 @@ async function writeCache(data) {
     try { await col.doc(id).set({ data: doc }); }
     catch (e) { try { await db.createCollection('cache'); } catch (e2) {} await col.doc(id).set({ data: doc }); }
   };
-  for (let i = 0; i < n; i++) await put('site_' + i, { json: json.slice(i * CHUNK, (i + 1) * CHUNK) });
+  await Promise.all(Array.from({ length: n }, (_, i) => put('site_' + i, { json: json.slice(i * CHUNK, (i + 1) * CHUNK) }))); // 各段并行写，缩短刷新耗时
   await put('site', { at: Date.now(), n }); // 最后写元信息：读到新 n 时各段一定已写好
   console.log('缓存已写入', n + ' 段，共 ' + json.length + ' 字符');
 }
@@ -150,7 +150,8 @@ exports.main = async (event, context) => {
     const data = await within(fromSite(ms), ms);
     try { await writeCache(data); } catch (e) { console.error('缓存写入失败', e && e.message); }
     console.log('网站数据已更新到缓存', data.films.length + ' 部', data.shows.length + ' 场');
-    return isTimer ? { ok: true, films: data.films.length, shows: data.shows.length } : shape(data, event);
+    // quiet：只刷新缓存、返回很小的结果（小程序随后再用普通请求读缓存；排查问题时也用它）
+    return isTimer || (event && event.quiet) ? { ok: true, films: data.films.length, shows: data.shows.length, at: Date.now() } : shape(data, event);
   } catch (e) {
     console.warn('网站数据读取失败，改用缓存', e && e.message);
   }

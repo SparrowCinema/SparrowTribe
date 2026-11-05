@@ -30,11 +30,15 @@ App({
   },
 
   // 优先使用云数据库中的排片；为空或失败时使用内置数据
-  loadRemote(force) {
-    wx.cloud.callFunction({ name: 'getData', data: force ? { refresh: true } : {} }).then(res => {
+  loadRemote(force, noRefresh) {
+    if (force) { // 强制刷新云端缓存（只刷新、返回很小），完成后再用普通请求读取，不再循环刷新
+      wx.cloud.callFunction({ name: 'getData', data: { refresh: true, quiet: true } }).then(() => this.loadRemote(false, true)).catch(() => {});
+      return;
+    }
+    wx.cloud.callFunction({ name: 'getData', data: {} }).then(res => {
       const r = res.result || {};
       // 云端缓存超过 3 分钟：再单独请求一次强制刷新（失败不影响当前数据）
-      if (!force && r.source === 'cache' && r.cachedAt && Date.now() - r.cachedAt > 180000) setTimeout(() => this.loadRemote(true), 300);
+      if (!noRefresh && r.source === 'cache' && r.cachedAt && Date.now() - r.cachedAt > 180000) setTimeout(() => this.loadRemote(true), 300);
       if (r.config) CFG.set(r.config);
       if (r.films && r.films.length && r.shows && r.shows.length) {
         if (r.en) I.setEN(r.en);
