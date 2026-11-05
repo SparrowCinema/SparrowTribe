@@ -51,12 +51,28 @@ async function fromSite(ms, prev) {
   const optional = p => Promise.race([p, new Promise(r => setTimeout(() => r(null), Math.max(0, deadline - Date.now() - 1500)))]);
   const cat = await getJSON(SITE + 'data/catalog.json', ms);
   const progs = cat.programmes || [];
-  const packs = await Promise.all(progs.map(p => p.file ? getJSON(SITE + p.file, ms).catch(() => null) : null));
-  if (progs.some((p, i) => p.file && !packs[i])) throw new Error('programme file missing');
+  // 每个节目文件各读各的，到点还没读完就放弃（留出时间写缓存）；读不到的节目沿用上一次缓存里的影片和场次，下一轮再补
+  const packDeadline = Math.max(0, deadline - Date.now() - 2500);
+  const late = new Promise(r => setTimeout(() => r(null), packDeadline));
+  const packs = await Promise.all(progs.map(p => p.file ? Promise.race([getJSON(SITE + p.file, ms).catch(() => null), late]) : null));
+  const stale = [];
+  progs.forEach((p, i) => {
+    if (!p.file || packs[i]) return;
+    const had = prev && ((prev.films || []).some(f => f.prog === p.id) || (prev.shows || []).some(x => x.p === p.id));
+    if (!had) throw new Error('programme file missing: ' + p.file);
+    stale.push(p.id);
+  });
+  if (stale.length) console.warn('以下专题本轮没读到，沿用上次缓存：', stale.join(','));
   const has = (dir, name) => BUNDLED[dir].includes(name);
   const films = [], shows = [], seen = new Set();
   progs.forEach((p, i) => {
-    const pk = packs[i]; if (!pk) return;
+    const pk = packs[i];
+    if (!pk && stale.includes(p.id)) { // 沿用上次缓存
+      (prev.films || []).forEach(f => { if (f.prog === p.id && !seen.has(f.id)) { seen.add(f.id); films.push(f); } });
+      (prev.shows || []).forEach(x => { if (x.p === p.id) shows.push(x); });
+      return;
+    }
+    if (!pk) return;
     (pk.films || []).forEach(f => {
       if (seen.has(f.id)) return; seen.add(f.id);
       const o = Object.assign({}, f, { prog: f.prog || p.id });
