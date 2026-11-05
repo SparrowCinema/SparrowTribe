@@ -9,17 +9,31 @@ const db = cloud.database();
 const SITE = process.env.SITE_BASE || 'https://sparrowcinema.github.io/SparrowTribe/';
 const BUNDLED = require('./bundled.json');
 
-function getJSON(url, ms = 6000) {
+// 读取网站 JSON：声明接受 gzip（压缩后体积约为原来的 1/5，云函数到 GitHub Pages 的链路慢，这是最有效的提速），失败自动重试一次
+const zlib = require('zlib');
+function getOnce(url, ms) {
   return new Promise((resolve, reject) => {
-    const req = https.get(url + (url.includes('?') ? '&' : '?') + 't=' + Date.now(), { headers: { 'Cache-Control': 'no-cache' } }, res => {
+    const t0 = Date.now();
+    const req = https.get(url + (url.includes('?') ? '&' : '?') + 't=' + Date.now(), { headers: { 'Cache-Control': 'no-cache', 'Accept-Encoding': 'gzip' } }, res => {
       if (res.statusCode !== 200) { res.resume(); return reject(new Error(url + ' ' + res.statusCode)); }
-      let body = ''; res.setEncoding('utf8');
-      res.on('data', c => { body += c; });
-      res.on('end', () => { try { resolve(JSON.parse(body)); } catch (e) { reject(e); } });
+      const chunks = [];
+      res.on('data', c => chunks.push(c));
+      res.on('error', reject);
+      res.on('end', () => {
+        try {
+          let buf = Buffer.concat(chunks);
+          if (/gzip/i.test(res.headers['content-encoding'] || '')) buf = zlib.gunzipSync(buf);
+          console.log('读取', url.replace(SITE, ''), Math.round(buf.length / 1024) + 'KB', (Date.now() - t0) + 'ms');
+          resolve(JSON.parse(buf.toString('utf8')));
+        } catch (e) { reject(e); }
+      });
     });
     req.setTimeout(ms, () => req.destroy(new Error('timeout ' + url)));
     req.on('error', reject);
   });
+}
+async function getJSON(url, ms = 6000) {
+  try { return await getOnce(url, ms); } catch (e) { console.warn('重试', url, e && e.message); return getOnce(url, ms); }
 }
 
 // 把网站数据转换成小程序使用的格式；安装包里已有的图片用本地路径，其余图片直接用网站地址
@@ -79,15 +93,15 @@ async function fromDatabase() {
 }
 
 // 读取网站的时间预算：getData 超时时间在控制台设为 30 秒。能读到运行时剩余时间时按它留 1.5 秒兜底，读不到时按 12 秒。
-function budget(context) {
+function budget(context, cap = 12000) {
   let limit = 0;
   try {
     if (context && typeof context.getRemainingTimeInMillis === 'function') limit = +context.getRemainingTimeInMillis();
     if (!(limit > 0) && context) limit = +(context.time_limit_in_ms || context.timeLimitInMs || 0);
     if (!(limit > 0)) limit = +(process.env.SCF_FUNCTIONTIMEOUT || 0) * 1000;
   } catch (e) {}
-  if (!(limit > 0)) return 12000;
-  return Math.max(1500, Math.min(12000, limit - 1500));
+  if (!(limit > 0)) return cap;
+  return Math.max(1500, Math.min(cap, limit - 6000));
 }
 const within = (p, ms) => Promise.race([p, new Promise((_, rej) => setTimeout(() => rej(new Error('site budget ' + ms + 'ms')), ms))]);
 
@@ -174,7 +188,7 @@ exports.main = async (event, context) => {
   // 以及小程序检测到缓存超过 3 分钟后单独发起的强制刷新来完成，普通请求不读网站，避免调用失败。
   if (!force && cached) return shape(Object.assign(cached.data, { source: 'cache', cachedAt: cached.at }), event);
   try {
-    const ms = budget(context);
+    const ms = budget(context, isTimer || (event && event.refresh) ? 20000 : 12000);
     console.log('读取网站，时限', ms + 'ms', isTimer ? '（定时触发）' : '');
     const data = await within(fromSite(ms), ms);
     try { await writeCache(data); } catch (e) { console.error('缓存写入失败', e && e.message); }
