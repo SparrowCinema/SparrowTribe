@@ -33,10 +33,10 @@ function getOnce(url, ms) {
   });
 }
 // 这里的 ms 是「连接空闲多久没数据就放弃」，不是总时长：大文件一直有数据不会被中断，卡住或被重置的连接 5 秒内换新连接重试，最多 3 次
-async function getJSON(url, ms = 6000) {
-  const idle = Math.min(ms, 5000);
+async function getJSON(url, ms = 6000, tries = 3, idleMs = 5000) {
+  const idle = Math.min(ms, idleMs);
   let err;
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < tries; i++) {
     try { return await getOnce(url, idle); } catch (e) { err = e; console.warn('重试', i + 1, url.replace(SITE, ''), e && e.message); }
   }
   throw err;
@@ -49,7 +49,7 @@ async function fromSite(ms, prev) {
   const enP = getJSON(SITE + 'data/i18n/en.json', ms).catch(() => null);
   const cfgP = getJSON(SITE + 'data/config.json', ms).catch(() => null);
   const optional = p => Promise.race([p, new Promise(r => setTimeout(() => r(null), Math.max(0, deadline - Date.now() - 1500)))]);
-  const cat = await getJSON(SITE + 'data/catalog.json', ms);
+  const cat = await getJSON(SITE + 'data/catalog.json', ms, 6, 3000); // 目录是唯一没有后备的文件：多试几次、卡住 3 秒就换连接
   const progs = cat.programmes || [];
   // 每个节目文件各读各的，到点还没读完就放弃（留出时间写缓存）；读不到的节目沿用上一次缓存里的影片和场次，下一轮再补
   const packDeadline = Math.max(0, deadline - Date.now() - 2500);
