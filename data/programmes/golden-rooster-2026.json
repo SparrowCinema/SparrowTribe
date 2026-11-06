@@ -87,7 +87,15 @@
    "posterDb": "p2936190804",
    "ratingChecked": "2026-11-03",
    "metadataChecked": "2026-11-03",
-   "langTag": "原声｜中英字幕"
+   "langTag": "原声｜中英字幕",
+   "worldPremiere": {
+    "status": "partial",
+    "date": "2026-05",
+    "festival": "戛纳国际电影节",
+    "festivalEn": "Cannes Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
+   }
   },
   {
    "id": "gr26-002",
@@ -154,7 +162,14 @@
     "lb": "the-road-not-taken-2026",
     "imdb": "tt42478876"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-003",
@@ -223,7 +238,14 @@
     "lb": "when-the-bottle-turns",
     "imdb": "tt30809332"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "linka-linka",
@@ -300,7 +322,14 @@
     "lb": "linka-linka",
     "imdb": "tt38574217"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-005",
@@ -367,7 +396,14 @@
     "imdb": "tt43660976",
     "rt": "https://www.rottentomatoes.com/m/donkey_princess"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-006",
@@ -450,7 +486,14 @@
    "ratingChecked": "2026-11-03",
    "language": "法语",
    "metadataChecked": "2026-11-03",
-   "langTag": "原声｜中英字幕"
+   "langTag": "原声｜中英字幕",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-007",
@@ -534,7 +577,14 @@
    "ratingChecked": "2026-11-03",
    "language": "英语 / 法语 / 罗马尼亚语",
    "metadataChecked": "2026-11-03",
-   "langTag": "原声｜中英字幕"
+   "langTag": "原声｜中英字幕",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-008",
@@ -601,7 +651,14 @@
     "rt": "https://www.rottentomatoes.com/m/zi",
     "mc": "https://www.metacritic.com/movie/zi/"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-009",
@@ -670,7 +727,14 @@
     "rt": "https://www.rottentomatoes.com/m/iron_boy",
     "mc": "https://www.metacritic.com/movie/iron-boy/"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-010",
@@ -756,7 +820,14 @@
    "posterDb": "p2934115518",
    "ratingChecked": "2026-11-03",
    "language": "汉语普通话",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-011",
@@ -838,7 +909,14 @@
    "posterDb": "p2930610622",
    "ratingChecked": "2026-11-03",
    "language": "英语 / 汉语普通话 / 日语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-012",
@@ -904,7 +982,14 @@
     "lb": "the-evil-inside-2026",
     "imdb": "tt36958624"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-013",
@@ -972,7 +1057,14 @@
     "lb": "zoom-in-zoom-out",
     "imdb": "tt43729090"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-014",
@@ -1044,7 +1136,14 @@
     "douban": "37315764",
     "lb": "starting-towards-the-finish-line"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-015",
@@ -1115,7 +1214,15 @@
     "rt": "https://www.rottentomatoes.com/m/fatherland_2026",
     "mc": "https://www.metacritic.com/movie/fatherland/"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "verified",
+    "date": "2026-05-14",
+    "festival": "戛纳国际电影节",
+    "festivalEn": "Cannes Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
+   }
   },
   {
    "id": "gr26-016",
@@ -1186,7 +1293,14 @@
     "lb": "gold-life",
     "imdb": "tt50133994"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-017",
@@ -1260,7 +1374,14 @@
     "douban": "37317256",
     "lb": "steadfast-woman"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-018",
@@ -1326,7 +1447,14 @@
     "imdb": "tt32409947",
     "rt": "https://www.rottentomatoes.com/m/light_pillar"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-019",
@@ -1391,7 +1519,14 @@
     "douban": "38905085",
     "lb": "mgp-the-untamed-circuit"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-020",
@@ -1465,7 +1600,14 @@
     "lb": "no-hard-feelings-2026",
     "imdb": "tt43338368"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-021",
@@ -1537,7 +1679,14 @@
     "imdb": "tt32459280",
     "rt": "https://www.rottentomatoes.com/m/a_girl_unknown"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-022",
@@ -1603,7 +1752,14 @@
     "lb": "algerican-road",
     "imdb": "tt43459267"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-023",
@@ -1673,7 +1829,14 @@
     "lb": "les-miserables-2026",
     "imdb": "tt35518109"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-024",
@@ -1743,7 +1906,14 @@
     "lb": "love-massacre",
     "imdb": "tt0081992"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-025",
@@ -1810,7 +1980,15 @@
     "rt": "https://www.rottentomatoes.com/m/everytime",
     "mc": "https://www.metacritic.com/movie/everytime/"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "partial",
+    "date": "2026-05",
+    "festival": "戛纳国际电影节",
+    "festivalEn": "Cannes Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
+   }
   },
   {
    "id": "gr26-026",
@@ -1881,7 +2059,14 @@
     "lb": "her-first-taste",
     "imdb": "tt29508955"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-027",
@@ -1951,7 +2136,14 @@
     "douban": "36995421",
     "lb": "roaming-over-the-horseback"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-028",
@@ -2022,7 +2214,14 @@
     "douban": "38902954",
     "lb": "daughter-of-the-river-2026"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-029",
@@ -2091,7 +2290,14 @@
     "imdb": "tt38489397",
     "rt": "https://www.rottentomatoes.com/m/good_trip"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-030",
@@ -2159,7 +2365,14 @@
     "imdb": "tt36217308",
     "rt": "https://www.rottentomatoes.com/m/someone_like_me_2025"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-031",
@@ -2232,7 +2445,14 @@
     "lb": "atlantic-rhapsody-2026",
     "imdb": "tt32272953"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-032",
@@ -2305,7 +2525,14 @@
    },
    "ratingChecked": "2026-11-03",
    "release": "2026年11月19日 全国艺联专线上映",
-   "language": "汉语普通话"
+   "language": "汉语普通话",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-033",
@@ -2372,7 +2599,14 @@
     "lb": "the-waves-will-carry-us",
     "imdb": "tt38589615"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-034",
@@ -2442,7 +2676,14 @@
     "rt": "https://www.rottentomatoes.com/m/life_of_jorge_luis_borges",
     "mc": "https://www.metacritic.com/movie/life-of-jorge-luis-borges/"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-035",
@@ -2510,7 +2751,14 @@
     "lb": "admission-2025",
     "imdb": "tt38854615"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-036",
@@ -2593,7 +2841,14 @@
    "posterDb": "p2937118909",
    "ratingChecked": "2026-11-03",
    "language": "英语 / 日语 / 汉语普通话",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-037",
@@ -2662,7 +2917,14 @@
     "imdb": "tt36505446",
     "rt": "https://www.rottentomatoes.com/m/bird_of_paradise_2026"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-038",
@@ -2744,7 +3006,15 @@
    "ratingChecked": "2026-11-03",
    "language": "法语",
    "metadataChecked": "2026-11-03",
-   "langTag": "原声｜中文字幕"
+   "langTag": "原声｜中文字幕",
+   "worldPremiere": {
+    "status": "verified",
+    "date": "2026-05-20",
+    "festival": "戛纳国际电影节",
+    "festivalEn": "Cannes Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
+   }
   },
   {
    "id": "gr26-039",
@@ -2814,7 +3084,14 @@
     "lb": "tai-chi-master",
     "imdb": "tt0108281"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-040",
@@ -2879,7 +3156,14 @@
     "imdb": "tt37615065",
     "rt": "https://www.rottentomatoes.com/m/wakesurf_lovers"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-041",
@@ -2958,7 +3242,14 @@
    "posterDb": "p2937102148",
    "ratingChecked": "2026-11-03",
    "language": "粤语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-042",
@@ -3041,7 +3332,14 @@
    "posterDb": "p2936814573",
    "ratingChecked": "2026-11-03",
    "language": "汉语普通话",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-043",
@@ -3116,7 +3414,14 @@
     "lb": "strangers-in-the-mountain",
     "imdb": "tt43300436"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-044",
@@ -3184,7 +3489,14 @@
    "links": {
     "douban": "37297313"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-045",
@@ -3252,7 +3564,14 @@
     "rt": "https://www.rottentomatoes.com/m/nowhere_to_lay_my_eyes",
     "mc": "https://www.metacritic.com/movie/nowhere-to-lay-my-eyes/"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-046",
@@ -3339,7 +3658,14 @@
    "posterDb": "p2936799439",
    "ratingChecked": "2026-11-03",
    "language": "粤语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-047",
@@ -3410,7 +3736,14 @@
    "cnDb": "被杀的那天",
    "posterDb": "p2935865708",
    "ratingChecked": "2026-11-03",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-048",
@@ -3477,7 +3810,14 @@
     "imdb": "tt43704174",
     "rt": "https://www.rottentomatoes.com/m/oasis_2026"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-049",
@@ -3545,7 +3885,14 @@
     "imdb": "tt0113475",
     "rt": "https://www.rottentomatoes.com/m/the_chinese_feast"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-050",
@@ -3611,7 +3958,14 @@
     "lb": "beloved-2026",
     "imdb": "tt31451181"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-051",
@@ -3678,7 +4032,14 @@
     "rt": "https://www.rottentomatoes.com/m/everything_else_is_noise",
     "mc": "https://www.metacritic.com/movie/everything-else-is-noise/"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-052",
@@ -3761,7 +4122,14 @@
    "ratingChecked": "2026-11-03",
    "language": "英语 / 法语",
    "metadataChecked": "2026-11-03",
-   "langTag": "原声｜中英字幕"
+   "langTag": "原声｜中英字幕",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-053",
@@ -3828,7 +4196,14 @@
     "imdb": "tt0093427",
     "rt": "https://www.rottentomatoes.com/m/queen_budapest"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-054",
@@ -3905,7 +4280,14 @@
     "rt": "https://www.rottentomatoes.com/m/edward_scissorhands",
     "mc": "https://www.metacritic.com/movie/edward-scissorhands/"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-055",
@@ -3980,7 +4362,15 @@
     "rt": "https://www.rottentomatoes.com/m/no_country_for_old_men",
     "mc": "https://www.metacritic.com/movie/no-country-for-old-men/"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "verified",
+    "date": "2007-05-19",
+    "festival": "戛纳国际电影节",
+    "festivalEn": "Cannes Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
+   }
   },
   {
    "id": "gr26-056",
@@ -4050,7 +4440,14 @@
     "rt": "https://www.rottentomatoes.com/m/the_return",
     "mc": "https://www.metacritic.com/movie/the-return-2004/"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-057",
@@ -4120,7 +4517,14 @@
     "rt": "https://www.rottentomatoes.com/m/the_meltdown",
     "mc": "https://www.metacritic.com/movie/the-meltdown/"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-058",
@@ -4206,7 +4610,14 @@
    "posterDb": "p2412811816",
    "ratingChecked": "2026-11-03",
    "language": "汉语普通话",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-059",
@@ -4274,7 +4685,14 @@
     "lb": "what-belongs-to-others",
     "imdb": "tt43704165"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-060",
@@ -4344,7 +4762,14 @@
     "imdb": "tt38799410",
     "rt": "https://www.rottentomatoes.com/m/black_money_for_white_nights"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-061",
@@ -4411,7 +4836,14 @@
     "lb": "ah-fei",
     "imdb": "tt0337507"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-062",
@@ -4481,7 +4913,14 @@
     "rt": "https://www.rottentomatoes.com/m/drunken_master",
     "mc": "https://www.metacritic.com/movie/drunken-master/"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-063",
@@ -4559,7 +4998,14 @@
     "rt": "https://www.rottentomatoes.com/m/blade_runner",
     "mc": "https://www.metacritic.com/movie/blade-runner/"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-064",
@@ -4643,7 +5089,14 @@
    "posterDb": "p2929810703",
    "ratingChecked": "2026-11-03",
    "language": "汉语普通话 / 英语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-065",
@@ -4717,7 +5170,15 @@
     "rt": "https://www.rottentomatoes.com/m/moonage_daydream",
     "mc": "https://www.metacritic.com/movie/moonage-daydream/"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "verified",
+    "date": "2022-05-23",
+    "festival": "戛纳国际电影节",
+    "festivalEn": "Cannes Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
+   }
   },
   {
    "id": "gr26-066",
@@ -4789,7 +5250,14 @@
     "imdb": "tt0017925",
     "rt": "https://www.rottentomatoes.com/m/1008166-general"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-067",
@@ -4860,7 +5328,14 @@
     "rt": "https://www.rottentomatoes.com/m/ghost_in_the_cell",
     "mc": "https://www.metacritic.com/movie/ghost-in-the-cell/"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-068",
@@ -4928,7 +5403,14 @@
     "lb": "backstage-madness",
     "imdb": "tt38978986"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-069",
@@ -4996,7 +5478,15 @@
     "imdb": "tt41592086",
     "mc": "https://www.metacritic.com/movie/congo-boy/"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "verified",
+    "date": "2026-05-15",
+    "festival": "戛纳国际电影节",
+    "festivalEn": "Cannes Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
+   }
   },
   {
    "id": "gr26-070",
@@ -5066,7 +5556,14 @@
     "imdb": "tt0074686",
     "rt": "https://www.rottentomatoes.com/m/the_innocent_1979"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-071",
@@ -5145,7 +5642,14 @@
    "ratingChecked": "2026-11-03",
    "language": "罗马尼亚语",
    "metadataChecked": "2026-11-03",
-   "langTag": "原声｜中英字幕"
+   "langTag": "原声｜中英字幕",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-072",
@@ -5222,7 +5726,14 @@
     "rt": "https://www.rottentomatoes.com/m/gone_with_the_wind",
     "mc": "https://www.metacritic.com/movie/gone-with-the-wind/"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-073",
@@ -5291,7 +5802,14 @@
     "imdb": "tt0471945",
     "rt": "https://www.rottentomatoes.com/m/princess_iron_fan"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-074",
@@ -5359,7 +5877,14 @@
     "rt": "https://www.rottentomatoes.com/m/tender_loving_care_2026",
     "mc": "https://www.metacritic.com/movie/tender-loving-care/"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-075",
@@ -5426,7 +5951,14 @@
     "imdb": "tt34734549",
     "rt": "https://www.rottentomatoes.com/m/chronicles_from_the_siege"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-076",
@@ -5491,7 +6023,14 @@
     "lb": "all-about-corinne",
     "imdb": "tt37799310"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-077",
@@ -5569,7 +6108,14 @@
     "rt": "https://www.rottentomatoes.com/m/inception",
     "mc": "https://www.metacritic.com/movie/inception/"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-078",
@@ -5636,7 +6182,14 @@
     "lb": "ground-floor-2026",
     "imdb": "tt42685861"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-079",
@@ -5703,7 +6256,14 @@
     "imdb": "tt38805050",
     "rt": "https://www.rottentomatoes.com/m/visitation_2026"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-080",
@@ -5770,7 +6330,14 @@
     "imdb": "tt29034109",
     "rt": "https://www.rottentomatoes.com/m/viva_carmen"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-081",
@@ -5836,7 +6403,14 @@
     "lb": "the-peacock-princess",
     "imdb": "tt34174838"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-082",
@@ -5905,7 +6479,14 @@
     "imdb": "tt0354770",
     "rt": "https://www.rottentomatoes.com/m/nezha_conquers_the_dragon_king"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gr26-083",
@@ -5961,7 +6542,14 @@
     "douban": "38465275",
     "lb": "chinese-animation-a-century"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   }
  ],
  "shows": [

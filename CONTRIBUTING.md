@@ -161,3 +161,12 @@ Claude 与 GPT 可能使用同一 GitHub 身份，审批人数可先设为0；�
 - 内容提醒针对具体情节，不把性取向、身份或残障本身作为风险。光敏与音量提示无法从剧情推断。
 - 美国 MPA 分级只使用已核实的 `mpa: {rating, edition, checked}`，证据记录在内部文档。不同剪辑版不能套用旧版分级；未知时不显示破折号占位。
 - 提交前运行 `node tools/build-fallback.js`、`node tools/check-content.js`、`node tools/check-library.js`、`node tools/check-companion.js`、`node tools/check-config.js`（改小程序云端配置 data/config.json 后）`；部署也会执行后三项，避免后续片目漏掉提醒。
+
+## 全球首映资料（每部新片必备）
+
+- 每部非活动影片使用 `worldPremiere: {status, date, festival, festivalEn, kind, checked}`。日期用 ISO `YYYY-MM-DD`；只证实年/月时保留 `YYYY` / `YYYY-MM`，状态为 `partial`，禁止补猜日。
+- 全球首映指原作最早公开放映；不得用影片制作年份、入围影展、本地公映、亚洲/台湾/内地首映或修复版首映替代。非影展首映用 `kind: "theatrical"`。短片合辑用 `kind: "collection"`，不把合辑放映日当作每部短片的全球首映。
+- `verified` / `partial` 记录须有 `checked` 核对日期，并在 `docs/world-premiere*.json` 的 `verifiedRecords` 中按影片 ID 记录证据。已公布的未来首映按官方公布首场登记；具体日期可能调整。
+- 未证实用 `status: "pending"` 和 null 字段；尚未公布可用 `unannounced`；盲盒使用 `withheld`，不得反推泄露片名。普通未知与非影展首映分开显示。
+- 影片资料表（网站及小程序）自动显示“全球首映时间 / 首映影展”；新导入影片即使未填也显示“待核实”。运行 `node tools/build-fallback.js` 自动补入缺失字段，`check-content.js` / 发布检查会阻止漏字段、非法日期、跨专题资料不一致或无证据的“已核实”资料。
+- 小程序同步了资料表及已放映场次的一行“年份日期 / 时间 / 城市·影院·厅”。网站合并后发布；小程序页面代码仍需在微信开发者工具上传审核才能生效。

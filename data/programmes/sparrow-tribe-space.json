@@ -48,7 +48,14 @@
     "checked": "2026-11-03",
     "sensory": "unverified"
    },
-   "contentNote": "已查看现有剧情资料，尚未确认需要特别标注的敏感内容。这不代表适合所有年龄，也不等同于完整内容审查。"
+   "contentNote": "已查看现有剧情资料，尚未确认需要特别标注的敏感内容。这不代表适合所有年龄，也不等同于完整内容审查。",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "ballad-of-the-warm-grave",
@@ -105,7 +112,15 @@
    "screeningNotes": {
     "10/3-17:30-sparrow-tribe-screening-room": "映后交流 · 导演连线 20:00—21:00"
    },
-   "poster": "posters/space-ballad-of-the-warm-grave-2026.jpg"
+   "poster": "posters/space-ballad-of-the-warm-grave-2026.jpg",
+   "worldPremiere": {
+    "status": "partial",
+    "date": "2025",
+    "festival": "FIRST青年电影展",
+    "festivalEn": "FIRST International Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
+   }
   },
   {
    "id": "i-am-001",
@@ -160,7 +175,14 @@
    "screeningNotes": {
     "10/5-15:00-sparrow-tribe-screening-room": "映后活动 · 主创现场映后 16:21—17:10"
    },
-   "poster": "posters/space-i-am-001-2026.jpg"
+   "poster": "posters/space-i-am-001-2026.jpg",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "ripple-yin-hang",
@@ -222,7 +244,14 @@
    "screeningNotes": {
     "10/5-17:30-sparrow-tribe-screening-room": "映后交流 · 导演连线 19:12—20:00"
    },
-   "poster": "posters/space-ripple-yin-hang-2026.jpg"
+   "poster": "posters/space-ripple-yin-hang-2026.jpg",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "four-springs",
@@ -277,7 +306,14 @@
    "screeningNotes": {
     "10/7-14:00-sparrow-tribe-screening-room": "特别放映 + 陆庆屹读书会（活动时长待确认）"
    },
-   "poster": "posters/space-four-springs-2026.jpg"
+   "poster": "posters/space-four-springs-2026.jpg",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "blind-box-21",
@@ -326,7 +362,14 @@
    "screeningNotes": {
     "10/3-15:00-sparrow-tribe-screening-room": "映后活动 · 导演现场映后 16:13—17:10 · 主办方标注国内首映"
    },
-   "poster": "posters/space-blind-box-21-2026.jpg"
+   "poster": "posters/space-blind-box-21-2026.jpg",
+   "worldPremiere": {
+    "status": "withheld",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "blind-box-18",
@@ -380,7 +423,14 @@
    "screeningNotes": {
     "10/11-14:00-sparrow-tribe-screening-room": "导演逝世九周年纪念特别放映 · 中英文字幕 · 每位观众一张限定海报"
    },
-   "poster": "posters/space-blind-box-18-2026.jpg"
+   "poster": "posters/space-blind-box-18-2026.jpg",
+   "worldPremiere": {
+    "status": "withheld",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   }
  ],
  "shows": [

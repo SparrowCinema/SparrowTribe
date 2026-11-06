@@ -1,5 +1,6 @@
 const T = require('../../utils/totop.js');
 const U = require('../../utils/util.js');
+const Premiere = require('../../utils/premiere.js');
 const plan = require('../../utils/plan.js');
 const W = require('../../utils/watched.js');
 const G = require('../../utils/growth.js');
@@ -36,14 +37,14 @@ Page({
     // 影展内已放映的场次：窄条保留（黑白、无操作按钮）；院线片不显示
     const goneShows = allShows.filter(s => U.ended(s, idx) && U.keepPast(U.progForShow(s, idx))).sort((a, b) => U.showDate(a) - U.showDate(b)).map(s => {
       const v = idx.VN[s.v] || {}, h = (v.halls || []).find(x => x.id === s.h), nm = (v.short || v.brand || v.name || '').replace(new RegExp('^' + (v.city || '@@') + '\\s*[·・]?\\s*'), '');
-      return { key: U.keyOf(s), d: s.d.replace('/', '.'), t: s.t, end: U.fmt(U.toMin(s.t) + U.durationOf(s, idx)), place: [nm, h && (h.short || h.name)].filter(Boolean).join(' · ') };
+      return { key: U.keyOf(s), d: U.showDate(s).getFullYear()+'.'+s.d.split('/').map(n=>n.padStart(2,'0')).join('.'), t: s.t, end: f.minTbd ? '' : U.fmt(U.toMin(s.t) + U.durationOf(s, idx)), place: [v.city, nm, h && (h.short || h.name)].filter(Boolean).join(' · ') };
     });
     const ratings = (f.r || []).map((v, i) => ({
       l: t(RT[i][0]), na: v == null,
       v: v == null ? '—' : i === 2 ? v + '%' : i === 4 ? Number(v).toFixed(1) : i < 2 ? Number(v).toFixed(1) : v,
       pct: v == null ? 0 : Math.min(100, v / RT[i][1] * 100)
     }));
-    const credits = [['导演', f.dir], ['联合导演', f.coDirector], [f.writerLabel || '编剧', (f.writers || []).join(' / ')], ['原著', t(f.book || '')],
+    const credits = [...Premiere.rows(f,I.isEn()), ['导演', f.dir], ['联合导演', f.coDirector], [f.writerLabel || '编剧', (f.writers || []).join(' / ')], ['原著', t(f.book || '')],
       [(f.genre || []).includes('纪录片') ? '出镜' : '主演', (f.cast || []).join(' / ')], ['影片版权', (I.isEn() && f.printSourceEn) || f.printSource], ['类型', (f.genre || []).map(t).join(' / ')], ['原始语言', t(f.language)], ['海报说明', f.posterNote]]
       .filter(x => x[1]).map(x => ({ k: t(x[0]), v: x[1] }));
     const all = data.films.filter(x => !x.ev), i = all.indexOf(f);

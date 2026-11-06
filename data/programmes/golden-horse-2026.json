@@ -70,7 +70,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "杨毅恒在吉隆坡与东京两地从事编导及制片工作。短片《金鱼》《呼吸》让他进入国际影展视野，其后凭《阿奇洛》获得东京影展导演奖。",
    "language": "粤语 / 汉语普通话 / 马来语 / 泰语 / 英语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-002",
@@ -137,7 +144,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "王逸帆兼任导演与摄影，从《洞两洞六》等短片走向长片。他的长片首作《逃出立法院》把政治讽刺与僵尸类型结合，并赴多伦多、锡切斯放映。",
    "language": "日语 / 汉语普通话",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-003",
@@ -205,6 +219,13 @@
    "metadataChecked": "2026-11-03",
    "screeningNotes": {
     "11/11-21:30-tp-vieshow-xinyi-hall-13": "映后活动 · 影人出席（嘉宾待公布）"
+   },
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
    }
   },
   {
@@ -280,7 +301,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "舒淇从演员跨入编导。她以《最好的时光》获得金马女主角奖，并曾参与国际影展评审；《女孩》是她独立编导的第一部长片。",
    "language": "汉语普通话",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-005",
@@ -343,7 +371,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "池田晓在东京出生，学习美术后开始拍片。《Blue Monkey》是其长片起点，之后的《回纹跳针跳针》获得鹿特丹金虎奖。",
    "language": "日语 / 汉语普通话",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-006",
@@ -409,7 +444,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "邱礼涛长期参与香港电影的导演、编剧与监制工作。创作从社会题材延伸到商业类型，作品包括《等候董建华发落》《雏妓》及《拆弹专家》系列。",
    "language": "粤语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-008",
@@ -477,7 +519,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "九把刀本名柯景腾，先以小说创作为人熟知，再执导《那些年，我们一起追的女孩》。其电影持续把青春经验与奇幻、恐怖等类型结合。",
    "language": "汉语普通话",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-010",
@@ -549,7 +598,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "郭家禧从香港电视剧编导工作发展到电影，李振杰则积累了多年的副导演经验。《UFO离奇命案》是两人合作编导的长片，曾获香港电影评论学会编剧奖。",
    "language": "粤语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-011",
@@ -617,7 +673,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "汤湘竹先以现场录音与纪录片工作建立创作历程，《山有多高》获金马纪录片奖。他长期关注土地与人的关系，《沙央》是其剧情长片导演首作。",
    "language": "马来语 / 汉语普通话 / 泰米尔语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-012",
@@ -685,7 +748,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "解孟儒以剪辑师身份参与《返校》《缉魂》等不同类型作品，并凭《缉魂》获得金马剪辑奖。《泥娃娃》是他转任剧情长片导演的起点。",
    "language": "汉语普通话",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-013",
@@ -758,7 +828,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "许承杰毕业于纽约大学电影制作研究所，曾拍摄《龙虾小孩》《孤味》等短片。把《孤味》发展成长片后，他继续以家庭关系为叙事重心。",
    "language": "日语 / 汉语普通话 / 粤语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-014",
@@ -821,7 +898,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "周彤在纽约电影学院与加州大学洛杉矶分校学习电影。短片创作之后，她以《雪之下》进入日舞编剧实验室，《谎言生活》成为长片编导首作。",
    "language": "粤语 / 汉语普通话",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-015",
@@ -887,7 +971,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "林孝谦兼任编剧、导演与监制，早期短片《自由大道》获金穗奖。长片作品从《街角的小王子》延续到《比悲伤更悲伤的故事》，多以人物情感推进叙事。",
    "language": "英语 / 汉语普通话",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-017",
@@ -953,7 +1044,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "郑乃方曾执导《我，19岁》，并长期跨足电影与短片；共同导演汤升荣此前深耕监制工作，参与《茶金》《火神的眼泪》等制作。本片是两人不同经验的汇合。",
    "language": "英语 / 汉语普通话 / 韩语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-018",
@@ -1010,7 +1108,14 @@
    ],
    "ratingChecked": "2026-11-03",
    "bio": "马志翔从演员发展为编剧与导演，持续创作原住民族相关故事。《KANO》是其首部长片导演作品，也让他获得金马新导演提名。",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-019",
@@ -1075,7 +1180,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "吕柏勋从短片《野潮》及合导作品《十年台湾》累积经验，并曾参加金马电影学院。《日光》把他对常民生活的观察带进剧情长片。",
    "language": "英语 / 汉语普通话",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-020",
@@ -1152,7 +1264,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "SABU从表演转入编导，凭《弹丸飞人》建立国际知名度。他善于把奔跑、小人物与意外连锁放进喜剧、犯罪及奇幻类型，作品还包括《天之茶助》《龙先生》。",
    "language": "汉语普通话 / 日语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-023",
@@ -1210,7 +1329,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "李立劭长期拍摄纪录片，关注台湾与东南亚在战争及冷战中的历史联系。《边城启示录》《独舞者的乐章》等作品持续回访个人生命中的历史痕迹。",
    "language": "汉语普通话",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-024",
@@ -1269,7 +1395,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "黄肇邦在香港学习新闻与传播后拍摄纪录片。从《子非鱼》到《伴生》《十方之地》，他持续贴近教育、照护与居住处境中的普通人。",
    "language": "粤语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-025",
@@ -1328,7 +1461,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "陈淦熙在香港演艺学院及台北艺术大学学习，创作横跨剧情与纪录。短片《若男》《三步》之后，他以《离开即景》独立执导纪录长片。",
    "language": "粤语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-026",
@@ -1388,7 +1528,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "姜雯洁在北京及香港学习，曾参与许鞍华纪录片《好好拍电影》的制作、摄影与剪辑。《快要到达家了》是她独立执导纪录长片的起点。",
    "language": "粤语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-027",
@@ -1444,7 +1591,14 @@
    ],
    "ratingChecked": "2026-11-03",
    "bio": "林佑恩有摄影记者经历，并在伦敦与台湾学习传播及影像。短片《度日》及合导的《第九十三封信之后》让其纪录创作获得金马、金穗肯定。",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-028",
@@ -1515,7 +1669,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "孙逊毕业于中国美术学院版画系，创作连接动画、绘画与装置。短片《21克》等进入国际影展，他也把影像带入美术馆与跨媒介展览空间。",
    "language": "汉语普通话",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-029",
@@ -1578,7 +1739,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "傅睿邨有电影编剧背景，刘育树长期参与动画制作，游智皓则从事跨媒介策展与原创IP开发。三人以不同专长联合执导《欢迎来到朵莉之家》。",
    "language": "汉语普通话",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-031",
@@ -1723,7 +1891,14 @@
     null
    ],
    "bio": "本场为多位导演的短片合辑。每部作品的导演与创作履历分别列于「收录短片」，请按单片阅读。",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "not-applicable",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "collection"
+   }
   },
   {
    "id": "gh63-032",
@@ -1833,7 +2008,14 @@
     null
    ],
    "bio": "本场为多位导演的短片合辑。每部作品的导演与创作履历分别列于「收录短片」，请按单片阅读。",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "not-applicable",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "collection"
+   }
   },
   {
    "id": "gh63-033",
@@ -1975,7 +2157,14 @@
     null
    ],
    "bio": "本场为多位导演的短片合辑。每部作品的导演与创作履历分别列于「收录短片」，请按单片阅读。",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "not-applicable",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "collection"
+   }
   },
   {
    "id": "gh63-034",
@@ -2087,7 +2276,14 @@
     null
    ],
    "bio": "本场为多位导演的短片合辑。每部作品的导演与创作履历分别列于「收录短片」，请按单片阅读。",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "not-applicable",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "collection"
+   }
   },
   {
    "id": "gh63-035",
@@ -2278,7 +2474,14 @@
     null
    ],
    "bio": "本场为多位导演的短片合辑。每部作品的导演与创作履历分别列于「收录短片」，请按单片阅读。",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "not-applicable",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "collection"
+   }
   },
   {
    "id": "gh63-036",
@@ -2347,7 +2550,14 @@
    "poster": "posters/golden-horse-gh63-036.jpg",
    "ratingChecked": "2026-11-03",
    "language": "汉语普通话",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-037",
@@ -2416,7 +2626,14 @@
    "poster": "posters/golden-horse-gh63-037.jpg",
    "ratingChecked": "2026-11-03",
    "language": "汉语普通话",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-038",
@@ -2480,7 +2697,14 @@
    "poster": "posters/golden-horse-gh63-038.jpg",
    "ratingChecked": "2026-11-03",
    "language": "汉语普通话",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-039",
@@ -2541,7 +2765,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "杨凡从摄影走向导演，创作包括《美少年之恋》《游园惊梦》。他也以动画《继园台七号》探索不同媒介，并凭该片获得威尼斯剧本奖。",
    "language": "粤语 / 汉语普通话 / 英语 / 日语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-040",
@@ -2603,7 +2834,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "郑世匡毕业于伦敦电影学院，创作横跨舞台、电视、广告与短片。《明月扁舟》《度日》等短片之后，《顺风顺水》是其首部长片。",
    "language": "粤语 / 英语 / 他加禄语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-042",
@@ -2672,7 +2910,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "王逸铃从台湾艺术大学电影系进入创作，《迎向边疆公路》赴戛纳学生短片单元。《台北过手无暝无日》的经验进一步发展为长片《一路狂奔》。",
    "metadataChecked": "2026-11-03",
-   "language": "汉语普通话"
+   "language": "汉语普通话",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-043",
@@ -2733,7 +2978,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "卢盈良兼任纪录片导演与摄影，作品《牧者》《神人之家》都从具体的人际关系进入信仰及家庭经验。《神人之家》曾获台北电影奖百万首奖。",
    "language": "汉语普通话",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-044",
@@ -2790,7 +3042,15 @@
    "ratingChecked": "2026-11-03",
    "bio": "潘之然在台北出生，于世新大学学习电影，曾拍摄纪录及剧情短片。《请与你自己歌唱》入选女性影展后，《我的意思是》成为纪录长片首作。",
    "language": "汉语普通话",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "verified",
+    "date": "2026-11-11",
+    "festival": "台北金马影展",
+    "festivalEn": "Taipei Golden Horse Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
+   }
   },
   {
    "id": "gh63-045",
@@ -2849,7 +3109,15 @@
    ],
    "ratingChecked": "2026-11-03",
    "bio": "林子平的编导经验横跨电视剧、纪录片与电影，曾参与《回家》《High 5制霸青春》及《我的少女时代》等制作，持续在不同长度的叙事间工作。",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "verified",
+    "date": "2026-11-10",
+    "festival": "台北金马影展",
+    "festivalEn": "Taipei Golden Horse Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
+   }
   },
   {
    "id": "gh63-046",
@@ -2907,7 +3175,15 @@
    ],
    "ratingChecked": "2026-11-03",
    "bio": "李志蔷兼具编剧、导演及制作人身份，作品包括《单车上路》与《火神的眼泪》；黄靖祖长期参与电视剧及节目制作。两人共同执导这部医疗题材剧集。",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "verified",
+    "date": "2026-11-07",
+    "festival": "台北金马影展",
+    "festivalEn": "Taipei Golden Horse Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
+   }
   },
   {
    "id": "gh63-047",
@@ -3032,7 +3308,14 @@
     null
    ],
    "bio": "本场为多位导演的短片合辑。每部作品的导演与创作履历分别列于「收录短片」，请按单片阅读。",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "not-applicable",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "collection"
+   }
   },
   {
    "id": "gh63-048",
@@ -3200,7 +3483,14 @@
     null
    ],
    "bio": "本场为多位导演的短片合辑。每部作品的导演与创作履历分别列于「收录短片」，请按单片阅读。",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "not-applicable",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "collection"
+   }
   },
   {
    "id": "gh63-049",
@@ -3369,7 +3659,14 @@
     null
    ],
    "bio": "本场为多位导演的短片合辑。每部作品的导演与创作履历分别列于「收录短片」，请按单片阅读。",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "not-applicable",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "collection"
+   }
   },
   {
    "id": "gh63-050",
@@ -3443,7 +3740,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "克里斯汀穆基是罗马尼亚新浪潮的重要导演。《4月3周又2天》《灵欲告白》《毕业风暴》等以人物处境切入社会伦理，也多次获得戛纳奖项。",
    "language": "英语 / 挪威语 / 罗马尼亚语 / 瑞典语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-051",
@@ -3516,7 +3820,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "马丁麦多纳以剧作及电影编导工作著称。从《杀手没有假期》到《意外》《伊尼舍林的女妖》，他持续用黑色喜剧处理暴力、关系与道德困境。",
    "language": "英语 / 西班牙语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-052",
@@ -3589,7 +3900,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "韦纳荷索是德国新电影的重要作者，剧情与纪录创作并行。《天谴》《陆上行舟》《灰熊人》等常追随极端处境与执念人物，形成持续数十年的探索。",
    "language": "英语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-053",
@@ -3659,7 +3977,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "奥利维耶阿萨亚斯曾任影评人，其编导作品横跨《迷离劫》《星光云寂》《私人采购》等。人物身份、影像文化与跨国流动反复进入他的电影。",
    "language": "英语 / 俄语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-054",
@@ -3727,7 +4052,15 @@
    "ratingChecked": "2026-11-03",
    "bio": "克里斯多福欧诺黑同时从事小说、童书与电影创作。《巴黎小情歌》《喜欢你、爱上你、逃离你》《冬日男孩》延续了他对爱、成长与记忆的关注。",
    "language": "法语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "partial",
+    "date": "2026-05",
+    "festival": "戛纳国际电影节",
+    "festivalEn": "Cannes Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
+   }
   },
   {
    "id": "gh63-055",
@@ -3798,7 +4131,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "玛利克洛泽在维也纳电影学院学习，作品从《我的嬉皮老爸》延伸到《迷走萝拉》《束缚》。她常以人物关系观察性别、家庭与社会规范。",
    "language": "德语 / 英语 / 法语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-057",
@@ -3867,7 +4207,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "王颖生于香港，移居旧金山后以《寻人》进入美国独立电影。作品横跨《喜福会》《烟》及商业制作，近年继续在独立创作中处理跨文化与家庭经验。",
    "language": "日语 / 汉语普通话",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-058",
@@ -3939,7 +4286,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "李沧东从剧场与小说转入电影，也曾担任韩国文化部长。《薄荷糖》《绿洲》《密阳》《生命之诗》《燃烧烈爱》建立了他兼具社会观察与道德追问的创作路径。",
    "language": "韩语 / 英语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-060",
@@ -4005,7 +4359,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "珍妮荷莉先从事表演，再转向编导，首作《她爱他》之后拍摄《最美的相遇》《那些受伤的脸孔》，并参与剧集《找我经纪人》的执导。",
    "language": "法语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-061",
@@ -4076,7 +4437,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "罗德里哥索罗格耶是西班牙编导，短片《Mother》曾获奥斯卡提名，长片《骗局》《野兽们》让他两度获得哥雅导演奖。",
    "language": "西班牙语 / 英语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-062",
@@ -4145,7 +4513,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "坎特米尔巴拉果夫师承亚历山大索科洛夫，从《亲密不亲密》到《裂爱》以人物关系与历史压力建立风格，两部长片都在戛纳一种注目单元获奖。",
    "language": "英语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-063",
@@ -4219,7 +4594,15 @@
    "ratingChecked": "2026-11-03",
    "bio": "约瑟夫久保田瓦莱达的工作横跨电影与剧集。《Manos Sucias》《Catch the Fair One》之后，他也参与《毒枭：墨西哥》《东京之恶》等剧集执导。",
    "language": "英语 / 日语 / 西班牙语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "partial",
+    "date": "2026-01",
+    "festival": "圣丹斯电影节",
+    "festivalEn": "Sundance Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
+   }
   },
   {
    "id": "gh63-065",
@@ -4296,7 +4679,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "豪尔赫蒂伦阿尔芒是委内瑞拉裔加拿大编导。长片《La Soledad》《亚马逊：恶林逢生》及短片《黑色意大利面》构成其持续发展的独立电影实践。",
    "language": "西班牙语 / 意大利语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-066",
@@ -4363,7 +4753,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "莫森加拉伊从伊朗电影助导演工作起步，曾与多位前辈导演合作。其第二部长片《Blockage》获釜山新浪潮奖，此后持续创作剧情电影。",
    "language": "波斯语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-067",
@@ -4432,7 +4829,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "尤瓦尔亚伯拉罕从事调查报道，瑞秋索尔兼具新闻、摄影与导演背景。两人曾参与《你的国，我的家》，继续通过影像调查战争及其责任。",
    "language": "希伯来语 / 英语 / 阿拉伯语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-068",
@@ -4508,7 +4912,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "佩嘉阿罕贾拉尼同时从事导演、表演与音乐，长期观察伊朗政治及女性生活。《试图记忆》《我父亲》等短片之后，她以《革命练习曲》进入纪录长片。",
    "language": "波斯语 / 英语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-069",
@@ -4574,7 +4985,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "安娜费奇与班克怀特长期合作纪录片，创作也延伸到表演与跨媒介艺术。两人合导作品包括《The Genius of Marian》《Survivors》。",
    "language": "英语 / 法语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-070",
@@ -4645,7 +5063,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "瑟琳娜迈尔斯从纪录影像关注人权与女性经验。《玛莎的街头影像记事》及《Harley & Katya》之后，她继续把镜头放在个体与公共制度的交界。",
    "language": "英语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-071",
@@ -4711,7 +5136,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "格雷姆帕克斯兼做编导与独立游戏，曾共同创办GoodbyeWorld Games。短片与互动影像经验之后，他以《当恋爱显化时》进入剧情长片。",
    "language": "英语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-073",
@@ -4777,7 +5209,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "玛丽亚马汀内兹巴约纳在英国国家电影电视学院学习，先以《Mia》《Such Small Hands》等短片发展创作，再执导首部长片《爱×死×艺术家》。",
    "language": "英语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-074",
@@ -4845,7 +5284,14 @@
    "poster": "posters/golden-horse-gh63-074.jpg",
    "ratingChecked": "2026-11-03",
    "bio": "毕列塔巴索里在科索沃出生，毕业于纽约大学。长片首作《红椒酱的滋味》在日舞获奖，并将科索沃女性经验带入国际影展视野。",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-075",
@@ -4913,7 +5359,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "迈兹门格尔毕业于丹麦电影学院，先以短片《For Juliane》及剧集《My Different Ways》累积编导经验。《亲爱的不速之客》是其长片首作。",
    "language": "丹麦语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-076",
@@ -4981,7 +5434,15 @@
    "ratingChecked": "2026-11-03",
    "bio": "史蒂芬妮安在韩国出生、于新泽西长大，毕业于纽约大学，并有多年剪辑工作经验。她把早期短片《Accident》的故事发展为长片《破碎之后我们相拥》。",
    "language": "英语 / 韩语 / 西班牙语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "partial",
+    "date": "2026-01",
+    "festival": "圣丹斯电影节",
+    "festivalEn": "Sundance Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
+   }
   },
   {
    "id": "gh63-077",
@@ -5047,7 +5508,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "札维耶特拉在蒙特娄出生，青年时移居日本，兼任导演、摄影与视觉艺术工作。短片《螫伤》之后，《蓝色是太阳的颜色》是其长片起点。",
    "language": "英语 / 日语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-078",
@@ -5120,7 +5588,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "乌尔里克奥廷格的作品横跨实验电影、剧情、纪录与视觉艺术。「柏林三部曲」等创作使她成为德国新电影与酷儿电影的重要作者。",
    "language": "德语 / 法语 / 俄语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-079",
@@ -5189,7 +5664,14 @@
    "poster": "posters/golden-horse-gh63-079.jpg",
    "ratingChecked": "2026-11-03",
    "bio": "瓦莱斯卡格里瑟巴赫的长片从《Be My Star》《Longing》延伸到《Western》。她以精简的作品量、细密的人际观察进入国际作者电影视野。",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-080",
@@ -5262,7 +5744,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "亚瑟哈拉利兼任导演、编剧与演员，曾执导《一万个丛林夜》，并与茹斯汀特里耶共同编写《坠恶真相》，凭后者获得奥斯卡原创剧本奖。",
    "language": "法语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-082",
@@ -5327,7 +5816,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "昆汀杜皮尔同时是电子音乐人与编导，凭《超能轮胎杀人事件》等建立荒诞类型风格。《鹿皮奇谈》《不可思议但千真万确》继续把不可能的设定放进日常。",
    "language": "法语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-083",
@@ -5399,7 +5895,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "阿比纳什比克拉姆夏来自尼泊尔，兼任编剧、导演与制片。短片《Lori》及编剧作品《香巴拉》之后，他以《迷雾中的大象》执导首部长片。",
    "language": "尼泊尔语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-084",
@@ -5461,7 +5964,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "普帝邦阿朗潘长期担任摄影，之后以《边境幻梦》进入长片编导，并获威尼斯地平线影片奖。《颓废幻梦》《燃烧幻梦》延续其影像实践。",
    "language": "泰语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-085",
@@ -5531,7 +6041,15 @@
    "ratingChecked": "2026-11-03",
    "bio": "韦加斯巴努特加以短片《Lembusura》《卖火柴的女孩》进入国际影展，后执导《真相影印店》《取消你的人生》，持续在类型叙事中观察当代印尼。",
    "language": "印度尼西亚语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "partial",
+    "date": "2026-01",
+    "festival": "圣丹斯电影节",
+    "festivalEn": "Sundance Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
+   }
   },
   {
    "id": "gh63-086",
@@ -5601,7 +6119,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "昂漂在缅甸出生，先学工程，再于印度学习剪辑。《Seasonal Rain》《Cobalt Blue》等短片之后，他以《果树下的恋爱梦》完成首部长片。",
    "language": "缅甸语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-087",
@@ -5674,7 +6199,15 @@
    "ratingChecked": "2026-11-03",
    "bio": "拉斐尔曼纽毕业于伦敦电影学院，同名短片《Filipiñana》获柏林短片银熊奖。他也曾在劳力士艺术资助计划中接受贾樟柯指导。",
    "language": "他加禄语 / 英语 / 汉语普通话",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "partial",
+    "date": "2026-01",
+    "festival": "圣丹斯电影节",
+    "festivalEn": "Sundance Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
+   }
   },
   {
    "id": "gh63-088",
@@ -5741,7 +6274,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "黎豹在越南自学电影，从短片《潮湿的记忆》发展到首部长片《失落边境》。后者获柏林邂逅单元奖项，其创作持续重视身体与视听实验。",
    "language": "越南语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-089",
@@ -5809,7 +6349,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "莎里妮阿德娜尼在智利出生，拥有印度背景，于伦敦学习电影。短片《White Ant》之后，她把个人经验发展为长片《沙河下的秘密》。",
    "language": "英语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-090",
@@ -5878,7 +6425,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "尹丹菲在韩国光州出生，以《Moving On》开启长片创作，并在釜山获得多个奖项。她的作品常把家庭、失去与成长放在贴近日常的位置。",
    "language": "韩语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-091",
@@ -5949,7 +6503,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "深田晃司从《临渊而栗》《侧颜》到《还有爱的日子》，持续以家庭与人际关系处理难以直说的情感。《临渊而栗》曾获戛纳一种注目评审团奖。",
    "language": "日语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-092",
@@ -6017,7 +6578,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "冢本晋也以《铁男：金属兽》建立强烈的身体与影像风格。其后从《六月之蛇》到《野火》《斩、》《火影》，持续把恐惧与时代暴力连在一起。",
    "language": "英语 / 越南语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-093",
@@ -6086,7 +6654,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "西川美和兼写小说与电影，曾与诹访敦彦、是枝裕和工作。《吊桥上的秘密》《亲爱的医生》《漫长的借口》等以不轻易下结论的人物关系见长。",
    "language": "日语 / 英语 / 韩语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-094",
@@ -6151,7 +6726,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "广濑奈奈子毕业于武藏野美术大学，曾在是枝裕和的剧组担任副导演。《拂晓》是剧情长片首作，之后也以《装帧人生》尝试纪录创作。",
    "language": "日语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-095",
@@ -6220,7 +6802,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "木村太一在东京出生、后赴英国学习电影，长期拍摄音乐录像与广告。《Afterglows》之后，《富士子不能输》是其第二部长片。",
    "language": "日语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-096",
@@ -6283,7 +6872,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "原田舞叶原为小说家与策展人，曾在纽约现代艺术博物馆工作。她常在写作中处理艺术题材，再以《无用之人》改编自己的小说并首次执导。",
    "language": "日语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-097",
@@ -6351,7 +6947,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "李芸婵从短片《神奇洗衣机》进入编导，长片作品包括《人鱼朵朵》《基因决定我爱你》，也参与多部电视剧创作，跨越奇想爱情与都市人物题材。",
    "language": "汉语普通话",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-098",
@@ -6420,7 +7023,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "吉野龙平在日本映画学校学习摄影与灯光，后执导《Akaboshi》《两个女孩与茫然》，也参与《樱花下我记得》的编剧工作。",
    "language": "日语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-099",
@@ -6486,7 +7096,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "金钟佑、金信完与赵哲煐均有韩国MBC公共议题及纪录制作经验，分别从事电视、新闻与社会调查。《首尔守护者》把他们的现场经验带进纪录长片。",
    "language": "韩语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-100",
@@ -6561,7 +7178,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "法拉兹沙里亚特在德国出生，兼任导演、编剧与制片，工作横跨剧情、纪录与剧集。首部长片《未来的我们》获柏林泰迪熊奖。",
    "language": "德语 / 韩语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-101",
@@ -6630,7 +7254,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "科萨拉米提奇来自北马其顿，曾参加柏林新锐营，短片持续接近边缘人物与权力关系。《破碎十七》是其首部长片。",
    "language": "马其顿语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-102",
@@ -6700,7 +7331,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "塞德烈卡恩兼任编导与演员，长片创作从《Railway Bar》展开。其后作品包括《Roberto Succo》《爱在飞翔》《罪后辩护》，跨越不同类型与社会处境。",
    "language": "法语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-103",
@@ -6765,7 +7403,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "乔治贾克斯在英国从事编导、制片及表演，长片首作《Black Dog》于伦敦影展放映，之后继续以青年人物为创作重心。",
    "language": "英语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-104",
@@ -6831,7 +7476,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "费南达托瓦尔毕业于墨西哥电影培训中心，曾参加柏林新锐营，先拍摄纪录短片。《池畔的夏日忧伤》是她转入剧情长片的第一部作品。",
    "language": "西班牙语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-105",
@@ -6901,7 +7553,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "梅斯贝能堡是荷兰导演及演员，曾以《Even Cowboys Get to Cry》《A Hole in My Heart》等短片进入柏林新世代单元，之后拍摄长片《呼喊遗落天堂》。",
    "language": "荷兰语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-106",
@@ -7122,7 +7781,14 @@
     null
    ],
    "bio": "本场为多位导演的短片合辑。每部作品的导演与创作履历分别列于「收录短片」，请按单片阅读。",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "not-applicable",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "collection"
+   }
   },
   {
    "id": "gh63-107",
@@ -7192,7 +7858,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "伊恩德拉罗沙在西班牙从事电影与电视编导。《Víctor XX》《Farrucas》等短片之后，长片首作《跨出温室的爱恋》获柏林泰迪熊奖。",
    "language": "阿拉伯语 / 西班牙语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-108",
@@ -7257,7 +7930,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "凯斯坦尼克是德国编导与制片，长期从酷儿经验展开短片创作，作品有《It's Consuming Me》《Golden》《Pace》。《以你的记忆审判我》是其长片首作。",
    "language": "德语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-109",
@@ -7327,7 +8007,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "艾拉萨克斯从美国独立电影发展出对亲密关系的持续关注。《为你流的泪》《爱，不散》《有你的布鲁克林》《爱情转移》等贯穿不同年龄与性别经验。",
    "language": "英语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-110",
@@ -7394,7 +8081,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "安舒乔汉出生于印度，先从动画与游戏制作工作累积经验，之后在日本执导《Bad Poetry Tokyo》《Kontora》《释放真相》等剧情电影。",
    "language": "日语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-111",
@@ -7459,7 +8153,14 @@
    "poster": "posters/golden-horse-gh63-111.jpg",
    "ratingChecked": "2026-11-03",
    "bio": "艾维李昂戈伦来自菲律宾，从电影、广告及音乐录像发展动画创作。长片《漫画宅男恋爱梦》《猫小姐寻真爱》之后，继续以本土通俗文化探索成人动画。",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-112",
@@ -7524,7 +8225,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "瑟琳席安玛以《爱上坏女孩》展开长片创作，后拍摄《装扮游戏》《燃烧女子的画像》《亲爱的童伴》。她也为《酷瓜人生》等动画编写剧本。",
    "language": "法语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-113",
@@ -7594,7 +8302,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "莉莎蔻洛丹柯的首部长片是《高档货》，之后执导《桂冠街区》《性福拉警报》，并参与《六尺风云》《难，置信》等剧集，在电影与电视之间工作。",
    "language": "英语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-114",
@@ -7655,7 +8370,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "威尔洛夫雷斯与迪伦桑森长期合导广告、音乐录像和纪录片。两人曾为多支乐团拍片，作品包括《布勒合唱团：摇滚旅程纪录片》《闭嘴听音乐》。",
    "language": "英语 / 葡萄牙语 / 韩语 / 意大利语 / 西班牙语 / 日语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-115",
@@ -7713,7 +8435,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "葛斯詹宁斯从音乐录像起步，曾与Radiohead、Pulp及Blur合作。之后执导《星际大奇航》《开拍吧！第二滴血》，也转入《欢乐好声音》系列动画。",
    "language": "英语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-116",
@@ -7782,7 +8511,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "缇莎蔻维与雷纳傅立梅自九十年代起共同工作，结合导演、摄影与剪辑。合导作品包括《亲亲小不点》《Vera》，持续往返纪录观察与剧情表演。",
    "language": "德语 / 英语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-117",
@@ -7851,7 +8587,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "钱德勒乐瓦克来自加拿大，有记者、影评与编剧背景。短片《We Forgot to Break Up》之后，长片《我就爱电影》把她对影迷及成长经验的观察搬上银幕。",
    "language": "法语 / 英语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-118",
@@ -7921,7 +8664,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "艾力克斯休斯顿费雪与艾莉诺威尔森共同编导，先以《关机救世界！》进入日舞等影展。《就是柳柳的他》是两人合作的第二部长片。",
    "language": "英语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-120",
@@ -7993,7 +8743,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "班伟特利从英国独立电影出发，创作横跨黑色喜剧、恐怖及动作。《不良之家》《观光客出没，注意！》《英伦梦田》《玩命枪火》呈现其类型混搭路径。",
    "language": "英语 / 日语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-121",
@@ -8065,7 +8822,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "汉娜贝格琼来自芬兰，先拍摄短片《Puppet Master》，再以《孵魔》执导长片，借恐怖类型处理家庭与身体经验。《暗夜魔婴》是其第二部长片。",
    "language": "英语 / 芬兰语 / 西班牙语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-122",
@@ -8134,7 +8898,15 @@
    "ratingChecked": "2026-11-03",
    "bio": "娜塔莉艾瑞卡詹姆士是日裔澳洲导演，长片首作《家灵》之后执导《Apartment 7A》。她持续以恐怖形式处理家庭、身体与不安经验。",
    "language": "英语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "partial",
+    "date": "2026-01",
+    "festival": "圣丹斯电影节",
+    "festivalEn": "Sundance Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
+   }
   },
   {
    "id": "gh63-123",
@@ -8196,7 +8968,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "福田雄一从电视综艺及剧集编剧走向导演，作品包括「勇者义彦」系列、《银魂》《齐木楠雄的灾难》，以喜剧与漫画改编经验为人熟知。",
    "language": "日语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-124",
@@ -8266,7 +9045,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "亚伯托瓦奎兹同时从事漫画、插画与动画，作品《鸟男孩》《熊霸天下》多次获哥雅动画奖。其成人动画常以童话外形接近残酷现实。",
    "language": "西班牙语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-125",
@@ -8335,7 +9121,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "陈静仁在法国学习动画并于迪士尼受训，参与过动画长片及影集制作。他曾合导《熊熊遇见小小鼠：拯救音乐大冒险》，再执导《牧一》。",
    "language": "法语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-127",
@@ -8408,7 +9201,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "徐克是香港新浪潮的重要导演与监制，《蝶变》是其长片首作。之后的《新蜀山剑侠》及电影工作室制作，持续推动香港武侠与类型电影的变化。",
    "language": "粤语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-128",
@@ -8482,7 +9282,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "今敏从漫画、动画工作进入长片导演，《蓝色恐惧》《千年女优》《东京教父》《盗梦侦探》反复探索记忆、表演与现实边界，2010年辞世。",
    "language": "英语 / 日语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-129",
@@ -8549,7 +9356,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "李安以「父亲三部曲」进入国际影坛，再以《理性与感性》执导英语电影。《卧虎藏龙》《断背山》《少年Pi的奇幻漂流》等延续了其跨文化与类型探索。",
    "language": "英语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-130",
@@ -8613,7 +9427,14 @@
    "poster": "posters/golden-horse-gh63-130.jpg",
    "ratingChecked": "2026-11-03",
    "bio": "苏菲亚柯波拉以《死亡日记》开始长片编导，后凭《爱情，不用翻译》获奥斯卡原创剧本奖。作品还包括《Somewhere》《魅惑》《猫王与我》。",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-131",
@@ -8675,7 +9496,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "艾琳诺柯波拉兼任纪录导演、艺术家与作家，曾记录《现代启示录》的制作过程。其女儿苏菲亚整理了她的日记与片场材料，完成这部遗作。",
    "language": "英语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-132",
@@ -8740,7 +9568,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "布雷希特德巴克尔来自比利时，创作横跨视觉艺术、动画与实验影像。曾以《Exprmntl》回望实验电影历史，再通过档案拍摄克里斯马克。",
    "language": "英语 / 法语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-133",
@@ -8802,7 +9637,15 @@
    "ratingChecked": "2026-11-03",
    "bio": "安妮华达是法国新浪潮的重要作者，剧情与纪录并行。作品从《五点到七点的克莱欧》《无法无家》到《艾格妮捡风景》，让个人观看与社会经验彼此交汇。",
    "language": "法语 / 德语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "partial",
+    "date": "1991-05",
+    "festival": "戛纳国际电影节",
+    "festivalEn": "Cannes Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
+   }
   },
   {
    "id": "gh63-134",
@@ -8867,7 +9710,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "阿巴斯基亚罗斯塔米兼做电影、摄影与诗歌，是伊朗新浪潮的重要作者。《何处是我朋友的家》《特写镜头》等以日常经验反复追问观看与真实。",
    "language": "波斯语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-135",
@@ -8939,7 +9789,14 @@
    "poster": "posters/golden-horse-gh63-135.jpg",
    "ratingChecked": "2026-11-03",
    "bio": "狄奥安哲罗普洛斯从希腊现代史与个人记忆展开电影创作，长镜头与跨境旅程是其重要语言。《永远的一天》曾获戛纳金棕榈奖。",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-136",
@@ -9004,7 +9861,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "欧塔依奥塞里安尼从格鲁吉亚移居法国，长片创作始于《Falling Leaves》。作品包括《月神的宠儿》《威尼斯早晨》，以群像与冷幽默观察日常秩序。",
    "language": "法语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-137",
@@ -9078,7 +9942,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "葛斯范桑从美国独立电影发展出对边缘人物与青年的关注，《男人的一半还是男人》《心灵捕手》《迷幻公园》等跨越不同制作规模；《大象》获戛纳金棕榈及导演奖。",
    "language": "英语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-138",
@@ -9146,7 +10017,14 @@
    "poster": "posters/golden-horse-gh63-138.jpg",
    "ratingChecked": "2026-11-03",
    "language": "汉语普通话 / 英语 / 日语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-139",
@@ -9213,7 +10091,14 @@
    "poster": "posters/golden-horse-gh63-139.jpg",
    "ratingChecked": "2026-11-03",
    "language": "日语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-140",
@@ -9283,7 +10168,14 @@
    "poster": "posters/golden-horse-gh63-140.jpg",
    "ratingChecked": "2026-11-03",
    "language": "日语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-141",
@@ -9349,7 +10241,14 @@
    "poster": "posters/golden-horse-gh63-141.jpg",
    "ratingChecked": "2026-11-03",
    "language": "日语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-142",
@@ -9419,7 +10318,14 @@
    "poster": "posters/golden-horse-gh63-142.jpg",
    "ratingChecked": "2026-11-03",
    "language": "日语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-143",
@@ -9490,7 +10396,14 @@
    "poster": "posters/golden-horse-gh63-143.jpg",
    "ratingChecked": "2026-11-03",
    "language": "日语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-144",
@@ -9560,7 +10473,14 @@
    "poster": "posters/golden-horse-gh63-144.jpg",
    "ratingChecked": "2026-11-03",
    "language": "日语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-145",
@@ -9634,7 +10554,14 @@
    "poster": "posters/golden-horse-gh63-145.jpg",
    "ratingChecked": "2026-11-03",
    "language": "日语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-146",
@@ -9711,7 +10638,15 @@
    "poster": "posters/golden-horse-gh63-146.jpg",
    "ratingChecked": "2026-11-03",
    "language": "英语 / 韩语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "verified",
+    "date": "2006-05-21",
+    "festival": "戛纳导演双周",
+    "festivalEn": "Cannes Directors’ Fortnight",
+    "kind": "festival",
+    "checked": "2026-11-07"
+   }
   },
   {
    "id": "gh63-147",
@@ -9786,7 +10721,15 @@
    "poster": "posters/golden-horse-gh63-147.jpg",
    "ratingChecked": "2026-11-03",
    "language": "韩语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "partial",
+    "date": "2009-05",
+    "festival": "戛纳国际电影节",
+    "festivalEn": "Cannes Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
+   }
   },
   {
    "id": "gh63-148",
@@ -9855,7 +10798,14 @@
    "poster": "posters/golden-horse-gh63-148.jpg",
    "ratingChecked": "2026-11-03",
    "language": "英语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-149",
@@ -9931,7 +10881,15 @@
    "poster": "posters/golden-horse-gh63-149.jpg",
    "ratingChecked": "2026-11-03",
    "language": "英语 / 法语 / 意大利语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "verified",
+    "date": "2010-09-01",
+    "festival": "威尼斯国际电影节",
+    "festivalEn": "Venice International Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
+   }
   },
   {
    "id": "gh63-150",
@@ -9994,7 +10952,14 @@
    "poster": "posters/golden-horse-gh63-150.jpg",
    "ratingChecked": "2026-11-03",
    "language": "日语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-151",
@@ -10060,7 +11025,14 @@
    "poster": "posters/golden-horse-gh63-151.jpg",
    "ratingChecked": "2026-11-03",
    "language": "英语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-152",
@@ -10116,7 +11088,15 @@
    "ratingChecked": "2026-11-03",
    "bio": "外山文治毕业于日本映画大学，长片作品从《真爱没有句点》延伸到《Soirée》《茶饮友达》，持续关注在日常社会里努力维持生活的人。",
    "language": "日语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "verified",
+    "date": "2026-11-08",
+    "festival": "台北金马影展",
+    "festivalEn": "Taipei Golden Horse Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
+   }
   },
   {
    "id": "gh63-153",
@@ -10185,7 +11165,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "弗洛里安泽勒原为小说家与剧作家，把个人剧作《父亲》改编成电影后获得奥斯卡改编剧本奖。《爱·子》之后，《地堡危情》转向原创电影剧本。",
    "language": "英语 / 西班牙语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-154",
@@ -10261,7 +11248,15 @@
    "ratingChecked": "2026-11-03",
    "bio": "诺亚赛根有多年演员经历，曾与莱恩约翰逊合作《追凶》《回路杀手》等。执导《Blood Relatives》之后，《纽约最后一个扒手》是其第二部长片。",
    "language": "英语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "partial",
+    "date": "2026-01",
+    "festival": "圣丹斯电影节",
+    "festivalEn": "Sundance Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
+   }
   },
   {
    "id": "gh63-155",
@@ -10330,7 +11325,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "巴萨姆塔里克在巴基斯坦出生、移居美国，剧情与纪录创作并行。《These Birds Walk》《Ghosts of Sugar Land》之后，以《Mogul Mowgli》进入剧情长片。",
    "language": "英语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-156",
@@ -10391,7 +11393,14 @@
    "ratingChecked": "2026-11-03",
    "bio": "内森费尔德从实境喜剧与剧集工作进入导演，兰斯奥本海姆则以《Some Kind of Heaven》《Spermworld》等纪录片发展创作。两人的合作聚焦影像里的表演与自我呈现。",
    "language": "英语",
-   "metadataChecked": "2026-11-03"
+   "metadataChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "gh63-ev-master-balda",
