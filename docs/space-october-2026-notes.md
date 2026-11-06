@@ -21,10 +21,12 @@
 - [FIRST 四个春天](https://www.firstfilm.org.cn/movies/film-library/sigechuntian/)：105分钟、父母日常与失去、陆庆屹背景。其库记录2017制作年份，影片条目按通行2018影展年份和用户2018海报登记；未当作2026新作。
 - [FIRST 陆庆屹本人访谈](https://www.firstfilm.org.cn/special_edition/2026luqingyi/)：第12届最佳纪录长片。
 - [FIRST 许世悦介绍](https://www.firstfilm.org.cn/movies/documentary-lab/dog/)：查普曼大学纪录片系与《我是001号》首部长片身份。
-- [北京日报原采访](https://xinwen.bjd.com.cn/content/s6acca20fe4b0e42f8f0177d1.html)：《我是001号》许世悦、孟晨、家庭档案和精神健康议题。其英文名为编辑译名，未当作已核实国际发行名。
+- [北京日报原采访](https://xinwen.bjd.com.cn/content/s6acca20fe4b0e42f8f0177d1.html)：《我是001号》许世悦、孟晨、家庭档案和精神健康议题。英文名及英文导演署名另据用户补充的正式海报核实。
 
-没有独立《我是001号》海报，暂使用现有文字占位，不用排片图被遮挡的画面冒充海报。其余采用用户提供图片，No.18另校正旧海报日期。未完整审片，不推断光敏、音量等信息；盲盒提示保持pending。
+全部六片采用用户提供的海报，《我是001号》使用补充的p2912814134.jpg，英文片名The Loop、导演署名Shiyue Xu；No.18另校正旧海报日期。未完整审片，不推断光敏、音量等信息；盲盒提示保持pending。
 
 No.18使用非破坏性生成副本，将旧海报2025/10/12校正为2026/10/11（周日）14:00，并加No.18；No.21副本将海报盲盒-B改为盲盒观影No.21。均保留原始用户文件。
 
 验证：build-fallback、check-content、check-library、check-companion、build-extras与diff检查通过；原《关机》内容及场次不变，总计7部7场；小程序主包约1293KB。本地预览因账户额度导致审批无法完成，未运行浏览器视觉检查；页面模板未改。
+
+用户补充《我是001号》正式海报p2912814134.jpg后，已采用该图；英文名核实为The Loop，导演英文署名Shiyue Xu，撤销此前暂译名。
