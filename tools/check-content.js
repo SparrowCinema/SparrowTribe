@@ -1,5 +1,6 @@
 const fs=require('fs'),path=require('path'),assert=require('assert');
 const root=path.resolve(__dirname,'..'),read=p=>JSON.parse(fs.readFileSync(path.join(root,p),'utf8'));
+require('./check-premieres.js');
 const cat=read('data/catalog.json'),en=read('data/i18n/en.json'),films=new Map();
 for(const p of cat.programmes){if(!p.file)continue;for(const f of read(p.file).films){
  const label=f.id+' '+f.cn,r=f.contentReview,e=en.films[f.id];
@@ -12,7 +13,7 @@ for(const p of cat.programmes){if(!p.file)continue;for(const f of read(p.file).f
  assert(!/[\u3400-\u9fff]/.test(e.contentNote+e.editorial+e.warnings.join('')),label+' English layer contains untranslated material');
  assert(!f.warnings.some(w=>/^(同性恋|同性恋情|跨性别|残障|移民|宗教|女性)$/.test(w)),label+' identity itself must not be a warning');
  if(f.mpa){assert(['G','PG','PG-13','R','NC-17'].includes(f.mpa.rating),label+' invalid MPA classification');assert(f.mpa.checked&&f.mpa.edition,label+' rating needs edition/date');}
- if(films.has(f.id)){const prev=films.get(f.id);for(const k of ['warnings','contentReview','contentNote','editorial','mpa'])assert.deepStrictEqual(f[k],prev[k],label+' guidance differs between programmes');}
+ if(films.has(f.id)){const prev=films.get(f.id);for(const k of ['warnings','contentReview','contentNote','editorial','mpa','worldPremiere'])assert.deepStrictEqual(f[k],prev[k],label+' guidance differs between programmes');}
  films.set(f.id,f);
 }}
 console.log('PASS: content notes, verification states and bilingual individual notes for '+films.size+' unique films.');

@@ -1,0 +1,16 @@
+/* World-premiere metadata and bilingual credit rows shared by web and mini-program. */
+(function(root,factory){if(typeof module==='object'&&module.exports)module.exports=factory();else root.SparrowPremiere=factory();})(typeof globalThis!=='undefined'?globalThis:this,function(){
+  const pending=()=>({status:'pending',date:null,festival:null,festivalEn:null,kind:'unknown'});
+  function rows(f,en){
+    if(f.ev)return [];
+    const p=f.worldPremiere||pending(),t=(zh,eng)=>en?eng:zh;
+    let date=p.date?String(p.date).replace(/-/g,'.'):t('待核实','To be verified');
+    let festival=(en?p.festivalEn:p.festival)||t('待核实','To be verified');
+    if(p.status==='withheld'){date=t('暂不公开','Not disclosed');festival=t('暂不公开','Not disclosed');}
+    if(p.status==='unannounced'){date=t('尚未公布','Not announced');festival=t('尚未公布','Not announced');}
+    if(p.kind==='theatrical')festival=t('非影展首映','Non-festival premiere');
+    if(p.kind==='collection'){date=t('按收录作品分别登记','Varies by included work');festival=t('按收录作品分别登记','Varies by included work');}
+    return [[t('全球首映时间','World premiere date'),date],[t('首映影展','Premiere festival'),festival]];
+  }
+  return {pending,rows};
+});

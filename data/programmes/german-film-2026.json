@@ -68,7 +68,15 @@
     "checked": "2026-11-03",
     "sensory": "unverified"
    },
-   "contentNote": "剧情涉及战争与纳粹历史、动物猎捕、家庭冲突。具体画面与表现强度尚未核实，请结合个人情况选择。"
+   "contentNote": "剧情涉及战争与纳粹历史、动物猎捕、家庭冲突。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "worldPremiere": {
+    "status": "verified",
+    "date": "2025-05-15",
+    "festival": "戛纳国际电影节",
+    "festivalEn": "Cannes Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
+   }
   },
   {
    "id": "dry-leaf",
@@ -134,7 +142,15 @@
     "checked": "2026-11-03",
     "sensory": "unverified"
    },
-   "contentNote": "剧情涉及亲人失踪、失落与焦虑。具体画面与表现强度尚未核实，请结合个人情况选择。"
+   "contentNote": "剧情涉及亲人失踪、失落与焦虑。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "worldPremiere": {
+    "status": "partial",
+    "date": "2025-08",
+    "festival": "洛迦诺国际电影节",
+    "festivalEn": "Locarno Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
+   }
   },
   {
    "id": "i-understand-your-displeasure",
@@ -199,7 +215,15 @@
     "imdb": "tt39368062",
     "douban": "38197587"
    },
-   "bio": "基利安·阿曼多·弗里德里希1995年生于德国康斯坦茨，曾在希尔德斯海姆和马德里学习表演艺术，后在慕尼黑与墨西哥城学习纪录片导演。他的纪录片《核电游牧者》（Nomades du nucléaire）于2023年在柏林国际电影节首映，并获德国短片奖中篇特别奖。《我理解您的不满》是他的首部剧情长片。"
+   "bio": "基利安·阿曼多·弗里德里希1995年生于德国康斯坦茨，曾在希尔德斯海姆和马德里学习表演艺术，后在慕尼黑与墨西哥城学习纪录片导演。他的纪录片《核电游牧者》（Nomades du nucléaire）于2023年在柏林国际电影节首映，并获德国短片奖中篇特别奖。《我理解您的不满》是他的首部剧情长片。",
+   "worldPremiere": {
+    "status": "partial",
+    "date": "2026-02",
+    "festival": "柏林国际电影节",
+    "festivalEn": "Berlin International Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
+   }
   },
   {
    "id": "karla",
@@ -266,7 +290,15 @@
     "checked": "2026-11-03",
     "sensory": "unverified"
    },
-   "contentNote": "剧情涉及儿童受虐、家庭暴力、司法压力。具体画面与表现强度尚未核实，请结合个人情况选择。"
+   "contentNote": "剧情涉及儿童受虐、家庭暴力、司法压力。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "worldPremiere": {
+    "status": "verified",
+    "date": "2025-06-29",
+    "festival": "慕尼黑国际电影节",
+    "festivalEn": "Filmfest München",
+    "kind": "festival",
+    "checked": "2026-11-07"
+   }
   },
   {
    "id": "miroirs-no-3",
@@ -329,7 +361,15 @@
     "checked": "2026-11-03",
     "sensory": "unverified"
    },
-   "contentNote": "剧情涉及交通事故、心理创伤、家庭伤痛。具体画面与表现强度尚未核实，请结合个人情况选择。"
+   "contentNote": "剧情涉及交通事故、心理创伤、家庭伤痛。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "worldPremiere": {
+    "status": "partial",
+    "date": "2025-05",
+    "festival": "戛纳导演双周",
+    "festivalEn": "Cannes Directors’ Fortnight",
+    "kind": "festival",
+    "checked": "2026-11-07"
+   }
   },
   {
    "id": "the-miserable-mother",
@@ -391,6 +431,13 @@
     "lb": "the-miserable-mother",
     "imdb": "tt43258259",
     "douban": "37045627"
+   },
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
    }
   },
   {
@@ -463,7 +510,14 @@
     "checked": "2026-11-03",
     "sensory": "unverified"
    },
-   "contentNote": "剧情涉及饮酒、家庭关系压力。具体画面与表现强度尚未核实，请结合个人情况选择。"
+   "contentNote": "剧情涉及饮酒、家庭关系压力。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "sometimes-i-imagine-them-all-at-a-party",
@@ -519,7 +573,15 @@
     "sensory": "unverified"
    },
    "contentNote": "剧情涉及针对女性的暴力、创伤回忆。具体画面与表现强度尚未核实，请结合个人情况选择。",
-   "bio": "丹妮拉·马尼亚尼·惠勒是德国与巴西双重文化背景的电影人，1995年生于慕尼黑。她曾在里约热内卢生活，后于慕尼黑电影电视学院学习纪录片导演，创作过多部自编、自导、自剪的短片。她于2023年获慕尼黑纪录片电影节DOK.talent奖；《残存的感性》是她的自传性纪录长片首作。"
+   "bio": "丹妮拉·马尼亚尼·惠勒是德国与巴西双重文化背景的电影人，1995年生于慕尼黑。她曾在里约热内卢生活，后于慕尼黑电影电视学院学习纪录片导演，创作过多部自编、自导、自剪的短片。她于2023年获慕尼黑纪录片电影节DOK.talent奖；《残存的感性》是她的自传性纪录长片首作。",
+   "worldPremiere": {
+    "status": "verified",
+    "date": "2026-02-15",
+    "festival": "柏林国际电影节",
+    "festivalEn": "Berlin International Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
+   }
   },
   {
    "id": "when-pigs-fly",
@@ -576,7 +638,14 @@
     "sensory": "unverified"
    },
    "contentNote": "剧情涉及动物死亡议题、器官移植与医疗伦理。具体画面与表现强度尚未核实，请结合个人情况选择。",
-   "bio": "丹妮丝·里德迈尔曾于慕尼黑电影电视学院学习纪录片导演，担任自由电影人，并为巴伐利亚广播公司从事创作、导演与剪辑工作。她于2021年获慕尼黑市Starter电影奖，短片作品包括《An Anna》（2020）与合导的《Swim for Good》（2018）。《当猪会飞》延续了她对生命经验与人与动物关系的关注。"
+   "bio": "丹妮丝·里德迈尔曾于慕尼黑电影电视学院学习纪录片导演，担任自由电影人，并为巴伐利亚广播公司从事创作、导演与剪辑工作。她于2021年获慕尼黑市Starter电影奖，短片作品包括《An Anna》（2020）与合导的《Swim for Good》（2018）。《当猪会飞》延续了她对生命经验与人与动物关系的关注。",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "shame-and-money",
@@ -640,7 +709,15 @@
     "checked": "2026-11-03",
     "sensory": "unverified"
    },
-   "contentNote": "剧情涉及经济困境、失去生计、家庭压力。具体画面与表现强度尚未核实，请结合个人情况选择。"
+   "contentNote": "剧情涉及经济困境、失去生计、家庭压力。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "worldPremiere": {
+    "status": "verified",
+    "date": "2026-01-25",
+    "festival": "圣丹斯电影节",
+    "festivalEn": "Sundance Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
+   }
   }
  ],
  "shows": [

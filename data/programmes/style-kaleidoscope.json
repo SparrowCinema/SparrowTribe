@@ -73,7 +73,15 @@
     "checked": "2026-11-03",
     "sensory": "unverified"
    },
-   "contentNote": "剧情涉及衰老与死亡焦虑、家庭疏离。具体画面与表现强度尚未核实，请结合个人情况选择。"
+   "contentNote": "剧情涉及衰老与死亡焦虑、家庭疏离。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "worldPremiere": {
+    "status": "verified",
+    "date": "1957-12-26",
+    "festival": null,
+    "festivalEn": null,
+    "kind": "theatrical",
+    "checked": "2026-11-07"
+   }
   },
   {
    "id": "dogville",
@@ -153,6 +161,14 @@
     "rating": "R",
     "edition": "US catalogue release",
     "checked": "2026-11-03"
+   },
+   "worldPremiere": {
+    "status": "verified",
+    "date": "2003-05-19",
+    "festival": "戛纳国际电影节",
+    "festivalEn": "Cannes Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -243,6 +259,14 @@
     "rating": "R",
     "edition": "US Blu-ray release",
     "checked": "2026-11-03"
+   },
+   "worldPremiere": {
+    "status": "partial",
+    "date": "2025-05",
+    "festival": "戛纳国际电影节",
+    "festivalEn": "Cannes Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -332,7 +356,14 @@
     "checked": "2026-11-03",
     "sensory": "unverified"
    },
-   "contentNote": "剧情涉及武打与兵器伤害、权力迫害。具体画面与表现强度尚未核实，请结合个人情况选择。"
+   "contentNote": "剧情涉及武打与兵器伤害、权力迫害。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "swordsman-2",
@@ -413,7 +444,14 @@
     "checked": "2026-11-03",
     "sensory": "unverified"
    },
-   "contentNote": "剧情涉及武打与兵器伤害、背叛与迫害。具体画面与表现强度尚未核实，请结合个人情况选择。"
+   "contentNote": "剧情涉及武打与兵器伤害、背叛与迫害。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "leningrad-cowboys",
@@ -483,7 +521,15 @@
     "checked": "2026-11-03",
     "sensory": "unverified"
    },
-   "contentNote": "剧情涉及死亡与遗体情节、饮酒。具体画面与表现强度尚未核实，请结合个人情况选择。"
+   "contentNote": "剧情涉及死亡与遗体情节、饮酒。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "worldPremiere": {
+    "status": "verified",
+    "date": "1989-03-24",
+    "festival": null,
+    "festivalEn": null,
+    "kind": "theatrical",
+    "checked": "2026-11-07"
+   }
   },
   {
    "id": "turin-horse",
@@ -554,7 +600,15 @@
     "checked": "2026-11-03",
     "sensory": "unverified"
    },
-   "contentNote": "剧情涉及动物受苦议题、生存困境、绝望与衰败。具体画面与表现强度尚未核实，请结合个人情况选择。"
+   "contentNote": "剧情涉及动物受苦议题、生存困境、绝望与衰败。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "worldPremiere": {
+    "status": "verified",
+    "date": "2011-02-15",
+    "festival": "柏林国际电影节",
+    "festivalEn": "Berlin International Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
+   }
   },
   {
    "id": "a-better-tomorrow",
@@ -643,7 +697,14 @@
     "checked": "2026-11-03",
     "sensory": "unverified"
    },
-   "contentNote": "剧情涉及枪战与血腥伤害、亲人死亡。具体画面与表现强度尚未核实，请结合个人情况选择。"
+   "contentNote": "剧情涉及枪战与血腥伤害、亲人死亡。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "long-live-the-missus",
@@ -716,7 +777,14 @@
     "checked": "2026-11-03",
     "sensory": "unverified"
    },
-   "contentNote": "剧情涉及婚外关系、家庭争执、性别偏见。具体画面与表现强度尚未核实，请结合个人情况选择。"
+   "contentNote": "剧情涉及婚外关系、家庭争执、性别偏见。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "bullets-over-broadway",
@@ -794,7 +862,14 @@
     "checked": "2026-11-03",
     "sensory": "unverified"
    },
-   "contentNote": "剧情涉及黑帮暴力、婚外关系。具体画面与表现强度尚未核实，请结合个人情况选择。"
+   "contentNote": "剧情涉及黑帮暴力、婚外关系。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "green-green-grass",
@@ -863,7 +938,14 @@
     "checked": "2026-11-03",
     "sensory": "unverified"
    },
-   "contentNote": "已查看现有剧情资料，尚未确认需要特别标注的敏感内容。这不代表适合所有年龄，也不等同于完整内容审查。"
+   "contentNote": "已查看现有剧情资料，尚未确认需要特别标注的敏感内容。这不代表适合所有年龄，也不等同于完整内容审查。",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "blood-simple",
@@ -945,6 +1027,13 @@
     "rating": "R",
     "edition": "US release",
     "checked": "2026-11-03"
+   },
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
    }
   },
   {
@@ -1015,7 +1104,14 @@
     "checked": "2026-11-03",
     "sensory": "unverified"
    },
-   "contentNote": "剧情涉及疾病与照护、婚姻压抑。具体画面与表现强度尚未核实，请结合个人情况选择。"
+   "contentNote": "剧情涉及疾病与照护、婚姻压抑。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "mon-oncle",
@@ -1084,7 +1180,14 @@
     "checked": "2026-11-03",
     "sensory": "unverified"
    },
-   "contentNote": "已查看现有剧情资料，尚未确认需要特别标注的敏感内容。这不代表适合所有年龄，也不等同于完整内容审查。"
+   "contentNote": "已查看现有剧情资料，尚未确认需要特别标注的敏感内容。这不代表适合所有年龄，也不等同于完整内容审查。",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "where-is-the-friends-house",
@@ -1161,7 +1264,14 @@
     "checked": "2026-11-03",
     "sensory": "unverified"
    },
-   "contentNote": "剧情涉及儿童受责备、被学校排斥的焦虑。具体画面与表现强度尚未核实，请结合个人情况选择。"
+   "contentNote": "剧情涉及儿童受责备、被学校排斥的焦虑。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "the-sacrifice",
@@ -1236,7 +1346,15 @@
     "checked": "2026-11-03",
     "sensory": "unverified"
    },
-   "contentNote": "剧情涉及核战争恐惧、精神危机、家庭焦虑。具体画面与表现强度尚未核实，请结合个人情况选择。"
+   "contentNote": "剧情涉及核战争恐惧、精神危机、家庭焦虑。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "worldPremiere": {
+    "status": "partial",
+    "date": "1986-05",
+    "festival": "戛纳国际电影节",
+    "festivalEn": "Cannes Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
+   }
   },
   {
    "id": "faces-places",
@@ -1307,7 +1425,15 @@
     "checked": "2026-11-03",
     "sensory": "unverified"
    },
-   "contentNote": "剧情涉及死亡与哀伤、衰老议题。具体画面与表现强度尚未核实，请结合个人情况选择。"
+   "contentNote": "剧情涉及死亡与哀伤、衰老议题。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "worldPremiere": {
+    "status": "verified",
+    "date": "2017-05-19",
+    "festival": "戛纳国际电影节",
+    "festivalEn": "Cannes Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
+   }
   }
  ],
  "shows": [

@@ -2,6 +2,7 @@
 // 转换规则与 cloudfunctions/getData/index.js 的 fromSite() 保持一致：两处改一处时要同步改另一处。
 // 发布小程序新版本前运行一次：node tools/build-fallback.js
 const fs = require('fs'), path = require('path');
+require('./prepare-premieres.js');
 const root = path.join(__dirname, '..');
 const SITE = 'https://sparrowcinema.github.io/SparrowTribe/';
 const BUNDLED = require(path.join(root, 'cloudfunctions/getData/bundled.json'));
@@ -74,3 +75,5 @@ fs.writeFileSync(path.join(root, 'miniprogram/utils/library.js'), fs.readFileSyn
 
 fs.copyFileSync(path.join(root,'shared/profile-backup.js'),path.join(root,'miniprogram/utils/profile-backup.js'));
 fs.copyFileSync(path.join(root,'shared/growth.js'),path.join(root,'miniprogram/utils/growth.js'));
+
+fs.copyFileSync(path.join(root,'shared/premiere.js'),path.join(root,'miniprogram/utils/premiere.js'));

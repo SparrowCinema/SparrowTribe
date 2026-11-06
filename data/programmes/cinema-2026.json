@@ -77,7 +77,15 @@
     "checked": "2026-11-03",
     "sensory": "unverified"
    },
-   "contentNote": "已结合海外公开内容提示整理；片长、剪辑与本次放映版本可能不同，请按个人情况选择。"
+   "contentNote": "已结合海外公开内容提示整理；片长、剪辑与本次放映版本可能不同，请按个人情况选择。",
+   "worldPremiere": {
+    "status": "partial",
+    "date": "2014-09",
+    "festival": "奇幻电影节（奥斯汀）",
+    "festivalEn": "Fantastic Fest",
+    "kind": "festival",
+    "checked": "2026-11-07"
+   }
   },
   {
    "id": "happy-birthday",
@@ -152,7 +160,15 @@
     "checked": "2026-11-03",
     "sensory": "unverified"
    },
-   "contentNote": "剧情涉及童工与儿童剥削、阶级歧视。具体画面与表现强度尚未核实，请结合个人情况选择。"
+   "contentNote": "剧情涉及童工与儿童剥削、阶级歧视。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "worldPremiere": {
+    "status": "partial",
+    "date": "2025-06",
+    "festival": "翠贝卡电影节",
+    "festivalEn": "Tribeca Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
+   }
   },
   {
    "id": "linka-linka",
@@ -230,7 +246,14 @@
     "lb": "linka-linka",
     "imdb": "tt38574217"
    },
-   "ratingChecked": "2026-11-03"
+   "ratingChecked": "2026-11-03",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "kill-bill-whole-bloody-affair",
@@ -293,7 +316,14 @@
     "checked": "2026-11-03",
     "sensory": "unverified"
    },
-   "contentNote": "已结合海外公开内容提示整理；片长、剪辑与本次放映版本可能不同，请按个人情况选择。"
+   "contentNote": "已结合海外公开内容提示整理；片长、剪辑与本次放映版本可能不同，请按个人情况选择。",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "the-odyssey",
@@ -355,7 +385,14 @@
     "checked": "2026-11-03",
     "sensory": "unverified"
    },
-   "contentNote": "剧情涉及战争题材、失踪与家庭分离、冒险中的危险。具体画面与表现强度尚未核实，请结合个人情况选择。"
+   "contentNote": "剧情涉及战争题材、失踪与家庭分离、冒险中的危险。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "dune-part-three",
@@ -419,7 +456,14 @@
     "checked": "2026-11-03",
     "sensory": "unverified"
    },
-   "contentNote": "剧情涉及战争与宗教权力题材、政治压迫。具体画面与表现强度尚未核实，请结合个人情况选择。"
+   "contentNote": "剧情涉及战争与宗教权力题材、政治压迫。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "avengers-doomsday",
@@ -481,7 +525,14 @@
     "checked": "2026-11-03",
     "sensory": "unverified"
    },
-   "contentNote": "剧情涉及战斗与威胁题材、灾难题材。具体画面与表现强度尚未核实，请结合个人情况选择。"
+   "contentNote": "剧情涉及战斗与威胁题材、灾难题材。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "we-live-in-time",
@@ -549,6 +600,14 @@
     "rating": "R",
     "edition": "US Blu-ray release",
     "checked": "2026-11-03"
+   },
+   "worldPremiere": {
+    "status": "verified",
+    "date": "2024-09-06",
+    "festival": "多伦多国际电影节",
+    "festivalEn": "Toronto International Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -607,7 +666,14 @@
     "checked": "2026-11-03",
     "sensory": "unverified"
    },
-   "contentNote": "剧情涉及抑郁经历、债务压力、伴侣争执。具体画面与表现强度尚未核实，请结合个人情况选择。"
+   "contentNote": "剧情涉及抑郁经历、债务压力、伴侣争执。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "resident-evil",
@@ -684,7 +750,14 @@
     "checked": "2026-11-03",
     "sensory": "unverified"
    },
-   "contentNote": "剧情涉及恐怖题材、感染与变异、生存威胁。具体画面与表现强度尚未核实，请结合个人情况选择。"
+   "contentNote": "剧情涉及恐怖题材、感染与变异、生存威胁。具体画面与表现强度尚未核实，请结合个人情况选择。",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "hunger-games-sunrise-on-the-reaping",
@@ -762,7 +835,14 @@
     "mc": "https://www.metacritic.com/movie/the-hunger-games-sunrise-on-the-reaping/"
    },
    "ratingChecked": "2026-11-05",
-   "poster": "posters/hunger-games-sunrise-on-the-reaping-2026-cn.jpg"
+   "poster": "posters/hunger-games-sunrise-on-the-reaping-2026-cn.jpg",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "legend-of-1900",
@@ -833,7 +913,14 @@
     "mc": "https://www.metacritic.com/movie/the-legend-of-1900/"
    },
    "ratingChecked": "2026-11-05",
-   "poster": "posters/legend-of-1900-2026-cn.jpg"
+   "poster": "posters/legend-of-1900-2026-cn.jpg",
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
   },
   {
    "id": "everest-the-other-side",
@@ -905,7 +992,15 @@
     "mc": "https://www.metacritic.com/movie/everest-the-other-side/"
    },
    "ratingChecked": "2026-11-05",
-   "poster": "posters/everest-the-other-side-2026-cn.jpg"
+   "poster": "posters/everest-the-other-side-2026-cn.jpg",
+   "worldPremiere": {
+    "status": "verified",
+    "date": "2026-09-03",
+    "festival": "威尼斯国际电影节",
+    "festivalEn": "Venice International Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
+   }
   }
  ],
  "shows": [
