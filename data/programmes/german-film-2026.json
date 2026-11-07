@@ -433,11 +433,12 @@
     "douban": "37045627"
    },
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
-    "festival": null,
-    "festivalEn": null,
-    "kind": "unknown"
+    "status": "partial",
+    "date": "2026-06",
+    "festival": "上海国际电影节",
+    "festivalEn": "Shanghai International Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -512,11 +513,12 @@
    },
    "contentNote": "剧情涉及饮酒、家庭关系压力。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
+    "status": "verified",
+    "date": "2026-01-27",
     "festival": null,
     "festivalEn": null,
-    "kind": "unknown"
+    "kind": "theatrical",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -640,11 +642,12 @@
    "contentNote": "剧情涉及动物死亡议题、器官移植与医疗伦理。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "bio": "丹妮丝·里德迈尔曾于慕尼黑电影电视学院学习纪录片导演，担任自由电影人，并为巴伐利亚广播公司从事创作、导演与剪辑工作。她于2021年获慕尼黑市Starter电影奖，短片作品包括《An Anna》（2020）与合导的《Swim for Good》（2018）。《当猪会飞》延续了她对生命经验与人与动物关系的关注。",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
-    "festival": null,
-    "festivalEn": null,
-    "kind": "unknown"
+    "status": "partial",
+    "date": "2026-03",
+    "festival": "哥本哈根国际纪录片电影节",
+    "festivalEn": "CPH:DOX",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   },
   {

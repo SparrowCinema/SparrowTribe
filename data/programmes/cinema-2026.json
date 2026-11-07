@@ -248,11 +248,12 @@
    },
    "ratingChecked": "2026-11-03",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
-    "festival": null,
-    "festivalEn": null,
-    "kind": "unknown"
+    "status": "verified",
+    "date": "2025-11-03",
+    "festival": "东京国际电影节",
+    "festivalEn": "Tokyo International Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -318,11 +319,12 @@
    },
    "contentNote": "已结合海外公开内容提示整理；片长、剪辑与本次放映版本可能不同，请按个人情况选择。",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
-    "festival": null,
-    "festivalEn": null,
-    "kind": "unknown"
+    "status": "verified",
+    "date": "2004-05-23",
+    "festival": "戛纳国际电影节",
+    "festivalEn": "Cannes Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -387,11 +389,12 @@
    },
    "contentNote": "剧情涉及战争题材、失踪与家庭分离、冒险中的危险。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
+    "status": "verified",
+    "date": "2026-07-06",
     "festival": null,
     "festivalEn": null,
-    "kind": "unknown"
+    "kind": "theatrical",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -458,11 +461,12 @@
    },
    "contentNote": "剧情涉及战争与宗教权力题材、政治压迫。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "worldPremiere": {
-    "status": "pending",
+    "status": "unannounced",
     "date": null,
     "festival": null,
     "festivalEn": null,
-    "kind": "unknown"
+    "kind": "unknown",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -527,11 +531,12 @@
    },
    "contentNote": "剧情涉及战斗与威胁题材、灾难题材。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "worldPremiere": {
-    "status": "pending",
+    "status": "unannounced",
     "date": null,
     "festival": null,
     "festivalEn": null,
-    "kind": "unknown"
+    "kind": "unknown",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -668,11 +673,12 @@
    },
    "contentNote": "剧情涉及抑郁经历、债务压力、伴侣争执。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
-    "festival": null,
-    "festivalEn": null,
-    "kind": "unknown"
+    "status": "verified",
+    "date": "2025-07-22",
+    "festival": "FIRST青年电影展",
+    "festivalEn": "FIRST International Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -752,11 +758,12 @@
    },
    "contentNote": "剧情涉及恐怖题材、感染与变异、生存威胁。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
+    "status": "verified",
+    "date": "2026-09-15",
     "festival": null,
     "festivalEn": null,
-    "kind": "unknown"
+    "kind": "theatrical",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -837,11 +844,12 @@
    "ratingChecked": "2026-11-05",
    "poster": "posters/hunger-games-sunrise-on-the-reaping-2026-cn.jpg",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
+    "status": "verified",
+    "date": "2026-10-28",
     "festival": null,
     "festivalEn": null,
-    "kind": "unknown"
+    "kind": "theatrical",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -915,11 +923,12 @@
    "ratingChecked": "2026-11-05",
    "poster": "posters/legend-of-1900-2026-cn.jpg",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
+    "status": "verified",
+    "date": "1998-10-28",
     "festival": null,
     "festivalEn": null,
-    "kind": "unknown"
+    "kind": "theatrical",
+    "checked": "2026-11-07"
    }
   },
   {

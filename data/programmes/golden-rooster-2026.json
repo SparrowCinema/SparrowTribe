@@ -164,11 +164,12 @@
    },
    "ratingChecked": "2026-11-03",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
-    "festival": null,
-    "festivalEn": null,
-    "kind": "unknown"
+    "status": "partial",
+    "date": "2026-09",
+    "festival": "多伦多国际电影节",
+    "festivalEn": "Toronto International Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -240,11 +241,12 @@
    },
    "ratingChecked": "2026-11-03",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
-    "festival": null,
-    "festivalEn": null,
-    "kind": "unknown"
+    "status": "partial",
+    "date": "2026-07",
+    "festival": "FIRST青年电影展",
+    "festivalEn": "FIRST International Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -324,11 +326,12 @@
    },
    "ratingChecked": "2026-11-03",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
-    "festival": null,
-    "festivalEn": null,
-    "kind": "unknown"
+    "status": "verified",
+    "date": "2025-11-03",
+    "festival": "东京国际电影节",
+    "festivalEn": "Tokyo International Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -398,11 +401,12 @@
    },
    "ratingChecked": "2026-11-03",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
-    "festival": null,
-    "festivalEn": null,
-    "kind": "unknown"
+    "status": "partial",
+    "date": "2026-08",
+    "festival": "洛迦诺国际电影节",
+    "festivalEn": "Locarno Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -488,11 +492,12 @@
    "metadataChecked": "2026-11-03",
    "langTag": "原声｜中英字幕",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
-    "festival": null,
-    "festivalEn": null,
-    "kind": "unknown"
+    "status": "partial",
+    "date": "2026-05",
+    "festival": "戛纳导演双周",
+    "festivalEn": "Cannes Directors’ Fortnight",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -579,11 +584,12 @@
    "metadataChecked": "2026-11-03",
    "langTag": "原声｜中英字幕",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
-    "festival": null,
-    "festivalEn": null,
-    "kind": "unknown"
+    "status": "partial",
+    "date": "2026-05",
+    "festival": "戛纳导演双周",
+    "festivalEn": "Cannes Directors’ Fortnight",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -653,11 +659,12 @@
    },
    "ratingChecked": "2026-11-03",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
-    "festival": null,
-    "festivalEn": null,
-    "kind": "unknown"
+    "status": "partial",
+    "date": "2026",
+    "festival": "圣丹斯电影节",
+    "festivalEn": "Sundance Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -729,11 +736,12 @@
    },
    "ratingChecked": "2026-11-03",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
-    "festival": null,
-    "festivalEn": null,
-    "kind": "unknown"
+    "status": "partial",
+    "date": "2026-05",
+    "festival": "戛纳国际电影节",
+    "festivalEn": "Cannes Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -822,11 +830,12 @@
    "language": "汉语普通话",
    "metadataChecked": "2026-11-03",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
-    "festival": null,
-    "festivalEn": null,
-    "kind": "unknown"
+    "status": "partial",
+    "date": "2026-08",
+    "festival": "洛迦诺国际电影节",
+    "festivalEn": "Locarno Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -911,11 +920,12 @@
    "language": "英语 / 汉语普通话 / 日语",
    "metadataChecked": "2026-11-03",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
-    "festival": null,
-    "festivalEn": null,
-    "kind": "unknown"
+    "status": "partial",
+    "date": "2026",
+    "festival": "鹿特丹国际电影节",
+    "festivalEn": "International Film Festival Rotterdam",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -988,7 +998,8 @@
     "date": null,
     "festival": null,
     "festivalEn": null,
-    "kind": "unknown"
+    "kind": "unknown",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -1059,11 +1070,12 @@
    },
    "ratingChecked": "2026-11-03",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
-    "festival": null,
-    "festivalEn": null,
-    "kind": "unknown"
+    "status": "partial",
+    "date": "2026-09",
+    "festival": "威尼斯国际电影节",
+    "festivalEn": "Venice International Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -1142,7 +1154,8 @@
     "date": null,
     "festival": null,
     "festivalEn": null,
-    "kind": "unknown"
+    "kind": "unknown",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -1295,11 +1308,12 @@
    },
    "ratingChecked": "2026-11-03",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
-    "festival": null,
-    "festivalEn": null,
-    "kind": "unknown"
+    "status": "verified",
+    "date": "2026-07-19",
+    "festival": "FIRST青年电影展",
+    "festivalEn": "FIRST International Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -1376,11 +1390,12 @@
    },
    "ratingChecked": "2026-11-03",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
-    "festival": null,
-    "festivalEn": null,
-    "kind": "unknown"
+    "status": "partial",
+    "date": "2026-11",
+    "festival": "中国金鸡百花电影节·金鸡影展",
+    "festivalEn": "Golden Rooster Film Screening",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -1449,11 +1464,12 @@
    },
    "ratingChecked": "2026-11-03",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
-    "festival": null,
-    "festivalEn": null,
-    "kind": "unknown"
+    "status": "partial",
+    "date": "2026-02",
+    "festival": "柏林国际电影节",
+    "festivalEn": "Berlin International Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -1521,11 +1537,12 @@
    },
    "ratingChecked": "2026-11-03",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
-    "festival": null,
-    "festivalEn": null,
-    "kind": "unknown"
+    "status": "partial",
+    "date": "2026-11",
+    "festival": "中国金鸡百花电影节·金鸡影展",
+    "festivalEn": "Golden Rooster Film Screening",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -1602,11 +1619,12 @@
    },
    "ratingChecked": "2026-11-03",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
-    "festival": null,
-    "festivalEn": null,
-    "kind": "unknown"
+    "status": "partial",
+    "date": "2026-06",
+    "festival": "上海国际电影节",
+    "festivalEn": "Shanghai International Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -1681,11 +1699,12 @@
    },
    "ratingChecked": "2026-11-03",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
-    "festival": null,
-    "festivalEn": null,
-    "kind": "unknown"
+    "status": "partial",
+    "date": "2026-05",
+    "festival": "戛纳影评人周",
+    "festivalEn": "Cannes Critics’ Week",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -1754,11 +1773,12 @@
    },
    "ratingChecked": "2026-11-03",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
-    "festival": null,
-    "festivalEn": null,
-    "kind": "unknown"
+    "status": "verified",
+    "date": "2026-04-25",
+    "festival": "安纳巴地中海电影节",
+    "festivalEn": "Annaba Mediterranean Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -1831,11 +1851,12 @@
    },
    "ratingChecked": "2026-11-03",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
-    "festival": null,
-    "festivalEn": null,
-    "kind": "unknown"
+    "status": "partial",
+    "date": "2026-09",
+    "festival": "圣塞巴斯蒂安国际电影节",
+    "festivalEn": "San Sebastián International Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -1908,11 +1929,12 @@
    },
    "ratingChecked": "2026-11-03",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
+    "status": "partial",
+    "date": "1981",
     "festival": null,
     "festivalEn": null,
-    "kind": "unknown"
+    "kind": "theatrical",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -2061,11 +2083,12 @@
    },
    "ratingChecked": "2026-11-03",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
-    "festival": null,
-    "festivalEn": null,
-    "kind": "unknown"
+    "status": "verified",
+    "date": "2026-06-19",
+    "festival": "上海国际电影节",
+    "festivalEn": "Shanghai International Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -2138,11 +2161,12 @@
    },
    "ratingChecked": "2026-11-03",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
-    "festival": null,
-    "festivalEn": null,
-    "kind": "unknown"
+    "status": "partial",
+    "date": "2026-11",
+    "festival": "中国金鸡百花电影节·金鸡影展",
+    "festivalEn": "Golden Rooster Film Screening",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -2220,7 +2244,8 @@
     "date": null,
     "festival": null,
     "festivalEn": null,
-    "kind": "unknown"
+    "kind": "unknown",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -2292,11 +2317,12 @@
    },
    "ratingChecked": "2026-11-03",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
-    "festival": null,
-    "festivalEn": null,
-    "kind": "unknown"
+    "status": "partial",
+    "date": "2026-09",
+    "festival": "平遥国际电影展",
+    "festivalEn": "Pingyao International Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -2367,11 +2393,12 @@
    },
    "ratingChecked": "2026-11-03",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
-    "festival": null,
-    "festivalEn": null,
-    "kind": "unknown"
+    "status": "partial",
+    "date": "2025-10",
+    "festival": "东京国际电影节",
+    "festivalEn": "Tokyo International Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -2447,11 +2474,12 @@
    },
    "ratingChecked": "2026-11-03",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
-    "festival": null,
-    "festivalEn": null,
-    "kind": "unknown"
+    "status": "verified",
+    "date": "2026-06-18",
+    "festival": "上海国际电影节",
+    "festivalEn": "Shanghai International Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -2527,11 +2555,12 @@
    "release": "2026年11月19日 全国艺联专线上映",
    "language": "汉语普通话",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
-    "festival": null,
-    "festivalEn": null,
-    "kind": "unknown"
+    "status": "verified",
+    "date": "2025-09-28",
+    "festival": "平遥国际电影展",
+    "festivalEn": "Pingyao International Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -2601,11 +2630,12 @@
    },
    "ratingChecked": "2026-11-03",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
-    "festival": null,
-    "festivalEn": null,
-    "kind": "unknown"
+    "status": "partial",
+    "date": "2025-10",
+    "festival": "夏威夷国际电影节",
+    "festivalEn": "Hawai‘i International Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -2678,11 +2708,12 @@
    },
    "ratingChecked": "2026-11-03",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
-    "festival": null,
-    "festivalEn": null,
-    "kind": "unknown"
+    "status": "partial",
+    "date": "2026-09",
+    "festival": "威尼斯国际电影节",
+    "festivalEn": "Venice International Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -2753,11 +2784,12 @@
    },
    "ratingChecked": "2026-11-03",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
-    "festival": null,
-    "festivalEn": null,
-    "kind": "unknown"
+    "status": "partial",
+    "date": "2025-11",
+    "festival": "塔林黑夜电影节",
+    "festivalEn": "Tallinn Black Nights Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -2843,11 +2875,12 @@
    "language": "英语 / 日语 / 汉语普通话",
    "metadataChecked": "2026-11-03",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
-    "festival": null,
-    "festivalEn": null,
-    "kind": "unknown"
+    "status": "partial",
+    "date": "2026-06",
+    "festival": "安锡国际动画电影节",
+    "festivalEn": "Annecy International Animation Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -2923,7 +2956,8 @@
     "date": null,
     "festival": null,
     "festivalEn": null,
-    "kind": "unknown"
+    "kind": "unknown",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -3086,11 +3120,12 @@
    },
    "ratingChecked": "2026-11-03",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
+    "status": "verified",
+    "date": "1993-11-18",
     "festival": null,
     "festivalEn": null,
-    "kind": "unknown"
+    "kind": "theatrical",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -3158,11 +3193,12 @@
    },
    "ratingChecked": "2026-11-03",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
+    "status": "verified",
+    "date": "2026-08-18",
     "festival": null,
     "festivalEn": null,
-    "kind": "unknown"
+    "kind": "theatrical",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -3244,11 +3280,12 @@
    "language": "粤语",
    "metadataChecked": "2026-11-03",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
-    "festival": null,
-    "festivalEn": null,
-    "kind": "unknown"
+    "status": "verified",
+    "date": "2026-06-13",
+    "festival": "上海国际电影节",
+    "festivalEn": "Shanghai International Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -3334,11 +3371,12 @@
    "language": "汉语普通话",
    "metadataChecked": "2026-11-03",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
-    "festival": null,
-    "festivalEn": null,
-    "kind": "unknown"
+    "status": "partial",
+    "date": "2026-09",
+    "festival": "平遥国际电影展",
+    "festivalEn": "Pingyao International Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -3416,11 +3454,12 @@
    },
    "ratingChecked": "2026-11-03",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
-    "festival": null,
-    "festivalEn": null,
-    "kind": "unknown"
+    "status": "partial",
+    "date": "2026-06",
+    "festival": "上海国际电影节",
+    "festivalEn": "Shanghai International Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -3495,7 +3534,8 @@
     "date": null,
     "festival": null,
     "festivalEn": null,
-    "kind": "unknown"
+    "kind": "unknown",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -3566,11 +3606,12 @@
    },
    "ratingChecked": "2026-11-03",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
-    "festival": null,
-    "festivalEn": null,
-    "kind": "unknown"
+    "status": "verified",
+    "date": "2026-08-13",
+    "festival": "洛迦诺国际电影节",
+    "festivalEn": "Locarno Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -3660,11 +3701,12 @@
    "language": "粤语",
    "metadataChecked": "2026-11-03",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
-    "festival": null,
-    "festivalEn": null,
-    "kind": "unknown"
+    "status": "verified",
+    "date": "2026-09-13",
+    "festival": "多伦多国际电影节",
+    "festivalEn": "Toronto International Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -3738,11 +3780,12 @@
    "ratingChecked": "2026-11-03",
    "metadataChecked": "2026-11-03",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
-    "festival": null,
-    "festivalEn": null,
-    "kind": "unknown"
+    "status": "verified",
+    "date": "2026-10-10",
+    "festival": "釜山国际电影节",
+    "festivalEn": "Busan International Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -3812,11 +3855,12 @@
    },
    "ratingChecked": "2026-11-03",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
-    "festival": null,
-    "festivalEn": null,
-    "kind": "unknown"
+    "status": "verified",
+    "date": "2026-09-06",
+    "festival": "威尼斯国际电影节",
+    "festivalEn": "Venice International Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -3887,11 +3931,12 @@
    },
    "ratingChecked": "2026-11-03",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
+    "status": "verified",
+    "date": "1995-01-28",
     "festival": null,
     "festivalEn": null,
-    "kind": "unknown"
+    "kind": "theatrical",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -3960,11 +4005,12 @@
    },
    "ratingChecked": "2026-11-03",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
-    "festival": null,
-    "festivalEn": null,
-    "kind": "unknown"
+    "status": "verified",
+    "date": "2026-08-23",
+    "festival": "挪威国际电影节·海于格松",
+    "festivalEn": "Norwegian International Film Festival Haugesund",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -4034,11 +4080,12 @@
    },
    "ratingChecked": "2026-11-03",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
-    "festival": null,
-    "festivalEn": null,
-    "kind": "unknown"
+    "status": "partial",
+    "date": "2026-02",
+    "festival": "柏林国际电影节",
+    "festivalEn": "Berlin International Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -4124,11 +4171,12 @@
    "metadataChecked": "2026-11-03",
    "langTag": "原声｜中英字幕",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
-    "festival": null,
-    "festivalEn": null,
-    "kind": "unknown"
+    "status": "verified",
+    "date": "2026-05-17",
+    "festival": "戛纳国际电影节",
+    "festivalEn": "Cannes Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -4198,11 +4246,12 @@
    },
    "ratingChecked": "2026-11-03",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
+    "status": "partial",
+    "date": "1986-12",
     "festival": null,
     "festivalEn": null,
-    "kind": "unknown"
+    "kind": "theatrical",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -4282,11 +4331,12 @@
    },
    "ratingChecked": "2026-11-03",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
+    "status": "verified",
+    "date": "1990-12-06",
     "festival": null,
     "festivalEn": null,
-    "kind": "unknown"
+    "kind": "theatrical",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -4442,11 +4492,12 @@
    },
    "ratingChecked": "2026-11-03",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
-    "festival": null,
-    "festivalEn": null,
-    "kind": "unknown"
+    "status": "partial",
+    "date": "2003-09",
+    "festival": "威尼斯国际电影节",
+    "festivalEn": "Venice International Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -4519,11 +4570,12 @@
    },
    "ratingChecked": "2026-11-03",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
-    "festival": null,
-    "festivalEn": null,
-    "kind": "unknown"
+    "status": "partial",
+    "date": "2026-05",
+    "festival": "戛纳国际电影节",
+    "festivalEn": "Cannes Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -4612,11 +4664,12 @@
    "language": "汉语普通话",
    "metadataChecked": "2026-11-03",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
-    "festival": null,
-    "festivalEn": null,
-    "kind": "unknown"
+    "status": "partial",
+    "date": "1996-05",
+    "festival": "戛纳国际电影节",
+    "festivalEn": "Cannes Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -4687,11 +4740,12 @@
    },
    "ratingChecked": "2026-11-03",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
-    "festival": null,
-    "festivalEn": null,
-    "kind": "unknown"
+    "status": "verified",
+    "date": "2026-09-10",
+    "festival": "威尼斯国际电影节",
+    "festivalEn": "Venice International Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -4764,11 +4818,12 @@
    },
    "ratingChecked": "2026-11-03",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
-    "festival": null,
-    "festivalEn": null,
-    "kind": "unknown"
+    "status": "partial",
+    "date": "2026-07",
+    "festival": "卡罗维发利国际电影节",
+    "festivalEn": "Karlovy Vary International Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -4838,11 +4893,12 @@
    },
    "ratingChecked": "2026-11-03",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
+    "status": "partial",
+    "date": "1983",
     "festival": null,
     "festivalEn": null,
-    "kind": "unknown"
+    "kind": "theatrical",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -4915,11 +4971,12 @@
    },
    "ratingChecked": "2026-11-03",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
+    "status": "verified",
+    "date": "1978-10-05",
     "festival": null,
     "festivalEn": null,
-    "kind": "unknown"
+    "kind": "theatrical",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -5000,11 +5057,12 @@
    },
    "ratingChecked": "2026-11-03",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
+    "status": "verified",
+    "date": "1982-06-25",
     "festival": null,
     "festivalEn": null,
-    "kind": "unknown"
+    "kind": "theatrical",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -5091,11 +5149,12 @@
    "language": "汉语普通话 / 英语",
    "metadataChecked": "2026-11-03",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
-    "festival": null,
-    "festivalEn": null,
-    "kind": "unknown"
+    "status": "partial",
+    "date": "2026-02",
+    "festival": "柏林国际电影节",
+    "festivalEn": "Berlin International Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -5252,11 +5311,12 @@
    },
    "ratingChecked": "2026-11-03",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
+    "status": "verified",
+    "date": "1926-12-25",
     "festival": null,
     "festivalEn": null,
-    "kind": "unknown"
+    "kind": "theatrical",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -5330,11 +5390,12 @@
    },
    "ratingChecked": "2026-11-03",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
-    "festival": null,
-    "festivalEn": null,
-    "kind": "unknown"
+    "status": "partial",
+    "date": "2026-02",
+    "festival": "柏林国际电影节",
+    "festivalEn": "Berlin International Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -5405,11 +5466,12 @@
    },
    "ratingChecked": "2026-11-03",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
-    "festival": null,
-    "festivalEn": null,
-    "kind": "unknown"
+    "status": "partial",
+    "date": "2025-11",
+    "festival": "塔林黑夜电影节",
+    "festivalEn": "Tallinn Black Nights Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -5558,11 +5620,12 @@
    },
    "ratingChecked": "2026-11-03",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
-    "festival": null,
-    "festivalEn": null,
-    "kind": "unknown"
+    "status": "verified",
+    "date": "1976-05-15",
+    "festival": "戛纳国际电影节",
+    "festivalEn": "Cannes Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -5644,11 +5707,12 @@
    "metadataChecked": "2026-11-03",
    "langTag": "原声｜中英字幕",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
-    "festival": null,
-    "festivalEn": null,
-    "kind": "unknown"
+    "status": "partial",
+    "date": "2026-08",
+    "festival": "洛迦诺国际电影节",
+    "festivalEn": "Locarno Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -5728,11 +5792,12 @@
    },
    "ratingChecked": "2026-11-03",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
+    "status": "verified",
+    "date": "1939-12-15",
     "festival": null,
     "festivalEn": null,
-    "kind": "unknown"
+    "kind": "theatrical",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -5804,11 +5869,12 @@
    },
    "ratingChecked": "2026-11-03",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
+    "status": "verified",
+    "date": "1941-11-19",
     "festival": null,
     "festivalEn": null,
-    "kind": "unknown"
+    "kind": "theatrical",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -5879,11 +5945,12 @@
    },
    "ratingChecked": "2026-11-03",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
-    "festival": null,
-    "festivalEn": null,
-    "kind": "unknown"
+    "status": "partial",
+    "date": "2026-09",
+    "festival": "特柳赖德电影节",
+    "festivalEn": "Telluride Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -5953,11 +6020,12 @@
    },
    "ratingChecked": "2026-11-03",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
-    "festival": null,
-    "festivalEn": null,
-    "kind": "unknown"
+    "status": "partial",
+    "date": "2026-02",
+    "festival": "柏林国际电影节",
+    "festivalEn": "Berlin International Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -6025,11 +6093,12 @@
    },
    "ratingChecked": "2026-11-03",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
-    "festival": null,
-    "festivalEn": null,
-    "kind": "unknown"
+    "status": "partial",
+    "date": "2026-08",
+    "festival": "洛迦诺国际电影节",
+    "festivalEn": "Locarno Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -6110,11 +6179,12 @@
    },
    "ratingChecked": "2026-11-03",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
+    "status": "verified",
+    "date": "2010-07-08",
     "festival": null,
     "festivalEn": null,
-    "kind": "unknown"
+    "kind": "theatrical",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -6184,11 +6254,12 @@
    },
    "ratingChecked": "2026-11-03",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
-    "festival": null,
-    "festivalEn": null,
-    "kind": "unknown"
+    "status": "verified",
+    "date": "2026-09-10",
+    "festival": "威尼斯国际电影节",
+    "festivalEn": "Venice International Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -6258,11 +6329,12 @@
    },
    "ratingChecked": "2026-11-03",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
-    "festival": null,
-    "festivalEn": null,
-    "kind": "unknown"
+    "status": "partial",
+    "date": "2026-05",
+    "festival": "戛纳国际电影节",
+    "festivalEn": "Cannes Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -6332,11 +6404,12 @@
    },
    "ratingChecked": "2026-11-03",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
-    "festival": null,
-    "festivalEn": null,
-    "kind": "unknown"
+    "status": "partial",
+    "date": "2026-05",
+    "festival": "戛纳电影节·导演双周",
+    "festivalEn": "Cannes Directors’ Fortnight",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -6405,11 +6478,12 @@
    },
    "ratingChecked": "2026-11-03",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
+    "status": "partial",
+    "date": "1963",
     "festival": null,
     "festivalEn": null,
-    "kind": "unknown"
+    "kind": "theatrical",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -6481,11 +6555,12 @@
    },
    "ratingChecked": "2026-11-03",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
+    "status": "verified",
+    "date": "1979-05-19",
     "festival": null,
     "festivalEn": null,
-    "kind": "unknown"
+    "kind": "theatrical",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -6544,11 +6619,12 @@
    },
    "ratingChecked": "2026-11-03",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
-    "festival": null,
-    "festivalEn": null,
-    "kind": "unknown"
+    "status": "verified",
+    "date": "2024-10-24",
+    "festival": "粤港澳大湾区动画电影周",
+    "festivalEn": "Guangdong–Hong Kong–Macao Greater Bay Area Animation Film Week",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   }
  ],
