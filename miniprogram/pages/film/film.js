@@ -1,6 +1,7 @@
 const T = require('../../utils/totop.js');
 const U = require('../../utils/util.js');
 const Premiere = require('../../utils/premiere.js');
+const Library = require('../../utils/library.js');
 const plan = require('../../utils/plan.js');
 const W = require('../../utils/watched.js');
 const G = require('../../utils/growth.js');
@@ -37,7 +38,7 @@ Page({
     // 影展内已放映的场次：窄条保留（黑白、无操作按钮）；院线片不显示
     const goneShows = allShows.filter(s => U.ended(s, idx) && U.keepPast(U.progForShow(s, idx))).sort((a, b) => U.showDate(a) - U.showDate(b)).map(s => {
       const v = idx.VN[s.v] || {}, h = (v.halls || []).find(x => x.id === s.h), nm = (v.short || v.brand || v.name || '').replace(new RegExp('^' + (v.city || '@@') + '\\s*[·・]?\\s*'), '');
-      return { key: U.keyOf(s), d: U.showDate(s).getFullYear()+'.'+s.d.split('/').map(n=>n.padStart(2,'0')).join('.'), t: s.t, end: f.minTbd ? '' : U.fmt(U.toMin(s.t) + U.durationOf(s, idx)), place: [v.city, nm, h && (h.short || h.name)].filter(Boolean).join(' · ') };
+      return { key: U.keyOf(s), d: U.showDate(s).getFullYear()+'.'+s.d.split('/').map(n=>n.padStart(2,'0')).join('.'), t: s.t, place: [v.city, nm, h && (h.short || h.name), U.progForShow(s,idx).name].filter(Boolean).join(' · ') };
     });
     const ratings = (f.r || []).map((v, i) => ({
       l: t(RT[i][0]), na: v == null,
@@ -63,7 +64,7 @@ Page({
         id: f.id, ev: !!f.ev, cn: f.cn, cnDb: (!I.isEn() && f.cnDb && f.cnDb !== f.cn) ? f.cnDb : '',warnings:f.warnings||[],contentNote:f.contentNote||t('具体内容尚待核实，不代表没有敏感内容或适合所有年龄。'),sensory:f.contentReview?.sensory==='flashing', en: f.en || f.o, minText: t(f.min ? f.min + ' 分钟' : '片长待定'), release: t(f.release || ''), o: f.o !== f.cn && f.o !== (f.en || f.o) ? f.o : '', y: f.y, c: t(f.c), min: f.min, lang: t(f.language),
         version: t(f.version || ''), genre: (f.genre || []).map(t), dir: f.dir, dirO: f.dirO, dirLife: f.dirLife,
         color: (data.reg[f.reg] || {}).c, reg: t((data.reg[f.reg] || {}).n || ''), poster: U.poster(f), ticket: U.ticket(f), ticketHint: t([f.ticketPlatform ? f.ticketPlatform + "扫码" + (f.ticketLabel || "购票") : "", (f.ticketHint || "").replace(/^淘票票扫码购票\s*[·・]?\s*/, "")].filter(Boolean).join(" · ")), section: t(f.section || ""), ticketLabel: t(f.ticketLabel || '购票'),
-        prog: { id: p.id, name: p.name, kind: t(p.kind) }, progs: idx.progsOf(f).map(x => ({ id: x.p.id, name: x.p.name, kind: t(x.p.kind), section: t(x.sec || '') })), multi: idx.progsOf(f).length > 1, section: t(f.section || ''),
+        prog: { id: p.id, name: p.name, kind: t(p.kind) }, progs: Library.featuredProgrammes(idx.progsOf(f),p=>U.progInfo(p,data,idx)).map(x => ({ id: x.p.id, name: x.p.name, kind: t(x.p.kind), section: t(x.sec || '') })), multi: idx.progsOf(f).length > 1, section: t(f.section || ''),
         syn: para(f.syn), bio: para(f.bio), st: para(f.st), long: String(f.syn || '').length > 220,
         ini: (f.dir || '').charAt(0), highlights: [f.editorial,...(f.highlights || [])].filter(Boolean).map((x, k) => ({ n: String(k + 1).padStart(2, '0'), x })),
         honors: (f.honors || []).map(honor),

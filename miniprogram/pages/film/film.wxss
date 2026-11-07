@@ -182,4 +182,5 @@
 .gs-ar.open { transform: rotate(180deg); }
 .gs-row { display: flex; align-items: baseline; gap: calc(12 * var(--r)); margin-top: calc(10 * var(--r)); padding: calc(16 * var(--r)); border: calc(2 * var(--r)) solid var(--line); border-radius: calc(14 * var(--r)); filter: grayscale(1); opacity: .8; font-size: calc(20 * var(--r)); color: var(--muted); white-space: nowrap; overflow: hidden; }
 .gs-d, .gs-t { color: var(--fg); flex: none; }
-.gs-p { flex: 1; width: 0; min-width: 0; white-space: nowrap; }
+.gs-p { flex: none; white-space: nowrap; }
+.gs-row{display:block;padding:0;font-size:calc(18 * var(--r));box-sizing:border-box}.gs-line{display:inline-flex;align-items:baseline;gap:calc(12 * var(--r));padding:calc(16 * var(--r));white-space:nowrap}

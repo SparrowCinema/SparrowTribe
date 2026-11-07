@@ -11,7 +11,7 @@
  *   items: [{ title, en, date, dstamp, venue, score, color, shape, tilt, top, img }]
  *   qr: 二维码矩阵 | null；url          网站页脚用；没有二维码时页脚改为微信搜索引导
  *   marks: [Image|null, Image|null]     两枚品牌标
- *   sections: [id, ...]                可选；省略时全部展示，空数组不展示任何项目
+ *   sections: [id, ...]                可选内容；省略时全部展示，品牌与二维码始终保留
  *   T: 翻译函数；en: 是否英文
  */
 (function (root) {
@@ -19,8 +19,8 @@
   const C = { paper: '#efe6d4', card: '#f8f2e6', ink: '#2b2117', muted: '#7a6a55', line: '#d8cbb1', red: '#8e2a22', leather: '#5a1712', gold: '#d9bc80', teal: '#2f6f6c' };
   const W = 1080, P = 64, CJK = /[　-〿㐀-鿿＀-￯]/;
   const L = { HEAD: 460, STATS: 380, FAV: 400, PROGH: 120, PROGROW: 76, WALLH: 110, CELL: 310, LISTH: 120, ROW: 172, FOOT: 420 };
-  const SECTIONS = [['cover', '封面'], ['stats', '观影统计'], ['favorite', '本期最爱'], ['programmes', '专题统计'], ['stamps', '印章墙'], ['list', '观影清单'], ['footer', '品牌与二维码']];
-  const hasSection = (o, id) => !Array.isArray(o.sections) || o.sections.includes(id);
+  const SECTIONS = [['cover', '封面'], ['stats', '观影统计'], ['favorite', '本期最爱'], ['programmes', '专题统计'], ['stamps', '印章墙'], ['list', '观影清单']];
+  const hasSection = (o, id) => id === 'footer' || !Array.isArray(o.sections) || o.sections.includes(id);
 
   function wrapLines(c, text, max) {
     text = String(text || ''); const out = []; let line = '';
@@ -199,7 +199,6 @@
     }
 
     // 页脚
-    if (!hasSection(o, 'footer')) return;
     if (o.qrImg) { // 小程序：深色通栏铺满左右与底边，右侧小程序码
       const fy = y + 30, hb = H - fy; c.fillStyle = C.ink; c.fillRect(0, fy, W, hb);
       const Q = 270, qx = W - P - Q, qy = fy + (hb - Q) / 2, tw = qx - P - 40;
