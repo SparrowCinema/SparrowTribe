@@ -89,6 +89,6 @@
 /* 多选弹层：勾选框 + 完成按钮 */
 .selector-check.box{width:calc(40 * var(--r));height:calc(40 * var(--r));box-sizing:border-box;border:calc(3 * var(--r)) solid var(--line);border-radius:calc(10 * var(--r));display:flex;align-items:center;justify-content:center;font-size:calc(26 * var(--r));line-height:1;color:#fffaf0;flex:none}
 .selector-check.box.on{background:var(--accent);border-color:var(--accent)}
-.selector-foot{display:flex;align-items:center;justify-content:space-between;gap:calc(20 * var(--r));padding:calc(18 * var(--r)) calc(16 * var(--r)) calc(6 * var(--r));border-top:calc(1 * var(--r)) solid var(--line-soft);margin-top:calc(8 * var(--r))}
+.selector-foot{flex:none;display:flex;align-items:center;justify-content:space-between;gap:calc(20 * var(--r));padding:calc(18 * var(--r)) calc(16 * var(--r)) calc(6 * var(--r));border-top:calc(1 * var(--r)) solid var(--line-soft);margin-top:calc(8 * var(--r))}
 .selector-foot text{font-size:calc(23 * var(--r));color:var(--muted)}
 .selector-done{min-width:calc(200 * var(--r));height:calc(76 * var(--r));border-radius:calc(99 * var(--r));background:var(--accent);color:#fffaf0;font-size: calc(26.3 * var(--r));font-weight:700;display:flex;align-items:center;justify-content:center}
