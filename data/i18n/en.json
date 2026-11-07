@@ -7810,7 +7810,6 @@
   "品牌与二维码": "Branding and QR code",
   "仅影响生成的长图，不会修改观影记录。": "These choices only affect the exported image. Your viewing records stay the same.",
   "所选项目暂无内容，请选择其他项目": "No content for these sections. Select another section.",
-
   "排片": "Schedule",
   "专题": "Programme",
   "片目": "Films",
@@ -8850,6 +8849,7 @@
   "非影展首映": "Non-festival premiere",
   "待核实": "To be verified",
   "暂不公开": "Not disclosed",
-  "尚未公布": "Not announced"
+  "尚未公布": "Not announced",
+  "已汇总全部年份，选择年份可按月筛选。": "All years included. Select a year to filter by month."
  }
 }
