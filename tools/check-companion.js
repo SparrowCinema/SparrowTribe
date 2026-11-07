@@ -14,3 +14,5 @@ assert.equal(fs.readFileSync(path.join(root,'shared/profile-backup.js'),'utf8'),
 console.log('PASS: backup round trip, no credentials, merge semantics, deletions, malformed imports, city-scoped selection and JavaScript parsing.');
 
 require('./check-recap.js');
+
+require('./check-film-details.js');
