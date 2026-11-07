@@ -176,7 +176,7 @@ ONE STAMP</text><text class="fp-open-icon">↗</text></view>
     <view class="rc-chips"><text wx:for="{{rc.progs}}" wx:key="v" class="chip {{item.on ? 'on' : ''}}" data-v="{{item.v}}" bindtap="setRcP">{{item.n}}</text></view>
     <text class="rc-k">{{L.t(i,'长图展示项目')}} · {{L.t(i,'可多选')}}</text>
     <checkbox-group class="rc-options" bindchange="setRcSections"><label wx:for="{{rc.sections}}" wx:key="id"><checkbox value="{{item.id}}" checked="{{item.on}}" color="#2f6f6c"/><text>{{item.label}}</text></label></checkbox-group>
-    <text class="rc-note">{{L.t(i,'仅影响生成的长图，不会修改观影记录。')}}</text>
+    <text class="rc-note">{{L.t(i,'品牌与二维码固定保留。')}} {{L.t(i,'仅影响生成的长图，不会修改观影记录。')}}</text>
     <view class="rc-sum" wx:if="{{rc.n}}">
       <view><text class="n mono">{{rc.n}}</text><text class="l">{{L.t(i,'部影片')}}</text></view>
       <view><text class="n mono">{{rc.hm}}</text><text class="l">{{L.t(i,'银幕时长')}}</text></view>

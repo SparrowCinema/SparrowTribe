@@ -15,5 +15,15 @@
   return {planned:shows.some(s=>ctx.picked.has(ctx.keyOf(s))),watched:seen,event:shows.some(s=>/^\s*(?:映后活动|映后交流|Post-screening event|Q&A)/i.test((f.screeningNotes||{})[ctx.keyOf(s)]||'')||!!(f.qaGuest&&minutes(f.qaEnd)>minutes(f.qaStart)))};
  }
  function category(f,mode,ctx){const m=list(mode);if(!m.length)return true;const s=status(f,ctx);return m.some(k=>k==='planned'?s.planned:k==='watched'?s.watched:k==='unwatched'?!s.watched:k==='qa'?s.event:false);}
- const api={matches,inProgramme,inCity,status,category,list,has,toggle};if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.SparrowLibrary=api;
+ // Film-hero labels only: retain full programme membership everywhere else.
+ function featuredProgrammes(entries,info){
+  const seen=new Set();
+  return entries.filter(x=>x.p&&!seen.has(x.p.id)&&seen.add(x.p.id)).map(x=>({entry:x,info:info(x.p)})).sort((a,b)=>{
+   const past=x=>x.info.status==='ended'?1:0,latest=x=>(x.info.status==='ended'?x.info.b:x.info.a)||x.info.b||0;
+   return past(a)-past(b)||latest(b)-latest(a)||String(a.entry.p.id).localeCompare(String(b.entry.p.id));
+  }).slice(0,2).map(x=>x.entry);
+ }
+ // Portrait -> landscape: fill the viewport with 5–10 posters, never a wide strip.
+ function posterColumns(width,height){const ratio=Number(width)/Number(height);return Number.isFinite(ratio)&&ratio>0?Math.round(5+5*Math.min(1,Math.max(0,(ratio-.8)/.4))):5;}
+ const api={matches,inProgramme,inCity,status,category,list,has,toggle,featuredProgrammes,posterColumns};if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.SparrowLibrary=api;
 })(typeof window!=='undefined'?window:this);

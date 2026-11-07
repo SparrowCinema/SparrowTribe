@@ -23,3 +23,17 @@ page.data.mine='all';page.openSelector({currentTarget:{dataset:{type:'personal'}
 /* 多选：同一筛选内多个值是「或」，再点一次取消，全部取消回到 all */assert.equal(L.toggle('all','a'),'a');assert.equal(L.toggle('a','b'),'a,b');assert.equal(L.toggle('a,b','a'),'b');assert.equal(L.toggle('b','b'),'all');assert(L.has('a,b','b')&&!L.has('a,b','c')&&L.has('all','x')&&L.has('','x'));page.data.mine='all';page.chooseFilter({currentTarget:{dataset:{id:'qa'}}});const qaN=page.data.n;page.chooseFilter({currentTarget:{dataset:{id:'planned'}}});assert.equal(page.data.mine,'qa,planned');assert(page.data.n>=qaN);page.chooseFilter({currentTarget:{dataset:{id:'planned'}}});page.chooseFilter({currentTarget:{dataset:{id:'qa'}}});assert.equal(page.data.mine,'all');page.closeSelector();page.resetFilters();
 const original=data.programmes;data.programmes=Array.from({length:20},(_,i)=>({id:'festival-'+i,name:'Programme '+i}));assert.equal(page.filterOptions('programme','').length,21);assert.equal(page.filterOptions('programme','Programme 19').length,1);data.programmes=original;
 console.log('PASS: personal membership, deletion tombstones, programme-scoped plans/events, compound search, mini-program filters/reset and 20-programme search.');
+
+// Header labels are capped independently of full programme membership.
+{
+ const rows=[['old','ended',10,20],['live','live',30,50],['soon','soon',60,70],['latest-past','ended',80,90],['unknown','ended',null,null]].map(([id,status,a,b])=>({p:{id,status,a,b},sec:id+' unit'}));
+ const copy=JSON.stringify(rows),info=p=>p;
+ assert.deepStrictEqual(L.featuredProgrammes(rows,info).map(x=>x.p.id),['soon','live']);
+ assert.deepStrictEqual(L.featuredProgrammes(rows.filter(x=>x.p.status==='ended'),info).map(x=>x.p.id),['latest-past','old']);
+ assert.equal(L.featuredProgrammes([],info).length,0);assert.equal(L.featuredProgrammes(rows.slice(0,1),info)[0].sec,'old unit');
+ assert.equal(L.featuredProgrammes([rows[0],rows[0]],info).length,1);assert.equal(JSON.stringify(rows),copy);assert.equal(rows.length,5);
+ console.log('PASS: at most two film-header programmes, active/upcoming priority, latest dates, deduplication and unchanged full membership.');
+}
+for(const [w,h,n] of [[390,844,5],[768,1024,5],[844,390,10],[1024,768,10],[800,800,8],[0,0,5]])assert.equal(L.posterColumns(w,h),n);
+for(let w=320,prev=5;w<=1600;w+=20){const n=L.posterColumns(w,900);assert(n>=5&&n<=10&&n>=prev);prev=n;}
+console.log('PASS: poster grid changes monotonically from 5 portrait columns to 10 landscape columns.');
