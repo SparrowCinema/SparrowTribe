@@ -121,6 +121,7 @@ ONE STAMP</text><text class="fp-open-icon">↗</text></view>
   </view>
   <view class="me-row" hover-class="hv" bindtap="openRecap"><image class="me-ic" src="/images/menu/recap.svg" mode="aspectFit" /><view class="me-copy"><text class="me-t">{{L.t(i,'我的影院观影结算')}}</text><text class="me-s">{{L.t(i,'按年份与专题，收藏印章与评分。')}}</text></view><text class="me-go">›</text></view>
   <view class="me-row" hover-class="hv" bindtap="toPlan"><image class="me-ic" src="/images/menu/plan.svg" mode="aspectFit" /><view class="me-copy"><text class="me-t">{{L.t(i,'个人排片')}}</text><text class="me-s">{{planSub}}</text></view><text class="me-go">›</text></view>
+  <view class="me-row" hover-class="hv" bindtap="toPosterWall"><image class="me-ic" src="/images/menu/wall.svg" mode="aspectFit" /><view class="me-copy"><text class="me-t">{{L.t(i,'我的海报墙')}}</text><text class="me-s">{{L.t(i,'看过的影片 · 我的评分')}}</text></view><text class="me-go">›</text></view>
   <view class="me-row" hover-class="hv" bindtap="toggleSync"><image class="me-ic" src="/images/menu/sync.svg" mode="aspectFit" /><view class="me-copy"><text class="me-t">{{L.t(i,'个人档案云端同步')}}</text><text class="me-s">{{sy.on ? sy.line : L.t(i,'同步、备份与档案保管')}}</text></view><text class="me-go {{syncExpanded?'on':''}}">›</text></view>
   <view wx:if="{{syncExpanded}}" class="me-body sync-body">
    <block wx:if="{{sy}}">
@@ -166,19 +167,24 @@ ONE STAMP</text><text class="fp-open-icon">↗</text></view>
 <view wx:if="{{rcOpen}}" class="rc-mask" bindtap="closeRecap">
   <view class="rc-panel" catchtap="noop">
     <view class="rc-head"><text class="b">{{L.t(i,'我的影院观影结算')}}</text><text class="rc-x" bindtap="closeRecap">✕</text></view>
+    <scroll-view scroll-y class="rc-scroll">
     <text class="rc-k mono">{{L.t(i,'年份 / YEAR')}} <text class="rc-hint">{{i.__en?'multi-select':'可多选'}}</text></text>
     <scroll-view scroll-x class="rc-seg-sv" enable-flex><view class="rc-seg"><view wx:for="{{rc.years}}" wx:key="v" class="rc-y {{item.on ? 'on' : ''}}" data-v="{{item.v}}" bindtap="setRcY"><text class="yb mono">{{item.n}}</text><text class="ys">{{item.c}}</text></view></view></scroll-view>
     <view class="rc-kh"><text class="rc-k mono">{{L.t(i,'月份 / MONTH')}} <text class="rc-hint">{{i.__en?'multi-select':'可多选'}}</text></text><text wx:if="{{rc.mSel}}" class="rc-clear" data-v="all" bindtap="setRcM">{{rc.mSel}} · {{L.t(i,'清除')}}</text></view>
     <block wx:for="{{rc.grids}}" wx:for-item="gd" wx:key="y"><text wx:if="{{gd.y}}" class="rc-yl mono">{{gd.y}}</text><view class="rc-cal"><view wx:for="{{gd.cells}}" wx:key="v" class="rc-d {{item.on ? 'on' : ''}} {{item.c ? '' : 'nil'}}" style="{{item.bg}}" data-v="{{item.v}}" data-c="{{item.c}}" bindtap="setRcM"><text class="db">{{item.n}}</text><text class="ds mono">{{item.cs}}</text></view></view></block>
     <text class="rc-k mono">{{L.t(i,'专题 / PROGRAMME')}} <text class="rc-hint">{{i.__en?'multi-select':'可多选'}}</text></text>
     <view class="rc-chips"><text wx:for="{{rc.progs}}" wx:key="v" class="chip {{item.on ? 'on' : ''}}" data-v="{{item.v}}" bindtap="setRcP">{{item.n}}</text></view>
+    <text class="rc-k">{{L.t(i,'长图展示项目')}} · {{L.t(i,'可多选')}}</text>
+    <checkbox-group class="rc-options" bindchange="setRcSections"><label wx:for="{{rc.sections}}" wx:key="id"><checkbox value="{{item.id}}" checked="{{item.on}}" color="#2f6f6c"/><text>{{item.label}}</text></label></checkbox-group>
+    <text class="rc-note">{{L.t(i,'仅影响生成的长图，不会修改观影记录。')}}</text>
     <view class="rc-sum" wx:if="{{rc.n}}">
       <view><text class="n mono">{{rc.n}}</text><text class="l">{{L.t(i,'部影片')}}</text></view>
       <view><text class="n mono">{{rc.hm}}</text><text class="l">{{L.t(i,'银幕时长')}}</text></view>
       <view><text class="n mono">{{rc.avg}}</text><text class="l">{{L.t(i,'平均评分')}}</text></view>
     </view>
     <view wx:else class="rc-sum"><text class="l">{{L.t(i,'这个范围里还没有看过的影片')}}</text></view>
-    <view class="btn rc-go {{rc.n ? '' : 'dis'}}" bindtap="makeRecap">{{L.t(i,'生成结算长图')}}</view>
+    </scroll-view>
+    <view class="btn rc-go {{rc.n && rc.sectionCount ? '' : 'dis'}}" bindtap="makeRecap">{{L.t(i,'生成结算长图')}}</view>
   </view>
 </view>
 <canvas type="2d" id="recap" class="poster-cv" />

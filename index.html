@@ -94,6 +94,10 @@
 .selector-results{max-height:min(360px,48dvh);overflow:auto;overscroll-behavior:contain;padding:0 8px 8px;scrollbar-width:thin}.selector-option{display:flex;align-items:center;gap:12px;width:100%;min-height:56px;padding:11px 12px;border:0;border-radius:9px;background:none;color:var(--fg);text-align:left;font:inherit;cursor:pointer}.selector-option:hover,.selector-option:focus-visible{background:var(--bg)}.selector-option[aria-selected=true]{background:color-mix(in srgb,var(--teal) 9%,var(--surface))}.selector-option>span:first-child{min-width:0;flex:1}.selector-option b{display:block;font-size:13px;line-height:1.5;font-weight:600}.selector-option small{display:block;font-size:11px;line-height:1.5;color:var(--muted);margin-top:3px}.selector-option .selector-check{color:var(--teal);width:18px;font-size:17px;flex-shrink:0}.selector-empty{padding:28px 12px;color:var(--muted);font-size:13px;text-align:center}
 @media(max-width:480px){.fgrp{align-items:start;flex-direction:column;gap:7px}.fgrp>small{max-width:100%;text-align:left} .schedule-filter{padding:10px 9px;gap:5px}.schedule-filter b{font-size:12px}.schedule-filter small{font-size:9px}.schedule-selector{max-height:68dvh}.selector-head{padding:16px 16px 10px}.selector-search{margin-inline:16px}.section-tabs{padding:10px;gap:6px}.section-tabs button{font-size:11px;padding:7px 10px}}
 
+
+/* Personal poster collection and optional recap sections. */
+.rc-section-picker{border:0;margin:24px 0 0;padding:0;min-width:0}.rc-section-picker legend{font-weight:700;font-size:14px}.rc-section-picker legend small{font-weight:400;color:var(--muted);margin-left:8px}.rc-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 16px;margin-top:14px}.rc-options label{display:flex;align-items:center;gap:10px;font-size:14px;min-height:38px;cursor:pointer}.rc-options input{width:18px;height:18px;margin:0;accent-color:var(--teal)}.rc-section-picker p{font-size:12px;line-height:1.6;color:var(--muted);margin:12px 0 0}
+.pw-toolbar{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:16px 0;border-block:1px solid var(--line);margin-top:22px}.pw-toolbar p{margin:0;color:var(--muted);font-size:14px}.pw-toolbar label{display:flex;align-items:center;gap:12px;font-size:14px}.pw-toolbar select{padding:8px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--fg)}.pw-hint{color:var(--muted);font-size:13px;margin:16px 0}.pw-scroll{overflow-x:auto;padding:0 0 12px;-webkit-overflow-scrolling:touch}.pw-scroll:focus-visible{outline:2px solid var(--teal);outline-offset:4px}.pw-grid{display:grid;grid-template-columns:repeat(var(--cols),minmax(72px,1fr));width:max(100%,calc(var(--cols)*88px));gap:20px 8px}.pw-card{min-width:0;display:block;text-decoration:none;color:var(--fg)}.pw-poster{position:relative;aspect-ratio:2/3;overflow:hidden;background:var(--surface);border-radius:3px}.pw-placeholder{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:10px;font:600 13px/1.6 var(--f-display);border:1px solid var(--line)}.pw-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.pw-score{display:block;text-align:center;font:500 12px/1.6 var(--f-mono);margin-top:7px;color:var(--muted)}.pw-score.rated{color:var(--teal)}.pw-card:focus-visible{outline:2px solid var(--teal);outline-offset:3px}.pw-card:hover .pw-image{filter:brightness(1.06)}
 </style>
 <title>麻雀观影护照</title>
 <link rel="manifest" href="manifest.webmanifest?v=3">
@@ -2090,7 +2094,7 @@ const isoOf=d=>d.getFullYear()+'-'+pad2(d.getMonth()+1)+'-'+pad2(d.getDate());
 // 默认观影日期：优先已放映的「个人排片」场次，其次本片最近一场已放映场次，否则今天
 function watchGuess(id){const past=SH.filter(s=>s.id===id&&isPast(s)),mine=past.filter(s=>picked.has(keyOf(s))),s=(mine.length?mine:past).slice(-1)[0];return s?{d:isoOf(showDate(s)),k:keyOf(s)}:{d:isoOf(new Date(now())),k:''};}
 function watchShow(rec){const s=rec&&rec.k&&SH.find(x=>keyOf(x)===rec.k);return s&&isoOf(showDate(s))===rec.d?s:null;}
-function watchEntries(){return Object.keys(watched).filter(id=>F[id]&&watched[id]&&watched[id].d).map(id=>{const rec=watched[id],s=watchShow(rec);return {id,f:F[id],rec,s,venue:s?vShort(VN[s.v]):''};})
+function watchEntries(){return Object.keys(watched).filter(id=>F[id]&&watched[id]&&!watched[id].del&&watched[id].d).map(id=>{const rec=watched[id],s=watchShow(rec);return {id,f:F[id],rec,s,venue:s?vShort(VN[s.v]):''};})
   .sort((a,b)=>a.rec.d.localeCompare(b.rec.d)||(a.s&&b.s?showDate(a.s)-showDate(b.s):0)||a.id.localeCompare(b.id));}
 function holderPhoto(){try{return localStorage.getItem(PHOTO_KEY)||'';}catch{return '';}}
 function holderName(){try{return localStorage.getItem(HOLDER_KEY)||'';}catch{return '';}}
@@ -2373,6 +2377,9 @@ function syncStart(){syncPrint=profilePrint();if(syncSt&&syncSt.code)syncQuiet()
   document.addEventListener('visibilitychange',()=>{if(syncSt&&syncSt.code&&document.visibilityState==='visible'&&Date.now()-(syncSt.at||0)>30000)syncQuiet();});
   setInterval(()=>{if(syncStatus.state==='ok')syncPaint();},60000);}
 // —— 影院观影结算：按年份 / 专题筛选，生成长图 ——
+const RC_SECTION_KEY='sparrow-recap-sections-v1';
+function savedRecapSections(){try{const v=JSON.parse(localStorage.getItem(RC_SECTION_KEY));if(Array.isArray(v))return window.SparrowRecap.SECTIONS.map(x=>x[0]).filter(k=>v.includes(k));}catch(e){}return window.SparrowRecap.SECTIONS.map(x=>x[0]);}
+let recapSections=savedRecapSections();
 let recapY=[],recapM=[],recapP=[]; // 多选：空 = 全部
 const tgl=(arr,v)=>arr.includes(v)?arr.filter(x=>x!==v):arr.concat(v);
 function recapYears(all){return recapY.length?[...recapY].sort():recapM.length?[...new Set(recapM.map(k=>k.slice(0,4)))].sort():[...new Set(all.map(e=>e.rec.d.slice(0,4)))].sort();}
@@ -2394,8 +2401,9 @@ function recapPanelHTML(){const all=watchEntries(),years=[...new Set(all.map(e=>
   return '<div class="rc-body"><p class="rc-k">年份 / YEAR <small class="rc-hint">可多选</small></p>'+yearSegHTML(all,years)+
     '<div class="rc-kh"><p class="rc-k">月份 / MONTH <small class="rc-hint">可多选</small></p>'+(recapM.length?'<button class="rc-clear" data-rc="mclear"><span>已选 '+recapM.length+' 个月</span><span>清除</span></button>':'')+'</div>'+monthGridHTML(all,years)+
     '<p class="rc-k">专题 / PROGRAMME <small class="rc-hint">可多选</small></p><div class="rc-chips">'+chip('all','全部专题',!recapP.length)+pids.map(id=>chip(id,PG[id].name,recapP.includes(id))).join('')+'</div>'+
+    '<fieldset class="rc-section-picker"><legend>'+tr('长图展示项目')+' <small>'+tr('可多选')+'</small></legend><div class="rc-options">'+window.SparrowRecap.SECTIONS.map(([id,label])=>'<label><input type="checkbox" data-rc="section" data-v="'+id+'" '+(recapSections.includes(id)?'checked':'')+'><span>'+esc(tr(label))+'</span></label>').join('')+'</div><p>'+tr('仅影响生成的长图，不会修改观影记录。')+'</p></fieldset>'+
     '<div class="rc-sum">'+(list.length?'<span><b>'+st.n+'</b>部影片</span><span><b>'+st.hm+'</b>银幕时长</span><span><b>'+(st.avg?st.avg.toFixed(1):'—')+'</b>平均评分</span>':'<span class="rc-none">这个范围里还没有看过的影片</span>')+'</div>'+
-    '<button class="primary-button rc-go" data-rc="go" '+(list.length?'':'disabled')+'>生成结算长图</button></div>';}
+    '<button class="primary-button rc-go" data-rc="go" '+(list.length&&recapSections.length?'':'disabled')+'>生成结算长图</button></div>';}
 function recapSub(list){const all=watchEntries(),ys=recapYears(list.length?list:all),pm=recapM.length?[...recapM].sort():[];
   const when=pm.length?(pm.length<=3?pm.map(k=>k.replace('-','.')).join('、'):pm.length+tr(' 个月')):(ys.length>1?ys[0]+'–'+ys[ys.length-1]:ys[0]||'');
   const pn=recapP.length?(recapP.length<=2?recapP.map(id=>PG[id].name).join('、'):recapP.length+tr(' 个专题')):tr('全部专题');return when+' · '+pn;}
@@ -2406,15 +2414,16 @@ function openRecap(){if(!watchEntries().length){toast('先在影片页点「看�
   const close=()=>{document.documentElement.classList.remove('sheet-open');el.remove();};
   el.addEventListener('click',async e=>{if(e.target===el||e.target.closest('.is-close'))return close();const b=e.target.closest('[data-rc]');if(!b)return;
     const R2=()=>{el.querySelector('.rc-wrap').innerHTML=recapPanelHTML();};
-    if(b.dataset.rc==='m'){recapM=tgl(recapM,b.dataset.v);R2();}
+    if(b.dataset.rc==='section'){recapSections=tgl(recapSections,b.dataset.v);try{localStorage.setItem(RC_SECTION_KEY,JSON.stringify(recapSections));}catch(e){}el.querySelector('[data-rc=go]').disabled=!recapScope().length||!recapSections.length;}
+    else if(b.dataset.rc==='m'){recapM=tgl(recapM,b.dataset.v);R2();}
     else if(b.dataset.rc==='mclear'){recapM=[];R2();}
     else if(b.dataset.rc==='y'){if(b.dataset.v==='all')recapY=[];else recapY=tgl(recapY,b.dataset.v);R2();}
     else if(b.dataset.rc==='p'){if(b.dataset.v==='all')recapP=[];else recapP=tgl(recapP,b.dataset.v);R2();}
     else if(b.dataset.rc==='go'){b.disabled=true;const ok=await makeRecap();if(ok)close();else b.disabled=false;}});}
 let recapBusy=false;
-async function makeRecap(){const list=recapScope();if(!list.length||recapBusy)return false;recapBusy=true;toast('正在生成观影结算…');
+async function makeRecap(){const list=recapScope();if(!list.length||!recapSections.length||recapBusy)return false;recapBusy=true;const sections=[...recapSections];toast('正在生成观影结算…');
   try{try{await Promise.all(['900 64px "Noto Serif SC"','700 30px "Noto Sans SC"','500 24px "IBM Plex Mono"'].map(f=>document.fonts.load(f,'麻雀观影护照结算0123')));}catch(e){}
-    const R=window.SparrowRecap,imgs={};await Promise.all(list.map(async e=>{imgs[e.id]=await loadImg(pst(e.id));}));const marks=await Promise.all(['brand/mark-movies.png','brand/mark-tribe.png'].map(loadImg));
+    const R=window.SparrowRecap,imgs={};await Promise.all((sections.includes('favorite')||sections.includes('list')?list:[]).map(async e=>{imgs[e.id]=await loadImg(pst(e.id));}));const marks=await Promise.all(['brand/mark-movies.png','brand/mark-tribe.png'].map(loadImg));
     const items=list.map(e=>{const lk=R.look(e.id),p=progOf(e.f);return {id:e.id,title:e.f.cn,en:e.f.en||e.f.o||'',date:e.rec.d,dstamp:R.dstamp(e.rec.d),venue:e.s?(LANG==='en'?vShort(VN[e.s.v]):VN[e.s.v].name):'',vs:e.venue,score:e.rec.r||0,color:lk.ink,shape:lk.shape,tilt:lk.tilt,top:(p&&p.en)||'SPARROW FILM PASSPORT',prog:p?p.name:'',img:imgs[e.id]};});
     const st=passportStats(list),months={};list.forEach(e=>{const m=+e.rec.d.slice(5,7);months[m]=(months[m]||0)+1;});const topM=Object.keys(months).sort((a,b)=>months[b]-months[a]||a-b)[0];
     const fav=items.filter(x=>x.score).sort((a,b)=>b.score-a.score||b.date.localeCompare(a.date))[0]||null;
@@ -2423,7 +2432,8 @@ async function makeRecap(){const list=recapScope();if(!list.length||recapBusy)re
     const years=[...new Set(list.map(e=>e.rec.d.slice(0,4)))].sort();
     const o={title:tr('我的影院观影结算'),sub:recapSub(list),kicker:'SPARROW FILM PASSPORT · MY CINEMA RECAP',yearTag:years[years.length-1],
       stats:[[st.n,tr('部影片')],[st.hm,tr('银幕时长')],[st.avg?st.avg.toFixed(1):'—',tr('平均评分')],[st.venues,tr('家影院')],[st.progs,tr('个专题')],[topM?tr(topM+'月'):'—',tr('看得最多的月份')]],
-      fav,progs,items,qr:qrMatrix(homeURL()),url:location.host+location.pathname,marks,T:tr,en:LANG==='en'};
+      sections,fav,progs,items,qr:qrMatrix(homeURL()),url:location.host+location.pathname,marks,T:tr,en:LANG==='en'};
+    if(!R.heightOf(o)){toast('所选项目暂无内容，请选择其他项目');return false;}
     const cv=document.createElement('canvas');cv.width=R.W;cv.height=R.heightOf(o);R.draw(cv.getContext('2d'),o);
     const blob=await new Promise(r=>cv.toBlob(r,'image/png'));if(!blob){toast('图片生成失败，请稍后再试');return false;}
     showImageSheet(blob,{file:'麻雀观影护照_影院观影结算.png',head:'观影结算已生成',alt:'影院观影结算长图'});return true;}
@@ -2445,7 +2455,7 @@ function guideHTML(){const S=[['四个页面','底栏四个入口：「排片」
 let dataUpd=null;
 function dataUpdated(){/* 版权区「数据更新于」：启动时取一次，成功后填入所有已渲染的版权区 */const put=s=>document.querySelectorAll('.data-upd').forEach(el=>{el.textContent=s;el.parentElement.hidden=false;});if(dataUpd)return put(dataUpd);
   fetch('data/catalog.json',{method:'HEAD',cache:'no-cache'}).then(r=>{const lm=r.headers.get('last-modified');const d=lm?new Date(lm):null;if(!d||isNaN(d))throw 0;const p=n=>String(n).padStart(2,'0');dataUpd=d.getFullYear()+'.'+p(d.getMonth()+1)+'.'+p(d.getDate());put(dataUpd);}).catch(()=>{});}
-function menuIcon(name){const shapes={link:'<path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/>',passport:'<rect x="5" y="3" width="14" height="18" rx="2"/><circle cx="12" cy="10" r="3"/><path d="M9 17h6"/>',recap:'<rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/>',plan:'<rect x="3" y="5" width="18" height="15" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>',export:'<rect x="4" y="4" width="6" height="6"/><rect x="14" y="4" width="6" height="6"/><rect x="4" y="14" width="6" height="6"/><path d="M14 14h2v2h-2zM18 18h2v2h-2zM14 18h2M18 14h2"/>',phone:'<rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/>',sync:'<path d="M4 10a8 8 0 0 1 14-5l2 3M20 14a8 8 0 0 1-14 5l-2-3M20 3v5h-5M4 21v-5h5"/>',guide:'<path d="M12 5v16M12 5C9 2 5 3 3 4v15c3-1 6-1 9 2 3-3 6-3 9-2V4c-2-1-6-2-9 1Z"/>',mini:'<rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="9.5" cy="12" r="2"/><circle cx="14.5" cy="12" r="2"/>',feedback:'<path d="M21 11a8 8 0 0 1-8 8H7l-4 3V7a5 5 0 0 1 5-5h8a5 5 0 0 1 5 5Z"/><path d="M7 8h10M7 12h7"/>'};return `<span class="me-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">${shapes[name]||shapes.guide}</svg></span>`;}
+function menuIcon(name){const shapes={wall:'<rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="9" rx="1"/><path d="M3 16h7M14 16h7M3 20h7M14 20h7"/>',link:'<path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/>',passport:'<rect x="5" y="3" width="14" height="18" rx="2"/><circle cx="12" cy="10" r="3"/><path d="M9 17h6"/>',recap:'<rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/>',plan:'<rect x="3" y="5" width="18" height="15" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>',export:'<rect x="4" y="4" width="6" height="6"/><rect x="14" y="4" width="6" height="6"/><rect x="4" y="14" width="6" height="6"/><path d="M14 14h2v2h-2zM18 18h2v2h-2zM14 18h2M18 14h2"/>',phone:'<rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/>',sync:'<path d="M4 10a8 8 0 0 1 14-5l2 3M20 14a8 8 0 0 1-14 5l-2-3M20 3v5h-5M4 21v-5h5"/>',guide:'<path d="M12 5v16M12 5C9 2 5 3 3 4v15c3-1 6-1 9 2 3-3 6-3 9-2V4c-2-1-6-2-9 1Z"/>',mini:'<rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="9.5" cy="12" r="2"/><circle cx="14.5" cy="12" r="2"/>',feedback:'<path d="M21 11a8 8 0 0 1-8 8H7l-4 3V7a5 5 0 0 1 5-5h8a5 5 0 0 1 5 5Z"/><path d="M7 8h10M7 12h7"/>'};return `<span class="me-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">${shapes[name]||shapes.guide}</svg></span>`;}
 function menuRowHTML(icon,title,sub,attr){return `<button class="my-entry" ${attr}>${menuIcon(icon)}<span class="menu-copy"><b>${title}</b><small>${sub}</small></span><span class="me-go" aria-hidden="true">›</span></button>`;}
 function passportCollectionHTML(){return `<details class="menu-disclosure passport-collection"><summary class="my-entry">${menuIcon('passport')}<span class="menu-copy"><b>我的观影护照</b><small>${tr(watchEntries().length+' 部影片')} · ${tr('展开封面与电影印章')}</small></span><span class="me-go" aria-hidden="true">›</span></summary><div class="menu-body">${passportHTML()}</div></details>`;}
 function myPage(){const list=selectedRows(),st=planStats(list),next=list.find(s=>!isPast(s));
@@ -2455,8 +2465,20 @@ function myPage(){const list=selectedRows(),st=planStats(list),next=list.find(s=
  main.innerHTML='<section class="view gut my-dashboard"><div class="my-page-head"><h2 class="sec">我的</h2><p>带着日程出发，带着电影回来。</p></div><div class="my-menu">'+passportCollectionHTML()+
  menuRowHTML('recap','我的影院观影结算','按年份与专题，收藏印章与评分。','data-pp="recap"')+
  menuRowHTML('plan','个人排片',list.length?st.n+' 场 · '+(next?'下一场 '+next.d+' '+wk(next.d)+' '+next.t:'已全部放映'):'按天查看日程 · 自动检查时间冲突','data-tab="plan"')+
+ menuRowHTML('wall','我的海报墙','看过的影片 · 我的评分','data-tab="poster-wall"')+
  menuRowHTML('export','导出与分享','带二维码的排片长图 · 分享链接 · 日历 · PDF','data-tab="export"')+
  menuRowHTML('phone','添加到手机',ENV.standalone?'已在 App 模式中打开':'放到桌面像 App 一样看 · 微信里用浮窗','data-tab="install"')+sync+guide+miniHTML()+feedback+friendHTML()+'</div><p class="local-note">排片和护照保存在当前浏览器；开启上面的云端同步，或用分享链接，即可换设备。</p>'+presentersHTML()+'</section>';sizeBook();}
+// A read-only collection of watched films; layout preferences never change watch records.
+let posterWallCols=10;
+try{const n=Number(localStorage.getItem('sparrow-poster-columns-v1'));if(Number.isInteger(n)&&n>=10&&n<=15)posterWallCols=n;}catch(e){}
+function posterWallPage(){const list=watchEntries().filter(e=>!e.rec.del&&!e.f.ev).reverse();
+ main.innerHTML='<section class="view gut poster-wall-page"><div class="page-heading"><div><small>MY POSTER WALL</small><h2 class="sec">我的海报墙</h2></div><button class="text-button" data-tab="my">返回我的</button></div>'+
+ '<div class="pw-toolbar"><p>'+tr(list.length+' 部影片')+' · '+tr('按最近观影排列')+'</p><label>'+tr('每排海报')+' <select id="poster-columns">'+[10,11,12,13,14,15].map(n=>'<option value="'+n+'" '+(n===posterWallCols?'selected':'')+'>'+n+'</option>').join('')+'</select></label></div>'+
+ (list.length?'<p class="pw-hint">'+tr('点击海报查看影片；横向滑动查看整排。')+'</p><div class="pw-scroll" tabindex="0" role="region" aria-label="'+tr('我的海报墙')+'"><div class="pw-grid" style="--cols:'+posterWallCols+'">'+list.map(e=>{const score=e.rec.r?e.rec.r+'/10':tr('未评分');return '<a class="pw-card" href="#film-'+esc(e.id)+'" aria-label="'+esc(e.f.cn+' · '+tr('我的评分')+' '+score)+'"><div class="pw-poster"><span class="pw-placeholder">'+esc(e.f.cn)+'</span>'+(pst(e.id)?'<img loading="lazy" class="pw-image" src="'+esc(pst(e.id))+'" alt="'+esc(e.f.cn)+'">':'')+'</div><span class="pw-score'+(e.rec.r?' rated':'')+'">'+(e.rec.r?'★ ':'')+esc(score)+'</span></a>';}).join('')+'</div></div>':
+ '<div class="empty-plan"><h3>'+tr('海报墙还没有影片')+'</h3><p>'+tr('在影片页标记看过，海报和评分就会收进这里。')+'</p><button class="primary-button" data-tab="films">'+tr('去选电影')+'</button></div>')+'</section>';
+ document.getElementById('poster-columns').addEventListener('change',e=>{posterWallCols=Number(e.target.value);try{localStorage.setItem('sparrow-poster-columns-v1',String(posterWallCols));}catch(err){}const grid=document.querySelector('.pw-grid');if(grid)grid.style.setProperty('--cols',posterWallCols);});
+ main.querySelectorAll('.pw-image').forEach(img=>img.addEventListener('error',()=>{img.hidden=true;}));
+}
 function planPage(){const all=selectedRows(),list=scopedRows(),st=planStats(list);
   main.innerHTML='<section class="view gut"><div class="page-heading"><div><small>MY PROGRAMME</small><h2 class="sec">个人排片</h2></div><button class="text-button" data-tab="my">返回我的</button></div>'+
   (all.length?planProgChips(all)+(!list.length?'<div class="empty-plan"><h3>这个专题还没有加入场次</h3><p>可以切换到「全部专题」，或去排片表挑选。</p><button class="primary-button" data-prog-sched="'+esc(selList(planFilt)[0]||'')+'">去看这个专题的排片</button></div>':statsHTML(st)+'<div class="plan-toolbar"><button class="primary-button" data-tab="export">导出与分享</button><button class="secondary-button" data-tab="schedule">继续选片</button><button class="text-button" data-action="clear-plan">清空排片</button></div>'+(st.clash?'<div class="conflict" role="status"><b>有 '+st.clash+' 组场次时间重叠</b><p>重叠处已在日程中标红，移出其中一场即可解决。</p></div>':'')+'<div class="plan-days">'+planRowsHTML(list,true)+'</div>')
@@ -2593,7 +2615,7 @@ function route(){
   const fwd=navFwd,bk=navBack;navFwd=false;navBack=false;
   const returning=changing&&viewPositions.has(h)&&(bk||!fwd||(activeRoute.startsWith("film-")&&h===filmReturn));
   activeRoute=h;
-  const tab = ["plan","export","about","install"].includes(h)||h.startsWith("share=") ? "my" : h==="gantt" ? "schedule" : h.startsWith("prog-")||h.startsWith("events-") ? "programmes" : h.startsWith("film-") ? null : h;
+  const tab = ["plan","export","about","install","poster-wall"].includes(h)||h.startsWith("share=") ? "my" : h==="gantt" ? "schedule" : h.startsWith("prog-")||h.startsWith("events-") ? "programmes" : h.startsWith("film-") ? null : h;
   document.querySelectorAll(".tab").forEach(t=>t.setAttribute("aria-current", t.dataset.tab===(tab||lastList)?"page":"false"));
   if(tab){ lastList = tab; topEl.innerHTML = brandBar(); }
   if(h.startsWith("film-")) detail(h.slice(5));
@@ -2603,6 +2625,7 @@ function route(){
   else if(h==="programmes") programmesPage();
   else if(h==="my"||h==="about") myPage();
   else if(h==="plan") planPage();
+  else if(h==="poster-wall") posterWallPage();
   else if(h==="install") installPage();
   else if(h==="export") exportPage();
   else if(h.startsWith("share=")) exportPage(h.slice(6));

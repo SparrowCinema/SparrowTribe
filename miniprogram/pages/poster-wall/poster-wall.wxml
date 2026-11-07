@@ -1,0 +1,9 @@
+<page-meta page-style="{{ps}}" />
+<wxs src="../../utils/l.wxs" module="L" />
+<view class="wrap wall-page">
+ <view class="wall-heading">{{L.t(i,'我的海报墙')}}</view>
+ <view class="wall-toolbar"><text>{{L.n(i,items.length,'f')}} · {{L.t(i,'按最近观影排列')}}</text><picker range="{{choices}}" value="{{choice}}" bindchange="columns"><view class="wall-picker">{{L.t(i,'每排海报')}} <text>{{cols}}⌄</text></view></picker></view>
+ <block wx:if="{{items.length}}"><view class="wall-hint">{{L.t(i,'点击海报查看影片；横向滑动查看整排。')}}</view>
+ <scroll-view scroll-x class="wall-scroll"><view class="wall-grid" style="--cols:{{cols}};width:calc({{cols*164}} * var(--r))"><view wx:for="{{items}}" wx:key="id" class="wall-film" data-id="{{item.id}}" bindtap="openFilm" role="button" aria-label="{{item.title}} · {{L.t(i,'我的评分')}} {{item.score}}"><view class="wall-poster"><view class="wall-placeholder">{{item.title}}</view><image wx:if="{{item.poster}}" class="wall-image" src="{{item.poster}}" mode="aspectFill" lazy-load data-index="{{index}}" binderror="posterError" /></view><view class="wall-score {{item.rated?'rated':''}}">{{item.rated?'★ ':''}}{{item.score}}</view></view></view></scroll-view></block>
+ <view wx:else class="wall-empty"><text class="wall-heading">{{L.t(i,'海报墙还没有影片')}}</text><text>{{L.t(i,'在影片页标记看过，海报和评分就会收进这里。')}}</text><view class="btn" bindtap="toFilms">{{L.t(i,'去选电影')}}</view></view>
+</view>

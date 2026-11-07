@@ -423,3 +423,5 @@
 .fp-stage.wide .fp-shelfbtn { text-align: center; }
 .fp-stage.wide { align-items: flex-start; }
 .fp-sbook .fp-fx { height: 100%; }
+
+.rc-panel{max-height:90vh;display:flex;flex-direction:column}.rc-head,.rc-go{flex-shrink:0}.rc-scroll{min-height:0;max-height:68vh}.rc-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:calc(12 * var(--r)) calc(16 * var(--r));margin:calc(18 * var(--r)) 0}.rc-options label{display:flex;align-items:center;gap:calc(8 * var(--r));min-height:calc(72 * var(--r));font-size:calc(26 * var(--r))}.rc-note{display:block;color:var(--muted);font-size:calc(23 * var(--r));line-height:1.7;margin-top:calc(12 * var(--r))}
