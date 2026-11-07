@@ -216,12 +216,12 @@
 /* 结算筛选 v2：年份分段滑轨 + 月份 6×2 热度日历 */
 .rc-seg-sv { white-space: nowrap; }
 .rc-seg { display: inline-flex; min-width: 100%; box-sizing: border-box; gap: calc(4 * var(--r)); padding: calc(6 * var(--r)); border-radius: calc(24 * var(--r)); background: var(--bg); border: calc(2 * var(--r)) solid var(--line); }
-.rc-y { flex: 1 0 auto; min-width: calc(136 * var(--r)); display: flex; flex-direction: column; align-items: center; padding: calc(14 * var(--r)) calc(24 * var(--r)); border-radius: calc(18 * var(--r)); color: var(--muted); }
+.rc-y { flex: 0 0 auto; min-width: calc(136 * var(--r)); display: flex; flex-direction: column; align-items: center; padding: calc(14 * var(--r)) calc(24 * var(--r)); border-radius: calc(18 * var(--r)); color: var(--muted); }
 .rc-y .yb { font-size: calc(27 * var(--r)); font-weight: 600; color: var(--fg); } .rc-y .ys { font-size: calc(20 * var(--r)); margin-top: calc(2 * var(--r)); }
 .rc-y.on { background: var(--surface); box-shadow: 0 calc(2 * var(--r)) calc(4 * var(--r)) rgba(40,25,10,.12), 0 0 0 calc(2 * var(--r)) var(--line); color: var(--accent); } .rc-y.on .yb { color: var(--accent); }
 .rc-kh { display: flex; align-items: baseline; justify-content: space-between; } .rc-kv { font-size: calc(22 * var(--r)); color: var(--muted); } .rc-clear { font-size: calc(22 * var(--r)); color: var(--accent); }
 .rc-cal { display: grid; grid-template-columns: repeat(6, 1fr); gap: calc(12 * var(--r)); }
-.rc-d { height: calc(112 * var(--r)); display: flex; flex-direction: column; align-items: center; justify-content: center; border-radius: calc(20 * var(--r)); border: calc(2 * var(--r)) solid var(--line); background: var(--surface); color: var(--fg); }
+.rc-d { height: calc(92 * var(--r)); display: flex; flex-direction: column; align-items: center; justify-content: center; border-radius: calc(20 * var(--r)); border: calc(2 * var(--r)) solid var(--line); background: var(--surface); color: var(--fg); }
 .rc-d .db { font-size: calc(34.2 * var(--r)); font-weight: 900; line-height: 1; font-family: serif; } .rc-d .ds { font-size: calc(18 * var(--r)); opacity: .75; margin-top: calc(6 * var(--r)); }
 .rc-d.nil { background: transparent; border: calc(2 * var(--r)) dashed var(--line); color: var(--muted); opacity: .45; }
 .rc-d.on { background: var(--accent); border-color: var(--accent); color: #fff8ee; box-shadow: 0 0 0 calc(4 * var(--r)) var(--surface), 0 0 0 calc(8 * var(--r)) var(--accent); }
@@ -425,3 +425,5 @@
 .fp-sbook .fp-fx { height: 100%; }
 
 .rc-panel{max-height:90vh;display:flex;flex-direction:column}.rc-head,.rc-go{flex-shrink:0}.rc-scroll{min-height:0;max-height:68vh}.rc-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:calc(12 * var(--r)) calc(16 * var(--r));margin:calc(18 * var(--r)) 0}.rc-options label{display:flex;align-items:center;gap:calc(8 * var(--r));min-height:calc(72 * var(--r));font-size:calc(26 * var(--r))}.rc-note{display:block;color:var(--muted);font-size:calc(23 * var(--r));line-height:1.7;margin-top:calc(12 * var(--r))}
+
+.rc-year-note{display:block;font-size:calc(24 * var(--r));line-height:1.6;color:var(--muted);margin-top:calc(20 * var(--r))}

@@ -168,10 +168,11 @@ ONE STAMP</text><text class="fp-open-icon">↗</text></view>
   <view class="rc-panel" catchtap="noop">
     <view class="rc-head"><text class="b">{{L.t(i,'我的影院观影结算')}}</text><text class="rc-x" bindtap="closeRecap">✕</text></view>
     <scroll-view scroll-y class="rc-scroll">
-    <text class="rc-k mono">{{L.t(i,'年份 / YEAR')}} <text class="rc-hint">{{i.__en?'multi-select':'可多选'}}</text></text>
-    <scroll-view scroll-x class="rc-seg-sv" enable-flex><view class="rc-seg"><view wx:for="{{rc.years}}" wx:key="v" class="rc-y {{item.on ? 'on' : ''}}" data-v="{{item.v}}" bindtap="setRcY"><text class="yb mono">{{item.n}}</text><text class="ys">{{item.c}}</text></view></view></scroll-view>
-    <view class="rc-kh"><text class="rc-k mono">{{L.t(i,'月份 / MONTH')}} <text class="rc-hint">{{i.__en?'multi-select':'可多选'}}</text></text><text wx:if="{{rc.mSel}}" class="rc-clear" data-v="all" bindtap="setRcM">{{rc.mSel}} · {{L.t(i,'清除')}}</text></view>
-    <block wx:for="{{rc.grids}}" wx:for-item="gd" wx:key="y"><text wx:if="{{gd.y}}" class="rc-yl mono">{{gd.y}}</text><view class="rc-cal"><view wx:for="{{gd.cells}}" wx:key="v" class="rc-d {{item.on ? 'on' : ''}} {{item.c ? '' : 'nil'}}" style="{{item.bg}}" data-v="{{item.v}}" data-c="{{item.c}}" bindtap="setRcM"><text class="db">{{item.n}}</text><text class="ds mono">{{item.cs}}</text></view></view></block>
+    <text class="rc-k mono">{{L.t(i,'年份 / YEAR')}}</text>
+    <scroll-view scroll-x class="rc-seg-sv" enable-flex scroll-into-view="{{rcYearAnchor}}"><view class="rc-seg"><view wx:for="{{rc.years}}" wx:key="v" id="rc-year-{{item.v}}" class="rc-y {{item.on ? 'on' : ''}}" data-v="{{item.v}}" bindtap="setRcY"><text class="yb mono">{{item.n}}</text><text class="ys">{{item.c}}</text></view></view></scroll-view>
+    <view wx:if="{{rc.grids.length}}" class="rc-kh"><text class="rc-k mono">{{rcY[0]}} · {{L.t(i,'月份 / MONTH')}} <text class="rc-hint">{{i.__en?'multi-select':'可多选'}}</text></text><text wx:if="{{rc.mSel}}" class="rc-clear" data-v="all" bindtap="setRcM">{{rc.mSel}} · {{L.t(i,'清除')}}</text></view>
+    <block wx:for="{{rc.grids}}" wx:for-item="gd" wx:key="y"><view class="rc-cal"><view wx:for="{{gd.cells}}" wx:key="v" class="rc-d {{item.on ? 'on' : ''}} {{item.c ? '' : 'nil'}}" style="{{item.bg}}" data-v="{{item.v}}" data-c="{{item.c}}" bindtap="setRcM"><text class="db">{{item.n}}</text><text class="ds mono">{{item.cs}}</text></view></view></block>
+    <text wx:if="{{!rc.grids.length}}" class="rc-year-note">{{L.t(i,'已汇总全部年份，选择年份可按月筛选。')}}</text>
     <text class="rc-k mono">{{L.t(i,'专题 / PROGRAMME')}} <text class="rc-hint">{{i.__en?'multi-select':'可多选'}}</text></text>
     <view class="rc-chips"><text wx:for="{{rc.progs}}" wx:key="v" class="chip {{item.on ? 'on' : ''}}" data-v="{{item.v}}" bindtap="setRcP">{{item.n}}</text></view>
     <text class="rc-k">{{L.t(i,'长图展示项目')}} · {{L.t(i,'可多选')}}</text>

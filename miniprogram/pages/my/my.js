@@ -206,23 +206,24 @@ Page({
     const E = Y.length ? Y : M.length ? [...new Set(M.map(k => k.slice(0, 4)))] : null;
     return W.entries(data, idx).filter(e => { const y = e.rec.d.slice(0, 4), m = e.rec.d.slice(0, 7); if (E && !E.includes(y)) return false; if (M.some(k => k.startsWith(y)) && !M.includes(m)) return false; return !P.length || P.includes(idx.progOf(e.f).id); });
   },
-  // 年份 / 月份 / 专题都可多选，空 = 全部
+  // 年份单选；月份 / 专题多选，空 = 全部
   buildRecap() {
     const data = app.globalData.data, idx = U.index(data), all = W.entries(data, idx);
     const years = [...new Set(all.map(e => e.rec.d.slice(0, 4)))].sort().reverse(), pids = data.programmes.map(p => p.id).filter(id => all.some(e => idx.progOf(e.f).id === id));
-    const y = (this.data.rcY || []).filter(v => years.includes(v)), p = (this.data.rcP || []).filter(v => pids.includes(v));
-    const m = (this.data.rcM || []).filter(k => all.some(e => e.rec.d.slice(0, 7) === k) && (!y.length || y.includes(k.slice(0, 4))));
+    if(!this._recapYearReady){this.setData({rcY:years.slice(0,1)});this._recapYearReady=true;}
+    const y = (this.data.rcY || []).filter(v => years.includes(v)).slice(0,1), p = (this.data.rcP || []).filter(v => pids.includes(v));
+    const m = (this.data.rcM || []).filter(k => all.some(e => e.rec.d.slice(0, 7) === k) && y.includes(k.slice(0, 4)));
     this.setData({ rcY: y, rcP: p, rcM: m });
     const list = this.recapScope(), rated = list.filter(e => e.rec.r), mins = list.reduce((n, e) => n + (e.f.min || 0), 0);
-    const ys = y.length ? [...y].sort() : m.length ? [...new Set(m.map(k => k.slice(0, 4)))].sort() : [...years].sort();
+    const ys = y;
     const nb = n => n + (I.isEn() ? (n === 1 ? ' film' : ' films') : ' 部');
-    // 6×2 观影热度日历（每个年份一块）：颜色深浅＝那个月看了几部
+    // 仅显示所选年份的 6×2 日历；全部年份不展开月份。
     const grids = ys.map(Y => { const cnt = {}; all.filter(e => e.rec.d.slice(0, 4) === Y).forEach(e => { const k = e.rec.d.slice(0, 7); cnt[k] = (cnt[k] || 0) + 1; });
       const max = Math.max(1, ...Object.values(cnt));
-      return { y: ys.length > 1 ? Y : '', cells: Array.from({ length: 12 }, (_, i) => { const k = Y + '-' + String(i + 1).padStart(2, '0'), c = cnt[k] || 0, on = m.includes(k);
+      return { y: Y, cells: Array.from({ length: 12 }, (_, i) => { const k = Y + '-' + String(i + 1).padStart(2, '0'), c = cnt[k] || 0, on = m.includes(k);
         return { v: k, n: String(i + 1), c, cs: c ? nb(c) : '—', on, bg: c && !on ? 'background:rgba(142,42,34,' + (0.14 + 0.46 * c / max).toFixed(2) + ');border-color:rgba(142,42,34,' + (0.22 + 0.46 * c / max).toFixed(2) + ')' : '' }; }) }; });
     const ycnt = {}; all.forEach(e => { const k = e.rec.d.slice(0, 4); ycnt[k] = (ycnt[k] || 0) + 1; });
-    this.setData({ rc: { sections:R.SECTIONS.map(([id,label])=>({id,label:t(label),on:this.data.rcSections.includes(id)})), sectionCount:this.data.rcSections.length, grids, years: [{ v: 'all', n: t('全部'), c: nb(all.length), on: !y.length }].concat(years.map(v => ({ v, n: v, c: nb(ycnt[v]), on: y.includes(v) }))), mSel: m.length ? (I.isEn() ? m.length + ' selected' : '已选 ' + m.length + ' 个月') : '', progs: [{ v: 'all', n: t('全部专题'), on: !p.length }].concat(pids.map(v => ({ v, n: idx.PG[v].name, on: p.includes(v) }))),
+    this.setData({ rc: { sections:R.SECTIONS.map(([id,label])=>({id,label:t(label),on:this.data.rcSections.includes(id)})), sectionCount:this.data.rcSections.length, grids, years: [{ v: 'all', n: t('全部年份'), c: nb(all.length), on: !y.length }].concat(years.map(v => ({ v, n: v, c: nb(ycnt[v]), on: y.includes(v) }))), mSel: m.length ? (I.isEn() ? m.length + ' selected' : '已选 ' + m.length + ' 个月') : '', progs: [{ v: 'all', n: t('全部专题'), on: !p.length }].concat(pids.map(v => ({ v, n: idx.PG[v].name, on: p.includes(v) }))),
       n: list.length, hm: Math.floor(mins / 60) + 'h' + String(mins % 60).padStart(2, '0'), avg: rated.length ? (rated.reduce((n, e) => n + e.rec.r, 0) / rated.length).toFixed(1) : '—' } });
   },
   recapSub(list, idx) {
@@ -242,7 +243,7 @@ Page({
   toggleFriend() { this.setData({ friendOpen: !this.data.friendOpen }); },
   toggleFb() { this.setData({ fbOpen: !this.data.fbOpen }); },
   toggleGuide() { this.setData({ guideOpen: !this.data.guideOpen }); },
-  setRcY(e) { const v = e.currentTarget.dataset.v, c = this.data.rcY || []; this.setData({ rcY: v === 'all' ? [] : c.includes(v) ? c.filter(x => x !== v) : c.concat(v) }); this.buildRecap(); },
+  setRcY(e) { const v=e.currentTarget.dataset.v,y=v==='all'?[]:[v],same=(this.data.rcY||[])[0]===y[0];this.setData({rcY:y,rcM:same?this.data.rcM:[],rcYearAnchor:'rc-year-'+v});this.buildRecap(); },
   setRcP(e) { const v = e.currentTarget.dataset.v, c = this.data.rcP || []; this.setData({ rcP: v === 'all' ? [] : c.includes(v) ? c.filter(x => x !== v) : c.concat(v) }); this.buildRecap(); },
   noop() { },
   makeRecap() {
