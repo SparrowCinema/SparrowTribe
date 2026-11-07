@@ -47,3 +47,5 @@ const year=v=>my.setRcY({currentTarget:{dataset:{v}}});year('2025');assert.equal
 my.setRcM({currentTarget:{dataset:{v:'2025-09',c:1}}});year('2025');assert.equal(my.data.rcM.join(),'2025-09');year('all');assert.equal(my.data.rc.grids.length,0);assert.equal(my.data.rc.n,5);assert.equal(my.data.rcM.length,0);my.buildRecap();assert.equal(my.data.rcY.length,0);
 assert.equal(JSON.stringify(archive),snapshot);
 console.log('PASS: web and mini recap default to the latest year, switch one calendar at a time, clear stale months, retain same-year selection and aggregate all years without month grids.');
+
+assert.equal(JSON.parse(fs.readFileSync(path.join(root,'data/i18n/en.json'),'utf8')).ui['已汇总全部年份，选择年份可按月筛选。'],'All years included. Select a year to filter by month.');
