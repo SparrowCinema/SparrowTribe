@@ -8850,6 +8850,11 @@
   "待核实": "To be verified",
   "暂不公开": "Not disclosed",
   "尚未公布": "Not announced",
-  "已汇总全部年份，选择年份可按月筛选。": "All years included. Select a year to filter by month."
+  "已汇总全部年份，选择年份可按月筛选。": "All years included. Select a year to filter by month.",
+  "外观": "Appearance",
+  "跟随系统": "Match system",
+  "浅色": "Light",
+  "暗色": "Dark",
+  "自动跟随手机或电脑，也可固定浅色、暗色": "Follows your device, or stay light or dark"
  }
 }
