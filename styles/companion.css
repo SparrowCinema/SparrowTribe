@@ -168,3 +168,12 @@ button:focus-visible,summary:focus-visible,a:focus-visible{outline:3px solid var
 .fd-tbody>small{font-size:11px}
 .fd-add,.fd-see{height:27px;font-size:11.5px;padding:0 9px;border-radius:7px}
 .fd-tact{margin-top:6px;gap:6px}
+
+/* 外观（主题）选择行：标题下一排三段选择，按下的一档反色 */
+.my-dashboard .my-menu .theme-row{cursor:default;align-items:start;border-top:1px solid var(--line)}
+.my-dashboard .my-menu .theme-row:hover{background:none}
+.theme-row .menu-copy{grid-column:2/-1;min-width:0}
+.theme-seg{display:inline-flex;margin-top:12px;padding:3px;gap:2px;border:1px solid var(--line);border-radius:999px;background:var(--bg);max-width:100%}
+.theme-seg button{flex:1 1 auto;min-height:36px;padding:0 16px;border:0;border-radius:999px;background:none;color:var(--muted);font:inherit;font-size:14px;font-weight:600;white-space:nowrap;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.theme-seg button[aria-checked="true"]{background:var(--fg);color:var(--bg)}
+@media(max-width:360px){.theme-seg button{padding:0 11px;font-size:13px}}
