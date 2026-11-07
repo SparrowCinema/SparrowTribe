@@ -58,9 +58,9 @@
   <view class="makers">
     <text class="k2">{{L.t(i, '制作设计 · PRODUCED ' + '&' + ' DESIGNED BY')}}</text>
     <view class="row">
-      <image src="/images/brand/sparrow-movies-sq.png" mode="aspectFit" />
+      <image src="{{dk ? '/images/brand/sparrow-movies-sq-dark.png' : '/images/brand/sparrow-movies-sq.png'}}" mode="aspectFit" />
       <text class="x">×</text>
-      <image src="/images/brand/sparrow-tribe-sq.png" mode="aspectFit" />
+      <image src="{{dk ? '/images/brand/sparrow-tribe-sq-dark.png' : '/images/brand/sparrow-tribe-sq.png'}}" mode="aspectFit" />
     </view>
     <text class="d">{{L.t(i,'电影放映与策展')}}</text>
   </view>

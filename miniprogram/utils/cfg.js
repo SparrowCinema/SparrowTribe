@@ -7,9 +7,30 @@ const scale = () => { const v = Number(C.scale); return v >= 0.8 && v <= 1.2 ? v
 // 与 app.wxss 一致：屏宽 ≤600px 时 1 个 --r = 屏宽/750，更宽的屏固定 0.552px；再乘云端缩放
 const ps = () => {
   let w = 375; try { w = (wx.getWindowInfo ? wx.getWindowInfo() : wx.getSystemInfoSync()).windowWidth || 375; } catch (e) { }
-  return '--r:' + ((w <= 600 ? w / 750 : 0.552) * scale()).toFixed(5) + 'px;';
+  return '--r:' + ((w <= 600 ? w / 750 : 0.552) * scale()).toFixed(5) + 'px;' + (isDark() ? DARK : '');
 };
-const view = () => ({ ps: ps(), notice: String(C.notice || '') });
+// ---- 外观：跟随系统 / 浅色 / 暗色（选择存在本机 sk-theme；暗色靠 page-style 覆盖 app.wxss 里的颜色变量） ----
+const TKEY = 'sk-theme';
+let T = 'auto';
+try { const v = wx.getStorageSync(TKEY); if (v === 'light' || v === 'dark') T = v; } catch (e) { }
+const sysTheme = () => { try { const b = wx.getAppBaseInfo ? wx.getAppBaseInfo() : wx.getSystemInfoSync(); return b && b.theme === 'dark' ? 'dark' : 'light'; } catch (e) { return 'light'; } };
+const isDark = () => T === 'dark' || (T === 'auto' && sysTheme() === 'dark');
+const DARK = '--bg:#17130f;--surface:#211b15;--line:#3b3128;--line-soft:#2c241d;--fg:#f1e6d3;--muted:#a8977f;--accent:#d9634f;--teal:#4aa39d;--ochre:#d9953a;--chip:#2e261e;--float:rgba(33,27,21,.94);--bad-bg:#3b1f1b;--bad-fg:#ff8f80;--ic-filter:brightness(0) invert(.88);--ic-bg:transparent;--barS:22%;--barL:26%;--lineL:40%;--inkL:90%;';
+// 微信原生的导航栏、底部标签栏、页面底色不吃 CSS，只能用接口按当前外观改；非标签页调用标签栏接口会失败，已吞掉
+const PAL = {
+  light: { front: '#000000', nav: '#f8f2e6', page: '#efe6d4', tab: '#7a6a55', sel: '#8e2a22', border: 'white', bgt: 'dark', ic: '' },
+  dark: { front: '#ffffff', nav: '#211b15', page: '#17130f', tab: '#a8977f', sel: '#d9634f', border: 'black', bgt: 'light', ic: '-d' }
+};
+const TABS = ['schedule', 'programmes', 'films', 'my'];
+const chrome = () => {
+  const p = PAL[isDark() ? 'dark' : 'light'], nop = { fail() { } };
+  try { wx.setNavigationBarColor(Object.assign({ frontColor: p.front, backgroundColor: p.nav }, nop)); } catch (e) { }
+  try { wx.setBackgroundColor(Object.assign({ backgroundColor: p.page, backgroundColorTop: p.page, backgroundColorBottom: p.page }, nop)); } catch (e) { }
+  try { wx.setBackgroundTextStyle(Object.assign({ textStyle: p.bgt }, nop)); } catch (e) { }
+  try { wx.setTabBarStyle(Object.assign({ color: p.tab, selectedColor: p.sel, backgroundColor: p.nav, borderStyle: p.border }, nop)); } catch (e) { }
+  TABS.forEach((n, i) => { try { wx.setTabBarItem(Object.assign({ index: i, iconPath: 'images/tab/' + n + p.ic + '.png', selectedIconPath: 'images/tab/' + n + '-on' + p.ic + '.png' }, nop)); } catch (e) { } });
+};
+const view = () => ({ ps: ps(), notice: String(C.notice || ''), dk: isDark(), tpref: T });
 const set = c => {
   if (!c || typeof c !== 'object') return;
   C = Object.assign({ scale: 1, notice: '', tips: {} }, c);
@@ -22,5 +43,13 @@ const bind = page => {
   const fn = v => { try { page.setData(v); } catch (e) { } };
   subs.push(fn); page.__cfgOff = () => { const i = subs.indexOf(fn); if (i >= 0) subs.splice(i, 1); };
 };
+const setTheme = p => {
+  T = p === 'light' || p === 'dark' ? p : 'auto';
+  try { T === 'auto' ? wx.removeStorageSync(TKEY) : wx.setStorageSync(TKEY, T); } catch (e) { }
+  subs.slice().forEach(fn => fn(view()));
+  chrome();
+};
+// 系统外观变了（只有选「跟随系统」时才有影响）：刷新所有页面并重设原生栏
+try { wx.onThemeChange && wx.onThemeChange(() => { if (T === 'auto') { subs.slice().forEach(fn => fn(view())); chrome(); } }); } catch (e) { }
 const tip = (key, dflt) => { const a = C.tips && C.tips[key]; return Array.isArray(a) && a.length ? a.map(String) : dflt; };
-module.exports = { set, bind, tip, view };
+module.exports = { set, bind, tip, view, setTheme, chrome };

@@ -8,8 +8,9 @@ const CFG = require('./utils/cfg.js');
 // 每个页面自动绑定云端配置（页面根节点 page-meta 用 ps 设置 --r 缩放，notice 为公告）
 const _Page = Page;
 try { Page = function (o) {
-  const on = o.onLoad, off = o.onUnload;
+  const on = o.onLoad, off = o.onUnload, sh = o.onShow;
   o.onLoad = function (q) { try { CFG.bind(this); } catch (e) { } return on && on.call(this, q); };
+  o.onShow = function () { try { CFG.chrome(); } catch (e) { } return sh && sh.apply(this, arguments); }; // 每次显示按当前外观重设原生导航栏/标签栏
   o.onUnload = function () { try { this.__cfgOff && this.__cfgOff(); } catch (e) { } return off && off.call(this); };
   return _Page(o);
 }; } catch (e) { }

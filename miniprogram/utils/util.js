@@ -13,7 +13,8 @@ const durText = m => I.tr(m < 60 ? m + ' 分钟' : Math.floor(m / 60) + ' 小时
 
 // 每部影片一种柔和浅色：按片目顺序以黄金角拉开色相
 const hsl2hex = (h, s, l) => { s /= 100; l /= 100; const k = n => (n + h / 30) % 12; const a = s * Math.min(l, 1 - l); const f = n => Math.round(255 * (l - a * Math.max(-1, Math.min(k(n) - 3, 9 - k(n), 1)))).toString(16).padStart(2, '0'); return '#' + f(0) + f(8) + f(4); };
-const filmTone = i => { const h = Math.round((i < 0 ? 0 : i) * 137.508 % 360); return { bg: hsl2hex(h, 36, 85), line: hsl2hex(h, 36, 68), ink: hsl2hex(h, 38, 22), bar: hsl2hex(h, 40, 62) }; };
+// 色块色用 CSS 变量取饱和度/明度（app.wxss 里是浅色默认值，暗色时由 cfg.js 的 page-style 覆盖），所以切换外观不用重算数据；变量取不到时回落到浅色值
+const filmTone = i => { const h = Math.round((i < 0 ? 0 : i) * 137.508 % 360); return { bg: 'hsl(' + h + ' var(--barS,36%) var(--barL,85%))', line: 'hsl(' + h + ' var(--barS,36%) var(--lineL,68%))', ink: 'hsl(' + h + ' 38% var(--inkL,22%))', bar: hsl2hex(h, 40, 62) }; };
 // 上映日期：优先解析 release 中的「YYYY年M月D日」，否则用年份
 const relTime = f => { const m = String(f.release || '').match(/(\d{4})年(\d{1,2})月(\d{1,2})日/); if (m) return new Date(+m[1], m[2] - 1, +m[3]).getTime(); return f.y ? new Date(+f.y, 0, 1).getTime() : 0; };
 // 某部影片的下一场（未开映）

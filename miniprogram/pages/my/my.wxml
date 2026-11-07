@@ -1,9 +1,9 @@
 <page-meta page-style="{{ps}}" />
 <wxs src="../../utils/l.wxs" module="L" />
 <view class="brandbar">
-  <image class="sq" src="/images/brand/sparrow-movies-sq.png" mode="aspectFit" />
+  <image class="sq" src="{{dk ? '/images/brand/sparrow-movies-sq-dark.png' : '/images/brand/sparrow-movies-sq.png'}}" mode="aspectFit" />
   <text class="x">×</text>
-  <image class="sq" src="/images/brand/sparrow-tribe-sq.png" mode="aspectFit" />
+  <image class="sq" src="{{dk ? '/images/brand/sparrow-tribe-sq-dark.png' : '/images/brand/sparrow-tribe-sq.png'}}" mode="aspectFit" />
   <view class="bb-sp" />
   <view class="lang" hover-class="hv" bindtap="switchLang"><text class="{{en ? '' : 'on'}}">中</text><text class="{{en ? 'on' : ''}}">EN</text></view>
   <view class="tag"><text>{{L.t(i,'观影')}}\n{{L.t(i,'护照')}}</text></view>
@@ -122,6 +122,7 @@ ONE STAMP</text><text class="fp-open-icon">↗</text></view>
   <view class="me-row" hover-class="hv" bindtap="openRecap"><image class="me-ic" src="/images/menu/recap.svg" mode="aspectFit" /><view class="me-copy"><text class="me-t">{{L.t(i,'我的影院观影结算')}}</text><text class="me-s">{{L.t(i,'按年份与专题，收藏印章与评分。')}}</text></view><text class="me-go">›</text></view>
   <view class="me-row" hover-class="hv" bindtap="toPlan"><image class="me-ic" src="/images/menu/plan.svg" mode="aspectFit" /><view class="me-copy"><text class="me-t">{{L.t(i,'个人排片')}}</text><text class="me-s">{{planSub}}</text></view><text class="me-go">›</text></view>
   <view class="me-row" hover-class="hv" bindtap="toPosterWall"><image class="me-ic" src="/images/menu/wall.svg" mode="aspectFit" /><view class="me-copy"><text class="me-t">{{L.t(i,'我的海报墙')}}</text><text class="me-s">{{L.t(i,'看过的影片 · 我的评分')}}</text></view><text class="me-go">›</text></view>
+  <view class="me-row me-theme"><view class="me-copy"><text class="me-t">{{L.t(i,'外观')}}</text><text class="me-s">{{L.t(i,'自动跟随手机或电脑，也可固定浅色、暗色')}}</text><view class="th-seg"><view class="th-o {{tpref==='auto'?'on':''}}" data-p="auto" bindtap="setTheme">{{L.t(i,'跟随系统')}}</view><view class="th-o {{tpref==='light'?'on':''}}" data-p="light" bindtap="setTheme">{{L.t(i,'浅色')}}</view><view class="th-o {{tpref==='dark'?'on':''}}" data-p="dark" bindtap="setTheme">{{L.t(i,'暗色')}}</view></view></view></view>
   <view class="me-row" hover-class="hv" bindtap="toggleSync"><image class="me-ic" src="/images/menu/sync.svg" mode="aspectFit" /><view class="me-copy"><text class="me-t">{{L.t(i,'个人档案云端同步')}}</text><text class="me-s">{{sy.on ? sy.line : L.t(i,'同步、备份与档案保管')}}</text></view><text class="me-go {{syncExpanded?'on':''}}">›</text></view>
   <view wx:if="{{syncExpanded}}" class="me-body sync-body">
    <block wx:if="{{sy}}">
