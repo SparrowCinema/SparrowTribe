@@ -358,11 +358,12 @@
    },
    "contentNote": "剧情涉及武打与兵器伤害、权力迫害。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
+    "status": "verified",
+    "date": "1990-04-05",
     "festival": null,
     "festivalEn": null,
-    "kind": "unknown"
+    "kind": "theatrical",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -446,11 +447,12 @@
    },
    "contentNote": "剧情涉及武打与兵器伤害、背叛与迫害。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
+    "status": "verified",
+    "date": "1992-06-26",
     "festival": null,
     "festivalEn": null,
-    "kind": "unknown"
+    "kind": "theatrical",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -699,11 +701,12 @@
    },
    "contentNote": "剧情涉及枪战与血腥伤害、亲人死亡。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
+    "status": "verified",
+    "date": "1986-08-02",
     "festival": null,
     "festivalEn": null,
-    "kind": "unknown"
+    "kind": "theatrical",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -779,11 +782,12 @@
    },
    "contentNote": "剧情涉及婚外关系、家庭争执、性别偏见。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
+    "status": "partial",
+    "date": "1947-12",
     "festival": null,
     "festivalEn": null,
-    "kind": "unknown"
+    "kind": "theatrical",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -864,11 +868,12 @@
    },
    "contentNote": "剧情涉及黑帮暴力、婚外关系。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
-    "festival": null,
-    "festivalEn": null,
-    "kind": "unknown"
+    "status": "partial",
+    "date": "1994-09",
+    "festival": "威尼斯国际电影节",
+    "festivalEn": "Venice International Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -940,11 +945,12 @@
    },
    "contentNote": "已查看现有剧情资料，尚未确认需要特别标注的敏感内容。这不代表适合所有年龄，也不等同于完整内容审查。",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
+    "status": "verified",
+    "date": "1982-11-27",
     "festival": null,
     "festivalEn": null,
-    "kind": "unknown"
+    "kind": "theatrical",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -1029,11 +1035,12 @@
     "checked": "2026-11-03"
    },
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
-    "festival": null,
-    "festivalEn": null,
-    "kind": "unknown"
+    "status": "verified",
+    "date": "1984-03-26",
+    "festival": "美国电影节（达拉斯）",
+    "festivalEn": "USA Film Festival (Dallas)",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -1106,11 +1113,12 @@
    },
    "contentNote": "剧情涉及疾病与照护、婚姻压抑。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
+    "status": "verified",
+    "date": "1948-09-25",
     "festival": null,
     "festivalEn": null,
-    "kind": "unknown"
+    "kind": "theatrical",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -1182,11 +1190,12 @@
    },
    "contentNote": "已查看现有剧情资料，尚未确认需要特别标注的敏感内容。这不代表适合所有年龄，也不等同于完整内容审查。",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
-    "festival": null,
-    "festivalEn": null,
-    "kind": "unknown"
+    "status": "partial",
+    "date": "1958-05",
+    "festival": "戛纳国际电影节",
+    "festivalEn": "Cannes Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -1266,11 +1275,12 @@
    },
    "contentNote": "剧情涉及儿童受责备、被学校排斥的焦虑。具体画面与表现强度尚未核实，请结合个人情况选择。",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
-    "festival": null,
-    "festivalEn": null,
-    "kind": "unknown"
+    "status": "partial",
+    "date": "1987-02",
+    "festival": "曙光国际电影节",
+    "festivalEn": "Fajr International Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-07"
    }
   },
   {

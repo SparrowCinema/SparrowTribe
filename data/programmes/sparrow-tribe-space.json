@@ -54,7 +54,8 @@
     "date": null,
     "festival": null,
     "festivalEn": null,
-    "kind": "unknown"
+    "kind": "unknown",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -177,11 +178,12 @@
    },
    "poster": "posters/space-i-am-001-2026.jpg",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
+    "status": "partial",
+    "date": "2024-09",
     "festival": null,
     "festivalEn": null,
-    "kind": "unknown"
+    "kind": "theatrical",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -250,7 +252,8 @@
     "date": null,
     "festival": null,
     "festivalEn": null,
-    "kind": "unknown"
+    "kind": "unknown",
+    "checked": "2026-11-07"
    }
   },
   {
@@ -308,11 +311,12 @@
    },
    "poster": "posters/space-four-springs-2026.jpg",
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
+    "status": "verified",
+    "date": "2017-12-30",
     "festival": null,
     "festivalEn": null,
-    "kind": "unknown"
+    "kind": "theatrical",
+    "checked": "2026-11-07"
    }
   },
   {

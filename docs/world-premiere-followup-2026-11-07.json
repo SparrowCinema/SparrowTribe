@@ -1,0 +1,3926 @@
+{
+ "checked": "2026-11-07",
+ "scope": "All 219 formerly pending titles researched. Original earliest public exhibition, excluding work-in-progress markets, regional premieres and restorations. Preserve source date precision.",
+ "verifiedRecords": {
+  "swordsman": {
+   "cn": "笑傲江湖",
+   "date": "1990-04-05",
+   "festival": null,
+   "festivalEn": null,
+   "kind": "theatrical",
+   "sources": [
+    "https://www.hkfilm.net/archive/hkfa.pdf"
+   ],
+   "note": ""
+  },
+  "swordsman-2": {
+   "cn": "笑傲江湖2：东方不败",
+   "date": "1992-06-26",
+   "festival": null,
+   "festivalEn": null,
+   "kind": "theatrical",
+   "sources": [
+    "https://www.imdb.com/title/tt0103295/releaseinfo/"
+   ],
+   "note": ""
+  },
+  "a-better-tomorrow": {
+   "cn": "英雄本色",
+   "date": "1986-08-02",
+   "festival": null,
+   "festivalEn": null,
+   "kind": "theatrical",
+   "sources": [
+    "https://www.25thframe.co.uk/movies/a-better-tomorrow/release-dates"
+   ],
+   "note": ""
+  },
+  "long-live-the-missus": {
+   "cn": "太太万岁",
+   "date": "1947-12",
+   "festival": null,
+   "festivalEn": null,
+   "kind": "theatrical",
+   "sources": [
+    "https://www.1905.com/mdb/film/61247/feature/"
+   ],
+   "note": "Shanghai premiere varies 13/14 December in accounts; retain month only."
+  },
+  "bullets-over-broadway": {
+   "cn": "子弹横飞百老汇",
+   "date": "1994-09",
+   "festival": "威尼斯国际电影节",
+   "festivalEn": "Venice International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.imdb.com/title/tt0109348/releaseinfo/"
+   ],
+   "note": "4/6 September sources conflict; retain month."
+  },
+  "green-green-grass": {
+   "cn": "在那河畔青草青",
+   "date": "1982-11-27",
+   "festival": null,
+   "festivalEn": null,
+   "kind": "theatrical",
+   "sources": [
+    "https://www.jiemian.com/keyman/10096.html"
+   ],
+   "note": ""
+  },
+  "blood-simple": {
+   "cn": "血迷宫",
+   "date": "1984-03-26",
+   "festival": "美国电影节（达拉斯）",
+   "festivalEn": "USA Film Festival (Dallas)",
+   "kind": "festival",
+   "sources": [
+    "https://embed.letterboxd.com/film/blood-simple/releases/"
+   ],
+   "note": "Dallas precedes Toronto and NYFF."
+  },
+  "spring-in-a-small-town": {
+   "cn": "小城之春",
+   "date": "1948-09-25",
+   "festival": null,
+   "festivalEn": null,
+   "kind": "theatrical",
+   "sources": [
+    "https://chinesefilmclassics.org/course/module-10-spring-in-a-small-town-1948/"
+   ],
+   "note": ""
+  },
+  "mon-oncle": {
+   "cn": "我的舅舅",
+   "date": "1958-05",
+   "festival": "戛纳国际电影节",
+   "festivalEn": "Cannes Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.poleimagehn.com/images/CollegeAuCinema/DossierMaitreMonOncle.pdf"
+   ],
+   "note": "9/10 May dates differ; retain month."
+  },
+  "where-is-the-friends-house": {
+   "cn": "何处是我朋友的家",
+   "date": "1987-02",
+   "festival": "曙光国际电影节",
+   "festivalEn": "Fajr International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://en.wikipedia.org/wiki/Where_Is_the_Friend%27s_House"
+   ],
+   "note": ""
+  },
+  "linka-linka": {
+   "cn": "一个夜晚与三个夏天",
+   "date": "2025-11-03",
+   "festival": "东京国际电影节",
+   "festivalEn": "Tokyo International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://embed.letterboxd.com/tokyoiff/story/younger-than-yesterday-in-tibet-linka-linka/"
+   ],
+   "note": ""
+  },
+  "kill-bill-whole-bloody-affair": {
+   "cn": "杀死比尔：血色全传",
+   "date": "2004-05-23",
+   "festival": "戛纳国际电影节",
+   "festivalEn": "Cannes Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.imdb.com/title/tt6019206/releaseinfo/"
+   ],
+   "note": "First assembled version; not 2011 revival or 2025 theatrical release."
+  },
+  "the-odyssey": {
+   "cn": "奥德赛",
+   "date": "2026-07-06",
+   "festival": null,
+   "festivalEn": null,
+   "kind": "theatrical",
+   "sources": [
+    "https://abcnews.com/amp/GMA/Culture/christopher-nolans-odyssey/story?id=133598710"
+   ],
+   "note": ""
+  },
+  "for-better-or-worse": {
+   "cn": "夫妻一场",
+   "date": "2025-07-22",
+   "festival": "FIRST青年电影展",
+   "festivalEn": "FIRST International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.firstfilm.org.cn/movies/film-library/夫妻一场/"
+   ],
+   "note": "Date cross-check director interview: https://www.sina.cn/news/detail/5191523316532083.html"
+  },
+  "resident-evil": {
+   "cn": "生化危机：爆发夜",
+   "date": "2026-09-15",
+   "festival": null,
+   "festivalEn": null,
+   "kind": "theatrical",
+   "sources": [
+    "https://www.rte.ie/entertainment/2026/0916/1591741-resident-evil-film-brings-video-games-ethos-to-cinemas/"
+   ],
+   "note": ""
+  },
+  "hunger-games-sunrise-on-the-reaping": {
+   "cn": "饥饿游戏：收获日出",
+   "date": "2026-10-28",
+   "festival": null,
+   "festivalEn": null,
+   "kind": "theatrical",
+   "sources": [
+    "https://www.reutersconnect.com/item/the-hunger-games-sunrise-on-the-reaping-uk-premiere/dGFnOnJldXRlcnMuY29tLDIwMjY6bmV3c21sX01UMVNJUEEwMDBNMTRVSkU"
+   ],
+   "note": "Earliest documented full fan screening in London, preceding advertised Nov16 New York ceremonial world premiere. Date means first public exhibition, not gala label."
+  },
+  "legend-of-1900": {
+   "cn": "海上钢琴师",
+   "date": "1998-10-28",
+   "festival": null,
+   "festivalEn": null,
+   "kind": "theatrical",
+   "sources": [
+    "https://cineuropa.org/en/film/415157/"
+   ],
+   "note": ""
+  },
+  "i-am-001": {
+   "cn": "我是001号",
+   "date": "2024-09",
+   "festival": null,
+   "festivalEn": null,
+   "kind": "theatrical",
+   "sources": [
+    "https://www.firstfilm.org.cn/movies/documentary-lab/dog/"
+   ],
+   "note": "Filmmaker bio confirms Beijing cinema screening in Sept2024, earlier than October2026."
+  },
+  "four-springs": {
+   "cn": "四个春天",
+   "date": "2017-12-30",
+   "festival": null,
+   "festivalEn": null,
+   "kind": "theatrical",
+   "sources": [
+    "https://letterboxd.com/film/four-springs-2017/releases/"
+   ],
+   "note": "Earliest public presentation UCCA Art Cinema precedes 2018 FIRST; not a festival premiere."
+  },
+  "gr26-002": {
+   "cn": "明天，会更好",
+   "date": "2026-09",
+   "festival": "多伦多国际电影节",
+   "festivalEn": "Toronto International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.screendaily.com/news/tiff-adds-11-titles-including-the-liberation-starring-carrie-coon-the-idiots-with-aimee-lou-wood/5219257.article"
+   ],
+   "note": ""
+  },
+  "gr26-003": {
+   "cn": "当瓶子转动时",
+   "date": "2026-07",
+   "festival": "FIRST青年电影展",
+   "festivalEn": "FIRST International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.firstfilm.org.cn/movies/film-library/whenthebottleturns/"
+   ],
+   "note": "Official world premiere badge; 2025 is production year, twentieth FIRST held July2026."
+  },
+  "gr26-005": {
+   "cn": "驴公主",
+   "date": "2026-08",
+   "festival": "洛迦诺国际电影节",
+   "festivalEn": "Locarno Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://slashfilmfestival.com/en/program-2026/donkey-princess/"
+   ],
+   "note": ""
+  },
+  "gr26-006": {
+   "cn": "夏日红炎",
+   "date": "2026-05",
+   "festival": "戛纳导演双周",
+   "festivalEn": "Cannes Directors’ Fortnight",
+   "kind": "festival",
+   "sources": [
+    "https://www.quinzaine-cineastes.fr/en/film/red-rocks"
+   ],
+   "note": ""
+  },
+  "gr26-007": {
+   "cn": "女仆日记",
+   "date": "2026-05",
+   "festival": "戛纳导演双周",
+   "festivalEn": "Cannes Directors’ Fortnight",
+   "kind": "festival",
+   "sources": [
+    "https://www.quinzaine-cineastes.fr/en/film/the-diary-of-a-chambermaid"
+   ],
+   "note": ""
+  },
+  "gr26-008": {
+   "cn": "子",
+   "date": "2026",
+   "festival": "圣丹斯电影节",
+   "festivalEn": "Sundance Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.sheldonchau.com/feature-zi"
+   ],
+   "note": "Festival crosses January and February; no unverified day inferred."
+  },
+  "gr26-009": {
+   "cn": "钢铁男孩",
+   "date": "2026-05",
+   "festival": "戛纳国际电影节",
+   "festivalEn": "Cannes Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.sonypictures.com/corp/press_releases/2026/0521"
+   ],
+   "note": ""
+  },
+  "gr26-010": {
+   "cn": "明月共此时",
+   "date": "2026-08",
+   "festival": "洛迦诺国际电影节",
+   "festivalEn": "Locarno Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://cnalifestyle.channelnewsasia.com/entertainment/house-moon-locarno-film-festival-585796"
+   ],
+   "note": ""
+  },
+  "gr26-011": {
+   "cn": "泡泡糖女孩",
+   "date": "2026",
+   "festival": "鹿特丹国际电影节",
+   "festivalEn": "International Film Festival Rotterdam",
+   "kind": "festival",
+   "sources": [
+    "https://iffr.com/en/iffr/2026/films/ah-girl"
+   ],
+   "note": ""
+  },
+  "gr26-013": {
+   "cn": "发现之旅",
+   "date": "2026-09",
+   "festival": "威尼斯国际电影节",
+   "festivalEn": "Venice International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://bydongjie.com/media/tuoluo-zoom-in-zoom-out-interview/"
+   ],
+   "note": ""
+  },
+  "gr26-016": {
+   "cn": "七分熟",
+   "date": "2026-07-19",
+   "festival": "FIRST青年电影展",
+   "festivalEn": "FIRST International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.firstfilm.org.cn/annual/screening/schedule/display-2026/"
+   ],
+   "note": "Exact day cross-checked in DeepFocus director interview, Douban review 17762968."
+  },
+  "gr26-017": {
+   "cn": "逆光绽放",
+   "date": "2026-11",
+   "festival": "中国金鸡百花电影节·金鸡影展",
+   "festivalEn": "Golden Rooster Film Screening",
+   "kind": "festival",
+   "sources": [
+    "user-provided: codex-clipboard-4cbc7a5a-0391-4fa6-b375-76d960622476.jpg"
+   ],
+   "note": "Official festival title card marks world premiere; use festival month only."
+  },
+  "gr26-018": {
+   "cn": "寒夜灯柱",
+   "date": "2026-02",
+   "festival": "柏林国际电影节",
+   "festivalEn": "Berlin International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.berlinale.de/en/2026/programme/202615603.html"
+   ],
+   "note": ""
+  },
+  "gr26-019": {
+   "cn": "澳门大赛车",
+   "date": "2026-11",
+   "festival": "中国金鸡百花电影节·金鸡影展",
+   "festivalEn": "Golden Rooster Film Screening",
+   "kind": "festival",
+   "sources": [
+    "user-provided: codex-clipboard-09afb2a5-7fd7-4400-a5b8-d0c6a7ff608e.jpg"
+   ],
+   "note": "Official festival title card marks world premiere; use festival month only."
+  },
+  "gr26-020": {
+   "cn": "最佳状态",
+   "date": "2026-06",
+   "festival": "上海国际电影节",
+   "festivalEn": "Shanghai International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.prnewswire.com/news-releases/golden-goblet-competition-lineup-announced-spotlight-on-the-2026-contenders-302786369.html"
+   ],
+   "note": ""
+  },
+  "gr26-021": {
+   "cn": "无名女孩",
+   "date": "2026-05",
+   "festival": "戛纳影评人周",
+   "festivalEn": "Cannes Critics’ Week",
+   "kind": "festival",
+   "sources": [
+    "https://www.semainedelacritique.com/en/edition/2026/movie/a-girl-unknown_1147"
+   ],
+   "note": ""
+  },
+  "gr26-022": {
+   "cn": "阿尔及利卡之路",
+   "date": "2026-04-25",
+   "festival": "安纳巴地中海电影节",
+   "festivalEn": "Annaba Mediterranean Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://letterboxd.com/film/algerican-road/"
+   ],
+   "note": "Annaba precedes FIDMarseille international premiere."
+  },
+  "gr26-023": {
+   "cn": "悲惨世界",
+   "date": "2026-09",
+   "festival": "圣塞巴斯蒂安国际电影节",
+   "festivalEn": "San Sebastián International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.linkedin.com/posts/anna-marsh-592993a3_studiocanal-and-canal-group-are-proud-to-activity-7493987577230839810-s_Ry"
+   ],
+   "note": ""
+  },
+  "gr26-024": {
+   "cn": "爱杀",
+   "date": "1981",
+   "festival": null,
+   "festivalEn": null,
+   "kind": "theatrical",
+   "sources": [
+    "https://www.mplus.org.hk/tc/cinema/mplus-restored-festival-2026/love-massacre/"
+   ],
+   "note": "Original Hong Kong release verified to year; restoration excluded."
+  },
+  "gr26-026": {
+   "cn": "语文的滋味",
+   "date": "2026-06-19",
+   "festival": "上海国际电影节",
+   "festivalEn": "Shanghai International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.hzxcw.gov.cn/content_48011.html"
+   ],
+   "note": ""
+  },
+  "gr26-027": {
+   "cn": "斯琴图的秋天",
+   "date": "2026-11",
+   "festival": "中国金鸡百花电影节·金鸡影展",
+   "festivalEn": "Golden Rooster Film Screening",
+   "kind": "festival",
+   "sources": [
+    "user-provided: codex-clipboard-389c69ed-8444-414b-b7c6-67a6841cbbd1.jpg"
+   ],
+   "note": "Official festival title card marks world premiere; use festival month only."
+  },
+  "gr26-029": {
+   "cn": "我阿爹想旅行",
+   "date": "2026-09",
+   "festival": "平遥国际电影展",
+   "festivalEn": "Pingyao International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.wenweipo.com/a/202610/02/AP6abebbd3e4b01d54a28591f0.html"
+   ],
+   "note": "Explicit global premiere at Pingyao, festival Sept24-30."
+  },
+  "gr26-030": {
+   "cn": "像我这样的爱情",
+   "date": "2025-10",
+   "festival": "东京国际电影节",
+   "festivalEn": "Tokyo International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.ccidahk.gov.hk/en/whatsnew_detail.php?id=2025103118000960195"
+   ],
+   "note": "Premiere already held by government announcement on 31 October."
+  },
+  "gr26-031": {
+   "cn": "大西洋",
+   "date": "2026-06-18",
+   "festival": "上海国际电影节",
+   "festivalEn": "Shanghai International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.siff.com/content?aid=101260619161656837688971499671557509"
+   ],
+   "note": ""
+  },
+  "gr26-032": {
+   "cn": "深度安静",
+   "date": "2025-09-28",
+   "festival": "平遥国际电影展",
+   "festivalEn": "Pingyao International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://bkso.baidu.com/item/%E6%B7%B1%E5%BA%A6%E5%AE%89%E9%9D%99/66217764?fromModule=lemma_inlink"
+   ],
+   "note": ""
+  },
+  "gr26-033": {
+   "cn": "人生海海",
+   "date": "2025-10",
+   "festival": "夏威夷国际电影节",
+   "festivalEn": "Hawai‘i International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://hiff.org/events/thewaveswillcarryus/"
+   ],
+   "note": ""
+  },
+  "gr26-034": {
+   "cn": "豪·路·博尔赫斯传",
+   "date": "2026-09",
+   "festival": "威尼斯国际电影节",
+   "festivalEn": "Venice International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.lacartelera.com/en/magazine/venice-83-mariano-llinas-life-of-jorge-luis-borges-330-minutes/"
+   ],
+   "note": "Multi-part premiere: completion date Sept7 does not establish first part date."
+  },
+  "gr26-035": {
+   "cn": "入学许可",
+   "date": "2025-11",
+   "festival": "塔林黑夜电影节",
+   "festivalEn": "Tallinn Black Nights Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.antidote-sales.biz/news/world-premiere-admission-quentin-hsu-p%C3%B6ff-tallinn"
+   ],
+   "note": ""
+  },
+  "gr26-036": {
+   "cn": "沧海琴声",
+   "date": "2026-06",
+   "festival": "安锡国际动画电影节",
+   "festivalEn": "Annecy International Animation Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.imda.gov.sg/resources/press-releases-factsheets-and-speeches/press-releases/2026/the-violinist"
+   ],
+   "note": ""
+  },
+  "gr26-039": {
+   "cn": "太极张三丰",
+   "date": "1993-11-18",
+   "festival": null,
+   "festivalEn": null,
+   "kind": "theatrical",
+   "sources": [
+    "https://www.1905.com/mdb/film/49177/"
+   ],
+   "note": ""
+  },
+  "gr26-040": {
+   "cn": "浪花男女",
+   "date": "2026-08-18",
+   "festival": null,
+   "festivalEn": null,
+   "kind": "theatrical",
+   "sources": [
+    "https://www.info.gov.hk/gia/general/202608/18/P2026081800227p.htm"
+   ],
+   "note": "Hong Kong premiere; no earlier festival premiere found."
+  },
+  "gr26-041": {
+   "cn": "第四幕",
+   "date": "2026-06-13",
+   "festival": "上海国际电影节",
+   "festivalEn": "Shanghai International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.siff.com/english/content?aid=101260616112026836527193684185093256"
+   ],
+   "note": ""
+  },
+  "gr26-042": {
+   "cn": "黑潮",
+   "date": "2026-09",
+   "festival": "平遥国际电影展",
+   "festivalEn": "Pingyao International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://theinterview.asia/info/综艺/212120/"
+   ],
+   "note": ""
+  },
+  "gr26-043": {
+   "cn": "山中来客",
+   "date": "2026-06",
+   "festival": "上海国际电影节",
+   "festivalEn": "Shanghai International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://ent.cri.cn/20260601/65219e80-7225-47a6-85df-0ff12c9491cb.html"
+   ],
+   "note": "Individual Asian New Talent entry explicitly marked world premiere."
+  },
+  "gr26-045": {
+   "cn": "无处安放我的双眼",
+   "date": "2026-08-13",
+   "festival": "洛迦诺国际电影节",
+   "festivalEn": "Locarno Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.youtube.com/watch?v=W99DQbSMocM"
+   ],
+   "note": "Locarno official press conference confirms world premiere; date cross-check."
+  },
+  "gr26-046": {
+   "cn": "善男信女",
+   "date": "2026-09-13",
+   "festival": "多伦多国际电影节",
+   "festivalEn": "Toronto International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.ccidahk.gov.hk/en/whatsnew_detail.php?token=NueRYzHwG76s9EnVfVyA"
+   ],
+   "note": ""
+  },
+  "gr26-047": {
+   "cn": "被杀的那天",
+   "date": "2026-10-10",
+   "festival": "釜山国际电影节",
+   "festivalEn": "Busan International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.info.gov.hk/gia/general/202610/06/P2026100600442p.htm"
+   ],
+   "note": ""
+  },
+  "gr26-048": {
+   "cn": "林中绿洲",
+   "date": "2026-09-06",
+   "festival": "威尼斯国际电影节",
+   "festivalEn": "Venice International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://marijanaharder.com/oasis/"
+   ],
+   "note": ""
+  },
+  "gr26-049": {
+   "cn": "金玉满堂",
+   "date": "1995-01-28",
+   "festival": null,
+   "festivalEn": null,
+   "kind": "theatrical",
+   "sources": [
+    "https://zh.wikipedia.org/wiki/金玉滿堂_(1995年電影)"
+   ],
+   "note": ""
+  },
+  "gr26-050": {
+   "cn": "深爱",
+   "date": "2026-08-23",
+   "festival": "挪威国际电影节·海于格松",
+   "festivalEn": "Norwegian International Film Festival Haugesund",
+   "kind": "festival",
+   "sources": [
+    "https://reinvent.dk/news/erik-poppes-beloved-to-open-haugesund-all-eyes-are-on-norway-says-festival-chief-tonje-hardersen/"
+   ],
+   "note": ""
+  },
+  "gr26-051": {
+   "cn": "其余皆噪音",
+   "date": "2026-02",
+   "festival": "柏林国际电影节",
+   "festivalEn": "Berlin International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.berlinale.de/en/2026/programme/202606851.html"
+   ],
+   "note": ""
+  },
+  "gr26-052": {
+   "cn": "吃饱的菲尔",
+   "date": "2026-05-17",
+   "festival": "戛纳国际电影节",
+   "festivalEn": "Cannes Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://en.wikipedia.org/wiki/Full_Phil"
+   ],
+   "note": ""
+  },
+  "gr26-053": {
+   "cn": "匈牙利狂想曲",
+   "date": "1986-12",
+   "festival": null,
+   "festivalEn": null,
+   "kind": "theatrical",
+   "sources": [
+    "https://www.imdb.com/title/tt0093427/releaseinfo/"
+   ],
+   "note": "Original Budapest premiere, not 2012 or 2026 restoration. Sources conflict 11 vs 12 December; retain month."
+  },
+  "gr26-054": {
+   "cn": "剪刀手爱德华",
+   "date": "1990-12-06",
+   "festival": null,
+   "festivalEn": null,
+   "kind": "theatrical",
+   "sources": [
+    "https://in70mm.com/presents/1963_blow_up/titel/e/edward_scissorhands/index.htm"
+   ],
+   "note": "Los Angeles premiere; excludes earlier invitation-only preview."
+  },
+  "gr26-056": {
+   "cn": "回归",
+   "date": "2003-09",
+   "festival": "威尼斯国际电影节",
+   "festivalEn": "Venice International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://en.wikipedia.org/wiki/Andrey_Zvyagintsev"
+   ],
+   "note": ""
+  },
+  "gr26-057": {
+   "cn": "冰释雪融",
+   "date": "2026-05",
+   "festival": "戛纳国际电影节",
+   "festivalEn": "Cannes Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.thewrap.com/creative-content/movies/the-meltdown-cannes-premiere-acquired-kino-lorber/"
+   ],
+   "note": ""
+  },
+  "gr26-058": {
+   "cn": "南国再见，南国",
+   "date": "1996-05",
+   "festival": "戛纳国际电影节",
+   "festivalEn": "Cannes Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.festival-cannes.com/en/f/goodbye-south-goodbye/"
+   ],
+   "note": "12 vs 13 May date conflict; retain month."
+  },
+  "gr26-059": {
+   "cn": "别人的东西",
+   "date": "2026-09-10",
+   "festival": "威尼斯国际电影节",
+   "festivalEn": "Venice International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://theprfactory.com/movies/what-belongs-to-others/"
+   ],
+   "note": "Public official screening; press screenings on 9 September excluded."
+  },
+  "gr26-060": {
+   "cn": "白夜黑金",
+   "date": "2026-07",
+   "festival": "卡罗维发利国际电影节",
+   "festivalEn": "Karlovy Vary International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.kviff.com/en/programme/film/84/50251-black-money-for-white-nights"
+   ],
+   "note": ""
+  },
+  "gr26-061": {
+   "cn": "油麻菜籽",
+   "date": "1983",
+   "festival": null,
+   "festivalEn": null,
+   "kind": "theatrical",
+   "sources": [
+    "https://www.taiwanwomencenter.org.tw/zh-tw/NewsMgt/news/Content/5/news1120331a"
+   ],
+   "note": "Original end-1983 release, not 2023 restoration or 1984 award."
+  },
+  "gr26-062": {
+   "cn": "醉拳",
+   "date": "1978-10-05",
+   "festival": null,
+   "festivalEn": null,
+   "kind": "theatrical",
+   "sources": [
+    "https://www.filmarchive.gov.hk/documents/6.-Research-and-Publication/06-05_Publications/02_Oral-History-Series/Oral-History-Series-7_When-the-Wind-Was-Blowing-Wild-Hong-Kong-Cinema-of-the-1970s_CHI/Oral-History-Series_chi07_ebook.pdf"
+   ],
+   "note": ""
+  },
+  "gr26-063": {
+   "cn": "银翼杀手（最终剪辑版）",
+   "date": "1982-06-25",
+   "festival": null,
+   "festivalEn": null,
+   "kind": "theatrical",
+   "sources": [
+    "https://in70mm.com/festival/karlsruhe/festival/todd_ao/2018/index.htm"
+   ],
+   "note": "Original work premiere; not Final Cut restoration premiere in 2007."
+  },
+  "gr26-064": {
+   "cn": "我们不是陌生人",
+   "date": "2026-02",
+   "festival": "柏林国际电影节",
+   "festivalEn": "Berlin International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.imda.gov.sg/resources/press-releases-factsheets-and-speeches/press-releases/2026/we-are-all-strangers"
+   ],
+   "note": ""
+  },
+  "gr26-066": {
+   "cn": "将军号",
+   "date": "1926-12-25",
+   "festival": null,
+   "festivalEn": null,
+   "kind": "theatrical",
+   "sources": [
+    "https://catalog.afi.com/Film/9303-THE-GENERAL?cp=1&pos=0&sid=888af294-235c-441e-af33-a2596f1c1c34&sr=0.2221486"
+   ],
+   "note": "AFI records earliest El Paso opening 25 December, before commonly cited 31 December."
+  },
+  "gr26-067": {
+   "cn": "囚魂之地",
+   "date": "2026-02",
+   "festival": "柏林国际电影节",
+   "festivalEn": "Berlin International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.berlinale.de/en/2026/programme/202608113.html"
+   ],
+   "note": ""
+  },
+  "gr26-068": {
+   "cn": "后台疯暴",
+   "date": "2025-11",
+   "festival": "塔林黑夜电影节",
+   "festivalEn": "Tallinn Black Nights Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://assets.poff.ee/docs/Press_Industry_Screenings_2025.pdf"
+   ],
+   "note": ""
+  },
+  "gr26-070": {
+   "cn": "无辜",
+   "date": "1976-05-15",
+   "festival": "戛纳国际电影节",
+   "festivalEn": "Cannes Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.imdb.com/title/tt0074686/releaseinfo/"
+   ],
+   "note": ""
+  },
+  "gr26-071": {
+   "cn": "无处容身",
+   "date": "2026-08",
+   "festival": "洛迦诺国际电影节",
+   "festivalEn": "Locarno Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.icr.ro/beijing/filmul-nu-e-locul-tau-aici-in-regia-lui-florin-serban-la-festivalul-international-de-film-de-la-locarno/cn"
+   ],
+   "note": "Romanian Cultural Institute announcement explicitly world premiere; archive snippets also mention other films."
+  },
+  "gr26-072": {
+   "cn": "乱世佳人",
+   "date": "1939-12-15",
+   "festival": null,
+   "festivalEn": null,
+   "kind": "theatrical",
+   "sources": [
+    "https://www.history.com/this-day-in-history/september-9/audiences-are-treated-to-surprise-preview-of-gone-with-the-wind"
+   ],
+   "note": "Official Atlanta premiere; excludes surprise preview."
+  },
+  "gr26-073": {
+   "cn": "铁扇公主",
+   "date": "1941-11-19",
+   "festival": null,
+   "festivalEn": null,
+   "kind": "theatrical",
+   "sources": [
+    "https://www.imdb.com/title/tt0471945/releaseinfo/"
+   ],
+   "note": ""
+  },
+  "gr26-074": {
+   "cn": "温柔以待",
+   "date": "2026-09",
+   "festival": "特柳赖德电影节",
+   "festivalEn": "Telluride Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://filmsandfestivals.britishcouncil.org/projects/tender-loving-care-1"
+   ],
+   "note": ""
+  },
+  "gr26-075": {
+   "cn": "围城纪事",
+   "date": "2026-02",
+   "festival": "柏林国际电影节",
+   "festivalEn": "Berlin International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.berlinale.de/en/2026/programme/202610606.html"
+   ],
+   "note": ""
+  },
+  "gr26-076": {
+   "cn": "杰出的无名氏",
+   "date": "2026-08",
+   "festival": "洛迦诺国际电影节",
+   "festivalEn": "Locarno Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.screendaily.com/news/indie-sales-scores-worldwide-deals-on-all-about-corinne-starring-isabelle-huppert/5220296.article"
+   ],
+   "note": ""
+  },
+  "gr26-077": {
+   "cn": "盗梦空间",
+   "date": "2010-07-08",
+   "festival": null,
+   "festivalEn": null,
+   "kind": "theatrical",
+   "sources": [
+    "https://www.gettyimages.co.uk/detail/news-photo/leonardo-dicaprio-and-marion-cotillard-attends-the-world-news-photo/102718817"
+   ],
+   "note": "London Leicester Square world premiere."
+  },
+  "gr26-078": {
+   "cn": "霉变人生",
+   "date": "2026-09-10",
+   "festival": "威尼斯国际电影节",
+   "festivalEn": "Venice International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.labiennale.org/en/node/20862"
+   ],
+   "note": ""
+  },
+  "gr26-079": {
+   "cn": "客乡",
+   "date": "2026-05",
+   "festival": "戛纳国际电影节",
+   "festivalEn": "Cannes Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.studiobabelsberg.com/about-us/press-and-news/studio-babelsberg-co-production-visitation-heimsuchung-by-volker-schloendorff-celebrates-its-world-premiere-in-cannes/"
+   ],
+   "note": ""
+  },
+  "gr26-080": {
+   "cn": "浓情卡门",
+   "date": "2026-05",
+   "festival": "戛纳电影节·导演双周",
+   "festivalEn": "Cannes Directors’ Fortnight",
+   "kind": "festival",
+   "sources": [
+    "https://www.quinzaine-cineastes.fr/fr/film/viva-carmen"
+   ],
+   "note": ""
+  },
+  "gr26-081": {
+   "cn": "孔雀公主",
+   "date": "1963",
+   "festival": null,
+   "festivalEn": null,
+   "kind": "theatrical",
+   "sources": [
+    "https://www.filmarchive.gov.hk/documents/6.-Research-and-Publication/06-03_newsletter/68_more_c.pdf"
+   ],
+   "note": "Only original release year verified; no festival premiere found."
+  },
+  "gr26-082": {
+   "cn": "哪吒闹海",
+   "date": "1979-05-19",
+   "festival": null,
+   "festivalEn": null,
+   "kind": "theatrical",
+   "sources": [
+    "https://www.1905.com/mdb/film/47890/info/"
+   ],
+   "note": ""
+  },
+  "gr26-083": {
+   "cn": "中国动画100年",
+   "date": "2024-10-24",
+   "festival": "粤港澳大湾区动画电影周",
+   "festivalEn": "Guangdong–Hong Kong–Macao Greater Bay Area Animation Film Week",
+   "kind": "festival",
+   "sources": [
+    "https://huacheng.gz-cmc.com/pages/2024/10/25/SF128181972f54ec81ffa04541badd60.html"
+   ],
+   "note": "Opening screening in Dongguan precedes Northern Character Nov2024 and June2026 theatrical premiere."
+  },
+  "the-miserable-mother": {
+   "cn": "她们的狂想曲",
+   "date": "2026-06",
+   "festival": "上海国际电影节",
+   "festivalEn": "Shanghai International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.german-films.de/news/all-news-releases/article/two-german-productions-to-have-their-world-premieres-in-the-competition-at-the-shanghai-film-festival/"
+   ],
+   "note": ""
+  },
+  "oh-this-unspeakable-void": {
+   "cn": "心隙",
+   "date": "2026-01-27",
+   "festival": null,
+   "festivalEn": null,
+   "kind": "theatrical",
+   "sources": [
+    "https://www.fantastic-movie.de/star-news1/startseite"
+   ],
+   "note": "Munich Mathäser world premiere; theatrical Jan29."
+  },
+  "when-pigs-fly": {
+   "cn": "当猪会飞",
+   "date": "2026-03",
+   "festival": "哥本哈根国际纪录片电影节",
+   "festivalEn": "CPH:DOX",
+   "kind": "festival",
+   "sources": [
+    "https://cphdox.dk/film/when-pigs-fly/"
+   ],
+   "note": ""
+  },
+  "gh63-001": {
+   "cn": "告别的年代",
+   "date": "2026-09",
+   "festival": "多伦多国际电影节",
+   "festivalEn": "Toronto International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.aakenweb.com/the-age-of-goodbyes-to-world-premiere-at-tiff/"
+   ],
+   "note": ""
+  },
+  "gh63-002": {
+   "cn": "花脸猫：修罗道",
+   "date": "2026-10",
+   "festival": "釜山国际电影节",
+   "festivalEn": "Busan International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://app2.atmovies.com.tw/news/NF2609022648/"
+   ],
+   "note": ""
+  },
+  "gh63-003": {
+   "cn": "死亡赌局",
+   "date": "2026-04-23",
+   "festival": null,
+   "festivalEn": null,
+   "kind": "theatrical",
+   "sources": [
+    "https://hkcna.hk/docDetail.jsp?channel=2812&id=101303541"
+   ],
+   "note": "Taiwan premiere before 24 April theatrical release and July NIFFF."
+  },
+  "gh63-004": {
+   "cn": "女孩",
+   "date": "2025-09-04",
+   "festival": "威尼斯国际电影节",
+   "festivalEn": "Venice International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://en.wikipedia.org/wiki/Girl_%282025_film%29"
+   ],
+   "note": ""
+  },
+  "gh63-005": {
+   "cn": "我亲爱的怪孩子",
+   "date": "2026",
+   "festival": "东京国际电影节",
+   "festivalEn": "Tokyo International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://malaysia.news.yahoo.com/tokyo-film-festival-unveils-competition-065900442.html"
+   ],
+   "note": "Tokyo festival runs across October and November; exact premiere day unverified."
+  },
+  "gh63-006": {
+   "cn": "我们不是什么",
+   "date": "2026-04",
+   "festival": "香港国际电影节",
+   "festivalEn": "Hong Kong International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://filmcombatsyndicate.com/were-nothing-at-all-blacklight-global-picks-up-herman-yaus-award-winning-drama-for-u-s-rollout/"
+   ],
+   "note": ""
+  },
+  "gh63-008": {
+   "cn": "功夫",
+   "date": "2026-02",
+   "festival": null,
+   "festivalEn": null,
+   "kind": "theatrical",
+   "sources": [
+    "https://letterboxd.com/film/kung-fu-2026/releases/"
+   ],
+   "note": "Public limited screenings 6-8 February precede formal gala on 10 February; retain month."
+  },
+  "gh63-010": {
+   "cn": "UFO离奇命案",
+   "date": "2025-11",
+   "festival": "香港亚洲电影节",
+   "festivalEn": "Hong Kong Asian Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.elle.com.hk/celebrity/elle-cinema-interview-renci-and-ronald"
+   ],
+   "note": ""
+  },
+  "gh63-012": {
+   "cn": "泥娃娃",
+   "date": "2025-10-08",
+   "festival": null,
+   "festivalEn": null,
+   "kind": "theatrical",
+   "sources": [
+    "https://news.tvbs.com.tw/entertainment/movies/3011195"
+   ],
+   "note": "Taipei premiere before theatrical release on 9 October."
+  },
+  "gh63-013": {
+   "cn": "双囍",
+   "date": "2025",
+   "festival": "东京国际电影节",
+   "festivalEn": "Tokyo International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.imdb.com/name/nm8485868/news/"
+   ],
+   "note": "World premiere reported in trade articles dated 1 November; festival started late October. Retain year until date resolved."
+  },
+  "gh63-014": {
+   "cn": "谎言生活",
+   "date": "2026-09-11",
+   "festival": "威尼斯国际电影节",
+   "festivalEn": "Venice International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://en.wikipedia.org/wiki/Big_Little_Things"
+   ],
+   "note": ""
+  },
+  "gh63-015": {
+   "cn": "阳光女子合唱团",
+   "date": "2025-11-17",
+   "festival": "台北金马影展",
+   "festivalEn": "Taipei Golden Horse Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://zh.wikipedia.org/wiki/陽光女子合唱團"
+   ],
+   "note": ""
+  },
+  "gh63-017": {
+   "cn": "那张照片里的我们",
+   "date": "2025-11-17",
+   "festival": "台北金马影展",
+   "festivalEn": "Taipei Golden Horse Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://letterboxd.com/film/the-photo-from-1977/releases/"
+   ],
+   "note": ""
+  },
+  "gh63-018": {
+   "cn": "熊山记 Sinisusu Tua Pucumayan",
+   "date": "2026-10-11",
+   "festival": "高雄电影节",
+   "festivalEn": "Kaohsiung Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://news.ipcf.org.tw/213130"
+   ],
+   "note": ""
+  },
+  "gh63-019": {
+   "cn": "日光",
+   "date": "2026-09-19",
+   "festival": "圣塞巴斯蒂安国际电影节",
+   "festivalEn": "San Sebastián International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://howlife.cna.com.tw/local/20260922s002.aspx"
+   ],
+   "note": ""
+  },
+  "gh63-020": {
+   "cn": "狂忘警探",
+   "date": "2026-09",
+   "festival": "威尼斯国际电影节",
+   "festivalEn": "Venice International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://pavilion.taicca.tw/portfolio-item/arrested-memory/"
+   ],
+   "note": ""
+  },
+  "gh63-023": {
+   "cn": "独奏者之舞",
+   "date": "2026-06-09",
+   "festival": null,
+   "festivalEn": null,
+   "kind": "theatrical",
+   "sources": [
+    "https://stars.udn.com/star/story/10090/9555579"
+   ],
+   "note": "PTS held premiere with nearly 200 audience on June9; TV premiere June11, Taipei festival June27."
+  },
+  "gh63-024": {
+   "cn": "那道阳光在外明媚",
+   "date": "2026-10",
+   "festival": "伦敦电影节",
+   "festivalEn": "BFI London Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://m.thepaper.cn/newsDetail_forward_34004233"
+   ],
+   "note": ""
+  },
+  "gh63-025": {
+   "cn": "离开即景",
+   "date": "2026-05",
+   "festival": "台湾国际纪录片影展",
+   "festivalEn": "Taiwan International Documentary Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.tidf.org.tw/en/films/157560"
+   ],
+   "note": ""
+  },
+  "gh63-026": {
+   "cn": "快要到达家了",
+   "date": "2026-04",
+   "festival": "香港国际电影节",
+   "festivalEn": "Hong Kong International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.mplus.org.hk/en/cinema/almost-home/"
+   ],
+   "note": ""
+  },
+  "gh63-027": {
+   "cn": "回山",
+   "date": "2026-11-07",
+   "festival": "台北金马影展",
+   "festivalEn": "Taipei Golden Horse Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.goldenhorse.org.tw/film/programme/films/detail/4555?search_category=FF&search_year=2026"
+   ],
+   "note": ""
+  },
+  "gh63-028": {
+   "cn": "魔法星图",
+   "date": "2026-08-13",
+   "festival": "洛迦诺国际电影节",
+   "festivalEn": "Locarno Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://ocula.com/art-galleries/shanghart/exhibitions/sun-xun-magic-atlas/"
+   ],
+   "note": "Exact date cross-checked against Letterboxd releases."
+  },
+  "gh63-029": {
+   "cn": "欢迎来到朵莉之家",
+   "date": "2026-06",
+   "festival": "安锡国际动画电影节",
+   "festivalEn": "Annecy International Animation Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.cna.com.tw/news/amov/202610060290.aspx"
+   ],
+   "note": ""
+  },
+  "gh63-036": {
+   "cn": "搭错车",
+   "date": "1983-07-30",
+   "festival": null,
+   "festivalEn": null,
+   "kind": "theatrical",
+   "sources": [
+    "https://en.wikipedia.org/wiki/Papa%2C_Can_You_Hear_Me_Sing"
+   ],
+   "note": ""
+  },
+  "gh63-037": {
+   "cn": "孽子",
+   "date": "1986-08-23",
+   "festival": null,
+   "festivalEn": null,
+   "kind": "theatrical",
+   "sources": [
+    "https://moviecool.asia/film/gGC3Sv-GORV"
+   ],
+   "note": ""
+  },
+  "gh63-038": {
+   "cn": "两个油漆匠",
+   "date": "1990",
+   "festival": null,
+   "festivalEn": null,
+   "kind": "theatrical",
+   "sources": [
+    "https://app2.atmovies.com.tw/film/fxcmb5051268/"
+   ],
+   "note": "Only original release year verified."
+  },
+  "gh63-039": {
+   "cn": "中场休息",
+   "date": "2026-09",
+   "festival": "多伦多国际电影节",
+   "festivalEn": "Toronto International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://awardswatch.com/2026-toronto-international-film-festival-tiff-centerpiece-classics-and-wavelength-titles-announced/"
+   ],
+   "note": ""
+  },
+  "gh63-042": {
+   "cn": "一路狂奔",
+   "date": "2026-11",
+   "festival": "塔林黑夜电影节",
+   "festivalEn": "Tallinn Black Nights Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://build.poff.ee/en/film/running-wild/"
+   ],
+   "note": "Official scheduled world premiere."
+  },
+  "gh63-043": {
+   "cn": "歌舞的我们",
+   "date": "2026-10",
+   "festival": "伊赫拉瓦国际纪录片电影节",
+   "festivalEn": "Ji.hlava International Documentary Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.ji-hlava.com/filmy/pisne-uvnitr-nas?version=classic"
+   ],
+   "note": ""
+  },
+  "gh63-050": {
+   "cn": "完美家庭风暴",
+   "date": "2026-05",
+   "festival": "戛纳国际电影节",
+   "festivalEn": "Cannes Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.nfi.no/en/news/fjord-wins-palme-dor"
+   ],
+   "note": ""
+  },
+  "gh63-051": {
+   "cn": "野马九号",
+   "date": "2026-09",
+   "festival": "威尼斯国际电影节",
+   "festivalEn": "Venice International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://filmsandfestivals.britishcouncil.org/projects/wild-horse-nine"
+   ],
+   "note": ""
+  },
+  "gh63-052": {
+   "cn": "双生狂花",
+   "date": "2026-09-03",
+   "festival": "威尼斯国际电影节",
+   "festivalEn": "Venice International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://apnews.com/article/8c7b0b78485977f655855917c5c40b9e"
+   ],
+   "note": ""
+  },
+  "gh63-053": {
+   "cn": "克里姆林宫的巫师",
+   "date": "2025-08-31",
+   "festival": "威尼斯国际电影节",
+   "festivalEn": "Venice International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://apnews.com/article/6b5132780cace15a22ffafd5e1141d7d"
+   ],
+   "note": "Sunday world premiere at the 2025 Venice edition."
+  },
+  "gh63-055": {
+   "cn": "亲密怪物",
+   "date": "2026-05-15",
+   "festival": "戛纳国际电影节",
+   "festivalEn": "Cannes Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://filmivast.com/news-press/news/world-premiere-for-marie-kreutzer-s-gentle-monster-in-cannes-main-competition"
+   ],
+   "note": ""
+  },
+  "gh63-057": {
+   "cn": "疯癫老人日记",
+   "date": "2026-09-18",
+   "festival": "多伦多国际电影节",
+   "festivalEn": "Toronto International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://en.wikipedia.org/wiki/Diary_of_a_Mad_Old_Man_%282026_film%29"
+   ],
+   "note": ""
+  },
+  "gh63-058": {
+   "cn": "假如爱有如果",
+   "date": "2026-09-06",
+   "festival": "威尼斯国际电影节",
+   "festivalEn": "Venice International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.netflix.com/tudum/articles/possible-love-lee-chang-dong-venice?inapp=trueOs"
+   ],
+   "note": ""
+  },
+  "gh63-060": {
+   "cn": "醉爱每一天",
+   "date": "2026-05-17",
+   "festival": "戛纳国际电影节",
+   "festivalEn": "Cannes Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://tv.apple.com/fr/movie/another-day/umc.cmc.2zq5bl9r42zk9i8zq5gr4xul3?l=en"
+   ],
+   "note": ""
+  },
+  "gh63-061": {
+   "cn": "爱的对峙",
+   "date": "2026-05",
+   "festival": "戛纳国际电影节",
+   "festivalEn": "Cannes Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://kinolorber.com/press/kino-lorber-acquires-north-american-rights-to-rodrigo-sorogoyen-s-the-beloved-starring-javier-bardem-and-victoria-luengo"
+   ],
+   "note": ""
+  },
+  "gh63-062": {
+   "cn": "蝴蝶果酱的滋味",
+   "date": "2026-05",
+   "festival": "戛纳导演双周",
+   "festivalEn": "Cannes Directors’ Fortnight",
+   "kind": "festival",
+   "sources": [
+    "https://www.quinzaine-cineastes.fr/en/film/butterfly-jam"
+   ],
+   "note": ""
+  },
+  "gh63-065": {
+   "cn": "热带庄园魅影",
+   "date": "2026-05",
+   "festival": "戛纳导演双周",
+   "festivalEn": "Cannes Directors’ Fortnight",
+   "kind": "festival",
+   "sources": [
+    "https://www.quinzaine-cineastes.fr/en/film/death-has-no-master"
+   ],
+   "note": ""
+  },
+  "gh63-066": {
+   "cn": "崩塌之家",
+   "date": "2026-09-03",
+   "festival": "威尼斯国际电影节",
+   "festivalEn": "Venice International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://en.wikipedia.org/wiki/Falling_House"
+   ],
+   "note": ""
+  },
+  "gh63-067": {
+   "cn": "NAZA：附带损伤",
+   "date": "2026-09",
+   "festival": "威尼斯国际电影节",
+   "festivalEn": "Venice International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://filmsandfestivals.britishcouncil.org/projects/naza"
+   ],
+   "note": ""
+  },
+  "gh63-068": {
+   "cn": "革命练习曲",
+   "date": "2026-05",
+   "festival": "戛纳国际电影节",
+   "festivalEn": "Cannes Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.screendaily.com/news/uk-selects-best-international-feature-film-oscar-entry/5221301.article"
+   ],
+   "note": ""
+  },
+  "gh63-069": {
+   "cn": "我盖了一座小屋想你",
+   "date": "2026-02",
+   "festival": "柏林国际电影节",
+   "festivalEn": "Berlin International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.berlinale.de/en/2026/programme/202610484.html"
+   ],
+   "note": ""
+  },
+  "gh63-070": {
+   "cn": "噤声：她们的故事",
+   "date": "2026-01-24",
+   "festival": "圣丹斯电影节",
+   "festivalEn": "Sundance Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.sundance.org/girlfight_michellerodriguez_filmstill1_00sff-2/"
+   ],
+   "note": ""
+  },
+  "gh63-071": {
+   "cn": "当恋爱显化时",
+   "date": "2026-03",
+   "festival": "西南偏南电影节",
+   "festivalEn": "SXSW Film & TV Festival",
+   "kind": "festival",
+   "sources": [
+    "https://schedule.sxsw.com/films/2241488"
+   ],
+   "note": "Festival screening listed March 18 but not assumed to be the first; retain month."
+  },
+  "gh63-073": {
+   "cn": "爱×死×艺术家",
+   "date": "2026-05",
+   "festival": "戛纳国际电影节",
+   "festivalEn": "Cannes Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://saylescreen.com/latest-news/the-end-of-it-cannes/"
+   ],
+   "note": ""
+  },
+  "gh63-074": {
+   "cn": "余烬青春",
+   "date": "2026-05",
+   "festival": "戛纳影评人周",
+   "festivalEn": "Cannes Critics’ Week",
+   "kind": "festival",
+   "sources": [
+    "https://www.semainedelacritique.com/en/edition/2026/movie/dua"
+   ],
+   "note": ""
+  },
+  "gh63-075": {
+   "cn": "亲爱的不速之客",
+   "date": "2026-07-05",
+   "festival": "卡罗维发利国际电影节",
+   "festivalEn": "Karlovy Vary International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.monolitfilm.dk/gaesten"
+   ],
+   "note": ""
+  },
+  "gh63-077": {
+   "cn": "蓝色是太阳的颜色",
+   "date": "2026-09",
+   "festival": "威尼斯国际电影节",
+   "festivalEn": "Venice International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.academyfilms.com/xavier-tera"
+   ],
+   "note": ""
+  },
+  "gh63-078": {
+   "cn": "腥红女爵",
+   "date": "2026-02",
+   "festival": "柏林国际电影节",
+   "festivalEn": "Berlin International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.ulrikeottinger.com/files/uott/presse/2026_Die%20Blutgr%C3%A4fin/PRESS%20KIT%20202604022_en_1_Die_Blutgraefin.pdf"
+   ],
+   "note": ""
+  },
+  "gh63-079": {
+   "cn": "梦回险路",
+   "date": "2026-05",
+   "festival": "戛纳国际电影节",
+   "festivalEn": "Cannes Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.bta.bg/en/news/culture/1204169--the-dreamed-adventure-selected-as-bulgaria-s-oscar-entry-for-international-fea"
+   ],
+   "note": ""
+  },
+  "gh63-080": {
+   "cn": "灵魂未知数",
+   "date": "2026-05",
+   "festival": "戛纳国际电影节",
+   "festivalEn": "Cannes Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://mubifest.com/en/istanbul/tr-the-unknown"
+   ],
+   "note": ""
+  },
+  "gh63-082": {
+   "cn": "人间坏格",
+   "date": "2026-05",
+   "festival": "戛纳导演双周",
+   "festivalEn": "Cannes Directors’ Fortnight",
+   "kind": "festival",
+   "sources": [
+    "https://www.quinzaine-cineastes.fr/en/film/vertiginous"
+   ],
+   "note": ""
+  },
+  "gh63-083": {
+   "cn": "迷雾中的大象",
+   "date": "2026-05",
+   "festival": "戛纳国际电影节",
+   "festivalEn": "Cannes Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.filmstiftung.de/en/news/elephants-in-the-fog-a-huge-success-in-cannes"
+   ],
+   "note": ""
+  },
+  "gh63-084": {
+   "cn": "燃烧幻梦",
+   "date": "2026-09-07",
+   "festival": "威尼斯国际电影节",
+   "festivalEn": "Venice International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.sluizerfilmproductions.com/news/venice-film-festival-07092026-world-premiere-the-burning-giants/"
+   ],
+   "note": ""
+  },
+  "gh63-086": {
+   "cn": "果树下的恋爱梦",
+   "date": "2026-07",
+   "festival": "卡罗维发利国际电影节",
+   "festivalEn": "Karlovy Vary International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.kviff.com/en/programme/film/84/50539-fruit-gathering"
+   ],
+   "note": ""
+  },
+  "gh63-088": {
+   "cn": "失落残响",
+   "date": "2026-08-10",
+   "festival": "洛迦诺国际电影节",
+   "festivalEn": "Locarno Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://en.wikipedia.org/wiki/Hearing_%28film%29"
+   ],
+   "note": ""
+  },
+  "gh63-089": {
+   "cn": "沙河下的秘密",
+   "date": "2026-09",
+   "festival": "威尼斯国际影评人周",
+   "festivalEn": "Venice International Film Critics’ Week",
+   "kind": "festival",
+   "sources": [
+    "https://sicvenezia.it/en/films/our-share-of-sand/"
+   ],
+   "note": ""
+  },
+  "gh63-090": {
+   "cn": "最初的世界",
+   "date": "2026-09",
+   "festival": "多伦多国际电影节",
+   "festivalEn": "Toronto International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://m.koreanfilm.or.kr/eng/news/news.jsp?blbdComCd=601006&mode=VIEW&seq=6464"
+   ],
+   "note": ""
+  },
+  "gh63-091": {
+   "cn": "当风吹来奈义町",
+   "date": "2026-05-13",
+   "festival": "戛纳国际电影节",
+   "festivalEn": "Cannes Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://en.wikipedia.org/wiki/Nagi_Notes"
+   ],
+   "note": ""
+  },
+  "gh63-092": {
+   "cn": "尼尔森先生，你杀过人吗？",
+   "date": "2026-09",
+   "festival": "威尼斯国际电影节",
+   "festivalEn": "Venice International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.keithkirkwood.com/"
+   ],
+   "note": ""
+  },
+  "gh63-093": {
+   "cn": "无人知晓的孩子们",
+   "date": "2026-09-10",
+   "festival": "多伦多国际电影节",
+   "festivalEn": "Toronto International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://k2pic.com/en/article/6908"
+   ],
+   "note": ""
+  },
+  "gh63-094": {
+   "cn": "事到如今还谈什么爱",
+   "date": "2026-10",
+   "festival": "釜山国际电影节",
+   "festivalEn": "Busan International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.biff.kr/eng/?trk=public_post-text"
+   ],
+   "note": ""
+  },
+  "gh63-095": {
+   "cn": "富士子不能输",
+   "date": "2026-04",
+   "festival": "乌迪内远东电影节",
+   "festivalEn": "Far East Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.fareastfilm.com/archivi/FEFJ/files/2026/Presskit_ITA_Feff2026.pdf"
+   ],
+   "note": ""
+  },
+  "gh63-096": {
+   "cn": "无用之人",
+   "date": "2026-09-21",
+   "festival": "圣塞巴斯蒂安国际电影节",
+   "festivalEn": "San Sebastián International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://en.wikipedia.org/wiki/In_My_Father%27s_Room"
+   ],
+   "note": ""
+  },
+  "gh63-097": {
+   "cn": "有用的人",
+   "date": "2026-10-11",
+   "festival": "釜山国际电影节",
+   "festivalEn": "Busan International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://en.wikipedia.org/wiki/To_Be_Ordinary"
+   ],
+   "note": ""
+  },
+  "gh63-098": {
+   "cn": "暗影天使",
+   "date": "2026-08-20",
+   "festival": null,
+   "festivalEn": null,
+   "kind": "theatrical",
+   "sources": [
+    "https://www.cinematoday.jp/video/VIYrzUyoiBMyuQ"
+   ],
+   "note": "Tokyo completion premiere; precedes September release."
+  },
+  "gh63-099": {
+   "cn": "首尔守护者",
+   "date": "2026",
+   "festival": "鹿特丹国际电影节",
+   "festivalEn": "International Film Festival Rotterdam",
+   "kind": "festival",
+   "sources": [
+    "https://iffr.com/en/iffr/2026/films/the-seoul-guardians"
+   ],
+   "note": "Festival spans January and February; no specific premiere day confirmed."
+  },
+  "gh63-100": {
+   "cn": "检察追缉令",
+   "date": "2026-02",
+   "festival": "柏林国际电影节",
+   "festivalEn": "Berlin International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.berlinale.de/en/2026/programme/202603082.html"
+   ],
+   "note": ""
+  },
+  "gh63-101": {
+   "cn": "破碎十七",
+   "date": "2026-02-18",
+   "festival": "柏林国际电影节",
+   "festivalEn": "Berlin International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.fcs.rs/wp-content/uploads/2026/02/FCS-Berlinale-2026-2.pdf"
+   ],
+   "note": ""
+  },
+  "gh63-102": {
+   "cn": "无处安放的青春",
+   "date": "2026-09",
+   "festival": "威尼斯国际电影节",
+   "festivalEn": "Venice International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://timetable.iffmh.de/content/festival/programme/films/a-place-to-heal/index_eng.html"
+   ],
+   "note": ""
+  },
+  "gh63-103": {
+   "cn": "生命中最美好的夏令营",
+   "date": "2026-02",
+   "festival": "柏林国际电影节",
+   "festivalEn": "Berlin International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.berlinale.de/en/2026/programme/202609010.html"
+   ],
+   "note": ""
+  },
+  "gh63-104": {
+   "cn": "池畔的夏日忧伤",
+   "date": "2026-02",
+   "festival": "柏林国际电影节",
+   "festivalEn": "Berlin International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.berlinale.de/en/2026/programme/202604753.html"
+   ],
+   "note": "Conflicting Marrakech search excerpt; use owning Berlin page confirming earlier world premiere."
+  },
+  "gh63-105": {
+   "cn": "家的形状",
+   "date": "2026-02",
+   "festival": "柏林国际电影节",
+   "festivalEn": "Berlin International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.berlinale.de/en/2026/programme/202616575.html"
+   ],
+   "note": ""
+  },
+  "gh63-107": {
+   "cn": "跨出温室的爱恋",
+   "date": "2026-02",
+   "festival": "柏林国际电影节",
+   "festivalEn": "Berlin International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.berlinale.de/en/2026/programme/202610182.html"
+   ],
+   "note": ""
+  },
+  "gh63-108": {
+   "cn": "以你的记忆审判我",
+   "date": "2026-02-13",
+   "festival": "柏林国际电影节",
+   "festivalEn": "Berlin International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://marijanaharder.com/trial-of-hein/"
+   ],
+   "note": ""
+  },
+  "gh63-109": {
+   "cn": "纽约同志情与欲",
+   "date": "2026-05",
+   "festival": "戛纳国际电影节",
+   "festivalEn": "Cannes Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.imdb.com/news/ni65850212/"
+   ],
+   "note": ""
+  },
+  "gh63-110": {
+   "cn": "男优阿虎",
+   "date": "2025-09",
+   "festival": "釜山国际电影节",
+   "festivalEn": "Busan International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://watch.here.tv/titles/tiger/"
+   ],
+   "note": ""
+  },
+  "gh63-111": {
+   "cn": "超派妖姬救地球",
+   "date": "2026-06-22",
+   "festival": "安纳西国际动画电影节",
+   "festivalEn": "Annecy International Animation Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.ghostscityfilms.com/news"
+   ],
+   "note": ""
+  },
+  "gh63-112": {
+   "cn": "装扮游戏",
+   "date": "2011-02",
+   "festival": "柏林国际电影节",
+   "festivalEn": "Berlin International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.scribd.com/document/48035923/61st-Berlinale-2011-10th-20th-Panorama-2011-Three-Films-on-India-and-Many-New-Discoveries-Press-Release-19th-Jan"
+   ],
+   "note": "Original 2011 work; not the 2026 re-edit."
+  },
+  "gh63-113": {
+   "cn": "高档货",
+   "date": "1998-01-21",
+   "festival": "圣丹斯电影节",
+   "festivalEn": "Sundance Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.imdb.com/title/tt0139362/releaseinfo/"
+   ],
+   "note": ""
+  },
+  "gh63-114": {
+   "cn": "绿洲合唱团：莫带愤怒回首",
+   "date": "2026-09",
+   "festival": "威尼斯国际电影节",
+   "festivalEn": "Venice International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://filmsandfestivals.britishcouncil.org/index.php/projects/dont-look-back-in-anger-oasis-dont-look-back-in-anger"
+   ],
+   "note": ""
+  },
+  "gh63-115": {
+   "cn": "Pulp：安可要唱哪一首",
+   "date": "2026-09-18",
+   "festival": null,
+   "festivalEn": null,
+   "kind": "theatrical",
+   "sources": [
+    "https://www.recordoftheday.com/news-and-press/pulp-what-do-you-do-for-an-encore"
+   ],
+   "note": "MUBI distributor press release announces one-night cinema previews; subsequent festival screenings excluded."
+  },
+  "gh63-116": {
+   "cn": "世界上最寂寞的蓝调",
+   "date": "2026-02",
+   "festival": "柏林国际电影节",
+   "festivalEn": "Berlin International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.berlinale.de/en/2026/programme/202613793.html"
+   ],
+   "note": ""
+  },
+  "gh63-117": {
+   "cn": "我就爱摇滚",
+   "date": "2025-09-04",
+   "festival": "多伦多国际电影节",
+   "festivalEn": "Toronto International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://en.wikipedia.org/wiki/Mile_End_Kicks"
+   ],
+   "note": ""
+  },
+  "gh63-118": {
+   "cn": "就是柳柳的他",
+   "date": "2026",
+   "festival": "圣丹斯电影节",
+   "festivalEn": "Sundance Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://filmsandfestivals.britishcouncil.org/projects/wicker"
+   ],
+   "note": ""
+  },
+  "gh63-120": {
+   "cn": "终极杀镇",
+   "date": "2025-09",
+   "festival": "多伦多国际电影节",
+   "festivalEn": "Toronto International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.appuntamentoalcinema.it/multimedia/files/film/docs/normal_i_cf_opeclm449245_cf_f/pressbook/pressbook_normal.docx.pdf"
+   ],
+   "note": ""
+  },
+  "gh63-121": {
+   "cn": "暗夜魔婴",
+   "date": "2026-02",
+   "festival": "柏林国际电影节",
+   "festivalEn": "Berlin International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.ses.fi/en/catalogue/film/nightborn/"
+   ],
+   "note": ""
+  },
+  "gh63-123": {
+   "cn": "坂本日常",
+   "date": "2026-04-29",
+   "festival": null,
+   "festivalEn": null,
+   "kind": "theatrical",
+   "sources": [
+    "https://www.kinoafisha.info/en/movies/8386173/"
+   ],
+   "note": ""
+  },
+  "gh63-124": {
+   "cn": "鼠门秀",
+   "date": "2025-09",
+   "festival": "奇幻电影节",
+   "festivalEn": "Fantastic Fest",
+   "kind": "festival",
+   "sources": [
+    "https://www.cartoonbrew.com/feature-film/alberto-vazquezs-decorado-first-look-art-poster-premiere-252123.html"
+   ],
+   "note": ""
+  },
+  "gh63-125": {
+   "cn": "牧一：女人村传奇",
+   "date": "2026-06",
+   "festival": "安纳西国际动画电影节",
+   "festivalEn": "Annecy International Animation Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://festiwal.mlodehoryzonty.pl/en/movie/muyi/"
+   ],
+   "note": ""
+  },
+  "gh63-127": {
+   "cn": "蝶变",
+   "date": "1979",
+   "festival": null,
+   "festivalEn": null,
+   "kind": "theatrical",
+   "sources": [
+    "https://www.mplus.org.hk/tc/press/mplus-restored-announces-three-newly-restored-films/"
+   ],
+   "note": "Original release; excludes 2026 restoration. Day conflict 19 vs 20 July in indexes."
+  },
+  "gh63-128": {
+   "cn": "盗梦侦探",
+   "date": "2006-09",
+   "festival": "威尼斯国际电影节",
+   "festivalEn": "Venice International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.giuntiodeon.com/en/cinema/197"
+   ],
+   "note": ""
+  },
+  "gh63-129": {
+   "cn": "理性与感性",
+   "date": "1995-12-04",
+   "festival": null,
+   "festivalEn": null,
+   "kind": "theatrical",
+   "sources": [
+    "https://catalog.afi.com/Catalog/moviedetails/60085"
+   ],
+   "note": ""
+  },
+  "gh63-130": {
+   "cn": "凡尔赛拜金女",
+   "date": "2006-05",
+   "festival": "戛纳国际电影节",
+   "festivalEn": "Cannes Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://collab.sundance.org/catalog/Spotlight-Event-Sofia-Coppola-on-Priscilla"
+   ],
+   "note": ""
+  },
+  "gh63-131": {
+   "cn": "镜头之外：凡尔赛拜金女",
+   "date": "2026",
+   "festival": "纽约电影节",
+   "festivalEn": "New York Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.filmlinc.org/nyff2026/films/making-marie-antoinette/"
+   ],
+   "note": "2026 NYFF spans September and October; exact premiere date to verify."
+  },
+  "gh63-132": {
+   "cn": "克里斯马克：未来式乡愁",
+   "date": "2026-05",
+   "festival": "戛纳国际电影节",
+   "festivalEn": "Cannes Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.seriousfilm.nl/projects/nostalgia-for-the-future/"
+   ],
+   "note": ""
+  },
+  "gh63-134": {
+   "cn": "樱桃的滋味",
+   "date": "1997-05-16",
+   "festival": "戛纳国际电影节",
+   "festivalEn": "Cannes Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.imdb.com/title/tt0120265/releaseinfo/"
+   ],
+   "note": ""
+  },
+  "gh63-135": {
+   "cn": "尤里西斯生命之旅",
+   "date": "1995-05-24",
+   "festival": "戛纳国际电影节",
+   "festivalEn": "Cannes Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://letterboxd.com/film/ulysses-gaze/releases/"
+   ],
+   "note": ""
+  },
+  "gh63-136": {
+   "cn": "追逐蝴蝶",
+   "date": "1992",
+   "festival": "威尼斯国际电影节",
+   "festivalEn": "Venice International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://en.wikipedia.org/wiki/La_Chasse_aux_papillons"
+   ],
+   "note": "Venice1992 premiere/award precedes November4 French theatrical release; no day inferred."
+  },
+  "gh63-137": {
+   "cn": "大象",
+   "date": "2003-05",
+   "festival": "戛纳国际电影节",
+   "festivalEn": "Cannes Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.festival-cannes.com/en/f/elephant/"
+   ],
+   "note": "Sources disagree on 16 vs 18 May; retain month."
+  },
+  "gh63-138": {
+   "cn": "猪与军舰",
+   "date": "1961-01-21",
+   "festival": null,
+   "festivalEn": null,
+   "kind": "theatrical",
+   "sources": [
+    "https://en.wikipedia.org/wiki/Pigs_and_Battleships"
+   ],
+   "note": ""
+  },
+  "gh63-139": {
+   "cn": "日本昆虫记",
+   "date": "1963-11-16",
+   "festival": null,
+   "festivalEn": null,
+   "kind": "theatrical",
+   "sources": [
+    "https://en.wikipedia.org/wiki/The_Insect_Woman"
+   ],
+   "note": ""
+  },
+  "gh63-140": {
+   "cn": "赤色杀意",
+   "date": "1964-06-28",
+   "festival": null,
+   "festivalEn": null,
+   "kind": "theatrical",
+   "sources": [
+    "https://en.wikipedia.org/wiki/Unholy_Desire"
+   ],
+   "note": ""
+  },
+  "gh63-141": {
+   "cn": "人类学入门",
+   "date": "1966-03-12",
+   "festival": null,
+   "festivalEn": null,
+   "kind": "theatrical",
+   "sources": [
+    "https://en.wikipedia.org/wiki/The_Pornographers"
+   ],
+   "note": ""
+  },
+  "gh63-142": {
+   "cn": "我要复仇",
+   "date": "1979-04-21",
+   "festival": null,
+   "festivalEn": null,
+   "kind": "theatrical",
+   "sources": [
+    "https://en.wikipedia.org/wiki/Vengeance_Is_Mine_%281979_film%29"
+   ],
+   "note": ""
+  },
+  "gh63-143": {
+   "cn": "黑雨",
+   "date": "1989-05-13",
+   "festival": null,
+   "festivalEn": null,
+   "kind": "theatrical",
+   "sources": [
+    "https://www.imdb.com/title/tt0097694/releaseinfo/"
+   ],
+   "note": "Japanese release precedes Cannes screening on 18 May."
+  },
+  "gh63-144": {
+   "cn": "鳗鱼",
+   "date": "1997-05-12",
+   "festival": "戛纳国际电影节",
+   "festivalEn": "Cannes Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.imdb.com/title/tt0120408/releaseinfo/"
+   ],
+   "note": ""
+  },
+  "gh63-145": {
+   "cn": "红桥下的暖流",
+   "date": "2001-05-19",
+   "festival": "戛纳国际电影节",
+   "festivalEn": "Cannes Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.imdb.com/title/tt0289054/releaseinfo/"
+   ],
+   "note": ""
+  },
+  "gh63-148": {
+   "cn": "死亡密码",
+   "date": "1998-01-19",
+   "festival": "圣丹斯电影节",
+   "festivalEn": "Sundance Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.imdb.com/title/tt0138704/releaseinfo/"
+   ],
+   "note": ""
+  },
+  "gh63-150": {
+   "cn": "笑之大学",
+   "date": "2004-10-30",
+   "festival": null,
+   "festivalEn": null,
+   "kind": "theatrical",
+   "sources": [
+    "https://jfdb.jp/en/title/185"
+   ],
+   "note": ""
+  },
+  "gh63-151": {
+   "cn": "绵羊侦探团",
+   "date": "2026-04-19",
+   "festival": null,
+   "festivalEn": null,
+   "kind": "theatrical",
+   "sources": [
+    "https://creatorsfaire.com/event-recap/the-sheep-detectives-new-york-premiere-hugh-jackman-cast-red-carpet/"
+   ],
+   "note": "New York Jazz at Lincoln Center premiere before London26April and theatricalMay8."
+  },
+  "gh63-153": {
+   "cn": "地堡危情",
+   "date": "2026-09",
+   "festival": "威尼斯国际电影节",
+   "festivalEn": "Venice International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.screendaily.com/news/venice-film-festival-reveals-2026-lineup/5218820.article"
+   ],
+   "note": ""
+  },
+  "gh63-155": {
+   "cn": "Your Mother Your Mother Your Mother",
+   "date": "2026-09",
+   "festival": "多伦多国际电影节",
+   "festivalEn": "Toronto International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.reuters.com/business/media-telecom/mahershala-ali-stars-action-thriller-exploring-faith-family-motherhood-toronto-2026-09-13/"
+   ],
+   "note": ""
+  },
+  "gh63-156": {
+   "cn": "袒裎相见",
+   "date": "2026-09-06",
+   "festival": "特柳赖德电影节",
+   "festivalEn": "Telluride Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.mynewsdesk.com/se/stockholms_filmfestival/pressreleases/nordic-premiere-of-you-can-see-everything-at-the-stockholm-international-film-festival-3471463"
+   ],
+   "note": "Date cross-check People Sept 6 premiere; NYFF was subsequent."
+  }
+ },
+ "unresolvedRecords": {
+  "dune-part-three": {
+   "cn": "沙丘3",
+   "status": "unannounced",
+   "reason": "Only theatrical release dates confirmed; no reliable first public premiere date/festival announcement found.",
+   "sources": [
+    "https://en.tengrinews.kz/curious/avengers-to-be-released-later-and-dune-earlier-ministry-of-274590/amp/"
+   ]
+  },
+  "avengers-doomsday": {
+   "cn": "复仇者联盟5",
+   "status": "unannounced",
+   "reason": "Disney confirms December18 theatrical release; first public premiere arrangement not confirmed.",
+   "sources": [
+    "https://thewaltdisneycompany.com/news/d23-2026-disney-entertainment-showcase/"
+   ]
+  },
+  "no-mobile": {
+   "cn": "关机",
+   "status": "pending",
+   "reason": "Director's documentary identified, but Swedish/Berlin selection reports give no original first screening date or world-premiere declaration.",
+   "sources": [
+    "https://www.thepaper.cn/detail/33425943"
+   ]
+  },
+  "ripple-yin-hang": {
+   "cn": "河以为家",
+   "status": "pending",
+   "reason": "FIRST July2026 is marked mainland premiere, so it cannot be substituted for global first. Overseas premiere not identified.",
+   "sources": [
+    "https://www.firstfilm.org.cn/annual/screening/schedule/display-2026/",
+    "https://www.firstfilm.org.cn/movies/film-library/河以为家/"
+   ]
+  },
+  "gr26-012": {
+   "cn": "消失的金凤娜",
+   "status": "pending",
+   "reason": "Kaohsiung is explicitly Taiwan premiere; October22 local gala is not demonstrated as world premiere. Do not confuse director's 2015 same-English-title short.",
+   "sources": [
+    "https://www.kff.tw/en/film/content/5137",
+    "https://pavilion.taicca.tw/portfolio-item/the-evil-inside/"
+   ]
+  },
+  "gr26-014": {
+   "cn": "向莲花镇出发",
+   "status": "pending",
+   "reason": "Schlingel2026 and overseas awards identified; not labelled world premiere. GoldenRooster poster says Asian premiere, so November7 is not global first.",
+   "sources": [
+    "https://ff-schlingel.de/en/programme/festival-movies",
+    "https://www.dianyingjie.com.cn/2026/0915/405801.shtml"
+   ]
+  },
+  "gr26-028": {
+   "cn": "河的女儿",
+   "status": "pending",
+   "reason": "October28 industry presentation and October29 Chengdu public screening confirmed; no authoritative world-premiere designation or earlier-festival history.",
+   "sources": [
+    "https://www.thepaper.cn/newsDetail_forward_34409999?commTag=true"
+   ]
+  },
+  "gr26-037": {
+   "cn": "妈样年华",
+   "status": "pending",
+   "reason": "May9 charity prescreening, ShanghaiJune and OctoberHongKong local premiere conflict. A public world-premiere date cannot be securely chosen from these labels.",
+   "sources": [
+    "https://letterboxd.com/film/bird-of-paradise-2026/",
+    "https://www.fdc.gov.hk/sc/whatson_detail.php?id=2026101210213557940"
+   ]
+  },
+  "gr26-044": {
+   "cn": "马兰花开的声音",
+   "status": "pending",
+   "reason": "BJIFF project presentation, SilkRoad selection, FICTS award and November public screening found; none establishes original world premiere.",
+   "sources": [
+    "https://bjiff.com/bannergdtp/202604/t20260424_194821_ext.html",
+    "https://www.sportmoviestv.net/sport-movies-tv-2026-the-winners-are/"
+   ]
+  },
+  "gh63-011": {
+   "cn": "沙央",
+   "status": "pending",
+   "reason": "Taipei October14 gala confirmed, but uncorroborated Toronto September world-premiere claim prevents assigning it as global first.",
+   "sources": [
+    "https://pavilion.taicca.tw/portfolio-item/sayang/",
+    "https://gempak.com/berita/sayang-sayang-terima-sambutan-baik-di-taipei-penonton-setia-hingga-kredit-penutup-selesai"
+   ]
+  },
+  "gh63-040": {
+   "cn": "顺风顺水",
+   "status": "pending",
+   "reason": "November13 bc30 opening and November17 GoldenHorse international premiere confirmed; first-world status not explicitly established.",
+   "sources": [
+    "https://www.cinema.com.hk/en/movie/ticketing",
+    "https://www.goldenhorse.org.tw/film/programme/films/detail/4451?search_category=FF&search_year=2026"
+   ]
+  }
+ },
+ "reviewedFilms": [
+  {
+   "id": "swordsman",
+   "cn": "笑傲江湖",
+   "en": "Swordsman",
+   "query": "Swordsman King Hu / Tsui Hark / Ching Siu-tung / Raymond Lee world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "swordsman-2",
+   "cn": "笑傲江湖2：东方不败",
+   "en": "Swordsman II",
+   "query": "Swordsman II Ching Siu-tung world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "a-better-tomorrow",
+   "cn": "英雄本色",
+   "en": "A Better Tomorrow",
+   "query": "A Better Tomorrow John Woo world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "long-live-the-missus",
+   "cn": "太太万岁",
+   "en": "Long Live the Mistress!",
+   "query": "Long Live the Mistress! Sang Hu world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "bullets-over-broadway",
+   "cn": "子弹横飞百老汇",
+   "en": "Bullets Over Broadway",
+   "query": "Bullets Over Broadway Woody Allen world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "green-green-grass",
+   "cn": "在那河畔青草青",
+   "en": "Green, Green Grass of Home",
+   "query": "Green, Green Grass of Home Hou Hsiao-hsien world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "blood-simple",
+   "cn": "血迷宫",
+   "en": "Blood Simple",
+   "query": "Blood Simple Joel Coen（与伊桑·科恩合作） world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "spring-in-a-small-town",
+   "cn": "小城之春",
+   "en": "Spring in a Small Town",
+   "query": "Spring in a Small Town Fei Mu world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "mon-oncle",
+   "cn": "我的舅舅",
+   "en": "Mon oncle",
+   "query": "Mon oncle Jacques Tati world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "where-is-the-friends-house",
+   "cn": "何处是我朋友的家",
+   "en": "Where Is the Friend’s House?",
+   "query": "Where Is the Friend’s House? Abbas Kiarostami world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "linka-linka",
+   "cn": "一个夜晚与三个夏天",
+   "en": "Linka Linka",
+   "query": "Linka Linka Kangdrun world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "kill-bill-whole-bloody-affair",
+   "cn": "杀死比尔：血色全传",
+   "en": "Kill Bill: The Whole Bloody Affair",
+   "query": "Kill Bill: The Whole Bloody Affair Quentin Tarantino world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "the-odyssey",
+   "cn": "奥德赛",
+   "en": "The Odyssey",
+   "query": "The Odyssey Christopher Nolan world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "dune-part-three",
+   "cn": "沙丘3",
+   "en": "Dune: Part Three",
+   "query": "Dune: Part Three Denis Villeneuve world premiere",
+   "result": "unannounced"
+  },
+  {
+   "id": "avengers-doomsday",
+   "cn": "复仇者联盟5",
+   "en": "Avengers: Doomsday",
+   "query": "Avengers: Doomsday Anthony Russo, Joe Russo world premiere",
+   "result": "unannounced"
+  },
+  {
+   "id": "for-better-or-worse",
+   "cn": "夫妻一场",
+   "en": "For Better or Worse",
+   "query": "For Better or Worse Qin Xiaoyue world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "resident-evil",
+   "cn": "生化危机：爆发夜",
+   "en": "Resident Evil",
+   "query": "Resident Evil Zach Cregger world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "hunger-games-sunrise-on-the-reaping",
+   "cn": "饥饿游戏：收获日出",
+   "en": "The Hunger Games: Sunrise on the Reaping",
+   "query": "The Hunger Games: Sunrise on the Reaping Francis Lawrence world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "legend-of-1900",
+   "cn": "海上钢琴师",
+   "en": "The Legend of 1900",
+   "query": "The Legend of 1900 Giuseppe Tornatore world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "no-mobile",
+   "cn": "关机",
+   "en": "No Mobile",
+   "query": "No Mobile Hao Yang world premiere",
+   "result": "pending"
+  },
+  {
+   "id": "i-am-001",
+   "cn": "我是001号",
+   "en": "The Loop",
+   "query": "The Loop Shiyue Xu world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "ripple-yin-hang",
+   "cn": "河以为家",
+   "en": "Ripple",
+   "query": "Ripple Yin Hang world premiere",
+   "result": "pending"
+  },
+  {
+   "id": "four-springs",
+   "cn": "四个春天",
+   "en": "Four Springs",
+   "query": "Four Springs Lu Qingyi world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gr26-002",
+   "cn": "明天，会更好",
+   "en": "The Road Not Taken",
+   "query": "The Road Not Taken Peter Chan Ho-Sun world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gr26-003",
+   "cn": "当瓶子转动时",
+   "en": "When the Bottle Turns",
+   "query": "When the Bottle Turns Loden world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gr26-005",
+   "cn": "驴公主",
+   "en": "Donkey Princess",
+   "query": "Donkey Princess Cristóbal León / Joaquín Cociña world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gr26-006",
+   "cn": "夏日红炎",
+   "en": "Red Rocks",
+   "query": "Red Rocks Bruno Dumont world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gr26-007",
+   "cn": "女仆日记",
+   "en": "The Diary of a Chambermaid",
+   "query": "The Diary of a Chambermaid Radu Jude world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gr26-008",
+   "cn": "子",
+   "en": "zi",
+   "query": "zi Kogonada world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gr26-009",
+   "cn": "钢铁男孩",
+   "en": "Iron Boy",
+   "query": "Iron Boy Louis Clichy world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gr26-010",
+   "cn": "明月共此时",
+   "en": "The House on the Moon",
+   "query": "The House on the Moon Nelson Yeo world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gr26-011",
+   "cn": "泡泡糖女孩",
+   "en": "Ah girl",
+   "query": "Ah girl Ang Geck Geck world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gr26-012",
+   "cn": "消失的金凤娜",
+   "en": "The Evil Inside",
+   "query": "The Evil Inside Lingo Hsieh world premiere",
+   "result": "pending"
+  },
+  {
+   "id": "gr26-013",
+   "cn": "发现之旅",
+   "en": "Zoom In, Zoom Out",
+   "query": "Zoom In, Zoom Out Dong Jie world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gr26-014",
+   "cn": "向莲花镇出发",
+   "en": "Starting Towards the Finish Line",
+   "query": "Starting Towards the Finish Line Hou Jue world premiere",
+   "result": "pending"
+  },
+  {
+   "id": "gr26-016",
+   "cn": "七分熟",
+   "en": "Gold Life",
+   "query": "Gold Life Zhang Xin world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gr26-017",
+   "cn": "逆光绽放",
+   "en": "Steadfast Woman",
+   "query": "Steadfast Woman Zhang Pu world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gr26-018",
+   "cn": "寒夜灯柱",
+   "en": "Light Pillar",
+   "query": "Light Pillar Zao Xu world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gr26-019",
+   "cn": "澳门大赛车",
+   "en": "MGP: The Untamed Circuit",
+   "query": "MGP: The Untamed Circuit Cao Jinling world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gr26-020",
+   "cn": "最佳状态",
+   "en": "No Hard Feelings",
+   "query": "No Hard Feelings Liu Shichuan world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gr26-021",
+   "cn": "无名女孩",
+   "en": "A Girl Unknown",
+   "query": "A Girl Unknown Zou Jing world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gr26-022",
+   "cn": "阿尔及利卡之路",
+   "en": "Algerican Road",
+   "query": "Algerican Road Rabah Ameur-Zaïmeche world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gr26-023",
+   "cn": "悲惨世界",
+   "en": "Les Misérables",
+   "query": "Les Misérables Fred Cavayé world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gr26-024",
+   "cn": "爱杀",
+   "en": "Love Massacre",
+   "query": "Love Massacre Patrick Tam Kar-Ming world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gr26-026",
+   "cn": "语文的滋味",
+   "en": "Her First Taste",
+   "query": "Her First Taste Gong Yiwen world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gr26-027",
+   "cn": "斯琴图的秋天",
+   "en": "Roaming over the Horseback",
+   "query": "Roaming over the Horseback 白润青 world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gr26-028",
+   "cn": "河的女儿",
+   "en": "Daughter of the River",
+   "query": "Daughter of the River 虹影 world premiere",
+   "result": "pending"
+  },
+  {
+   "id": "gr26-029",
+   "cn": "我阿爹想旅行",
+   "en": "Good Trip",
+   "query": "Good Trip Norris Wong Yee-lam / Wong Hoi world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gr26-030",
+   "cn": "像我这样的爱情",
+   "en": "Someone Like Me",
+   "query": "Someone Like Me Tam Wai-Ching world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gr26-031",
+   "cn": "大西洋",
+   "en": "Atlantic Rhapsody",
+   "query": "Atlantic Rhapsody Zhong Kaifeng world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gr26-032",
+   "cn": "深度安静",
+   "en": "Deep Quiet Room",
+   "query": "Deep Quiet Room Shen Ko-shang world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gr26-033",
+   "cn": "人生海海",
+   "en": "The Waves Will Carry Us",
+   "query": "The Waves Will Carry Us Lau Kek-huat world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gr26-034",
+   "cn": "豪·路·博尔赫斯传",
+   "en": "Life of Jorge Luis Borges",
+   "query": "Life of Jorge Luis Borges Mariano Llinás world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gr26-035",
+   "cn": "入学许可",
+   "en": "Admission",
+   "query": "Admission Hsu Kun-hua world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gr26-036",
+   "cn": "沧海琴声",
+   "en": "The Violinist",
+   "query": "The Violinist Ervin Han / Raúl García world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gr26-037",
+   "cn": "妈样年华",
+   "en": "Bird of Paradise",
+   "query": "Bird of Paradise Wu Chui-yi world premiere",
+   "result": "pending"
+  },
+  {
+   "id": "gr26-039",
+   "cn": "太极张三丰",
+   "en": "Tai Chi Master",
+   "query": "Tai Chi Master Yuen Woo-ping world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gr26-040",
+   "cn": "浪花男女",
+   "en": "Wakesurf Lovers",
+   "query": "Wakesurf Lovers Andrew Fung Chih-chiang world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gr26-041",
+   "cn": "第四幕",
+   "en": "Afterpiece",
+   "query": "Afterpiece Keane Wong Tak-Kin world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gr26-042",
+   "cn": "黑潮",
+   "en": "Dead Tide",
+   "query": "Dead Tide Kethsvin Chee world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gr26-043",
+   "cn": "山中来客",
+   "en": "Strangers in the Mountain",
+   "query": "Strangers in the Mountain Wan Bo world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gr26-044",
+   "cn": "马兰花开的声音",
+   "en": "When Malan Blooms",
+   "query": "When Malan Blooms 马晓静 world premiere",
+   "result": "pending"
+  },
+  {
+   "id": "gr26-045",
+   "cn": "无处安放我的双眼",
+   "en": "Nowhere to Lay My Eyes",
+   "query": "Nowhere to Lay My Eyes Hong Sang-soo world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gr26-046",
+   "cn": "善男信女",
+   "en": "We Are Born Good",
+   "query": "We Are Born Good Yeung Leung Chuen world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gr26-047",
+   "cn": "被杀的那天",
+   "en": "Dead End",
+   "query": "Dead End Isabella Lam world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gr26-048",
+   "cn": "林中绿洲",
+   "en": "Oasis",
+   "query": "Oasis Jannis Lenz world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gr26-049",
+   "cn": "金玉满堂",
+   "en": "The Chinese Feast",
+   "query": "The Chinese Feast Tsui Hark world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gr26-050",
+   "cn": "深爱",
+   "en": "Beloved",
+   "query": "Beloved Erik Poppe world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gr26-051",
+   "cn": "其余皆噪音",
+   "en": "Everything Else is Noise",
+   "query": "Everything Else is Noise Nicolás Pereda world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gr26-052",
+   "cn": "吃饱的菲尔",
+   "en": "Full Phil",
+   "query": "Full Phil Quentin Dupieux world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gr26-053",
+   "cn": "匈牙利狂想曲",
+   "en": "Queen Budapest",
+   "query": "Queen Budapest János Zsombolyai world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gr26-054",
+   "cn": "剪刀手爱德华",
+   "en": "Edward Scissorhands",
+   "query": "Edward Scissorhands Tim Burton world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gr26-056",
+   "cn": "回归",
+   "en": "The Return",
+   "query": "The Return Andrey Zvyagintsev world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gr26-057",
+   "cn": "冰释雪融",
+   "en": "The Meltdown",
+   "query": "The Meltdown Manuela Martelli world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gr26-058",
+   "cn": "南国再见，南国",
+   "en": "Goodbye South, Goodbye",
+   "query": "Goodbye South, Goodbye Hou Hsiao-hsien world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gr26-059",
+   "cn": "别人的东西",
+   "en": "What Belongs to Others",
+   "query": "What Belongs to Others Grzegorz Dębowski world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gr26-060",
+   "cn": "白夜黑金",
+   "en": "Black Money for White Nights",
+   "query": "Black Money for White Nights Kristina Grozeva / Petar Valchanov world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gr26-061",
+   "cn": "油麻菜籽",
+   "en": "Ah Fei",
+   "query": "Ah Fei Wan Jen world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gr26-062",
+   "cn": "醉拳",
+   "en": "Drunken Master",
+   "query": "Drunken Master Yuen Woo-ping world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gr26-063",
+   "cn": "银翼杀手（最终剪辑版）",
+   "en": "Blade Runner: The Final Cut",
+   "query": "Blade Runner: The Final Cut Ridley Scott world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gr26-064",
+   "cn": "我们不是陌生人",
+   "en": "We Are All Strangers",
+   "query": "We Are All Strangers Anthony Chen world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gr26-066",
+   "cn": "将军号",
+   "en": "The General",
+   "query": "The General Clyde Bruckman / Buster Keaton world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gr26-067",
+   "cn": "囚魂之地",
+   "en": "Ghost in the Cell",
+   "query": "Ghost in the Cell Joko Anwar world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gr26-068",
+   "cn": "后台疯暴",
+   "en": "Backstage Madness",
+   "query": "Backstage Madness Amanbek Azhymat world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gr26-070",
+   "cn": "无辜",
+   "en": "The Innocent",
+   "query": "The Innocent Luchino Visconti world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gr26-071",
+   "cn": "无处容身",
+   "en": "You Don’t Belong Here",
+   "query": "You Don’t Belong Here Florin Şerban world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gr26-072",
+   "cn": "乱世佳人",
+   "en": "Gone with the Wind",
+   "query": "Gone with the Wind Victor Fleming world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gr26-073",
+   "cn": "铁扇公主",
+   "en": "Princess Iron Fan",
+   "query": "Princess Iron Fan Wan Laiming / Guchan Wan world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gr26-074",
+   "cn": "温柔以待",
+   "en": "Tender Loving Care",
+   "query": "Tender Loving Care Mike Leigh world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gr26-075",
+   "cn": "围城纪事",
+   "en": "Chronicles from the Siege",
+   "query": "Chronicles from the Siege Abdallah Al-Khatib world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gr26-076",
+   "cn": "杰出的无名氏",
+   "en": "All About Corinne",
+   "query": "All About Corinne Marc Fitoussi world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gr26-077",
+   "cn": "盗梦空间",
+   "en": "Inception",
+   "query": "Inception Christopher Nolan world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gr26-078",
+   "cn": "霉变人生",
+   "en": "Ground Floor",
+   "query": "Ground Floor Gábor Reisz world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gr26-079",
+   "cn": "客乡",
+   "en": "Visitation",
+   "query": "Visitation Volker Schlöndorff world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gr26-080",
+   "cn": "浓情卡门",
+   "en": "Viva Carmen!",
+   "query": "Viva Carmen! Sébastien Laudenbach world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gr26-081",
+   "cn": "孔雀公主",
+   "en": "Princess Peacock",
+   "query": "Princess Peacock Xi Jin world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gr26-082",
+   "cn": "哪吒闹海",
+   "en": "Prince Nezha’s Triumph Against Dragon King",
+   "query": "Prince Nezha’s Triumph Against Dragon King Wang Shuchen / Yan Dingxian / A Da world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gr26-083",
+   "cn": "中国动画100年",
+   "en": "Chinese Animation: A Century",
+   "query": "Chinese Animation: A Century Lijun Sun world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "the-miserable-mother",
+   "cn": "她们的狂想曲",
+   "en": "The Miserable Mother",
+   "query": "The Miserable Mother Susanne Heinrich world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "oh-this-unspeakable-void",
+   "cn": "心隙",
+   "en": "Oh This Unspeakable Void",
+   "query": "Oh This Unspeakable Void Simon Verhoeven world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "when-pigs-fly",
+   "cn": "当猪会飞",
+   "en": "When Pigs Fly",
+   "query": "When Pigs Fly Denise Riedmayr world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gh63-001",
+   "cn": "告别的年代",
+   "en": "The Age of Goodbyes",
+   "query": "The Age of Goodbyes Edmund YEO world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gh63-002",
+   "cn": "花脸猫：修罗道",
+   "en": "The Scar-faced Cat: Way of Asura",
+   "query": "The Scar-faced Cat: Way of Asura WANG I-fan world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gh63-003",
+   "cn": "死亡赌局",
+   "en": "Dead End",
+   "query": "Dead End CHAN Chun-hao world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gh63-004",
+   "cn": "女孩",
+   "en": "Girl",
+   "query": "Girl SHU Qi world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gh63-005",
+   "cn": "我亲爱的怪孩子",
+   "en": "The Canary's Lullaby",
+   "query": "The Canary's Lullaby IKEDA Akira world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gh63-006",
+   "cn": "我们不是什么",
+   "en": "We're Nothing at All",
+   "query": "We're Nothing at All Herman YAU world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gh63-008",
+   "cn": "功夫",
+   "en": "Kung Fu",
+   "query": "Kung Fu Giddens KO world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gh63-010",
+   "cn": "UFO离奇命案",
+   "en": "Unidentified Murder",
+   "query": "Unidentified Murder KWOK Ka-hei / Jack LEE Chun-kit world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gh63-011",
+   "cn": "沙央",
+   "en": "SAYANG",
+   "query": "SAYANG TANG Hsiang-chu world premiere",
+   "result": "pending"
+  },
+  {
+   "id": "gh63-012",
+   "cn": "泥娃娃",
+   "en": "Mudborn",
+   "query": "Mudborn SHIEH Meng-ju world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gh63-013",
+   "cn": "双囍",
+   "en": "Double Happiness",
+   "query": "Double Happiness Joseph HSU Chen-chieh world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gh63-014",
+   "cn": "谎言生活",
+   "en": "Big Little Things",
+   "query": "Big Little Things Michelle ZHOU world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gh63-015",
+   "cn": "阳光女子合唱团",
+   "en": "Sunshine Women's Choir",
+   "query": "Sunshine Women's Choir Gavin LIN world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gh63-017",
+   "cn": "那张照片里的我们",
+   "en": "The Photo from 1977",
+   "query": "The Photo from 1977 Phil TANG / Frank CHENG world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gh63-018",
+   "cn": "熊山记 Sinisusu Tua Pucumayan",
+   "en": "The Last Hunter",
+   "query": "The Last Hunter Umin Boya world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gh63-019",
+   "cn": "日光",
+   "en": "Will You Still Be My Friend",
+   "query": "Will You Still Be My Friend LU Po-shun world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gh63-020",
+   "cn": "狂忘警探",
+   "en": "Arrested Memory",
+   "query": "Arrested Memory SABU world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gh63-023",
+   "cn": "独奏者之舞",
+   "en": "The Dance of a Soloist",
+   "query": "The Dance of a Soloist LEE Li-shao world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gh63-024",
+   "cn": "那道阳光在外明媚",
+   "en": "The Whisper of Sunlight",
+   "query": "The Whisper of Sunlight WONG Siu-pong world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gh63-025",
+   "cn": "离开即景",
+   "en": "Scenes from Departure",
+   "query": "Scenes from Departure Ray CHAN Kam-hei world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gh63-026",
+   "cn": "快要到达家了",
+   "en": "Almost Home",
+   "query": "Almost Home JIANG Wenjie world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gh63-027",
+   "cn": "回山",
+   "en": "Etude",
+   "query": "Etude LIN Yu-en world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gh63-028",
+   "cn": "魔法星图",
+   "en": "Magic Atlas",
+   "query": "Magic Atlas SUN Xun world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gh63-029",
+   "cn": "欢迎来到朵莉之家",
+   "en": "Welcome to Dolly's House",
+   "query": "Welcome to Dolly's House Seven YCH / Rady FU / LIU Yu-shu world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gh63-036",
+   "cn": "搭错车",
+   "en": "Papa, Can You Hear Me Sing?",
+   "query": "Papa, Can You Hear Me Sing? YU Kan-ping world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gh63-037",
+   "cn": "孽子",
+   "en": "The Outsiders",
+   "query": "The Outsiders YU Kan-ping world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gh63-038",
+   "cn": "两个油漆匠",
+   "en": "Two Painters",
+   "query": "Two Painters YU Kan-ping world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gh63-039",
+   "cn": "中场休息",
+   "en": "Intermission",
+   "query": "Intermission Yonfan world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gh63-040",
+   "cn": "顺风顺水",
+   "en": "The Water Will Carry Us",
+   "query": "The Water Will Carry Us CHENG Sei-hong world premiere",
+   "result": "pending"
+  },
+  {
+   "id": "gh63-042",
+   "cn": "一路狂奔",
+   "en": "Running Wild",
+   "query": "Running Wild WANG Yi-ling world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gh63-043",
+   "cn": "歌舞的我们",
+   "en": "The Songs from Within",
+   "query": "The Songs from Within Elvis LU A-liang world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gh63-050",
+   "cn": "完美家庭风暴",
+   "en": "Fjord",
+   "query": "Fjord Cristian MUNGIU world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gh63-051",
+   "cn": "野马九号",
+   "en": "Wild Horse Nine",
+   "query": "Wild Horse Nine Martin McDONAGH world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gh63-052",
+   "cn": "双生狂花",
+   "en": "Bucking Fastard",
+   "query": "Bucking Fastard Werner HERZOG world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gh63-053",
+   "cn": "克里姆林宫的巫师",
+   "en": "The Wizard of the Kremlin",
+   "query": "The Wizard of the Kremlin Olivier ASSAYAS world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gh63-055",
+   "cn": "亲密怪物",
+   "en": "Gentle Monster",
+   "query": "Gentle Monster Marie KREUTZER world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gh63-057",
+   "cn": "疯癫老人日记",
+   "en": "Diary of a Mad Old Man",
+   "query": "Diary of a Mad Old Man Wayne WANG world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gh63-058",
+   "cn": "假如爱有如果",
+   "en": "Possible Love",
+   "query": "Possible Love LEE Chang-dong world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gh63-060",
+   "cn": "醉爱每一天",
+   "en": "Another Day",
+   "query": "Another Day Jeanne HERRY world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gh63-061",
+   "cn": "爱的对峙",
+   "en": "The Beloved",
+   "query": "The Beloved Rodrigo SOROGOYEN world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gh63-062",
+   "cn": "蝴蝶果酱的滋味",
+   "en": "Butterfly Jam",
+   "query": "Butterfly Jam Kantemir BALAGOV world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gh63-065",
+   "cn": "热带庄园魅影",
+   "en": "Death Has No Master",
+   "query": "Death Has No Master Jorge THIELEN ARMAND world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gh63-066",
+   "cn": "崩塌之家",
+   "en": "Falling House",
+   "query": "Falling House Mohsen GHARAEI world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gh63-067",
+   "cn": "NAZA：附带损伤",
+   "en": "NAZA",
+   "query": "NAZA Yuval ABRAHAM / Rachel SZOR world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gh63-068",
+   "cn": "革命练习曲",
+   "en": "Rehearsals for a Revolution",
+   "query": "Rehearsals for a Revolution Pegah AHANGARANI world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gh63-069",
+   "cn": "我盖了一座小屋想你",
+   "en": "Yo (Love Is a Rebellious Bird)",
+   "query": "Yo (Love Is a Rebellious Bird) Anna FITCH / Banker WHITE world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gh63-070",
+   "cn": "噤声：她们的故事",
+   "en": "Silenced",
+   "query": "Silenced Selina MILES world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gh63-071",
+   "cn": "当恋爱显化时",
+   "en": "Wishful Thinking",
+   "query": "Wishful Thinking Graham PARKES world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gh63-073",
+   "cn": "爱×死×艺术家",
+   "en": "The End of It",
+   "query": "The End of It Maria MARTÍNEZ BAYONA world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gh63-074",
+   "cn": "余烬青春",
+   "en": "Dua",
+   "query": "Dua Blerta BASHOLLI world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gh63-075",
+   "cn": "亲爱的不速之客",
+   "en": "The Guest",
+   "query": "The Guest Mads MENGEL world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gh63-077",
+   "cn": "蓝色是太阳的颜色",
+   "en": "The Color of the Sun",
+   "query": "The Color of the Sun Xavier TERA world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gh63-078",
+   "cn": "腥红女爵",
+   "en": "The Blood Countess",
+   "query": "The Blood Countess Ulrike OTTINGER world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gh63-079",
+   "cn": "梦回险路",
+   "en": "The Dreamed Adventure",
+   "query": "The Dreamed Adventure Valeska GRISEBACH world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gh63-080",
+   "cn": "灵魂未知数",
+   "en": "The Unknown",
+   "query": "The Unknown Arthur HARARI world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gh63-082",
+   "cn": "人间坏格",
+   "en": "Vertiginous",
+   "query": "Vertiginous Quentin DUPIEUX world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gh63-083",
+   "cn": "迷雾中的大象",
+   "en": "Elephants in the Fog",
+   "query": "Elephants in the Fog Abinash Bikram SHAH world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gh63-084",
+   "cn": "燃烧幻梦",
+   "en": "The Burning Giants",
+   "query": "The Burning Giants Phuttiphong AROONPHENG world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gh63-086",
+   "cn": "果树下的恋爱梦",
+   "en": "Fruit Gathering",
+   "query": "Fruit Gathering Aung Phyoe world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gh63-088",
+   "cn": "失落残响",
+   "en": "Hearing",
+   "query": "Hearing LÊ Bảo world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gh63-089",
+   "cn": "沙河下的秘密",
+   "en": "Our Share of Sand",
+   "query": "Our Share of Sand Shalini ADNANI world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gh63-090",
+   "cn": "最初的世界",
+   "en": "The World Before",
+   "query": "The World Before YOON Dan-bi world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gh63-091",
+   "cn": "当风吹来奈义町",
+   "en": "Nagi Notes",
+   "query": "Nagi Notes FUKADA Koji world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gh63-092",
+   "cn": "尼尔森先生，你杀过人吗？",
+   "en": "Mr. Nelson, Did You Kill People?",
+   "query": "Mr. Nelson, Did You Kill People? TSUKAMOTO Shinya world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gh63-093",
+   "cn": "无人知晓的孩子们",
+   "en": "Children Untold",
+   "query": "Children Untold NISHIKAWA Miwa world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gh63-094",
+   "cn": "事到如今还谈什么爱",
+   "en": "Between Two Lovers",
+   "query": "Between Two Lovers HIROSE Nanako world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gh63-095",
+   "cn": "富士子不能输",
+   "en": "Fujiko",
+   "query": "Fujiko KIMURA Taichi world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gh63-096",
+   "cn": "无用之人",
+   "en": "In My Father's Room",
+   "query": "In My Father's Room HARADA Maha world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gh63-097",
+   "cn": "有用的人",
+   "en": "To Be Ordinary",
+   "query": "To Be Ordinary LEE Yun-chan world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gh63-098",
+   "cn": "暗影天使",
+   "en": "Shadow Work",
+   "query": "Shadow Work YOSHINO Ryohei world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gh63-099",
+   "cn": "首尔守护者",
+   "en": "The Seoul Guardians",
+   "query": "The Seoul Guardians KIM Jong-woo / KIM Shin-wan / CHO Chul-young world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gh63-100",
+   "cn": "检察追缉令",
+   "en": "Prosecution",
+   "query": "Prosecution Faraz SHARIAT world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gh63-101",
+   "cn": "破碎十七",
+   "en": "17",
+   "query": "17 Kosara MITIĆ world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gh63-102",
+   "cn": "无处安放的青春",
+   "en": "A Place to Heal",
+   "query": "A Place to Heal Cédric KAHN world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gh63-103",
+   "cn": "生命中最美好的夏令营",
+   "en": "Sunny Dancer",
+   "query": "Sunny Dancer George JAQUES world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gh63-104",
+   "cn": "池畔的夏日忧伤",
+   "en": "Sad Girlz",
+   "query": "Sad Girlz Fernanda TOVAR world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gh63-105",
+   "cn": "家的形状",
+   "en": "A Family",
+   "query": "A Family Mees PEIJNENBURG world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gh63-107",
+   "cn": "跨出温室的爱恋",
+   "en": "Iván & Hadoum",
+   "query": "Iván & Hadoum Ian de la ROSA world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gh63-108",
+   "cn": "以你的记忆审判我",
+   "en": "Trial of Hein",
+   "query": "Trial of Hein Kai STÄNICKE world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gh63-109",
+   "cn": "纽约同志情与欲",
+   "en": "The Man I Love",
+   "query": "The Man I Love Ira SACHS world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gh63-110",
+   "cn": "男优阿虎",
+   "en": "Tiger",
+   "query": "Tiger Anshul CHAUHAN world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gh63-111",
+   "cn": "超派妖姬救地球",
+   "en": "Zsazsa Zaturnnah",
+   "query": "Zsazsa Zaturnnah Avid LIONGOREN world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gh63-112",
+   "cn": "装扮游戏",
+   "en": "Tomboy",
+   "query": "Tomboy Céline SCIAMMA world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gh63-113",
+   "cn": "高档货",
+   "en": "High Art",
+   "query": "High Art Lisa CHOLODENKO world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gh63-114",
+   "cn": "绿洲合唱团：莫带愤怒回首",
+   "en": "Oasis: Don't Look Back in Anger",
+   "query": "Oasis: Don't Look Back in Anger Dylan SOUTHERN / Will LOVELACE world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gh63-115",
+   "cn": "Pulp：安可要唱哪一首",
+   "en": "Pulp: What Do You Do for an Encore?",
+   "query": "Pulp: What Do You Do for an Encore? Garth JENNINGS world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gh63-116",
+   "cn": "世界上最寂寞的蓝调",
+   "en": "The Loneliest Man in Town",
+   "query": "The Loneliest Man in Town Tizza COVI / Rainer FRIMMEL world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gh63-117",
+   "cn": "我就爱摇滚",
+   "en": "Mile End Kicks",
+   "query": "Mile End Kicks Chandler LEVACK world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gh63-118",
+   "cn": "就是柳柳的他",
+   "en": "Wicker",
+   "query": "Wicker Alex Huston FISCHER / Eleanor WILSON world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gh63-120",
+   "cn": "终极杀镇",
+   "en": "Normal",
+   "query": "Normal Ben WHEATLEY world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gh63-121",
+   "cn": "暗夜魔婴",
+   "en": "Nightborn",
+   "query": "Nightborn Hanna BERGHOLM world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gh63-123",
+   "cn": "坂本日常",
+   "en": "Sakamoto Days",
+   "query": "Sakamoto Days FUKUDA Yuichi world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gh63-124",
+   "cn": "鼠门秀",
+   "en": "Decorado",
+   "query": "Decorado Alberto VÁZQUEZ world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gh63-125",
+   "cn": "牧一：女人村传奇",
+   "en": "Muyi",
+   "query": "Muyi Julien CHHENG world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gh63-127",
+   "cn": "蝶变",
+   "en": "The Butterfly Murders",
+   "query": "The Butterfly Murders TSUI Hark world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gh63-128",
+   "cn": "盗梦侦探",
+   "en": "Paprika",
+   "query": "Paprika KON Satoshi world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gh63-129",
+   "cn": "理性与感性",
+   "en": "Sense and Sensibility",
+   "query": "Sense and Sensibility Ang LEE world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gh63-130",
+   "cn": "凡尔赛拜金女",
+   "en": "Marie Antoinette",
+   "query": "Marie Antoinette Sofia COPPOLA world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gh63-131",
+   "cn": "镜头之外：凡尔赛拜金女",
+   "en": "Making Marie Antoinette",
+   "query": "Making Marie Antoinette Eleanor COPPOLA world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gh63-132",
+   "cn": "克里斯马克：未来式乡愁",
+   "en": "Nostalgia for the Future",
+   "query": "Nostalgia for the Future Brecht DEBACKERE world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gh63-134",
+   "cn": "樱桃的滋味",
+   "en": "Taste of Cherry",
+   "query": "Taste of Cherry Abbas KIAROSTAMI world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gh63-135",
+   "cn": "尤里西斯生命之旅",
+   "en": "Ulysses' Gaze",
+   "query": "Ulysses' Gaze Theo ANGELOPOULOS world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gh63-136",
+   "cn": "追逐蝴蝶",
+   "en": "Chasing Butterflies",
+   "query": "Chasing Butterflies Otar IOSSELIANI world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gh63-137",
+   "cn": "大象",
+   "en": "Elephant",
+   "query": "Elephant Gus VAN SANT world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gh63-138",
+   "cn": "猪与军舰",
+   "en": "Pigs and Battleships",
+   "query": "Pigs and Battleships IMAMURA Shohei world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gh63-139",
+   "cn": "日本昆虫记",
+   "en": "The Insect Woman",
+   "query": "The Insect Woman IMAMURA Shohei world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gh63-140",
+   "cn": "赤色杀意",
+   "en": "Intentions of Murder",
+   "query": "Intentions of Murder IMAMURA Shohei world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gh63-141",
+   "cn": "人类学入门",
+   "en": "The Pornographers",
+   "query": "The Pornographers IMAMURA Shohei world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gh63-142",
+   "cn": "我要复仇",
+   "en": "Vengeance Is Mine",
+   "query": "Vengeance Is Mine IMAMURA Shohei world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gh63-143",
+   "cn": "黑雨",
+   "en": "Black Rain",
+   "query": "Black Rain IMAMURA Shohei world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gh63-144",
+   "cn": "鳗鱼",
+   "en": "The Eel",
+   "query": "The Eel IMAMURA Shohei world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gh63-145",
+   "cn": "红桥下的暖流",
+   "en": "Warm Water Under a Red Bridge",
+   "query": "Warm Water Under a Red Bridge IMAMURA Shohei world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gh63-148",
+   "cn": "死亡密码",
+   "en": "Pi",
+   "query": "Pi Darren ARONOFSKY world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gh63-150",
+   "cn": "笑之大学",
+   "en": "University of Laughs",
+   "query": "University of Laughs HOSHI Mamoru world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gh63-151",
+   "cn": "绵羊侦探团",
+   "en": "The Sheep Detectives",
+   "query": "The Sheep Detectives Kyle BALDA world premiere",
+   "result": "verified"
+  },
+  {
+   "id": "gh63-153",
+   "cn": "地堡危情",
+   "en": "Bunker",
+   "query": "Bunker Florian ZELLER world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gh63-155",
+   "cn": "Your Mother Your Mother Your Mother",
+   "en": "Your Mother Your Mother Your Mother",
+   "query": "Your Mother Your Mother Your Mother Bassam TARIQ world premiere",
+   "result": "partial"
+  },
+  {
+   "id": "gh63-156",
+   "cn": "袒裎相见",
+   "en": "You Can See Everything",
+   "query": "You Can See Everything Nathan FIELDER / Lance OPPENHEIM world premiere",
+   "result": "verified"
+  }
+ ]
+}
