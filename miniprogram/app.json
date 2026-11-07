@@ -12,18 +12,18 @@
     "pages/poster-wall/poster-wall"
   ],
   "window": {
-    "navigationBarBackgroundColor": "#f8f2e6",
-    "navigationBarTextStyle": "black",
+    "navigationBarBackgroundColor": "@navBg",
+    "navigationBarTextStyle": "@navText",
     "navigationBarTitleText": "麻雀观影护照",
-    "backgroundColor": "#efe6d4",
-    "backgroundTextStyle": "dark",
+    "backgroundColor": "@pageBg",
+    "backgroundTextStyle": "@bgText",
     "pageOrientation": "auto"
   },
   "tabBar": {
-    "color": "#7a6a55",
-    "selectedColor": "#8e2a22",
-    "backgroundColor": "#f8f2e6",
-    "borderStyle": "white",
+    "color": "@tabColor",
+    "selectedColor": "@tabSel",
+    "backgroundColor": "@tabBg",
+    "borderStyle": "@tabBorder",
     "list": [
       {
         "pagePath": "pages/schedule/schedule",
@@ -54,5 +54,7 @@
   "style": "v2",
   "sitemapLocation": "sitemap.json",
   "lazyCodeLoading": "requiredComponents",
-  "resizable": true
+  "resizable": true,
+  "darkmode": true,
+  "themeLocation": "theme.json"
 }

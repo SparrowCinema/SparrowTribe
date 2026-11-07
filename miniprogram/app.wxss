@@ -6,6 +6,8 @@ page { --r: calc(100vw / 750); }
 page {
   --bg: #efe6d4; --surface: #f8f2e6; --line: #d8cbb1; --line-soft: #e6dcc7;
   --fg: #2b2117; --muted: #7a6a55; --accent: #8e2a22; --teal: #2f6f6c; --ochre: #b26a1f; --chip: #e5d8bf;
+  --float: rgba(248, 242, 230, .94); --bad-bg: #f3dcd6; --bad-fg: #c4372d; --ic-filter: none; --ic-bg: var(--bg);
+  --barS: 36%; --barL: 85%; --lineL: 68%; --inkL: 22%;
   background: var(--bg); color: var(--fg);
   font-family: -apple-system, "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
   font-size: calc(27 * var(--r)); line-height: 1.6;
@@ -37,7 +39,7 @@ button.btn::after { border: none; }
 .makers .d { font-size: calc(20 * var(--r)); letter-spacing: calc(8 * var(--r)); color: var(--muted); }
 
 /* 回到顶部 */
-.to-top { box-sizing: border-box; flex: none; min-width: calc(88 * var(--r)); min-height: calc(88 * var(--r)); padding: 0; position: fixed; right: calc(32 * var(--r)); bottom: calc(40 * var(--r)); z-index: 50; width: calc(88 * var(--r)); height: calc(88 * var(--r)); border-radius: 50%; display: flex; align-items: center; justify-content: center; background: rgba(248, 242, 230, .94); border: calc(2 * var(--r)) solid var(--line); box-shadow: 0 calc(16 * var(--r)) calc(40 * var(--r)) calc(-16 * var(--r)) rgba(40, 25, 10, .5); opacity: 0; transform: translateY(calc(20 * var(--r))) scale(.9); pointer-events: none; transition: opacity .22s, transform .22s; }
+.to-top { box-sizing: border-box; flex: none; min-width: calc(88 * var(--r)); min-height: calc(88 * var(--r)); padding: 0; position: fixed; right: calc(32 * var(--r)); bottom: calc(40 * var(--r)); z-index: 50; width: calc(88 * var(--r)); height: calc(88 * var(--r)); border-radius: 50%; display: flex; align-items: center; justify-content: center; background: var(--float); border: calc(2 * var(--r)) solid var(--line); box-shadow: 0 calc(16 * var(--r)) calc(40 * var(--r)) calc(-16 * var(--r)) rgba(40, 25, 10, .5); opacity: 0; transform: translateY(calc(20 * var(--r))) scale(.9); pointer-events: none; transition: opacity .22s, transform .22s; }
 .to-top.show { opacity: 1; transform: none; pointer-events: auto; }
 .to-top-hv { transform: scale(.92); }
 .tt-arr { width: calc(22 * var(--r)); height: calc(22 * var(--r)); margin-top: calc(8 * var(--r)); border-left: calc(5 * var(--r)) solid var(--fg); border-top: calc(5 * var(--r)) solid var(--fg); transform: rotate(45deg); }
@@ -58,3 +60,6 @@ page { --f-display: "Songti SC", "Noto Serif SC", "Source Han Serif SC", "STSong
 
 /* 大标题用宋体黑体字重（iOS/macOS 的 STSongti-SC-Black），否则细宋体显得单薄 */
 .h1, .h2, .today-h .b, .blockh, .me-t { font-family: "STSongti-SC-Black", "Songti SC", "Noto Serif SC", "Source Han Serif SC", "Noto Serif CJK SC", serif; font-weight: 900; }
+
+/* 外观：输入框文字随主题（微信在暗色下会改原生控件默认色） */
+input, textarea { color: var(--fg); }
