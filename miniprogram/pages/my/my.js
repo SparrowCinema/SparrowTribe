@@ -14,9 +14,9 @@ const app = getApp();
 Page({
   onPageScroll(e) { T.scroll(this, e); },
   toTop() { T.go(); },
-  data: {fx:[],fz:[],fl:[],fr:[],friendOpen:false,friends:[{u:'https://sparrowcinema.github.io/michelin-guide/',img:'/images/brand/friend-michelin.png',n:'全球米其林餐厅名录',g:'去全球看电影，别忘了顺路吃点美食。',d:'收录全球米其林餐厅，可标记想去、记录去过，让每座城市的电影与美味同行。'}],collectionOpen:false,todayExpanded:false,careOpen:false,todayRows:[], i: {}, pp: {}, ppOpen: false, ppPage: 0, ppVol: 0, ppShelf: false, ppTab: 'stamps', lvAll: false, gt: 'level', cAll: false, gOpen: null, mcat: '', gr: {}, wide: false, ppSp: 0, ppK: 1, ppH: 0, ppCH: 0, ppCK: 1, spreads: [], ppLabel: '', rc: {}, rcOpen: false, rcY: [], rcM: [], rcP: [], guideOpen: false, fbOpen: false, guide: [{ k: '四个页面', s: '底栏四个入口：「排片」看每天每家影院的场次，「专题」按影展、单元浏览，「片目」查全部影片，「我的」放你的日程、护照和设置。' }, { k: '排片 · 看场次', s: '排片页把每天每家影院的场次排成时间表，一个色块就是一场放映；点色块看影片详情与购票、报名信息，可按日期、影院、专题多选筛选。' }, { k: '排片 · 加入我的日程', s: '点色块右上角的 + 把场次加入个人排片；「我的」里会按天列出日程并自动检查时间冲突，排片页也能只看我的排片。' }, { k: '专题 · 影展与单元', s: '专题页把影片按影展、单元归档，点进去看简介和片单，也能看到自己在这个专题里看过几部、完成度多少。' }, { k: '片目 · 找电影', s: '片目页收录全部影片，可以搜片名、导演、演员，并按专题、城市、放映版本筛选；点进影片页看简介、主创、获奖和放映场次。' }, { k: '影片页 · 看过与重刷', s: '在影片页点「看过」盖下印章，可以打分、选放映版本；再看一次就点「再看一次」，每次观影的日期、评分和版本都会单独记录。' }, { k: '放映版本', s: '可以记录你是在普通影厅、胶片、IMAX、杜比、巨幕、LED 还是沉浸厅看的，之后会计入「银幕与版本」类纪念章。' }, { k: '成长 · 等级与纪念章', s: '护照里的「成长」按看过的不同影片数升级（最高 20 级），并按奖项、口味、习惯、银幕、重温、足迹、彩蛋七类点亮纪念章；每枚章展开后都写着点亮规则。' }, { k: '成长 · 全球足迹', s: '放映所在的城市、国家和大洲会自动在「足迹」里点亮，每座城市还会显示各专题的观看进度。' }] },
+  data: {fx:[],fz:[],fl:[],fr:[],friendOpen:false,friends:[{u:'https://sparrowcinema.github.io/michelin-guide/',img:'/images/brand/friend-michelin.png',n:'全球米其林餐厅名录',g:'去全球看电影，别忘了顺路吃点美食。',d:'收录全球米其林餐厅，可标记想去、记录去过，让每座城市的电影与美味同行。'}],collectionOpen:false,todayExpanded:false,careOpen:false,todayRows:[], i: {}, pp: {}, ppOpen: false, ppPage: 0, ppVol: 0, ppShelf: false, ppTab: 'stamps', lvAll: false, gt: 'level', cAll: false, gOpen: null, mcat: '', gr: {}, wide: false, ppSp: 0, ppK: 1, ppH: 0, ppCH: 0, ppCK: 1, spreads: [], ppLabel: '', rc: {}, rcOpen: false, rcY: [], rcM: [], rcP: [], rcSections: R.SECTIONS.map(x=>x[0]), guideOpen: false, fbOpen: false, guide: [{ k: '四个页面', s: '底栏四个入口：「排片」看每天每家影院的场次，「专题」按影展、单元浏览，「片目」查全部影片，「我的」放你的日程、护照和设置。' }, { k: '排片 · 看场次', s: '排片页把每天每家影院的场次排成时间表，一个色块就是一场放映；点色块看影片详情与购票、报名信息，可按日期、影院、专题多选筛选。' }, { k: '排片 · 加入我的日程', s: '点色块右上角的 + 把场次加入个人排片；「我的」里会按天列出日程并自动检查时间冲突，排片页也能只看我的排片。' }, { k: '专题 · 影展与单元', s: '专题页把影片按影展、单元归档，点进去看简介和片单，也能看到自己在这个专题里看过几部、完成度多少。' }, { k: '片目 · 找电影', s: '片目页收录全部影片，可以搜片名、导演、演员，并按专题、城市、放映版本筛选；点进影片页看简介、主创、获奖和放映场次。' }, { k: '影片页 · 看过与重刷', s: '在影片页点「看过」盖下印章，可以打分、选放映版本；再看一次就点「再看一次」，每次观影的日期、评分和版本都会单独记录。' }, { k: '放映版本', s: '可以记录你是在普通影厅、胶片、IMAX、杜比、巨幕、LED 还是沉浸厅看的，之后会计入「银幕与版本」类纪念章。' }, { k: '成长 · 等级与纪念章', s: '护照里的「成长」按看过的不同影片数升级（最高 20 级），并按奖项、口味、习惯、银幕、重温、足迹、彩蛋七类点亮纪念章；每枚章展开后都写着点亮规则。' }, { k: '成长 · 全球足迹', s: '放映所在的城市、国家和大洲会自动在「足迹」里点亮，每座城市还会显示各专题的观看进度。' }] },
   switchLang() { app.switchLang(); },
-  onLoad() { this.setData({ i: I.dict(), en: I.isEn() }); this.measure(); this._rz = () => { this._bw = 0; this.measure(); this.buildSpreads(); }; wx.onWindowResize && wx.onWindowResize(this._rz); this.off1 = plan.onChange(() => this.build()); this.off2 = app.onData(() => { this.build(); this.buildPassport(); }); this.off3 = W.onChange(() => this.buildPassport()); },
+  onLoad() { try{const v=wx.getStorageSync('sk-recap-sections-v1');if(Array.isArray(v))this.setData({rcSections:R.SECTIONS.map(x=>x[0]).filter(k=>v.includes(k))});}catch(e){} this.setData({ i: I.dict(), en: I.isEn() }); this.measure(); this._rz = () => { this._bw = 0; this.measure(); this.buildSpreads(); }; wx.onWindowResize && wx.onWindowResize(this._rz); this.off1 = plan.onChange(() => this.build()); this.off2 = app.onData(() => { this.build(); this.buildPassport(); }); this.off3 = W.onChange(() => this.buildPassport()); },
   onUnload() { this._rz && wx.offWindowResize && wx.offWindowResize(this._rz); this.off1 && this.off1(); this.off2 && this.off2(); this.off3 && this.off3(); },
   onShow() { wx.setNavigationBarTitle({ title: t('我的观影护照') }); this.openPassportFromFilm(); this.build(); this.buildPassport(); this.buildSync(); if (!this.offS) this.offS = SY.onStatus(() => this.buildSync()); if (SY.stale()) SY.quiet(); },
   onHide() { this.offS && this.offS(); this.offS = null; },
@@ -198,6 +198,8 @@ Page({
   editHolder() {
     wx.showModal({ title: t('护照持有人（显示在资料页）'), editable: true, placeholderText: t('影迷'), content: W.holder(), success: r => { if (r.confirm) { W.setHolder(r.content); this.buildPassport(); } } });
   },
+  toPosterWall(){wx.navigateTo({url:'/pages/poster-wall/poster-wall'});},
+  setRcSections(e){const values=e.detail.value||[],sections=R.SECTIONS.map(x=>x[0]).filter(k=>values.includes(k));this.setData({rcSections:sections});try{wx.setStorageSync('sk-recap-sections-v1',sections);}catch(err){}this.buildRecap();},
   // ===== 影院观影结算：按年份 / 专题 =====
   recapScope() {
     const data = app.globalData.data, idx = U.index(data), Y = this.data.rcY || [], M = this.data.rcM || [], P = this.data.rcP || [];
@@ -220,7 +222,7 @@ Page({
       return { y: ys.length > 1 ? Y : '', cells: Array.from({ length: 12 }, (_, i) => { const k = Y + '-' + String(i + 1).padStart(2, '0'), c = cnt[k] || 0, on = m.includes(k);
         return { v: k, n: String(i + 1), c, cs: c ? nb(c) : '—', on, bg: c && !on ? 'background:rgba(142,42,34,' + (0.14 + 0.46 * c / max).toFixed(2) + ');border-color:rgba(142,42,34,' + (0.22 + 0.46 * c / max).toFixed(2) + ')' : '' }; }) }; });
     const ycnt = {}; all.forEach(e => { const k = e.rec.d.slice(0, 4); ycnt[k] = (ycnt[k] || 0) + 1; });
-    this.setData({ rc: { grids, years: [{ v: 'all', n: t('全部'), c: nb(all.length), on: !y.length }].concat(years.map(v => ({ v, n: v, c: nb(ycnt[v]), on: y.includes(v) }))), mSel: m.length ? (I.isEn() ? m.length + ' selected' : '已选 ' + m.length + ' 个月') : '', progs: [{ v: 'all', n: t('全部专题'), on: !p.length }].concat(pids.map(v => ({ v, n: idx.PG[v].name, on: p.includes(v) }))),
+    this.setData({ rc: { sections:R.SECTIONS.map(([id,label])=>({id,label:t(label),on:this.data.rcSections.includes(id)})), sectionCount:this.data.rcSections.length, grids, years: [{ v: 'all', n: t('全部'), c: nb(all.length), on: !y.length }].concat(years.map(v => ({ v, n: v, c: nb(ycnt[v]), on: y.includes(v) }))), mSel: m.length ? (I.isEn() ? m.length + ' selected' : '已选 ' + m.length + ' 个月') : '', progs: [{ v: 'all', n: t('全部专题'), on: !p.length }].concat(pids.map(v => ({ v, n: idx.PG[v].name, on: p.includes(v) }))),
       n: list.length, hm: Math.floor(mins / 60) + 'h' + String(mins % 60).padStart(2, '0'), avg: rated.length ? (rated.reduce((n, e) => n + e.rec.r, 0) / rated.length).toFixed(1) : '—' } });
   },
   recapSub(list, idx) {
@@ -244,15 +246,15 @@ Page({
   setRcP(e) { const v = e.currentTarget.dataset.v, c = this.data.rcP || []; this.setData({ rcP: v === 'all' ? [] : c.includes(v) ? c.filter(x => x !== v) : c.concat(v) }); this.buildRecap(); },
   noop() { },
   makeRecap() {
-    const list = this.recapScope(); if (!list.length || this.busy) return;
-    this.busy = true; wx.showLoading({ title: t('正在生成观影结算…'), mask: true });
+    const list = this.recapScope(); if (!list.length || !this.data.rcSections.length || this.busy) return;
+    const sections=[...this.data.rcSections];this.busy = true; wx.showLoading({ title: t('正在生成观影结算…'), mask: true });
     const fail = () => { this.busy = false; wx.hideLoading(); wx.showToast({ title: t('图片生成失败，请稍后再试'), icon: 'none' }); };
     const data = app.globalData.data, idx = U.index(data);
     wx.createSelectorQuery().select('#recap').fields({ node: true, size: true }).exec(async res => {
       try {
         const canvas = res && res[0] && res[0].node; if (!canvas) return fail();
         const load = src => new Promise(r => { if (!src) return r(null); const im = canvas.createImage(); im.onload = () => r(im); im.onerror = () => r(null); im.src = src; });
-        const imgs = {}; await Promise.all(list.map(async e => { imgs[e.id] = await load(U.poster(e.f)); }));
+        const imgs = {}; await Promise.all((sections.includes('favorite')||sections.includes('list')?list:[]).map(async e => { imgs[e.id] = await load(U.poster(e.f)); }));
         const marks = await Promise.all(['/images/brand/sparrow-movies-sq.png', '/images/brand/sparrow-tribe-sq.png'].map(load));
         const qrImg = await load('/images/brand/miniprogram-code.jpg');
         const items = list.map(e => { const lk = R.look(e.id), p = idx.progOf(e.f); return { id: e.id, title: e.f.cn, en: e.f.en || e.f.o || '', date: e.rec.d, dstamp: R.dstamp(e.rec.d), venue: I.isEn() ? e.venue : e.venueFull, vs: e.venue, score: e.rec.r || 0, color: lk.ink, shape: lk.shape, tilt: lk.tilt, top: (p && p.en) || 'SPARROW FILM PASSPORT', prog: p ? p.name : '', img: imgs[e.id] }; });
@@ -267,7 +269,8 @@ Page({
             [new Set(list.filter(e => e.s).map(e => e.s.v)).size, t('家影院')], [Object.keys(byP).length, t('个专题')], [topM ? t(topM + '月') : '—', t('看得最多的月份')]],
           fav: items.filter(x => x.score).sort((a, b) => b.score - a.score || b.date.localeCompare(a.date))[0] || null,
           progs: Object.keys(byP).map(k => ({ name: byP[k].name, n: byP[k].n, avg: byP[k].k ? byP[k].sum / byP[k].k : 0 })).sort((a, b) => b.n - a.n),
-          items, qr: null, qrImg, marks, T: t, en: I.isEn() };
+          sections,items, qr: null, qrImg, marks, T: t, en: I.isEn() };
+        if(!R.heightOf(o)){this.busy=false;wx.hideLoading();wx.showToast({title:t('所选项目暂无内容，请选择其他项目'),icon:'none'});return;}
         const k = 0.6; canvas.width = Math.round(R.W * k); canvas.height = Math.round(R.heightOf(o) * k);
         const c = canvas.getContext('2d'); c.scale(k, k); R.draw(c, o);
         wx.canvasToTempFilePath({ canvas, fileType: 'png', success: r => { this.busy = false; wx.hideLoading(); this.setData({ rcOpen: false }); this.showImage(r.tempFilePath); }, fail: () => fail() });

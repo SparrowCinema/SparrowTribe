@@ -7794,6 +7794,21 @@
   }
  },
  "ui": {
+  "我的海报墙": "My poster wall",
+  "看过的影片 · 我的评分": "Watched films · My ratings",
+  "按最近观影排列": "Most recently watched first",
+  "每排海报": "Posters per row",
+  "点击海报查看影片；横向滑动查看整排。": "Select a poster to open the film. Swipe horizontally to see the full row.",
+  "海报墙还没有影片": "Your poster wall is empty",
+  "在影片页标记看过，海报和评分就会收进这里。": "Mark a film as watched to add its poster and your rating here.",
+  "长图展示项目": "Include in the recap",
+  "封面": "Cover",
+  "观影统计": "Viewing statistics",
+  "专题统计": "By programme",
+  "品牌与二维码": "Branding and QR code",
+  "仅影响生成的长图，不会修改观影记录。": "These choices only affect the exported image. Your viewing records stay the same.",
+  "所选项目暂无内容，请选择其他项目": "No content for these sections. Select another section.",
+
   "排片": "Schedule",
   "专题": "Programme",
   "片目": "Films",

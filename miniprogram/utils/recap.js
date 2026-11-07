@@ -11,6 +11,7 @@
  *   items: [{ title, en, date, dstamp, venue, score, color, shape, tilt, top, img }]
  *   qr: 二维码矩阵 | null；url          网站页脚用；没有二维码时页脚改为微信搜索引导
  *   marks: [Image|null, Image|null]     两枚品牌标
+ *   sections: [id, ...]                可选；省略时全部展示，空数组不展示任何项目
  *   T: 翻译函数；en: 是否英文
  */
 (function (root) {
@@ -18,6 +19,8 @@
   const C = { paper: '#efe6d4', card: '#f8f2e6', ink: '#2b2117', muted: '#7a6a55', line: '#d8cbb1', red: '#8e2a22', leather: '#5a1712', gold: '#d9bc80', teal: '#2f6f6c' };
   const W = 1080, P = 64, CJK = /[　-〿㐀-鿿＀-￯]/;
   const L = { HEAD: 460, STATS: 380, FAV: 400, PROGH: 120, PROGROW: 76, WALLH: 110, CELL: 310, LISTH: 120, ROW: 172, FOOT: 420 };
+  const SECTIONS = [['cover', '封面'], ['stats', '观影统计'], ['favorite', '本期最爱'], ['programmes', '专题统计'], ['stamps', '印章墙'], ['list', '观影清单'], ['footer', '品牌与二维码']];
+  const hasSection = (o, id) => !Array.isArray(o.sections) || o.sections.includes(id);
 
   function wrapLines(c, text, max) {
     text = String(text || ''); const out = []; let line = '';
@@ -101,7 +104,7 @@
 
   function heightOf(o) {
     const n = (o.items || []).length;
-    return L.HEAD + L.STATS + (o.fav ? L.FAV : 0) + ((o.progs || []).length > 1 ? L.PROGH + o.progs.length * L.PROGROW : 0) + (n ? L.WALLH + Math.ceil(n / 3) * L.CELL + 20 : 0) + (n ? L.LISTH + n * L.ROW : 0) + L.FOOT;
+    return (hasSection(o, 'cover') ? L.HEAD : 0) + (hasSection(o, 'stats') ? L.STATS : 0) + (hasSection(o, 'favorite') && o.fav ? L.FAV : 0) + (hasSection(o, 'programmes') && (o.progs || []).length > 1 ? L.PROGH + o.progs.length * L.PROGROW : 0) + (hasSection(o, 'stamps') && n ? L.WALLH + Math.ceil(n / 3) * L.CELL + 20 : 0) + (hasSection(o, 'list') && n ? L.LISTH + n * L.ROW : 0) + (hasSection(o, 'footer') ? L.FOOT : 0);
   }
 
   function draw(c, o) {
@@ -109,7 +112,9 @@
     c.textBaseline = 'alphabetic'; c.textAlign = 'left';
     c.fillStyle = C.paper; c.fillRect(0, 0, W, H);
 
+    let y = 0;
     // 页眉：护照封皮
+    if (hasSection(o, 'cover')) {
     const g = c.createLinearGradient(0, 0, W, L.HEAD); g.addColorStop(0, '#6e1d16'); g.addColorStop(1, '#431009');
     c.fillStyle = g; c.fillRect(0, 0, W, L.HEAD);
     c.strokeStyle = C.gold; c.globalAlpha = 0.75; c.lineWidth = 2; c.strokeRect(28, 28, W - 56, L.HEAD - 56); c.lineWidth = 1; c.strokeRect(38, 38, W - 76, L.HEAD - 76); c.globalAlpha = 1;
@@ -124,21 +129,25 @@
     c.font = '700 17px ' + MONO; arcText(c, 'SPARROW · FILM · PASSPORT', 0, 0, 104, true); arcText(c, 'ADMIT ONE · ' + (o.yearTag || ''), 0, 0, 104, false);
     c.font = '900 64px ' + MONO; c.fillText(String(items.length), 0, -6); c.font = '600 18px ' + SANS; c.fillText(T('部影片'), 0, 42);
     c.restore();
+    y += L.HEAD;
+    }
 
     // 统计
-    let y = L.HEAD + 40; const cw = (W - 2 * P - 2 * 20) / 3, ch = 140;
+    if (hasSection(o, 'stats')) {
+    const sy = y + 40, cw = (W - 2 * P - 2 * 20) / 3, ch = 140;
     (o.stats || []).slice(0, 6).forEach(([v, l], i) => {
-      const x = P + (i % 3) * (cw + 20), yy = y + Math.floor(i / 3) * (ch + 20);
+      const x = P + (i % 3) * (cw + 20), yy = sy + Math.floor(i / 3) * (ch + 20);
       c.fillStyle = C.card; rr(c, x, yy, cw, ch, 16); c.fill(); c.strokeStyle = C.line; c.lineWidth = 1.5; c.stroke();
       c.fillStyle = i === 0 ? C.red : C.ink; c.font = '600 52px ' + MONO; c.fillText(clip1(c, String(v), cw - 48), x + 24, yy + 72);
       c.fillStyle = C.muted; c.font = '400 22px ' + SANS; c.fillText(clip1(c, l, cw - 48), x + 24, yy + 112);
     });
-    y = L.HEAD + L.STATS;
+    y += L.STATS;
+    }
 
     const head = (zh, en, yy) => { c.fillStyle = C.red; c.fillRect(P, yy + 2, 8, 34); c.fillStyle = C.ink; c.font = '900 38px ' + SERIF; c.fillText(T(zh), P + 24, yy + 32); const w = c.measureText(T(zh)).width; c.fillStyle = C.muted; c.font = '500 18px ' + MONO; c.fillText(en, P + 24 + w + 16, yy + 30); };
 
     // 最爱
-    if (o.fav) {
+    if (hasSection(o, 'favorite') && o.fav) {
       const f = o.fav; head('本期最爱', 'TOP RATED', y);
       const cy = y + 70; c.fillStyle = C.card; rr(c, P, cy, W - 2 * P, L.FAV - 100, 18); c.fill();
       const pw = 190, ph = L.FAV - 140;
@@ -153,7 +162,7 @@
     }
 
     // 按专题
-    if ((o.progs || []).length > 1) {
+    if (hasSection(o, 'programmes') && (o.progs || []).length > 1) {
       head('按专题', 'BY PROGRAMME', y); let yy = y + 90; const max = Math.max(...o.progs.map(p => p.n));
       o.progs.forEach(p => {
         c.fillStyle = C.ink; c.font = '700 28px ' + SANS; c.fillText(clip1(c, p.name, 330), P, yy + 30);
@@ -165,12 +174,14 @@
     }
 
     // 印章墙
-    if (items.length) {
+    if (hasSection(o, 'stamps') && items.length) {
       head('印章墙', 'STAMPS', y); const cell = (W - 2 * P) / 3;
       items.forEach((it, i) => { const cx = P + cell * (i % 3) + cell / 2, cy = y + L.WALLH + Math.floor(i / 3) * L.CELL + L.CELL / 2 - 10; drawStamp(c, it, cx, cy, Math.min(cell, L.CELL) - 44, T); });
       y += L.WALLH + Math.ceil(items.length / 3) * L.CELL + 20;
+    }
 
       // 清单
+    if (hasSection(o, 'list') && items.length) {
       head('观影清单', 'FILMS WATCHED', y); y += L.LISTH;
       items.forEach((it, i) => {
         const yy = y + i * L.ROW;
@@ -188,6 +199,7 @@
     }
 
     // 页脚
+    if (!hasSection(o, 'footer')) return;
     if (o.qrImg) { // 小程序：深色通栏铺满左右与底边，右侧小程序码
       const fy = y + 30, hb = H - fy; c.fillStyle = C.ink; c.fillRect(0, fy, W, hb);
       const Q = 270, qx = W - P - Q, qy = fy + (hb - Q) / 2, tw = qx - P - 40;
@@ -232,6 +244,6 @@
   const MON = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
   function dstamp(iso) { if (!iso) return ''; const [y, m, d] = String(iso).split('-'); return d + ' ' + (MON[+m - 1] || m) + ' ' + y; }
 
-  const api = { W, heightOf, draw, drawStamp, look, dstamp, hash, INKS };
+  const api = { W, SECTIONS, hasSection, heightOf, draw, drawStamp, look, dstamp, hash, INKS };
   if (typeof module !== 'undefined' && module.exports) module.exports = api; else root.SparrowRecap = api;
 })(typeof window !== 'undefined' ? window : this);
