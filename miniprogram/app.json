@@ -9,7 +9,8 @@
     "pages/events/events",
     "pages/share/share",
     "pages/plan/plan",
-    "pages/poster-wall/poster-wall"
+    "pages/poster-wall/poster-wall",
+    "pages/taste-map/taste-map"
   ],
   "window": {
     "navigationBarBackgroundColor": "@navBg",

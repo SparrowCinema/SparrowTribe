@@ -203,7 +203,7 @@
       const g=posterLayout(o);y+=40;
       items.forEach((it,i)=>{const x=P+(i%g.cols)*(g.w+g.gap),yy=y+Math.floor(i/g.cols)*g.row;
         if(it.img)cover(c,it.img,x,yy,g.w,g.h,5);else{c.fillStyle=C.card;rr(c,x,yy,g.w,g.h,5);c.fill();c.fillStyle=C.ink;c.font='700 20px '+SANS;c.fillText(clip1(c,it.title,g.w-16),x+8,yy+g.h/2);}
-        c.textAlign='center';c.fillStyle=it.score?C.teal:C.muted;c.font='600 '+(g.cols>7?16:22)+'px '+MONO;c.fillText(it.score?'★ '+it.score+'/10':T('未评分'),x+g.w/2,yy+g.h+30);c.textAlign='left';
+        if(it.score){const radius=Math.min(12,g.w/13),width=radius*11;stars(c,x+(g.w-width)/2,yy+g.h+26,radius,it.score,C.teal,C.line);}else{c.textAlign='center';c.fillStyle=C.muted;c.font='600 '+(g.cols>7?16:22)+'px '+SANS;c.fillText(T('未评分'),x+g.w/2,yy+g.h+30);c.textAlign='left';}
       });y+=Math.ceil(items.length/g.cols)*g.row+20;
     }
     // 页脚
