@@ -21,10 +21,17 @@ Page({
   setTheme(e) { CFG.setTheme(e.currentTarget.dataset.p); },
   onLoad() { try{const v=wx.getStorageSync('sk-recap-sections-v1');if(Array.isArray(v))this.setData({rcSections:R.SECTIONS.map(x=>x[0]).filter(k=>v.includes(k))});}catch(e){} this.setData({ i: I.dict(), en: I.isEn() }); this.measure(); this._rz = () => { this._bw = 0; this.measure(); this.buildSpreads(); }; wx.onWindowResize && wx.onWindowResize(this._rz); this.off1 = plan.onChange(() => this.build()); this.off2 = app.onData(() => { this.build(); this.buildPassport(); }); this.off3 = W.onChange(() => this.buildPassport()); },
   onUnload() { this.offC&&this.offC();this._rz && wx.offWindowResize && wx.offWindowResize(this._rz); this.off1 && this.off1(); this.off2 && this.off2(); this.off3 && this.off3(); },
-  onShow() { wx.setNavigationBarTitle({ title: t('我的观影护照') }); this.openPassportFromFilm(); this.build(); this.buildPassport(); this.buildSync();C.flush(); if (!this.offS) this.offS = SY.onStatus(() => this.buildSync()); if (SY.stale()) SY.quiet(); },
+  onShow() { wx.setNavigationBarTitle({ title: t('我的观影护照') }); this.openPassportFromFilm(); this.build(); this.buildPassport(); this.ppJump(); this.buildSync();C.flush(); if (!this.offS) this.offS = SY.onStatus(() => this.buildSync()); if (SY.stale()) SY.quiet(); },
   onHide() { this.offS && this.offS(); this.offS = null; },
   toggleCollection(){this.setData({collectionOpen:!this.data.collectionOpen});},
-  openPassportFromFilm(){if(app.globalData.openPassport){app.globalData.openPassport=0;this.setData({collectionOpen:true});}},
+  openPassportFromFilm(){const o=app.globalData.openPassport;if(o){app.globalData.openPassport=0;this._jump=typeof o==='string'?o:'';this.setData({collectionOpen:true});}},
+  // 从影片页「已盖章」进入：翻到这部电影印章所在的册与页，印章轻轻「盖」一下（与网站 ppJump 同规则）
+  ppJump(){const id=this._jump;this._jump='';if(!id)return;const ids=this._ppIds||[],k=ids.indexOf(id);if(k<0)return;
+    const vol=Math.floor(k/285)+1,page=1+Math.floor((k%285)/15);
+    if(vol!==this.data.pp.vol){this.setData({ppVol:vol});this.buildPassport();}
+    this.setData({ppShelf:false,ppOpen:true,ppTab:'stamps',ppPage:page,ppSp:Math.floor(page/2),'pp.hit':id});this.spLabel();
+    setTimeout(()=>wx.pageScrollTo({selector:'.fp',offsetTop:-8,duration:300}),120);
+    clearTimeout(this._hitT);this._hitT=setTimeout(()=>this.setData({'pp.hit':''}),2400);},
   toggleToday(){this.setData({todayExpanded:!this.data.todayExpanded});},
   toggleCare(){this.setData({careOpen:!this.data.careOpen});},
   backupProfile(){try{const file=wx.env.USER_DATA_PATH+'/sparrow-passport-'+Date.now()+'.json';wx.getFileSystemManager().writeFileSync(file,JSON.stringify(Backup.encode(SY.snapshot()),null,2),'utf8');wx.shareFileMessage({filePath:file,fileName:'sparrow-passport.json',fail:()=>wx.showToast({title:t('请在网页版下载备份'),icon:'none'})});}catch{wx.showToast({title:t('备份失败，请检查存储空间'),icon:'none'});}},
@@ -41,6 +48,7 @@ Page({
       return { id: e.id, x: G.views(e.rec).length > 1 ? '×' + G.views(e.rec).length : '', title: e.f.cn, date: R.dstamp(e.rec.d), top: String((p && p.en) || 'SPARROW FILM PASSPORT').toUpperCase().split(/ · | & /)[0], venue: e.venue || t('影院观影'),
         shape: lk.shape, tilt: Math.round((((R.hash(e.id) % 21) - 10) * 1.1) * 10) / 10, dx: ((R.hash(e.id) >>> 5) % 9 - 4) * 3 + (Math.floor(k % 15 / 3) % 2 ? 10 : -2), dy: ((R.hash(e.id) >>> 9) % 7 - 3) * 3, ink: lk.ink, r, stars: r ? [1, 2, 3, 4, 5].map(i => Math.max(0, Math.min(2, r - (i - 1) * 2)) * 50) : [] };
     });
+    this._ppIds = stamps.map(x => x.id);
     // 分册：每册 285 枚（1 资料页 + 19 印章页），按观影日期从早到晚，满了换下一册
     const en = I.isEn(), PER = 285, vols = []; for (let k = 0; k < Math.max(1, stamps.length); k += PER) vols.push({ s: stamps.slice(k, k + PER), l: list.slice(k, k + PER) });
     const vi = Math.min(Math.max(this.data.ppVol || vols.length, 1), vols.length), cur = vols[vi - 1], vlist = cur.l, p2 = n => String(n).padStart(2, '0'), ym = d => d ? d.slice(0, 7).replace('-', '.') : '';

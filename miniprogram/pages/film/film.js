@@ -97,7 +97,7 @@ Page({
         tag: n > 1 ? (i === n - 1 ? (en ? 'Latest' : '最近') : i === 0 ? (en ? 'First' : '首刷') : '') : '' }; }).reverse();
     const taste = rec ? ['fun','bore'].map(k => ({ key:k, value: Taste.valid(rec[k]) ? rec[k] : null, stars: [1,2,3,4,5].map(n => ({ n, on: Taste.valid(rec[k]) && n <= rec[k] })) })) : ['fun','bore'].map(k => ({ key:k, value:null, stars:[1,2,3,4,5].map(n=>({n,on:false})) }));
     this.setData({ community:C.model(this.id,I.isEn()), tsRow:this.tsRowModel(), taste, mine: { seen: !!rec, n, r, diary, nTxt: en ? '×' + n : n + ' 次', stars: [1, 2, 3, 4, 5].map(i => Math.max(0, Math.min(2, r - (i - 1) * 2)) * 50),
-      seenTxt: t('＋ 看过'), scoreTxt: r ? r + '/10' : n > 1 ? t('给最近一次打分') : t('点星打分') } });
+      seenTxt: I.isEn() ? '+ Watched · stamp' : '＋ 看过 · 盖章', scoreTxt: r ? r + '/10' : t('点星打分') } });
   },
   // 影片页一行摘要（与网页 tasteRowHTML 同规则）；点开为底部弹层 page-container
   tsRowModel(){const rec=W.get(this.id),en=I.isEn(),a=C.get(this.id),v=k=>rec&&Taste.valid(rec[k])?String(rec[k]):'—',seen=!!rec,mine=seen&&(Taste.valid(rec.fun)||Taste.valid(rec.bore));
@@ -173,6 +173,8 @@ Page({
     else W.set(this.id, Object.assign({}, rec, { r: rec.r === v ? 0 : v }));
     if (!old) wx.showToast({ title: t('已盖章 · 加入观影护照'), icon: 'none' });
   },
+  // 「已盖章」：到「我的」展开护照并翻到这部电影印章所在页（my.js ppJump）
+  toStamp() { app.globalData.openPassport = this.id; wx.switchTab({ url: '/pages/my/my' }); },
   toMy() { app.globalData.openPassport = 1; wx.switchTab({ url: '/pages/my/my' }); },
   openMap(e) { const v = app.globalData.data.venues.find(x => x.id === e.currentTarget.dataset.v); if (v) U.openMap(v); },
   toggle(e) { const on = plan.toggle(e.currentTarget.dataset.key); wx.showToast({ title: t(on ? '已加入排片' : '已移出排片'), icon: 'none' }); },
