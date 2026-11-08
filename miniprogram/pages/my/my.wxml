@@ -21,11 +21,14 @@
   <view wx:if="{{ppTab==='growth'}}" class="gw">
     <view class="taste-map gs">
       <view class="gs-h"><text class="gs-t">{{i.__en?'My taste map':'我的电影趣味图谱'}}</text><text class="gs-s">{{tasteMap.n}} {{i.__en?'films':'部电影'}}</text></view>
+      <view class="taste-switch"><button data-mode="mine" class="{{tasteMode!=='community'?'on':''}}" bindtap="setTasteMode">{{i.__en?'My quadrants':'我的四象限'}}</button><button data-mode="community" class="{{tasteMode==='community'?'on':''}}" bindtap="setTasteMode">{{i.__en?'Community quadrants':'社区四象限'}}</button></view>
       <view class="taste-plot">
         <view class="taste-q taste-q1">{{i.__en?'Enduring':'漫长难熬'}}</view><view class="taste-q taste-q2">{{i.__en?'Captivating & tiring':'迷人又折磨'}}</view>
         <view class="taste-q taste-q3">{{i.__en?'Quiet':'平静无波'}}</view><view class="taste-q taste-q4">{{i.__en?'Delightful':'趣味横生'}}</view>
-        <view wx:for="{{tasteMap.points}}" wx:key="id" class="taste-dot" style="left:{{item.x}}%;top:{{item.y}}%" title="{{item.title}}"></view>
+        <view wx:for="{{tasteMap.points}}" wx:key="key" class="taste-dot" style="left:{{item.x}}%;top:{{item.y}}%" role="button" aria-label="{{item.fun}}/5 · {{item.bore}}/5 · {{item.n}}" data-key="{{item.key}}" bindtap="selectTastePoint">{{item.n>1?item.n:''}}</view>
       </view>
+      <view class="taste-selected"><button wx:for="{{tasteSelected}}" wx:key="id" data-id="{{item.id}}" bindtap="openTasteFilm">{{item.title}} · {{item.fun}}/5 / {{item.bore}}/5 ›</button></view>
+      <text wx:if="{{tasteMode==='community'}}" class="taste-foot">{{tasteCommunityError?(i.__en?'Community unavailable. Your personal map is unaffected.':'社区暂不可用，个人图谱不受影响。'):(i.__en?'At least 3 paired public ratings per film. Select a point to choose a film.':'每片至少 3 份双维公开评价才会入图；点击圆点选择影片。')}}</text>
       <view class="taste-axis">{{i.__en?'Interesting →':'有趣度 →'}}　　{{i.__en?'↑ Boring':'↑ 无聊度'}}</view>
       <view class="taste-legend"><view wx:for="{{tasteMap.quadrants}}" wx:key="index"><text>{{item.name}} {{item.count}}</text></view></view>
       <text class="gs-empty" wx:if="{{!tasteMap.n}}">{{i.__en?'Rate both dimensions on a watched film to start your map.':'给看过的电影分别评价有趣和无聊，就能点亮图谱。'}}</text>

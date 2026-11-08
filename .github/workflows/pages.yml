@@ -26,6 +26,7 @@ jobs:
           node tools/check-content.js
           node tools/check-library.js
           node tools/check-companion.js
+          node tools/check-taste.js
       - name: Build share pages and calendar feeds
         run: node tools/build-extras.js
       - uses: actions/upload-pages-artifact@v3

@@ -6,6 +6,7 @@
    两台设备各自改了不同的片子会全部保留，改了同一部片子则以最后一次修改为准。 */
 (function (root) {
   'use strict';
+  var Taste=typeof module!=='undefined'&&module.exports?require('./taste.js'):root.SparrowTaste;
   var B32 = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
   // rnd(n) 返回 n 个 0–255 的随机数；网站用 crypto.getRandomValues，云函数用 crypto.randomBytes
   function newCode(rnd) { var b = rnd(24), s = ''; for (var i = 0; i < b.length; i++) s += B32[b[i] % 32]; return 'SP-' + s.match(/.{4}/g).join('-'); }
@@ -26,7 +27,7 @@
       out.watched[id] = { d: r.d, r: Math.max(0, Math.min(10, Math.round(num(r.r)))), k: typeof r.k === 'string' ? r.k.slice(0, 80) : '', t: t };
       // 放映版本（可选，如 4k / 35mm / imax-gt）；没有就不写这个键，旧记录保持原样
       if (typeof r.f === 'string' && /^[\w-]{1,20}$/.test(r.f)) out.watched[id].f = r.f;
-      ['fun','bore'].forEach(function (k) { if (r[k] !== null && r[k] !== undefined && Number.isInteger(r[k]) && r[k] >= 0 && r[k] <= 5) out.watched[id][k] = r[k]; });
+      Object.assign(out.watched[id],Taste.cleanFields(r));
       // 多次观影（可选）：第 1 次起的完整列表，≥2 次才写；顶层 d/k/f/r 由客户端保持一致
       if (Array.isArray(r.v)) {
         var vs = r.v.slice(0, 30).map(function (x) {
@@ -46,7 +47,7 @@
     a = clean(a); b = clean(b);
     var out = { v: 1, watched: {}, holder: null, photo: null, picks: null };
     Object.keys(a.watched).concat(Object.keys(b.watched)).forEach(function (id) {
-      var x = a.watched[id], y = b.watched[id]; out.watched[id] = !x ? y : !y ? x : (y.t > x.t ? y : x);
+      var x = a.watched[id], y = b.watched[id]; out.watched[id] = !x ? y : !y ? x : Taste.mergeFields(x,y,y.t>x.t?y:x);
     });
     ['holder', 'photo', 'picks'].forEach(function (k) { out[k] = b[k].t > a[k].t ? b[k] : a[k]; });
     return out;
