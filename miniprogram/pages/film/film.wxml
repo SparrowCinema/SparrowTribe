@@ -65,13 +65,12 @@
         <text class="ts-comm">{{tsRow.comm}}</text><text class="ts-go">›</text>
       </view>
       <block wx:if="{{mine.seen && !mine.multi}}">
-        <view class="mr-meta">
-          <picker mode="date" value="{{mine.d}}" end="{{mine.today}}" bindchange="setSeenDate"><view class="mr-date">{{L.t(i,'观影日期')}} <text class="mono">{{mine.d}}</text> ▾</view></picker>
-          <text class="mr-at">{{mine.at}}</text>
-          <text class="mr-again" bindtap="rwAgain">＋ {{i.__en?'Watch again':'再看一次'}}</text>
-          <text class="mr-go" bindtap="toMy">{{L.t(i,'查看护照 ›')}}</text>
+        <view class="mr-list">
+          <picker mode="date" value="{{mine.d}}" end="{{mine.today}}" bindchange="setSeenDate"><view class="mr-li" hover-class="hv"><text class="mr-k">{{L.t(i,'观影日期')}}</text><text class="mr-v mono">{{mine.dShow}}</text><text class="mr-dd">▾</text></view></picker>
+          <view class="mr-li sep static"><text class="mr-k">{{L.t(i,'放映场次')}}</text><text class="mr-v {{mine.atNil ? 'nil' : ''}}">{{mine.at}}</text></view>
+          <picker mode="multiSelector" range="{{mine.fmt.cols}}" value="{{mine.fmt.val}}" bindchange="setFmt" bindcolumnchange="fmtCol"><view class="mr-li sep" hover-class="hv"><text class="mr-k">{{L.t(i,'放映版本')}}<text class="mr-opt">{{i.__en?'optional':'可选'}}</text></text><text class="mr-v {{mine.fmt.on ? '' : 'nil'}}">{{mine.fmt.txt}}</text><text class="mr-dd">▾</text></view></picker>
         </view>
-        <picker mode="multiSelector" range="{{mine.fmt.cols}}" value="{{mine.fmt.val}}" bindchange="setFmt" bindcolumnchange="fmtCol"><view class="mr-fmt"><text>{{L.t(i,'放映版本')}} <text class="muted">{{i.__en?'optional':'可选'}}</text></text><text class="mr-fv {{mine.fmt.on ? 'has' : ''}}">{{mine.fmt.txt}} ▾</text></view></picker>
+        <view class="mr-acts"><text class="mr-again" bindtap="rwAgain">＋ {{i.__en?'Watch again':'再看一次'}}</text><text class="mr-go" bindtap="toMy">{{L.t(i,'查看护照 ›')}}</text></view>
       </block>
       <block wx:elif="{{mine.seen && mine.multi}}">
         <view class="rw-strip" bindtap="rwToggle"><view class="rw-dots"><view wx:for="{{mine.rw.dots}}" wx:key="*this" class="rw-dot" /><text wx:if="{{mine.rw.n > 10}}" class="rw-more mono">+{{mine.rw.n - 10}}</text></view><text class="rw-b">{{mine.rw.txt}}</text><text class="rw-sub">{{mine.rw.sub}}</text><text class="rw-tg">{{mine.rw.open ? (i.__en ? 'Hide ▴' : '收起 ▴') : (i.__en ? 'Show ▾' : '展开 ▾')}}</text></view>

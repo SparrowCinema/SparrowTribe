@@ -1140,10 +1140,6 @@ input:not([type=checkbox]):not([type=radio]),select,textarea{font-size:16px!impo
 .mr-star button:first-of-type{left:0}.mr-star button:last-of-type{right:0}
 .mr-score{font:600 12px var(--f-mono);color:var(--muted);min-width:44px}
 .mr-score b{font-size:15.8px;color:#c8862a}
-.mr-meta{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:8px 12px;margin-top:12px;padding-top:12px;border-top:1px dashed var(--line);font-size:10.6px;color:var(--muted)}
-.mr-meta label{grid-column:1/-1;display:flex;align-items:center;gap:10px;white-space:nowrap}.mr-meta label input{flex:0 1 220px;min-width:0}.mr-meta>span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.mr-meta input{font:600 13px var(--f-mono);color:var(--fg);background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:4px 6px}
-.mr-meta .text-button{justify-self:end;padding:4px 0;font-size:10.6px;white-space:nowrap}
 @container myrate (max-width:380px){.mr-row{grid-template-columns:minmax(0,1fr)}.mr-seen{width:100%}.mr-rate{justify-content:space-between}}
 @container myrate (max-width:290px){.mr-star{width:22px;height:22px}.mr-stars{gap:0}.mr-score{min-width:0}}
 @supports not (container-type:inline-size){@media(max-width:460px){.mr-row{grid-template-columns:minmax(0,1fr)}.mr-seen{width:100%}.mr-rate{justify-content:space-between}}}
@@ -1323,8 +1319,6 @@ input:not([type=checkbox]):not([type=radio]),select,textarea{font-size:16px!impo
 .gm.on small{color:var(--fg);font-weight:600}
 .gm.next .gm-disc{color:var(--accent);background:conic-gradient(var(--accent) calc(var(--p)*1%),var(--line-soft) 0)}.gm.next .gm-disc::before{content:"";position:absolute;inset:5px;border-radius:50%;background:var(--surface)}.gm.next small{color:var(--fg)}
 .gm.far .gm-disc{color:var(--muted);border:1.5px dashed var(--line);opacity:.8}.gm.far small{opacity:.7}
-.mr-fmt{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:10px;padding-top:10px;border-top:1px dashed var(--line);font-size:10.6px}.mr-fmt small{color:var(--muted);margin-left:4px;font-size:11.0px}
-.mr-fmt select{min-width:150px;max-width:60%;padding:8px 10px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--fg);font:inherit;font-size:10.6px}
 @media (min-width:840px){.fp-growth{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);align-items:start}.fp-growth>.gh,.fp-growth>.gn,.fp-growth>.gs:nth-of-type(n+3){grid-column:1/-1}.gh{padding:28px 30px 22px}.gh-dial{width:128px;height:128px}.gh-n b{font-size:27.0px}.gh-lv h3{font-size:22.7px}}
 @media (prefers-reduced-motion:reduce){.fp-growth,.gm.on .gm-disc{animation:none}.gh-ring .v{transition:none}}
 .rc-yl{margin:10px 0 6px;font:600 11px var(--f-mono);color:var(--muted)}.rc-hint{margin-left:6px;font:500 10px var(--f-body);letter-spacing:0;color:var(--muted);opacity:.8}
@@ -1344,6 +1338,18 @@ input:not([type=checkbox]):not([type=radio]),select,textarea{font-size:16px!impo
 .gg-b{padding:0 2px 16px;animation:gIn .25s ease-out}.gg-v{margin-bottom:10px;font-size:11.0px;color:var(--muted)}
 @media (min-width:840px){.fp-growth{grid-template-columns:minmax(0,1fr)!important}}
 /* 多次观影：细条 + 时间线（默认折叠，不打扰影片页） */
+/* 观影记录分组列表：标签左 · 取值右 · 整行可点（原生控件透明铺满，≥16px 防缩放守卫不受影响） */
+.mr-list{margin-top:14px;border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}
+.mr-li{position:relative;display:flex;align-items:center;gap:12px;min-height:46px;padding:0 14px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.mr-li.static{cursor:default}.mr-li+.mr-li{border-top:1px solid var(--line-soft)}
+.mr-li:not(.static):active{background:color-mix(in srgb,var(--line) 28%,transparent)}
+.mr-li:focus-within{box-shadow:inset 0 0 0 2px color-mix(in srgb,var(--accent) 45%,transparent)}
+.mr-k{flex:none;font-size:11.5px;color:var(--muted);white-space:nowrap}.mr-k small{margin-left:6px;font-size:9.5px;opacity:.75}
+.mr-v{flex:1;min-width:0;text-align:right;font-size:13px;color:var(--fg);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-variant-numeric:tabular-nums}.mr-v.nil{color:var(--muted)}
+.mr-dd{flex:none;width:14px;height:14px;color:var(--muted);margin-right:-2px}
+.mr-ov{position:absolute;inset:0;width:100%;height:100%;margin:0;padding:0;border:0;opacity:0;cursor:pointer;-webkit-appearance:none;appearance:none}
+.mr-ov::-webkit-calendar-picker-indicator{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer}
+.mr-acts{display:flex;align-items:center;justify-content:space-between;margin-top:6px}.mr-acts .text-button{padding:8px 2px;font-size:11.5px;white-space:nowrap}
 .rw-again{color:var(--accent)!important;font-weight:600}
 .rw-strip{display:flex;align-items:center;gap:10px;width:100%;margin-top:12px;padding:9px 12px;border-radius:12px;text-align:left;background:color-mix(in srgb,var(--accent) 7%,var(--surface));border:1px solid color-mix(in srgb,var(--accent) 20%,var(--line-soft))}
 .rw-dots{display:flex;align-items:center;gap:4px}.rw-dots i{width:9px;height:9px;border-radius:50%;background:var(--accent)}.rw-dots small{font:600 10px var(--f-mono);color:var(--accent)}
@@ -2170,13 +2176,20 @@ function myRateHTML(f){const rec=watched[f.id],on=!!(rec&&rec.d),r=on?(rec.r||0)
     '<div class="mr-row"><button class="mr-seen" data-seen="'+f.id+'" aria-pressed="'+on+'">'+(on?STAMP_IC+'<span>已看过 · 已盖章</span>':'<span>＋ 看过</span>')+'</button>'+
     '<div class="mr-rate">'+stars+'<span class="mr-score">'+(r?'<b>'+r+'</b><small>/10</small>':'<small>'+(multi?ppV('给最近一次打分','Rate latest'):'点星打分')+'</small>')+'</span></div></div>'+
     tasteRowHTML(f)+
-    (on?(multi?rwHTML(f,rec):'<div class="mr-meta"><label>观影日期 <input type="date" value="'+esc(rec.d)+'" max="'+isoOf(new Date(now()))+'" data-seen-date="'+f.id+'"></label><span>'+(s?esc(vShort(VN[s.v]))+' · '+s.t:'未关联场次')+'</span><button class="text-button rw-again" data-rw="again" data-id="'+f.id+'">＋ '+ppV('再看一次','Watch again')+'</button><button class="text-button" data-tab="my">查看护照 ›</button></div>'+fmtPickHTML(f.id,rec.f||''))
+    (on?(multi?rwHTML(f,rec):mrListHTML(f,rec,s))
        :'<p class="mr-tip">看过后会在「我的 → 观影护照」盖下这部电影的印章；评分为五星十分制，可打半颗星。</p>')+'</section>';}
 // 放映版本（可选）：2K / 4K / 胶片 / IMAX 各版本 / 杜比 / 4DX 等，用于「成长」里的版本收藏与胶片、IMAX 纪念章
 function fmtOptionsHTML(cur){const G=window.SparrowGrowth;if(!G)return '';const en=LANG==='en';
   return '<option value="">'+ppV('未填写','Not set')+'</option>'+(pl=>G.FORMAT_GROUPS.map(g=>pl.some(x=>x.group===g.id)?'<optgroup label="'+(en?g.en:g.zh)+'">'+pl.filter(x=>x.group===g.id).map(x=>'<option value="'+x.id+'"'+(x.id===cur?' selected':'')+'>'+(en?x.en:x.zh)+'</option>').join('')+'</optgroup>':'').join(''))(G.pickList(cur));}
-function fmtPickHTML(id,cur){const G=window.SparrowGrowth;if(!G)return '';
-  return '<label class="mr-fmt"><span>'+ppV('放映版本','Format')+' <small>'+ppV('可选','optional')+'</small></span><select data-seen-fmt="'+id+'">'+fmtOptionsHTML(cur)+'</select></label>';}
+const MR_DD='<svg class="mr-dd" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
+// 观影记录：一张分组列表（左侧标签 · 右侧取值 · 整行可点），原生控件透明铺满整行，沿用 data-seen-date / data-seen-fmt 事件
+function mrListHTML(f,rec,s){const G=window.SparrowGrowth,cur=rec.f||'',id=f.id,lbl=ppV('放映版本','Format'),
+  fv=cur&&fmtName(cur);
+  return '<div class="mr-list">'+
+   '<label class="mr-li"><span class="mr-k">'+ppV('观影日期','Date seen')+'</span><span class="mr-v">'+esc(rec.d.replace(/-/g,'.'))+'</span>'+MR_DD+'<input class="mr-ov" type="date" value="'+esc(rec.d)+'" max="'+isoOf(new Date(now()))+'" data-seen-date="'+id+'" aria-label="'+ppV('观影日期','Date seen')+'"></label>'+
+   '<div class="mr-li static"><span class="mr-k">'+ppV('放映场次','Screening')+'</span><span class="mr-v'+(s?'':' nil')+'">'+(s?esc(vShort(VN[s.v]))+' · '+s.t:ppV('未关联场次','No linked screening'))+'</span></div>'+
+   (G?'<label class="mr-li"><span class="mr-k">'+lbl+'<small>'+ppV('可选','optional')+'</small></span><span class="mr-v'+(fv?'':' nil')+'">'+esc(fv||ppV('未填写','Not set'))+'</span>'+MR_DD+'<select class="mr-ov" data-seen-fmt="'+id+'" aria-label="'+lbl+'">'+fmtOptionsHTML(cur)+'</select></label>':'')+
+  '</div><div class="mr-acts"><button class="text-button rw-again" data-rw="again" data-id="'+id+'">＋ '+ppV('再看一次','Watch again')+'</button><button class="text-button" data-tab="my">'+ppV('查看护照 ›','Passport ›')+'</button></div>';}
 function refreshMyRate(id){const b=document.getElementById('my-rate');if(b&&F[id])b.outerHTML=myRateHTML(F[id]);if(tsOpen===id)tsPaint();}
 
 // —— 印章（SVG）——
@@ -2345,6 +2358,7 @@ document.addEventListener('click',e=>{
     if(a==='name'){const v=prompt(tr('护照持有人（显示在资料页）'),holderName());if(v!=null){try{localStorage.setItem(HOLDER_KEY,v.trim().slice(0,20));touchMeta('holder');}catch{}renderPassport();}return;}
     turnPassport(a);}
 });
+document.addEventListener('click',e=>{const o=e.target.closest('input.mr-ov[type=date]');if(o&&o.showPicker){try{o.showPicker();}catch{}}});
 document.addEventListener('change',e=>{const rd=e.target.closest('[data-rw-date],[data-rw-fmt]');if(rd){const id=rd.dataset.rwDate||rd.dataset.rwFmt,rec=watched[id],G=window.SparrowGrowth,i=+rd.dataset.i;if(!rec||!G)return;const vs=G.views(rec);if(!vs[i])return;
     if(rd.dataset.rwDate){if(!/^\d{4}-\d{2}-\d{2}$/.test(rd.value))return;vs[i].d=rd.value;const s=SH.find(x=>x.id===id&&isoOf(showDate(x))===rd.value&&isPast(x));vs[i].k=s?keyOf(s):'';}
     else{if(rd.value&&G.FMT[rd.value])vs[i].f=rd.value;else delete vs[i].f;}
