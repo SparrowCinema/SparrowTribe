@@ -8866,6 +8866,9 @@
   "观影时间": "Viewing period",
   "导出海报墙": "Export poster wall",
   "正在生成海报墙…": "Creating poster wall…",
-  "海报墙已生成": "Poster wall ready"
+  "海报墙已生成": "Poster wall ready",
+  "海报墙筛选": "Poster wall filters",
+  "所选条件下暂无影片": "No films match these filters",
+  "试试其他专题或观影时间。": "Try another programme or viewing period."
  }
 }

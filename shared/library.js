@@ -27,6 +27,6 @@
  function posterColumns(width,height){const ratio=Number(width)/Number(height);return Number.isFinite(ratio)&&ratio>0?Math.round(5+5*Math.min(1,Math.max(0,(ratio-.8)/.4))):5;}
  function posterPeriod(date,mode){const m=/^(\d{4})-(0[1-9]|1[0-2])-\d{2}$/.exec(String(date||''));if(!m)return '';return mode==='month'?m[1]+'-'+m[2]:mode==='quarter'?m[1]+'-Q'+Math.ceil(+m[2]/3):m[1];}
  function posterPeriods(entries,mode){return [...new Set(entries.map(e=>posterPeriod(e.rec.d,mode)).filter(Boolean))].sort().reverse();}
- function posterEntries(entries,mode,period){return entries.filter(e=>posterPeriod(e.rec.d,mode)===period);}
+ function posterEntries(entries,mode,period,programme='all',ctx={shows:[]}){return entries.filter(e=>posterPeriod(e.rec.d,mode)===period&&inProgramme(e.f,programme,ctx));}
  const api={matches,inProgramme,inCity,status,category,list,has,toggle,featuredProgrammes,posterColumns,posterPeriod,posterPeriods,posterEntries};if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.SparrowLibrary=api;
 })(typeof window!=='undefined'?window:this);
