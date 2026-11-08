@@ -80,9 +80,10 @@
             <view wx:else class="rw-v edit">
               <view class="rw-eh"><text class="rw-n mono">{{item.no}}</text>
                 <view class="mr-stars"><view wx:for="{{item.stars}}" wx:for-item="st" wx:for-index="k" wx:key="k" class="mr-star"><text class="s0">★</text><view class="s1" style="width:{{st}}%"><text>★</text></view><view class="hz l" data-v="{{k * 2 + 1}}" bindtap="rwRate" /><view class="hz r" data-v="{{k * 2 + 2}}" bindtap="rwRate" /></view></view></view>
-              <view class="rw-fm">
-                <picker mode="date" value="{{item.raw}}" end="{{mine.today}}" bindchange="rwDate"><view class="mr-date">{{item.raw}} ▾</view></picker>
-                <picker mode="multiSelector" range="{{mine.fmt.cols}}" value="{{mine.fmt.val}}" bindchange="setFmt" bindcolumnchange="fmtCol"><view class="mr-fv {{mine.fmt.on ? 'has' : ''}}">{{mine.fmt.txt}} ▾</view></picker>
+              <view class="mr-list">
+                <picker mode="date" value="{{item.raw}}" end="{{mine.today}}" bindchange="rwDate"><view class="mr-li" hover-class="hv"><text class="mr-k">{{L.t(i,'观影日期')}}</text><text class="mr-v mono">{{item.d}}</text><text class="mr-dd">▾</text></view></picker>
+                <view class="mr-li sep static"><text class="mr-k">{{L.t(i,'放映场次')}}</text><text class="mr-v {{item.atNil ? 'nil' : ''}}">{{item.at}}</text></view>
+                <picker mode="multiSelector" range="{{mine.fmt.cols}}" value="{{mine.fmt.val}}" bindchange="setFmt" bindcolumnchange="fmtCol"><view class="mr-li sep" hover-class="hv"><text class="mr-k">{{L.t(i,'放映版本')}}<text class="mr-opt">{{i.__en?'optional':'可选'}}</text></text><text class="mr-v {{mine.fmt.on ? '' : 'nil'}}">{{mine.fmt.txt}}</text><text class="mr-dd">▾</text></view></picker>
               </view>
               <view class="rw-act"><text class="rw-done" bindtap="rwDone">{{i.__en ? 'Done' : '完成'}}</text><text class="rw-del" data-i="{{item.i}}" bindtap="rwDel">{{i.__en ? 'Delete' : '删除这一次'}}</text></view>
             </view>

@@ -195,4 +195,4 @@ Claude 与 GPT 可能使用同一 GitHub 身份，审批人数可先设为0；�
 
 ### 影片页观影记录列表（2026-11-09）
 
-- 已看过的影片页，「观影日期 / 放映场次 / 放映版本」合成一张分组列表（网页 `mrListHTML` / `.mr-list`，小程序 `.mr-list` / `.mr-li`）：标签在左、取值在右、整行可点，下方一行「＋ 再看一次」「查看护照 ›」。网页用透明的原生 `input[type=date]` / `select`（`.mr-ov`）铺满整行，保持 ≥16px 防缩放守卫；事件仍是 `data-seen-date` / `data-seen-fmt`。多次观影（`rwHTML`）的展开编辑样式不变。
+- 已看过的影片页，「观影日期 / 放映场次 / 放映版本」合成一张分组列表（网页 `mrListHTML` / `.mr-list`，小程序 `.mr-list` / `.mr-li`）：标签在左、取值在右、整行可点，下方一行「＋ 再看一次」「查看护照 ›」。网页用透明的原生 `input[type=date]` / `select`（`.mr-ov`）铺满整行，保持 ≥16px 防缩放守卫；事件仍是 `data-seen-date` / `data-seen-fmt`。多次观影（`rwHTML`）展开后是时间线，点某一次进入编辑，编辑面板复用同一张列表（网页 `mrRowsHTML`，小程序 `.rw-v.edit .mr-list`），日期与版本分别写回该次观影（`data-rw-date` / `data-rw-fmt`）。

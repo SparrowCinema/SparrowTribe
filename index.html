@@ -1362,7 +1362,7 @@ input:not([type=checkbox]):not([type=radio]),select,textarea{font-size:16px!impo
 .rw-n{font:700 12px var(--f-mono);color:var(--muted)}.rw-d{font-weight:600}.rw-f{grid-column:2;font-size:10.6px;color:var(--muted)}
 .rw-s{grid-row:1/3;grid-column:3;text-align:right;font:700 17px var(--f-display);color:var(--accent)}.rw-s .nil{color:var(--muted);font-weight:400}.rw-s small{display:block;font:500 10px var(--f-body);color:var(--muted)}
 .rw-v.edit{display:flex;flex-wrap:wrap;align-items:center;gap:10px 12px;margin:4px 0;background:var(--bg);border:1px solid var(--line)}
-.rw-v.edit .mr-stars{margin-left:auto;--sz:22px}.rw-fm{flex-basis:100%;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px}.rw-fm input,.rw-fm select{width:100%;min-width:0;max-width:100%;box-sizing:border-box;padding:7px 9px;border-radius:9px;border:1px solid var(--line);background:var(--surface);color:var(--fg);font:inherit;font-size:10.6px}
+.rw-v.edit .mr-stars{margin-left:auto;--sz:22px}.rw-v.edit .mr-list{flex-basis:100%;width:100%;margin-top:0;box-sizing:border-box}
 .rw-act{flex-basis:100%;display:flex;justify-content:space-between}.rw-del{color:var(--accent)!important}
 .rw-add{box-sizing:border-box;display:flex;justify-content:center;width:calc(100% - 22px);margin:6px 0 0 22px;padding:10px;border:1.5px dashed var(--line);border-radius:12px;color:var(--accent);font-weight:600;font-size:10.6px}
 .gcat{display:flex;align-items:baseline;gap:8px;margin:18px 0 6px;font-size:10.6px;letter-spacing:.08em;color:var(--muted);font-weight:600}.gcat small{font-weight:500;font-size:11.0px;color:var(--accent)}.gcat:first-of-type{margin-top:6px}
@@ -2160,7 +2160,7 @@ function rwHTML(f,rec){const G=window.SparrowGrowth,vs=G.views(rec),n=vs.length,
   if(!open)return strip;
   const rows=vs.map((v,i)=>{const s=v.k&&SH.find(x=>keyOf(x)===v.k),line=[fmtName(v.f)||ppV('版本未填','Format not set'),s?vShort(VN[s.v]):''].filter(Boolean).join(' · '),tag=i===0?ppV('首刷','First'):i===n-1?ppV('最近','Latest'):'';
     if(ed===i)return '<div class="rw-v edit"><span class="rw-n">#'+(i+1)+'</span>'+starInput('data-rw="rate" data-id="'+id+'" data-i="'+i+'"',v.r,ppV('这一次的评分','Rating for this viewing'))+
-      '<div class="rw-fm"><input type="date" value="'+esc(v.d)+'" max="'+isoOf(new Date(now()))+'" data-rw-date="'+id+'" data-i="'+i+'"><select data-rw-fmt="'+id+'" data-i="'+i+'">'+fmtOptionsHTML(v.f||'')+'</select></div>'+
+      mrRowsHTML({d:v.d,s,cur:v.f||'',dAttr:'data-rw-date="'+id+'" data-i="'+i+'"',fAttr:'data-rw-fmt="'+id+'" data-i="'+i+'"'})+
       '<div class="rw-act"><button class="text-button" data-rw="done" data-id="'+id+'">'+ppV('完成','Done')+'</button><button class="text-button rw-del" data-rw="del" data-id="'+id+'" data-i="'+i+'">'+ppV('删除这一次','Delete')+'</button></div></div>';
     return '<button class="rw-v'+(i===n-1?' last':'')+'" data-rw="edit" data-id="'+id+'" data-i="'+i+'"><span class="rw-n">#'+(i+1)+'</span><span class="rw-d">'+esc(v.d.replace(/-/g,'.'))+'</span><span class="rw-s">'+(v.r?'<b>'+v.r+'</b>':'<b class="nil">—</b>')+(tag?'<small>'+tag+'</small>':'')+'</span><span class="rw-f">'+esc(line)+'</span></button>';}).join('');
   return strip+'<div class="rw-tl">'+rows+'<button class="rw-add" data-rw="again" data-id="'+id+'">＋ '+ppV('再看一次','Watch again')+'</button></div>';}
@@ -2183,13 +2183,15 @@ function fmtOptionsHTML(cur){const G=window.SparrowGrowth;if(!G)return '';const 
   return '<option value="">'+ppV('未填写','Not set')+'</option>'+(pl=>G.FORMAT_GROUPS.map(g=>pl.some(x=>x.group===g.id)?'<optgroup label="'+(en?g.en:g.zh)+'">'+pl.filter(x=>x.group===g.id).map(x=>'<option value="'+x.id+'"'+(x.id===cur?' selected':'')+'>'+(en?x.en:x.zh)+'</option>').join('')+'</optgroup>':'').join(''))(G.pickList(cur));}
 const MR_DD='<svg class="mr-dd" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
 // 观影记录：一张分组列表（左侧标签 · 右侧取值 · 整行可点），原生控件透明铺满整行，沿用 data-seen-date / data-seen-fmt 事件
-function mrListHTML(f,rec,s){const G=window.SparrowGrowth,cur=rec.f||'',id=f.id,lbl=ppV('放映版本','Format'),
-  fv=cur&&fmtName(cur);
+function mrRowsHTML(o){const G=window.SparrowGrowth,lbl=ppV('放映版本','Format'),dl=ppV('观影日期','Date seen'),fv=o.cur&&fmtName(o.cur),s=o.s;
   return '<div class="mr-list">'+
-   '<label class="mr-li"><span class="mr-k">'+ppV('观影日期','Date seen')+'</span><span class="mr-v">'+esc(rec.d.replace(/-/g,'.'))+'</span>'+MR_DD+'<input class="mr-ov" type="date" value="'+esc(rec.d)+'" max="'+isoOf(new Date(now()))+'" data-seen-date="'+id+'" aria-label="'+ppV('观影日期','Date seen')+'"></label>'+
+   '<label class="mr-li"><span class="mr-k">'+dl+'</span><span class="mr-v">'+esc(o.d.replace(/-/g,'.'))+'</span>'+MR_DD+'<input class="mr-ov" type="date" value="'+esc(o.d)+'" max="'+isoOf(new Date(now()))+'" '+o.dAttr+' aria-label="'+dl+'"></label>'+
    '<div class="mr-li static"><span class="mr-k">'+ppV('放映场次','Screening')+'</span><span class="mr-v'+(s?'':' nil')+'">'+(s?esc(vShort(VN[s.v]))+' · '+s.t:ppV('未关联场次','No linked screening'))+'</span></div>'+
-   (G?'<label class="mr-li"><span class="mr-k">'+lbl+'<small>'+ppV('可选','optional')+'</small></span><span class="mr-v'+(fv?'':' nil')+'">'+esc(fv||ppV('未填写','Not set'))+'</span>'+MR_DD+'<select class="mr-ov" data-seen-fmt="'+id+'" aria-label="'+lbl+'">'+fmtOptionsHTML(cur)+'</select></label>':'')+
-  '</div><div class="mr-acts"><button class="text-button rw-again" data-rw="again" data-id="'+id+'">＋ '+ppV('再看一次','Watch again')+'</button><button class="text-button" data-tab="my">'+ppV('查看护照 ›','Passport ›')+'</button></div>';}
+   (G?'<label class="mr-li"><span class="mr-k">'+lbl+'<small>'+ppV('可选','optional')+'</small></span><span class="mr-v'+(fv?'':' nil')+'">'+esc(fv||ppV('未填写','Not set'))+'</span>'+MR_DD+'<select class="mr-ov" '+o.fAttr+' aria-label="'+lbl+'">'+fmtOptionsHTML(o.cur)+'</select></label>':'')+
+  '</div>';}
+function mrListHTML(f,rec,s){const id=f.id;
+  return mrRowsHTML({d:rec.d,s,cur:rec.f||'',dAttr:'data-seen-date="'+id+'"',fAttr:'data-seen-fmt="'+id+'"'})+
+  '<div class="mr-acts"><button class="text-button rw-again" data-rw="again" data-id="'+id+'">＋ '+ppV('再看一次','Watch again')+'</button><button class="text-button" data-tab="my">'+ppV('查看护照 ›','Passport ›')+'</button></div>';}
 function refreshMyRate(id){const b=document.getElementById('my-rate');if(b&&F[id])b.outerHTML=myRateHTML(F[id]);if(tsOpen===id)tsPaint();}
 
 // —— 印章（SVG）——
