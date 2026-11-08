@@ -225,7 +225,7 @@ Page({
       return { y: Y, cells: Array.from({ length: 12 }, (_, i) => { const k = Y + '-' + String(i + 1).padStart(2, '0'), c = cnt[k] || 0, on = m.includes(k);
         return { v: k, n: String(i + 1), c, cs: c ? nb(c) : '—', on, bg: c && !on ? 'background:rgba(142,42,34,' + (0.14 + 0.46 * c / max).toFixed(2) + ');border-color:rgba(142,42,34,' + (0.22 + 0.46 * c / max).toFixed(2) + ')' : '' }; }) }; });
     const ycnt = {}; all.forEach(e => { const k = e.rec.d.slice(0, 4); ycnt[k] = (ycnt[k] || 0) + 1; });
-    this.setData({ rc: { sections:R.SECTIONS.map(([id,label])=>({id,label:t(label),on:this.data.rcSections.includes(id)})), sectionCount:this.data.rcSections.length, grids, years: [{ v: 'all', n: t('全部年份'), c: nb(all.length), on: !y.length }].concat(years.map(v => ({ v, n: v, c: nb(ycnt[v]), on: y.includes(v) }))), mSel: m.length ? (I.isEn() ? m.length + ' selected' : '已选 ' + m.length + ' 个月') : '', progs: [{ v: 'all', n: t('全部专题'), on: !p.length }].concat(pids.map(v => ({ v, n: idx.PG[v].name, on: p.includes(v) }))),
+    this.setData({ rc: { sections:R.SECTIONS.map(([id,label])=>({id,label:t(label),on:this.data.rcSections.includes(id)})), sectionCount:this.data.rcSections.length, grids, years: [{ v: 'all', n: t('全部年份'), c: nb(all.length), on: !y.length }].concat(years.map(v => ({ v, n: v, c: nb(ycnt[v]), on: y.includes(v) }))), mSel: m.length ? (I.isEn() ? m.length + ' selected' : '已选 ' + m.length + ' 个月') : '', progSearch:pids.length>4,progLabel:p.length?p.map(v=>idx.PG[v].name).join('、'):t('全部专题'), progs: [{ v: 'all', n: t('全部专题'), on: !p.length }].concat(pids.filter(v=>!this.data.rcProgQuery||idx.PG[v].name.toLocaleLowerCase().includes(this.data.rcProgQuery.toLocaleLowerCase())).map(v => ({ v, n: idx.PG[v].name, on: p.includes(v) }))),
       n: list.length, hm: Math.floor(mins / 60) + 'h' + String(mins % 60).padStart(2, '0'), avg: rated.length ? (rated.reduce((n, e) => n + e.rec.r, 0) / rated.length).toFixed(1) : '—' } });
   },
   recapSub(list, idx) {
@@ -246,6 +246,9 @@ Page({
   toggleFb() { this.setData({ fbOpen: !this.data.fbOpen }); },
   toggleGuide() { this.setData({ guideOpen: !this.data.guideOpen }); },
   setRcY(e) { const v=e.currentTarget.dataset.v,y=v==='all'?[]:[v],same=(this.data.rcY||[])[0]===y[0];this.setData({rcY:y,rcM:same?this.data.rcM:[],rcYearAnchor:'rc-year-'+v});this.buildRecap(); },
+  toggleAppearance(){this.setData({appearanceOpen:!this.data.appearanceOpen});},
+  toggleRcProgrammes(){this.setData({rcProgOpen:!this.data.rcProgOpen});},
+  searchRcProgrammes(e){this.setData({rcProgQuery:e.detail.value});this.buildRecap();},
   setRcP(e) { const v = e.currentTarget.dataset.v, c = this.data.rcP || []; this.setData({ rcP: v === 'all' ? [] : c.includes(v) ? c.filter(x => x !== v) : c.concat(v) }); this.buildRecap(); },
   noop() { },
   makeRecap() {

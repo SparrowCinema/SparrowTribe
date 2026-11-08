@@ -8855,6 +8855,14 @@
   "跟随系统": "Match system",
   "浅色": "Light",
   "暗色": "Dark",
-  "自动跟随手机或电脑，也可固定浅色、暗色": "Follows your device, or stay light or dark"
+  "自动跟随手机或电脑，也可固定浅色、暗色": "Follows your device, or stay light or dark",
+  "年度海报墙": "Annual poster wall",
+  "季度海报墙": "Quarterly poster wall",
+  "月度海报墙": "Monthly poster wall",
+  "海报墙": "Poster wall",
+  "观影时间": "Viewing period",
+  "导出海报墙": "Export poster wall",
+  "正在生成海报墙…": "Creating poster wall…",
+  "海报墙已生成": "Poster wall ready"
  }
 }

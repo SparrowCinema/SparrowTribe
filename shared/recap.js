@@ -101,9 +101,11 @@
     c.restore();
   }
 
+  function posterLayout(o){const cols=Math.max(5,Math.min(10,Math.round(Number(o.posterCols)||5))),gap=16,w=(W-2*P-gap*(cols-1))/cols;return {cols,gap,w,h:w*1.5,row:w*1.5+58};}
+  function posterHeight(o){return Array.isArray(o.sections)&&o.sections.includes('posters')&&(o.items||[]).length?60+Math.ceil(o.items.length/posterLayout(o).cols)*posterLayout(o).row:0;}
   function heightOf(o) {
     const n = (o.items || []).length;
-    return (hasSection(o, 'cover') ? L.HEAD : 0) + (hasSection(o, 'stats') ? L.STATS : 0) + (hasSection(o, 'favorite') && o.fav ? L.FAV : 0) + (hasSection(o, 'programmes') && (o.progs || []).length > 1 ? L.PROGH + o.progs.length * L.PROGROW : 0) + (hasSection(o, 'stamps') && n ? L.WALLH + Math.ceil(n / 3) * L.CELL + 20 : 0) + (hasSection(o, 'list') && n ? L.LISTH + n * L.ROW : 0) + (hasSection(o, 'footer') ? L.FOOT : 0);
+    return (hasSection(o, 'cover') ? L.HEAD : 0) + (hasSection(o, 'stats') ? L.STATS : 0) + (hasSection(o, 'favorite') && o.fav ? L.FAV : 0) + (hasSection(o, 'programmes') && (o.progs || []).length > 1 ? L.PROGH + o.progs.length * L.PROGROW : 0) + (hasSection(o, 'stamps') && n ? L.WALLH + Math.ceil(n / 3) * L.CELL + 20 : 0) + (hasSection(o, 'list') && n ? L.LISTH + n * L.ROW : 0) + posterHeight(o) + (hasSection(o, 'footer') ? L.FOOT : 0);
   }
 
   function draw(c, o) {
@@ -197,6 +199,13 @@
       y += items.length * L.ROW;
     }
 
+    if(posterHeight(o)){
+      const g=posterLayout(o);y+=40;
+      items.forEach((it,i)=>{const x=P+(i%g.cols)*(g.w+g.gap),yy=y+Math.floor(i/g.cols)*g.row;
+        if(it.img)cover(c,it.img,x,yy,g.w,g.h,5);else{c.fillStyle=C.card;rr(c,x,yy,g.w,g.h,5);c.fill();c.fillStyle=C.ink;c.font='700 20px '+SANS;c.fillText(clip1(c,it.title,g.w-16),x+8,yy+g.h/2);}
+        c.textAlign='center';c.fillStyle=it.score?C.teal:C.muted;c.font='600 '+(g.cols>7?16:22)+'px '+MONO;c.fillText(it.score?'★ '+it.score+'/10':T('未评分'),x+g.w/2,yy+g.h+30);c.textAlign='left';
+      });y+=Math.ceil(items.length/g.cols)*g.row+20;
+    }
     // 页脚
     if (o.qrImg) { // 小程序：深色通栏铺满左右与底边，右侧小程序码
       const fy = y + 30, hb = H - fy; c.fillStyle = C.ink; c.fillRect(0, fy, W, hb);
