@@ -1,0 +1,19 @@
+name: Taste V1 compatibility and database tests
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  taste:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci --prefix tools/taste-tests --ignore-scripts --no-audit --no-fund
+      - run: node tools/check-taste.js
+      - run: node tools/check-taste-db.js
+      - run: node tools/check-companion.js

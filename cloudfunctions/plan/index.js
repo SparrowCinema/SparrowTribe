@@ -1,4 +1,5 @@
 // 个人排片与观影护照：按微信用户 openid 保存场次键（keys）和看过/评分记录（watched）
+const Taste=require('./taste.js'),S=require('./psync.js');
 const cloud = require('wx-server-sdk');
 cloud.init({ env: cloud.DYNAMIC_CURRENT_ENV });
 const db = cloud.database();
@@ -14,7 +15,8 @@ function cleanWatched(w) {
     if (r.del) { out[id] = { del: 1, t }; return; }
     if (!/^\d{4}-\d{2}-\d{2}$/.test(String(r.d || ''))) return;
     out[id] = { d: r.d, r: Math.max(0, Math.min(10, Math.round(Number(r.r) || 0))), k: typeof r.k === 'string' ? r.k.slice(0, 80) : '', t };
-    if (typeof r.f === 'string' && /^[\w-]{1,20}$/.test(r.f)) out[id].f = r.f;   // 放映版本（可选）
+    if (typeof r.f === 'string' && /^[\w-]{1,20}$/.test(r.f)) out[id].f = r.f;
+    Object.assign(out[id],Taste.cleanFields(r));
     if (Array.isArray(r.v)) {   // 多次观影（可选）：≥2 次才保存
       const vs = r.v.slice(0, 30).map(x => {
         if (!x || !/^\d{4}-\d{2}-\d{2}$/.test(String(x.d || ''))) return null;
@@ -30,6 +32,13 @@ function cleanWatched(w) {
 async function upsert(OPENID, data) {
   const col = db.collection('plans');
   const full = Object.assign({ updatedAt: db.serverDate() }, data);
+  if(data.watched){
+    try{await db.createCollection('plans');}catch(e){}
+    return db.runTransaction(async transaction=>{const doc=transaction.collection('plans').doc(OPENID);let old={};try{old=(await doc.get()).data||{};}catch(e){if(!/not.exist|does.not.exist|不存在|-502005/i.test(String(e.errCode||'')+' '+String(e.message||e.errMsg||e)))throw e;}
+      delete old._id;const watched=S.merge({watched:data.watched},{watched:old.watched||{}}).watched;
+      await doc.set({data:Object.assign({},old,{watched,updatedAt:db.serverDate()})});
+    });
+  }
   try {
     const r = await col.doc(OPENID).update({ data: Object.assign({}, full, data.watched ? { watched: _.set(data.watched) } : {}, data.keys ? { keys: _.set(data.keys) } : {}) });
     if (r && r.stats && r.stats.updated) return;

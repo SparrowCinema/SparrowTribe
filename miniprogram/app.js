@@ -2,6 +2,7 @@ const LOCAL = require('./data/data.js');
 const plan = require('./utils/plan.js');
 const watched = require('./utils/watched.js');
 const I = require('./utils/i18n.js');
+const community=require('./utils/community.js');
 const sync = require('./utils/sync.js');
 const CFG = require('./utils/cfg.js');
 
@@ -26,7 +27,7 @@ App({
       this.loadRemote();
       plan.syncFromCloud();
       watched.syncFromCloud();
-      sync.init();
+      sync.init();community.init();sync.onStatus(()=>{if(sync.status.state==='ok'){community.changed();community.flush();}});
     }
   },
 

@@ -77,3 +77,11 @@ fs.copyFileSync(path.join(root,'shared/profile-backup.js'),path.join(root,'minip
 fs.copyFileSync(path.join(root,'shared/growth.js'),path.join(root,'miniprogram/utils/growth.js'));
 
 fs.copyFileSync(path.join(root,'shared/premiere.js'),path.join(root,'miniprogram/utils/premiere.js'));
+
+for(const n of ['taste.js','taste-client.js'])fs.copyFileSync(path.join(root,'shared',n),path.join(root,'miniprogram/utils',n));
+for(const dir of ['plan','psync'])fs.copyFileSync(path.join(root,'shared/taste.js'),path.join(root,'cloudfunctions',dir,'taste.js'));
+
+fs.writeFileSync(path.join(root,'cloudfunctions/plan/psync.js'),head+psync);
+
+const tasteIds=[...new Set(films.filter(f=>!f.ev).map(f=>f.id))].sort();
+fs.writeFileSync(path.join(root,'backend/taste-films.sql'),"-- Allow only real catalogue films. Re-run after adding films.\ninsert into sparrow_taste.films(id) values\n"+tasteIds.map(id=>"('"+id.replace(/'/g,"''")+"')").join(',\n')+"\non conflict do nothing;\n");

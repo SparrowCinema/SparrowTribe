@@ -57,6 +57,20 @@
         </view>
         <text class="mr-score mono {{mine.r ? 'has' : ''}}">{{mine.scoreTxt}}</text></view>
       </view>
+
+      <view wx:if="{{mine.seen}}" class="taste-mini">
+        <view class="taste-head"><text class="taste-title">{{i.__en?'Interesting or boring?':'这部电影，有趣还是无聊？'}}</text><text class="taste-sub">TASTE / FILM</text></view>
+        <view wx:for="{{taste}}" wx:key="key" class="taste-row">
+          <view class="taste-caption"><text>{{item.key==='fun'?(i.__en?'Interesting':'有趣度'):(i.__en?'Boring':'无聊度')}}</text><text class="taste-description">{{item.key==='fun'?(i.__en?'How captivating?':'有多让你着迷？'):(i.__en?'How often did you feel bored?':'观看时多经常感到乏味？')}}</text></view>
+          <view class="taste-stars">
+            <text class="taste-zero {{item.value===0?'selected':''}}" data-k="{{item.key}}" data-n="0" bindtap="tasteRate">0</text>
+            <view class="mr-stars taste-stars-row"><view wx:for="{{item.stars}}" wx:for-item="st" wx:key="n" class="mr-star"><text class="s0">★</text><view class="s1" style="width:{{st.on?100:0}}%"><text>★</text></view><view class="hz full" data-k="{{item.key}}" data-n="{{st.n}}" bindtap="tasteRate" /></view></view>
+            <text class="taste-result mono"><block wx:if="{{item.value===null}}"><text class="tr-nil">{{i.__en?'Not rated':'未评'}}</text></block><block wx:else><text class="tr-v">{{item.value}}</text>/5</block></text>
+          </view>
+        </view>
+        <text class="taste-hint">{{i.__en?'0 = not at all (different from not rated) · Tap the same score to clear · Both can be high':'0 = 完全没有，与「未评」不同 · 再点相同分数可取消 · 两项可以同时很高'}}</text>
+      </view>
+      <view class="community-card"><text class="community-title">{{i.__en?'Community feelings':'影迷社区评分'}}<text class="taste-sub"> COMMUNITY</text></text><view class="community-values"><view><text class="cv-label">{{i.__en?'Interesting':'有趣度'}}</text><view class="cv-val"><block wx:if="{{community.fun.avg}}"><view class="cv-stars"><view wx:for="{{community.fun.stars}}" wx:for-item="p" wx:key="index" class="cv-star"><text class="s0">★</text><view class="s1" style="width:{{p}}%"><text>★</text></view></view></view><text class="cv-avg mono">{{community.fun.avg}}<text class="cv-of">/5</text></text></block><text wx:else class="cv-low">{{community.fun.low}}</text></view><text>{{community.fun.n}} {{i.__en?'ratings':'人评价'}}</text></view><view><text class="cv-label">{{i.__en?'Boring':'无聊度'}}</text><view class="cv-val"><block wx:if="{{community.bore.avg}}"><view class="cv-stars"><view wx:for="{{community.bore.stars}}" wx:for-item="p" wx:key="index" class="cv-star"><text class="s0">★</text><view class="s1" style="width:{{p}}%"><text>★</text></view></view></view><text class="cv-avg mono">{{community.bore.avg}}<text class="cv-of">/5</text></text></block><text wx:else class="cv-low">{{community.bore.low}}</text></view><text>{{community.bore.n}} {{i.__en?'ratings':'人评价'}}</text></view></view><text class="community-note">{{communityError?(i.__en?'Community unavailable. Personal ratings are saved locally.':'社区评分暂不可用；个人评分已保存在本机。'):(i.__en?'Each is counted separately; the average shows from 3 ratings.':'两项独立统计，各自满 3 人评价后显示平均星级。')}}</text><button wx:if="{{community.eligible}}" class="community-button" data-action="{{community.published?'withdraw':'publish'}}" bindtap="communityAction">{{community.published?(i.__en?'Withdraw my vote':'撤回社区评分'):(i.__en?'Publish my ratings':'发布到社区')}}</button><button wx:if="{{community.pending}}" class="community-button" data-action="retry" bindtap="communityAction">{{i.__en?'Pending upload · Retry':'等待上传 · 重试'}}</button><text class="community-note">{{i.__en?'Only opted-in ratings contribute. Dates, individual ballots, names and photos stay private.':'仅公开评分参与汇总，日期、评分明细、姓名和照片均不公开。'}}</text></view>
       <block wx:if="{{mine.seen && !mine.multi}}">
         <view class="mr-meta">
           <picker mode="date" value="{{mine.d}}" end="{{mine.today}}" bindchange="setSeenDate"><view class="mr-date">{{L.t(i,'观影日期')}} <text class="mono">{{mine.d}}</text> ▾</view></picker>

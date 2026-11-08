@@ -187,3 +187,22 @@
 
 /* Keep metadata labels on one line at phone widths. */
 .cr{gap:calc(20 * var(--r))}.ck{width:calc(176 * var(--r));font-size:inherit;white-space:nowrap}
+
+/* V1 film taste: independent interesting and boring ratings */
+.taste-mini{margin-top:calc(28 * var(--r));padding:calc(25 * var(--r)) 0;border-top:calc(2 * var(--r)) solid var(--line-soft)}
+.taste-head{display:flex;justify-content:space-between;align-items:baseline;gap:calc(12 * var(--r));margin-bottom:calc(24 * var(--r))}.taste-title{font-size:calc(28 * var(--r));font-weight:700}.taste-sub{font-size:calc(18 * var(--r));letter-spacing:calc(3 * var(--r));color:var(--muted)}
+.taste-row{display:flex;flex-direction:column;gap:calc(8 * var(--r));margin-bottom:calc(22 * var(--r))}.taste-caption{display:flex;align-items:baseline;justify-content:space-between;gap:calc(16 * var(--r));font-size:calc(26 * var(--r));font-weight:600}.taste-description{font-size:calc(20 * var(--r));color:var(--muted);font-weight:400}.taste-stars{display:flex;align-items:center;gap:calc(12 * var(--r))}.taste-star{font-size:calc(43 * var(--r));color:var(--line);line-height:1.3}.taste-star.selected{color:var(--ochre)}.taste-zero{padding:calc(6 * var(--r)) calc(12 * var(--r));border:calc(2 * var(--r)) solid var(--line);border-radius:calc(9 * var(--r));color:var(--muted);font-size:calc(22 * var(--r))}.taste-zero.selected{border-color:var(--ochre);color:var(--ochre)}.taste-result{margin-left:auto;color:var(--muted);font-size:calc(23 * var(--r))}.taste-hint{display:block;font-size:calc(20 * var(--r));line-height:1.6;color:var(--muted)}
+
+.community-card{border-top:calc(2 * var(--r)) solid var(--line);margin-top:calc(24 * var(--r));padding-top:calc(24 * var(--r))}.community-title{display:block;font-size:calc(26 * var(--r));font-weight:700;margin-bottom:calc(20 * var(--r))}.community-values{display:flex;border:calc(1 * var(--r)) solid var(--line);border-radius:calc(18 * var(--r));background:var(--surface)}.community-values>view{flex:1;display:flex;flex-direction:column;gap:calc(12 * var(--r));padding:calc(24 * var(--r));font-size:calc(22 * var(--r));color:var(--muted)}.community-values>view+view{border-left:calc(1 * var(--r)) solid var(--line)}.community-number{font-size:calc(36 * var(--r));color:var(--teal);font-weight:700}.community-note{display:block;font-size:calc(21 * var(--r));color:var(--muted);line-height:1.7;margin:calc(18 * var(--r)) 0}.community-button{margin:calc(16 * var(--r)) 0;padding:calc(18 * var(--r));font-size:calc(24 * var(--r));line-height:1.4;background:var(--surface);border:calc(1 * var(--r)) solid var(--line);color:var(--teal)}
+
+/* 趣味评分沿用十分制的星星（.mr-star），每颗星 1 分；社区均分为按比例填充的只读星 */
+.taste-stars-row .mr-star .hz.full{left:0;right:0;width:auto}
+.taste-stars .taste-zero{min-width:calc(46 * var(--r));text-align:center;border-radius:calc(999 * var(--r));font-family:monospace}
+.taste-stars .taste-zero.selected{background:#c8862a;border-color:#c8862a;color:#fff}
+.taste-result{color:#c8862a}.taste-result .tr-v{font-size:calc(32 * var(--r));font-weight:600}.taste-result .tr-nil{color:var(--muted);font-size:calc(22 * var(--r))}
+.cv-label{color:var(--fg);font-weight:600}
+.cv-val{display:flex;flex-wrap:wrap;align-items:center;gap:calc(4 * var(--r)) calc(12 * var(--r));min-height:calc(48 * var(--r))}
+.cv-stars{display:flex}.cv-star{position:relative;width:calc(30 * var(--r));height:calc(30 * var(--r));font-size:calc(26 * var(--r));line-height:calc(30 * var(--r));text-align:center}
+.cv-star .s0{color:var(--line)}.cv-star .s1{position:absolute;left:0;top:0;height:100%;overflow:hidden;color:#c8862a}.cv-star .s1 text{display:block;width:calc(30 * var(--r));text-align:center}
+.cv-avg{font-size:calc(34 * var(--r));font-weight:600;color:var(--fg)}.cv-of{font-size:calc(20 * var(--r));color:var(--muted);font-weight:400}
+.cv-low{font-size:calc(22 * var(--r));color:var(--muted)}

@@ -1,5 +1,6 @@
 // 观影护照：看过 / 评分记录。本地存储 + 云端按微信用户同步（plan 云函数的 setWatched / get）。
 // 记录：{ 影片id: { d:'YYYY-MM-DD', r:0–10（0 未评分）, k:场次键, t:更新时间 } }；删除时留 { del:1, t } 以便多设备合并。
+const Taste=require('./taste.js');
 const U = require('./util.js');
 const KEY = 'sk-watched-v1', HOLDER = 'sk-holder', PHOTO = 'sk-holder-photo';
 let cache = null;
@@ -17,14 +18,14 @@ function save(push = true) {
   if (push && wx.cloud) wx.cloud.callFunction({ name: 'plan', data: { action: 'setWatched', watched: cache } }).catch(() => { });
 }
 const get = id => { const r = all()[id]; return r && !r.del && r.d ? r : null; };
-function set(id, rec) { const o = { d: rec.d, r: rec.r || 0, k: rec.k || '', t: Date.now() }; if (rec.f) o.f = rec.f; if (Array.isArray(rec.v) && rec.v.length >= 2) o.v = rec.v; all()[id] = o; save(); }
+function set(id, rec) { const o = { d: rec.d, r: rec.r || 0, k: rec.k || '', t: Math.max(Date.now(), Number(rec.t)||0, (Number(all()[id]?.t)||0)+1) }; if (rec.f) o.f = rec.f; Object.assign(o,Taste.cleanFields(rec)); if (Array.isArray(rec.v) && rec.v.length >= 2) o.v = rec.v; all()[id] = o; save(); }
 // 影展间重复影片合并后，把旧 id 的观影记录并入新 id（旧记录留删除标记，便于多设备合并）
 function migrate(aliases) {
   const c = all(); let ch = false;
-  Object.keys(aliases || {}).forEach(o => { const n = aliases[o], r = c[o]; if (!r || r.del || !r.d) return; if (!c[n] || c[n].del || !c[n].d) c[n] = Object.assign({}, r, { t: Date.now() }); c[o] = { del: 1, t: Date.now() }; ch = true; });
+  Object.keys(aliases || {}).forEach(o => { const n = aliases[o], r = c[o]; if (!r || r.del || !r.d) return; if (!c[n] || c[n].del || !c[n].d) c[n] = Object.assign({}, r, { t: Date.now() }); c[o] = { del: 1, t: Math.max(Date.now(), (Number(all()[id]?.t)||0)+1) }; ch = true; });
   if (ch) save();
 }
-function remove(id) { all()[id] = { del: 1, t: Date.now() }; save(); }
+function remove(id) { all()[id] = { del: 1, t: Math.max(Date.now(), (Number(all()[id]?.t)||0)+1) }; save(); }
 function onChange(fn) { listeners.push(fn); return () => { const i = listeners.indexOf(fn); if (i >= 0) listeners.splice(i, 1); }; }
 
 // 默认观影日期：优先已放映的个人排片场次，其次本片最近一场已放映场次，否则今天
@@ -59,7 +60,7 @@ function syncFromCloud() {
   wx.cloud.callFunction({ name: 'plan', data: { action: 'get' } }).then(res => {
     const remote = (res.result && res.result.watched) || {}, c = all();
     let changed = false;
-    Object.keys(remote).forEach(id => { const r = remote[id]; if (r && (r.d || r.del) && (!c[id] || (r.t || 0) > (c[id].t || 0))) { c[id] = r; changed = true; } });
+    Object.keys(remote).forEach(id => { const r=remote[id],local=c[id];if(!r||!(r.d||r.del))return;const merged=Taste.mergeFields(local||{},r,!local||(r.t||0)>(local.t||0)?r:local);if(JSON.stringify(merged)!==JSON.stringify(local)){c[id]=merged;changed=true;} });
     const localNewer = Object.keys(c).some(id => !remote[id] || (c[id].t || 0) > (remote[id].t || 0));
     if (changed || localNewer) save(localNewer); else listeners.forEach(fn => fn(cache));
   }).catch(() => { });

@@ -16,7 +16,7 @@
  }
  function restore(local,backup,at){
   local=S.clean(local);backup=decode(backup);const t=at||Date.now();
-  Object.keys(backup.watched).forEach(id=>{backup.watched[id].t=t;});
+  Object.keys(backup.watched).forEach(id=>{backup.watched[id].t=t;if(backup.watched[id].tasteAt)Object.keys(backup.watched[id].tasteAt).forEach(k=>backup.watched[id].tasteAt[k]=t);});
   ['holder','photo','picks'].forEach(k=>{backup[k].t=t;});
   // Preserve planned screenings already present on the importing device.
   backup.picks.k=[...new Set(local.picks.k.concat(backup.picks.k))];
