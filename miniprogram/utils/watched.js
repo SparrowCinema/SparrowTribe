@@ -17,7 +17,7 @@ function save(push = true) {
   if (push && wx.cloud) wx.cloud.callFunction({ name: 'plan', data: { action: 'setWatched', watched: cache } }).catch(() => { });
 }
 const get = id => { const r = all()[id]; return r && !r.del && r.d ? r : null; };
-function set(id, rec) { const o = { d: rec.d, r: rec.r || 0, k: rec.k || '', t: Date.now() }; if (rec.f) o.f = rec.f; if (Array.isArray(rec.v) && rec.v.length >= 2) o.v = rec.v; all()[id] = o; save(); }
+function set(id, rec) { const o = { d: rec.d, r: rec.r || 0, k: rec.k || '', t: Date.now() }; if (rec.f) o.f = rec.f; ['fun','bore'].forEach(k => { if (rec[k] !== undefined && rec[k] !== null && Number.isInteger(rec[k]) && rec[k] >= 0 && rec[k] <= 5) o[k] = rec[k]; }); if (Array.isArray(rec.v) && rec.v.length >= 2) o.v = rec.v; all()[id] = o; save(); }
 // 影展间重复影片合并后，把旧 id 的观影记录并入新 id（旧记录留删除标记，便于多设备合并）
 function migrate(aliases) {
   const c = all(); let ch = false;
