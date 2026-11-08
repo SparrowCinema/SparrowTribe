@@ -53,6 +53,17 @@ Page({
       mrz2: 'FILMS<' + String(st.n).padStart(3, '0') + '<<PROGS<' + String(st.progs).padStart(2, '0') + '<<AVG<' + (rated.length ? Math.round(st.avg * 10) : '00') + '<<' + (last ? last.rec.d.replace(/-/g, '') : '00000000') } });
     this.buildSpreads();
     this.buildGrowth(list, idx);
+    this.buildTaste(list);
+  },
+  buildTaste(list) {
+    const labels = ['漫长难熬','迷人又折磨','平静无波','趣味横生'];
+    const quadrants = labels.map((name,i)=>({name, count:0, index:i}));
+    const pts=list.filter(e=>Number.isInteger(e.rec.fun)&&Number.isInteger(e.rec.bore)).map(e=>{
+      const x=e.rec.fun,y=e.rec.bore,uncertain=(x===3||y===3),q=uncertain?-1:(y>3?(x>3?1:0):(x>3?3:2));
+      if(q>=0)quadrants[q].count++;
+      return {id:e.id,title:e.f.cn,x:8+x*15,y:92-y*15,quadrant:q,uncertain};
+    });
+    this.setData({ tasteMap:{n:pts.length,points:pts,quadrants,unsure:pts.filter(p=>p.uncertain).length} });
   },
   // ===== 成长：影迷等级 / 全球足迹 / 旅程纪念章（计算在 utils/growth.js，与网站共用） =====
   buildGrowth(list, idx) {
