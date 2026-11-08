@@ -66,6 +66,7 @@
             <view wx:if="{{mine.n > 1}}" class="dy-s"><text class="dy-sb {{item.rNil ? 'nil' : ''}}">{{item.rs}}</text><text wx:if="{{item.tag}}" class="dy-st">{{item.tag}}</text></view>
             <text class="dy-go">›</text>
           </view>
+          <view wx:if="{{mine.dyFold}}" class="dy-more sep" hover-class="hv" bindtap="dyToggle"><text>{{mine.dyMoreTxt}}</text><text class="dy-mi">{{mine.dyOpen ? '▴' : '▾'}}</text></view>
           <view class="dy-add sep" hover-class="hv" bindtap="lgOpen">＋ {{i.__en?'Log another viewing':'再看一次'}}</view>
         </block>
       </view>

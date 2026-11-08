@@ -1356,6 +1356,7 @@ input:not([type=checkbox]):not([type=radio]),select,textarea{font-size:16px!impo
 .dy-d{display:flex;flex-direction:column;line-height:1.1}.dy-d b{font:700 14px var(--f-mono);letter-spacing:-.02em}.dy-d small{font:500 9.5px var(--f-mono);color:var(--muted);margin-top:3px}
 .dy-m{display:flex;flex-direction:column;min-width:0;gap:2px}.dy-l1{font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.dy-l1.nil{color:var(--muted)}.dy-l2{font-size:10.6px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .dy-s{display:flex;flex-direction:column;align-items:flex-end;line-height:1.1}.dy-s b{font:700 17px var(--f-display);color:#c8862a}.dy-s i{font-style:normal;color:var(--muted)}.dy-s small{font-size:9.5px;color:var(--muted);margin-top:2px}
+.dy-more{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;padding:11px;color:var(--muted);font-size:11.5px;font-weight:600;border-top:1px solid var(--line)}.dy-more i{font-style:normal;font-size:10px}.dy-more:active{background:color-mix(in srgb,var(--fg) 5%,transparent)}
 .dy-add{display:block;width:100%;padding:12px;color:var(--accent);font-weight:700;font-size:11.5px;text-align:center}.dy-add:active{background:color-mix(in srgb,var(--accent) 7%,transparent)}
 .dy-form{margin-top:4px}.dy-rate{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:14px;padding:10px 14px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}.dy-rate .mr-score{text-align:right}
 .dy-del{color:var(--accent)!important}
@@ -2184,13 +2185,16 @@ function fmtOptionsHTML(cur){const G=window.SparrowGrowth;if(!G)return '';const 
 const MR_DD='<svg class="mr-dd" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
 // —— 观影日记：每次观影一行（新→旧），点一行或「再看一次」打开底部编辑弹层 ——
 function lgShowLabel(s){return esc(showDate(s).getMonth()+1+'.'+pad2(showDate(s).getDate()))+' '+s.t+' · '+esc(vShort(VN[s.v]));}
+const DY_SHOW=3,DY_OPEN={}; // 观影日记折叠：默认只显示最近 3 次，展开状态仅保存在本次页面内存
 function lgRowsHTML(f,rec){const G=window.SparrowGrowth,vs=G.views(rec),n=vs.length,id=f.id;
-  const rows=vs.map((v,i)=>({v,i})).reverse().map(({v,i})=>{const s=v.k&&SH.find(x=>keyOf(x)===v.k),fv=v.f&&fmtName(v.f),
+  const rowsAll=vs.map((v,i)=>({v,i})).reverse().map(({v,i})=>{const s=v.k&&SH.find(x=>keyOf(x)===v.k),fv=v.f&&fmtName(v.f),
     l1=s?esc(vShort(VN[s.v]))+' · '+s.t:(fv?esc(fv):''),l2=s&&fv?esc(fv):'',tag=n>1?(i===n-1?ppV('最近','Latest'):i===0?ppV('首刷','First'):''):'';
     return '<button type="button" class="dy-row" data-lg="edit" data-id="'+id+'" data-i="'+i+'"><span class="dy-d"><b>'+esc(v.d.slice(5).replace('-','.'))+'</b><small>'+v.d.slice(0,4)+'</small></span>'+
       '<span class="dy-m">'+(l1?'<span class="dy-l1">'+l1+'</span>':'<span class="dy-l1 nil">'+ppV('补充场次与版本','Add screening & format')+'</span>')+(l2?'<span class="dy-l2">'+l2+'</span>':'')+'</span>'+
-      (n>1?'<span class="dy-s">'+(v.r?'<b>'+v.r+'</b>':'<i>—</i>')+(tag?'<small>'+tag+'</small>':'')+'</span>':'<span></span>')+chevron+'</button>';}).join('');
-  return rows+
+      (n>1?'<span class="dy-s">'+(v.r?'<b>'+v.r+'</b>':'<i>—</i>')+(tag?'<small>'+tag+'</small>':'')+'</span>':'<span></span>')+chevron+'</button>';}),fold=n>DY_SHOW,open=!!DY_OPEN[id],hid=n-DY_SHOW,
+    rows=(fold&&!open?rowsAll.slice(0,DY_SHOW):rowsAll).join(''),
+    more=fold?'<button type="button" class="dy-more" data-dy="toggle" data-id="'+id+'" aria-expanded="'+open+'">'+(open?ppV('收起较早的观影','Show fewer'):ppV('展开其余 '+hid+' 次','Show '+hid+' earlier'))+' <i>'+(open?'▴':'▾')+'</i></button>':'';
+  return rows+more+
     '<button type="button" class="dy-add" data-lg="new" data-id="'+id+'">＋ '+ppV('再看一次','Log another viewing')+'</button>';}
 let LG=null; // 弹层草稿 {id,i,isNew,d,k,f,r}
 function lgPast(id){return SH.filter(x=>x.id===id&&isPast(x)).sort((a,b)=>showDate(b)-showDate(a));}
@@ -2215,6 +2219,7 @@ function lgPaint(){const el=document.querySelector('#lg-sheet .dy-body');if(el&&
 function lgClose(now){const w=document.getElementById('lg-sheet');LG=null;if(!document.getElementById('ts-sheet'))document.documentElement.classList.remove('ts-lock');if(!w)return;if(now||matchMedia('(prefers-reduced-motion: reduce)').matches){w.remove();return;}w.classList.add('out');setTimeout(()=>w.remove(),180);}
 function unstamp(id){watched[id]={del:1,t:Math.max(Date.now(),(watched[id].t||0)+1,...Object.values(watched[id].tasteAt||{}).map(t=>t+1))};saveWatched();toast('已移出观影护照');refreshMyRate(id);}
 document.addEventListener('click',e=>{
+  const dy=e.target.closest('[data-dy]');if(dy){const id=dy.dataset.id;DY_OPEN[id]=!DY_OPEN[id];refreshMyRate(id);return;}
   const rt=e.target.closest('[data-lg-rate]');if(rt&&LG){const v=+rt.dataset.v;LG.r=LG.r===v?0:v;lgPaint();return;}
   const b=e.target.closest('[data-lg]');if(!b)return;const a=b.dataset.lg;
   if(a==='edit'||a==='new'){lgOpen(b.dataset.id,a==='new'?-1:+b.dataset.i);return;}
