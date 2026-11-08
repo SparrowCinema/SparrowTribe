@@ -57,6 +57,19 @@
         </view>
         <text class="mr-score mono {{mine.r ? 'has' : ''}}">{{mine.scoreTxt}}</text></view>
       </view>
+
+      <view wx:if="{{mine.seen}}" class="taste-mini">
+        <view class="taste-head"><text class="taste-title">{{i.__en?'How did it feel?':'这部电影，有趣还是无聊？'}}</text><text class="taste-sub">TASTE / FILM</text></view>
+        <view wx:for="{{taste}}" wx:key="key" class="taste-row">
+          <view class="taste-caption"><text>{{item.key==='fun'?(i.__en?'Interesting':'有趣'):(i.__en?'Boring':'无聊')}}</text><text class="taste-description">{{item.key==='fun'?(i.__en?'How captivating?':'有多让你着迷？'):(i.__en?'How often did you feel bored?':'观看时多经常感到乏味？')}}</text></view>
+          <view class="taste-stars">
+            <text class="taste-zero {{item.value===0?'selected':''}}" data-k="{{item.key}}" data-n="0" bindtap="tasteRate">0</text>
+            <text wx:for="{{item.stars}}" wx:for-item="st" wx:key="n" class="taste-star {{st.on?'selected':''}}" data-k="{{item.key}}" data-n="{{st.n}}" bindtap="tasteRate">★</text>
+            <text class="taste-result">{{item.value===null?'—':item.value+'/5'}}</text>
+          </view>
+        </view>
+        <text class="taste-hint">{{i.__en?'0 = not at all · Tap your score again to skip · Both ratings are independent':'0 = 完全没有 · 再点相同分数可取消 · 两项感受可以同时很高'}}</text>
+      </view>
       <block wx:if="{{mine.seen && !mine.multi}}">
         <view class="mr-meta">
           <picker mode="date" value="{{mine.d}}" end="{{mine.today}}" bindchange="setSeenDate"><view class="mr-date">{{L.t(i,'观影日期')}} <text class="mono">{{mine.d}}</text> ▾</view></picker>
