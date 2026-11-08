@@ -186,3 +186,9 @@ Claude 与 GPT 可能使用同一 GitHub 身份，审批人数可先设为0；�
 ## 趣味评分 V1
 
 趣味字段 `fun` / `bore` 为独立 0–5，0 不是未评；撤销与公开意愿带 `tasteAt` 字段时间戳。修改、合并或迁移观影记录时使用 shared/taste.js / shared/psync.js，保留 `r`、`v`、`f` 和排片键。社区汇总只统计主动公开的评分，不开放私人 plans/档案。发版步骤、后端权限、测试与人工微信步骤见 docs/taste-v1-release.md。提交前增加运行 check-taste.js 及 check-taste-db.js。新增影片后：若生产库已执行最新 backend/taste-v1.sql（影片首次投票自动登记），无需操作；否则重新执行 backend/taste-films.sql。状态见 docs/taste-v1-release.md。
+
+### 趣味评分的页面结构（2026-11-09）
+
+- 影片页「我的观影」里只有一行趣味摘要（网页 `tasteRowHTML`，小程序 `.ts-row` / `tsRowModel`）：我的有趣/无聊分数 + 社区均分，点开是底部弹层（网页 `#ts-sheet`，桌面为居中对话框；小程序 `page-container`）。弹层里是两项评分、社区结果和「公开到影迷社区」开关（开关本身即同意，不再弹确认框）。
+- 四象限是「我的」里个人排片与我的海报墙之间的独立板块：网页 `#taste-map`（`tasteMapPage`），小程序 `pages/taste-map/taste-map`，样式沿用海报墙页标题与成长卡片；不再放在护照「成长」里。
+- 不做短评：公开短评需要内容审核且个人主体小程序难以开放 UGC 评论；私人备注以后如有需要再单独评估。

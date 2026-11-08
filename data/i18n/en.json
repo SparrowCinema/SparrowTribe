@@ -7794,6 +7794,9 @@
   }
  },
  "ui": {
+  "我的趣味图谱": "My taste map",
+  "有趣与无聊四象限": "Interesting vs boring quadrants",
+  "横轴是有趣度，纵轴是无聊度。在影片页「趣味」一栏给两项都打分，影片就会出现在图上。": "Across: how interesting. Up: how boring. Rate both in the Taste row on a film page and the film appears here.",
   "品牌与二维码固定保留。": "Branding and the QR code are always included.",
   "点击海报查看影片，向下浏览更多。": "Select a poster to open the film. Scroll down to explore more.",
   "我的海报墙": "My poster wall",
