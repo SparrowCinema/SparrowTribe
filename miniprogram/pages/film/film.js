@@ -89,18 +89,15 @@ Page({
   },
   // 我的观影：看过 + 五星十分制评分（每颗星 2 分，可半颗）
   buildMine() {
-    const data = app.globalData.data, idx = U.index(data), rec = W.get(this.id), r = rec ? rec.r || 0 : 0, s = rec ? W.showOf(rec, data) : null, en = I.isEn();
-    const vs = rec ? G.views(rec) : [], n = vs.length, multi = n > 1, ed = multi && this.ed >= 0 && this.ed < n ? this.ed : -1, open = multi && !!this.rwOpen;
-    const rated = vs.filter(v => v.r), avg = rated.length ? (rated.reduce((a, v) => a + v.r, 0) / rated.length).toFixed(1) : '';
+    const data = app.globalData.data, idx = U.index(data), rec = W.get(this.id), r = rec ? rec.r || 0 : 0, en = I.isEn();
+    const vs = rec ? G.views(rec) : [], n = vs.length;
     const fname = id => { const x = G.FMT[id]; return x ? (en ? x.en : x.zh) : ''; };
-    const rw = multi ? { n, open, txt: (en ? 'Watched ' + n + '×' : '看过 ' + n + ' 次'), sub: (avg ? (en ? 'avg ' : '均分 ') + avg + ' · ' : '') + (en ? 'last ' : '最近 ') + vs[n - 1].d.slice(5).replace('-', '.'),
-      dots: Array.from({ length: Math.min(n, 10) }, (_, k) => k),
-      rows: vs.map((v, i) => { const sh = v.k && data.shows.find(x => U.keyOf(x) === v.k); return { i, no: '#' + (i + 1), d: v.d.replace(/-/g, '.'), raw: v.d, r: v.r, rs: v.r ? String(v.r) : '—', stars: [1, 2, 3, 4, 5].map(k => Math.max(0, Math.min(2, v.r - (k - 1) * 2)) * 50), edit: i === ed, last: i === n - 1,
-        tag: i === 0 ? (en ? 'First' : '首刷') : i === n - 1 ? (en ? 'Latest' : '最近') : '', line: [fname(v.f) || (en ? 'Format not set' : '版本未填'), sh ? W.vShort(idx.VN[sh.v]) : ''].filter(Boolean).join(' · ') }; }) } : null;
+    const diary = vs.map((v, i) => { const sh = v.k && data.shows.find(x => U.keyOf(x) === v.k), fv = fname(v.f), l1 = sh ? W.vShort(idx.VN[sh.v]) + ' · ' + sh.t : fv;
+      return { i, md: v.d.slice(5).replace('-', '.'), y: v.d.slice(0, 4), l1: l1 || (en ? 'Add screening & format' : '补充场次与版本'), l1Nil: !l1, l2: sh && fv ? fv : '', rs: v.r ? String(v.r) : '—', rNil: !v.r,
+        tag: n > 1 ? (i === n - 1 ? (en ? 'Latest' : '最近') : i === 0 ? (en ? 'First' : '首刷') : '') : '' }; }).reverse();
     const taste = rec ? ['fun','bore'].map(k => ({ key:k, value: Taste.valid(rec[k]) ? rec[k] : null, stars: [1,2,3,4,5].map(n => ({ n, on: Taste.valid(rec[k]) && n <= rec[k] })) })) : ['fun','bore'].map(k => ({ key:k, value:null, stars:[1,2,3,4,5].map(n=>({n,on:false})) }));
-    this.setData({ community:C.model(this.id,I.isEn()), tsRow:this.tsRowModel(), taste, mine: { seen: !!rec, multi, rw, r, d: rec ? rec.d : '', today: W.iso(new Date()), stars: [1, 2, 3, 4, 5].map(i => Math.max(0, Math.min(2, r - (i - 1) * 2)) * 50),
-      at: s ? W.vShort(idx.VN[s.v]) + ' · ' + s.t : t('未关联场次'), seenTxt: t(rec ? '已看过 · 已盖章' : '＋ 看过'), scoreTxt: r ? r + '/10' : multi ? t('给最近一次打分') : t('点星打分'),
-      fmt: this.fmtModel(multi ? (ed >= 0 ? vs[ed].f : '') : rec && rec.f) } });
+    this.setData({ community:C.model(this.id,I.isEn()), tsRow:this.tsRowModel(), taste, mine: { seen: !!rec, n, r, diary, nTxt: en ? '×' + n : n + ' 次', stars: [1, 2, 3, 4, 5].map(i => Math.max(0, Math.min(2, r - (i - 1) * 2)) * 50),
+      seenTxt: t('＋ 看过'), scoreTxt: r ? r + '/10' : n > 1 ? t('给最近一次打分') : t('点星打分') } });
   },
   // 影片页一行摘要（与网页 tasteRowHTML 同规则）；点开为底部弹层 page-container
   tsRowModel(){const rec=W.get(this.id),en=I.isEn(),a=C.get(this.id),v=k=>rec&&Taste.valid(rec[k])?String(rec[k]):'—',seen=!!rec,mine=seen&&(Taste.valid(rec.fun)||Taste.valid(rec.bore));
@@ -111,31 +108,41 @@ Page({
   closeTaste(){if(this.data.tsShow)this.setData({tsShow:false});},
   toTasteMap(){this.setData({tsShow:false});wx.navigateTo({url:'/pages/taste-map/taste-map'});},
   tasteRate(e){const rec=W.get(this.id),k=e.currentTarget.dataset.k,n=Number(e.currentTarget.dataset.n);if(rec&&['fun','bore'].includes(k)&&Taste.valid(n))W.set(this.id,Taste.toggle(rec,k,n));},
-  // 多次观影：保存时让顶层字段与各次观影一致
-  saveViews(vs, extra) {
-    const rec = W.get(this.id); if (!rec) return;
-    const o = Object.assign({}, rec, extra || {}); delete o.v;
-    if (vs.length >= 2) o.v = vs; G.normRec(o);
-    if (vs.length < 2) { const x = vs[0]; o.d = x.d; o.r = x.r; o.k = x.k || ''; if (x.f) o.f = x.f; else delete o.f; }
-    W.set(this.id, o);
+  // 多次观影：保存时让顶层字段与各次观影一致（规则在 shared/growth.js setViews）
+  saveViews(vs) { const rec = W.get(this.id); if (!rec) return; const o = G.setViews(rec, vs); if (o) W.set(this.id, o); },
+  // —— 观影日记：点一行或「再看一次」打开底部编辑弹层（与网页 lgOpen 同规则）——
+  lgPast() { const data = app.globalData.data, idx = U.index(data); return data.shows.filter(x => x.id === this.id && U.ended(x, idx)).sort((a, b) => U.showDate(b) - U.showDate(a)); },
+  lgLabel(s) { const d = U.showDate(s), idx = U.index(app.globalData.data); return (d.getMonth() + 1) + '.' + String(d.getDate()).padStart(2, '0') + ' ' + s.t + ' · ' + W.vShort(idx.VN[s.v]); },
+  lgLink(d, k) { const past = this._past || []; if (k) { const s = past.find(x => U.keyOf(x) === k); if (s && W.iso(U.showDate(s)) === d) return k; } const s = past.find(x => W.iso(U.showDate(x)) === d); return s ? U.keyOf(s) : ''; },
+  lgOpen(e) {
+    const rec = W.get(this.id); if (!rec) return; const vs = G.views(rec), i = e && e.currentTarget.dataset.i !== undefined ? +e.currentTarget.dataset.i : -1;
+    this._past = this.lgPast();
+    if (i >= 0 && vs[i]) this._lg = { i, isNew: false, d: vs[i].d, k: vs[i].k || '', f: vs[i].f || '', r: vs[i].r || 0 };
+    else { const d = W.iso(new Date()); this._lg = { i: -1, isNew: true, d, k: '', f: '', r: 0 }; this._lg.k = this.lgLink(d, ''); }
+    this.lgPaint(true);
   },
-  rwAgain() {
-    const rec = W.get(this.id); if (!rec) return; const vs = G.views(rec), today = W.iso(new Date());
-    vs.push({ d: today, r: 0, k: '' }); vs.sort((a, b) => a.d.localeCompare(b.d)); this.rwOpen = true; this.ed = vs.map(x => x.d).lastIndexOf(today);
-    this.saveViews(vs); wx.showToast({ title: t('已加一次观影 · 可补日期、版本和评分'), icon: 'none' });
+  lgPaint(show) {
+    const o = this._lg; if (!o) return; const en = I.isEn(), past = this._past || [], n = G.views(W.get(this.id)).length, si = past.findIndex(x => U.keyOf(x) === o.k), s = si >= 0 ? past[si] : null;
+    const lg = { d: o.d, dShow: o.d.replace(/-/g, '.'), today: W.iso(new Date()), hasPast: past.length > 0, shows: [en ? 'No linked screening' : '不关联场次'].concat(past.map(x => this.lgLabel(x))), showIdx: si + 1,
+      at: s ? this.lgLabel(s) : (past.length ? (en ? 'None' : '不关联') : (en ? 'No past screenings' : '本片暂无已放映场次')), atNil: !s, fmt: this.fmtModel(o.f), r: o.r,
+      stars: [1, 2, 3, 4, 5].map(k => Math.max(0, Math.min(2, o.r - (k - 1) * 2)) * 50), scoreTxt: o.r ? o.r + '/10' : (en ? '—' : '未评'),
+      title: o.isNew ? (en ? 'Log another viewing' : '再看一次') : n > 1 ? (en ? 'Viewing ' + (o.i + 1) : '第 ' + (o.i + 1) + ' 次观影') : (en ? 'Viewing' : '观影记录'),
+      delTxt: o.isNew ? '' : n > 1 ? (en ? 'Delete this viewing' : '删除这一次') : (en ? 'Remove from passport' : '移出观影护照') };
+    const d = { lg }; if (show) d.lgShow = true; this.setData(d);
   },
-  rwToggle() { this.rwOpen = !this.rwOpen; this.ed = -1; this.buildMine(); },
-  rwEdit(e) { this.ed = +e.currentTarget.dataset.i; this.buildMine(); },
-  rwDone() { this.ed = -1; this.buildMine(); },
-  rwRate(e) { const rec = W.get(this.id), i = this.ed, v = +e.currentTarget.dataset.v; if (!rec || i < 0) return; const vs = G.views(rec); if (!vs[i]) return; vs[i].r = vs[i].r === v ? 0 : v; this.saveViews(vs); },
-  rwDate(e) {
-    const rec = W.get(this.id), i = this.ed, d = e.detail.value; if (!rec || i < 0 || !/^\d{4}-\d{2}-\d{2}$/.test(d)) return; const vs = G.views(rec); if (!vs[i]) return;
-    const data = app.globalData.data, idx = U.index(data), sh = data.shows.find(x => x.id === this.id && W.iso(U.showDate(x)) === d && U.ended(x, idx));
-    vs[i].d = d; vs[i].k = sh ? U.keyOf(sh) : ''; const key = vs[i]; vs.sort((a, b) => a.d.localeCompare(b.d)); this.ed = Math.max(0, vs.indexOf(key)); this.saveViews(vs);
+  lgDate(e) { const o = this._lg, d = e.detail.value; if (!o || !/^\d{4}-\d{2}-\d{2}$/.test(d)) return; o.d = d; o.k = this.lgLink(d, o.k); this.lgPaint(); },
+  lgPick(e) { const o = this._lg; if (!o) return; const k = +e.detail.value, s = k > 0 ? (this._past || [])[k - 1] : null; o.k = s ? U.keyOf(s) : ''; if (s) o.d = W.iso(U.showDate(s)); this.lgPaint(); },
+  lgRate(e) { const o = this._lg; if (!o) return; const v = +e.currentTarget.dataset.v; o.r = o.r === v ? 0 : v; this.lgPaint(); },
+  lgClose() { this._lg = null; if (this.data.lgShow) this.setData({ lgShow: false }); },
+  lgSave() {
+    const o = this._lg, rec = W.get(this.id); if (!o || !rec) return;
+    const res = G.putView(rec, o.isNew ? -1 : o.i, { d: o.d, r: o.r, k: o.k, f: o.f }); if (res.rec) W.set(this.id, res.rec);
+    wx.showToast({ title: o.isNew ? (I.isEn() ? 'Viewing logged' : '已记下这一次观影') : (I.isEn() ? 'Saved' : '已保存'), icon: 'none' }); this.lgClose();
   },
-  rwDel(e) {
-    const rec = W.get(this.id), i = +e.currentTarget.dataset.i; if (!rec) return;
-    wx.showModal({ title: t('删除这一次观影记录？'), confirmColor: '#8e2a22', success: r => { if (!r.confirm) return; const vs = G.views(rec).filter((x, k) => k !== i); this.ed = -1; if (vs.length < 2) this.rwOpen = false; this.saveViews(vs); } });
+  lgDel() {
+    const o = this._lg, rec = W.get(this.id); if (!o || !rec) return; const n = G.views(rec).length;
+    if (n < 2) { wx.showModal({ title: t('移出观影护照？'), content: t('这部电影的印章和评分会一起删除。'), confirmText: t('移出'), confirmColor: '#8e2a22', success: r => { if (r.confirm) { this.lgClose(); W.remove(this.id); wx.showToast({ title: t('已移出观影护照'), icon: 'none' }); } } }); return; }
+    wx.showModal({ title: t('删除这一次观影记录？'), confirmColor: '#8e2a22', success: r => { if (!r.confirm) return; const x = G.dropView(rec, o.i); if (x) W.set(this.id, x); this.lgClose(); } });
   },
   // 放映版本：两列选择器（类型 → 具体版本）
   fmtModel(cur) {
@@ -148,13 +155,11 @@ Page({
   fmtCol(e) {
     if (e.detail.column !== 0 || !this._fm) return;
     const g = this._fm[e.detail.value]; if (!g) return;
-    this.setData({ 'mine.fmt.cols[1]': g.items.map(x => x.n), 'mine.fmt.val': [e.detail.value, 0] });
+    this.setData({ 'lg.fmt.cols[1]': g.items.map(x => x.n), 'lg.fmt.val': [e.detail.value, 0] });
   },
   setFmt(e) {
-    const rec = W.get(this.id), v = e.detail.value; if (!rec || !this._fm) return;
-    const it = (this._fm[v[0]] || { items: [] }).items[v[1]], vs = G.views(rec);
-    if (vs.length > 1) { if (this.ed < 0 || !vs[this.ed]) return; if (it && it.id) vs[this.ed].f = it.id; else delete vs[this.ed].f; this.saveViews(vs); }
-    else { const o = Object.assign({}, rec); delete o.f; if (it && it.id) o.f = it.id; W.set(this.id, o); } wx.showToast({ title: t('放映版本已更新'), icon: 'none' });
+    const o = this._lg, v = e.detail.value; if (!o || !this._fm) return;
+    const it = (this._fm[v[0]] || { items: [] }).items[v[1]]; o.f = it && it.id ? it.id : ''; this.lgPaint();
   },
   toggleSeen() {
     if (W.get(this.id)) {
@@ -167,11 +172,6 @@ Page({
     if (old && vs.length > 1) { vs[vs.length - 1].r = vs[vs.length - 1].r === v ? 0 : v; this.saveViews(vs); }
     else W.set(this.id, Object.assign({}, rec, { r: rec.r === v ? 0 : v }));
     if (!old) wx.showToast({ title: t('已盖章 · 加入观影护照'), icon: 'none' });
-  },
-  setSeenDate(e) {
-    const d = e.detail.value, rec = W.get(this.id); if (!rec || !/^\d{4}-\d{2}-\d{2}$/.test(d)) return;
-    const data = app.globalData.data, idx = U.index(data), s = data.shows.find(x => x.id === this.id && W.iso(U.showDate(x)) === d && U.ended(x, idx));
-    W.set(this.id, Object.assign({}, rec, { d, k: s ? U.keyOf(s) : '' })); wx.showToast({ title: t('观影日期已更新'), icon: 'none' });
   },
   toMy() { app.globalData.openPassport = 1; wx.switchTab({ url: '/pages/my/my' }); },
   openMap(e) { const v = app.globalData.data.venues.find(x => x.id === e.currentTarget.dataset.v); if (v) U.openMap(v); },

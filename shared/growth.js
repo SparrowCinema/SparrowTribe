@@ -304,6 +304,25 @@
     };
   }
 
-  const api = { CATS, views, normRec, compute, levelOf, LEVELS, GROUPS, FORMATS, FORMAT_GROUPS, FMT, CITY, PER_VOL, pickList };
+  // 观影日记：写入一组观影（返回新记录，不改原对象）。保留评分外的其他字段（趣味分、公开意愿等）
+  function setViews(rec, list) {
+    const vs = (list || []).map(cleanView).filter(Boolean).sort((a, b) => a.d.localeCompare(b.d)).slice(0, 30);
+    if (!vs.length) return null;
+    const o = Object.assign({}, rec); delete o.v;
+    if (vs.length >= 2) { o.v = vs; normRec(o); }
+    else { const x = vs[0]; o.d = x.d; o.r = x.r; o.k = x.k || ''; if (x.f) o.f = x.f; else delete o.f; }
+    return o;
+  }
+  // i < 0 表示新增一次；返回 { rec, index }（排序后的位置）
+  function putView(rec, i, view) {
+    const vs = views(rec), one = cleanView(view); if (!one) return { rec, index: -1 };
+    if (i >= 0 && i < vs.length) vs[i] = one; else vs.push(one);
+    const o = setViews(rec, vs), after = views(o);
+    let idx = after.length - 1; for (let k = after.length - 1; k >= 0; k--) { const x = after[k]; if (x.d === one.d && x.r === one.r && (x.k || '') === (one.k || '') && (x.f || '') === (one.f || '')) { idx = k; break; } }
+    return { rec: o, index: idx };
+  }
+  function dropView(rec, i) { const vs = views(rec).filter((x, k) => k !== i); return vs.length ? setViews(rec, vs) : null; }
+
+  const api = { CATS, views, normRec, setViews, putView, dropView, compute, levelOf, LEVELS, GROUPS, FORMATS, FORMAT_GROUPS, FMT, CITY, PER_VOL, pickList };
   if (typeof module !== 'undefined' && module.exports) module.exports = api; else root.SparrowGrowth = api;
 })(typeof window !== 'undefined' ? window : this);
