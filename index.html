@@ -1328,7 +1328,7 @@ input:not([type=checkbox]):not([type=radio]),select,textarea{font-size:16px!impo
 .mc button[aria-selected=true]{color:var(--accent);border-color:var(--accent);box-shadow:0 2px 8px -3px rgba(60,40,20,.3)}
 
 </style>
-<link rel="stylesheet" href="styles/companion.css?v=83">
+<link rel="stylesheet" href="styles/companion.css?v=86">
 </head>
 <body>
 <div style="position:absolute;left:-9999px;top:0;width:0;height:0;overflow:hidden" aria-hidden="true"><img src="brand/og-square.jpg" alt="" width="300" height="300"></div>
@@ -2630,6 +2630,7 @@ function route(){
   const fwd=navFwd,bk=navBack;navFwd=false;navBack=false;
   const returning=changing&&viewPositions.has(h)&&(bk||!fwd||(activeRoute.startsWith("film-")&&h===filmReturn));
   activeRoute=h;
+  main.classList.toggle("prog-scale",h==="programmes"||h.startsWith("prog-")||h.startsWith("events-"));
   const tab = ["plan","export","about","install","poster-wall"].includes(h)||h.startsWith("share=") ? "my" : h==="gantt" ? "schedule" : h.startsWith("prog-")||h.startsWith("events-") ? "programmes" : h.startsWith("film-") ? null : h;
   document.querySelectorAll(".tab").forEach(t=>t.setAttribute("aria-current", t.dataset.tab===(tab||lastList)?"page":"false"));
   if(tab){ lastList = tab; topEl.innerHTML = brandBar(); }
