@@ -184,3 +184,6 @@
 .gs-d, .gs-t { color: var(--fg); flex: none; }
 .gs-p { flex: none; white-space: nowrap; }
 .gs-row{display:block;padding:0;font-size:calc(16 * var(--r));box-sizing:border-box}.gs-line{display:inline-flex;align-items:baseline;gap:calc(12 * var(--r));padding:calc(16 * var(--r));white-space:nowrap}
+
+/* Keep metadata labels on one line at phone widths. */
+.cr{gap:calc(20 * var(--r))}.ck{width:calc(176 * var(--r));font-size:inherit;white-space:nowrap}

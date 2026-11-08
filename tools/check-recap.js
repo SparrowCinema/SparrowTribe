@@ -49,3 +49,24 @@ assert.equal(JSON.stringify(archive),snapshot);
 console.log('PASS: web and mini recap default to the latest year, switch one calendar at a time, clear stale months, retain same-year selection and aggregate all years without month grids.');
 
 assert.equal(JSON.parse(fs.readFileSync(path.join(root,'data/i18n/en.json'),'utf8')).ui['已汇总全部年份，选择年份可按月筛选。'],'All years included. Select a year to filter by month.');
+
+// Period filters follow watched dates, including quarter and year boundaries.
+const Lib=require('../shared/library.js'),periodRows=['2025-12-31','2026-01-01','2026-03-31','2026-04-01','2026-11-08'].map(d=>({rec:{d}}));
+assert.deepStrictEqual(Lib.posterPeriods(periodRows,'year'),['2026','2025']);
+assert.deepStrictEqual(Lib.posterPeriods(periodRows,'quarter'),['2026-Q4','2026-Q2','2026-Q1','2025-Q4']);
+assert.equal(Lib.posterEntries(periodRows,'quarter','2026-Q1').length,2);
+assert.equal(Lib.posterEntries(periodRows,'month','2026-11').length,1);
+assert.equal(Lib.posterPeriod(null,'year'),'');
+const wallItems=Array.from({length:11},(_,i)=>({...item,title:'Wall '+i,img:i===0?{width:300,height:450}:null}));
+for(const cols of [5,10]){const o={...sample,sections:['cover','posters'],posterCols:cols,items:wallItems},ctx=context();R.draw(ctx,o);assert(ctx.calls.some(x=>x[0]==='drawImage'));assert(ctx.calls.some(x=>x[0]==='fillText'&&x[1]==='★ 8/10'));assert(ctx.calls.some(x=>x[0]==='fillText'&&String(x[1]).includes('微信搜索')));assert(R.heightOf(o)>R.heightOf({...o,items:[]}));}
+assert(R.heightOf({...sample,sections:['posters'],items:wallItems,posterCols:5})>R.heightOf({...sample,sections:['posters'],items:wallItems,posterCols:10}));
+rows.push({id:'new',f:film('new'),rec:{d:'2026-11-07',r:9}});p.setMode({detail:{value:2}});assert.equal(p.data.period,'2026-11');assert.equal(p.data.items.length,1);p.setPeriod({detail:{value:1}});assert.equal(p.data.period,'2026-10');assert.equal(p.data.items[0].id,'old');p.setMode({detail:{value:1}});assert.equal(p.data.period,'2026-Q4');
+console.log('PASS: annual/quarter/month watched-date boundaries, mini period switching, poster PNG layout, ratings, missing images and mandatory footer.');
+
+// A growing programme catalogue uses one searchable multi-select without losing selections.
+assert(!run("recapProgrammeHTML(['A','B'],()=>'<button></button>')").includes('rc-programme-picker'));
+run("PG.C={name:'C'};PG.D={name:'D'};PG.E={name:'E'};recapP=['A','E']");
+const programmePicker=run("recapProgrammeHTML(['A','B','C','D','E'],(v,n,on)=>'<button data-v='+v+' aria-pressed='+on+'>'+n+'</button>')");
+assert(programmePicker.includes('rc-prog-search'));assert(programmePicker.includes('A、E'));assert(programmePicker.includes('data-v=E aria-pressed=true'));
+my.toggleAppearance();assert.equal(my.data.appearanceOpen,true);my.toggleAppearance();assert.equal(my.data.appearanceOpen,false);my.toggleRcProgrammes();assert.equal(my.data.rcProgOpen,true);
+console.log('PASS: compact programme multi-select threshold, retained selection labels and collapsible appearance.');
