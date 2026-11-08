@@ -46,15 +46,11 @@
     </view>
 
     <view wx:if="{{!f.ev}}" class="mr card {{mine.seen ? 'on' : ''}}">
-      <view class="mr-h"><text class="mr-t">{{L.t(i,'我的观影')}}</text><text class="mr-en mono">MY FILM PASSPORT</text></view>
-      <view class="mr-row">
-        <view class="mr-seen" hover-class="hv" bindtap="toggleSeen">{{mine.seenTxt}}</view>
-        <view class="mr-rate"><view class="mr-stars">
-          <view wx:for="{{mine.stars}}" wx:key="index" class="mr-star">
-            <text class="s0">★</text><view class="s1" style="width:{{item}}%"><text>★</text></view>
-            <view class="hz l" data-v="{{index * 2 + 1}}" bindtap="rate" /><view class="hz r" data-v="{{index * 2 + 2}}" bindtap="rate" />
-          </view>
-        </view>
+      <view class="mr-top"><view class="mr-h"><text class="mr-t">{{L.t(i,'我的观影')}}</text><text class="mr-en mono">MY FILM PASSPORT</text></view>
+        <view wx:if="{{mine.seen}}" class="mr-stamp" hover-class="hv" bindtap="toMy"><text>{{i.__en?'Stamped':'已盖章'}}</text><text wx:if="{{mine.n > 1}}" class="mr-stamp-n mono">{{mine.nTxt}}</text><text class="mr-stamp-go">›</text></view></view>
+      <view class="mr-row {{mine.seen ? 'solo' : ''}}">
+        <view wx:if="{{!mine.seen}}" class="mr-seen" hover-class="hv" bindtap="toggleSeen">{{mine.seenTxt}}</view>
+        <view class="mr-rate"><view class="mr-stars"><view wx:for="{{mine.stars}}" wx:key="index" class="mr-star"><text class="s0">★</text><view class="s1" style="width:{{item}}%"><text>★</text></view><view class="hz l" data-v="{{index * 2 + 1}}" bindtap="rate" /><view class="hz r" data-v="{{index * 2 + 2}}" bindtap="rate" /></view></view>
         <text class="mr-score mono {{mine.r ? 'has' : ''}}">{{mine.scoreTxt}}</text></view>
       </view>
 
@@ -64,33 +60,16 @@
         <text wx:else class="{{mine.seen?'ts-cta':'ts-muted'}}">{{mine.seen?(i.__en?'Rate interesting and boring':'给有趣度、无聊度打分'):(i.__en?'Rate it after watching':'看过后可以评有趣度、无聊度')}}</text>
         <text class="ts-comm">{{tsRow.comm}}</text><text class="ts-go">›</text>
       </view>
-      <block wx:if="{{mine.seen && !mine.multi}}">
-        <view class="mr-list">
-          <picker mode="date" value="{{mine.d}}" end="{{mine.today}}" bindchange="setSeenDate"><view class="mr-li" hover-class="hv"><text class="mr-k">{{L.t(i,'观影日期')}}</text><text class="mr-v mono">{{mine.dShow}}</text><text class="mr-dd">▾</text></view></picker>
-          <view class="mr-li sep static"><text class="mr-k">{{L.t(i,'放映场次')}}</text><text class="mr-v {{mine.atNil ? 'nil' : ''}}">{{mine.at}}</text></view>
-          <picker mode="multiSelector" range="{{mine.fmt.cols}}" value="{{mine.fmt.val}}" bindchange="setFmt" bindcolumnchange="fmtCol"><view class="mr-li sep" hover-class="hv"><text class="mr-k">{{L.t(i,'放映版本')}}<text class="mr-opt">{{i.__en?'optional':'可选'}}</text></text><text class="mr-v {{mine.fmt.on ? '' : 'nil'}}">{{mine.fmt.txt}}</text><text class="mr-dd">▾</text></view></picker>
+      <view wx:if="{{mine.seen}}" class="dy">
+        <view class="dy-h"><text class="dy-hb">{{i.__en?'Diary':'观影日记'}}</text><text class="dy-hn mono">{{mine.nTxt}}</text></view>
+        <view wx:for="{{mine.diary}}" wx:key="i" class="dy-row" hover-class="hv" data-i="{{item.i}}" bindtap="lgOpen">
+          <view class="dy-d"><text class="dy-md mono">{{item.md}}</text><text class="dy-y mono">{{item.y}}</text></view>
+          <view class="dy-m"><text class="dy-l1 {{item.l1Nil ? 'nil' : ''}}">{{item.l1}}</text><text wx:if="{{item.l2}}" class="dy-l2">{{item.l2}}</text></view>
+          <view class="dy-s"><text class="dy-sb {{item.rNil ? 'nil' : ''}}">{{item.rs}}</text><text wx:if="{{item.tag}}" class="dy-st">{{item.tag}}</text></view>
+          <text class="dy-go">›</text>
         </view>
-        <view class="mr-acts"><text class="mr-again" bindtap="rwAgain">＋ {{i.__en?'Watch again':'再看一次'}}</text><text class="mr-go" bindtap="toMy">{{L.t(i,'查看护照 ›')}}</text></view>
-      </block>
-      <block wx:elif="{{mine.seen && mine.multi}}">
-        <view class="rw-strip" bindtap="rwToggle"><view class="rw-dots"><view wx:for="{{mine.rw.dots}}" wx:key="*this" class="rw-dot" /><text wx:if="{{mine.rw.n > 10}}" class="rw-more mono">+{{mine.rw.n - 10}}</text></view><text class="rw-b">{{mine.rw.txt}}</text><text class="rw-sub">{{mine.rw.sub}}</text><text class="rw-tg">{{mine.rw.open ? (i.__en ? 'Hide ▴' : '收起 ▴') : (i.__en ? 'Show ▾' : '展开 ▾')}}</text></view>
-        <view wx:if="{{mine.rw.open}}" class="rw-tl">
-          <block wx:for="{{mine.rw.rows}}" wx:key="i">
-            <view wx:if="{{!item.edit}}" class="rw-v {{item.last ? 'last' : ''}}" data-i="{{item.i}}" bindtap="rwEdit"><text class="rw-n mono">{{item.no}}</text><text class="rw-d">{{item.d}}</text><view class="rw-s"><text class="rw-sb {{item.r ? '' : 'nil'}}">{{item.rs}}</text><text wx:if="{{item.tag}}" class="rw-st">{{item.tag}}</text></view><text class="rw-f">{{item.line}}</text></view>
-            <view wx:else class="rw-v edit">
-              <view class="rw-eh"><text class="rw-n mono">{{item.no}}</text>
-                <view class="mr-stars"><view wx:for="{{item.stars}}" wx:for-item="st" wx:for-index="k" wx:key="k" class="mr-star"><text class="s0">★</text><view class="s1" style="width:{{st}}%"><text>★</text></view><view class="hz l" data-v="{{k * 2 + 1}}" bindtap="rwRate" /><view class="hz r" data-v="{{k * 2 + 2}}" bindtap="rwRate" /></view></view></view>
-              <view class="mr-list">
-                <picker mode="date" value="{{item.raw}}" end="{{mine.today}}" bindchange="rwDate"><view class="mr-li" hover-class="hv"><text class="mr-k">{{L.t(i,'观影日期')}}</text><text class="mr-v mono">{{item.d}}</text><text class="mr-dd">▾</text></view></picker>
-                <view class="mr-li sep static"><text class="mr-k">{{L.t(i,'放映场次')}}</text><text class="mr-v {{item.atNil ? 'nil' : ''}}">{{item.at}}</text></view>
-                <picker mode="multiSelector" range="{{mine.fmt.cols}}" value="{{mine.fmt.val}}" bindchange="setFmt" bindcolumnchange="fmtCol"><view class="mr-li sep" hover-class="hv"><text class="mr-k">{{L.t(i,'放映版本')}}<text class="mr-opt">{{i.__en?'optional':'可选'}}</text></text><text class="mr-v {{mine.fmt.on ? '' : 'nil'}}">{{mine.fmt.txt}}</text><text class="mr-dd">▾</text></view></picker>
-              </view>
-              <view class="rw-act"><text class="rw-done" bindtap="rwDone">{{i.__en ? 'Done' : '完成'}}</text><text class="rw-del" data-i="{{item.i}}" bindtap="rwDel">{{i.__en ? 'Delete' : '删除这一次'}}</text></view>
-            </view>
-          </block>
-          <view class="rw-add" bindtap="rwAgain">＋ {{i.__en ? 'Watch again' : '再看一次'}}</view>
-        </view>
-      </block>
+        <view class="dy-add" hover-class="hv" bindtap="lgOpen">＋ {{i.__en?'Log another viewing':'再看一次'}}</view>
+      </view>
       <text wx:else class="mr-tip">{{L.t(i,'看过后会在「我的 → 观影护照」盖下这部电影的印章；评分为五星十分制，可打半颗星。')}}</text>
     </view>
 
@@ -200,5 +179,24 @@
       <view class="community-card"><text class="community-title">{{i.__en?'Community':'影迷社区'}}<text class="taste-sub"> COMMUNITY</text></text><view class="community-values"><view><text class="cv-label">{{i.__en?'Interesting':'有趣度'}}</text><view class="cv-val"><block wx:if="{{community.fun.avg}}"><view class="cv-stars"><view wx:for="{{community.fun.stars}}" wx:for-item="p" wx:key="index" class="cv-star"><text class="s0">★</text><view class="s1" style="width:{{p}}%"><text>★</text></view></view></view><text class="cv-avg mono">{{community.fun.avg}}<text class="cv-of">/5</text></text></block><text wx:else class="cv-low">{{community.fun.low}}</text></view><text>{{community.fun.n}} {{i.__en?'ratings':'人评价'}}</text></view><view><text class="cv-label">{{i.__en?'Boring':'无聊度'}}</text><view class="cv-val"><block wx:if="{{community.bore.avg}}"><view class="cv-stars"><view wx:for="{{community.bore.stars}}" wx:for-item="p" wx:key="index" class="cv-star"><text class="s0">★</text><view class="s1" style="width:{{p}}%"><text>★</text></view></view></view><text class="cv-avg mono">{{community.bore.avg}}<text class="cv-of">/5</text></text></block><text wx:else class="cv-low">{{community.bore.low}}</text></view><text>{{community.bore.n}} {{i.__en?'ratings':'人评价'}}</text></view></view><text class="community-note">{{communityError?(i.__en?'Community unavailable. Personal ratings are saved locally.':'社区评分暂不可用；个人评分已保存在本机。'):(i.__en?'Each is counted separately; the average shows from 3 ratings.':'两项独立统计，各自满 3 人评价后显示平均星级。')}}</text><view wx:if="{{community.eligible}}" class="ts-share" role="switch" aria-checked="{{community.published}}" data-action="{{community.published?'withdraw':'publish'}}" bindtap="communityAction"><view class="ts-share-copy"><text class="ts-share-t">{{i.__en?'Share with the community':'公开到影迷社区'}}</text><text class="ts-share-s">{{community.published?(community.pending?(i.__en?'Pending upload; retries when online':'等待上传，联网后自动重试'):(i.__en?'Shared · edits replace your vote':'已公开 · 修改评分会替换原票')):(i.__en?'Only the two scores are pooled; dates, venues, names and photos stay private':'只汇总两项分数；日期、影院、姓名和照片不公开')}}</text></view><view class="ts-switch {{community.published?'on':''}}"><view class="ts-knob" /></view></view><text wx:elif="{{mine.seen}}" class="cs-hint">{{i.__en?'Rate first, then choose whether to share.':'评分后可以选择公开到社区。'}}</text><button wx:if="{{community.pending}}" class="community-button" data-action="retry" bindtap="communityAction">{{i.__en?'Pending upload · Retry':'等待上传 · 重试'}}</button></view>
     </scroll-view>
     <view class="ts-foot"><text class="ts-link" bindtap="toTasteMap">{{i.__en?'My taste map':'我的趣味图谱'}} ›</text><view class="ts-done" hover-class="hv" bindtap="closeTaste">{{i.__en?'Done':'完成'}}</view></view>
+  </view>
+</page-container>
+
+<page-container show="{{lgShow}}" position="bottom" round="{{true}}" z-index="1200" custom-style="background:transparent" overlay-style="background:rgba(24,16,8,0.45)" bind:afterleave="lgClose">
+  <view class="ts-sheet" style="{{ps}}">
+    <view class="ts-grab" />
+    <view class="ts-head"><view><text class="ts-kicker">DIARY · {{f.cn}}</text><text class="ts-title">{{lg.title}}</text></view><view class="ts-x" bindtap="lgClose" aria-label="{{i.__en?'Close':'关闭'}}" role="button">×</view></view>
+    <scroll-view scroll-y class="ts-body">
+      <view class="mr-list dy-form">
+        <picker mode="date" value="{{lg.d}}" end="{{lg.today}}" bindchange="lgDate"><view class="mr-li" hover-class="hv"><text class="mr-k">{{L.t(i,'观影日期')}}</text><text class="mr-v mono">{{lg.dShow}}</text><text class="mr-dd">▾</text></view></picker>
+        <picker wx:if="{{lg.hasPast}}" mode="selector" range="{{lg.shows}}" value="{{lg.showIdx}}" bindchange="lgPick"><view class="mr-li sep" hover-class="hv"><text class="mr-k">{{L.t(i,'放映场次')}}</text><text class="mr-v {{lg.atNil ? 'nil' : ''}}">{{lg.at}}</text><text class="mr-dd">▾</text></view></picker>
+        <view wx:else class="mr-li sep static"><text class="mr-k">{{L.t(i,'放映场次')}}</text><text class="mr-v nil">{{lg.at}}</text></view>
+        <picker mode="multiSelector" range="{{lg.fmt.cols}}" value="{{lg.fmt.val}}" bindchange="setFmt" bindcolumnchange="fmtCol"><view class="mr-li sep" hover-class="hv"><text class="mr-k">{{L.t(i,'放映版本')}}<text class="mr-opt">{{i.__en?'optional':'可选'}}</text></text><text class="mr-v {{lg.fmt.on ? '' : 'nil'}}">{{lg.fmt.txt}}</text><text class="mr-dd">▾</text></view></picker>
+      </view>
+      <view class="dy-rate"><text class="mr-k">{{i.__en?'Rating':'这一次的评分'}}</text>
+        <view class="mr-stars"><view wx:for="{{lg.stars}}" wx:key="index" class="mr-star"><text class="s0">★</text><view class="s1" style="width:{{item}}%"><text>★</text></view><view class="hz l" data-v="{{index * 2 + 1}}" bindtap="lgRate" /><view class="hz r" data-v="{{index * 2 + 2}}" bindtap="lgRate" /></view></view>
+        <text class="mr-score mono {{lg.r ? 'has' : ''}}">{{lg.scoreTxt}}</text></view>
+    </scroll-view>
+    <view class="ts-foot"><text wx:if="{{lg.delTxt}}" class="dy-del" bindtap="lgDel">{{lg.delTxt}}</text><text wx:else /><view class="ts-done" hover-class="hv" bindtap="lgSave">{{i.__en?'Save':'保存'}}</view></view>
   </view>
 </page-container>
