@@ -1,5 +1,5 @@
 /* 麻雀观影护照 service worker：页面和 data/ 排片数据走“网络优先”（保证排片总是最新），海报、图标等静态资源走“缓存优先”，离线时也能打开上次看过的内容。 */
-const CACHE = "sk-v143";
+const CACHE = "sk-v144";
 const CORE = ["./", "./index.html", "./manifest.webmanifest", "./vendor/qrcode.js", "./shared/recap.js","./shared/psync.js", "./shared/library.js", "./shared/premiere.js", "./shared/growth.js", "./shared/profile-backup.js", "./styles/companion.css", "./brand/passport-aperture.svg", "./data/catalog.json", "./icons/icon-192.png", "./icons/apple-touch-icon.png", "./brand/sparrow-movies-sq.png", "./brand/sparrow-tribe-sq.png", "./brand/sparrow-movies-sq-dark.png", "./brand/sparrow-tribe-sq-dark.png"];
 
 self.addEventListener("install", e => {

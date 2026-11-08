@@ -1,7 +1,7 @@
 @import "../../styles/selector.wxss";
 .cover { width: 100%; display: block; }
 .k { font-size: calc(16 * var(--r)); letter-spacing: calc(8 * var(--r)); color: var(--accent); margin-top: calc(36 * var(--r)); }
-.h1 { font-size: calc(33.6 * var(--r)); font-weight: 900; line-height: 1.2; margin: calc(8 * var(--r)) 0 calc(4 * var(--r)); }
+.h1 { font-size: calc(19 * var(--r)); font-weight: 900; line-height: 1.2; margin: calc(8 * var(--r)) 0 calc(4 * var(--r)); }
 .stats { display: flex; margin: calc(28 * var(--r)) 0; overflow: hidden; }
 .stats > view { flex: 1; display: flex; flex-direction: column; padding: calc(20 * var(--r)); }
 .stats > view + view { border-left: calc(2 * var(--r)) solid var(--line-soft); }
@@ -20,7 +20,7 @@
 .empty .es { font-size: calc(17.6 * var(--r)); color: var(--muted); }
 
 .gone-h { display: flex; align-items: baseline; gap: calc(14 * var(--r)); margin: calc(56 * var(--r)) 0 calc(18 * var(--r)); padding-top: calc(24 * var(--r)); border-top: calc(2 * var(--r)) dashed var(--line); color: var(--muted); }
-.gone-t { font-size: calc(21.2 * var(--r)); font-weight: 900; }
+.gone-t { font-size: calc(17 * var(--r)); font-weight: 900; }
 .gone-h .en { font-size: calc(16 * var(--r)); letter-spacing: calc(4 * var(--r)); }
 .gone-go { margin-left: auto; display: flex; align-items: center; gap: calc(8 * var(--r)); font-size: calc(16.5 * var(--r)); font-weight: 600; }
 .gone-ar { width: calc(12 * var(--r)); height: calc(12 * var(--r)); border-right: calc(3 * var(--r)) solid currentColor; border-bottom: calc(3 * var(--r)) solid currentColor; transform: rotate(45deg) translateY(calc(-3 * var(--r))); transition: transform .2s; }
