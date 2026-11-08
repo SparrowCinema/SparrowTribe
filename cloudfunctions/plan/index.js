@@ -14,7 +14,8 @@ function cleanWatched(w) {
     if (r.del) { out[id] = { del: 1, t }; return; }
     if (!/^\d{4}-\d{2}-\d{2}$/.test(String(r.d || ''))) return;
     out[id] = { d: r.d, r: Math.max(0, Math.min(10, Math.round(Number(r.r) || 0))), k: typeof r.k === 'string' ? r.k.slice(0, 80) : '', t };
-    if (typeof r.f === 'string' && /^[\w-]{1,20}$/.test(r.f)) out[id].f = r.f;   // 放映版本（可选）
+    if (typeof r.f === 'string' && /^[\w-]{1,20}$/.test(r.f)) out[id].f = r.f;
+    ['fun','bore'].forEach(k => { if (r[k] !== null && r[k] !== undefined && Number.isInteger(r[k]) && r[k] >= 0 && r[k] <= 5) out[id][k] = r[k]; });   // 放映版本（可选）
     if (Array.isArray(r.v)) {   // 多次观影（可选）：≥2 次才保存
       const vs = r.v.slice(0, 30).map(x => {
         if (!x || !/^\d{4}-\d{2}-\d{2}$/.test(String(x.d || ''))) return null;
