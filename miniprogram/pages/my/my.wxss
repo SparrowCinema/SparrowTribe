@@ -439,3 +439,7 @@
 
 
 /* 象限名贴外角，避免与圆点重叠（与网页一致） */
+
+/* 从影片页「已盖章」跳来：这枚印章轻轻盖一下 */
+.fp-cell.hit { animation: fpHit 1.6s ease-out .35s; }
+@keyframes fpHit { 0% { transform: scale(1.35); } 25% { transform: scale(.92); } 45% { transform: scale(1.05); } 100% { transform: scale(1); } }
