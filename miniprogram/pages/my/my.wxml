@@ -19,22 +19,6 @@
     <view class="sub">{{L.t(i,'把每一次银幕相遇，收进自己的电影档案。')}}</view>
   <view class="fp-tabs"><view class="fp-tab {{ppTab!=='growth'?'on':''}}" data-t="stamps" bindtap="ppTabSw">{{i.__en?'Stamps':'签章'}}</view><view class="fp-tab {{ppTab==='growth'?'on':''}}" data-t="growth" bindtap="ppTabSw">{{i.__en?'Growth':'成长'}}</view></view>
   <view wx:if="{{ppTab==='growth'}}" class="gw">
-    <view class="taste-map gs">
-      <view class="gs-h"><text class="gs-t">{{i.__en?'Film taste map':'电影趣味图谱'}}</text><text class="gs-s">{{tasteMap.n}} {{i.__en?'films':'部电影'}}</text></view>
-      <view class="taste-switch"><button data-mode="mine" class="{{tasteMode!=='community'?'on':''}}" bindtap="setTasteMode">{{i.__en?'My quadrants':'我的四象限'}}</button><button data-mode="community" class="{{tasteMode==='community'?'on':''}}" bindtap="setTasteMode">{{i.__en?'Community quadrants':'社区四象限'}}</button></view>
-      <view class="taste-plot">
-        <view class="taste-q taste-q1">{{i.__en?'Enduring':'漫长难熬'}}</view><view class="taste-q taste-q2">{{i.__en?'Captivating & tiring':'迷人又折磨'}}</view>
-        <view class="taste-q taste-q3">{{i.__en?'Quiet':'平静无波'}}</view><view class="taste-q taste-q4">{{i.__en?'Delightful':'趣味横生'}}</view>
-        <view wx:for="{{tasteMap.points}}" wx:key="key" class="taste-dot" style="left:{{item.x}}%;top:{{item.y}}%" role="button" aria-label="{{item.fun}}/5 · {{item.bore}}/5 · {{item.n}}" data-key="{{item.key}}" bindtap="selectTastePoint">{{item.n>1?item.n:''}}</view>
-      </view>
-      <view class="taste-selected"><button wx:for="{{tasteSelected}}" wx:key="id" data-id="{{item.id}}" bindtap="openTasteFilm">{{item.title}} · {{i.__en?'Interesting':'有趣'}} {{item.funTxt}} · {{i.__en?'Boring':'无聊'}} {{item.boreTxt}} ›</button></view>
-      <text wx:if="{{tasteMode==='community'}}" class="taste-foot">{{tasteCommunityError?(i.__en?'Community unavailable. Your personal map is unaffected.':'社区暂不可用，个人图谱不受影响。'):(i.__en?'Averages within 2.75–3.25 are hard to classify and sit on the midline. Tap a point to see the films.':'均分在 2.75–3.25 之间算难以归类，落在中线上。点击圆点查看影片。')}}<block wx:if="{{!tasteCommunityError && tasteLow}}"> {{i.__en?tasteLow+' films have fewer than 3 paired ratings and are not plotted yet.':tasteLow+' 部影片样本不足 3 人，暂不上图。'}}</block></text>
-      <text wx:else class="taste-foot">{{i.__en?'A 3 is the middle value: hard to classify, plotted on the midline. Films rated on only one scale are not plotted. Tap a point to see the films.':'3 分是中间值，算难以归类，落在中线上；只评了一项的影片不上图。点击圆点查看影片。'}}</text>
-      <view class="taste-axis">{{i.__en?'Interesting →':'有趣度 →'}}　　{{i.__en?'↑ Boring':'↑ 无聊度'}}</view>
-      <view class="taste-legend"><view wx:for="{{tasteMap.quadrants}}" wx:key="index"><text>{{item.name}} </text><text class="mono tl-n">{{item.count}}</text></view><view><text>{{i.__en?'Hard to classify':'难以归类'}} </text><text class="mono tl-n">{{tasteMap.unsure}}</text></view></view>
-      <text class="gs-empty" wx:if="{{!tasteMap.n}}">{{i.__en?'Rate both dimensions on a watched film to start your map.':'给看过的电影分别评价有趣和无聊，就能点亮图谱。'}}</text>
-    </view>
-
     <view class="gh">
       <text class="gh-k mono">{{L.t(i,'我的影迷等级')}}</text>
       <view class="gh-row"><view class="gh-n"><text class="gh-nb">{{gr.n}}</text><text class="gh-nu">{{i.__en?'films':'部'}}</text></view><view class="gh-lv"><text class="gh-name">{{gr.lvName}}</text><text wx:if="{{gr.lvSub}}" class="gh-sub">{{gr.lvSub}}</text></view></view>
@@ -137,6 +121,7 @@ ONE STAMP</text><text class="fp-open-icon">↗</text></view>
   </view>
   <view class="me-row" hover-class="hv" bindtap="openRecap"><image class="me-ic" src="/images/menu/recap.svg" mode="aspectFit" /><view class="me-copy"><text class="me-t">{{L.t(i,'我的影院观影结算')}}</text><text class="me-s">{{L.t(i,'按年份与专题，收藏印章与评分。')}}</text></view><text class="me-go">›</text></view>
   <view class="me-row" hover-class="hv" bindtap="toPlan"><image class="me-ic" src="/images/menu/plan.svg" mode="aspectFit" /><view class="me-copy"><text class="me-t">{{L.t(i,'个人排片')}}</text><text class="me-s">{{planSub}}</text></view><text class="me-go">›</text></view>
+  <view class="me-row" hover-class="hv" bindtap="toTasteMap"><image class="me-ic" src="/images/menu/taste.svg" mode="aspectFit" /><view class="me-copy"><text class="me-t">{{L.t(i,'我的趣味图谱')}}</text><text class="me-s">{{tasteSub}}</text></view><text class="me-go">›</text></view>
   <view class="me-row" hover-class="hv" bindtap="toPosterWall"><image class="me-ic" src="/images/menu/wall.svg" mode="aspectFit" /><view class="me-copy"><text class="me-t">{{L.t(i,'我的海报墙')}}</text><text class="me-s">{{L.t(i,'看过的影片 · 我的评分')}}</text></view><text class="me-go">›</text></view>
   <view class="me-row" bindtap="toggleAppearance" hover-class="hv"><text class="me-theme-icon">◐</text><view class="me-copy"><text class="me-t">{{L.t(i,'外观')}}</text><text class="me-s">{{tpref==='light'?L.t(i,'浅色'):tpref==='dark'?L.t(i,'暗色'):L.t(i,'跟随系统')}}</text></view><text class="me-go">{{appearanceOpen?'⌄':'›'}}</text></view>
   <view wx:if="{{appearanceOpen}}" class="appearance-body"><text class="me-s">{{L.t(i,'自动跟随手机或电脑，也可固定浅色、暗色')}}</text><view class="th-seg"><view class="th-o {{tpref==='auto'?'on':''}}" data-p="auto" bindtap="setTheme">{{L.t(i,'跟随系统')}}</view><view class="th-o {{tpref==='light'?'on':''}}" data-p="light" bindtap="setTheme">{{L.t(i,'浅色')}}</view><view class="th-o {{tpref==='dark'?'on':''}}" data-p="dark" bindtap="setTheme">{{L.t(i,'暗色')}}</view></view></view>

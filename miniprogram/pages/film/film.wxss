@@ -206,3 +206,35 @@
 .cv-star .s0{color:var(--line)}.cv-star .s1{position:absolute;left:0;top:0;height:100%;overflow:hidden;color:#c8862a}.cv-star .s1 text{display:block;width:calc(30 * var(--r));text-align:center}
 .cv-avg{font-size:calc(34 * var(--r));font-weight:600;color:var(--fg)}.cv-of{font-size:calc(20 * var(--r));color:var(--muted);font-weight:400}
 .cv-low{font-size:calc(22 * var(--r));color:var(--muted)}
+
+/* 趣味评分：影片页一行摘要 + 底部弹层（与网页 .ts-row / .ts-sheet 一致） */
+.ts-row{display:flex;align-items:center;gap:calc(20 * var(--r));margin-top:calc(26 * var(--r));padding:calc(24 * var(--r)) 0 calc(6 * var(--r));border-top:calc(2 * var(--r)) solid var(--line);font-size:calc(25 * var(--r));color:var(--muted);min-height:calc(64 * var(--r))}
+.ts-row-k{flex:none;font-weight:700;color:var(--fg)}
+.ts-mine{display:flex;align-items:baseline}.ts-n{font-size:calc(30 * var(--r));font-weight:600;color:#c8862a}.ts-gap{margin-left:calc(24 * var(--r))}
+.ts-cta{color:var(--accent);font-weight:600}.ts-muted{color:var(--muted)}
+.ts-comm{margin-left:auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--muted)}.ts-go{font-size:calc(34 * var(--r));color:var(--muted);line-height:1}
+.ts-sheet{background:var(--bg);color:var(--fg);border-radius:calc(44 * var(--r)) calc(44 * var(--r)) 0 0;padding:calc(16 * var(--r)) calc(44 * var(--r)) 0;display:flex;flex-direction:column;max-height:88vh;box-sizing:border-box}
+.ts-grab{width:calc(76 * var(--r));height:calc(8 * var(--r));border-radius:calc(4 * var(--r));background:var(--line);margin:calc(4 * var(--r)) auto calc(24 * var(--r))}
+.ts-head{display:flex;align-items:flex-start;justify-content:space-between;gap:calc(24 * var(--r));margin-bottom:calc(8 * var(--r))}
+.ts-kicker{display:block;font-family:monospace;font-size:calc(20 * var(--r));letter-spacing:calc(2 * var(--r));color:var(--muted);margin-bottom:calc(10 * var(--r))}
+.ts-title{display:block;font-family:"Songti SC",serif;font-weight:700;font-size:calc(36 * var(--r));line-height:1.35}
+.ts-x{flex:none;width:calc(64 * var(--r));height:calc(64 * var(--r));border-radius:50%;background:var(--surface);color:var(--muted);font-size:calc(40 * var(--r));line-height:calc(60 * var(--r));text-align:center}
+.ts-body{flex:1;min-height:0;max-height:62vh}
+.ts-body .taste-row{margin:calc(30 * var(--r)) 0}
+.ts-body .taste-stars .taste-zero{width:calc(62 * var(--r));height:calc(62 * var(--r));min-width:0;padding:0;box-sizing:border-box;display:flex;align-items:center;justify-content:center;border-radius:50%}
+.ts-body .taste-stars-row .mr-star{width:calc(60 * var(--r));height:calc(60 * var(--r));font-size:calc(46 * var(--r));line-height:calc(60 * var(--r))}
+.ts-body .taste-stars-row .mr-star .s1 text{width:calc(60 * var(--r))}
+.ts-unseen{display:flex;flex-direction:column;gap:calc(24 * var(--r));padding:calc(32 * var(--r));margin-top:calc(20 * var(--r));border-radius:calc(28 * var(--r));background:var(--surface);font-size:calc(25 * var(--r));color:var(--muted);line-height:1.6}
+.ts-unseen-btn{align-self:flex-start;padding:calc(16 * var(--r)) calc(32 * var(--r));border:calc(2 * var(--r)) solid var(--line);border-radius:calc(20 * var(--r));color:var(--fg);font-weight:600}
+.ts-body .community-card{margin-top:calc(36 * var(--r));padding-top:calc(34 * var(--r))}
+.ts-body .community-values{border:0;background:none;gap:calc(20 * var(--r))}
+.ts-body .community-values>view{border-radius:calc(28 * var(--r));background:var(--surface)}.ts-body .community-values>view+view{border-left:0}
+.ts-share{display:flex;align-items:center;gap:calc(28 * var(--r));margin-top:calc(26 * var(--r));padding:calc(28 * var(--r)) calc(32 * var(--r));border-radius:calc(28 * var(--r));background:var(--surface)}
+.ts-share-copy{flex:1;display:flex;flex-direction:column;gap:calc(6 * var(--r))}.ts-share-t{font-size:calc(26 * var(--r));font-weight:700}.ts-share-s{font-size:calc(21 * var(--r));line-height:1.5;color:var(--muted)}
+.ts-switch{flex:none;position:relative;width:calc(88 * var(--r));height:calc(52 * var(--r));border-radius:calc(26 * var(--r));background:var(--line);transition:background .2s}
+.ts-knob{position:absolute;left:calc(6 * var(--r));top:calc(6 * var(--r));width:calc(40 * var(--r));height:calc(40 * var(--r));border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.25);transition:transform .2s}
+.ts-switch.on{background:var(--teal)}.ts-switch.on .ts-knob{transform:translateX(calc(36 * var(--r)))}
+.cs-hint{display:block;font-size:calc(22 * var(--r));color:var(--muted);margin-top:calc(22 * var(--r))}
+.ts-foot{display:flex;align-items:center;justify-content:space-between;gap:calc(24 * var(--r));margin:calc(20 * var(--r)) calc(-44 * var(--r)) 0;padding:calc(22 * var(--r)) calc(44 * var(--r)) calc(22 * var(--r) + env(safe-area-inset-bottom));border-top:calc(2 * var(--r)) solid var(--line)}
+.ts-link{font-size:calc(23 * var(--r));color:var(--muted);text-decoration:underline}
+.ts-done{min-width:calc(190 * var(--r));text-align:center;padding:calc(22 * var(--r)) calc(32 * var(--r));border-radius:calc(20 * var(--r));background:var(--accent);color:#fffaf0;font-size:calc(26 * var(--r));font-weight:700}
