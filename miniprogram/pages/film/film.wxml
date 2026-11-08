@@ -169,7 +169,7 @@
           <view class="taste-caption"><text>{{item.key==='fun'?(i.__en?'Interesting':'有趣度'):(i.__en?'Boring':'无聊度')}}</text><text class="taste-description">{{item.key==='fun'?(i.__en?'How captivating?':'有多让你着迷？'):(i.__en?'How often did you feel bored?':'观看时多经常感到乏味？')}}</text></view>
           <view class="taste-stars">
             <text class="taste-zero {{item.value===0?'selected':''}}" data-k="{{item.key}}" data-n="0" bindtap="tasteRate">0</text>
-            <view class="mr-stars taste-stars-row"><view wx:for="{{item.stars}}" wx:for-item="st" wx:key="n" class="mr-star"><text class="s0">★</text><view class="s1" style="width:{{st.on?100:0}}%"><text>★</text></view><view class="hz full" data-k="{{item.key}}" data-n="{{st.n}}" bindtap="tasteRate" /></view></view>
+            <view class="mr-stars taste-stars-row"><view wx:for="{{item.stars}}" wx:for-item="st" wx:key="n" class="mr-star"><text class="s0">★</text><view class="s1" style="width:{{st.fill}}%"><text>★</text></view><view class="hz l" data-k="{{item.key}}" data-n="{{st.n - 0.5}}" bindtap="tasteRate" /><view class="hz r" data-k="{{item.key}}" data-n="{{st.n}}" bindtap="tasteRate" /></view></view>
             <text class="taste-result mono"><block wx:if="{{item.value===null}}"><text class="tr-nil">{{i.__en?'Not rated':'未评'}}</text></block><block wx:else><text class="tr-v">{{item.value}}</text>/5</block></text>
           </view>
         </view>

@@ -13,7 +13,9 @@ await vote(2,5,1,1);a=await read();assert.equal(a.funAvg,3);assert.equal(a.boreA
 await vote(3,3,3,1);a=await read();assert.equal(a.pairN,3);assert.equal(a.pairFun,2.67);assert.equal(a.pairBore,3);
 assert((await vote(0,0,5,1)).ok);assert.equal((await read()).funN,4);await vote(0,5,0,2);assert.equal((await read()).funN,4);assert.equal((await vote(0,1,1,1)).reason,'stale');
 await vote(0,null,null,3);a=await read();assert.equal(a.funN,3);assert.equal(a.pairN,2);assert.equal(a.pairFun,null);
-await assert.rejects(()=>vote(0,6,0,4));await assert.rejects(()=>vote(0,-1,0,4));
+await assert.rejects(()=>vote(0,6,0,4));await assert.rejects(()=>vote(0,-1,0,4));await assert.rejects(()=>vote(0,3.3,0,4));await assert.rejects(()=>vote(0,5.5,0,4));
+// 半星：0.5 步长可写入，均值按小数汇总。
+{const h=await vote(1,3.5,0.5,2);assert.equal(h.ok,true);}
 await db.exec('set role anon;');await assert.rejects(()=>db.query('select * from sparrow_taste.ballots'));await assert.rejects(()=>db.query("insert into sparrow_taste.ballots values('x','test-film',5,0,1,now())"));a=await read();assert.equal(a.funN,3);assert(!JSON.stringify(a).includes('voter'));await db.exec('reset role;');
 // Whole-catalogue reads list only rated films; unrated films are omitted (= zero).
 {const all=(await db.query('select public.st_taste_read() x')).rows[0].x;assert(all.films.some(f=>f.id==='test-film'));assert(!all.films.some(f=>f.id==='second-film'));}
