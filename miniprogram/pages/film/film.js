@@ -23,8 +23,8 @@ Page({
   onPageScroll(e) { T.scroll(this, e); },
   toTop() { T.go(); },
   data: { i: {}, f: null, open: false, fs: 1 },
-  onLoad(q) { this.setData({ i: I.dict() }); this.id = q.id; this.off1 = app.onData(() => this.build()); this.off2 = plan.onChange(() => this.build()); this.off3 = W.onChange(() => this.buildMine()); this.offC=C.subscribe(()=>this.setData({community:C.model(this.id)}));this.build();this.loadCommunity(); },
-  loadCommunity(){C.read([this.id]).then(()=>this.setData({community:C.model(this.id),communityError:false})).catch(()=>this.setData({communityError:true}));},
+  onLoad(q) { this.setData({ i: I.dict() }); this.id = q.id; this.off1 = app.onData(() => this.build()); this.off2 = plan.onChange(() => this.build()); this.off3 = W.onChange(() => this.buildMine()); this.offC=C.subscribe(()=>this.setData({community:C.model(this.id,I.isEn())}));this.build();this.loadCommunity(); },
+  loadCommunity(){C.read([this.id]).then(()=>this.setData({community:C.model(this.id,I.isEn()),communityError:false})).catch(()=>this.setData({communityError:true}));},
   async communityAction(e){const action=e.currentTarget.dataset.action;if(action==='retry'){await SY.quiet();C.changed();await C.flush();return this.loadCommunity();}if(!C.identity()){wx.showToast({title:t('请先在「我的」开启云端同步'),icon:'none'});return;}const rec=W.get(this.id);if(!rec)return;const commit=async()=>{await SY.quiet();const current=W.get(this.id);if(!current)return;W.set(this.id,Taste.set(current,'tastePublic',action==='publish'));C.changed();await C.flush();this.loadCommunity();};if(action==='publish')wx.showModal({title:t('发布到社区'),content:t('仅公开有趣度与无聊度供匿名汇总，日期、姓名与照片不会公开。'),success:r=>{if(r.confirm)commit();}});else commit();},
   toggleGone() { this.setData({ goneOpen: !this.data.goneOpen }); },
   onUnload() { this.offC&&this.offC();this.off1 && this.off1(); this.off2 && this.off2(); this.off3 && this.off3(); },
@@ -98,7 +98,7 @@ Page({
       rows: vs.map((v, i) => { const sh = v.k && data.shows.find(x => U.keyOf(x) === v.k); return { i, no: '#' + (i + 1), d: v.d.replace(/-/g, '.'), raw: v.d, r: v.r, rs: v.r ? String(v.r) : '—', stars: [1, 2, 3, 4, 5].map(k => Math.max(0, Math.min(2, v.r - (k - 1) * 2)) * 50), edit: i === ed, last: i === n - 1,
         tag: i === 0 ? (en ? 'First' : '首刷') : i === n - 1 ? (en ? 'Latest' : '最近') : '', line: [fname(v.f) || (en ? 'Format not set' : '版本未填'), sh ? W.vShort(idx.VN[sh.v]) : ''].filter(Boolean).join(' · ') }; }) } : null;
     const taste = rec ? ['fun','bore'].map(k => ({ key:k, value: Taste.valid(rec[k]) ? rec[k] : null, stars: [1,2,3,4,5].map(n => ({ n, on: Taste.valid(rec[k]) && n <= rec[k] })) })) : ['fun','bore'].map(k => ({ key:k, value:null, stars:[1,2,3,4,5].map(n=>({n,on:false})) }));
-    this.setData({ community:C.model(this.id), taste, mine: { seen: !!rec, multi, rw, r, d: rec ? rec.d : '', today: W.iso(new Date()), stars: [1, 2, 3, 4, 5].map(i => Math.max(0, Math.min(2, r - (i - 1) * 2)) * 50),
+    this.setData({ community:C.model(this.id,I.isEn()), taste, mine: { seen: !!rec, multi, rw, r, d: rec ? rec.d : '', today: W.iso(new Date()), stars: [1, 2, 3, 4, 5].map(i => Math.max(0, Math.min(2, r - (i - 1) * 2)) * 50),
       at: s ? W.vShort(idx.VN[s.v]) + ' · ' + s.t : t('未关联场次'), seenTxt: t(rec ? '已看过 · 已盖章' : '＋ 看过'), scoreTxt: r ? r + '/10' : multi ? t('给最近一次打分') : t('点星打分'),
       fmt: this.fmtModel(multi ? (ed >= 0 ? vs[ed].f : '') : rec && rec.f) } });
   },

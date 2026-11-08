@@ -15,5 +15,13 @@ assert((await vote(0,0,5,1)).ok);assert.equal((await read()).funN,4);await vote(
 await vote(0,null,null,3);a=await read();assert.equal(a.funN,3);assert.equal(a.pairN,2);assert.equal(a.pairFun,null);
 await assert.rejects(()=>vote(0,6,0,4));await assert.rejects(()=>vote(0,-1,0,4));
 await db.exec('set role anon;');await assert.rejects(()=>db.query('select * from sparrow_taste.ballots'));await assert.rejects(()=>db.query("insert into sparrow_taste.ballots values('x','test-film',5,0,1,now())"));a=await read();assert.equal(a.funN,3);assert(!JSON.stringify(a).includes('voter'));await db.exec('reset role;');
+// Whole-catalogue reads list only rated films; unrated films are omitted (= zero).
+{const all=(await db.query('select public.st_taste_read() x')).rows[0].x;assert(all.films.some(f=>f.id==='test-film'));assert(!all.films.some(f=>f.id==='second-film'));}
+// New catalogue films self-register on the first watched-gated vote; unwatched ones stay out.
+await db.query('update public.test_profiles set data=jsonb_set(data::jsonb,\'{watched,new-film}\',\'{"d":"2026-11-09"}\')::jsonb where code=$1',[code(2)]);
+{const ok=(await db.query("select public.st_taste_vote($1,'new-film',4,null,1) x",[code(2)])).rows[0].x;assert.equal(ok.ok,true);assert.equal(ok.summary.funN,1);
+ await assert.rejects(()=>db.query("select public.st_taste_vote($1,'never-watched',4,null,1) x",[code(3)]));
+ assert.equal((await db.query("select count(*)::int n from sparrow_taste.films where id='never-watched'")).rows[0].n,0);
+ assert.equal((await db.query("select public.st_taste_vote($1,'never-watched',null,null,1) x",[code(3)])).rows[0].x.ok,true);}
 for(let n=4;n<30;n++){const r=await vote(1,n%6,1,n);if(r.reason==='rate_limited')break;}assert.equal((await vote(1,1,1,100)).reason,'rate_limited');
 await db.close();console.log('PASS: PostgreSQL migration/idempotency, zero/partial samples, independent means, paired averages, replacement/withdrawal, replay/stale requests, ACLs and rate limits.');})().catch(e=>{console.error(e.message,e.where||'',e.position,e.internalPosition,(e.query||e.internalQuery||'').slice(Math.max(0,Number(e.position||e.internalPosition)-150),Number(e.position||e.internalPosition)+150));process.exit(1);});

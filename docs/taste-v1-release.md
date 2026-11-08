@@ -39,8 +39,25 @@
 
 实现依据：[Supabase 数据库函数与权限](https://supabase.com/docs/guides/database/functions)、[Data API 安全](https://supabase.com/docs/guides/api/securing-your-api)、[微信云 SDK 接口](https://github.com/wechat-miniprogram/wx-server-sdk/blob/master/index.d.ts)。
 
-## 待验收状态
+## 显示规则（网页与小程序一致）
 
-2026-11-09：本地 PostgreSQL 与兼容性测试通过；生产 st_taste_read 仍返回 HTTP 404 / PGRST202（接口缓存中无此函数），尚未进行生产写入或创建测试档案。用户要求将 Supabase 部署与真实往返验证交给 Claude 继续。请在 dclxhxxjktegyiwafmsv 项目检查迁移与 schema cache 后运行 check-taste-live.js，不可用其他项目的成功执行代替。
+- 个人评分沿用十分制的星星样式，每颗星 1 分；「0」按钮代表完全没有，与「未评」分开显示。
+- 社区评分：两项分别显示「N 人评价」和平均星级（按比例填充的星星 + 一位小数）；某项不足 3 人时显示「样本不足 · 还差 N 人」，没人评过显示「暂无评价」。
+- 图谱坐标：3 分正好落在象限中线上（个人 3 分、社区均分 2.75–3.25 记为「难以归类」，图例单列计数）；象限名贴外角，不被圆点遮挡。社区模式提示有多少部影片因样本不足暂不上图。
+- `st_taste_read()` 不带参数时只返回有评分的影片（片库到几千部也不会截断），客户端把未返回的影片视为 0 人评价。
 
-浏览器控制连接超时，未完成桌面/窄屏截图验收；小程序云函数部署、开发者工具/真机验收、上传审核尚待人工完成。以上不以本地渲染与单元测试代替，不宣称完整 V1 已上线。
+## 部署与验收状态（2026-11-09，Claude）
+
+已在生产 Supabase 项目 `dclxhxxjktegyiwafmsv`（michelin-guide，与同步码共用）完成：
+
+- 迁移 `sparrow_taste_v1` 已执行：`sparrow_taste` schema、四张表（RLS 开启、对 anon/authenticated 无任何表权限）、`st_taste_read` / `st_taste_vote`。
+- 影片名单已写入 271 部（`backend/taste-films.sql`）。
+- 真实往返验证（在生产库以 `anon` 角色执行，最后整体回滚，未留下测试档案或选票）：建档案 → 投票成功 → 重复提交不重复计数 → 过期版本返回 stale → 修改替换原票 → 未看过的影片被拒 → 匿名读取原始选票被拒 → 撤回后人数归零。回滚后复查 ballots/limits/测试档案均为 0。
+- Supabase 安全建议：只有与现有 `mg_*` 同类的「匿名可调用 SECURITY DEFINER 函数」「RLS 无策略」提示，属预期设计（只经函数访问）。
+
+尚待完成：
+
+1. **影片自动登记（待确认）**：仓库中的 `st_taste_vote` 已改为「首次合法投票时自动登记影片」（门槛仍是投票者自己档案里有看过记录），以后加片无需再跑 SQL。该迁移在生产执行时需要用户在界面确认，确认超时未执行。执行前，新增影片后仍需运行 `node tools/build-fallback.js` 并在 Supabase 执行 `backend/taste-films.sql`。执行方法：在 SQL Editor 运行 `backend/taste-v1.sql` 全文（幂等）。
+2. 微信云函数 `plan`、`psync`、`taste` 需在开发者工具里「上传并部署：云端安装依赖」；小程序页面需预览、真机验证、上传审核、发布。
+3. 小程序页面未在开发者工具里渲染验收（本环境无微信开发者工具），只做了语法与模板结构检查。网页已用 Chrome 在 1280px 与 390px、浅色与深色下截图验收（社区数据为模拟返回）。
+4. 工作区无法直连 Supabase 的 HTTP 接口，`tools/check-taste-live.js` 未运行；PGlite 数据库测试依赖 npm 安装，由 GitHub Actions 执行。

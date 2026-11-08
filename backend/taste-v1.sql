@@ -29,7 +29,10 @@ returns jsonb language sql security definer set search_path='' as $$
    'pairN',count(*) filter(where b.fun is not null and b.bore is not null),
    'pairFun',case when count(*) filter(where b.fun is not null and b.bore is not null)>=3 then round(avg(b.fun) filter(where b.bore is not null),2) end,
    'pairBore',case when count(*) filter(where b.fun is not null and b.bore is not null)>=3 then round(avg(b.bore) filter(where b.fun is not null),2) end) s
-  from (select id from sparrow_taste.films where $1 is null or id=any($1) order by id limit 500) f
+  -- Whole-catalogue reads return only films that have ratings (missing = zero
+  -- ratings), so the response stays small as the library grows to thousands.
+  from (select fl.id from sparrow_taste.films fl where ($1 is null and exists(select 1 from sparrow_taste.ballots b2 where b2.film=fl.id and (b2.fun is not null or b2.bore is not null)))
+        or fl.id=any($1[1:500]) order by fl.id limit 10000) f
   left join sparrow_taste.ballots b on b.film=f.id group by f.id
  ) x;
 $$;
@@ -42,7 +45,6 @@ begin
    or revision is null or revision<0 or revision>9007199254740991 or fun not between 0 and 5 or bore not between 0 and 5 then
   raise exception 'Invalid taste vote' using errcode='22023';
  end if;
- if not exists(select 1 from sparrow_taste.films f where f.id=film) then raise exception 'Unknown film' using errcode='22023';end if;
  select s.salt into salt from sparrow_taste.settings s where id=true;
  v_voter:=encode(sha256(convert_to(salt||code,'UTF8')),'hex');
  source:=coalesce(nullif(current_setting('request.headers',true),''),'{}')::jsonb->>'x-forwarded-for';
@@ -71,6 +73,13 @@ begin
  ballot:=profile#>array['data','watched',film];
  if (fun is not null or bore is not null) and (ballot is null or ballot->>'d' is null or ballot->>'del'='1') then
   raise exception 'Mark film watched and sync first' using errcode='42501';
+ end if;
+ -- New catalogue films register themselves: the watched record in the
+ -- caller's own passport (checked above) is the gate, so no SQL re-run is needed
+ -- after adding films. Withdrawals for never-registered films are no-ops.
+ if not exists(select 1 from sparrow_taste.films f where f.id=film) then
+  if fun is null and bore is null then return jsonb_build_object('ok',true,'summary',null);end if;
+  insert into sparrow_taste.films(id) values(film) on conflict do nothing;
  end if;
  -- Null/null is a withdrawal. Retain only a version tombstone for idempotency.
  insert into sparrow_taste.ballots as b values(v_voter,film,fun,bore,revision,tick)

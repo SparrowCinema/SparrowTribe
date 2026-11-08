@@ -56,9 +56,9 @@ Page({
     this.buildGrowth(list, idx);
     this.buildTaste(list);
   },
-  buildTaste(list){const data=app.globalData.data,entries=this.data.tasteMode==='community'?data.films.filter(f=>!f.ev&&C.get(f.id)?.pairN>=3).map(f=>{const a=C.get(f.id);return {id:f.id,f,rec:{fun:a.pairFun,bore:a.pairBore},community:true};}):list;this.setData({tasteMap:Taste.map(entries,I.isEn())});},
+  buildTaste(list){const data=app.globalData.data,entries=this.data.tasteMode==='community'?data.films.filter(f=>!f.ev&&C.get(f.id)?.pairN>=3).map(f=>{const a=C.get(f.id);return {id:f.id,f,rec:{fun:a.pairFun,bore:a.pairBore},community:true};}):list;const low=this.data.tasteMode==='community'?data.films.filter(f=>{const a=C.get(f.id);return !f.ev&&a&&(a.funN||a.boreN)&&a.pairN<3;}).length:0;this.setData({tasteMap:Taste.map(entries,I.isEn()),tasteLow:low});},
   setTasteMode(e){this.setData({tasteMode:e.currentTarget.dataset.mode,tasteSelected:[]});const d=app.globalData.data;this.buildTaste(W.entries(d,U.index(d)));},
-  selectTastePoint(e){const p=this.data.tasteMap.points.find(x=>x.key===e.currentTarget.dataset.key);if(p)this.setData({tasteSelected:p.entries});},
+  selectTastePoint(e){const p=this.data.tasteMap.points.find(x=>x.key===e.currentTarget.dataset.key);const f=v=>Number.isInteger(v)?String(v):Number(v).toFixed(1);if(p)this.setData({tasteSelected:p.entries.map(x=>Object.assign({},x,{funTxt:f(x.fun),boreTxt:f(x.bore)}))});},
   openTasteFilm(e){wx.navigateTo({url:'/pages/film/film?id='+encodeURIComponent(e.currentTarget.dataset.id)});},
   // ===== 成长：影迷等级 / 全球足迹 / 旅程纪念章（计算在 utils/growth.js，与网站共用） =====
   buildGrowth(list, idx) {
