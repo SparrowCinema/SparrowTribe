@@ -22,7 +22,7 @@ function honor(x) {
 Page({
   onPageScroll(e) { T.scroll(this, e); },
   toTop() { T.go(); },
-  data: { i: {}, f: null, open: false, fs: 1, tsShow: false, tsRow: {} },
+  data: { i: {}, f: null, open: false, fs: 1, tsShow: false, tsRow: {}, lgShow: false, lg: { shows: [], fmt: { cols: [[], []], val: [0, 0] }, stars: [0, 0, 0, 0, 0] } },
   onLoad(q) { this.setData({ i: I.dict() }); this.id = q.id; this.off1 = app.onData(() => this.build()); this.off2 = plan.onChange(() => this.build()); this.off3 = W.onChange(() => this.buildMine()); this.offC=C.subscribe(()=>this.setData({community:C.model(this.id,I.isEn()),tsRow:this.tsRowModel()}));this.build();this.loadCommunity(); },
   loadCommunity(){C.read([this.id]).then(()=>this.setData({community:C.model(this.id,I.isEn()),tsRow:this.tsRowModel(),communityError:false})).catch(()=>this.setData({communityError:true}));},
   async communityAction(e){const action=e.currentTarget.dataset.action;if(action==='retry'){await SY.quiet();C.changed();await C.flush();return this.loadCommunity();}if(!C.identity()){wx.showToast({title:t('请先在「我的」开启云端同步'),icon:'none'});return;}const rec=W.get(this.id);if(!rec)return;const commit=async()=>{await SY.quiet();const current=W.get(this.id);if(!current)return;W.set(this.id,Taste.set(current,'tastePublic',action==='publish'));C.changed();await C.flush();this.loadCommunity();};commit();},
@@ -117,6 +117,9 @@ Page({
   lgLabel(s) { const d = U.showDate(s), idx = U.index(app.globalData.data); return (d.getMonth() + 1) + '.' + String(d.getDate()).padStart(2, '0') + ' ' + s.t + ' · ' + W.vShort(idx.VN[s.v]); },
   lgLink(d, k) { const past = this._past || []; if (k) { const s = past.find(x => U.keyOf(x) === k); if (s && W.iso(U.showDate(s)) === d) return k; } const s = past.find(x => W.iso(U.showDate(x)) === d); return s ? U.keyOf(s) : ''; },
   lgOpen(e) {
+    try { this.lgOpen0(e); } catch (err) { console.error('lgOpen', err); wx.showToast({ title: I.isEn() ? 'Could not open' : '暂时无法打开，请重试', icon: 'none' }); }
+  },
+  lgOpen0(e) {
     const rec = W.get(this.id); if (!rec) return; const vs = G.views(rec), i = e && e.currentTarget.dataset.i !== undefined ? +e.currentTarget.dataset.i : -1;
     this._past = this.lgPast();
     if (i >= 0 && vs[i]) this._lg = { i, isNew: false, d: vs[i].d, k: vs[i].k || '', f: vs[i].f || '', r: vs[i].r || 0 };
