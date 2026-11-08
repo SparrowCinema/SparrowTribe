@@ -186,3 +186,9 @@ Claude 与 GPT 可能使用同一 GitHub 身份，审批人数可先设为0；�
 ## 趣味评分 V1
 
 趣味字段 `fun` / `bore` 为独立 0–5，0 不是未评；撤销与公开意愿带 `tasteAt` 字段时间戳。修改、合并或迁移观影记录时使用 shared/taste.js / shared/psync.js，保留 `r`、`v`、`f` 和排片键。社区汇总只统计主动公开的评分，不开放私人 plans/档案。发版步骤、后端权限、测试与人工微信步骤见 docs/taste-v1-release.md。提交前增加运行 check-taste.js 及 check-taste-db.js。新增影片后：若生产库已执行最新 backend/taste-v1.sql（影片首次投票自动登记），无需操作；否则重新执行 backend/taste-films.sql。状态见 docs/taste-v1-release.md。
+
+
+## 海报墙筛选
+
+- 海报墙使用与片目一致的三栏检索条：专题（搜索、多选）、海报墙（年度/季度/月度）、观影时间。网页和小程序同步；专题归属按完整 membership 匹配，跨专题影片不会重复出现。时间选项保持完整，不因专题切换跳到其他年份。
+- 导出的海报墙必须与当前专题及时间交集一致，副标题包含所选专题；无结果时禁用导出。不修改观影记录、评分或排片。`check-companion.js` 会执行 `check-poster-filters.js` 检查双端筛选、跨专题归属和导出内容。

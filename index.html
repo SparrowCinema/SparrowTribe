@@ -1331,7 +1331,7 @@ input:not([type=checkbox]):not([type=radio]),select,textarea{font-size:16px!impo
 .mc button[aria-selected=true]{color:var(--accent);border-color:var(--accent);box-shadow:0 2px 8px -3px rgba(60,40,20,.3)}
 
 </style>
-<link rel="stylesheet" href="styles/companion.css?v=89">
+<link rel="stylesheet" href="styles/companion.css?v=90">
 </head>
 <body>
 <div style="position:absolute;left:-9999px;top:0;width:0;height:0;overflow:hidden" aria-hidden="true"><img src="brand/og-square.jpg" alt="" width="300" height="300"></div>
@@ -1628,17 +1628,17 @@ function listRowsHTML(rows,q,empty){const m=q.trim().toLocaleLowerCase();return 
 const secLabel=n=>(n||"全部单元").replace("功夫·功夫：","功夫：");
 function sectionRows(pid){const p=PG[pid],sec=p.sections||{},names=[...new Set(Object.values(sec))],cnt=n=>FILMS.filter(f=>sec[f.id]===n).length;return [{id:"",name:tr("全部单元"),sub:tr(FILMS.filter(f=>sec[f.id]||f.prog===pid).length+" 部影片"),selected:sectionFilter===""},...names.map(n=>({id:n,name:tr(secLabel(n)),sub:tr(cnt(n)+" 部影片"),selected:sectionFilter===n}))];}
 function evKindRows(pid){const p=PG[pid],ks=(p.eventKinds||[]).filter(k=>p.events.some(e=>e.kind===k.id)),kn=k=>(LANG==="en"&&p.kindEn&&p.kindEn[k.id])||k.name;return [{id:"",name:tr("全部活动"),sub:tr(p.events.length+" 项"),selected:evKind===""},...ks.map(k=>({id:k.id,name:kn(k),sub:tr(p.events.filter(e=>e.kind===k.id).length+" 项"),selected:evKind===k.id}))];}
-function selectorContent(type,scope,q=""){return scope==="section"?listRowsHTML(sectionRows(sectionProgramme),q,"没有匹配的单元"):scope==="evkind"?listRowsHTML(evKindRows(evProg),q,"没有匹配的板块"):scope==="plan"?planSelectorOptions(q):scope==="films"?filmSelectorOptions(type,q):selectorOptions(type,q);}
+function selectorContent(type,scope,q=""){return scope==="poster"?listRowsHTML(posterSelectorRows(type),q,tr("没有匹配的结果")):scope==="section"?listRowsHTML(sectionRows(sectionProgramme),q,"没有匹配的单元"):scope==="evkind"?listRowsHTML(evKindRows(evProg),q,"没有匹配的板块"):scope==="plan"?planSelectorOptions(q):scope==="films"?filmSelectorOptions(type,q):selectorOptions(type,q);}
 function openScheduleSelector(type,scope="schedule"){
  document.getElementById("schedule-selector")?.remove();
- const title=scope==="section"?"选择单元":scope==="evkind"?"选择板块":(scope==="films"?{programme:"选择专题",year:"选择年份",city:"选择城市",region:"选择地区",length:"选择片长",personal:"我的影片"}:{programme:"选择专题",city:"选择城市",venue:"选择影院"})[type],placeholder=scope==="section"?"搜索单元":scope==="evkind"?"搜索板块":(scope==="films"?{programme:"搜索专题",year:"搜索年份",city:"搜索城市",region:"搜索地区",length:"搜索片长",personal:"搜索我的分类"}:{programme:"搜索专题",city:"搜索城市",venue:"搜索影院、城市或影厅"})[type];if(!title)return;
- const multi=scope==="schedule"||scope==="films"||scope==="plan";
+ const title=scope==="poster"?tr({programme:"专题",mode:"海报墙",period:"观影时间"}[type]):scope==="section"?"选择单元":scope==="evkind"?"选择板块":(scope==="films"?{programme:"选择专题",year:"选择年份",city:"选择城市",region:"选择地区",length:"选择片长",personal:"我的影片"}:{programme:"选择专题",city:"选择城市",venue:"选择影院"})[type],placeholder=scope==="poster"?tr(type==="programme"?"搜索专题":"搜索"):scope==="section"?"搜索单元":scope==="evkind"?"搜索板块":(scope==="films"?{programme:"搜索专题",year:"搜索年份",city:"搜索城市",region:"搜索地区",length:"搜索片长",personal:"搜索我的分类"}:{programme:"搜索专题",city:"搜索城市",venue:"搜索影院、城市或影厅"})[type];if(!title)return;
+ const multi=scope==="schedule"||scope==="films"||scope==="plan"||scope==="poster"&&type==="programme";
  const d=document.createElement("dialog");d.id="schedule-selector";d.className="schedule-selector"+(multi?" multi":"");d.dataset.type=type;d.dataset.scope=scope;d.setAttribute("aria-labelledby","selector-title");
  d.innerHTML=`<header class="selector-head"><h2 id="selector-title">${title}</h2><button class="selector-close" aria-label="关闭筛选">×</button></header><label class="selector-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg><input type="search" id="schedule-filter-search" aria-label="${placeholder}" placeholder="${placeholder}" autocomplete="off"></label><div class="selector-results" id="selector-results" role="listbox" aria-multiselectable="${multi}" aria-label="${title}">${selectorContent(type,scope)}</div>${multi?`<footer class="selector-foot"><small>可多选</small><button type="button" class="selector-done">完成</button></footer>`:""}`;
  document.body.append(d);d.querySelector('.selector-close').onclick=()=>d.close();const done=d.querySelector('.selector-done');if(done)done.onclick=()=>d.close();
- d.addEventListener('close',()=>{if(!d._dirty)return;if(scope==='schedule'){sday=null;schedule();}else if(scope==='films')films();else if(scope==='plan')route();});/* 多选：勾选时只更新状态，关闭弹层时才重绘页面 */
+ d.addEventListener('close',()=>{if(!d._dirty)return;if(scope==='schedule'){sday=null;schedule();}else if(scope==='films')films();else if(scope==='plan')route();else if(scope==='poster')posterWallPage();});/* 多选：勾选时只更新状态，关闭弹层时才重绘页面 */
 d.addEventListener('click',e=>{if(e.target!==d)return;const r=d.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)d.close();});
- d.addEventListener('close',()=>{d.remove();document.querySelector(scope==="section"?"[data-section-sel]":scope==="evkind"?"[data-evkind-sel]":`[data-${scope==="plan"?"plan":scope==="films"?"film":"schedule"}-filter="${type}"]`)?.focus({preventScroll:true});});
+ d.addEventListener('close',()=>{d.remove();document.querySelector(scope==="section"?"[data-section-sel]":scope==="evkind"?"[data-evkind-sel]":`[data-${scope==="poster"?"poster":scope==="plan"?"plan":scope==="films"?"film":"schedule"}-filter="${type}"]`)?.focus({preventScroll:true});});
  d.addEventListener('keydown',e=>{const opts=[...d.querySelectorAll('.selector-option')];if(!opts.length)return;if(e.key==='ArrowDown'||e.key==='ArrowUp'){e.preventDefault();const i=opts.indexOf(document.activeElement),next=e.key==='ArrowDown'?(i+1)%opts.length:(i<0?opts.length-1:(i-1+opts.length)%opts.length);opts[next].focus();}});
  const sy=window.scrollY,B=document.body.style,keep={p:B.position,t:B.top,w:B.width};B.position='fixed';B.top=-sy+'px';B.width='100%';/* 弹层打开时锁住底层页面与甘特图，滑动只发生在弹层内 */
  d.addEventListener('touchmove',e=>{const r=e.target.closest('.selector-results');if(!r||r.scrollHeight<=r.clientHeight+1)e.preventDefault();},{passive:false});
@@ -1647,6 +1647,7 @@ d.addEventListener('click',e=>{if(e.target!==d)return;const r=d.getBoundingClien
 }
 document.addEventListener("input",e=>{if(e.target.id!=="schedule-filter-search")return;const d=e.target.closest('dialog');d.querySelector('#selector-results').innerHTML=selectorContent(d.dataset.type,d.dataset.scope,e.target.value);});
 document.addEventListener("click",e=>{
+ const posterTrigger=e.target.closest('[data-poster-filter]');if(posterTrigger){openScheduleSelector(posterTrigger.dataset.posterFilter,'poster');return;}
  const mineLink=e.target.closest('[data-library-mine]');if(mineLink){fmine=mineLink.dataset.libraryMine;ffilt=fcity=fyear=freg=flen='all';fq='';go('films');return;}
  const filmTrigger=e.target.closest('[data-film-filter]');if(filmTrigger){openScheduleSelector(filmTrigger.dataset.filmFilter,'films');return;}
  const filmReset=e.target.closest('[data-reset-library]');if(filmReset){ffilt=fmine=fcity=fyear=freg=flen='all';fq='';films();return;}
@@ -1658,6 +1659,7 @@ document.addEventListener("click",e=>{
  const option=e.target.closest('[data-filter-value]');if(!option)return;const d=option.closest('dialog'),type=d.dataset.type,value=option.dataset.filterValue;
  if(d.dataset.scope==='section'){sectionFilter=value;const y=window.scrollY;route();d.close();window.scrollTo(0,y);return;}
  if(d.dataset.scope==='evkind'){evKind=value;const y=window.scrollY;route();d.close();window.scrollTo(0,y);return;}
+if(d.dataset.scope==='poster'){if(type==='programme'){posterProgramme=value==='all'?'all':selToggle(posterProgramme,value);d._dirty=1;const sr=d.querySelector('#selector-results'),top=sr.scrollTop;sr.innerHTML=selectorContent(type,'poster',d.querySelector('#schedule-filter-search').value);sr.scrollTop=top;}else{if(type==='mode'){posterMode=value;posterSelection='';}else posterSelection=value;posterWallPage();d.close();}return;}
 const nx=cur=>value==='all'?'all':selToggle(cur,value);
  if(d.dataset.scope==='plan')planFilt=nx(planFilt);
  else if(d.dataset.scope==='films'){if(type==='programme'){ffilt=nx(ffilt);fyear='all';}else if(type==='year')fyear=nx(fyear);else if(type==='region')freg=nx(freg);else if(type==='length')flen=nx(flen);else if(type==='city')fcity=nx(fcity);else fmine=nx(fmine);}
@@ -2526,14 +2528,21 @@ function myPage(){const list=selectedRows(),st=planStats(list),next=list.find(s=
 // A read-only collection: the grid fits the viewport, with vertical page scrolling.
 function sizePosterWall(){const grid=document.querySelector('.pw-grid');if(grid)grid.style.setProperty('--cols',window.SparrowLibrary.posterColumns(innerWidth,innerHeight));}
 window.addEventListener('resize',sizePosterWall);
-let posterMode='year',posterSelection='';
-function posterWallPage(){const all=watchEntries().filter(e=>!e.rec.del&&!e.f.ev).sort((a,b)=>b.rec.d.localeCompare(a.rec.d)),lib=window.SparrowLibrary,periods=lib.posterPeriods(all,posterMode);if(!periods.includes(posterSelection))posterSelection=periods[0]||'';const list=lib.posterEntries(all,posterMode,posterSelection),cols=lib.posterColumns(innerWidth,innerHeight);
- const modes=[['year','年度海报墙'],['quarter','季度海报墙'],['month','月度海报墙']],title=modes.find(x=>x[0]===posterMode)[1];
+let posterMode='year',posterSelection='',posterProgramme='all';
+const POSTER_MODES=[['year','年度海报墙'],['quarter','季度海报墙'],['month','月度海报墙']];
+function posterArchive(){return watchEntries().filter(e=>!e.rec.del&&!e.f.ev).sort((a,b)=>b.rec.d.localeCompare(a.rec.d));}
+function posterSelectorRows(type){const all=posterArchive(),lib=window.SparrowLibrary,ctx=libraryContext();
+ if(type==='mode')return POSTER_MODES.map(([id,name])=>({id,name:tr(name),sub:'',selected:posterMode===id}));
+ if(type==='period')return lib.posterPeriods(all,posterMode).map(id=>({id,name:id,sub:tr(lib.posterEntries(all,posterMode,id,posterProgramme,ctx).length+' 部影片'),selected:posterSelection===id}));
+ return [{id:'all',name:tr('全部专题'),sub:tr(lib.posterEntries(all,posterMode,posterSelection).length+' 部影片'),selected:!selList(posterProgramme).length},...progOrdered().map(p=>({id:p.id,name:p.name,sub:tr(lib.posterEntries(all,posterMode,posterSelection,p.id,ctx).length+' 部影片'),selected:selList(posterProgramme).includes(p.id)}))];
+}
+function posterWallPage(){const all=posterArchive(),lib=window.SparrowLibrary,periods=lib.posterPeriods(all,posterMode);if(!periods.includes(posterSelection))posterSelection=periods[0]||'';const list=lib.posterEntries(all,posterMode,posterSelection,posterProgramme,libraryContext()),cols=lib.posterColumns(innerWidth,innerHeight),title=POSTER_MODES.find(x=>x[0]===posterMode)[1],programmeLabel=selLabel(posterProgramme,'全部专题',id=>PG[id]?.name||id,'个专题'),sub=[posterSelection,posterProgramme!=='all'?selList(posterProgramme).map(id=>PG[id]?.name||id).join('、'):''].filter(Boolean).join(' · ');
+ const fields=[['programme','专题',programmeLabel,false],['mode','海报墙',tr(title),false],['period','观影时间',posterSelection||'—',!periods.length]];
  main.innerHTML='<section class="view gut poster-wall-page"><div class="page-heading"><div><small>MY POSTER WALL</small><h2 class="sec">我的海报墙</h2></div><button class="text-button" data-tab="my">返回我的</button></div>'+
- '<div class="pw-toolbar"><label>'+tr('海报墙')+'<select id="pw-mode">'+modes.map(([v,t])=>'<option value="'+v+'" '+(v===posterMode?'selected':'')+'>'+tr(t)+'</option>').join('')+'</select></label><label>'+tr('观影时间')+'<select id="pw-period" '+(periods.length?'':'disabled')+'>'+periods.map(v=>'<option '+(v===posterSelection?'selected':'')+'>'+v+'</option>').join('')+'</select></label><button id="pw-export" class="secondary-button" '+(list.length?'':'disabled')+'>'+tr('导出海报墙')+'</button></div><p class="pw-hint">'+tr(list.length+' 部影片')+' · '+tr('按最近观影排列')+'</p>'+
+ '<div class="schedule-filterbar poster-wall-filterbar" aria-label="'+tr('海报墙筛选')+'">'+fields.map(([key,label,value,disabled])=>'<button type="button" class="schedule-filter'+(key==='programme'&&posterProgramme!=='all'?' active':'')+'" data-poster-filter="'+key+'" aria-haspopup="dialog" aria-label="'+esc(tr(label)+'：'+tr(value))+'" '+(disabled?'disabled':'')+'><span><small>'+tr(label)+'</small><b>'+esc(tr(value))+'</b></span>'+filterChevron+'</button>').join('')+'</div><div class="pw-actions"><p class="pw-hint">'+tr(list.length+' 部影片')+' · '+tr('按最近观影排列')+'</p><button id="pw-export" class="secondary-button" '+(list.length?'':'disabled')+'>'+tr('导出海报墙')+'</button></div>'+
  (list.length?'<p class="pw-hint">'+tr('点击海报查看影片，向下浏览更多。')+'</p><div class="pw-grid" style="--cols:'+cols+'">'+list.map(e=>{const score=e.rec.r?e.rec.r+'/10':tr('未评分');return '<a class="pw-card" href="#film-'+esc(e.id)+'" aria-label="'+esc(e.f.cn+' · '+tr('我的评分')+' '+score)+'"><div class="pw-poster"><span class="pw-placeholder">'+esc(e.f.cn)+'</span>'+(pst(e.id)?'<img loading="lazy" class="pw-image" src="'+esc(pst(e.id))+'" alt="'+esc(e.f.cn)+'">':'')+'</div><span class="pw-stars" role="img" aria-label="'+esc(score)+'">'+[0,1,2,3,4].map(k=>'<u>★<b style="width:'+(Math.max(0,Math.min(2,(e.rec.r||0)-2*k))*50)+'%">★</b></u>').join('')+'</span></a>';}).join('')+'</div>':
- '<div class="empty-plan"><h3>'+tr('海报墙还没有影片')+'</h3><p>'+tr('在影片页标记看过，海报和评分就会收进这里。')+'</p><button class="primary-button" data-tab="films">'+tr('去选电影')+'</button></div>')+'</section>';
- main.querySelector('#pw-mode').onchange=e=>{posterMode=e.target.value;posterSelection='';posterWallPage();};main.querySelector('#pw-period').onchange=e=>{posterSelection=e.target.value;posterWallPage();};main.querySelector('#pw-export').onclick=()=>makeRecap({list,title:tr(title),sub:posterSelection,cols:window.SparrowLibrary.posterColumns(innerWidth,innerHeight)});
+ '<div class="empty-plan"><h3>'+tr(posterProgramme==='all'?'海报墙还没有影片':'所选条件下暂无影片')+'</h3><p>'+tr(posterProgramme==='all'?'在影片页标记看过，海报和评分就会收进这里。':'试试其他专题或观影时间。')+'</p><button class="primary-button" data-tab="films">'+tr('去选电影')+'</button></div>')+'</section>';
+ main.querySelector('#pw-export').onclick=()=>makeRecap({list,title:tr(title),sub,cols:window.SparrowLibrary.posterColumns(innerWidth,innerHeight)});
  main.querySelectorAll('.pw-image').forEach(img=>img.addEventListener('error',()=>{img.hidden=true;}));
 }
 function planPage(){const all=selectedRows(),list=scopedRows(),st=planStats(list);
@@ -2786,3 +2795,4 @@ dataUpdated();boot();
 </script>
 
 </body></html>
+

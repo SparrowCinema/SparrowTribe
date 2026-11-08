@@ -70,3 +70,6 @@ const programmePicker=run("recapProgrammeHTML(['A','B','C','D','E'],(v,n,on)=>'<
 assert(programmePicker.includes('rc-prog-search'));assert(programmePicker.includes('A、E'));assert(programmePicker.includes('data-v=E aria-pressed=true'));
 my.toggleAppearance();assert.equal(my.data.appearanceOpen,true);my.toggleAppearance();assert.equal(my.data.appearanceOpen,false);my.toggleRcProgrammes();assert.equal(my.data.rcProgOpen,true);
 console.log('PASS: compact programme multi-select threshold, retained selection labels and collapsible appearance.');
+
+// Poster-wall programme filtering and export must stay in sync on both clients.
+require('./check-poster-filters.js');
