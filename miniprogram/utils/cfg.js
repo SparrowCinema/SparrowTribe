@@ -5,9 +5,11 @@ try { const s = wx.getStorageSync(KEY); if (s && typeof s === 'object') C = Obje
 const subs = [];
 const scale = () => { const v = Number(C.scale); return v >= 0.8 && v <= 1.2 ? v : 1; };
 // 与 app.wxss 一致：屏宽 ≤600px 时 1 个 --r = 屏宽/750，更宽的屏固定 0.552px；再乘云端缩放
-const ps = () => {
+// 专题页(列表+详情)整页等比缩小：只改 --r，字号、间距、封面一起按比例变
+const PAGE_K = { 'pages/programmes/programmes': 0.9, 'pages/programme/programme': 0.9 };
+const ps = route => {
   let w = 375; try { w = (wx.getWindowInfo ? wx.getWindowInfo() : wx.getSystemInfoSync()).windowWidth || 375; } catch (e) { }
-  return '--r:' + ((w <= 600 ? w / 750 : 0.552) * scale()).toFixed(5) + 'px;' + (isDark() ? DARK : '');
+  return '--r:' + ((w <= 600 ? w / 750 : 0.552) * scale() * (PAGE_K[route] || 1)).toFixed(5) + 'px;' + (isDark() ? DARK : '');
 };
 // ---- 外观：跟随系统 / 浅色 / 暗色（选择存在本机 sk-theme；暗色靠 page-style 覆盖 app.wxss 里的颜色变量） ----
 const TKEY = 'sk-theme';
@@ -30,7 +32,7 @@ const chrome = () => {
   try { wx.setTabBarStyle(Object.assign({ color: p.tab, selectedColor: p.sel, backgroundColor: p.nav, borderStyle: p.border }, nop)); } catch (e) { }
   TABS.forEach((n, i) => { try { wx.setTabBarItem(Object.assign({ index: i, iconPath: 'images/tab/' + n + p.ic + '.png', selectedIconPath: 'images/tab/' + n + '-on' + p.ic + '.png' }, nop)); } catch (e) { } });
 };
-const view = () => ({ ps: ps(), notice: String(C.notice || ''), dk: isDark(), tpref: T });
+const view = route => ({ ps: ps(route), notice: String(C.notice || ''), dk: isDark(), tpref: T });
 const set = c => {
   if (!c || typeof c !== 'object') return;
   C = Object.assign({ scale: 1, notice: '', tips: {} }, c);
@@ -39,8 +41,9 @@ const set = c => {
 };
 // 给页面绑定：取当前配置，并在配置更新时刷新
 const bind = page => {
-  page.setData(view());
-  const fn = v => { try { page.setData(v); } catch (e) { } };
+  const mine = () => view(page.route);
+  page.setData(mine());
+  const fn = () => { try { page.setData(mine()); } catch (e) { } };
   subs.push(fn); page.__cfgOff = () => { const i = subs.indexOf(fn); if (i >= 0) subs.splice(i, 1); };
 };
 const setTheme = p => {

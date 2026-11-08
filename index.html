@@ -651,7 +651,7 @@ html.sheet-open,html.sheet-open body{overflow:hidden}
 .prog-card img{width:100%;max-width:100%;aspect-ratio:930/330;object-fit:cover;display:block}
 .pc-body{display:flex;flex-direction:column;gap:2px;padding:12px 14px;min-width:0}
 .pc-body small{font:500 10px var(--f-mono);letter-spacing:.1em;color:var(--accent)}
-.pc-body b{font:900 15px var(--f-display)}
+.pc-body b{font:900 20px var(--f-display)}
 .pc-body span{font-size:10.6px;color:var(--muted)}
 .pc-go{position:absolute;right:12px;bottom:14px;font-size:10.6px;font-weight:600;color:var(--accent)}
 .prog-card:hover{border-color:var(--accent)}
@@ -700,7 +700,7 @@ html.sheet-open,html.sheet-open body{overflow:hidden}
 .pg-cover img{width:100%;max-width:100%;max-height:340px;object-fit:cover;object-position:center 62%}
 .pg-head{padding:20px 0 4px}
 .pg-head small{font:500 10px var(--f-mono);letter-spacing:.2em;color:var(--accent)}
-.pg-head h1{font:900 18px/1.25 var(--f-display);margin:6px 0 4px}
+.pg-head h1{font:900 36px/1.15 var(--f-display);margin:6px 0 4px}
 .pg-sub{margin:0;color:var(--muted);font-size:11.1px}
 
 .ev-slots{margin-top:10px;border-top:1px dashed var(--line-soft);padding-top:8px;display:grid;gap:8px}.ev-slots>small{font-size:10.6px;color:var(--muted)}.ev-slot{display:flex;align-items:center;justify-content:space-between;gap:10px}.ev-st{display:grid;gap:2px;min-width:0}.ev-st b{font-size:11.1px}.ev-st small{font-size:10.6px;color:var(--muted)}.ev-slot em{font-style:normal;font-size:10.6px;color:var(--muted)}.ev-add{flex:none;border:1px solid var(--accent);background:transparent;color:var(--accent);border-radius:99px;padding:7px 13px;font-size:10.6px;font-weight:700;cursor:pointer}.ev-add.on{background:var(--accent);color:#fff}
@@ -738,7 +738,7 @@ html.sheet-open,html.sheet-open body{overflow:hidden}
 @media (prefers-reduced-motion:reduce){.pg-film{transition:none}.pg-film:hover{transform:none}}
 @media (min-width:480px){.pg-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:30px 18px}}
 @media (min-width:640px){.pg-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
-@media (min-width:900px){.pg-grid{grid-template-columns:repeat(6,minmax(0,1fr))}.pg-head h1{font-size:18px}}
+@media (min-width:900px){.pg-grid{grid-template-columns:repeat(6,minmax(0,1fr))}.pg-head h1{font-size:29.8px}}
 
 /* ---- Brand logos (claude/brand-logos) ---- */
 :root{--plate:#fffaf0;--plate-line:#e6dcc7;--seal:#fffaf0;--seal-ring:var(--oxblood)}
@@ -1173,14 +1173,14 @@ input:not([type=checkbox]):not([type=radio]),select,textarea{font-size:16px!impo
 @media (min-width:768px){
   .tabbar .in{max-width:560px}
   /* 专题列表卡片：文字区加厚，加入两行简介，避免“大图小字” */
-  .pc-body{padding:16px 20px 8px;gap:5px}.pc-body small{font-size:10.1px;line-height:1.7}.pc-body b{font-size:14px;line-height:1.25}.pc-body>span{font-size:11.1px;line-height:1.6}
+  .pc-body{padding:16px 20px 8px;gap:5px}.pc-body small{font-size:10.1px;line-height:1.7}.pc-body b{font-size:17.1px;line-height:1.25}.pc-body>span{font-size:11.1px;line-height:1.6}
   .pc-body .pc-blurb{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-top:4px;font-size:10.6px;line-height:1.7;color:var(--muted);opacity:.9}
   .pc-go{font-size:10.6px;padding:0 20px 16px}
   /* 片目列表：海报放大，标题与信息同步放大 */
   .fcard{grid-template-columns:88px 1fr auto;gap:22px;padding:20px 0}.slate{width:88px}.slate b{font-size:17.1px}
   .fcard .info b{font-size:14.0px}.fcard .info .o,.fcard .info .d{font-size:10.7px}.score{font-size:11.1px}
   /* 专题页：标题、简介放大；片单海报网格 + 更大的片名与场次文字 */
-  .pg-head{padding-top:28px}.pg-head small{font-size:11.0px}.pg-head h1{font-size:18px}.pg-sub{font-size:12.2px}
+  .pg-head{padding-top:28px}.pg-head small{font-size:11.0px}.pg-head h1{font-size:28.4px}.pg-sub{font-size:12.2px}
   .pg-blurb{font-size:12.8px;line-height:1.9;max-width:62ch}
   .pg-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:36px 20px}
   .pg-film .pg-name{font-size:12.8px}.pg-slot-count{font-size:10.6px}.pg-slots{font-size:10.6px}.pg-slots .pg-slot small{font-size:10.6px}
@@ -1328,7 +1328,7 @@ input:not([type=checkbox]):not([type=radio]),select,textarea{font-size:16px!impo
 .mc button[aria-selected=true]{color:var(--accent);border-color:var(--accent);box-shadow:0 2px 8px -3px rgba(60,40,20,.3)}
 
 </style>
-<link rel="stylesheet" href="styles/companion.css?v=85">
+<link rel="stylesheet" href="styles/companion.css?v=86">
 </head>
 <body>
 <div style="position:absolute;left:-9999px;top:0;width:0;height:0;overflow:hidden" aria-hidden="true"><img src="brand/og-square.jpg" alt="" width="300" height="300"></div>
@@ -2630,6 +2630,7 @@ function route(){
   const fwd=navFwd,bk=navBack;navFwd=false;navBack=false;
   const returning=changing&&viewPositions.has(h)&&(bk||!fwd||(activeRoute.startsWith("film-")&&h===filmReturn));
   activeRoute=h;
+  main.classList.toggle("prog-scale",h==="programmes"||h.startsWith("prog-")||h.startsWith("events-"));
   const tab = ["plan","export","about","install","poster-wall"].includes(h)||h.startsWith("share=") ? "my" : h==="gantt" ? "schedule" : h.startsWith("prog-")||h.startsWith("events-") ? "programmes" : h.startsWith("film-") ? null : h;
   document.querySelectorAll(".tab").forEach(t=>t.setAttribute("aria-current", t.dataset.tab===(tab||lastList)?"page":"false"));
   if(tab){ lastList = tab; topEl.innerHTML = brandBar(); }

@@ -179,3 +179,6 @@ button:focus-visible,summary:focus-visible,a:focus-visible{outline:3px solid var
 @media(max-width:360px){.theme-seg button{padding:0 11px;font-size:10.6px}}
 
 .my-today{zoom:.9}
+
+/* 专题页(列表/详情/活动)整页等比缩小 */
+#main.prog-scale{zoom:.9}
