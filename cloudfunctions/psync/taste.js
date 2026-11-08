@@ -1,9 +1,9 @@
-/* Independent 0–5 feelings. Missing/null is unrated; zero is a real rating.
+/* Independent 0–5 feelings in half-star steps (0.5). Missing/null is unrated; zero is a real rating.
    tasteAt carries field-level tombstones so an older client cannot erase a vote
    while changing the existing ten-point score or viewing date. */
 (function(root){
  'use strict';
- const valid=v=>Number.isInteger(v)&&v>=0&&v<=5;
+ const valid=v=>typeof v==='number'&&v>=0&&v<=5&&Number.isInteger(v*2); // 0–5，步长 0.5（半星）
  const fields=['fun','bore','tastePublic'];
  const stamp=v=>Number.isSafeInteger(v)&&v>=0?v:0;
  function cleanFields(r){const o={},at={};fields.forEach(k=>{const t=stamp(r?.tasteAt?.[k]);if(k==='tastePublic'){if(typeof r?.[k]==='boolean')o[k]=r[k];}else if(valid(r?.[k]))o[k]=r[k];else if(r?.[k]===null&&t)o[k]=null;if(t)at[k]=t;});if(Object.keys(at).length)o.tasteAt=at;return o;}

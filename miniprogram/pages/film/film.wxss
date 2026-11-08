@@ -174,7 +174,6 @@
 .community-card{border-top:calc(2 * var(--r)) solid var(--line);margin-top:calc(24 * var(--r));padding-top:calc(24 * var(--r))}.community-title{display:block;font-size:calc(26 * var(--r));font-weight:700;margin-bottom:calc(20 * var(--r))}.community-values{display:flex;border:calc(1 * var(--r)) solid var(--line);border-radius:calc(18 * var(--r));background:var(--surface)}.community-values>view{flex:1;display:flex;flex-direction:column;gap:calc(12 * var(--r));padding:calc(24 * var(--r));font-size:calc(22 * var(--r));color:var(--muted)}.community-values>view+view{border-left:calc(1 * var(--r)) solid var(--line)}.community-number{font-size:calc(36 * var(--r));color:var(--teal);font-weight:700}.community-note{display:block;font-size:calc(21 * var(--r));color:var(--muted);line-height:1.7;margin:calc(18 * var(--r)) 0}.community-button{margin:calc(16 * var(--r)) 0;padding:calc(18 * var(--r));font-size:calc(24 * var(--r));line-height:1.4;background:var(--surface);border:calc(1 * var(--r)) solid var(--line);color:var(--teal)}
 
 /* 趣味评分沿用十分制的星星（.mr-star），每颗星 1 分；社区均分为按比例填充的只读星 */
-.taste-stars-row .mr-star .hz.full{left:0;right:0;width:auto}
 .taste-stars .taste-zero{min-width:calc(46 * var(--r));text-align:center;border-radius:calc(999 * var(--r));font-family:monospace}
 .taste-stars .taste-zero.selected{background:#c8862a;border-color:#c8862a;color:#fff}
 .taste-result{color:#c8862a}.taste-result .tr-v{font-size:calc(32 * var(--r));font-weight:600}.taste-result .tr-nil{color:var(--muted);font-size:calc(22 * var(--r))}

@@ -61,3 +61,9 @@
 2. 微信云函数 `plan`、`psync`、`taste` 需在开发者工具里「上传并部署：云端安装依赖」；小程序页面需预览、真机验证、上传审核、发布。
 3. 小程序页面未在开发者工具里渲染验收（本环境无微信开发者工具），只做了语法与模板结构检查。网页已用 Chrome 在 1280px 与 390px、浅色与深色下截图验收（社区数据为模拟返回）。
 4. 工作区无法直连 Supabase 的 HTTP 接口，`tools/check-taste-live.js` 未运行；PGlite 数据库测试依赖 npm 安装，由 GitHub Actions 执行。
+
+## 半星（0.5 步长）升级
+
+- 有趣/无聊评分允许 0、0.5、1 … 5。`shared/taste.js` 的 `valid` 同步放宽；`plan` / `psync` 云函数自带 taste.js 副本，需重新部署。
+- 数据库：在 Supabase SQL Editor 重新执行 `backend/taste-v1.sql`（可重复执行）。它把 `ballots.fun/bore` 改为 `numeric(2,1)` 并加半星约束，删除旧的 integer 版 `st_taste_vote`、创建 numeric 版并重新授权。已有整数评分原样保留。
+- 顺序：先执行 SQL，再发布网站，再重新部署云函数并上传小程序；旧版客户端只会发整数，仍可用。

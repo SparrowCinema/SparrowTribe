@@ -97,7 +97,7 @@ Page({
       return { i, md: v.d.slice(5).replace('-', '.'), y: v.d.slice(0, 4), l1: l1 || (en ? 'Add screening & format' : '补充场次与版本'), l1Nil: !l1, l2: sh && fv ? fv : '', rs: v.r ? String(v.r) : '—', rNil: !v.r,
         tag: n > 1 ? (i === n - 1 ? (en ? 'Latest' : '最近') : i === 0 ? (en ? 'First' : '首刷') : '') : '' }; }).reverse();
     const fold = n > 3, open = !!this.dyOpen, hid = n - 3, shown = fold && !open ? diary.slice(0, 3) : diary;
-    const taste = rec ? ['fun','bore'].map(k => ({ key:k, value: Taste.valid(rec[k]) ? rec[k] : null, stars: [1,2,3,4,5].map(n => ({ n, on: Taste.valid(rec[k]) && n <= rec[k] })) })) : ['fun','bore'].map(k => ({ key:k, value:null, stars:[1,2,3,4,5].map(n=>({n,on:false})) }));
+    const taste = rec ? ['fun','bore'].map(k => ({ key:k, value: Taste.valid(rec[k]) ? rec[k] : null, stars: [1,2,3,4,5].map(n => ({ n, fill: Taste.valid(rec[k]) ? (rec[k] >= n ? 100 : rec[k] >= n - 0.5 ? 50 : 0) : 0 })) })) : ['fun','bore'].map(k => ({ key:k, value:null, stars:[1,2,3,4,5].map(n=>({n,fill:0})) }));
     this.setData({ community:C.model(this.id,I.isEn()), tsRow:this.tsRowModel(), taste, mine: { seen: !!rec, n, r, diary: shown, dyFold: fold, dyOpen: open, dyMoreTxt: open ? (en ? 'Show fewer' : '收起较早的观影') : (en ? 'Show ' + hid + ' earlier' : '展开其余 ' + hid + ' 次'), nTxt: en ? '×' + n : n + ' 次', stars: [1, 2, 3, 4, 5].map(i => Math.max(0, Math.min(2, r - (i - 1) * 2)) * 50),
       seenTxt: I.isEn() ? '+ Watched · stamp' : '＋ 看过 · 盖章', scoreTxt: r ? r + '/10' : t('点星打分') } });
   },

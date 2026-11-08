@@ -9,10 +9,15 @@ insert into sparrow_taste.settings values(true,gen_random_uuid()::text||gen_rand
 create table if not exists sparrow_taste.films(id text primary key);
 create table if not exists sparrow_taste.ballots(
  voter text not null, film text not null references sparrow_taste.films(id),
- fun smallint check(fun between 0 and 5), bore smallint check(bore between 0 and 5),
+ fun numeric(2,1), bore numeric(2,1),
  revision bigint not null check(revision>=0), updated_at timestamptz not null default now(),
  primary key(voter,film)
 );
+-- 半星（0.5 步长）：已有库里 smallint 整数评分原样保留。可重复执行。
+alter table sparrow_taste.ballots alter column fun type numeric(2,1), alter column bore type numeric(2,1);
+alter table sparrow_taste.ballots drop constraint if exists ballots_fun_check, drop constraint if exists ballots_bore_check, drop constraint if exists ballots_half_check;
+alter table sparrow_taste.ballots add constraint ballots_half_check check((fun is null or (fun between 0 and 5 and fun*2=trunc(fun*2))) and (bore is null or (bore between 0 and 5 and bore*2=trunc(bore*2))));
+drop function if exists public.st_taste_vote(text,text,integer,integer,bigint);
 create index if not exists ballots_film on sparrow_taste.ballots(film);
 create table if not exists sparrow_taste.limits(bucket text primary key, started timestamptz not null, n integer not null);
 alter table sparrow_taste.settings enable row level security;
@@ -37,12 +42,12 @@ returns jsonb language sql security definer set search_path='' as $$
  ) x;
 $$;
 
-create or replace function public.st_taste_vote(code text,film text,fun integer,bore integer,revision bigint)
+create or replace function public.st_taste_vote(code text,film text,fun numeric,bore numeric,revision bigint)
 returns jsonb language plpgsql security definer set search_path='' as $$
 declare salt text; v_voter text; source text; profile jsonb; ballot jsonb; old_revision bigint; k text; n integer; tick timestamptz:=clock_timestamp();
 begin
  if code is null or code !~ '^SP-([A-Z2-9]{4}-){5}[A-Z2-9]{4}$' or film is null or film !~ '^[A-Za-z0-9_-]{1,80}$'
-   or revision is null or revision<0 or revision>9007199254740991 or fun not between 0 and 5 or bore not between 0 and 5 then
+   or revision is null or revision<0 or revision>9007199254740991 or fun not between 0 and 5 or bore not between 0 and 5 or fun*2<>trunc(fun*2) or bore*2<>trunc(bore*2) then
   raise exception 'Invalid taste vote' using errcode='22023';
  end if;
  select s.salt into salt from sparrow_taste.settings s where id=true;
@@ -89,6 +94,6 @@ begin
 end;
 $$;
 revoke all on function public.st_taste_read(text[]) from public,anon,authenticated;
-revoke all on function public.st_taste_vote(text,text,integer,integer,bigint) from public,anon,authenticated;
-grant execute on function public.st_taste_read(text[]), public.st_taste_vote(text,text,integer,integer,bigint) to anon,authenticated;
+revoke all on function public.st_taste_vote(text,text,numeric,numeric,bigint) from public,anon,authenticated;
+grant execute on function public.st_taste_read(text[]), public.st_taste_vote(text,text,numeric,numeric,bigint) to anon,authenticated;
 commit;

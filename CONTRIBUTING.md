@@ -185,7 +185,7 @@ Claude 与 GPT 可能使用同一 GitHub 身份，审批人数可先设为0；�
 
 ## 趣味评分 V1
 
-趣味字段 `fun` / `bore` 为独立 0–5，0 不是未评；撤销与公开意愿带 `tasteAt` 字段时间戳。修改、合并或迁移观影记录时使用 shared/taste.js / shared/psync.js，保留 `r`、`v`、`f` 和排片键。社区汇总只统计主动公开的评分，不开放私人 plans/档案。发版步骤、后端权限、测试与人工微信步骤见 docs/taste-v1-release.md。提交前增加运行 check-taste.js 及 check-taste-db.js。新增影片后：若生产库已执行最新 backend/taste-v1.sql（影片首次投票自动登记），无需操作；否则重新执行 backend/taste-films.sql。状态见 docs/taste-v1-release.md。
+趣味字段 `fun` / `bore` 为独立 0–5，步长 0.5（可打半星，网页与小程序一致），0 不是未评；数据库为 numeric(2,1)，半星上线前须在 Supabase 重新执行 backend/taste-v1.sql（可重复执行，已有整数评分保留）；撤销与公开意愿带 `tasteAt` 字段时间戳。修改、合并或迁移观影记录时使用 shared/taste.js / shared/psync.js，保留 `r`、`v`、`f` 和排片键。社区汇总只统计主动公开的评分，不开放私人 plans/档案。发版步骤、后端权限、测试与人工微信步骤见 docs/taste-v1-release.md。提交前增加运行 check-taste.js 及 check-taste-db.js。新增影片后：若生产库已执行最新 backend/taste-v1.sql（影片首次投票自动登记），无需操作；否则重新执行 backend/taste-films.sql。状态见 docs/taste-v1-release.md。
 
 ### 趣味评分的页面结构（2026-11-09）
 
