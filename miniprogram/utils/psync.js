@@ -26,6 +26,7 @@
       out.watched[id] = { d: r.d, r: Math.max(0, Math.min(10, Math.round(num(r.r)))), k: typeof r.k === 'string' ? r.k.slice(0, 80) : '', t: t };
       // 放映版本（可选，如 4k / 35mm / imax-gt）；没有就不写这个键，旧记录保持原样
       if (typeof r.f === 'string' && /^[\w-]{1,20}$/.test(r.f)) out.watched[id].f = r.f;
+      ['fun','bore'].forEach(function (k) { if (r[k] !== null && r[k] !== undefined && Number.isInteger(r[k]) && r[k] >= 0 && r[k] <= 5) out.watched[id][k] = r[k]; });
       // 多次观影（可选）：第 1 次起的完整列表，≥2 次才写；顶层 d/k/f/r 由客户端保持一致
       if (Array.isArray(r.v)) {
         var vs = r.v.slice(0, 30).map(function (x) {
