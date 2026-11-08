@@ -94,10 +94,12 @@ Page({
       dots: Array.from({ length: Math.min(n, 10) }, (_, k) => k),
       rows: vs.map((v, i) => { const sh = v.k && data.shows.find(x => U.keyOf(x) === v.k); return { i, no: '#' + (i + 1), d: v.d.replace(/-/g, '.'), raw: v.d, r: v.r, rs: v.r ? String(v.r) : '—', stars: [1, 2, 3, 4, 5].map(k => Math.max(0, Math.min(2, v.r - (k - 1) * 2)) * 50), edit: i === ed, last: i === n - 1,
         tag: i === 0 ? (en ? 'First' : '首刷') : i === n - 1 ? (en ? 'Latest' : '最近') : '', line: [fname(v.f) || (en ? 'Format not set' : '版本未填'), sh ? W.vShort(idx.VN[sh.v]) : ''].filter(Boolean).join(' · ') }; }) } : null;
-    this.setData({ mine: { seen: !!rec, multi, rw, r, d: rec ? rec.d : '', today: W.iso(new Date()), stars: [1, 2, 3, 4, 5].map(i => Math.max(0, Math.min(2, r - (i - 1) * 2)) * 50),
+    const taste = rec ? ['fun','bore'].map(k => ({ key:k, value: Number.isInteger(rec[k]) ? rec[k] : null, stars: [1,2,3,4,5].map(n => ({ n, on: Number.isInteger(rec[k]) && n <= rec[k] })) })) : ['fun','bore'].map(k => ({ key:k, value:null, stars:[1,2,3,4,5].map(n=>({n,on:false})) }));
+    this.setData({ taste, mine: { seen: !!rec, multi, rw, r, d: rec ? rec.d : '', today: W.iso(new Date()), stars: [1, 2, 3, 4, 5].map(i => Math.max(0, Math.min(2, r - (i - 1) * 2)) * 50),
       at: s ? W.vShort(idx.VN[s.v]) + ' · ' + s.t : t('未关联场次'), seenTxt: t(rec ? '已看过 · 已盖章' : '＋ 看过'), scoreTxt: r ? r + '/10' : multi ? t('给最近一次打分') : t('点星打分'),
       fmt: this.fmtModel(multi ? (ed >= 0 ? vs[ed].f : '') : rec && rec.f) } });
   },
+  tasteRate(e) { const rec = W.get(this.id); if (!rec) { wx.showToast({ title: t('请先标记看过'), icon: 'none' }); return; } const k=e.currentTarget.dataset.k, n=Number(e.currentTarget.dataset.n); if (!['fun','bore'].includes(k) || !Number.isInteger(n) || n<0 || n>5) return; const next=Object.assign({},rec); if(next[k]===n) delete next[k]; else next[k]=n; W.set(this.id,next); },
   // 多次观影：保存时让顶层字段与各次观影一致
   saveViews(vs, extra) {
     const rec = W.get(this.id); if (!rec) return;
