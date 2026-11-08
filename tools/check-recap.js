@@ -58,7 +58,7 @@ assert.equal(Lib.posterEntries(periodRows,'quarter','2026-Q1').length,2);
 assert.equal(Lib.posterEntries(periodRows,'month','2026-11').length,1);
 assert.equal(Lib.posterPeriod(null,'year'),'');
 const wallItems=Array.from({length:11},(_,i)=>({...item,title:'Wall '+i,img:i===0?{width:300,height:450}:null}));
-for(const cols of [5,10]){const o={...sample,sections:['cover','posters'],posterCols:cols,items:wallItems},ctx=context();R.draw(ctx,o);assert(ctx.calls.some(x=>x[0]==='drawImage'));assert(ctx.calls.some(x=>x[0]==='fillText'&&x[1]==='★ 8/10'));assert(ctx.calls.some(x=>x[0]==='fillText'&&String(x[1]).includes('微信搜索')));assert(R.heightOf(o)>R.heightOf({...o,items:[]}));}
+for(const cols of [5,10]){const o={...sample,sections:['cover','posters'],posterCols:cols,items:wallItems},ctx=context();R.draw(ctx,o);assert(ctx.calls.some(x=>x[0]==='drawImage'));assert(!ctx.calls.some(x=>x[0]==='fillText'&&/\d+\/10/.test(String(x[1]))));assert(ctx.calls.some(x=>x[0]==='clip'));assert(ctx.calls.some(x=>x[0]==='fillText'&&String(x[1]).includes('微信搜索')));assert(R.heightOf(o)>R.heightOf({...o,items:[]}));}
 assert(R.heightOf({...sample,sections:['posters'],items:wallItems,posterCols:5})>R.heightOf({...sample,sections:['posters'],items:wallItems,posterCols:10}));
 rows.push({id:'new',f:film('new'),rec:{d:'2026-11-07',r:9}});p.setMode({detail:{value:2}});assert.equal(p.data.period,'2026-11');assert.equal(p.data.items.length,1);p.setPeriod({detail:{value:1}});assert.equal(p.data.period,'2026-10');assert.equal(p.data.items[0].id,'old');p.setMode({detail:{value:1}});assert.equal(p.data.period,'2026-Q4');
 console.log('PASS: annual/quarter/month watched-date boundaries, mini period switching, poster PNG layout, ratings, missing images and mandatory footer.');
@@ -70,3 +70,9 @@ const programmePicker=run("recapProgrammeHTML(['A','B','C','D','E'],(v,n,on)=>'<
 assert(programmePicker.includes('rc-prog-search'));assert(programmePicker.includes('A、E'));assert(programmePicker.includes('data-v=E aria-pressed=true'));
 my.toggleAppearance();assert.equal(my.data.appearanceOpen,true);my.toggleAppearance();assert.equal(my.data.appearanceOpen,false);my.toggleRcProgrammes();assert.equal(my.data.rcProgOpen,true);
 console.log('PASS: compact programme multi-select threshold, retained selection labels and collapsible appearance.');
+
+// Poster-wall programme filtering and export must stay in sync on both clients.
+require('./check-poster-filters.js');
+
+// Poster exports use five path-drawn stars, including true half-star clipping.
+for(const cols of [5,10]){const c=context();R.draw(c,{sections:['posters'],posterCols:cols,items:[{title:'Half-star film',score:7},{title:'Unrated film',score:0}]});assert(c.calls.some(x=>x[0]==='rect'&&Math.abs(x[3]/x[4]-.5)<.001));assert(!c.calls.some(x=>x[0]==='fillText'&&/\d+\/10/.test(String(x[1]))));assert(c.calls.some(x=>x[0]==='fillText'&&x[1]==='未评分'));}
