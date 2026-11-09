@@ -207,3 +207,4 @@ button:focus-visible,summary:focus-visible,a:focus-visible{outline:3px solid var
 .tr-make:disabled{background:var(--surface);border-color:var(--line);color:var(--muted);cursor:default}
 .tr-year{flex:none;display:inline-flex;align-items:center;gap:4px;padding:8px 10px 8px 14px;border:1px solid var(--line);border-radius:99px;background:var(--surface);color:var(--fg);font:700 12px var(--f-body);cursor:pointer;white-space:nowrap}.tr-year svg{width:14px;height:14px;color:var(--muted)}
 .tr-acts{flex-wrap:wrap}
+.tr-prog{min-width:0;max-width:46vw}.tr-prog span{overflow:hidden;text-overflow:ellipsis}

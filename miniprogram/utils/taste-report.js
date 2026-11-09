@@ -134,16 +134,19 @@
   }
   function analyze(entries, opts) {
     opts = opts || {}; const en = !!opts.en, L = en ? 1 : 0;
-    const all = validRows(entries, en), year = opts.year ? String(opts.year) : '';
-    const rows = year ? all.filter(x => x.d.slice(0, 4) === year) : all;
-    const n = rows.length, out = { n, ok: n >= 3, en, year };
+    // 范围二选一：专题（opts.inProg 判断影片是否属于该专题，opts.programme 为专题名）或年份
+    const prog = opts.programme && opts.inProg ? String(opts.programme) : '';
+    const all = validRows(entries, en), year = !prog && opts.year ? String(opts.year) : '';
+    const rows = prog ? all.filter(x => opts.inProg(x.f)) : year ? all.filter(x => x.d.slice(0, 4) === year) : all;
+    const n = rows.length, out = { n, ok: n >= 3, en, year, programme: prog };
     if (!out.ok) return out;
     // 稳定种子：取最早看的三部（之后再多打分，称号里的形容词只在分档变化时才换，不会每次都跳）
-    const seed = rows.slice().sort((a, b) => a.d < b.d ? -1 : a.d > b.d ? 1 : a.id < b.id ? -1 : 1).slice(0, 3).map(x => x.id).join(',') + '|' + year;
+    const seed = rows.slice().sort((a, b) => a.d < b.d ? -1 : a.d > b.d ? 1 : a.id < b.id ? -1 : 1).slice(0, 3).map(x => x.id).join(',') + '|' + year + '|' + prog;
     const st = stats(rows), { avgF, avgB, rFB, rStar, ax, code } = st;
     const q = [0, 0, 0, 0]; let unsure = 0; rows.forEach(x => { const k = quadrant(x.fun, x.bore); if (k < 0) unsure++; else q[k]++; });
     const T = TYPES[code][en ? 'en' : 'zh'], mate = MATE(code), fam = FAM[code.slice(0, 2)];
     // 变化轨迹：选了年份且上一年至少 3 部
+    if (prog && all.length - n >= 3) { const bc = stats(all).code; out.base = { code: bc, name: TYPES[bc][en ? 'en' : 'zh'][0], n: all.length }; }
     if (year) { const py = String(+year - 1), prev = all.filter(x => x.d.slice(0, 4) === py); if (prev.length >= 3) { const pc = stats(prev).code; out.prev = { year: py, code: pc, name: TYPES[pc][en ? 'en' : 'zh'][0] }; } }
     out.code = code; out.clarity = clarity(n, en); out.conf = st.conf; out.rewatched = rows.filter(x => x.views > 1).length;
     { const wk = ax.map((a, i) => [a[1], i]).sort((a, b) => a[0] - b[0])[0]; if (wk[0] < 56) { const pair = AXES[wk[1]].k, nc = code.slice(0, wk[1]) + pair[1 - pair.indexOf(code[wk[1]])] + code.slice(wk[1] + 1); out.near = { code: nc, name: TYPES[nc][en ? 'en' : 'zh'][0], axis: AXES[wk[1]][en ? 'en' : 'zh'][1], gap: Math.max(1, Math.round(wk[0] - 50)) }; } }
@@ -265,12 +268,13 @@
   function wrap(c, text, max) { text = String(text || ''); const out = []; let line = ''; if (!CJK.test(text) && /\s/.test(text)) text.split(/\s+/).forEach(w => { const t = line ? line + ' ' + w : w; if (c.measureText(t).width > max && line) { out.push(line); line = w; } else line = t; }); else for (const ch of text) { if (c.measureText(line + ch).width > max && line) { out.push(line); line = ch; } else line += ch; } if (line) out.push(line); for (let i = 1; i < out.length; i++) { const m = out[i].match(/^[：:，,、。.！!？?）)」』·；;]+/); if (m) { out[i - 1] += m[0]; out[i] = out[i].slice(m[0].length); } } return out.filter(Boolean); }
   function rr(c, x, y, w, h, r) { c.beginPath(); c.moveTo(x + r, y); c.arcTo(x + w, y, x + w, y + h, r); c.arcTo(x + w, y + h, x, y + h, r); c.arcTo(x, y + h, x, y, r); c.arcTo(x, y, x + w, y, r); c.closePath(); }
   const HEAD = 700, AXES_H = 650, CHART = 890, STATS = 380, FOOT = 420, LH = 50, PICK = 92, CW = W - 2 * P - 72;
-  function noteText(a, o) { const d = String(o.date || ''), y = a.year; return a.en ? (y ? `This is your ${y} taste map, from ${a.n} films. Generated ${d}. Your taste keeps changing year by year; create next year's map and compare.` : `Your taste map changes as you keep watching: the more films you rate, the sharper the picture. Generated ${d} from ${a.n} films; come back next year and see how you have changed.`) : (y ? `这是你 ${y} 年的电影趣味图谱，基于这一年看过的 ${a.n} 部电影，生成于 ${d}。口味会一年年变化，明年再生成一张，对比看看你的轨迹。` : `电影趣味图谱会随着你一年年的观影积累不断变化：看得越多，画像越准。生成于 ${d}，基于 ${a.n} 部电影。明年这个时候再来生成一次，看看你变了多少。`); }
+  function noteText(a, o) { const d = String(o.date || ''), y = a.year; if (a.programme) return a.en ? `This is your taste map for ${a.programme}, from the ${a.n} films you rated there. Generated ${d}. Your taste inside one programme is not always your everyday one: create the all-films map and compare.` : `这是你在「${a.programme}」的电影趣味图谱，基于这个专题里打过分的 ${a.n} 部电影，生成于 ${d}。专题里的口味和平时不一定一样，可以再生成一张全部影片的图谱对比看看。`; return a.en ? (y ? `This is your ${y} taste map, from ${a.n} films. Generated ${d}. Your taste keeps changing year by year; create next year's map and compare.` : `Your taste map changes as you keep watching: the more films you rate, the sharper the picture. Generated ${d} from ${a.n} films; come back next year and see how you have changed.`) : (y ? `这是你 ${y} 年的电影趣味图谱，基于这一年看过的 ${a.n} 部电影，生成于 ${d}。口味会一年年变化，明年再生成一张，对比看看你的轨迹。` : `电影趣味图谱会随着你一年年的观影积累不断变化：看得越多，画像越准。生成于 ${d}，基于 ${a.n} 部电影。明年这个时候再来生成一次，看看你变了多少。`); }
   function layout(c, a, o) {
     const en = a.en; c.font = '400 31px ' + SANS;
     const paras = (a.paras || []).map(p => wrap(c, p, CW));
     const t = a.type, rows = [[en ? 'Hidden skill' : '隐藏技能', t.power], [en ? 'Blind spot' : '观影雷区', t.blind], [en ? 'Soulmate type' : '灵魂搭子', t.mate + ' · ' + t.mateName], [en ? 'Try next' : '下一步', t.next]];
     if (a.near) rows.splice(2, 0, [en ? 'Next-door type' : '近邻人格', en ? `${a.near.code} · ${a.near.name}: only ${a.near.gap}% away on “${a.near.axis}”.` : `${a.near.code} · ${a.near.name}。你在「${a.near.axis}」上只差 ${a.near.gap}%，再看几部就可能变身。`]);
+    if (a.base) rows.unshift([en ? 'Everyday you' : '平时的你', a.base.code === a.code ? (en ? `Across all ${a.base.n} films you are also ${a.code} ${t.name}: the same viewer in and out of this programme.` : `在全部 ${a.base.n} 部电影里你同样是 ${a.code} ${t.name}，这个专题内外口味如一。`) : (en ? `Across all ${a.base.n} films you are ${a.base.code} ${a.base.name}; here you became ${a.code} ${t.name}.` : `平时你是 ${a.base.code} ${a.base.name}，在这个专题里变成了 ${a.code} ${t.name}。`)]);
     if (a.prev) rows.unshift([en ? 'Your arc' : '变化轨迹', a.prev.code === a.code ? (en ? `Same as ${a.prev.year}: still ${a.code} ${t.name}. A steady palate.` : `和 ${a.prev.year} 年一样，你依然是 ${a.code} ${t.name}，口味相当稳定。`) : (en ? `${a.prev.year}: ${a.prev.code} ${a.prev.name} → ${a.year}: ${a.code} ${t.name}.` : `${a.prev.year} 年你还是 ${a.prev.code} ${a.prev.name}，${a.year} 年变成了 ${a.code} ${t.name}。`)]);
     c.font = '400 29px ' + SANS; const typeRows = rows.map(([k, v]) => [k, wrap(c, v, CW - 190)]);
     c.font = '400 26px ' + SANS; const note = wrap(c, noteText(a, o), CW);
@@ -291,7 +295,8 @@
     { const tg = c.createLinearGradient(0, 0, W, HEAD); tg.addColorStop(0, t.color); tg.addColorStop(1, 'rgba(0,0,0,0)'); c.globalAlpha = 0.5; c.fillStyle = tg; c.fillRect(0, 0, W, HEAD); c.globalAlpha = 1; }
     c.strokeStyle = C.gold; c.globalAlpha = 0.7; c.lineWidth = 2; c.strokeRect(28, 28, W - 56, HEAD - 56); c.lineWidth = 1; c.strokeRect(38, 38, W - 76, HEAD - 76); c.globalAlpha = 1;
     c.fillStyle = C.gold; c.font = '600 22px ' + MONO; c.fillText('SPARROW FILM PASSPORT · MY FILM TASTE MAP' + (a.year ? ' · ' + a.year : ''), P + 10, 108);
-    const h = String(o.holder || '').trim(), yr = a.year ? a.year + (en ? ' ' : '') : '', title = en ? (h ? h + "'s " : 'My ') + yr + 'Film Taste Map' : (h || '我') + '的' + yr + '电影趣味图谱';
+    const pn = a.programme;
+    const h = String(o.holder || '').trim(), yr = a.year ? a.year + (en ? ' ' : '') : '', title = pn ? (en ? (h ? h + "'s " : 'My ') + pn + ' Taste Map' : (h || '我') + '的' + pn + '趣味图谱') : en ? (h ? h + "'s " : 'My ') + yr + 'Film Taste Map' : (h || '我') + '的' + yr + '电影趣味图谱';
     c.fillStyle = '#fffaf0'; { let tz = 52; c.font = '900 ' + tz + 'px ' + SERIF; while (tz > 34 && c.measureText(title).width > W - 2 * P - 20) { tz -= 2; c.font = '900 ' + tz + 'px ' + SERIF; } c.fillText(title, P + 10, 184); }
     c.fillStyle = C.gold; c.font = '600 24px ' + SANS; c.fillText(en ? 'YOUR TASTE PERSONA' : '你的趣味人格', P + 10, 252);
     let fz = en ? 58 : 72; c.font = '900 ' + fz + 'px ' + SERIF; while (fz > 34 && c.measureText(a.persona).width > W - 2 * P - 20) { fz -= 2; c.font = '900 ' + fz + 'px ' + SERIF; }
