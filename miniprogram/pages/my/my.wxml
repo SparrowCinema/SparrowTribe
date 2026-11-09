@@ -153,9 +153,9 @@ ONE STAMP</text><text class="fp-open-icon">↗</text></view>
   <view wx:if="{{guideOpen}}" class="me-body guide">
       <view class="gi" wx:for="{{guide}}" wx:key="k"><text class="gk">{{index + 1}}</text><view><text class="gb">{{L.t(i,item.k)}}</text><text class="gs">{{L.t(i,item.s)}}</text></view></view>
   </view>
-  <view class="me-row" hover-class="hv" bindtap="toggleFb"><image class="me-ic" src="/images/menu/feedback.svg" mode="aspectFit" /><view class="me-copy"><text class="me-t">{{L.t(i,'反馈与纠错')}}</text><text class="me-s">{{L.t(i,'排片问题与使用建议')}}</text></view><text class="me-go {{fbOpen?'on':''}}">›</text></view>
+  <view class="me-row" hover-class="hv" bindtap="toggleFb"><image class="me-ic" src="/images/menu/feedback.svg" mode="aspectFit" /><view class="me-copy"><text class="me-t">{{L.t(i,'影展合作&反馈与纠错')}}</text><text class="me-s">{{L.t(i,'影展合作 · 排片问题与使用建议')}}</text></view><text class="me-go {{fbOpen?'on':''}}">›</text></view>
   <view wx:if="{{fbOpen}}" class="me-body fb">
-    <view class="fb-p">{{L.t(i,'排片、片名、人名或功能有问题？欢迎告诉我们，附上截图和页面名称会更快处理。')}}</view>
+    <view class="fb-p">{{L.t(i,'影展、放映合作，或排片、片名、人名、功能有问题？欢迎告诉我们，附上截图和页面名称会更快处理。')}}</view>
     <view class="fb-row" hover-class="hv" data-v="2165.yan@gmail.com" data-n="Email" bindtap="copyContact"><text class="fb-k mono">EMAIL</text><text class="fb-v mono">2165.yan@gmail.com</text><text class="fb-go">{{L.t(i,'复制')}}</text></view>
     <view class="fb-row" hover-class="hv" data-v="BFAFILM" data-n="WeChat" bindtap="copyContact"><text class="fb-k mono">WECHAT</text><text class="fb-v mono">BFAFILM</text><text class="fb-go">{{L.t(i,'复制')}}</text></view>
   </view>

@@ -8564,7 +8564,7 @@
   "开启上方云端同步，另一台设备用同步码即可带走看过记录、评分、照片和排片。同步码请自己保管，丢失后无法凭姓名找回。": "Turn on cloud sync above; enter the sync code on another device to bring over watched films, ratings, photo and plan. Keep the code safe: it cannot be recovered from your name.",
   "可以下载一份完整备份（含观影记录、评分、照片、姓名和排片，不含同步码），导入时会合并已有排片，同一影片以备份记录为准。": "Download a full backup (watched films, ratings, photo, name and plan; no sync code). Importing merges your plan and, for the same film, the backup record wins.",
   "中英文与添加到手机": "Language, install & feedback",
-  "右上角可切换中文 / English；网页版可「添加到手机」放到桌面像 App 一样用，在微信里则用浮窗；排片有误可在「反馈与纠错」告诉我们。": "Switch between 中文 and English at the top. The web version can be added to your home screen like an app (use Floating Window in WeChat). Report schedule errors under “Feedback & corrections”.",
+  "右上角可切换中文 / English；网页版可「添加到手机」放到桌面像 App 一样用，在微信里则用浮窗；排片有误可在「影展合作&反馈与纠错」告诉我们。": "Switch between 中文 and English at the top. The web version can be added to your home screen like an app (use Floating Window in WeChat). Report schedule errors under “Feedback & corrections”.",
   "看过 · 盖章": "Mark as watched · stamp",
   "在影片页点「看过」，护照里就会盖下这部片的印章；可以打星评分、改观影日期。": "Tap “Watched” on a film page to stamp it into your passport. You can rate it and change the viewing date.",
   "写下持有人": "Holder & photo",
@@ -8626,7 +8626,6 @@
   "马来西亚": "Malaysia",
   "中国（澳门）": "Macao, China",
   "反馈与纠错": "Feedback & corrections",
-  "排片、片名、人名或功能有问题？欢迎告诉我们，附上截图和页面名称会更快处理。": "Spotted a wrong schedule, title, name or bug? Let us know — a screenshot and the page name help us fix it faster.",
   "已复制": "Copied",
   "已复制：": "Copied: ",
   "部待映": "to screen",
@@ -8764,7 +8763,7 @@
   "带着日程出发，带着电影回来。": "Take your programme out. Bring the films home.",
   "分级参考美国MPA发行版本，实际放映版本可能不同。": "Ratings refer to US MPA release editions; the screened cut may differ.",
   "清空云端内容并断开同步": "Clear cloud content and disconnect",
-  "如需彻底删除服务器上的同步记录，请通过「反馈与纠错」联系维护者；请勿在公开反馈里发送完整同步码。": "To request deletion of the server sync record itself, contact the maintainer through Feedback. Do not publish your full sync code in public feedback.",
+  "如需彻底删除服务器上的同步记录，请通过「影展合作&反馈与纠错」联系维护者；请勿在公开反馈里发送完整同步码。": "To request deletion of the server sync record itself, contact the maintainer through Feedback. Do not publish your full sync code in public feedback.",
   "已查到闪烁影像提示；光敏观众请谨慎选择。": "A published flashing-image advisory exists; photosensitive viewers should consider this before attending.",
   "先检查另一台已连接的设备；没有同步码和已连接设备时，我们无法凭姓名找回。已有备份仍可恢复到本机，再创建新的同步码。": "Check another connected device first. Without the code or a connected device, we cannot recover an archive by name. You can still restore a backup locally and create a new sync code.",
   "按已收录场次所在城市筛选": "Filter by the city of a recorded screening",
@@ -8881,6 +8880,9 @@
   "4号杜比巨幕4K激光厅": "Hall 4 (Dolby Giant Screen, 4K Laser)",
   "6号杜比巨幕4K激光厅": "Hall 6 (Dolby Giant Screen, 4K Laser)",
   "4号杜比巨幕厅": "Hall 4 (Dolby Giant Screen)",
-  "亚奥万象 · 6号杜比巨幕厅": "Yaao MIXC · Hall 6 (Dolby Giant Screen)"
+  "亚奥万象 · 6号杜比巨幕厅": "Yaao MIXC · Hall 6 (Dolby Giant Screen)",
+  "影展合作&反馈与纠错": "Festival partnerships & feedback",
+  "影展、放映合作，或排片、片名、人名、功能有问题？欢迎告诉我们，附上截图和页面名称会更快处理。": "Festival or screening partnerships, or a problem with a schedule, title, name or feature? Let us know — a screenshot and the page name help us respond faster.",
+  "影展合作 · 排片问题与使用建议": "Festival partnerships · schedule issues and suggestions"
  }
 }
