@@ -19,3 +19,10 @@
 .tr-canvas{position:fixed;left:-9999px;top:0;width:1080px;height:1080px}
 .tr-acts{flex-wrap:wrap}.tr-year{flex:none}.tr-year-v{display:flex;align-items:center;gap:calc(8 * var(--r));padding:calc(14 * var(--r)) calc(22 * var(--r)) calc(14 * var(--r)) calc(28 * var(--r));border:calc(2 * var(--r)) solid var(--line);border-radius:999px;background:var(--surface);color:var(--fg);font-size:calc(23 * var(--fr));font-weight:700}.tr-year-c{color:var(--muted);margin-top:calc(-8 * var(--r))}
 .tr-prog{min-width:0;max-width:46%}.tr-prog-t{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* 图谱范围：与片目、海报墙同款的分栏筛选条（专题 | 年份） */
+.tr-filters{grid-template-columns:repeat(2,minmax(0,1fr));margin:calc(20 * var(--r)) 0 0}.tr-filters .tr-first{border-left:0}
+.tr-note{margin:calc(14 * var(--r)) calc(4 * var(--r)) 0;font-size:calc(19 * var(--fr));color:var(--muted);line-height:1.5}
+.tr-acts2{display:flex;flex-direction:column;align-items:stretch;gap:calc(14 * var(--r));margin:calc(24 * var(--r)) 0 calc(32 * var(--r))}
+.tr-acts2 .tr-make{width:100% !important;padding:calc(24 * var(--r)) calc(32 * var(--r)) !important;font-size:calc(26 * var(--fr)) !important;text-align:center}
+.tr-sub{font-size:calc(19 * var(--fr));color:var(--muted);line-height:1.5;text-align:center}
