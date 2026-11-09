@@ -196,8 +196,7 @@ button:focus-visible,summary:focus-visible,a:focus-visible{outline:3px solid var
 .pw-score-toggle input{width:16px;height:16px;margin:0;accent-color:var(--accent);cursor:pointer}
 
 /* 海报墙工具行：勾选 + 导出按钮保持一行；导出按钮缩小并用视图切换同款棕色 */
-.pw-actions{flex-wrap:nowrap}.pw-actions .pw-score-toggle{margin-left:0;min-width:0;white-space:nowrap}
+.pw-actions{flex-wrap:nowrap}.pw-actions .pw-score-toggle{margin-left:auto;flex:none;white-space:nowrap}.pw-actions .pw-count{flex:1 1 auto;min-width:0;margin:0;font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .pw-actions #pw-export{flex:none;width:auto;min-height:0;padding:8px 16px;border-radius:99px;background:#a66e3d;border:1px solid #a66e3d;color:#fff;font-size:11.5px;font-weight:700;line-height:1.3}
 .pw-actions #pw-export:disabled{background:var(--surface);border-color:var(--line);color:var(--muted)}
-.pw-meta{margin-top:0}
 @media(max-width:360px){.pw-actions #pw-export{padding:7px 12px;font-size:10.8px}.pw-actions .pw-score-toggle{font-size:11px;gap:5px}}

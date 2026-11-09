@@ -121,7 +121,7 @@
     c.fillStyle = g; c.fillRect(0, 0, W, L.HEAD);
     c.strokeStyle = C.gold; c.globalAlpha = 0.75; c.lineWidth = 2; c.strokeRect(28, 28, W - 56, L.HEAD - 56); c.lineWidth = 1; c.strokeRect(38, 38, W - 76, L.HEAD - 76); c.globalAlpha = 1;
     c.fillStyle = C.gold; c.font = '600 22px ' + MONO; c.fillText(o.kicker || 'SPARROW FILM PASSPORT', P + 10, 112);
-    c.fillStyle = '#fffaf0'; c.font = '900 ' + (o.en ? 58 : 70) + 'px ' + SERIF; c.fillText(o.title || T('我的影院观影结算'), P + 10, 210);
+    c.fillStyle = '#fffaf0'; { const tt = o.title || T('我的影院观影结算'), maxW = W - 2 * P - 300; let fz = o.en ? 58 : 70; c.font = '900 ' + fz + 'px ' + SERIF; while (fz > 36 && c.measureText(tt).width > maxW) { fz -= 2; c.font = '900 ' + fz + 'px ' + SERIF; } c.fillText(tt, P + 10, 210); }
     c.font = '400 28px ' + SANS; c.globalAlpha = 0.85; c.fillText(o.sub || '', P + 10, 262); c.globalAlpha = 1;
     c.fillStyle = C.gold; c.fillRect(P + 10, 300, 64, 3);
     c.font = '400 22px ' + SANS; c.globalAlpha = 0.75; c.fillStyle = '#fffaf0'; c.fillText(T('麻雀观影护照') + ' · ' + T('麻雀映画 × 麻雀部落'), P + 10, 350); c.globalAlpha = 1;
