@@ -7451,8 +7451,8 @@
    "store": "Hangzhou Yaao MIXC Dolby Giant Screen",
    "halls": {
     "dolby": {
-     "name": "Dolby Giant Screen",
-     "short": "Dolby Giant Screen"
+     "name": "Hall 6 (Dolby Giant Screen, 4K Laser)",
+     "short": "Hall 6 (Dolby Giant Screen)"
     }
    }
   },
@@ -8873,6 +8873,6 @@
   "4号杜比巨幕4K激光厅": "Hall 4 (Dolby Giant Screen, 4K Laser)",
   "6号杜比巨幕4K激光厅": "Hall 6 (Dolby Giant Screen, 4K Laser)",
   "4号杜比巨幕厅": "Hall 4 (Dolby Giant Screen)",
-  "6号杜比巨幕厅": "Hall 6 (Dolby Giant Screen)"
+  "亚奥万象 · 6号杜比巨幕厅": "Yaao MIXC · Hall 6 (Dolby Giant Screen)"
  }
 }
