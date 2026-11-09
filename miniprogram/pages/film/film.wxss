@@ -252,3 +252,7 @@
 .mrc .ts-row-k { width: calc(96 * var(--r)); font-weight: 400; font-size: calc(19 * var(--fr)); color: var(--muted); }
 .mrc .ts-cta { font-weight: 400; color: var(--fg); }
 .mr-seen-full { width: 100%; justify-content: center; margin-top: calc(18 * var(--r)); }
+
+/* 分享：好友卡片 + 分享海报 */
+.share-row{display:flex;gap:calc(16 * var(--r));margin-top:calc(32 * var(--r))}.share-row .share{flex:1;margin-top:0 !important;width:auto}
+.share-canvas{position:fixed;left:-9999px;top:0;width:1080px;height:1080px}

@@ -3,9 +3,10 @@ const U = require('../../utils/util.js');
 const I = require('../../utils/i18n.js');
 const t = I.tr;
 const app = getApp();
+const SM = require('../../utils/share-make.js');
 Page({
   data: { i: {}, evGroups: [], evN: 0, evOpen: false, p: null, films: [], gone: [], goneOpen: undefined, stats: {}, section: "", sections: [], selOpen: false, selRows: [], selQuery: "", selTitle: "", selPlaceholder: "", sectionName: "", sectionN: 0 },
-  onLoad(q) { this.setData({ i: I.dict() }); this.id = q.id || 'style-kaleidoscope'; this.off = app.onData(() => this.build()); this.build(); },
+  onLoad(q) { this.setData({ i: I.dict() }); this.id = SM.fromScene(q, ((app.globalData.data || {}).programmes || []).map(x => x.id)) || 'style-kaleidoscope'; this.off = app.onData(() => this.build()); this.build(); },
   onUnload() { this.off && this.off(); },
   build() {
     const data = app.globalData.data, idx = U.index(data), p = idx.PG[this.id];
@@ -66,5 +67,14 @@ Page({
   onPageScroll(e) { this.scrollTop = e.scrollTop; T.scroll(this, e); },
   toTop() { T.go(); },
   toSchedule() { app.globalData.jumpProg = this.id; wx.switchTab({ url: '/pages/schedule/schedule' }); },
+  sharePoster() {
+    const p = this.data.p, st = this.data.stats || {}; if (!p) return;
+    SM.make(this, { page: 'pages/programme/programme', scene: this.id.slice(0, 32), build: async load => ({
+      kind: 'programme', kicker: 'SPARROW FILM PASSPORT · ' + String(p.en || p.kind || 'PROGRAMME').toUpperCase(), title: p.name, en: I.isEn() ? '' : (p.en || ''),
+      meta: [[p.periodT || p.period, t(p.city || '')].filter(Boolean).join(' · ')].filter(Boolean),
+      stats: st.f != null ? [[st.f, t('部影片')], [st.s, t('场放映')], [st.d, t('个放映日')], [st.h, t('个影厅')]] : [],
+      blurb: p.blurb || '', img: await load(p.cover), posters: await Promise.all((this.data.films || []).slice(0, 5).map(x => load(x.poster))),
+      qrText: t('长按识别小程序码'), qrSub: t('查看专题片单、排片与活动') }) });
+  },
   onShareAppMessage() { const p = this.data.p || {}; return { title: p.name, path: '/pages/programme/programme?id=' + this.id }; }
 });

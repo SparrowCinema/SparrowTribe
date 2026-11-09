@@ -19,11 +19,12 @@ function honor(x) {
   return { t: I.tr(t || '荣誉'), yr, a: parts[0], b: parts.slice(1).join(' · '), cls };
 }
 
+const SM = require('../../utils/share-make.js');
 Page({
   onPageScroll(e) { T.scroll(this, e); },
   toTop() { T.go(); },
   data: { i: {}, f: null, open: false, fs: 1, tsShow: false, tsRow: {}, lgShow: false, lg: { shows: [], fmt: { cols: [[], []], val: [0, 0] }, stars: [0, 0, 0, 0, 0] } },
-  onLoad(q) { this.setData({ i: I.dict() }); this.id = q.id; this.off1 = app.onData(() => this.build()); this.off2 = plan.onChange(() => this.build()); this.off3 = W.onChange(() => this.buildMine()); this.offC=C.subscribe(()=>this.setData({community:C.model(this.id,I.isEn()),tsRow:this.tsRowModel()}));this.build();this.loadCommunity(); },
+  onLoad(q) { this.setData({ i: I.dict() }); this.id = SM.fromScene(q, ((app.globalData.data || {}).films || []).map(x => x.id)); this.off1 = app.onData(() => this.build()); this.off2 = plan.onChange(() => this.build()); this.off3 = W.onChange(() => this.buildMine()); this.offC=C.subscribe(()=>this.setData({community:C.model(this.id,I.isEn()),tsRow:this.tsRowModel()}));this.build();this.loadCommunity(); },
   loadCommunity(){C.read([this.id]).then(()=>this.setData({community:C.model(this.id,I.isEn()),tsRow:this.tsRowModel(),communityError:false})).catch(()=>this.setData({communityError:true}));},
   async communityAction(e){const action=e.currentTarget.dataset.action;if(action==='retry'){await SY.quiet();C.changed();await C.flush();return this.loadCommunity();}if(!C.identity()){wx.showToast({title:t('请先在「我的」开启云端同步'),icon:'none'});return;}const rec=W.get(this.id);if(!rec)return;const commit=async()=>{await SY.quiet();const current=W.get(this.id);if(!current)return;W.set(this.id,Taste.set(current,'tastePublic',action==='publish'));C.changed();await C.flush();this.loadCommunity();};commit();},
   toggleGone() { this.setData({ goneOpen: !this.data.goneOpen }); },
@@ -200,6 +201,15 @@ Page({
   openProg(e) { wx.navigateTo({ url: '/pages/programme/programme?id=' + ((e && e.currentTarget.dataset.id) || this.data.f.prog.id) }); },
   toSchedule() { wx.switchTab({ url: '/pages/schedule/schedule' }); },
   seeDay(e) { app.globalData.jumpDay = e.currentTarget.dataset.d; wx.switchTab({ url: '/pages/schedule/schedule' }); },
+  sharePoster() {
+    const data = app.globalData.data, idx = U.index(data), f = idx.F[this.id]; if (!f) return;
+    const p = idx.progOf(f), up = data.shows.filter(s => s.id === f.id && !U.ended(s, idx)).sort((a, b) => U.showDate(a) - U.showDate(b)).slice(0, 3);
+    SM.make(this, { page: 'pages/film/film', scene: f.id.slice(0, 32), build: async load => ({
+      kind: 'film', kicker: 'SPARROW FILM PASSPORT · ' + String(p.en || 'FILM').toUpperCase(), title: f.cn, tag: t(f.version || ''), en: f.en || f.o || '',
+      meta: [f.dir ? t('导演') + ' ' + f.dir : '', [f.y, t(f.c || ''), f.min && !f.minTbd ? t(f.min + ' 分钟') : ''].filter(Boolean).join(' · '), p.name].filter(Boolean),
+      lines: up.map(s => ({ when: s.d + ' ' + s.t, where: idx.venueName(s) + ' · ' + idx.hallName(s) })),
+      img: await load(U.poster(f)), qrText: t('长按识别小程序码'), qrSub: t('查看影片详情、场次与购票') }) });
+  },
   onShareAppMessage() { const f = this.data.f || {}; return { title: (I.isEn() ? f.cn + (f.version ? ' ' + f.version : '') : `《${f.cn}》${f.version ? f.version : ''}`) + ' · ' + t('麻雀观影护照'), path: '/pages/film/film?id=' + this.id, imageUrl: f.poster || undefined }; },
   onShareTimeline() { const f = this.data.f || {}; return { title: (I.isEn() ? f.cn : `《${f.cn}》`) + ' · ' + t('麻雀观影护照'), query: 'id=' + this.id }; }
 });

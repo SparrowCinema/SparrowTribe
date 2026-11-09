@@ -73,6 +73,7 @@ console.log('PASS: compact programme multi-select threshold, retained selection 
 
 // Poster-wall programme filtering and export must stay in sync on both clients.
 require('./check-poster-filters.js');
+require('./check-share-poster.js');
 
 // Poster exports use five path-drawn stars, including true half-star clipping.
 for(const cols of [5,10]){const c=context();R.draw(c,{sections:['posters'],posterCols:cols,items:[{title:'Half-star film',score:7},{title:'Unrated film',score:0}]});assert(c.calls.some(x=>x[0]==='rect'&&Math.abs(x[3]/x[4]-.5)<.001));assert(!c.calls.some(x=>x[0]==='fillText'&&/\d+\/10/.test(String(x[1]))));assert(c.calls.some(x=>x[0]==='fillText'&&x[1]==='未评分'));}

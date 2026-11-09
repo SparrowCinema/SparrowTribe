@@ -8940,6 +8940,20 @@
   "马拉喀什": "Marrakech",
   "墨尔本": "Melbourne",
   "悉尼": "Sydney",
-  "导出时显示评分": "Show ratings in export"
+  "导出时显示评分": "Show ratings in export",
+  "分享海报": "Share poster",
+  "生成分享海报": "Create share poster",
+  "正在生成分享海报…": "Creating share poster…",
+  "海报生成失败，请稍后再试": "Couldn't create the poster. Please try again.",
+  "分享海报已生成": "Share poster ready",
+  "长按识别小程序码": "Long-press to open the mini program",
+  "查看影片详情、场次与购票": "Film details, screenings & tickets",
+  "查看专题片单、排片与活动": "Programme films, schedule & events",
+  "扫码查看影片详情": "Scan for film details",
+  "场次、购票与观影护照": "Screenings, tickets & film passport",
+  "扫码查看专题": "Scan for this programme",
+  "片单、排片与活动": "Films, schedule & events",
+  "近期场次": "Upcoming screenings",
+  "排片公布后会在麻雀观影护照更新": "Screenings will appear in Sparrow Film Passport once announced"
  }
 }

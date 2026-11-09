@@ -212,6 +212,13 @@ Claude 与 GPT 可能使用同一 GitHub 身份，审批人数可先设为0；�
 - 写入规则统一在 `shared/growth.js` 的 `setViews` / `putView` / `dropView`（小程序副本由 `node tools/build-fallback.js` 复制），保留趣味分、公开意愿等其他字段；数据结构（`v` 数组与顶层 d/r/k/f）不变。
 
 
+## 影片 / 专题分享海报
+
+- 影片页（网页「分享海报」、小程序「生成分享海报」）和专题页（「分享海报」）生成一张分享图：影片＝海报 + 片名、版本、英文名、导演/年份/地区/片长、所属专题 + 最近 3 场；专题＝头图 + 名称、档期城市、统计（全为 0 时不显示）、简介（最多 5 行）+ 即将放映的 5 张海报。页脚深色通栏放二维码。
+- 版式代码 `shared/share-poster.js`（网站直接加载；`node tools/build-fallback.js` 复制成 `miniprogram/utils/share-poster.js`，不要直接改小程序那份），测试 `tools/check-share-poster.js`（随 check-companion 运行）。
+- 小程序：`utils/share-make.js` 调 `wxacode` 云函数（`wxacode.getUnlimited`，scene＝影片/专题 id 前 32 个字符，`checkPath:false`），生成该页面专属小程序码并缓存到云存储与数据库集合 `wxacode`；失败时退回通用小程序码。扫码进入时页面用 `fromScene` 按 scene（必要时前缀匹配）找到影片/专题。生成后用 `wx.showShareImageMenu` 直接发给朋友或保存。`wxacode` 云函数新增或改动后需在开发者工具上传部署（含 config.json 的 openapi 权限）。
+- 网站：页脚二维码是该页的分享链接（`s/f|p/<id>.html`），结果用 `showImageSheet` 保存。
+
 ## 海报墙筛选
 
 - 海报墙使用与片目一致的三栏检索条：专题（搜索、多选）、海报墙（年度/季度/月度）、观影时间。网页和小程序同步；跨专题影片按完整归属匹配且只展示一次。
