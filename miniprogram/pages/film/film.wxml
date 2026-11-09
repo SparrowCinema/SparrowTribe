@@ -21,7 +21,7 @@
           <text wx:if="{{f.lang}}" class="tg">{{f.lang}}</text>
           <text wx:for="{{f.genre}}" wx:key="*this" class="tg">{{item}}</text>
         </view>
-        <view wx:if="{{!f.ev}}" class="hero-acts"><button class="ha" open-type="share" hover-class="ha-hv"><image class="ha-i" src="/images/menu/share-w.svg" mode="aspectFit" />{{L.t(i,'分享影片')}}</button><button class="ha" bindtap="sharePoster" hover-class="ha-hv"><image class="ha-i" src="/images/menu/poster-w.svg" mode="aspectFit" />{{L.t(i,'分享海报')}}</button></view>
+        <view wx:if="{{!f.ev}}" class="hero-acts"><button class="hact" open-type="share" hover-class="hact-hv"><image class="hact-i" src="/images/menu/share-w.svg" mode="aspectFit" />{{L.t(i,'分享影片')}}</button><button class="hact" bindtap="sharePoster" hover-class="hact-hv"><image class="hact-i" src="/images/menu/poster-w.svg" mode="aspectFit" />{{L.t(i,'分享海报')}}</button></view>
       </view>
       </view>
       <view wx:if="{{!mine.seen}}" class="mr-seen mr-seen-full" hover-class="hv" bindtap="toggleSeen">{{mine.seenTxt}}</view>
