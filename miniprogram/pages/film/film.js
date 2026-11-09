@@ -37,8 +37,18 @@ Page({
     const allShows = data.shows.filter(s => s.id === f.id), multi = idx.progsOf(f).length > 1;
     const shows = allShows.filter(s => !U.ended(s, idx)).map(s => {
       const v = U.showView(s, idx, data, picked); const [m, d] = s.d.split('/');
-      return Object.assign(v, { progTag: multi ? U.progForShow(s, idx).name : '', m, dd: d, mon: t(m + '月'), vid: s.v, geo: !!U.geoOf(idx.VN[s.v]) });
+      return Object.assign(v, { progTag: multi ? U.progForShow(s, idx).name : '', m, dd: d, mon: t(m + '月'), vid: s.v, sd: s.d, geo: !!U.geoOf(idx.VN[s.v]) });
     });
+    // 院线片：放映场次按日期、影院多选筛选（只影响本页显示，与网站 showFilterHTML 一致）
+    const sfSt = this.sf || (this.sf = { d: [], v: [] }), cinema = idx.progsOf(f).some(x => x.p && x.p.kind === '院线') || allShows.some(s => (U.progForShow(s, idx) || {}).kind === '院线');
+    const sfDates = [...new Set(shows.map(x => x.sd))], sfVs = [...new Set(shows.map(x => x.vid))], sfCities = new Set(sfVs.map(v => (idx.VN[v] || {}).city));
+    const vLabel = id => { const v = idx.VN[id] || {}, n = String(v.short || v.brand || v.name || id).replace(new RegExp('^(' + [v.city, t(v.city || '')].filter(Boolean).join('|') + ')\\s*[·・]?\\s*'), ''); return sfCities.size > 1 && v.city ? t(v.city) + ' · ' + n : n; };
+    const sfShow = cinema && (sfDates.length > 1 || sfVs.length > 1);
+    const sf = { show: sfShow, dAll: !sfSt.d.length, vAll: !sfSt.v.length, filtered: sfShow && (sfSt.d.length + sfSt.v.length > 0),
+      dates: sfShow && sfDates.length > 1 ? sfDates.map(d => ({ v: d, l: d + ' ' + U.wk(d), on: sfSt.d.includes(d) })) : [],
+      venues: sfShow && sfVs.length > 1 ? sfVs.map(v => ({ v, l: vLabel(v), on: sfSt.v.includes(v) })) : [] };
+    const showsAllN = shows.length;
+    if (sf.show) shows.splice(0, shows.length, ...shows.filter(x => (!sfSt.d.length || sfSt.d.includes(x.sd)) && (!sfSt.v.length || sfSt.v.includes(x.vid))));
     // 影展内已放映的场次：窄条保留（黑白、无操作按钮）；院线片不显示
     const goneShows = allShows.filter(s => U.ended(s, idx) && U.keepPast(U.progForShow(s, idx))).sort((a, b) => U.showDate(a) - U.showDate(b)).map(s => {
       const v = idx.VN[s.v] || {}, h = (v.halls || []).find(x => x.id === s.h), nm = (v.short || v.brand || v.name || '').replace(new RegExp('^' + (v.city || '@@') + '\\s*[·・]?\\s*'), '');
@@ -75,8 +85,8 @@ Page({
         gifts: (f.gifts || []).map((g, k) => ({ k, label: t(g.label || ''), items: (g.items || []).map(t) }))
       },
       qa: (q => q ? { label: f.qaStart + ' – ' + f.qaEnd, guest: t(f.qaGuest) } : null)(U.qaOf(f)),
-      cnt: t(shows.length + ' 场'),
-      shows, goneShows, goneN: t(goneShows.length + ' 场'), goneOpen: this.data.goneOpen === undefined ? !shows.length : this.data.goneOpen, ratings, credits, nav, parts: (f.parts || []).map(m => { const en = I.isEn(); return { n: en ? m.en : m.cn, sub: [en ? m.cn : m.en, m.y, m.min ? m.min + t('分钟') : '', m.c].filter(Boolean).join(' · '), dir: (en && m.dirO) || m.dir || '', src: (en && m.printSourceEn) || m.printSource || '', syn: (en ? m.synEn : m.syn) || '', bio:(en?m.bioEn:m.bio)||'', honors: (m.honors || []).map(honor) }; }), ended: allShows.length > 0 && !shows.length
+      cnt: sf.filtered && shows.length !== showsAllN ? t(shows.length + ' / ' + showsAllN + ' 场') : t(showsAllN + ' 场'), sf,
+      shows, goneShows, goneN: t(goneShows.length + ' 场'), goneOpen: this.data.goneOpen === undefined ? !showsAllN : this.data.goneOpen, ratings, credits, nav, parts: (f.parts || []).map(m => { const en = I.isEn(); return { n: en ? m.en : m.cn, sub: [en ? m.cn : m.en, m.y, m.min ? m.min + t('分钟') : '', m.c].filter(Boolean).join(' · '), dir: (en && m.dirO) || m.dir || '', src: (en && m.printSourceEn) || m.printSource || '', syn: (en ? m.synEn : m.syn) || '', bio:(en?m.bioEn:m.bio)||'', honors: (m.honors || []).map(honor) }; }), ended: allShows.length > 0 && !shows.length
     });
     this.buildMine();
     this.setData({ fs: 1 }, () => this.fitHero());
@@ -201,6 +211,7 @@ Page({
   openProg(e) { wx.navigateTo({ url: '/pages/programme/programme?id=' + ((e && e.currentTarget.dataset.id) || this.data.f.prog.id) }); },
   toSchedule() { wx.switchTab({ url: '/pages/schedule/schedule' }); },
   seeDay(e) { app.globalData.jumpDay = e.currentTarget.dataset.d; wx.switchTab({ url: '/pages/schedule/schedule' }); },
+  sfTap(e) { const { k, v } = e.currentTarget.dataset, st = this.sf || (this.sf = { d: [], v: [] }); if (k === 'reset') { st.d = []; st.v = []; } else if (!v) st[k] = []; else { const i = st[k].indexOf(v); if (i >= 0) st[k].splice(i, 1); else st[k].push(v); } this.build(); },
   sharePoster() {
     const data = app.globalData.data, idx = U.index(data), f = idx.F[this.id]; if (!f) return;
     const p = idx.progOf(f), up = data.shows.filter(s => s.id === f.id && !U.ended(s, idx)).sort((a, b) => U.showDate(a) - U.showDate(b)).slice(0, 3);
