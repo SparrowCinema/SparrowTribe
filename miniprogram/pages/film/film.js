@@ -106,7 +106,8 @@ Page({
     const fa=a&&a.funAvg!=null?Number(a.funAvg).toFixed(1):'',ba=a&&a.boreAvg!=null?Number(a.boreAvg).toFixed(1):'',n=a?Math.max(a.funN||0,a.boreN||0):0;
     const comm=!a?'':fa||ba?(en?'Community ':'社区 ')+(fa||'—')+' · '+(ba||'—'):n?(en?n+' ratings':n+' 人评价'):seen?(en?'Be the first to rate':'成为第一个评价的人'):(en?'No ratings yet':'社区暂无评价');
     return {mine,fun:v('fun'),bore:v('bore'),comm};},
-  openTaste(){this.setData({tsShow:true});this.loadCommunity();},
+  openTaste(){this.setData({tsShow:true,lgShow:false});this.loadCommunity();},
+  sheetLeave(){this.closeTaste();this.lgClose();},
   closeTaste(){if(this.data.tsShow)this.setData({tsShow:false});},
   toTasteMap(){this.setData({tsShow:false});wx.navigateTo({url:'/pages/taste-map/taste-map'});},
   tasteRate(e){const rec=W.get(this.id),k=e.currentTarget.dataset.k,n=Number(e.currentTarget.dataset.n);if(rec&&['fun','bore'].includes(k)&&Taste.valid(n))W.set(this.id,Taste.toggle(rec,k,n));},
@@ -133,7 +134,7 @@ Page({
       stars: [1, 2, 3, 4, 5].map(k => Math.max(0, Math.min(2, o.r - (k - 1) * 2)) * 50), scoreTxt: o.r ? o.r + '/10' : (en ? '—' : '未评'),
       title: o.isNew ? (en ? 'Log another viewing' : '再看一次') : n > 1 ? (en ? 'Viewing ' + (o.i + 1) : '第 ' + (o.i + 1) + ' 次观影') : (en ? 'Viewing' : '观影记录'),
       delTxt: o.isNew ? '' : n > 1 ? (en ? 'Delete this viewing' : '删除这一次') : (en ? 'Remove from passport' : '移出观影护照') };
-    const d = { lg }; if (show) d.lgShow = true; this.setData(d);
+    const d = { lg }; if (show) { d.lgShow = true; d.tsShow = false; } this.setData(d);
   },
   lgDate(e) { const o = this._lg, d = e.detail.value; if (!o || !/^\d{4}-\d{2}-\d{2}$/.test(d)) return; o.d = d; o.k = this.lgLink(d, o.k); this.lgPaint(); },
   lgPick(e) { const o = this._lg; if (!o) return; const k = +e.detail.value, s = k > 0 ? (this._past || [])[k - 1] : null; o.k = s ? U.keyOf(s) : ''; if (s) o.d = W.iso(U.showDate(s)); this.lgPaint(); },
