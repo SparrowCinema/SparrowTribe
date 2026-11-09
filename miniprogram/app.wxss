@@ -63,3 +63,13 @@ page { --f-display: "Songti SC", "Noto Serif SC", "Source Han Serif SC", "STSong
 
 /* 外观：输入框文字随主题（微信在暗色下会改原生控件默认色） */
 input, textarea { color: var(--fg); }
+
+/* 分享进入时指向左上角「主页」按钮的轻提示（utils/hometip.js） */
+.home-tip{position:fixed;z-index:999;top:calc(14 * var(--r));left:calc(16 * var(--r));display:flex;align-items:center;gap:calc(14 * var(--r));max-width:calc(520 * var(--r));padding:calc(16 * var(--r)) calc(14 * var(--r)) calc(16 * var(--r)) calc(22 * var(--r));border-radius:calc(20 * var(--r));background:rgba(28,24,20,.94);color:#fff;box-shadow:0 calc(12 * var(--r)) calc(36 * var(--r)) rgba(0,0,0,.28);animation:homeTipIn .28s ease-out}
+.home-tip-arrow{position:absolute;top:calc(-10 * var(--r));left:calc(34 * var(--r));width:calc(22 * var(--r));height:calc(22 * var(--r));background:rgba(28,24,20,.94);transform:rotate(45deg);border-radius:calc(4 * var(--r))}
+.home-tip-i{font-size:calc(34 * var(--r));line-height:1;flex:none}
+.home-tip-copy{display:flex;flex-direction:column;min-width:0}
+.home-tip-t{font-size:calc(24 * var(--fr));font-weight:700;line-height:1.35}
+.home-tip-s{font-size:calc(20 * var(--fr));opacity:.75;line-height:1.35}
+.home-tip-x{flex:none;font-size:calc(34 * var(--r));line-height:1;padding:calc(4 * var(--r)) calc(10 * var(--r));opacity:.6}
+@keyframes homeTipIn{from{opacity:0;transform:translateY(calc(-10 * var(--r)))}to{opacity:1;transform:none}}

@@ -20,15 +20,18 @@ function honor(x) {
 }
 
 const SM = require('../../utils/share-make.js');
+const HT = require('../../utils/hometip.js');
 Page({
   onPageScroll(e) { T.scroll(this, e); },
   toTop() { T.go(); },
   data: { i: {}, f: null, open: false, fs: 1, tsShow: false, tsRow: {}, lgShow: false, lg: { shows: [], fmt: { cols: [[], []], val: [0, 0] }, stars: [0, 0, 0, 0, 0] } },
-  onLoad(q) { this.setData({ i: I.dict() }); this.id = SM.fromScene(q, ((app.globalData.data || {}).films || []).map(x => x.id)); this.off1 = app.onData(() => this.build()); this.off2 = plan.onChange(() => this.build()); this.off3 = W.onChange(() => this.buildMine()); this.offC=C.subscribe(()=>this.setData({community:C.model(this.id,I.isEn()),tsRow:this.tsRowModel()}));this.build();this.loadCommunity(); },
+  onLoad(q) { this.setData({ i: I.dict() }); HT.show(this); this.id = SM.fromScene(q, ((app.globalData.data || {}).films || []).map(x => x.id)); this.off1 = app.onData(() => this.build()); this.off2 = plan.onChange(() => this.build()); this.off3 = W.onChange(() => this.buildMine()); this.offC=C.subscribe(()=>this.setData({community:C.model(this.id,I.isEn()),tsRow:this.tsRowModel()}));this.build();this.loadCommunity(); },
   loadCommunity(){C.read([this.id]).then(()=>this.setData({community:C.model(this.id,I.isEn()),tsRow:this.tsRowModel(),communityError:false})).catch(()=>this.setData({communityError:true}));},
   async communityAction(e){const action=e.currentTarget.dataset.action;if(action==='retry'){await SY.quiet();C.changed();await C.flush();return this.loadCommunity();}if(!C.identity()){wx.showToast({title:t('请先在「我的」开启云端同步'),icon:'none'});return;}const rec=W.get(this.id);if(!rec)return;const commit=async()=>{await SY.quiet();const current=W.get(this.id);if(!current)return;W.set(this.id,Taste.set(current,'tastePublic',action==='publish'));C.changed();await C.flush();this.loadCommunity();};commit();},
   toggleGone() { this.setData({ goneOpen: !this.data.goneOpen }); },
-  onUnload() { this.offC&&this.offC();this.off1 && this.off1(); this.off2 && this.off2(); this.off3 && this.off3(); },
+  homeTipGo() { HT.home(); },
+  homeTipClose() { HT.close(this); },
+  onUnload() { clearTimeout(this._homeTipT); this.offC&&this.offC();this.off1 && this.off1(); this.off2 && this.off2(); this.off3 && this.off3(); },
   build() {
     const data = app.globalData.data, idx = U.index(data);
     if (this.id && !idx.F[this.id]) { const hit = Object.keys(idx.F).find(k => k.startsWith(this.id)); if (hit) this.id = hit; } // 扫码 scene 只含 id 前 32 字符

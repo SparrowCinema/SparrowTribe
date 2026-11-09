@@ -1,5 +1,6 @@
 <page-meta page-style="{{ps}}" />
 <wxs src="../../utils/l.wxs" module="L" />
+<view wx:if="{{homeTip}}" class="home-tip" catchtap="homeTipGo"><view class="home-tip-arrow" /><text class="home-tip-i">⌂</text><view class="home-tip-copy"><text class="home-tip-t">{{i.__en?'More films & schedules':'更多影片与排片'}}</text><text class="home-tip-s">{{i.__en?'Tap Home at top left':'点左上角「主页」查看'}}</text></view><text class="home-tip-x" catchtap="homeTipClose">×</text></view>
 <view wx:if="{{p}}">
   <image wx:if="{{p.cover}}" class="cover" src="{{p.cover}}" mode="widthFix" />
   <view class="wrap">

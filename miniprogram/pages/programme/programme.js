@@ -4,10 +4,13 @@ const I = require('../../utils/i18n.js');
 const t = I.tr;
 const app = getApp();
 const SM = require('../../utils/share-make.js');
+const HT = require('../../utils/hometip.js');
 Page({
   data: { i: {}, evGroups: [], evN: 0, evOpen: false, p: null, films: [], gone: [], goneOpen: undefined, stats: {}, section: "", sections: [], selOpen: false, selRows: [], selQuery: "", selTitle: "", selPlaceholder: "", sectionName: "", sectionN: 0 },
-  onLoad(q) { this.setData({ i: I.dict() }); this.id = SM.fromScene(q, ((app.globalData.data || {}).programmes || []).map(x => x.id)) || 'style-kaleidoscope'; this.off = app.onData(() => this.build()); this.build(); },
-  onUnload() { this.off && this.off(); },
+  onLoad(q) { this.setData({ i: I.dict() }); HT.show(this); this.id = SM.fromScene(q, ((app.globalData.data || {}).programmes || []).map(x => x.id)) || 'style-kaleidoscope'; this.off = app.onData(() => this.build()); this.build(); },
+  homeTipGo() { HT.home(); },
+  homeTipClose() { HT.close(this); },
+  onUnload() { clearTimeout(this._homeTipT); this.off && this.off(); },
   build() {
     const data = app.globalData.data, idx = U.index(data);
     if (this.id && !idx.PG[this.id]) { const hit = Object.keys(idx.PG).find(k => k.startsWith(this.id)); if (hit) this.id = hit; }
