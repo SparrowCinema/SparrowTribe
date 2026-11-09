@@ -5,11 +5,11 @@ const rows=[{id:a.id,f:a,rec:{d:'2026-11-07',r:9}},{id:b.id,f:b,rec:{d:'2026-11-
 const programmes=Array.from({length:20},(_,i)=>({id:i===0?'A':i===1?'B':'P'+i,name:i===0?'Alpha':i===1?'Beta':'Programme '+i})),PG=Object.fromEntries(programmes.map(p=>[p.id,p]));
 const ctx={shows:[],programmeOf:f=>f.prog,programmeIds:f=>f.id==='shared'?['A','B']:[f.prog]};
 assert.deepEqual(Lib.posterEntries(rows,'year','2026','B',ctx).map(e=>e.id),['shared','b']);assert.equal(Lib.posterEntries(rows,'month','2026-11','A,B',ctx).length,2);assert.equal(Lib.posterEntries(rows,'quarter','2026-Q1','all',ctx).length,0);
-let exported,main={innerHTML:'',querySelector:s=>s==='#pw-export'?exportButton:null,querySelectorAll:()=>[]},exportButton={};
+let exported,main={innerHTML:'',querySelector:s=>s==='#pw-export'?exportButton:s==='#pw-score'?scoreBox:null,querySelectorAll:()=>[]},exportButton={},scoreBox={checked:true};
 const web=fs.readFileSync('index.html','utf8'),from=web.indexOf("let posterMode='year'"),to=web.indexOf('function planPage()',from),sandbox=vm.createContext({watchEntries:()=>rows,window:{SparrowLibrary:Lib},libraryContext:()=>ctx,selList:Lib.list,selLabel:(v,all,label)=>Lib.list(v).length?Lib.list(v).map(label).join('、'):all,progOrdered:()=>programmes,PG,main,innerWidth:390,innerHeight:844,tr:x=>x,esc:String,pst:()=>'',filterChevron:'<svg></svg>',makeRecap:o=>exported=o});
 vm.runInContext(web.slice(from,to),sandbox);const run=s=>vm.runInContext(s,sandbox);
 run('posterWallPage()');assert.equal((main.innerHTML.match(/data-poster-filter=/g)||[]).length,3);assert(!main.innerHTML.includes('<select'));assert(main.innerHTML.includes('poster-wall-filterbar'));assert.equal(run("posterSelectorRows('programme').length"),21);
-run("posterProgramme='B';posterWallPage()");exportButton.onclick();assert.deepEqual(exported.list.map(e=>e.id),['b','shared']);assert.equal(exported.sub,'2026 · Beta');assert.equal(exported.cols,5);
+run("posterProgramme='B';posterWallPage()");exportButton.onclick();assert.deepEqual(exported.list.map(e=>e.id),['b','shared']);assert.equal(exported.sub,'2026 · Beta');assert.equal(exported.cols,5);assert.equal(exported.scores,true);scoreBox.checked=false;exportButton.onclick();assert.equal(exported.scores,false);scoreBox.checked=true;
 run("posterMode='quarter';posterSelection='2025-Q4';posterWallPage()");exportButton.onclick();assert.deepEqual(exported.list.map(e=>e.id),['old']);
 run("posterProgramme='P19';posterWallPage()");assert(main.innerHTML.includes('所选条件下暂无影片'));assert(main.innerHTML.includes('id="pw-export" class="secondary-button" disabled'));
 // Mini-program: select multiple programmes, search a growing catalogue, switch
@@ -21,3 +21,10 @@ const modules={'../../utils/util.js':{index:()=>idx,poster:()=>''},'../../utils/
 vm.runInNewContext(fs.readFileSync('miniprogram/pages/poster-wall/poster-wall.js','utf8'),{require:n=>modules[n],getApp:()=>app,Page:p=>definition=p,wx});const page={...definition,data:JSON.parse(JSON.stringify(definition.data)),setData(d){Object.assign(this.data,d);}};
 page.onLoad();page.openSelector();assert.equal(page.data.selectorRows.length,21);page.searchSelector({detail:{value:'Beta'}});assert.equal(page.data.selectorRows.length,1);page.chooseProgramme({currentTarget:{dataset:{id:'B'}}});assert.equal(page.data.items.length,2);page.chooseProgramme({currentTarget:{dataset:{id:'A'}}});assert.equal(page.data.items.length,2);assert.equal(page.data.programmeLabel,'2 个专题');page.setPeriod({detail:{value:1}});assert.equal(page.data.items.length,1);assert.equal(page.data.items[0].id,'old');page.closeSelector();assert.equal(page.data.selectorType,'');
 (async()=>{page.exportWall();await exportPromise;assert.equal(rendered.items.length,1);assert.equal(rendered.items[0].id,'old');assert.equal(rendered.sub,'2025 · Beta · Alpha');assert.equal(rendered.posterCols,5);assert.equal(JSON.stringify(rows),before);console.log('PASS: shared/multi-programme poster filters, 20-programme search, actual web/mini selectors, empty results and filtered export without changing viewing records.');})().catch(e=>{console.error(e);process.exitCode=1;});
+// 海报墙导出：posterScores:false 时不画评分、行高缩短
+{const R=require('../shared/recap.js');const base={title:'t',sections:['cover','posters'],posterCols:5,items:Array.from({length:10},(_,i)=>({id:'x'+i,title:'x',score:i%3?8:0}))};
+ const hOn=R.heightOf(base),hOff=R.heightOf({...base,posterScores:false});assert(hOff<hOn,'不显示评分时长图应更短');
+ const calls=[];const ctx2=new Proxy({},{get:(t,k)=>k==='measureText'?(()=>({width:10})):k==='createLinearGradient'||k==='createRadialGradient'?(()=>({addColorStop(){}})):(typeof k==='string'&&/^[a-z]/.test(k)?(...a)=>{if(k==='fillText')calls.push(a[0]);}:undefined),set:()=>true});
+ R.draw(ctx2,{...base,posterScores:false});assert(!calls.includes('未评分'),'不显示评分时不应出现「未评分」');
+ calls.length=0;R.draw(ctx2,base);assert(calls.includes('未评分'),'显示评分时未评分影片应标注');}
+console.log('poster score toggle OK');

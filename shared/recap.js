@@ -101,7 +101,7 @@
     c.restore();
   }
 
-  function posterLayout(o){const cols=Math.max(5,Math.min(10,Math.round(Number(o.posterCols)||5))),gap=16,w=(W-2*P-gap*(cols-1))/cols;return {cols,gap,w,h:w*1.5,row:w*1.5+58};}
+  function posterLayout(o){const cols=Math.max(5,Math.min(10,Math.round(Number(o.posterCols)||5))),gap=16,w=(W-2*P-gap*(cols-1))/cols;return {cols,gap,w,h:w*1.5,row:w*1.5+(o.posterScores===false?20:58)};} /* posterScores:false 时海报下不画评分，行高随之缩短 */
   function posterHeight(o){return Array.isArray(o.sections)&&o.sections.includes('posters')&&(o.items||[]).length?60+Math.ceil(o.items.length/posterLayout(o).cols)*posterLayout(o).row:0;}
   function heightOf(o) {
     const n = (o.items || []).length;
@@ -203,7 +203,7 @@
       const g=posterLayout(o);y+=40;
       items.forEach((it,i)=>{const x=P+(i%g.cols)*(g.w+g.gap),yy=y+Math.floor(i/g.cols)*g.row;
         if(it.img)cover(c,it.img,x,yy,g.w,g.h,5);else{c.fillStyle=C.card;rr(c,x,yy,g.w,g.h,5);c.fill();c.fillStyle=C.ink;c.font='700 20px '+SANS;c.fillText(clip1(c,it.title,g.w-16),x+8,yy+g.h/2);}
-        if(it.score){const radius=Math.min(12,g.w/13),width=radius*11;stars(c,x+(g.w-width)/2,yy+g.h+26,radius,it.score,C.teal,C.line);}else{c.textAlign='center';c.fillStyle=C.muted;c.font='600 '+(g.cols>7?16:22)+'px '+SANS;c.fillText(T('未评分'),x+g.w/2,yy+g.h+30);c.textAlign='left';}
+        if(o.posterScores===false){}else if(it.score){const radius=Math.min(12,g.w/13),width=radius*11;stars(c,x+(g.w-width)/2,yy+g.h+26,radius,it.score,C.teal,C.line);}else{c.textAlign='center';c.fillStyle=C.muted;c.font='600 '+(g.cols>7?16:22)+'px '+SANS;c.fillText(T('未评分'),x+g.w/2,yy+g.h+30);c.textAlign='left';}
       });y+=Math.ceil(items.length/g.cols)*g.row+20;
     }
     // 页脚
