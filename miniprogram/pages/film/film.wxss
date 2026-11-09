@@ -256,3 +256,6 @@
 /* 分享：好友卡片 + 分享海报 */
 .share-row{display:flex;gap:calc(16 * var(--r));margin-top:calc(32 * var(--r))}.share-row .share{flex:1;margin-top:0 !important;width:auto}
 .share-canvas{position:fixed;left:-9999px;top:0;width:1080px;height:1080px}
+
+/* 院线片放映场次筛选（日期 / 影院，多选） */
+.sf{display:flex;flex-direction:column;gap:calc(14 * var(--r));margin:0 0 calc(22 * var(--r))}.sf-row{display:flex;align-items:center;gap:calc(16 * var(--r))}.sf-k{flex:none;width:calc(56 * var(--r));font-size:calc(21 * var(--fr));font-weight:700;color:var(--muted)}.sf-chips{flex:1;min-width:0;white-space:nowrap}.sf-in{display:inline-flex;gap:calc(12 * var(--r));padding:calc(2 * var(--r)) 0}.sf-chip{display:inline-flex;align-items:center;height:calc(56 * var(--r));padding:0 calc(22 * var(--r));border:calc(2 * var(--r)) solid var(--line);border-radius:999px;background:var(--surface);font-size:calc(21 * var(--fr));font-weight:600;color:var(--fg)}.sf-chip.on{background:var(--accent);border-color:var(--accent);color:#fffaf0}.sf-clear{margin-top:calc(10 * var(--r));color:var(--accent);font-size:calc(22 * var(--fr));font-weight:600}

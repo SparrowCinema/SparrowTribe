@@ -577,6 +577,7 @@ html.sheet-open,html.sheet-open body{overflow:hidden}
 .fd-tdate{background:var(--fc);color:#fffaf0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:12px 4px;position:relative}
 .fd-tdate::after{content:"";position:absolute;right:-1px;top:8px;bottom:8px;border-right:2px dashed var(--surface)}
 .fd-tdate small{font-size:11.0px;opacity:.85}
+.fd-sf{display:grid;gap:8px;margin:2px 0 14px}.fd-sf-row{display:flex;align-items:center;gap:10px;min-width:0}.fd-sf-k{flex:none;font-size:10.6px;font-weight:700;color:var(--muted);width:30px}.fd-sf-chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding:2px 0;min-width:0}.fd-sf-chips::-webkit-scrollbar{display:none}.fd-sf-chip{flex:none;height:30px;padding:0 12px;border:1px solid var(--line);border-radius:99px;background:var(--surface);font-size:10.6px;font-weight:600;color:var(--fg);white-space:nowrap}.fd-sf-chip.on{background:var(--accent);border-color:var(--accent);color:#fffaf0}
 .fd-tdate b{font:600 32px/1 var(--f-mono)}
 .fd-tdate span{font-size:10.6px;margin-top:3px}
 .fd-tbody{padding:12px 14px;display:flex;flex-direction:column;gap:3px;min-width:0}
@@ -1875,6 +1876,23 @@ function giftsHTML(f){const g=f.gifts||[];return `<section class="fd-block fd-gi
 function qaPanelHTML(f){const ready=!!(f.qaStart&&f.qaEnd&&f.qaGuest);return `<section class="fd-block fd-qa-section"><h3 class="fd-h">映后交流 <small>POST-SCREENING</small></h3><div class="fd-qa-panel${ready?"":" fd-qa-empty"}"><div class="fd-qa-panel-head"><span class="fd-qa-label">✦ ${ready?"映后交流 · DIRECTOR Q&A":"映后信息"}</span>${ready?`<b class="fd-qa-time">${esc(f.qaStart)} – ${esc(f.qaEnd)}</b>`:""}</div><div class="fd-qa-panel-body">${ready?esc(f.qaGuest):Object.values(f.screeningNotes||{}).some(x=>x.includes("映后"))?"映后活动安排见各场次备注，嘉宾以实际到场为准。":"暂无映后交流安排"}</div></div></section>`;}
 function pastRowHTML(s,f){const [m,d]=s.d.split("/"),v=VN[s.v]||{},h=(v.halls||[]).find(x=>x.id===s.h),date=`${showDate(s).getFullYear()}.${m.padStart(2,"0")}.${d.padStart(2,"0")}`,place=[v.city?tr(v.city):"",stripCity(v.short||v.brand||v.name||"",v),h?hShort(h):""].filter(Boolean).join(" · "),time=s.t,programme=PG[s.p||f.prog]?.name||"",label=[place,programme].filter(Boolean).join(" · ");return `<div class="fd-prow" title="${esc(date+" "+time+" "+label)}"><span class="fd-pd">${date}</span><span class="fd-pt">${time}</span><span class="fd-pp">${esc(label)}</span></div>`;}
 function pastShowsHTML(allShows,f,hasUp){const L=allShows.filter(s=>isPast(s)&&keepPast(PG[s.p])).sort((a,b)=>showDate(a)-showDate(b));if(!L.length)return "";return `<details class="fd-past"${hasUp?"":" open"}><summary>已放映 ${L.length} 场 <i>▾</i></summary>${L.map(s=>pastRowHTML(s,f)).join("")}</details>`;}
+/* 院线片的影片页：放映场次可按日期、影院多选筛选（只影响本页显示；换一部影片自动清空） */
+let FSF={id:'',d:[],v:[]};
+const isCinemaFilm=f=>filmProgsOf(f).some(x=>x.p&&x.p.kind==='院线')||SH.some(x=>x.id===f.id&&PG[x.p]&&PG[x.p].kind==='院线');
+function sfState(f){if(FSF.id!==f.id)FSF={id:f.id,d:[],v:[]};return FSF;}
+function sfApply(f,shows){const st=sfState(f);return shows.filter(x=>(!st.d.length||st.d.includes(x.d))&&(!st.v.length||st.v.includes(x.v)));}
+function showCountText(f,shows){const n=sfApply(f,shows).length;return n===shows.length?tr(shows.length+" 场"):tr(n+" / "+shows.length+" 场");}
+function showListHTML(f,shows){const list=sfApply(f,shows);return list.length?list.map(x=>screeningHTML(x,f)).join(""):`<div class="fd-noshow"><b>${tr("所选日期和影院暂无场次")}</b><span><button type="button" class="text-button" data-sf="reset">${tr("清除筛选")}</button></span></div>`;}
+function showFilterHTML(f,shows){
+ if(!isCinemaFilm(f))return "";const st=sfState(f),dates=[...new Set(shows.map(x=>x.d))],vs=[...new Set(shows.map(x=>x.v))];if(dates.length<2&&vs.length<2)return "";
+ const cities=new Set(vs.map(v=>VN[v]&&VN[v].city)),vName=id=>{const v=VN[id]||{};const n=stripCity(v.short||v.brand||v.name||id,v);return cities.size>1&&v.city?tr(v.city)+" · "+n:n;};
+ const chip=(k,val,label,on)=>`<button type="button" class="fd-sf-chip${on?" on":""}" data-sf="${k}" data-sv="${esc(val)}" aria-pressed="${on}">${esc(label)}</button>`;
+ const row=(k,label,items,sel)=>`<div class="fd-sf-row"><span class="fd-sf-k">${tr(label)}</span><div class="fd-sf-chips">${chip(k,"",tr("全部"),!sel.length)}${items.map(([v,l])=>chip(k,v,l,sel.includes(v))).join("")}</div></div>`;
+ return `<div class="fd-sf" data-sf-film="${esc(f.id)}">${dates.length>1?row("d","日期",dates.map(d=>{const x=shows.find(y=>y.d===d);return [d,d+" "+tr(WK[showDate(x).getDay()])];}),st.d):""}${vs.length>1?row("v","影院",vs.map(v=>[v,vName(v)]),st.v):""}</div>`;}
+document.addEventListener("click",e=>{const b=e.target.closest("[data-sf]");if(!b)return;const f=F[FSF.id];if(!f)return;const st=sfState(f),k=b.dataset.sf;
+ if(k==="reset"){st.d=[];st.v=[];}else{const v=b.dataset.sv,arr=st[k];if(!v)arr.length=0;else{const i=arr.indexOf(v);if(i>=0)arr.splice(i,1);else arr.push(v);}}
+ const shows=SH.filter(x=>x.id===f.id&&!isPast(x)),bar=document.querySelector(".fd-sf"),list=document.getElementById("fd-showlist"),cnt=document.getElementById("fd-showcount");
+ if(bar)bar.outerHTML=showFilterHTML(f,shows);if(list)list.innerHTML=showListHTML(f,shows);if(cnt)cnt.textContent=showCountText(f,shows);});
 function screeningHTML(s,f){const k=keyOf(s),yes=picked.has(k),gone=isPast(s);const [m,d]=s.d.split("/");return `<div class="fd-ticket${gone?" past":""}"><div class="fd-tdate fc" style="--h:${fhue(s.id)}"><small>${m}月</small><b>${d}</b><span>${wk(s.d)}</span></div><div class="fd-tbody"><div class="fd-ttime"><b>${s.t}</b><span>–</span><b class="end">${f.minTbd?"":fmt(toMin(s.t)+durationOf(s))}</b>${gone?'<em class="fd-gone">已放映</em>':""}</div><small>${placeHTML(s)}</small>${(PG[s.p]&&filmProgsOf(f).length>1)?`<span class="fd-sprog">${esc(PG[s.p].name)}</span>`:""}${f.screeningNotes?.[k]?noteHTML(f.screeningNotes[k]):""}<div class="fd-tact"><button class="fd-add${yes?" on":""}" data-plan="${esc(k)}" aria-pressed="${yes}">${yes?"✓ 已加入排片":"+ 加入排片"}</button><button class="fd-see" data-jump="${k}">在排片中查看</button></div></div></div>`;}
 // 购票码：影片自带的购票码 + 所属各专题的购票码（跨影展影片会有多张，按专题标注）
 const TK={};
@@ -1921,7 +1939,7 @@ function detail(id){
       ${f.ev?"":ratingsHTML(f)}
       ${f.ev?"":extLinksHTML(f)}
       ${f.ev?"":myRateHTML(f)}
-      <section class="fd-block"><h3 class="fd-h">放映场次 <small>${shows.length?shows.length+" 场":"排片待公布"}</small></h3>${shows.length?shows.map(s=>screeningHTML(s,f)).join("")+pastShowsHTML(allShows,f,true):`<div class="fd-noshow"><b>${allShows.length?"本片场次已全部放映结束":(f.release?esc(f.release):"上映信息待公布")}</b><span>${allShows.length?(pastShowsHTML(allShows,f,false)?"":"已放映的场次不再显示在这里。"):"麻雀观影护照收录的场次公布后会更新到这里，也可以先在各影院售票平台查看。"}</span></div>`+pastShowsHTML(allShows,f,false)}</section>
+      <section class="fd-block"><h3 class="fd-h">放映场次 <small id="fd-showcount">${shows.length?showCountText(f,shows):"排片待公布"}</small></h3>${shows.length?showFilterHTML(f,shows)+`<div id="fd-showlist">${showListHTML(f,shows)}</div>`+pastShowsHTML(allShows,f,true):`<div class="fd-noshow"><b>${allShows.length?"本片场次已全部放映结束":(f.release?esc(f.release):"上映信息待公布")}</b><span>${allShows.length?(pastShowsHTML(allShows,f,false)?"":"已放映的场次不再显示在这里。"):"麻雀观影护照收录的场次公布后会更新到这里，也可以先在各影院售票平台查看。"}</span></div>`+pastShowsHTML(allShows,f,false)}</section>
       ${f.ev?"":noticeHTML(f)}
       ${f.ev?"":qaPanelHTML(f)}
       ${giftsHTML(f)}
