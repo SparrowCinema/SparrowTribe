@@ -2854,8 +2854,8 @@ let dataSignature="",dataRefreshBusy=false,lastDataCheck=0;
 const DEFAULT_HOME="杭州", GEO_KEY="sparrow-geo-city", GEO_ASKED="sparrow-geo-asked";
 let CITIES={}; /* data/cities.json：全球城市中心坐标，启动时加载；新增影展城市（戛纳、柏林、威尼斯、釜山…）只要影院 city 写对中文城市名即可自动定位 */
 let GEO_CITY=(()=>{try{const o=JSON.parse(localStorage.getItem(GEO_KEY)||"null");return o&&Date.now()-o.t<864e5?o:null;}catch(e){return null;}})();
-function homeCity(venues=VENUES,shows=SH){const c=GEO_CITY&&GEO_CITY.c;if(c&&c!==DEFAULT_HOME){const ids=new Set(venues.filter(v=>v.city===c).map(v=>v.id));if(shows.some(x=>ids.has(x.v)&&!isPast(x)))return c;}return DEFAULT_HOME;}
-function venueRank(venues,shows){const H=homeCity(venues,shows),r={};venues.forEach(v=>{r[v.id]=(v.city===H?0:v.city===DEFAULT_HOME?1e3:2e3)+(v._o||0);});return r;}
+function homeCity(venues=VENUES,shows=SH){const c=GEO_CITY&&GEO_CITY.c;if(c&&c!==DEFAULT_HOME){const ids=new Set(venues.filter(v=>v.city===c).map(v=>v.id));const t=now()-4*36e5;if(shows.some(x=>ids.has(x.v)&&showDate(x)>t))return c;}return DEFAULT_HOME;} /* 用开场时间判断（加载阶段影片表还没建好，不能用 isPast） */
+function venueRank(venues,shows){let H=DEFAULT_HOME;try{H=homeCity(venues,shows);}catch(e){console.warn('定位排序失败，按默认顺序',e);}const r={};venues.forEach(v=>{r[v.id]=(v.city===H?0:v.city===DEFAULT_HOME?1e3:2e3)+(v._o||0);});return r;}
 function applyHome(){const r=venueRank(VENUES,SH);VENUES.sort((a,b)=>r[a.id]-r[b.id]);SH.sort((a,b)=>showDate(a)-showDate(b)||r[a.v]-r[b.v]);}
 function cityCenter(c){if(CITIES[c]&&Array.isArray(CITIES[c].geo))return CITIES[c].geo;const g=VENUES.filter(v=>v.city===c&&Array.isArray(v.geo)).map(v=>v.geo);return g.length?[g.reduce((a,x)=>a+x[0],0)/g.length,g.reduce((a,x)=>a+x[1],0)/g.length]:null;}
 function nearestCity(lat,lng){const R=Math.PI/180;let best="",bd=Infinity;[...new Set(VENUES.map(v=>v.city).filter(Boolean))].forEach(c=>{const g=cityCenter(c);if(!g)return;const lim=(CITIES[c]&&CITIES[c].r)||80;const a=Math.sin((g[0]-lat)*R/2)**2+Math.cos(lat*R)*Math.cos(g[0]*R)*Math.sin((g[1]-lng)*R/2)**2,d=12742*Math.asin(Math.sqrt(a));if(d<=lim&&d<bd){bd=d;best=c;}});return best;}
