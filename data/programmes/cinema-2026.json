@@ -1099,6 +1099,1217 @@
     "kind": "theatrical",
     "checked": "2026-11-07"
    }
+  },
+  {
+   "id": "shawshank-redemption",
+   "cn": "肖申克的救赎",
+   "o": "The Shawshank Redemption",
+   "en": "The Shawshank Redemption",
+   "y": 1994,
+   "c": "美国",
+   "min": 142,
+   "reg": "us",
+   "release": "2026年8月28日 4K修复版内地首次公映",
+   "dir": "弗兰克·德拉邦特",
+   "dirO": "Frank Darabont",
+   "dirLife": "1959– · 美国",
+   "r": [
+    9.7,
+    null,
+    null,
+    null,
+    null
+   ],
+   "syn": "银行家安迪·杜佛兰被控杀害妻子及其情人，被判终身监禁，关进肖申克监狱。他在高墙内结识了见多识广的老囚犯瑞德，也在漫长的岁月里以知识、耐心和一点点尊严，在这座监狱里寻找活下去的方式。\n\n这是一部关于时间、友谊与希望的监狱电影：它不急于解释一个人如何承受不公，而是让观众陪着他们一天天熬过去。",
+   "bio": "弗兰克·德拉邦特是美国导演、编剧，曾多次改编斯蒂芬·金的作品，除本片外还执导《绿里奇迹》《迷雾》。《肖申克的救赎》是他的长片导演首作。",
+   "st": "改编自斯蒂芬·金的中篇小说《丽塔·海华斯与肖申克的救赎》，由德拉邦特编剧并执导，蒂姆·罗宾斯、摩根·弗里曼主演。影片1994年问世，2026年以4K修复版首次登陆内地院线，并提供2D、CINITY LED与首度制作的IMAX版本。",
+   "writers": [
+    "弗兰克·德拉邦特"
+   ],
+   "book": "斯蒂芬·金《丽塔·海华斯与肖申克的救赎》",
+   "cast": [
+    "蒂姆·罗宾斯",
+    "摩根·弗里曼",
+    "鲍勃·冈顿",
+    "威廉·赛德勒",
+    "克兰西·布朗"
+   ],
+   "genre": [
+    "剧情",
+    "犯罪"
+   ],
+   "language": "英语",
+   "medium": "2D / CINITY LED / IMAX",
+   "highlights": [
+    "这次是影片1994年问世以来首次在内地商业院线公映，4K修复让雨夜、监狱走廊和高墙的光影层次更完整。",
+    "全片靠旁白、日复一日的细节和人物关系推进，适合安静地坐满两个半小时。",
+    "官方同时提供全球首度制作的IMAX版本，可留意不同制式的画幅与声音差异。"
+   ],
+   "honors": [
+    "提名｜第67届奥斯卡金像奖 · 最佳影片",
+    "提名｜第67届奥斯卡金像奖 · 最佳男主角（摩根·弗里曼）",
+    "提名｜第67届奥斯卡金像奖 · 最佳改编剧本（弗兰克·德拉邦特）",
+    "提名｜第67届奥斯卡金像奖 · 最佳摄影",
+    "提名｜第67届奥斯卡金像奖 · 最佳剪辑",
+    "提名｜第67届奥斯卡金像奖 · 最佳原创配乐",
+    "提名｜第67届奥斯卡金像奖 · 最佳音响效果",
+    "入选｜美国国会图书馆国家电影登记簿（2015年）"
+   ],
+   "version": "4K修复",
+   "warnings": [
+    "监狱暴力与性侵犯情节",
+    "自杀情节",
+    "虐待与滥用权力"
+   ],
+   "editorial": "适合愿意花时间陪人物慢慢熬过一段漫长岁月的观众。重看时可以留意安迪与瑞德之间如何用小事建立信任，以及影片怎样让「希望」落在具体的行动上；片长较长，节奏舒缓。",
+   "contentNote": "根据剧情及公开资料整理，涉及监狱中的暴力与性侵犯、自杀、以及虐待与滥用权力的情节。本次为4K修复版，未对本片完整审片，具体表现强度及闪烁、音量等感官信息尚未核实。",
+   "links": {
+    "douban": "1292052",
+    "imdb": "tt0111161",
+    "lb": "the-shawshank-redemption"
+   },
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-10",
+    "sensory": "unverified"
+   },
+   "poster": "posters/shawshank-redemption.jpg",
+   "ended": true,
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   }
+  },
+  {
+   "id": "toddling-youths",
+   "cn": "浪花儿",
+   "en": "The Toddling Youths",
+   "y": 2025,
+   "c": "中国",
+   "min": 124,
+   "reg": "cn",
+   "release": "2026年9月12日 内地上映",
+   "dir": "齐炎焱",
+   "dirO": "Yanyan Qi",
+   "dirLife": "中国导演",
+   "r": [
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "syn": "雅琴，一心想看世界的女孩。王炯，把告白押注在事业上的男孩。两个刚毕业的朋友都想逃离原生家庭、实现自我价值。但当不完美的社会和不完美的自己碰撞，当开朗成为面具，初心在现实里摇晃。这趟跌跌撞撞的成长，究竟会让他们变成什么样？",
+   "bio": "齐炎焱是中国导演，此前执导的纪录短片《上岸》入围第十九届FIRST青年电影展主竞赛单元。《浪花儿》是她的纪录长片。",
+   "st": "影片以长期陪伴式跟拍，记录雅琴、王炯、姗姗等年轻人从大学毕业走入社会，在事业、爱情、家庭与自我选择之间寻找方向的过程。2025年获第九届平遥国际电影展费穆荣誉·评审荣誉，2026年9月12日在内地公映。",
+   "writers": [],
+   "cast": [
+    "范雅琴",
+    "王炯",
+    "旷姗姗"
+   ],
+   "genre": [
+    "纪录"
+   ],
+   "language": "普通话",
+   "medium": "2D",
+   "highlights": [
+    "陪伴式跟拍让人物的变化慢慢发生，而不是被剪成几个戏剧性的瞬间。",
+    "影片没有急于评价哪一种选择更正确，而是保留人物在事业、爱情与家庭之间的犹豫。",
+    "出镜的是真实的年轻人，适合带着对身边人的好奇去看。"
+   ],
+   "honors": [
+    "获奖｜第九届平遥国际电影展 · 费穆荣誉·评审荣誉",
+    "获奖｜第九届平遥国际电影展 · 亚太电影促进会奖·最佳首作"
+   ],
+   "warnings": [
+    "家庭矛盾"
+   ],
+   "editorial": "适合想看同龄人如何走出校园、也想理解身边年轻人的观众。纪录片节奏平实，重点在人物关系的变化而非事件；片长两个多小时，建议留出完整的时间。",
+   "contentNote": "根据剧情及公开资料整理，涉及家庭矛盾（据简介）。记录对象均为真实人物。未对本片完整审片，具体表现强度及闪烁、音量等感官信息尚未核实。",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-10",
+    "sensory": "unverified"
+   },
+   "poster": "posters/toddling-youths.jpg",
+   "ended": true,
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   },
+   "version": ""
+  },
+  {
+   "id": "spider-man-brand-new-day",
+   "cn": "蜘蛛侠：崭新之日",
+   "o": "Spider-Man: Brand New Day",
+   "en": "Spider-Man: Brand New Day",
+   "y": 2026,
+   "c": "美国",
+   "min": 145,
+   "reg": "us",
+   "release": "2026年7月29日 内地上映",
+   "dir": "德斯汀·丹尼尔·克里顿",
+   "dirO": "Destin Daniel Cretton",
+   "dirLife": "美国导演",
+   "r": [
+    null,
+    null,
+    91,
+    null,
+    null
+   ],
+   "syn": "彼得·帕克被全世界遗忘，独自以全职蜘蛛侠的身份守护纽约。压力之下，他的能力开始异变；宿敌蝎子乘虚而入，绿巨人狂暴失控，神秘劲敌侵扰心智。深陷绝境、仿佛全世界都站在对立面的蜘蛛侠，必须在能力失控之前找到出路。",
+   "bio": "德斯汀·丹尼尔·克里顿是美国导演，此前执导漫威影业的《尚气与十环传奇》。本片中，成家班担任动作指导。",
+   "st": "漫威与索尼联合出品的蜘蛛侠新篇，汤姆·赫兰德第四度主演，故事接续《蜘蛛侠：英雄无归》。内地于2026年7月29日上映，提供2D、IMAX、CINITY、杜比影院、中国巨幕等多种版本。",
+   "writers": [],
+   "cast": [
+    "汤姆·赫兰德",
+    "赞达亚",
+    "雅各布·巴塔隆",
+    "马克·鲁法洛",
+    "乔·博恩瑟",
+    "萨迪·辛克",
+    "迈克尔·曼多"
+   ],
+   "genre": [
+    "动作",
+    "科幻",
+    "冒险"
+   ],
+   "language": "英语",
+   "medium": "2D / IMAX / CINITY / 杜比影院 / 中国巨幕",
+   "highlights": [
+    "成家班参与动作设计，打斗更重实拍与近身动作。",
+    "接续《英雄无归》之后的孤独与失去，把彼得的成长放在「被遗忘」之后。",
+    "提供IMAX、杜比影院、中国巨幕等多种大银幕版本。"
+   ],
+   "warnings": [
+    "超级英雄式暴力与大规模破坏",
+    "能力失控与精神控制情节"
+   ],
+   "editorial": "适合追着漫威与蜘蛛侠系列的观众，也适合想看彼得如何独自面对失去的人。故事承接前作，没看过《英雄无归》的观众建议先补一下背景；片长近两个半小时。",
+   "contentNote": "根据剧情及公开资料整理，涉及超级英雄式暴力与破坏，以及能力失控、精神被侵扰的情节。未对本片完整审片，具体表现强度及闪烁、音量等感官信息尚未核实。",
+   "honors": [],
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-10",
+    "sensory": "unverified"
+   },
+   "poster": "posters/spider-man-brand-new-day.jpg",
+   "ended": true,
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   },
+   "version": ""
+  },
+  {
+   "id": "the-great-skull",
+   "cn": "燃烧吧！爸爸",
+   "en": "The Great Skull",
+   "y": 2026,
+   "c": "中国",
+   "min": 102,
+   "reg": "cn",
+   "release": "2026年9月5日 内地上映",
+   "dir": "刘潇阳",
+   "dirO": "Liu Xiaoyang",
+   "dirLife": "中国导演、编剧",
+   "r": [
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "syn": "即将毕业找工作的上海姑娘顾立言，遭遇父亲顾卫星患癌离世。她与母亲吴开蒂第一次体验料理后事，意外撞上父亲生前秘密组建的「治丧委员会」，由此引发一连串荒诞又抓马的事件。母女二人在哭笑不得的突发状况中，慢慢解开彼此的心结，也各自走向新的生活。",
+   "bio": "刘潇阳，福建福州人，本科毕业于浙江传媒学院，硕士毕业于香港演艺学院，曾在多部影片中担任策划、执行制片与副导演。《燃烧吧！爸爸》由他与张笑影共同编剧，并由他执导。",
+   "st": "由文淇、倪虹洁、喻恩泰主演。影片于2026年6月12日在第28届上海国际电影节金爵奖主竞赛单元首映，并在第20届FIRST青年电影展闭幕特别放映，9月5日内地公映。",
+   "writers": [
+    "张笑影",
+    "刘潇阳"
+   ],
+   "cast": [
+    "文淇",
+    "倪虹洁",
+    "喻恩泰"
+   ],
+   "genre": [
+    "喜剧",
+    "剧情"
+   ],
+   "language": "普通话",
+   "medium": "2D",
+   "highlights": [
+    "用轻喜剧的方式处理告别，料理后事的一系列流程被拍得荒诞又真实。",
+    "文淇与倪虹洁的母女戏是全片重心，关于陪伴、依靠与各自人生的矛盾直接摊开。",
+    "以上海市井生活为底色，带着方言与烟火气。"
+   ],
+   "honors": [
+    "入选｜第28届上海国际电影节 · 金爵奖主竞赛单元",
+    "入选｜第20届FIRST青年电影展 · 闭幕特别放映"
+   ],
+   "warnings": [
+    "亲人离世与丧事",
+    "家庭矛盾"
+   ],
+   "editorial": "适合想看轻盈、带笑的家庭片，也适合正在学着告别的观众。影片的笑点来自葬礼流程里的荒诞，情绪在母女关系的变化中累积；可能触动与亲人离世有关的个人经历。",
+   "contentNote": "根据剧情及公开资料整理，涉及亲人因病离世、办理丧事，以及母女之间的矛盾。影片以喜剧口吻处理，未对本片完整审片，具体表现强度及闪烁、音量等感官信息尚未核实。",
+   "worldPremiere": {
+    "status": "verified",
+    "date": "2026-06-12",
+    "festival": "上海国际电影节",
+    "festivalEn": "Shanghai International Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-10"
+   },
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-10",
+    "sensory": "unverified"
+   },
+   "poster": "posters/the-great-skull.jpg",
+   "ended": true,
+   "version": ""
+  },
+  {
+   "id": "all-wishes-come-true",
+   "cn": "八仙！",
+   "en": "All Wishes Come True",
+   "y": 2026,
+   "c": "中国",
+   "min": 144,
+   "reg": "cn",
+   "release": "2026年7月18日 内地上映",
+   "dir": "牟正洋",
+   "dirO": "Mou Zhengyang",
+   "dirLife": "中国导演、编剧",
+   "r": [
+    8.3,
+    null,
+    null,
+    null,
+    null
+   ],
+   "syn": "在蓬莱仙境内，八个凡人为了闯入只有神仙可以通行的藏宝阁，假扮神仙瞒天过海。面对阁中「十辈子花不完」的泼天富贵，众人一拍即合，「草台班子」就地成立，开起道观，踏上寻宝求财路。然而就在好梦得圆之际，觊觎藏宝阁的势力悄然登场，团队内部也爆发了隔阂与冲突。",
+   "bio": "牟正洋是影片的导演。配音由陈浩、李绍哲、张运气等担任。",
+   "st": "影片以传统「八仙过海」故事为灵感，把镜头对准八位神仙成仙前的凡人阶段，以「假扮神仙」的错位制造喜剧冲突。2026年7月18日内地上映，此前自7月4日起点映，英文片名《All Wishes Come True》。",
+   "writers": [],
+   "cast": [
+    "陈浩",
+    "李绍哲",
+    "张运气"
+   ],
+   "genre": [
+    "动画",
+    "喜剧",
+    "奇幻"
+   ],
+   "language": "普通话（含方言）",
+   "medium": "2D",
+   "highlights": [
+    "把凡人假扮神仙的错位当作喜剧核心，「草台班子」式的团队关系是全片看点。",
+    "八位主角各有性格，群像戏占比高。",
+    "片长144分钟，节奏紧凑，笑点与反转密集。"
+   ],
+   "warnings": [
+    "神话战斗与动作场面"
+   ],
+   "editorial": "适合想看国产动画新鲜题材的观众，也适合带着年龄较大的孩子一起看。故事靠密集的喜剧与反转推进，片长较长，建议留出完整的时间。",
+   "contentNote": "根据剧情及公开资料整理，主要涉及神话题材的战斗与动作场面。未对本片完整审片，具体表现强度及闪烁、音量等感官信息尚未核实。",
+   "honors": [],
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-10",
+    "sensory": "unverified"
+   },
+   "poster": "posters/all-wishes-come-true.jpg",
+   "ended": true,
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   },
+   "version": ""
+  },
+  {
+   "id": "once-upon-a-time-in-the-middle-east",
+   "cn": "欢迎来龙餐馆",
+   "o": "Once Upon a Time in the Middle East",
+   "en": "Once Upon a Time in the Middle East",
+   "y": 2026,
+   "c": "中国",
+   "min": 140,
+   "reg": "cn",
+   "release": "2026年8月11日 内地上映",
+   "dir": "文牧野",
+   "dirO": "Wen Muye",
+   "dirLife": "中国导演",
+   "r": [
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "syn": "影片取材于「伊拉克炒饭哥」陈宪忠的真实经历，讲述一位中国厨师在中东开设中餐馆的故事。",
+   "bio": "文牧野是中国导演，此前执导《我不是药神》。本片由宁浩担任监制。",
+   "st": "沈腾、蒋奇明主演，李治廷特别出演，影片采用IMAX摄影机拍摄，2026年8月11日内地上映。",
+   "writers": [],
+   "cast": [
+    "沈腾",
+    "蒋奇明",
+    "李治廷"
+   ],
+   "genre": [
+    "喜剧",
+    "剧情"
+   ],
+   "language": "普通话",
+   "medium": "2D / IMAX",
+   "highlights": [
+    "取材真实人物陈宪忠，以中餐馆为舞台。",
+    "采用IMAX摄影机拍摄，大银幕版本值得留意。"
+   ],
+   "editorial": "适合喜欢文牧野、沈腾，以及对海外华人生活故事感兴趣的观众；影片片长140分钟。",
+   "warnings": [],
+   "contentNote": "内容提示待核实：尚未查证本片的具体情节与内容细节，暂不提供提示，也不代表本片没有敏感内容。",
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-10",
+    "sensory": "unverified"
+   },
+   "honors": [],
+   "poster": "posters/once-upon-a-time-in-the-middle-east.jpg",
+   "ended": true,
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   },
+   "version": ""
+  },
+  {
+   "id": "wall-e",
+   "cn": "机器人总动员",
+   "o": "WALL·E",
+   "en": "WALL·E",
+   "y": 2008,
+   "c": "美国",
+   "min": 98,
+   "reg": "us",
+   "release": "2026年8月19日 内地上映（8月15日起点映）",
+   "dir": "安德鲁·斯坦顿",
+   "dirO": "Andrew Stanton",
+   "dirLife": "1965– · 美国",
+   "r": [
+    9.3,
+    null,
+    95,
+    null,
+    null
+   ],
+   "syn": "公元2805年，人类已撤离被垃圾淹没的地球，只留下清理机器人瓦力日复一日地压缩垃圾。孤独的瓦力在废墟里收集人类遗留的小物件，直到一台名叫伊娃的白色探测机器人降临，他的生活就此改变。",
+   "bio": "安德鲁·斯坦顿是皮克斯的导演与编剧，执导《海底总动员》《机器人总动员》，并参与《玩具总动员》系列的创作。",
+   "st": "皮克斯2008年动画长片，几乎在前半段不依赖对白，以画面与音效推进故事。2026年内地上映，影片曾获奥斯卡最佳动画长片奖与金球奖。",
+   "writers": [
+    "安德鲁·斯坦顿",
+    "吉姆·里尔登"
+   ],
+   "cast": [
+    "本·贝尔特",
+    "埃利萨·奈特",
+    "杰夫·格尔林",
+    "弗雷德·威拉德",
+    "西格妮·韦弗"
+   ],
+   "genre": [
+    "动画",
+    "科幻",
+    "爱情"
+   ],
+   "language": "英语",
+   "medium": "2D",
+   "highlights": [
+    "前半段几乎没有对白，靠机器人的动作与音效讲故事。",
+    "把环境污染与消费主义放进一部适合全家的科幻爱情片。"
+   ],
+   "honors": [
+    "获奖｜第81届奥斯卡金像奖 · 最佳动画长片",
+    "获奖｜第66届金球奖 · 最佳动画长片"
+   ],
+   "warnings": [
+    "环境破坏与人类被科技依赖的主题"
+   ],
+   "editorial": "适合全家一起看，也适合想重温经典动画的观众。影片节奏舒缓，前半段尤其安静；可留意瓦力在废墟里收集的细节。",
+   "contentNote": "根据剧情及公开资料整理，涉及环境破坏与人类过度依赖科技的主题，以及机器人被毁坏的情节。适合各年龄段观看，未对本片完整审片，具体表现强度及闪烁、音量等感官信息尚未核实。",
+   "links": {
+    "douban": "2131459",
+    "imdb": "tt0910970",
+    "lb": "wall-e"
+   },
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-10",
+    "sensory": "unverified"
+   },
+   "poster": "posters/wall-e.jpg",
+   "ended": true,
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   },
+   "version": ""
+  },
+  {
+   "id": "obsession",
+   "cn": "痴迷",
+   "o": "Obsession",
+   "en": "Obsession",
+   "y": 2025,
+   "c": "美国",
+   "min": 108,
+   "reg": "us",
+   "release": "2026年7月24日 内地上映",
+   "dir": "柯里·巴克",
+   "dirO": "Curry Barker",
+   "dirLife": "美国导演",
+   "r": [
+    7.6,
+    null,
+    94,
+    null,
+    null
+   ],
+   "syn": "恐怖片，由迈克尔·约翰斯顿、英德·纳瓦雷特、库珀·汤姆林森、梅根·劳利斯、安迪·里克特主演。",
+   "bio": "柯里·巴克是美国导演，《痴迷》由他执导。",
+   "st": "影片于2026年7月24日在内地上映，片长108分钟。",
+   "writers": [],
+   "cast": [
+    "迈克尔·约翰斯顿",
+    "英德·纳瓦雷特",
+    "库珀·汤姆林森",
+    "梅根·劳利斯",
+    "安迪·里克特"
+   ],
+   "genre": [
+    "恐怖"
+   ],
+   "language": "英语",
+   "medium": "2D",
+   "highlights": [
+    "烂番茄新鲜度94%，豆瓣开分约7.6（据媒体报道，非实时数据）。"
+   ],
+   "editorial": "恐怖片，建议先确认自己对惊吓内容的接受度；本片具体内容尚未查证。",
+   "warnings": [],
+   "contentNote": "内容提示待核实：尚未查证本片的具体情节与内容细节，暂不提供提示，也不代表本片没有敏感内容。",
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-10",
+    "sensory": "unverified"
+   },
+   "honors": [],
+   "poster": "posters/obsession.jpg",
+   "ended": true,
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   },
+   "version": ""
+  },
+  {
+   "id": "empty-gun",
+   "cn": "空枪",
+   "en": "Empty Gun",
+   "y": 2026,
+   "c": "中国",
+   "min": 160,
+   "reg": "cn",
+   "release": "2026年8月19日 内地上映",
+   "dir": "韩延",
+   "dirO": "Han Yan",
+   "dirLife": "中国导演",
+   "r": [
+    7.2,
+    null,
+    null,
+    null,
+    null
+   ],
+   "syn": "韩延执导，朱一龙、檀健次、梁家辉、卫诗雅、惠英红等主演。",
+   "bio": "韩延是中国导演。",
+   "st": "影片于2026年8月19日在内地上映，片长160分钟。",
+   "writers": [],
+   "cast": [
+    "朱一龙",
+    "檀健次",
+    "梁家辉",
+    "卫诗雅",
+    "惠英红"
+   ],
+   "genre": [],
+   "language": "普通话",
+   "medium": "2D",
+   "highlights": [
+    "豆瓣评分约7.2（据媒体报道，非实时数据）。",
+    "片长160分钟。"
+   ],
+   "editorial": "片长较长，建议留出完整时间；本片具体内容尚未查证。",
+   "warnings": [],
+   "contentNote": "内容提示待核实：尚未查证本片的具体情节与内容细节，暂不提供提示，也不代表本片没有敏感内容。",
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-10",
+    "sensory": "unverified"
+   },
+   "honors": [],
+   "poster": "posters/empty-gun.jpg",
+   "ended": true,
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   },
+   "version": ""
+  },
+  {
+   "id": "triangle",
+   "cn": "恐怖游轮",
+   "o": "Triangle",
+   "en": "Triangle",
+   "y": 2009,
+   "c": "英国",
+   "min": 99,
+   "reg": "eu",
+   "release": "2026年7月17日 未删减版内地上映",
+   "dir": "克里斯托弗·史密斯",
+   "dirO": "Christopher Smith",
+   "dirLife": "英国导演",
+   "r": [
+    8.5,
+    null,
+    null,
+    null,
+    null
+   ],
+   "syn": "单亲妈妈杰丝与朋友们出海游玩，遭遇风暴后登上一艘神秘的空船，船上的怪事接连发生，所有人被卷入无法逃脱的循环。",
+   "bio": "克里斯托弗·史密斯是英国导演，执导过《恐怖游轮》等恐怖与惊悚片。",
+   "st": "2009年上映的英国、澳大利亚合拍悬疑惊悚片，梅丽莎·乔治、利亚姆·海姆斯沃斯主演。2026年7月17日以未删减版在内地上映。",
+   "writers": [
+    "克里斯托弗·史密斯"
+   ],
+   "cast": [
+    "梅丽莎·乔治",
+    "利亚姆·海姆斯沃斯"
+   ],
+   "genre": [
+    "悬疑",
+    "惊悚",
+    "恐怖"
+   ],
+   "language": "英语",
+   "medium": "2D",
+   "highlights": [
+    "时间循环结构，重看时会发现更多铺垫。",
+    "此次为内地首次未删减公映。"
+   ],
+   "warnings": [
+    "暴力与血腥场面",
+    "家庭暴力与虐待情节",
+    "惊吓场面"
+   ],
+   "editorial": "适合喜欢烧脑悬疑的观众，第二遍看会有新的发现；情节涉及暴力与家庭伤害，敏感观众请先了解内容提示。",
+   "contentNote": "根据剧情及公开资料整理，涉及暴力与血腥场面、家庭暴力与虐待，以及惊吓场面。本次为未删减版，未对本片完整审片，具体表现强度及闪烁、音量等感官信息尚未核实。",
+   "links": {
+    "imdb": "tt1187064"
+   },
+   "honors": [],
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-10",
+    "sensory": "unverified"
+   },
+   "poster": "posters/triangle.jpg",
+   "ended": true,
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   },
+   "version": ""
+  },
+  {
+   "id": "kung-fu-soccer",
+   "cn": "功夫女足",
+   "en": "Shaolin Women's Soccer",
+   "y": 2026,
+   "c": "中国",
+   "min": 106,
+   "reg": "cn",
+   "release": "2026年7月11日 内地上映",
+   "dir": "周星驰",
+   "dirO": "Stephen Chow",
+   "dirLife": "1962– · 中国香港",
+   "r": [
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "syn": "周星驰执导并编剧，张小斐、迪丽热巴、张艺兴主演，刘嘉玲、佐藤健特别出演。",
+   "bio": "周星驰是中国香港导演、编剧、演员。",
+   "st": "影片于2026年7月11日在内地上映，片长106分钟。",
+   "writers": [
+    "周星驰"
+   ],
+   "cast": [
+    "张小斐",
+    "迪丽热巴",
+    "张艺兴",
+    "刘嘉玲",
+    "佐藤健"
+   ],
+   "genre": [
+    "喜剧"
+   ],
+   "language": "普通话",
+   "medium": "2D",
+   "highlights": [
+    "周星驰执导并编剧。"
+   ],
+   "editorial": "适合喜欢周星驰式喜剧的观众；本片具体内容尚未查证。",
+   "warnings": [],
+   "contentNote": "内容提示待核实：尚未查证本片的具体情节与内容细节，暂不提供提示，也不代表本片没有敏感内容。",
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-10",
+    "sensory": "unverified"
+   },
+   "honors": [],
+   "poster": "posters/kung-fu-soccer.jpg",
+   "ended": true,
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   },
+   "version": ""
+  },
+  {
+   "id": "three-kingdoms-luoyang",
+   "cn": "三国第一部：争洛阳",
+   "en": "Three Kingdoms: Battle for Luoyang",
+   "y": 2026,
+   "c": "中国",
+   "minTbd": true,
+   "reg": "cn",
+   "release": "2026年7月10日 内地上映（10月17日重映）",
+   "dir": "谢君伟",
+   "dirO": "Xie Junwei",
+   "dirLife": "中国导演",
+   "r": [
+    8.1,
+    null,
+    null,
+    null,
+    null
+   ],
+   "syn": "追光动画出品的三国题材动画电影，谢君伟执导，王微编剧。",
+   "bio": "谢君伟是追光动画的导演。",
+   "st": "影片2026年7月10日内地上映，7月25日下映，10月17日重新上映。",
+   "writers": [
+    "王微"
+   ],
+   "cast": [],
+   "genre": [
+    "动画",
+    "历史"
+   ],
+   "language": "普通话",
+   "medium": "2D",
+   "highlights": [
+    "追光动画出品，豆瓣评分约8.1（据媒体报道，非实时数据）。"
+   ],
+   "editorial": "适合喜欢三国题材与国产动画的观众；本片具体内容尚未查证。",
+   "warnings": [],
+   "contentNote": "内容提示待核实：尚未查证本片的具体情节与内容细节，暂不提供提示，也不代表本片没有敏感内容。",
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-10",
+    "sensory": "unverified"
+   },
+   "honors": [],
+   "poster": "posters/three-kingdoms-luoyang.jpg",
+   "ended": true,
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   },
+   "version": ""
+  },
+  {
+   "id": "toy-story-5",
+   "cn": "玩具总动员5",
+   "o": "Toy Story 5",
+   "en": "Toy Story 5",
+   "y": 2026,
+   "c": "美国",
+   "minTbd": true,
+   "reg": "us",
+   "release": "2026年6月19日 内地上映",
+   "dir": "安德鲁·斯坦顿",
+   "dirO": "Andrew Stanton",
+   "dirLife": "1965– · 美国",
+   "r": [
+    8.0,
+    null,
+    93,
+    72,
+    null
+   ],
+   "syn": "皮克斯《玩具总动员》系列第五部，由安德鲁·斯坦顿与麦肯娜·哈里斯共同执导，汤姆·汉克斯、蒂姆·艾伦、琼·库萨克、格蕾塔·李、柯南·奥布莱恩等参与配音。",
+   "bio": "安德鲁·斯坦顿是皮克斯导演；麦肯娜·哈里斯是皮克斯的动画人。",
+   "st": "影片于2026年6月19日在内地上映。烂番茄93%、Metacritic 72，豆瓣开分约8.0（据媒体报道，非实时数据）。",
+   "writers": [],
+   "cast": [
+    "汤姆·汉克斯",
+    "蒂姆·艾伦",
+    "琼·库萨克",
+    "格蕾塔·李",
+    "柯南·奥布莱恩"
+   ],
+   "genre": [
+    "动画",
+    "喜剧",
+    "冒险"
+   ],
+   "language": "英语",
+   "medium": "2D",
+   "highlights": [
+    "系列第五部，老朋友集体回归。"
+   ],
+   "editorial": "适合全家观看的系列续作；片长尚待核实，本片具体内容尚未查证。",
+   "warnings": [],
+   "contentNote": "内容提示待核实：尚未查证本片的具体情节与内容细节，暂不提供提示，也不代表本片没有敏感内容。",
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-10",
+    "sensory": "unverified"
+   },
+   "honors": [],
+   "poster": "posters/toy-story-5.jpg",
+   "ended": true,
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   },
+   "version": ""
+  },
+  {
+   "id": "the-furious",
+   "cn": "火遮眼",
+   "o": "The Furious",
+   "en": "The Furious",
+   "y": 2026,
+   "c": "中国",
+   "min": 113,
+   "reg": "cn",
+   "release": "2026年6月11日 内地上映",
+   "dir": "谷垣健治",
+   "dirO": "Kenji Tanigaki",
+   "dirLife": "日本导演、动作导演",
+   "r": [
+    8.5,
+    null,
+    100,
+    null,
+    null
+   ],
+   "syn": "动作片，谷垣健治执导，谢苗、林科灯、杨恩又、黎唯等主演。",
+   "bio": "谷垣健治是日本导演、动作导演。",
+   "st": "影片于2026年6月11日在内地上映，片长113分钟。豆瓣评分约8.5，烂番茄100%（据媒体报道，非实时数据）。",
+   "writers": [],
+   "cast": [
+    "谢苗",
+    "林科灯",
+    "杨恩又",
+    "黎唯"
+   ],
+   "genre": [
+    "动作"
+   ],
+   "language": "普通话",
+   "medium": "2D",
+   "highlights": [
+    "动作片，由动作导演谷垣健治执导。"
+   ],
+   "editorial": "适合喜欢硬派动作片的观众；本片具体内容尚未查证。",
+   "warnings": [],
+   "contentNote": "内容提示待核实：尚未查证本片的具体情节与内容细节，暂不提供提示，也不代表本片没有敏感内容。",
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-10",
+    "sensory": "unverified"
+   },
+   "honors": [],
+   "poster": "posters/the-furious.jpg",
+   "ended": true,
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   },
+   "version": ""
+  },
+  {
+   "id": "memento",
+   "cn": "记忆碎片",
+   "o": "Memento",
+   "en": "Memento",
+   "y": 2000,
+   "c": "美国",
+   "min": 113,
+   "reg": "us",
+   "release": "2026年5月29日 修复版内地上映",
+   "dir": "克里斯托弗·诺兰",
+   "dirO": "Christopher Nolan",
+   "dirLife": "1970– · 英国",
+   "r": [
+    8.7,
+    8.4,
+    93,
+    null,
+    null
+   ],
+   "syn": "伦纳德因脑部受伤无法形成新的记忆，只能靠身上的纹身、拍立得照片和字条提醒自己。他一心追查杀害妻子的凶手，却不得不在不断断裂的记忆里分辨谁值得相信。",
+   "bio": "克里斯托弗·诺兰是英国出生的导演、编剧，《记忆碎片》是他的第二部长片，此后执导《黑暗骑士》《盗梦空间》《星际穿越》等。",
+   "st": "2000年影片，以倒叙与顺叙交错的结构讲述一个失忆者的复仇故事。2026年以修复版登陆内地院线，提供IMAX与CINITY版本。",
+   "writers": [
+    "克里斯托弗·诺兰"
+   ],
+   "cast": [
+    "盖·皮尔斯",
+    "凯瑞-安·摩丝",
+    "乔·潘托里亚诺"
+   ],
+   "genre": [
+    "悬疑",
+    "惊悚"
+   ],
+   "language": "英语",
+   "medium": "IMAX / CINITY",
+   "highlights": [
+    "用倒叙结构让观众和主角一样处在记忆缺失里。",
+    "此次为修复版内地公映。"
+   ],
+   "honors": [
+    "提名｜第73届奥斯卡金像奖 · 最佳原创剧本",
+    "提名｜第73届奥斯卡金像奖 · 最佳剪辑"
+   ],
+   "warnings": [
+    "暴力与谋杀情节",
+    "妻子遇害的情节"
+   ],
+   "editorial": "适合喜欢烧脑叙事的观众，建议集中注意力观看，二刷会发现更多线索。",
+   "contentNote": "根据剧情及公开资料整理，涉及暴力与谋杀，以及主角妻子遇害的情节。本次为修复版，未对本片完整审片，具体表现强度及闪烁、音量等感官信息尚未核实。",
+   "worldPremiere": {
+    "status": "verified",
+    "date": "2000-09-05",
+    "festival": "威尼斯国际电影节",
+    "festivalEn": "Venice International Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-10"
+   },
+   "links": {
+    "imdb": "tt0209144",
+    "lb": "memento"
+   },
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-10",
+    "sensory": "unverified"
+   },
+   "poster": "posters/memento.jpg",
+   "ended": true,
+   "version": ""
+  },
+  {
+   "id": "papa",
+   "cn": "爸爸",
+   "o": "Papa",
+   "en": "Papa",
+   "y": 2024,
+   "c": "中国香港",
+   "minTbd": true,
+   "reg": "as",
+   "release": "2026年6月27日 内地上映（香港2024年12月5日上映）",
+   "dir": "翁子光",
+   "dirO": "Ho Cheuk Tin",
+   "dirLife": "中国香港导演",
+   "r": [
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "syn": "茶餐厅老板阮永年原本拥有美满的家庭，却因长子突发精神分裂症，亲手杀害母亲与妹妹而家破人亡。面对骤然失去至亲，他一方面独自承受伤痛，一方面竭力寻求宽恕与解救儿子的方法。",
+   "bio": "翁子光是中国香港导演、编剧，曾执导《踏血寻梅》。《爸爸》由他执导并编剧，改编自2010年的荃湾享和街事件。",
+   "st": "影片2024年入选东京国际电影节「樱花大奖」竞赛单元并在该影展世界首映，2024年12月5日在香港上映，2026年6月27日内地上映。影片不着墨于血腥的犯案过程，而聚焦凶案之后一位父亲的日常与内心。",
+   "writers": [
+    "翁子光"
+   ],
+   "cast": [
+    "刘青云",
+    "谷祖琳",
+    "苏文涛"
+   ],
+   "genre": [
+    "剧情"
+   ],
+   "language": "粤语",
+   "medium": "2D",
+   "highlights": [
+    "刘青云、谷祖琳、苏文涛三位演员均凭本片获第43届香港电影金像奖表演奖项。"
+   ],
+   "honors": [
+    "获奖｜第43届香港电影金像奖 · 最佳男主角（刘青云）",
+    "获奖｜第43届香港电影金像奖 · 最佳女配角（谷祖琳）",
+    "获奖｜第43届香港电影金像奖 · 最佳新演员（苏文涛）"
+   ],
+   "warnings": [
+    "家庭成员遇害",
+    "精神疾病",
+    "取材真实刑事案件"
+   ],
+   "editorial": "题材沉重，建议在情绪状态适宜时观看；片长尚待核实。",
+   "contentNote": "根据剧情及公开资料整理，涉及家庭成员遇害、精神疾病，以及取材于真实刑事案件的沉重情节。影片不着墨于血腥的犯案过程，未对本片完整审片，具体表现强度及闪烁、音量等感官信息尚未核实。",
+   "worldPremiere": {
+    "status": "partial",
+    "date": "2024",
+    "festival": "东京国际电影节",
+    "festivalEn": "Tokyo International Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-10"
+   },
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-10",
+    "sensory": "unverified"
+   },
+   "poster": "posters/papa.jpg",
+   "ended": true,
+   "version": ""
+  },
+  {
+   "id": "pressure",
+   "cn": "Pressure",
+   "o": "Pressure",
+   "en": "Pressure",
+   "y": 2026,
+   "c": "美国",
+   "minTbd": true,
+   "reg": "us",
+   "release": "2026年5月29日 北美上映（内地上映日期待核实）",
+   "dir": "安东尼·马拉斯",
+   "dirO": "Anthony Maras",
+   "dirLife": "澳大利亚导演",
+   "r": [
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "syn": "根据大卫·黑格的舞台剧改编，安德鲁·斯科特、布兰登·费舍、凯莉·康登、克里斯·梅西纳、达米安·刘易斯主演。",
+   "bio": "安东尼·马拉斯是导演，执导《Pressure》。",
+   "st": "影片2026年5月29日在北美上映，片长约100分钟；内地上映日期待核实。",
+   "writers": [
+    "大卫·黑格"
+   ],
+   "cast": [
+    "安德鲁·斯科特",
+    "布兰登·费舍",
+    "凯莉·康登",
+    "克里斯·梅西纳",
+    "达米安·刘易斯"
+   ],
+   "genre": [],
+   "language": "英语",
+   "medium": "2D",
+   "highlights": [
+    "改编自大卫·黑格的舞台剧。"
+   ],
+   "editorial": "内地上映信息与本片具体内容尚未查证。",
+   "warnings": [],
+   "contentNote": "内容提示待核实：尚未查证本片的具体情节与内容细节，暂不提供提示，也不代表本片没有敏感内容。",
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-10",
+    "sensory": "unverified"
+   },
+   "honors": [],
+   "poster": "posters/pressure.jpg",
+   "ended": true,
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   },
+   "version": ""
+  },
+  {
+   "id": "disclosure-day",
+   "cn": "揭秘日",
+   "o": "Disclosure Day",
+   "en": "Disclosure Day",
+   "y": 2026,
+   "c": "美国",
+   "min": 145,
+   "reg": "us",
+   "release": "2026年6月12日 内地上映",
+   "dir": "史蒂文·斯皮尔伯格",
+   "dirO": "Steven Spielberg",
+   "dirLife": "1946– · 美国",
+   "r": [
+    null,
+    null,
+    90,
+    null,
+    null
+   ],
+   "syn": "史蒂文·斯皮尔伯格执导、大卫·柯普编剧，艾米莉·布朗特、乔什·奥康纳、柯林·菲尔斯、伊芙·休森、科尔曼·多明戈主演。",
+   "bio": "史蒂文·斯皮尔伯格是美国导演。",
+   "st": "影片2026年6月12日在内地与美国同步上映，片长145分钟。烂番茄90%（据媒体报道，非实时数据）。",
+   "writers": [
+    "大卫·柯普"
+   ],
+   "cast": [
+    "艾米莉·布朗特",
+    "乔什·奥康纳",
+    "柯林·菲尔斯",
+    "伊芙·休森",
+    "科尔曼·多明戈"
+   ],
+   "genre": [],
+   "language": "英语",
+   "medium": "2D",
+   "highlights": [
+    "斯皮尔伯格执导，内地与北美同步上映。"
+   ],
+   "editorial": "片长约两个半小时；本片具体内容尚未查证。",
+   "warnings": [],
+   "contentNote": "内容提示待核实：尚未查证本片的具体情节与内容细节，暂不提供提示，也不代表本片没有敏感内容。",
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-10",
+    "sensory": "unverified"
+   },
+   "honors": [],
+   "poster": "posters/disclosure-day.jpg",
+   "ended": true,
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   },
+   "version": ""
+  },
+  {
+   "id": "the-backrooms",
+   "cn": "后室",
+   "o": "Backrooms",
+   "en": "Backrooms",
+   "y": 2026,
+   "c": "美国",
+   "min": 111,
+   "reg": "us",
+   "release": "2026年5月29日 北美上映（内地上映日期待核实）",
+   "dir": "凯恩·帕森斯",
+   "dirO": "Kane Parsons",
+   "dirLife": "美国导演",
+   "r": [
+    null,
+    null,
+    87,
+    null,
+    null
+   ],
+   "syn": "A24出品的恐怖片，凯恩·帕森斯执导，奇维托·埃加福、蕾娜特·雷茵斯夫主演。",
+   "bio": "凯恩·帕森斯是美国导演、创作者。",
+   "st": "影片2026年5月29日在北美上映，片长约111分钟；内地上映日期待核实。烂番茄87%（据媒体报道，非实时数据）。",
+   "writers": [],
+   "cast": [
+    "奇维托·埃加福",
+    "蕾娜特·雷茵斯夫"
+   ],
+   "genre": [
+    "恐怖"
+   ],
+   "language": "英语",
+   "medium": "2D",
+   "highlights": [
+    "A24出品的恐怖片。"
+   ],
+   "editorial": "恐怖片，建议先确认自己对惊吓内容的接受度；本片具体内容尚未查证。",
+   "warnings": [],
+   "contentNote": "内容提示待核实：尚未查证本片的具体情节与内容细节，暂不提供提示，也不代表本片没有敏感内容。",
+   "contentReview": {
+    "status": "pending",
+    "checked": "2026-11-10",
+    "sensory": "unverified"
+   },
+   "honors": [],
+   "poster": "posters/the-backrooms.jpg",
+   "ended": true,
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown"
+   },
+   "version": ""
   }
  ],
  "shows": [
