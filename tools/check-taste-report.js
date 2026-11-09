@@ -32,6 +32,10 @@ assert.equal(TR.analyze(yr,{year:'2025'}).prev,undefined);assert.equal(TR.analyz
 assert.deepEqual(TR.analyze(yr).atlas,{dir:{name:'导演甲',n:6},minY:1960,maxY:1960,decades:1,countries:1});
 assert(TR.analyze(yr,{year:'2026'}).paras.some(p=>p.includes('导演甲')));
 {const c2=ctx();let ft=null;TR.draw(c2,y26,{date:'2026.11.10',footer:(cc,y,h)=>ft=h});assert.equal(ft,TR.heightOf(ctx(),y26,{date:'2026.11.10'}));}
+// 专题范围：与年份二选一，标题与「平时的你」
+{const set=new Set(['c1','c2','c3']),A=TR.analyze(yr,{year:'2025',programme:'2026金鸡影展',inProg:f=>set.has(f.id)});assert.equal(A.n,3);assert.equal(A.programme,'2026金鸡影展');assert.equal(A.year,'','选了专题就不按年份');assert.equal(A.prev,undefined);assert(A.base&&A.base.n===6);
+ const c3=ctx(),texts=[];c3.fillText=t=>texts.push(String(t));TR.draw(c3,A,{holder:'麻雀',date:'2026.11.10'});assert(texts.includes('麻雀的2026金鸡影展趣味图谱'));assert(texts.some(t=>t.includes('平时的你')));
+ assert.equal(TR.analyze(yr,{programme:'X',inProg:f=>f.id==='c1'}).ok,false);}
 // 英文
 const en=TR.analyze(e,{en:true});assert(en.persona.startsWith('The '));assert(/films/.test(en.paras[0]));
 // 社区距离
@@ -39,10 +43,10 @@ const cm=TR.analyze(e,{community:id=>({fun:3,bore:3})});assert(cm.paras.some(p=>
 // 绘制：高度为正，页脚回调被调用
 const c=ctx();let foot=null;const H=TR.heightOf(c,a,{date:'2026.11.10'});assert(H>3000);TR.draw(c,a,{holder:'麻雀',date:'2026.11.10',footer:(cc,y,h)=>foot=[y,h]});assert(foot&&foot[1]===H&&foot[0]<H);assert(c.calls.includes('fillText'));
 // 小程序页面：按钮门槛与生成流程
-let def;const data={films:[],programmes:[]},app={globalData:{data},onData:()=>()=>{}},rows=e;
+let def;const data={films:[],programmes:[{id:'P1',name:'专题一'}]},app={globalData:{data},onData:()=>()=>{}},rows=e;
 const canvas={width:0,height:0,createImage(){const im={width:10,height:10};Object.defineProperty(im,'src',{set(){im.onload();}});return im;},getContext:()=>ctx()};let previewed=null,done;
 const wx={setNavigationBarTitle(){},showToast(o){previewed='toast:'+o.title;},showLoading(){},hideLoading(){},createSelectorQuery:()=>({in(){return this;},select(){return this;},fields(){return this;},exec(fn){done=fn([{node:canvas}]);}}),canvasToTempFilePath:o=>o.success({tempFilePath:'t.png'}),previewImage:o=>previewed=o.urls[0]};
-const mods={'../../utils/util.js':{index:()=>({})},'../../utils/watched.js':{entries:()=>rows,onChange:()=>()=>{},holder:()=>'麻雀'},'../../utils/i18n.js':{dict:()=>({}),tr:x=>x,isEn:()=>false},'../../utils/taste.js':{map:()=>({n:0,points:[],quadrants:[],unsure:0})},'../../utils/community.js':{subscribe:()=>()=>{},get:()=>null,read:()=>Promise.resolve(),flush(){}},'../../utils/taste-report.js':TR,'../../utils/recap.js':{footer(){}}};
+const mods={'../../utils/util.js':{index:()=>({})},'../../utils/watched.js':{entries:()=>rows,onChange:()=>()=>{},holder:()=>'麻雀'},'../../utils/i18n.js':{dict:()=>({}),tr:x=>x,isEn:()=>false},'../../utils/taste.js':{map:()=>({n:0,points:[],quadrants:[],unsure:0})},'../../utils/community.js':{subscribe:()=>()=>{},get:()=>null,read:()=>Promise.resolve(),flush(){}},'../../utils/taste-report.js':TR,'../../utils/recap.js':{footer(){}},'../../utils/library.js':{inProgramme:(f,id)=>id==='P1'}};
 vm.runInNewContext(fs.readFileSync('miniprogram/pages/taste-map/taste-map.js','utf8'),{require:n=>mods[n],getApp:()=>app,Page:p=>def=p,wx});
-const page={...def,data:JSON.parse(JSON.stringify(def.data)),setData(d){Object.assign(this.data,d);}};page.build();assert.equal(page.data.reportN,4);assert.equal(JSON.stringify(page.data.yearLabels),'["全部年份","2026"]');page.setYear({detail:{value:1}});assert.equal(page.data.year,'2026');assert.equal(page.data.reportN,4);
+const page={...def,data:JSON.parse(JSON.stringify(def.data)),setData(d){Object.assign(this.data,d);}};page.build();assert.equal(page.data.reportN,4);assert.equal(JSON.stringify(page.data.yearLabels),'["全部年份","2026"]');page.setYear({detail:{value:1}});assert.equal(page.data.year,'2026');assert.equal(page.data.reportN,4);assert.equal(JSON.stringify(page.data.progLabels),'["全部专题","专题一"]');page.setProg({detail:{value:1}});assert.equal(page.data.prog,'P1');assert.equal(page.data.year,'','专题与年份二选一');assert.equal(page.data.reportN,4);page.setYear({detail:{value:1}});assert.equal(page.data.prog,'');
 page.makeReport();(async()=>{await done;assert.equal(previewed,'t.png');assert(canvas.height>1000);console.log('PASS: taste report — threshold, filtering, determinism, '+names.size+' personas in sample, English, community, canvas and mini page export.');})().catch(err=>{console.error(err);process.exitCode=1;});
