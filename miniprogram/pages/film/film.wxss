@@ -254,7 +254,6 @@
 .mr-seen-full { width: 100%; justify-content: center; margin-top: calc(18 * var(--r)); }
 
 /* 分享：好友卡片 + 分享海报 */
-.share-row{display:flex;gap:calc(16 * var(--r));margin-top:calc(32 * var(--r))}.share-row .share{flex:1;margin-top:0 !important;width:auto}
 .share-canvas{position:fixed;left:-9999px;top:0;width:1080px;height:1080px}
 
 /* 院线片放映场次筛选（放映日期 / 影院，弹层多选，与片目筛选条同款） */
@@ -266,3 +265,6 @@
 .sel-results{flex:1;min-height:0;max-height:48vh;padding:0 calc(14 * var(--r))}.sel-option{display:flex;align-items:center;gap:calc(20 * var(--r));padding:calc(20 * var(--r)) calc(18 * var(--r));border-radius:calc(16 * var(--r))}.sel-option.on{background:color-mix(in srgb,var(--teal) 9%,var(--surface))}.sel-copy{flex:1;min-width:0;display:flex;flex-direction:column;gap:calc(4 * var(--r))}.sel-copy .b{font-size:calc(24 * var(--fr))}.sel-copy .small{font-size:calc(20 * var(--fr))}
 .sel-check{flex:none;width:calc(40 * var(--r));height:calc(40 * var(--r));line-height:calc(36 * var(--r));box-sizing:border-box;text-align:center;border:calc(2 * var(--r)) solid var(--line);border-radius:calc(8 * var(--r));color:#fffaf0;font-size:calc(24 * var(--r))}.sel-check.on{background:var(--accent);border-color:var(--accent)}
 .sel-empty{padding:calc(40 * var(--r));text-align:center;color:var(--muted);font-size:calc(22 * var(--fr))}.sel-foot{flex:none;display:flex;align-items:center;justify-content:space-between;padding:calc(18 * var(--r)) calc(24 * var(--r)) calc(24 * var(--r));border-top:calc(1 * var(--r)) solid var(--line)}.sel-foot text{font-size:calc(21 * var(--fr));color:var(--muted)}.sel-done{min-width:calc(180 * var(--r));height:calc(72 * var(--r));line-height:calc(72 * var(--r));text-align:center;border-radius:999px;background:var(--accent);color:#fffaf0;font-weight:700;font-size:calc(24 * var(--fr))}
+
+/* 影片页顶部操作：分享影片 / 分享海报（与网页 fd-acts 一致） */
+.hero-acts{display:flex;gap:calc(16 * var(--r));margin-top:calc(26 * var(--r))}.ha{flex:1;display:flex !important;align-items:center;justify-content:center;gap:calc(10 * var(--r));height:calc(72 * var(--r));margin:0 !important;padding:0 !important;line-height:1;border-radius:999px;border:calc(2 * var(--r)) solid rgba(255,250,240,.35);background:rgba(255,250,240,.08) !important;color:#fffaf0 !important;font-size:calc(22 * var(--fr)) !important;font-weight:600}.ha::after{border:0}.ha-hv{background:rgba(255,250,240,.18) !important}.ha-i{font-size:calc(24 * var(--fr));opacity:.85}

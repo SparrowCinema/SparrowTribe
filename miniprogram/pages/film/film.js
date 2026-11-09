@@ -30,7 +30,9 @@ Page({
   toggleGone() { this.setData({ goneOpen: !this.data.goneOpen }); },
   onUnload() { this.offC&&this.offC();this.off1 && this.off1(); this.off2 && this.off2(); this.off3 && this.off3(); },
   build() {
-    const data = app.globalData.data, idx = U.index(data), f = idx.F[this.id];
+    const data = app.globalData.data, idx = U.index(data);
+    if (this.id && !idx.F[this.id]) { const hit = Object.keys(idx.F).find(k => k.startsWith(this.id)); if (hit) this.id = hit; } // 扫码 scene 只含 id 前 32 字符
+    const f = idx.F[this.id];
     if (!f) { wx.showToast({ title: t('没有找到这部影片'), icon: 'none' }); return; }
     wx.setNavigationBarTitle({ title: f.cn });
     const picked = plan.get(), p = idx.progOf(f);
