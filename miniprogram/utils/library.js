@@ -28,5 +28,11 @@
  function posterPeriod(date,mode){const m=/^(\d{4})-(0[1-9]|1[0-2])-\d{2}$/.exec(String(date||''));if(!m)return '';return mode==='month'?m[1]+'-'+m[2]:mode==='quarter'?m[1]+'-Q'+Math.ceil(+m[2]/3):m[1];}
  function posterPeriods(entries,mode){return [...new Set(entries.map(e=>posterPeriod(e.rec.d,mode)).filter(Boolean))].sort().reverse();}
  function posterEntries(entries,mode,period,programme='all',ctx={shows:[]}){return entries.filter(e=>posterPeriod(e.rec.d,mode)===period&&inProgramme(e.f,programme,ctx));}
- const api={matches,inProgramme,inCity,status,category,list,has,toggle,featuredProgrammes,posterColumns,posterPeriod,posterPeriods,posterEntries};if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.SparrowLibrary=api;
+ // 海报墙导出标题：二选一——选了专题按专题命名（时间放副标题），否则按年/季/月命名
+ const EN_MON=['January','February','March','April','May','June','July','August','September','October','November','December'];
+ function posterPeriodLabel(period,en){const s=String(period||'');let m=/^(\d{4})-Q([1-4])$/.exec(s);if(m)return en?'Q'+m[2]+' '+m[1]:m[1]+'年第'+'一二三四'[m[2]-1]+'季度';m=/^(\d{4})-(\d{2})$/.exec(s);if(m)return en?EN_MON[+m[2]-1]+' '+m[1]:m[1]+'年'+(+m[2])+'月';return /^\d{4}$/.test(s)?(en?s:s+'年'):s;}
+ function posterTitle(o){const en=!!o.en,h=String(o.holder||'').trim(),lab=posterPeriodLabel(o.period,en),name=o.programmeName||'';
+  if(name)return en?{title:(h?h+"'s ":'My ')+name+' Poster Wall',sub:'Cinema log'+(lab?' · '+lab:'')}:{title:(h||'我')+'的'+name+'海报墙',sub:'影院观影'+(lab?' · '+lab:'')};
+  return en?{title:(lab?lab+' ':'')+'Cinema Poster Wall',sub:(h?h+"'s":'My')+' Film Passport'}:{title:lab+'影院观影海报墙',sub:(h||'我')+'的观影护照'};}
+ const api={matches,inProgramme,inCity,status,category,list,has,toggle,featuredProgrammes,posterColumns,posterPeriod,posterPeriods,posterEntries,posterPeriodLabel,posterTitle};if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.SparrowLibrary=api;
 })(typeof window!=='undefined'?window:this);
