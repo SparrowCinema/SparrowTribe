@@ -947,7 +947,7 @@ html.sheet-open,html.sheet-open body{overflow:hidden}
 .fd-tnote.ev,.src.ev{display:block}.ev-tag{display:inline-block;font:700 10.5px/1.5 var(--f-body);padding:0 7px;margin-right:6px;border-radius:99px;background:#ffe94a;color:#2b2110;font-style:normal}
 .mine-only{display:flex;align-items:center;gap:10px;margin:2px 0 10px}
 .mine-chip{display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 14px;border:1.5px solid var(--line);border-radius:99px;background:var(--surface);font-size:10.6px;font-weight:600;color:var(--fg)}
-.geo-chip{display:inline-flex;align-items:center;gap:5px;height:36px;padding:0 12px;border:1.5px solid var(--line);border-radius:99px;background:var(--surface);font-size:10.6px;font-weight:600;color:var(--muted)}.geo-chip i{font-style:normal;font-size:13px;line-height:1}.geo-chip.on{color:var(--accent);border-color:color-mix(in srgb,var(--accent) 45%,var(--line))}
+.geo-chip{display:inline-flex;align-items:center;justify-content:center;gap:5px;height:36px;box-sizing:border-box;padding:0 13px;border:1.5px solid var(--line);border-radius:99px;background:var(--surface);font-size:10.6px;font-weight:600;line-height:1;color:var(--muted);white-space:nowrap;vertical-align:middle}.geo-chip svg{display:block;flex:none;margin-top:-1px}.geo-chip.on{color:var(--accent);border-color:color-mix(in srgb,var(--accent) 45%,var(--line))}
 .mine-chip i{width:16px;height:16px;border-radius:50%;border:1.5px solid var(--muted);display:grid;place-items:center;font:700 10px/1 var(--f-body);font-style:normal;color:transparent}
 .mine-chip small{font:600 11px var(--f-mono);color:var(--muted)}
 .mine-chip.on{background:var(--accent);border-color:var(--accent);color:var(--bg)}.mine-chip.on i{background:var(--bg);border-color:var(--bg);color:var(--accent)}.mine-chip.on small{color:inherit;opacity:.85}
@@ -2877,7 +2877,7 @@ async function geoBoot(){ /* 已授权：静默刷新；从没问过：首次打
  if(st==="granted")return locateCity(false);
  if(st==="prompt"){let asked=false;try{asked=!!localStorage.getItem(GEO_ASKED);}catch(e){}if(!asked)locateCity(false);}
 }
-function geoChipHTML(){if(!navigator.geolocation)return"";const H=homeCity();const on=GEO_CITY&&GEO_CITY.c&&GEO_CITY.c===H;return `<button type="button" class="geo-chip${on?" on":""}" data-geo title="${esc(tr("按我所在的城市优先显示"))}"><i aria-hidden="true">⌖</i>${on?esc(tr(H))+" "+tr("优先"):tr("定位")}</button>`;}
+function geoChipHTML(){if(!navigator.geolocation)return"";const H=homeCity();const on=GEO_CITY&&GEO_CITY.c&&GEO_CITY.c===H;return `<button type="button" class="geo-chip${on?" on":""}" data-geo title="${esc(tr("按我所在的城市优先显示"))}"><svg aria-hidden="true" viewBox="0 0 24 24" width="13" height="13"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.3" fill="currentColor"/></svg>${on?esc(tr(H))+" "+tr("优先"):tr("定位")}</button>`;}
 document.addEventListener("click",e=>{if(e.target.closest("[data-geo]"))locateCity(true);});
 async function loadData(){
  const get=u=>fetch(u,{cache:"no-store"}).then(r=>{if(!r.ok)throw Error(u+" "+r.status);return r.json();});
