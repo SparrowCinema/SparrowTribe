@@ -10,11 +10,11 @@
       <image wx:if="{{f.poster}}" id="hero-pst" class="pst" src="{{f.poster}}" mode="aspectFill" />
       <view class="tt" id="hero-tt">
         <view class="eyebrow mono"><text class="reg">{{f.reg}}</text><text class="eyc">{{f.y}} · {{f.c}}</text></view>
-        <view class="h1" style="font-size:calc({{29.7*fs}} * var(--r))">{{f.cn}}</view>
-        <view wx:if="{{f.cnDb}}" class="native" style="font-size:calc({{16.5*fs}} * var(--r))">{{L.t(i,'豆瓣译名')}} {{f.cnDb}}</view>
-        <view class="en" style="font-size:calc({{17.6*fs}} * var(--r))">{{f.en}}</view>
-        <view wx:if="{{f.o}}" class="native" style="font-size:calc({{16.5*fs}} * var(--r))">{{L.t(i,'原名')}} {{f.o}}</view>
-        <view class="tags" style="font-size:calc({{fs<0.8?17:20}} * var(--r))">
+        <view class="h1" style="font-size:calc({{29.7*fs}} * var(--fr))">{{f.cn}}</view>
+        <view wx:if="{{f.cnDb}}" class="native" style="font-size:calc({{16.5*fs}} * var(--fr))">{{L.t(i,'豆瓣译名')}} {{f.cnDb}}</view>
+        <view class="en" style="font-size:calc({{17.6*fs}} * var(--fr))">{{f.en}}</view>
+        <view wx:if="{{f.o}}" class="native" style="font-size:calc({{16.5*fs}} * var(--fr))">{{L.t(i,'原名')}} {{f.o}}</view>
+        <view class="tags" style="font-size:calc({{fs<0.8?17:20}} * var(--fr))">
           <text wx:if="{{f.version}}" class="tg ed2">{{f.version}}</text>
           <text class="tg">{{f.minText}}</text>
           <text class="tg">{{f.lang}}</text>
