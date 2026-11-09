@@ -8,3 +8,9 @@
 
 /* 导出时显示评分（勾选） */
 .wall-score{display:flex;align-items:center;gap:calc(10 * var(--r));margin-left:auto;font-size:calc(22 * var(--fr));font-weight:600;color:var(--muted)}.wall-check{width:calc(30 * var(--r));height:calc(30 * var(--r));line-height:calc(28 * var(--r));box-sizing:border-box;border:calc(2 * var(--r)) solid var(--line);border-radius:calc(7 * var(--r));text-align:center;font-size:calc(20 * var(--r));color:#fffaf0;background:var(--surface)}.wall-score.on .wall-check{background:var(--accent);border-color:var(--accent)}
+
+/* 工具行一行：勾选在左，导出按钮缩小为棕色胶囊 */
+.wall-toolbar{flex-wrap:nowrap !important}.wall-toolbar .wall-score{margin-left:0;min-width:0;white-space:nowrap}
+.wall-toolbar .wall-export{flex:none;width:auto !important;margin:0 !important;padding:calc(14 * var(--r)) calc(30 * var(--r)) !important;border-radius:999px !important;background:#a66e3d !important;border:calc(2 * var(--r)) solid #a66e3d !important;color:#fff !important;font-size:calc(22 * var(--fr)) !important;font-weight:700;line-height:1.3 !important}
+.wall-toolbar .wall-export::after{border:0}
+.wall-toolbar .wall-export[disabled]{background:var(--surface) !important;border-color:var(--line) !important;color:var(--muted) !important}
