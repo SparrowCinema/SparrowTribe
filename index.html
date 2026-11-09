@@ -947,6 +947,7 @@ html.sheet-open,html.sheet-open body{overflow:hidden}
 .fd-tnote.ev,.src.ev{display:block}.ev-tag{display:inline-block;font:700 10.5px/1.5 var(--f-body);padding:0 7px;margin-right:6px;border-radius:99px;background:#ffe94a;color:#2b2110;font-style:normal}
 .mine-only{display:flex;align-items:center;gap:10px;margin:2px 0 10px}
 .mine-chip{display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 14px;border:1.5px solid var(--line);border-radius:99px;background:var(--surface);font-size:10.6px;font-weight:600;color:var(--fg)}
+.geo-chip{display:inline-flex;align-items:center;gap:5px;height:36px;padding:0 12px;border:1.5px solid var(--line);border-radius:99px;background:var(--surface);font-size:10.6px;font-weight:600;color:var(--muted)}.geo-chip i{font-style:normal;font-size:13px;line-height:1}.geo-chip.on{color:var(--accent);border-color:color-mix(in srgb,var(--accent) 45%,var(--line))}
 .mine-chip i{width:16px;height:16px;border-radius:50%;border:1.5px solid var(--muted);display:grid;place-items:center;font:700 10px/1 var(--f-body);font-style:normal;color:transparent}
 .mine-chip small{font:600 11px var(--f-mono);color:var(--muted)}
 .mine-chip.on{background:var(--accent);border-color:var(--accent);color:var(--bg)}.mine-chip.on i{background:var(--bg);border-color:var(--bg);color:var(--accent)}.mine-chip.on small{color:inherit;opacity:.85}
@@ -1743,7 +1744,7 @@ document.addEventListener('click',e=>{const b=e.target.closest('[data-schedule-v
 let onlyMine=false;try{onlyMine=localStorage.getItem('sparrow-only-mine')==='1';}catch{}
 document.addEventListener("click",e=>{const b=e.target.closest("[data-today-toggle]");if(!b)return;todayOpen=!todayOpen;const sec=b.closest(".my-today");if(!sec)return;sec.classList.toggle("open",todayOpen);b.setAttribute("aria-expanded",String(todayOpen));const n=sec.querySelectorAll(".pitem").length;b.querySelector(".tt-txt").textContent=todayOpen?"收起":"还有 "+(n-1)+" 场 · 展开全部";});
 function mineOnlyHTML(){const n=SH.filter(x=>inProg(x)&&!isPast(x)&&picked.has(keyOf(x))).length;
-  return `<div class="mine-only"><button type="button" class="mine-chip${onlyMine?" on":""}" data-mine-only aria-pressed="${onlyMine}"><i aria-hidden="true">✓</i>只看我的排片<small>${n}</small></button></div>`;}
+  return `<div class="mine-only"><button type="button" class="mine-chip${onlyMine?" on":""}" data-mine-only aria-pressed="${onlyMine}"><i aria-hidden="true">✓</i>只看我的排片<small>${n}</small></button>${geoChipHTML()}</div>`;}
 document.addEventListener("click",e=>{const b=e.target.closest("[data-mine-only]");if(!b)return;onlyMine=!onlyMine;try{localStorage.setItem('sparrow-only-mine',onlyMine?'1':'0');}catch{}const y=window.scrollY;schedule();window.scrollTo(0,y);});
 function schedule(){
   const list = SH.filter(x=>selHas(vfilt,x.v)&&selHas(cityFilt,VN[x.v]?.city)&&inProg(x)&&!isPast(x)&&(!onlyMine||picked.has(keyOf(x))));
@@ -2847,6 +2848,37 @@ function normalizeFilm(f,pid){
   return f;
 }
 let dataSignature="",dataRefreshBusy=false,lastDataCheck=0;
+/* ===== 首页城市优先（定位）=====
+   打开网页时用浏览器定位（只在本机换算成最近的已收录城市，不上传坐标，结果在本机保留 1 天）。
+   定位城市有尚未散场的场次 → 排最前；没有场次、不在已收录城市、拒绝授权 → 维持默认（杭州优先，其余按目录顺序）。 */
+const DEFAULT_HOME="杭州", GEO_KEY="sparrow-geo-city", GEO_ASKED="sparrow-geo-asked";
+const CITY_GEO={"杭州":[30.274,120.155],"嘉兴":[30.746,120.756],"厦门":[24.480,118.089],"台北":[25.033,121.565]}; /* 新城市可在这里补中心坐标，或给该城影院填 geo */
+let GEO_CITY=(()=>{try{const o=JSON.parse(localStorage.getItem(GEO_KEY)||"null");return o&&Date.now()-o.t<864e5?o:null;}catch(e){return null;}})();
+function homeCity(venues=VENUES,shows=SH){const c=GEO_CITY&&GEO_CITY.c;if(c&&c!==DEFAULT_HOME){const ids=new Set(venues.filter(v=>v.city===c).map(v=>v.id));if(shows.some(x=>ids.has(x.v)&&!isPast(x)))return c;}return DEFAULT_HOME;}
+function venueRank(venues,shows){const H=homeCity(venues,shows),r={};venues.forEach(v=>{r[v.id]=(v.city===H?0:v.city===DEFAULT_HOME?1e3:2e3)+(v._o||0);});return r;}
+function applyHome(){const r=venueRank(VENUES,SH);VENUES.sort((a,b)=>r[a.id]-r[b.id]);SH.sort((a,b)=>showDate(a)-showDate(b)||r[a.v]-r[b.v]);}
+function cityCenter(c){if(CITY_GEO[c])return CITY_GEO[c];const g=VENUES.filter(v=>v.city===c&&Array.isArray(v.geo)).map(v=>v.geo);return g.length?[g.reduce((a,x)=>a+x[0],0)/g.length,g.reduce((a,x)=>a+x[1],0)/g.length]:null;}
+function nearestCity(lat,lng){const R=Math.PI/180;let best="",bd=Infinity;[...new Set(VENUES.map(v=>v.city).filter(Boolean))].forEach(c=>{const g=cityCenter(c);if(!g)return;const a=Math.sin((g[0]-lat)*R/2)**2+Math.cos(lat*R)*Math.cos(g[0]*R)*Math.sin((g[1]-lng)*R/2)**2,d=12742*Math.asin(Math.sqrt(a));if(d<bd){bd=d;best=c;}});return bd<=120?best:"";}
+function geoRerender(){const h=location.hash.slice(1)||"schedule";if(!READY||h!=="schedule")return;rememberView(h);route();restoreView(h);}
+function locateCity(ask){
+ if(!navigator.geolocation){if(ask)toast(tr("当前浏览器不支持定位，按默认顺序显示"));return;}
+ try{localStorage.setItem(GEO_ASKED,"1");}catch(e){}
+ navigator.geolocation.getCurrentPosition(pos=>{
+  const before=homeCity(),prevC=GEO_CITY&&GEO_CITY.c,c=nearestCity(pos.coords.latitude,pos.coords.longitude);
+  GEO_CITY={c,t:Date.now()};try{localStorage.setItem(GEO_KEY,JSON.stringify(GEO_CITY));}catch(e){}
+  applyHome();const after=homeCity();
+  if(after!==before||c!==prevC||ask)geoRerender();
+  if(ask)toast(after===c&&c?tr("已按定位城市优先显示")+" · "+tr(c):tr("定位城市暂无排片，按默认顺序显示"));
+ },()=>{if(ask)toast(tr("没有获得定位权限，按默认顺序显示"));},{enableHighAccuracy:false,timeout:10000,maximumAge:18e5});
+}
+async function geoBoot(){ /* 已授权：静默刷新；从没问过：首次打开时请求一次；拒绝过：不再打扰（可点「定位」重试） */
+ if(!navigator.geolocation)return;let st="prompt";
+ try{st=(await navigator.permissions.query({name:"geolocation"})).state;}catch(e){}
+ if(st==="granted")return locateCity(false);
+ if(st==="prompt"){let asked=false;try{asked=!!localStorage.getItem(GEO_ASKED);}catch(e){}if(!asked)locateCity(false);}
+}
+function geoChipHTML(){if(!navigator.geolocation)return"";const H=homeCity();const on=GEO_CITY&&GEO_CITY.c&&GEO_CITY.c===H;return `<button type="button" class="geo-chip${on?" on":""}" data-geo title="${esc(tr("按我所在的城市优先显示"))}"><i aria-hidden="true">⌖</i>${on?esc(tr(H))+" "+tr("优先"):tr("定位")}</button>`;}
+document.addEventListener("click",e=>{if(e.target.closest("[data-geo]"))locateCity(true);});
 async function loadData(){
  const get=u=>fetch(u,{cache:"no-store"}).then(r=>{if(!r.ok)throw Error(u+" "+r.status);return r.json();});
  const cat=await get("data/catalog.json"),programmes=cat.programmes||[],venues=cat.venues||[];
@@ -2858,7 +2890,7 @@ async function loadData(){
   (pk.films||[]).forEach(source=>{if(filmMap[source.id])return;const f=normalizeFilm({...source},p.id);filmMap[f.id]=f;films.push(f);});
   (pk.shows||[]).forEach(r=>{const [d,t,id,v="premiere",hall="luxe"]=Array.isArray(r)?r:[r.d,r.t,r.id,r.v,r.h];
    if(!filmMap[id]||!vn[v]||!vn[v].halls.some(x=>x.id===hall)){console.warn("场次数据不完整，已跳过",r);return;}shows.push({d,t,id,v,h:hall,p:p.id});});});
- const HOME="杭州",rank=Object.fromEntries(venues.map((v,i)=>[v.id,(v.city===HOME?0:1e3)+i])); /* 杭州影院固定排最前（甘特图列、城市/影院选择器、同时间场次），其余城市按目录顺序 */
+ venues.forEach((v,i)=>{v._o=i;});const rank=venueRank(venues,shows); /* 定位城市（有未散场场次时）→ 杭州 → 其余城市按目录顺序；用于甘特图列、城市/影院选择器、同时间场次 */
  venues.sort((a,b)=>rank[a.id]-rank[b.id]);
  shows.sort((a,b)=>showDate(a)-showDate(b)||rank[a.v]-rank[b.v]);
  VENUES=venues;VN=vn;PROGRAMMES=programmes;PG=Object.fromEntries(programmes.map(p=>[p.id,p]));
@@ -2902,7 +2934,7 @@ async function boot(){
   main.innerHTML='<section class="view gut boot"><p class="sub">正在载入排片…</p></section>';
   try{ await loadData(); }
   catch(e){ console.error(e); main.innerHTML='<section class="view gut boot"><h2 class="sec">排片数据加载失败</h2><p class="sub">请检查网络后重新打开。</p><button class="primary-button" data-reload>重新加载</button></section>'; return; }
-  pfilt="all"; READY=true; route(); syncStart(); tasteChanged(); TC.flush();  // 首页（含扫分享二维码进入）默认显示全部专题
+  pfilt="all"; READY=true; route(); syncStart(); tasteChanged(); TC.flush(); geoBoot();  // 首页（含扫分享二维码进入）默认显示全部专题
 }
 document.addEventListener("click",e=>{ if(e.target.closest("[data-reload]")) location.reload(); });
 let rz; let lastW=window.innerWidth; window.addEventListener("resize",()=>{clearTimeout(rz);rz=setTimeout(()=>{if(Math.abs(window.innerWidth-lastW)<40)return;lastW=window.innerWidth;const h=location.hash.slice(1)||"schedule";if(h==="schedule"||h==="gantt")schedule();},200)});
