@@ -10,7 +10,9 @@
 .blurb { font-size: calc(19.4 * var(--fr)); line-height: 1.85; margin-bottom: calc(28 * var(--r)); }
 .grid { display: flex; flex-wrap: wrap; gap: calc(28 * var(--r)) calc(20 * var(--r)); }
 .gf { width: calc((100% - calc(40 * var(--r))) / 3); display: flex; flex-direction: column; gap: calc(6 * var(--r)); }
-.gf image, .ph { width: 100%; height: calc(300 * var(--r)); border-radius: calc(10 * var(--r)); box-shadow: 0 calc(4 * var(--r)) calc(14 * var(--r)) rgba(0,0,0,.12); }
+/* 海报框固定 2:3（标准电影海报比例），按列宽等比计算高度，不再固定 300 高而裁掉上下 */
+.pw { position: relative; width: 100%; padding-top: 150%; border-radius: calc(10 * var(--r)); overflow: hidden; box-shadow: 0 calc(4 * var(--r)) calc(14 * var(--r)) rgba(0,0,0,.12); }
+.pw image, .pw .ph { position: absolute; left: 0; top: 0; width: 100%; height: 100%; }
 .ph { display: flex; align-items: center; justify-content: center; color: #fffaf0; font-size: calc(27.2 * var(--fr)); font-weight: 900; }
 .gt { font-size: calc(24 * var(--fr)); font-weight: 700; line-height: 1.35; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .gs { font-size: calc(19 * var(--fr)); color: var(--muted); line-height: 1.4; }
