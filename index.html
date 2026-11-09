@@ -1403,6 +1403,7 @@ input:not([type=checkbox]):not([type=radio]),select,textarea{font-size:16px!impo
 
 <script src="vendor/qrcode.js"></script>
 <script src="shared/recap.js"></script>
+<script src="shared/share-poster.js"></script>
 <script src="shared/taste.js"></script>
 <script src="shared/taste-client.js"></script>
 <script src="shared/psync.js"></script>
@@ -1910,7 +1911,7 @@ function detail(id){
         ${f.cnDb&&LANG!=="en"&&f.cnDb!==f.cn?`<div class="fd-native">豆瓣译名 ${esc(f.cnDb)}</div>`:""}
         <div class="fd-orig">${esc(f.en||f.o||"")}</div>${f.o&&f.o!==f.cn&&f.o!==(f.en||f.o)?`<div class="fd-native">原名 ${esc(f.o)}</div>`:""}
         <div class="fd-chips">${f.version?`<span class="fd-ed">${esc(f.version)}</span>`:""}<span>${minText(f)}</span>${f.language?`<span>${esc(f.language)}</span>`:""}${f.genre.map(g=>`<span>${esc(g)}</span>`).join("")}</div>
-        <div class="fd-acts"><button class="fd-act" type="button" data-share="f:${f.id}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M8 7l4-4 4 4M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg>分享影片</button></div>
+        <div class="fd-acts"><button class="fd-act" type="button" data-share="f:${f.id}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M8 7l4-4 4 4M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg>分享影片</button><button class="fd-act" type="button" data-sposter="f:${f.id}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 15l3-3 2 2 3-3"/><circle cx="9" cy="8" r="1.5"/></svg>分享海报</button></div>
       </div>
     </div>
   </header>
@@ -2050,7 +2051,7 @@ let picked=new Set(),currentExport=[];
 const pageShareURL=(k,id)=>new URL('s/'+(LANG==='en'?'en/':'')+k+'/'+encodeURIComponent(id)+'.html',document.baseURI).href;
 const calURL=id=>new URL('cal/'+(LANG==='en'?'en/':'')+encodeURIComponent(id)+'.ics',document.baseURI).href;
 async function copyText(v){try{await navigator.clipboard.writeText(v);}catch{const i=document.createElement('textarea');i.value=v;i.style.cssText='position:fixed;opacity:0';document.body.appendChild(i);i.select();try{document.execCommand('copy');}catch{}i.remove();}}
-function progActsHTML(p){if(!p||!p.file)return "";return `<div class="pg-acts"><button class="pg-act" type="button" data-share="p:${p.id}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M8 7l4-4 4 4M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg>分享专题</button><a class="pg-act" href="${calURL(p.id).replace(/^https?:/,"webcal:")}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>订阅日历</a><button class="pg-act" type="button" data-copyurl="${esc(calURL(p.id))}">复制订阅链接</button></div><p class="pg-hint">订阅后，场次有调整会自动同步到你的日历。</p>`;}
+function progActsHTML(p){if(!p||!p.file)return "";return `<div class="pg-acts"><button class="pg-act" type="button" data-share="p:${p.id}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M8 7l4-4 4 4M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg>分享专题</button><button class="pg-act" type="button" data-sposter="p:${p.id}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 15l3-3 2 2 3-3"/><circle cx="9" cy="8" r="1.5"/></svg>分享海报</button><a class="pg-act" href="${calURL(p.id).replace(/^https?:/,"webcal:")}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>订阅日历</a><button class="pg-act" type="button" data-copyurl="${esc(calURL(p.id))}">复制订阅链接</button></div><p class="pg-hint">订阅后，场次有调整会自动同步到你的日历。</p>`;}
 document.addEventListener('click',async e=>{
   const sh=e.target.closest('[data-share]');
   if(sh){const [k,id]=sh.dataset.share.split(':'),f=k==='f'?F[id]:null,p=k==='p'?PG[id]:null,title=(f?f.cn:p&&p.name)||'',url=pageShareURL(k,id);
@@ -2700,6 +2701,28 @@ function exportPage(shared){let list;
 function downloadBlob(blob,filename){const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),60000);}
 function wrapLines(ctx,text,maxWidth){text=tr(String(text));const out=[];let line='';const toks=CJK.test(text)||!/\s/.test(text)?Array.from(text):text.split(/(?<=\s)/);for(const ch of toks){if(ctx.measureText(line+ch).width>maxWidth&&line){out.push(line.trimEnd());line=ch;}else line+=ch;}if(line)out.push(line.trimEnd());return out;}
 function wrapCanvas(ctx,text,x,y,maxWidth,lineHeight){const ls=wrapLines(ctx,text,maxWidth);ls.forEach((l,i)=>ctx.fillText(l,x,y+i*lineHeight));return y+(ls.length-1)*lineHeight;}
+/* 影片 / 专题分享海报：与小程序同一套版式（shared/share-poster.js）；网站页脚二维码指向该页的分享链接 */
+let sposterBusy=false;
+async function makeSharePoster(k,id){
+ const SP=window.SparrowSharePoster;if(!SP||sposterBusy)return;sposterBusy=true;toast(tr('正在生成分享海报…'));
+ try{try{await Promise.all(['900 60px "Noto Serif SC"','500 28px "Noto Sans SC"','600 24px "IBM Plex Mono"'].map(f=>document.fonts.load(f,'麻雀观影护照0123')));}catch(e){}
+  const marks=await Promise.all(['brand/mark-movies.png','brand/mark-tribe.png'].map(loadImg)),url=pageShareURL(k,id);let o;
+  const place=x=>{const v=VN[x.v]||{},h=(v.halls||[]).find(y=>y.id===x.h);return (LANG==='en'?vShort(v):v.name)+(h?' · '+tr(h.name):'');};
+  if(k==='f'){const f=F[id];if(!f)return;const p=progOf(f),up=SH.filter(x=>x.id===f.id&&!isPast(x)).slice(0,3);
+   o={kind:'film',kicker:'SPARROW FILM PASSPORT · '+String(p.en||'FILM').toUpperCase(),title:f.cn,tag:tr(editionOf(f)),en:f.en||f.o||'',meta:[f.dir?tr('导演')+' '+f.dir:'',[f.y,tr(f.c||''),f.min&&!f.minTbd?tr(f.min+' 分钟'):''].filter(Boolean).join(' · '),p.name].filter(Boolean),
+    lines:up.map(x=>({when:x.d+' '+x.t,where:place(x)})),img:await loadImg(pst(f.id)),qrText:tr('扫码查看影片详情'),qrSub:tr('场次、购票与观影护照'),url:url.replace(/^https?:\/\//,'').replace(/\.html$/,'')};}
+  else{const p=PG[id];if(!p)return;const fl=FILMS.filter(f=>filmProgsOf(f).some(x=>x.p.id===p.id)),sh=SH.filter(x=>x.p===p.id&&!F[x.id]?.ev);
+   const nextAt=f=>{const n=sh.find(x=>x.id===f.id&&!isPast(x));return n?showDate(n).getTime():Infinity;},pick=fl.slice().sort((a,b)=>nextAt(a)-nextAt(b)).slice(0,5);
+   o={kind:'programme',kicker:'SPARROW FILM PASSPORT · '+String(p.en||p.kind||'PROGRAMME').toUpperCase(),title:p.name,en:LANG==='en'?'':(p.en||''),meta:[[tr(p.period||''),tr(p.city||'')].filter(Boolean).join(' · ')].filter(Boolean),
+    stats:[[fl.length,tr('部影片')],[sh.length,tr('场放映')],[new Set(sh.map(x=>x.d)).size,tr('个放映日')],[new Set(sh.map(x=>x.v+x.h)).size,tr('个影厅')]],blurb:p.blurb||'',img:await loadImg(p.cover),posters:await Promise.all(pick.map(f=>loadImg(pst(f.id)))),
+    qrText:tr('扫码查看专题'),qrSub:tr('片单、排片与活动'),url:url.replace(/^https?:\/\//,'').replace(/\.html$/,'')};}
+  Object.assign(o,{qr:qrMatrix(url),marks,T:tr});
+  const cv=document.createElement('canvas'),ctx=cv.getContext('2d');cv.width=SP.W;cv.height=SP.heightOf(o,ctx);SP.draw(cv.getContext('2d'),o);
+  const blob=await new Promise(r=>cv.toBlob(r,'image/png'));if(!blob){toast(tr('海报生成失败，请稍后再试'));return;}
+  showImageSheet(blob,{file:'麻雀观影护照_'+o.title+'.png',head:tr('分享海报已生成'),alt:o.title});
+ }catch(e){console.warn(e);toast(tr('海报生成失败，请稍后再试'));}finally{sposterBusy=false;}
+}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-sposter]');if(!b)return;const [k,id]=b.dataset.sposter.split(':');makeSharePoster(k,id);});
 function loadImg(src){return new Promise(r=>{if(!src)return r(null);const im=new Image();im.onload=()=>r(im);im.onerror=()=>r(null);im.src=src;});}
 function rr(c,x,y,w,h,r){c.beginPath();c.moveTo(x+r,y);c.arcTo(x+w,y,x+w,y+h,r);c.arcTo(x+w,y+h,x,y+h,r);c.arcTo(x,y+h,x,y,r);c.arcTo(x,y,x+w,y,r);c.closePath();}
 let pngBusy=false;
