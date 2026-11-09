@@ -24,6 +24,32 @@
         <view wx:if="{{!f.ev}}" class="hero-acts"><button class="hact" open-type="share" hover-class="hact-hv"><image class="hact-i" src="/images/menu/share-w.svg" mode="aspectFit" />{{L.t(i,'分享影片')}}</button><button class="hact" bindtap="sharePoster" hover-class="hact-hv"><image class="hact-i" src="/images/menu/poster-w.svg" mode="aspectFit" />{{L.t(i,'分享海报')}}</button></view>
       </view>
       </view>
+    </view>
+  </view>
+
+  <view class="wrap">
+    <!-- 购票：醒目位置 -->
+    <view wx:for="{{tickets}}" wx:key="url" class="buy">
+      <view class="buyt">
+        <text class="bk mono">BOOK YOUR SEAT{{item.prog ? ' · ' + item.prog : ''}}</text>
+        <text class="bh">{{L.t(i,'银幕见')}}</text>
+        <text class="bs">{{item.hint || L.t(i,'长按右侧小程序码，选择「识别小程序码」即可')}}</text>
+        <view class="bx" hover-class="hv" data-k="{{index}}" bindtap="previewTicket">{{i.__en ? item.label + ' code ↗' : '查看' + item.label + '码 ↗'}}</view>
+      </view>
+      <image class="qr" src="{{item.url}}" mode="aspectFit" show-menu-by-longpress />
+    </view>
+
+    <view wx:if="{{!f.ev}}" class="ratings card">
+      <view wx:for="{{ratings}}" wx:key="l" class="rt {{item.na?'na':''}}">
+        <text class="rl">{{item.l}}</text>
+        <text class="rv mono">{{item.v}}</text>
+        <view class="rb"><view class="ri" style="width:{{item.pct}}%" /></view>
+      </view>
+    </view>
+
+    <view wx:if="{{!f.ev}}" class="mr card {{mine.seen ? 'on' : ''}}">
+      <view class="mr-top"><view class="mr-h"><text class="mr-t">{{L.t(i,'我的观影')}}</text><text class="mr-en mono">MY FILM PASSPORT</text></view>
+        <view wx:if="{{mine.seen}}" class="mr-stamp" hover-class="hv" bindtap="toMy"><text>{{i.__en?'Stamped':'已盖章'}}</text><text wx:if="{{mine.n > 1}}" class="mr-stamp-n mono">{{mine.nTxt}}</text><text class="mr-stamp-go">›</text></view></view>
       <view wx:if="{{!mine.seen}}" class="mr-seen mr-seen-full" hover-class="hv" bindtap="toggleSeen">{{mine.seenTxt}}</view>
       <view class="mrc">
         <view class="mrc-rate"><view class="mrc-k"><text>{{i.__en?'My rating':'我的评分'}}</text><text wx:if="{{mine.n > 1}}" class="mrc-ks">{{i.__en?'latest':'最近一次'}}</text></view>
