@@ -1407,6 +1407,7 @@ input:not([type=checkbox]):not([type=radio]),select,textarea{font-size:16px!impo
 <script src="vendor/qrcode.js"></script>
 <script src="shared/recap.js"></script>
 <script src="shared/share-poster.js"></script>
+<script src="shared/taste-report.js"></script>
 <script src="shared/taste.js"></script>
 <script src="shared/taste-client.js"></script>
 <script src="shared/psync.js"></script>
@@ -2676,7 +2677,16 @@ function myPage(){const list=selectedRows(),st=planStats(list),next=list.find(s=
  menuRowHTML('export','导出与分享','带二维码的排片长图 · 分享链接 · 日历 · PDF','data-tab="export"')+
  menuRowHTML('phone','添加到手机',ENV.standalone?'已在 App 模式中打开':'放到桌面像 App 一样看 · 微信里用浮窗','data-tab="install"')+themeRowHTML()+sync+guide+miniHTML()+feedback+friendHTML()+'</div><p class="local-note">排片和护照保存在当前浏览器；开启上面的云端同步，或用分享链接，即可换设备。</p>'+presentersHTML()+'</section>';sizeBook();}
 function tasteMenuSub(){const n=watchEntries().filter(e=>!e.rec.del&&!e.f.ev&&window.SparrowTaste.valid(e.rec.fun)&&window.SparrowTaste.valid(e.rec.bore)).length;return n?tr(n+' 部影片')+' · '+tr('有趣与无聊四象限'):tr('有趣与无聊四象限');}
-function tasteMapPage(){main.innerHTML='<section class="view gut taste-map-page"><div class="page-heading"><div><small>MY TASTE MAP</small><h2 class="sec">我的趣味图谱</h2></div><button class="text-button" data-tab="my">返回我的</button></div><p class="pw-hint">'+tr('横轴是有趣度，纵轴是无聊度。在影片页「趣味」一栏给两项都打分，影片就会出现在图上。')+'</p>'+tasteMapHTML()+'</section>';if(tasteMapMode==='community')loadCommunity();}
+function tasteMapPage(){const rn=window.SparrowTasteReport.analyze(watchEntries(),{en:LANG==='en'}).n;main.innerHTML='<section class="view gut taste-map-page"><div class="page-heading"><div><small>MY TASTE MAP</small><h2 class="sec">我的趣味图谱</h2></div><button class="text-button" data-tab="my">返回我的</button></div><p class="pw-hint">'+tr('横轴是有趣度，纵轴是无聊度。在影片页「趣味」一栏给两项都打分，影片就会出现在图上。')+'</p><div class="tr-acts"><button type="button" id="tr-make" class="tr-make"'+(rn>=3?'':' disabled')+'>'+tr('生成我的趣味图谱')+'</button><small>'+(rn>=3?tr('长图含趣味人格命名、四象限与分析'):tr('至少给 3 部电影的有趣度和无聊度都打分后才能生成'))+'</small></div>'+tasteMapHTML()+'</section>';const mk=main.querySelector('#tr-make');if(mk)mk.onclick=makeTasteReport;if(tasteMapMode==='community')loadCommunity();}
+/* 生成我的趣味图谱长图：命名与分析由 shared/taste-report.js 按评分规则组合生成（离线、同样的评分得到同样的结果） */
+let trBusy=false;async function makeTasteReport(){if(trBusy)return;trBusy=true;toast('正在生成趣味图谱…');
+ try{try{await Promise.all(['900 64px "Noto Serif SC"','700 30px "Noto Sans SC"','500 24px "IBM Plex Mono"'].map(f=>document.fonts.load(f,'麻雀趣味图谱0123')));}catch(e){}
+  const TR=window.SparrowTasteReport,R=window.SparrowRecap,en=LANG==='en',a=TR.analyze(watchEntries(),{en,T:tr,community:id=>{const x=TC.get(id);return x&&x.pairN>=3?{fun:x.pairFun,bore:x.pairBore}:null;}});if(!a.ok){toast('至少给 3 部电影的有趣度和无聊度都打分后才能生成');return;}
+  const marks=await Promise.all(['brand/mark-movies.png','brand/mark-tribe.png'].map(loadImg));const cv=document.createElement('canvas');cv.width=TR.W;cv.height=10;let c=cv.getContext('2d');cv.height=TR.heightOf(c,a);c=cv.getContext('2d');
+  TR.draw(c,a,{T:tr,holder:holderName(),footer:(cc,y,H)=>R.footer(cc,{qr:qrMatrix(homeURL()),url:location.host+location.pathname,marks,T:tr,en},y,H)});
+  const blob=await new Promise(r=>cv.toBlob(r,'image/png'));if(!blob){toast('图片生成失败，请稍后再试');return;}
+  showImageSheet(blob,{file:'麻雀观影护照_趣味图谱.png',head:'趣味图谱已生成',alt:'趣味图谱长图'});}
+ catch(err){console.error(err);toast('图片生成失败，请稍后再试');}finally{trBusy=false;}}
 // A read-only collection: the grid fits the viewport, with vertical page scrolling.
 function sizePosterWall(){const grid=document.querySelector('.pw-grid');if(grid)grid.style.setProperty('--cols',window.SparrowLibrary.posterColumns(innerWidth,innerHeight));}
 window.addEventListener('resize',sizePosterWall);

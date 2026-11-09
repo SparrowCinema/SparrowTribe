@@ -200,3 +200,8 @@ button:focus-visible,summary:focus-visible,a:focus-visible{outline:3px solid var
 .pw-actions #pw-export{flex:none;width:auto;min-height:0;padding:8px 16px;border-radius:99px;background:#a66e3d;border:1px solid #a66e3d;color:#fff;font-size:11.5px;font-weight:700;line-height:1.3}
 .pw-actions #pw-export:disabled{background:var(--surface);border-color:var(--line);color:var(--muted)}
 @media(max-width:360px){.pw-actions #pw-export{padding:7px 12px;font-size:10.8px}.pw-actions .pw-score-toggle{font-size:11px;gap:5px}}
+
+/* 趣味图谱：生成长图按钮 */
+.tr-acts{display:flex;align-items:center;gap:12px;margin:4px 0 18px}.tr-acts small{color:var(--muted);font-size:10.6px;line-height:1.5;min-width:0}
+.tr-make{flex:none;padding:9px 18px;border-radius:99px;border:1px solid #a66e3d;background:#a66e3d;color:#fff;font:700 12px var(--f-body);cursor:pointer;white-space:nowrap}
+.tr-make:disabled{background:var(--surface);border-color:var(--line);color:var(--muted);cursor:default}

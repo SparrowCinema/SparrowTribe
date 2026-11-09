@@ -11,3 +11,9 @@
 .taste-q1{align-items:flex-start;justify-content:flex-start}.taste-q2{align-items:flex-start;justify-content:flex-end}.taste-q3{align-items:flex-end;justify-content:flex-start}.taste-q4{align-items:flex-end;justify-content:flex-end}
 .taste-legend>view{flex:1 1 40%}.taste-legend .tl-n{font-weight:600}
 .tm-page{padding-bottom:calc(70 * var(--r))}.tm-page .taste-map{margin-top:calc(8 * var(--r))}
+
+/* 生成趣味图谱长图 */
+.tr-acts{display:flex;align-items:center;gap:calc(20 * var(--r));margin:calc(8 * var(--r)) 0 calc(28 * var(--r))}.tr-acts text{flex:1;min-width:0;font-size:calc(19 * var(--fr));color:var(--muted);line-height:1.5}
+.tr-make{flex:none;width:auto !important;margin:0 !important;padding:calc(16 * var(--r)) calc(32 * var(--r)) !important;border-radius:999px !important;background:#a66e3d !important;border:calc(2 * var(--r)) solid #a66e3d;color:#fff !important;font-size:calc(23 * var(--fr)) !important;font-weight:700;line-height:1.3 !important}.tr-make::after{border:0}.tr-hv{opacity:.85}
+.tr-make[disabled]{background:var(--surface) !important;border-color:var(--line);color:var(--muted) !important}
+.tr-canvas{position:fixed;left:-9999px;top:0;width:1080px;height:1080px}
