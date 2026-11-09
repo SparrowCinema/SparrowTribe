@@ -268,3 +268,6 @@
 
 /* 影片页顶部操作：分享影片 / 分享海报（与网页 fd-acts 一致） */
 .hero-acts{display:flex;flex-wrap:wrap;gap:calc(14 * var(--r));margin-top:auto;padding-top:calc(24 * var(--r))}.hact{flex:none;display:inline-flex !important;align-items:center;gap:calc(10 * var(--r));width:auto !important;height:auto;margin:0 !important;padding:calc(12 * var(--r)) calc(26 * var(--r)) calc(12 * var(--r)) calc(20 * var(--r)) !important;line-height:1.4;border-radius:999px;border:calc(2 * var(--r)) solid rgba(255,255,255,.42);background:rgba(255,255,255,.14) !important;color:#fff !important;font-size:calc(19 * var(--fr)) !important;font-weight:600}.hact::after{border:0}.hact-hv{background:rgba(255,255,255,.24) !important}.hact-i{width:calc(26 * var(--fr));height:calc(26 * var(--fr));flex:none}
+
+/* 趣味弹层底部：电影趣味图谱入口（醒目胶囊） */
+.ts-map-btn{display:flex;align-items:center;gap:calc(12 * var(--r));min-width:0;padding:calc(16 * var(--r)) calc(26 * var(--r)) calc(16 * var(--r)) calc(20 * var(--r));border:calc(3 * var(--r)) solid rgba(47,111,108,.5);border-radius:999px;background:rgba(47,111,108,.09);color:var(--teal);font-size:calc(23 * var(--fr));font-weight:700;white-space:nowrap}.ts-map-ic{width:calc(34 * var(--r));height:calc(34 * var(--r));flex:none}.ts-map-go{font-size:calc(28 * var(--fr));line-height:1}

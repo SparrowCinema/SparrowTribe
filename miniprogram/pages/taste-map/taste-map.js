@@ -4,7 +4,7 @@ const app=getApp();
 Page({
  data:{i:{},reportN:0,tasteMode:'mine',tasteMap:{n:0,points:[],quadrants:[],unsure:0},tasteSelected:[],tasteLow:0,tasteCommunityError:false},
  onLoad(){this.setData({i:I.dict()});this.offData=app.onData(()=>this.build());this.offWatch=W.onChange(()=>this.build());this.offC=C.subscribe(()=>this.build());this.build();},
- onShow(){wx.setNavigationBarTitle({title:I.tr('我的趣味图谱')});this.build();C.read(null).then(()=>this.setData({tasteCommunityError:false})).catch(()=>this.setData({tasteCommunityError:true}));C.flush();},
+ onShow(){wx.setNavigationBarTitle({title:I.tr('我的电影趣味图谱')});this.build();C.read(null).then(()=>this.setData({tasteCommunityError:false})).catch(()=>this.setData({tasteCommunityError:true}));C.flush();},
  onUnload(){this.offData&&this.offData();this.offWatch&&this.offWatch();this.offC&&this.offC();},
  build(){const data=app.globalData.data;if(!data)return;const community=this.data.tasteMode==='community',entries=community?data.films.filter(f=>!f.ev&&C.get(f.id)?.pairN>=3).map(f=>{const a=C.get(f.id);return {id:f.id,f,rec:{fun:a.pairFun,bore:a.pairBore},community:true};}):W.entries(data,U.index(data)),low=community?data.films.filter(f=>{const a=C.get(f.id);return !f.ev&&a&&(a.funN||a.boreN)&&a.pairN<3;}).length:0;const TR=require('../../utils/taste-report.js');this.setData({tasteMap:Taste.map(entries,I.isEn()),tasteLow:low,reportN:TR.analyze(W.entries(data,U.index(data)),{en:I.isEn()}).n});},
  setTasteMode(e){this.setData({tasteMode:e.currentTarget.dataset.mode,tasteSelected:[]});this.build();},
