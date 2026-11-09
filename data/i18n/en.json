@@ -6836,12 +6836,12 @@
    "version": "4K restoration",
    "book": "Stephen King, Rita Hayworth and Shawshank Redemption",
    "syn": "Banker Andy Dufresne is convicted of murdering his wife and her lover and sentenced to life at Shawshank State Penitentiary. Behind the walls he befriends Red, a long-serving inmate who knows how to get things, and over the years finds ways to survive through knowledge, patience and a little dignity.\n\nA prison film about time, friendship and hope, it never hurries to explain how a man bears injustice; it lets the audience live through the days alongside them.",
-   "bio": "Frank Darabont is an American writer-director who has repeatedly adapted Stephen King, including The Green Mile and The Mist. The Shawshank Redemption was his feature directing debut.",
-   "st": "Adapted from Stephen King’s novella Rita Hayworth and Shawshank Redemption, written and directed by Darabont and starring Tim Robbins and Morgan Freeman. Released in 1994, it reaches Mainland cinemas for the first time in 2026 in a 4K restoration, with 2D, CINITY LED and a newly made IMAX version.",
+   "bio": "Frank Darabont wrote and directed this Stephen King adaptation, later returning to King with The Green Mile and The Mist. He had already directed the television feature Buried Alive; this was not his first feature-length film.",
+   "st": "Adapted from King's Different Seasons. Roger Deakins's photography, Thomas Newman's music and Morgan Freeman's narration give the prison years their texture. The original release history is distinct from the 2026 restoration.",
    "highlights": [
-    "This is the first commercial release in Mainland China since 1994; the 4K restoration restores the layering of rain, corridors and prison walls.",
-    "The film moves through narration, daily detail and relationships, and rewards quiet attention over its long running time.",
-    "A newly made IMAX version is offered as well; watch for differences in aspect ratio and sound between formats."
+    "Red's narration contrasts with Andy's quiet, practical persistence.",
+    "Books, letters and music transform the experience of prison time.",
+    "Watch the changing relationship between enclosed corridors and open sky."
    ],
    "honors": [
     "Nominated | 67th Academy Awards · Best Picture",
@@ -6854,12 +6854,12 @@
     "Selected | National Film Registry, Library of Congress (2015)"
    ],
    "warnings": [
-    "Prison violence and sexual assault",
-    "Suicide",
-    "Abuse and abuse of power"
+    "prison violence and sexual assault",
+    "suicide and death",
+    "abuse of power"
    ],
-   "contentNote": "Based on plot and public information, the film involves prison violence and sexual assault, suicide, and abuse of power. This is the 4K restoration. It has not been reviewed in full; depiction intensity and sensory information such as flashing or sound levels remain unverified.",
-   "editorial": "For viewers willing to spend a long stretch of years with its characters. On a rewatch, notice how small acts build trust between Andy and Red and how the film roots hope in concrete action; the running time is long and the pace unhurried."
+   "contentNote": "Based on published synopses, trailers and distribution materials: prison violence and sexual assault, suicide and death, abuse of power. Not a full viewing review; intensity, flashing and sound levels remain unverified. This is not an official classification of the screening edition.",
+   "editorial": "For viewers interested in friendship, institutional life and dignity over a long span of time. Prison sexual violence and suicide may be distressing."
   },
   "toddling-youths": {
    "title": "The Toddling Youths",
@@ -6878,22 +6878,22 @@
    ],
    "language": "Mandarin",
    "syn": "Yaqin is a girl who wants to see the world. Wang Jiong is a boy who stakes his confession on his career. Two friends fresh out of university both want to escape their families and prove themselves. As an imperfect society collides with imperfect selves and cheerfulness turns into a mask, their original ambitions waver. Where will this stumbling journey of growing up take them?",
-   "bio": "Yanyan Qi is a Chinese filmmaker whose documentary short Landing Ashore was selected for the main competition at the 19th FIRST International Film Festival. The Toddling Youths is her feature documentary.",
-   "st": "Following Yaqin, Wang Jiong, Shanshan and other young people over a long period as they move from graduation into work, the film observes how they look for direction among career, love, family and self-determination. It won the Fei Mu Honor Jury Prize at the 9th Pingyao International Film Festival in 2025 and opened in Mainland China on September 12, 2026.",
+   "bio": "QI Yanyan studied at Tsinghua University and worked in television and commercial filmmaking before moving toward documentary. She directed, photographed and edited this long-term project; her short Shang An screened at FIRST in 2025.",
+   "st": "Filming began in 2019. Four years of observation produced nearly 800 hours of footage, followed by roughly two years of editing. The film follows a photography venture, work, family and relationships rather than a single success story.",
    "highlights": [
-    "Observational filming lets change happen slowly instead of being cut into a few dramatic moments.",
-    "The film does not rush to judge which choice is right and keeps the characters’ hesitation between career, love and family.",
-    "The people on screen are real young adults; it rewards viewers curious about those around them."
+    "Work and relationships are inseparable parts of growing up.",
+    "The subjects can change their minds and perform for the camera.",
+    "Long-term observation reveals changes that a snapshot cannot."
    ],
    "honors": [
-    "Winner | 9th Pingyao International Film Festival · Fei Mu Honor – Jury Prize",
-    "Winner | 9th Pingyao International Film Festival · NETPAC Award – Best First Feature"
+    "获奖｜9th Pingyao International Film Festival · Fei Mu Jury Award"
    ],
    "warnings": [
-    "Family conflict"
+    "family conflict",
+    "employment and financial stress"
    ],
-   "contentNote": "Based on plot and public information, the film involves family conflict (per the synopsis). The subjects are real people. It has not been reviewed in full; depiction intensity and sensory information such as flashing or sound levels remain unverified.",
-   "editorial": "For viewers who want to see how peers step out of campus life, or to understand the young people around them. The documentary is plainly paced and focuses on changing relationships rather than events; allow the full two-plus hours."
+   "contentNote": "Based on published synopses, trailers and distribution materials: family conflict, employment and financial stress. Not a full viewing review; intensity, flashing and sound levels remain unverified. This is not an official classification of the screening edition.",
+   "editorial": "For viewers interested in leaving college and establishing independence. Allow room for uncertainty rather than expecting an inspirational formula."
   },
   "spider-man-brand-new-day": {
    "title": "Spider-Man: Brand New Day",
@@ -6901,7 +6901,10 @@
    "dir": "Destin Daniel Cretton",
    "dirLife": "American filmmaker",
    "release": "July 29, 2026 · Mainland China release",
-   "writers": [],
+   "writers": [
+    "Chris McKenna",
+    "Erik Sommers"
+   ],
    "cast": [
     "Tom Holland",
     "Zendaya",
@@ -6917,20 +6920,21 @@
     "Adventure"
    ],
    "language": "English",
-   "syn": "Forgotten by the entire world, Peter Parker guards New York alone as a full-time Spider-Man. Under pressure, his powers begin to mutate; his old enemy Scorpion moves in, the Hulk rages out of control and a mysterious rival invades his mind. Cornered, with the world seemingly against him, he must find a way out before his powers slip out of control.",
-   "bio": "Destin Daniel Cretton is an American director who previously made Shang-Chi and the Legend of the Ten Rings for Marvel. Jackie Chan’s stunt team served as action directors on this film.",
-   "st": "A new Marvel–Sony chapter starring Tom Holland for the fourth time, picking up after Spider-Man: No Way Home. It opened in Mainland China on July 29, 2026, in 2D, IMAX, CINITY, Dolby Cinema and China Giant Screen formats.",
+   "syn": "Forgotten by the world after No Way Home, Peter Parker fights crime full-time while his former friends move on. Mounting pressure triggers a change in his body, and a powerful unseen enemy threatens the city and the people he loves.",
+   "bio": "Destin Daniel Cretton moved from Short Term 12 and Just Mercy to Shang-Chi and the Legend of the Ten Rings. His films often explore trauma, belonging and family.",
+   "st": "Tom Holland leads his fourth standalone Spider-Man film. Chris McKenna and Erik Sommers wrote the screenplay. The Los Angeles world premiere took place on July 27, 2026, before the theatrical rollout.",
    "highlights": [
-    "Jackie Chan’s stunt team worked on the action, favouring practical, close-quarters fighting.",
-    "It follows the loneliness and loss after No Way Home and sets Peter’s growth after being forgotten.",
-    "Large-format versions are offered, including IMAX, Dolby Cinema and China Giant Screen."
+    "Being forgotten changes how Peter belongs to his city.",
+    "Physical transformation adds another form of lost control.",
+    "Watch the unequal knowledge between familiar characters."
    ],
    "warnings": [
-    "Superhero violence and large-scale destruction",
-    "Loss of control over powers and mind-control themes"
+    "superhero violence and destruction",
+    "emotional isolation",
+    "bodily transformation and peril"
    ],
-   "contentNote": "Based on plot and public information, the film involves superhero violence and destruction, and themes of powers spiralling out of control and an invaded mind. It has not been reviewed in full; depiction intensity and sensory information such as flashing or sound levels remain unverified.",
-   "editorial": "For followers of Marvel and the Spider-Man films, and for anyone curious how Peter faces loss alone. The story follows on from the previous film, so catch up on No Way Home first if needed; the running time is close to two and a half hours."
+   "contentNote": "Based on published synopses, trailers and distribution materials: superhero violence and destruction, emotional isolation, bodily transformation and peril. Not a full viewing review; intensity, flashing and sound levels remain unverified. This is not an official classification of the screening edition.",
+   "editorial": "Knowing the ending of No Way Home helps. Expect a long superhero adventure grounded in loss and isolation."
   },
   "the-great-skull": {
    "title": "The Great Skull",
@@ -6953,31 +6957,34 @@
    ],
    "language": "Mandarin",
    "syn": "Gu Liyan, a Shanghai graduate about to look for work, loses her father Gu Weixing to cancer. With her mother Wu Kaidi she handles funeral arrangements for the first time and unexpectedly meets the “funeral committee” her father secretly formed, setting off a chain of absurd, chaotic events. In the mess, mother and daughter slowly untie old knots and move towards new lives.",
-   "bio": "Liu Xiaoyang, from Fuzhou, graduated from Zhejiang University of Media and Communications and holds a master's from the Hong Kong Academy for Performing Arts. He has worked on several films as planner, executive producer and first assistant director. He directed The Great Skull from a script co-written with Zhang Xiaoying.",
-   "st": "Starring Wen Qi, Ni Hongjie and Yu Entai. It premiered on June 12, 2026 in the Golden Goblet main competition of the 28th Shanghai International Film Festival, screened as a closing special at the 20th FIRST International Film Festival and opened in Mainland China on September 5.",
+   "bio": "LIU Xiaoyang studied at Zhejiang University of Media and Communications and the Hong Kong Academy for Performing Arts. He co-wrote the film with ZHANG Xiaoying; XU Zheng and ZENG Jian served as producers.",
+   "st": "Previously titled Qiao Sui Ba Ba De Tou Gai Gu, the film retains The Great Skull as its international title. Funeral arrangements become a framework for Shanghai family life, generational conflict and dark humour. It premiered in SIFF competition.",
    "highlights": [
-    "A light comedy about saying goodbye, in which the funeral routines are filmed as both absurd and real.",
-    "The mother–daughter scenes of Wen Qi and Ni Hongjie carry the film, laying bare the tension between companionship, dependence and separate lives.",
-    "Rooted in Shanghai’s everyday life, with local speech and warmth."
+    "Mother and daughter express the same grief differently.",
+    "Funeral logistics become a source of awkward comedy.",
+    "Its earlier title highlights the darker side of its humour."
    ],
    "honors": [
     "Selected | 28th Shanghai International Film Festival · Golden Goblet Main Competition",
     "Selected | 20th FIRST International Film Festival · Closing Special Screening"
    ],
    "warnings": [
-    "Death of a parent and funeral arrangements",
-    "Family conflict"
+    "cancer and bereavement",
+    "funeral and cremated-remains handling",
+    "family conflict"
    ],
-   "contentNote": "Based on plot and public information, the film involves a parent dying of illness, funeral arrangements and conflict between mother and daughter. The film handles them in a comic tone. It has not been reviewed in full; depiction intensity and sensory information such as flashing or sound levels remain unverified.",
-   "editorial": "For viewers wanting a light, funny family film, or learning how to say goodbye. The humour comes from the absurdity of funeral procedures while emotion builds through the changing mother–daughter relationship; it may touch on personal experiences of bereavement."
+   "contentNote": "Based on published synopses, trailers and distribution materials: cancer and bereavement, funeral and cremated-remains handling, family conflict. Not a full viewing review; intensity, flashing and sound levels remain unverified. This is not an official classification of the screening edition.",
+   "editorial": "For viewers comfortable approaching bereavement through dark comedy. Recent loss or caregiving experiences may make the funeral details difficult."
   },
   "all-wishes-come-true": {
-   "title": "All Wishes Come True",
+   "title": "All Wishes Come True!",
    "c": "China",
    "dir": "Mou Zhengyang",
    "dirLife": "Chinese director and screenwriter",
    "release": "July 18, 2026 · Mainland China release",
-   "writers": [],
+   "writers": [
+    "MOU Zhengyang"
+   ],
    "cast": [
     "Chen Hao",
     "Li Shaozhe",
@@ -6990,18 +6997,19 @@
    ],
    "language": "Mandarin (with dialects)",
    "syn": "In the Penglai immortal realm, eight mortals pose as immortals to slip into a treasure vault that only gods may enter. Facing riches “that ten lifetimes could not spend,” they quickly form a ramshackle troupe, open a temple and go hunting for treasure. Just as their dream comes true, a force coveting the vault steps out of the shadows while rifts open within the team.",
-   "bio": "Mou Zhengyang directed the film, with voice work by Chen Hao, Li Shaozhe, Zhang Yunqi and others.",
-   "st": "Inspired by the Eight Immortals crossing the sea, the film focuses on the eight before they became immortal and builds comedy from their posing as gods. It opened in Mainland China on July 18, 2026 after preview screenings from July 4, under the English title All Wishes Come True.",
+   "bio": "Writer-director MOU Zhengyang reimagines the Eight Immortals through their lives as flawed mortals, using teamwork and comedy to explore desire and self-worth.",
+   "st": "Rather than retelling the familiar sea-crossing legend, the film brings the future immortals together as impostors in a divine world. Historical motifs and mythical creatures underpin the everyday comic treatment of that world.",
    "highlights": [
-    "Mortals posing as gods is the comic core, with a ramshackle-troupe team dynamic at its centre.",
-    "Each of the eight leads has a distinct personality, and ensemble scenes dominate.",
-    "At 144 minutes it keeps a brisk pace with dense gags and reversals."
+    "Follow a temporary alliance becoming a team.",
+    "Divine status collides with very ordinary ambitions.",
+    "Look beyond the jokes to costume and creature design."
    ],
    "warnings": [
-    "Mythological fighting and action"
+    "fantasy combat and peril",
+    "deception and temptation"
    ],
-   "contentNote": "Based on plot and public information, the film mainly involves mythological fighting and action scenes. It has not been reviewed in full; depiction intensity and sensory information such as flashing or sound levels remain unverified.",
-   "editorial": "For viewers wanting a fresh subject in Chinese animation, or watching with slightly older children. It moves through dense comedy and reversals; the running time is long, so allow full time."
+   "contentNote": "Based on published synopses, trailers and distribution materials: fantasy combat and peril, deception and temptation. Not a full viewing review; intensity, flashing and sound levels remain unverified. This is not an official classification of the screening edition.",
+   "editorial": "For fans of mythological ensemble comedy. Animation alone does not establish suitability for young children; consider the long running time and combat."
   },
   "once-upon-a-time-in-the-middle-east": {
    "title": "Once Upon a Time in the Middle East",
@@ -7016,20 +7024,25 @@
     "Aaron Lee"
    ],
    "genre": [
-    "Comedy",
-    "Drama"
+    "Drama",
+    "War"
    ],
-   "language": "Mandarin",
-   "syn": "Drawn from the real experiences of Chen Xianzhong, known in China as the “Iraqi fried-rice guy,” the film tells of a Chinese cook who opens a Chinese restaurant in the Middle East.",
-   "bio": "Wen Muye is a Chinese director best known for Dying to Survive. Ning Hao produced this film.",
-   "st": "Starring Shen Teng and Jiang Qiming with Aaron Lee in a special appearance, shot with IMAX cameras and released in Mainland China on August 11, 2026.",
+   "language": "Mandarin / English / Arabic",
+   "syn": "Chef Xu Fu travels to the Middle East to support his family and repay debts. With restaurant manager Ma Junsheng, he builds a welcoming Chinese eatery. When war overturns daily life, the restaurant becomes a fragile refuge, and feeding people becomes a matter of survival and responsibility.",
+   "bio": "WEN Muye directed Dying to Survive and Nice View. His stories connect ordinary working lives and family obligations with broader social circumstances.",
+   "st": "Inspired by the experiences of a Chinese chef overseas, the film stars SHEN Teng and JIANG Qiming and was produced by NING Hao. Its Chinese premiere on August 8 predates the subsequent regional premiere events.",
    "highlights": [
-    "Based on the real Chen Xianzhong, with a Chinese restaurant as its stage.",
-    "Shot with IMAX cameras, so large-format screenings are worth noting."
+    "Meals establish relationships across cultural boundaries.",
+    "Domestic routine is set against armed conflict.",
+    "Read the performances through work and responsibility as well as comedy."
    ],
-   "editorial": "For fans of Wen Muye and Shen Teng, and anyone interested in stories of overseas Chinese life; the running time is 140 minutes.",
-   "warnings": [],
-   "contentNote": "Content advisory pending: the film's plot and content details have not yet been verified, so no advisory is given; this does not mean the film has no sensitive content."
+   "editorial": "For viewers interested in civilians living through war. Comic moments do not make it a light food comedy.",
+   "warnings": [
+    "war and armed conflict",
+    "children in danger",
+    "death and displacement"
+   ],
+   "contentNote": "Based on published synopses, trailers and distribution materials: war and armed conflict, children in danger, death and displacement. Not a full viewing review; intensity, flashing and sound levels remain unverified. This is not an official classification of the screening edition."
   },
   "wall-e": {
    "title": "WALL·E",
@@ -7054,22 +7067,24 @@
     "Romance"
    ],
    "language": "English",
-   "syn": "In the year 2805, humans have left an Earth buried in rubbish, leaving only the cleaning robot WALL·E to compact trash day after day. Lonely, he collects small human keepsakes among the ruins until a sleek white probe robot named EVE arrives and changes his life.",
-   "bio": "Andrew Stanton is a Pixar director and writer who made Finding Nemo and WALL·E and helped create the Toy Story series.",
-   "st": "A 2008 Pixar feature that tells much of its first half without dialogue, through images and sound. It reached Mainland China in 2026 and won the Academy Award and Golden Globe for Best Animated Feature.",
+   "syn": "Left behind on an abandoned Earth, WALL-E compacts rubbish and treasures the remains of human life. The arrival of the probe EVE leads him into space, where a discovery forces humanity to choose between automated comfort and learning to care for its world again.",
+   "bio": "Pixar filmmaker Andrew Stanton helped write Toy Story and directed Finding Nemo and Finding Dory. Here, movement and sound give robots expressive personalities.",
+   "st": "An invitational premiere took place at the Greek Theatre in Los Angeles on June 21, 2008. Ben Burtt developed the robot sounds, while Hello, Dolly! provides a musical connection to human companionship.",
    "highlights": [
-    "The first half has almost no dialogue and tells its story through movement and sound.",
-    "It folds environmental damage and consumerism into a family-friendly sci-fi romance."
+    "Movement and sound carry emotions without dialogue.",
+    "Collected objects turn ecology into an intimate story.",
+    "Earth and the spacecraft offer contrasting visual worlds."
    ],
    "honors": [
     "Winner | 81st Academy Awards · Best Animated Feature",
     "Winner | 66th Golden Globe Awards · Best Animated Feature"
    ],
    "warnings": [
-    "Themes of environmental destruction and over-reliance on technology"
+    "environmental destruction",
+    "robot damage and peril"
    ],
-   "contentNote": "Based on plot and public information, the film involves themes of environmental destruction and human over-reliance on technology, and robots being damaged. It suits all ages. It has not been reviewed in full; depiction intensity and sensory information such as flashing or sound levels remain unverified.",
-   "editorial": "For families and anyone revisiting a classic of animation. The pace is gentle and the first half especially quiet; watch for the details WALL·E collects in the ruins."
+   "contentNote": "Based on published synopses, trailers and distribution materials: environmental destruction, robot damage and peril. Not a full viewing review; intensity, flashing and sound levels remain unverified. This is not an official classification of the screening edition.",
+   "editorial": "An entry point into romance, visual comedy and ecology. For family viewing, consider the robot damage and peril as well as its gentler moments."
   },
   "obsession": {
    "title": "Obsession",
@@ -7077,7 +7092,9 @@
    "dir": "Curry Barker",
    "dirLife": "American director",
    "release": "July 24, 2026 · Mainland China release",
-   "writers": [],
+   "writers": [
+    "Curry Barker"
+   ],
    "cast": [
     "Michael Johnston",
     "Inde Navarrette",
@@ -7086,26 +7103,37 @@
     "Andy Richter"
    ],
    "genre": [
-    "Horror"
+    "Horror",
+    "Thriller"
    ],
    "language": "English",
-   "syn": "A horror film starring Michael Johnston, Inde Navarrette, Cooper Tomlinson, Megan Lawless and Andy Richter.",
-   "bio": "Curry Barker is an American director who made Obsession.",
-   "st": "Released in Mainland China on July 24, 2026, with a running time of 108 minutes.",
+   "syn": "Bear uses a cheap wishing object to make his crush Nikki love him. His apparent romantic breakthrough becomes an increasingly sinister form of dependence, trapping both of them and their friends in consequences he cannot simply undo.",
+   "bio": "Writer-director-editor Curry Barker worked on That's a Bad Idea and made Milk & Serial before Obsession. His horror draws on the same observation of social discomfort as his comedy.",
+   "st": "A wish turns unrequited affection into a story of control. Taylor Clemons uses shadows, obscured faces and sustained shots to create uncertainty. The film had its world premiere in TIFF Midnight Madness in September 2025.",
    "highlights": [
-    "Rotten Tomatoes freshness of 94% and a Douban opening score of about 7.6 (as reported by media, not live)."
+    "Track the changing relationship as well as the supernatural threat.",
+    "Darkness makes familiar faces unreadable.",
+    "Awkward comedy gradually becomes frightening."
    ],
-   "editorial": "A horror film; consider your tolerance for frightening material first. Its specific content has not yet been verified.",
-   "warnings": [],
-   "contentNote": "Content advisory pending: the film's plot and content details have not yet been verified, so no advisory is given; this does not mean the film has no sensitive content."
+   "editorial": "For viewers comfortable with supernatural relationship horror. The film involves coercion and control rather than an uncomplicated romantic fantasy.",
+   "warnings": [
+    "coercive intimacy and control",
+    "supernatural threat",
+    "violence and bloodshed"
+   ],
+   "contentNote": "Based on published synopses, trailers and distribution materials: coercive intimacy and control, supernatural threat, violence and bloodshed. Not a full viewing review; intensity, flashing and sound levels remain unverified. This is not an official classification of the screening edition."
   },
   "empty-gun": {
-   "title": "Empty Gun",
+   "title": "V",
    "c": "China",
    "dir": "Han Yan",
    "dirLife": "Chinese director",
    "release": "August 19, 2026 · Mainland China release",
-   "writers": [],
+   "writers": [
+    "CHEN Shu",
+    "HAN Yan",
+    "GUO Tao"
+   ],
    "cast": [
     "Zhu Yilong",
     "Tan Jianci",
@@ -7113,22 +7141,30 @@
     "Wei Shiya",
     "Cecilia Yip"
    ],
-   "genre": [],
-   "language": "Mandarin",
-   "syn": "Directed by Han Yan and starring Zhu Yilong, Tan Jianci, Tony Leung Ka-fai, Wei Shiya and Cecilia Yip.",
-   "bio": "Han Yan is a Chinese director.",
-   "st": "Released in Mainland China on August 19, 2026, running 160 minutes.",
-   "highlights": [
-    "A Douban score of about 7.2 (as reported by media, not live).",
-    "The running time is 160 minutes."
+   "genre": [
+    "Drama",
+    "Crime"
    ],
-   "editorial": "The running time is long, so allow full time; its specific content has not yet been verified.",
-   "warnings": [],
-   "contentNote": "Content advisory pending: the film's plot and content details have not yet been verified, so no advisory is given; this does not mean the film has no sensitive content."
+   "language": "Cantonese",
+   "syn": "In 1990s Hong Kong, Wan Ziqiang pursues a shortcut out of poverty. His partnership with flight attendant Luo Jiayuan brings money and escalating danger, while a businessman and police investigators become entangled in his belief that luck can master fate.",
+   "bio": "HAN Yan directed Go Away Mr. Tumor, A Little Red Flower, Love Never Ends and Viva La Vida. This crime drama shifts genre while retaining his interest in lives under extreme pressure.",
+   "st": "The 1990s crime story stars ZHU Yilong, TAN Jianci, Tony LEUNG Ka-fai and Michelle WAI. The verified international title is V; Empty Gun was a literal translation, not the credited English title.",
+   "highlights": [
+    "Ambition hardens into a belief in invulnerability.",
+    "Romance, business and police work intersect.",
+    "Cantonese and period locations shape the social setting."
+   ],
+   "editorial": "For viewers interested in character-driven crime stories. Allow for its long running time and violent criminal situations.",
+   "warnings": [
+    "robbery and kidnapping",
+    "guns and criminal violence",
+    "threats and coercion"
+   ],
+   "contentNote": "Based on published synopses, trailers and distribution materials: robbery and kidnapping, guns and criminal violence, threats and coercion. Not a full viewing review; intensity, flashing and sound levels remain unverified. This is not an official classification of the screening edition."
   },
   "triangle": {
    "title": "Triangle",
-   "c": "United Kingdom",
+   "c": "United Kingdom / Australia",
    "dir": "Christopher Smith",
    "dirLife": "British director",
    "release": "July 17, 2026 · Mainland China release in the uncut version",
@@ -7137,6 +7173,10 @@
    ],
    "cast": [
     "Melissa George",
+    "Michael Dorman",
+    "Rachael Carpani",
+    "Henry Nixon",
+    "Emma Lung",
     "Liam Hemsworth"
    ],
    "genre": [
@@ -7145,25 +7185,26 @@
     "Horror"
    ],
    "language": "English",
-   "syn": "Single mother Jess goes sailing with friends. After a storm they board a mysterious empty ship, where strange events pile up and everyone is drawn into a loop they cannot escape.",
-   "bio": "Christopher Smith is a British director of horror and thriller films including Triangle.",
-   "st": "A 2009 British–Australian mystery thriller starring Melissa George and Liam Hemsworth, released in Mainland China in its uncut version on July 17, 2026.",
+   "syn": "After a storm overturns their yacht, Jess and her friends board an apparently deserted liner. Its corridors seem strangely familiar to her. Pursuit and death turn the search for rescue into a struggle to understand repeated events, as each attempt to change what happens gives earlier details a different meaning.",
+   "bio": "British writer-director Christopher Smith made Creep and Severance before Triangle, combining contained horror with psychological suspense. He later directed Black Death.",
+   "st": "The British-Australian production opened Film4 FrightFest on August 27, 2009, as a world premiere. Repeated gestures, objects and corridors form its narrative structure.",
    "highlights": [
-    "Its time-loop structure rewards a second viewing.",
-    "This is its first uncut Mainland release."
+    "Repeated details acquire different meanings.",
+    "The layout of the ship provides narrative clues.",
+    "Avoid ending explanations before a first viewing."
    ],
    "warnings": [
-    "Violence and gore",
-    "Domestic violence and abuse",
-    "Frightening scenes"
+    "violence and repeated deaths",
+    "child abuse and peril",
+    "psychological distress"
    ],
-   "contentNote": "Based on plot and public information, the film involves violence and gore, domestic violence and abuse, and frightening scenes. This is the uncut version. It has not been reviewed in full; depiction intensity and sensory information such as flashing or sound levels remain unverified.",
-   "editorial": "For fans of mind-bending mysteries, and it rewards a second viewing; the plot touches on violence and harm within a family, so sensitive viewers should read the advisory first."
+   "contentNote": "Based on published synopses, trailers and distribution materials: violence and repeated deaths, child abuse and peril, psychological distress. Not a full viewing review; intensity, flashing and sound levels remain unverified. This is not an official classification of the screening edition.",
+   "editorial": "For viewers drawn to loops and unreliable perspectives. Beyond the puzzle, expect distress involving family trauma and children."
   },
   "kung-fu-soccer": {
-   "title": "Shaolin Women's Soccer",
+   "title": "Kung Fu Soccer",
    "c": "China",
-   "dir": "Stephen Chow",
+   "dir": "Stephen Chow / Lam Tze-chung",
    "dirLife": "1962– · Hong Kong, China",
    "release": "July 11, 2026 · Mainland China release",
    "writers": [
@@ -7177,51 +7218,71 @@
     "Takeru Satoh"
    ],
    "genre": [
-    "Comedy"
+    "Comedy",
+    "Sport",
+    "Drama"
    ],
-   "language": "Mandarin",
-   "syn": "Directed and written by Stephen Chow, starring Zhang Xiaofei, Dilraba Dilmurat and Lay Zhang, with Carina Lau and Takeru Satoh in special appearances.",
-   "bio": "Stephen Chow is a director, screenwriter and actor from Hong Kong, China.",
-   "st": "Released in Mainland China on July 11, 2026, running 106 minutes.",
+   "language": "Mandarin / Cantonese",
+   "syn": "An underestimated women’s team enters the Supreme Invincible Cup. Captain Shuangshuang, striker Yulong and martial-arts mentor Xu Feng combine kung fu with football, but must rebuild trust and confidence before their unconventional tactics can work.",
+   "bio": "Stephen Chow moved from acting to directing with films including King of Comedy, Shaolin Soccer, Kung Fu Hustle and The Mermaid. His comedy combines exaggerated action with underdog aspiration.",
+   "st": "Kung Fu Soccer is the international release title, replacing the descriptive Shaolin Women’s Soccer. It shifts the martial-arts football combination to a women’s team led by Zhang Xiaofei, Dilraba Dilmurat and Lay Zhang.",
    "highlights": [
-    "Directed and written by Stephen Chow."
+    "Martial-arts movement becomes football choreography.",
+    "Trust matters as much as individual skills.",
+    "Compare its team perspective with Shaolin Soccer."
    ],
-   "editorial": "For fans of Stephen Chow-style comedy; its specific content has not yet been verified.",
-   "warnings": [],
-   "contentNote": "Content advisory pending: the film's plot and content details have not yet been verified, so no advisory is given; this does not mean the film has no sensitive content."
+   "editorial": "For fans of exaggerated sports comedy. Its physical action is fantasy rather than a guide to real football or training.",
+   "warnings": [
+    "comic fighting and sports collisions",
+    "mockery and competitive pressure"
+   ],
+   "contentNote": "Based on published synopses, trailers and distribution materials: comic fighting and sports collisions, mockery and competitive pressure. Not a full viewing review; intensity, flashing and sound levels remain unverified. This is not an official classification of the screening edition."
   },
   "three-kingdoms-luoyang": {
-   "title": "Three Kingdoms: Battle for Luoyang",
+   "title": "Three Kingdoms: The Beginning",
    "c": "China",
    "dir": "Xie Junwei",
    "dirLife": "Chinese director",
    "release": "July 10, 2026 · Mainland China release (re-released October 17)",
    "writers": [
-    "Wang Wei"
+    "WANG Wei"
    ],
-   "cast": [],
+   "cast": [
+    "WANG Kai",
+    "WEI Chao"
+   ],
    "genre": [
     "Animation",
-    "History"
+    "History",
+    "War"
    ],
    "language": "Mandarin",
-   "syn": "An animated feature on the Three Kingdoms from Light Chaser Animation, directed by Xie Junwei and written by Wang Wei.",
-   "bio": "Xie Junwei is a director at Light Chaser Animation.",
-   "st": "Released in Mainland China on July 10, 2026, withdrawn on July 25 and re-released on October 17.",
+   "syn": "Before the Three Kingdoms emerge, the Eastern Han court is collapsing. Young Cao Cao and Yuan Shao hope to restore order, but conflict in Luoyang and Dong Zhuo’s arrival expose the distance between their ambitions and choices.",
+   "bio": "Light Chaser director XIE Junwei worked on Chang An. Here he returns to historical figures and large-scale animation with screenwriter WANG Wei.",
+   "st": "The opening chapter of Light Chaser’s Three Kingdoms series begins with the struggle for Luoyang rather than the later tripartite state. The credited international title is Three Kingdoms: The Beginning. The verified running time is 137 minutes.",
    "highlights": [
-    "Produced by Light Chaser Animation, with a Douban score of about 8.1 (as reported by media, not live)."
+    "Follow the changing partnership of Cao Cao and Yuan Shao.",
+    "Luoyang is both a place and a centre of collapsing power.",
+    "Compare the staging of court intrigue and mass conflict."
    ],
-   "editorial": "For fans of Three Kingdoms stories and Chinese animation; its specific content has not yet been verified.",
-   "warnings": [],
-   "contentNote": "Content advisory pending: the film's plot and content details have not yet been verified, so no advisory is given; this does not mean the film has no sensitive content."
+   "editorial": "A starting point for viewers curious about the era. Some background helps with its many factions; it is an adaptation, not a literal historical record.",
+   "warnings": [
+    "war and weapons",
+    "political persecution",
+    "death and civil unrest"
+   ],
+   "contentNote": "Based on published synopses, trailers and distribution materials: war and weapons, political persecution, death and civil unrest. Not a full viewing review; intensity, flashing and sound levels remain unverified. This is not an official classification of the screening edition."
   },
   "toy-story-5": {
    "title": "Toy Story 5",
    "c": "United States",
-   "dir": "Andrew Stanton",
+   "dir": "Andrew Stanton / McKenna Harris",
    "dirLife": "1965– · United States",
    "release": "June 19, 2026 · Mainland China release",
-   "writers": [],
+   "writers": [
+    "Andrew Stanton",
+    "McKenna Harris"
+   ],
    "cast": [
     "Tom Hanks",
     "Tim Allen",
@@ -7232,45 +7293,66 @@
    "genre": [
     "Animation",
     "Comedy",
-    "Adventure"
+    "Family",
+    "Fantasy"
    ],
    "language": "English",
-   "syn": "The fifth Pixar Toy Story film, directed by Andrew Stanton and McKenna Harris, with voices including Tom Hanks, Tim Allen, Joan Cusack, Greta Lee and Conan O'Brien.",
-   "bio": "Andrew Stanton is a Pixar director; McKenna Harris is an animation artist at Pixar.",
-   "st": "Released in Mainland China on June 19, 2026. Rotten Tomatoes 93%, Metacritic 72 and a Douban opening score of about 8.0 (as reported by media, not live).",
+   "syn": "Bonnie’s new smart tablet Lilypad competes for her attention, challenging Jessie, Buzz and the other toys. When Jessie and Bullseye go missing, Woody returns to help Buzz find them and reconsider what it means to be there for a growing child.",
+   "bio": "Andrew Stanton helped create the original Toy Story and directed Finding Nemo and WALL-E. Co-director McKenna Harris joins him in bringing the toys into a world of smart devices.",
+   "st": "Stanton and Harris co-wrote the fifth feature. Returning voices include Tom Hanks, Tim Allen and Joan Cusack, with Greta Lee among the newcomers. The world premiere took place at the Dolby Theatre in Los Angeles on June 9, 2026.",
    "highlights": [
-    "The fifth film in the series, with old friends returning."
+    "Jessie takes a central role in helping Bonnie.",
+    "Technology changes how playtime itself works.",
+    "Bonnie’s imagination has a tactile handmade visual style."
    ],
-   "editorial": "A family-friendly sequel; its running time is still to be confirmed and its specific content has not yet been verified.",
-   "warnings": [],
-   "contentNote": "Content advisory pending: the film's plot and content details have not yet been verified, so no advisory is given; this does not mean the film has no sensitive content."
+   "editorial": "For families and returning viewers. The fourth film helps explain Woody’s situation; companionship and screen time offer useful discussion points.",
+   "warnings": [
+    "separation and loss",
+    "toy peril"
+   ],
+   "contentNote": "Based on published synopses, trailers and distribution materials: separation and loss, toy peril. Not a full viewing review; intensity, flashing and sound levels remain unverified. This is not an official classification of the screening edition."
   },
   "the-furious": {
    "title": "The Furious",
-   "c": "China",
+   "c": "Hong Kong",
    "dir": "Kenji Tanigaki",
    "dirLife": "Japanese director and action director",
    "release": "June 11, 2026 · Mainland China release",
-   "writers": [],
+   "writers": [
+    "Mak Tin Shu",
+    "Lei Zhilong",
+    "Shum Kwan Sin",
+    "Frank Hui"
+   ],
    "cast": [
     "Xie Miao",
-    "Lin Kedeng",
+    "Joe Taslim",
     "Yang Enyou",
-    "Li Wei"
+    "Brian Le",
+    "Yayan Ruhian",
+    "JeeJa Yanin",
+    "Joey Iwanaga"
    ],
    "genre": [
-    "Action"
+    "Action",
+    "Crime"
    ],
-   "language": "Mandarin",
-   "syn": "An action film directed by Kenji Tanigaki and starring Xie Miao, Lin Kedeng, Yang Enyou and Li Wei.",
-   "bio": "Kenji Tanigaki is a Japanese director and action director.",
-   "st": "Released in Mainland China on June 11, 2026, running 113 minutes. Douban about 8.5 and Rotten Tomatoes 100% (as reported by media, not live).",
+   "language": "English / Cantonese",
+   "syn": "When his daughter is abducted, tradesman Wang Wei joins troubled journalist Navin to penetrate a trafficking network. Each lead takes them into another dangerous space, where improvised weapons and physical endurance become the means of survival.",
+   "bio": "Kenji Tanigaki has worked across Japanese and Hong Kong action cinema, including Rurouni Kenshin and Twilight of the Warriors: Walled In. He builds fights around space, props and performers’ physical styles.",
+   "st": "Xie Miao and Joe Taslim lead a pan-Asian action cast. The film premiered in TIFF Midnight Madness in 2025 before its 2026 theatrical rollout. Different release cuts exist; this catalogue retains the previously recorded 113-minute edition.",
    "highlights": [
-    "An action film directed by action director Kenji Tanigaki."
+    "Locations and ordinary objects shape each fight.",
+    "Different martial-arts performers bring distinct rhythms.",
+    "The rescue goal gives the action an emotional direction."
    ],
-   "editorial": "For fans of hard-hitting action films; its specific content has not yet been verified.",
-   "warnings": [],
-   "contentNote": "Content advisory pending: the film's plot and content details have not yet been verified, so no advisory is given; this does not mean the film has no sensitive content."
+   "editorial": "For viewers comfortable with relentless close combat. Child trafficking and graphic physical violence make this a demanding action film.",
+   "warnings": [
+    "child abduction and trafficking",
+    "intense close combat",
+    "bloodshed and sustained pursuit"
+   ],
+   "contentNote": "Based on published synopses, trailers and distribution materials: child abduction and trafficking, intense close combat, bloodshed and sustained pursuit. Not a full viewing review; intensity, flashing and sound levels remain unverified. This is not an official classification of the screening edition."
   },
   "memento": {
    "title": "Memento",
@@ -7291,23 +7373,26 @@
     "Thriller"
    ],
    "language": "English",
-   "syn": "Leonard cannot form new memories after a brain injury and relies on tattoos, Polaroids and notes to remind himself. Determined to find his wife's killer, he must decide whom to trust amid memories that keep breaking apart.",
-   "bio": "Christopher Nolan is a British-born director and writer. Memento was his second feature, followed by The Dark Knight, Inception and Interstellar.",
-   "st": "A 2000 film that interleaves reverse and forward chronology to tell an amnesiac's revenge story. It reached Mainland cinemas in 2026 in a restored version, with IMAX and CINITY formats.",
+   "syn": "Unable to form new long-term memories after an assault, Leonard pursues the man he believes killed his wife. Photographs, notes and tattoos replace the continuity he has lost. Teddy and Natalie offer help, but every clue must be trusted without its full context. Two interlocking timelines place the audience inside that uncertainty.",
+   "bio": "Christopher Nolan followed his low-budget debut Following with Memento, developing an interest in subjective knowledge and time. Later works include The Prestige, Inception, Dunkirk and Oppenheimer.",
+   "st": "Based on a story idea by Jonathan Nolan. Colour scenes move backward while black-and-white scenes move forward, gradually converging. It premiered in Venice on September 5, 2000; its Oscar nominations were at the 74th ceremony, not the 73rd.",
    "highlights": [
-    "Its reverse structure puts the audience in the same memory gap as the hero.",
-    "This is a restored version released in Mainland China."
+    "Colour and monochrome determine the direction of time.",
+    "Photographs and tattoos may mislead as well as inform.",
+    "Each restart removes the security of context."
    ],
    "honors": [
-    "Nominated | 73rd Academy Awards · Best Original Screenplay",
-    "Nominated | 73rd Academy Awards · Best Film Editing"
+    "提名｜74th Academy Awards · Original Screenplay",
+    "提名｜74th Academy Awards · Film Editing",
+    "入选｜US National Film Registry (2017)"
    ],
    "warnings": [
-    "Violence and murder",
-    "The killing of the protagonist's wife"
+    "murder and gun violence",
+    "sexual-assault backstory",
+    "psychological manipulation"
    ],
-   "contentNote": "Based on plot and public information, the film involves violence and murder, and the killing of the protagonist's wife. This is the restored version. It has not been reviewed in full; depiction intensity and sensory information such as flashing or sound levels remain unverified.",
-   "editorial": "For fans of mind-bending storytelling; watch closely, as a second viewing reveals more clues."
+   "contentNote": "Based on published synopses, trailers and distribution materials: murder and gun violence, sexual-assault backstory, psychological manipulation. Not a full viewing review; intensity, flashing and sound levels remain unverified. This is not an official classification of the screening edition.",
+   "editorial": "For viewers who enjoy piecing together unreliable information. Avoid ending explanations; the story also involves violence, grief and manipulation."
   },
   "papa": {
    "title": "Papa",
@@ -7316,7 +7401,8 @@
    "dirLife": "Hong Kong, China director",
    "release": "June 27, 2026 · Mainland China release (Hong Kong release December 5, 2024)",
    "writers": [
-    "Ho Cheuk Tin"
+    "Philip Yung",
+    "Au Cheuk-man"
    ],
    "cast": [
     "Lau Ching-wan",
@@ -7324,14 +7410,17 @@
     "So Man-to"
    ],
    "genre": [
-    "Drama"
+    "Drama",
+    "Crime"
    ],
    "language": "Cantonese",
-   "syn": "Chan Wing-nin, a cha chaan teng owner, has a happy family until his eldest son, suddenly stricken with schizophrenia, kills his mother and sister. Alone with the loss, he searches for forgiveness and for a way to save his son.",
-   "bio": "Ho Cheuk Tin is a director and screenwriter from Hong Kong, China, who made Port of Call. He directed and wrote Papa, adapted from the 2010 Hing Wo Street case in Tsuen Wan.",
-   "st": "Selected for the Sakura Grand Prix competition at the 2024 Tokyo International Film Festival, where it had its world premiere, it opened in Hong Kong on December 5, 2024 and in Mainland China on June 27, 2026. Rather than dwell on the crime, it follows a father's days and inner life after it.",
+   "syn": "Café owner Yuen Wing-nin loses his wife and daughter in a violent act committed by his son. Keeping the business open, he moves through reminders of family life while his son receives psychiatric care. Grief, anger and the wish to remain a father coexist, as memories interrupt the routines through which he tries to continue living.",
+   "bio": "Hong Kong filmmaker Philip Yung worked in criticism and screenwriting before directing films including Port of Call and Where the Wind Blows. His work looks beyond a crime to the lives surrounding it.",
+   "st": "Sean Lau, Jo Koo and Dylan So star. The film had its world premiere in Tokyo competition on October 31, 2024, and closed the Hong Kong Asian Film Festival. Its three acting wins at the 43rd Hong Kong Film Awards are distinct from festival selection.",
    "highlights": [
-    "Lau Ching-wan, Louise Wong and So Man-to each won a performance prize at the 43rd Hong Kong Film Awards for this film."
+    "Ordinary routines give loss a tangible presence.",
+    "Watch the pauses and physical detail in Sean Lau’s performance.",
+    "Memory allows absent family members to remain within daily life."
    ],
    "honors": [
     "Winner | 43rd Hong Kong Film Awards · Best Actor (Lau Ching-wan)",
@@ -7339,21 +7428,22 @@
     "Winner | 43rd Hong Kong Film Awards · Best New Performer (So Man-to)"
    ],
    "warnings": [
-    "Killing of family members",
-    "Mental illness",
-    "Based on a real criminal case"
+    "family homicide",
+    "bereavement and grief",
+    "recollections of violence"
    ],
-   "contentNote": "Based on plot and public information, the film involves the killing of family members, mental illness, and heavy material drawn from a real criminal case. The film does not linger on the violence itself. It has not been reviewed in full; depiction intensity and sensory information such as flashing or sound levels remain unverified.",
-   "editorial": "A heavy subject; watch when you are in a suitable frame of mind. The running time is still to be confirmed."
+   "contentNote": "Based on published synopses, trailers and distribution materials: family homicide, bereavement and grief, recollections of violence. Not a full viewing review; intensity, flashing and sound levels remain unverified. This is not an official classification of the screening edition.",
+   "editorial": "A difficult family-trauma drama. The actions in this individual case should not be generalised to people living with mental illness."
   },
   "pressure": {
    "title": "Pressure",
-   "c": "United States",
+   "c": "United Kingdom / France",
    "dir": "Anthony Maras",
    "dirLife": "Australian director",
-   "release": "May 29, 2026 · North America release (Mainland China release date to be verified)",
+   "release": "June 6, 2026 · Mainland China release",
    "writers": [
-    "David Haig"
+    "David Haig",
+    "Anthony Maras"
    ],
    "cast": [
     "Andrew Scott",
@@ -7362,17 +7452,27 @@
     "Chris Messina",
     "Damian Lewis"
    ],
-   "genre": [],
-   "language": "English",
-   "syn": "Adapted from David Haig's stage play, starring Andrew Scott, Brendan Fraser, Kerry Condon, Chris Messina and Damian Lewis.",
-   "bio": "Anthony Maras is the director of Pressure.",
-   "st": "Released in North America on May 29, 2026, running about 100 minutes; the Mainland China release date is still to be verified.",
-   "highlights": [
-    "Adapted from David Haig's stage play."
+   "genre": [
+    "Drama",
+    "History",
+    "War"
    ],
-   "editorial": "Its Mainland release details and specific content have not yet been verified.",
-   "warnings": [],
-   "contentNote": "Content advisory pending: the film's plot and content details have not yet been verified, so no advisory is given; this does not mean the film has no sensitive content."
+   "language": "English",
+   "syn": "In the 72 hours before D-Day, meteorologist James Stagg warns that a storm threatens the invasion. Eisenhower must choose whether to launch or delay an operation on which thousands of lives depend, with incomplete data and conflicting advice.",
+   "bio": "Australian filmmaker Anthony Maras directed Hotel Mumbai. Working with playwright David Haig, he builds tension through compressed time, conflicting responsibilities and decisions made under pressure.",
+   "st": "Adapted from Haig’s 2014 play. Andrew Scott plays Stagg and Brendan Fraser plays Eisenhower. Focus documented the New York premiere on May 26, 2026. Its Mainland Chinese title is Nuo Man Di 72 Xiao Shi. International listings give 100 minutes; this catalogue records the 110-minute Mainland release listing.",
+   "highlights": [
+    "Pressure refers to weather and responsibility.",
+    "Scientific evidence is argued over rather than simply announced.",
+    "Waiting and conversation carry much of the suspense."
+   ],
+   "editorial": "For viewers interested in historical decisions and scientific uncertainty. Expect a tense decision-room drama rather than continuous battlefield action.",
+   "warnings": [
+    "war and casualty discussions",
+    "sustained psychological pressure",
+    "battlefield peril"
+   ],
+   "contentNote": "Based on published synopses, trailers and distribution materials: war and casualty discussions, sustained psychological pressure, battlefield peril. Not a full viewing review; intensity, flashing and sound levels remain unverified. This is not an official classification of the screening edition."
   },
   "disclosure-day": {
    "title": "Disclosure Day",
@@ -7381,7 +7481,8 @@
    "dirLife": "1946– · United States",
    "release": "June 12, 2026 · Mainland China release",
    "writers": [
-    "David Koepp"
+    "David Koepp",
+    "Steven Spielberg"
    ],
    "cast": [
     "Emily Blunt",
@@ -7390,42 +7491,155 @@
     "Eve Hewson",
     "Colman Domingo"
    ],
-   "genre": [],
-   "language": "English",
-   "syn": "Directed by Steven Spielberg from a script by David Koepp, starring Emily Blunt, Josh O'Connor, Colin Firth, Eve Hewson and Colman Domingo.",
-   "bio": "Steven Spielberg is an American director.",
-   "st": "Released in Mainland China and the United States on June 12, 2026, running 145 minutes. Rotten Tomatoes 90% (as reported by media, not live).",
-   "highlights": [
-    "Directed by Spielberg and released simultaneously in China and North America."
+   "genre": [
+    "Science Fiction",
+    "Thriller",
+    "Mystery"
    ],
-   "editorial": "The running time is about two and a half hours; its specific content has not yet been verified.",
-   "warnings": [],
-   "contentNote": "Content advisory pending: the film's plot and content details have not yet been verified, so no advisory is given; this does not mean the film has no sensitive content."
+   "language": "English",
+   "syn": "Evidence that humanity is not alone draws ordinary people into a struggle over a hidden truth. Some want it revealed; others want it buried. The possibility of disclosure changes whom people trust and what the whole world must confront.",
+   "bio": "Steven Spielberg’s science-fiction films include Close Encounters of the Third Kind, E.T., Jurassic Park and War of the Worlds. David Koepp returns as screenwriter from a story devised by Spielberg.",
+   "st": "Universal and Amblin’s film stars Emily Blunt, Josh O’Connor, Colin Firth, Eve Hewson and Colman Domingo. Its June 2, 2026 premiere at Le Grand Rex in Paris preceded the London and New York events.",
+   "highlights": [
+    "Approach the spectacle through ordinary reactions.",
+    "Track who controls information and who believes it.",
+    "Compare curiosity and fear with Spielberg’s earlier alien stories."
+   ],
+   "editorial": "For viewers drawn to alien contact and conspiracy suspense. Avoid twist explanations before watching; allow for the long running time.",
+   "warnings": [
+    "alien threat and fear of the unknown",
+    "pursuit and peril"
+   ],
+   "contentNote": "Based on published synopses, trailers and distribution materials: alien threat and fear of the unknown, pursuit and peril. Not a full viewing review; intensity, flashing and sound levels remain unverified. This is not an official classification of the screening edition."
   },
   "the-backrooms": {
    "title": "Backrooms",
    "c": "United States",
    "dir": "Kane Parsons",
    "dirLife": "American director",
-   "release": "May 29, 2026 · North America release (Mainland China release date to be verified)",
-   "writers": [],
+   "release": "June 26, 2026 · Mainland China; May 29 · North America",
+   "writers": [
+    "Will Soodik"
+   ],
    "cast": [
     "Chiwetel Ejiofor",
-    "Renate Reinsve"
+    "Renate Reinsve",
+    "Finn Bennett",
+    "Lukita Maxwell",
+    "Mark Duplass"
    ],
    "genre": [
-    "Horror"
+    "Horror",
+    "Science Fiction",
+    "Thriller"
    ],
    "language": "English",
-   "syn": "A horror film from A24, directed by Kane Parsons and starring Chiwetel Ejiofor and Renate Reinsve.",
-   "bio": "Kane Parsons is an American director and creator.",
-   "st": "Released in North America on May 29, 2026, running about 111 minutes; the Mainland China release date is still to be verified. Rotten Tomatoes 87% (as reported by media, not live).",
+   "syn": "A strange doorway in a furniture showroom leads into an apparently endless network of rooms. Familiar decor becomes threatening as direction, distance and escape cease to behave normally. Entering to search for someone also means crossing the boundary of ordinary reality.",
+   "bio": "Kane Parsons, known online as Kane Pixels, brought liminal-space horror to a large audience through his Backrooms videos. The feature translates that visual experience into a new actor-led story written by Will Soodik.",
+   "st": "A24 lists the film as Backrooms with a 110-minute running time. It premiered at the Aero Theatre in Santa Monica on May 7, 2026. Parsons and Edo Van Breemen contributed to the original score.",
    "highlights": [
-    "A horror film from A24."
+    "Repetition makes ordinary decor feel unsafe.",
+    "Spatial uncertainty sustains the horror.",
+    "Sound changes the apparent distance between rooms."
    ],
-   "editorial": "A horror film; consider your tolerance for frightening material first. Its specific content has not yet been verified.",
-   "warnings": [],
-   "contentNote": "Content advisory pending: the film's plot and content details have not yet been verified, so no advisory is given; this does not mean the film has no sensitive content."
+   "editorial": "For fans of spatial horror and internet folklore. No complete knowledge of the web series is required; consider sensitivity to confinement and prolonged dread.",
+   "warnings": [
+    "confinement and disorientation",
+    "supernatural threat",
+    "sustained horror tension"
+   ],
+   "contentNote": "Based on published synopses, trailers and distribution materials: confinement and disorientation, supernatural threat, sustained horror tension. Not a full viewing review; intensity, flashing and sound levels remain unverified. This is not an official classification of the screening edition."
+  },
+  "no-other-love": {
+   "title": "No Other Love",
+   "c": "China",
+   "dir": "YUAN Mei",
+   "dirLife": "Chinese producer and director",
+   "cast": [
+    "YUAN Quan",
+    "GENG Le",
+    "NING Jing",
+    "YU Feihong",
+    "QI Xi",
+    "Joan Chen",
+    "SUN Yue",
+    "SHI Ke",
+    "YU Ailei",
+    "LI Daguang",
+    "YANG Zishan",
+    "LIU Yase",
+    "Leah Dou"
+   ],
+   "writers": [
+    "LI Qiang"
+   ],
+   "genre": [
+    "Drama",
+    "Romance",
+    "Mystery",
+    "Crime"
+   ],
+   "language": "Mandarin",
+   "release": "March 28, 2026 · Mainland China release",
+   "honors": [],
+   "book": "Der Hahn ist tot by Ingrid Noll",
+   "syn": "Agricultural researcher Zhi Ning lives a solitary routine until a literary talk introduces her to writer Kou Yi. An invitation to travel seems to promise romance, but concealed desires and shifting relationships pull the group into a dangerous chain of choices.",
+   "bio": "YUAN Mei is credited as chief producer and director on the 2026 release. Writer-producer LI Qiang also wrote Peacock, And the Spring Comes and So Young. Credits here follow the released edition rather than early project publicity.",
+   "st": "Adapted from Ingrid Noll’s Der Hahn ist tot. The project’s former Chinese title meant No Other Love, which remains its international title. Released as Feng Mi De Zhen in 2026 after an extended production history, it held a Beijing premiere on March 21.",
+   "highlights": [
+    "Physical detail conveys Zhi Ning’s isolation.",
+    "Relationships shift as hidden information emerges.",
+    "Romance and crime gradually overlap."
+   ],
+   "editorial": "For viewers interested in morally difficult character drama. It is not a light romance, and the characters’ choices should not be generalised to women as a group.",
+   "warnings": [
+    "murder and criminal violence",
+    "obsessive and controlling relationships",
+    "emotional humiliation and distress"
+   ],
+   "contentNote": "Based on published synopses, trailers and distribution materials: murder and criminal violence, obsessive and controlling relationships, emotional humiliation and distress. Not a full viewing review; intensity, flashing and sound levels remain unverified. This is not an official classification of the screening edition."
+  },
+  "project-hail-mary": {
+   "title": "Project Hail Mary",
+   "c": "United States",
+   "dir": "Phil Lord / Christopher Miller",
+   "dirLife": "American filmmaking duo",
+   "cast": [
+    "Ryan Gosling",
+    "Sandra Hüller",
+    "James Ortiz",
+    "Lionel Boyce",
+    "Ken Leung",
+    "Milana Vayntrub"
+   ],
+   "writers": [
+    "Drew Goddard"
+   ],
+   "genre": [
+    "Science Fiction",
+    "Adventure",
+    "Drama"
+   ],
+   "language": "English",
+   "release": "March 20, 2026 · Mainland China and North America",
+   "honors": [],
+   "book": "Project Hail Mary by Andy Weir",
+   "syn": "Science teacher Ryland Grace wakes alone aboard a distant spacecraft with little memory of how he got there. As experiments and returning memories reveal a threat to the Sun, he must find a way to save Earth. An unexpected friendship makes the apparently solitary mission something neither participant can solve alone.",
+   "bio": "Phil Lord and Christopher Miller directed Cloudy with a Chance of Meatballs, The Lego Movie and 21 Jump Street, and helped create the Spider-Verse films. Their work combines genre invention, comedy and character-driven emotion.",
+   "st": "Drew Goddard adapted Andy Weir’s novel. Ryan Gosling stars and produces; James Ortiz contributes voice and puppetry work to Rocky. Filmed for IMAX, the feature premiered in London on March 9, 2026, before its March 20 theatrical rollout.",
+   "highlights": [
+    "Scientific problems unfold through trial and revision.",
+    "Communication across species becomes a form of teamwork.",
+    "Returning memories gradually explain the mission.",
+    "Large-scale imagery is balanced with small physical interactions."
+   ],
+   "editorial": "For viewers who enjoy scientific problem-solving and unlikely friendship. Avoid ending explanations and allow for the long running time.",
+   "warnings": [
+    "space peril and oxygen risks",
+    "isolation and loss of companions",
+    "global catastrophe threat"
+   ],
+   "contentNote": "Based on published synopses, trailers and distribution materials: space peril and oxygen risks, isolation and loss of companions, global catastrophe threat. Not a full viewing review; intensity, flashing and sound levels remain unverified. This is not an official classification of the screening edition."
   }
  },
  "programmes": {

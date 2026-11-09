@@ -1,0 +1,827 @@
+{
+ "checked": "2026-11-10",
+ "scope": "19部已结束院线影片：逐片片名、内容、演职员及原作全球首映核对",
+ "verifiedRecords": {
+  "shawshank-redemption": {
+   "cn": "肖申克的救赎",
+   "date": "1994-09",
+   "festival": "多伦多国际电影节",
+   "festivalEn": "Toronto International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://catalog.afi.com/Film/55199-THE-SHAWSHANK-REDEMPTION",
+    "https://www.imdb.com/title/tt0111161/releaseinfo/"
+   ],
+   "note": "多伦多首映月份可交叉核对；9月10日的二手记录与早期评论时间存在疑问，保留月份精度，不将AFI的9月23日院线开画当作全球首映。"
+  },
+  "toddling-youths": {
+   "cn": "浪花儿",
+   "date": "2025-09",
+   "festival": "平遥国际电影展",
+   "festivalEn": "Pingyao International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://kandian.sina.cn/article_1635270132_61783df402001q30o.html",
+    "https://www.imdb.com/title/tt38345349/",
+    "https://movie.douban.com/awards/pyiffestival/9/nominees?k=a"
+   ],
+   "note": "藏龙单元世界首映，IMDb列9月26日但未取得电影展原始排片表，按2025-09登记；影展版126分钟与既有公映版124分钟分别看待，保留现有公映片长。"
+  },
+  "spider-man-brand-new-day": {
+   "cn": "蜘蛛侠：崭新之日",
+   "date": "2026-07-27",
+   "festival": null,
+   "festivalEn": null,
+   "kind": "theatrical",
+   "sources": [
+    "https://dev.sonypictures.com/movies/spidermanbrandnewday",
+    "https://www.imdb.com/title/tt22084616/releaseinfo/",
+    "https://www.reutersconnect.com/item/tom-holland-and-zendaya-celebrate-spider-man-brand-new-day-at-world-premiere/dGFnOnJldXRlcnMuY29tLDIwMjY6bmV3c21sX1ZBMTI1NjI3MDcyMDI2UlAx"
+   ],
+   "note": "路透首映现场记录与IMDb发行记录一致；首映礼不是影展。"
+  },
+  "the-great-skull": {
+   "cn": "燃烧吧！爸爸",
+   "date": "2026-06",
+   "festival": "上海国际电影节",
+   "festivalEn": "Shanghai International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.siff.com/content?aid=101261015115903880385842986618885117",
+    "https://www.chinafilmnews.cn/Html/2026-06-17/21150.html",
+    "https://pro.imdb.com/title/tt36853603"
+   ],
+   "note": "SIFF官方证实主竞赛世界首映；尚未取得具体首场排片，纠正此前将电影节开幕日6月12日直接当作首映日的过度精确记录。"
+  },
+  "once-upon-a-time-in-the-middle-east": {
+   "cn": "欢迎来龙餐馆",
+   "date": "2026-08-08",
+   "festival": null,
+   "festivalEn": null,
+   "kind": "theatrical",
+   "sources": [
+    "https://www.1905.com/mdb/film/2255588/info/",
+    "https://www.xinhuanet.com/ent/20260909/67396bad86554885b7b6a5abe4d3b8f3/c.html"
+   ],
+   "note": "1905首映日期8月8日；按当前可查首场登记，不混用9月港澳及海外地区首映。"
+  },
+  "wall-e": {
+   "cn": "机器人总动员",
+   "date": "2008-06-21",
+   "festival": null,
+   "festivalEn": null,
+   "kind": "theatrical",
+   "sources": [
+    "https://d23.com/a-to-z/wall%E2%80%A2e-film/",
+    "https://www.pixar.com/wall-e"
+   ],
+   "note": "迪士尼D23官方档案列邀请首映6月21日；原作首映非影展，不能用2026年内地重映代替。"
+  },
+  "obsession": {
+   "cn": "痴迷",
+   "date": "2025-09-05",
+   "festival": "多伦多国际电影节",
+   "festivalEn": "Toronto International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.focusfeatures.com/obsession",
+    "https://www.focusfeatures.com/article/obsession-s-filmmaker-takes-horror-to-the-next-scary-level",
+    "https://www.focusfeatures.com/article/obsession-cinematographer-looks-beyond-the-darkness-to-what-lies-beneath",
+    "https://www.reddit.com/r/TIFF/comments/1n6hu2d/hey_rtiff_im_filmmaker_curry_barker_milk_serial/"
+   ],
+   "note": "导演本人首映前问答明确宣布9月5日世界首映；午夜排片跨日导致部分数据库记为9月6日，按主创公布日登记。"
+  },
+  "triangle": {
+   "cn": "恐怖游轮",
+   "date": "2009-08-27",
+   "festival": "伦敦FrightFest电影节",
+   "festivalEn": "Film4 FrightFest",
+   "kind": "festival",
+   "sources": [
+    "https://www.dreadcentral.com/news/12299/film-4-frightfest-releases-schedule/",
+    "https://screenanarchy.com/2009/08/frightfest-2009-review-triangle.html",
+    "https://www.imdb.com/title/tt1187064/"
+   ],
+   "note": "当年主办排片公告明确标注8月27日18:30世界首映；不使用英国10月院线公映日。"
+  },
+  "kung-fu-soccer": {
+   "cn": "功夫女足",
+   "date": "2026-07-11",
+   "festival": null,
+   "festivalEn": null,
+   "kind": "theatrical",
+   "sources": [
+    "https://m.1905.com/m/film/info/2259233.shtml",
+    "https://www.1905.com/mdb/film/2259233/",
+    "https://www.youtube.com/watch?v=x-HE-g5YwZE"
+   ],
+   "note": "1905明确将7月11日列为首映日期；香港8月活动仅属地区首映。导演署名存在主导演与联合导演口径，补入后台证据，不静默覆写既有主导演字段。"
+  },
+  "toy-story-5": {
+   "cn": "玩具总动员5",
+   "date": "2026-06-09",
+   "festival": null,
+   "festivalEn": null,
+   "kind": "theatrical",
+   "sources": [
+    "https://www.pixar.com/toy-story-5",
+    "https://press.disney.co.uk/news/tom-hanks-tim-allen-joan-cusack-conan-obrien%2C-greta-lee-and-more-celebrate-world-premiere-of-disney-and-pixars-toy-story-5-in-los-angeles",
+    "https://www.imdb.com/title/tt29355505/"
+   ],
+   "note": "迪士尼英国6月10日新闻描述前一晚洛杉矶世界首映；和现场影像6月9日记录交叉核对，非影展首映。"
+  },
+  "the-furious": {
+   "cn": "火遮眼",
+   "date": "2025-09",
+   "festival": "多伦多国际电影节",
+   "festivalEn": "Toronto International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://biff.kr/eng/html/archive/arc_history_view.asp?kind=history&m_idx=82833&pyear=2025",
+    "https://www.screendaily.com/news/tiff-midnight-madness-world-premieres-include-ben-wheatleys-normal-and-bryan-fullers-dust-bunny/5207260.article",
+    "https://www.imdb.com/title/tt33311069/fullcredits/"
+   ],
+   "note": "多伦多午夜排片9月6日/跨日9月7日口径不同，保留月份；不是2026年院线首映。纠正导演“首部长片”的旧说法。"
+  },
+  "memento": {
+   "cn": "记忆碎片",
+   "date": "2000-09-05",
+   "festival": "威尼斯国际电影节",
+   "festivalEn": "Venice International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://catalog.afi.com/Film/53928-MEMENTO",
+    "https://www.oscars.org/oscars/ceremonies/2002",
+    "https://www.loc.gov/static/programs/national-film-preservation-board/documents/Registry-Titles-by-release-date.pdf"
+   ],
+   "note": "AFI官方首映资料明确列9月5日；奥斯卡官方2002年典礼核对提名届次。"
+  },
+  "papa": {
+   "cn": "爸爸",
+   "date": "2024-10-31",
+   "festival": "东京国际电影节",
+   "festivalEn": "Tokyo International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://2024.tiff-jp.net/news/en/?p=19465",
+    "https://www.hkfaa.com/winnerlist43.html",
+    "https://www.imdb.com/title/tt33499985/releaseinfo/"
+   ],
+   "note": "东京电影节映后报道明确写10月31日世界首映；补131分钟。"
+  },
+  "pressure": {
+   "cn": "诺曼底72小时",
+   "date": "2026-05-26",
+   "festival": null,
+   "festivalEn": null,
+   "kind": "theatrical",
+   "sources": [
+    "https://www.focusfeatures.com/pressure",
+    "https://www.focusfeatures.com/article/pressure-premieres-in-new-york",
+    "https://www.1905.com/mdb/film/2259160/",
+    "https://www.imdb.com/title/tt32547691/"
+   ],
+   "note": "发行方5月27日新闻称昨晚纽约首映；内地发行资料110分钟与国际版100分钟分别记录。"
+  },
+  "disclosure-day": {
+   "cn": "揭秘日",
+   "date": "2026-06-02",
+   "festival": null,
+   "festivalEn": null,
+   "kind": "theatrical",
+   "sources": [
+    "https://prodit.universalpictures.com/micro/disclosure-day",
+    "https://www.legrandrex.com/en/toute-une-histoire/",
+    "https://www.imdb.com/title/tt15047880/releaseinfo/",
+    "https://www.1905.com/mdb/film/2259181/"
+   ],
+   "note": "首映场馆与IMDb一致确认巴黎6月2日，非影展首映。"
+  },
+  "the-backrooms": {
+   "cn": "后室",
+   "date": "2026-05-07",
+   "festival": null,
+   "festivalEn": null,
+   "kind": "theatrical",
+   "sources": [
+    "https://a24films.com/films/backrooms",
+    "https://www.imdb.com/title/tt26657236/releaseinfo/",
+    "https://music.a24films.com/releases/backrooms-ost",
+    "https://bkso.baidu.com/item/后室/65767022"
+   ],
+   "note": "IMDb首映记录与现场资料一致；A24主片110分钟取代旧111分钟，原文片名去掉The；内地公映日期据中文发行资料补入。"
+  },
+  "no-other-love": {
+   "cn": "蜂蜜的针",
+   "date": "2026-03-21",
+   "festival": null,
+   "festivalEn": null,
+   "kind": "theatrical",
+   "sources": [
+    "https://m.1905.com/m/news/zaker/1756697.shtml",
+    "https://www.chinafilmnews.cn/UploadFiles/file/20260318/202603180203558846.pdf",
+    "https://www.imdb.com/title/tt5024764/",
+    "https://bkso.baidu.com/item/蜂蜜的针/67490932",
+    "https://www.zaobao.com.sg/entertainment/story20260329-8808591"
+   ],
+   "note": "北京首映暨首轮超前点映3月21日，3月28日正式公映；2016为早期制作年份，不作上映年份。使用用户提供海报，按现行公映名登记。IMDb6.1为检索快照，其他未查实分数不猜填。"
+  },
+  "project-hail-mary": {
+   "cn": "挽救计划",
+   "date": "2026-03-09",
+   "festival": null,
+   "festivalEn": null,
+   "kind": "theatrical",
+   "sources": [
+    "https://www.reutersconnect.com/item/ryan-gosling-and-sandra-hueller-bring-sci-fi-drama-project-hail-mary-to-london/dGFnOnJldXRlcnMuY29tLDIwMjY6bmV3c21sX1ZBMjM0NjA5MDMyMDI2UlAx",
+    "https://www.imdb.com/title/tt12042730/",
+    "https://www.rottentomatoes.com/m/project_hail_mary",
+    "https://m.1905.com/m/film/info/2258955.shtml",
+    "https://www.nhmc.org/wp-content/uploads/2026/04/NHMC-BOOK-2026_FINAL.pdf"
+   ],
+   "note": "伦敦3月9日世界首映由路透现场记录确认，之后各国首映不能替代；保留科学设定的无结局剧透梗概。评分为2026-11-10检索快照；IMDB及RT各页可能有索引延迟。"
+  }
+ },
+ "unresolvedRecords": {
+  "all-wishes-come-true": {
+   "cn": "八仙！",
+   "sources": [
+    "https://app.xinhuanet.com/news/article.html?articleId=2026072403feefb517c044428ff90cc4dcb7b777",
+    "https://www.imdb.com/title/tt43515101/releaseinfo/"
+   ],
+   "note": "首轮点映、成都首映礼和北京首映礼的先后尚未获得原始场次证据；不能把7月18日正式公映当全球首映。英文片名补上感叹号。"
+  },
+  "empty-gun": {
+   "cn": "空枪",
+   "sources": [
+    "https://www.1905.com/mdb/film/2258919/",
+    "https://m.1905.com/m/star/workslist/18674/",
+    "https://www.imdb.com/title/tt38775487/fullcredits/"
+   ],
+   "note": "核对中文片名《空枪》及国际名V；8月19日公映和首映活动同日，不足以排除更早公开放映，全球首映暂不猜填。"
+  },
+  "three-kingdoms-luoyang": {
+   "cn": "三国第一部：争洛阳",
+   "sources": [
+    "https://www.1905.com/mdb/film/2258775/",
+    "https://paper.people.com.cn/rmrbhwb/pad/content/202607/10/content_30167805.html",
+    "https://www.ly.gov.cn/2026/06-11/1067038.html"
+   ],
+   "note": "洛阳市政府6月预告6月26日全球首映，人民日报7月报道7月5日北京首映；未取得6月26日实际举行记录，不能仅按活动计划认定全球首映。补137分钟及正式英文名。"
+  }
+ },
+ "reviewedFilms": [
+  "shawshank-redemption",
+  "toddling-youths",
+  "spider-man-brand-new-day",
+  "the-great-skull",
+  "all-wishes-come-true",
+  "once-upon-a-time-in-the-middle-east",
+  "wall-e",
+  "obsession",
+  "empty-gun",
+  "triangle",
+  "kung-fu-soccer",
+  "three-kingdoms-luoyang",
+  "toy-story-5",
+  "the-furious",
+  "memento",
+  "papa",
+  "pressure",
+  "disclosure-day",
+  "the-backrooms",
+  "no-other-love",
+  "project-hail-mary"
+ ],
+ "fieldEvidence": {
+  "shawshank-redemption": {
+   "sources": [
+    "https://catalog.afi.com/Film/55199-THE-SHAWSHANK-REDEMPTION",
+    "https://www.imdb.com/title/tt0111161/releaseinfo/"
+   ],
+   "checked": "2026-11-10",
+   "note": "多伦多首映月份可交叉核对；9月10日的二手记录与早期评论时间存在疑问，保留月份精度，不将AFI的9月23日院线开画当作全球首映。",
+   "title": "肖申克的救赎",
+   "fields": [
+    "bio",
+    "editorial",
+    "highlights",
+    "st",
+    "warnings"
+   ]
+  },
+  "toddling-youths": {
+   "sources": [
+    "https://kandian.sina.cn/article_1635270132_61783df402001q30o.html",
+    "https://www.imdb.com/title/tt38345349/",
+    "https://movie.douban.com/awards/pyiffestival/9/nominees?k=a"
+   ],
+   "checked": "2026-11-10",
+   "note": "藏龙单元世界首映，IMDb列9月26日但未取得电影展原始排片表，按2025-09登记；影展版126分钟与既有公映版124分钟分别看待，保留现有公映片长。",
+   "title": "浪花儿",
+   "fields": [
+    "bio",
+    "editorial",
+    "highlights",
+    "links",
+    "st",
+    "warnings"
+   ]
+  },
+  "spider-man-brand-new-day": {
+   "sources": [
+    "https://dev.sonypictures.com/movies/spidermanbrandnewday",
+    "https://www.imdb.com/title/tt22084616/releaseinfo/",
+    "https://www.reutersconnect.com/item/tom-holland-and-zendaya-celebrate-spider-man-brand-new-day-at-world-premiere/dGFnOnJldXRlcnMuY29tLDIwMjY6bmV3c21sX1ZBMTI1NjI3MDcyMDI2UlAx"
+   ],
+   "checked": "2026-11-10",
+   "note": "路透首映现场记录与IMDb发行记录一致；首映礼不是影展。",
+   "title": "蜘蛛侠：崭新之日",
+   "fields": [
+    "bio",
+    "editorial",
+    "highlights",
+    "links",
+    "st",
+    "syn",
+    "warnings",
+    "writers"
+   ],
+   "ratingSnapshots": [
+    {
+     "index": 1,
+     "value": 7.9,
+     "source": "https://www.imdb.com/title/tt22084616/",
+     "checked": "2026-11-10"
+    }
+   ]
+  },
+  "the-great-skull": {
+   "sources": [
+    "https://www.siff.com/content?aid=101261015115903880385842986618885117",
+    "https://www.chinafilmnews.cn/Html/2026-06-17/21150.html",
+    "https://pro.imdb.com/title/tt36853603"
+   ],
+   "checked": "2026-11-10",
+   "note": "SIFF官方证实主竞赛世界首映；尚未取得具体首场排片，纠正此前将电影节开幕日6月12日直接当作首映日的过度精确记录。",
+   "title": "燃烧吧！爸爸",
+   "fields": [
+    "bio",
+    "editorial",
+    "highlights",
+    "links",
+    "st",
+    "warnings"
+   ]
+  },
+  "all-wishes-come-true": {
+   "sources": [
+    "https://app.xinhuanet.com/news/article.html?articleId=2026072403feefb517c044428ff90cc4dcb7b777",
+    "https://www.imdb.com/title/tt43515101/releaseinfo/"
+   ],
+   "checked": "2026-11-10",
+   "note": "首轮点映、成都首映礼和北京首映礼的先后尚未获得原始场次证据；不能把7月18日正式公映当全球首映。英文片名补上感叹号。",
+   "title": "八仙！",
+   "fields": [
+    "bio",
+    "editorial",
+    "en",
+    "highlights",
+    "links",
+    "st",
+    "warnings",
+    "writers"
+   ],
+   "ratingSnapshots": [
+    {
+     "index": 1,
+     "value": 8.0,
+     "source": "https://www.imdb.com/title/tt43515101/",
+     "checked": "2026-11-10"
+    }
+   ]
+  },
+  "once-upon-a-time-in-the-middle-east": {
+   "sources": [
+    "https://www.1905.com/mdb/film/2255588/info/",
+    "https://www.xinhuanet.com/ent/20260909/67396bad86554885b7b6a5abe4d3b8f3/c.html"
+   ],
+   "checked": "2026-11-10",
+   "note": "1905首映日期8月8日；按当前可查首场登记，不混用9月港澳及海外地区首映。",
+   "title": "欢迎来龙餐馆",
+   "fields": [
+    "bio",
+    "editorial",
+    "genre",
+    "highlights",
+    "language",
+    "st",
+    "syn",
+    "warnings"
+   ]
+  },
+  "wall-e": {
+   "sources": [
+    "https://d23.com/a-to-z/wall%E2%80%A2e-film/",
+    "https://www.pixar.com/wall-e"
+   ],
+   "checked": "2026-11-10",
+   "note": "迪士尼D23官方档案列邀请首映6月21日；原作首映非影展，不能用2026年内地重映代替。",
+   "title": "机器人总动员",
+   "fields": [
+    "bio",
+    "editorial",
+    "highlights",
+    "st",
+    "syn",
+    "warnings"
+   ]
+  },
+  "obsession": {
+   "sources": [
+    "https://www.focusfeatures.com/obsession",
+    "https://www.focusfeatures.com/article/obsession-s-filmmaker-takes-horror-to-the-next-scary-level",
+    "https://www.focusfeatures.com/article/obsession-cinematographer-looks-beyond-the-darkness-to-what-lies-beneath",
+    "https://www.reddit.com/r/TIFF/comments/1n6hu2d/hey_rtiff_im_filmmaker_curry_barker_milk_serial/"
+   ],
+   "checked": "2026-11-10",
+   "note": "导演本人首映前问答明确宣布9月5日世界首映；午夜排片跨日导致部分数据库记为9月6日，按主创公布日登记。",
+   "title": "痴迷",
+   "fields": [
+    "bio",
+    "editorial",
+    "genre",
+    "highlights",
+    "links",
+    "st",
+    "syn",
+    "warnings",
+    "writers"
+   ],
+   "ratingSnapshots": [
+    {
+     "index": 1,
+     "value": 7.8,
+     "source": "https://www.imdb.com/title/tt37287335/",
+     "checked": "2026-11-10"
+    },
+    {
+     "index": 3,
+     "value": 77,
+     "source": "https://www.imdb.com/title/tt37287335/",
+     "checked": "2026-11-10"
+    }
+   ]
+  },
+  "empty-gun": {
+   "sources": [
+    "https://www.1905.com/mdb/film/2258919/",
+    "https://m.1905.com/m/star/workslist/18674/",
+    "https://www.imdb.com/title/tt38775487/fullcredits/"
+   ],
+   "checked": "2026-11-10",
+   "note": "核对中文片名《空枪》及国际名V；8月19日公映和首映活动同日，不足以排除更早公开放映，全球首映暂不猜填。",
+   "title": "空枪",
+   "fields": [
+    "bio",
+    "editorial",
+    "en",
+    "genre",
+    "highlights",
+    "language",
+    "o",
+    "st",
+    "syn",
+    "warnings",
+    "writers"
+   ]
+  },
+  "triangle": {
+   "sources": [
+    "https://www.dreadcentral.com/news/12299/film-4-frightfest-releases-schedule/",
+    "https://screenanarchy.com/2009/08/frightfest-2009-review-triangle.html",
+    "https://www.imdb.com/title/tt1187064/"
+   ],
+   "checked": "2026-11-10",
+   "note": "当年主办排片公告明确标注8月27日18:30世界首映；不使用英国10月院线公映日。",
+   "title": "恐怖游轮",
+   "fields": [
+    "bio",
+    "c",
+    "cast",
+    "editorial",
+    "highlights",
+    "links",
+    "st",
+    "warnings"
+   ]
+  },
+  "kung-fu-soccer": {
+   "sources": [
+    "https://m.1905.com/m/film/info/2259233.shtml",
+    "https://www.1905.com/mdb/film/2259233/",
+    "https://www.youtube.com/watch?v=x-HE-g5YwZE"
+   ],
+   "checked": "2026-11-10",
+   "note": "1905明确将7月11日列为首映日期；香港8月活动仅属地区首映。导演署名存在主导演与联合导演口径，补入后台证据，不静默覆写既有主导演字段。",
+   "title": "功夫女足",
+   "fields": [
+    "bio",
+    "editorial",
+    "en",
+    "genre",
+    "highlights",
+    "language",
+    "st",
+    "syn",
+    "warnings",
+    "writers"
+   ]
+  },
+  "three-kingdoms-luoyang": {
+   "sources": [
+    "https://www.1905.com/mdb/film/2258775/",
+    "https://paper.people.com.cn/rmrbhwb/pad/content/202607/10/content_30167805.html",
+    "https://www.ly.gov.cn/2026/06-11/1067038.html"
+   ],
+   "checked": "2026-11-10",
+   "note": "洛阳市政府6月预告6月26日全球首映，人民日报7月报道7月5日北京首映；未取得6月26日实际举行记录，不能仅按活动计划认定全球首映。补137分钟及正式英文名。",
+   "title": "三国第一部：争洛阳",
+   "fields": [
+    "bio",
+    "cast",
+    "editorial",
+    "en",
+    "genre",
+    "highlights",
+    "min",
+    "minTbd",
+    "st",
+    "syn",
+    "warnings",
+    "writers"
+   ]
+  },
+  "toy-story-5": {
+   "sources": [
+    "https://www.pixar.com/toy-story-5",
+    "https://press.disney.co.uk/news/tom-hanks-tim-allen-joan-cusack-conan-obrien%2C-greta-lee-and-more-celebrate-world-premiere-of-disney-and-pixars-toy-story-5-in-los-angeles",
+    "https://www.imdb.com/title/tt29355505/"
+   ],
+   "checked": "2026-11-10",
+   "note": "迪士尼英国6月10日新闻描述前一晚洛杉矶世界首映；和现场影像6月9日记录交叉核对，非影展首映。",
+   "title": "玩具总动员5",
+   "fields": [
+    "bio",
+    "editorial",
+    "genre",
+    "highlights",
+    "links",
+    "min",
+    "minTbd",
+    "st",
+    "syn",
+    "warnings",
+    "writers"
+   ],
+   "ratingSnapshots": [
+    {
+     "index": 1,
+     "value": 7.3,
+     "source": "https://www.imdb.com/title/tt29355505/",
+     "checked": "2026-11-10"
+    }
+   ]
+  },
+  "the-furious": {
+   "sources": [
+    "https://biff.kr/eng/html/archive/arc_history_view.asp?kind=history&m_idx=82833&pyear=2025",
+    "https://www.screendaily.com/news/tiff-midnight-madness-world-premieres-include-ben-wheatleys-normal-and-bryan-fullers-dust-bunny/5207260.article",
+    "https://www.imdb.com/title/tt33311069/fullcredits/"
+   ],
+   "checked": "2026-11-10",
+   "note": "多伦多午夜排片9月6日/跨日9月7日口径不同，保留月份；不是2026年院线首映。纠正导演“首部长片”的旧说法。",
+   "title": "火遮眼",
+   "fields": [
+    "bio",
+    "c",
+    "editorial",
+    "genre",
+    "highlights",
+    "language",
+    "links",
+    "st",
+    "syn",
+    "warnings",
+    "writers",
+    "y"
+   ]
+  },
+  "memento": {
+   "sources": [
+    "https://catalog.afi.com/Film/53928-MEMENTO",
+    "https://www.oscars.org/oscars/ceremonies/2002",
+    "https://www.loc.gov/static/programs/national-film-preservation-board/documents/Registry-Titles-by-release-date.pdf"
+   ],
+   "checked": "2026-11-10",
+   "note": "AFI官方首映资料明确列9月5日；奥斯卡官方2002年典礼核对提名届次。",
+   "title": "记忆碎片",
+   "fields": [
+    "bio",
+    "editorial",
+    "highlights",
+    "honors",
+    "links",
+    "st",
+    "warnings"
+   ]
+  },
+  "papa": {
+   "sources": [
+    "https://2024.tiff-jp.net/news/en/?p=19465",
+    "https://www.hkfaa.com/winnerlist43.html",
+    "https://www.imdb.com/title/tt33499985/releaseinfo/"
+   ],
+   "checked": "2026-11-10",
+   "note": "东京电影节映后报道明确写10月31日世界首映；补131分钟。",
+   "title": "爸爸",
+   "fields": [
+    "bio",
+    "editorial",
+    "genre",
+    "highlights",
+    "language",
+    "links",
+    "min",
+    "minTbd",
+    "st",
+    "warnings",
+    "writers"
+   ],
+   "ratingSnapshots": [
+    {
+     "index": 1,
+     "value": 7.5,
+     "source": "https://www.imdb.com/title/tt33499985/",
+     "checked": "2026-11-10"
+    }
+   ]
+  },
+  "pressure": {
+   "sources": [
+    "https://www.focusfeatures.com/pressure",
+    "https://www.focusfeatures.com/article/pressure-premieres-in-new-york",
+    "https://www.1905.com/mdb/film/2259160/",
+    "https://www.imdb.com/title/tt32547691/"
+   ],
+   "checked": "2026-11-10",
+   "note": "内地公映片长110分钟（1905），国际版100分钟（IMDb），按本专题内地版本登记。",
+   "title": "诺曼底72小时",
+   "fields": [
+    "bio",
+    "c",
+    "cn",
+    "editorial",
+    "genre",
+    "highlights",
+    "links",
+    "min",
+    "minTbd",
+    "reg",
+    "release",
+    "st",
+    "syn",
+    "warnings",
+    "writers"
+   ],
+   "ratingSnapshots": [
+    {
+     "index": 1,
+     "value": 7.3,
+     "source": "https://www.imdb.com/title/tt32547691/",
+     "checked": "2026-11-10"
+    },
+    {
+     "index": 3,
+     "value": 69,
+     "source": "https://www.imdb.com/title/tt32547691/",
+     "checked": "2026-11-10"
+    }
+   ]
+  },
+  "disclosure-day": {
+   "sources": [
+    "https://prodit.universalpictures.com/micro/disclosure-day",
+    "https://www.legrandrex.com/en/toute-une-histoire/",
+    "https://www.imdb.com/title/tt15047880/releaseinfo/",
+    "https://www.1905.com/mdb/film/2259181/"
+   ],
+   "checked": "2026-11-10",
+   "note": "首映场馆与IMDb一致确认巴黎6月2日，非影展首映。",
+   "title": "揭秘日",
+   "fields": [
+    "bio",
+    "editorial",
+    "genre",
+    "highlights",
+    "links",
+    "st",
+    "syn",
+    "warnings",
+    "writers"
+   ],
+   "ratingSnapshots": [
+    {
+     "index": 1,
+     "value": 6.4,
+     "source": "https://www.imdb.com/title/tt15047880/",
+     "checked": "2026-11-10"
+    },
+    {
+     "index": 3,
+     "value": 74,
+     "source": "https://www.imdb.com/title/tt15047880/",
+     "checked": "2026-11-10"
+    }
+   ]
+  },
+  "the-backrooms": {
+   "sources": [
+    "https://a24films.com/films/backrooms",
+    "https://www.imdb.com/title/tt26657236/releaseinfo/",
+    "https://music.a24films.com/releases/backrooms-ost",
+    "https://bkso.baidu.com/item/后室/65767022"
+   ],
+   "checked": "2026-11-10",
+   "note": "IMDb首映记录与现场资料一致；A24主片110分钟取代旧111分钟，原文片名去掉The；内地公映日期据中文发行资料补入。",
+   "title": "后室",
+   "fields": [
+    "bio",
+    "cast",
+    "editorial",
+    "en",
+    "genre",
+    "highlights",
+    "links",
+    "min",
+    "o",
+    "release",
+    "st",
+    "syn",
+    "warnings",
+    "writers"
+   ]
+  },
+  "no-other-love": {
+   "sources": [
+    "https://m.1905.com/m/news/zaker/1756697.shtml",
+    "https://www.chinafilmnews.cn/UploadFiles/file/20260318/202603180203558846.pdf",
+    "https://www.imdb.com/title/tt5024764/",
+    "https://bkso.baidu.com/item/蜂蜜的针/67490932",
+    "https://www.zaobao.com.sg/entertainment/story20260329-8808591"
+   ],
+   "checked": "2026-11-10",
+   "note": "北京首映暨首轮超前点映3月21日，3月28日正式公映；2016为早期制作年份，不作上映年份。使用用户提供海报，按现行公映名登记。IMDb6.1为检索快照，其他未查实分数不猜填。",
+   "title": "蜂蜜的针",
+   "fields": [
+    "bio",
+    "book",
+    "dirLife",
+    "editorial",
+    "highlights",
+    "links",
+    "r",
+    "ratingChecked",
+    "st",
+    "syn",
+    "warnings"
+   ]
+  },
+  "project-hail-mary": {
+   "sources": [
+    "https://www.reutersconnect.com/item/ryan-gosling-and-sandra-hueller-bring-sci-fi-drama-project-hail-mary-to-london/dGFnOnJldXRlcnMuY29tLDIwMjY6bmV3c21sX1ZBMjM0NjA5MDMyMDI2UlAx",
+    "https://www.imdb.com/title/tt12042730/",
+    "https://www.rottentomatoes.com/m/project_hail_mary",
+    "https://m.1905.com/m/film/info/2258955.shtml",
+    "https://www.nhmc.org/wp-content/uploads/2026/04/NHMC-BOOK-2026_FINAL.pdf"
+   ],
+   "checked": "2026-11-10",
+   "note": "伦敦3月9日世界首映由路透现场记录确认，之后各国首映不能替代；保留科学设定的无结局剧透梗概。评分为2026-11-10检索快照；IMDB及RT各页可能有索引延迟。",
+   "title": "挽救计划",
+   "fields": [
+    "bio",
+    "book",
+    "dirLife",
+    "editorial",
+    "highlights",
+    "links",
+    "medium",
+    "r",
+    "ratingChecked",
+    "st",
+    "syn",
+    "warnings"
+   ]
+  }
+ }
+}
