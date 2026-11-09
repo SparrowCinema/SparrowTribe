@@ -8883,6 +8883,13 @@
   "亚奥万象 · 6号杜比巨幕厅": "Yaao MIXC · Hall 6 (Dolby Giant Screen)",
   "影展合作&反馈与纠错": "Festival partnerships & feedback",
   "影展、放映合作，或排片、片名、人名、功能有问题？欢迎告诉我们，附上截图和页面名称会更快处理。": "Festival or screening partnerships, or a problem with a schedule, title, name or feature? Let us know — a screenshot and the page name help us respond faster.",
-  "影展合作 · 排片问题与使用建议": "Festival partnerships · schedule issues and suggestions"
+  "影展合作 · 排片问题与使用建议": "Festival partnerships · schedule issues and suggestions",
+  "定位": "Locate",
+  "优先": "first",
+  "按我所在的城市优先显示": "Show my city first",
+  "已按定位城市优先显示": "Showing your city first",
+  "定位城市暂无排片，按默认顺序显示": "No screenings in your city yet; default order",
+  "没有获得定位权限，按默认顺序显示": "Location not available; default order",
+  "当前浏览器不支持定位，按默认顺序显示": "This browser cannot locate; default order"
  }
 }
