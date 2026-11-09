@@ -8956,6 +8956,13 @@
   "近期场次": "Upcoming screenings",
   "排片公布后会在麻雀观影护照更新": "Screenings will appear in Sparrow Film Passport once announced",
   "所选日期和影院暂无场次": "No screenings for the selected dates and cinemas",
-  "清除筛选": "Clear filters"
+  "清除筛选": "Clear filters",
+  "放映日期": "Date",
+  "全部日期": "All dates",
+  "选择放映日期": "Choose dates",
+  "搜索日期": "Search dates",
+  "搜索影院或城市": "Search cinema or city",
+  "已筛选": "Filtered",
+  "场次筛选": "Screening filters"
  }
 }
