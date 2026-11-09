@@ -57,7 +57,7 @@ Claude 与 GPT 可能使用同一 GitHub 身份，审批人数可先设为0；�
 
 ## 专题页分组与头图
 
-- 专题页影片卡只显示最近一场（网站 `programmeFilmSlots(f,pid,true)`，另有 N 场时显示「另有 N 场 ›」，点卡片进影片页看全部），海报网格手机 3 列 / 桌面 5–7 列，与小程序一致。
+- 专题页影片卡与小程序一致：海报 + 单行片名（超长省略）+ 一行小字「版本 · 下一场日期时间」（`progFilmSub`；无场次显示「场次待公布」，已结束只显示版本），完整场次点进影片页；海报网格手机 3 列 / 桌面 5–7 列。
 - 专题页（网站 `progFilmsHTML` / 小程序 `pages/programme`）把影片分为「即将放映」（含场次待公布，按下一场先后）和「已结束」（按最近一场由近及远，可折叠；没有待映影片时默认展开）。
 - 专题头图放在 `programmes/<专题id>.jpg`（建议 1860×660），在 `data/catalog.json` 的 `cover` 里填路径；小程序另放一份缩小图到 `miniprogram/images/brand/prog-<专题id>.jpg`，然后运行 `node tools/build-bundled.js` 和 `node tools/build-fallback.js`。
 

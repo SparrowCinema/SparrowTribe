@@ -273,6 +273,9 @@ h2.sec{font-family:var(--f-display);font-weight:900;font-size:15.8px;margin:0 0 
 
 .pg-slots{display:flex;flex-direction:column;gap:5px;margin-top:8px}
 .pg-slot-count{font-size:10.0px;color:var(--muted)}
+.pg-sub1{display:flex;flex-wrap:wrap;gap:0 6px;margin-top:3px;font:500 10.5px/1.45 var(--f-mono);letter-spacing:0;color:var(--muted);font-variant-numeric:tabular-nums}
+.pg-sub1 span{white-space:nowrap}
+@media (min-width:480px){.pg-sub1 span+span::before{content:"·";margin-right:6px}}
 .pg-more{font:600 10.5px/1.4 var(--f-body);color:var(--accent);padding-top:2px}
 .pg-slots .pg-slot{display:flex;flex-wrap:wrap;gap:3px 8px;margin:0;padding:5px 0;border-top:1px solid var(--line-soft)}
 .pg-slots .pg-slot small{flex-basis:100%;font:10px/1.5 var(--f-body);color:var(--muted);white-space:normal}
@@ -763,18 +766,18 @@ html.sheet-open,html.sheet-open body{overflow:hidden}
 .pg-ended>summary::after{content:"展开 ▾";margin-left:auto;font:600 12px var(--f-body);color:var(--muted)}
 .pg-ended[open]>summary::after{content:"收起 ▴"}
 .pg-ended .pg-film{opacity:.78}
-.pg-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px 10px;margin-top:16px}
+.pg-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px 10px;margin-top:16px}
 .pg-film{display:flex;flex-direction:column;text-align:left;min-width:0;border-radius:7px;transition:transform .18s ease}
 .pg-film:focus-visible{outline:2px solid var(--accent);outline-offset:6px}
 .pg-film img,.pg-ph{width:100%;max-width:100%;aspect-ratio:2/3;object-fit:cover;border-radius:6px;display:block;box-shadow:0 3px 12px rgba(0,0,0,.12)}
 .pg-ph{display:grid;place-items:center;color:#fffaf0;font:900 28px var(--f-display)}
-.pg-caption{display:flex;flex-direction:column;width:100%;padding:12px 1px 0;min-width:0}
-.pg-film .pg-name{font:800 16px/1.5 var(--f-display);letter-spacing:.01em;min-height:3em;overflow-wrap:anywhere;text-wrap:pretty}
+.pg-caption{display:flex;flex-direction:column;width:100%;padding:8px 1px 0;min-width:0}
+.pg-film .pg-name{display:block;font:800 14px/1.4 var(--f-display);letter-spacing:.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .pg-edition{align-self:flex-start;font:600 10px/1.5 var(--f-mono);letter-spacing:.04em;color:var(--accent);border:1px solid color-mix(in srgb,var(--accent) 28%,transparent);border-radius:3px;padding:1px 6px;margin:7px 0 10px;background:color-mix(in srgb,var(--accent) 4%,transparent)}
 .pg-slot{display:flex;align-items:baseline;justify-content:space-between;gap:5px;border-top:1px solid var(--line);padding-top:9px;color:var(--muted);font:12px/1.4 var(--f-mono);font-variant-numeric:tabular-nums}
 .pg-slot time:last-child{font-size:12.8px;font-weight:600;letter-spacing:-.04em;color:var(--fg)}
 .pg-slot.pg-unscheduled{font:11px/1.6 var(--f-body)}
-@media (hover:hover){.pg-film:hover{transform:translateY(-3px)}.pg-film:hover .pg-name,.pg-film:hover .pg-slot time:last-child{color:var(--accent)}}
+@media (hover:hover){.pg-film:hover{transform:translateY(-3px)}.pg-film:hover .pg-name{color:var(--accent)}}
 @media (prefers-reduced-motion:reduce){.pg-film{transition:none}.pg-film:hover{transform:none}}
 @media (min-width:480px){.pg-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:30px 18px}}
 @media (min-width:640px){.pg-grid{grid-template-columns:repeat(5,minmax(0,1fr))}}
@@ -1219,10 +1222,10 @@ input:not([type=checkbox]):not([type=radio]),select,textarea{font-size:16px!impo
   .pg-head{padding-top:28px}.pg-head small{font-size:11.0px}.pg-head h1{font-size:28.4px}.pg-sub{font-size:12.2px}
   .pg-blurb{font-size:12.8px;line-height:1.9;max-width:62ch}
   .pg-grid{grid-template-columns:repeat(5,minmax(0,1fr));gap:36px 20px}
-  .pg-film .pg-name{font-size:12.8px}.pg-slot-count{font-size:10.6px}.pg-slots{font-size:10.6px}.pg-slots .pg-slot small{font-size:10.6px}
+  .pg-film .pg-name{font-size:14px}.pg-slot-count{font-size:10.6px}.pg-slots{font-size:10.6px}.pg-slots .pg-slot small{font-size:10.6px}
   /* 影片页头：海报与片名放大 */
   .fd-hin{grid-template-columns:200px 1fr;gap:32px;padding-block:48px 36px}.fd-poster{width:200px}
-  .fd-title{align-self:center}.fd-title .fd-acts{margin-top:22px;padding-top:0}.pg-film .pg-name{min-height:2.7em}
+  .fd-title{align-self:center}.fd-title .fd-acts{margin-top:22px;padding-top:0}
   .fd-title h1{font-size:31.2px}.fd-orig{font-size:14.0px}.fd-eyebrow{font-size:10.6px}.fd-chips span{font-size:10.6px;padding:4px 10px}
 }
 @media (min-width:768px) and (max-width:899px){.prog-strip>.prog-card:last-child:nth-child(odd){grid-column:1/-1}}
@@ -1946,7 +1949,11 @@ document.addEventListener("click",e=>{
   const x=e.target.closest("[data-expand]");if(x){const b=x.previousElementSibling;b.classList.toggle("clamp");x.textContent=b.classList.contains("clamp")?"展开全文":"收起";}
 });
 
-function progFilmCard(f,pid,ended){ return `<button class="pg-film" data-film="${f.id}">${pst(f.id)?`<img src="${pst(f.id)}" alt="" loading="lazy">`:`<span class="pg-ph" style="background:${REG[f.reg].c}">${esc(f.cn[0])}</span>`}<span class="pg-caption"><b class="pg-name">${esc(f.cn)}</b><span class="pg-edition">${esc(editionOf(f))}</span>${ended?"":programmeFilmSlots(f,pid,true)}</span></button>`; }
+function progFilmSub(f,pid,ended){ // 与小程序一致：版本 · 下一场日期时间，单行
+  const ed=editionOf(f), mine=SH.filter(x=>x.id===f.id&&x.p===pid).sort((x,y)=>showDate(x)-showDate(y)), next=ended?null:mine.find(x=>!isPast(x));
+  const when=next?next.d+" "+next.t:(!mine.length&&!ended?"场次待公布":"");
+  return [ed,when].filter(Boolean).map(x=>"<span>"+esc(x)+"</span>").join(""); }
+function progFilmCard(f,pid,ended){ const sub=progFilmSub(f,pid,ended); return `<button class="pg-film" data-film="${f.id}">${pst(f.id)?`<img src="${pst(f.id)}" alt="" loading="lazy">`:`<span class="pg-ph" style="background:${REG[f.reg].c}">${esc(f.cn[0])}</span>`}<span class="pg-caption"><b class="pg-name">${esc(f.cn)}</b>${sub?`<span class="pg-sub1">${sub}</span>`:""}</span></button>`; }
 // 专题页影片分组：即将放映（含场次待公布）按下一场先后；已结束按最近一场由近及远
 function progFilmGroups(pid,films){
   const up=[], gone=[];
