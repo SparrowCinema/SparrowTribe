@@ -230,3 +230,7 @@ Claude 与 GPT 可能使用同一 GitHub 身份，审批人数可先设为0；�
 - 导出前可勾选「导出时显示评分」（网页 `#pw-score` / 本机 `sparrow-pw-score`，小程序 `toggleScore` / `sk-pw-score`，默认勾选）；不勾选时 `shared/recap.js` 收到 `posterScores:false`，海报下不画星级和「未评分」，行高同步缩短。
 - 导出必须使用当前专题及时间交集，副标题注明专题；无结果时禁用导出，不修改记录和评分。海报下方使用五星（十分制、支持半星），不绘制数字分数；未评分保留文字提示。双端共用 shared/recap.js。
 - check-companion.js 包含 check-poster-filters.js，验证搜索、多选、跨专题归属及筛选导出。
+
+## 分享进入的「主页」提示（小程序）
+
+- 从分享卡片或海报小程序码直接打开影片页 / 专题页时（页面栈只有一页，微信左上角显示「主页」按钮），顶部弹出深色轻提示「更多影片与排片 · 点左上角「主页」查看」，箭头指向主页按钮。点提示直接回首页，点 × 关闭后不再出现；8 秒自动消失，每次启动最多一次，累计最多 3 次（本机 `sk-hometip`）。代码 `miniprogram/utils/hometip.js`，样式在 `app.wxss` 的 `.home-tip`。
