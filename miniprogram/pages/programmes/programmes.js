@@ -22,10 +22,10 @@ Page({
     const list = data.programmes.map((p, i) => {
       const { shows, up, a, b, status } = U.progInfo(p, data, idx, now);
       const fn = data.films.filter(f => !f.ev && idx.progOf(f).id === p.id || (p.sections||{})[f.id]).length;
-      return Object.assign({}, p, { cover: abs(p.cover), cardCover: abs(p.cardCover), ord: i, n: shows.length, up, fn, fest: U.isFest(p), status, statusText: t(p.ongoing && status === 'live' ? '常设' : { live: '进行中', soon: '即将开始', ended: '已结束' }[status]), a: a || 0, b: b || 0,
+      return Object.assign({}, p, { cover: abs(p.cover), cardCover: abs(p.cardCover), ord: i, n: shows.length, up, fn, fest: U.isFest(p), status, loc: U.localProg(p, data, idx, status), statusText: t(p.ongoing && status === 'live' ? '常设' : { live: '进行中', soon: '即将开始', ended: '已结束' }[status]), a: a || 0, b: b || 0,
         kt: t(p.kind), pt: t(p.period), stat: p.sub + ' · ' + t(fn + ' 部' + (shows.length ? ' / ' + shows.length + ' 场' : '')), goTxt: up ? t(up + ' 场') + (I.isEn() ? ' upcoming ›' : '待放映 ›') : t('专题') + ' ›' });
     });
-    const rank = (x, y) => ((y.up > 0) - (x.up > 0)) || (x.a - y.a) || x.ord - y.ord;
+    const rank = (x, y) => (y.loc - x.loc) || ((y.up > 0) - (x.up > 0)) || (x.a - y.a) || x.ord - y.ord;
     const live = list.filter(p => p.status === 'live').sort(rank), soon = list.filter(p => p.status === 'soon').sort(rank);
     const past = list.filter(p => p.status === 'ended').sort((x, y) => (y.b - x.b) || x.ord - y.ord);
     this.setData({ live, soon, past, total: list.length, subline: t('影展、院线新片与艺术影院 · ' + (live.length + soon.length) + ' 个进行中或即将开始'), liveH: t('进行中') + ' ', pastN: t(past.length + ' 个已结束') });

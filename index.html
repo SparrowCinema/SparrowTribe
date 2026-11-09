@@ -1515,7 +1515,7 @@ const STATUS = {live:"进行中", soon:"即将开始", ended:"已结束"};
 function progRange(p){ const sh=progShows(p.id); const a=p.start?ymd(p.start):(sh.length?showDate(sh[0]).getTime():null); const b=p.end?ymd(p.end)+864e5:(sh.length?Math.max(...sh.map(showEnd)):null); return [a,b]; }
 /* 常设专题（catalog 中 ongoing:true，如麻雀部落电影空间）：开始后一直算进行中，不进入往期 */
 function progStatus(p){ const [a,b]=progRange(p), t=now(); if(a!=null&&t<a) return "soon"; if(!p.ongoing&&b!=null&&t>=b) return "ended"; return "live"; }
-function progOrdered(){ const rank={live:0,soon:1,ended:2}; return PROGRAMMES.slice().sort((x,y)=>{const sx=progStatus(x),sy=progStatus(y);if(sx!==sy)return rank[sx]-rank[sy];const ux=progShows(x.id).some(s=>!isPast(s)),uy=progShows(y.id).some(s=>!isPast(s));if(ux!==uy)return ux?-1:1;const [ax,bx]=progRange(x),[ay,by]=progRange(y);return sx==="ended"?(by||0)-(bx||0):(ax||0)-(ay||0);}); }
+function progOrdered(){ const rank={live:0,soon:1,ended:2}; return PROGRAMMES.slice().sort((x,y)=>{const sx=progStatus(x),sy=progStatus(y),lx=localProg(x),ly=localProg(y);if(lx!==ly)return lx?-1:1;if(sx!==sy)return rank[sx]-rank[sy];const ux=progShows(x.id).some(s=>!isPast(s)),uy=progShows(y.id).some(s=>!isPast(s));if(ux!==uy)return ux?-1:1;const [ax,bx]=progRange(x),[ay,by]=progRange(y);return sx==="ended"?(by||0)-(bx||0):(ax||0)-(ay||0);}); }
 function defaultProg(){ const open=progOrdered().filter(p=>progStatus(p)!=="ended"); const pick=open.find(p=>progShows(p.id).some(s=>!isPast(s)))||open.find(p=>progShows(p.id).length)||open[0]; return pick?pick.id:"all"; }
 const statusTag = p => { const st=progStatus(p); return `<i class="pst pst-${st}">${p.ongoing&&st==="live"?"常设":STATUS[st]}</i>`; };
 const progChips = (cur=pfilt) => { const open=progOrdered().filter(p=>progStatus(p)!=="ended"||p.id===cur); return `<div class="filters prog-chips">${[["all","全部专题"],...open.map(p=>[p.id,p.name])].map(([k,n])=>`<button class="fchip" data-pf="${k}" aria-pressed="${cur===k}">${esc(n)}</button>`).join("")}</div>`; };
@@ -1806,7 +1806,10 @@ const filmOrder = (a,b) => { const na=nextShow(a), nb=nextShow(b); if(!!na!==!!n
 // 专题顺序：影展类在前，院线类在后
 const isFest = p => !!p && /影展|festival/i.test(p.kind||"");
 const keepPast = p => !!p && /影展|festival|艺术电影空间/i.test(p.kind||"");
-const progGroupOrder = () => PROGRAMMES.slice().sort((x,y)=>(isFest(y)?1:0)-(isFest(x)?1:0));
+const progGroupOrder = () => PROGRAMMES.slice().sort((x,y)=>(localProg(y)?1:0)-(localProg(x)?1:0)||(isFest(y)?1:0)-(isFest(x)?1:0));
+/* 定位城市里的进行中/即将开始专题（专题城市或有未散场场次在该城）排最前；没有定位或该城没有专题时保持默认顺序 */
+function geoActiveCity(){return (GEO_CITY&&GEO_CITY.c)||"";}
+function localProg(p){const c=geoActiveCity();if(!c||progStatus(p)==="ended")return false;return p.city===c||SH.some(x=>x.p===p.id&&VN[x.v]&&VN[x.v].city===c&&!isPast(x));}
 function filmCardHTML(f, ns){
   const sub = ns ? `<span class="nx">下一场 ${ns.d} ${wk(ns.d)} ${ns.t} · ${esc(vShort(VN[ns.v]))}</span>` : f.release ? `<span class="rel">${esc(f.release)}</span>` : "";
   return `<button class="fcard" data-film="${f.id}">
@@ -2860,8 +2863,8 @@ function homeCity(venues=VENUES,shows=SH){const c=GEO_CITY&&GEO_CITY.c;if(c&&c!=
 function venueRank(venues,shows){let H=DEFAULT_HOME;try{H=homeCity(venues,shows);}catch(e){console.warn('定位排序失败，按默认顺序',e);}const r={};venues.forEach(v=>{r[v.id]=(v.city===H?0:v.city===DEFAULT_HOME?1e3:2e3)+(v._o||0);});return r;}
 function applyHome(){const r=venueRank(VENUES,SH);VENUES.sort((a,b)=>r[a.id]-r[b.id]);SH.sort((a,b)=>showDate(a)-showDate(b)||r[a.v]-r[b.v]);}
 function cityCenter(c){if(CITIES[c]&&Array.isArray(CITIES[c].geo))return CITIES[c].geo;const g=VENUES.filter(v=>v.city===c&&Array.isArray(v.geo)).map(v=>v.geo);return g.length?[g.reduce((a,x)=>a+x[0],0)/g.length,g.reduce((a,x)=>a+x[1],0)/g.length]:null;}
-function nearestCity(lat,lng){const R=Math.PI/180;let best="",bd=Infinity;[...new Set(VENUES.map(v=>v.city).filter(Boolean))].forEach(c=>{const g=cityCenter(c);if(!g)return;const lim=(CITIES[c]&&CITIES[c].r)||80;const a=Math.sin((g[0]-lat)*R/2)**2+Math.cos(lat*R)*Math.cos(g[0]*R)*Math.sin((g[1]-lng)*R/2)**2,d=12742*Math.asin(Math.sqrt(a));if(d<=lim&&d<bd){bd=d;best=c;}});return best;}
-function geoRerender(){const h=location.hash.slice(1)||"schedule";if(!READY||h!=="schedule")return;rememberView(h);route();restoreView(h);}
+function nearestCity(lat,lng){const R=Math.PI/180;let best="",bd=Infinity;[...new Set(VENUES.map(v=>v.city).concat(PROGRAMMES.map(p=>p.city)).filter(Boolean))].forEach(c=>{const g=cityCenter(c);if(!g)return;const lim=(CITIES[c]&&CITIES[c].r)||80;const a=Math.sin((g[0]-lat)*R/2)**2+Math.cos(lat*R)*Math.cos(g[0]*R)*Math.sin((g[1]-lng)*R/2)**2,d=12742*Math.asin(Math.sqrt(a));if(d<=lim&&d<bd){bd=d;best=c;}});return best;}
+function geoRerender(){const h=location.hash.slice(1)||"schedule";if(!READY||!["schedule","programmes","films"].includes(h))return;rememberView(h);route();restoreView(h);}
 function locateCity(ask){
  if(!navigator.geolocation){if(ask)toast(tr("当前浏览器不支持定位，按默认顺序显示"));return;}
  try{localStorage.setItem(GEO_ASKED,"1");}catch(e){}
