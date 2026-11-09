@@ -24,6 +24,9 @@ const filmOrder = shows => (a, b) => { const na = nextShowOf(a, shows), nb = nex
 // 专题是否为影展类（影展在前，院线在后）
 const keepPast = p => !!p && /影展|festival|艺术电影空间/i.test(p.kind || '');
 const isFest = p => !!p && /影展|festival/i.test(p.kind || '');
+// 定位城市（本机 sk-geo-city，1 天内有效；由首页定位写入，未授权时为空）——与网站 geoActiveCity / localProg 规则一致
+const geoCity = () => { try { const o = wx.getStorageSync('sk-geo-city'); return o && o.c && Date.now() - o.t < 864e5 ? o.c : ''; } catch (e) { return ''; } };
+const localProg = (p, data, idx, status) => { const c = geoCity(); if (!c || status === 'ended') return false; return p.city === c || data.shows.some(s => progForShow(s, idx).id === p.id && (idx.VN[s.v] || {}).city === c && !ended(s, idx)); };
 const langSub = f => I.tr(f.langTag || [f.language, f.subtitles].filter(Boolean).join(' ｜ '));
 
 function index(data) {
@@ -119,4 +122,4 @@ const SITE_URL = 'https://sparrowcinema.github.io/SparrowTribe/';
 const webTip = (hash, lines, t, title) => {
   wx.setClipboardData({ data: SITE_URL + (hash || ''), success: () => wx.showModal({ title: t(title || '网页版地址已复制'), content: lines.map(x => t(x)).join('\n'), showCancel: false, confirmText: t('知道了') }) });
 };
-module.exports = { webTip, calSub, geoOf, distKm, transfer, openMap, progForShow, durationOf, progInfo, qaOf, ended, isFest, keepPast, relTime, nextShowOf, filmOrder, filmTone, langSub, WK, year, wk, toMin, fmt, keyOf, showDate, poster, ticket, durText, index, showView };
+module.exports = { geoCity, localProg, webTip, calSub, geoOf, distKm, transfer, openMap, progForShow, durationOf, progInfo, qaOf, ended, isFest, keepPast, relTime, nextShowOf, filmOrder, filmTone, langSub, WK, year, wk, toMin, fmt, keyOf, showDate, poster, ticket, durText, index, showView };

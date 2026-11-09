@@ -46,7 +46,8 @@ Page({
     const info = {}; data.programmes.forEach(p => { info[p.id] = U.progInfo(p, data, idx); });
     const showsIn = (f, p) => data.shows.filter(s => s.id === f.id && U.progForShow(s, idx).id === p.id);
     const isLiveIn = (f, p) => { const ss = showsIn(f, p); return ss.some(s => !U.ended(s, idx)) || (!ss.length && info[p.id].status !== 'ended'); };
-    const order = data.programmes.slice().sort((a, b) => fest(a) - fest(b));
+    const loc = p => U.localProg(p, data, idx, info[p.id].status) ? 0 : 1; // 定位城市的专题排最前（没有定位时全为 1，保持原顺序）
+    const order = data.programmes.slice().sort((a, b) => loc(a) - loc(b) || fest(a) - fest(b));
     const kind = p => t(U.isFest(p) ? '影展' : p.kind || '专题');
     const stack = rows => rows.slice(0, 4).map(r => ({ id: r.id, poster: r.poster, color: r.color, ch: r.cn[0] }));
     const secs = [], past = [];
