@@ -16,5 +16,6 @@ console.log('PASS: backup round trip, no credentials, merge semantics, deletions
 require('./check-recap.js');
 
 require('./check-film-details.js');
+require('./check-mini-ended.js');
 
 require('./check-taste-report.js');
