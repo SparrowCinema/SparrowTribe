@@ -159,7 +159,8 @@
 </view>
 <view class="to-top {{topOn ? 'show' : ''}}" hover-class="to-top-hv" bindtap="toTop"><view class="tt-arr" /></view>
 
-<page-container show="{{tsShow}}" position="bottom" round="{{true}}" z-index="1200" custom-style="background:transparent" overlay-style="background:rgba(24,16,8,0.45)" bind:afterleave="closeTaste">
+<page-container show="{{tsShow || lgShow}}" position="bottom" round="{{true}}" z-index="1200" custom-style="background:transparent" overlay-style="background:rgba(24,16,8,0.45)" bind:afterleave="sheetLeave">
+<block wx:if="{{tsShow}}">
   <view class="ts-sheet" style="{{ps}}">
     <view class="ts-grab" />
     <view class="ts-head"><view><text class="ts-kicker">TASTE · {{f.cn}}</text><text class="ts-title">{{i.__en?'Interesting or boring?':'这部电影，有趣还是无聊？'}}</text></view><view class="ts-x" bindtap="closeTaste" aria-label="{{i.__en?'Close':'关闭'}}" role="button">×</view></view>
@@ -180,9 +181,8 @@
     </scroll-view>
     <view class="ts-foot"><text class="ts-link" bindtap="toTasteMap">{{i.__en?'My taste map':'我的趣味图谱'}} ›</text><view class="ts-done" hover-class="hv" bindtap="closeTaste">{{i.__en?'Done':'完成'}}</view></view>
   </view>
-</page-container>
-
-<page-container show="{{lgShow}}" position="bottom" round="{{true}}" z-index="1200" custom-style="background:transparent" overlay-style="background:rgba(24,16,8,0.45)" bind:afterleave="lgClose">
+</block>
+<block wx:if="{{lgShow}}">
   <view class="ts-sheet" style="{{ps}}">
     <view class="ts-grab" />
     <view class="ts-head"><view><text class="ts-kicker">DIARY · {{f.cn}}</text><text class="ts-title">{{lg.title}}</text></view><view class="ts-x" bindtap="lgClose" aria-label="{{i.__en?'Close':'关闭'}}" role="button">×</view></view>
@@ -199,4 +199,5 @@
     </scroll-view>
     <view class="ts-foot"><text wx:if="{{lg.delTxt}}" class="dy-del" bindtap="lgDel">{{lg.delTxt}}</text><text wx:else /><view class="ts-done" hover-class="hv" bindtap="lgSave">{{i.__en?'Save':'保存'}}</view></view>
   </view>
+</block>
 </page-container>
