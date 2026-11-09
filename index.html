@@ -947,6 +947,8 @@ html.sheet-open,html.sheet-open body{overflow:hidden}
 .tt-ev{font:700 9.5px/1.4 var(--f-body);font-style:normal;margin-left:6px;padding:0 5px;border-radius:99px;background:#ffe94a;color:#2b2110;vertical-align:1px;letter-spacing:.02em}
 .fd-tnote.ev,.src.ev{display:block}.ev-tag{display:inline-block;font:700 10.5px/1.5 var(--f-body);padding:0 7px;margin-right:6px;border-radius:99px;background:#ffe94a;color:#2b2110;font-style:normal}
 .mine-only{display:flex;align-items:center;gap:10px;margin:2px 0 10px}
+/* 首页工具行保持一行：放不下时由 fitTools() 调小 --k，只缩小两个胶囊按钮 */
+.schedule-tools{flex-wrap:nowrap!important}.schedule-tools .view-switch{flex:none}.schedule-tools .mine-only{--k:1;flex:1 1 auto;min-width:0;gap:calc(10px*var(--k));flex-wrap:nowrap;overflow:hidden}.schedule-tools .mine-chip,.schedule-tools .geo-chip{flex:none;white-space:nowrap;height:calc(36px*var(--k));padding:0 calc(13px*var(--k));gap:calc(7px*var(--k));font-size:calc(10.6px*var(--k))}.schedule-tools .mine-chip i{width:calc(16px*var(--k));height:calc(16px*var(--k));font-size:calc(10px*var(--k))}.schedule-tools .mine-chip small{font-size:calc(11px*var(--k))}.schedule-tools .geo-chip svg{width:calc(13px*var(--k));height:calc(13px*var(--k))}
 .mine-chip{display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 14px;border:1.5px solid var(--line);border-radius:99px;background:var(--surface);font-size:10.6px;font-weight:600;color:var(--fg)}
 .geo-chip{display:inline-flex;align-items:center;justify-content:center;gap:5px;height:36px;box-sizing:border-box;padding:0 13px;border:1.5px solid var(--line);border-radius:99px;background:var(--surface);font-size:10.6px;font-weight:600;line-height:1;color:var(--muted);white-space:nowrap;vertical-align:middle}.geo-chip svg{display:block;flex:none;margin-top:-1px}.geo-chip.on{color:var(--accent);border-color:color-mix(in srgb,var(--accent) 45%,var(--line))}
 .mine-chip i{width:16px;height:16px;border-radius:50%;border:1.5px solid var(--muted);display:grid;place-items:center;font:700 10px/1 var(--f-body);font-style:normal;color:transparent}
@@ -1769,7 +1771,10 @@ function schedule(){
   const strip=document.querySelector(".dstrip [aria-selected=true]"); if(strip){ const p=strip.parentElement; p.scrollLeft=Math.max(0,strip.offsetLeft-p.clientWidth/2+strip.clientWidth/2); }
   flashIn(document.getElementById("gantt"));
   updateNowLine();
+  fitTools();requestAnimationFrame(fitTools);
 }
+function fitTools(){const el=document.querySelector(".schedule-tools .mine-only");if(!el)return;let k=1;el.style.setProperty("--k",k);while(el.scrollWidth>el.clientWidth+1&&k>0.62){k=Math.round((k-0.04)*100)/100;el.style.setProperty("--k",k);}}
+{let ft;addEventListener("resize",()=>{clearTimeout(ft);ft=setTimeout(fitTools,120);});}
 
 function flashIn(g){
   if(!pendingFlash||!g) return false;
