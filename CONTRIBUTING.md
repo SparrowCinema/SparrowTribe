@@ -130,6 +130,10 @@ Claude 与 GPT 可能使用同一 GitHub 身份，审批人数可先设为0；�
 
 - 影厅名在影片页、专题页、个人排片里以独立小标签显示（网站 `placeHTML()` / `.hall-tag`，小程序 `.thall` / `.htag`），名称很长（如「5号Dolby Cinema 杜比影院厅」）时整体换行，不会挤乱影院名。甘特图列头用 `short`，请给长影厅名填一个简短的 `short`。
 
+## 小程序字号
+
+- 小程序字号保持现有较紧凑的尺寸（2026-11-09 试过整体放大到 iOS 规范，用户认为太大已回退）。专题页上半部分（标题、简介、统计、按钮、活动入口、单元选择）在 `pages/programme/programme.wxss` 末尾单独大一档（约 ×1.15），海报网格片名 24、小字 19 不变。
+
 ## 小程序包体积（主包上限 2MB）
 
 - 微信小程序主包（含 data、images）不能超过 2MB，上传前用 `find miniprogram -type f -printf '%s\n' | awk '{s+=$1}END{print s/1024" KB"}'` 自查，建议 ≤ 1900KB。

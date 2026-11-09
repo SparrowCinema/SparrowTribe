@@ -60,3 +60,19 @@
 .ev-entry .ev-st{font-size: calc(22.3 * var(--r));font-weight:800;flex:none}.ev-sd{font-size:calc(17.1 * var(--r));line-height:1.5;opacity:.82}
 .ev-entry .ev-n{flex:none;font-size:calc(16.5 * var(--r));color:#fffaf0;padding:calc(6 * var(--r)) calc(18 * var(--r));border-radius:calc(99 * var(--r));background:rgba(255,250,240,.2)}
 .ev-go{flex:none;font-size: calc(27.2 * var(--r));line-height:1;opacity:.85}
+/* 专题页上半部分（标题、简介、统计、按钮、活动入口、单元选择）字号整体大一档（约 ×1.15）；海报网格不变 */
+.wrap > .k { font-size: calc(18.4 * var(--r)); }
+.wrap > .h1 { font-size: calc(38.6 * var(--r)); }
+.wrap > .sub { font-size: calc(20.2 * var(--r)); }
+.wrap > .sub .pst { font-size: calc(18.4 * var(--r)); }
+.stats .n { font-size: calc(26.3 * var(--r)); }
+.stats .l { font-size: calc(18.4 * var(--r)); }
+.blurb { font-size: calc(22.3 * var(--r)); }
+.jumps .btn { font-size: calc(21.5 * var(--r)); }
+.ev-entry .ev-st { font-size: calc(25.6 * var(--r)); }
+.ev-entry .ev-sd { font-size: calc(19.7 * var(--r)); }
+.ev-entry .ev-n { font-size: calc(19 * var(--r)); }
+.scope-btn .small { font-size: calc(19 * var(--r)); }
+.scope-btn .b { font-size: calc(23 * var(--r)); }
+.scope-btn .scope-n { font-size: calc(19 * var(--r)); }
+.wrap > .blockh, .gone-t { font-size: calc(24.4 * var(--r)); }
