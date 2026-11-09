@@ -14,6 +14,14 @@ assert(a.persona.length>3);assert.match(a.code,/^[HC][PR][XB][FJ]$/);assert.equa
 {const b=TR.analyze(e.slice().reverse());assert.equal(b.persona,a.persona);assert.deepEqual(b.paras,a.paras);assert.deepEqual(b.picks.map(p=>p[1].id),a.picks.map(p=>p[1].id));}const a2=TR.analyze(e.map((x,i)=>i===0?Object.assign({},x,{rec:Object.assign({},x.rec,{bore:4.5})}):x));assert.notDeepEqual([a2.persona,a2.paras],[a.persona,a.paras]);
 let sd=12345;const rnd=n=>{sd=(Math.imul(sd,1103515245)+12345)>>>0;return sd%n;};const names=new Set();for(let i=0;i<2000;i++){const rows=[];for(let k=0;k<6;k++)rows.push(['f'+i+'-'+k,rnd(11)/2,rnd(11)/2,0]);const r=TR.analyze(mk(rows).map((x,k)=>Object.assign(x,{f:film(x.id,{genre:[['喜剧','惊悚','动画','科幻','爱情','恐怖'][(i+k)%6]],reg:['cn','eu','us','as'][(i>>1)%4],y:1960+((i+k)%6)*10})})));if(r.ok)names.add(r.persona);}
 assert(names.size>800,'expected many distinct personas, got '+names.size);
+// 年份：按观影日期筛选、变化轨迹、同位置影片各自计权
+assert.deepEqual(TR.years(e),[{y:'2026',n:4}]);
+const yr=[['p1',1,4,3,'2025'],['p2',1.5,4.5,2,'2025'],['p3',2,4,4,'2025'],['c1',4.5,1,9,'2026'],['c2',4.5,1,9,'2026'],['c3',5,0.5,10,'2026']].map(([id,fun,bore,r,y])=>({id,f:film(id,{dir:'导演甲',c:'法国',y:1960}),rec:{d:y+'-06-01',fun,bore,r}}));
+const y26=TR.analyze(yr,{year:'2026'});assert.equal(y26.n,3);assert.equal(y26.year,'2026');assert.deepEqual(y26.q,[0,0,0,3]);assert(y26.prev&&y26.prev.year==='2025'&&/^C/.test(y26.prev.code));assert.notEqual(y26.prev.code,y26.code);
+assert.equal(TR.analyze(yr,{year:'2025'}).prev,undefined);assert.equal(TR.analyze(yr).n,6);assert.deepEqual(TR.years(yr).map(x=>x.y),['2026','2025']);
+assert.deepEqual(TR.analyze(yr).atlas,{dir:{name:'导演甲',n:6},minY:1960,maxY:1960,decades:1,countries:1});
+assert(TR.analyze(yr,{year:'2026'}).paras.some(p=>p.includes('导演甲')));
+{const c2=ctx();let ft=null;TR.draw(c2,y26,{date:'2026.11.10',footer:(cc,y,h)=>ft=h});assert.equal(ft,TR.heightOf(ctx(),y26,{date:'2026.11.10'}));}
 // 英文
 const en=TR.analyze(e,{en:true});assert(en.persona.startsWith('The '));assert(/films/.test(en.paras[0]));
 // 社区距离
@@ -26,5 +34,5 @@ const canvas={width:0,height:0,createImage(){const im={width:10,height:10};Objec
 const wx={setNavigationBarTitle(){},showToast(o){previewed='toast:'+o.title;},showLoading(){},hideLoading(){},createSelectorQuery:()=>({in(){return this;},select(){return this;},fields(){return this;},exec(fn){done=fn([{node:canvas}]);}}),canvasToTempFilePath:o=>o.success({tempFilePath:'t.png'}),previewImage:o=>previewed=o.urls[0]};
 const mods={'../../utils/util.js':{index:()=>({})},'../../utils/watched.js':{entries:()=>rows,onChange:()=>()=>{},holder:()=>'麻雀'},'../../utils/i18n.js':{dict:()=>({}),tr:x=>x,isEn:()=>false},'../../utils/taste.js':{map:()=>({n:0,points:[],quadrants:[],unsure:0})},'../../utils/community.js':{subscribe:()=>()=>{},get:()=>null,read:()=>Promise.resolve(),flush(){}},'../../utils/taste-report.js':TR,'../../utils/recap.js':{footer(){}}};
 vm.runInNewContext(fs.readFileSync('miniprogram/pages/taste-map/taste-map.js','utf8'),{require:n=>mods[n],getApp:()=>app,Page:p=>def=p,wx});
-const page={...def,data:JSON.parse(JSON.stringify(def.data)),setData(d){Object.assign(this.data,d);}};page.build();assert.equal(page.data.reportN,4);
+const page={...def,data:JSON.parse(JSON.stringify(def.data)),setData(d){Object.assign(this.data,d);}};page.build();assert.equal(page.data.reportN,4);assert.equal(JSON.stringify(page.data.yearLabels),'["全部年份","2026"]');page.setYear({detail:{value:1}});assert.equal(page.data.year,'2026');assert.equal(page.data.reportN,4);
 page.makeReport();(async()=>{await done;assert.equal(previewed,'t.png');assert(canvas.height>1000);console.log('PASS: taste report — threshold, filtering, determinism, '+names.size+' personas in sample, English, community, canvas and mini page export.');})().catch(err=>{console.error(err);process.exitCode=1;});
