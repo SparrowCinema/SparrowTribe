@@ -65,6 +65,9 @@ console.log('recap.js copied');
 // 影片 / 专题分享海报：shared/share-poster.js 复制给小程序
 fs.writeFileSync(path.join(root, 'miniprogram/utils/share-poster.js'), '/* 由 tools/build-fallback.js 从 shared/share-poster.js 复制，请改 shared/share-poster.js 后重新运行。 */\n' + fs.readFileSync(path.join(root, 'shared/share-poster.js'), 'utf8'));
 console.log('share-poster.js copied');
+// 趣味图谱长图：shared/taste-report.js 复制给小程序
+fs.writeFileSync(path.join(root, 'miniprogram/utils/taste-report.js'), '/* 由 tools/build-fallback.js 从 shared/taste-report.js 复制，请改 shared/taste-report.js 后重新运行。 */\n' + fs.readFileSync(path.join(root, 'shared/taste-report.js'), 'utf8'));
+console.log('taste-report.js copied');
 
 // 个人档案同步：合并规则 shared/psync.js 同时复制给小程序和 psync 云函数
 const psync = fs.readFileSync(path.join(root, 'shared/psync.js'), 'utf8');

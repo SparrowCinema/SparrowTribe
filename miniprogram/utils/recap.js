@@ -207,7 +207,11 @@
         if(o.posterScores===false){}else if(it.score){const radius=Math.min(12,g.w/13),width=radius*11;stars(c,x+(g.w-width)/2,yy+g.h+26,radius,it.score,C.teal,C.line);}else{c.textAlign='center';c.fillStyle=C.muted;c.font='600 '+(g.cols>7?16:22)+'px '+SANS;c.fillText(T('未评分'),x+g.w/2,yy+g.h+30);c.textAlign='left';}
       });y+=Math.ceil(items.length/g.cols)*g.row+20;
     }
-    // 页脚
+    footer(c, o, y, H);
+  }
+  // 页脚（观影结算、海报墙、趣味图谱共用）
+  function footer(c, o, y, H) {
+    const T = o.T || (x => x);
     if (o.qrImg) { // 小程序：深色通栏铺满左右与底边，右侧小程序码
       const fy = y + 30, hb = H - fy; c.fillStyle = C.ink; c.fillRect(0, fy, W, hb);
       const Q = 270, qx = W - P - Q, qy = fy + (hb - Q) / 2, tw = qx - P - 40;
@@ -252,6 +256,6 @@
   const MON = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
   function dstamp(iso) { if (!iso) return ''; const [y, m, d] = String(iso).split('-'); return d + ' ' + (MON[+m - 1] || m) + ' ' + y; }
 
-  const api = { W, SECTIONS, hasSection, heightOf, draw, drawStamp, look, dstamp, hash, INKS };
+  const api = { W, SECTIONS, hasSection, heightOf, draw, footer, FOOT: L.FOOT, drawStamp, look, dstamp, hash, INKS };
   if (typeof module !== 'undefined' && module.exports) module.exports = api; else root.SparrowRecap = api;
 })(typeof window !== 'undefined' ? window : this);
