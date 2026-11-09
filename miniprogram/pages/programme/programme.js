@@ -9,7 +9,9 @@ Page({
   onLoad(q) { this.setData({ i: I.dict() }); this.id = SM.fromScene(q, ((app.globalData.data || {}).programmes || []).map(x => x.id)) || 'style-kaleidoscope'; this.off = app.onData(() => this.build()); this.build(); },
   onUnload() { this.off && this.off(); },
   build() {
-    const data = app.globalData.data, idx = U.index(data), p = idx.PG[this.id];
+    const data = app.globalData.data, idx = U.index(data);
+    if (this.id && !idx.PG[this.id]) { const hit = Object.keys(idx.PG).find(k => k.startsWith(this.id)); if (hit) this.id = hit; }
+    const p = idx.PG[this.id];
     if (!p) return;
     wx.setNavigationBarTitle({ title: p.name });
     this.buildEvents(p);

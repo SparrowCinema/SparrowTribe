@@ -4,7 +4,8 @@ const SP = require('./share-poster.js'), I = require('./i18n.js');
 const MARKS = ['/images/brand/sparrow-movies-sq.png', '/images/brand/sparrow-tribe-sq.png'], FALLBACK = '/images/brand/miniprogram-code.jpg';
 async function pageCode(page, scene) {
   try {
-    const r = await wx.cloud.callFunction({ name: 'wxacode', data: { page, scene } }), id = r && r.result && r.result.ok && r.result.fileID;
+    let env = 'release'; try { env = wx.getAccountInfoSync().miniProgram.envVersion || 'release'; } catch (e) {}
+    const r = await wx.cloud.callFunction({ name: 'wxacode', data: { page, scene, env } }), id = r && r.result && r.result.ok && r.result.fileID;
     if (!id) return null; const d = await wx.cloud.downloadFile({ fileID: id }); return d && d.tempFilePath || null;
   } catch (e) { return null; }
 }
