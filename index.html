@@ -2682,10 +2682,10 @@ function tasteMapPage(){const rn=window.SparrowTasteReport.analyze(watchEntries(
 let trBusy=false;async function makeTasteReport(){if(trBusy)return;trBusy=true;toast('正在生成趣味图谱…');
  try{try{await Promise.all(['900 64px "Noto Serif SC"','700 30px "Noto Sans SC"','500 24px "IBM Plex Mono"'].map(f=>document.fonts.load(f,'麻雀趣味图谱0123')));}catch(e){}
   const TR=window.SparrowTasteReport,R=window.SparrowRecap,en=LANG==='en',a=TR.analyze(watchEntries(),{en,T:tr,community:id=>{const x=TC.get(id);return x&&x.pairN>=3?{fun:x.pairFun,bore:x.pairBore}:null;}});if(!a.ok){toast('至少给 3 部电影的有趣度和无聊度都打分后才能生成');return;}
-  const marks=await Promise.all(['brand/mark-movies.png','brand/mark-tribe.png'].map(loadImg));const cv=document.createElement('canvas');cv.width=TR.W;cv.height=10;let c=cv.getContext('2d');cv.height=TR.heightOf(c,a);c=cv.getContext('2d');
-  TR.draw(c,a,{T:tr,holder:holderName(),footer:(cc,y,H)=>R.footer(cc,{qr:qrMatrix(homeURL()),url:location.host+location.pathname,marks,T:tr,en},y,H)});
+  const marks=await Promise.all(['brand/mark-movies.png','brand/mark-tribe.png'].map(loadImg));const cv=document.createElement('canvas');cv.width=TR.W;cv.height=10;let c=cv.getContext('2d');const d0=new Date(now()),ro={T:tr,holder:holderName(),date:d0.getFullYear()+'.'+String(d0.getMonth()+1).padStart(2,'0')+'.'+String(d0.getDate()).padStart(2,'0'),footer:(cc,y,H)=>R.footer(cc,{qr:qrMatrix(homeURL()),url:location.host+location.pathname,marks,T:tr,en,footHead:tr('扫码生成你的电影趣味图谱'),footLine:tr('麻雀观影护照：给看过的电影打有趣度与无聊度')},y,H)};cv.height=TR.heightOf(c,a,ro);c=cv.getContext('2d');
+  TR.draw(c,a,ro);
   const blob=await new Promise(r=>cv.toBlob(r,'image/png'));if(!blob){toast('图片生成失败，请稍后再试');return;}
-  showImageSheet(blob,{file:'麻雀观影护照_趣味图谱.png',head:'趣味图谱已生成',alt:'趣味图谱长图'});}
+  showImageSheet(blob,{file:'麻雀观影护照_电影趣味图谱.png',head:'趣味图谱已生成',alt:'趣味图谱长图'});}
  catch(err){console.error(err);toast('图片生成失败，请稍后再试');}finally{trBusy=false;}}
 // A read-only collection: the grid fits the viewport, with vertical page scrolling.
 function sizePosterWall(){const grid=document.querySelector('.pw-grid');if(grid)grid.style.setProperty('--cols',window.SparrowLibrary.posterColumns(innerWidth,innerHeight));}

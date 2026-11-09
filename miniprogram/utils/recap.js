@@ -216,7 +216,7 @@
       const fy = y + 30, hb = H - fy; c.fillStyle = C.ink; c.fillRect(0, fy, W, hb);
       const Q = 270, qx = W - P - Q, qy = fy + (hb - Q) / 2, tw = qx - P - 40;
       c.fillStyle = '#fffaf0'; c.font = '700 38px ' + SANS; c.fillText(o.en ? 'Search “麻雀观影护照”' : '微信搜索「麻雀观影护照」', P, fy + 92);
-      c.font = '400 24px ' + SANS; c.globalAlpha = 0.8; wrapLines(c, T('盖下你的下一枚观影印章 · 记录每一场银幕'), tw).slice(0, 2).forEach((l, i) => c.fillText(l, P, fy + 140 + i * 34)); c.globalAlpha = 1;
+      c.font = '400 24px ' + SANS; c.globalAlpha = 0.8; wrapLines(c, o.footLine || T('盖下你的下一枚观影印章 · 记录每一场银幕'), tw).slice(0, 2).forEach((l, i) => c.fillText(l, P, fy + 140 + i * 34)); c.globalAlpha = 1;
       c.fillStyle = '#fffaf0'; rr(c, qx, qy, Q, Q, Q / 2); c.fill();
       c.save(); c.beginPath(); c.arc(qx + Q / 2, qy + Q / 2, Q / 2 - 10, 0, Math.PI * 2); c.clip(); c.drawImage(o.qrImg, qx + 10, qy + 10, Q - 20, Q - 20); c.restore();
       const R = 44, cy = fy + hb - 52 - R;
@@ -235,8 +235,8 @@
       const n = m.length, cell = (qs - 24) / (n + 8); c.fillStyle = '#1d1712';
       for (let r = 0; r < n; r++) for (let k = 0; k < n; k++) if (m[r][k]) c.fillRect(Math.floor(qx + 12 + (k + 4) * cell), Math.floor(qy + 12 + (r + 4) * cell), Math.ceil(cell), Math.ceil(cell));
       fx = qx + qs + 40;
-      c.fillStyle = '#fffaf0'; c.font = '700 36px ' + SANS; c.fillText(T('扫码盖下你的观影印章'), fx, fy + 100);
-      c.font = '400 23px ' + SANS; c.globalAlpha = 0.8; wrapLines(c, T('麻雀观影护照：影展、艺术影院与院线排片'), W - P - 36 - fx).slice(0, 2).forEach((l, i) => c.fillText(l, fx, fy + 148 + i * 32)); c.globalAlpha = 0.55; c.font = '400 19px ' + MONO; c.fillText(clip1(c, o.url || '', W - P - 36 - fx), fx, fy + 210); c.globalAlpha = 1;
+      c.fillStyle = '#fffaf0'; c.font = '700 36px ' + SANS; c.fillText(o.footHead || T('扫码盖下你的观影印章'), fx, fy + 100);
+      c.font = '400 23px ' + SANS; c.globalAlpha = 0.8; wrapLines(c, o.footLine || T('麻雀观影护照：影展、艺术影院与院线排片'), W - P - 36 - fx).slice(0, 2).forEach((l, i) => c.fillText(l, fx, fy + 148 + i * 32)); c.globalAlpha = 0.55; c.font = '400 19px ' + MONO; c.fillText(clip1(c, o.url || '', W - P - 36 - fx), fx, fy + 210); c.globalAlpha = 1;
     } else {
       c.fillStyle = '#fffaf0'; c.font = '700 36px ' + SANS; c.fillText(o.en ? 'Search “麻雀观影护照” on WeChat' : '微信搜索「麻雀观影护照」', fx, fy + 96);
       c.font = '400 23px ' + SANS; c.globalAlpha = 0.8; c.fillText(T('盖下你的下一枚观影印章'), fx, fy + 144); c.globalAlpha = 1;

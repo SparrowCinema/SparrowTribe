@@ -13,8 +13,9 @@ Page({
   this.busy=true;wx.showLoading({title:I.tr('正在生成趣味图谱…'),mask:true});const fail=()=>{this.busy=false;wx.hideLoading();wx.showToast({title:I.tr('图片生成失败，请稍后再试'),icon:'none'});};
   wx.createSelectorQuery().in(this).select('#taste-canvas').fields({node:true,size:true}).exec(async res=>{try{const canvas=res&&res[0]&&res[0].node;if(!canvas)return fail();const load=src=>new Promise(r=>{const im=canvas.createImage();im.onload=()=>r(im);im.onerror=()=>r(null);im.src=src;});
    const marks=await Promise.all(['/images/brand/sparrow-movies-sq.png','/images/brand/sparrow-tribe-sq.png'].map(load)),qrImg=await load('/images/brand/miniprogram-code.jpg'),k=.8;
-   canvas.width=Math.round(TR.W*k);canvas.height=10;let c=canvas.getContext('2d');const H=TR.heightOf(c,a);canvas.height=Math.round(H*k);c=canvas.getContext('2d');c.scale(k,k);
-   TR.draw(c,a,{T:I.tr,holder:(W.holder&&W.holder())||'',footer:(cc,y,HH)=>R.footer(cc,{qrImg,marks,T:I.tr,en},y,HH)});
+   const d0=new Date(),ro={T:I.tr,holder:(W.holder&&W.holder())||'',date:d0.getFullYear()+'.'+String(d0.getMonth()+1).padStart(2,'0')+'.'+String(d0.getDate()).padStart(2,'0'),footer:(cc,y,HH)=>R.footer(cc,{qrImg,marks,T:I.tr,en,footLine:I.tr('长按识别，生成你的电影趣味图谱')},y,HH)};
+   canvas.width=Math.round(TR.W*k);canvas.height=10;let c=canvas.getContext('2d');const H=TR.heightOf(c,a,ro);canvas.height=Math.round(H*k);c=canvas.getContext('2d');c.scale(k,k);
+   TR.draw(c,a,ro);
    wx.canvasToTempFilePath({canvas,fileType:'png',success:r=>{this.busy=false;wx.hideLoading();wx.previewImage({urls:[r.tempFilePath],current:r.tempFilePath});},fail});
   }catch(e){fail();}});
  },
