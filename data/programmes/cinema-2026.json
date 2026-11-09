@@ -859,8 +859,7 @@
    "en": "The Legend of 1900",
    "y": 1998,
    "c": "意大利",
-   "min": null,
-   "minTbd": true,
+   "min": 120,
    "reg": "eu",
    "release": "2026年11月13日 4K修复版内地重映",
    "dir": "朱塞佩·托纳多雷",
@@ -1081,7 +1080,7 @@
    "19:30",
    "legend-of-1900",
    "hz-mixc-yaao",
-   "hall-6"
+   "dolby"
   ],
   [
    "11/13",
@@ -1095,7 +1094,7 @@
    "14:50",
    "legend-of-1900",
    "hz-mixc-yaao",
-   "hall-6"
+   "dolby"
   ],
   [
    "11/14",
@@ -1109,7 +1108,7 @@
    "14:50",
    "legend-of-1900",
    "hz-mixc-yaao",
-   "hall-6"
+   "dolby"
   ]
  ]
 }
