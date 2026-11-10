@@ -1,0 +1,155 @@
+{
+ "checked": "2026-11-10",
+ "kind": "date-only archive, NOT actual screenings",
+ "purpose": "按用户需求登记内地公映日；与真实shows隔离，不生成未核实的影院、影厅或开场钟点",
+ "records": [
+  {
+   "id": "shawshank-redemption",
+   "cn": "肖申克的救赎",
+   "date": "2026-08-28",
+   "sourceField": "release",
+   "sourceValue": "2026年8月28日 4K修复版内地首次公映"
+  },
+  {
+   "id": "toddling-youths",
+   "cn": "浪花儿",
+   "date": "2026-09-12",
+   "sourceField": "release",
+   "sourceValue": "2026年9月12日 内地上映"
+  },
+  {
+   "id": "spider-man-brand-new-day",
+   "cn": "蜘蛛侠：崭新之日",
+   "date": "2026-07-29",
+   "sourceField": "release",
+   "sourceValue": "2026年7月29日 内地上映"
+  },
+  {
+   "id": "the-great-skull",
+   "cn": "燃烧吧！爸爸",
+   "date": "2026-09-05",
+   "sourceField": "release",
+   "sourceValue": "2026年9月5日 内地上映"
+  },
+  {
+   "id": "all-wishes-come-true",
+   "cn": "八仙！",
+   "date": "2026-07-18",
+   "sourceField": "release",
+   "sourceValue": "2026年7月18日 内地上映"
+  },
+  {
+   "id": "once-upon-a-time-in-the-middle-east",
+   "cn": "欢迎来龙餐馆",
+   "date": "2026-08-11",
+   "sourceField": "release",
+   "sourceValue": "2026年8月11日 内地上映"
+  },
+  {
+   "id": "wall-e",
+   "cn": "机器人总动员",
+   "date": "2026-08-19",
+   "sourceField": "release",
+   "sourceValue": "2026年8月19日 内地上映（8月15日起点映）"
+  },
+  {
+   "id": "obsession",
+   "cn": "痴迷",
+   "date": "2026-07-24",
+   "sourceField": "release",
+   "sourceValue": "2026年7月24日 内地上映"
+  },
+  {
+   "id": "empty-gun",
+   "cn": "空枪",
+   "date": "2026-08-19",
+   "sourceField": "release",
+   "sourceValue": "2026年8月19日 内地上映"
+  },
+  {
+   "id": "triangle",
+   "cn": "恐怖游轮",
+   "date": "2026-07-17",
+   "sourceField": "release",
+   "sourceValue": "2026年7月17日 未删减版内地上映"
+  },
+  {
+   "id": "kung-fu-soccer",
+   "cn": "功夫女足",
+   "date": "2026-07-11",
+   "sourceField": "release",
+   "sourceValue": "2026年7月11日 内地上映"
+  },
+  {
+   "id": "three-kingdoms-luoyang",
+   "cn": "三国第一部：争洛阳",
+   "date": "2026-07-10",
+   "sourceField": "release",
+   "sourceValue": "2026年7月10日 内地上映（10月17日重映）"
+  },
+  {
+   "id": "toy-story-5",
+   "cn": "玩具总动员5",
+   "date": "2026-06-19",
+   "sourceField": "release",
+   "sourceValue": "2026年6月19日 内地上映"
+  },
+  {
+   "id": "the-furious",
+   "cn": "火遮眼",
+   "date": "2026-06-11",
+   "sourceField": "release",
+   "sourceValue": "2026年6月11日 内地上映"
+  },
+  {
+   "id": "memento",
+   "cn": "记忆碎片",
+   "date": "2026-05-29",
+   "sourceField": "release",
+   "sourceValue": "2026年5月29日 修复版内地上映"
+  },
+  {
+   "id": "papa",
+   "cn": "爸爸",
+   "date": "2026-06-27",
+   "sourceField": "release",
+   "sourceValue": "2026年6月27日 内地上映（香港2024年12月5日上映）"
+  },
+  {
+   "id": "pressure",
+   "cn": "诺曼底72小时",
+   "date": "2026-06-06",
+   "sourceField": "release",
+   "sourceValue": "2026年6月6日 内地上映"
+  },
+  {
+   "id": "disclosure-day",
+   "cn": "揭秘日",
+   "date": "2026-06-12",
+   "sourceField": "release",
+   "sourceValue": "2026年6月12日 内地上映"
+  },
+  {
+   "id": "the-backrooms",
+   "cn": "后室",
+   "date": "2026-06-26",
+   "sourceField": "release",
+   "sourceValue": "2026年6月26日 内地上映（5月29日北美上映）"
+  },
+  {
+   "id": "no-other-love",
+   "cn": "蜂蜜的针",
+   "date": "2026-03-28",
+   "sourceField": "release",
+   "sourceValue": "2026年3月28日 内地上映"
+  },
+  {
+   "id": "project-hail-mary",
+   "cn": "挽救计划",
+   "date": "2026-03-20",
+   "sourceField": "release",
+   "sourceValue": "2026年3月20日 内地上映"
+  }
+ ],
+ "legacyClientFinding": "旧版将1-9月推断为2027年，直接增加场次仍无法归档；须更新小程序分组/年份代码"
+}
