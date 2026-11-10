@@ -8,16 +8,21 @@ const centerOf = (c, data) => {
   return g.length ? [g.reduce((a, x) => a + (+x[0]), 0) / g.length, g.reduce((a, x) => a + (+x[1]), 0) / g.length] : null;
 };
 function nearest(lat, lng, data) {
-  const R = Math.PI / 180; let best = '', bd = Infinity;
-  const names = new Set((data.venues || []).map(v => v.city).concat((data.programmes || []).map(p => p.city)).filter(Boolean));
-  names.forEach(c => {
-    const g = centerOf(c, data); if (!g) return;
-    const lim = (CITIES[c] && CITIES[c].r) || 80;
-    const a = Math.sin((g[0] - lat) * R / 2) ** 2 + Math.cos(lat * R) * Math.cos(g[0] * R) * Math.sin((g[1] - lng) * R / 2) ** 2;
-    const d = 12742 * Math.asin(Math.sqrt(a));
-    if (d <= lim && d < bd) { bd = d; best = c; }
-  });
-  return best;
+  const R = Math.PI / 180;
+  const pick = names => {
+    let best = '', bd = Infinity;
+    names.forEach(c => {
+      const g = centerOf(c, data); if (!g) return;
+      const lim = (CITIES[c] && CITIES[c].r) || 80;
+      const a = Math.sin((g[0] - lat) * R / 2) ** 2 + Math.cos(lat * R) * Math.cos(g[0] * R) * Math.sin((g[1] - lng) * R / 2) ** 2;
+      const d = 12742 * Math.asin(Math.sqrt(a));
+      if (d <= lim && d < bd) { bd = d; best = c; }
+    });
+    return best;
+  };
+  // 先在有影院/专题的城市里找；都不在范围内再用全球城市表，任何城市都能定位（没有场次时仍按默认顺序）
+  const active = Array.from(new Set((data.venues || []).map(v => v.city).concat((data.programmes || []).map(p => p.city)).filter(Boolean)));
+  return pick(active) || pick(Object.keys(CITIES));
 }
 // force=true 时忽略缓存（手动重试）；done(changed) 在城市变化后回调，页面据此重新排序
 function locate(data, done, force, finish) {
