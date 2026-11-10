@@ -16,7 +16,7 @@
       </view>
     </view>
     <view wx:for="{{items}}" wx:key="key" class="row" data-id="{{item.id}}" bindtap="open">
-      <view class="tm mono"><text class="d">{{item.d}} {{item.wk}}</text><text class="b">{{item.t}}</text></view>
+      <view class="tm mono"><text class="d">{{item.y}}/{{item.d}} {{item.wk}}</text><text class="b">{{item.t}}</text></view>
       <image wx:if="{{item.poster}}" class="th" src="{{item.poster}}" mode="aspectFill" />
       <view class="info">
         <view class="t">{{item.cn}}<text wx:if="{{item.version}}" class="ed">{{item.version}}</text></view>

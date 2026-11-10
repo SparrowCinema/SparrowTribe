@@ -40,7 +40,7 @@ Page({
     const minutes = list.reduce((n, s) => n + idx.F[s.id].min, 0);
     let clash = 0;
     const byDay = [];
-    list.forEach(s => { let g = byDay.find(x => x.d === s.d); if (!g) { g = { d: s.d, wk: U.wk(s.d), items: [] }; byDay.push(g); } g.items.push(s); });
+    list.forEach(s => { let g = byDay.find(x => x.d === s.d); if (!g) { g = { y: U.year(s.d, s.year), d: s.d, wk: U.wk(s.d), items: [] }; byDay.push(g); } g.items.push(s); });
     const days = byDay.map(g => {
       const items = g.items.map((s, i) => {
         const v = U.showView(s, idx, data, picked);

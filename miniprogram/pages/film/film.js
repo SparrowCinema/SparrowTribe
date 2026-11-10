@@ -42,7 +42,7 @@ Page({
     const allShows = data.shows.filter(s => s.id === f.id), multi = idx.progsOf(f).length > 1;
     const shows = allShows.filter(s => !U.ended(s, idx)).map(s => {
       const v = U.showView(s, idx, data, picked); const [m, d] = s.d.split('/');
-      return Object.assign(v, { progTag: multi ? U.progForShow(s, idx).name : '', m, dd: d, mon: t(m + '月'), vid: s.v, sd: s.d, geo: !!U.geoOf(idx.VN[s.v]) });
+      return Object.assign(v, { progTag: multi ? U.progForShow(s, idx).name : '', m, dd: d, mon: U.year(s.d, s.year) + '.' + m, vid: s.v, sd: s.d, geo: !!U.geoOf(idx.VN[s.v]) });
     });
     // 院线片：放映场次按日期、影院多选筛选（只影响本页显示，与网站 showFilterHTML 一致）
     const sfSt = this.sf || (this.sf = { d: [], v: [] }), cinema = idx.progsOf(f).some(x => x.p && x.p.kind === '院线') || allShows.some(s => (U.progForShow(s, idx) || {}).kind === '院线');
@@ -234,7 +234,7 @@ Page({
     SM.make(this, { page: 'pages/film/film', scene: f.id.slice(0, 32), build: async load => ({
       kind: 'film', kicker: 'SPARROW FILM PASSPORT · ' + String(p.en || 'FILM').toUpperCase(), title: f.cn, tag: t(f.version || ''), en: f.en || f.o || '',
       meta: [f.dir ? t('导演') + ' ' + f.dir : '', [f.y, t(f.c || ''), f.min && !f.minTbd ? t(f.min + ' 分钟') : ''].filter(Boolean).join(' · '), p.name].filter(Boolean),
-      lines: up.map(s => ({ when: s.d + ' ' + s.t, where: idx.venueName(s) + ' · ' + idx.hallName(s) })),
+      lines: up.map(s => ({ when: U.ymd(s) + ' ' + s.t, where: idx.venueName(s) + ' · ' + idx.hallName(s) })),
       img: await load(U.poster(f)), qrText: t('长按识别小程序码'), qrSub: t('查看影片详情、场次与购票') }) });
   },
   onShareAppMessage() { const f = this.data.f || {}; return { title: (I.isEn() ? f.cn + (f.version ? ' ' + f.version : '') : `《${f.cn}》${f.version ? f.version : ''}`) + ' · ' + t('麻雀观影护照'), path: '/pages/film/film?id=' + this.id, imageUrl: f.poster || undefined }; },

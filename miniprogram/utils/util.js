@@ -2,6 +2,7 @@ const CFG = require('./cfg.js');
 const I = require('./i18n.js');
 const WK = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
 const year = (d, explicit) => Number.isInteger(+explicit) && +explicit >= 1888 && +explicit <= 2200 ? +explicit : (+d.split('/')[0] >= 10 ? 2026 : 2027);
+const showYmd = s => year(s.d, s.year) + '/' + s.d; // 带年份的日期，如 2026/11/11
 const wk = d => { const [m, dd] = d.split('/').map(Number); return I.tr(WK[new Date(year(d), m - 1, dd).getDay()]); };
 const toMin = t => { const [h, m] = t.split(':').map(Number); return h * 60 + m; };
 const fmt = m => String(Math.floor(m / 60)).padStart(2, '0') + ':' + String(m % 60).padStart(2, '0');
@@ -68,7 +69,7 @@ function progInfo(p, data, idx, now = Date.now()) {
 function showView(s, idx, data, picked) {
   const f = idx.F[s.id]; const st = toMin(s.t);
   return {
-    key: keyOf(s), d: s.d, t: s.t, end: fmt(st + durationOf(s, idx)), wk: wk(s.d), id: s.id,
+    key: keyOf(s), y: year(s.d, s.year), d: s.d, t: s.t, end: fmt(st + durationOf(s, idx)), wk: wk(s.d), id: s.id,
     cn: f.cn, version: I.tr(f.version || ''), dir: f.dir, min: f.min, minTxt: I.tr(f.min ? f.min + ' 分钟' : '片长待定'),
     venue: idx.venueName(s), hall: idx.hallName(s),
     color: (data.reg[f.reg] || {}).c || '#8e2a22',
@@ -122,4 +123,4 @@ const SITE_URL = 'https://sparrowcinema.github.io/SparrowTribe/';
 const webTip = (hash, lines, t, title) => {
   wx.setClipboardData({ data: SITE_URL + (hash || ''), success: () => wx.showModal({ title: t(title || '网页版地址已复制'), content: lines.map(x => t(x)).join('\n'), showCancel: false, confirmText: t('知道了') }) });
 };
-module.exports = { geoCity, localProg, webTip, calSub, geoOf, distKm, transfer, openMap, progForShow, durationOf, progInfo, qaOf, ended, isFest, keepPast, relTime, nextShowOf, filmOrder, filmTone, langSub, WK, year, wk, toMin, fmt, keyOf, showDate, poster, ticket, durText, index, showView };
+module.exports = { ymd: showYmd, geoCity, localProg, webTip, calSub, geoOf, distKm, transfer, openMap, progForShow, durationOf, progInfo, qaOf, ended, isFest, keepPast, relTime, nextShowOf, filmOrder, filmTone, langSub, WK, year, wk, toMin, fmt, keyOf, showDate, poster, ticket, durText, index, showView };
