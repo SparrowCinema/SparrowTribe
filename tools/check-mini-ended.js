@@ -17,7 +17,11 @@ for(const id of ids){assert(programme.data.gone.some(f=>f.id===id),id+' must be 
 const detail=load('film');detail.buildMine=()=>{};detail.fitHero=()=>{};
 for(const id of ids){detail.id=id;detail.build();assert.equal(detail.data.f.ended,true,id+' archive flag must reach WXML');assert.equal(detail.data.cnt,'已下映');assert.equal(detail.data.shows.length,0);}
 // An unscheduled film without the flag remains pending; a genuine future show wins over an old flag.
-const sample=data.films.find(f=>ids.includes(f.id));sample.ended=false;programme.build();assert(programme.data.films.some(f=>f.id===sample.id));detail.id=sample.id;detail.build();assert.equal(detail.data.f.ended,false);assert.equal(detail.data.cnt,'0 场');
+// Past screenings alone must archive every film even without the manual flag.
+for(const id of ids){const f=data.films.find(f=>f.id===id);f.ended=false;}programme.build();
+for(const id of ids)assert(programme.data.gone.some(f=>f.id===id),id+' must archive from its explicit 2026 screening');
+for(const id of ids)data.films.find(f=>f.id===id).ended=true;
+const sample=data.films.find(f=>ids.includes(f.id));data.shows=data.shows.filter(s=>s.id!==sample.id);sample.ended=false;programme.build();assert(programme.data.films.some(f=>f.id===sample.id));detail.id=sample.id;detail.build();assert.equal(detail.data.f.ended,false);assert.equal(detail.data.cnt,'0 场');
 sample.ended=true;const v=data.venues[0];data.shows.push({id:sample.id,p:'cinema-2026',d:'12/30',t:'23:59',v:v.id,h:v.halls[0].id});programme.build();assert(programme.data.films.some(f=>f.id===sample.id),'real upcoming screenings must remain visible');
 // The cloud response's slim form must preserve this lightweight classification field.
 const cloud=fs.readFileSync(path.join(root,'cloudfunctions/getData/index.js'),'utf8'),start=cloud.indexOf('const HEAVY ='),end=cloud.indexOf('// 诊断模式',start),ctx=vm.createContext({});

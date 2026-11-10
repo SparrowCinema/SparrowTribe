@@ -4,6 +4,7 @@
 const fs = require('fs'), path = require('path');
 require('./prepare-premieres.js');
 const root = path.join(__dirname, '..');
+const Screenings = require('../shared/screenings.js');
 const SITE = 'https://sparrowcinema.github.io/SparrowTribe/';
 const BUNDLED = require(path.join(root, 'cloudfunctions/getData/bundled.json'));
 const OUT = path.join(root, 'miniprogram/data/data.js');
@@ -32,7 +33,7 @@ progs.forEach(p => {
   });
   (pk.shows || []).forEach(r => {
     const [d, t, id, v = 'premiere', h = 'luxe'] = Array.isArray(r) ? r : [r.d, r.t, r.id, r.v, r.h];
-    shows.push({ d, t, id, v, h, p: p.id }); // p：场次所属专题（跨影展合并影片按此区分）
+    shows.push(Object.assign({ d, t, id, v, h, p: p.id }, !Array.isArray(r) && r.year ? { year: r.year, archive: r.archive === true } : {})); // p：场次所属专题（跨影展合并影片按此区分）
   });
 });
 const programmes = progs.map(p => {
@@ -48,6 +49,8 @@ if (!films.length || !shows.length) throw new Error('网站数据为空，未生
 const LEAN_DROP = ['syn', 'bio', 'honors', 'parts', 'contentReview', 'contentNote', 'editorial', 'highlights', 'links'];
 films.forEach(f => LEAN_DROP.forEach(k => { delete f[k]; }));
 const data = { films, shows, venues: cat.venues || [], programmes, aliases: cat.aliases || {}, reg: Object.assign({}, prev.reg, cat.reg || {}) };
+Screenings.apply(data);
+fs.copyFileSync(path.join(root,'shared/screenings.js'),path.join(root,'miniprogram/utils/screenings.js'));
 fs.writeFileSync(OUT, '/* 本地内置数据：云数据库为空或网络不可用时使用。由 tools/build-fallback.js 从网站 data/ 生成，规则与 getData 云函数一致。 */\nmodule.exports = ' + JSON.stringify(data) + ';\n');
 console.log('films', films.length, 'shows', shows.length, 'venues', data.venues.length, 'programmes', programmes.length);
 

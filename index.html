@@ -1414,6 +1414,7 @@ input:not([type=checkbox]):not([type=radio]),select,textarea{font-size:16px!impo
 <script src="shared/psync.js"></script>
 <script src="shared/library.js"></script>
 <script src="shared/premiere.js"></script>
+<script src="shared/screenings.js"></script>
 <script src="shared/growth.js"></script>
 <script src="shared/profile-backup.js"></script>
 <script>
@@ -1494,7 +1495,7 @@ let FILMS=[], VENUES=[], PROGRAMMES=[], SH=[], VN={}, F={}, PG={}, days=[];
 const hallOf = s => VN[s.v].halls.find(x=>x.id===s.h);
 const placeOf = s => `${venueLabel(VN[s.v])} ${hallOf(s).name}`;
 const placeHTML = s => `${esc(venueLabel(VN[s.v]))}<span class="hall-tag">${esc(hallOf(s).name)}</span>`; /* 影厅名较长时（如「5号Dolby Cinema 杜比影院厅」）作为独立小标签整体换行，不挤乱影院名 */
-const keyOf = s => `${s.d}-${s.t}-${s.v}-${s.h}`;
+const keyOf = s => window.SparrowScreenings.keyOf(s);
 let vfilt = "all", cityFilt = "all", venueQuery = "";
 // 多选筛选：值为 "all" 或逗号连接的多个 id（同一筛选内为「或」）
 const selList=v=>SparrowLibrary.list(v),selHas=(v,i)=>SparrowLibrary.has(v,i),selToggle=(v,i)=>SparrowLibrary.toggle(v,i);
@@ -1542,7 +1543,7 @@ const pst = id => (F[id]&&F[id].poster)||null;
 const minText = f => f.minTbd ? "片长待定" : f.min+" 分钟";
 const slateHTML = f => pst(f.id) ? `<span class="slate has" style="background:${REG[f.reg].c}"><img src="${pst(f.id)}" alt="${esc(f.cn)} 海报" loading="lazy"></span>` : `<span class="slate" style="background:${REG[f.reg].c}"><b>${esc(f.cn[0])}</b><span>${f.y}</span></span>`;
 const WK = ["周日","周一","周二","周三","周四","周五","周六"];
-const year = d => (+d.split("/")[0] >= 10 ? 2026 : 2027);
+const year = (d, explicit) => Number.isInteger(+explicit) && +explicit >= 1888 && +explicit <= 2200 ? +explicit : (+d.split("/")[0] >= 10 ? 2026 : 2027);
 const wk = d => { const [m,dd]=d.split("/").map(Number); return WK[new Date(year(d),m-1,dd).getDay()]; };
 const toMin = t => { const [h,m]=t.split(":").map(Number); return h*60+m; };
 const fmt = m => String(Math.floor(m/60)).padStart(2,"0")+":"+String(m%60).padStart(2,"0");
@@ -2107,7 +2108,7 @@ function planProgChips(all){if(!all.length)return '';const n=scopedRows().length
 }
 function scopedRows(){const all=selectedRows();if(planFilt==="all")return all;return all.filter(s=>selHas(planFilt,s.p));}
 function selectedRows(keys=picked){const set=new Set(keys);return SH.filter(s=>set.has(keyOf(s))).sort((a,b)=>showDate(a)-showDate(b));}
-function showDate(s){const md=s.d.split('/').map(Number),tm=s.t.split(':').map(Number);return new Date(year(s.d),md[0]-1,md[1],tm[0],tm[1]);}
+function showDate(s){const md=s.d.split('/').map(Number),tm=s.t.split(':').map(Number);return new Date(year(s.d,s.year),md[0]-1,md[1],tm[0],tm[1]);}
 function planToggleHTML(s){const k=keyOf(s),yes=picked.has(k);return '<button class="plan-toggle '+(yes?'selected':'')+'" data-plan="'+esc(k)+'" aria-pressed="'+yes+'" aria-label="'+(yes?'移出排片 ':'加入排片 ')+esc(F[s.id].cn)+' '+esc(s.d)+' '+s.t+'">'+(yes?'✓ 已加入':'+ 加入排片')+'</button>';}
 function showChoiceHTML(s){return '<div class="show-choice"><button class="show" data-jump="'+keyOf(s)+'"><span class="dt">'+s.d+' '+s.t+'</span><span class="x">'+wk(s.d)+' · '+placeHTML(s)+' · 散场 '+fmt(toMin(s.t)+durationOf(s))+'</span><span class="go">查看排片 ›</span></button>'+planToggleHTML(s)+'</div>';}
 function conflicts(list){let out=[];for(let i=0;i<list.length;i++)for(let j=i+1;j<list.length;j++){const a=list[i],b=list[j];if(a.d===b.d&&toMin(a.t)<toMin(b.t)+F[b.id].min-2&&toMin(b.t)<toMin(a.t)+F[a.id].min-2)out.push([a,b]);}return out;}
@@ -2967,7 +2968,7 @@ async function loadData(){
  programmes.forEach((p,i)=>{const pk=packs[i];if(!pk)return;
   (pk.films||[]).forEach(source=>{if(filmMap[source.id])return;const f=normalizeFilm({...source},p.id);filmMap[f.id]=f;films.push(f);});
   (pk.shows||[]).forEach(r=>{const [d,t,id,v="premiere",hall="luxe"]=Array.isArray(r)?r:[r.d,r.t,r.id,r.v,r.h];
-   if(!filmMap[id]||!vn[v]||!vn[v].halls.some(x=>x.id===hall)){console.warn("场次数据不完整，已跳过",r);return;}shows.push({d,t,id,v,h:hall,p:p.id});});});
+   if(!filmMap[id]||!vn[v]||!vn[v].halls.some(x=>x.id===hall)){console.warn("场次数据不完整，已跳过",r);return;}shows.push(Object.assign({d,t,id,v,h:hall,p:p.id},!Array.isArray(r)&&r.year?{year:r.year,archive:r.archive===true}:{}));});});
  venues.forEach((v,i)=>{v._o=i;});const rank=venueRank(venues,shows); /* 定位城市（有未散场场次时）→ 杭州 → 其余城市按目录顺序；用于甘特图列、城市/影院选择器、同时间场次 */
  venues.sort((a,b)=>rank[a.id]-rank[b.id]);
  shows.sort((a,b)=>showDate(a)-showDate(b)||rank[a.v]-rank[b.v]);

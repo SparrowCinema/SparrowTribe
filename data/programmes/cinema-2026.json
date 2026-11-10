@@ -1115,10 +1115,10 @@
    "dirLife": "1959– · 美国",
    "r": [
     9.7,
-    null,
-    null,
-    null,
-    null
+    9.3,
+    89,
+    82,
+    4.6
    ],
    "syn": "银行家安迪·杜佛兰被控杀害妻子及其情人，被判终身监禁，关进肖申克监狱。他在高墙内结识了见多识广的老囚犯瑞德，也在漫长的岁月里以知识、耐心和一点点尊严，在这座监狱里寻找活下去的方式。\n\n这是一部关于时间、友谊与希望的监狱电影：它不急于解释一个人如何承受不公，而是让观众陪着他们一天天熬过去。",
    "bio": "弗兰克·德拉邦特兼任导演与编剧，尤其擅长将斯蒂芬·金作品中的人物关系转化为银幕叙事。他执导的《肖申克的救赎》《绿里奇迹》都围绕监狱、制度与人的尊严展开，后来又以《迷雾》转向恐怖寓言。本片并非其第一部长片；此前他已执导电视电影《活埋》。",
@@ -1176,8 +1176,8 @@
    "poster": "posters/shawshank-redemption.jpg",
    "ended": true,
    "worldPremiere": {
-    "status": "partial",
-    "date": "1994-09",
+    "status": "verified",
+    "date": "1994-09-10",
     "festival": "多伦多国际电影节",
     "festivalEn": "Toronto International Film Festival",
     "kind": "festival",
@@ -1188,6 +1188,28 @@
     "kind": "mainland-theatrical-release",
     "dateOnly": true,
     "note": "仅记录内地公映日期，不是影院实际场次；未核实开场时刻、影院或影厅。"
+   },
+   "ratingsChecked": "2026-11-10",
+   "ratingStatus": {
+    "douban": "reported",
+    "imdb": "verified",
+    "rt": "verified",
+    "mc": "verified",
+    "lb": "verified"
+   },
+   "screeningArchive": {
+    "date": "2026-08-28",
+    "year": 2026,
+    "d": "8/28",
+    "t": "19:30",
+    "v": "hz-mixc-imax",
+    "h": "imax",
+    "format": "IMAX",
+    "kind": "user-assigned",
+    "actualVerified": false
+   },
+   "screeningNotes": {
+    "8/28-19:30-hz-mixc-imax-imax-archive-shawshank-redemption": "用户指定存档场次 · 日期采用2026年内地公映日；影院、影厅和19:30为用户指定，非核实历史排片。"
    }
   },
   {
@@ -1245,8 +1267,8 @@
    "poster": "posters/toddling-youths.jpg",
    "ended": true,
    "worldPremiere": {
-    "status": "partial",
-    "date": "2025-09",
+    "status": "verified",
+    "date": "2025-09-26",
     "festival": "平遥国际电影展",
     "festivalEn": "Pingyao International Film Festival",
     "kind": "festival",
@@ -1255,13 +1277,36 @@
    "version": "",
    "links": {
     "imdb": "tt38345349",
-    "lb": "the-toddling-youths"
+    "lb": "the-toddling-youths",
+    "douban": "37527015"
    },
    "releaseArchive": {
     "date": "2026-09-12",
     "kind": "mainland-theatrical-release",
     "dateOnly": true,
     "note": "仅记录内地公映日期，不是影院实际场次；未核实开场时刻、影院或影厅。"
+   },
+   "ratingsChecked": "2026-11-10",
+   "ratingStatus": {
+    "douban": "not-published",
+    "imdb": "not-published",
+    "rt": "unverified",
+    "mc": "unverified",
+    "lb": "not-published"
+   },
+   "screeningArchive": {
+    "date": "2026-09-12",
+    "year": 2026,
+    "d": "9/12",
+    "t": "19:30",
+    "v": "hz-xgjy-raffles",
+    "h": "hall-4",
+    "format": "2D",
+    "kind": "user-assigned",
+    "actualVerified": false
+   },
+   "screeningNotes": {
+    "9/12-19:30-hz-xgjy-raffles-hall-4-archive-toddling-youths": "用户指定存档场次 · 日期采用2026年内地公映日；影院、影厅和19:30为用户指定，非核实历史排片。"
    }
   },
   {
@@ -1278,11 +1323,11 @@
    "dirO": "Destin Daniel Cretton",
    "dirLife": "美国导演",
    "r": [
-    null,
+    7.7,
     7.9,
-    91,
-    null,
-    null
+    90,
+    66,
+    4.02
    ],
    "syn": "《英雄无归》的事件之后，彼得·帕克在无人记得他的世界里独自生活，全职以蜘蛛侠身份保护纽约。昔日好友已经开启新的生活，他却无法向他们解释自己的位置。\n\n持续的压力令身体发生难以控制的变化；一名难以看见的强敌出现，让守护城市与守护所爱之人的任务再次交织。彼得必须重新理解力量，也重新决定如何与这个已经忘记他的世界相处。",
    "bio": "德斯汀·丹尼尔·克里顿成长于夏威夷，从独立电影《少年收容所》进入公众视野，随后执导《正义的慈悲》《尚气与十环传奇》。他经常从家庭、创伤与归属切入人物，本片接手汤姆·赫兰德主演的蜘蛛侠系列。",
@@ -1337,7 +1382,9 @@
    },
    "version": "",
    "links": {
-    "imdb": "tt22084616"
+    "imdb": "tt22084616",
+    "lb": "spider-man-brand-new-day",
+    "douban": "36246195"
    },
    "ratingChecked": "2026-11-10",
    "releaseArchive": {
@@ -1345,6 +1392,28 @@
     "kind": "mainland-theatrical-release",
     "dateOnly": true,
     "note": "仅记录内地公映日期，不是影院实际场次；未核实开场时刻、影院或影厅。"
+   },
+   "ratingsChecked": "2026-11-10",
+   "ratingStatus": {
+    "douban": "reported",
+    "imdb": "verified",
+    "rt": "verified",
+    "mc": "verified",
+    "lb": "verified"
+   },
+   "screeningArchive": {
+    "date": "2026-07-29",
+    "year": 2026,
+    "d": "7/29",
+    "t": "19:30",
+    "v": "hz-mixc-imax",
+    "h": "imax",
+    "format": "IMAX",
+    "kind": "user-assigned",
+    "actualVerified": false
+   },
+   "screeningNotes": {
+    "7/29-19:30-hz-mixc-imax-imax-archive-spider-man-brand-new-day": "用户指定存档场次 · 日期采用2026年内地公映日；影院、影厅和19:30为用户指定，非核实历史排片。"
    }
   },
   {
@@ -1360,8 +1429,8 @@
    "dirO": "Liu Xiaoyang",
    "dirLife": "中国导演、编剧",
    "r": [
-    null,
-    null,
+    6.8,
+    5.8,
     null,
     null,
     null
@@ -1401,8 +1470,8 @@
    "editorial": "适合愿意用黑色幽默接近家庭告别的观众。近期经历丧亲、疾病照护或葬礼的人，可先考虑自己是否准备好面对相关细节。",
    "contentNote": "依据公开剧情、预告与发行资料整理，涉及癌症及亲人离世、葬礼与骨灰处理、母女冲突。未完整审片；具体画面强度、闪烁及音量尚未核实，不替代本次放映版本的正式分级。",
    "worldPremiere": {
-    "status": "partial",
-    "date": "2026-06",
+    "status": "verified",
+    "date": "2026-06-12",
     "festival": "上海国际电影节",
     "festivalEn": "Shanghai International Film Festival",
     "kind": "festival",
@@ -1417,13 +1486,37 @@
    "ended": true,
    "version": "",
    "links": {
-    "imdb": "tt36853603"
+    "imdb": "tt36853603",
+    "lb": "the-great-skull",
+    "douban": "36903929"
    },
    "releaseArchive": {
     "date": "2026-09-05",
     "kind": "mainland-theatrical-release",
     "dateOnly": true,
     "note": "仅记录内地公映日期，不是影院实际场次；未核实开场时刻、影院或影厅。"
+   },
+   "ratingsChecked": "2026-11-10",
+   "ratingStatus": {
+    "douban": "reported",
+    "imdb": "verified",
+    "rt": "unverified",
+    "mc": "unverified",
+    "lb": "not-published"
+   },
+   "screeningArchive": {
+    "date": "2026-09-05",
+    "year": 2026,
+    "d": "9/5",
+    "t": "19:30",
+    "v": "hz-xgjy-raffles",
+    "h": "hall-4",
+    "format": "2D",
+    "kind": "user-assigned",
+    "actualVerified": false
+   },
+   "screeningNotes": {
+    "9/5-19:30-hz-xgjy-raffles-hall-4-archive-the-great-skull": "用户指定存档场次 · 日期采用2026年内地公映日；影院、影厅和19:30为用户指定，非核实历史排片。"
    }
   },
   {
@@ -1439,11 +1532,11 @@
    "dirO": "Mou Zhengyang",
    "dirLife": "中国导演、编剧",
    "r": [
-    8.3,
+    8.2,
     8.0,
+    100,
     null,
-    null,
-    null
+    3.95
    ],
    "syn": "在蓬莱仙境内，八个凡人为了闯入只有神仙可以通行的藏宝阁，假扮神仙瞒天过海。面对阁中「十辈子花不完」的泼天富贵，众人一拍即合，「草台班子」就地成立，开起道观，踏上寻宝求财路。然而就在好梦得圆之际，觊觎藏宝阁的势力悄然登场，团队内部也爆发了隔阂与冲突。",
    "bio": "牟正洋担任本片导演与编剧，以“八仙”成仙之前的凡人经历重构传统神话。创作从民间传说和古籍形象出发，将各具缺点的普通人放进需要协作的冒险中，以喜剧处理愿望、财富诱惑和自我认同。",
@@ -1462,7 +1555,7 @@
     "奇幻"
    ],
    "language": "普通话（含方言）",
-   "medium": "2D",
+   "medium": "2D / IMAX",
    "highlights": [
     "看八位性格不同的凡人如何从临时搭伙走到彼此信任。",
     "传统神话人物与当代职场、财富愿望的错位构成喜剧。",
@@ -1483,16 +1576,19 @@
    "poster": "posters/all-wishes-come-true.jpg",
    "ended": true,
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
+    "status": "verified",
+    "date": "2026-07-08",
     "festival": null,
     "festivalEn": null,
-    "kind": "unknown",
-    "checked": "2026-11-10"
+    "kind": "theatrical",
+    "checked": "2026-11-10",
+    "dateNote": "最早已核实公开特别放映；成都首映礼为7月11日",
+    "dateNoteEn": "Earliest documented public special screening; Chengdu gala: July 11"
    },
    "version": "",
    "links": {
-    "imdb": "tt43515101"
+    "imdb": "tt43515101",
+    "lb": "all-wishes-come-true"
    },
    "ratingChecked": "2026-11-10",
    "releaseArchive": {
@@ -1500,6 +1596,28 @@
     "kind": "mainland-theatrical-release",
     "dateOnly": true,
     "note": "仅记录内地公映日期，不是影院实际场次；未核实开场时刻、影院或影厅。"
+   },
+   "ratingsChecked": "2026-11-10",
+   "ratingStatus": {
+    "douban": "reported",
+    "imdb": "verified",
+    "rt": "verified",
+    "mc": "not-published",
+    "lb": "verified"
+   },
+   "screeningArchive": {
+    "date": "2026-07-18",
+    "year": 2026,
+    "d": "7/18",
+    "t": "19:30",
+    "v": "hz-mixc-imax",
+    "h": "imax",
+    "format": "IMAX",
+    "kind": "user-assigned",
+    "actualVerified": false
+   },
+   "screeningNotes": {
+    "7/18-19:30-hz-mixc-imax-imax-archive-all-wishes-come-true": "用户指定存档场次 · 日期采用2026年内地公映日；影院、影厅和19:30为用户指定，非核实历史排片。"
    }
   },
   {
@@ -1516,11 +1634,11 @@
    "dirO": "Wen Muye",
    "dirLife": "中国导演",
    "r": [
+    8.7,
+    8.3,
+    100,
     null,
-    null,
-    null,
-    null,
-    null
+    3.99
    ],
    "syn": "为偿还债务、养活家人，厨师徐福远赴中东，在“龙餐馆”掌勺，并与大堂经理马俊生一起经营生意。熟悉的中国味道吸引各方食客，一顿饭让来自不同地方的人短暂放下隔阂。\n\n战事突然改变城市的秩序，也改变餐馆的命运。徐福与伙伴们必须在生存压力下作出选择：如何守住这处避难之所，如何照顾无依无靠的孩子，又如何在失去安全感的地方继续好好吃饭、好好生活。",
    "bio": "文牧野毕业于北京电影学院导演系，执导《我不是药神》《奇迹·笨小孩》，常把普通人的谋生、家庭责任与更大的社会处境联系起来。《欢迎来龙餐馆》延续小人物视角，同时将叙事置于战争与跨文化生活中。",
@@ -1571,6 +1689,32 @@
     "kind": "mainland-theatrical-release",
     "dateOnly": true,
     "note": "仅记录内地公映日期，不是影院实际场次；未核实开场时刻、影院或影厅。"
+   },
+   "links": {
+    "imdb": "tt34386754",
+    "lb": "once-upon-a-time-in-the-middle-east"
+   },
+   "ratingsChecked": "2026-11-10",
+   "ratingStatus": {
+    "douban": "reported",
+    "imdb": "verified",
+    "rt": "verified",
+    "mc": "not-published",
+    "lb": "verified"
+   },
+   "screeningArchive": {
+    "date": "2026-08-11",
+    "year": 2026,
+    "d": "8/11",
+    "t": "19:30",
+    "v": "hz-mixc-imax",
+    "h": "imax",
+    "format": "IMAX",
+    "kind": "user-assigned",
+    "actualVerified": false
+   },
+   "screeningNotes": {
+    "8/11-19:30-hz-mixc-imax-imax-archive-once-upon-a-time-in-the-middle-east": "用户指定存档场次 · 日期采用2026年内地公映日；影院、影厅和19:30为用户指定，非核实历史排片。"
    }
   },
   {
@@ -1588,10 +1732,10 @@
    "dirLife": "1965– · 美国",
    "r": [
     9.3,
-    null,
+    8.4,
     95,
-    null,
-    null
+    95,
+    4.25
    ],
    "syn": "人类离开垃圾遍布的地球后，清理机器人瓦力仍按程序每天压缩垃圾。他也悄悄培养出自己的爱好：收藏旧物、反复观看歌舞片，试着理解那些已经消失的人的生活。\n\n探测机器人伊娃降临，让瓦力第一次遇到真正想靠近的伙伴。一次与植物有关的发现把他们带上太空，也将仍生活在巨大飞船上的人类推向抉择：继续依赖既定程序，还是重新学习照顾彼此和赖以生存的星球。",
    "bio": "安德鲁·斯坦顿是皮克斯编剧、导演，参与《玩具总动员》的创作，并执导《海底总动员》《海底总动员2》。他在本片中用动作、停顿、凝视与声音塑造机器人性格，让爱情叙事与环境寓言彼此支撑。",
@@ -1632,7 +1776,7 @@
    "links": {
     "douban": "2131459",
     "imdb": "tt0910970",
-    "lb": "wall-e"
+    "lb": "walle"
    },
    "contentReview": {
     "status": "synopsis-reviewed",
@@ -1655,6 +1799,28 @@
     "kind": "mainland-theatrical-release",
     "dateOnly": true,
     "note": "仅记录内地公映日期，不是影院实际场次；未核实开场时刻、影院或影厅。"
+   },
+   "ratingsChecked": "2026-11-10",
+   "ratingStatus": {
+    "douban": "verified",
+    "imdb": "verified",
+    "rt": "verified",
+    "mc": "verified",
+    "lb": "verified"
+   },
+   "screeningArchive": {
+    "date": "2026-08-19",
+    "year": 2026,
+    "d": "8/19",
+    "t": "19:30",
+    "v": "hz-xgjy-raffles",
+    "h": "hall-4",
+    "format": "2D",
+    "kind": "user-assigned",
+    "actualVerified": false
+   },
+   "screeningNotes": {
+    "8/19-19:30-hz-xgjy-raffles-hall-4-archive-wall-e": "用户指定存档场次 · 日期采用2026年内地公映日；影院、影厅和19:30为用户指定，非核实历史排片。"
    }
   },
   {
@@ -1673,9 +1839,9 @@
    "r": [
     7.6,
     7.8,
-    94,
+    93,
     77,
-    null
+    4.05
    ],
    "syn": "贝尔一直不敢向同事妮基坦白自己的感情。他从杂货店买到一件看似廉价的许愿物，希望妮基也能爱上自己，没想到这个愿望真的开始兑现。\n\n最初像爱情捷径的奇迹，很快变成令人不安的依赖与控制。贝尔、妮基以及身边的朋友被卷入无法轻易收回的承诺；当“得到想要的人”与对方的意愿发生冲突，浪漫想象露出了危险的另一面。",
    "bio": "柯里·巴克兼任导演、编剧和剪辑，曾与库珀·汤姆林森合作网络喜剧That’s a Bad Idea，并创作恐怖长片《Milk & Serial》。他将对尴尬社交和人物心理的观察带入恐怖创作，《痴迷》并非其第一部长片。",
@@ -1726,7 +1892,9 @@
    },
    "version": "",
    "links": {
-    "imdb": "tt37287335"
+    "imdb": "tt37287335",
+    "lb": "obsession-2025",
+    "douban": "37450627"
    },
    "ratingChecked": "2026-11-10",
    "releaseArchive": {
@@ -1734,6 +1902,28 @@
     "kind": "mainland-theatrical-release",
     "dateOnly": true,
     "note": "仅记录内地公映日期，不是影院实际场次；未核实开场时刻、影院或影厅。"
+   },
+   "ratingsChecked": "2026-11-10",
+   "ratingStatus": {
+    "douban": "reported",
+    "imdb": "verified",
+    "rt": "verified",
+    "mc": "verified",
+    "lb": "verified"
+   },
+   "screeningArchive": {
+    "date": "2026-07-24",
+    "year": 2026,
+    "d": "7/24",
+    "t": "19:30",
+    "v": "hz-xgjy-raffles",
+    "h": "hall-4",
+    "format": "2D",
+    "kind": "user-assigned",
+    "actualVerified": false
+   },
+   "screeningNotes": {
+    "7/24-19:30-hz-xgjy-raffles-hall-4-archive-obsession": "用户指定存档场次 · 日期采用2026年内地公映日；影院、影厅和19:30为用户指定，非核实历史排片。"
    }
   },
   {
@@ -1750,10 +1940,10 @@
    "dirLife": "中国导演",
    "r": [
     7.2,
+    6.9,
     null,
     null,
-    null,
-    null
+    3.31
    ],
    "syn": "20世纪90年代，万梓强来到香港，希望以最快的方式改写自己的命运。他与空姐骆嘉苑相识后联手作案，劫来的财富似乎证明了冒险值得，却也将二人推向更危险的犯罪与利益关系。\n\n富商陈辉延被卷入角力，内地警察亓宏刚与香港警察关苏辰坚持追查。一次次侥幸逃脱让万梓强更加相信自己能够掌控命运，而围捕、欲望与不断升级的风险，正在收紧他自以为可以突破的边界。",
    "bio": "韩延长期关注疾病、生死与家庭中的普通人，导演作品包括《滚蛋吧！肿瘤君》《送你一朵小红花》《我爱你！》《我们一起摇太阳》。《空枪》转向犯罪类型，但仍以人物的欲望、执念及其付出的代价为叙事核心。",
@@ -1797,23 +1987,47 @@
    "poster": "posters/empty-gun.jpg",
    "ended": true,
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
+    "status": "verified",
+    "date": "2026-08-19",
     "festival": null,
     "festivalEn": null,
-    "kind": "unknown",
+    "kind": "theatrical",
     "checked": "2026-11-10"
    },
    "version": "",
    "o": "V",
    "links": {
-    "imdb": "tt38775487"
+    "imdb": "tt38775487",
+    "lb": "v-2026",
+    "douban": "37508847"
    },
    "releaseArchive": {
     "date": "2026-08-19",
     "kind": "mainland-theatrical-release",
     "dateOnly": true,
     "note": "仅记录内地公映日期，不是影院实际场次；未核实开场时刻、影院或影厅。"
+   },
+   "ratingsChecked": "2026-11-10",
+   "ratingStatus": {
+    "douban": "reported",
+    "imdb": "verified",
+    "rt": "unverified",
+    "mc": "unverified",
+    "lb": "verified"
+   },
+   "screeningArchive": {
+    "date": "2026-08-19",
+    "year": 2026,
+    "d": "8/19",
+    "t": "19:30",
+    "v": "hz-xgjy-raffles",
+    "h": "hall-4",
+    "format": "2D",
+    "kind": "user-assigned",
+    "actualVerified": false
+   },
+   "screeningNotes": {
+    "8/19-19:30-hz-xgjy-raffles-hall-4-archive-empty-gun": "用户指定存档场次 · 日期采用2026年内地公映日；影院、影厅和19:30为用户指定，非核实历史排片。"
    }
   },
   {
@@ -1831,10 +2045,10 @@
    "dirLife": "英国导演",
    "r": [
     8.5,
+    6.9,
+    80,
     null,
-    null,
-    null,
-    null
+    3.34
    ],
    "syn": "单亲母亲杰丝与朋友们乘帆船出海，一场突如其来的风暴让船倾覆。众人发现附近漂来一艘巨大的邮轮，登船后却找不到乘客与船员，整艘船仿佛被时间遗弃。\n\n杰丝对船上的走廊和房间产生强烈的似曾相识感，随之而来的却是追杀与死亡。她试图阻止眼前发生的事，寻找离开这里的方法，但每一次选择都会让熟悉的场景出现新的意义。影片将海上遇险逐渐转成关于记忆、责任与循环的心理惊悚。",
    "bio": "克里斯托弗·史密斯是英国类型片导演、编剧，先后以《地铁惊魂》《断头气》探索封闭空间恐怖和黑色喜剧。《恐怖游轮》由他自编自导，把海上遇险与心理悬疑结合；后来又执导《黑死病》等作品。",
@@ -1896,6 +2110,28 @@
     "kind": "mainland-theatrical-release",
     "dateOnly": true,
     "note": "仅记录内地公映日期，不是影院实际场次；未核实开场时刻、影院或影厅。"
+   },
+   "ratingsChecked": "2026-11-10",
+   "ratingStatus": {
+    "douban": "verified",
+    "imdb": "verified",
+    "rt": "verified",
+    "mc": "unverified",
+    "lb": "verified"
+   },
+   "screeningArchive": {
+    "date": "2026-07-17",
+    "year": 2026,
+    "d": "7/17",
+    "t": "19:30",
+    "v": "hz-xgjy-raffles",
+    "h": "hall-4",
+    "format": "2D",
+    "kind": "user-assigned",
+    "actualVerified": false
+   },
+   "screeningNotes": {
+    "7/17-19:30-hz-xgjy-raffles-hall-4-archive-triangle": "用户指定存档场次 · 日期采用2026年内地公映日；影院、影厅和19:30为用户指定，非核实历史排片。"
    }
   },
   {
@@ -1911,11 +2147,11 @@
    "dirO": "Stephen Chow / Lam Tze-chung",
    "dirLife": "1962– · 中国香港",
    "r": [
+    5.9,
+    5.2,
+    22,
     null,
-    null,
-    null,
-    null,
-    null
+    2.72
    ],
    "syn": "不被看好的峨眉队决定参加“至尊无敌杯”。队长双双、前锋钰珑与师叔公徐风尝试把武术融入足球，让缺乏资源的队员找到属于自己的打法。\n\n实力、信心与团队关系都要重新建立；她们面对的既有球场上的强敌，也有别人对女性和草根队伍的成见。在训练、挫败与重新上场之间，这群队员必须先学会相信彼此，才有机会把看似不可能的配合踢出来。",
    "bio": "周星驰从演员转向编导，代表作包括《喜剧之王》《少林足球》《功夫》《美人鱼》。他的喜剧常从被轻视的小人物出发，把夸张动作、无厘头语言与认真追梦的情绪并置。本片把功夫足球的类型组合转到女子球队。",
@@ -1936,7 +2172,7 @@
     "剧情"
    ],
    "language": "普通话 / 粤语",
-   "medium": "2D",
+   "medium": "2D / IMAX",
    "highlights": [
     "看武术动作如何被转译为传球、对抗和团队配合。",
     "球队的信任关系是运动喜剧的另一条主线。",
@@ -1970,6 +2206,32 @@
     "kind": "mainland-theatrical-release",
     "dateOnly": true,
     "note": "仅记录内地公映日期，不是影院实际场次；未核实开场时刻、影院或影厅。"
+   },
+   "links": {
+    "imdb": "tt36103784",
+    "lb": "kung-fu-soccer"
+   },
+   "ratingsChecked": "2026-11-10",
+   "ratingStatus": {
+    "douban": "reported",
+    "imdb": "verified",
+    "rt": "verified",
+    "mc": "not-published",
+    "lb": "verified"
+   },
+   "screeningArchive": {
+    "date": "2026-07-11",
+    "year": 2026,
+    "d": "7/11",
+    "t": "19:30",
+    "v": "hz-mixc-imax",
+    "h": "imax",
+    "format": "IMAX",
+    "kind": "user-assigned",
+    "actualVerified": false
+   },
+   "screeningNotes": {
+    "7/11-19:30-hz-mixc-imax-imax-archive-kung-fu-soccer": "用户指定存档场次 · 日期采用2026年内地公映日；影院、影厅和19:30为用户指定，非核实历史排片。"
    }
   },
   {
@@ -1985,8 +2247,8 @@
    "dirO": "Xie Junwei",
    "dirLife": "中国导演",
    "r": [
-    8.1,
-    null,
+    8.0,
+    7.4,
     null,
     null,
     null
@@ -2007,7 +2269,7 @@
     "战争"
    ],
    "language": "普通话",
-   "medium": "2D",
+   "medium": "2D / IMAX",
    "highlights": [
     "从曹操与袁绍的合作及分歧理解人物，而不只按后世成败判断。",
     "洛阳既是城市空间，也是权力秩序崩塌的中心。",
@@ -2029,12 +2291,14 @@
    "poster": "posters/three-kingdoms-luoyang.jpg",
    "ended": true,
    "worldPremiere": {
-    "status": "pending",
-    "date": null,
+    "status": "partial",
+    "date": "2026-06-27",
     "festival": null,
     "festivalEn": null,
-    "kind": "unknown",
-    "checked": "2026-11-10"
+    "kind": "theatrical",
+    "checked": "2026-11-10",
+    "dateNote": "最早已核实公开点映；6月26日洛阳活动是否实际放映仍待核实",
+    "dateNoteEn": "Earliest confirmed public preview; whether the announced June 26 Luoyang event screened the film remains unverified"
    },
    "version": "",
    "min": 137,
@@ -2043,6 +2307,32 @@
     "kind": "mainland-theatrical-release",
     "dateOnly": true,
     "note": "仅记录内地公映日期，不是影院实际场次；未核实开场时刻、影院或影厅。"
+   },
+   "links": {
+    "imdb": "tt43515124",
+    "lb": "three-kingdoms-the-beginning"
+   },
+   "ratingsChecked": "2026-11-10",
+   "ratingStatus": {
+    "douban": "reported",
+    "imdb": "verified",
+    "rt": "unverified",
+    "mc": "unverified",
+    "lb": "not-published"
+   },
+   "screeningArchive": {
+    "date": "2026-07-10",
+    "year": 2026,
+    "d": "7/10",
+    "t": "19:30",
+    "v": "hz-mixc-imax",
+    "h": "imax",
+    "format": "IMAX",
+    "kind": "user-assigned",
+    "actualVerified": false
+   },
+   "screeningNotes": {
+    "7/10-19:30-hz-mixc-imax-imax-archive-three-kingdoms-luoyang": "用户指定存档场次 · 日期采用2026年内地公映日；影院、影厅和19:30为用户指定，非核实历史排片。"
    }
   },
   {
@@ -2061,9 +2351,9 @@
    "r": [
     8.0,
     7.3,
-    93,
-    72,
-    null
+    92,
+    73,
+    3.61
    ],
    "syn": "邦妮渐渐长大，一台名叫Lilypad的智能平板来到她的房间，迅速吸引她的注意。杰西、巴斯光年和其他玩具发现，争取游戏时间的对手不再是另一件普通玩具，而是能替孩子安排互动的电子设备。\n\n杰西试着帮助邦妮重新建立与现实伙伴的关系，却与红心一同离队。接到求助的胡迪回到熟悉的房间，与巴斯再次合作寻找朋友，也重新思考：当孩子的生活发生变化，玩具究竟还能怎样陪伴她。",
    "bio": "安德鲁·斯坦顿参与皮克斯早期《玩具总动员》的故事创作，执导《海底总动员》《机器人总动员》，本片回归该系列担任导演。联合导演麦肯娜·哈里斯参与角色与故事创作，两人把“玩具遇上科技”作为新篇章的核心。",
@@ -2086,7 +2376,7 @@
     "奇幻"
    ],
    "language": "英语",
-   "medium": "2D",
+   "medium": "2D / IMAX",
    "highlights": [
     "杰西承担更核心的行动线，观察她与邦妮之间的陪伴关系。",
     "智能平板不是普通的新玩具，它改变的是孩子使用时间的方式。",
@@ -2117,7 +2407,8 @@
    "version": "",
    "min": 102,
    "links": {
-    "imdb": "tt29355505"
+    "imdb": "tt29355505",
+    "lb": "toy-story-5"
    },
    "ratingChecked": "2026-11-10",
    "releaseArchive": {
@@ -2125,6 +2416,28 @@
     "kind": "mainland-theatrical-release",
     "dateOnly": true,
     "note": "仅记录内地公映日期，不是影院实际场次；未核实开场时刻、影院或影厅。"
+   },
+   "ratingsChecked": "2026-11-10",
+   "ratingStatus": {
+    "douban": "reported",
+    "imdb": "verified",
+    "rt": "verified",
+    "mc": "verified",
+    "lb": "verified"
+   },
+   "screeningArchive": {
+    "date": "2026-06-19",
+    "year": 2026,
+    "d": "6/19",
+    "t": "19:30",
+    "v": "hz-mixc-imax",
+    "h": "imax",
+    "format": "IMAX",
+    "kind": "user-assigned",
+    "actualVerified": false
+   },
+   "screeningNotes": {
+    "6/19-19:30-hz-mixc-imax-imax-archive-toy-story-5": "用户指定存档场次 · 日期采用2026年内地公映日；影院、影厅和19:30为用户指定，非核实历史排片。"
    }
   },
   {
@@ -2142,10 +2455,10 @@
    "dirLife": "日本导演、动作导演",
    "r": [
     8.5,
-    null,
-    100,
-    null,
-    null
+    7.2,
+    97,
+    85,
+    3.81
    ],
    "syn": "女儿遭人拐走后，一名平凡的手艺人王伟发现，正常求助并未让孩子回到身边。他循线追踪，与同样背负伤痛的记者纳文结成联盟，闯入人口贩运网络。\n\n两人没有体面的退路，线索通向的每个空间都可能变成战场。从街巷、室内到层层设防的据点，他们只能靠身体、环境与临场判断，一次次接近被夺走的人；救女行动也让两人承受各自选择的代价。",
    "bio": "谷垣健治是长期往返日本与香港动作电影的导演、动作指导，参与《浪客剑心》系列、《一个人的武林》《九龙城寨之围城》等作品。他擅长把近身搏斗与空间、道具结合；本片汇聚不同地区的动作演员，由江志强监制。",
@@ -2192,8 +2505,8 @@
    "poster": "posters/the-furious.jpg",
    "ended": true,
    "worldPremiere": {
-    "status": "partial",
-    "date": "2025-09",
+    "status": "verified",
+    "date": "2025-09-06",
     "festival": "多伦多国际电影节",
     "festivalEn": "Toronto International Film Festival",
     "kind": "festival",
@@ -2201,13 +2514,36 @@
    },
    "version": "",
    "links": {
-    "imdb": "tt33311069"
+    "imdb": "tt33311069",
+    "lb": "the-furious"
    },
    "releaseArchive": {
     "date": "2026-06-11",
     "kind": "mainland-theatrical-release",
     "dateOnly": true,
     "note": "仅记录内地公映日期，不是影院实际场次；未核实开场时刻、影院或影厅。"
+   },
+   "ratingsChecked": "2026-11-10",
+   "ratingStatus": {
+    "douban": "reported",
+    "imdb": "verified",
+    "rt": "verified",
+    "mc": "verified",
+    "lb": "verified"
+   },
+   "screeningArchive": {
+    "date": "2026-06-11",
+    "year": 2026,
+    "d": "6/11",
+    "t": "19:30",
+    "v": "hz-xgjy-raffles",
+    "h": "hall-4",
+    "format": "2D",
+    "kind": "user-assigned",
+    "actualVerified": false
+   },
+   "screeningNotes": {
+    "6/11-19:30-hz-xgjy-raffles-hall-4-archive-the-furious": "用户指定存档场次 · 日期采用2026年内地公映日；影院、影厅和19:30为用户指定，非核实历史排片。"
    }
   },
   {
@@ -2227,8 +2563,8 @@
     8.7,
     8.4,
     93,
-    null,
-    null
+    83,
+    4.18
    ],
    "syn": "伦纳德在一次袭击后无法形成新的长期记忆。他相信妻子死于那场袭击，决心寻找凶手，却不能依靠昨天的经验判断今天遇见的人，只能不断给自己留下拍立得照片、纸条和纹身。\n\n泰迪和娜塔莉分别向他提供帮助，也各自掌握他无法轻易核实的信息。追查每推进一步，他都必须重新决定哪些记录可信、哪些人值得相信。黑白与彩色交错的结构让观众和他一起失去上下文，渐渐看到记忆与自我解释之间的缝隙。",
    "bio": "克里斯托弗·诺兰是英美导演、编剧，早期以低成本黑白长片《追随》探索身份与观看，《记忆碎片》进一步确立其时间结构与主观叙事的创作方向。之后执导《致命魔术》《盗梦空间》《敦刻尔克》《奥本海默》等作品。",
@@ -2290,6 +2626,28 @@
     "kind": "mainland-theatrical-release",
     "dateOnly": true,
     "note": "仅记录内地公映日期，不是影院实际场次；未核实开场时刻、影院或影厅。"
+   },
+   "ratingsChecked": "2026-11-10",
+   "ratingStatus": {
+    "douban": "verified",
+    "imdb": "verified",
+    "rt": "verified",
+    "mc": "verified",
+    "lb": "verified"
+   },
+   "screeningArchive": {
+    "date": "2026-05-29",
+    "year": 2026,
+    "d": "5/29",
+    "t": "19:30",
+    "v": "hz-mixc-imax",
+    "h": "imax",
+    "format": "IMAX",
+    "kind": "user-assigned",
+    "actualVerified": false
+   },
+   "screeningNotes": {
+    "5/29-19:30-hz-mixc-imax-imax-archive-memento": "用户指定存档场次 · 日期采用2026年内地公映日；影院、影厅和19:30为用户指定，非核实历史排片。"
    }
   },
   {
@@ -2306,11 +2664,11 @@
    "dirO": "Ho Cheuk Tin",
    "dirLife": "中国香港导演",
    "r": [
-    null,
+    7.6,
     7.5,
     null,
     null,
-    null
+    3.69
    ],
    "syn": "阮永年与妻子经营茶餐厅，原本平凡的一家人，因为儿子的一次暴力行为骤然破碎。妻子和女儿遇害后，他独自守着生意与家中留下的物件，同时等待被送往精神病治疗机构的儿子。\n\n想念、愤怒、内疚与父亲的责任无法轻易分开。他要面对街坊的关心和议论，也必须面对自己仍想与儿子建立联系的心情。过去一家相处的片段不断回到当下，使故事不止于惨案本身，而是追问留下的人如何继续度过每一天。",
    "bio": "翁子光是香港编剧、导演，曾从事影评及编剧工作，导演作品有《踏血寻梅》《风再起时》等。他常从社会案件中的人物关系和城市生活切入，而不是只将案件作为破案谜题。《爸爸》继续关注创伤发生之后仍要生活的人。",
@@ -2365,7 +2723,9 @@
    "version": "",
    "min": 131,
    "links": {
-    "imdb": "tt33499985"
+    "imdb": "tt33499985",
+    "lb": "papa-2024",
+    "douban": "36315000"
    },
    "ratingChecked": "2026-11-10",
    "releaseArchive": {
@@ -2373,6 +2733,28 @@
     "kind": "mainland-theatrical-release",
     "dateOnly": true,
     "note": "仅记录内地公映日期，不是影院实际场次；未核实开场时刻、影院或影厅。"
+   },
+   "ratingsChecked": "2026-11-10",
+   "ratingStatus": {
+    "douban": "reported",
+    "imdb": "verified",
+    "rt": "not-published",
+    "mc": "unverified",
+    "lb": "verified"
+   },
+   "screeningArchive": {
+    "date": "2026-06-27",
+    "year": 2026,
+    "d": "6/27",
+    "t": "19:30",
+    "v": "hz-xgjy-raffles",
+    "h": "hall-4",
+    "format": "2D",
+    "kind": "user-assigned",
+    "actualVerified": false
+   },
+   "screeningNotes": {
+    "6/27-19:30-hz-xgjy-raffles-hall-4-archive-papa": "用户指定存档场次 · 日期采用2026年内地公映日；影院、影厅和19:30为用户指定，非核实历史排片。"
    }
   },
   {
@@ -2389,11 +2771,11 @@
    "dirO": "Anthony Maras",
    "dirLife": "澳大利亚导演",
    "r": [
-    null,
+    8.2,
     7.3,
-    null,
+    90,
     69,
-    null
+    3.54
    ],
    "syn": "1944年，诺曼底登陆迫在眉睫，盟军必须在潮汐、月光和天气之间寻找一个极其有限的作战窗口。气象学家詹姆斯·斯塔格发现风暴正在逼近，他的预测与其他顾问的判断发生冲突。\n\n最高指挥官艾森豪威尔承担着发动或推迟行动的责任；数以万计士兵的命运取决于那些尚不完全确定的数据。影片把视线留在登陆前的72小时，观察科学判断如何面对军事压力，也观察人怎样在没有绝对把握时作出决定。",
    "bio": "安东尼·马拉斯是澳大利亚导演、编剧，以短片创作起步，执导过取材真实事件的《孟买酒店》。他擅长在时间紧迫与封闭环境中组织多方人物，本片与舞台剧作者大卫·海格共同编剧，聚焦战前决策而非单纯战场奇观。",
@@ -2447,7 +2829,8 @@
    "version": "",
    "min": 110,
    "links": {
-    "imdb": "tt32547691"
+    "imdb": "tt32547691",
+    "lb": "pressure-2026"
    },
    "ratingChecked": "2026-11-10",
    "releaseArchive": {
@@ -2455,6 +2838,28 @@
     "kind": "mainland-theatrical-release",
     "dateOnly": true,
     "note": "仅记录内地公映日期，不是影院实际场次；未核实开场时刻、影院或影厅。"
+   },
+   "ratingsChecked": "2026-11-10",
+   "ratingStatus": {
+    "douban": "reported",
+    "imdb": "verified",
+    "rt": "verified",
+    "mc": "verified",
+    "lb": "verified"
+   },
+   "screeningArchive": {
+    "date": "2026-06-06",
+    "year": 2026,
+    "d": "6/6",
+    "t": "19:30",
+    "v": "hz-xgjy-raffles",
+    "h": "hall-4",
+    "format": "2D",
+    "kind": "user-assigned",
+    "actualVerified": false
+   },
+   "screeningNotes": {
+    "6/6-19:30-hz-xgjy-raffles-hall-4-archive-pressure": "用户指定存档场次 · 日期采用2026年内地公映日；影院、影厅和19:30为用户指定，非核实历史排片。"
    }
   },
   {
@@ -2471,11 +2876,11 @@
    "dirO": "Steven Spielberg",
    "dirLife": "1946– · 美国",
    "r": [
-    null,
     6.4,
-    90,
+    6.4,
+    79,
     74,
-    null
+    3.01
    ],
    "syn": "如果有人能够证明，人类并不孤独，这个证据会带来安慰，还是恐惧？一次异常事件与逐渐浮现的线索，使不同生活背景的人被卷入关于外星文明存在的秘密。\n\n真相不再只属于少数掌握信息的人；有人希望揭开它，也有人试图让它永远不被公开。当个人经验成为全世界必须面对的事实，日常生活、权力和信任都开始改变，八十亿人将共同迎来一个无法回避的“揭秘日”。",
    "bio": "史蒂文·斯皮尔伯格执导《第三类接触》《E.T.外星人》《侏罗纪公园》《世界大战》等作品，长期以普通人的视角进入科幻奇观。本片故事由他构思，大卫·柯普编剧；两人此前曾在《侏罗纪公园》《世界大战》等项目合作。",
@@ -2497,7 +2902,7 @@
     "悬疑"
    ],
    "language": "英语",
-   "medium": "2D",
+   "medium": "2D / IMAX",
    "highlights": [
     "外星文明的证据如何改变普通人的感受，是进入故事的角度。",
     "观察信息在不同人物之间怎样被控制、传递和相信。",
@@ -2527,7 +2932,8 @@
    },
    "version": "",
    "links": {
-    "imdb": "tt15047880"
+    "imdb": "tt15047880",
+    "lb": "disclosure-day"
    },
    "ratingChecked": "2026-11-10",
    "releaseArchive": {
@@ -2535,6 +2941,28 @@
     "kind": "mainland-theatrical-release",
     "dateOnly": true,
     "note": "仅记录内地公映日期，不是影院实际场次；未核实开场时刻、影院或影厅。"
+   },
+   "ratingsChecked": "2026-11-10",
+   "ratingStatus": {
+    "douban": "reported",
+    "imdb": "verified",
+    "rt": "verified",
+    "mc": "verified",
+    "lb": "verified"
+   },
+   "screeningArchive": {
+    "date": "2026-06-12",
+    "year": 2026,
+    "d": "6/12",
+    "t": "19:30",
+    "v": "hz-mixc-imax",
+    "h": "imax",
+    "format": "IMAX",
+    "kind": "user-assigned",
+    "actualVerified": false
+   },
+   "screeningNotes": {
+    "6/12-19:30-hz-mixc-imax-imax-archive-disclosure-day": "用户指定存档场次 · 日期采用2026年内地公映日；影院、影厅和19:30为用户指定，非核实历史排片。"
    }
   },
   {
@@ -2551,11 +2979,11 @@
    "dirO": "Kane Parsons",
    "dirLife": "美国导演",
    "r": [
-    null,
-    null,
-    87,
-    null,
-    null
+    6.7,
+    6.7,
+    85,
+    76,
+    3.3
    ],
    "syn": "一家家具展示厅的地下室出现了一扇奇怪的门。门后不是正常的房间，而是仿佛没有尽头的室内网络：陈旧的墙面、重复的空间和无法信赖的出口，让人逐渐失去方向。\n\n当有人越过现实的边界，寻找与救援也必须进入这个陌生维度。熟悉的装潢变得不再安全，人与空间的关系发生变化；真正令人不安的，是你无法确认下一间房与上一间究竟有什么区别。",
    "bio": "凯恩·帕森斯以Kane Pixels之名发布网络影像，凭《后室》系列将“阈限空间”的视觉恐惧带给广泛观众。本片是他的长片导演作品，由威尔·苏迪克编剧，将互联网短片的空间体验转化为有演员和人物关系的院线叙事。",
@@ -2607,13 +3035,36 @@
    },
    "version": "",
    "links": {
-    "imdb": "tt26657236"
+    "imdb": "tt26657236",
+    "lb": "backrooms-2026"
    },
    "releaseArchive": {
     "date": "2026-06-26",
     "kind": "mainland-theatrical-release",
     "dateOnly": true,
     "note": "仅记录内地公映日期，不是影院实际场次；未核实开场时刻、影院或影厅。"
+   },
+   "ratingsChecked": "2026-11-10",
+   "ratingStatus": {
+    "douban": "reported",
+    "imdb": "verified",
+    "rt": "verified",
+    "mc": "verified",
+    "lb": "verified"
+   },
+   "screeningArchive": {
+    "date": "2026-06-26",
+    "year": 2026,
+    "d": "6/26",
+    "t": "19:30",
+    "v": "hz-xgjy-raffles",
+    "h": "hall-4",
+    "format": "2D",
+    "kind": "user-assigned",
+    "actualVerified": false
+   },
+   "screeningNotes": {
+    "6/26-19:30-hz-xgjy-raffles-hall-4-archive-the-backrooms": "用户指定存档场次 · 日期采用2026年内地公映日；影院、影厅和19:30为用户指定，非核实历史排片。"
    }
   },
   {
@@ -2655,11 +3106,11 @@
    ],
    "language": "普通话",
    "r": [
+    6.6,
+    6.0,
     null,
-    6.1,
     null,
-    null,
-    null
+    3.27
    ],
    "poster": "posters/no-other-love.jpg",
    "version": "",
@@ -2705,6 +3156,28 @@
     "kind": "mainland-theatrical-release",
     "dateOnly": true,
     "note": "仅记录内地公映日期，不是影院实际场次；未核实开场时刻、影院或影厅。"
+   },
+   "ratingsChecked": "2026-11-10",
+   "ratingStatus": {
+    "douban": "reported",
+    "imdb": "verified",
+    "rt": "unverified",
+    "mc": "unverified",
+    "lb": "verified"
+   },
+   "screeningArchive": {
+    "date": "2026-03-28",
+    "year": 2026,
+    "d": "3/28",
+    "t": "19:30",
+    "v": "hz-xgjy-raffles",
+    "h": "hall-4",
+    "format": "2D",
+    "kind": "user-assigned",
+    "actualVerified": false
+   },
+   "screeningNotes": {
+    "3/28-19:30-hz-xgjy-raffles-hall-4-archive-no-other-love": "用户指定存档场次 · 日期采用2026年内地公映日；影院、影厅和19:30为用户指定，非核实历史排片。"
    }
   },
   {
@@ -2738,11 +3211,11 @@
    ],
    "language": "英语",
    "r": [
-    null,
+    8.6,
     8.2,
     95,
     77,
-    null
+    4.31
    ],
    "poster": "posters/project-hail-mary.jpg",
    "version": "",
@@ -2789,6 +3262,28 @@
     "kind": "mainland-theatrical-release",
     "dateOnly": true,
     "note": "仅记录内地公映日期，不是影院实际场次；未核实开场时刻、影院或影厅。"
+   },
+   "ratingsChecked": "2026-11-10",
+   "ratingStatus": {
+    "douban": "reported",
+    "imdb": "verified",
+    "rt": "verified",
+    "mc": "verified",
+    "lb": "verified"
+   },
+   "screeningArchive": {
+    "date": "2026-03-20",
+    "year": 2026,
+    "d": "3/20",
+    "t": "19:30",
+    "v": "hz-mixc-imax",
+    "h": "imax",
+    "format": "IMAX",
+    "kind": "user-assigned",
+    "actualVerified": false
+   },
+   "screeningNotes": {
+    "3/20-19:30-hz-mixc-imax-imax-archive-project-hail-mary": "用户指定存档场次 · 日期采用2026年内地公映日；影院、影厅和19:30为用户指定，非核实历史排片。"
    }
   }
  ],
@@ -2897,7 +3392,196 @@
    "legend-of-1900",
    "hz-mixc-yaao",
    "dolby"
-  ]
+  ],
+  {
+   "d": "8/28",
+   "t": "19:30",
+   "id": "shawshank-redemption",
+   "v": "hz-mixc-imax",
+   "h": "imax",
+   "year": 2026,
+   "archive": true
+  },
+  {
+   "d": "9/12",
+   "t": "19:30",
+   "id": "toddling-youths",
+   "v": "hz-xgjy-raffles",
+   "h": "hall-4",
+   "year": 2026,
+   "archive": true
+  },
+  {
+   "d": "7/29",
+   "t": "19:30",
+   "id": "spider-man-brand-new-day",
+   "v": "hz-mixc-imax",
+   "h": "imax",
+   "year": 2026,
+   "archive": true
+  },
+  {
+   "d": "9/5",
+   "t": "19:30",
+   "id": "the-great-skull",
+   "v": "hz-xgjy-raffles",
+   "h": "hall-4",
+   "year": 2026,
+   "archive": true
+  },
+  {
+   "d": "7/18",
+   "t": "19:30",
+   "id": "all-wishes-come-true",
+   "v": "hz-mixc-imax",
+   "h": "imax",
+   "year": 2026,
+   "archive": true
+  },
+  {
+   "d": "8/11",
+   "t": "19:30",
+   "id": "once-upon-a-time-in-the-middle-east",
+   "v": "hz-mixc-imax",
+   "h": "imax",
+   "year": 2026,
+   "archive": true
+  },
+  {
+   "d": "8/19",
+   "t": "19:30",
+   "id": "wall-e",
+   "v": "hz-xgjy-raffles",
+   "h": "hall-4",
+   "year": 2026,
+   "archive": true
+  },
+  {
+   "d": "7/24",
+   "t": "19:30",
+   "id": "obsession",
+   "v": "hz-xgjy-raffles",
+   "h": "hall-4",
+   "year": 2026,
+   "archive": true
+  },
+  {
+   "d": "8/19",
+   "t": "19:30",
+   "id": "empty-gun",
+   "v": "hz-xgjy-raffles",
+   "h": "hall-4",
+   "year": 2026,
+   "archive": true
+  },
+  {
+   "d": "7/17",
+   "t": "19:30",
+   "id": "triangle",
+   "v": "hz-xgjy-raffles",
+   "h": "hall-4",
+   "year": 2026,
+   "archive": true
+  },
+  {
+   "d": "7/11",
+   "t": "19:30",
+   "id": "kung-fu-soccer",
+   "v": "hz-mixc-imax",
+   "h": "imax",
+   "year": 2026,
+   "archive": true
+  },
+  {
+   "d": "7/10",
+   "t": "19:30",
+   "id": "three-kingdoms-luoyang",
+   "v": "hz-mixc-imax",
+   "h": "imax",
+   "year": 2026,
+   "archive": true
+  },
+  {
+   "d": "6/19",
+   "t": "19:30",
+   "id": "toy-story-5",
+   "v": "hz-mixc-imax",
+   "h": "imax",
+   "year": 2026,
+   "archive": true
+  },
+  {
+   "d": "6/11",
+   "t": "19:30",
+   "id": "the-furious",
+   "v": "hz-xgjy-raffles",
+   "h": "hall-4",
+   "year": 2026,
+   "archive": true
+  },
+  {
+   "d": "5/29",
+   "t": "19:30",
+   "id": "memento",
+   "v": "hz-mixc-imax",
+   "h": "imax",
+   "year": 2026,
+   "archive": true
+  },
+  {
+   "d": "6/27",
+   "t": "19:30",
+   "id": "papa",
+   "v": "hz-xgjy-raffles",
+   "h": "hall-4",
+   "year": 2026,
+   "archive": true
+  },
+  {
+   "d": "6/6",
+   "t": "19:30",
+   "id": "pressure",
+   "v": "hz-xgjy-raffles",
+   "h": "hall-4",
+   "year": 2026,
+   "archive": true
+  },
+  {
+   "d": "6/12",
+   "t": "19:30",
+   "id": "disclosure-day",
+   "v": "hz-mixc-imax",
+   "h": "imax",
+   "year": 2026,
+   "archive": true
+  },
+  {
+   "d": "6/26",
+   "t": "19:30",
+   "id": "the-backrooms",
+   "v": "hz-xgjy-raffles",
+   "h": "hall-4",
+   "year": 2026,
+   "archive": true
+  },
+  {
+   "d": "3/28",
+   "t": "19:30",
+   "id": "no-other-love",
+   "v": "hz-xgjy-raffles",
+   "h": "hall-4",
+   "year": 2026,
+   "archive": true
+  },
+  {
+   "d": "3/20",
+   "t": "19:30",
+   "id": "project-hail-mary",
+   "v": "hz-mixc-imax",
+   "h": "imax",
+   "year": 2026,
+   "archive": true
+  }
  ],
  "releaseArchives": [
   {
