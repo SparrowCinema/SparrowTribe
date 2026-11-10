@@ -7,6 +7,11 @@ function load(name){let definition;vm.runInNewContext(fs.readFileSync(path.join(
  Page:p=>definition=p,getApp:()=>app,require:n=>n.endsWith('/util.js')?U:n.endsWith('/library.js')?L:n.endsWith('/premiere.js')?P:n.endsWith('/plan.js')?{get:()=>picked,onChange:()=>()=>{}}:n.endsWith('/watched.js')?{all:()=>({}),onChange:()=>()=>{}}:{tr:x=>x,dict:()=>({}),isEn:()=>false},
  wx:{setNavigationBarTitle(){}}});return {...definition,data:JSON.parse(JSON.stringify(definition.data)),setData(o,done){Object.assign(this.data,o);if(done)done();}};}
 const programme=load('programme');programme.id='cinema-2026';programme.buildEvents=()=>{};programme.build();
+// Real release dates must be explicit-year dates, never fabricated 2027 screenings.
+const archives=JSON.parse(fs.readFileSync(path.join(root,'data/programmes/cinema-2026.json'))).releaseArchives;assert.equal(archives.length,21);
+for(const a of archives){const [y,m,d]=a.date.split('-').map(Number),s={d:m+'/'+d,t:'00:00',year:y};assert.equal(U.showDate(s).getFullYear(),y);assert(U.showDate(s)<new Date('2026-11-10'));assert.equal(a.dateOnly,true);}
+assert(!data.shows.some(s=>s.v==='cn-release-archive'),'unverified screenings must not enter the timetable');
+for(const id of ids){const f=data.films.find(f=>f.id===id);assert(f.releaseArchive.dateOnly);assert(P.rows(f,false).some(r=>r[0]==='内地公映日存档'&&r[1].includes('非影院实际场次')));}
 const films=load('films');films.onLoad();const cinema=films.data.secs.find(x=>x.id==='cinema-2026');assert(cinema);
 for(const id of ids){assert(programme.data.gone.some(f=>f.id===id),id+' must be archived on programme page');assert(!programme.data.films.some(f=>f.id===id),id+' must not be upcoming');assert(cinema.gone.some(f=>f.id===id),id+' must be archived in film catalogue');assert(!cinema.live.some(f=>f.id===id));}
 const detail=load('film');detail.buildMine=()=>{};detail.fitHero=()=>{};

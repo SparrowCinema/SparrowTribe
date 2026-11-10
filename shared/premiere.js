@@ -10,7 +10,9 @@
     if(p.status==='unannounced'){date=t('尚未公布','Not announced');festival=t('尚未公布','Not announced');}
     if(p.kind==='theatrical')festival=t('非影展首映','Non-festival premiere');
     if(p.kind==='collection'){date=t('按收录作品分别登记','Varies by included work');festival=t('按收录作品分别登记','Varies by included work');}
-    return [[t('全球首映时间','World premiere date'),date],[t('首映影展','Premiere festival'),festival]];
+    const out=[[t('全球首映时间','World premiere date'),date],[t('首映影展','Premiere festival'),festival]];
+    if(f.releaseArchive&&f.releaseArchive.date)out.push([t('内地公映日存档','Mainland release-date archive'),String(f.releaseArchive.date).replace(/-/g,'.')+t(' · 非影院实际场次，无具体开场时刻',' · Not an actual screening; no verified start time')]);
+    return out;
   }
   return {pending,rows};
 });

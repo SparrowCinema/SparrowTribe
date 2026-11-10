@@ -1,12 +1,12 @@
 const CFG = require('./cfg.js');
 const I = require('./i18n.js');
 const WK = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
-const year = d => (+d.split('/')[0] >= 10 ? 2026 : 2027);
+const year = (d, explicit) => Number.isInteger(+explicit) && +explicit >= 1888 && +explicit <= 2200 ? +explicit : (+d.split('/')[0] >= 10 ? 2026 : 2027);
 const wk = d => { const [m, dd] = d.split('/').map(Number); return I.tr(WK[new Date(year(d), m - 1, dd).getDay()]); };
 const toMin = t => { const [h, m] = t.split(':').map(Number); return h * 60 + m; };
 const fmt = m => String(Math.floor(m / 60)).padStart(2, '0') + ':' + String(m % 60).padStart(2, '0');
 const keyOf = s => `${s.d}-${s.t}-${s.v}-${s.h}`;
-const showDate = s => { const [m, d] = s.d.split('/').map(Number); const [h, mi] = s.t.split(':').map(Number); return new Date(year(s.d), m - 1, d, h, mi); };
+const showDate = s => { const [m, d] = s.d.split('/').map(Number); const [h, mi] = s.t.split(':').map(Number); return new Date(year(s.d, s.year), m - 1, d, h, mi); };
 const poster = f => f.posterUrl || ''; // 海报全部读网站，换图自动同步
 const ticket = f => f.ticketUrl || ''; // 购票码走网站在线图（离线时不显示），不再打进小程序包
 const durText = m => I.tr(m < 60 ? m + ' 分钟' : Math.floor(m / 60) + ' 小时' + (m % 60 ? ' ' + (m % 60) + ' 分' : ''));
