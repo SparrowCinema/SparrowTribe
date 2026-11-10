@@ -34,7 +34,7 @@
     <view wx:if="{{pfEmpty}}" class="pf-empty card"><text class="b">{{L.t(i,'这个专题还没有加入场次')}}</text><text class="muted small">{{L.t(i,'切换到「全部专题」，或去排片表挑选。')}}</text></view>
     <view wx:if="{{clash}}" class="conflict"><text class="b">{{clashTxt}}</text>{{L.t(i,'，已在日程中标红，移出其中一场即可。')}}</view>
     <view wx:for="{{days}}" wx:for-item="day" wx:key="d" class="day">
-      <view class="dh"><text class="dd mono">{{day.d}}</text><text class="dw">{{day.wk}}</text><text class="dr">{{day.cnt}} · {{day.range}}</text></view>
+      <view class="dh"><text class="dd mono">{{day.y}}/{{day.d}}</text><text class="dw">{{day.wk}}</text><text class="dr">{{day.cnt}} · {{day.range}}</text></view>
       <block wx:for="{{day.items}}" wx:key="key">
         <view wx:if="{{item.gap}}" class="gap {{item.gap.cls}}"><text>{{item.gap.txt}}</text><text wx:if="{{item.gap.mapName}}" class="gap-map" data-v="{{item.gap.mapName}}" bindtap="openMap">{{L.t(i,'地图')}} ›</text></view>
         <view class="it">
