@@ -1826,7 +1826,7 @@ const progGroupOrder = () => PROGRAMMES.slice().sort((x,y)=>(localProg(y)?1:0)-(
 function geoActiveCity(){return (GEO_CITY&&GEO_CITY.c)||"";}
 function localProg(p){const c=geoActiveCity();if(!c||progStatus(p)==="ended")return false;return p.city===c||SH.some(x=>x.p===p.id&&VN[x.v]&&VN[x.v].city===c&&!isPast(x));}
 function filmCardHTML(f, ns){
-  const sub = ns ? `<span class="nx">下一场 ${ns.d} ${wk(ns.d)} ${ns.t} · ${esc(vShort(VN[ns.v]))}</span>` : f.release ? `<span class="rel">${esc(f.release)}</span>` : "";
+  const sub = ns ? `<span class="nx">下一场 ${ns.d} ${wk(ns.d)} ${ns.t} · ${esc(vShort(VN[ns.v]))}</span>` : f.ended ? `<span class="rel">已下映</span>` : f.release ? `<span class="rel">${esc(f.release)}</span>` : "";
   return `<button class="fcard" data-film="${f.id}">
       ${slateHTML(f)}
       <span class="info"><b>${esc(f.cn)}${editionHTML(f)}</b><span class="o">${esc([LANG!=="en"&&f.cnDb&&f.cnDb!==f.cn?f.cnDb:"",f.en||f.o||""].filter(Boolean).join(" · "))}</span><span class="d">${[f.dir,f.c].filter(Boolean).map(esc).join(" · ")}</span>${f.language||f.subtitles?`<span class="film-language">${[f.language,f.subtitles].filter(Boolean).map(esc).join(" · ")}</span>`:""}${sub}${libraryBadges(f)}</span>
@@ -1957,7 +1957,7 @@ function detail(id){
       ${f.ev?"":ratingsHTML(f)}
       ${f.ev?"":extLinksHTML(f)}
       ${f.ev?"":myRateHTML(f)}
-      <section class="fd-block"><h3 class="fd-h">放映场次 <small id="fd-showcount">${shows.length?showCountText(f,shows):(f.ended&&!allShows.length?"已下映":"排片待公布")}</small></h3>${shows.length?showFilterHTML(f,shows)+`<div id="fd-showlist">${showListHTML(f,shows)}</div>`+pastShowsHTML(allShows,f,true):`<div class="fd-noshow"><b>${allShows.length?"本片场次已全部放映结束":(f.release?esc(f.release):"上映信息待公布")}</b><span>${allShows.length?(pastShowsHTML(allShows,f,false)?"":"已放映的场次不再显示在这里。"):(f.ended?"本片院线放映已结束，麻雀观影护照未收录具体场次。":"麻雀观影护照收录的场次公布后会更新到这里，也可以先在各影院售票平台查看。")}</span></div>`+pastShowsHTML(allShows,f,false)}</section>
+      <section class="fd-block"><h3 class="fd-h">放映场次 <small id="fd-showcount">${shows.length?showCountText(f,shows):(f.ended&&!allShows.length?"已下映":"排片待公布")}</small></h3>${shows.length?showFilterHTML(f,shows)+`<div id="fd-showlist">${showListHTML(f,shows)}</div>`+pastShowsHTML(allShows,f,true):`<div class="fd-noshow"><b>${allShows.length?"本片场次已全部放映结束":(f.ended?"已下映":f.release?esc(f.release):"上映信息待公布")}</b><span>${allShows.length?(pastShowsHTML(allShows,f,false)?"":"已放映的场次不再显示在这里。"):(f.ended?"本片院线放映已结束，麻雀观影护照未收录具体场次。":"麻雀观影护照收录的场次公布后会更新到这里，也可以先在各影院售票平台查看。")}</span></div>`+pastShowsHTML(allShows,f,false)}</section>
       ${f.ev?"":noticeHTML(f)}
       ${f.ev?"":qaPanelHTML(f)}
       ${giftsHTML(f)}
