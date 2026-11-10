@@ -52,7 +52,7 @@
   </view>
 
   <view class="sched-tools">
-    <view class="mine-only"><view class="mine-chip {{onlyMine?'on':''}}" hover-class="hv" bindtap="toggleMine"><view class="mc-i"><text>✓</text></view><text class="mc-t">{{L.t(i,'只看我的排片')}}</text><text class="mc-n mono">{{mineN}}</text></view></view>
+    <view class="mine-only"><view class="mine-chip {{onlyMine?'on':''}}" hover-class="hv" bindtap="toggleMine"><view class="mc-i"><text>✓</text></view><text class="mc-t">{{L.t(i,'只看我的排片')}}</text><text class="mc-n mono">{{mineN}}</text></view><view class="mine-chip geo-chip {{geoOn?'on':''}}" hover-class="hv" bindtap="locate"><text class="geo-pin">⌖</text><text class="mc-t">{{geoText}}</text></view></view>
     <view class="view-switch"><view class="{{view==='gantt'?'on':''}}" data-view="gantt" bindtap="setView" aria-role="button" aria-label="{{L.t(i,'时间轴')}}"><view class="grid-icon"><view/><view/><view/><view/></view></view><view class="{{view==='list'?'on':''}}" data-view="list" bindtap="setView" aria-role="button" aria-label="{{L.t(i,'清单')}}"><view class="list-icon"><view/><view/><view/></view></view></view>
   </view>
 

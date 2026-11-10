@@ -125,7 +125,7 @@ Page({
       dayList: dl.map(s => U.showView(s, idx, data, picked)),
       dayTitle: day ? t(day.replace('/', '月') + '日') + ' ' + U.wk(day) : '',
       hallCount: new Set(dl.map(s => s.v + s.h)).size,
-      empty: ds.length ? '' : (this.data.onlyMine ? t('当前筛选下还没有你加入的场次') : t(vname + '暂无排片')), mineN: data.shows.filter(s => idx.F[s.id] && !U.ended(s, idx) && picked.has(U.keyOf(s)) && sh(pf, U.progForShow(s, idx).id)).length,
+      empty: ds.length ? '' : (this.data.onlyMine ? t('当前筛选下还没有你加入的场次') : t(vname + '暂无排片')), geoOn: !!U.geoCity() && U.geoCity() === U.homeCity(data), geoText: (!!U.geoCity() && U.geoCity() === U.homeCity(data)) ? t(U.geoCity()) + ' ' + t('优先') : t('定位'), mineN: data.shows.filter(s => idx.F[s.id] && !U.ended(s, idx) && picked.has(U.keyOf(s)) && sh(pf, U.progForShow(s, idx).id)).length,
       legend: Object.keys(data.reg).map(k => data.reg[k]),
       span: ds.length ? ds[0] + ' – ' + ds[ds.length - 1] : '', count: list.length,
       scrollInto: 'd' + (ds.indexOf(day) > 1 ? ds.indexOf(day) - 1 : 0)
@@ -155,6 +155,7 @@ Page({
   setVenue(e) { this.setData({ vf: e.currentTarget.dataset.id, vOpen: false }); this.build(); },
   setCity(e) { this.setData({city:this.data.cities[+e.detail.value].id,vf:'all',venueQuery:'',day:''}); this.build(); },
   searchVenue(e) { this.setData({venueQuery:e.detail.value}); this.build(); },
+  locate() { const data = app.globalData.data; wx.showLoading({ title: t('定位中'), mask: false }); require('../../utils/locate.js').locate(data, () => this.build(), true, ok => { wx.hideLoading(); this.build(); const c = U.geoCity(); wx.showToast({ title: ok ? (c ? t(c) + ' ' + t('优先') : t('定位城市暂无排片，按默认顺序显示')) : t('没有获得定位权限，按默认顺序显示'), icon: 'none' }); }); },
   toggleMine() { const v = !this.data.onlyMine; try { wx.setStorageSync('sk-only-mine', v ? 1 : 0); } catch (e) { } this.setData({ onlyMine: v }); this.build(); },
   setDay(e) { this.setData({ day: e.currentTarget.dataset.d }); this.build(); },
   toggleToday() { this.setData({ todayOpen: !this.data.todayOpen }); this.build(); },

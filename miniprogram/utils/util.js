@@ -27,14 +27,18 @@ const keepPast = p => !!p && /影展|festival|艺术电影空间/i.test(p.kind |
 const isFest = p => !!p && /影展|festival/i.test(p.kind || '');
 // 定位城市（本机 sk-geo-city，1 天内有效；由首页定位写入，未授权时为空）——与网站 geoActiveCity / localProg 规则一致
 const geoCity = () => { try { const o = wx.getStorageSync('sk-geo-city'); return o && o.c && Date.now() - o.t < 864e5 ? o.c : ''; } catch (e) { return ''; } };
+// 首页优先城市：定位城市在 4 小时前之后仍有场次则用它，否则杭州（网站 homeCity）
+const homeCity = data => { const c = geoCity(); if (c && c !== '杭州') { const ids = new Set(data.venues.filter(v => v.city === c).map(v => v.id)), t = Date.now() - 4 * 36e5; if (data.shows.some(s => ids.has(s.v) && showDate(s).getTime() > t)) return c; } return '杭州'; };
 const localProg = (p, data, idx, status) => { const c = geoCity(); if (!c || status === 'ended') return false; return p.city === c || data.shows.some(s => progForShow(s, idx).id === p.id && (idx.VN[s.v] || {}).city === c && !ended(s, idx)); };
 const langSub = f => I.tr(f.langTag || [f.language, f.subtitles].filter(Boolean).join(' ｜ '));
 
 function index(data) {
   const F = {}; const ORD = {}; data.films.forEach((f, i) => { F[f.id] = f; ORD[f.id] = i; });
   Object.entries(data.aliases || {}).forEach(([o, n]) => { if (F[n] && !F[o]) F[o] = F[n]; }); // 旧影片 id → 合并后的影片
-  // 杭州影院固定排最前（甘特图列与影院/城市选择器），其余按原顺序
-  const vrank = new Map(data.venues.map((v, i) => [v.id, (v.city === '杭州' ? 0 : 1000) + i]));
+  // 定位城市（有尚未散场的场次时）排最前，杭州其次，其余按目录原顺序（与网站 venueRank 一致）
+  data.venues.forEach((v, i) => { if (v._o === undefined) v._o = i; });
+  const H = homeCity(data);
+  const vrank = new Map(data.venues.map(v => [v.id, (v.city === H ? 0 : v.city === '杭州' ? 1000 : 2000) + v._o]));
   data.venues.sort((a, b) => vrank.get(a.id) - vrank.get(b.id));
   const VN = {}; data.venues.forEach(v => { VN[v.id] = v; });
   const PG = {}; data.programmes.forEach(p => { PG[p.id] = p; });
@@ -123,4 +127,4 @@ const SITE_URL = 'https://sparrowcinema.github.io/SparrowTribe/';
 const webTip = (hash, lines, t, title) => {
   wx.setClipboardData({ data: SITE_URL + (hash || ''), success: () => wx.showModal({ title: t(title || '网页版地址已复制'), content: lines.map(x => t(x)).join('\n'), showCancel: false, confirmText: t('知道了') }) });
 };
-module.exports = { ymd: showYmd, geoCity, localProg, webTip, calSub, geoOf, distKm, transfer, openMap, progForShow, durationOf, progInfo, qaOf, ended, isFest, keepPast, relTime, nextShowOf, filmOrder, filmTone, langSub, WK, year, wk, toMin, fmt, keyOf, showDate, poster, ticket, durText, index, showView };
+module.exports = { homeCity, ymd: showYmd, geoCity, localProg, webTip, calSub, geoOf, distKm, transfer, openMap, progForShow, durationOf, progInfo, qaOf, ended, isFest, keepPast, relTime, nextShowOf, filmOrder, filmTone, langSub, WK, year, wk, toMin, fmt, keyOf, showDate, poster, ticket, durText, index, showView };

@@ -20,20 +20,21 @@ function nearest(lat, lng, data) {
   return best;
 }
 // force=true 时忽略缓存（手动重试）；done(changed) 在城市变化后回调，页面据此重新排序
-function locate(data, done, force) {
+function locate(data, done, force, finish) {
   try {
     const o = wx.getStorageSync(KEY), t = +wx.getStorageSync(TRY) || 0, now = Date.now();
     if (!force && ((o && o.t && now - o.t < DAY) || now - t < DAY)) return; // 1 天内已定位或刚被拒绝过，不再打扰
-    if (typeof wx.getFuzzyLocation !== 'function') return;
+    if (typeof wx.getFuzzyLocation !== 'function') { if (finish) finish(false); return; }
     wx.setStorageSync(TRY, now);
     wx.getFuzzyLocation({
       type: 'gcj02',
       success: r => {
         const c = nearest(r.latitude, r.longitude, data), prev = o && o.c;
         wx.setStorageSync(KEY, { c, t: Date.now() });
-        if (c !== prev && done) done(c);
+        if (c !== prev && done && !finish) done(c);
+        if (finish) finish(true);
       },
-      fail: () => {}
+      fail: () => { if (finish) finish(false); }
     });
   } catch (e) { }
 }
