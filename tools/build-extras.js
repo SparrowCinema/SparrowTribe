@@ -17,9 +17,9 @@ const progs = cat.programmes.filter(p => p.file).map(p => Object.assign({}, p, {
 const films = {}, filmProg = {}, shows = [];
 progs.forEach(p => {
   (p.pk.films || []).forEach(f => { if (!films[f.id]) { films[f.id] = f; filmProg[f.id] = p; } });
-  (p.pk.shows || []).forEach(r => { const [d, t, id, v, h] = Array.isArray(r) ? r : [r.d, r.t, r.id, r.v, r.h]; shows.push({ d, t, id, v, h, p: p.id, year: p.pk.year || 2026 }); });
+  (p.pk.shows || []).forEach(r => { const [d, t, id, v, h] = Array.isArray(r) ? r : [r.d, r.t, r.id, r.v, r.h]; shows.push({ d, t, id, v, h, p: p.id, year: (!Array.isArray(r) && r.year) || p.pk.year || 2026, archive: !Array.isArray(r) && r.archive === true }); });
 });
-const keyOf = s => `${s.d}-${s.t}-${s.v}-${s.h}`;
+const keyOf = require('../shared/screenings.js').keyOf;
 const dt = s => { const [m, d] = s.d.split('/').map(Number), [H, M] = s.t.split(':').map(Number); return { y: s.year, m, d, H, M }; };
 const stamp = x => `${x.y}${String(x.m).padStart(2, '0')}${String(x.d).padStart(2, '0')}T${String(x.H).padStart(2, '0')}${String(x.M).padStart(2, '0')}00`;
 const addMin = (x, n) => { const e = new Date(Date.UTC(x.y, x.m - 1, x.d, x.H, x.M + n)); return { y: e.getUTCFullYear(), m: e.getUTCMonth() + 1, d: e.getUTCDate(), H: e.getUTCHours(), M: e.getUTCMinutes() }; };
@@ -72,7 +72,7 @@ const ics = (calName, list, L) => {
     'BEGIN:VTIMEZONE', 'TZID:Asia/Shanghai', 'BEGIN:STANDARD', 'DTSTART:19700101T000000', 'TZOFFSETFROM:+0800', 'TZOFFSETTO:+0800', 'TZNAME:CST', 'END:STANDARD', 'END:VTIMEZONE'];
   list.forEach(s => {
     const f = films[s.id], p = progs.find(x => x.id === s.p), st = dt(s), en = addMin(st, dur(s)), note = f.screeningNotes && f.screeningNotes[keyOf(s)], e = enF(f.id, L), nt = lang(L) && e.screeningNotes && e.screeningNotes[keyOf(s)] || note;
-    const t = title(f, L) + (f.version ? ' · ' + f.version : '');
+    const t = (s.archive ? (lang(L) ? '[User archive] ' : '【用户指定存档】') : '') + title(f, L) + (f.version ? ' · ' + f.version : '');
     lines.push('BEGIN:VEVENT', 'UID:' + encodeURIComponent(keyOf(s)) + '@style-kaleidoscope', 'DTSTAMP:' + DTS, 'DTSTART;TZID=Asia/Shanghai:' + stamp(st), 'DTEND;TZID=Asia/Shanghai:' + stamp(en), 'SUMMARY:' + esci(t), 'LOCATION:' + esci(venueOf(s, L)),
       'DESCRIPTION:' + esci([progName(p, L), nt, SITE + (lang(L) ? 's/en/' : 's/') + 'f/' + f.id + '.html'].filter(Boolean).join('\n')), 'URL:' + SITE + (lang(L) ? 's/en/' : 's/') + 'f/' + f.id + '.html', 'END:VEVENT');
   });

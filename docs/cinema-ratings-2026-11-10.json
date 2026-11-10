@@ -1,0 +1,1137 @@
+{
+  "checked": "2026-11-10",
+  "order": [
+    "douban",
+    "imdb",
+    "rt",
+    "mc",
+    "lb"
+  ],
+  "notes": [
+    "Scores are dated snapshots, not guaranteed real-time.",
+    "Tomatometer critic percentage and Metascore critic score only; never substitute audience scores.",
+    "Letterboxd aggregate from Movie JSON-LD; individual reviews are not aggregate ratings.",
+    "No number is invented for platforms with no public aggregate or unresolved title identity.",
+    "reported means the publicly dated report was checked; it is not a claim of live access to the blocked Douban title page."
+  ],
+  "films": [
+    {
+      "id": "shawshank-redemption",
+      "cn": "肖申克的救赎",
+      "previous": [
+        9.7,
+        null,
+        null,
+        null,
+        null
+      ],
+      "ratings": [
+        9.7,
+        9.3,
+        89,
+        82,
+        4.6
+      ],
+      "checked": "2026-11-10",
+      "platforms": {
+        "douban": {
+          "status": "reported",
+          "url": "https://movie.douban.com/",
+          "value": 9.7
+        },
+        "imdb": {
+          "status": "verified",
+          "value": 9.3,
+          "votes": 3262894,
+          "url": "https://datasets.imdbws.com/title.ratings.tsv.gz",
+          "titleUrl": "https://www.imdb.com/title/tt0111161/"
+        },
+        "rt": {
+          "status": "verified",
+          "value": 89,
+          "url": "https://www.rottentomatoes.com/m/shawshank_redemption",
+          "title": "The Shawshank Redemption | Rotten Tomatoes",
+          "count": 147
+        },
+        "mc": {
+          "status": "verified",
+          "value": 82,
+          "url": "https://www.metacritic.com/movie/the-shawshank-redemption/",
+          "title": "The Shawshank Redemption Reviews - Metacritic",
+          "count": 22
+        },
+        "lb": {
+          "status": "verified",
+          "value": 4.6,
+          "url": "https://letterboxd.com/film/the-shawshank-redemption/",
+          "title": "&lrm;The Shawshank Redemption (1994) directed by Frank Darabont • Reviews, film + cast &bull; Letterboxd",
+          "count": 3238733
+        }
+      }
+    },
+    {
+      "id": "toddling-youths",
+      "cn": "浪花儿",
+      "previous": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "ratings": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "checked": "2026-11-10",
+      "platforms": {
+        "douban": {
+          "status": "not-published",
+          "url": "https://m.p1gd0g.cc/",
+          "value": null
+        },
+        "imdb": {
+          "status": "not-published",
+          "value": null,
+          "url": "https://www.imdb.com/title/tt38345349/"
+        },
+        "rt": {
+          "status": "unverified",
+          "value": null,
+          "url": "https://www.rottentomatoes.com/m/toddling_youths",
+          "title": null
+        },
+        "mc": {
+          "status": "unverified",
+          "value": null,
+          "url": "https://www.metacritic.com/movie/toddling-youths/",
+          "title": null
+        },
+        "lb": {
+          "status": "not-published",
+          "value": null,
+          "url": "https://letterboxd.com/film/the-toddling-youths/",
+          "title": "&lrm;The Toddling Youths (2025) directed by Qi Yanyan • Reviews, film + cast &bull; Letterboxd"
+        }
+      }
+    },
+    {
+      "id": "spider-man-brand-new-day",
+      "cn": "蜘蛛侠：崭新之日",
+      "previous": [
+        null,
+        7.9,
+        91,
+        null,
+        null
+      ],
+      "ratings": [
+        7.7,
+        7.9,
+        90,
+        66,
+        4.02
+      ],
+      "checked": "2026-11-10",
+      "platforms": {
+        "douban": {
+          "status": "reported",
+          "url": "https://movie.douban.com/?dt_dapp=1&dt_platform=douban_broadcast",
+          "value": 7.7
+        },
+        "imdb": {
+          "status": "verified",
+          "value": 7.9,
+          "votes": 380776,
+          "url": "https://datasets.imdbws.com/title.ratings.tsv.gz",
+          "titleUrl": "https://www.imdb.com/title/tt22084616/"
+        },
+        "rt": {
+          "status": "verified",
+          "value": 90,
+          "url": "https://www.rottentomatoes.com/m/spider_man_brand_new_day",
+          "title": "Spider-Man: Brand New Day | Rotten Tomatoes",
+          "count": 439
+        },
+        "mc": {
+          "status": "verified",
+          "value": 66,
+          "url": "https://www.metacritic.com/movie/spider-man-brand-new-day/",
+          "title": "Spider-Man: Brand New Day Reviews - Metacritic",
+          "count": 56
+        },
+        "lb": {
+          "status": "verified",
+          "value": 4.02,
+          "url": "https://letterboxd.com/film/spider-man-brand-new-day/",
+          "title": "&lrm;Spider-Man: Brand New Day (2026) directed by Destin Daniel Cretton • Reviews, film + cast &bull; Letterboxd",
+          "count": 4745265
+        }
+      }
+    },
+    {
+      "id": "the-great-skull",
+      "cn": "燃烧吧！爸爸",
+      "previous": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "ratings": [
+        6.8,
+        5.8,
+        null,
+        null,
+        null
+      ],
+      "checked": "2026-11-10",
+      "platforms": {
+        "douban": {
+          "status": "reported",
+          "url": "https://movie.douban.com/explore",
+          "value": 6.8
+        },
+        "imdb": {
+          "status": "verified",
+          "value": 5.8,
+          "votes": 32,
+          "url": "https://datasets.imdbws.com/title.ratings.tsv.gz",
+          "titleUrl": "https://www.imdb.com/title/tt36853603/"
+        },
+        "rt": {
+          "status": "unverified",
+          "value": null,
+          "url": "https://www.rottentomatoes.com/m/the_great_skull",
+          "title": null
+        },
+        "mc": {
+          "status": "unverified",
+          "value": null,
+          "url": "https://www.metacritic.com/movie/the-great-skull/",
+          "title": null
+        },
+        "lb": {
+          "status": "not-published",
+          "value": null,
+          "url": "https://letterboxd.com/film/the-great-skull/",
+          "title": "&lrm;The Great Skull (2026) directed by Liu Xiaoyang • Reviews, film + cast &bull; Letterboxd"
+        }
+      }
+    },
+    {
+      "id": "all-wishes-come-true",
+      "cn": "八仙！",
+      "previous": [
+        8.3,
+        8.0,
+        null,
+        null,
+        null
+      ],
+      "ratings": [
+        8.2,
+        8.0,
+        100,
+        null,
+        3.95
+      ],
+      "checked": "2026-11-10",
+      "platforms": {
+        "douban": {
+          "status": "reported",
+          "url": "https://www.maoyan.com/films/news/20541925",
+          "value": 8.2,
+          "sourceDate": "2026-10-26"
+        },
+        "imdb": {
+          "status": "verified",
+          "value": 8.0,
+          "votes": 1370,
+          "url": "https://datasets.imdbws.com/title.ratings.tsv.gz",
+          "titleUrl": "https://www.imdb.com/title/tt43515101/"
+        },
+        "rt": {
+          "status": "verified",
+          "value": 100,
+          "url": "https://www.rottentomatoes.com/m/all_wishes_come_true",
+          "title": "All Wishes Come True! | Rotten Tomatoes",
+          "count": 11
+        },
+        "mc": {
+          "status": "not-published",
+          "value": null,
+          "url": "https://www.metacritic.com/movie/all-wishes-come-true/",
+          "title": "All Wishes Come True! Reviews - Metacritic"
+        },
+        "lb": {
+          "status": "verified",
+          "value": 3.95,
+          "url": "https://letterboxd.com/film/all-wishes-come-true/",
+          "title": "&lrm;All Wishes Come True! (2026) directed by Mu Zhengyang • Reviews, film + cast &bull; Letterboxd",
+          "count": 4362
+        }
+      }
+    },
+    {
+      "id": "once-upon-a-time-in-the-middle-east",
+      "cn": "欢迎来龙餐馆",
+      "previous": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "ratings": [
+        8.7,
+        8.3,
+        100,
+        null,
+        3.99
+      ],
+      "checked": "2026-11-10",
+      "platforms": {
+        "douban": {
+          "status": "reported",
+          "url": "https://movie.douban.com/",
+          "value": 8.7
+        },
+        "imdb": {
+          "status": "verified",
+          "value": 8.3,
+          "votes": 2583,
+          "url": "https://datasets.imdbws.com/title.ratings.tsv.gz",
+          "titleUrl": "https://www.imdb.com/title/tt34386754/"
+        },
+        "rt": {
+          "status": "verified",
+          "value": 100,
+          "url": "https://www.rottentomatoes.com/m/once_upon_a_time_in_the_middle_east",
+          "title": "Once Upon a Time in the Middle East | Rotten Tomatoes",
+          "count": 15
+        },
+        "mc": {
+          "status": "not-published",
+          "value": null,
+          "url": "https://www.metacritic.com/movie/once-upon-a-time-in-the-middle-east/",
+          "title": "Once Upon a Time in the Middle East Reviews - Metacritic"
+        },
+        "lb": {
+          "status": "verified",
+          "value": 3.99,
+          "url": "https://letterboxd.com/film/once-upon-a-time-in-the-middle-east/",
+          "title": "&lrm;Once Upon a Time in the Middle East (2026) directed by Wen Muye • Reviews, film + cast &bull; Letterboxd",
+          "count": 5276
+        }
+      }
+    },
+    {
+      "id": "wall-e",
+      "cn": "机器人总动员",
+      "previous": [
+        9.3,
+        null,
+        95,
+        null,
+        null
+      ],
+      "ratings": [
+        9.3,
+        8.4,
+        95,
+        95,
+        4.25
+      ],
+      "checked": "2026-11-10",
+      "platforms": {
+        "douban": {
+          "status": "verified",
+          "url": "https://movie.douban.com/top250?filter=&start=7",
+          "value": 9.3
+        },
+        "imdb": {
+          "status": "verified",
+          "value": 8.4,
+          "votes": 1349220,
+          "url": "https://datasets.imdbws.com/title.ratings.tsv.gz",
+          "titleUrl": "https://www.imdb.com/title/tt0910970/"
+        },
+        "rt": {
+          "status": "verified",
+          "value": 95,
+          "url": "https://www.rottentomatoes.com/m/wall_e",
+          "title": "WALL-E | Rotten Tomatoes",
+          "count": 254
+        },
+        "mc": {
+          "status": "verified",
+          "value": 95,
+          "url": "https://www.metacritic.com/movie/wall-e/",
+          "title": "WALL-E Reviews - Metacritic",
+          "count": 39
+        },
+        "lb": {
+          "status": "verified",
+          "value": 4.25,
+          "url": "https://letterboxd.com/film/walle/",
+          "title": "&lrm;WALL·E (2008) directed by Andrew Stanton • Reviews, film + cast &bull; Letterboxd",
+          "count": 3023548
+        }
+      }
+    },
+    {
+      "id": "obsession",
+      "cn": "痴迷",
+      "previous": [
+        7.6,
+        7.8,
+        94,
+        77,
+        null
+      ],
+      "ratings": [
+        7.6,
+        7.8,
+        93,
+        77,
+        4.05
+      ],
+      "checked": "2026-11-10",
+      "platforms": {
+        "douban": {
+          "status": "reported",
+          "url": "https://movie.douban.com/",
+          "value": 7.6
+        },
+        "imdb": {
+          "status": "verified",
+          "value": 7.8,
+          "votes": 426821,
+          "url": "https://datasets.imdbws.com/title.ratings.tsv.gz",
+          "titleUrl": "https://www.imdb.com/title/tt37287335/"
+        },
+        "rt": {
+          "status": "verified",
+          "value": 93,
+          "url": "https://www.rottentomatoes.com/m/obsession_2025",
+          "title": "Obsession (2025) | Rotten Tomatoes",
+          "count": 329
+        },
+        "mc": {
+          "status": "verified",
+          "value": 77,
+          "url": "https://www.metacritic.com/movie/obsession-2025/",
+          "title": "Obsession Reviews - Metacritic",
+          "count": 38
+        },
+        "lb": {
+          "status": "verified",
+          "value": 4.05,
+          "url": "https://letterboxd.com/film/obsession-2025/",
+          "title": "&lrm;Obsession (2025) directed by Curry Barker • Reviews, film + cast &bull; Letterboxd",
+          "count": 5518558
+        }
+      }
+    },
+    {
+      "id": "empty-gun",
+      "cn": "空枪",
+      "previous": [
+        7.2,
+        null,
+        null,
+        null,
+        null
+      ],
+      "ratings": [
+        7.2,
+        6.9,
+        null,
+        null,
+        3.31
+      ],
+      "checked": "2026-11-10",
+      "platforms": {
+        "douban": {
+          "status": "reported",
+          "url": "https://movie.douban.com/",
+          "value": 7.2
+        },
+        "imdb": {
+          "status": "verified",
+          "value": 6.9,
+          "votes": 520,
+          "url": "https://datasets.imdbws.com/title.ratings.tsv.gz",
+          "titleUrl": "https://www.imdb.com/title/tt38775487/"
+        },
+        "rt": {
+          "status": "unverified",
+          "value": null,
+          "url": "https://www.rottentomatoes.com/m/empty_gun",
+          "title": null
+        },
+        "mc": {
+          "status": "unverified",
+          "value": null,
+          "url": "https://www.metacritic.com/movie/empty-gun/",
+          "title": null
+        },
+        "lb": {
+          "status": "verified",
+          "value": 3.31,
+          "url": "https://letterboxd.com/film/v-2026/",
+          "title": "&lrm;V (2026) directed by Han Yan • Reviews, film + cast &bull; Letterboxd",
+          "count": 642
+        }
+      }
+    },
+    {
+      "id": "triangle",
+      "cn": "恐怖游轮",
+      "previous": [
+        8.5,
+        null,
+        null,
+        null,
+        null
+      ],
+      "ratings": [
+        8.5,
+        6.9,
+        80,
+        null,
+        3.34
+      ],
+      "checked": "2026-11-10",
+      "platforms": {
+        "douban": {
+          "status": "verified",
+          "url": "https://movie.douban.com/subject//3011051/",
+          "value": 8.5
+        },
+        "imdb": {
+          "status": "verified",
+          "value": 6.9,
+          "votes": 153825,
+          "url": "https://datasets.imdbws.com/title.ratings.tsv.gz",
+          "titleUrl": "https://www.imdb.com/title/tt1187064/"
+        },
+        "rt": {
+          "status": "verified",
+          "value": 80,
+          "url": "https://www.rottentomatoes.com/m/1212111-triangle",
+          "title": "Triangle | Rotten Tomatoes",
+          "count": 35
+        },
+        "mc": {
+          "status": "unverified",
+          "value": null,
+          "url": "https://www.metacritic.com/movie/triangle/",
+          "title": null
+        },
+        "lb": {
+          "status": "verified",
+          "value": 3.34,
+          "url": "https://letterboxd.com/film/triangle-2009/",
+          "title": "&lrm;Triangle (2009) directed by Christopher Smith • Reviews, film + cast &bull; Letterboxd",
+          "count": 211110
+        }
+      }
+    },
+    {
+      "id": "kung-fu-soccer",
+      "cn": "功夫女足",
+      "previous": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "ratings": [
+        5.9,
+        5.2,
+        22,
+        null,
+        2.72
+      ],
+      "checked": "2026-11-10",
+      "platforms": {
+        "douban": {
+          "status": "reported",
+          "url": "https://bkso.baidu.com/item/《功夫女足》/68014512",
+          "value": 5.9,
+          "sourceDate": "2026-10-24"
+        },
+        "imdb": {
+          "status": "verified",
+          "value": 5.2,
+          "votes": 1451,
+          "url": "https://datasets.imdbws.com/title.ratings.tsv.gz",
+          "titleUrl": "https://www.imdb.com/title/tt36103784/"
+        },
+        "rt": {
+          "status": "verified",
+          "value": 22,
+          "url": "https://www.rottentomatoes.com/m/kung_fu_soccer",
+          "title": "Kung Fu Soccer | Rotten Tomatoes",
+          "count": 18
+        },
+        "mc": {
+          "status": "not-published",
+          "value": null,
+          "url": "https://www.metacritic.com/movie/kung-fu-soccer/",
+          "title": "Kung Fu Soccer Reviews - Metacritic"
+        },
+        "lb": {
+          "status": "verified",
+          "value": 2.72,
+          "url": "https://letterboxd.com/film/kung-fu-soccer/",
+          "title": "&lrm;Kung Fu Soccer (2026) directed by Stephen Chow • Reviews, film + cast &bull; Letterboxd",
+          "count": 3397
+        }
+      }
+    },
+    {
+      "id": "three-kingdoms-luoyang",
+      "cn": "三国第一部：争洛阳",
+      "previous": [
+        8.1,
+        null,
+        null,
+        null,
+        null
+      ],
+      "ratings": [
+        8.0,
+        7.4,
+        null,
+        null,
+        null
+      ],
+      "checked": "2026-11-10",
+      "platforms": {
+        "douban": {
+          "status": "reported",
+          "url": "https://zgdypf.zgdypw.cn/movie/detail/00100111026?from=box",
+          "value": 8.0
+        },
+        "imdb": {
+          "status": "verified",
+          "value": 7.4,
+          "votes": 141,
+          "url": "https://www.imdb.com/title/tt43515124/",
+          "titleUrl": "https://www.imdb.com/title/tt43515124/"
+        },
+        "rt": {
+          "status": "unverified",
+          "value": null,
+          "url": "https://www.rottentomatoes.com/m/three_kingdoms_the_beginning",
+          "title": null
+        },
+        "mc": {
+          "status": "unverified",
+          "value": null,
+          "url": "https://www.metacritic.com/movie/three-kingdoms-the-beginning/",
+          "title": null
+        },
+        "lb": {
+          "status": "not-published",
+          "value": null,
+          "url": "https://letterboxd.com/film/three-kingdoms-the-beginning/",
+          "title": "&lrm;Three Kingdoms: The Beginning (2026) directed by Xie Junwei • Reviews, film + cast &bull; Letterboxd"
+        }
+      }
+    },
+    {
+      "id": "toy-story-5",
+      "cn": "玩具总动员5",
+      "previous": [
+        8.0,
+        7.3,
+        93,
+        72,
+        null
+      ],
+      "ratings": [
+        8.0,
+        7.3,
+        92,
+        73,
+        3.61
+      ],
+      "checked": "2026-11-10",
+      "platforms": {
+        "douban": {
+          "status": "reported",
+          "url": "https://movie.douban.com/?dt_dapp=1&dt_platform=douban_broadcast",
+          "value": 8.0
+        },
+        "imdb": {
+          "status": "verified",
+          "value": 7.3,
+          "votes": 106833,
+          "url": "https://datasets.imdbws.com/title.ratings.tsv.gz",
+          "titleUrl": "https://www.imdb.com/title/tt29355505/"
+        },
+        "rt": {
+          "status": "verified",
+          "value": 92,
+          "url": "https://www.rottentomatoes.com/m/toy_story_5",
+          "title": "Toy Story 5 | Rotten Tomatoes",
+          "count": 331
+        },
+        "mc": {
+          "status": "verified",
+          "value": 73,
+          "url": "https://www.metacritic.com/movie/toy-story-5/",
+          "title": "Toy Story 5 Reviews - Metacritic",
+          "count": 55
+        },
+        "lb": {
+          "status": "verified",
+          "value": 3.61,
+          "url": "https://letterboxd.com/film/toy-story-5/",
+          "title": "&lrm;Toy Story 5 (2026) directed by Andrew Stanton • Reviews, film + cast &bull; Letterboxd",
+          "count": 1281731
+        }
+      }
+    },
+    {
+      "id": "the-furious",
+      "cn": "火遮眼",
+      "previous": [
+        8.5,
+        null,
+        100,
+        null,
+        null
+      ],
+      "ratings": [
+        8.5,
+        7.2,
+        97,
+        85,
+        3.81
+      ],
+      "checked": "2026-11-10",
+      "platforms": {
+        "douban": {
+          "status": "reported",
+          "url": "https://wyb.chinawriter.com.cn/content/202607/22/content84686.html",
+          "value": 8.5,
+          "sourceDate": "2026-07-22"
+        },
+        "imdb": {
+          "status": "verified",
+          "value": 7.2,
+          "votes": 30404,
+          "url": "https://datasets.imdbws.com/title.ratings.tsv.gz",
+          "titleUrl": "https://www.imdb.com/title/tt33311069/"
+        },
+        "rt": {
+          "status": "verified",
+          "value": 97,
+          "url": "https://www.rottentomatoes.com/m/the_furious_2025",
+          "title": "The Furious (2025) | Rotten Tomatoes",
+          "count": 155
+        },
+        "mc": {
+          "status": "verified",
+          "value": 85,
+          "url": "https://www.metacritic.com/movie/the-furious/",
+          "title": "The Furious Reviews - Metacritic",
+          "count": 21
+        },
+        "lb": {
+          "status": "verified",
+          "value": 3.81,
+          "url": "https://letterboxd.com/film/the-furious/",
+          "title": "&lrm;The Furious (2025) directed by Kenji Tanigaki • Reviews, film + cast &bull; Letterboxd",
+          "count": 161867
+        }
+      }
+    },
+    {
+      "id": "memento",
+      "cn": "记忆碎片",
+      "previous": [
+        8.7,
+        8.4,
+        93,
+        null,
+        null
+      ],
+      "ratings": [
+        8.7,
+        8.4,
+        93,
+        83,
+        4.18
+      ],
+      "checked": "2026-11-10",
+      "platforms": {
+        "douban": {
+          "status": "verified",
+          "url": "https://movie.douban.com/?app=location",
+          "value": 8.7
+        },
+        "imdb": {
+          "status": "verified",
+          "value": 8.4,
+          "votes": 1466440,
+          "url": "https://datasets.imdbws.com/title.ratings.tsv.gz",
+          "titleUrl": "https://www.imdb.com/title/tt0209144/"
+        },
+        "rt": {
+          "status": "verified",
+          "value": 93,
+          "url": "https://www.rottentomatoes.com/m/memento",
+          "title": "Memento | Rotten Tomatoes",
+          "count": 184
+        },
+        "mc": {
+          "status": "verified",
+          "value": 83,
+          "url": "https://www.metacritic.com/movie/memento/",
+          "title": "Memento Reviews - Metacritic",
+          "count": 34
+        },
+        "lb": {
+          "status": "verified",
+          "value": 4.18,
+          "url": "https://letterboxd.com/film/memento/",
+          "title": "&lrm;Memento (2000) directed by Christopher Nolan • Reviews, film + cast &bull; Letterboxd",
+          "count": 2264238
+        }
+      }
+    },
+    {
+      "id": "papa",
+      "cn": "爸爸",
+      "previous": [
+        null,
+        7.5,
+        null,
+        null,
+        null
+      ],
+      "ratings": [
+        7.6,
+        7.5,
+        null,
+        null,
+        3.69
+      ],
+      "checked": "2026-11-10",
+      "platforms": {
+        "douban": {
+          "status": "reported",
+          "url": "https://zgdypf.zgdypw.cn/movie/detail/00200920026?from=box",
+          "value": 7.6
+        },
+        "imdb": {
+          "status": "verified",
+          "value": 7.5,
+          "votes": 465,
+          "url": "https://datasets.imdbws.com/title.ratings.tsv.gz",
+          "titleUrl": "https://www.imdb.com/title/tt33499985/"
+        },
+        "rt": {
+          "status": "not-published",
+          "value": null,
+          "url": "https://www.rottentomatoes.com/m/papa_2024",
+          "title": "Papa (2024) | Rotten Tomatoes"
+        },
+        "mc": {
+          "status": "unverified",
+          "value": null,
+          "url": "https://www.metacritic.com/movie/papa/",
+          "title": null
+        },
+        "lb": {
+          "status": "verified",
+          "value": 3.69,
+          "url": "https://letterboxd.com/film/papa-2024/",
+          "title": "&lrm;Papa (2024) directed by Philip Yung Chi-kwong • Reviews, film + cast &bull; Letterboxd",
+          "count": 2270
+        }
+      }
+    },
+    {
+      "id": "pressure",
+      "cn": "诺曼底72小时",
+      "previous": [
+        null,
+        7.3,
+        null,
+        69,
+        null
+      ],
+      "ratings": [
+        8.2,
+        7.3,
+        90,
+        69,
+        3.54
+      ],
+      "checked": "2026-11-10",
+      "platforms": {
+        "douban": {
+          "status": "reported",
+          "url": "https://m.21jingji.com/article/20260718/e8a52ea1173505c121c0e3d402ed15d8_zaker.html",
+          "value": 8.2,
+          "sourceDate": "2026-07-18"
+        },
+        "imdb": {
+          "status": "verified",
+          "value": 7.3,
+          "votes": 42907,
+          "url": "https://datasets.imdbws.com/title.ratings.tsv.gz",
+          "titleUrl": "https://www.imdb.com/title/tt32547691/"
+        },
+        "rt": {
+          "status": "verified",
+          "value": 90,
+          "url": "https://www.rottentomatoes.com/m/pressure_2026",
+          "title": "Pressure (2026) | Rotten Tomatoes",
+          "count": 153
+        },
+        "mc": {
+          "status": "verified",
+          "value": 69,
+          "url": "https://www.metacritic.com/movie/pressure/",
+          "title": "Pressure Reviews - Metacritic",
+          "count": 36
+        },
+        "lb": {
+          "status": "verified",
+          "value": 3.54,
+          "url": "https://letterboxd.com/film/pressure-2026/",
+          "title": "&lrm;Pressure (2026) directed by Anthony Maras • Reviews, film + cast &bull; Letterboxd",
+          "count": 141743
+        }
+      }
+    },
+    {
+      "id": "disclosure-day",
+      "cn": "揭秘日",
+      "previous": [
+        null,
+        6.4,
+        90,
+        74,
+        null
+      ],
+      "ratings": [
+        6.4,
+        6.4,
+        79,
+        74,
+        3.01
+      ],
+      "checked": "2026-11-10",
+      "platforms": {
+        "douban": {
+          "status": "reported",
+          "url": "https://post.smzdm.com/p/a70dwvrg/",
+          "value": 6.4
+        },
+        "imdb": {
+          "status": "verified",
+          "value": 6.4,
+          "votes": 182362,
+          "url": "https://datasets.imdbws.com/title.ratings.tsv.gz",
+          "titleUrl": "https://www.imdb.com/title/tt15047880/"
+        },
+        "rt": {
+          "status": "verified",
+          "value": 79,
+          "url": "https://www.rottentomatoes.com/m/disclosure_day",
+          "title": "Disclosure Day | Rotten Tomatoes",
+          "count": 443
+        },
+        "mc": {
+          "status": "verified",
+          "value": 74,
+          "url": "https://www.metacritic.com/movie/disclosure-day/",
+          "title": "Disclosure Day Reviews - Metacritic",
+          "count": 63
+        },
+        "lb": {
+          "status": "verified",
+          "value": 3.01,
+          "url": "https://letterboxd.com/film/disclosure-day/",
+          "title": "&lrm;Disclosure Day (2026) directed by Steven Spielberg • Reviews, film + cast &bull; Letterboxd",
+          "count": 1130072
+        }
+      }
+    },
+    {
+      "id": "the-backrooms",
+      "cn": "后室",
+      "previous": [
+        null,
+        null,
+        87,
+        null,
+        null
+      ],
+      "ratings": [
+        6.7,
+        6.7,
+        85,
+        76,
+        3.3
+      ],
+      "checked": "2026-11-10",
+      "platforms": {
+        "douban": {
+          "status": "reported",
+          "url": "https://bkso.baidu.com/item/后室/65767022",
+          "value": 6.7,
+          "sourceDate": "2026-07-27"
+        },
+        "imdb": {
+          "status": "verified",
+          "value": 6.7,
+          "votes": 247743,
+          "url": "https://datasets.imdbws.com/title.ratings.tsv.gz",
+          "titleUrl": "https://www.imdb.com/title/tt26657236/"
+        },
+        "rt": {
+          "status": "verified",
+          "value": 85,
+          "url": "https://www.rottentomatoes.com/m/backrooms",
+          "title": "Backrooms | Rotten Tomatoes",
+          "count": 322
+        },
+        "mc": {
+          "status": "verified",
+          "value": 76,
+          "url": "https://www.metacritic.com/movie/backrooms/",
+          "title": "Backrooms Reviews - Metacritic",
+          "count": 47
+        },
+        "lb": {
+          "status": "verified",
+          "value": 3.3,
+          "url": "https://letterboxd.com/film/backrooms-2026/",
+          "title": "&lrm;Backrooms (2026) directed by Kane Parsons • Reviews, film + cast &bull; Letterboxd",
+          "count": 3484951
+        }
+      }
+    },
+    {
+      "id": "no-other-love",
+      "cn": "蜂蜜的针",
+      "previous": [
+        null,
+        6.1,
+        null,
+        null,
+        null
+      ],
+      "ratings": [
+        6.6,
+        6.0,
+        null,
+        null,
+        3.27
+      ],
+      "checked": "2026-11-10",
+      "platforms": {
+        "douban": {
+          "status": "reported",
+          "url": "https://zgdypf.zgdypw.cn/movie/detail/00106062023?from=box",
+          "value": 6.6
+        },
+        "imdb": {
+          "status": "verified",
+          "value": 6.0,
+          "votes": 166,
+          "url": "https://datasets.imdbws.com/title.ratings.tsv.gz",
+          "titleUrl": "https://www.imdb.com/title/tt5024764/"
+        },
+        "rt": {
+          "status": "unverified",
+          "value": null,
+          "url": "https://www.rottentomatoes.com/m/no_other_love_2026",
+          "title": null
+        },
+        "mc": {
+          "status": "unverified",
+          "value": null,
+          "url": "https://www.metacritic.com/movie/no-other-love/",
+          "title": null
+        },
+        "lb": {
+          "status": "verified",
+          "value": 3.27,
+          "url": "https://letterboxd.com/film/no-other-love-2026/",
+          "title": "&lrm;No Other Love (2026) directed by Yuan Mei, Vicky Zhao Wei • Reviews, film + cast &bull; Letterboxd",
+          "count": 230
+        }
+      }
+    },
+    {
+      "id": "project-hail-mary",
+      "cn": "挽救计划",
+      "previous": [
+        null,
+        8.2,
+        95,
+        77,
+        null
+      ],
+      "ratings": [
+        8.6,
+        8.2,
+        95,
+        77,
+        4.31
+      ],
+      "checked": "2026-11-10",
+      "platforms": {
+        "douban": {
+          "status": "reported",
+          "url": "https://movie.douban.com/?dt_dapp=1&dt_platform=douban_broadcast",
+          "value": 8.6
+        },
+        "imdb": {
+          "status": "verified",
+          "value": 8.2,
+          "votes": 597861,
+          "url": "https://datasets.imdbws.com/title.ratings.tsv.gz",
+          "titleUrl": "https://www.imdb.com/title/tt12042730/"
+        },
+        "rt": {
+          "status": "verified",
+          "value": 95,
+          "url": "https://www.rottentomatoes.com/m/project_hail_mary",
+          "title": "Project Hail Mary | Rotten Tomatoes",
+          "count": 430
+        },
+        "mc": {
+          "status": "verified",
+          "value": 77,
+          "url": "https://www.metacritic.com/movie/project-hail-mary/",
+          "title": "Project Hail Mary Reviews - Metacritic",
+          "count": 60
+        },
+        "lb": {
+          "status": "verified",
+          "value": 4.31,
+          "url": "https://letterboxd.com/film/project-hail-mary/",
+          "title": "&lrm;Project Hail Mary (2026) directed by Phil Lord, Christopher Miller • Reviews, film + cast &bull; Letterboxd",
+          "count": 4754124
+        }
+      }
+    }
+  ]
+}

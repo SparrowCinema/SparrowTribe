@@ -1,0 +1,89 @@
+{
+  "checked": "2026-11-10",
+  "reviewedFilms": [
+    "shawshank-redemption",
+    "toddling-youths",
+    "spider-man-brand-new-day",
+    "the-great-skull",
+    "all-wishes-come-true",
+    "once-upon-a-time-in-the-middle-east",
+    "wall-e",
+    "obsession",
+    "empty-gun",
+    "triangle",
+    "kung-fu-soccer",
+    "three-kingdoms-luoyang",
+    "toy-story-5",
+    "the-furious",
+    "memento",
+    "papa",
+    "pressure",
+    "disclosure-day",
+    "the-backrooms",
+    "no-other-love",
+    "project-hail-mary"
+  ],
+  "verifiedRecords": {
+    "shawshank-redemption": {
+      "date": "1994-09-10",
+      "status": "verified",
+      "sources": [
+        "https://www.imdb.com/title/tt0111161/releaseinfo/"
+      ],
+      "note": "Exact date cross-checked with festival/release records."
+    },
+    "toddling-youths": {
+      "date": "2025-09-26",
+      "status": "verified",
+      "sources": [
+        "https://letterboxd.com/film/the-toddling-youths/"
+      ],
+      "note": "Exact date cross-checked with festival/release records."
+    },
+    "the-great-skull": {
+      "date": "2026-06-12",
+      "status": "verified",
+      "sources": [
+        "https://www.thepaper.cn/newsDetail_forward_33370479",
+        "https://www.siff.com/content?aid=101261015115903880385842986618885117",
+        "https://letterboxd.com/film/the-great-skull/"
+      ],
+      "note": "Exact date cross-checked with festival/release records."
+    },
+    "all-wishes-come-true": {
+      "date": "2026-07-08",
+      "status": "verified",
+      "sources": [
+        "https://www.sina.cn/media/6004526697"
+      ],
+      "note": "最早已核实公开特别放映；成都首映礼为7月11日"
+    },
+    "empty-gun": {
+      "date": "2026-08-19",
+      "status": "verified",
+      "sources": [
+        "https://huacheng.gz-cmc.com/pages/2026/08/19/ece0137686ad469ca7326b43dd41423e.html"
+      ],
+      "note": "Exact date cross-checked with festival/release records."
+    },
+    "three-kingdoms-luoyang": {
+      "date": "2026-06-27",
+      "status": "partial",
+      "sources": [
+        "https://caifuhao.eastmoney.com/news/20260629153143942327330"
+      ],
+      "note": "最早已核实公开点映；6月26日洛阳活动是否实际放映仍待核实"
+    },
+    "the-furious": {
+      "date": "2025-09-06",
+      "status": "verified",
+      "sources": [
+        "https://asynchronousmedia.com/film-reviews/tiff-2025-the-furious-review"
+      ],
+      "note": "Exact date cross-checked with festival/release records."
+    }
+  },
+  "notices": {
+    "three-kingdoms-luoyang": "June 26 is announced by Luoyang government and film press release, not independently confirmed as completed. June 27 previews confirmed after the event. July 5 Beijing gala is later."
+  }
+}

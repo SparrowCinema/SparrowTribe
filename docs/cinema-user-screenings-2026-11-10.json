@@ -1,0 +1,392 @@
+{
+  "checked": "2026-11-10",
+  "authority": "User explicitly specified 2026 Mainland opening day at 19:30 and the two Hangzhou halls. This does not verify historical venue bookings.",
+  "imaxCount": 10,
+  "dolbyCount": 11,
+  "films": [
+    {
+      "id": "shawshank-redemption",
+      "cn": "肖申克的救赎",
+      "screening": {
+        "date": "2026-08-28",
+        "year": 2026,
+        "d": "8/28",
+        "t": "19:30",
+        "v": "hz-mixc-imax",
+        "h": "imax",
+        "format": "IMAX",
+        "kind": "user-assigned",
+        "actualVerified": false
+      },
+      "imaxEvidence": [
+        "https://www.thepaper.cn/newsDetail_forward_34058012"
+      ],
+      "formatNote": "IMAX release verified"
+    },
+    {
+      "id": "toddling-youths",
+      "cn": "浪花儿",
+      "screening": {
+        "date": "2026-09-12",
+        "year": 2026,
+        "d": "9/12",
+        "t": "19:30",
+        "v": "hz-xgjy-raffles",
+        "h": "hall-4",
+        "format": "2D",
+        "kind": "user-assigned",
+        "actualVerified": false
+      },
+      "imaxEvidence": [],
+      "formatNote": "No IMAX release found in reviewed release material; use user-specified Dolby auditorium, without asserting Dolby Vision mastering."
+    },
+    {
+      "id": "spider-man-brand-new-day",
+      "cn": "蜘蛛侠：崭新之日",
+      "screening": {
+        "date": "2026-07-29",
+        "year": 2026,
+        "d": "7/29",
+        "t": "19:30",
+        "v": "hz-mixc-imax",
+        "h": "imax",
+        "format": "IMAX",
+        "kind": "user-assigned",
+        "actualVerified": false
+      },
+      "imaxEvidence": [
+        "https://investors.imax.com/news-releases/news-release-details/sony-pictures-spider-man-brand-new-day-expand-imaxr-across-north",
+        "https://m.maoyan.com/moviedp/1490607?channelId=60008"
+      ],
+      "formatNote": "IMAX release verified"
+    },
+    {
+      "id": "the-great-skull",
+      "cn": "燃烧吧！爸爸",
+      "screening": {
+        "date": "2026-09-05",
+        "year": 2026,
+        "d": "9/5",
+        "t": "19:30",
+        "v": "hz-xgjy-raffles",
+        "h": "hall-4",
+        "format": "2D",
+        "kind": "user-assigned",
+        "actualVerified": false
+      },
+      "imaxEvidence": [],
+      "formatNote": "No IMAX release found in reviewed release material; use user-specified Dolby auditorium, without asserting Dolby Vision mastering."
+    },
+    {
+      "id": "all-wishes-come-true",
+      "cn": "八仙！",
+      "screening": {
+        "date": "2026-07-18",
+        "year": 2026,
+        "d": "7/18",
+        "t": "19:30",
+        "v": "hz-mixc-imax",
+        "h": "imax",
+        "format": "IMAX",
+        "kind": "user-assigned",
+        "actualVerified": false
+      },
+      "imaxEvidence": [
+        "https://m.maoyan.com/moviedp/1525868?_v_=yes&channelId=60008",
+        "https://imax.gcs-web.com/static-files/c31cfb49-3fb0-47e5-ae5a-604941028a2f"
+      ],
+      "formatNote": "IMAX release verified"
+    },
+    {
+      "id": "once-upon-a-time-in-the-middle-east",
+      "cn": "欢迎来龙餐馆",
+      "screening": {
+        "date": "2026-08-11",
+        "year": 2026,
+        "d": "8/11",
+        "t": "19:30",
+        "v": "hz-mixc-imax",
+        "h": "imax",
+        "format": "IMAX",
+        "kind": "user-assigned",
+        "actualVerified": false
+      },
+      "imaxEvidence": [
+        "https://www.maoyan.com/films/news/20269890"
+      ],
+      "formatNote": "IMAX release verified"
+    },
+    {
+      "id": "wall-e",
+      "cn": "机器人总动员",
+      "screening": {
+        "date": "2026-08-19",
+        "year": 2026,
+        "d": "8/19",
+        "t": "19:30",
+        "v": "hz-xgjy-raffles",
+        "h": "hall-4",
+        "format": "2D",
+        "kind": "user-assigned",
+        "actualVerified": false
+      },
+      "imaxEvidence": [],
+      "formatNote": "No IMAX release found in reviewed release material; use user-specified Dolby auditorium, without asserting Dolby Vision mastering."
+    },
+    {
+      "id": "obsession",
+      "cn": "痴迷",
+      "screening": {
+        "date": "2026-07-24",
+        "year": 2026,
+        "d": "7/24",
+        "t": "19:30",
+        "v": "hz-xgjy-raffles",
+        "h": "hall-4",
+        "format": "2D",
+        "kind": "user-assigned",
+        "actualVerified": false
+      },
+      "imaxEvidence": [],
+      "formatNote": "No IMAX release found in reviewed release material; use user-specified Dolby auditorium, without asserting Dolby Vision mastering."
+    },
+    {
+      "id": "empty-gun",
+      "cn": "空枪",
+      "screening": {
+        "date": "2026-08-19",
+        "year": 2026,
+        "d": "8/19",
+        "t": "19:30",
+        "v": "hz-xgjy-raffles",
+        "h": "hall-4",
+        "format": "2D",
+        "kind": "user-assigned",
+        "actualVerified": false
+      },
+      "imaxEvidence": [],
+      "formatNote": "No IMAX release found in reviewed release material; use user-specified Dolby auditorium, without asserting Dolby Vision mastering."
+    },
+    {
+      "id": "triangle",
+      "cn": "恐怖游轮",
+      "screening": {
+        "date": "2026-07-17",
+        "year": 2026,
+        "d": "7/17",
+        "t": "19:30",
+        "v": "hz-xgjy-raffles",
+        "h": "hall-4",
+        "format": "2D",
+        "kind": "user-assigned",
+        "actualVerified": false
+      },
+      "imaxEvidence": [],
+      "formatNote": "No IMAX release found in reviewed release material; use user-specified Dolby auditorium, without asserting Dolby Vision mastering."
+    },
+    {
+      "id": "kung-fu-soccer",
+      "cn": "功夫女足",
+      "screening": {
+        "date": "2026-07-11",
+        "year": 2026,
+        "d": "7/11",
+        "t": "19:30",
+        "v": "hz-mixc-imax",
+        "h": "imax",
+        "format": "IMAX",
+        "kind": "user-assigned",
+        "actualVerified": false
+      },
+      "imaxEvidence": [
+        "https://www.sina.cn/news/detail/5317675930879529.html",
+        "https://www.imdb.com/title/tt43515124/news/"
+      ],
+      "formatNote": "IMAX release verified"
+    },
+    {
+      "id": "three-kingdoms-luoyang",
+      "cn": "三国第一部：争洛阳",
+      "screening": {
+        "date": "2026-07-10",
+        "year": 2026,
+        "d": "7/10",
+        "t": "19:30",
+        "v": "hz-mixc-imax",
+        "h": "imax",
+        "format": "IMAX",
+        "kind": "user-assigned",
+        "actualVerified": false
+      },
+      "imaxEvidence": [
+        "https://m.maoyan.com/moviedp/1519937?_v_=yes&channelId=60008",
+        "https://www.xiaobaoming.com/event/6a45fb44c27e22207c1b43d5"
+      ],
+      "formatNote": "IMAX release verified"
+    },
+    {
+      "id": "toy-story-5",
+      "cn": "玩具总动员5",
+      "screening": {
+        "date": "2026-06-19",
+        "year": 2026,
+        "d": "6/19",
+        "t": "19:30",
+        "v": "hz-mixc-imax",
+        "h": "imax",
+        "format": "IMAX",
+        "kind": "user-assigned",
+        "actualVerified": false
+      },
+      "imaxEvidence": [
+        "https://m.maoyan.com/moviedp/1490532?_v_=yes&channelId=60008",
+        "https://www.hkexnews.hk/listedco/listconews/sehk/2026/0503/2026050300030_c.pdf"
+      ],
+      "formatNote": "IMAX release verified"
+    },
+    {
+      "id": "the-furious",
+      "cn": "火遮眼",
+      "screening": {
+        "date": "2026-06-11",
+        "year": 2026,
+        "d": "6/11",
+        "t": "19:30",
+        "v": "hz-xgjy-raffles",
+        "h": "hall-4",
+        "format": "2D",
+        "kind": "user-assigned",
+        "actualVerified": false
+      },
+      "imaxEvidence": [],
+      "formatNote": "No IMAX release found in reviewed release material; use user-specified Dolby auditorium, without asserting Dolby Vision mastering."
+    },
+    {
+      "id": "memento",
+      "cn": "记忆碎片",
+      "screening": {
+        "date": "2026-05-29",
+        "year": 2026,
+        "d": "5/29",
+        "t": "19:30",
+        "v": "hz-mixc-imax",
+        "h": "imax",
+        "format": "IMAX",
+        "kind": "user-assigned",
+        "actualVerified": false
+      },
+      "imaxEvidence": [
+        "https://www.maoyan.com/films/news/19634466"
+      ],
+      "formatNote": "IMAX release verified"
+    },
+    {
+      "id": "papa",
+      "cn": "爸爸",
+      "screening": {
+        "date": "2026-06-27",
+        "year": 2026,
+        "d": "6/27",
+        "t": "19:30",
+        "v": "hz-xgjy-raffles",
+        "h": "hall-4",
+        "format": "2D",
+        "kind": "user-assigned",
+        "actualVerified": false
+      },
+      "imaxEvidence": [],
+      "formatNote": "No IMAX release found in reviewed release material; use user-specified Dolby auditorium, without asserting Dolby Vision mastering."
+    },
+    {
+      "id": "pressure",
+      "cn": "诺曼底72小时",
+      "screening": {
+        "date": "2026-06-06",
+        "year": 2026,
+        "d": "6/6",
+        "t": "19:30",
+        "v": "hz-xgjy-raffles",
+        "h": "hall-4",
+        "format": "2D",
+        "kind": "user-assigned",
+        "actualVerified": false
+      },
+      "imaxEvidence": [],
+      "formatNote": "No IMAX release found in reviewed release material; use user-specified Dolby auditorium, without asserting Dolby Vision mastering."
+    },
+    {
+      "id": "disclosure-day",
+      "cn": "揭秘日",
+      "screening": {
+        "date": "2026-06-12",
+        "year": 2026,
+        "d": "6/12",
+        "t": "19:30",
+        "v": "hz-mixc-imax",
+        "h": "imax",
+        "format": "IMAX",
+        "kind": "user-assigned",
+        "actualVerified": false
+      },
+      "imaxEvidence": [
+        "https://m.maoyan.com/moviedp/672275?_v_=yes&channelId=60008",
+        "https://www.ithome.com/0/963/228.htm"
+      ],
+      "formatNote": "IMAX release verified"
+    },
+    {
+      "id": "the-backrooms",
+      "cn": "后室",
+      "screening": {
+        "date": "2026-06-26",
+        "year": 2026,
+        "d": "6/26",
+        "t": "19:30",
+        "v": "hz-xgjy-raffles",
+        "h": "hall-4",
+        "format": "2D",
+        "kind": "user-assigned",
+        "actualVerified": false
+      },
+      "imaxEvidence": [],
+      "formatNote": "No IMAX release found in reviewed release material; use user-specified Dolby auditorium, without asserting Dolby Vision mastering."
+    },
+    {
+      "id": "no-other-love",
+      "cn": "蜂蜜的针",
+      "screening": {
+        "date": "2026-03-28",
+        "year": 2026,
+        "d": "3/28",
+        "t": "19:30",
+        "v": "hz-xgjy-raffles",
+        "h": "hall-4",
+        "format": "2D",
+        "kind": "user-assigned",
+        "actualVerified": false
+      },
+      "imaxEvidence": [],
+      "formatNote": "No IMAX release found in reviewed release material; use user-specified Dolby auditorium, without asserting Dolby Vision mastering."
+    },
+    {
+      "id": "project-hail-mary",
+      "cn": "挽救计划",
+      "screening": {
+        "date": "2026-03-20",
+        "year": 2026,
+        "d": "3/20",
+        "t": "19:30",
+        "v": "hz-mixc-imax",
+        "h": "imax",
+        "format": "IMAX",
+        "kind": "user-assigned",
+        "actualVerified": false
+      },
+      "imaxEvidence": [
+        "https://www.imax.com/news/project-hail-mary-imax-70mm-film?sha=4ee6ac4e2add811524a59c6c0cf8a46a00460e0b",
+        "User-provided Filmed for IMAX poster p2930071661.jpg"
+      ],
+      "formatNote": "IMAX release verified"
+    }
+  ]
+}

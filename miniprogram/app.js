@@ -1,4 +1,5 @@
-const LOCAL = require('./data/data.js');
+const Screenings = require('./utils/screenings.js');
+const LOCAL = Screenings.apply(require('./data/data.js'));
 const plan = require('./utils/plan.js');
 const watched = require('./utils/watched.js');
 const I = require('./utils/i18n.js');
@@ -44,7 +45,7 @@ App({
       if (r.config) CFG.set(r.config);
       if (r.films && r.films.length && r.shows && r.shows.length) {
         if (r.en) I.setEN(r.en);
-        this.globalData.raw = Object.assign({}, LOCAL, r, { reg: LOCAL.reg });
+        this.globalData.raw = Screenings.apply(Object.assign({}, LOCAL, r, { reg: LOCAL.reg }));
         this.globalData.data = I.localize(this.globalData.raw);
         this.globalData.source = 'cloud';
         try { watched.migrate(this.globalData.raw.aliases); } catch (e) { }
