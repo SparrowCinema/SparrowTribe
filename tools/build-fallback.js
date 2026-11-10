@@ -94,3 +94,6 @@ fs.writeFileSync(path.join(root,'cloudfunctions/plan/psync.js'),head+psync);
 
 const tasteIds=[...new Set(films.filter(f=>!f.ev).map(f=>f.id))].sort();
 fs.writeFileSync(path.join(root,'backend/taste-films.sql'),"-- Allow only real catalogue films. Re-run after adding films.\ninsert into sparrow_taste.films(id) values\n"+tasteIds.map(id=>"('"+id.replace(/'/g,"''")+"')").join(',\n')+"\non conflict do nothing;\n");
+
+// 定位：城市中心坐标 data/cities.json 复制给小程序（utils/cities.js），由 utils/locate.js 使用
+fs.writeFileSync(path.join(root, 'miniprogram/utils/cities.js'), '/* 由 tools/build-fallback.js 从 data/cities.json 生成，请勿直接修改。 */\nmodule.exports = ' + JSON.stringify((JSON.parse(fs.readFileSync(path.join(root, 'data/cities.json'), 'utf8')).cities) || {}) + ';\n');

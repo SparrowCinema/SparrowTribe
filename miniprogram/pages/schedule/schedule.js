@@ -43,7 +43,7 @@ Page({
     const t = new Date(), m = t.getHours() * 60 + t.getMinutes();
     return m >= c.S && m <= c.E ? { top: Math.round((m - c.S) * K), label: U.fmt(m) } : null;
   },
-  onShow() { wx.setNavigationBarTitle({ title: t('麻雀观影护照') }); app.chrome(); this.startTick(); const j = app.globalData.jumpDay, jp = app.globalData.jumpProg; if (j) { app.globalData.jumpDay = ''; this.setData({ pf: 'all', vf: 'all', city: 'all', venueQuery: '', day: j }); } if (jp) { app.globalData.jumpProg = ''; this.setData({ pf: jp, vf: 'all', city: 'all', venueQuery: '', day: '' }); } this.build(); },
+  onShow() { wx.setNavigationBarTitle({ title: t('麻雀观影护照') }); app.chrome(); try { require('../../utils/locate.js').locate(app.globalData.data, () => this.build()); } catch (e) { } this.startTick(); const j = app.globalData.jumpDay, jp = app.globalData.jumpProg; if (j) { app.globalData.jumpDay = ''; this.setData({ pf: 'all', vf: 'all', city: 'all', venueQuery: '', day: j }); } if (jp) { app.globalData.jumpProg = ''; this.setData({ pf: jp, vf: 'all', city: 'all', venueQuery: '', day: '' }); } this.build(); },
   onPullDownRefresh() { app.loadRemote(); setTimeout(() => { this.build(); wx.stopPullDownRefresh(); }, 600); },
 
   build() {

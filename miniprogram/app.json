@@ -57,5 +57,13 @@
   "lazyCodeLoading": "requiredComponents",
   "resizable": true,
   "darkmode": true,
-  "themeLocation": "theme.json"
+  "themeLocation": "theme.json",
+  "requiredPrivateInfos": [
+    "getFuzzyLocation"
+  ],
+  "permission": {
+    "scope.userFuzzyLocation": {
+      "desc": "用于优先显示你所在城市的影展与排片，位置只在本机使用，不会上传"
+    }
+  }
 }
