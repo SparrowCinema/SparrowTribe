@@ -114,6 +114,9 @@
 .mine-chip { display: inline-flex; align-items: center; gap: calc(14 * var(--r)); height: calc(68 * var(--r)); padding: 0 calc(28 * var(--r)); border: calc(3 * var(--r)) solid var(--line); border-radius: calc(99 * var(--r)); background: var(--surface); font-size: calc(22.2 * var(--fr)); font-weight: 700; color: var(--fg); }
 .mc-i { width: calc(32 * var(--r)); height: calc(32 * var(--r)); border-radius: 50%; border: calc(3 * var(--r)) solid var(--muted); display: flex; align-items: center; justify-content: center; font-size: calc(16 * var(--r)); color: transparent; }
 .mc-n { font-size: calc(19.7 * var(--fr)); color: var(--muted); }
+[class~="geo-chip"] { margin-left: calc(14 * var(--r)); gap: calc(8 * var(--r)); }
+.geo-pin { font-size: calc(24 * var(--fr)); line-height: 1; }
+.geo-chip.on .geo-pin { color: #fffaf0; }
 .mine-chip.on { background: var(--accent); border-color: var(--accent); color: #fffaf0; }
 .mine-chip.on .mc-i { background: #fffaf0; border-color: #fffaf0; color: var(--accent); }
 .mine-chip.on .mc-n { color: #fffaf0; opacity: .85; }
