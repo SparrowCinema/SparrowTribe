@@ -48,7 +48,8 @@
    "links": {
     "douban": "36899331",
     "imdb": "tt32383425",
-    "lb": "dragonfly-2025"
+    "lb": "dragonfly-2025",
+    "rt": "https://www.rottentomatoes.com/m/dragonfly_2025"
    },
    "worldPremiere": {
     "status": "verified",
@@ -59,11 +60,11 @@
     "checked": "2026-11-11"
    },
    "r": [
-    null,
+    7.5,
     7.0,
     92,
     69,
-    null
+    3.63
    ],
    "poster": "posters/dragonfly.jpg",
    "contentReview": {
@@ -75,7 +76,8 @@
    "highlights": [
     "两位女主角通过日常动作、停顿与目光建立关系，照护既带来慰藉，也改变权力。"
    ],
-   "ratingsChecked": "2026-11-11"
+   "ratingsChecked": "2026-11-11",
+   "ratingChecked": "2026-11-11"
   },
   {
    "id": "three-goodbyes",
@@ -120,7 +122,8 @@
    "links": {
     "imdb": "tt35705184",
     "lb": "three-goodbyes",
-    "douban": "37233382"
+    "douban": "37233382",
+    "rt": "https://www.rottentomatoes.com/m/three_goodbyes"
    },
    "worldPremiere": {
     "status": "verified",
@@ -131,11 +134,11 @@
     "checked": "2026-11-11"
    },
    "r": [
-    null,
-    7.1,
+    7.8,
+    7.0,
     92,
     null,
-    null
+    3.73
    ],
    "poster": "posters/three-goodbyes.jpg",
    "contentReview": {
@@ -147,7 +150,8 @@
    "highlights": [
     "饮食、食欲、音乐与罗马街道共同串起身体变化和情绪重建。"
    ],
-   "ratingsChecked": "2026-11-11"
+   "ratingsChecked": "2026-11-11",
+   "ratingChecked": "2026-11-11"
   },
   {
    "id": "isabel",
@@ -202,11 +206,11 @@
     "checked": "2026-11-11"
    },
    "r": [
-    null,
+    7.4,
     6.5,
     null,
     null,
-    null
+    3.31
    ],
    "poster": "posters/isabel.jpg",
    "contentReview": {
@@ -218,7 +222,8 @@
    "highlights": [
     "16毫米胶片拍下圣保罗的餐厅与街道，自然酒的“不完美”与人物的独立愿望互相呼应。"
    ],
-   "ratingsChecked": "2026-11-11"
+   "ratingsChecked": "2026-11-11",
+   "ratingChecked": "2026-11-11"
   },
   {
    "id": "two-people-one-life-and-a-dog",
@@ -272,7 +277,7 @@
     "checked": "2026-11-11"
    },
    "r": [
-    null,
+    8.0,
     6.7,
     null,
     null,
@@ -290,7 +295,8 @@
     "圣彼得堡的公寓、书籍、唱片与城市日常，共同构成一代人的生活记忆。",
     "片名化用《三人同舟》俄译名的文字游戏；观众选择奖与竞赛入围分别列示。"
    ],
-   "ratingsChecked": "2026-11-11"
+   "ratingsChecked": "2026-11-11",
+   "ratingChecked": "2026-11-11"
   },
   {
    "id": "ky-nam-inn",
@@ -349,11 +355,11 @@
     "checked": "2026-11-11"
    },
    "r": [
-    null,
+    7.6,
     7.8,
     null,
     null,
-    null
+    3.74
    ],
    "poster": "posters/ky-nam-inn.jpg",
    "contentReview": {
@@ -367,7 +373,8 @@
     "《小王子》的翻译贯穿故事，爱情与邻里互助始终置于战后的社会变化之中。",
     "连秉发与杜氏海燕演绎克制的情感，适合关注表情、停顿与人物距离的观众。"
    ],
-   "ratingsChecked": "2026-11-11"
+   "ratingsChecked": "2026-11-11",
+   "ratingChecked": "2026-11-11"
   },
   {
    "id": "our-girls",
@@ -430,11 +437,11 @@
     "checked": "2026-11-11"
    },
    "r": [
-    null,
+    7.4,
     7.3,
     null,
     null,
-    null
+    3.46
    ],
    "poster": "posters/our-girls.jpg",
    "contentReview": {
@@ -449,7 +456,8 @@
     "家庭危机中穿插尖刻的黑色幽默，既紧绷，也带有荒诞感。",
     "VPRO Cinema 给出4/5星，赞赏它尖刻、聪明的黑色喜剧表达，以及道德灰区带来的余味。导演本人在采访中强调演员群戏和长场面，而非靠快速剪辑推动冲突。"
    ],
-   "ratingsChecked": "2026-11-11"
+   "ratingsChecked": "2026-11-11",
+   "ratingChecked": "2026-11-11"
   },
   {
    "id": "in-my-parents-house",
@@ -507,11 +515,11 @@
     "checked": "2026-11-11"
    },
    "r": [
-    null,
+    7.2,
     7.0,
     null,
     null,
-    null
+    3.38
    ],
    "poster": "posters/in-my-parents-house.jpg",
    "contentReview": {
@@ -526,7 +534,8 @@
     "不简单谴责离开的人或赞美留下的人，着眼于帮助、控制与自我保护的边界。",
     "德国epd Film评论给出3分，认为影像具有近乎纪录式的观察感；Filmdienst则把它看作一次对自身家庭经历的形式化处理。推荐重点是照护的伦理与边界，而不是以疾病制造奇观。"
    ],
-   "ratingsChecked": "2026-11-11"
+   "ratingsChecked": "2026-11-11",
+   "ratingChecked": "2026-11-11"
   },
   {
    "id": "the-summer-book",
@@ -570,7 +579,9 @@
    "editorial": "适合喜欢自然景观、祖孙关系和低戏剧强度作品的观众。观影时可以追随海风、日光与人物的细小反应；如果期待高密度事件，需先接受它舒缓、片段式的节奏。涉及丧亲、衰老与死亡，另有风暴遇险场面。",
    "links": {
     "imdb": "tt26940053",
-    "lb": "the-summer-book"
+    "lb": "the-summer-book",
+    "douban": "36299051",
+    "rt": "https://www.rottentomatoes.com/m/the_summer_book"
    },
    "worldPremiere": {
     "status": "verified",
@@ -581,11 +592,11 @@
     "checked": "2026-11-11"
    },
    "r": [
-    null,
+    7.6,
     6.5,
     80,
     57,
-    null
+    3.42
    ],
    "poster": "posters/the-summer-book.jpg",
    "contentReview": {
@@ -600,7 +611,8 @@
     "哈尼亚·拉尼的配乐、海风与自然声构成缓慢流动的情绪节拍。",
     "影评意见分化：烂番茄共识肯定格伦·克洛斯沉着的表演和生命起落主题；RogerEbert.com赞赏其冥想般的影像语言，Variety与Screen Daily则认为改编保留了温暖，却难以完全转译原著的诗意。"
    ],
-   "ratingsChecked": "2026-11-11"
+   "ratingsChecked": "2026-11-11",
+   "ratingChecked": "2026-11-11"
   }
  ],
  "shows": []
