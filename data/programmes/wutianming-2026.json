@@ -46,7 +46,10 @@
     "一部冷峻的黑色犯罪片，把「计划周密」被偶然性拆散的过程拍得紧凑利落。"
    ],
    "links": {
-    "imdb": "tt0051378"
+    "imdb": "tt0051378",
+    "douban": "1394342",
+    "lb": "elevator-to-the-gallows",
+    "rt": "https://www.rottentomatoes.com/m/elevator_to_the_gallows"
    },
    "worldPremiere": {
     "status": "partial",
@@ -57,11 +60,11 @@
     "checked": "2026-11-11"
    },
    "r": [
-    null,
-    null,
-    null,
-    null,
-    null
+    8.2,
+    7.9,
+    93,
+    94,
+    4.09
    ],
    "poster": "posters/elevator-to-the-gallows.jpg",
    "contentReview": {
@@ -70,7 +73,8 @@
     "sensory": "unverified"
    },
    "contentNote": "依据公开剧情与发行资料整理，涉及谋杀与伪造自杀、偷车与命案。未完整审片；具体画面强度、闪烁及音量尚未核实，不替代正式分级。",
-   "metadataChecked": "2026-11-11"
+   "metadataChecked": "2026-11-11",
+   "ratingChecked": "2026-11-11"
   },
   {
    "id": "la-haine",
@@ -117,7 +121,10 @@
     "开场的新闻素材与结尾的寓言式独白，是影史常被引用的一对镜像。"
    ],
    "links": {
-    "imdb": "tt0113247"
+    "imdb": "tt0113247",
+    "douban": "1306449",
+    "lb": "la-haine",
+    "rt": "https://www.rottentomatoes.com/m/la_haine"
    },
    "worldPremiere": {
     "status": "partial",
@@ -128,11 +135,11 @@
     "checked": "2026-11-11"
    },
    "r": [
+    8.3,
+    8.1,
+    96,
     null,
-    null,
-    null,
-    null,
-    null
+    4.5
    ],
    "poster": "posters/la-haine.jpg",
    "contentReview": {
@@ -141,7 +148,8 @@
     "sensory": "unverified"
    },
    "contentNote": "依据公开剧情与发行资料整理，涉及警察暴力与枪支、街头冲突与种族、阶层对立。未完整审片；具体画面强度、闪烁及音量尚未核实，不替代正式分级。",
-   "metadataChecked": "2026-11-11"
+   "metadataChecked": "2026-11-11",
+   "ratingChecked": "2026-11-11"
   },
   {
    "id": "rosetta",
@@ -190,7 +198,10 @@
     "影片上映后在比利时引发讨论，并被认为推动了保护青少年就业权益的立法。"
    ],
    "links": {
-    "imdb": "tt0200071"
+    "imdb": "tt0200071",
+    "douban": "1300820",
+    "lb": "rosetta",
+    "rt": "https://www.rottentomatoes.com/m/rosetta"
    },
    "worldPremiere": {
     "status": "partial",
@@ -201,11 +212,11 @@
     "checked": "2026-11-11"
    },
    "r": [
-    null,
-    null,
-    null,
-    null,
-    null
+    8.2,
+    7.4,
+    89,
+    76,
+    3.9
    ],
    "poster": "posters/rosetta.jpg",
    "contentReview": {
@@ -214,7 +225,8 @@
     "sensory": "unverified"
    },
    "contentNote": "依据公开剧情与发行资料整理，涉及贫困与酗酒的家庭、与警察、雇主的肢体冲突、背叛与道德困境。未完整审片；具体画面强度、闪烁及音量尚未核实，不替代正式分级。",
-   "metadataChecked": "2026-11-11"
+   "metadataChecked": "2026-11-11",
+   "ratingChecked": "2026-11-11"
   },
   {
    "id": "ponette",
@@ -262,7 +274,10 @@
     "加拿大纪录片《Playing Ponette》（2007）专门回顾了杜瓦隆与小演员的工作过程。"
    ],
    "links": {
-    "imdb": "tt0117359"
+    "imdb": "tt0117359",
+    "douban": "1306397",
+    "lb": "ponette",
+    "rt": "https://www.rottentomatoes.com/m/ponette"
    },
    "worldPremiere": {
     "status": "partial",
@@ -273,11 +288,11 @@
     "checked": "2026-11-11"
    },
    "r": [
+    8.1,
+    7.5,
+    91,
     null,
-    null,
-    null,
-    null,
-    null
+    3.91
    ],
    "poster": "posters/ponette.jpg",
    "contentReview": {
@@ -286,7 +301,8 @@
     "sensory": "unverified"
    },
    "contentNote": "依据公开剧情与发行资料整理，涉及丧亲与儿童哀伤、车祸后果。未完整审片；具体画面强度、闪烁及音量尚未核实，不替代正式分级。",
-   "metadataChecked": "2026-11-11"
+   "metadataChecked": "2026-11-11",
+   "ratingChecked": "2026-11-11"
   },
   {
    "id": "amour-2012",
@@ -335,7 +351,10 @@
     "哈内克由此成为少数两度夺得金棕榈的导演，也是奥斯卡史上少见的「最佳影片＋最佳外语片」双提名。"
    ],
    "links": {
-    "imdb": "tt1602620"
+    "imdb": "tt1602620",
+    "douban": "4798707",
+    "lb": "amour",
+    "rt": "https://www.rottentomatoes.com/m/amour_2012"
    },
    "worldPremiere": {
     "status": "partial",
@@ -346,11 +365,11 @@
     "checked": "2026-11-11"
    },
    "r": [
-    null,
-    null,
-    null,
-    null,
-    null
+    8.6,
+    7.9,
+    93,
+    95,
+    4.24
    ],
    "poster": "posters/amour-2012.jpg",
    "contentReview": {
@@ -359,7 +378,8 @@
     "sensory": "unverified"
    },
    "contentNote": "依据公开剧情与发行资料整理，涉及疾病、衰老与照护、死亡与失去。未完整审片；具体画面强度、闪烁及音量尚未核实，不替代正式分级。",
-   "metadataChecked": "2026-11-11"
+   "metadataChecked": "2026-11-11",
+   "ratingChecked": "2026-11-11"
   },
   {
    "id": "les-miserables-2019",
@@ -414,7 +434,10 @@
     "首部剧情长片即获戛纳评审团奖与凯撒最佳影片，法国首映当年观影人次超过170万。"
    ],
    "links": {
-    "imdb": "tt10199590"
+    "imdb": "tt10199590",
+    "douban": "33417030",
+    "lb": "les-miserables-2019",
+    "rt": "https://www.rottentomatoes.com/m/les_miserables_2019"
    },
    "worldPremiere": {
     "status": "verified",
@@ -425,11 +448,11 @@
     "checked": "2026-11-11"
    },
    "r": [
-    null,
-    null,
-    null,
-    null,
-    null
+    8.1,
+    7.6,
+    88,
+    78,
+    3.83
    ],
    "poster": "posters/les-miserables-2019.jpg",
    "contentReview": {
@@ -438,7 +461,8 @@
     "sensory": "unverified"
    },
    "contentNote": "依据公开剧情与发行资料整理，涉及警察暴力与误伤少年、街区冲突与群体暴力。未完整审片；具体画面强度、闪烁及音量尚未核实，不替代正式分级。",
-   "metadataChecked": "2026-11-11"
+   "metadataChecked": "2026-11-11",
+   "ratingChecked": "2026-11-11"
   },
   {
    "id": "anatomy-of-a-fall",
@@ -491,7 +515,10 @@
     "特里耶是史上第三位获金棕榈的女导演；影片还让她与阿拉里同获奥斯卡最佳原创剧本。"
    ],
    "links": {
-    "imdb": "tt17009710"
+    "imdb": "tt17009710",
+    "douban": "35633650",
+    "lb": "anatomy-of-a-fall",
+    "rt": "https://www.rottentomatoes.com/m/anatomy_of_a_fall"
    },
    "worldPremiere": {
     "status": "partial",
@@ -502,11 +529,11 @@
     "checked": "2026-11-11"
    },
    "r": [
-    null,
-    null,
-    null,
-    null,
-    null
+    8.7,
+    7.6,
+    96,
+    86,
+    4.12
    ],
    "poster": "posters/anatomy-of-a-fall.jpg",
    "contentReview": {
@@ -515,7 +542,8 @@
     "sensory": "unverified"
    },
    "contentNote": "依据公开剧情与发行资料整理，涉及死亡与庭审、家庭争吵与家庭暴力的指控、儿童被迫作证。未完整审片；具体画面强度、闪烁及音量尚未核实，不替代正式分级。",
-   "metadataChecked": "2026-11-11"
+   "metadataChecked": "2026-11-11",
+   "ratingChecked": "2026-11-11"
   },
   {
    "id": "parallel-tales",
@@ -561,7 +589,11 @@
     "配乐由茨比格涅夫·普莱斯纳操刀，他是基耶斯洛夫斯基的长期合作作曲家。",
     "首映后的评论分歧明显，既有人赞赏结构上的游戏，也有人认为过于刻意。"
    ],
-   "links": {},
+   "links": {
+    "douban": "37296242",
+    "lb": "parallel-tales",
+    "rt": "https://www.rottentomatoes.com/m/parallel_tales"
+   },
    "worldPremiere": {
     "status": "verified",
     "date": "2026-05-14",
@@ -571,11 +603,11 @@
     "checked": "2026-11-11"
    },
    "r": [
-    null,
-    null,
-    null,
-    null,
-    null
+    6.5,
+    5.9,
+    19,
+    41,
+    2.92
    ],
    "poster": "posters/parallel-tales.jpg",
    "contentReview": {
@@ -584,7 +616,8 @@
     "sensory": "unverified"
    },
    "contentNote": "依据公开剧情与发行资料整理，涉及窥视与关系越界、情感操控与背叛。未完整审片；具体画面强度、闪烁及音量尚未核实，不替代正式分级。",
-   "metadataChecked": "2026-11-11"
+   "metadataChecked": "2026-11-11",
+   "ratingChecked": "2026-11-11"
   }
  ],
  "shows": []
