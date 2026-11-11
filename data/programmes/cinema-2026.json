@@ -376,6 +376,9 @@
    "honors": [],
    "version": "",
    "poster": "posters/the-odyssey.jpg",
+   "screeningNotes": {
+    "11/12-19:30-hz-mixc-imax-imax": "告别场"
+   },
    "warnings": [
     "战争题材",
     "失踪与家庭分离",
@@ -3364,6 +3367,13 @@
    "legend-of-1900",
    "hz-mixc-yaao",
    "dolby"
+  ],
+  [
+   "11/12",
+   "19:30",
+   "the-odyssey",
+   "hz-mixc-imax",
+   "imax"
   ],
   [
    "11/13",
