@@ -29,7 +29,7 @@
   const FORMATS = [
     ['2k-laser', 'std', '2K 激光厅', '2K Laser'], ['4k-laser', 'std', '4K 激光厅', '4K Laser'],
     ['16mm', 'film', '16mm 胶片', '16mm film'], ['35mm', 'film', '35mm 胶片', '35mm film'], ['70mm', 'film', '70mm 胶片', '70mm film'],
-    ['imax', 'imax', 'IMAX 数字', 'IMAX Digital'], ['imax-laser', 'imax', 'IMAX 二代 Cola 激光', 'IMAX Gen 2 Laser (Cola)'], ['imax-xt', 'imax', 'IMAX 三代 XT 激光', 'IMAX Gen 3 Laser (XT)'], ['imax-gt', 'imax', 'IMAX GT 激光', 'IMAX GT Laser'], ['imax-70', 'imax', 'IMAX 70mm 胶片（15/70）', 'IMAX 70mm film (15/70)'],
+    ['imax', 'imax', 'IMAX 数字', 'IMAX Digital'], ['imax-laser', 'imax', 'IMAX 二代 Cola 激光', 'IMAX with Laser (CoLa)'], ['imax-xt', 'imax', 'IMAX 三代 XT 激光', 'IMAX with Laser (XT)'], ['imax-gt', 'imax', 'IMAX GT 激光', 'IMAX GT Laser'], ['imax-70', 'imax', 'IMAX 70mm 胶片（15/70）', 'IMAX 70mm film (15/70)'],
     ['dolby', 'dolby', '杜比影院（视界 + 全景声）', 'Dolby Cinema'], ['dolby-va', 'dolby', '杜比 V+A（视界 + 全景声）', 'Dolby Vision + Atmos (V+A)'],
     ['dolby-atmos', 'dolby', '杜比全景声厅', 'Dolby Atmos'], ['dolby-atmos-giant', 'dolby', '杜比全景声巨幕厅', 'Dolby Atmos giant screen'],
     ['cgs', 'plf', '中国巨幕 CGS', 'China Giant Screen (CGS)'], ['dmax', 'plf', 'DMAX 巨幕', 'DMAX'], ['xd', 'plf', 'Cinemark XD', 'Cinemark XD'], ['rpx', 'plf', 'Regal RPX', 'Regal RPX'],
