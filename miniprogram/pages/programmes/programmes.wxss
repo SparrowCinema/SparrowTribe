@@ -4,7 +4,6 @@
 .pk { font-size: calc(21.2 * var(--fr)); letter-spacing: calc(3 * var(--r)); color: var(--accent); }
 .pn { font-size: calc(30.2 * var(--fr)); font-weight: 900; }
 .ps { font-size: calc(21.8 * var(--fr)); color: var(--muted); }
-.pb { font-size: calc(23.2 * var(--fr)); line-height: 1.7; color: var(--fg); margin-top: calc(10 * var(--r)); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
 .go { position: absolute; right: calc(24 * var(--r)); bottom: calc(22 * var(--r)); font-size: calc(21.8 * var(--fr)); font-weight: 700; color: var(--accent); }
 .empty { display: flex; flex-direction: column; gap: calc(8 * var(--r)); padding: calc(28 * var(--r)); }
 .empty .eb { font-size: calc(24.8 * var(--fr)); font-weight: 700; }
