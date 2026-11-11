@@ -117,11 +117,11 @@
 .mr-seen { flex: none; max-width: 100%; box-sizing: border-box; white-space: nowrap; height: calc(68 * var(--r)); padding: 0 calc(24 * var(--r)); display: flex; align-items: center; border-radius: calc(16 * var(--r)); border: calc(3 * var(--r)) solid var(--accent); color: var(--accent); font-size: calc(18.7 * var(--fr)); font-weight: 700; }
 .mr.on .mr-seen { background: var(--accent); color: #fffaf0; }
 .mr-stars { display: flex; flex: none; }
-.mr-star { position: relative; width: calc(50 * var(--r)); height: calc(50 * var(--r)); font-size: calc(26.0 * var(--r)); line-height: calc(50 * var(--r)); text-align: center; }
+.mr-star { position: relative; width: calc(64 * var(--r)); height: calc(64 * var(--r)); font-size: calc(52.0 * var(--r)); line-height: calc(64 * var(--r)); text-align: center; }
 .mr-star .s0 { color: var(--line); }
 .mr-star .s1 { position: absolute; left: 0; top: 0; height: 100%; overflow: hidden; color: #c8862a; }
-.mr-star .s1 text { display: block; width: calc(50 * var(--r)); text-align: center; }
-.mr-star .hz { position: absolute; top: calc(-12 * var(--r)); bottom: calc(-12 * var(--r)); width: 50%; }
+.mr-star .s1 text { display: block; width: calc(64 * var(--r)); text-align: center; }
+.mr-star .hz { position: absolute; top: calc(-16 * var(--r)); bottom: calc(-16 * var(--r)); width: 50%; }
 .mr-star .hz.l { left: 0; } .mr-star .hz.r { right: 0; }
 .mr-score { flex: none; min-width: calc(84 * var(--r)); text-align: right; font-size: calc(16 * var(--fr)); color: var(--muted); }
 .mr-score.has { font-size: calc(19.3 * var(--fr)); font-weight: 700; color: #c8862a; }
