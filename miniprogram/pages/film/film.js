@@ -200,7 +200,7 @@ Page({
   // 「已盖章」：到「我的」展开护照并翻到这部电影印章所在页（my.js ppJump）
   // 「已盖章」：弹出菜单——在护照中查看 / 取消印章（整部移出），不再直接跳转
   stampMenu() {
-    wx.showActionSheet({ itemList: [t('在护照中查看印章'), t('取消印章 · 移出观影护照')], itemColor: '#2b2118', success: r => {
+    wx.showActionSheet({ itemList: [t('在护照中查看印章'), t('取消印章 · 移出观影护照')], success: r => {
       if (r.tapIndex === 0) this.toStamp();
       else wx.showModal({ title: t('移出观影护照？'), content: t('这部电影的印章和评分会一起删除。'), confirmText: t('移出'), confirmColor: '#8e2a22', success: m => { if (m.confirm) { W.remove(this.id); wx.showToast({ title: t('已移出观影护照'), icon: 'none' }); } } });
     } });
