@@ -2230,7 +2230,7 @@ function myRateHTML(f){const rec=watched[f.id],on=!!(rec&&rec.d),r=on?(rec.r||0)
     '<button class="mr-seen mr-seen-full" data-seen="'+f.id+'" aria-pressed="false"><span>＋ 看过 · 盖章</span></button>'+
     '<div class="mrc">'+rate+tasteRowHTML(f)+'</div><p class="mr-tip">看过后会在「我的 → 观影护照」盖下这部电影的印章；评分为五星十分制，可打半颗星。</p></section>';
   return '<section class="fd-block my-rate on" id="my-rate"><div class="mr-top">'+head+
-    '<button type="button" class="mr-stamp" data-pp-jump="'+f.id+'" aria-label="'+ppV('已盖章，翻到护照里的这枚印章','Stamped · open this stamp in my passport')+'">'+STAMP_IC+'<span>'+ppV('已盖章','Stamped')+'</span>'+(n>1?'<b>'+ppV(n+' 次','×'+n)+'</b>':'')+'<em aria-hidden="true">›</em></button></div>'+
+    '<button type="button" class="mr-stamp" data-st-open="'+f.id+'" aria-haspopup="dialog" aria-label="'+ppV('已盖章，查看或取消印章','Stamped · view or remove this stamp')+'">'+STAMP_IC+'<span>'+ppV('已盖章','Stamped')+'</span>'+(n>1?'<b>'+ppV(n+' 次','×'+n)+'</b>':'')+'<em aria-hidden="true">›</em></button></div>'+
     '<div class="mrc">'+rate+tasteRowHTML(f)+lgRowsHTML(f,rec)+'</div></section>';}
 // 放映版本（可选）：2K / 4K / 胶片 / IMAX 各版本 / 杜比 / 4DX 等，用于「成长」里的版本收藏与胶片、IMAX 纪念章
 function fmtOptionsHTML(cur){const G=window.SparrowGrowth;if(!G)return '';const en=LANG==='en';
@@ -2270,6 +2270,18 @@ function lgOpen(id,i){const rec=watched[id],G=window.SparrowGrowth;if(!rec||!rec
   document.body.insertAdjacentHTML('beforeend',lgSheetHTML());document.documentElement.classList.add('ts-lock');const x=document.querySelector('#lg-sheet .ts-x');if(x)x.focus({preventScroll:true});}
 function lgPaint(){const el=document.querySelector('#lg-sheet .dy-body');if(el&&LG)el.innerHTML=lgBodyHTML();}
 function lgClose(now){const w=document.getElementById('lg-sheet');LG=null;if(!document.getElementById('ts-sheet'))document.documentElement.classList.remove('ts-lock');if(!w)return;if(now||matchMedia('(prefers-reduced-motion: reduce)').matches){w.remove();return;}w.classList.add('out');setTimeout(()=>w.remove(),180);}
+// 影片页「已盖章」：底部小弹层——在护照中查看 / 取消印章（整部移出），不再直接跳转
+let STO='';
+function stClose(now){const w=document.getElementById('st-sheet');STO='';if(!document.getElementById('ts-sheet')&&!document.getElementById('lg-sheet'))document.documentElement.classList.remove('ts-lock');if(!w)return;if(now||matchMedia('(prefers-reduced-motion: reduce)').matches){w.remove();return;}w.classList.add('out');setTimeout(()=>w.remove(),180);}
+function stOpen(id){const f=F[id],rec=watched[id];if(!f||!rec||!rec.d)return;stClose(true);STO=id;const n=(window.SparrowGrowth?window.SparrowGrowth.views(rec).length:1);
+  document.body.insertAdjacentHTML('beforeend','<div class="ts-wrap" id="st-sheet"><div class="ts-backdrop" data-st="close"></div><section class="ts-sheet" role="dialog" aria-modal="true" aria-labelledby="st-title"><span class="ts-grab" aria-hidden="true"></span><header class="ts-head"><div><small>STAMP · '+esc(f.cn)+'</small><h3 id="st-title">'+ppV('观影印章','Passport stamp')+'</h3></div><button type="button" class="ts-x" data-st="close" aria-label="'+ppV('关闭','Close')+'">×</button></header><div class="ts-body"><p class="mr-tip" style="margin:0 0 14px">'+ppV('这部电影已盖章'+(n>1?'，共 '+n+' 次观影':'')+'。','This film is stamped'+(n>1?' · '+n+' viewings':'')+'.')+'</p><button type="button" class="primary-button" style="width:100%" data-st="view">'+ppV('在护照中查看印章','View in my passport')+'</button><button type="button" class="text-button dy-del" style="width:100%;margin-top:10px;min-height:44px" data-st="del">'+ppV('取消印章 · 移出观影护照','Remove stamp · take out of passport')+'</button></div></section></div>');
+  document.documentElement.classList.add('ts-lock');const x=document.querySelector('#st-sheet .ts-x');if(x)x.focus({preventScroll:true});}
+document.addEventListener('click',e=>{const o=e.target.closest('[data-st-open]');if(o){e.preventDefault();stOpen(o.dataset.stOpen);return;}const b=e.target.closest('[data-st]');if(!b||!STO)return;const id=STO,a=b.dataset.st;
+  if(a==='close'){stClose();return;}
+  if(a==='view'){stClose(true);ppJump(id);return;}
+  if(a==='del'){if(!confirm(tr('移出观影护照？这部电影的印章和评分会一起删除。')))return;stClose(true);unstamp(id);}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&STO)stClose();});
+window.addEventListener('hashchange',()=>{if(STO)stClose(true);});
 function unstamp(id){watched[id]={del:1,t:Math.max(Date.now(),(watched[id].t||0)+1,...Object.values(watched[id].tasteAt||{}).map(t=>t+1))};saveWatched();toast('已移出观影护照');refreshMyRate(id);}
 document.addEventListener('click',e=>{
   const dy=e.target.closest('[data-dy]');if(dy){const id=dy.dataset.id;DY_OPEN[id]=!DY_OPEN[id];refreshMyRate(id);return;}

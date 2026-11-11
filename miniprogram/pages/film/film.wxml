@@ -49,7 +49,7 @@
 
     <view wx:if="{{!f.ev}}" class="mr card {{mine.seen ? 'on' : ''}}">
       <view class="mr-top"><view class="mr-h"><text class="mr-t">{{L.t(i,'我的观影')}}</text><text class="mr-en mono">MY FILM PASSPORT</text></view>
-        <view wx:if="{{mine.seen}}" class="mr-stamp" hover-class="hv" bindtap="toMy"><text>{{i.__en?'Stamped':'已盖章'}}</text><text wx:if="{{mine.n > 1}}" class="mr-stamp-n mono">{{mine.nTxt}}</text><text class="mr-stamp-go">›</text></view></view>
+        <view wx:if="{{mine.seen}}" class="mr-stamp" hover-class="hv" bindtap="stampMenu"><text>{{i.__en?'Stamped':'已盖章'}}</text><text wx:if="{{mine.n > 1}}" class="mr-stamp-n mono">{{mine.nTxt}}</text><text class="mr-stamp-go">›</text></view></view>
       <view wx:if="{{!mine.seen}}" class="mr-seen mr-seen-full" hover-class="hv" bindtap="toggleSeen">{{mine.seenTxt}}</view>
       <view class="mrc">
         <view class="mrc-rate"><view class="mrc-k"><text>{{i.__en?'My rating':'我的评分'}}</text><text wx:if="{{mine.n > 1}}" class="mrc-ks">{{i.__en?'latest':'最近一次'}}</text></view>
