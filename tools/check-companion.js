@@ -17,6 +17,5 @@ require('./check-recap.js');
 
 require('./check-film-details.js');
 require('./check-mini-ended.js');
-require('./check-cinema-archive.js');
 
 require('./check-taste-report.js');

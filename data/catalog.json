@@ -27,10 +27,7 @@
    "start": "2026-01-01",
    "end": "2026-12-31",
    "city": "杭州",
-   "file": "data/programmes/cinema-2026.json",
-   "sections": {
-    "gr26-032": "院线上映"
-   }
+   "file": "data/programmes/cinema-2026.json"
   },
   {
    "id": "sparrow-tribe-space",
