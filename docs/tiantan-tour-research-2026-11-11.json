@@ -1,0 +1,1599 @@
+{
+ "checked": "2026-11-11",
+ "scope": "2026北影节巡展八部影片；原剧情、片长与场次保留",
+ "ratingOrder": [
+  "douban",
+  "imdb",
+  "rt",
+  "metacritic",
+  "letterboxd"
+ ],
+ "ratingMethod": "原平台公开网页/搜索索引快照，非实时API。null表示未核实或尚未出分，不等于零分；每平台单独记录读取限制。中文译名优先北影节官方，其余为编辑音译。来源仅记录于内部文档。",
+ "films": {
+  "dragonfly": {
+   "cast": [
+    "安德丽娅·赖斯伯勒",
+    "布兰达·布莱斯",
+    "杰森·沃特金斯",
+    "埃利奥特·本",
+    "凯瑟琳·金斯利",
+    "罗森达·桑德尔"
+   ],
+   "castOriginal": [
+    "Andrea Riseborough",
+    "Brenda Blethyn",
+    "Jason Watkins",
+    "Elliot Benn",
+    "Katherine Kingsley",
+    "Rochenda Sandall"
+   ],
+   "castSource": "https://www.bjiff.com/ttj_17829/ttj/dsejttjrwyp/antlyb_19262/",
+   "worldPremiere": {
+    "status": "verified",
+    "date": "2025-06-06",
+    "festival": "翠贝卡电影节",
+    "festivalEn": "Tribeca Festival",
+    "kind": "festival",
+    "checked": "2026-11-11"
+   },
+   "premiereEvidence": [
+    {
+     "url": "https://tribecafilm.com/festival/archive/dragonfly-2025",
+     "note": "官方确认World Premiere/International Narrative Competition，当前存档页未列精确日期"
+    },
+    {
+     "url": "https://www.imdb.com/title/tt32383425/releaseinfo/",
+     "note": "原平台发行表：2025-06-06 Tribeca"
+    },
+    {
+     "url": "https://awfj.org/blog/2025/06/09/dragonfly-tribeca-2025-review-by-beth-accomando/",
+     "note": "现场影评明确world premiere Friday June 6 2025"
+    }
+   ],
+   "r": [
+    null,
+    7.0,
+    92,
+    69,
+    null
+   ],
+   "ratings": {
+    "douban": {
+     "value": null,
+     "status": "unverified",
+     "url": "https://movie.douban.com/subject/36899331/",
+     "method": "原站403，搜索有旧7.2和转载7.4，不能当作当前原平台数值"
+    },
+    "imdb": {
+     "value": 7.0,
+     "scale": 10,
+     "status": "verified-snapshot",
+     "url": "https://www.imdb.com/title/tt32383425/ratings/",
+     "method": "原平台搜索快照，1.3K票；另一IMDb搜索列表1.4K票仍7.0"
+    },
+    "rt": {
+     "value": 92,
+     "scale": 100,
+     "status": "verified-snapshot",
+     "url": "https://www.rottentomatoes.com/m/dragonfly_2025",
+     "method": "原平台搜索快照，Tomatometer 25篇；观众不足50票无分"
+    },
+    "metacritic": {
+     "value": 69,
+     "scale": 100,
+     "status": "verified-snapshot",
+     "url": "https://www.metacritic.com/movie/dragonfly-2025/",
+     "method": "原平台搜索快照，9篇影评"
+    },
+    "letterboxd": {
+     "value": null,
+     "status": "unverified",
+     "url": "https://letterboxd.com/film/dragonfly-2025/",
+     "method": "原平台片页及embed可读，抓取未返回加权总分，不拿个人影评星级替代"
+    }
+   },
+   "honors": [
+    "获奖｜2026 第16届北京国际电影节 · 天坛奖最佳影片、最佳编剧、最佳女主角（安德丽娅·赖斯伯勒、布兰达·布莱斯共同获得）",
+    "获奖｜2025 翠贝卡电影节 · 国际叙事长片最佳表演（安德丽娅·赖斯伯勒、布兰达·布莱斯共同获得）",
+    "获奖｜2025 第37届戈尔韦电影节 · 最佳国际长片",
+    "获奖｜2025 迪纳尔英国与爱尔兰电影节 · 金希区柯克奖"
+   ],
+   "honorEvidence": [
+    "https://bjiff.com/bannergdtp/202604/t20260425_195415_ext.html",
+    "https://www.bjiff.com/bannergdtp/202604/t20260425_195416_ext.html",
+    "https://tribecafilm.com/press-center/festival/press-releases/2025-tribeca-festival-announces-winners-charliebird-happy-birthday-and-Natchez-in-us-narrative-international-narrative-and-documentary-competitions",
+    "https://www.screenireland.ie/news/awards-announced-at-37th-galway-film-fleadh-with-christy-awarded-best-irish-film",
+    "https://www.dinardfestivaldufilm.fr/en/english-edition-2025/"
+   ],
+   "bio": "保罗·安德鲁·威廉姆斯1973年生于英国朴茨茅斯，长片首作为《从伦敦到布莱顿》（2006）。《献给爱妻的歌》（2012）曾获第3届北影节天坛奖最佳编剧，其作品也包括复仇片《公牛》（2021）。他善于把社会边缘人物的日常推向类型叙事中的紧张处境。",
+   "st": "影片2025年6月6日在翠贝卡国际叙事长片竞赛全球首映，两位女主角共享该单元表演奖；随后获得戈尔韦最佳国际长片与迪纳尔金希区柯克奖。2026年第16届北影节再获天坛奖最佳影片、最佳编剧及双女主角荣誉。全球首映与后续英国、中国展映应分别理解。",
+   "background": "官方制作说明中，导演把关注点放在被国家或家庭忽视的人，以及社会照护责任的边界。北影节映后，制片人解释，影片先建立两位女性互为慰藉的关系，再让外界力量打破这种平衡；极静的结尾和没有配乐的片尾字幕也是有意安排，希望观众停留在人物处境之中。",
+   "backgroundEvidence": [
+    "https://www.kviff.com/cs/program/film/75/47224/presskit-1.pdf",
+    "https://www.bjiff.com/ttj_17829/ttj/ttjjj/202604/t20260424_194902.html"
+   ],
+   "editorial": "推荐给喜欢表演驱动、英国社会写实与心理惊悚交界作品的观众。可留意照护行为怎样改变两人的权力关系，以及旁人的判断如何影响信任。评论界普遍肯定双女主表演，但对后段剧烈转调存在分歧；带着这种预期观看，比把它当作温情陪伴片更合适。",
+   "reviewEvidence": [
+    "https://awfj.org/blog/2025/06/09/dragonfly-tribeca-2025-review-by-beth-accomando/",
+    "https://www.rottentomatoes.com/m/dragonfly_2025"
+   ],
+   "contentNoteSuggestion": "爱尔兰官方分级资料明确强烈暴力、粗口及自杀描写，可据此更新现有内容提示；不要仅保留泛称压迫性关系。",
+   "contentEvidence": "https://www.ifco.ie/en/ifco/pages/5CEE8E09004EF7F5",
+   "publishedAfter": {
+    "id": "dragonfly",
+    "cn": "危情蜻蜓",
+    "o": "Dragonfly",
+    "en": "Dragonfly",
+    "y": 2025,
+    "c": "英国",
+    "min": 98,
+    "reg": "eu",
+    "dir": "保罗·安德鲁·威廉姆斯",
+    "dirO": "Paul Andrew Williams",
+    "genre": [
+     "剧情",
+     "惊悚"
+    ],
+    "language": "英语",
+    "writers": [
+     "保罗·安德鲁·威廉姆斯"
+    ],
+    "cast": [
+     "安德丽娅·赖斯伯勒",
+     "布兰达·布莱斯",
+     "杰森·沃特金斯",
+     "埃利奥特·本",
+     "凯瑟琳·金斯利",
+     "罗森达·桑德尔"
+    ],
+    "syn": "独居的老人艾尔希在摔伤后无人照看，年轻的邻居科琳走进了她的生活，给了她久违的陪伴。两个孤独的人逐渐靠近，温情之下，关系却一点点滑向难以预料的方向。影片从社会写实的日常出发，渐渐显露出孤独所能带来的压迫与危险。",
+    "bio": "保罗·安德鲁·威廉姆斯1973年生于英国朴茨茅斯，长片首作为《从伦敦到布莱顿》（2006）。《献给爱妻的歌》（2012）曾获第3届北影节天坛奖最佳编剧，其作品也包括复仇片《公牛》（2021）。他善于把社会边缘人物的日常推向类型叙事中的紧张处境。",
+    "st": "官方制作说明中，导演把关注点放在被国家或家庭忽视的人，以及社会照护责任的边界。北影节映后，制片人解释，影片先建立两位女性互为慰藉的关系，再让外界力量打破这种平衡；极静的结尾和没有配乐的片尾字幕也是有意安排，希望观众停留在人物处境之中。\n\n影片2025年6月6日在翠贝卡国际叙事长片竞赛全球首映，两位女主角共享该单元表演奖；随后获得戈尔韦最佳国际长片与迪纳尔金希区柯克奖。2026年第16届北影节再获天坛奖最佳影片、最佳编剧及双女主角荣誉。",
+    "honors": [
+     "获奖｜2026 第16届北京国际电影节 · 天坛奖最佳影片、最佳编剧、最佳女主角（安德丽娅·赖斯伯勒、布兰达·布莱斯共同获得）",
+     "获奖｜2025 翠贝卡电影节 · 国际叙事长片最佳表演（安德丽娅·赖斯伯勒、布兰达·布莱斯共同获得）",
+     "获奖｜2025 第37届戈尔韦电影节 · 最佳国际长片",
+     "获奖｜2025 迪纳尔英国与爱尔兰电影节 · 金希区柯克奖"
+    ],
+    "warnings": [
+     "老年孤独与忽视",
+     "强烈暴力",
+     "粗口",
+     "自杀相关情节"
+    ],
+    "editorial": "推荐给喜欢表演驱动、英国社会写实与心理惊悚交界作品的观众。可留意照护行为怎样改变两人的权力关系，以及旁人的判断如何影响信任。评论界普遍肯定双女主表演，但对后段剧烈转调存在分歧；带着这种预期观看，比把它当作温情陪伴片更合适。",
+    "links": {
+     "douban": "36899331",
+     "imdb": "tt32383425",
+     "lb": "dragonfly-2025"
+    },
+    "worldPremiere": {
+     "status": "verified",
+     "date": "2025-06-06",
+     "festival": "翠贝卡电影节",
+     "festivalEn": "Tribeca Festival",
+     "kind": "festival",
+     "checked": "2026-11-11"
+    },
+    "r": [
+     null,
+     7.0,
+     92,
+     69,
+     null
+    ],
+    "poster": "posters/dragonfly.jpg",
+    "contentReview": {
+     "status": "official-advisory",
+     "checked": "2026-11-11",
+     "sensory": "unverified"
+    },
+    "contentNote": "参照爱尔兰IFCO公映版官方提示，含强烈暴力、粗口及自杀相关情节，并结合公开剧情整理老年孤独与忽视的主题。未完整审阅本次巡展版本；剪辑差异、闪烁及音量尚未核实，不替代本次放映的正式分级。",
+    "highlights": [
+     "两位女主角通过日常动作、停顿与目光建立关系，照护既带来慰藉，也改变权力。"
+    ],
+    "ratingsChecked": "2026-11-11"
+   }
+  },
+  "three-goodbyes": {
+   "cast": [
+    "阿尔芭·罗尔瓦赫尔",
+    "埃利奥·杰曼诺",
+    "弗朗切斯科·卡里尔",
+    "西尔维娅·达米科",
+    "加拉泰亚·贝露琪",
+    "萨莉塔·乔德霍里"
+   ],
+   "castOriginal": [
+    "Alba Rohrwacher",
+    "Elio Germano",
+    "Francesco Carril",
+    "Silvia D'Amico",
+    "Galatea Bellugi",
+    "Sarita Choudhury"
+   ],
+   "castNote": "前四人北影节官方中文；后两人为中文音译，SEMINCI官方确认原名参演。",
+   "castSources": [
+    "https://www.bjiff.com/ttj_17829/ttj/dsejttjrwyp/antlyb_19273/",
+    "https://www.seminci.com/peliculas/tres-adioses/"
+   ],
+   "writers": [
+    "恩里科·奥德尼诺",
+    "伊莎贝尔·科赛特"
+   ],
+   "worldPremiere": {
+    "status": "verified",
+    "date": "2025-09-08",
+    "festival": "多伦多国际电影节",
+    "festivalEn": "Toronto International Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-11"
+   },
+   "premiereEvidence": [
+    {
+     "url": "https://www.spainculture.ca/city/toronto/toronto-international-film-festival-2025/",
+     "note": "西班牙驻加拿大文化机构列9月8日21:15 TIFF Lightbox/World Premiere；TIFF原页403"
+    },
+    {
+     "url": "https://tiff.net/events/three-goodbyes",
+     "note": "原页403"
+    }
+   ],
+   "r": [
+    null,
+    7.1,
+    92,
+    null,
+    null
+   ],
+   "ratings": {
+    "douban": {
+     "value": null,
+     "status": "unverified",
+     "method": "用三声再见/Tre ciotole限定豆瓣搜索未返回原条目，第三方8.2非当前原站证据"
+    },
+    "imdb": {
+     "value": 7.1,
+     "scale": 10,
+     "status": "verified-snapshot",
+     "url": "https://www.imdb.com/title/tt35705184/",
+     "method": "原平台搜索快照，1.4K票，ratings子页1.3K仍7.1"
+    },
+    "rt": {
+     "value": 92,
+     "scale": 100,
+     "status": "verified-snapshot",
+     "url": "https://www.rottentomatoes.com/m/three_goodbyes",
+     "method": "原平台搜索快照，12篇Tomatometer影评；观众0票无分"
+    },
+    "metacritic": {
+     "value": null,
+     "status": "not-yet-rated",
+     "url": "https://www.metacritic.com/movie/three-goodbyes/",
+     "method": "直接打开原平台显示tbd，已有3篇，须4篇才出Metascore"
+    },
+    "letterboxd": {
+     "value": null,
+     "status": "unverified",
+     "url": "https://letterboxd.com/film/three-goodbyes/",
+     "method": "原平台片页及embed可读，但抓取未返回加权总分"
+    }
+   },
+   "honors": [
+    "入选｜2025 多伦多国际电影节 · 特别展映",
+    "入围｜2025 第70届巴利亚多利德国际电影节 · 主竞赛（开幕片）",
+    "入围｜2026 第16届北京国际电影节 · 天坛奖主竞赛"
+   ],
+   "honorEvidence": [
+    "https://www.seminci.com/en/2025/press-releases/isabel-coixet-will-open-the-70th-edition-of-seminci-with-the-european-premiere-of-three-goodbyes/",
+    "https://www.filmfestivaloostende.be/en/program/2026/three-goodbyes",
+    "https://www.bjiff.com/ttj_17829/ttj/dsejttjrwyp/antlyb_19273/"
+   ],
+   "bio": "伊莎贝尔·科赛特是西班牙导演、编剧，长期以女性处境、亲密关系与生命有限性为创作主题，代表作包括《没有我的日子》《言语的秘密生活》《书店》。本片再次延续她对告别与生活感官经验的关注。",
+   "st": "2025年9月8日于多伦多国际电影节特别展映全球首映；同年10月作为第70届巴利亚多利德国际电影节开幕片进入主竞赛。2026年入围第16届北影节天坛奖。本片的首映、开幕片身份与获奖应分开表述，未查证的奖项不补写。",
+   "background": "影片改编自米凯拉·穆尔嘉带有自传色彩的短篇小说集《Tre ciotole》，取其中三则故事，在罗马实景拍摄。北影节映后，制片人说明原名直译为“三个碗”，国际发行改名为“三声再见”；改编在疾病、分手之外保留饮食、音乐和当代流行文化，强调有限时间里重新感受生活的能力。",
+   "backgroundEvidence": [
+    "https://www.seminci.com/en/2025/press-releases/isabel-coixet-will-open-the-70th-edition-of-seminci-with-the-european-premiere-of-three-goodbyes/",
+    "https://www.bjiff.com/ttj_17829/ttj/ttjjj/202604/t20260425_194930_ext.html"
+   ],
+   "editorial": "推荐给关注女性自我重建、文学改编和日常情感的观众。留意食欲、城市行走与音乐怎样让身体经验成为叙事线索。影评肯定主演与告别主题的细腻表达，也有评论认为部分结构和情节较为常规；它更依靠情绪积累而非情节悬念。",
+   "reviewEvidence": [
+    "https://www.rottentomatoes.com/m/three_goodbyes",
+    "https://www.metacritic.com/movie/three-goodbyes/"
+   ],
+   "publishedAfter": {
+    "id": "three-goodbyes",
+    "cn": "三声再见",
+    "o": "Tre ciotole",
+    "en": "Three Goodbyes",
+    "y": 2025,
+    "c": "意大利 / 西班牙",
+    "min": 120,
+    "reg": "eu",
+    "dir": "伊莎贝尔·科赛特",
+    "dirO": "Isabel Coixet",
+    "genre": [
+     "剧情"
+    ],
+    "language": "意大利语",
+    "writers": [
+     "恩里科·奥德尼诺",
+     "伊莎贝尔·科赛特"
+    ],
+    "cast": [
+     "阿尔芭·罗尔瓦赫尔",
+     "埃利奥·杰曼诺",
+     "弗朗切斯科·卡里尔",
+     "西尔维娅·达米科",
+     "加拉泰亚·贝露琪",
+     "萨莉塔·乔德霍里"
+    ],
+    "syn": "罗马的高中体育老师玛尔塔与主厨安东尼奥因一场看似微不足道的争吵分手。分开之后，玛尔塔发现自己食欲全无，身体出现了不对劲的信号。影片围绕她如何面对告别——与爱人、与旧日的自己、与生命本身——展开。",
+    "bio": "伊莎贝尔·科赛特是西班牙导演、编剧，长期以女性处境、亲密关系与生命有限性为创作主题，代表作包括《没有我的日子》《言语的秘密生活》《书店》。本片再次延续她对告别与生活感官经验的关注。",
+    "st": "影片改编自米凯拉·穆尔嘉带有自传色彩的短篇小说集《Tre ciotole》，取其中三则故事，在罗马实景拍摄。北影节映后，制片人说明原名直译为“三个碗”，国际发行改名为“三声再见”；改编在疾病、分手之外保留饮食、音乐和当代流行文化，强调有限时间里重新感受生活的能力。\n\n2025年9月8日于多伦多国际电影节特别展映全球首映；同年10月作为第70届巴利亚多利德国际电影节开幕片进入主竞赛。2026年入围第16届北影节天坛奖。",
+    "honors": [
+     "入选｜2025 多伦多国际电影节 · 特别展映",
+     "入围｜2025 第70届巴利亚多利德国际电影节 · 主竞赛（开幕片）",
+     "入围｜2026 第16届北京国际电影节 · 天坛奖主竞赛"
+    ],
+    "warnings": [
+     "分手与疾病",
+     "死亡与告别"
+    ],
+    "editorial": "推荐给关注女性自我重建、文学改编和日常情感的观众。留意食欲、城市行走与音乐怎样让身体经验成为叙事线索。影评肯定主演与告别主题的细腻表达，也有评论认为部分结构和情节较为常规；它更依靠情绪积累而非情节悬念。",
+    "links": {
+     "imdb": "tt35705184",
+     "lb": "three-goodbyes",
+     "douban": "37233382"
+    },
+    "worldPremiere": {
+     "status": "verified",
+     "date": "2025-09-08",
+     "festival": "多伦多国际电影节",
+     "festivalEn": "Toronto International Film Festival",
+     "kind": "festival",
+     "checked": "2026-11-11"
+    },
+    "r": [
+     null,
+     7.1,
+     92,
+     null,
+     null
+    ],
+    "poster": "posters/three-goodbyes.jpg",
+    "contentReview": {
+     "status": "synopsis-reviewed",
+     "checked": "2026-11-11",
+     "sensory": "unverified"
+    },
+    "contentNote": "依据公开剧情与发行资料整理，涉及分手与疾病、死亡与告别。未完整审片；具体画面强度、闪烁及音量尚未核实，不替代正式分级。",
+    "highlights": [
+     "饮食、食欲、音乐与罗马街道共同串起身体变化和情绪重建。"
+    ],
+    "ratingsChecked": "2026-11-11"
+   }
+  },
+  "isabel": {
+   "cast": [
+    "玛丽娜·帕森",
+    "卡约·霍罗维奇",
+    "约翰·奥提兹",
+    "格雷戈里·沙斯唐",
+    "马拉特·笛卡尔"
+   ],
+   "castOriginal": [
+    "Marina Person",
+    "Caio Horowicz",
+    "John Ortiz",
+    "Gregory Chastang",
+    "Marat Descartes"
+   ],
+   "castNote": "前两人北影节官方中文；其余中文音译，原名在柏林/SEMINCI官方演员表中得到确认。",
+   "castSources": [
+    "https://www.bjiff.com/ttj_17829/ttj/dsejttjrwyp/antlyb_19266/",
+    "https://www.berlinale.de/en/2026/programme/202602856.html",
+    "https://www.seminci.com/peliculas/isabel/"
+   ],
+   "writers": [
+    "加布·克林格",
+    "玛丽娜·帕森"
+   ],
+   "worldPremiere": {
+    "status": "verified",
+    "date": "2026-02-16",
+    "festival": "柏林国际电影节",
+    "festivalEn": "Berlin International Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-11"
+   },
+   "premiereEvidence": [
+    {
+     "url": "https://www.berlinale.de/en/2026/programme/202602856.html",
+     "note": "Panorama/World Premiere，现场照片标2026-02-16；IMDb发行表和Letterboxd发行表一致"
+    }
+   ],
+   "r": [
+    null,
+    6.5,
+    null,
+    null,
+    null
+   ],
+   "ratings": {
+    "douban": {
+     "value": null,
+     "status": "unverified",
+     "method": "酒吧计划/Isabel2026限定豆瓣搜索未返回原站分数"
+    },
+    "imdb": {
+     "value": 6.5,
+     "scale": 10,
+     "status": "verified-snapshot",
+     "url": "https://www.imdb.com/title/tt35748025",
+     "method": "原平台搜索快照，最近两周索引6.5/76票；更早一个月索引6.4/63票，取较新记录，不声称实时"
+    },
+    "rt": {
+     "value": null,
+     "status": "unverified",
+     "url": "https://www.rottentomatoes.com/m/isabel_2026",
+     "method": "针对导演和片名搜索无同片原条目结果，尝试原页无法访问；不能套用Isabelle同名片或Voicemails for Isabelle"
+    },
+    "metacritic": {
+     "value": null,
+     "status": "unverified",
+     "url": "https://www.metacritic.com/movie/isabel-2026/",
+     "method": "限定站点搜索无同片分数，尝试原页无法访问"
+    },
+    "letterboxd": {
+     "value": null,
+     "status": "unverified",
+     "url": "https://letterboxd.com/film/isabel-2026/",
+     "method": "原平台片页可读，抓取未提供加权总分"
+    }
+   },
+   "honors": [
+    "入选｜2026 柏林国际电影节 · 全景单元",
+    "入围｜2026 第16届北京国际电影节 · 天坛奖主竞赛"
+   ],
+   "honorEvidence": [
+    "https://www.berlinale.de/en/2026/programme/202602856.html",
+    "https://www.bjiff.com/ttj_17829/ttj/dsejttjrwyp/antlyb_19266/"
+   ],
+   "bio": "加布·克林格1982年生于巴西圣保罗，曾任电影学教师、影评人和策展人，2004年入选柏林天才训练营。代表作有纪录片《双重游戏：詹姆斯·班宁与理查德·林克莱特》（2013）与剧情片《波尔图》（2016），前者曾获威尼斯电影节电影题材纪录片奖。",
+   "st": "2026年2月16日在第76届柏林国际电影节全景单元全球首映，同年入围第16届北影节天坛奖。随后进入悉尼、伦敦、巴利亚多利德等影展的放映网络；这些后续展映不等于全球首映或获奖。",
+   "background": "本片由克林格与主演玛丽娜·帕森共同编剧，以16毫米胶片拍摄圣保罗的城市生活和自然酒文化。帕森本身也是导演、编剧和前MTV主持人；人物对不完美酒款的坚持，与她争取独立经营空间的愿望互相呼应。影片把创业写成反复尝试、失败和重来，而非一条必然成功的励志曲线。",
+   "backgroundEvidence": [
+    "https://embed.letterboxd.com/afisilver/film/isabel-2026/",
+    "https://cineuropa.org/en/newsdetail/489499/",
+    "https://www.theupcoming.co.uk/2026/02/20/your-film-becomes-a-living-thing-gabe-klinger-and-marina-person-on-isabel-at-berlin-film-festival-2026/"
+   ],
+   "editorial": "推荐给喜欢城市漫游、成年女性生活与轻喜剧的观众。可观察胶片颗粒、自然酒与人物对“不完美”的接纳怎样形成呼应。柏林影评肯定克林格的语调控制和社会观察，也指出故事分量偏轻；它的吸引力在主演、城市质感与梦想受挫后的真实反应。",
+   "reviewEvidence": [
+    "https://cineuropa.org/en/newsdetail/489499/",
+    "https://loudandclearreviews.com/isabel-klinger-film-review/",
+    "https://screenanarchy.com/2026/10/vlissingen-2026-review-isabel-shows-mid-life-and-hangovers.html"
+   ],
+   "publishedAfter": {
+    "id": "isabel",
+    "cn": "酒吧计划",
+    "o": "Isabel",
+    "en": "Isabel",
+    "y": 2026,
+    "c": "巴西 / 法国",
+    "min": 85,
+    "reg": "la",
+    "dir": "加布·克林格",
+    "dirO": "Gabe Klinger",
+    "genre": [
+     "剧情",
+     "喜剧"
+    ],
+    "language": "葡萄牙语 / 英语",
+    "writers": [
+     "加布·克林格",
+     "玛丽娜·帕森"
+    ],
+    "cast": [
+     "玛丽娜·帕森",
+     "卡约·霍罗维奇",
+     "约翰·奥提兹",
+     "格雷戈里·沙斯唐",
+     "马拉特·德斯卡尔特"
+    ],
+    "syn": "伊莎贝尔是圣保罗高档餐饮圈的侍酒师，在一家米其林二星餐厅工作，却厌倦了苛刻的老板和迎合大众口味的酒单。她辞职，想开一家自己做主的自然酒吧。计划却没有按预期发酵，她必须在稳妥与放手一搏之间做出选择。",
+    "bio": "加布·克林格1982年生于巴西圣保罗，曾任电影学教师、影评人和策展人，2004年入选柏林天才训练营。代表作有纪录片《双重游戏：詹姆斯·班宁与理查德·林克莱特》（2013）与剧情片《波尔图》（2016），前者曾获威尼斯电影节电影题材纪录片奖。",
+    "st": "本片由克林格与主演玛丽娜·帕森共同编剧，以16毫米胶片拍摄圣保罗的城市生活和自然酒文化。帕森本身也是导演、编剧和前MTV主持人；人物对不完美酒款的坚持，与她争取独立经营空间的愿望互相呼应。影片把创业写成反复尝试、失败和重来，而非一条必然成功的励志曲线。\n\n2026年2月16日在第76届柏林国际电影节全景单元全球首映，同年入围第16届北影节天坛奖。",
+    "honors": [
+     "入选｜2026 柏林国际电影节 · 全景单元",
+     "入围｜2026 第16届北京国际电影节 · 天坛奖主竞赛"
+    ],
+    "warnings": [
+     "职场压迫",
+     "经济压力"
+    ],
+    "editorial": "推荐给喜欢城市漫游、成年女性生活与轻喜剧的观众。可观察胶片颗粒、自然酒与人物对“不完美”的接纳怎样形成呼应。柏林影评肯定克林格的语调控制和社会观察，也指出故事分量偏轻；它的吸引力在主演、城市质感与梦想受挫后的真实反应。",
+    "links": {
+     "imdb": "tt35748025",
+     "lb": "isabel-2026",
+     "douban": "37246605"
+    },
+    "worldPremiere": {
+     "status": "verified",
+     "date": "2026-02-16",
+     "festival": "柏林国际电影节",
+     "festivalEn": "Berlin International Film Festival",
+     "kind": "festival",
+     "checked": "2026-11-11"
+    },
+    "r": [
+     null,
+     6.5,
+     null,
+     null,
+     null
+    ],
+    "poster": "posters/isabel.jpg",
+    "contentReview": {
+     "status": "synopsis-reviewed",
+     "checked": "2026-11-11",
+     "sensory": "unverified"
+    },
+    "contentNote": "依据公开剧情与发行资料整理，涉及职场压迫、经济压力。未完整审片；具体画面强度、闪烁及音量尚未核实，不替代正式分级。",
+    "highlights": [
+     "16毫米胶片拍下圣保罗的餐厅与街道，自然酒的“不完美”与人物的独立愿望互相呼应。"
+    ],
+    "ratingsChecked": "2026-11-11"
+   }
+  },
+  "two-people-one-life-and-a-dog": {
+   "cast": [
+    "斯维特兰娜·克留奇科娃",
+    "亚历山大·阿达巴什扬",
+    "波琳娜·古赫曼",
+    "亚历山大·扎穆拉耶夫"
+   ],
+   "castMapping": {
+    "Svetlana Kryuchkova": "斯维特兰娜·克留奇科娃",
+    "Aleksandr Adabashyan": "亚历山大·阿达巴什扬",
+    "Polina Gukhman": "波琳娜·古赫曼",
+    "Aleksandr Zamuraev": "亚历山大·扎穆拉耶夫"
+   },
+   "castSource": "https://www.bjiff.com/ttj_17829/ttj/dsejttjrwyp/antlyb_19274/",
+   "worldPremiere": {
+    "status": "verified",
+    "date": "2025-04-22",
+    "festival": "莫斯科国际电影节",
+    "festivalEn": "Moscow International Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-11"
+   },
+   "premiereEvidence": {
+    "url": "https://moscowfilmfestival.ru/miff47/films/?id=47006",
+    "detail": "官方页面明确标注 Мировая премьера（世界首映），首场 22 апр 18:30，Каро 11 Октябрь Зал 1；47届、2025。Letterboxd release同样2025-04-22。"
+   },
+   "honors": [
+    {
+     "text": "入围｜2025 第47届莫斯科国际电影节 · 主竞赛单元",
+     "url": "https://moscowfilmfestival.ru/miff47/films/?id=47006"
+    },
+    {
+     "text": "获奖｜2025 第47届莫斯科国际电影节 · 观众选择奖",
+     "url": "https://fest.moscowfilmfestival.ru/news/tpost/0cdxiax8m1-obyavleni-pervie-prizi-47-go-moskovskogo"
+    },
+    {
+     "text": "入围｜2026 第16届北京国际电影节 · 天坛奖主竞赛单元",
+     "url": "https://www.bjiff.com/ttj_17829/ttj/dsejttjrwyp/antlyb_19274/"
+    }
+   ],
+   "background": "导演在北影节映后交流中说明，老一辈的婚姻观，以及他们对他人与世界的爱，影响了本片的人物塑造。俄语片名借用了杰罗姆小说《三人同舟》俄译名中的‘不算狗’，以文字游戏把长久的婚姻与家庭陪伴联系起来。影片在圣彼得堡的日常中，观察子女离去之后，两位老人如何以阅读、谈话、幽默和宽容维持与世界的连接。",
+   "backgroundSource": "https://www.bjiff.com/ttj_17829/ttj/ttjjj/202604/t20260424_194902_ext.html",
+   "bio": "安德烈·扎伊采夫，1975年生于莫斯科，创作跨越纪录片与剧情片。《攻城日记》（2020）获得第42届莫斯科国际电影节大奖，并为他赢得第11届北京国际电影节最佳导演。其他作品包括《懒汉》《懵懂青春》及其续集。本片由他编剧、导演、制片并剪辑。",
+   "bioSources": [
+    "https://www.bjiff.com/ttj_17829/ttj/dsejttjrwyp/antlyb_19274/",
+    "https://moscowfilmfestival.ru/miff47/films/?id=47006"
+   ],
+   "editorial": "选片建议：适合喜欢演员对手戏、日常片段和代际关系题材的观众。影片的戏剧动力来自两位老人对琐事的回应与彼此的默契，可以留意对白里的艺术典故，以及年轻访客如何改变家中的气氛。俄语影评对它的看法并不一致：有评论赞赏主演的自然互动，也有评论认为结构过于简单；更适合为人物与情感而来，不以情节翻转为主要期待。",
+   "reviewSources": [
+    "https://www.kommersant.ru/doc/7673799",
+    "https://letterboxd.com/film/two-people-in-one-life-and-a-dog/"
+   ],
+   "r": [
+    null,
+    6.7,
+    null,
+    null,
+    null
+   ],
+   "ratings": {
+    "douban": {
+     "status": "unverified",
+     "url": null,
+     "note": "搜索原站未命中；第三方有8.2/8.7不同时间快照，不作为已核实原站评分。"
+    },
+    "imdb": {
+     "status": "verified-search-snapshot",
+     "value": 6.7,
+     "count": 107,
+     "url": "https://www.imdb.com/title/tt38504885/",
+     "note": "IMDb原站搜索结果，抓取约一月前；直接open为403。不要称实时。"
+    },
+    "rt": {
+     "status": "not-found",
+     "url": null,
+     "note": "英文片名检索 Rotten Tomatoes 未找到匹配条目。"
+    },
+    "metacritic": {
+     "status": "not-found",
+     "url": null,
+     "note": "英文片名检索无匹配；站点robots限制，无法判定是否确实没有收录。"
+    },
+    "letterboxd": {
+     "status": "unverified",
+     "url": "https://letterboxd.com/film/two-people-in-one-life-and-a-dog/",
+     "note": "条目已核实，文本未返回聚合均分；不能把个人评论星级当均分。"
+    }
+   },
+   "st": "2025年4月22日在第47届莫斯科国际电影节主竞赛单元全球首映，并获得观众选择奖；同年10月16日于俄罗斯公映。2026年入围第16届北京国际电影节天坛奖主竞赛，4月23日举行北影节首映及主创交流。",
+   "highlights": [
+    "斯维特兰娜·克留奇科娃与亚历山大·阿达巴什扬的对手戏，以谈话、幽默和日常习惯呈现长久相守。",
+    "圣彼得堡的公寓、书籍、唱片与城市日常，共同构成一代人的生活记忆。",
+    "片名化用《三人同舟》俄译名的文字游戏；观众选择奖与竞赛入围分别列示。"
+   ],
+   "publishedAfter": {
+    "id": "two-people-one-life-and-a-dog",
+    "cn": "两人一生一狗",
+    "o": "Двое в одной жизни, не считая собаки",
+    "en": "Two People in One Life and a Dog",
+    "y": 2025,
+    "c": "俄罗斯",
+    "min": 109,
+    "reg": "eu",
+    "dir": "安德烈·扎伊采夫",
+    "dirO": "Andrey Zaytsev",
+    "genre": [
+     "剧情",
+     "爱情"
+    ],
+    "language": "俄语",
+    "writers": [
+     "安德烈·扎伊采夫"
+    ],
+    "cast": [
+     "斯维特兰娜·克留奇科娃",
+     "亚历山大·阿达巴什扬",
+     "波琳娜·古赫曼",
+     "亚历山大·扎穆拉耶夫"
+    ],
+    "syn": "圣彼得堡一对年迈的知识分子夫妇，与子女分隔两地，度过了孤独而艰难的岁月，却始终保留着温暖、耐心与宽恕。影片以平淡的日常和斗嘴般的对话，描摹相守一生的绵长暖意；一条小狗也不时闯入镜头，成为家中的一员。",
+    "bio": "安德烈·扎伊采夫，1975年生于莫斯科，创作跨越纪录片与剧情片。《攻城日记》（2020）获得第42届莫斯科国际电影节大奖，并为他赢得第11届北京国际电影节最佳导演。其他作品包括《懒汉》《懵懂青春》及其续集。本片由他编剧、导演、制片并剪辑。",
+    "st": "导演在北影节映后交流中说明，老一辈的婚姻观，以及他们对他人与世界的爱，影响了本片的人物塑造。俄语片名借用了杰罗姆小说《三人同舟》俄译名中的‘不算狗’，以文字游戏把长久的婚姻与家庭陪伴联系起来。影片在圣彼得堡的日常中，观察子女离去之后，两位老人如何以阅读、谈话、幽默和宽容维持与世界的连接。\n\n2025年4月22日在第47届莫斯科国际电影节主竞赛单元全球首映，并获得观众选择奖；同年10月16日于俄罗斯公映。2026年入围第16届北京国际电影节天坛奖主竞赛，4月23日举行北影节首映及主创交流。",
+    "honors": [
+     "入围｜2025 第47届莫斯科国际电影节 · 主竞赛单元",
+     "获奖｜2025 第47届莫斯科国际电影节 · 观众选择奖",
+     "入围｜2026 第16届北京国际电影节 · 天坛奖主竞赛单元"
+    ],
+    "warnings": [
+     "衰老与孤独",
+     "亲子疏离"
+    ],
+    "editorial": "选片建议：适合喜欢演员对手戏、日常片段和代际关系题材的观众。影片的戏剧动力来自两位老人对琐事的回应与彼此的默契，可以留意对白里的艺术典故，以及年轻访客如何改变家中的气氛。俄语影评对它的看法并不一致：有评论赞赏主演的自然互动，也有评论认为结构过于简单；更适合为人物与情感而来，不以情节翻转为主要期待。",
+    "links": {
+     "imdb": "tt38504885",
+     "lb": "two-people-in-one-life-and-a-dog",
+     "douban": "37304646"
+    },
+    "worldPremiere": {
+     "status": "verified",
+     "date": "2025-04-22",
+     "festival": "莫斯科国际电影节",
+     "festivalEn": "Moscow International Film Festival",
+     "kind": "festival",
+     "checked": "2026-11-11"
+    },
+    "r": [
+     null,
+     6.7,
+     null,
+     null,
+     null
+    ],
+    "poster": "posters/two-people-one-life-and-a-dog.jpg",
+    "contentReview": {
+     "status": "synopsis-reviewed",
+     "checked": "2026-11-11",
+     "sensory": "unverified"
+    },
+    "contentNote": "依据公开剧情与发行资料整理，涉及衰老与孤独、亲子疏离。未完整审片；具体画面强度、闪烁及音量尚未核实，不替代正式分级。",
+    "highlights": [
+     "斯维特兰娜·克留奇科娃与亚历山大·阿达巴什扬的对手戏，以谈话、幽默和日常习惯呈现长久相守。",
+     "圣彼得堡的公寓、书籍、唱片与城市日常，共同构成一代人的生活记忆。",
+     "片名化用《三人同舟》俄译名的文字游戏；观众选择奖与竞赛入围分别列示。"
+    ],
+    "ratingsChecked": "2026-11-11"
+   }
+  },
+  "ky-nam-inn": {
+   "cast": [
+    "连秉发",
+    "杜氏海燕",
+    "陈世孟",
+    "吴红玉",
+    "李洪安"
+   ],
+   "castMapping": {
+    "Liên Bỉnh Phát": "连秉发",
+    "Đỗ Thị Hải Yến": "杜氏海燕",
+    "Trần Thế Mạnh": "陈世孟",
+    "Ngô Hồng Ngọc": "吴红玉",
+    "Lý Hồng Ân": "李洪安"
+   },
+   "castSource": "https://www.bjiff.com/ttj_17829/ttj/dsejttjrwyp/antlyb_19268/",
+   "castAdditionalSource": "https://www.bjiff.com/ttj_17829/ttj/ttjjj/202604/t20260421_194310_ext.html",
+   "writers": [
+    "阮氏明玉",
+    "黎光"
+   ],
+   "worldPremiere": {
+    "status": "verified",
+    "date": "2025-09-07",
+    "festival": "多伦多国际电影节",
+    "festivalEn": "Toronto International Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-11"
+   },
+   "premiereEvidence": {
+    "urls": [
+     "https://english.vov.vn/en/culture/vietnamese-film-ky-nam-inn-to-premiere-at-toronto-film-festival-post1218516.vov",
+     "https://www.filmlinc.org/films/ky-nam-inn/",
+     "https://letterboxd.com/film/ky-nam-inn/",
+     "https://thepeachreview.com/2025/09/12/ky-nam-inn-review-a-love-story-in-35mm/"
+    ],
+    "detail": "越南之声与纽约林肯中心确认多伦多全球首映；Letterboxd和首映影评给出9月7日。TIFF URL https://tiff.net/events/ky-nam-inn 403，未直接读到。"
+   },
+   "honors": [
+    {
+     "text": "入选｜2025 多伦多国际电影节 · 特别展映",
+     "url": "https://english.vov.vn/en/culture/vietnamese-film-ky-nam-inn-to-premiere-at-toronto-film-festival-post1218516.vov"
+    },
+    {
+     "text": "入选｜2025 釜山国际电影节 · 亚洲电影之窗",
+     "url": "https://biff.kr/eng/html/archive/arc_history_view.asp?kind=history&m_idx=81773&pyear=2025"
+    },
+    {
+     "text": "获奖｜2025 第45届夏威夷国际电影节 · Kau Ka Hōkū（Shooting Star）奖",
+     "url": "https://hiff.org/hiff45-announces-jury-award-winners/"
+    },
+    {
+     "text": "入围｜2026 第16届北京国际电影节 · 天坛奖主竞赛单元",
+     "url": "https://www.bjiff.com/ttj_17829/ttj/dsejttjrwyp/antlyb_19268/"
+    },
+    {
+     "text": "获奖｜2026 亚洲艺术电影节（澳门）· 最佳导演（黎光）",
+     "url": "https://cn.nhandan.vn/article-post153941.html"
+    }
+   ],
+   "background": "影片的起点是导演曾认识的一位女性：她热心照顾邻居，内心却有难以摆脱的消极感。黎光把这份反差放进1985年西贡的邻里生活；这一时代既关乎越南社会转型，也承载着他童年及移民前的家庭记忆。《小王子》的翻译工作、食物、旧歌与昙花构成情感线索。全片采用35毫米胶片拍摄，以一栋老楼中日常的共处，观察旧日经验与新秩序之间的距离。",
+   "backgroundSources": [
+    "https://www.bjiff.com/ttj_17829/ttj/ttjjj/202604/t20260421_194310_ext.html",
+    "https://www.filmlinc.org/films/ky-nam-inn/"
+   ],
+   "bio": "黎光（Leon Lê），1977年生于越南，曾从事舞蹈、歌唱与百老汇舞台表演，后转向电影。他的短片包括《破晓》《对妈妈说》，首部长片《双郎》（2018）入围北京国际电影节‘注目未来’并获得最受注目导演。《奇南客栈》是他的第二部长片，再度与连秉发、编剧阮氏明玉和摄影鲍勃·阮合作。",
+   "bioSources": [
+    "https://www.bjiff.com/ttj_17829/ttj/dsejttjrwyp/antlyb_19268/",
+    "https://english.vov.vn/en/culture/vietnamese-film-ky-nam-inn-to-premiere-at-toronto-film-festival-post1218516.vov"
+   ],
+   "editorial": "选片建议：适合愿意沉入长篇幅、慢节奏爱情与邻里群像的观众。可以从做饭、洗碗、音乐和翻译等细节进入，观察关怀如何代替告白。它的浪漫关系始终牵连战后处境；纽约林肯中心的策展介绍强调影像构图与克制情绪，夏威夷评审团则特别肯定诗歌、音乐、文学的交织。以社会记忆与日常情感一同观看，比只等待爱情结果更能接近影片。",
+   "reviewSources": [
+    "https://www.filmlinc.org/films/ky-nam-inn/",
+    "https://hiff.org/hiff45-announces-jury-award-winners/",
+    "https://ricepapermagazine.ca/2026/01/tiff-2025-dispatch-ky-nam-inn-leon-le-vietnam-2025/"
+   ],
+   "r": [
+    null,
+    7.8,
+    null,
+    null,
+    null
+   ],
+   "ratings": {
+    "douban": {
+     "status": "unverified",
+     "url": null,
+     "note": "原站搜索未命中。第三方上影节排片站标7.6但不作为原平台已核实数值。"
+    },
+    "imdb": {
+     "status": "verified-search-snapshot",
+     "value": 7.8,
+     "count": 231,
+     "url": "https://www.imdb.com/title/tt36616095/",
+     "note": "IMDb原站搜索结果，抓取2天前；直接open为403。"
+    },
+    "rt": {
+     "status": "unverified",
+     "url": "https://www.rottentomatoes.com/m/ky_nam_inn",
+     "note": "条目已核实，页面显示5篇影评、观众0 Ratings，但文本未返回Tomatometer数值；不能推测百分比。"
+    },
+    "metacritic": {
+     "status": "not-found",
+     "url": null,
+     "note": "英文片名检索无匹配；站点robots限制，无法判定是否确实没有收录。"
+    },
+    "letterboxd": {
+     "status": "unverified",
+     "url": "https://letterboxd.com/film/ky-nam-inn/",
+     "note": "条目已核实，文本未返回聚合均分。官方Top 50 Vietnamese Films榜2026-10-10版本排名第7，但不应将榜单位置当评分或奖项。"
+    }
+   },
+   "st": "2025年9月7日在多伦多国际电影节特别展映单元全球首映，随后入选釜山亚洲电影之窗，并获得第45届夏威夷国际电影节Kau Ka Hōkū（Shooting Star）奖。2026年入围北影节天坛奖主竞赛，并在澳门亚洲艺术电影节获得最佳导演。",
+   "highlights": [
+    "35毫米胶片呈现1985年西贡的老楼与生活质感，食物、歌曲及日常劳动承载未说出口的情感。",
+    "《小王子》的翻译贯穿故事，爱情与邻里互助始终置于战后的社会变化之中。",
+    "连秉发与杜氏海燕演绎克制的情感，适合关注表情、停顿与人物距离的观众。"
+   ],
+   "publishedAfter": {
+    "id": "ky-nam-inn",
+    "cn": "奇南客栈",
+    "o": "Quán Kỳ Nam",
+    "en": "Ky Nam Inn",
+    "y": 2025,
+    "c": "越南",
+    "min": 140,
+    "reg": "as",
+    "dir": "黎光",
+    "dirO": "Leon Le",
+    "genre": [
+     "剧情",
+     "爱情"
+    ],
+    "language": "越南语",
+    "writers": [
+     "阮氏明玉",
+     "黎光"
+    ],
+    "cast": [
+     "连秉发",
+     "杜氏海燕",
+     "陈世孟",
+     "吴红玉",
+     "李洪安"
+    ],
+    "syn": "1985年的西贡，来自北方的年轻译者康被安排翻译《小王子》，在新政权下前途稳妥。他在住处遇到隔壁的寡居女子奇南，她是被击败的南方的遗民。一次意外让奇南不得不依靠康的照顾，客栈里弥漫起饭菜香、文学与无法言说的情愫。",
+    "bio": "黎光（Leon Lê），1977年生于越南，曾从事舞蹈、歌唱与百老汇舞台表演，后转向电影。他的短片包括《破晓》《对妈妈说》，首部长片《双郎》（2018）入围北京国际电影节‘注目未来’并获得最受注目导演。《奇南客栈》是他的第二部长片，再度与连秉发、编剧阮氏明玉和摄影鲍勃·阮合作。",
+    "st": "影片的起点是导演曾认识的一位女性：她热心照顾邻居，内心却有难以摆脱的消极感。黎光把这份反差放进1985年西贡的邻里生活；这一时代既关乎越南社会转型，也承载着他童年及移民前的家庭记忆。《小王子》的翻译工作、食物、旧歌与昙花构成情感线索。全片采用35毫米胶片拍摄，以一栋老楼中日常的共处，观察旧日经验与新秩序之间的距离。\n\n2025年9月7日在多伦多国际电影节特别展映单元全球首映，随后入选釜山亚洲电影之窗，并获得第45届夏威夷国际电影节Kau Ka Hōkū（Shooting Star）奖。2026年入围北影节天坛奖主竞赛，并在澳门亚洲艺术电影节获得最佳导演。",
+    "honors": [
+     "入选｜2025 多伦多国际电影节 · 特别展映",
+     "入选｜2025 釜山国际电影节 · 亚洲电影之窗",
+     "获奖｜2025 第45届夏威夷国际电影节 · Kau Ka Hōkū（Shooting Star）奖",
+     "入选｜2026 棕榈泉国际电影节",
+     "入围｜2026 第16届北京国际电影节 · 天坛奖主竞赛单元",
+     "获奖｜2026 亚洲艺术电影节（澳门）· 最佳导演（黎光）"
+    ],
+    "warnings": [
+     "战后政治压力",
+     "寡居与孤独"
+    ],
+    "editorial": "选片建议：适合愿意沉入长篇幅、慢节奏爱情与邻里群像的观众。可以从做饭、洗碗、音乐和翻译等细节进入，观察关怀如何代替告白。它的浪漫关系始终牵连战后处境；纽约林肯中心的策展介绍强调影像构图与克制情绪，夏威夷评审团则特别肯定诗歌、音乐、文学的交织。以社会记忆与日常情感一同观看，比只等待爱情结果更能接近影片。",
+    "links": {
+     "imdb": "tt36616095",
+     "lb": "ky-nam-inn",
+     "douban": "37227058"
+    },
+    "worldPremiere": {
+     "status": "verified",
+     "date": "2025-09-07",
+     "festival": "多伦多国际电影节",
+     "festivalEn": "Toronto International Film Festival",
+     "kind": "festival",
+     "checked": "2026-11-11"
+    },
+    "r": [
+     null,
+     7.8,
+     null,
+     null,
+     null
+    ],
+    "poster": "posters/ky-nam-inn.jpg",
+    "contentReview": {
+     "status": "synopsis-reviewed",
+     "checked": "2026-11-11",
+     "sensory": "unverified"
+    },
+    "contentNote": "依据公开剧情与发行资料整理，涉及战后政治压力、寡居与孤独。未完整审片；具体画面强度、闪烁及音量尚未核实，不替代正式分级。",
+    "highlights": [
+     "35毫米胶片呈现1985年西贡的老楼与生活质感，食物、歌曲及日常劳动承载未说出口的情感。",
+     "《小王子》的翻译贯穿故事，爱情与邻里互助始终置于战后的社会变化之中。",
+     "连秉发与杜氏海燕演绎克制的情感，适合关注表情、停顿与人物距离的观众。"
+    ],
+    "ratingsChecked": "2026-11-11"
+   }
+  },
+  "our-girls": {
+   "cast": [
+    "斯科拉·鲁特",
+    "费嘉·范·胡特",
+    "诺杰·赫拉尔",
+    "瓦伦泰恩·达恩恩斯",
+    "罗莎·范·露温",
+    "卡尔·马克维斯",
+    "弗雷德里克·范·巴尔森"
+   ],
+   "castMap": {
+    "Thekla Reuten": "斯科拉·鲁特",
+    "Fedja van Huêt": "费嘉·范·胡特",
+    "Noortje Herlaar": "诺杰·赫拉尔",
+    "Valentijn Dhaenens": "瓦伦泰恩·达恩恩斯",
+    "Rosa van Leeuwen": "罗莎·范·露温",
+    "Karl Markovics": "卡尔·马克维斯",
+    "Frédérique van Baarsen": "弗雷德里克·范·巴尔森"
+   },
+   "castNotes": "前四名采用北影节官网中文名；其余中文名为常用译名/编辑音译，原拼写在国际制片方/IMDb 可核。",
+   "worldPremiere": {
+    "status": "verified",
+    "date": "2025-09-26",
+    "festival": "荷兰电影节",
+    "festivalEn": "Netherlands Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-11"
+   },
+   "premiereCaveat": "荷兰电影节官方、Filmfonds 6月公告、官方 YouTube 和同时全国影院节目确认9月26日。Letterboxd 标9月25日，Filmfonds 9月25日文章写 'vrijdag 25 september'（星期与日期矛盾）；建议以官方明确场次9月26日为准，证据笔记保留冲突。",
+   "r": [
+    null,
+    7.3,
+    null,
+    null,
+    null
+   ],
+   "ratingResearch": {
+    "douban": {
+     "status": "unverified",
+     "value": null,
+     "url": null,
+     "note": "原站搜索无结果；非原站有7.6但不应录入。"
+    },
+    "imdb": {
+     "status": "verified-snapshot",
+     "value": 7.3,
+     "count": "3.8K",
+     "url": "https://www.imdb.com/title/tt36474012",
+     "method": "web search 原平台完整摘要"
+    },
+    "rt": {
+     "status": "not-yet-rated",
+     "value": null,
+     "url": "https://www.rottentomatoes.com/m/our_girls",
+     "note": "原平台快照：0 critic reviews、0 audience ratings，暂无分数。"
+    },
+    "metacritic": {
+     "status": "unverified",
+     "value": null,
+     "url": null,
+     "note": "搜索 Our Girls Metacritic 未发现匹配原站条目；第三方 AuteurGraph 的73和 IMDb8.1等与原站冲突不可采用。"
+    },
+    "letterboxd": {
+     "status": "unverified",
+     "value": null,
+     "url": "https://letterboxd.com/film/our-girls-2025/",
+     "note": "正确条目已核实（不带2025的路径是2009冰岛纪录片）；公开文本未返回均分。"
+    }
+   },
+   "honors": [
+    "入选｜2025 荷兰电影节 · 开幕片",
+    "获奖｜2025 荷兰金牛犊奖 · 最佳长片",
+    "获奖｜2025 荷兰金牛犊奖 · 最佳长片主演（斯科拉·鲁特）",
+    "获奖｜2025 荷兰金牛犊奖 · 最佳长片剧本",
+    "提名｜2025 荷兰金牛犊奖 · 最佳声音设计",
+    "获奖｜2025 华沙国际电影节 · 最佳导演（迈克·范·迪姆）",
+    "评选｜荷兰电影记者协会 · 2025年度最佳荷兰电影"
+   ],
+   "background": "改编自莱克·穆斯2019年的小说《We doen wat we kunnen》。导演在 Filmkrant 访谈中说，选角导演玛丽娜·韦恩向他推荐了原著，他看中的是四名演员彼此角力的空间。改编把一场室内争执移到山路长椅，另以餐厅长场面让四人同时留在画面中，把隐瞒、敌意与自我辩护交给表演。",
+   "style": "阿尔卑斯山的开阔风景反衬家庭关系的封闭与失控。影片并非单纯悬疑解谜，而以言语冲突与黑色幽默不断改变观众对两对夫妇的立场。",
+   "press": "VPRO Cinema 给出4/5星，赞赏它尖刻、聪明的黑色喜剧表达，以及道德灰区带来的余味。导演本人在采访中强调演员群戏和长场面，而非靠快速剪辑推动冲突。",
+   "editorial": "适合喜欢家庭伦理、群戏和黑色幽默的观众。可以留意四位成年人何时从朋友变成谈判对手：每一次看似合理的自我辩护，都可能暴露另一层私心。涉及未成年人的严重事故、抢救与器官捐献抉择，观影情绪较紧绷。",
+   "sources": [
+    {
+     "url": "https://www.bjiff.com/ttj_17829/ttj/dsejttjrwyp/antlyb_19270/",
+     "supports": "官方中文主演、导演履历与天坛奖入围"
+    },
+    {
+     "url": "https://www.filmfestival.nl/film/voor-de-meisjes",
+     "supports": "9月26日开幕场、原著、演员及金牛犊获奖/提名；2026观众奖也列于页面，可额外使用但不要混入2025奖"
+    },
+    {
+     "url": "https://www.filmfonds.nl/actueel/nederlands-film-festival-2025-opent-met-de-premi%C3%A8re-voor-de-meisjes",
+     "supports": "2025-09-26电影节首映与同步预映"
+    },
+    {
+     "url": "https://keplerfilm.com/work/our-girls/",
+     "supports": "制片方演员与合拍国、原著、103分钟"
+    },
+    {
+     "url": "https://filmkrant.nl/interview/mike-van-diem-over-voor-de-meisjes/",
+     "supports": "导演亲述改编由来、山路与餐厅长场面设计"
+    },
+    {
+     "url": "https://www.cinema.nl/db/16059292-voor-de-meisjes",
+     "supports": "VPRO Cinema 4/5星及黑色喜剧评价"
+    },
+    {
+     "url": "https://www.inter-film.org/festivals/warsaw-international-film-festival/41st-film-festival-warsaw",
+     "supports": "电影节合作评审组织确认华沙最佳导演"
+    },
+    {
+     "url": "https://www.filmjournalisten.nl/2026/01/29/nederlands-filmpers-roept-one-battle-after-another-en-voor-de-meisjes-uit-tot-beste-films-van-2025/",
+     "supports": "荷兰电影记者协会2025最佳荷兰电影，60分；是年终评选而非影展奖"
+    }
+   ],
+   "bio": "迈克·范·迪姆1959年生于荷兰，毕业于荷兰电影学院。毕业短片《阿拉斯加》获得学生奥斯卡奖，剧情长片首作《角色》于1998年获奥斯卡最佳外语片奖；此后执导《意外制造公司》《郁金香情事》。他擅长把人物间的权力拉扯写成表演驱动的戏剧，本片延续了他对人性暗面与黑色幽默的兴趣。",
+   "st": "2025年9月26日以第45届荷兰电影节开幕片身份首映，随后于10月2日在荷兰公映。影片获当年金牛犊奖最佳长片、最佳剧本及最佳长片主演，并在第41届华沙国际电影节获得最佳导演奖。2026年入围第16届北京国际电影节天坛奖主竞赛。",
+   "highlights": [
+    "四位成年人构成的群戏，让观众不断重估同情与责任的归属。",
+    "山路长椅和餐厅的长场面，把压抑的敌意转为可见的表演较量。",
+    "家庭危机中穿插尖刻的黑色幽默，既紧绷，也带有荒诞感。",
+    "VPRO Cinema 给出4/5星，赞赏它尖刻、聪明的黑色喜剧表达，以及道德灰区带来的余味。导演本人在采访中强调演员群戏和长场面，而非靠快速剪辑推动冲突。"
+   ],
+   "publishedAfter": {
+    "id": "our-girls",
+    "cn": "女孩们",
+    "o": "Voor de meisjes",
+    "en": "Our Girls",
+    "y": 2025,
+    "c": "荷兰 / 奥地利 / 比利时",
+    "min": 103,
+    "reg": "eu",
+    "dir": "迈克·范·迪姆",
+    "dirO": "Mike van Diem",
+    "genre": [
+     "剧情",
+     "惊悚"
+    ],
+    "language": "荷兰语 / 英语 / 德语",
+    "writers": [
+     "迈克·范·迪姆",
+     "莱克·穆斯（原著）"
+    ],
+    "cast": [
+     "斯科拉·鲁特",
+     "费嘉·范·胡特",
+     "诺杰·赫拉尔",
+     "瓦伦泰恩·达恩恩斯",
+     "罗莎·范·露温",
+     "卡尔·马克维斯",
+     "弗雷德里克·范·巴尔森"
+    ],
+    "syn": "两对相识多年的夫妇相约到奥地利阿尔卑斯山度假，宁静的假期却因一场涉及孩子的意外而失控。当要拯救自己的孩子时，有没有不能越过的底线？原本牢固的友情开始出现裂缝，体面的人做出了难以接受的事。",
+    "bio": "迈克·范·迪姆是荷兰导演、编剧，1998年凭长片处女作《性格》获奥斯卡最佳外语片奖。《女孩们》改编自莱克·穆斯2019年的小说《我们尽力而为》，延续他对人性冲突与类型叙事的兴趣，以四位成年人的群戏展开亲情、友情和道德底线的角力。",
+    "st": "改编自莱克·穆斯2019年的小说《We doen wat we kunnen》。导演在 Filmkrant 访谈中说，选角导演玛丽娜·韦恩向他推荐了原著，他看中的是四名演员彼此角力的空间。改编把一场室内争执移到山路长椅，另以餐厅长场面让四人同时留在画面中，把隐瞒、敌意与自我辩护交给表演。\n\n阿尔卑斯山的开阔风景反衬家庭关系的封闭与失控。影片并非单纯悬疑解谜，而以言语冲突与黑色幽默不断改变观众对两对夫妇的立场。\n\n2025年9月26日作为荷兰电影节开幕片全球首映，获当年金牛犊奖最佳长片、主演、剧本三奖，并获华沙国际电影节最佳导演；荷兰电影记者协会将其评为2025年度最佳荷兰电影。",
+    "honors": [
+     "入选｜2025 荷兰电影节 · 开幕片",
+     "获奖｜2025 荷兰金牛犊奖 · 最佳长片",
+     "获奖｜2025 荷兰金牛犊奖 · 最佳长片主演（斯科拉·鲁特）",
+     "获奖｜2025 荷兰金牛犊奖 · 最佳长片剧本",
+     "提名｜2025 荷兰金牛犊奖 · 最佳声音设计",
+     "获奖｜2025 华沙国际电影节 · 最佳导演（迈克·范·迪姆）",
+     "评选｜荷兰电影记者协会 · 2025年度最佳荷兰电影",
+     "入围｜2026 第16届北京国际电影节 · 天坛奖主竞赛单元"
+    ],
+    "warnings": [
+     "儿童受伤事故",
+     "友情与家庭的道德抉择"
+    ],
+    "editorial": "适合喜欢家庭伦理、群戏和黑色幽默的观众。可以留意四位成年人何时从朋友变成谈判对手：每一次看似合理的自我辩护，都可能暴露另一层私心。涉及未成年人的严重事故、抢救与器官捐献抉择，观影情绪较紧绷。",
+    "links": {
+     "imdb": "tt36474012",
+     "lb": "our-girls-2025",
+     "douban": "36948291"
+    },
+    "worldPremiere": {
+     "status": "verified",
+     "date": "2025-09-26",
+     "festival": "荷兰电影节",
+     "festivalEn": "Netherlands Film Festival",
+     "kind": "festival",
+     "checked": "2026-11-11"
+    },
+    "r": [
+     null,
+     7.3,
+     null,
+     null,
+     null
+    ],
+    "poster": "posters/our-girls.jpg",
+    "contentReview": {
+     "status": "synopsis-reviewed",
+     "checked": "2026-11-11",
+     "sensory": "unverified"
+    },
+    "contentNote": "依据公开剧情与发行资料整理，涉及儿童受伤事故、友情与家庭的道德抉择。未完整审片；具体画面强度、闪烁及音量尚未核实，不替代正式分级。",
+    "highlights": [
+     "四位成年人构成的群戏，让观众不断重估同情与责任的归属。",
+     "山路长椅和餐厅的长场面，把压抑的敌意转为可见的表演较量。",
+     "家庭危机中穿插尖刻的黑色幽默，既紧绷，也带有荒诞感。",
+     "VPRO Cinema 给出4/5星，赞赏它尖刻、聪明的黑色喜剧表达，以及道德灰区带来的余味。导演本人在采访中强调演员群戏和长场面，而非靠快速剪辑推动冲突。"
+    ],
+    "ratingsChecked": "2026-11-11"
+   }
+  },
+  "in-my-parents-house": {
+   "cast": [
+    "珍妮·席莉",
+    "乌尔苏拉·维尔纳",
+    "曼弗雷德·扎帕特卡",
+    "延斯·布罗克",
+    "马库斯·施莱泽",
+    "约翰内斯·蔡勒",
+    "克尔斯滕·布洛克",
+    "彼得·施耐德"
+   ],
+   "castMap": {
+    "Jenny Schily": "珍妮·席莉",
+    "Ursula Werner": "乌尔苏拉·维尔纳",
+    "Manfred Zapatka": "曼弗雷德·扎帕特卡",
+    "Jens Brock": "延斯·布罗克",
+    "Markus Schleinzer": "马库斯·施莱泽",
+    "Johannes Zeiler": "约翰内斯·蔡勒",
+    "Kirsten Block": "克尔斯滕·布洛克",
+    "Peter Schneider": "彼得·施耐德"
+   },
+   "castNotes": "未检得影片官方完整中文名单；属于编辑音译，使用时以现有片库同人译名统一。角色原名对应由制作方 presskit/Crew United 核实。",
+   "worldPremiere": {
+    "status": "verified",
+    "date": "2025-02-03",
+    "festival": "鹿特丹国际电影节",
+    "festivalEn": "International Film Festival Rotterdam",
+    "kind": "festival",
+    "checked": "2026-11-11"
+   },
+   "r": [
+    null,
+    7.0,
+    null,
+    null,
+    null
+   ],
+   "ratingResearch": {
+    "douban": {
+     "status": "unverified",
+     "value": null,
+     "url": null,
+     "note": "中文/外文片名原站搜索均无匹配结果，不把1905的6.7误写为豆瓣。"
+    },
+    "imdb": {
+     "status": "verified-snapshot",
+     "value": 7.0,
+     "count": 87,
+     "url": "https://www.imdb.com/title/tt35051012",
+     "method": "web 原站搜索快照"
+    },
+    "rt": {
+     "status": "not-yet-rated",
+     "value": null,
+     "url": "https://static.rottentomatoes.com/m/in_my_parents_house",
+     "note": "原平台搜索快照明确为0 Reviews、0 Ratings。"
+    },
+    "metacritic": {
+     "status": "unverified",
+     "value": null,
+     "url": null,
+     "note": "搜索无匹配原站评分，第三方也标N/A。"
+    },
+    "letterboxd": {
+     "status": "unverified",
+     "value": null,
+     "url": "https://letterboxd.com/film/in-my-parents-house/",
+     "note": "条目可读，均分未在公开文本中返回。"
+    }
+   },
+   "honors": [
+    "入围｜2025 鹿特丹国际电影节 · 老虎竞赛单元",
+    "获奖｜2025 鹿特丹国际电影节 · 评审团特别奖",
+    "入围｜第15届北京国际电影节 · 天坛奖主竞赛单元"
+   ],
+   "background": "这是蒂姆·艾尔里奇在巴登-符腾堡电影学院完成的毕业作品和剧情长片首作，取材于母亲与家人的关系，以及患精神分裂症的舅舅人生最后阶段的经历，并在导演熟悉的家庭旧居实地拍摄。黑白摄影保留了照护劳动、沉默和日常空间的重量。",
+   "style": "鹿特丹策展人Vanja Kaludjercic强调，黑白影像同时表现照护者的疲惫与义务构成的幽闭感，影片没有简单裁判哪一个家人是对的。Filmdienst指出，影片经常省去音乐甚至对白，让熨衣、刷牙等普通动作积累情绪。",
+   "press": "德国epd Film评论给出3分，认为影像具有近乎纪录式的观察感；Filmdienst则把它看作一次对自身家庭经历的形式化处理。推荐重点是照护的伦理与边界，而不是以疾病制造奇观。",
+   "editorial": "适合关注原生家庭、照护劳动及克制影像的观众。可把注意力放在房屋空间与反复的日常动作：帮助何时变成控制，责任又由谁承担。故事涉及家人的精神疾病与照护压力；提示应针对具体冲突，不把精神障碍身份本身列作风险。",
+   "sources": [
+    {
+     "url": "https://iffr.com/en/iffr/2025/films/im-haus-meiner-eltern",
+     "supports": "全球首映身份、Tiger Competition、家庭经验与旧居拍摄、黑白形式、策展推荐"
+    },
+    {
+     "url": "https://www.crew-united.com/de/Im-Haus-meiner-Eltern__290548.html",
+     "supports": "Uraufführung Montag03.02.2025 IFFR、演员角色；与Letterboxd首映表互证"
+    },
+    {
+     "url": "https://germanfilmsquarterly.de/mediapool/IHME_Presskit_16122024_ENG_klein.pdf",
+     "supports": "制作方英文新闻手册、演员角色与创作阐述"
+    },
+    {
+     "url": "https://www.filmakademie.de/de/news-aktuelles/article/im-haus-meiner-eltern-gewinnt-special-jury-award",
+     "supports": "电影学院官网确认毕业片获鹿特丹评审团特别奖（不是仅入围）"
+    },
+    {
+     "url": "https://www.talentrepublicagency.de/directors/tim-ellrich",
+     "supports": "导演官方代理履历，母亲与其患病兄弟关系为灵感、鹿特丹获奖"
+    },
+    {
+     "url": "https://www.bjiff.com/ttj_17829/ttj/ttjjj/202503/t20250328_182758.html",
+     "supports": "北影节官方中文确认天坛奖入围、鹿特丹评审团特别奖"
+    },
+    {
+     "url": "https://www.epd-film.de/filmkritiken/im-haus-meiner-eltern",
+     "supports": "2025-03-21 Manfred Riepe评论，纪录观察感、3分"
+    },
+    {
+     "url": "https://www.filmdienst.de/film/details/624527/im-haus-meiner-eltern",
+     "supports": "黑白、无音乐或少对白的日常观察及家庭经历改编"
+    }
+   ],
+   "bio": "蒂姆·艾尔里奇1989年生于德国奥斯纳布吕克，曾在维也纳修读哲学与戏剧影视，后进入巴登-符腾堡电影学院学习导演。短片《浴缸》曾获克莱蒙费朗短片电影节评审团奖，纪录长片《我的越南》获德国First Steps电影新秀奖。本片为其剧情长片首作与毕业作品，以母亲和患病舅舅的家庭经历为基础。",
+   "st": "2025年2月3日在第54届鹿特丹国际电影节老虎竞赛全球首映，并获得评审团特别奖。同年入围第15届北京国际电影节天坛奖主竞赛，4月10日在德国公映。",
+   "highlights": [
+    "在导演家庭旧居实地拍摄，房屋既是生活空间，也是无法逃离的责任网络。",
+    "黑白影像与少音乐的处理，让照护劳动的疲惫在细节中积累。",
+    "不简单谴责离开的人或赞美留下的人，着眼于帮助、控制与自我保护的边界。",
+    "德国epd Film评论给出3分，认为影像具有近乎纪录式的观察感；Filmdienst则把它看作一次对自身家庭经历的形式化处理。推荐重点是照护的伦理与边界，而不是以疾病制造奇观。"
+   ],
+   "publishedAfter": {
+    "id": "in-my-parents-house",
+    "cn": "在我父母家",
+    "o": "Im Haus meiner Eltern",
+    "en": "In My Parents' House",
+    "y": 2025,
+    "c": "德国",
+    "min": 95,
+    "reg": "eu",
+    "dir": "蒂姆·艾尔里奇",
+    "dirO": "Tim Ellrich",
+    "dirLife": "1989– · 德国",
+    "genre": [
+     "剧情"
+    ],
+    "language": "德语",
+    "writers": [
+     "蒂姆·艾尔里奇"
+    ],
+    "cast": [
+     "珍妮·席莉",
+     "乌尔苏拉·维尔纳",
+     "曼弗雷德·扎帕特卡",
+     "延斯·布罗克",
+     "马库斯·施莱泽",
+     "约翰内斯·蔡勒",
+     "克尔斯滕·布洛克",
+     "彼得·施耐德"
+    ],
+    "syn": "荷勒是一位主张另类疗法的治疗师，要在自己的职业生活与年迈父母、病情恶化的哥哥之间取得平衡。其他兄弟姐妹选择转身离开，她却觉得，家里藏着一个更大的沉默。影片以黑白影像讲述照护的愧疚、无力，与帮助他人的意愿。",
+    "bio": "蒂姆·艾尔里奇1989年生于德国奥斯纳布吕克，曾在维也纳及巴登-符腾堡电影学院学习。《在我父母家》是他的毕业作品与首部剧情长片，取材于自身家庭经历，获得2025年鹿特丹国际电影节老虎竞赛评审团特别奖。",
+    "st": "这是蒂姆·艾尔里奇在巴登-符腾堡电影学院完成的毕业作品和剧情长片首作，取材于母亲与家人的关系，以及患精神分裂症的舅舅人生最后阶段的经历，并在导演熟悉的家庭旧居实地拍摄。黑白摄影保留了照护劳动、沉默和日常空间的重量。\n\n鹿特丹策展人Vanja Kaludjercic强调，黑白影像同时表现照护者的疲惫与义务构成的幽闭感，影片没有简单裁判哪一个家人是对的。Filmdienst指出，影片经常省去音乐甚至对白，让熨衣、刷牙等普通动作积累情绪。\n\n2025年2月3日在鹿特丹国际电影节老虎竞赛全球首映并获评审团特别奖，同年入围第15届北京国际电影节天坛奖主竞赛。",
+    "honors": [
+     "入围｜2025 鹿特丹国际电影节 · 老虎竞赛单元",
+     "获奖｜2025 鹿特丹国际电影节 · 评审团特别奖",
+     "入围｜第15届北京国际电影节 · 天坛奖主竞赛单元"
+    ],
+    "warnings": [
+     "家庭照护压力",
+     "家庭冲突"
+    ],
+    "editorial": "适合关注原生家庭、照护劳动及克制影像的观众。可把注意力放在房屋空间与反复的日常动作：帮助何时变成控制，责任又由谁承担。故事涉及家人的疾病与照护压力，适合愿意面对照护困境并容纳复杂情绪的观众。",
+    "links": {
+     "imdb": "tt35051012",
+     "lb": "in-my-parents-house",
+     "douban": "37165395"
+    },
+    "worldPremiere": {
+     "status": "verified",
+     "date": "2025-02-03",
+     "festival": "鹿特丹国际电影节",
+     "festivalEn": "International Film Festival Rotterdam",
+     "kind": "festival",
+     "checked": "2026-11-11"
+    },
+    "r": [
+     null,
+     7.0,
+     null,
+     null,
+     null
+    ],
+    "poster": "posters/in-my-parents-house.jpg",
+    "contentReview": {
+     "status": "synopsis-reviewed",
+     "checked": "2026-11-11",
+     "sensory": "unverified"
+    },
+    "contentNote": "依据公开剧情与影展资料整理，涉及家庭照护压力与家庭冲突。未完整审片；具体画面强度、闪烁及音量尚未核实，不替代正式分级。",
+    "highlights": [
+     "在导演家庭旧居实地拍摄，房屋既是生活空间，也是无法逃离的责任网络。",
+     "黑白影像与少音乐的处理，让照护劳动的疲惫在细节中积累。",
+     "不简单谴责离开的人或赞美留下的人，着眼于帮助、控制与自我保护的边界。",
+     "德国epd Film评论给出3分，认为影像具有近乎纪录式的观察感；Filmdienst则把它看作一次对自身家庭经历的形式化处理。推荐重点是照护的伦理与边界，而不是以疾病制造奇观。"
+    ],
+    "ratingsChecked": "2026-11-11"
+   }
+  },
+  "the-summer-book": {
+   "cast": [
+    "格伦·克洛斯",
+    "埃米莉·马修斯",
+    "安德斯·丹尼尔森·李",
+    "英格瓦·埃盖特·西古德松",
+    "佩卡·斯特朗",
+    "索菲亚·海基拉",
+    "泰奥·齐利亚库斯"
+   ],
+   "castMap": {
+    "Glenn Close": "格伦·克洛斯",
+    "Emily Matthews": "埃米莉·马修斯",
+    "Anders Danielsen Lie": "安德斯·丹尼尔森·李",
+    "Ingvar Sigurdsson": "英格瓦·埃盖特·西古德松",
+    "Pekka Strang": "佩卡·斯特朗",
+    "Sophia Heikkilä": "索菲亚·海基拉",
+    "Theo Zilliacus": "泰奥·齐利亚库斯"
+   },
+   "worldPremiere": {
+    "status": "verified",
+    "date": "2024-10-12",
+    "festival": "BFI伦敦电影节",
+    "festivalEn": "BFI London Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-11"
+   },
+   "r": [
+    null,
+    6.5,
+    80,
+    57,
+    null
+   ],
+   "ratingResearch": {
+    "douban": {
+     "status": "unverified",
+     "value": null,
+     "url": "https://movie.douban.com/subject/36299051/",
+     "note": "条目ID由中文资料定位，原站访问403；第三方称7.7不可作为原站当前分数。注意不要误用同名小说豆瓣8.2或土耳其2008同名电影。"
+    },
+    "imdb": {
+     "status": "verified-snapshot",
+     "value": 6.5,
+     "count": "1.7K",
+     "url": "https://www.imdb.com/title/tt26940053/ratings/",
+     "method": "web原平台搜索快照"
+    },
+    "rt": {
+     "status": "verified-snapshot",
+     "value": 80,
+     "count": 61,
+     "url": "https://www.rottentomatoes.com/m/the_summer_book",
+     "note": "80%是Tomatometer影评人新鲜度，61评；Popcornmeter不足50票暂无分数。原站当前快照80而非旧维基83/40评。"
+    },
+    "metacritic": {
+     "status": "verified-snapshot",
+     "value": 57,
+     "count": 14,
+     "url": "https://www.metacritic.com/movie/the-summer-book/",
+     "note": "57/100、14 critic reviews；用户分数tbd。第三方62旧值不可用。"
+    },
+    "letterboxd": {
+     "status": "unverified",
+     "value": null,
+     "url": "https://letterboxd.com/film/the-summer-book/",
+     "note": "条目及全演职员可读，公开文本未返回均分。第三方WhatsAfterTheMovie称3.4/5但原站未确认，建议暂不录分。"
+    }
+   },
+   "honors": [
+    "入选｜2024 BFI伦敦电影节 · 特别展映",
+    "入围｜第15届北京国际电影节 · 天坛奖主竞赛单元"
+   ],
+   "background": "改编自托芙·扬松1972年的同名成人小说，罗伯特·琼斯编剧。导演在发行新闻手册中回忆，二十多岁读到原作时，想起自己童年在马萨诸塞州外海小岛度过的暑假；因此把岛屿视为参与叙事的角色，以自然变化回应祖母、女孩与父亲不同的人生阶段。影片在芬兰以16毫米胶片和自然光拍摄，摄影由斯图拉·布兰特·格勒夫伦担任，哈尼亚·拉尼配乐。",
+   "style": "三代人面对同一场丧失，却以不同方式消化悲伤。岛上的海浪、风暴、花草与漫长日光并非单纯风景，而是时间和生命循环的节拍。",
+   "press": "影评意见分化：烂番茄共识肯定格伦·克洛斯沉着的表演和生命起落主题；RogerEbert.com赞赏其冥想般的影像语言，Variety与Screen Daily则认为改编保留了温暖，却难以完全转译原著的诗意。",
+   "editorial": "适合喜欢自然景观、祖孙关系和低戏剧强度作品的观众。观影时可以追随海风、日光与人物的细小反应；如果期待高密度事件，需先接受它舒缓、片段式的节奏。涉及丧亲、衰老与死亡，另有风暴遇险场面。",
+   "contentEvidence": {
+    "url": "https://www.bbfc.co.uk/release/the-summer-book-q29sbgvjdglvbjpwwc0xmdi0odew",
+    "note": "英国2024影院版BBFC提示 mild bad language/upsetting scenes/threat；具体有风暴倾覆、自然裸露、成人吸烟饮酒、克制死亡场面。不能自动套用到巡展剪辑。"
+   },
+   "sources": [
+    {
+     "url": "https://tovejansson.com/summer-book-film/",
+     "supports": "作者遗产官网确认2024-10-12伦敦首映、2026英爱上映"
+    },
+    {
+     "url": "https://www.charades.eu/storage/documents/recNpSaLzbtl3CVmE.pdf",
+     "supports": "国际销售官方新闻手册，导演阐述、全演员角色、摄影/配乐等演职员"
+    },
+    {
+     "url": "https://www.musicboxfilms.com/film/the-summer-book/",
+     "supports": "美国发行方确认16mm自然光拍摄、主要演员、BFI入选"
+    },
+    {
+     "url": "https://www.bjiff.com/ttj_17829/ttj/ttjjj/202503/t20250328_182758.html",
+     "supports": "第15届北京电影节天坛奖入围清单"
+    },
+    {
+     "url": "https://www.metacritic.com/movie/the-summer-book/critic-reviews/",
+     "supports": "影评汇总，RogerEbert.com88/100、Variety60/100、Screen Daily60/100等，勿把这些当平台总体分"
+    }
+   ],
+   "bio": "查理·麦克道威尔是英裔美国导演，长片首作《爱的就是你》于2014年圣丹斯电影节首映，《爱有来世》于2017年回到圣丹斯。他将个人童年的海岛记忆与托芙·扬松的成人文学连接，以三代人的不同视角探索丧失、成长与衰老。",
+   "st": "2024年10月12日在BFI伦敦电影节特别展映全球首映，同年于AFI FEST等影展放映。2025年入围第15届北京国际电影节天坛奖主竞赛；英国及爱尔兰于2026年8月7日公映。",
+   "highlights": [
+    "16毫米胶片与自然光记录芬兰海岛的夏日质感。",
+    "格伦·克洛斯与新人埃米莉·马修斯的祖孙对戏，把告别藏进日常交流。",
+    "哈尼亚·拉尼的配乐、海风与自然声构成缓慢流动的情绪节拍。",
+    "影评意见分化：烂番茄共识肯定格伦·克洛斯沉着的表演和生命起落主题；RogerEbert.com赞赏其冥想般的影像语言，Variety与Screen Daily则认为改编保留了温暖，却难以完全转译原著的诗意。"
+   ],
+   "publishedAfter": {
+    "id": "the-summer-book",
+    "cn": "夏日之书",
+    "o": "Kesäkirja",
+    "en": "The Summer Book",
+    "y": 2024,
+    "c": "芬兰 / 英国 / 美国",
+    "min": 90,
+    "reg": "eu",
+    "dir": "查理·麦克道威尔",
+    "dirO": "Charlie McDowell",
+    "genre": [
+     "剧情"
+    ],
+    "language": "英语",
+    "writers": [
+     "罗伯特·琼斯",
+     "托芙·扬松（原著）"
+    ],
+    "cast": [
+     "格伦·克洛斯",
+     "埃米莉·马修斯",
+     "安德斯·丹尼尔森·李",
+     "英格瓦·埃盖特·西古德松",
+     "佩卡·斯特朗",
+     "索菲亚·海基拉",
+     "泰奥·齐利亚库斯"
+    ],
+    "syn": "九岁的女孩索菲亚刚失去母亲，和父亲、年迈的祖母一起在芬兰海湾的小岛上度过夏天。祖母是一位倔强而可爱的艺术家，生命已近尾声。祖孙在孤岛的夏光与自然里一同面对生与死，慢慢找到相处的方式。",
+    "bio": "查理·麦克道威尔是英裔美国导演，长片首作《爱的就是你》于2014年圣丹斯电影节首映，《爱有来世》于2017年回到圣丹斯。他将个人童年的海岛记忆与托芙·扬松的成人文学连接，以三代人的不同视角探索丧失、成长与衰老。",
+    "st": "改编自托芙·扬松1972年的同名成人小说，罗伯特·琼斯编剧。导演在发行新闻手册中回忆，二十多岁读到原作时，想起自己童年在马萨诸塞州外海小岛度过的暑假；因此把岛屿视为参与叙事的角色，以自然变化回应祖母、女孩与父亲不同的人生阶段。影片在芬兰以16毫米胶片和自然光拍摄，摄影由斯图拉·布兰特·格勒夫伦担任，哈尼亚·拉尼配乐。\n\n三代人面对同一场丧失，却以不同方式消化悲伤。岛上的海浪、风暴、花草与漫长日光并非单纯风景，而是时间和生命循环的节拍。\n\n2024年10月12日在BFI伦敦电影节特别展映全球首映，2025年入围第15届北京国际电影节天坛奖主竞赛。",
+    "honors": [
+     "入选｜2024 BFI伦敦电影节 · 特别展映",
+     "入围｜第15届北京国际电影节 · 天坛奖主竞赛单元"
+    ],
+    "warnings": [
+     "亲人离世与哀伤",
+     "衰老与死亡"
+    ],
+    "editorial": "适合喜欢自然景观、祖孙关系和低戏剧强度作品的观众。观影时可以追随海风、日光与人物的细小反应；如果期待高密度事件，需先接受它舒缓、片段式的节奏。涉及丧亲、衰老与死亡，另有风暴遇险场面。",
+    "links": {
+     "imdb": "tt26940053",
+     "lb": "the-summer-book"
+    },
+    "worldPremiere": {
+     "status": "verified",
+     "date": "2024-10-12",
+     "festival": "BFI伦敦电影节",
+     "festivalEn": "BFI London Film Festival",
+     "kind": "festival",
+     "checked": "2026-11-11"
+    },
+    "r": [
+     null,
+     6.5,
+     80,
+     57,
+     null
+    ],
+    "poster": "posters/the-summer-book.jpg",
+    "contentReview": {
+     "status": "synopsis-reviewed",
+     "checked": "2026-11-11",
+     "sensory": "unverified"
+    },
+    "contentNote": "依据公开剧情与发行资料整理，涉及亲人离世与哀伤、衰老与死亡。未完整审片；具体画面强度、闪烁及音量尚未核实，不替代正式分级。",
+    "highlights": [
+     "16毫米胶片与自然光记录芬兰海岛的夏日质感。",
+     "格伦·克洛斯与新人埃米莉·马修斯的祖孙对戏，把告别藏进日常交流。",
+     "哈尼亚·拉尼的配乐、海风与自然声构成缓慢流动的情绪节拍。",
+     "影评意见分化：烂番茄共识肯定格伦·克洛斯沉着的表演和生命起落主题；RogerEbert.com赞赏其冥想般的影像语言，Variety与Screen Daily则认为改编保留了温暖，却难以完全转译原著的诗意。"
+    ],
+    "ratingsChecked": "2026-11-11"
+   }
+  }
+ },
+ "doubanAudit": {
+  "checked": "2026-11-11",
+  "method": "豆瓣原站奖项页链接定位subject ID，详情页及手机页读取、中文与原名和导演联合搜索、ID精确搜索。仅采用原站证据；未采用第三方转载分数。",
+  "films": {
+   "dragonfly": {
+    "cn": "危情蜻蜓",
+    "subjectId": "36899331",
+    "url": "https://movie.douban.com/subject/36899331/",
+    "score": null,
+    "scoreStatus": "unverified",
+    "note": "详情403/429或验证拦截，原站搜索快照无可核实数值，不应标成暂无评分。",
+    "idStatus": "verified-official-link",
+    "idEvidence": "https://movie.douban.com/awards/bjiff/16/nominees?k=a",
+    "idEvidenceDetail": "第16届北影节最佳影片入围名单对应片名链接；危情蜻蜓与女孩们也在获奖页主列表中。"
+   },
+   "three-goodbyes": {
+    "cn": "三声再见",
+    "subjectId": "37233382",
+    "url": "https://movie.douban.com/subject/37233382/",
+    "score": null,
+    "scoreStatus": "unverified",
+    "note": "详情403/429或验证拦截，原站搜索快照无可核实数值，不应标成暂无评分。",
+    "idStatus": "verified-official-link",
+    "idEvidence": "https://movie.douban.com/awards/bjiff/16/nominees?k=a",
+    "idEvidenceDetail": "第16届北影节最佳影片入围名单对应片名链接；危情蜻蜓与女孩们也在获奖页主列表中。"
+   },
+   "isabel": {
+    "cn": "酒吧计划",
+    "subjectId": "37246605",
+    "url": "https://movie.douban.com/subject/37246605/",
+    "score": null,
+    "scoreStatus": "unverified",
+    "note": "详情403/429或验证拦截，原站搜索快照无可核实数值，不应标成暂无评分。",
+    "idStatus": "verified-official-link",
+    "idEvidence": "https://movie.douban.com/awards/bjiff/16/nominees?k=a",
+    "idEvidenceDetail": "第16届北影节最佳影片入围名单对应片名链接；危情蜻蜓与女孩们也在获奖页主列表中。"
+   },
+   "two-people-one-life-and-a-dog": {
+    "cn": "两人一生一狗",
+    "subjectId": "37304646",
+    "url": "https://movie.douban.com/subject/37304646/",
+    "score": null,
+    "scoreStatus": "unverified",
+    "note": "详情403/429或验证拦截，原站搜索快照无可核实数值，不应标成暂无评分。",
+    "idStatus": "verified-official-link",
+    "idEvidence": "https://movie.douban.com/awards/bjiff/16/nominees?k=a",
+    "idEvidenceDetail": "第16届北影节最佳影片入围名单对应片名链接；危情蜻蜓与女孩们也在获奖页主列表中。"
+   },
+   "ky-nam-inn": {
+    "cn": "奇南客栈",
+    "subjectId": "37227058",
+    "url": "https://movie.douban.com/subject/37227058/",
+    "score": null,
+    "scoreStatus": "unverified",
+    "note": "详情403/429或验证拦截，原站搜索快照无可核实数值，不应标成暂无评分。",
+    "idStatus": "verified-official-link",
+    "idEvidence": "https://movie.douban.com/awards/bjiff/16/nominees?k=a",
+    "idEvidenceDetail": "第16届北影节最佳影片入围名单对应片名链接；危情蜻蜓与女孩们也在获奖页主列表中。"
+   },
+   "our-girls": {
+    "cn": "女孩们",
+    "subjectId": "36948291",
+    "url": "https://movie.douban.com/subject/36948291/",
+    "score": null,
+    "scoreStatus": "unverified",
+    "note": "详情403/429或验证拦截，原站搜索快照无可核实数值，不应标成暂无评分。",
+    "idStatus": "verified-official-link",
+    "idEvidence": "https://movie.douban.com/awards/bjiff/16/nominees?k=a",
+    "idEvidenceDetail": "第16届北影节最佳影片入围名单对应片名链接；危情蜻蜓与女孩们也在获奖页主列表中。"
+   },
+   "in-my-parents-house": {
+    "cn": "在我父母家",
+    "subjectId": "37165395",
+    "url": "https://movie.douban.com/subject/37165395/",
+    "score": null,
+    "scoreStatus": "unverified",
+    "note": "详情403/429或验证拦截，原站搜索快照无可核实数值，不应标成暂无评分。",
+    "idStatus": "verified-official-link",
+    "idEvidence": "https://movie.douban.com/awards/rotterdam/54/nominees",
+    "idEvidenceDetail": "在我父母家对应链接；点击返回37165395。"
+   },
+   "the-summer-book": {
+    "cn": "夏日之书",
+    "subjectId": "36299051",
+    "url": "https://movie.douban.com/subject/36299051/",
+    "score": null,
+    "scoreStatus": "unverified",
+    "note": "详情403/429或验证拦截，原站搜索快照无可核实数值，不应标成暂无评分。",
+    "idStatus": "candidate-third-party-only",
+    "idEvidence": "https://www.94hd.com/movie/the-summer-book/65467/",
+    "idEvidenceDetail": "只在第三方读到此链接，原站403且搜索无命中，不建议作已核实ID。"
+   }
+  }
+ }
+}

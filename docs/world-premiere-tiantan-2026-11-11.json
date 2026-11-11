@@ -1,0 +1,108 @@
+{
+ "checked": "2026-11-11",
+ "verifiedRecords": {
+  "dragonfly": {
+   "status": "verified",
+   "date": "2025-06-06",
+   "festival": "翠贝卡电影节",
+   "festivalEn": "Tribeca Festival",
+   "kind": "festival",
+   "checked": "2026-11-11",
+   "sources": [
+    "https://tribecafilm.com/festival/archive/dragonfly-2025",
+    "https://www.imdb.com/title/tt32383425/releaseinfo/",
+    "https://awfj.org/blog/2025/06/09/dragonfly-tribeca-2025-review-by-beth-accomando/"
+   ],
+   "note": "原作全球首映；未使用巡展日、本地公映或后续影展替代。"
+  },
+  "three-goodbyes": {
+   "status": "verified",
+   "date": "2025-09-08",
+   "festival": "多伦多国际电影节",
+   "festivalEn": "Toronto International Film Festival",
+   "kind": "festival",
+   "checked": "2026-11-11",
+   "sources": [
+    "https://www.spainculture.ca/city/toronto/toronto-international-film-festival-2025/",
+    "https://tiff.net/events/three-goodbyes"
+   ],
+   "note": "原作全球首映；未使用巡展日、本地公映或后续影展替代。"
+  },
+  "isabel": {
+   "status": "verified",
+   "date": "2026-02-16",
+   "festival": "柏林国际电影节",
+   "festivalEn": "Berlin International Film Festival",
+   "kind": "festival",
+   "checked": "2026-11-11",
+   "sources": [
+    "https://www.berlinale.de/en/2026/programme/202602856.html"
+   ],
+   "note": "原作全球首映；未使用巡展日、本地公映或后续影展替代。"
+  },
+  "two-people-one-life-and-a-dog": {
+   "status": "verified",
+   "date": "2025-04-22",
+   "festival": "莫斯科国际电影节",
+   "festivalEn": "Moscow International Film Festival",
+   "kind": "festival",
+   "checked": "2026-11-11",
+   "sources": [
+    "https://moscowfilmfestival.ru/miff47/films/?id=47006"
+   ],
+   "note": "原作全球首映；未使用巡展日、本地公映或后续影展替代。"
+  },
+  "ky-nam-inn": {
+   "status": "verified",
+   "date": "2025-09-07",
+   "festival": "多伦多国际电影节",
+   "festivalEn": "Toronto International Film Festival",
+   "kind": "festival",
+   "checked": "2026-11-11",
+   "sources": [
+    "https://english.vov.vn/en/culture/vietnamese-film-ky-nam-inn-to-premiere-at-toronto-film-festival-post1218516.vov",
+    "https://www.filmlinc.org/films/ky-nam-inn/",
+    "https://letterboxd.com/film/ky-nam-inn/",
+    "https://thepeachreview.com/2025/09/12/ky-nam-inn-review-a-love-story-in-35mm/"
+   ],
+   "note": "原作全球首映；未使用巡展日、本地公映或后续影展替代。"
+  },
+  "our-girls": {
+   "status": "verified",
+   "date": "2025-09-26",
+   "festival": "荷兰电影节",
+   "festivalEn": "Netherlands Film Festival",
+   "kind": "festival",
+   "checked": "2026-11-11",
+   "sources": [
+    "https://www.filmfonds.nl/actueel/nederlands-film-festival-2025-opent-met-de-premi%C3%A8re-voor-de-meisjes"
+   ],
+   "note": "荷兰电影节官方、Filmfonds 6月公告、官方 YouTube 和同时全国影院节目确认9月26日。Letterboxd 标9月25日，Filmfonds 9月25日文章写 'vrijdag 25 september'（星期与日期矛盾）；建议以官方明确场次9月26日为准，证据笔记保留冲突。"
+  },
+  "in-my-parents-house": {
+   "status": "verified",
+   "date": "2025-02-03",
+   "festival": "鹿特丹国际电影节",
+   "festivalEn": "International Film Festival Rotterdam",
+   "kind": "festival",
+   "checked": "2026-11-11",
+   "sources": [
+    "https://iffr.com/en/iffr/2025/films/im-haus-meiner-eltern",
+    "https://www.crew-united.com/de/Im-Haus-meiner-Eltern__290548.html"
+   ],
+   "note": "原作全球首映；未使用巡展日、本地公映或后续影展替代。"
+  },
+  "the-summer-book": {
+   "status": "verified",
+   "date": "2024-10-12",
+   "festival": "BFI伦敦电影节",
+   "festivalEn": "BFI London Film Festival",
+   "kind": "festival",
+   "checked": "2026-11-11",
+   "sources": [
+    "https://tovejansson.com/summer-book-film/"
+   ],
+   "note": "原作全球首映；未使用巡展日、本地公映或后续影展替代。"
+  }
+ }
+}
