@@ -7,7 +7,7 @@
 .stats > view + view { border-left: calc(2 * var(--r)) solid var(--line-soft); }
 .stats .n { font-size: calc(22.9 * var(--fr)); font-weight: 700; }
 .stats .l { font-size: calc(16 * var(--fr)); color: var(--muted); }
-.blurb { font-size: calc(19.4 * var(--fr)); line-height: 1.85; margin-bottom: calc(28 * var(--r)); }
+.blurb { font-size: calc(19.4 * var(--fr)); line-height: 1.85; margin-bottom: calc(28 * var(--r)); white-space: pre-line; }
 .grid { display: flex; flex-wrap: wrap; gap: calc(28 * var(--r)) calc(20 * var(--r)); }
 .gf { width: calc((100% - calc(40 * var(--r))) / 3); display: flex; flex-direction: column; gap: calc(6 * var(--r)); }
 /* 海报框固定 2:3（标准电影海报比例），按列宽等比计算高度，不再固定 300 高而裁掉上下 */
