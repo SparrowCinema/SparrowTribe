@@ -1,0 +1,1366 @@
+{
+ "checked": "2026-11-11",
+ "scope": "2026吴天明青年电影展法国现实主义名作展映8片；剧情、片长、影片ID、放映版本及场次保持",
+ "ratingOrder": [
+  "douban",
+  "imdb",
+  "rt",
+  "metacritic",
+  "letterboxd"
+ ],
+ "method": "22项分数直接读取原站JSON-LD（8个LB、8个RT、6个MTC）；8项IMDb由原站搜索快照复核；1项豆瓣由原站片单快照复核。7项豆瓣因详情验证受限，保留main同日既有核对，不称本轮新取。2项MTC无可核实分数保留null。",
+ "films": {
+  "elevator-to-the-gallows": {
+   "cast": [
+    "让娜·莫罗",
+    "莫里斯·罗内",
+    "乔吉斯·伯乔利",
+    "约里·贝尔坦",
+    "让·瓦尔",
+    "利诺·文图拉",
+    "埃尔加·安德森"
+   ],
+   "castOriginal": [
+    "Jeanne Moreau",
+    "Maurice Ronet",
+    "Georges Poujouly",
+    "Yori Bertin",
+    "Jean Wall",
+    "Lino Ventura",
+    "Elga Andersen"
+   ],
+   "castEvidence": "https://www.criterion.com/films/778-elevator-to-the-gallows",
+   "worldPremiere": {
+    "status": "verified",
+    "date": "1958-01-29",
+    "festival": null,
+    "festivalEn": null,
+    "kind": "theatrical",
+    "checked": "2026-11-11"
+   },
+   "premiereEvidence": [
+    {
+     "url": "https://www.cnc.fr/professionnels/visas-et-classification/19538",
+     "note": "法国国家电影中心Date de sortie en salle 29/01/1958；是原作院线首映，不是修复版或影展首映。"
+    },
+    {
+     "url": "https://www.unifrance.org/film/325/ascenseur-pour-l-echafaud",
+     "note": "法国公映29/01/1958一致；制作年份1957不等于首映年份。"
+    }
+   ],
+   "r": [
+    8.2,
+    7.9,
+    93,
+    94,
+    4.09
+   ],
+   "ratings": {
+    "douban": {
+     "value": 8.2,
+     "status": "retained-prior-check",
+     "url": "https://movie.douban.com/subject/1394342/",
+     "method": "本轮原站超时；旧转载有8.3/较新转载8.2，均不代替原站，保留既有核查文档。"
+    },
+    "imdb": {
+     "value": 7.9,
+     "status": "verified-snapshot",
+     "url": "https://www.imdb.com/title/tt0051378/",
+     "method": "原平台搜索快照，32K票。"
+    },
+    "rt": {
+     "value": 93.0,
+     "scale": 100.0,
+     "count": 60,
+     "status": "verified-page-jsonld",
+     "url": "https://www.rottentomatoes.com/m/elevator_to_the_gallows",
+     "method": "2026-11-11直接读取原平台公开页面JSON-LD的aggregateRating；RT取Tomatometer，MTC取Metascore。"
+    },
+    "metacritic": {
+     "value": 94.0,
+     "scale": 100.0,
+     "count": 16,
+     "status": "verified-page-jsonld",
+     "url": "https://www.metacritic.com/movie/elevator-to-the-gallows/",
+     "method": "2026-11-11直接读取原平台公开页面JSON-LD的aggregateRating；RT取Tomatometer，MTC取Metascore。"
+    },
+    "letterboxd": {
+     "value": 4.09,
+     "scale": 5,
+     "count": 85043,
+     "status": "verified-page-jsonld",
+     "url": "https://letterboxd.com/film/elevator-to-the-gallows/",
+     "method": "2026-11-11直接读取原平台影片页JSON-LD中的加权均分，不用个人星级代替。"
+    }
+   },
+   "honors": [
+    "获奖｜1957 路易·德吕克奖 · 最佳影片"
+   ],
+   "honorEvidence": [
+    {
+     "url": "https://www.prixlouisdelluc.com/palmares/",
+     "note": "奖项官方历届名单1957列Louis Malle/Ascenseur pour l’échafaud。不要因为1958公映而把奖项年份改1958。"
+    }
+   ],
+   "bio": "路易·马勒（1932—1995）是法国导演，创作横跨纪录片与剧情片，也曾赴美国拍片。《通往绞刑架的电梯》是他的剧情长片首作，后来又执导《情人们》《鬼火》《再见，孩子们》等。他与新浪潮共享实景拍摄和形式探索的气息，同时始终保持独立的创作道路。",
+   "bioEvidence": [
+    "https://www.criterion.com/films/778-elevator-to-the-gallows",
+    "https://www.cinematheque.qc.ca/fr/cinema/ascenseur-pour-lechafaud/"
+   ],
+   "st": "原作1958年1月29日在法国院线公映，之前已获1957年度路易·德吕克奖。它将黑色电影的犯罪结构与巴黎街头的现代气息结合，常被视作新浪潮兴起前的重要先声；后来的影展修复放映属于影片的再发现，并非全球首映。",
+   "highlights": [
+    "文学与类型：马勒和作家罗杰·尼米耶根据诺埃尔·卡莱夫同名小说改编，把一个看似精密的犯罪计划拆散为几条互相牵动的夜间行程。",
+    "声音与城市：迈尔斯·戴维斯及乐手在巴黎录音室观看投影画面演奏，用爵士的呼吸与停顿呼应人物的等待。录制集中于一夜，但并非毫无准备地凭空即兴。",
+    "银幕上的莫罗：巴黎夜景和让娜·莫罗的步行段落不只推进情节，也让城市灯光、面孔与音乐承载情绪，成为影片最具辨识度的部分。"
+   ],
+   "highlightEvidence": [
+    "https://www.criterion.com/films/778-elevator-to-the-gallows",
+    "https://www.criterion.com/current/posts/5369-miles-davis-improvises-the-score-for-elevator-to-the-gallows",
+    "https://www.criterion.com/current/posts/2642-chef-du-cinema-elevator-to-the-gallows"
+   ],
+   "editorial": "推荐给喜欢黑色电影、爵士乐与城市夜景的观众。可以同时观看两种节奏：电梯内的封闭等待，和莫罗在街头的漫游；戴维斯的小号让它们在情绪上相连。犯罪机关未必处处写实，影片最独特的力量在音乐、摄影与人物的孤独感。",
+   "editorialEvidence": [
+    "https://www.rottentomatoes.com/m/elevator_to_the_gallows",
+    "https://www.criterion.com/current/posts/2642-chef-du-cinema-elevator-to-the-gallows"
+   ],
+   "ratingsBeforeDirectCheck": {
+    "douban": {
+     "value": 8.2,
+     "status": "retained-prior-check",
+     "url": "https://movie.douban.com/subject/1394342/",
+     "method": "本轮原站超时；旧转载有8.3/较新转载8.2，均不代替原站，保留既有核查文档。"
+    },
+    "imdb": {
+     "value": 7.9,
+     "status": "verified-snapshot",
+     "url": "https://www.imdb.com/title/tt0051378/",
+     "method": "原平台搜索快照，32K票。"
+    },
+    "rt": {
+     "value": 93,
+     "status": "verified-snapshot",
+     "url": "https://www.rottentomatoes.com/m/elevator_to_the_gallows",
+     "method": "原平台搜索快照，Tomatometer 60篇；观众分91%另算，不混用。"
+    },
+    "metacritic": {
+     "value": 94,
+     "status": "verified-snapshot",
+     "url": "https://www.metacritic.com/movie/elevator-to-the-gallows/",
+     "method": "原平台搜索快照，16篇。"
+    },
+    "letterboxd": {
+     "value": 4.09,
+     "status": "retained-prior-check",
+     "url": "https://letterboxd.com/film/elevator-to-the-gallows/",
+     "method": "本轮片页可读但未返回加权均分，保留既有核查。"
+    }
+   }
+  },
+  "la-haine": {
+   "cast": [
+    "文森特·卡塞尔",
+    "于贝尔·孔德",
+    "萨伊德·塔格马奥",
+    "阿卜杜勒·艾哈迈德·吉利",
+    "伯努瓦·马吉梅尔",
+    "卡里姆·贝尔卡德拉",
+    "爱德华·蒙多特",
+    "文森特·林顿"
+   ],
+   "castOriginal": [
+    "Vincent Cassel",
+    "Hubert Koundé",
+    "Saïd Taghmaoui",
+    "Abdel Ahmed Ghili",
+    "Benoît Magimel",
+    "Karim Belkhadra",
+    "Édouard Montoute",
+    "Vincent Lindon"
+   ],
+   "castEvidence": [
+    "https://2022.festival-lumiere.org/manifestations/la-haine.html",
+    "https://www.imdb.com/title/tt0113247/"
+   ],
+   "worldPremiere": {
+    "status": "verified",
+    "date": "1995-05-27",
+    "festival": "戛纳电影节",
+    "festivalEn": "Cannes Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-11"
+   },
+   "premiereEvidence": [
+    {
+     "url": "https://2022.festival-lumiere.org/manifestations/la-haine.html",
+     "note": "卢米埃尔影展官方：Présentation au Festival de Cannes 27 mai 1995；法国公映31 mai 1995。"
+    },
+    {
+     "url": "https://www.imdb.com/title/tt0113247/releaseinfo/",
+     "note": "27 May 1995 Cannes premiere一致。"
+    }
+   ],
+   "r": [
+    8.3,
+    8.1,
+    96,
+    null,
+    4.5
+   ],
+   "ratings": {
+    "douban": {
+     "value": 8.3,
+     "status": "retained-prior-check",
+     "method": "本轮限定豆瓣条目查询无原站分数，转载8.3只作旁证；保留既有核查文档。"
+    },
+    "imdb": {
+     "value": 8.1,
+     "status": "verified-snapshot",
+     "url": "https://www.imdb.com/title/tt0113247/ratings",
+     "method": "原平台搜索快照，233K票。"
+    },
+    "rt": {
+     "value": 96.0,
+     "scale": 100.0,
+     "count": 74,
+     "status": "verified-page-jsonld",
+     "url": "https://www.rottentomatoes.com/m/la_haine",
+     "method": "2026-11-11直接读取原平台公开页面JSON-LD的aggregateRating；RT取Tomatometer，MTC取Metascore。"
+    },
+    "metacritic": {
+     "value": null,
+     "status": "unavailable",
+     "url": "https://www.metacritic.com/movie/la-haine/",
+     "method": "本轮公开条目地址返回HTTP404，原站搜索未找到可核实Metascore；不以影评人个人分数代替。"
+    },
+    "letterboxd": {
+     "value": 4.5,
+     "scale": 5,
+     "count": 1246453,
+     "status": "verified-page-jsonld",
+     "url": "https://letterboxd.com/film/la-haine/",
+     "method": "2026-11-11直接读取原平台影片页JSON-LD中的加权均分，不用个人星级代替。"
+    }
+   },
+   "honors": [
+    "获奖｜1995 第48届戛纳电影节 · 最佳导演（马修·卡索维茨）",
+    "获奖｜1996 第21届法国凯撒奖 · 最佳影片、最佳剪辑"
+   ],
+   "honorEvidence": [
+    "https://www.festival-cannes.com/en/f/la-haine/",
+    "https://www.academie-cinema.org/films/la-haine-29751/"
+   ],
+   "honorNote": "凯撒官方电影页列2 César/10 Nominations；常见三奖说法另计克里斯托夫·罗西尼翁的年度最佳制片人奖。若原数据保留制片人奖，须单独注明授予制片人，勿误写成第三个影片奖。最佳男主、导演、剧本、摄影、声音及男新人等属提名。",
+   "bio": "马修·卡索维茨是法国导演、编剧及演员。《怒火青春》是他早期最具影响力的导演作品，凭此获得戛纳最佳导演。他把美国类型电影的镜头活力与法国郊区的社会处境结合，之后继续横跨导演与演员工作。",
+   "st": "1995年5月27日在戛纳电影节主竞赛首映，卡索维茨获最佳导演；5月31日法国公映。翌年获得凯撒最佳影片与最佳剪辑。影片的街头口语、黑白摄影和24小时结构，使它成为理解法国郊区青年电影的重要作品。",
+   "highlights": [
+    "现实起点：卡索维茨在1993年一名青年Makome M’Bowole于巴黎警察拘留期间遭枪击身亡后开始写作，把对警民暴力的疑问转化为三个年轻人一天一夜的行程。",
+    "空间与节奏：影片在住宅区和巴黎中心之间移动，以时钟、镜面、屋顶、交通工具与封闭空间反复标记人物的位置，追问他们能够进入什么地方、被谁看见。",
+    "类型电影的能量：摄影和流行音乐带来鲜明的街头节奏，三位主角之间的玩笑、模仿与争执也保留了青春生活的松弛，使社会议题落实到具体的人际关系中。"
+   ],
+   "highlightEvidence": [
+    "https://www.criterion.com/current/posts/642-la-haine-and-after-arts-politics-and-the-banlieue",
+    "https://2022.festival-lumiere.org/manifestations/la-haine.html"
+   ],
+   "editorial": "推荐给喜欢街头文化、青年群像与形式鲜明社会电影的观众。留意三位朋友如何在玩笑与敌意之间切换，以及同一座城市怎样通过空间和警察盘问划分身份。它既有类型片的强烈动能，也需要观众承受暴力、粗口与持续升级的不安。",
+   "editorialEvidence": [
+    "https://www.rottentomatoes.com/m/la_haine",
+    "https://www.criterion.com/current/posts/642-la-haine-and-after-arts-politics-and-the-banlieue"
+   ],
+   "ratingsBeforeDirectCheck": {
+    "douban": {
+     "value": 8.3,
+     "status": "retained-prior-check",
+     "method": "本轮限定豆瓣条目查询无原站分数，转载8.3只作旁证；保留既有核查文档。"
+    },
+    "imdb": {
+     "value": 8.1,
+     "status": "verified-snapshot",
+     "url": "https://www.imdb.com/title/tt0113247/ratings",
+     "method": "原平台搜索快照，233K票。"
+    },
+    "rt": {
+     "value": 96,
+     "status": "verified-snapshot",
+     "url": "https://www.rottentomatoes.com/m/la_haine",
+     "method": "原平台搜索快照，Tomatometer 74篇；观众分95%另算。"
+    },
+    "metacritic": {
+     "value": null,
+     "status": "unverified",
+     "url": "https://www.metacritic.com/movie/la-haine/",
+     "method": "限定原平台搜索无数值、直接打开无法访问；不把第三方分数当作Metascore。"
+    },
+    "letterboxd": {
+     "value": 4.5,
+     "status": "retained-prior-check",
+     "url": "https://letterboxd.com/film/la-haine/",
+     "method": "原片页未返回均分；有2026-03-27用户整理4.50的历史旁证，保留既有核查而不声称本轮读取到。"
+    }
+   }
+  },
+  "rosetta": {
+   "cast": [
+    "艾米莉·德奎恩",
+    "法布里齐奥·隆吉奥内",
+    "安妮·耶和诺",
+    "奥利维埃·古尔梅"
+   ],
+   "castOriginal": [
+    "Émilie Dequenne",
+    "Fabrizio Rongione",
+    "Anne Yernaux",
+    "Olivier Gourmet"
+   ],
+   "castEvidence": "https://www.criterion.com/films/28056-rosetta",
+   "worldPremiere": {
+    "status": "verified",
+    "date": "1999-05-22",
+    "festival": "戛纳电影节",
+    "festivalEn": "Cannes Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-11"
+   },
+   "premiereEvidence": [
+    {
+     "url": "https://www.festival-cannes.com/en/f/rosetta/",
+     "note": "官方确认1999主竞赛及金棕榈/女演员奖，存档未给首映日。"
+    },
+    {
+     "url": "https://www.imdb.com/title/tt0200071/releaseinfo/",
+     "note": "原平台发行表22 May 1999 Cannes。"
+    },
+    {
+     "url": "https://letterboxd.com/film/rosetta/",
+     "note": "发行表22 May 1999 Cannes一致；5月23日为颁奖，勿混为首映。"
+    }
+   ],
+   "r": [
+    8.2,
+    7.4,
+    89,
+    76,
+    3.9
+   ],
+   "ratings": {
+    "douban": {
+     "value": 8.2,
+     "status": "retained-prior-check",
+     "url": "https://movie.douban.com/subject/1300820/",
+     "method": "本轮原站转安全验证，未读到评分，保留既有核查。"
+    },
+    "imdb": {
+     "value": 7.4,
+     "status": "verified-snapshot",
+     "url": "https://www.imdb.com/title/tt0200071/",
+     "method": "原平台搜索快照，17K票。"
+    },
+    "rt": {
+     "value": 89.0,
+     "scale": 100.0,
+     "count": 27,
+     "status": "verified-page-jsonld",
+     "url": "https://www.rottentomatoes.com/m/rosetta",
+     "method": "2026-11-11直接读取原平台公开页面JSON-LD的aggregateRating；RT取Tomatometer，MTC取Metascore。"
+    },
+    "metacritic": {
+     "value": 76.0,
+     "scale": 100.0,
+     "count": 19,
+     "status": "verified-page-jsonld",
+     "url": "https://www.metacritic.com/movie/rosetta/",
+     "method": "2026-11-11直接读取原平台公开页面JSON-LD的aggregateRating；RT取Tomatometer，MTC取Metascore。"
+    },
+    "letterboxd": {
+     "value": 3.9,
+     "scale": 5,
+     "count": 40387,
+     "status": "verified-page-jsonld",
+     "url": "https://letterboxd.com/film/rosetta/",
+     "method": "2026-11-11直接读取原平台影片页JSON-LD中的加权均分，不用个人星级代替。"
+    }
+   },
+   "honors": [
+    "获奖｜1999 第52届戛纳电影节 · 金棕榈奖（评委会一致通过）",
+    "获奖｜1999 第52届戛纳电影节 · 最佳女演员（艾米莉·德奎恩，并列）",
+    "提名｜2000 第25届法国凯撒奖 · 最有潜力女演员（艾米莉·德奎恩）"
+   ],
+   "honorEvidence": [
+    {
+     "url": "https://www.festival-cannes.com/en/f/rosetta/",
+     "note": "官方列Palme d'or (Unanimité)、Award for Best Actress (Ex-aequo)。"
+    },
+    {
+     "url": "https://www.academie-cinema.org/films/rosetta/-31777/",
+     "note": "官方明确1 Nomination、2000 Meilleur Jeune Espoir Féminin Emilie Dequenne；原资料写获奖错误，必须改提名。"
+    }
+   ],
+   "bio": "让-皮埃尔·达内与吕克·达内是比利时兄弟导演、编剧，早年从事纪录片创作，长期关注劳动、贫困与个体的道德抉择。《罗塞塔》延续《一诺千金》之后贴近人物身体和行动的拍摄方式，为两人赢得首座戛纳金棕榈。",
+   "st": "1999年5月22日在戛纳电影节主竞赛首映，翌日获评委会一致通过的金棕榈，首次出演电影的艾米莉·德奎恩并列获得最佳女演员。她随后获2000年凯撒最有潜力女演员提名；该项是提名，不能写成获奖。",
+   "highlights": [
+    "贴身摄影：摄影机长时间跟着罗塞塔的肩背、步伐与呼吸，限制观众能看到的空间；社会压力先成为身体感受，再逐渐显露为制度问题。",
+    "劳动与尊严：求职、打水、搬运煤气罐等动作反复出现，工作被人物视为获得正常生活的入口，也让生存压力与道德选择紧紧纠缠。",
+    "表演方法：德奎恩以紧绷而直接的身体表演承担叙事，影片不急于解释人物的心理，也不把她修饰成容易被喜欢的贫困象征。"
+   ],
+   "highlightEvidence": [
+    "https://www.criterion.com/films/28056-rosetta",
+    "https://www.criterion.com/current/posts/2415-rosetta-radical-economy"
+   ],
+   "editorial": "推荐给关注劳动处境、女性成长与达内兄弟创作的观众。先跟随她的动作和求职节奏，再判断那些令人不适的选择：影片让同情与道德判断同时发生。贴身手持摄影和持续的生存焦虑较强，适合愿意进入这种紧迫感的观众。",
+   "editorialEvidence": [
+    "https://www.criterion.com/current/posts/2415-rosetta-radical-economy",
+    "https://www.metacritic.com/movie/rosetta/critic-reviews/"
+   ],
+   "avoidClaim": "不要声称本片直接促成罗塞塔法案；导演曾解释法案在电影前已存在、尚未通过，不能简单写电影导致立法。",
+   "ratingsBeforeDirectCheck": {
+    "douban": {
+     "value": 8.2,
+     "status": "retained-prior-check",
+     "url": "https://movie.douban.com/subject/1300820/",
+     "method": "本轮原站转安全验证，未读到评分，保留既有核查。"
+    },
+    "imdb": {
+     "value": 7.4,
+     "status": "verified-snapshot",
+     "url": "https://www.imdb.com/title/tt0200071/",
+     "method": "原平台搜索快照，17K票。"
+    },
+    "rt": {
+     "value": 89,
+     "status": "retained-prior-check",
+     "url": "https://www.rottentomatoes.com/m/rosetta",
+     "method": "本轮static原平台片页一月前快照90%/31篇，今日抓取的RT编辑榜为89%，数值快照存在差异；保留既有89，不冒充实时。",
+     "alternativeSnapshot": {
+      "value": 90,
+      "url": "https://static.rottentomatoes.com/m/rosetta",
+      "reviewCount": 31
+     },
+     "currentEditorialSnapshot": "https://editorial.rottentomatoes.com/related-movie-id/993b9b59-ddb6-3102-9e25-07da7d9338a8/"
+    },
+    "metacritic": {
+     "value": 76,
+     "status": "verified-snapshot",
+     "url": "https://www.metacritic.com/movie/rosetta/critic-reviews/",
+     "method": "原平台搜索快照，19篇。"
+    },
+    "letterboxd": {
+     "value": 3.9,
+     "status": "retained-prior-check",
+     "url": "https://letterboxd.com/film/rosetta/",
+     "method": "本轮原片页未返回均分，保留既有核查。"
+    }
+   }
+  },
+  "ponette": {
+   "identity": {
+    "title": "Ponette",
+    "year": 1996,
+    "country": "法国",
+    "director": "雅克·杜瓦隆",
+    "directorOriginal": "Jacques Doillon",
+    "notThisFilm": "Playing Ponette / Jouer Ponette是 Jeanne Crépeau 执导的加拿大2007年92分钟幕后纪录片，IFFR官网可核实，不能给本片使用该英文名、年份或国家。"
+   },
+   "worldPremiere": {
+    "status": "partial",
+    "date": "1996-09",
+    "festival": "威尼斯国际电影节",
+    "festivalEn": "Venice International Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-11"
+   },
+   "premiereNote": "威尼斯官方ASAC档案确认第53届竞赛及获奖；IMDb仅给September1996。未核到确切日，不用1996-09-25法国公映替代，亦不使用LB的9月10日多伦多（在威尼斯颁奖之后）。",
+   "r": [
+    8.1,
+    7.5,
+    91,
+    null,
+    3.91
+   ],
+   "cast": [
+    "薇朵儿·希维索",
+    "德尔菲娜·希尔茨",
+    "马蒂亚兹·布罗·卡顿",
+    "莱奥波尔迪娜·塞尔",
+    "玛丽·特兰蒂尼昂",
+    "格扎维埃·博瓦",
+    "克莱尔·内布",
+    "奥蕾莉·韦里隆",
+    "拉基·鲁瓦耶",
+    "卡拉·伊布莱德",
+    "安托万·迪梅勒",
+    "亨利·贝尔通",
+    "玛丽安娜·法夫尔"
+   ],
+   "castMap": {
+    "Victoire Thivisol": "薇朵儿·希维索",
+    "Delphine Schiltz": "德尔菲娜·希尔茨",
+    "Matiaz Bureau Caton": "马蒂亚兹·布罗·卡顿",
+    "Léopoldine Serre": "莱奥波尔迪娜·塞尔",
+    "Marie Trintignant": "玛丽·特兰蒂尼昂",
+    "Xavier Beauvois": "格扎维埃·博瓦",
+    "Claire Nebout": "克莱尔·内布",
+    "Aurélie Vérillon": "奥蕾莉·韦里隆",
+    "Luckie Royer": "拉基·鲁瓦耶",
+    "Carla Ibled": "卡拉·伊布莱德",
+    "Antoine du Merle": "安托万·迪梅勒",
+    "Henri Berthon": "亨利·贝尔通",
+    "Marianne Favre": "玛丽安娜·法夫尔"
+   },
+   "honors": [
+    "入围｜1996 第53届威尼斯国际电影节 · 主竞赛单元",
+    "获奖｜1996 第53届威尼斯国际电影节 · 沃尔皮杯最佳女演员（薇朵儿·希维索）",
+    "获奖｜1996 威尼斯国际电影节 · 国际影评人费比西奖"
+   ],
+   "bio": "雅克·杜瓦隆是法国导演、编剧，1944年生于巴黎，作品常围绕儿童、青少年以及亲密关系里的矛盾展开，代表作包括《小刑警》《小孤星》。他重视演员与人物的交流，以细小的言语、动作和情绪变化呈现成长中的困惑。",
+   "st": "1996年9月进入第53届威尼斯国际电影节主竞赛，薇朵儿·希维索凭片中表演获得沃尔皮杯最佳女演员，影片亦获国际影评人费比西奖。同年9月25日在法国公映。",
+   "background": "杜瓦隆在正式写成剧本前访问了年幼儿童，了解他们如何谈论死亡与母亲。他在拍摄中邀请儿童心理分析师跟进演员的状况。影片从儿童的语言和理解方式出发，让宗教解释、同伴游戏与执拗的等待彼此碰撞；幕后材料后来被另一位导演整理成纪录片《Playing Ponette》。",
+   "style": "摄影常停留在儿童的视线高度，把游戏、沉默、争执与想象都当作真实的情绪行动。成人不断解释死亡，孩子却以自己的逻辑追问，形成影片最独特的张力。",
+   "highlights": [
+    "以儿童视线理解失去，让简单的提问具有难以回避的重量。",
+    "薇朵儿·希维索的表演在游戏与悲伤之间细腻转换。",
+    "同伴间关于死亡和信仰的讨论，把抽象问题化为孩子能理解的行动。"
+   ],
+   "editorial": "适合愿意跟随儿童视角、观看细腻情感表演的观众。可以留意小孤星如何反复提问、等待、游戏：她并非没有理解能力，而是在寻找属于自己的理解方式。主题涉及幼童丧母与悲伤，情绪负荷较强。",
+   "press": "澳大利亚影像中心ACMI强调影片始终从女孩视角展开，并肯定儿童表演构成的情感基础。Roger Ebert给出3.5/4星，关注片中孩子如何通过语言建立自己的信念与应对方式。",
+   "sources": [
+    {
+     "url": "https://asac.labiennale.org/attivita/cinema/5766",
+     "supports": "官方：法国1996、导演演员、第53届威尼斯主竞赛、最佳女演员；档案片长107与发行97不同，不因此改巡展片长。"
+    },
+    {
+     "url": "https://fipresci.org/awards/ponette/",
+     "supports": "官方：1996第53届威尼斯FIPRESCI奖"
+    },
+    {
+     "url": "https://iffr.com/en/iffr/2012/films/jouer-ponette",
+     "supports": "官方：Playing Ponette为加拿大2007、Jeanne Crépeau幕后纪录片92分钟"
+    },
+    {
+     "url": "https://www.acmi.net.au/works/94362--ponette/",
+     "supports": "儿童视角、表演及影片推荐"
+    },
+    {
+     "url": "https://www.lemonde.fr/archives/article/1996/09/26/a-quatre-ans-on-joue-a-tarzan-mais-on-sait-qu-on-n-est-pas-tarzan_3752626_1819218.html",
+     "supports": "心理分析师Marie-Hélène Encrevé原访谈，拍摄期跟进儿童演员"
+    },
+    {
+     "url": "https://www.ens-louis-lumiere.fr/wp-content/uploads/2023/11/ENSLL_CINEMA_PAUL_2015.pdf",
+     "supports": "电影学院论文引用导演：访谈幼儿/绘画/观察形成创作"
+    },
+    {
+     "url": "https://www.imdb.com/title/tt0117359/releaseinfo/",
+     "supports": "首映可确认到1996年9月，法国公映1996-09-25"
+    },
+    {
+     "url": "https://www.offi.fr/cinema/evenement/ponette-21144.html",
+     "supports": "主要原拼名与角色；完整表另参考IMDb/Letterboxd"
+    }
+   ],
+   "ratingsBeforeDirectCheck": {
+    "douban": {
+     "value": 8.1,
+     "status": "retained-prior-check",
+     "evidence": "docs/ratings-wutianming-2026-11-11.md",
+     "note": "本轮原站检索未返回影片，沿用main同日核对，不称本轮实时重取。"
+    },
+    "imdb": {
+     "value": 7.5,
+     "status": "verified-snapshot",
+     "url": "https://www.imdb.com/title/tt0117359/",
+     "count": "5.2K",
+     "note": "原平台搜索/网页缓存快照"
+    },
+    "rt": {
+     "value": 91,
+     "status": "verified-snapshot",
+     "url": "https://www.rottentomatoes.com/m/ponette",
+     "count": 23,
+     "note": "91%为Tomatometer，23评；Popcornmeter也是91%但为2500+观众票。旧维基92%/25评不采用。"
+    },
+    "metacritic": {
+     "value": null,
+     "status": "unverified",
+     "url": "https://www.metacritic.com/movie/ponette/",
+     "note": "页面不可访问；搜索未返回匹配Metascore。"
+    },
+    "letterboxd": {
+     "value": 3.91,
+     "status": "retained-prior-check",
+     "url": "https://letterboxd.com/film/ponette/",
+     "evidence": "docs/ratings-wutianming-2026-11-11.md",
+     "note": "条目可读，但本轮网页文本未返回均分，沿用main同日核对。"
+    }
+   },
+   "ratings": {
+    "douban": {
+     "value": 8.1,
+     "status": "retained-prior-check",
+     "evidence": "docs/ratings-wutianming-2026-11-11.md",
+     "note": "本轮原站检索未返回影片，沿用main同日核对，不称本轮实时重取。"
+    },
+    "imdb": {
+     "value": 7.5,
+     "status": "verified-snapshot",
+     "url": "https://www.imdb.com/title/tt0117359/",
+     "count": "5.2K",
+     "note": "原平台搜索/网页缓存快照"
+    },
+    "rt": {
+     "value": 91.0,
+     "scale": 100.0,
+     "count": 23,
+     "status": "verified-page-jsonld",
+     "url": "https://www.rottentomatoes.com/m/ponette",
+     "method": "2026-11-11直接读取原平台公开页面JSON-LD的aggregateRating；RT取Tomatometer，MTC取Metascore。"
+    },
+    "metacritic": {
+     "value": null,
+     "status": "unavailable",
+     "url": "https://www.metacritic.com/movie/ponette/",
+     "method": "本轮公开条目地址返回HTTP404，原站搜索未找到可核实Metascore；不以影评人个人分数代替。"
+    },
+    "letterboxd": {
+     "value": 3.91,
+     "scale": 5,
+     "count": 9806,
+     "status": "verified-page-jsonld",
+     "url": "https://letterboxd.com/film/ponette/",
+     "method": "2026-11-11直接读取原平台影片页JSON-LD中的加权均分，不用个人星级代替。"
+    }
+   }
+  },
+  "amour-2012": {
+   "worldPremiere": {
+    "status": "verified",
+    "date": "2012-05-20",
+    "festival": "戛纳电影节",
+    "festivalEn": "Cannes Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-11"
+   },
+   "r": [
+    8.6,
+    7.9,
+    93,
+    95,
+    4.24
+   ],
+   "cast": [
+    "让-路易·特兰蒂尼昂",
+    "埃玛妞·丽娃",
+    "伊莎贝尔·于佩尔",
+    "亚历山大·萨洛",
+    "威廉姆·西梅尔",
+    "拉蒙·阿吉尔",
+    "丽塔·布兰科",
+    "卡罗尔·法兰克",
+    "蒂娜拉·卓卡洛娃",
+    "洛朗特·卡普洛托",
+    "让-米歇尔·蒙洛克",
+    "苏赞妮·施密特",
+    "达米安·朱耶罗",
+    "沃尔里德·阿非基尔"
+   ],
+   "castMap": {
+    "Jean-Louis Trintignant": "让-路易·特兰蒂尼昂",
+    "Emmanuelle Riva": "埃玛妞·丽娃",
+    "Isabelle Huppert": "伊莎贝尔·于佩尔",
+    "Alexandre Tharaud": "亚历山大·萨洛",
+    "William Shimell": "威廉姆·西梅尔",
+    "Ramón Agirre": "拉蒙·阿吉尔",
+    "Rita Blanco": "丽塔·布兰科",
+    "Carole Franck": "卡罗尔·法兰克",
+    "Dinara Drukarova": "蒂娜拉·卓卡洛娃",
+    "Laurent Capelluto": "洛朗特·卡普洛托",
+    "Jean-Michel Monroc": "让-米歇尔·蒙洛克",
+    "Suzanne Schmidt": "苏赞妮·施密特",
+    "Damien Jouillerot": "达米安·朱耶罗",
+    "Walid Afkir": "沃尔里德·阿非基尔"
+   },
+   "honors": [
+    "获奖｜2012 第65届戛纳国际电影节 · 金棕榈奖",
+    "获奖｜2013 第85届奥斯卡金像奖 · 最佳外语片",
+    "提名｜2013 第85届奥斯卡金像奖 · 最佳影片、导演、女主角、原创剧本",
+    "获奖｜2013 第38届法国凯撒奖 · 最佳影片、导演、男主角、女主角、原创剧本"
+   ],
+   "bio": "迈克尔·哈内克是奥地利导演、编剧，1942年生于德国慕尼黑，早年从事戏剧与电视工作。其电影以克制的镜头和开放的道德问题审视暴力、观看与亲密关系，《白丝带》和《爱》先后获得戛纳金棕榈奖。本片将他的严谨观察收束到一对老年夫妇的日常生活。",
+   "st": "2012年5月20日在第65届戛纳国际电影节主竞赛全球首映，并获当届金棕榈奖。次年获得奥斯卡最佳外语片及法国凯撒奖最佳影片、导演、男主角、女主角和原创剧本等荣誉。",
+   "background": "哈内克在戛纳采访中解释，出发点是人如何面对所爱之人的痛苦，而非为老龄化问题提供答案。他为让-路易·特兰蒂尼昂构思男主角，与埃玛妞·丽娃、伊莎贝尔·于佩尔共同完成这部几乎封闭在公寓内的家庭剧。钢琴家亚历山大·萨洛参演并带来音乐家的真实气息。",
+   "style": "固定视角、长镜头与封闭的公寓空间，让照护中的时间、身体变化和沉默成为叙事主体。影片拒绝用煽情配乐或明确判断缓解困境，把观众留在爱与责任相互纠缠的位置。",
+   "highlights": [
+    "两位法国电影演员以细小动作呈现共同生活数十年的默契。",
+    "公寓空间逐渐改变情感意义，熟悉的家成为照护与孤独的边界。",
+    "把爱情从浪漫承诺推进到日常责任，留下难以简化的伦理问题。"
+   ],
+   "editorial": "适合关注表演、亲密关系和生命伦理的观众。建议留意夫妻间仍然存在的幽默、礼貌和习惯，它们让照护的艰难更具体。主题涉及中风、失能、临终照护及死亡，节奏缓慢、情绪沉重。",
+   "press": "戛纳首映后的评论普遍重视它对照护与责任的直视。烂番茄影评共识肯定两位主演和剧本的坚定；Amy Taubin在Film Comment的评论认为，电影形式的精确与表演的细腻让沉重经验形成情感释放。",
+   "sources": [
+    {
+     "url": "https://www.festival-cannes.com/f/amour/",
+     "supports": "官方：2012主竞赛、金棕榈、核心演职员"
+    },
+    {
+     "url": "https://www.festival-cannes.com/en/medialibrary/press-conference-amour/",
+     "supports": "2012-05-20戛纳首映当日发布会"
+    },
+    {
+     "url": "https://www.picture-alliance.com/en/webseries/trintignant-jean-louis-w31632",
+     "supports": "2012-05-20 Amour premiere图片说明，日期互证"
+    },
+    {
+     "url": "https://www.festival-cannes.com/2012/michael-haneke-je-suis-tres-content-davoir-fait-un-film-simple/",
+     "supports": "导演原访谈：如何面对所爱之人的痛苦，不提供答案"
+    },
+    {
+     "url": "https://www.sonyclassics.com/amour/amour_presskit.pdf",
+     "supports": "发行官方新闻手册：完整14人演员表、导演访谈及履历"
+    },
+    {
+     "url": "https://www.oscars.org/oscars/ceremonies/2013",
+     "supports": "奥斯卡5提名1获奖，外语片获奖，其余4项提名"
+    },
+    {
+     "url": "https://www.academie-cinema.org/evenements/ceremonie-des-cesar-2013/",
+     "supports": "凯撒5项获奖名单"
+    }
+   ],
+   "ratingsBeforeDirectCheck": {
+    "douban": {
+     "value": 8.6,
+     "status": "retained-prior-check",
+     "url": "https://movie.douban.com/subject/4798707/",
+     "evidence": "docs/ratings-wutianming-2026-11-11.md",
+     "note": "本轮搜索未返回豆瓣页面，沿用main同日核对。"
+    },
+    "imdb": {
+     "value": 7.9,
+     "status": "verified-snapshot",
+     "url": "https://www.imdb.com/title/tt1602620/ratings/",
+     "count": "112K",
+     "note": "原平台网页缓存快照"
+    },
+    "rt": {
+     "value": 93,
+     "status": "verified-snapshot",
+     "url": "https://www.rottentomatoes.com/m/amour_2013",
+     "count": 218,
+     "note": "93%为Tomatometer；观众分82%，10000+票。路径2013但页面确认2012年哈内克电影。"
+    },
+    "metacritic": {
+     "value": 95,
+     "status": "verified-snapshot",
+     "url": "https://www.metacritic.com/movie/amour/",
+     "count": 45,
+     "note": "Metascore95/100，45评；用户8.1/10不是Metascore。"
+    },
+    "letterboxd": {
+     "value": 4.24,
+     "status": "retained-prior-check",
+     "url": "https://letterboxd.com/film/amour/",
+     "evidence": "docs/ratings-wutianming-2026-11-11.md",
+     "note": "本轮正确条目可读但均分未返回，沿用同日核对。"
+    }
+   },
+   "ratings": {
+    "douban": {
+     "value": 8.6,
+     "status": "retained-prior-check",
+     "url": "https://movie.douban.com/subject/4798707/",
+     "evidence": "docs/ratings-wutianming-2026-11-11.md",
+     "note": "本轮搜索未返回豆瓣页面，沿用main同日核对。"
+    },
+    "imdb": {
+     "value": 7.9,
+     "status": "verified-snapshot",
+     "url": "https://www.imdb.com/title/tt1602620/ratings/",
+     "count": "112K",
+     "note": "原平台网页缓存快照"
+    },
+    "rt": {
+     "value": 93.0,
+     "scale": 100.0,
+     "count": 218,
+     "status": "verified-page-jsonld",
+     "url": "https://www.rottentomatoes.com/m/amour_2012",
+     "method": "2026-11-11直接读取原平台公开页面JSON-LD的aggregateRating；RT取Tomatometer，MTC取Metascore。"
+    },
+    "metacritic": {
+     "value": 95.0,
+     "scale": 100.0,
+     "count": 45,
+     "status": "verified-page-jsonld",
+     "url": "https://www.metacritic.com/movie/amour/",
+     "method": "2026-11-11直接读取原平台公开页面JSON-LD的aggregateRating；RT取Tomatometer，MTC取Metascore。"
+    },
+    "letterboxd": {
+     "value": 4.24,
+     "scale": 5,
+     "count": 157813,
+     "status": "verified-page-jsonld",
+     "url": "https://letterboxd.com/film/amour/",
+     "method": "2026-11-11直接读取原平台影片页JSON-LD中的加权均分，不用个人星级代替。"
+    }
+   }
+  },
+  "les-miserables-2019": {
+   "worldPremiere": {
+    "status": "verified",
+    "date": "2019-05-15",
+    "festival": "戛纳电影节",
+    "festivalEn": "Cannes Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-11"
+   },
+   "r": [
+    8.1,
+    7.6,
+    88,
+    78,
+    3.83
+   ],
+   "cast": [
+    "达米安·勃纳尔",
+    "亚历克西斯·曼蒂",
+    "贾布里勒·宗加",
+    "伊萨·佩里卡",
+    "阿尔-哈桑·利",
+    "史蒂夫·蒂英楚",
+    "阿尔马梅·卡诺特",
+    "尼扎·本·菲特玛",
+    "雷蒙德·洛佩兹",
+    "卢西亚诺·洛佩兹",
+    "杰森·洛佩兹",
+    "迭戈·洛佩兹",
+    "让娜·巴利巴尔",
+    "奥马尔·苏马雷",
+    "卢卡斯·奥米里",
+    "阿卜杜勒卡德尔·霍吉",
+    "亚历山大·皮科",
+    "杰内巴·迪亚洛",
+    "萨娜·若阿希姆",
+    "阿比亚图·沙托"
+   ],
+   "castMap": {
+    "Damien Bonnard": "达米安·勃纳尔",
+    "Alexis Manenti": "亚历克西斯·曼蒂",
+    "Djebril Zonga": "贾布里勒·宗加",
+    "Issa Perica": "伊萨·佩里卡",
+    "Al-Hassan Ly": "阿尔-哈桑·利",
+    "Steve Tientcheu": "史蒂夫·蒂英楚",
+    "Almamy Kanouté": "阿尔马梅·卡诺特",
+    "Nizar Ben Fatma": "尼扎·本·菲特玛",
+    "Raymond Lopez": "雷蒙德·洛佩兹",
+    "Luciano Lopez": "卢西亚诺·洛佩兹",
+    "Jaihson Lopez": "杰森·洛佩兹",
+    "Diego Lopez": "迭戈·洛佩兹",
+    "Jeanne Balibar": "让娜·巴利巴尔",
+    "Omar Soumare": "奥马尔·苏马雷",
+    "Lucas Omiri": "卢卡斯·奥米里",
+    "Abdelkader Hoggui": "阿卜杜勒卡德尔·霍吉",
+    "Alexandre Picot": "亚历山大·皮科",
+    "Djénéba Diallo": "杰内巴·迪亚洛",
+    "Sana Joachaim": "萨娜·若阿希姆",
+    "Abiatou Château": "阿比亚图·沙托"
+   },
+   "honors": [
+    "获奖｜2019 第72届戛纳国际电影节 · 评审团奖（与《巴克劳》并列）",
+    "提名｜2020 第92届奥斯卡金像奖 · 最佳国际影片",
+    "获奖｜2020 第45届法国凯撒奖 · 最佳影片",
+    "获奖｜2020 第45届法国凯撒奖 · 最佳新人男演员（亚历克西斯·曼蒂）",
+    "获奖｜2020 第45届法国凯撒奖 · 最佳剪辑（弗洛拉·沃尔佩利埃）",
+    "获奖｜2020 第45届法国凯撒奖 · 公众奖"
+   ],
+   "bio": "拉吉·利1978年生于法国，以纪录片和短片起步，长期拍摄自己成长的巴黎郊区克利希—蒙费尔梅伊。他与艺术家JR等合作者持续记录当地居民及社会关系，2017年同名短片《悲惨世界》为这部剧情长片首作奠定基础。影片以熟悉社区的内部视角，将警务行动与街区生活的冲突推向银幕。",
+   "st": "2019年5月15日在第72届戛纳国际电影节主竞赛全球首映，并与《巴克劳》并列获得评审团奖。2020年获法国凯撒奖最佳影片、最佳新人男演员、最佳剪辑和公众奖，并提名奥斯卡最佳国际影片。",
+   "background": "影片由导演2017年同名短片发展而来，起点是他曾亲自拍下的一次警察暴力事件；拍摄地点正是他成长的郊区。标题与雨果小说形成地域和社会议题的呼应，但故事并非原著改编。无人机影像把看见、取证与控制证据变成剧情核心。",
+   "style": "前段以巡逻路线打开社区的多方关系，后段将日常摩擦积累成骤然升级的对抗。地面跟拍和无人机视角互相切换，让权力与观看的位置不断变化。",
+   "highlights": [
+    "从新警员的一天切入，逐步呈现街区内部彼此制衡的力量。",
+    "无人机既是叙事机关，也是关于证据由谁掌握的视觉主题。",
+    "紧张的类型片节奏与现实观察结合，把局部事件推向社会困境。"
+   ],
+   "editorial": "适合关注城市空间、社会现实与紧张类型叙事的观众。可以留意同一次冲突在警察、少年与旁观者眼中的不同版本，以及拍摄影像为何会改变权力关系。涉及未成年人受伤、警察暴力和群体对抗，后段情绪强度较高。",
+   "press": "戛纳官方介绍强调导演对居民与警察双方处境的观察；《时代》评论肯定作品将观众带入陌生生活世界的力量。烂番茄影评共识重视其不断积聚的能量以及最后一幕的爆发，但复杂关系也使故事带有不易梳理的拥挤感。",
+   "sources": [
+    {
+     "url": "https://www.festival-cannes.com/f/les-miserables/",
+     "supports": "官方：2019竞赛、并列评审团奖、主要演员与编剧"
+    },
+    {
+     "url": "https://www.festival-cannes.com/2019/les-miserables-de-ladj-ly-la-banlieue-de-la-realite-a-la-fiction/",
+     "supports": "2019-05-15首映当天官方报道，短片扩展、导演拍到警察事件、故乡实景拍摄"
+    },
+    {
+     "url": "https://filmfestivals.com/fr/node/265183",
+     "supports": "2019官方场次表转载，5月15日18:30首映"
+    },
+    {
+     "url": "https://medias.unifrance.org/medias/98/35/205666/presse/les-miserables-presskit-english.pdf",
+     "supports": "国际发行官方新闻手册与导演采访；片长102与其他发行104差别不用于改用户片长"
+    },
+    {
+     "url": "https://www.oscars.org/oscars/ceremonies/2020",
+     "supports": "第92届奥斯卡最佳国际影片提名"
+    },
+    {
+     "url": "https://www.academie-cinema.org/evenements/ceremonie-des-cesar-2020/",
+     "supports": "法国凯撒4奖，其他提名亦可逐项核对"
+    },
+    {
+     "url": "https://www.metacritic.com/movie/les-miserables-2019/",
+     "supports": "原平台主要演员20名原拼写"
+    },
+    {
+     "url": "https://time.com/5762630/les-miserables-2019-movie-review/",
+     "supports": "时代评论对其内部视角与感染力的评价（不要照搬文中导演出生地误差）"
+    }
+   ],
+   "ratingsBeforeDirectCheck": {
+    "douban": {
+     "value": 8.1,
+     "status": "retained-prior-check",
+     "evidence": "docs/ratings-wutianming-2026-11-11.md",
+     "note": "本轮未读到原站影片，沿用main同日核对；不使用2020年旧报道的8.2。"
+    },
+    "imdb": {
+     "value": 7.6,
+     "status": "verified-snapshot",
+     "url": "https://www.imdb.com/title/tt10199590/",
+     "count": "31K",
+     "note": "原平台搜索/网页缓存快照"
+    },
+    "rt": {
+     "value": 88,
+     "status": "verified-snapshot",
+     "url": "https://www.rottentomatoes.com/m/les_miserables_2020",
+     "count": 194,
+     "note": "2019路径重定向2020，页面演员确认是拉吉·利版本；88%Tomatometer194评，观众89%不足50 verified票。"
+    },
+    "metacritic": {
+     "value": 78,
+     "status": "verified-snapshot",
+     "url": "https://www.metacritic.com/movie/les-miserables-2019/",
+     "count": 35,
+     "note": "Metascore78/100、35评；用户6.7不是媒体分。"
+    },
+    "letterboxd": {
+     "value": 3.83,
+     "status": "retained-prior-check",
+     "url": "https://letterboxd.com/film/les-miserables-2019/",
+     "evidence": "docs/ratings-wutianming-2026-11-11.md",
+     "note": "正确2019条目可读但本轮未返回均分；沿用main同日核对。"
+    }
+   },
+   "ratings": {
+    "douban": {
+     "value": 8.1,
+     "status": "retained-prior-check",
+     "evidence": "docs/ratings-wutianming-2026-11-11.md",
+     "note": "本轮未读到原站影片，沿用main同日核对；不使用2020年旧报道的8.2。"
+    },
+    "imdb": {
+     "value": 7.6,
+     "status": "verified-snapshot",
+     "url": "https://www.imdb.com/title/tt10199590/",
+     "count": "31K",
+     "note": "原平台搜索/网页缓存快照"
+    },
+    "rt": {
+     "value": 88.0,
+     "scale": 100.0,
+     "count": 194,
+     "status": "verified-page-jsonld",
+     "url": "https://www.rottentomatoes.com/m/les_miserables_2019",
+     "method": "2026-11-11直接读取原平台公开页面JSON-LD的aggregateRating；RT取Tomatometer，MTC取Metascore。"
+    },
+    "metacritic": {
+     "value": 78.0,
+     "scale": 100.0,
+     "count": 35,
+     "status": "verified-page-jsonld",
+     "url": "https://www.metacritic.com/movie/les-miserables-2019/",
+     "method": "2026-11-11直接读取原平台公开页面JSON-LD的aggregateRating；RT取Tomatometer，MTC取Metascore。"
+    },
+    "letterboxd": {
+     "value": 3.83,
+     "scale": 5,
+     "count": 92118,
+     "status": "verified-page-jsonld",
+     "url": "https://letterboxd.com/film/les-miserables-2019/",
+     "method": "2026-11-11直接读取原平台影片页JSON-LD中的加权均分，不用个人星级代替。"
+    }
+   }
+  },
+  "anatomy-of-a-fall": {
+   "cn": "坠落的审判",
+   "links": {
+    "douban": "35633650",
+    "imdb": "tt17009710",
+    "rt": "https://www.rottentomatoes.com/m/anatomy_of_a_fall",
+    "mtc": "https://www.metacritic.com/movie/anatomy-of-a-fall/",
+    "lb": "https://letterboxd.com/film/anatomy-of-a-fall/"
+   },
+   "cast": [
+    "桑德拉·惠勒",
+    "斯万·阿劳德",
+    "米洛·马查多·格拉纳",
+    "安托万·赖纳茨",
+    "塞缪尔·泰斯",
+    "珍妮·贝丝",
+    "萨迪亚·本塔伊布",
+    "卡米莉·拉瑟福德",
+    "安妮·罗特格",
+    "索菲亚·菲力瑞斯",
+    "梅西（犬演员）"
+   ],
+   "castMapping": {
+    "Sandra Hüller": "桑德拉·惠勒",
+    "Swann Arlaud": "斯万·阿劳德",
+    "Milo Machado-Graner": "米洛·马查多·格拉纳",
+    "Antoine Reinartz": "安托万·赖纳茨",
+    "Samuel Theis": "塞缪尔·泰斯",
+    "Jehnny Beth": "珍妮·贝丝",
+    "Saadia Bentaïeb": "萨迪亚·本塔伊布",
+    "Camille Rutherford": "卡米莉·拉瑟福德",
+    "Anne Rotger": "安妮·罗特格",
+    "Sophie Fillières": "索菲亚·菲力瑞斯",
+    "Messi": "梅西"
+   },
+   "castSources": [
+    "https://www.festival-cannes.com/en/f/anatomie-d-une-chute/",
+    "https://www.imdb.com/title/tt17009710",
+    "https://letterboxd.com/film/anatomy-of-a-fall/"
+   ],
+   "worldPremiere": {
+    "status": "verified",
+    "date": "2023-05-21",
+    "festival": "戛纳电影节",
+    "festivalEn": "Cannes Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-11"
+   },
+   "premiereEvidence": {
+    "url": "https://www.festival-cannes.com/en/medialibrary/anatomie-d-une-chute-by-justine-triet-red-steps/",
+    "detail": "戛纳官网首映红毯记录发表于2023-05-21；同日官网导演访谈、Letterboxd首映记录互证。"
+   },
+   "honors": [
+    "获奖｜2023 第76届戛纳电影节 · 金棕榈奖",
+    "获奖｜2024 第96届奥斯卡金像奖 · 最佳原创剧本（茹斯汀·特里耶、阿图·阿拉里）",
+    "提名｜2024 第96届奥斯卡金像奖 · 最佳影片、最佳导演、最佳女主角（桑德拉·惠勒）、最佳剪辑"
+   ],
+   "honorsSources": [
+    "https://www.festival-cannes.com/en/f/anatomie-d-une-chute/",
+    "https://www.oscars.org/oscars/ceremonies/2024"
+   ],
+   "bio": "茹斯汀·特里耶是法国导演、编剧，作品常从公共空间与私人生活的摩擦切入人物关系。她的长片包括《索尔菲雷诺之战》《维多利亚》和《西比勒》；《坠落的审判》是其第四部长片，与阿图·阿拉里共同编剧，获得2023年戛纳金棕榈和2024年奥斯卡最佳原创剧本。她把审判过程作为观察亲密关系、时间分配与社会判断的场所，让不同人物对同一段生活提出互相冲突的解释。",
+   "st": "2023年5月21日在第76届戛纳电影节主竞赛单元全球首映，并获金棕榈奖。2024年获得奥斯卡最佳原创剧本，同时获最佳影片、导演、女主角和剪辑提名。影片的公共荣誉并不替代它的观看重点：一次案件审理逐步变成对婚姻与叙述权的检视。",
+   "background": "特里耶在戛纳访谈中把创作起点描述为一个噩梦设问：如果最私密的困境突然变成全社会的谈资，会发生什么？她与阿拉里共同写作约三年，并在剧本阶段持续咨询刑事律师。桑德拉一角为惠勒量身构思；小演员在开拍前没有读到结尾，以保留角色面对母亲时的不确定。影像原计划用35毫米拍摄，最终因预算改用Alexa搭配老镜头，保留粗粝、接近纪录片的质地。",
+   "backgroundSource": "https://www.festival-cannes.com/en/2023/justine-triet-dissects-relationships-in-anatomie-dune-chute-anatomy-of-a-fall/",
+   "editorial": "选片建议：适合喜欢法庭戏、复杂人物和开放判断的观众。重点不只在寻找案件答案，也在听证词如何把一段共同生活切割成不同的故事。可以留意法语、英语与德语之间的距离、录音和画面的关系，以及儿子如何承受成人世界的疑问。影片篇幅较长、对白密集；为不断变化的判断留出耐心，比急于选定立场更有收获。",
+   "highlights": [
+    "用法庭程序拆解婚姻中的劳动、创作与时间分配，证据与叙事彼此拉扯。",
+    "声音具有独立的证词作用：录音、音乐与画外信息不断改变观众的理解。",
+    "惠勒、阿劳德与小演员的表演使法律悬念始终落回家庭内部。"
+   ],
+   "r": [
+    8.7,
+    7.6,
+    96,
+    86,
+    4.12
+   ],
+   "ratings": {
+    "douban": {
+     "value": 8.7,
+     "status": "verified-search-snapshot",
+     "url": "https://movie.douban.com/subject/35633650/",
+     "evidenceUrl": "https://www.douban.com/doulist/157027484/",
+     "count": 414147,
+     "note": "豆瓣原站片单自动显示条目评分，搜索快照约两周前；详情受验证限制。subject ID由豆瓣76届戛纳获奖页链接确认。"
+    },
+    "imdb": {
+     "value": 7.6,
+     "status": "verified-search-snapshot",
+     "url": "https://www.imdb.com/title/tt17009710",
+     "count": "238K",
+     "note": "IMDb原站搜索快照约一月前。"
+    },
+    "rt": {
+     "value": 96.0,
+     "scale": 100.0,
+     "count": 289,
+     "status": "verified-page-jsonld",
+     "url": "https://www.rottentomatoes.com/m/anatomy_of_a_fall",
+     "method": "2026-11-11直接读取原平台公开页面JSON-LD的aggregateRating；RT取Tomatometer，MTC取Metascore。"
+    },
+    "metacritic": {
+     "value": 86.0,
+     "scale": 100.0,
+     "count": 44,
+     "status": "verified-page-jsonld",
+     "url": "https://www.metacritic.com/movie/anatomy-of-a-fall/",
+     "method": "2026-11-11直接读取原平台公开页面JSON-LD的aggregateRating；RT取Tomatometer，MTC取Metascore。"
+    },
+    "letterboxd": {
+     "value": 4.12,
+     "scale": 5,
+     "count": 1590682,
+     "status": "verified-page-jsonld",
+     "url": "https://letterboxd.com/film/anatomy-of-a-fall/",
+     "method": "2026-11-11直接读取原平台影片页JSON-LD中的加权均分，不用个人星级代替。"
+    }
+   },
+   "ratingsBeforeDirectCheck": {
+    "douban": {
+     "value": 8.7,
+     "status": "verified-search-snapshot",
+     "url": "https://movie.douban.com/subject/35633650/",
+     "evidenceUrl": "https://www.douban.com/doulist/157027484/",
+     "count": 414147,
+     "note": "豆瓣原站片单自动显示条目评分，搜索快照约两周前；详情受验证限制。subject ID由豆瓣76届戛纳获奖页链接确认。"
+    },
+    "imdb": {
+     "value": 7.6,
+     "status": "verified-search-snapshot",
+     "url": "https://www.imdb.com/title/tt17009710",
+     "count": "238K",
+     "note": "IMDb原站搜索快照约一月前。"
+    },
+    "rt": {
+     "value": 96,
+     "status": "verified-search-snapshot",
+     "url": "https://www.rottentomatoes.com/m/anatomy_of_a_fall",
+     "count": 288,
+     "note": "RT原站搜索快照约两周前，Tomatometer；另有91%已验证观众评分，不能混填主r。"
+    },
+    "metacritic": {
+     "value": 86,
+     "status": "verified-search-snapshot",
+     "url": "https://www.metacritic.com/movie/anatomy-of-a-fall/?ftag=MCD-06-10aaa0e",
+     "count": 44,
+     "note": "原站搜索快照约三个月前；IMDb同时显示86 Metascore。"
+    },
+    "letterboxd": {
+     "value": 4.12,
+     "status": "retained-prior-check",
+     "url": "https://letterboxd.com/film/anatomy-of-a-fall/",
+     "note": "本轮原站文本不含聚合均分；保留main docs/ratings-wutianming-2026-11-11.md已记录的当日原站核对值，不将个人短评星级当均分。"
+    }
+   }
+  },
+  "parallel-tales": {
+   "cn": "平行故事",
+   "identity": {
+    "original": "Histoires parallèles",
+    "year": 2026,
+    "director": "Asghar Farhadi",
+    "imdb": "tt36646880",
+    "douban": "37296242",
+    "note": "37296242已确认确为本片，不应删除或换ID。证据：豆瓣79届戛纳金棕榈入围列表《平行故事 Histoires parallèles》、导演阿斯加·法哈蒂，其链接指向37296242。详情虽受验证，影片身份可由原站奖项列表明确确认。",
+    "evidence": "https://movie.douban.com/awards/cannes/79/nominees"
+   },
+   "links": {
+    "douban": "37296242",
+    "imdb": "tt36646880",
+    "rt": "https://www.rottentomatoes.com/m/parallel_tales",
+    "mtc": "https://www.metacritic.com/movie/parallel-tales/",
+    "lb": "https://letterboxd.com/film/parallel-tales/"
+   },
+   "cast": [
+    "伊莎贝尔·于佩尔",
+    "维尔日妮·埃菲拉",
+    "文森特·卡塞尔",
+    "皮埃尔·尼内",
+    "亚当·贝萨",
+    "凯瑟琳·德纳芙",
+    "英迪亚·海尔",
+    "薇罗妮克·鲁吉亚·索拉",
+    "伊里斯·布里",
+    "弗朗索瓦·德莱夫",
+    "玛蒂尔德·奥利维耶"
+   ],
+   "castMapping": {
+    "Isabelle Huppert": "伊莎贝尔·于佩尔",
+    "Virginie Efira": "维尔日妮·埃菲拉",
+    "Vincent Cassel": "文森特·卡塞尔",
+    "Pierre Niney": "皮埃尔·尼内",
+    "Adam Bessa": "亚当·贝萨",
+    "Catherine Deneuve": "凯瑟琳·德纳芙",
+    "India Hair": "英迪亚·海尔",
+    "Véronique Ruggia Saura": "薇罗妮克·鲁吉亚·索拉",
+    "Iris Bry": "伊里斯·布里",
+    "François Delaive": "弗朗索瓦·德莱夫",
+    "Mathilde Ollivier": "玛蒂尔德·奥利维耶"
+   },
+   "castNote": "前七位为通用中文名；其余按原名音译，非宣称官方中文译名。保留用户已有卡塞尔译法，卡索亦为通行译名。",
+   "castSources": [
+    "https://www.festival-cannes.com/en/f/histoires-paralleles/",
+    "https://tv.apple.com/ca/movie/histoires-paralleles/umc.cmc.2v1o4dcklsr4wowxmwgp59tpq?l=fr",
+    "https://letterboxd.com/film/parallel-tales/"
+   ],
+   "worldPremiere": {
+    "status": "verified",
+    "date": "2026-05-14",
+    "festival": "戛纳电影节",
+    "festivalEn": "Cannes Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-11"
+   },
+   "premiereEvidence": {
+    "url": "https://www.festival-cannes.com/en/medialibrary/histoires-paralleles-by-asghar-farhadi-red-steps/",
+    "detail": "官方2026-05-14首映红毯记录；官网演员访谈同日、Letterboxd首映记录互证。法国同日公映，但不能把公映日作为首映证据。"
+   },
+   "honors": [
+    "入围｜2026 第79届戛纳电影节 · 主竞赛单元（金棕榈奖竞赛）",
+    "入围｜2026 悉尼电影节 · 官方竞赛"
+   ],
+   "honorsSources": [
+    "https://www.festival-cannes.com/en/f/histoires-paralleles/",
+    "https://www.sff.org.au/program/event/parallel-tales/"
+   ],
+   "bio": "阿斯加·法哈蒂是伊朗导演、编剧，擅长把日常事件发展成多方说辞相互牵制的道德困境。《一次别离》和《推销员》分别获得奥斯卡最佳外语片；《过往》曾进入戛纳主竞赛。《平行故事》是他继《过往》之后再次在法国拍摄的作品，把对误解、隐瞒与判断的关注转向小说家的想象，以及艺术创作与现实生活互相干预的过程。",
+   "st": "2026年5月14日在第79届戛纳电影节主竞赛全球首映，同日在法国公映；随后参加悉尼电影节官方竞赛，并亮相AFI FEST与汉堡电影节等影展。其主要影展记录为竞赛入围与展映，不应写成戛纳获奖。",
+   "background": "影片松散借鉴基耶斯洛夫斯基《十诫》第六集的观看与欲望主题，转而设置一位以窥视邻居寻找小说灵感的作家。戛纳官方演员访谈介绍，两栋相对的公寓分别容纳写作与电影拟音工作，年轻助手亚当是往来其间的连接点。法哈蒂借声音制作、小说构思与人物的双重身份，让现实和虚构不再是泾渭分明的两条线。",
+   "backgroundSources": [
+    "https://fest.afi.com/2026/luminaries-2026/parallel-tales-histoires-paralleles/",
+    "https://www.festival-cannes.com/en/2026/who-is-adam-bessa-the-excellent-actor-in-histoires-paralleles-parallel-tales/"
+   ],
+   "editorial": "选片建议：适合对创作、窥视和叙事迷宫感兴趣的观众。于佩尔与贝萨的互动，以及拟音怎样制造‘真实’，是进入影片的两个角度。影展策展介绍肯定它对虚构与现实的交叉探索；不少首映评论也批评它的分支过多、结构压过人物。推荐把这些分歧作为观看问题：究竟是谁在编写谁的故事，而每一次观看又怎样改变被观看的人？",
+   "editorialSources": [
+    "https://fest.afi.com/2026/luminaries-2026/parallel-tales-histoires-paralleles/",
+    "https://www.metacritic.com/movie/parallel-tales/",
+    "https://www.rottentomatoes.com/m/parallel_tales"
+   ],
+   "highlights": [
+    "于佩尔、埃菲拉、卡塞尔、尼内与贝萨组成群像，部分演员分饰现实与虚构中的不同身份。",
+    "相对的两间公寓、一位作家与一组拟音工作者，把听觉和观看变成故事机制。",
+    "从《十诫》出发追问想象的伦理，带着对叙事结构的兴趣观看更合适。"
+   ],
+   "r": [
+    6.5,
+    5.9,
+    19,
+    41,
+    2.92
+   ],
+   "ratings": {
+    "douban": {
+     "value": 6.5,
+     "status": "retained-prior-check",
+     "url": "https://movie.douban.com/subject/37296242/",
+     "evidenceUrl": "https://www.douban.com/doulist/164855992/",
+     "snapshotValue": 6.3,
+     "snapshotCount": 1254,
+     "note": "本轮豆瓣原站片单约两周前的搜索快照为6.3/1254票，较main当日已核对6.5更旧；按父任务要求保留6.5并保留冲突记录，不称本轮实时确认。ID已由豆瓣戛纳79届名单原链接确认。"
+    },
+    "imdb": {
+     "value": 5.9,
+     "status": "verified-search-snapshot",
+     "url": "https://www.imdb.com/title/tt36646880/?_ssoLoop=1",
+     "count": "1.7K",
+     "note": "IMDb原站搜索快照4天前；ratings页约两周前为5.9/1.6K。"
+    },
+    "rt": {
+     "value": 19.0,
+     "scale": 100.0,
+     "count": 32,
+     "status": "verified-page-jsonld",
+     "url": "https://www.rottentomatoes.com/m/parallel_tales",
+     "method": "2026-11-11直接读取原平台公开页面JSON-LD的aggregateRating；RT取Tomatometer，MTC取Metascore。"
+    },
+    "metacritic": {
+     "value": 41.0,
+     "scale": 100.0,
+     "count": 17,
+     "status": "verified-page-jsonld",
+     "url": "https://www.metacritic.com/movie/parallel-tales/",
+     "method": "2026-11-11直接读取原平台公开页面JSON-LD的aggregateRating；RT取Tomatometer，MTC取Metascore。"
+    },
+    "letterboxd": {
+     "value": 2.92,
+     "scale": 5,
+     "count": 15502,
+     "status": "verified-page-jsonld",
+     "url": "https://letterboxd.com/film/parallel-tales/",
+     "method": "2026-11-11直接读取原平台影片页JSON-LD中的加权均分，不用个人星级代替。"
+    }
+   },
+   "ratingsBeforeDirectCheck": {
+    "douban": {
+     "value": 6.5,
+     "status": "retained-prior-check",
+     "url": "https://movie.douban.com/subject/37296242/",
+     "evidenceUrl": "https://www.douban.com/doulist/164855992/",
+     "snapshotValue": 6.3,
+     "snapshotCount": 1254,
+     "note": "本轮豆瓣原站片单约两周前的搜索快照为6.3/1254票，较main当日已核对6.5更旧；按父任务要求保留6.5并保留冲突记录，不称本轮实时确认。ID已由豆瓣戛纳79届名单原链接确认。"
+    },
+    "imdb": {
+     "value": 5.9,
+     "status": "verified-search-snapshot",
+     "url": "https://www.imdb.com/title/tt36646880/?_ssoLoop=1",
+     "count": "1.7K",
+     "note": "IMDb原站搜索快照4天前；ratings页约两周前为5.9/1.6K。"
+    },
+    "rt": {
+     "value": 19,
+     "status": "retained-prior-check",
+     "url": "https://www.rottentomatoes.com/m/parallel_tales",
+     "corroborationUrl": "https://tv.apple.com/ca/movie/histoires-paralleles/umc.cmc.2v1o4dcklsr4wowxmwgp59tpq?l=fr",
+     "count": 32,
+     "note": "本轮RT原站正文不返回聚合值；保留main已核对19。AppleTV官方授权Tomatometer快照上周为19%/32评论，作为旁证而非RT直接核实。"
+    },
+    "metacritic": {
+     "value": 41,
+     "status": "verified-search-snapshot",
+     "url": "https://www.metacritic.com/movie/parallel-tales/",
+     "count": 17,
+     "note": "MTC原站影片页搜索快照约两个月前为41/17评论。部分较旧人物页为42，采用影片页且与main当日核对一致。"
+    },
+    "letterboxd": {
+     "value": 2.92,
+     "status": "retained-prior-check",
+     "url": "https://letterboxd.com/film/parallel-tales/",
+     "note": "本轮页面文本未显示聚合均分；保留main docs/ratings-wutianming-2026-11-11.md的已核对值。"
+    }
+   }
+  }
+ },
+ "additionalEvidence": [
+  {
+   "url": "https://www.europeanfilmawards.eu/award-edition/awards-1995/",
+   "supports": "La Haine年度青年欧洲影片"
+  },
+  {
+   "url": "https://www.cinematheque.qc.ca/en/cinema/rosetta/",
+   "supports": "Rosetta 1999 André Cavens最佳比利时影片"
+  },
+  {
+   "url": "https://www.nyfcc.com/awards/",
+   "supports": "Ponette 1997最佳外语片"
+  },
+  {
+   "url": "https://kinolorber.com/film/ponette",
+   "supports": "发行商确认Ponette NYFCC荣誉"
+  },
+  {
+   "url": "https://mediatheques.saint-etienne.fr/Default/doc/SYRACUSE/1344839/ponette-jacques-doillon",
+   "supports": "Ponette发行DVD目录确认威尼斯OCIC奖"
+  },
+  {
+   "url": "https://www.bafta.org/awards/film/?award-year=2013",
+   "supports": "Amour BAFTA两获奖、两提名"
+  },
+  {
+   "url": "https://www.europeanfilmawards.eu/efa-movie/anatomy-of-a-fall/",
+   "supports": "2023欧洲影片/导演/演员/编剧/剪辑及大学电影奖"
+  },
+  {
+   "url": "https://www.theguardian.com/film/2006/feb/09/features.xanbrooks",
+   "supports": "撤下影片直接催生就业法案的说法"
+  },
+  {
+   "url": "https://fr.wikipedia.org/wiki/Ladj_Ly",
+   "supports": "1978年出生，原网站1980年更正"
+  }
+ ]
+}
