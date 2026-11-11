@@ -1748,7 +1748,7 @@
    "poster": "posters/golden-rooster-gr26-022.jpg",
    "r": [
     null,
-    null,
+    5.2,
     null,
     null,
     null
@@ -1771,7 +1771,7 @@
     "lb": "algerican-road",
     "imdb": "tt43459267"
    },
-   "ratingChecked": "2026-11-03",
+   "ratingChecked": "2026-11-11",
    "worldPremiere": {
     "status": "verified",
     "date": "2026-04-25",
@@ -2837,7 +2837,7 @@
     "11/8-19:45-xm-gr26-1-hall-3": "21:39"
    },
    "r": [
-    null,
+    8.0,
     7.4,
     null,
     null,
@@ -2872,7 +2872,7 @@
     "rt": "https://www.rottentomatoes.com/m/the_violinist_2026"
    },
    "posterDb": "p2937118909",
-   "ratingChecked": "2026-11-03",
+   "ratingChecked": "2026-11-11",
    "language": "英语 / 日语 / 汉语普通话",
    "metadataChecked": "2026-11-03",
    "worldPremiere": {
@@ -2928,7 +2928,7 @@
     6.5,
     null,
     null,
-    null
+    3.32
    ],
    "dirO": "Wu Chui-yi",
    "screeningNotes": {
@@ -2951,7 +2951,7 @@
     "imdb": "tt36505446",
     "rt": "https://www.rottentomatoes.com/m/bird_of_paradise_2026"
    },
-   "ratingChecked": "2026-11-03",
+   "ratingChecked": "2026-11-11",
    "worldPremiere": {
     "status": "pending",
     "date": null,
@@ -3336,7 +3336,7 @@
    },
    "r": [
     5.2,
-    null,
+    4.8,
     null,
     null,
     null
@@ -3368,7 +3368,7 @@
     "douban": "37207215"
    },
    "posterDb": "p2936814573",
-   "ratingChecked": "2026-11-03",
+   "ratingChecked": "2026-11-11",
    "language": "汉语普通话",
    "metadataChecked": "2026-11-03",
    "worldPremiere": {
