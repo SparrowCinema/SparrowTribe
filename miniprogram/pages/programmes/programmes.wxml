@@ -15,7 +15,6 @@
       <text class="pk mono"><text class="pst pst-{{status}}">{{statusText}}</text>{{kt}} · {{pt}}</text>
       <text class="pn">{{name}}</text>
       <text class="ps">{{stat}}</text>
-      <text wx:if="{{blurb}}" class="pb">{{blurb}}</text>
     </view>
     <text class="go">{{goTxt}}</text>
   </view>
