@@ -1,0 +1,509 @@
+{
+ "programme": "tiantan-tour-2026",
+ "year": 2026,
+ "films": [
+  {
+   "id": "dragonfly",
+   "cn": "危情蜻蜓",
+   "o": "Dragonfly",
+   "en": "Dragonfly",
+   "y": 2025,
+   "c": "英国",
+   "min": 98,
+   "reg": "eu",
+   "dir": "保罗·安德鲁·威廉姆斯",
+   "dirO": "Paul Andrew Williams",
+   "genre": [
+    "剧情",
+    "惊悚"
+   ],
+   "language": "英语",
+   "writers": [
+    "保罗·安德鲁·威廉姆斯"
+   ],
+   "cast": [
+    "Andrea Riseborough",
+    "Brenda Blethyn",
+    "Jason Watkins"
+   ],
+   "syn": "独居的老人艾尔希在摔伤后无人照看，年轻的邻居科琳走进了她的生活，给了她久违的陪伴。两个孤独的人逐渐靠近，温情之下，关系却一点点滑向难以预料的方向。影片从社会写实的日常出发，渐渐显露出孤独所能带来的压迫与危险。",
+   "bio": "保罗·安德鲁·威廉姆斯是英国导演、编剧，以社会写实风格的《伦敦到布莱顿》《Bull》闻名，剧本写于新冠疫情期间。",
+   "st": "影片2025年在翠贝卡电影节首映，两位女主角共同获得国际叙事长片最佳表演奖；英国于2025年11月7日公映。",
+   "honors": [
+    "获奖｜2025 翠贝卡电影节 · 国际叙事长片最佳表演（安德莉亚·赖斯堡洛、布伦达·布莱斯共同获得）",
+    "获奖｜2025 戈尔韦电影节 · 最佳国际影片",
+    "获奖｜2025 迪纳尔英国电影节 · 最佳影片（金希区柯克奖）"
+   ],
+   "warnings": [
+    "老年孤独与忽视",
+    "压迫性关系与暴力"
+   ],
+   "editorial": "两位演员的对手戏是全片重心。别把它当成温情陪伴的故事看：它从邻里互助出发，走向一个关于孤独与失控的惊悚。",
+   "links": {},
+   "worldPremiere": {
+    "status": "partial",
+    "date": "2025-06",
+    "festival": "翠贝卡电影节",
+    "festivalEn": "Tribeca Festival",
+    "kind": "festival",
+    "checked": "2026-11-11"
+   },
+   "r": [
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "poster": "posters/dragonfly.jpg",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-11",
+    "sensory": "unverified"
+   },
+   "contentNote": "依据公开剧情与发行资料整理，涉及老年孤独与忽视、压迫性关系与暴力。未完整审片；具体画面强度、闪烁及音量尚未核实，不替代正式分级。"
+  },
+  {
+   "id": "three-goodbyes",
+   "cn": "三声再见",
+   "o": "Tre ciotole",
+   "en": "Three Goodbyes",
+   "y": 2025,
+   "c": "意大利 / 西班牙",
+   "min": 120,
+   "reg": "eu",
+   "dir": "伊莎贝尔·科赛特",
+   "dirO": "Isabel Coixet",
+   "genre": [
+    "剧情"
+   ],
+   "language": "意大利语",
+   "writers": [
+    "Enrico Audenino",
+    "伊莎贝尔·科赛特"
+   ],
+   "cast": [
+    "Alba Rohrwacher",
+    "Elio Germano",
+    "Francesco Carril",
+    "Silvia D'Amico",
+    "Galatea Bellugi",
+    "Sarita Choudhury"
+   ],
+   "syn": "罗马的高中体育老师玛尔塔与主厨安东尼奥因一场看似微不足道的争吵分手。分开之后，玛尔塔发现自己食欲全无，身体出现了不对劲的信号。影片围绕她如何面对告别——与爱人、与旧日的自己、与生命本身——展开。",
+   "bio": "伊莎贝尔·科赛特是西班牙导演、编剧，是获得戈雅奖次数最多的导演兼编剧之一。本片改编自意大利作家米凯拉·穆尔吉亚的半自传体小说《Tre ciotole》。",
+   "st": "2025年9月8日在多伦多国际电影节“特别展映”首映，并作为第70届巴利亚多利德国际电影节开幕片；意大利公映约30万观影人次。",
+   "honors": [
+    "入选｜2025 多伦多国际电影节 · 特别展映",
+    "入选｜2025 巴利亚多利德国际电影节 · 开幕片"
+   ],
+   "warnings": [
+    "分手与疾病",
+    "死亡与告别"
+   ],
+   "editorial": "一部关于告别的静水流深之作。不必等待大的戏剧转折，重点在玛尔塔身体与情绪的细小变化。",
+   "links": {
+    "imdb": "tt35705184"
+   },
+   "worldPremiere": {
+    "status": "verified",
+    "date": "2025-09-08",
+    "festival": "多伦多国际电影节",
+    "festivalEn": "Toronto International Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-11"
+   },
+   "r": [
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "poster": "posters/three-goodbyes.jpg",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-11",
+    "sensory": "unverified"
+   },
+   "contentNote": "依据公开剧情与发行资料整理，涉及分手与疾病、死亡与告别。未完整审片；具体画面强度、闪烁及音量尚未核实，不替代正式分级。"
+  },
+  {
+   "id": "isabel",
+   "cn": "酒吧计划",
+   "o": "Isabel",
+   "en": "Isabel",
+   "y": 2026,
+   "c": "巴西 / 法国",
+   "min": 85,
+   "reg": "la",
+   "dir": "加布·克林格",
+   "dirO": "Gabe Klinger",
+   "genre": [
+    "剧情",
+    "喜剧"
+   ],
+   "language": "葡萄牙语 / 英语",
+   "writers": [
+    "加布·克林格",
+    "Marina Person"
+   ],
+   "cast": [
+    "Marina Person",
+    "Caio Horowicz",
+    "John Ortiz",
+    "Gregory Chastang",
+    "Marat Descartes"
+   ],
+   "syn": "伊莎贝尔是圣保罗高档餐饮圈的侍酒师，在一家米其林二星餐厅工作，却厌倦了苛刻的老板和迎合大众口味的酒单。她辞职，想开一家自己做主的自然酒吧。计划却没有按预期发酵，她必须在稳妥与放手一搏之间做出选择。",
+   "bio": "加布·克林格是巴西裔导演，在芝加哥长大，长期在美国发展；这是他首次回到故乡拍摄长片，影片使用16毫米胶片拍摄，由主演玛丽娜·佩尔森参与编剧。",
+   "st": "2026年2月16日在第76届柏林电影节“全景”单元全球首映。",
+   "honors": [
+    "入选｜2026 柏林国际电影节 · 全景单元"
+   ],
+   "warnings": [
+    "职场压迫",
+    "经济压力"
+   ],
+   "editorial": "轻盈的成年人创业喜剧。看点是主角对自然酒的热爱，以及梦想与现实之间的拉扯。",
+   "links": {},
+   "worldPremiere": {
+    "status": "verified",
+    "date": "2026-02-16",
+    "festival": "柏林国际电影节",
+    "festivalEn": "Berlin International Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-11"
+   },
+   "r": [
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "poster": "posters/isabel.jpg",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-11",
+    "sensory": "unverified"
+   },
+   "contentNote": "依据公开剧情与发行资料整理，涉及职场压迫、经济压力。未完整审片；具体画面强度、闪烁及音量尚未核实，不替代正式分级。"
+  },
+  {
+   "id": "two-people-one-life-and-a-dog",
+   "cn": "两人一生一狗",
+   "o": "Двое в одной жизни, не считая собаки",
+   "en": "Two People in One Life and a Dog",
+   "y": 2025,
+   "c": "俄罗斯",
+   "min": 109,
+   "reg": "eu",
+   "dir": "安德烈·扎伊采夫",
+   "dirO": "Andrey Zaytsev",
+   "genre": [
+    "剧情",
+    "爱情"
+   ],
+   "language": "俄语",
+   "writers": [
+    "安德烈·扎伊采夫"
+   ],
+   "cast": [
+    "Svetlana Kryuchkova",
+    "Aleksandr Adabashyan"
+   ],
+   "syn": "圣彼得堡一对年迈的知识分子夫妇，与子女分隔两地，度过了孤独而艰难的岁月，却始终保留着温暖、耐心与宽恕。影片以平淡的日常和斗嘴般的对话，描摹相守一生的绵长暖意；一条小狗也不时闯入镜头，成为家中的一员。",
+   "bio": "安德烈·扎伊采夫是俄罗斯导演、编剧、制片人，此前执导《14+：续集》（2023）。本片由他编剧、导演、制片并剪辑。",
+   "st": "2025年10月16日在俄罗斯公映；入围第16届北京国际电影节天坛奖主竞赛单元。",
+   "honors": [
+    "入围｜第47届莫斯科国际电影节 · 主竞赛单元",
+    "入围｜第16届北京国际电影节 · 天坛奖主竞赛单元"
+   ],
+   "warnings": [
+    "衰老与孤独",
+    "亲子疏离"
+   ],
+   "editorial": "节奏很慢的老年爱情。看两位主演之间的对话与默契，不必期待情节起伏。",
+   "links": {
+    "imdb": "tt38504885"
+   },
+   "worldPremiere": {
+    "status": "pending",
+    "date": null,
+    "festival": null,
+    "festivalEn": null,
+    "kind": "unknown",
+    "checked": null
+   },
+   "r": [
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "poster": "posters/two-people-one-life-and-a-dog.jpg",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-11",
+    "sensory": "unverified"
+   },
+   "contentNote": "依据公开剧情与发行资料整理，涉及衰老与孤独、亲子疏离。未完整审片；具体画面强度、闪烁及音量尚未核实，不替代正式分级。"
+  },
+  {
+   "id": "ky-nam-inn",
+   "cn": "奇南客栈",
+   "o": "Quán Kỳ Nam",
+   "en": "Ky Nam Inn",
+   "y": 2025,
+   "c": "越南",
+   "min": 140,
+   "reg": "as",
+   "dir": "黎光",
+   "dirO": "Leon Le",
+   "genre": [
+    "剧情",
+    "爱情"
+   ],
+   "language": "越南语",
+   "writers": [
+    "Nguyễn Thị Minh Ngọc",
+    "黎光"
+   ],
+   "cast": [
+    "Liên Bỉnh Phát",
+    "Đỗ Thị Hải Yến",
+    "Trần Thế Mạnh",
+    "Ngô Hồng Ngọc"
+   ],
+   "syn": "1985年的西贡，来自北方的年轻译者康被安排翻译《小王子》，在新政权下前途稳妥。他在住处遇到隔壁的寡居女子奇南，她是被击败的南方的遗民。一次意外让奇南不得不依靠康的照顾，客栈里弥漫起饭菜香、文学与无法言说的情愫。",
+   "bio": "黎光（Leon Le）是越南裔导演，首部长片《浪歌》（2018）获得50多个国际奖项。本片是他与主演连炳发的再度合作，使用35毫米胶片在西贡堤岸拍摄。",
+   "st": "2025年9月7日在多伦多国际电影节“特别展映”首映，越南于2025年11月28日公映。",
+   "honors": [
+    "入选｜2025 多伦多国际电影节 · 特别展映",
+    "入选｜2025 釜山国际电影节 · 亚洲电影之窗",
+    "入选｜2026 棕榈泉国际电影节"
+   ],
+   "warnings": [
+    "战后政治压力",
+    "寡居与孤独"
+   ],
+   "editorial": "一部用35毫米拍下的怀旧爱情片。篇幅较长，节奏舒缓，重点在氛围、饮食与克制的情感。",
+   "links": {},
+   "worldPremiere": {
+    "status": "verified",
+    "date": "2025-09-07",
+    "festival": "多伦多国际电影节",
+    "festivalEn": "Toronto International Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-11"
+   },
+   "r": [
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "poster": "posters/ky-nam-inn.jpg",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-11",
+    "sensory": "unverified"
+   },
+   "contentNote": "依据公开剧情与发行资料整理，涉及战后政治压力、寡居与孤独。未完整审片；具体画面强度、闪烁及音量尚未核实，不替代正式分级。"
+  },
+  {
+   "id": "our-girls",
+   "cn": "女孩们",
+   "o": "Voor de meisjes",
+   "en": "Our Girls",
+   "y": 2025,
+   "c": "荷兰 / 奥地利 / 比利时",
+   "min": 103,
+   "reg": "eu",
+   "dir": "迈克·范·迪姆",
+   "dirO": "Mike van Diem",
+   "genre": [
+    "剧情",
+    "惊悚"
+   ],
+   "language": "荷兰语 / 英语 / 德语",
+   "writers": [
+    "迈克·范·迪姆",
+    "Lykele Muus（原著）"
+   ],
+   "cast": [
+    "Thekla Reuten",
+    "Fedja van Huêt",
+    "Noortje Herlaar",
+    "Valentijn Dhaenens",
+    "Rosa van Leeuwen",
+    "Karl Markovics"
+   ],
+   "syn": "两对相识多年的夫妇相约到奥地利阿尔卑斯山度假，宁静的假期却因一场涉及孩子的意外而失控。当要拯救自己的孩子时，有没有不能越过的底线？原本牢固的友情开始出现裂缝，体面的人做出了难以接受的事。",
+   "bio": "迈克·范·迪姆是荷兰导演，1998年凭处女作《性格》获奥斯卡最佳外语片奖。本片改编自莱克·穆斯的小说《我们尽力而为》，由他编剧。",
+   "st": "作为第45届荷兰电影节开幕片首映，荷兰于2025年10月2日公映；在荷兰金牛犊奖中获最佳长片、最佳剧本等奖项。",
+   "honors": [
+    "获奖｜2025 荷兰金牛犊奖 · 最佳长片",
+    "获奖｜2025 荷兰金牛犊奖 · 最佳长片主演表现（Thekla Reuten）",
+    "获奖｜2025 荷兰金牛犊奖 · 最佳剧本",
+    "获奖｜2025 华沙国际电影节 · 最佳导演"
+   ],
+   "warnings": [
+    "儿童受伤事故",
+    "友情与家庭的道德抉择"
+   ],
+   "editorial": "一部情绪紧绷的家庭惊悚。主题是父母保护孩子的极限，涉及孩子受伤的情节，观影前请留意。",
+   "links": {
+    "imdb": "tt36474012"
+   },
+   "worldPremiere": {
+    "status": "partial",
+    "date": "2025",
+    "festival": "荷兰电影节",
+    "festivalEn": "Netherlands Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-11"
+   },
+   "r": [
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "poster": "posters/our-girls.jpg",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-11",
+    "sensory": "unverified"
+   },
+   "contentNote": "依据公开剧情与发行资料整理，涉及儿童受伤事故、友情与家庭的道德抉择。未完整审片；具体画面强度、闪烁及音量尚未核实，不替代正式分级。"
+  },
+  {
+   "id": "in-my-parents-house",
+   "cn": "在我父母家",
+   "o": "Im Haus meiner Eltern",
+   "en": "In My Parents' House",
+   "y": 2025,
+   "c": "德国",
+   "min": 95,
+   "reg": "eu",
+   "dir": "蒂姆·艾尔里奇",
+   "dirO": "Tim Ellrich",
+   "dirLife": "1989– · 德国",
+   "genre": [
+    "剧情"
+   ],
+   "language": "德语",
+   "writers": [
+    "蒂姆·艾尔里奇"
+   ],
+   "cast": [
+    "Jenny Schily",
+    "Ursula Werner",
+    "Manfred Zapatka",
+    "Jens Brock",
+    "Markus Schleinzer",
+    "Johannes Zeiler"
+   ],
+   "syn": "荷勒是一位主张另类疗法的治疗师，要在自己的职业生活与年迈父母、病情恶化的哥哥之间取得平衡。其他兄弟姐妹选择转身离开，她却觉得，家里藏着一个更大的沉默。影片以黑白影像讲述照护的愧疚、无力，与帮助他人的意愿。",
+   "bio": "蒂姆·艾尔里奇1989年生于奥斯纳布吕克，先后在维也纳和电影学院学习，这是他的毕业作品，也是首部长片。灵感来自他家中一位长期住在祖父母阁楼的精神分裂症叔叔。",
+   "st": "2025年入围鹿特丹国际电影节老虎竞赛单元并全球首映，同年入围第15届北京国际电影节天坛奖官方评选。",
+   "honors": [
+    "入围｜2025 鹿特丹国际电影节 · 老虎竞赛单元",
+    "入围｜第15届北京国际电影节 · 天坛奖官方评选"
+   ],
+   "warnings": [
+    "精神分裂症与家庭照护",
+    "家庭冲突"
+   ],
+   "editorial": "一部克制的照护题材家庭剧。影片取材于导演的真实家庭经历，节奏安静，适合愿意面对照护困境的观众。",
+   "links": {},
+   "worldPremiere": {
+    "status": "partial",
+    "date": "2025",
+    "festival": "鹿特丹国际电影节",
+    "festivalEn": "International Film Festival Rotterdam",
+    "kind": "festival",
+    "checked": "2026-11-11"
+   },
+   "r": [
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "poster": "posters/in-my-parents-house.jpg",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-11",
+    "sensory": "unverified"
+   },
+   "contentNote": "依据公开剧情与发行资料整理，涉及精神分裂症与家庭照护、家庭冲突。未完整审片；具体画面强度、闪烁及音量尚未核实，不替代正式分级。"
+  },
+  {
+   "id": "the-summer-book",
+   "cn": "夏日之书",
+   "o": "Kesäkirja",
+   "en": "The Summer Book",
+   "y": 2024,
+   "c": "芬兰 / 英国 / 美国",
+   "min": 90,
+   "reg": "eu",
+   "dir": "查理·麦克道威尔",
+   "dirO": "Charlie McDowell",
+   "genre": [
+    "剧情"
+   ],
+   "language": "英语",
+   "writers": [
+    "Robert Jones",
+    "托芙·扬松（原著）"
+   ],
+   "cast": [
+    "Glenn Close",
+    "Emily Matthews",
+    "Anders Danielsen Lie"
+   ],
+   "syn": "九岁的女孩索菲亚刚失去母亲，和父亲、年迈的祖母一起在芬兰海湾的小岛上度过夏天。祖母是一位倔强而可爱的艺术家，生命已近尾声。祖孙在孤岛的夏光与自然里一同面对生与死，慢慢找到相处的方式。",
+   "bio": "查理·麦克道威尔是美国导演，本片改编自芬兰作家托芙·扬松1972年的同名小说，剧本由罗伯特·琼斯撰写，在芬兰取景。",
+   "st": "2024年10月12日在BFI伦敦电影节“特别展映”首映；英国、爱尔兰于2026年8月7日公映。",
+   "honors": [
+    "入选｜2024 BFI伦敦电影节 · 特别展映"
+   ],
+   "warnings": [
+    "亲人离世与哀伤",
+    "衰老与死亡"
+   ],
+   "editorial": "沉静、抒情的自然系小品。看祖孙的相处，以及岛上的夏季光景。",
+   "links": {},
+   "worldPremiere": {
+    "status": "verified",
+    "date": "2024-10-12",
+    "festival": "BFI伦敦电影节",
+    "festivalEn": "BFI London Film Festival",
+    "kind": "festival",
+    "checked": "2026-11-11"
+   },
+   "r": [
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "poster": "posters/the-summer-book.jpg",
+   "contentReview": {
+    "status": "synopsis-reviewed",
+    "checked": "2026-11-11",
+    "sensory": "unverified"
+   },
+   "contentNote": "依据公开剧情与发行资料整理，涉及亲人离世与哀伤、衰老与死亡。未完整审片；具体画面强度、闪烁及音量尚未核实，不替代正式分级。"
+  }
+ ],
+ "shows": []
+}

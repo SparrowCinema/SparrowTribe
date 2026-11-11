@@ -1,0 +1,92 @@
+{
+ "checked": "2026-11-11",
+ "scope": "天坛映像外片全国巡展8部影片：全球首映核对（巡展具体日期与各城片单尚未官宣，排片待定）",
+ "verifiedRecords": {
+  "dragonfly": {
+   "cn": "危情蜻蜓",
+   "date": "2025-06",
+   "festival": "翠贝卡电影节",
+   "festivalEn": "Tribeca Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.galwayfilmfleadh.com/?p=56955",
+    "https://tribecafilm.com/films/dragonfly-2025"
+   ],
+   "note": "多方来源写明翠贝卡2025为世界首映；未取得首映日当天排片表，按2025-06登记，不补猜日。"
+  },
+  "three-goodbyes": {
+   "cn": "三声再见",
+   "date": "2025-09-08",
+   "festival": "多伦多国际电影节",
+   "festivalEn": "Toronto International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://en.wikipedia.org/wiki/Three_Goodbyes",
+    "https://theplaylist.net/three-goodbyes-trailer-isabel-coixets-latest-drama-stars-alba-rohrwacher-elio-germano-20250911/",
+    "https://www.screendaily.com/news/isabel-coixets-romantic-drama-three-goodbyes-scores-key-sales-following-toronto-premiere/5210665.article"
+   ],
+   "note": "TIFF特别展映世界首映；SEMINCI为欧洲首映，意大利公映在其后。"
+  },
+  "isabel": {
+   "cn": "酒吧计划",
+   "date": "2026-02-16",
+   "festival": "柏林国际电影节",
+   "festivalEn": "Berlin International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.berlinale.de/en/2026/programme/202602856.html",
+    "https://www.pulse.bot/entertainment/news/trailer-and-exclusive-poster-for-gabe-klingers-berlin-debut-isabel-uncork-a-midlife-crisis-37913fd1-21cd-496f-9637-b4535e980770"
+   ],
+   "note": "柏林电影节官方页标注World premiere，全景单元。"
+  },
+  "ky-nam-inn": {
+   "cn": "奇南客栈",
+   "date": "2025-09-07",
+   "festival": "多伦多国际电影节",
+   "festivalEn": "Toronto International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://en.wikipedia.org/wiki/Ky_Nam_Inn",
+    "https://vietnamnews.vn/life-style/1722357/leon-le-s-new-film-brings-historic-sa-i-go-n-to-toronto-spotlight.html",
+    "https://www.themoviebuff.net/2025/09/ky-nam-inn-tiff-2025-review-leon-le-channels-in-the-mood-for-love-in-the-shadows-of-postwar-saigon/?amp=1"
+   ],
+   "note": "TIFF特别展映世界首映；越南公映2025-11-28，釜山为亚洲首映。"
+  },
+  "our-girls": {
+   "cn": "女孩们",
+   "date": "2025",
+   "festival": "荷兰电影节",
+   "festivalEn": "Netherlands Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.cine.tirol/?p=1026721",
+    "https://www.filmfestival.nl/en/film/voor-de-meisjes"
+   ],
+   "note": "作为荷兰电影节2025开幕片首映，荷兰院线公映2025-10-02；未核实开幕当日，仅登记年份。"
+  },
+  "in-my-parents-house": {
+   "cn": "在我父母家",
+   "date": "2025",
+   "festival": "鹿特丹国际电影节",
+   "festivalEn": "International Film Festival Rotterdam",
+   "kind": "festival",
+   "sources": [
+    "https://port-prince.de/wp-content/uploads/2025/02/IHME_Presskit_09122024_comp.pdf",
+    "https://cineuropa.org/en/newsdetail/473378"
+   ],
+   "note": "新闻资料明确鹿特丹2025老虎竞赛单元为世界首映；未核实具体首映日，仅登记年份。北京天坛奖为亚洲首映。"
+  },
+  "the-summer-book": {
+   "cn": "夏日之书",
+   "date": "2024-10-12",
+   "festival": "BFI伦敦电影节",
+   "festivalEn": "BFI London Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://screendaily.com/news/charades-boards-the-summer-book-starring-glenn-close-ahead-of-bfi-london-film-festival-premiere-exclusive/5197461.article",
+    "https://burnsfilmcenter.org/cinefiiles-the-summer-book-preview-club-wrap-up/"
+   ],
+   "note": "BFI伦敦电影节特别展映世界首映，10月12日。"
+  }
+ }
+}
