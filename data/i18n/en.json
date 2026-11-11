@@ -803,7 +803,10 @@
     "War, conflict or threat of war",
     "Missing loved ones",
     "Dangerous situations or accidents"
-   ]
+   ],
+   "screeningNotes": {
+    "11/12-19:30-hz-mixc-imax-imax": "Final screening"
+   }
   },
   "dune-part-three": {
    "title": "Dune: Part Three",
