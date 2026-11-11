@@ -1508,7 +1508,7 @@ const langSub = f => f.langTag || [f.language, f.subtitles].filter(Boolean).join
 const editionHTML = f => f.version ? ` <small class="edition">${esc(f.version)}</small>` : "";
 const progOf = f => PG[f.prog||"style-kaleidoscope"];
 /* 同一部影片可出现在多个影展：主影展 f.prog 加上 catalog 里 sections 登记过的影展 */
-const filmProgsOf = f => { const main=progOf(f), out=[{p:main,sec:f.section||main.sections?.[f.id]||""}]; PROGRAMMES.forEach(p=>{ if(p.id!==main.id&&p.sections?.[f.id]) out.push({p,sec:p.sections[f.id]}); }); return out; };
+const filmProgsOf = f => { const main=progOf(f), out=[{p:main,sec:f.section||main.sections?.[f.id]||""}]; PROGRAMMES.forEach(p=>{ if(p.id!==main.id&&(p.sections?.[f.id]||p.members?.includes(f.id))) out.push({p,sec:p.sections?.[f.id]||""}); }); return out; };
 const progShows = pid => SH.filter(x=>x.p===pid);
 let pfilt = "all";
 let sectionFilter="", sectionProgramme="";
@@ -1529,7 +1529,7 @@ function defaultProg(){ const open=progOrdered().filter(p=>progStatus(p)!=="ende
 const statusTag = p => { const st=progStatus(p); return `<i class="pst pst-${st}">${p.ongoing&&st==="live"?"常设":STATUS[st]}</i>`; };
 const progChips = (cur=pfilt) => { const open=progOrdered().filter(p=>progStatus(p)!=="ended"||p.id===cur); return `<div class="filters prog-chips">${[["all","全部专题"],...open.map(p=>[p.id,p.name])].map(([k,n])=>`<button class="fchip" data-pf="${k}" aria-pressed="${cur===k}">${esc(n)}</button>`).join("")}</div>`; };
 const dateSpan = list => { if(!list.length) return ""; const ds=[...new Set(list.map(x=>x.d))]; return ds[0]+" – "+ds[ds.length-1]; };
-function progCardHTML(p){ const n=progShows(p.id).length, fn=FILMS.filter(f=>f.prog===p.id||p.sections?.[f.id]).length; return `<button class="prog-card pc-${progStatus(p)}" data-prog="${p.id}">${p.cover?`<img src="${p.cardCover||p.cover}" alt="" loading="lazy">`:""}<span class="pc-body"><small>${statusTag(p)}${esc(p.kind)} · ${esc(p.period)}${p.city?` · ${esc(p.city)}`:""}</small><b>${esc(p.name)}</b><span>${esc(p.sub)} · ${fn} 部${n?` / ${n} 场`:""}</span>${p.blurb?`<span class="pc-blurb">${esc(tr(p.blurb))}</span>`:""}</span><span class="pc-go">专题 ›</span></button>`; }
+function progCardHTML(p){ const n=progShows(p.id).length, fn=FILMS.filter(f=>f.prog===p.id||p.sections?.[f.id]||p.members?.includes(f.id)).length; return `<button class="prog-card pc-${progStatus(p)}" data-prog="${p.id}">${p.cover?`<img src="${p.cardCover||p.cover}" alt="" loading="lazy">`:""}<span class="pc-body"><small>${statusTag(p)}${esc(p.kind)} · ${esc(p.period)}${p.city?` · ${esc(p.city)}`:""}</small><b>${esc(p.name)}</b><span>${esc(p.sub)} · ${fn} 部${n?` / ${n} 场`:""}</span>${p.blurb?`<span class="pc-blurb">${esc(tr(p.blurb))}</span>`:""}</span><span class="pc-go">专题 ›</span></button>`; }
 function programmesPage(){
   const all=progOrdered(), live=all.filter(p=>progStatus(p)==="live"), soon=all.filter(p=>progStatus(p)==="soon"), past=all.filter(p=>progStatus(p)==="ended");
   const sec=(t,en,list)=>list.length?`<h3 class="blockh pgl-h">${t} <small>${list.length} · ${en}</small></h3><div class="prog-strip">${list.map(progCardHTML).join("")}</div>`:"";
@@ -1862,7 +1862,7 @@ function filmsListHTML(){
 document.addEventListener("click",e=>{const b=e.target.closest("[data-fold]");if(!b)return;const sec=b.closest(".fsec"),open=!sec.classList.toggle("closed");folds[b.dataset.fold]=open?1:0;saveFolds();b.setAttribute("aria-expanded",open);b.setAttribute("aria-label",tr(open?"收起":"展开")+" "+sec.querySelector("h3").textContent);
   if(!open){const top=sec.getBoundingClientRect().top;if(top<0)window.scrollTo({top:window.scrollY+top-(document.getElementById("topbar")?.offsetHeight||0)-8,behavior:"instant"});}});
 /* 片目顶部介绍：总片目数随专题增加自动更新；文案按当前规划（按专题分组、可折叠、结束后归往期）*/
-function filmsIntroHTML(){const total=FILMS.length,live=FILMS.filter(f=>nextShow(f)).length,progs=PROGRAMMES.filter(p=>FILMS.some(f=>f.prog===p.id||p.sections?.[f.id])).length;
+function filmsIntroHTML(){const total=FILMS.length,live=FILMS.filter(f=>nextShow(f)).length,progs=PROGRAMMES.filter(p=>FILMS.some(f=>f.prog===p.id||p.sections?.[f.id]||p.members?.includes(f.id))).length;
   return '<div class="fi-stats" aria-label="片目概览"><span><b>'+total+'</b>部影片</span><span><b>'+progs+'</b>个专题</span><span><b>'+live+'</b>部待映</span></div>'+
     '<p class="sub fi-sub">按专题分组，每个专题可收起；已放映的收进专题内，专题结束后归入「往期专题」。右侧为豆瓣评分。</p>';}
 function films(){
@@ -1932,7 +1932,7 @@ function detail(id){
   id=f.id;
   const col = REG[f.reg].c, P = pst(id);
   const allShows = SH.filter(x=>x.id===id), shows = allShows.filter(x=>!isPast(x));
-  const sib = FILMS.filter(x=>x.prog===f.prog||PG[f.prog]?.sections?.[x.id]), idx = sib.indexOf(f), prev = sib[idx-1], next = sib[idx+1];
+  const sib = FILMS.filter(x=>x.prog===f.prog||PG[f.prog]?.sections?.[x.id]||PG[f.prog]?.members?.includes(x.id)), idx = sib.indexOf(f), prev = sib[idx-1], next = sib[idx+1];
   topEl.innerHTML = `<div class="row"><button class="back" data-back><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m15 6-6 6 6 6"/></svg>返回</button><span class="sp"></span><span class="pill">${f.ev?esc(tr("活动场次")):String(idx+1).padStart(2,"0")+" / "+sib.length}</span></div>`;
   const syn = String(f.syn||""), long = syn.length > 220;
   const has = {syn:!!syn, watch:!!f.editorial||f.highlights.length>0, hon:f.honors.length>0, dir:!!(f.dir&&(f.bio||f.dirO||f.dirLife)), ctx:!!f.st};
@@ -2057,7 +2057,7 @@ document.addEventListener("click",e=>{const b=e.target.closest("[data-evkind]");
 function progPage(pid){
   if(sectionProgramme!==pid){sectionFilter="";sectionProgramme=pid;}
   const p=PG[pid]; if(!p){ go("schedule"); return; }
-  const shows=progShows(pid), fids=[...new Set(shows.map(x=>x.id))], films=FILMS.filter(f=>f.prog===pid||p.sections?.[f.id]||fids.includes(f.id)).sort(filmOrder);
+  const shows=progShows(pid), fids=[...new Set(shows.map(x=>x.id))], films=FILMS.filter(f=>f.prog===pid||p.sections?.[f.id]||p.members?.includes(f.id)||fids.includes(f.id)).sort(filmOrder);
   topEl.innerHTML = `<div class="row"><button class="back" data-back><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m15 6-6 6 6 6"/></svg>返回</button><span class="sp"></span><span class="pill">${esc(p.kind)}</span></div>`;
   main.innerHTML = `<article class="pg">
     ${p.cover?`<div class="pg-cover"><img src="${p.cover}"${p.coverPos?` style="object-position:${p.coverPos}"`:""} alt="${esc(p.name)} 主视觉"></div>`:""}

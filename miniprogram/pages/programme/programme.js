@@ -25,7 +25,7 @@ Page({
       return { id: f.id, cn: f.cn, ini: (f.cn || '')[0], version: t(f.version || ''), poster: U.poster(f), color: (data.reg[f.reg] || {}).c, first: first ? U.ymd(first) + ' ' + first.t : '',
         at: next ? U.showDate(next).getTime() : Infinity, lastAt: last ? U.showDate(last).getTime() : (f.ended ? U.relTime(f) : 0), gone: (!!mine.length || !!f.ended) && !next };
     };
-    const membership=new Set(Object.keys(p.sections||{}));
+    const membership=new Set(Object.keys(p.sections||{}).concat(p.members||[]));
     const all = data.films.filter(f => !f.ev && idx.progOf(f).id === p.id || membership.has(f.id)).filter(f=>!this.data.section||(p.sections||{})[f.id]===this.data.section).map(mk);
     // 即将放映（含场次待公布）按下一场先后；已结束按最近一场由近及远（与网站一致）
     const films = all.filter(f => !f.gone).sort((x, y) => (x.at === y.at ? 0 : x.at < y.at ? -1 : 1) || x.cn.localeCompare(y.cn, I.isEn() ? 'en' : 'zh'));

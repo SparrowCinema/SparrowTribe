@@ -47,7 +47,7 @@ function index(data) {
   const hallName = s => { const v = VN[s.v]; const h = v && v.halls.find(x => x.id === s.h); return h ? h.name : s.h; };
   const venueName = s => { const v=VN[s.v]; if(!v)return s.v; const c=I.tr(v.city||""),name=v.name.replace(new RegExp("^("+[v.city,c].filter(Boolean).join("|")+")\\s*[·・]?\\s*"),""); return (c?c+" · ":"")+name; };
   const progOf = f => PG[f.prog || 'style-kaleidoscope'] || data.programmes[0];
-  const progsOf = f => { const main = progOf(f), out = [{ p: main, sec: f.section || (main.sections || {})[f.id] || '' }]; data.programmes.forEach(p => { if (p.id !== main.id && (p.sections || {})[f.id]) out.push({ p, sec: p.sections[f.id] }); }); return out; };
+  const progsOf = f => { const main = progOf(f), out = [{ p: main, sec: f.section || (main.sections || {})[f.id] || '' }]; data.programmes.forEach(p => { if (p.id !== main.id && ((p.sections || {})[f.id] || (p.members || []).includes(f.id))) out.push({ p, sec: (p.sections || {})[f.id] || '' }); }); return out; };
   return { F, ORD, VN, PG, hallName, venueName, progOf, progsOf };
 }
 

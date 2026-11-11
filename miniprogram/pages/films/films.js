@@ -65,7 +65,7 @@ Page({
       }
     });
     past.sort((a, b) => b.end - a.end);
-    const stat = { total: data.films.filter(f => !f.ev).length, live: data.films.filter(f => !f.ev).filter(f => U.nextShowOf(f, data.shows)).length, progs: data.programmes.filter(p => data.films.some(f => idx.progOf(f).id === p.id || ((p.sections || {})[f.id]))).length };
+    const stat = { total: data.films.filter(f => !f.ev).length, live: data.films.filter(f => !f.ev).filter(f => U.nextShowOf(f, data.shows)).length, progs: data.programmes.filter(p => data.films.some(f => idx.progOf(f).id === p.id || ((p.sections || {})[f.id] || (p.members || []).includes(f.id)))).length };
     this.setData({regName:summ(this.data.reg,t('全部地区'),i=>t((data.reg[i]||{}).n||i),'个地区'),lenName:summ(this.data.len,t('全部片长'),i=>t((LEN_BINS.find(x=>x[0]===i)||[0,i])[1]),'档片长'),yearName:summ(this.data.year,t('全部年份'),i=>i,'个年份'),cityName:summ(this.data.city,t('全部城市'),i=>t(i),'座城市'),programmeName:summ(pf,t('全部专题'),i=>(idx.PG[i]||{}).name||i,'个专题'),mineName:summ(mine,t(MODES[0][1]),i=>t((MODES.find(x=>x[0]===i)||[0,i])[1]),'个分类'),active:pf!=='all'||this.data.city!=='all'||this.data.year!=='all'||this.data.reg!=='all'||this.data.len!=='all'||mine!=='all'||!!q,stat, secs, past, pastN: past.reduce((n, x) => n + x.n, 0), n: base.length, regs: Object.keys(data.reg).map(k => ({ k, n: t(data.reg[k].n) })), progs: data.programmes.length > 1 ? data.programmes : [] });
   },
   search(e) {this.setData({q:e.detail.value});this.build();},
