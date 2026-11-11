@@ -34,9 +34,9 @@ Page({
   context() {const data=app.globalData.data,idx=U.index(data);return {shows:data.shows,picked:plan.get(),watched:W.all(),keyOf:U.keyOf,programme:this.data.pf,city:this.data.city,cityOfShow:s=>idx.VN[s.v]?.city,programmeOf:f=>idx.progOf(f).id,programmeIds:f=>idx.progsOf(f).map(x=>x.p.id),showProgramme:s=>U.progForShow(s,idx).id};},
 
   row(f, data, idx, withNext, pid) {
-    const nx = withNext ? data.shows.filter(s=>s.id===f.id&&!U.ended(s,idx)&&(pid?U.progForShow(s,idx).id===pid:sh(this.data.pf,U.progForShow(s,idx).id))&&sh(this.data.city,idx.VN[s.v]?.city)).sort((a,b)=>U.showDate(a)-U.showDate(b))[0] : null,status=Library.status(f,this.context());
+    const nx = withNext ? data.shows.filter(s=>s.id===f.id&&!U.ended(s,idx)&&(pid?U.progForShow(s,idx).id===pid:sh(this.data.pf,U.progForShow(s,idx).id))&&sh(this.data.city,idx.VN[s.v]?.city)).sort((a,b)=>U.showDate(a)-U.showDate(b)) : null, nxl = nx && U.localFirst(nx, idx), status=Library.status(f,this.context());
     return {planned:status.planned,watched:status.watched,event:status.event,id:f.id, cn: f.cn, en: f.en || f.o, dir: f.dir, c: t(f.c), y: f.y, version: t(f.version || ''), db: f.r && f.r[0] != null ? f.r[0] : '—',
-      release: f.ended ? t('已下映') : t(f.release || ''), poster: U.poster(f), color: (data.reg[f.reg] || {}).c, next: nx ? U.ymd(nx) + ' ' + nx.t : '' };
+      release: f.ended ? t('已下映') : t(f.release || ''), poster: U.poster(f), color: (data.reg[f.reg] || {}).c, next: nxl ? U.ymd(nxl) + ' ' + nxl.t : '' };
   },
   build() {
     const data = app.globalData.data, idx = U.index(data), {mine,pf,q}=this.data,ctx=this.context();

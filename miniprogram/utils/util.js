@@ -29,6 +29,8 @@ const isFest = p => !!p && /影展|festival/i.test(p.kind || '');
 const geoCity = () => { try { const o = wx.getStorageSync('sk-geo-city'); return o && o.c && Date.now() - o.t < 864e5 ? o.c : ''; } catch (e) { return ''; } };
 // 首页优先城市：定位城市在 4 小时前之后仍有场次则用它，否则杭州（网站 homeCity）
 const homeCity = data => { const c = geoCity(); if (c && c !== '杭州') { const ids = new Set(data.venues.filter(v => v.city === c).map(v => v.id)), t = Date.now() - 4 * 36e5; if (data.shows.some(s => ids.has(s.v) && showDate(s).getTime() > t)) return c; } return '杭州'; };
+// 下一场优先取定位城市的场次（list 已按时间升序），没有再取最早的一场（与网站 localFirst 一致）
+const localFirst = (list, idx) => { const c = geoCity(); return (c && list.find(s => (idx.VN[s.v] || {}).city === c)) || list[0]; };
 const localProg = (p, data, idx, status) => { const c = geoCity(); if (!c || status === 'ended') return false; return p.city === c || data.shows.some(s => progForShow(s, idx).id === p.id && (idx.VN[s.v] || {}).city === c && !ended(s, idx)); };
 const langSub = f => I.tr(f.langTag || [f.language, f.subtitles].filter(Boolean).join(' ｜ '));
 
@@ -127,4 +129,4 @@ const SITE_URL = 'https://sparrowcinema.github.io/SparrowTribe/';
 const webTip = (hash, lines, t, title) => {
   wx.setClipboardData({ data: SITE_URL + (hash || ''), success: () => wx.showModal({ title: t(title || '网页版地址已复制'), content: lines.map(x => t(x)).join('\n'), showCancel: false, confirmText: t('知道了') }) });
 };
-module.exports = { homeCity, ymd: showYmd, geoCity, localProg, webTip, calSub, geoOf, distKm, transfer, openMap, progForShow, durationOf, progInfo, qaOf, ended, isFest, keepPast, relTime, nextShowOf, filmOrder, filmTone, langSub, WK, year, wk, toMin, fmt, keyOf, showDate, poster, ticket, durText, index, showView };
+module.exports = { localFirst, homeCity, ymd: showYmd, geoCity, localProg, webTip, calSub, geoOf, distKm, transfer, openMap, progForShow, durationOf, progInfo, qaOf, ended, isFest, keepPast, relTime, nextShowOf, filmOrder, filmTone, langSub, WK, year, wk, toMin, fmt, keyOf, showDate, poster, ticket, durText, index, showView };
