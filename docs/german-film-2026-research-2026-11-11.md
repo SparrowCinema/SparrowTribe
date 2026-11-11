@@ -12,4 +12,4 @@
 | 残存的感性 | Arsenal/Berlinale Forum（含导演阐述）、Cineuropa、DOK.fest München、Goethe-Institut、Real Fiction 新闻资料、Lichter Filmfest |
 | 当猪会飞 | DOK.fest München（节目页与获奖新闻）、filmportal |
 | 羞耻与金钱 | Cineuropa（影评/访谈/获奖）、German Films、Yellow Affair、Tirana 电影节、KVIFF、DGA、Far Out |
-荣誉：新增《我理解您的不满》第一步奖最佳长片、吕嫩电影节主演表演奖（Goethe-Institut 越南站页面）；《落叶球》曼谷大奖、潘切沃最佳影片等见 GAIFF，未写入 honors 的仅为未核对影展级别者。
+荣誉：新增《我理解您的不满》第一步奖最佳长片、吕嫩电影节主演表演奖（Goethe-Institut 越南站页面）；《落叶球》新增曼谷国际电影节大奖、潘切沃国际电影节最佳影片（GAIFF 影片页）。
