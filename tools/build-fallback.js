@@ -46,7 +46,7 @@ if (!films.length || !shows.length) throw new Error('网站数据为空，未生
 
 // 离线兜底只保留列表/排片/护照所需字段：长文字段（简介、荣誉、内容提示等）联网后由 getData / 网站数据补全。
 // 原因：小程序主包上限 2MB，完整数据会让源码包超限。
-const LEAN_DROP = ['syn', 'bio', 'honors', 'parts', 'contentReview', 'contentNote', 'editorial', 'highlights', 'links'];
+const LEAN_DROP = ['syn', 'bio', 'st', 'honors', 'parts', 'contentReview', 'contentNote', 'editorial', 'highlights', 'links'];
 films.forEach(f => LEAN_DROP.forEach(k => { delete f[k]; }));
 const data = { films, shows, venues: cat.venues || [], programmes, aliases: cat.aliases || {}, reg: Object.assign({}, prev.reg, cat.reg || {}) };
 Screenings.apply(data);
@@ -57,7 +57,7 @@ console.log('films', films.length, 'shows', shows.length, 'venues', data.venues.
 // 英文层：data/i18n/en.json → miniprogram/data/en.js（小程序离线兜底；联网时 getData 会带回网站最新的英文层）
 const en = readJSON('data/i18n/en.json'); delete en._readme;
 // 同理：离线英文层去掉影片长文字段（联网时 getData 带回完整英文层）
-const EN_DROP = ['syn', 'contentNote', 'editorial', 'bio', 'highlights', 'honors', 'warnings', 'parts', 'contentReview'];
+const EN_DROP = ['syn', 'st', 'contentNote', 'editorial', 'bio', 'highlights', 'honors', 'warnings', 'parts', 'contentReview'];
 Object.values(en.films || {}).forEach(o => EN_DROP.forEach(k => { delete o[k]; }));
 fs.writeFileSync(path.join(root, 'miniprogram/data/en.js'), '/* 英文层：由 tools/build-fallback.js 从 data/i18n/en.json 生成。 */\nmodule.exports = ' + JSON.stringify(en) + ';\n');
 console.log('en.js films', Object.keys(en.films).length, 'ui', Object.keys(en.ui).length);
