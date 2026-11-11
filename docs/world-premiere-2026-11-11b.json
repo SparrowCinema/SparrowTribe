@@ -1,0 +1,102 @@
+{
+ "checked": "2026-11-11",
+ "scope": "2026吴天明青年电影展法国现实主义名作展映8部影片：全球首映核对（嘉兴场次11月20-25日，杭州场次与排片待定）",
+ "verifiedRecords": {
+  "elevator-to-the-gallows": {
+   "cn": "通往绞刑架的电梯",
+   "date": "1958-01",
+   "festival": null,
+   "festivalEn": null,
+   "kind": "theatrical",
+   "sources": [
+    "https://simon-hitchman.com/2019/10/29/elevator-to-the-scaffold/",
+    "https://www.criterionchannel.com/elevator-to-the-gallows"
+   ],
+   "note": "多方来源写明1958年1月29日在巴黎公映；未取得首映日官方档案，按1958-01登记，不补猜日。"
+  },
+  "la-haine": {
+   "cn": "怒火青春",
+   "date": "1995-05",
+   "festival": "戛纳电影节",
+   "festivalEn": "Cannes Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.festival-cannes.com/en/artist/mathieu-kassovitz",
+    "https://www.tcm.com/tcmdb/title/443232/la-haine"
+   ],
+   "note": "戛纳官网与TCM均写明1995年戛纳主竞赛首映；未取得首映日，按1995-05登记。"
+  },
+  "rosetta": {
+   "cn": "罗赛塔",
+   "date": "1999-05",
+   "festival": "戛纳电影节",
+   "festivalEn": "Cannes Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.unifrance.org/film/15810",
+    "https://openjournals.uwaterloo.ca/index.php/kinema/article/view/887"
+   ],
+   "note": "1999年5月12-23日戛纳主竞赛首映并获金棕榈；未取得首映日，按1999-05登记。"
+  },
+  "ponette": {
+   "cn": "小孤星",
+   "date": "1996",
+   "festival": "威尼斯电影节",
+   "festivalEn": "Venice International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://tcm.com/tcmdb/title/443758/ponette",
+    "https://www.offi.fr/cinema/evenement/ponette-21144.html"
+   ],
+   "note": "1996年威尼斯主竞赛（8月29日–9月9日）；未取得首映日，只登记年份。"
+  },
+  "amour-2012": {
+   "cn": "爱",
+   "date": "2012-05",
+   "festival": "戛纳电影节",
+   "festivalEn": "Cannes Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.austrianfilms.com/film/amour",
+    "https://wikipedia.com/wiki/2012_Cannes"
+   ],
+   "note": "2012年5月戛纳主竞赛首映并获金棕榈；未取得首映日，按2012-05登记。"
+  },
+  "les-miserables-2019": {
+   "cn": "悲惨世界",
+   "date": "2019-05-15",
+   "festival": "戛纳电影节",
+   "festivalEn": "Cannes Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://wikipedia.com/wiki/Les_Miserables_(2019_film)",
+    "https://awardswatch.com/interview-cannes-winner-ladj-ly-director-of-les-miserables/amp"
+   ],
+   "note": "维基百科写明2019年5月15日戛纳全球首映，AwardsWatch称其为戛纳第二部首映影片，口径一致。"
+  },
+  "anatomy-of-a-fall": {
+   "cn": "坠落的审判",
+   "date": "2023-05",
+   "festival": "戛纳电影节",
+   "festivalEn": "Cannes Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://wikipedia.com/wiki/Justine_Triet",
+    "https://villa-albertine.org/?p=516338"
+   ],
+   "note": "2023年5月戛纳主竞赛首映并于5月27日获金棕榈；未取得首映日，按2023-05登记。"
+  },
+  "parallel-tales": {
+   "cn": "平行故事",
+   "date": "2026-05-14",
+   "festival": "戛纳电影节",
+   "festivalEn": "Cannes Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.screendaily.com/reviews/parallel-tales-review-asghar-farhadi-drama-is-convoluted-superficial-musing-on-the-interplay-between-fact-and-fiction/5216706.article",
+    "https://english.aaj.tv/news/amp/330459007"
+   ],
+   "note": "2026年5月14日戛纳主竞赛首映（路透称首映于周四，同日法国公映）；未获本届戛纳奖项（TheWrap、HighOnFilms获奖名单）。"
+  }
+ }
+}
