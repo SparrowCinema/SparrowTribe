@@ -1,0 +1,106 @@
+{
+ "checked": "2026-11-11",
+ "verifiedRecords": {
+  "elevator-to-the-gallows": {
+   "status": "verified",
+   "date": "1958-01-29",
+   "festival": null,
+   "festivalEn": null,
+   "kind": "theatrical",
+   "checked": "2026-11-11",
+   "sources": [
+    "https://www.cnc.fr/professionnels/visas-et-classification/19538",
+    "https://www.unifrance.org/film/325/ascenseur-pour-l-echafaud"
+   ],
+   "note": "原作最早公开放映；院线首映与影展首映分别标注。"
+  },
+  "la-haine": {
+   "status": "verified",
+   "date": "1995-05-27",
+   "festival": "戛纳电影节",
+   "festivalEn": "Cannes Film Festival",
+   "kind": "festival",
+   "checked": "2026-11-11",
+   "sources": [
+    "https://2022.festival-lumiere.org/manifestations/la-haine.html",
+    "https://www.imdb.com/title/tt0113247/releaseinfo/"
+   ],
+   "note": "原作最早公开放映；院线首映与影展首映分别标注。"
+  },
+  "rosetta": {
+   "status": "verified",
+   "date": "1999-05-22",
+   "festival": "戛纳电影节",
+   "festivalEn": "Cannes Film Festival",
+   "kind": "festival",
+   "checked": "2026-11-11",
+   "sources": [
+    "https://www.festival-cannes.com/en/f/rosetta/",
+    "https://www.imdb.com/title/tt0200071/releaseinfo/",
+    "https://letterboxd.com/film/rosetta/"
+   ],
+   "note": "原作最早公开放映；院线首映与影展首映分别标注。"
+  },
+  "ponette": {
+   "status": "partial",
+   "date": "1996-09",
+   "festival": "威尼斯国际电影节",
+   "festivalEn": "Venice International Film Festival",
+   "kind": "festival",
+   "checked": "2026-11-11",
+   "sources": [
+    "https://www.imdb.com/title/tt0117359/releaseinfo/"
+   ],
+   "note": "威尼斯官方ASAC档案确认第53届竞赛及获奖；IMDb仅给September1996。未核到确切日，不用1996-09-25法国公映替代，亦不使用LB的9月10日多伦多（在威尼斯颁奖之后）。"
+  },
+  "amour-2012": {
+   "status": "verified",
+   "date": "2012-05-20",
+   "festival": "戛纳电影节",
+   "festivalEn": "Cannes Film Festival",
+   "kind": "festival",
+   "checked": "2026-11-11",
+   "sources": [
+    "https://www.festival-cannes.com/en/medialibrary/press-conference-amour/"
+   ],
+   "note": "原作最早公开放映；院线首映与影展首映分别标注。"
+  },
+  "les-miserables-2019": {
+   "status": "verified",
+   "date": "2019-05-15",
+   "festival": "戛纳电影节",
+   "festivalEn": "Cannes Film Festival",
+   "kind": "festival",
+   "checked": "2026-11-11",
+   "sources": [
+    "https://www.festival-cannes.com/2019/les-miserables-de-ladj-ly-la-banlieue-de-la-realite-a-la-fiction/",
+    "https://filmfestivals.com/fr/node/265183"
+   ],
+   "note": "原作最早公开放映；院线首映与影展首映分别标注。"
+  },
+  "anatomy-of-a-fall": {
+   "status": "verified",
+   "date": "2023-05-21",
+   "festival": "戛纳电影节",
+   "festivalEn": "Cannes Film Festival",
+   "kind": "festival",
+   "checked": "2026-11-11",
+   "sources": [
+    "https://www.festival-cannes.com/en/medialibrary/anatomie-d-une-chute-by-justine-triet-red-steps/"
+   ],
+   "note": "原作最早公开放映；院线首映与影展首映分别标注。"
+  },
+  "parallel-tales": {
+   "status": "verified",
+   "date": "2026-05-14",
+   "festival": "戛纳电影节",
+   "festivalEn": "Cannes Film Festival",
+   "kind": "festival",
+   "checked": "2026-11-11",
+   "sources": [
+    "https://www.festival-cannes.com/en/medialibrary/histoires-paralleles-by-asghar-farhadi-red-steps/"
+   ],
+   "note": "原作最早公开放映；院线首映与影展首映分别标注。"
+  }
+ }
+}
