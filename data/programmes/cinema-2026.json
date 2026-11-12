@@ -393,7 +393,7 @@
    "poster": "posters/the-odyssey.jpg",
    "ticket": "tickets/the-odyssey.png",
    "screeningNotes": {
-    "11/12-19:30-hz-mixc-imax-imax": "告别场"
+    "11/12-19:00-hz-mixc-imax-imax": "告别场"
    },
    "warnings": [
     "战争题材",
@@ -3031,7 +3031,7 @@
   ],
   [
    "11/12",
-   "19:30",
+   "19:00",
    "the-odyssey",
    "hz-mixc-imax",
    "imax"
