@@ -78,7 +78,14 @@
     "festivalEn": "Cannes Film Festival",
     "kind": "festival",
     "checked": "2026-11-07"
-   }
+   },
+   "gifts": [
+    {
+     "items": [
+      "电影海报一张"
+     ]
+    }
+   ]
   },
   {
    "id": "dry-leaf",
@@ -156,7 +163,14 @@
     "festivalEn": "Locarno Film Festival",
     "kind": "festival",
     "checked": "2026-11-07"
-   }
+   },
+   "gifts": [
+    {
+     "items": [
+      "电影海报一张"
+     ]
+    }
+   ]
   },
   {
    "id": "i-understand-your-displeasure",
@@ -234,7 +248,14 @@
     "kind": "festival",
     "checked": "2026-11-07"
    },
-   "dirLife": "1995– · 德国"
+   "dirLife": "1995– · 德国",
+   "gifts": [
+    {
+     "items": [
+      "电影海报一张"
+     ]
+    }
+   ]
   },
   {
    "id": "karla",
@@ -312,7 +333,14 @@
     "kind": "festival",
     "checked": "2026-11-07"
    },
-   "dirLife": "1992– · 德国"
+   "dirLife": "1992– · 德国",
+   "gifts": [
+    {
+     "items": [
+      "电影海报一张"
+     ]
+    }
+   ]
   },
   {
    "id": "miroirs-no-3",
@@ -385,7 +413,14 @@
     "festivalEn": "Cannes Directors’ Fortnight",
     "kind": "festival",
     "checked": "2026-11-07"
-   }
+   },
+   "gifts": [
+    {
+     "items": [
+      "电影海报一张"
+     ]
+    }
+   ]
   },
   {
    "id": "the-miserable-mother",
@@ -458,7 +493,14 @@
     "kind": "festival",
     "checked": "2026-11-07"
    },
-   "dirLife": "1985– · 德国"
+   "dirLife": "1985– · 德国",
+   "gifts": [
+    {
+     "items": [
+      "电影海报一张"
+     ]
+    }
+   ]
   },
   {
    "id": "oh-this-unspeakable-void",
@@ -540,7 +582,14 @@
     "festivalEn": null,
     "kind": "theatrical",
     "checked": "2026-11-07"
-   }
+   },
+   "gifts": [
+    {
+     "items": [
+      "电影海报一张"
+     ]
+    }
+   ]
   },
   {
    "id": "sometimes-i-imagine-them-all-at-a-party",
@@ -607,7 +656,14 @@
     "kind": "festival",
     "checked": "2026-11-07"
    },
-   "dirLife": "1995– · 德国 / 巴西"
+   "dirLife": "1995– · 德国 / 巴西",
+   "gifts": [
+    {
+     "items": [
+      "电影海报一张"
+     ]
+    }
+   ]
   },
   {
    "id": "when-pigs-fly",
@@ -674,7 +730,14 @@
     "festivalEn": "CPH:DOX",
     "kind": "festival",
     "checked": "2026-11-07"
-   }
+   },
+   "gifts": [
+    {
+     "items": [
+      "电影海报一张"
+     ]
+    }
+   ]
   },
   {
    "id": "shame-and-money",
@@ -749,7 +812,14 @@
     "kind": "festival",
     "checked": "2026-11-07"
    },
-   "dirLife": "1979– · 科索沃 / 德国"
+   "dirLife": "1979– · 科索沃 / 德国",
+   "gifts": [
+    {
+     "items": [
+      "电影海报一张"
+     ]
+    }
+   ]
   }
  ],
  "shows": [
