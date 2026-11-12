@@ -2,18 +2,19 @@
  "checked": "2026-11-12",
  "verifiedRecords": {
   "and-the-spring-comes": {
-   "status": "partial",
-   "date": "2007-10",
+   "status": "verified",
+   "date": "2007-10-23",
    "festival": "罗马国际电影节",
    "festivalEn": "Rome Film Festival",
    "kind": "festival",
    "checked": "2026-11-12",
    "sources": [
-    "https://en.wikipedia.org/wiki/And_the_Spring_Comes",
-    "https://tcm.com/tcmdb/title/693568/and-the-spring-comes",
-    "https://news.sina.com.cn/c/2007-12-21/172514575216.shtml"
+    "https://movie.douban.com/subject/3036997/",
+    "https://letterboxd.com/film/and-the-spring-comes/",
+    "https://www.imdb.com/title/tt1214973/",
+    "https://tcm.com/tcmdb/title/693568/and-the-spring-comes"
    ],
-   "note": "第2届罗马电影节主竞赛（10月18–27日）；各来源给出的首映日分别为10月23日与24日（Variety评论写于10月23日），未能核实具体日，仅登记年月。"
+   "note": "豆瓣、Letterboxd、AsianWiki与Variety评论日期均指向10月23日（罗马电影节主竞赛，10月18–27日）；英文维基写10月24日，以多数来源为准。"
   },
   "crows-and-sparrows": {
    "status": "partial",
