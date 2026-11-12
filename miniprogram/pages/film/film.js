@@ -67,7 +67,7 @@ Page({
       pct: v == null ? 0 : Math.min(100, v / RT[i][1] * 100)
     }));
     const credits = [...Premiere.rows(f,I.isEn()), ['导演', f.dir], ['联合导演', f.coDirector], [f.writerLabel || '编剧', (f.writers || []).join(' / ')], ['原著', t(f.book || '')],
-      [(f.genre || []).includes('纪录片') ? '出镜' : '主演', (f.cast || []).join(' / ')], ['影片版权', (I.isEn() && f.printSourceEn) || f.printSource], ['类型', (f.genre || []).map(t).join(' / ')], ['原始语言', t(f.language)], ['海报说明', f.posterNote]]
+      [(f.genre || []).includes('纪录片') ? '出镜' : '主演', (f.cast || []).join(' / ')], ['放映形式', f.admission], ['影片版权', (I.isEn() && f.printSourceEn) || f.printSource], ['类型', (f.genre || []).map(t).join(' / ')], ['原始语言', t(f.language)], ['海报说明', f.posterNote]]
       .filter(x => x[1]).map(x => ({ k: t(x[0]), v: x[1] }));
     const all = data.films.filter(x => !x.ev), i = all.indexOf(f);
     const nav = (f.ev ? [null, null] : [all[i - 1], all[i + 1]]).map(x => x ? { id: x.id, cn: x.cn, poster: U.poster(x) } : null);
