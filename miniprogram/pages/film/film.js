@@ -76,8 +76,11 @@ Page({
     const SITE = 'https://sparrowcinema.github.io/SparrowTribe/', tks = [], seenTk = {};
     const hintOf = (pl, lb, h) => t([pl ? pl + '扫码' + (lb || '购票') : '', (h || '').replace(/^淘票票扫码购票\s*[·・]?\s*/, '')].filter(Boolean).join(' · '));
     const addTk = (url, pl, lb, h, p) => { if (!url || seenTk[url]) return; seenTk[url] = 1; tks.push({ url, hint: hintOf(pl, lb, h), label: t(lb || '购票'), prog: p ? p.name : '' }); };
-    addTk(U.ticket(f), f.ticketPlatform, f.ticketLabel, f.ticketHint, idx.progOf(f));
-    if (!f.ev) idx.progsOf(f).forEach(x => { if (x.p.ticket) addTk(/^https?:|^\//.test(x.p.ticket) ? x.p.ticket : SITE + x.p.ticket, x.p.ticketPlatform, '', x.p.ticketHint, x.p); });
+    // 专题已结束 / 影片已下映 / 全部场次已放映后，不再显示购票码（待排片的保留）
+    const progEnded = p => !!p && U.progInfo(p, data, idx).status === 'ended';
+    const filmLive = !f.ended && !progEnded(idx.progOf(f)) && (!allShows.length || allShows.some(s => !U.ended(s, idx)));
+    if (filmLive) addTk(U.ticket(f), f.ticketPlatform, f.ticketLabel, f.ticketHint, idx.progOf(f));
+    if (!f.ev) idx.progsOf(f).forEach(x => { if (x.p.ticket && !progEnded(x.p)) addTk(/^https?:|^\//.test(x.p.ticket) ? x.p.ticket : SITE + x.p.ticket, x.p.ticketPlatform, '', x.p.ticketHint, x.p); });
     if (tks.length < 2) tks.forEach(x => { x.prog = ''; });
     this.setData({
       tickets: tks,
