@@ -9902,6 +9902,38 @@
    "short": "MOViE MOViE · Qiantan",
    "brand": "Broadway MOViE MOViE Cinema",
    "store": "Shanghai Qiantan Taikoo Li"
+  },
+  "jx-jygh-helecheng": {
+   "name": "Jiaying Galaxy Cinema (Jiaxing Helecheng CINITY LED)",
+   "short": "Jiaying Galaxy",
+   "brand": "Jiaying Galaxy Cinema",
+   "store": "Jiaxing Helecheng CINITY LED",
+   "halls": {
+    "cinity-led-1": {
+     "name": "Hall 1 (CINITY LED)",
+     "short": "Hall 1 (CINITY LED)"
+    },
+    "laser-3": {
+     "name": "Hall 3 (4K Laser)",
+     "short": "Hall 3 (4K Laser)"
+    }
+   }
+  },
+  "jx-sfc-bbb": {
+   "name": "SFC Shanghai Film Cinema (Jiaxing Yaohan LUXE)",
+   "short": "SFC Yaohan",
+   "brand": "SFC Shanghai Film Cinema",
+   "store": "Jiaxing Yaohan LUXE",
+   "halls": {
+    "luxe-8": {
+     "name": "Hall 8 (LUXE Laser Giant Screen)",
+     "short": "Hall 8 (LUXE)"
+    },
+    "omis-4": {
+     "name": "Hall 4 (Omis Laser Giant Screen)",
+     "short": "Hall 4 (Omis)"
+    }
+   }
   }
  },
  "ui": {
