@@ -247,7 +247,11 @@
    "ratingChecked": "2026-11-11",
    "screeningNotes": {
     "11/22-13:30-jx-jygh-helecheng-laser-3": "映后活动 · 映后嘉宾：李迅、沙丹（以实际到场为准）"
-   }
+   },
+   "ticket": "tickets/rosetta.png",
+   "ticketLabel": "报名",
+   "ticketPlatform": "微信小程序",
+   "ticketHint": "杭州站（星光嘉映影城）"
   },
   {
    "id": "ponette",
@@ -428,7 +432,11 @@
    },
    "contentNote": "依据公开剧情与发行资料整理，涉及疾病、衰老与照护、死亡与失去。未完整审片；具体画面强度、闪烁及音量尚未核实，不替代正式分级。",
    "metadataChecked": "2026-11-11",
-   "ratingChecked": "2026-11-11"
+   "ratingChecked": "2026-11-11",
+   "ticket": "tickets/amour-2012.png",
+   "ticketLabel": "报名",
+   "ticketPlatform": "微信小程序",
+   "ticketHint": "杭州站（星光嘉映影城）"
   },
   {
    "id": "les-miserables-2019",
@@ -531,7 +539,11 @@
    "ratingChecked": "2026-11-11",
    "screeningNotes": {
     "11/22-16:00-jx-jygh-helecheng-laser-3": "映后活动 · 映后嘉宾：李迅、沙丹（以实际到场为准）"
-   }
+   },
+   "ticket": "tickets/les-miserables-2019.png",
+   "ticketLabel": "报名",
+   "ticketPlatform": "微信小程序",
+   "ticketHint": "杭州站（星光嘉映影城）"
   },
   {
    "id": "anatomy-of-a-fall",
@@ -622,7 +634,11 @@
    },
    "contentNote": "依据公开剧情与发行资料整理，涉及死亡与庭审、家庭争吵与家庭暴力的指控、儿童被迫作证。未完整审片；具体画面强度、闪烁及音量尚未核实，不替代正式分级。",
    "metadataChecked": "2026-11-11",
-   "ratingChecked": "2026-11-11"
+   "ratingChecked": "2026-11-11",
+   "ticket": "tickets/anatomy-of-a-fall.png",
+   "ticketLabel": "报名",
+   "ticketPlatform": "微信小程序",
+   "ticketHint": "杭州站（星光嘉映影城）"
   },
   {
    "id": "parallel-tales",
