@@ -159,7 +159,8 @@
    },
    "contentNote": "依据公开剧情与发行资料整理，涉及警察暴力与枪支、街头冲突与种族、阶层对立。未完整审片；具体画面强度、闪烁及音量尚未核实，不替代正式分级。",
    "metadataChecked": "2026-11-11",
-   "ratingChecked": "2026-11-11"
+   "ratingChecked": "2026-11-11",
+   "version": "4K"
   },
   {
    "id": "rosetta",
@@ -323,7 +324,8 @@
    },
    "contentNote": "依据公开剧情与发行资料整理，涉及丧亲与儿童哀伤、车祸后果。未完整审片；具体画面强度、闪烁及音量尚未核实，不替代正式分级。",
    "metadataChecked": "2026-11-11",
-   "ratingChecked": "2026-11-11"
+   "ratingChecked": "2026-11-11",
+   "version": "4K"
   },
   {
    "id": "amour-2012",
@@ -687,7 +689,8 @@
    },
    "contentNote": "依据公开剧情与发行资料整理，涉及窥视与关系越界、情感操控与背叛。未完整审片；具体画面强度、闪烁及音量尚未核实，不替代正式分级。",
    "metadataChecked": "2026-11-11",
-   "ratingChecked": "2026-11-11"
+   "ratingChecked": "2026-11-11",
+   "version": "4K"
   },
   {
    "id": "and-the-spring-comes",
@@ -763,7 +766,10 @@
     "sensory": "unverified"
    },
    "metadataChecked": "2026-11-12",
-   "ratingChecked": "2026-11-12"
+   "ratingChecked": "2026-11-12",
+   "screeningNotes": {
+    "11/20-17:00-jx-jygh-helecheng-cinity-led-1": "映后活动 · 映后交流（嘉宾名单待公布，以实际到场为准）· 免费放映"
+   }
   },
   {
    "id": "crows-and-sparrows",
@@ -772,7 +778,7 @@
    "en": "Crows and Sparrows",
    "y": 1949,
    "c": "中国",
-   "min": 111,
+   "min": 107,
    "reg": "cn",
    "version": "4K修复",
    "dir": "郑君里",
@@ -847,8 +853,145 @@
     "sensory": "unverified"
    },
    "metadataChecked": "2026-11-12",
-   "ratingChecked": "2026-11-12"
+   "ratingChecked": "2026-11-12",
+   "screeningNotes": {
+    "11/24-19:00-jx-sfc-bbb-luxe-8": "映后活动 · 映后交流（嘉宾名单待公布，以实际到场为准）· 免费放映"
+   }
   }
  ],
- "shows": []
+ "shows": [
+  [
+   "11/20",
+   "17:00",
+   "and-the-spring-comes",
+   "jx-jygh-helecheng",
+   "cinity-led-1"
+  ],
+  [
+   "11/20",
+   "19:00",
+   "spring-in-a-small-town",
+   "jx-sfc-bbb",
+   "luxe-8"
+  ],
+  [
+   "11/21",
+   "13:30",
+   "la-haine",
+   "jx-jygh-helecheng",
+   "laser-3"
+  ],
+  [
+   "11/21",
+   "13:30",
+   "les-miserables-2019",
+   "jx-sfc-bbb",
+   "omis-4"
+  ],
+  [
+   "11/21",
+   "16:00",
+   "ponette",
+   "jx-jygh-helecheng",
+   "laser-3"
+  ],
+  [
+   "11/21",
+   "16:00",
+   "rosetta",
+   "jx-sfc-bbb",
+   "omis-4"
+  ],
+  [
+   "11/21",
+   "19:00",
+   "amour-2012",
+   "jx-jygh-helecheng",
+   "cinity-led-1"
+  ],
+  [
+   "11/21",
+   "19:00",
+   "elevator-to-the-gallows",
+   "jx-sfc-bbb",
+   "omis-4"
+  ],
+  [
+   "11/22",
+   "13:30",
+   "rosetta",
+   "jx-jygh-helecheng",
+   "laser-3"
+  ],
+  [
+   "11/22",
+   "13:30",
+   "amour-2012",
+   "jx-sfc-bbb",
+   "luxe-8"
+  ],
+  [
+   "11/22",
+   "16:00",
+   "les-miserables-2019",
+   "jx-jygh-helecheng",
+   "laser-3"
+  ],
+  [
+   "11/22",
+   "16:00",
+   "la-haine",
+   "jx-sfc-bbb",
+   "luxe-8"
+  ],
+  [
+   "11/22",
+   "19:00",
+   "elevator-to-the-gallows",
+   "jx-jygh-helecheng",
+   "laser-3"
+  ],
+  [
+   "11/22",
+   "19:00",
+   "ponette",
+   "jx-sfc-bbb",
+   "luxe-8"
+  ],
+  [
+   "11/23",
+   "19:00",
+   "anatomy-of-a-fall",
+   "jx-jygh-helecheng",
+   "cinity-led-1"
+  ],
+  [
+   "11/23",
+   "19:00",
+   "parallel-tales",
+   "jx-sfc-bbb",
+   "luxe-8"
+  ],
+  [
+   "11/24",
+   "19:00",
+   "crows-and-sparrows",
+   "jx-sfc-bbb",
+   "luxe-8"
+  ],
+  [
+   "11/25",
+   "19:00",
+   "parallel-tales",
+   "jx-jygh-helecheng",
+   "cinity-led-1"
+  ],
+  [
+   "11/25",
+   "19:00",
+   "anatomy-of-a-fall",
+   "jx-sfc-bbb",
+   "luxe-8"
+  ]
+ ]
 }

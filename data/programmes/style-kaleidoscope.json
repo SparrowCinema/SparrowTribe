@@ -1034,7 +1034,10 @@
     "kind": "theatrical",
     "checked": "2026-11-07"
    },
-   "metadataChecked": "2026-11-12"
+   "metadataChecked": "2026-11-12",
+   "screeningNotes": {
+    "11/20-19:00-jx-sfc-bbb-luxe-8": "映后活动 · 映后交流（嘉宾名单待公布，以实际到场为准）· 免费放映"
+   }
   },
   {
    "id": "mon-oncle",
