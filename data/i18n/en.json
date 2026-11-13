@@ -498,7 +498,7 @@
     "Relationship conflict or coercion"
    ],
    "screeningNotes": {
-    "11/20-19:00-jx-sfc-bbb-luxe-8": "Post-screening event · Post-screening talk (guest list to be announced; subject to who actually attends) · Free admission"
+    "11/20-19:00-jx-sfc-bbb-luxe-8": "Post-screening event · Post-screening guests: Li Zhen (subject to who actually attends) · Free admission"
    }
   },
   "mon-oncle": {
@@ -8439,7 +8439,10 @@
     "Lino Ventura",
     "Elga Andersen"
    ],
-   "book": "Elevator to the Gallows by Noël Calef"
+   "book": "Elevator to the Gallows by Noël Calef",
+   "screeningNotes": {
+    "11/21-19:00-jx-sfc-bbb-omis-4": "Post-screening event · Post-screening guests: Yang Jinsong (subject to who actually attends)"
+   }
   },
   "la-haine": {
    "title": "Hate",
@@ -8483,7 +8486,10 @@
     "Karim Belkhadra",
     "Édouard Montoute",
     "Vincent Lindon"
-   ]
+   ],
+   "screeningNotes": {
+    "11/21-13:30-jx-jygh-helecheng-laser-3": "Post-screening event · Post-screening guests: Yang Jinsong, Zhan Taifeng (subject to who actually attends)"
+   }
   },
   "rosetta": {
    "title": "Rosetta",
@@ -8524,7 +8530,10 @@
     "Fabrizio Rongione",
     "Anne Yernaux",
     "Olivier Gourmet"
-   ]
+   ],
+   "screeningNotes": {
+    "11/22-13:30-jx-jygh-helecheng-laser-3": "Post-screening event · Post-screening guests: Li Xun, Sha Dan (subject to who actually attends)"
+   }
   },
   "ponette": {
    "title": "Ponette",
@@ -8573,7 +8582,10 @@
     "Antoine du Merle",
     "Henri Berthon",
     "Marianne Favre"
-   ]
+   ],
+   "screeningNotes": {
+    "11/22-19:00-jx-sfc-bbb-luxe-8": "Post-screening event · Post-screening guests: Yang Jinsong, Sha Dan (subject to who actually attends)"
+   }
   },
   "amour-2012": {
    "title": "Amour",
@@ -8688,7 +8700,10 @@
     "Djénéba Diallo",
     "Sana Joachaim",
     "Abiatou Château"
-   ]
+   ],
+   "screeningNotes": {
+    "11/22-16:00-jx-jygh-helecheng-laser-3": "Post-screening event · Post-screening guests: Li Xun, Sha Dan (subject to who actually attends)"
+   }
   },
   "anatomy-of-a-fall": {
    "title": "Anatomy of a Fall",
@@ -8829,7 +8844,7 @@
    ],
    "contentNote": "Compiled from public synopses and release materials; involves appearance-based humiliation and exclusion, and suicide-related content. Not fully screened; intensity, flashing and volume are not verified, and this is not an official rating.",
    "screeningNotes": {
-    "11/20-17:00-jx-jygh-helecheng-cinity-led-1": "Post-screening event · Post-screening talk (guest list to be announced; subject to who actually attends) · Free admission"
+    "11/20-17:00-jx-jygh-helecheng-cinity-led-1": "Post-screening event · Post-screening guests: Yang Jinsong (subject to who actually attends) · Free admission"
    }
   },
   "crows-and-sparrows": {
@@ -8881,7 +8896,7 @@
    ],
    "contentNote": "Compiled from public synopses and release materials; involves political oppression, arrest and execution, and a child’s serious illness. Not fully screened; intensity, flashing and volume are not verified, and this is not an official rating.",
    "screeningNotes": {
-    "11/24-19:00-jx-sfc-bbb-luxe-8": "Post-screening event · Post-screening talk (guest list to be announced; subject to who actually attends) · Free admission"
+    "11/24-19:00-jx-sfc-bbb-luxe-8": "Post-screening event · Post-screening guests: Sha Dan (subject to who actually attends) · Free admission"
    }
   }
  },

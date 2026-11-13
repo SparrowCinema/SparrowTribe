@@ -79,7 +79,10 @@
    "contentNote": "依据公开剧情与发行资料整理，涉及谋杀与伪造自杀、偷车与命案。未完整审片；具体画面强度、闪烁及音量尚未核实，不替代正式分级。",
    "metadataChecked": "2026-11-11",
    "ratingChecked": "2026-11-11",
-   "book": "诺埃尔·卡莱夫《通往绞刑架的电梯》"
+   "book": "诺埃尔·卡莱夫《通往绞刑架的电梯》",
+   "screeningNotes": {
+    "11/21-19:00-jx-sfc-bbb-omis-4": "映后活动 · 映后嘉宾：杨劲松（以实际到场为准）"
+   }
   },
   {
    "id": "la-haine",
@@ -160,7 +163,10 @@
    "contentNote": "依据公开剧情与发行资料整理，涉及警察暴力与枪支、街头冲突与种族、阶层对立。未完整审片；具体画面强度、闪烁及音量尚未核实，不替代正式分级。",
    "metadataChecked": "2026-11-11",
    "ratingChecked": "2026-11-11",
-   "version": "4K"
+   "version": "4K",
+   "screeningNotes": {
+    "11/21-13:30-jx-jygh-helecheng-laser-3": "映后活动 · 映后嘉宾：杨劲松、战台烽（以实际到场为准）"
+   }
   },
   {
    "id": "rosetta",
@@ -238,7 +244,10 @@
    },
    "contentNote": "依据公开剧情与发行资料整理，涉及贫困与酗酒的家庭、与警察、雇主的肢体冲突、背叛与道德困境。未完整审片；具体画面强度、闪烁及音量尚未核实，不替代正式分级。",
    "metadataChecked": "2026-11-11",
-   "ratingChecked": "2026-11-11"
+   "ratingChecked": "2026-11-11",
+   "screeningNotes": {
+    "11/22-13:30-jx-jygh-helecheng-laser-3": "映后活动 · 映后嘉宾：李迅、沙丹（以实际到场为准）"
+   }
   },
   {
    "id": "ponette",
@@ -325,7 +334,10 @@
    "contentNote": "依据公开剧情与发行资料整理，涉及丧亲与儿童哀伤、车祸后果。未完整审片；具体画面强度、闪烁及音量尚未核实，不替代正式分级。",
    "metadataChecked": "2026-11-11",
    "ratingChecked": "2026-11-11",
-   "version": "4K"
+   "version": "4K",
+   "screeningNotes": {
+    "11/22-19:00-jx-sfc-bbb-luxe-8": "映后活动 · 映后嘉宾：杨劲松、沙丹（以实际到场为准）"
+   }
   },
   {
    "id": "amour-2012",
@@ -516,7 +528,10 @@
    },
    "contentNote": "依据公开剧情与发行资料整理，涉及警察暴力与误伤少年、街区冲突与群体暴力。未完整审片；具体画面强度、闪烁及音量尚未核实，不替代正式分级。",
    "metadataChecked": "2026-11-11",
-   "ratingChecked": "2026-11-11"
+   "ratingChecked": "2026-11-11",
+   "screeningNotes": {
+    "11/22-16:00-jx-jygh-helecheng-laser-3": "映后活动 · 映后嘉宾：李迅、沙丹（以实际到场为准）"
+   }
   },
   {
    "id": "anatomy-of-a-fall",
@@ -768,7 +783,7 @@
    "metadataChecked": "2026-11-12",
    "ratingChecked": "2026-11-12",
    "screeningNotes": {
-    "11/20-17:00-jx-jygh-helecheng-cinity-led-1": "映后活动 · 映后交流（嘉宾名单待公布，以实际到场为准）· 免费放映"
+    "11/20-17:00-jx-jygh-helecheng-cinity-led-1": "映后活动 · 映后嘉宾：杨劲松（以实际到场为准）· 免费放映"
    }
   },
   {
@@ -855,7 +870,7 @@
    "metadataChecked": "2026-11-12",
    "ratingChecked": "2026-11-12",
    "screeningNotes": {
-    "11/24-19:00-jx-sfc-bbb-luxe-8": "映后活动 · 映后交流（嘉宾名单待公布，以实际到场为准）· 免费放映"
+    "11/24-19:00-jx-sfc-bbb-luxe-8": "映后活动 · 映后嘉宾：沙丹（以实际到场为准）· 免费放映"
    }
   }
  ],
