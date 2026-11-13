@@ -1916,11 +1916,16 @@ document.addEventListener("click",e=>{const t=e.target.closest("[data-showf-filt
 function screeningHTML(s,f){const k=keyOf(s),yes=picked.has(k),gone=isPast(s);const [m,d]=s.d.split("/");return `<div class="fd-ticket${gone?" past":""}"><div class="fd-tdate fc" style="--h:${fhue(s.id)}"><small>${m}月</small><b>${d}</b><span>${wk(s.d)}</span></div><div class="fd-tbody"><div class="fd-ttime"><b>${s.t}</b><span>–</span><b class="end">${f.minTbd?"":fmt(toMin(s.t)+durationOf(s))}</b>${gone?'<em class="fd-gone">已放映</em>':""}</div><small>${placeHTML(s)}</small>${(PG[s.p]&&filmProgsOf(f).length>1)?`<span class="fd-sprog">${esc(PG[s.p].name)}</span>`:""}${f.screeningNotes?.[k]?noteHTML(f.screeningNotes[k]):""}<div class="fd-tact"><button class="fd-add${yes?" on":""}" data-plan="${esc(k)}" aria-pressed="${yes}">${yes?"✓ 已加入排片":"+ 加入排片"}</button><button class="fd-see" data-jump="${k}">在排片中查看</button></div></div></div>`;}
 // 购票码：影片自带的购票码 + 所属各专题的购票码（跨影展影片会有多张，按专题标注）
 const TK={};
+function ticketLive(f){ // 影片自带购票码：所属专题已结束、已下映，或全部场次都已放映后不再显示（待排片的保留）
+  const p=PG[f.prog]; if(p&&progStatus(p)==="ended") return false;
+  if(f.ended) return false;
+  const mine=SH.filter(s=>s.id===f.id); return !mine.length||mine.some(s=>!isPast(s));
+}
 function ticketsOf(f){
-  if(f.ev) return f.ticket?[{ticket:f.ticket,ticketPlatform:f.ticketPlatform,ticketHint:f.ticketHint,ticketLabel:f.ticketLabel,p:PG[f.prog]}]:[];
+  if(f.ev) return f.ticket&&ticketLive(f)?[{ticket:f.ticket,ticketPlatform:f.ticketPlatform,ticketHint:f.ticketHint,ticketLabel:f.ticketLabel,p:PG[f.prog]}]:[];
   const out=[],seen=new Set(),add=(t,p)=>{if(!t.ticket||seen.has(t.ticket))return;seen.add(t.ticket);out.push(Object.assign({},t,{p}));};
-  if(f.ticket) add({ticket:f.ticket,ticketPlatform:f.ticketPlatform,ticketHint:f.ticketHint,ticketLabel:f.ticketLabel},PG[f.prog]);
-  (typeof filmProgsOf==="function"&&F[f.id]?filmProgsOf(f):[]).forEach(({p})=>{if(p.ticket)add({ticket:p.ticket,ticketPlatform:p.ticketPlatform,ticketHint:p.ticketHint},p);});
+  if(f.ticket&&ticketLive(f)) add({ticket:f.ticket,ticketPlatform:f.ticketPlatform,ticketHint:f.ticketHint,ticketLabel:f.ticketLabel},PG[f.prog]);
+  (typeof filmProgsOf==="function"&&F[f.id]?filmProgsOf(f):[]).forEach(({p})=>{if(p.ticket&&progStatus(p)!=="ended")add({ticket:p.ticket,ticketPlatform:p.ticketPlatform,ticketHint:p.ticketHint},p);});
   return out;
 }
 function ticketCardHTML(t,cn,key,tag){TK[key]=Object.assign({cn},t);const w=t.ticketLabel||'购票';return `<section class="ticket-card" aria-label="${esc(cn)}${w}"><div class="ticket-copy"><small>BOOK YOUR SEAT${tag?` · ${esc(tag)}`:""}</small><h2>银幕见</h2><p>${esc(t.ticketPlatform||"微信")}扫码${w}<br>${esc((t.ticketHint||"麻雀映画小程序").replace(/^淘票票扫码购票\s*[·・]?\s*/,""))}</p><button class="ticket-expand" data-ticket="${esc(key)}">查看${w}码 ↗</button></div><button class="ticket-code" data-ticket="${esc(key)}" aria-label="放大${esc(cn)}${w}码"><img src="${t.ticket}" alt="${esc(cn)}${w}码" width="430" height="430"></button></section>`;}
@@ -2066,9 +2071,9 @@ function progPage(pid){
       <div class="pstats pg-stats"><div><b>${films.length}</b><small>部影片</small></div><div><b>${shows.filter(x=>!F[x.id]?.ev).length}</b><small>场放映</small></div><div><b>${new Set(shows.map(x=>x.d)).size}</b><small>个放映日</small></div><div><b>${new Set(shows.map(x=>x.v+x.h)).size}</b><small>个影厅</small></div></div>
       ${p.blurb?`<p class="pg-blurb">${esc(p.blurb)}</p>`:""}
       ${progActsHTML(p)}
-      ${p.ticketUrl?`<p class="pg-ticketlink"><a class="primary-button" href="${esc(p.ticketUrl)}" target="_blank" rel="noopener">${esc(tr(p.ticketLabel||"购票"))}</a></p>`:""}
+      ${p.ticketUrl&&progStatus(p)!=="ended"?`<p class="pg-ticketlink"><a class="primary-button" href="${esc(p.ticketUrl)}" target="_blank" rel="noopener">${esc(tr(p.ticketLabel||"购票"))}</a></p>`:""}
       ${eventsHTML(p)}
-      ${p.ticket&&!p.noPageTicket?ticketCardHTML({ticket:p.ticket,ticketPlatform:p.ticketPlatform,ticketHint:p.ticketHint},p.name,"prog:"+p.id,""):""}
+      ${p.ticket&&!p.noPageTicket&&progStatus(p)!=="ended"?ticketCardHTML({ticket:p.ticket,ticketPlatform:p.ticketPlatform,ticketHint:p.ticketHint},p.name,"prog:"+p.id,""):""}
       ${p.sections?`<div class="plan-scope sec-scope"><button class="schedule-filter" data-section-sel aria-haspopup="dialog"><span><small>${esc(tr("选择单元"))}</small><b>${esc(tr(secLabel(sectionFilter)))}</b></span><span class="scope-count">${tr(FILMS.filter(f=>!sectionFilter?(p.sections[f.id]||f.prog===pid):p.sections[f.id]===sectionFilter).length+" 部")}</span>${filterChevron}</button></div>`:""}
       <div class="plan-toolbar"><button class="primary-button" data-prog-jump="up">即将放映</button><button class="secondary-button" data-prog-jump="gone">已结束</button></div>
       <p class="src">场次与排片表自动同步 · 页面打开时每分钟检查更新</p>${films.length?progFilmsHTML(pid,films):`<div class="fd-noshow"><b>片单与场次即将公布</b><span>公布后会第一时间更新到这里。</span></div>`}
