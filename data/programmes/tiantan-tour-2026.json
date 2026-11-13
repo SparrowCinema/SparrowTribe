@@ -615,5 +615,48 @@
    "ratingChecked": "2026-11-11"
   }
  ],
- "shows": []
+ "shows": [
+  [
+   "11/28",
+   "13:10",
+   "two-people-one-life-and-a-dog",
+   "hz-mixc-yaao",
+   "dolby"
+  ],
+  [
+   "11/28",
+   "15:40",
+   "the-summer-book",
+   "hz-mixc-yaao",
+   "dolby"
+  ],
+  [
+   "11/28",
+   "19:00",
+   "dragonfly",
+   "hz-mixc-yaao",
+   "dolby"
+  ],
+  [
+   "11/29",
+   "13:20",
+   "our-girls",
+   "hz-mixc-yaao",
+   "dolby"
+  ],
+  [
+   "11/29",
+   "15:50",
+   "three-goodbyes",
+   "hz-mixc-yaao",
+   "dolby"
+  ],
+  [
+   "11/29",
+   "18:40",
+   "ky-nam-inn",
+   "hz-mixc-yaao",
+   "dolby"
+  ]
+ ]
 }
