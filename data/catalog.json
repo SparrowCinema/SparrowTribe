@@ -1308,6 +1308,54 @@
    "city": "嘉兴"
   },
   {
+   "id": "jx-jygh-helecheng",
+   "short": "嘉影银河",
+   "name": "嘉影银河影城（嘉兴合乐城CINITY LED店）",
+   "brand": "嘉影银河影城",
+   "store": "嘉兴合乐城CINITY LED店",
+   "fmt": [
+    "CINITY LED",
+    "激光"
+   ],
+   "halls": [
+    {
+     "id": "cinity-led-1",
+     "short": "1号CINITY LED厅",
+     "name": "1号CINITY LED厅"
+    },
+    {
+     "id": "laser-3",
+     "short": "3号4K激光厅",
+     "name": "3号4K激光厅"
+    }
+   ],
+   "city": "嘉兴"
+  },
+  {
+   "id": "jx-sfc-bbb",
+   "short": "SFC八佰伴",
+   "name": "SFC上影影城（嘉兴八佰伴LUXE店）",
+   "brand": "SFC上影影城",
+   "store": "嘉兴八佰伴LUXE店",
+   "fmt": [
+    "LUXE",
+    "激光巨幕"
+   ],
+   "halls": [
+    {
+     "id": "luxe-8",
+     "short": "8号LUXE厅",
+     "name": "8号LUXE激光巨幕厅"
+    },
+    {
+     "id": "omis-4",
+     "short": "4号Omis厅",
+     "name": "4号Omis激光巨幕厅"
+    }
+   ],
+   "city": "嘉兴"
+  },
+  {
    "id": "xm-gr26-1",
    "short": "厦门万象影城",
    "name": "厦门万象影城",
