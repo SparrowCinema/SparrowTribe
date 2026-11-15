@@ -64,7 +64,7 @@
 .fold-btn:hover{border-color:var(--accent);color:var(--accent)}.fold-btn:active{transform:scale(.9)}
 .fsec.closed .fold-btn,details:not([open])>summary .fold-btn{background:var(--fg);color:var(--bg);border-color:var(--fg)}
 .fsec.closed .fold-btn svg,details:not([open])>summary .fold-btn svg{transform:rotate(-90deg)}
-.fsec.closed .fsec-body{display:none}.fsec-body{animation:fsecIn .22s ease-out}@keyframes fsecIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+.fl-more{height:1px}.fsec.closed .fsec-body{display:none}.fsec-body{animation:fsecIn .22s ease-out}@keyframes fsecIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
 .fstack{display:none;align-items:center}.fsec.closed .fstack,.fold-prog .fstack{display:inline-flex}
 .fstack img,.fstack i{width:22px;height:30px;border-radius:4px;object-fit:cover;border:2px solid var(--bg);margin-left:-9px;box-shadow:0 1px 3px rgba(40,25,10,.18);display:grid;place-items:center;font:700 10px var(--f-display);font-style:normal;color:#fff}.fstack>:first-child{margin-left:0}
 .fgone{margin:10px 0 4px}.fgone>summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:5px;padding:7px 12px 7px 14px;border:1px dashed var(--line);border-radius:99px;font-size:10.6px;color:var(--muted)}.fgone>summary::-webkit-details-marker{display:none}
@@ -1860,7 +1860,25 @@ let folds=(()=>{try{return JSON.parse(localStorage.getItem('sparrow-fold-v1')||'
 function saveFolds(){try{localStorage.setItem('sparrow-fold-v1',JSON.stringify(folds));}catch{}}
 const CHEV='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>';
 function stackHTML(rows){return '<span class="fstack" aria-hidden="true">'+rows.slice(0,4).map(f=>pst(f.id)?'<img src="'+pst(f.id)+'" alt="" loading="lazy">':'<i style="background:'+REG[f.reg].c+'">'+esc(f.cn[0])+'</i>').join('')+'</span>';}
+/* 片目渐进渲染：每个列表先画前 FL_FIRST 张卡片，滚到附近再每次补 FL_STEP 张；收起的专题、「本专题已放映」「往期专题」展开时才画。
+   片库到几千部时页面节点数仍然只跟已浏览的范围有关。已画到多少张记在 flShown（按列表 key），从影片页返回时原样恢复，滚动位置不会跳；
+   搜索或筛选变化时清零。不支持 IntersectionObserver 的浏览器一次画完。 */
+const FL_FIRST=12, FL_STEP=24;
+let FL={}, flShown={}, flSig="", flIO=null;
+function lazyFlist(key,items,open){ /* items: [影片, 下一场或null] */
+  if(!items.length) return "";
+  if(!("IntersectionObserver" in window)) return `<div class="flist">${items.map(([f,nx])=>filmCardHTML(f,nx)).join("")}</div>`;
+  FL[key]=items; const n=Math.min(items.length,Math.max(open?FL_FIRST:0,flShown[key]||0)); flShown[key]=n;
+  return `<div class="flist" data-fl="${esc(key)}">${items.slice(0,n).map(([f,nx])=>filmCardHTML(f,nx)).join("")}</div>${n<items.length?`<div class="fl-more" data-fl-more="${esc(key)}" aria-hidden="true"></div>`:""}`;
+}
+function flGrow(key){ const items=FL[key], list=document.querySelector(`.flist[data-fl="${CSS.escape(key)}"]`), more=document.querySelector(`.fl-more[data-fl-more="${CSS.escape(key)}"]`); if(!items||!list) return false;
+  const a=flShown[key]||0, b=Math.min(items.length,a+(a?FL_STEP:FL_FIRST)); if(b>a){ list.insertAdjacentHTML("beforeend",items.slice(a,b).map(([f,nx])=>filmCardHTML(f,nx)).join("")); flShown[key]=b; }
+  if(b>=items.length){ more&&more.remove(); return false; } return true; }
+function flObserve(){ if(!("IntersectionObserver" in window)) return; flIO&&flIO.disconnect();
+  flIO=new IntersectionObserver(es=>es.forEach(e=>{ if(!e.isIntersecting) return; const el=e.target, key=el.dataset.flMore; flIO.unobserve(el); if(flGrow(key)&&el.isConnected) requestAnimationFrame(()=>el.isConnected&&flIO.observe(el)); }),{rootMargin:"1200px 0px"});
+  document.querySelectorAll(".fl-more").forEach(el=>flIO.observe(el)); }
 function filmsListHTML(){
+  { const sig=[fq,ffilt,fcity,fyear,freg,flen,fmine].join("|"); if(sig!==flSig){ flSig=sig; flShown={}; } FL={}; requestAnimationFrame(flObserve); }
   // 跨影展影片在每个所属专题里都列出；「下一场」只取该专题的场次
   const showPid=s=>s.p||F[s.id]?.prog;
   const nextIn=(f,pid)=>SH.find(s=>s.id===f.id&&!isPast(s)&&selHas(fcity,VN[s.v]?.city)&&showPid(s)===pid);
@@ -1872,9 +1890,9 @@ function filmsListHTML(){
   const groups = progGroupOrder().filter(p=>!endedP(p)).map(p=>{const m=members(p);return [p,m.filter(f=>isLiveIn(f,p)).sort(orderIn(p.id)),m.filter(f=>!isLiveIn(f,p)).sort((a,b)=>relTime(b)-relTime(a))];}).filter(([,r,g])=>r.length||g.length);
   const grpHTML = ([p,rows,old]) => { const key='g:'+p.id, open=!!fq||fmine!=="all"||folds[key]!==0, all=rows.concat(old);
     return `<section class="fsec${open?"":" closed"}" data-fsec="${key}"><header class="fgrp fgrp2"><div class="fgrp-main"><span class="fgrp-kind">${isFest(p)?"影展":esc(p.kind||"专题")}</span><h3>${esc(p.name)}</h3><small class="fgrp-meta">${all.length} 部 · ${esc(p.en||p.kind||"")}</small></div><div class="fgrp-side">${stackHTML(all)}<button class="fold-btn" data-fold="${key}" aria-expanded="${open}" aria-label="${tr(open?"收起":"展开")} ${esc(p.name)}">${CHEV}</button></div></header>
-      <div class="fsec-body">${rows.length?`<div class="flist">${rows.map(f=>filmCardHTML(f,nextIn(f,p.id))).join("")}</div>`:""}${old.length?`<details class="fgone"${fq||fmine!=="all"?" open":""}><summary><span>本专题已放映</span><b>${old.length}</b><span>部</span>${CHEV}</summary><div class="flist">${old.map(f=>filmCardHTML(f,null)).join("")}</div></details>`:""}</div></section>`; };
+      <div class="fsec-body">${lazyFlist(key+":live",rows.map(f=>[f,nextIn(f,p.id)]),open)}${old.length?`<details class="fgone"${fq||fmine!=="all"?" open":""}><summary><span>本专题已放映</span><b>${old.length}</b><span>部</span>${CHEV}</summary>${lazyFlist(key+":old",old.map(f=>[f,null]),open&&(!!fq||fmine!=="all"))}</details>`:""}</div></section>`; };
   const endedGroups = progGroupOrder().filter(endedP).map(p=>[p,members(p).sort((a,b)=>relTime(b)-relTime(a))]).filter(([,r])=>r.length).sort((x,y)=>(progRange(y[0])[1]||0)-(progRange(x[0])[1]||0));
-  const pastHTML = endedGroups.length?`<header class="fpast-h"><h3>往期专题</h3><small>${endedGroups.reduce((n,[,r])=>n+r.length,0)} 部 · 已结束的专题收在这里</small></header>`+endedGroups.map(([p,rows])=>`<details class="fold-prog"${fq||fmine!=="all"?" open":""}><summary><span class="fp-t"><span class="fgrp-kind">${isFest(p)?"影展":esc(p.kind||"专题")}</span><b>${esc(p.name)}</b><small class="fp-n">${rows.length} 部${p.period?" · "+esc(p.period):""}</small></span>${stackHTML(rows)}<span class="fold-btn" aria-hidden="true">${CHEV}</span></summary><div class="flist">${rows.map(f=>filmCardHTML(f,null)).join("")}</div></details>`).join(""):"";
+  const pastHTML = endedGroups.length?`<header class="fpast-h"><h3>往期专题</h3><small>${endedGroups.reduce((n,[,r])=>n+r.length,0)} 部 · 已结束的专题收在这里</small></header>`+endedGroups.map(([p,rows])=>`<details class="fold-prog"${fq||fmine!=="all"?" open":""}><summary><span class="fp-t"><span class="fgrp-kind">${isFest(p)?"影展":esc(p.kind||"专题")}</span><b>${esc(p.name)}</b><small class="fp-n">${rows.length} 部${p.period?" · "+esc(p.period):""}</small></span>${stackHTML(rows)}<span class="fold-btn" aria-hidden="true">${CHEV}</span></summary>${lazyFlist("p:"+p.id,rows.map(f=>[f,null]),!!fq||fmine!=="all")}</details>`).join(""):"";
   const body = groups.map(grpHTML).join("")+pastHTML;
   return `<p class="library-result-count" aria-live="polite">${base.length} 部影片${fmine!=="all"?" · "+selList(fmine).map(k=>(LIBRARY_MODES.find(x=>x[0]===k)||[0,k])[1]).join(" · "):""}</p>`+(body || `<div class="g-empty"><b>${fq?`没有找到「${esc(fq)}」`:"当前分类暂无影片"}</b><span>${fmine==="planned"?"在排片表中加入场次，就会出现在这里。":fmine==="watched"?"在影片页点「看过」，开始收集你的电影印章。":"换个分类，或试试片名、导演、演员。"}</span></div>`);
 }

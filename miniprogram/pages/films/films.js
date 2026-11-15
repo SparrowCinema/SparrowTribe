@@ -51,17 +51,21 @@ Page({
     const kind = p => t(U.isFest(p) ? '影展' : p.kind || '专题');
     const stack = rows => rows.slice(0, 4).map(r => ({ id: r.id, poster: r.poster, color: r.color, ch: r.cn[0] }));
     const secs = [], past = [];
+    // 收起的专题、「本专题已放映」「往期专题」不把影片行发给页面（片库变大后 setData 体积只跟展开的部分有关），完整行留在 this._rows，展开时再补
+    const full = this._rows = { live: {}, gone: {}, past: {} };
     order.forEach(p => {
       if (!sh(pf, p.id)) return;
       const ms = base.filter(f => inP(f, p)); if (!ms.length) return;
       if (info[p.id].status === 'ended') {
         const rows = ms.sort((a, b) => U.relTime(b) - U.relTime(a)).map(f => this.row(f, data, idx, false, p.id));
-        past.push({ id: p.id, kind: kind(p), name: p.name, period: p.period || '', n: rows.length, rows, stack: stack(rows), open:!!q||mine!=='all'||!!this.pastOpen[p.id], end: info[p.id].b || 0 });
+        const open = !!q||mine!=='all'||!!this.pastOpen[p.id]; full.past[p.id] = rows;
+        past.push({ id: p.id, kind: kind(p), name: p.name, period: p.period || '', n: rows.length, rows: open ? rows : [], stack: stack(rows), open, end: info[p.id].b || 0 });
       } else {
         const live = ms.filter(f => isLiveIn(f, p)).sort(U.filmOrder(data.shows.filter(s => U.progForShow(s, idx).id === p.id))).map(f => this.row(f, data, idx, true, p.id));
         const gone = ms.filter(f => !isLiveIn(f, p)).sort((a, b) => U.relTime(b) - U.relTime(a)).map(f => this.row(f, data, idx, false, p.id));
         const all = live.concat(gone);
-        secs.push({ id: p.id, kind: kind(p), name: p.name, meta: all.length, en: p.en || '', live, gone, stack: stack(all), open:!!q||mine!=='all'||this.folds[p.id]!==0, goneOpen:!!q||mine!=='all'||!!this.goneOpen[p.id] });
+        const open = !!q||mine!=='all'||this.folds[p.id]!==0, goneOpen = !!q||mine!=='all'||!!this.goneOpen[p.id]; full.live[p.id] = live; full.gone[p.id] = gone;
+        secs.push({ id: p.id, kind: kind(p), name: p.name, meta: all.length, en: p.en || '', live: open ? live : [], gone: open && goneOpen ? gone : [], goneN: gone.length, stack: stack(all), open, goneOpen });
       }
     });
     past.sort((a, b) => b.end - a.end);
@@ -84,9 +88,9 @@ Page({
   },
   closeSelector() {this.setData({selectorType:'',selectorQuery:''});},
   stopMove() {},
-  toggleSec(e) { const id = e.currentTarget.dataset.id, i = this.data.secs.findIndex(s => s.id === id); if (i < 0) return; const open = !this.data.secs[i].open; this.folds[id] = open ? 1 : 0; try { wx.setStorageSync(FOLD_KEY, this.folds); } catch (er) { } this.setData({ ['secs[' + i + '].open']: open }); },
-  toggleGone(e) { const id = e.currentTarget.dataset.id, i = this.data.secs.findIndex(s => s.id === id); if (i < 0) return; const v = !this.data.secs[i].goneOpen; this.goneOpen[id] = v; this.setData({ ['secs[' + i + '].goneOpen']: v }); },
-  togglePast(e) { const id = e.currentTarget.dataset.id, i = this.data.past.findIndex(s => s.id === id); if (i < 0) return; const v = !this.data.past[i].open; this.pastOpen[id] = v; this.setData({ ['past[' + i + '].open']: v }); },
+  toggleSec(e) { const id = e.currentTarget.dataset.id, i = this.data.secs.findIndex(s => s.id === id); if (i < 0) return; const open = !this.data.secs[i].open; this.folds[id] = open ? 1 : 0; try { wx.setStorageSync(FOLD_KEY, this.folds); } catch (er) { } const R = this._rows || { live: {}, gone: {} }, o = { ['secs[' + i + '].open']: open }; if (open) { o['secs[' + i + '].live'] = R.live[id] || []; if (this.data.secs[i].goneOpen) o['secs[' + i + '].gone'] = R.gone[id] || []; } this.setData(o); },
+  toggleGone(e) { const id = e.currentTarget.dataset.id, i = this.data.secs.findIndex(s => s.id === id); if (i < 0) return; const v = !this.data.secs[i].goneOpen; this.goneOpen[id] = v; const o = { ['secs[' + i + '].goneOpen']: v }; if (v) o['secs[' + i + '].gone'] = ((this._rows || {}).gone || {})[id] || []; this.setData(o); },
+  togglePast(e) { const id = e.currentTarget.dataset.id, i = this.data.past.findIndex(s => s.id === id); if (i < 0) return; const v = !this.data.past[i].open; this.pastOpen[id] = v; const o = { ['past[' + i + '].open']: v }; if (v) o['past[' + i + '].rows'] = ((this._rows || {}).past || {})[id] || []; this.setData(o); },
   setProg(e) { this.setData({ pf: e.currentTarget.dataset.k }); this.build(); },
   open(e) { wx.navigateTo({ url: '/pages/film/film?id=' + e.currentTarget.dataset.id }); },
   onShareAppMessage() { return { title: t('片目 · 麻雀观影护照'), path: '/pages/films/films' }; }

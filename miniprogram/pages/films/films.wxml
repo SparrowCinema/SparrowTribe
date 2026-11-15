@@ -51,7 +51,7 @@
       <view class="sc"><text class="n mono">{{item.db}}</text><text class="l">{{L.t(i,'豆瓣')}}</text></view>
     </view>
       </block>
-      <view wx:if="{{g.gone.length}}" class="gone {{g.goneOpen ? 'on' : ''}}" data-id="{{g.id}}" bindtap="toggleGone"><text>{{L.t(i,'本专题已放映')}}</text><text class="gn mono">{{g.gone.length}}</text><text class="chev2">{{g.goneOpen ? '⌃' : '›'}}</text></view>
+      <view wx:if="{{g.goneN}}" class="gone {{g.goneOpen ? 'on' : ''}}" data-id="{{g.id}}" bindtap="toggleGone"><text>{{L.t(i,'本专题已放映')}}</text><text class="gn mono">{{g.goneN}}</text><text class="chev2">{{g.goneOpen ? '⌃' : '›'}}</text></view>
       <view wx:if="{{g.goneOpen}}" class="gone-list">
         <block wx:for="{{g.gone}}" wx:key="id">
     <view class="row" data-id="{{item.id}}" bindtap="open">
