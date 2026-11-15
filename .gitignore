@@ -3,3 +3,5 @@ cloudfunctions/*/node_modules/
 project.private.config.json
 s/
 cal/
+data/lite.json
+data/version.json

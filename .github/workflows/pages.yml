@@ -29,6 +29,8 @@ jobs:
           node tools/check-taste.js
       - name: Build share pages and calendar feeds
         run: node tools/build-extras.js
+      - name: Build lite startup data and data version
+        run: node tools/build-lite.js
       - uses: actions/upload-pages-artifact@v3
         with:
           path: .
