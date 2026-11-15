@@ -16,7 +16,7 @@
 
 - 网站：https://sparrowcinema.github.io/SparrowTribe/（仓库 SparrowCinema/SparrowTribe，原名 style-kaleidoscope；GitHub Pages 不会自动跳转旧网址）
 - 内部标识沿用 style-kaleidoscope：localStorage 键、风格万相专题 id、ICS 事件 UID 后缀，修改会导致已保存排片或日历重复，不要改。
-- 单页静态应用：index.html 含页面样式、路由与交互脚本；数据在 data/，启动时加载：
+- 单页静态应用：index.html 含页面样式、路由与交互脚本；数据在 data/（线上启动时读部署生成的精简数据，影片详情按需补全，见文末「精简启动数据」一节）：
   - data/catalog.json：专题（id、名称、类型、period、start/end ISO 日期、city、cover、file）与影院影厅。
   - data/programmes/<专题id>.json：该专题的 films 与 shows（[日期, 时间, 影片id, 影院id, 影厅id]）。新增影展＝新增一个专题文件并在 catalog 登记。
   - 同一部影片可被多个专题的场次引用，只需在一个专题文件里定义；场次归属看所在文件。
@@ -259,3 +259,11 @@ Claude 与 GPT 可能使用同一 GitHub 身份，审批人数可先设为0；�
 - 以下情况不套用默认城市：选了专题或影院、打开「只看我的排片」（外地场次也要看得到）、从影片页 / 专题页 / 个人排片跳到排片表。网站 `cityDefault` / `cityManual`，小程序 `pages/schedule` 同名方法。
 - 影片页侧栏顺序：放映场次 → 购票 → 我的观影 → 各家评分与外链 → 内容提示 → 映后 → 伴手礼 → 影片信息（网站 `detail`，小程序 `pages/film/film.wxml`）。
 - 「我的」页分三段：观影护照卡（默认展开）→「我的电影」（个人排片、观影结算、趣味图谱、海报墙、导出与分享）→「设置与帮助」（云端同步、外观、添加到手机、小程序、使用指南、反馈、友情链接）。小程序没有「导出与分享」「添加到手机」「小程序」三行。
+
+## 精简启动数据与影片详情按需加载（2026-11-16，网站）
+
+- 部署时 `node tools/build-lite.js` 生成两个文件（已在 `.gitignore`，不要提交）：`data/version.json`（catalog 与各专题文件内容的哈希）和 `data/lite.json`（全部专题的影片与场次，去掉只在影片详情页显示的长文字段）。
+- 网页启动只读 `version.json` + `catalog.json` + `cities.json` + `lite.json`；每分钟的自动更新只读 `version.json`，版本没变就不下载任何数据。
+- 长文字段（`syn`、`bio`、`st`、`parts`、`contentReview`、`contentNote`、`editorial`、`highlights`）在打开影片页时由 `ensureFull` 读取该片所在的 `data/programmes/<专题id>.json` 补全；补全前影片页先显示场次、评分等，介绍区显示「影片介绍加载中…」。
+- 精简数据里的影片带 `_lite` 标记。**在影片详情页以外的地方不要读上面这些长文字段**；确实需要时先 `await ensureFull(f)`。新增只在详情页用的长字段时，同时加进 `tools/build-lite.js` 的 `DETAIL` 和 `index.html` 的 `LITE_DETAIL`。
+- 没有这两个文件（本地直接预览、未跑脚本）或读取失败时，网页自动退回原来的整份加载。数据文件的编辑方式、小程序 getData 云函数读取的文件都没有变化。

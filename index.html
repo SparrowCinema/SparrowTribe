@@ -1983,14 +1983,14 @@ function detail(id){
       ${f.ev?"":myRateHTML(f)}
       ${f.ev?"":ratingsHTML(f)}
       ${f.ev?"":extLinksHTML(f)}
-      ${f.ev?"":noticeHTML(f)}
+      ${f.ev||f._lite?"":noticeHTML(f)}
       ${f.ev?"":qaPanelHTML(f)}
       ${giftsHTML(f)}
-      <section class="fd-block"><h3 class="fd-h">影片信息</h3><dl class="fd-credits">${creditsHTML(f)}</dl></section>${partsHTML(f)}
+      <section class="fd-block"><h3 class="fd-h">影片信息</h3><dl class="fd-credits">${creditsHTML(f)}</dl></section>${f._lite?"":partsHTML(f)}
     </aside>
     <div class="fd-main">
       <nav class="fd-jump" aria-label="页面目录">${secs.map(([a,l])=>`<button data-scroll="${a}">${l}</button>`).join("")}</nav>
-      ${!secs.length?`<p class="fd-empty">影片介绍整理中，排片与场次信息已可查看。</p>`:""}${!has.syn?"":`<section class="fd-sec" id="fd-syn"><h2 class="fd-st"><span>剧情简介</span><small>SYNOPSIS</small></h2><div class="fd-syn${long?" clamp":""}">${paragraphsHTML(syn)}</div>${long?`<button class="fd-more" data-expand>展开全文</button>`:""}</section>`}
+      ${f._lite?`<p class="fd-empty" role="status">影片介绍加载中…</p>`:!secs.length?`<p class="fd-empty">影片介绍整理中，排片与场次信息已可查看。</p>`:""}${!has.syn?"":`<section class="fd-sec" id="fd-syn"><h2 class="fd-st"><span>剧情简介</span><small>SYNOPSIS</small></h2><div class="fd-syn${long?" clamp":""}">${paragraphsHTML(syn)}</div>${long?`<button class="fd-more" data-expand>展开全文</button>`:""}</section>`}
       ${!has.watch?"":`<section class="fd-sec" id="fd-watch"><h2 class="fd-st"><span>荐片笔记</span><small>CURATOR'S NOTES</small></h2><ol class="fd-watch">${[f.editorial,...f.highlights].filter(Boolean).map((x,i)=>`<li><span>${String(i+1).padStart(2,"0")}</span><p>${esc(x)}</p></li>`).join("")}</ol></section>`}
       ${f.honors.length?`<section class="fd-sec" id="fd-hon"><h2 class="fd-st"><span>影展与荣誉</span><small>FESTIVALS & AWARDS</small></h2><ul class="fd-honors">${f.honors.map(honorHTML).join("")}</ul></section>`:""}
       ${!has.dir?"":`<section class="fd-sec" id="fd-dir"><h2 class="fd-st"><span>导演介绍</span><small>DIRECTOR</small></h2><div class="fd-dcard"><div class="fd-dhead"><span class="fd-av">${esc(f.dir[0])}</span><span><b>${esc(f.dir)}</b>${f.dirO&&f.dirO!==f.dir?`<small>${esc(f.dirO)}</small>`:""}${f.dirLife?`<small>${esc(f.dirLife)}</small>`:""}</span></div>${paragraphsHTML(f.bio)}</div></section>`}
@@ -2925,7 +2925,7 @@ function route(){
   const tab = ["plan","export","about","install","poster-wall","taste-map"].includes(h)||h.startsWith("share=") ? "my" : h==="gantt" ? "schedule" : h.startsWith("prog-")||h.startsWith("events-") ? "programmes" : h.startsWith("film-") ? null : h;
   document.querySelectorAll(".tab").forEach(t=>t.setAttribute("aria-current", t.dataset.tab===(tab||lastList)?"page":"false"));
   if(tab){ lastList = tab; topEl.innerHTML = brandBar(); }
-  if(h.startsWith("film-")) detail(h.slice(5));
+  if(h.startsWith("film-")){ detail(h.slice(5)); const lf=F[h.slice(5)]; if(lf&&lf._lite) ensureFull(lf).then(ok=>{ if(!ok) return; const paint=()=>{ if(activeRoute!==h||location.hash.slice(1)!==h) return; if(document.querySelector("dialog[open],.img-sheet,.ts-wrap")){ setTimeout(paint,600); return; } const y=window.scrollY; detail(h.slice(5)); window.scrollTo(0,y); }; paint(); }); }
   else if(h.startsWith("prog-")) progPage(h.slice(5));
   else if(h.startsWith("events-")) eventsPage(h.slice(7));
   else if(h==="films") films();
@@ -2968,6 +2968,21 @@ function normalizeFilm(f,pid){
   return f;
 }
 let dataSignature="",dataRefreshBusy=false,lastDataCheck=0;
+/* 影片详情按需补全：精简数据里的影片带 _lite 标记和所在专题文件 _file；打开影片页时读取该专题文件，把长文字段合并回同一个影片对象 */
+/* 手指按到影片入口时就开始取详情，进影片页时多半已经到了 */
+document.addEventListener("pointerdown",e=>{const b=e.target.closest&&e.target.closest("[data-film]");if(b&&F[b.dataset.film])ensureFull(F[b.dataset.film]);},{passive:true});
+let LITE_DETAIL=["syn","bio","st","parts","contentReview","contentNote","editorial","highlights"], fullPacks={};
+function ensureFull(f){
+ if(!f||!f._lite||!f._file)return Promise.resolve(false);
+ const file=f._file,sig=dataSignature;
+ fullPacks[file]=fullPacks[file]||fetch(file,{cache:"no-store"}).then(r=>{if(!r.ok)throw Error(file+" "+r.status);return r.json();}).then(pk=>{
+  if(sig!==dataSignature)return false; /* 期间数据已整体更新，丢弃这次结果 */
+  applyEN({},[pk]);
+  (pk.films||[]).forEach(source=>{const t=F[source.id];if(!t||!t._lite||t._file!==file)return;const nf=normalizeFilm({...source},t.prog);LITE_DETAIL.forEach(k=>{if(k in nf)t[k]=nf[k];});delete t._lite;});
+  return true;
+ }).catch(e=>{console.warn("影片详情未加载",e);delete fullPacks[file];return false;});
+ return fullPacks[file];
+}
 /* ===== 首页城市优先（定位）=====
    打开网页时用浏览器定位（只在本机换算成最近的已收录城市，不上传坐标，结果在本机保留 1 天）。
    定位城市有尚未散场的场次 → 排最前；没有场次、不在已收录城市、拒绝授权 → 维持默认（杭州优先，其余按目录顺序）。 */
@@ -3001,14 +3016,21 @@ function geoChipHTML(){if(!navigator.geolocation)return"";const H=homeCity();con
 document.addEventListener("click",e=>{if(e.target.closest("[data-geo]"))locateCity(true);});
 async function loadData(){
  const get=u=>fetch(u,{cache:"no-store"}).then(r=>{if(!r.ok)throw Error(u+" "+r.status);return r.json();});
+ /* 精简启动：部署时 tools/build-lite.js 生成 data/version.json（数据版本号）和 data/lite.json（去掉详情页长文字段的全部专题数据）。
+    先读版本号，没变就什么都不下载；变了只读 catalog + lite 两个文件。影片详情的长文字段在打开影片页时按需补全（ensureFull）。
+    没有这两个文件（本地预览、未构建）或读取失败时，退回原来的整份加载。 */
+ let ver="";try{ver=(await get("data/version.json")).v||"";}catch(e){}
+ if(ver&&"v:"+ver===dataSignature)return false;
  const cat=await get("data/catalog.json"),programmes=cat.programmes||[],venues=cat.venues||[];
  if(!Object.keys(CITIES).length)try{CITIES=(await get("data/cities.json")).cities||{};}catch(e){console.warn("城市坐标未加载，定位仅用影院坐标",e);}
- const packs=await Promise.all(programmes.map(p=>p.file?get(p.file):null));
- const signature=JSON.stringify([cat,packs]);if(signature===dataSignature)return false;
+ let packs=null,signature="";
+ if(ver)try{const lite=await get("data/lite.json");if(lite.v===ver&&lite.packs){packs=programmes.map(p=>p.file?lite.packs[p.id]||null:null);if(programmes.some((p,i)=>p.file&&!packs[i]))packs=null;else{signature="v:"+ver;LITE_DETAIL=lite.detail||LITE_DETAIL;}}}catch(e){console.warn("精简数据未加载，改用完整数据",e);}
+ if(!packs){packs=await Promise.all(programmes.map(p=>p.file?get(p.file):null));signature=JSON.stringify([cat,packs]);if(signature===dataSignature)return false;}
+ fullPacks={};
  applyEN(cat,packs);
  const vn=Object.fromEntries(venues.map(v=>[v.id,v])),films=[],filmMap={},shows=[];
  programmes.forEach((p,i)=>{const pk=packs[i];if(!pk)return;
-  (pk.films||[]).forEach(source=>{if(filmMap[source.id])return;const f=normalizeFilm({...source},p.id);filmMap[f.id]=f;films.push(f);});
+  (pk.films||[]).forEach(source=>{if(filmMap[source.id])return;const f=normalizeFilm({...source},p.id);if(f._lite)f._file=p.file;filmMap[f.id]=f;films.push(f);});
   (pk.shows||[]).forEach(r=>{const [d,t,id,v="premiere",hall="luxe"]=Array.isArray(r)?r:[r.d,r.t,r.id,r.v,r.h];
    if(!filmMap[id]||!vn[v]||!vn[v].halls.some(x=>x.id===hall)){console.warn("场次数据不完整，已跳过",r);return;}shows.push(Object.assign({d,t,id,v,h:hall,p:p.id},!Array.isArray(r)&&r.year?{year:r.year,archive:r.archive===true}:{}));});});
  venues.forEach((v,i)=>{v._o=i;});const rank=venueRank(venues,shows); /* 定位城市（有未散场场次时）→ 杭州 → 其余城市按目录顺序；用于甘特图列、城市/影院选择器、同时间场次 */
