@@ -78,6 +78,8 @@ function join(input) {
   // 同步把这个微信账号绑定到该同步码，以后在其他手机用同一微信登录会自动连到同一份档案
   return call({ action: 'bind', code }).then(r => { if (r.ok) setState(Object.assign({}, state(), { wx: 1 })); }, () => { }).then(() => sync());
 }
+// 扫码连接网站：网站二维码内容为 SPARROW-SYNC:<同步码>（也接受只含同步码的二维码）；返回规范化的同步码，认不出时返回 ''
+function fromScan(text) { const m = /SP-[A-Za-z0-9-]+/i.exec(String(text || '')); return m ? (S.normalize(m[0]) || '') : ''; }
 function stop() { setOff(true); setState(null); status.state = 'idle'; status.msg = ''; status.at = 0; emit(); }
 // 本机有改动时 3 秒后自动同步；应用从后台回来或进入「我的」页时拉取一次
 function changed() { if (applying||clearing) return; const st = state(); if (!st || !st.code) return; clearTimeout(timer); timer = setTimeout(quiet, 3000); }
@@ -86,4 +88,4 @@ function stale() { const st = state(); return !!(st && st.code && Date.now() - (
 
 async function restore(value){if(busy)await busy;const next=Backup.restore(snapshot(),value);apply(next);changed();}
 async function clearCloud(){if(clearing)return;if(busy)await busy;await sync();clearing=true;clearTimeout(timer);try{const st=state();if(!st?.code)throw new Error('No sync code');const empty=Backup.empty(snapshot()),r=await call({action:'sync',code:st.code,state:empty});if(!r.ok)throw new Error('Cloud clear failed');stop();}finally{clearing=false;}}
-module.exports = { snapshot,restore,clearCloud,state, status, onStatus, sync, quiet, start, join, stop, init, stale, normalize: S.normalize };
+module.exports = { fromScan, snapshot,restore,clearCloud,state, status, onStatus, sync, quiet, start, join, stop, init, stale, normalize: S.normalize };

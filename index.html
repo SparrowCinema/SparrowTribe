@@ -1108,6 +1108,7 @@ input:not([type=checkbox]):not([type=radio]),select,textarea{font-size:16px!impo
 .sync-lead,.sync-note{font-size:10.6px;line-height:1.7;color:var(--muted);margin:0 0 12px}
 .sync-note{margin:12px 0 0;font-size:11.0px}
 .sync-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.sync-qr{display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin-top:14px;padding:14px;border:1px dashed var(--line);border-radius:10px}.sync-qr svg{width:168px;height:168px;flex:none;border-radius:8px}.sync-qr p{flex:1;min-width:180px;margin:0;font-size:11.0px;line-height:1.8;color:var(--muted)}
 .sync-status{display:flex;align-items:center;gap:8px;font-size:10.6px;margin:0 0 12px}
 .sync-dot{width:8px;height:8px;border-radius:50%;background:#999;flex:none}.sync-dot.ok{background:#3b8f5b}.sync-dot.err{background:#c2412d}.sync-dot.busy{background:#d49a2a;animation:sync-pulse 1s infinite}
 @keyframes sync-pulse{50%{opacity:.35}}
@@ -2535,13 +2536,22 @@ function syncCardHTML(){
   if(!syncSt||!syncSt.code){
     return '<h3>个人档案云端同步</h3><p class="sync-lead">用一串同步码，在手机、电脑和小程序之间同步看过记录、评分、护照照片和个人排片。不用注册账号。</p>'+
       (syncMode==='join'?'<form class="sync-join" id="sync-join"><input id="sync-input" placeholder="SP-XXXX-XXXX-XXXX-XXXX-XXXX-XXXX" autocomplete="off" autocapitalize="characters" spellcheck="false" aria-label="同步码"><button class="primary-button" type="submit">连接</button><button type="button" class="text-button" data-sync="cancel">取消</button></form>'
-      :'<div class="sync-row"><button class="primary-button" data-sync="start">开启同步</button><button class="secondary-button" data-sync="join">我已有同步码</button></div>');}
+      :'<div class="sync-row"><button class="primary-button" data-sync="start">开启同步</button><button class="secondary-button" data-sync="join">我已有同步码</button><button class="secondary-button" data-sync="qrstart">用小程序扫码连接</button></div>');}
   const code=syncSt.code,shown=syncReveal?code:code.slice(0,7)+'-••••-••••-••••-••••-'+code.slice(-4);
   const line=syncStatus.state==='busy'?'<span class="sync-dot busy"></span>'+esc(syncStatus.msg||'同步中…'):syncStatus.state==='error'?'<span class="sync-dot err"></span>同步失败：'+esc(syncStatus.msg):'<span class="sync-dot ok"></span>已同步'+(syncSt.at?' · '+esc(syncAgo(syncSt.at)):'');
   return '<h3>个人档案云端同步</h3><p class="sync-status" role="status" aria-live="polite">'+line+'</p>'+
     '<div class="sync-code"><span>同步码</span><code translate="no">'+esc(shown)+'</code><div><button type="button" class="text-button" data-sync="reveal">'+(syncReveal?'隐藏':'显示')+'</button><button type="button" class="text-button" data-sync="copy">复制</button></div></div>'+
-    '<div class="sync-row"><button class="primary-button" data-sync="now">立即同步</button><button class="text-button" data-sync="stop">停止同步</button></div>'+
-    '<p class="sync-note">在另一台设备（网站或小程序）的「我的」页选「我已有同步码」，输入这串码即可。同步码就是钥匙，请自己保存好；知道它的人都能读写这份档案。</p>';}
+    '<div class="sync-row"><button class="primary-button" data-sync="now">立即同步</button><button class="secondary-button" data-sync="qr" aria-expanded="'+syncQR+'">'+(syncQR?'收起二维码':'用小程序扫码连接')+'</button><button class="text-button" data-sync="stop">停止同步</button></div>'+
+    (syncQR?'<div class="sync-qr">'+syncQRSVG(code)+'<p>'+tr('打开微信小程序「麻雀观影护照」→ 我的 → 个人档案云端同步，点「扫码连接网站」扫这个二维码，两边的记录会自动合并。')+'<br>'+tr('二维码等同于同步码，不要截图发给别人。')+'</p></div>':'')+
+    '<p class="sync-note">在另一台设备（网站或小程序）的「我的」页选「我已有同步码」，输入这串码即可；小程序也可以直接扫上面的二维码。同步码就是钥匙，请自己保存好；知道它的人都能读写这份档案。</p>';}
+/* 扫码连接：网站显示同步码二维码（内容 SPARROW-SYNC:<同步码>），小程序「扫码连接网站」扫到后改用这串同步码并合并两边记录。
+   二维码显示期间每 5 秒同步一次（最多 3 分钟），拉到小程序合并过来的记录后自动收起。 */
+let syncQR=false,syncQRTimer=0,syncQRUntil=0;
+function syncQRSVG(code){const m=qrMatrix('SPARROW-SYNC:'+code);if(!m)return '';const n=m.length,q=4;let d='';for(let r=0;r<n;r++)for(let c=0;c<n;c++)if(m[r][c])d+='M'+(c+q)+' '+(r+q)+'h1v1h-1z';return '<svg viewBox="0 0 '+(n+2*q)+' '+(n+2*q)+'" role="img" aria-label="'+tr('同步码二维码')+'" shape-rendering="crispEdges"><rect width="100%" height="100%" fill="#fff"/><path d="'+d+'" fill="#1d1712"/></svg>';}
+function syncQRWatch(on){clearInterval(syncQRTimer);syncQRTimer=0;syncQR=!!on;if(!on)return;syncQRUntil=Date.now()+18e4;
+ syncQRTimer=setInterval(()=>{if(!syncQR||!syncSt||!syncSt.code||Date.now()>syncQRUntil||!document.getElementById('sync-card')){const was=syncQR;syncQRWatch(false);if(was)syncPaint();return;}
+  if(document.visibilityState!=='visible')return;
+  syncNow().then(r=>{if(syncQR&&r&&r.changed){syncQRWatch(false);syncPaint();toast('已和小程序连接，记录已合并');}}).catch(()=>{});},5000);}
 let communityStatus='idle',communityReadAt=0,communityReading=null,tasteObserved={};
 const TC=window.SparrowTasteClient.create({defer:f=>setTimeout(f,0),load:()=>{try{return JSON.parse(localStorage.getItem('sparrow-taste-outbox-v1')||'{}');}catch{return {};}},save:v=>localStorage.setItem('sparrow-taste-outbox-v1',JSON.stringify(v)),rpc:async(fn,body)=>{const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),15000);try{return await sbRpc(fn,body,controller.signal);}finally{clearTimeout(timer);}}});
 function tasteChanged(){if(!syncSt?.code)return;Object.keys(watched).forEach(id=>{if(!F[id]||F[id].ev)return;const r=watched[id],signature=JSON.stringify([syncSt.code,r.fun,r.bore,r.tastePublic,r.del]),old=tasteObserved[id];if(old?.signature===signature)return;tasteObserved[id]={signature,published:window.SparrowTaste.publicVote(r)};if(window.SparrowTaste.publicVote(r)||old?.published)TC.enqueue(syncSt.code,id,r);});}
@@ -2582,9 +2592,11 @@ document.addEventListener('click',async e=>{const b=e.target.closest('[data-sync
   if(a==='join'||a==='cancel'){syncMode=a==='join'?'join':'';syncPaint();if(syncMode)document.getElementById('sync-input')?.focus();return;}
   if(a==='start'){syncSt={code:window.SparrowSync.newCode(n=>crypto.getRandomValues(new Uint8Array(n))),rev:0,at:0};syncReveal=true;syncSave();syncPaint();try{await syncNow();toast('已开启同步，请保存好同步码');}catch(err){toast(tr('同步失败：')+err.message);}return;}
   if(a==='reveal'){syncReveal=!syncReveal;syncPaint();return;}
+  if(a==='qr'){syncQRWatch(!syncQR);syncPaint();return;}
+  if(a==='qrstart'){syncSt={code:window.SparrowSync.newCode(n=>crypto.getRandomValues(new Uint8Array(n))),rev:0,at:0};syncSave();syncQRWatch(true);syncPaint();try{await syncNow();}catch(err){toast(tr('同步失败：')+err.message);}return;}
   if(a==='copy'){syncCopy(syncSt.code).then(()=>toast('同步码已复制'),()=>toast('复制失败，请长按同步码手动复制'));return;}
   if(a==='now'){try{const r=await syncNow();toast(r&&r.changed?'已同步，并合并了其他设备的更改':'已同步');}catch(err){toast(tr('同步失败：')+err.message);}return;}
-  if(a==='stop'){if(!confirm(tr('在这台设备停止同步？本机记录会保留，云端的记录也不会删除；已公开的社区评分仍保留，可在影片页撤回。以后输入同步码可以重新连接。')))return;syncSt=null;syncSave();syncStatus={state:'idle',msg:'',at:0};syncMode='';syncReveal=false;syncPaint();}
+  if(a==='stop'){if(!confirm(tr('在这台设备停止同步？本机记录会保留，云端的记录也不会删除；已公开的社区评分仍保留，可在影片页撤回。以后输入同步码可以重新连接。')))return;syncQRWatch(false);syncSt=null;syncSave();syncStatus={state:'idle',msg:'',at:0};syncMode='';syncReveal=false;syncPaint();}
 });
 document.addEventListener('submit',async e=>{if(e.target.id!=='sync-join')return;e.preventDefault();
   const code=window.SparrowSync.normalize(document.getElementById('sync-input').value);if(!code){toast('同步码格式不对，请检查');return;}

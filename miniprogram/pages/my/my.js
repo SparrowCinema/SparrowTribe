@@ -117,6 +117,19 @@ Page({
       SY.join(r.content).then(() => { wx.hideLoading(); this.build(); this.buildPassport(); this.buildSync(); wx.showToast({ title: t('已连接，记录已合并'), icon: 'none' }); }).catch(e => { wx.hideLoading(); this.buildSync(); wx.showToast({ title: t('同步失败：') + ((e && e.message) || ''), icon: 'none' }); });
     } });
   },
+  // 扫码连接网站：扫网站「个人档案云端同步」里的二维码，改用网站的同步码并合并两边记录（本微信同时绑定到这串码）
+  syScan() {
+    wx.scanCode({ onlyFromCamera: false, scanType: ['qrCode'], success: r => {
+      const code = SY.fromScan(r.result), st = SY.state();
+      if (!code) return wx.showToast({ title: t('这不是麻雀观影护照的同步二维码'), icon: 'none' });
+      if (st && st.code === code) return wx.showToast({ title: t('已经连接到这份档案'), icon: 'none' });
+      wx.showModal({ title: t('连接网站档案'), content: t('小程序和网站的看过记录、评分、照片和个人排片会合并成一份，之后两边自动同步。'), confirmText: t('连接'), success: m => {
+        if (!m.confirm) return;
+        wx.showLoading({ title: t('同步中…'), mask: true });
+        SY.join(code).then(() => { wx.hideLoading(); this.build(); this.buildPassport(); this.buildSync(); wx.showToast({ title: t('已连接，记录已合并'), icon: 'none' }); }).catch(e => { wx.hideLoading(); this.buildSync(); wx.showToast({ title: t('同步失败：') + ((e && e.message) || ''), icon: 'none' }); });
+      } });
+    } });
+  },
   syNow() { SY.sync().then(r => { this.build(); this.buildPassport(); this.buildSync(); wx.showToast({ title: r && r.changed ? t('已同步，并合并了其他设备的更改') : t('已同步'), icon: 'none' }); }).catch(e => { this.buildSync(); wx.showToast({ title: t('同步失败：') + ((e && e.message) || ''), icon: 'none' }); }); },
   syReveal() { this._syShow = !this._syShow; this.buildSync(); },
   syCopy() { const st = SY.state(); if (st && st.code) wx.setClipboardData({ data: st.code, success: () => wx.showToast({ title: t('同步码已复制'), icon: 'none' }) }); },
