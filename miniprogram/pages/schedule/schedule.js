@@ -43,11 +43,29 @@ Page({
     const t = new Date(), m = t.getHours() * 60 + t.getMinutes();
     return m >= c.S && m <= c.E ? { top: Math.round((m - c.S) * K), label: U.fmt(m) } : null;
   },
-  onShow() { wx.setNavigationBarTitle({ title: t('麻雀观影护照') }); app.chrome(); try { require('../../utils/locate.js').locate(app.globalData.data, () => this.build()); } catch (e) { } this.startTick(); const j = app.globalData.jumpDay, jp = app.globalData.jumpProg; if (j) { app.globalData.jumpDay = ''; this.setData({ pf: 'all', vf: 'all', city: 'all', venueQuery: '', day: j }); } if (jp) { app.globalData.jumpProg = ''; this.setData({ pf: jp, vf: 'all', city: 'all', venueQuery: '', day: '' }); } this.build(); },
+  onShow() { wx.setNavigationBarTitle({ title: t('麻雀观影护照') }); app.chrome(); try { require('../../utils/locate.js').locate(app.globalData.data, () => this.build()); } catch (e) { } this.startTick(); const j = app.globalData.jumpDay, jp = app.globalData.jumpProg; if (j) { app.globalData.jumpDay = ''; this.cityManual(); this.setData({ pf: 'all', vf: 'all', city: 'all', venueQuery: '', day: j }); } if (jp) { app.globalData.jumpProg = ''; this.cityManual(); this.setData({ pf: jp, vf: 'all', city: 'all', venueQuery: '', day: '' }); } this.build(); },
   onPullDownRefresh() { app.loadRemote(); setTimeout(() => { this.build(); wx.stopPullDownRefresh(); }, 600); },
+
+  // 首页默认城市：没手动选过城市时，默认只看所在城市（定位城市有场次用它，否则杭州）的排片；手动选择记在本机 sk-city-pref（与网站 cityDefault 一致）
+  cityManual(save) { this.cityInit = true; this.cityAuto = false; if (save !== undefined) try { wx.setStorageSync('sk-city-pref', save); } catch (e) { } },
+  cityDefault(data, idx) {
+    const d = this.data;
+    if (!this.cityInit) {
+      this.cityInit = true; let p = ''; try { p = wx.getStorageSync('sk-city-pref') || ''; } catch (e) { }
+      if (p) { d.city = sl(p).filter(c => data.venues.some(v => v.city === c)).join(',') || 'all'; return; }
+      this.cityAuto = d.pf === 'all' && d.vf === 'all' && d.city === 'all';
+    }
+    if (!this.cityAuto) return;
+    if (d.pf !== 'all' || d.vf !== 'all') { this.cityAuto = false; return; }
+    if (d.onlyMine) { d.city = 'all'; return; } // 只看我的排片时不按城市收窄
+    const up = data.shows.filter(s => idx.F[s.id] && !U.ended(s, idx)), cOf = s => (idx.VN[s.v] || {}).city, H = U.homeCity(data);
+    d.city = new Set(up.map(cOf)).size > 1 && up.some(s => cOf(s) === H) ? H : 'all';
+  },
+  showAllCities() { this.cityManual('all'); this.setData({ city: 'all', vf: 'all', day: '' }); this.build(); },
 
   build() {
     const data = app.globalData.data, idx = U.index(data), picked = plan.get();
+    this.cityDefault(data, idx);
     const { pf, vf, city, venueQuery } = this.data;
     const list = data.shows.filter(s => idx.F[s.id] && !U.ended(s, idx) && sh(pf, U.progForShow(s, idx).id) && sh(vf, s.v) && sh(city, idx.VN[s.v].city) && (!this.data.onlyMine || picked.has(U.keyOf(s))));
     // 首页顶部：今天我的排片中尚未散场的场次，按时间线排列
@@ -116,6 +134,7 @@ Page({
     const vname = sl(vf).length === 1 && idx.VN[sl(vf)[0]] ? idx.VN[sl(vf)[0]].name : t('当前筛选');
     const venueGroups=data.venues.filter(v=>dl.some(s=>s.v===v.id)).map(v=>({id:v.id,name:vShort(v),halls:v.halls.filter(h=>dl.some(s=>s.v===v.id&&s.h===h.id)).map(h=>({id:h.id,name:h.short||h.name,rows:dl.filter(s=>s.v===v.id&&s.h===h.id).map(s=>{const r=U.showView(s,idx,data,picked);r.mpa=idx.F[s.id].mpa?.rating||'';return r;})}))}));
     this.setData({
+      city, cityAuto: !!this.cityAuto && city !== 'all', cityAutoName: t(city),
       venueGroups,day, days, cols, ticks, H, nowLine, progs, venues, myToday, cities, cityIndex: Math.max(0,cities.findIndex(c=>c.id===city)), venueName: summ(vf, t('全部影院'), i => idx.VN[i] ? vShort(idx.VN[i]) : i, '家影院'), programmeName: summ(pf, t('全部专题'), i => idx.PG[i] ? idx.PG[i].name : i, '个专题'), cityName: summ(city, t('全部城市'), i => t(i), '座城市'),
       myTodayDay: nkey.replace('/', '/') + ' ' + U.wk(nkey), myTodayRange: myToday.length ? myToday[0].t + ' – ' + myToday[myToday.length - 1].end : '',
       todayHead: t(off <= 0 ? '今日我的排片' : off === 1 ? '明日我的排片' : '近期我的排片'),
@@ -145,15 +164,15 @@ Page({
   stopMove() {},
   chooseFilter(e) {
     const id = e.currentTarget.dataset.id, type = this.data.selectorType, all = id === 'all', d = this.data, o = { day: '' };
-    if (type === 'programme') { o.pf = all ? 'all' : Lib.toggle(d.pf, id); o.vf = 'all'; o.city = 'all'; o.venueQuery = ''; }
-    else if (type === 'city') { o.city = all ? 'all' : Lib.toggle(d.city, id); const cs = sl(o.city), VN = U.index(app.globalData.data).VN; o.vf = sl(d.vf).filter(v => !cs.length || (VN[v] && cs.includes(VN[v].city))).join(',') || 'all'; }
-    else o.vf = all ? 'all' : Lib.toggle(d.vf, id);
+    if (type === 'programme') { o.pf = all ? 'all' : Lib.toggle(d.pf, id); o.vf = 'all'; o.city = 'all'; o.venueQuery = ''; this.cityManual(); }
+    else if (type === 'city') { o.city = all ? 'all' : Lib.toggle(d.city, id); this.cityManual(o.city); const cs = sl(o.city), VN = U.index(app.globalData.data).VN; o.vf = sl(d.vf).filter(v => !cs.length || (VN[v] && cs.includes(VN[v].city))).join(',') || 'all'; }
+    else { o.vf = all ? 'all' : Lib.toggle(d.vf, id); this.cityManual(); }
     this.setData(o); this.build(); this.setData({ selectorRows: this.selectorOptions(type, this.data.selectorQuery) });
   },
-  resetFilters() {this.setData({pf:'all',city:'all',vf:'all',day:'',venueQuery:''});this.build();},
-  setProg(e) { this.setData({ pf: e.currentTarget.dataset.id, vf: 'all', city: 'all', venueQuery: '', day: '' }); this.build(); },
-  setVenue(e) { this.setData({ vf: e.currentTarget.dataset.id, vOpen: false }); this.build(); },
-  setCity(e) { this.setData({city:this.data.cities[+e.detail.value].id,vf:'all',venueQuery:'',day:''}); this.build(); },
+  resetFilters() {try{wx.removeStorageSync('sk-city-pref');}catch(e){}this.cityInit=false;this.cityAuto=false;this.setData({pf:'all',city:'all',vf:'all',day:'',venueQuery:''});this.build();},
+  setProg(e) { this.cityManual(); this.setData({ pf: e.currentTarget.dataset.id, vf: 'all', city: 'all', venueQuery: '', day: '' }); this.build(); },
+  setVenue(e) { this.cityManual(); this.setData({ vf: e.currentTarget.dataset.id, vOpen: false }); this.build(); },
+  setCity(e) { this.cityManual(this.data.cities[+e.detail.value].id); this.setData({city:this.data.cities[+e.detail.value].id,vf:'all',venueQuery:'',day:''}); this.build(); },
   searchVenue(e) { this.setData({venueQuery:e.detail.value}); this.build(); },
   locate() { const data = app.globalData.data; wx.showLoading({ title: t('定位中'), mask: false }); require('../../utils/locate.js').locate(data, () => this.build(), true, ok => { wx.hideLoading(); this.build(); const c = U.geoCity(); wx.showToast({ title: ok ? (c ? t(c) + ' ' + t('优先') : t('定位城市暂无排片，按默认顺序显示')) : t('没有获得定位权限，按默认顺序显示'), icon: 'none' }); }); },
   toggleMine() { const v = !this.data.onlyMine; try { wx.setStorageSync('sk-only-mine', v ? 1 : 0); } catch (e) { } this.setData({ onlyMine: v }); this.build(); },

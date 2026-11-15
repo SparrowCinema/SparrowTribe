@@ -443,3 +443,6 @@
 /* 从影片页「已盖章」跳来：这枚印章轻轻盖一下 */
 .fp-cell.hit { animation: fpHit 1.6s ease-out .35s; }
 @keyframes fpHit { 0% { transform: scale(1.35); } 25% { transform: scale(.92); } 45% { transform: scale(1.05); } 100% { transform: scale(1); } }
+
+/* 「我的」分组标题与护照主卡 */
+.my-group{margin:calc(44 * var(--r)) calc(4 * var(--r)) calc(16 * var(--r));font-size:calc(21.2 * var(--fr));font-weight:700;letter-spacing:calc(2 * var(--r));color:var(--fg)}.my-group .mono{font-size:calc(17 * var(--fr));font-weight:500;letter-spacing:calc(3 * var(--r));color:var(--muted);margin-left:calc(10 * var(--r))}

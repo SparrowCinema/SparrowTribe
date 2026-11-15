@@ -38,7 +38,8 @@
     <view class="schedule-filter" data-type="city" bindtap="openSelector"><text class="filter-label">{{L.t(i,'城市')}}</text><view class="filter-value"><text>{{cityName}}</text><text class="filter-arrow">⌄</text></view></view>
     <view class="schedule-filter" data-type="venue" bindtap="openSelector"><text class="filter-label">{{L.t(i,'影院')}}</text><view class="filter-value"><text>{{venueName}}</text><text class="filter-arrow">⌄</text></view></view>
   </view>
-  <view wx:if="{{pf!=='all'||city!=='all'||vf!=='all'}}" class="filter-reset" bindtap="resetFilters">{{L.t(i,'重置筛选')}} ↺</view>
+  <view wx:if="{{cityAuto}}" class="city-hint"><text>{{L.t(i,'默认只看所在城市')}} · <text class="city-hint-b">{{cityAutoName}}</text></text><text class="city-hint-a" bindtap="showAllCities">{{L.t(i,'看全部城市')}} ›</text></view>
+  <view wx:elif="{{pf!=='all'||city!=='all'||vf!=='all'}}" class="filter-reset" bindtap="resetFilters">{{L.t(i,'重置筛选')}} ↺</view>
 
   <view wx:if="{{selectorType}}" class="selector-mask" catchtap="closeSelector" catchtouchmove="stopMove">
     <view class="selector-panel" catchtap="stopMove">
