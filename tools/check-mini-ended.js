@@ -9,7 +9,7 @@ function load(name){let definition;vm.runInNewContext(fs.readFileSync(path.join(
 const programme=load('programme');programme.id='cinema-2026';programme.buildEvents=()=>{};programme.build();
 assert(!data.shows.some(s=>s.v==='cn-release-archive'||s.archive),'unverified screenings must not enter the timetable');
 const films=load('films');films.onLoad();const cinema=films.data.secs.find(x=>x.id==='cinema-2026');assert(cinema);
-for(const id of ids){assert(programme.data.gone.some(f=>f.id===id),id+' must be archived on programme page');assert(!programme.data.films.some(f=>f.id===id),id+' must not be upcoming');assert(cinema.gone.some(f=>f.id===id),id+' must be archived in film catalogue');assert(!cinema.live.some(f=>f.id===id));}
+for(const id of ids){assert(programme.data.gone.some(f=>f.id===id),id+' must be archived on programme page');assert(!programme.data.films.some(f=>f.id===id),id+' must not be upcoming');assert((films._rows.gone['cinema-2026']||[]).some(f=>f.id===id)&&cinema.goneN===films._rows.gone['cinema-2026'].length,id+' must be archived in film catalogue');assert(!cinema.live.some(f=>f.id===id));}
 const detail=load('film');detail.buildMine=()=>{};detail.fitHero=()=>{};
 for(const id of ids){detail.id=id;detail.build();assert.equal(detail.data.f.ended,true,id+' archive flag must reach WXML');assert.equal(detail.data.cnt,'已下映');assert.equal(detail.data.shows.length,0);}
 // An unscheduled film without the flag remains pending; a genuine future show wins over an old flag.
