@@ -91,6 +91,8 @@ Claude 与 GPT 可能使用同一 GitHub 身份，审批人数可先设为0；�
 - 合并规则：`shared/psync.js`（网站直接引用；`node tools/build-fallback.js` 会把它复制到 `miniprogram/utils/psync.js` 和 `cloudfunctions/psync/psync.js`）。每一项都带更新时间，取较新者；删除用 `{del:1,t}` 留痕。个人排片整体取较新的一份。
 - 网站：`index.html` 里直接请求 Supabase。小程序：通过 `psync` 云函数请求（不用配置 request 合法域名）。
 - 本机附加存储：网站 `sparrow-sync`（同步码）、`sparrow-profile-meta`（各项修改时间）、`sparrow-holder-photo`；小程序 `sk-sync`、`sk-profile-meta`。
+- 小程序默认用微信登录自动同步：启动时 `utils/sync.js` 的 `init` 调 `psync` 云函数的 `wx` 动作，按 openid 取得或创建绑定的同步码（集合 `psync_bind`），用户不用操作；用户点过「停止同步」后不再自动开启。
+- 扫码连接（2026-11-16）：网站同步卡片的「用小程序扫码连接」显示同步码二维码（内容 `SPARROW-SYNC:<同步码>`，没有同步码时先生成一串）；小程序「扫码连接网站」（`pages/my` 的 `syScan`，`wx.scanCode`）扫到后确认，再走原有的 `join`：改用网站的同步码、把本微信绑定到这串码、合并两边记录。网站显示二维码期间每 5 秒同步一次（最多 3 分钟），拉到合并结果后自动收起。云函数没有改动。
 
 ## 影院地图与转场时间（小程序）
 
