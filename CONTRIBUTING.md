@@ -269,3 +269,10 @@ Claude 与 GPT 可能使用同一 GitHub 身份，审批人数可先设为0；�
 - 长文字段（`syn`、`bio`、`st`、`parts`、`contentReview`、`contentNote`、`editorial`、`highlights`）在打开影片页时由 `ensureFull` 读取该片所在的 `data/programmes/<专题id>.json` 补全；补全前影片页先显示场次、评分等，介绍区显示「影片介绍加载中…」。
 - 精简数据里的影片带 `_lite` 标记。**在影片详情页以外的地方不要读上面这些长文字段**；确实需要时先 `await ensureFull(f)`。新增只在详情页用的长字段时，同时加进 `tools/build-lite.js` 的 `DETAIL` 和 `index.html` 的 `LITE_DETAIL`。
 - 没有这两个文件（本地直接预览、未跑脚本）或读取失败时，网页自动退回原来的整份加载。数据文件的编辑方式、小程序 getData 云函数读取的文件都没有变化。
+
+## 片目渐进渲染（2026-11-16）
+
+- 网站片目页不再一次画出全部影片卡片：每个列表先画前 12 张（`FL_FIRST`），滚动到附近再每次补 24 张（`FL_STEP`，`IntersectionObserver`，提前 1200px）；收起的专题、「本专题已放映」「往期专题」展开时才画。代码在 `lazyFlist` / `flGrow` / `flObserve`。
+- 每个列表已画到多少张记在 `flShown`，从影片页返回片目时原样恢复，滚动位置不变；搜索词或筛选变化时清零。不支持 `IntersectionObserver` 的浏览器一次画完。
+- 片目里新增列表时用 `lazyFlist(key, [[影片, 下一场或null], …], 是否默认可见)`，不要直接拼 `.flist`。
+- 小程序片目页：收起的专题、「本专题已放映」「往期专题」不再把影片行放进 `setData`，完整行留在 `this._rows`，展开时再补（`toggleSec` / `toggleGone` / `togglePast`）；「本专题已放映」的数量用 `goneN`。展开中的专题仍一次给全。
