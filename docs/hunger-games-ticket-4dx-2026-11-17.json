@@ -1,0 +1,16 @@
+{
+  "film": "hunger-games-sunrise-on-the-reaping",
+  "updated": "2026-11-17",
+  "source": "用户提供的购票小程序码原图与场次",
+  "ticket": "tickets/hunger-games-sunrise-on-the-reaping.png",
+  "addedScreening": {
+    "date": "2026-11-21",
+    "time": "16:20",
+    "city": "杭州",
+    "venue": "CGV影城（奥体印象城杜比影院店）",
+    "hall": "4DX厅",
+    "runtimeMinutes": 158,
+    "endsAt": "18:58"
+  },
+  "note": "未提供厅号，使用4DX厅。原有8场保留。二维码原图直接复制。"
+}

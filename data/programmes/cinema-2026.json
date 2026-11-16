@@ -882,7 +882,8 @@
     "festivalEn": null,
     "kind": "theatrical",
     "checked": "2026-11-07"
-   }
+   },
+   "ticket": "tickets/hunger-games-sunrise-on-the-reaping.png"
   },
   {
    "id": "legend-of-1900",
@@ -3125,6 +3126,13 @@
    "hunger-games-sunrise-on-the-reaping",
    "hz-xflh-qibao",
    "imax"
+  ],
+  [
+   "11/21",
+   "16:20",
+   "hunger-games-sunrise-on-the-reaping",
+   "hz-cgv-olympic",
+   "4dx"
   ]
  ]
 }
