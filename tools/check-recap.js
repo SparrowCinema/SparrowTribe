@@ -27,7 +27,7 @@ console.log('PASS: 64 recap section combinations with mandatory branding/QR foot
 
 // Run the actual website filter/render functions against a multi-year viewing archive.
 const archive=[['a','2026-11-07','A'],['b','2026-10-01','B'],['c','2025-09-01','A'],['d','2022-11-01','A'],['e','2019-06-01','B']].map(([id,d,prog])=>({id,f:{id,prog,min:90},rec:{d,r:8}}));
-const snapshot=JSON.stringify(archive),web=fs.readFileSync(path.join(root,'index.html'),'utf8');
+const snapshot=JSON.stringify(archive),web=require('./web-source').read();
 const filters=web.slice(web.indexOf('let recapY='),web.indexOf('function openRecap()'));
 const sandbox=vm.createContext({watchEntries:()=>archive,progOf:f=>({id:f.prog}),PROGRAMMES:[{id:'A'},{id:'B'}],PG:{A:{name:'A'},B:{name:'B'}},passportStats:list=>({n:list.length,hm:'1h30',avg:8}),esc:String,tr:x=>x,window:{SparrowRecap:R},recapSections:ids});
 vm.runInContext(filters,sandbox);const run=s=>vm.runInContext(s,sandbox);

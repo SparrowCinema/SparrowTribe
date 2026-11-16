@@ -1,7 +1,7 @@
 // Render the real film-detail template for every film with retained past screenings.
 // No showPid stub: that helper is local to films(), not a detail-page dependency.
 const fs=require('fs'),path=require('path'),vm=require('vm'),assert=require('assert');
-const root=path.resolve(__dirname,'..'),src=fs.readFileSync(path.join(root,'index.html'),'utf8');
+const root=path.resolve(__dirname,'..'),src=require('./web-source').read();
 const line=name=>{const start=src.indexOf('function '+name+'(');assert(start>=0);return src.slice(start,src.indexOf('\n',start));};
 const detailStart=src.indexOf('function detail(id){'),detailEnd=src.indexOf('\n// 头图：',detailStart);
 const cat=JSON.parse(fs.readFileSync(path.join(root,'data/catalog.json'),'utf8')),PG=Object.fromEntries(cat.programmes.map(p=>[p.id,p])),VN=Object.fromEntries(cat.venues.map(v=>[v.id,v])),F={},SH=[];

@@ -16,7 +16,7 @@
 
 - 网站：https://sparrowcinema.github.io/SparrowTribe/（仓库 SparrowCinema/SparrowTribe，原名 style-kaleidoscope；GitHub Pages 不会自动跳转旧网址）
 - 内部标识沿用 style-kaleidoscope：localStorage 键、风格万相专题 id、ICS 事件 UID 后缀，修改会导致已保存排片或日历重复，不要改。
-- 单页静态应用：index.html 含页面样式、路由与交互脚本；数据在 data/（线上启动时读部署生成的精简数据，影片详情按需补全，见文末「精简启动数据」一节）：
+- 单页静态应用：index.html 是页面骨架，样式在 app.css、路由与交互脚本在 app.js（见文末「网站代码文件」一节）；数据在 data/（线上启动时读部署生成的精简数据，影片详情按需补全，见文末「精简启动数据」一节）：
   - data/catalog.json：专题（id、名称、类型、period、start/end ISO 日期、city、cover、file）与影院影厅。
   - data/programmes/<专题id>.json：该专题的 films 与 shows（[日期, 时间, 影片id, 影院id, 影厅id]）。新增影展＝新增一个专题文件并在 catalog 登记。
   - 同一部影片可被多个专题的场次引用，只需在一个专题文件里定义；场次归属看所在文件。
@@ -276,3 +276,10 @@ Claude 与 GPT 可能使用同一 GitHub 身份，审批人数可先设为0；�
 - 每个列表已画到多少张记在 `flShown`，从影片页返回片目时原样恢复，滚动位置不变；搜索词或筛选变化时清零。不支持 `IntersectionObserver` 的浏览器一次画完。
 - 片目里新增列表时用 `lazyFlist(key, [[影片, 下一场或null], …], 是否默认可见)`，不要直接拼 `.flist`。
 - 小程序片目页：收起的专题、「本专题已放映」「往期专题」不再把影片行放进 `setData`，完整行留在 `this._rows`，展开时再补（`toggleSec` / `toggleGone` / `togglePast`）；「本专题已放映」的数量用 `goneN`。展开中的专题仍一次给全。
+
+## 网站代码文件（2026-11-16 起）
+
+- 原来写在 `index.html` 里的主样式和主脚本已拆成根目录的两个文件：`app.css`（约 132KB）和 `app.js`（约 270KB）。`index.html` 只剩页面骨架、首屏内联样式和各个 `<script src>`，约 31KB。**本文档其他小节里说的「index.html 里的某函数 / 某样式」，现在分别在 `app.js` / `app.css`。**
+- 拆分是原样搬出，没有改写：`app.js` 仍是普通脚本（不是 ES module），顶层变量和函数的作用域、加载顺序都和原来一样，排在 `shared/*.js` 之后。两个文件放在根目录，是为了样式和脚本里的相对路径不变。
+- 部署时 `node tools/build-assets.js` 给 `index.html` 里这两个文件的引用加上内容哈希参数 `v`，该改动只在部署产物里，不要提交。service worker 对带哈希参数的文件缓存优先，对不带的（本地预览）网络优先，所以改这两个文件**不需要**再升级 `sw.js` 的缓存名。
+- 需要「整页源码」的检查脚本用 `require('./web-source').read()`（`tools/web-source.js`），它把两个文件按原位置内嵌回去，等价于拆分前的 `index.html`。新写检查脚本时不要直接读 `index.html` 找函数。
