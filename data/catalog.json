@@ -1203,7 +1203,13 @@
    "fmt": [
     "IMAX"
    ],
-   "halls": [],
+   "halls": [
+    {
+     "id": "imax",
+     "short": "IMAX厅",
+     "name": "IMAX厅"
+    }
+   ],
    "city": "杭州"
   },
   {
@@ -1287,7 +1293,13 @@
    "fmt": [
     "激光IMAX"
    ],
-   "halls": [],
+   "halls": [
+    {
+     "id": "imax",
+     "short": "激光IMAX厅",
+     "name": "激光IMAX厅"
+    }
+   ],
    "city": "杭州"
   },
   {
