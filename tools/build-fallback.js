@@ -44,11 +44,23 @@ const programmes = progs.map(p => {
 });
 if (!films.length || !shows.length) throw new Error('网站数据为空，未生成');
 
+// 只保留进行中和即将开始的专题（常设专题一直保留）：已结束专题的影片和场次联网后由 getData 补回，
+// 小程序也会把上次联网取到的数据存在本机（utils/datacache.js），所以只影响「第一次打开且没有网络」。
+// 判断日期默认取北京时间的今天，可用环境变量 FALLBACK_TODAY=YYYY-MM-DD 指定（测试用）。
+const TODAY = process.env.FALLBACK_TODAY || new Date(Date.now() + 8 * 3600e3).toISOString().slice(0, 10);
+const keepProg = new Set(progs.filter(p => p.ongoing || !p.end || p.end >= TODAY).map(p => p.id));
+const dropped = progs.filter(p => !keepProg.has(p.id)).map(p => p.id);
+for (let i = shows.length - 1; i >= 0; i--) if (!keepProg.has(shows[i].p)) shows.splice(i, 1);
+const usedFilm = new Set(shows.map(s => s.id));
+for (let i = films.length - 1; i >= 0; i--) if (!keepProg.has(films[i].prog) && !usedFilm.has(films[i].id)) films.splice(i, 1);
+for (let i = programmes.length - 1; i >= 0; i--) if (!keepProg.has(programmes[i].id)) programmes.splice(i, 1);
+console.log('fallback date', TODAY, dropped.length ? 'dropped ended: ' + dropped.join(', ') : 'no ended programmes');
+
 // 离线兜底只保留列表/排片/护照所需字段：长文字段（简介、荣誉、内容提示等）联网后由 getData / 网站数据补全。
 // 原因：小程序主包上限 2MB，完整数据会让源码包超限。
 const LEAN_DROP = ['syn', 'bio', 'st', 'honors', 'parts', 'contentReview', 'contentNote', 'editorial', 'highlights', 'links'];
 films.forEach(f => LEAN_DROP.forEach(k => { delete f[k]; }));
-const data = { films, shows, venues: cat.venues || [], programmes, aliases: cat.aliases || {}, reg: Object.assign({}, prev.reg, cat.reg || {}) };
+const data = { builtAt: Date.now(), fallbackDate: TODAY, films, shows, venues: cat.venues || [], programmes, aliases: cat.aliases || {}, reg: Object.assign({}, prev.reg, cat.reg || {}) };
 Screenings.apply(data);
 fs.copyFileSync(path.join(root,'shared/screenings.js'),path.join(root,'miniprogram/utils/screenings.js'));
 fs.writeFileSync(OUT, '/* 本地内置数据：云数据库为空或网络不可用时使用。由 tools/build-fallback.js 从网站 data/ 生成，规则与 getData 云函数一致。 */\nmodule.exports = ' + JSON.stringify(data) + ';\n');
