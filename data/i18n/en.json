@@ -9531,7 +9531,13 @@
    "name": "Hangzhou Xingfu Lanhai International Cinema (Qibao Garden City IMAX)",
    "short": "Xingfu Lanhai · Qibao",
    "brand": "Hangzhou Xingfu Lanhai International Cinema",
-   "store": "Qibao Garden City IMAX"
+   "store": "Qibao Garden City IMAX",
+   "halls": {
+    "imax": {
+     "short": "IMAX Hall",
+     "name": "IMAX Hall"
+    }
+   }
   },
   "hz-xgjy-raffles": {
    "name": "Starlight Jiaying Cinema (Hangzhou Raffles City Dolby Giant Screen)",
@@ -9577,7 +9583,13 @@
    "name": "Zheying Shidai Cinema (Xiguang Laser IMAX)",
    "short": "Zheying · Xiguang",
    "brand": "Zheying Shidai Cinema",
-   "store": "Xiguang Laser IMAX"
+   "store": "Xiguang Laser IMAX",
+   "halls": {
+    "imax": {
+     "short": "Laser IMAX Hall",
+     "name": "Laser IMAX Hall"
+    }
+   }
   },
   "sparrow-tribe": {
    "name": "Sparrow Tribe Film Space",
