@@ -31,6 +31,8 @@ jobs:
         run: node tools/build-extras.js
       - name: Build lite startup data and data version
         run: node tools/build-lite.js
+      - name: Version app.css and app.js by content hash
+        run: node tools/build-assets.js
       - uses: actions/upload-pages-artifact@v3
         with:
           path: .

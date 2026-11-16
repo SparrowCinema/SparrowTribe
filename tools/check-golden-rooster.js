@@ -21,7 +21,7 @@ page.openSelector({currentTarget:{dataset:{type:'venue'}}});page.searchSelector(
 console.log('PASS: searchable programme/cinema selector, multi-select apply and done button, filter reset and 30-minute lead-in.');
 
 // A catalogue with 20 programmes still renders only three homepage controls.
-const html=fs.readFileSync(path.join(root,'index.html'),'utf8');
+const html=require('./web-source').read();
 const sampleProgrammes=Array.from({length:20},(_,i)=>({id:'festival-'+i,name:'影展 '+i,city:'厦门',period:'2026'}));
 const filterCtx={SparrowLibrary:require('../shared/library.js'),LANG:'zh',pfilt:'all',cityFilt:'all',vfilt:'all',PG:{},VN:{},SH:[],VENUES:[],tr:x=>x,esc:x=>String(x),isPast:()=>false,progOrdered:()=>sampleProgrammes,progStatus:()=> 'upcoming'};
 vm.createContext(filterCtx);vm.runInContext(html.slice(html.indexOf('const selList='),html.indexOf('const inProg')),filterCtx);vm.runInContext(html.slice(html.indexOf("const filterChevron="),html.indexOf('function openScheduleSelector')),filterCtx);
