@@ -9577,7 +9577,13 @@
    "name": "CGV Cinemas (Olympic Sports Center Impression City Dolby Cinema)",
    "short": "CGV · Olympic",
    "brand": "CGV Cinemas",
-   "store": "Olympic Sports Center Impression City Dolby Cinema"
+   "store": "Olympic Sports Center Impression City Dolby Cinema",
+   "halls": {
+    "4dx": {
+     "short": "4DX Hall",
+     "name": "4DX Hall"
+    }
+   }
   },
   "hz-zy-xiguang": {
    "name": "Zheying Shidai Cinema (Xiguang Laser IMAX)",
