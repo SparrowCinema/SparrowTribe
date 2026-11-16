@@ -805,8 +805,7 @@
    "en": "The Hunger Games: Sunrise on the Reaping",
    "y": 2026,
    "c": "美国",
-   "min": null,
-   "minTbd": true,
+   "min": 158,
    "reg": "us",
    "release": "2026年 内地上映日期待公布",
    "dir": "弗朗西斯·劳伦斯",
@@ -875,7 +874,7 @@
     "mc": "https://www.metacritic.com/movie/the-hunger-games-sunrise-on-the-reaping/"
    },
    "ratingChecked": "2026-11-05",
-   "poster": "posters/hunger-games-sunrise-on-the-reaping-2026-cn.jpg",
+   "poster": "posters/hunger-games-sunrise-on-the-reaping-2026-art.jpg",
    "worldPremiere": {
     "status": "verified",
     "date": "2026-10-28",
