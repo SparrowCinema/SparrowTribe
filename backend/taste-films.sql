@@ -12,6 +12,7 @@ insert into sparrow_taste.films(id) values
 ('blind-box-21'),
 ('blood-simple'),
 ('bullets-over-broadway'),
+('clayface'),
 ('crows-and-sparrows'),
 ('disclosure-day'),
 ('dogville'),
