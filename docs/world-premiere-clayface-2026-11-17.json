@@ -1,0 +1,195 @@
+{
+ "checked": "2026-11-17",
+ "film": "clayface",
+ "poster": "用户提供的中国内地11月27日定档海报；原JPEG逐字节复制，未裁切",
+ "sources": {
+  "official": "https://www.dc.com/movies/clayface-2026",
+  "writing": "https://mikeflanaganfilm.com/project/clayface/",
+  "interview": "https://cms-corp.paramount.com/news/the-gnarly-new-face-of-dc-super-villains",
+  "director": "https://www.unitedagents.co.uk/james-watkins/",
+  "release": "https://www.maoyan.com/films/news/21025492",
+  "premierePhotos": "https://www.picture-alliance.com/webseries/entertainment-vom-14-oktober-2026-w608638",
+  "premiereReport": "https://en.wikipedia.org/wiki/Clayface_(film)",
+  "bbfc": "https://www.bbfc.co.uk/release/clayface-q29sbgvjdglvbjpwwc0xmte2ndmx",
+  "douban": "https://movie.douban.com/subject/37154591/",
+  "doubanChart": "https://movie.douban.com/chart",
+  "imdb": "https://www.imdb.com/title/tt34890576/ratings/",
+  "imdbSearch": "https://www.imdb.com/title/tt34890576/?_ssoLoop=1&newac=true",
+  "rt": "https://www.rottentomatoes.com/m/clayface",
+  "mc": "https://www.metacritic.com/movie/clayface/",
+  "lb": "https://letterboxd.com/film/clayface/"
+ },
+ "verifiedRecords": {
+  "clayface": {
+   "status": "verified",
+   "date": "2026-10-13",
+   "festival": null,
+   "festivalEn": null,
+   "kind": "theatrical",
+   "checked": "2026-11-17",
+   "dateNote": "洛杉矶 · 好莱坞军团剧院",
+   "dateNoteEn": "Hollywood Legion Theater, Los Angeles",
+   "sources": [
+    "https://www.picture-alliance.com/webseries/entertainment-vom-14-oktober-2026-w608638",
+    "https://en.wikipedia.org/wiki/Clayface_(film)",
+    "https://www.dc.com/movies/clayface-2026"
+   ],
+   "note": "AP现场图片说明确认10月13日、Hollywood Legion Theater；公开电影资料将其列作全球首映。与10月21日起国际公映及10月23日北美公映区分，非影展入选。"
+  }
+ },
+ "ratings": {
+  "r": [
+   8.0,
+   7.5,
+   78,
+   58,
+   3.7
+  ],
+  "order": [
+   "Douban /10",
+   "IMDb /10",
+   "Rotten Tomatoes critics %",
+   "Metacritic /100",
+   "Letterboxd /5"
+  ],
+  "douban": {
+   "value": 8.0,
+   "evidence": "豆瓣榜单搜索索引与同日内地定档报道一致；单片页面受验证限制"
+  },
+  "imdb": {
+   "value": 7.5,
+   "evidence": "IMDb评分页与主页面搜索索引"
+  },
+  "rt": {
+   "critics": 78,
+   "criticsCount": 233,
+   "verifiedAudience": 94,
+   "evidence": "平台实时HTML及JSON-LD；主评分不混用94%观众分"
+  },
+  "mc": {
+   "value": 58,
+   "reviews": 46,
+   "evidence": "平台实时JSON-LD；搜索旧索引及部分报道为59，采用实时58"
+  },
+  "lb": {
+   "raw": 3.71,
+   "display": 3.7,
+   "evidence": "平台实时JSON-LD与twitter:data2，模板显示一位小数"
+  }
+ },
+ "runtime": {
+  "catalogue": 109,
+  "evidence": "豆瓣榜单索引及Letterboxd实时duration PT1H49M",
+  "ukTheatrical": "BBFC 2D 108m20s；ScreenX108m12s；家用版本104m不是院线片长",
+  "mainland": "最终片长与剪辑尚未确认；不因108/109差异推断删减"
+ },
+ "editorialPolicy": "推荐与观看分析为本网站编辑建议；不伪装成已观影结论。未将商业首映、票房、口碑或主创其他作品奖项充当本片影展荣誉。未添加未核实的具体场次、购票码、映后或伴手礼。出生年份资料冲突，导演信息不填年份。美术人员的官网与访谈署名不一致，未增补相互冲突的姓名。",
+ "livePlatformEvidence": [
+  {
+   "url": "https://letterboxd.com/film/clayface/",
+   "meta": [
+    "<meta name=\"twitter:label2\" content=\"Average rating\">"
+   ],
+   "ratings": [
+    "stRating\":5,\"reviewCount\":388878,\"@type\":\"AggregateRating\",\"ratingValue\":3.71,\"description\":\"The Letterboxd rating is a weighted average score for a movie based on all ratings cast to date by our members.\",\"ratingCount\":846875,\"worstRating\":0.5}}"
+   ],
+   "jsonld": [
+    {
+     "name": "Clayface",
+     "aggregateRating": {
+      "bestRating": 5,
+      "reviewCount": 388878,
+      "@type": "AggregateRating",
+      "ratingValue": 3.71,
+      "description": "The Letterboxd rating is a weighted average score for a movie based on all ratings cast to date by our members.",
+      "ratingCount": 846875,
+      "worstRating": 0.5
+     },
+     "duration": "PT1H49M"
+    }
+   ]
+  },
+  {
+   "url": "https://www.metacritic.com/movie/clayface/",
+   "meta": [],
+   "ratings": [
+    "s, TV shows, and albums.\",\"bestRating\":100,\"worstRating\":0,\"ratingValue\":58,\"reviewCount\":46,\"url\":\"https://www.metacritic.com/movie/clayface/critic-reviews/\"},\"trailer\":{\"@type\":\"VideoObject\",\"name\":\"Clayface\",\"description\":\"Matt Hagen’s meteoric ris"
+   ],
+   "jsonld": [
+    {
+     "name": "Clayface",
+     "aggregateRating": {
+      "@type": "AggregateRating",
+      "name": "Metascore",
+      "description": "Metascore is a single score representing the critical consensus for games, movies, TV shows, and albums.",
+      "bestRating": 100,
+      "worstRating": 0,
+      "ratingValue": 58,
+      "reviewCount": 46,
+      "url": "https://www.metacritic.com/movie/clayface/critic-reviews/"
+     },
+     "duration": "PT1M48S"
+    }
+   ]
+  },
+  {
+   "url": "https://www.rottentomatoes.com/m/clayface",
+   "meta": [
+    "<meta name=\"description\" content=\"Discover reviews, ratings, and trailers for Clayface on Rotten Tomatoes. Stay updated with critic and audience scores today!\" />",
+    "<meta name=\"twitter:description\" content=\"Discover reviews, ratings, and trailers for Clayface on Rotten Tomatoes. Stay updated with critic and audience scores today!\" />",
+    "<meta property=\"og:description\" content=\"Discover reviews, ratings, and trailers for Clayface on Rotten Tomatoes. Stay updated with critic and audience scores today!\" />"
+   ],
+   "ratings": [
+    "r television show.\",\"name\":\"Tomatometer\",\"ratingCount\":233,\"ratingValue\":\"78\",\"reviewCount\":233,\"worstRating\":\"0\"},\"contentRating\":\"R\",\"dateCreated\":\"2026-10-23\",\"director\":[{\"@type\":\"Person\",\"name\":\"James Watkins\",\"sameAs\":\"https://www.rottentomatoes",
+    "            data-WebMcpMovieManager=\"audienceScore\"",
+    "            data-WebMcpTvManager=\"audienceScore\"",
+    "            {\"audienceScore\":{\"averageRating\":\"4.4\",\"bandedRatingCount\":\"5,000+ Verified Ratings\",\"certified\":true,\"reviewsPageUrl\":\"/m/clayface/reviews/verified-audience\",\"scorePercent\":\"94%\",\"sentiment\":\"P",
+    "  <script type=\"application/json\" data-json=\"reviewsData\">{\"audienceScore\":{\"certified\":true,\"scorePercent\":\"94%\",\"sentiment\":\"POSITIVE\"},\"criticsScore\":{\"certified\":true,\"scorePercent\":\"78%\",\"sentiment\":\"POSITIVE\"},\"reviews\":[{\"avatarIcon\":\"fandango\",\""
+   ],
+   "jsonld": [
+    {
+     "name": "Clayface",
+     "aggregateRating": {
+      "@type": "AggregateRating",
+      "bestRating": "100",
+      "description": "The Tomatometer rating – based on the published opinions of hundreds of film and television critics – is a trusted measurement of movie and TV programming quality for millions of moviegoers. It represents the percentage of professional critic reviews that are positive for a given film or television show.",
+      "name": "Tomatometer",
+      "ratingCount": 233,
+      "ratingValue": "78",
+      "reviewCount": 233,
+      "worstRating": "0"
+     },
+     "duration": null
+    }
+   ]
+  },
+  {
+   "url": "https://www.imdb.com/title/tt34890576/ratings/",
+   "meta": [],
+   "ratings": [],
+   "jsonld": []
+  },
+  {
+   "url": "https://movie.douban.com/subject/37154591/",
+   "meta": [],
+   "ratings": [],
+   "jsonld": []
+  }
+ ],
+ "validation": {
+  "passed": [
+   "build-fallback FALLBACK_TODAY=2026-11-17",
+   "build-lite",
+   "check-content",
+   "check-library",
+   "check-companion",
+   "check-config",
+   "check-taste",
+   "check-taste-db",
+   "targeted actual film detail renderer and data parity checks",
+   "git diff --check"
+  ],
+  "browser": "本地1440×1000桌面与390×844手机版检查；海报加载正常，手机scrollWidth=innerWidth=390；中英文全部内容正常加载。",
+  "knownBaselineFailure": "额外运行check-platform-metadata失败：gr26-022的IMDb现值5.2与旧audit记录null不一致；HEAD基线相同，相关文件本次未改。"
+ }
+}
