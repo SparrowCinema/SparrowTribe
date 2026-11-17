@@ -11288,6 +11288,12 @@
   "最多人想看": "Most wanted",
   "读取中…": "Loading…",
   "还没有数据": "No data yet",
-  "统计后端还没有启用：请在 Supabase 执行 backend/stats-v1.sql。": "The stats backend is not set up yet: run backend/stats-v1.sql in Supabase."
+  "统计后端还没有启用：请在 Supabase 执行 backend/stats-v1.sql。": "The stats backend is not set up yet: run backend/stats-v1.sql in Supabase.",
+  "有新场次时微信通知你": "We'll notify you in WeChat when new screenings appear",
+  "开场前 1 小时微信提醒": "WeChat reminder 1 hour before",
+  "离开场不到 15 分钟，来不及提醒了": "Less than 15 min to go — too late for a reminder",
+  "关闭这场的开场提醒": "Turn off reminder for this screening",
+  "🔔 已开启开场提醒": "🔔 Reminder on",
+  "🔔 开启开场提醒": "🔔 Remind me"
  }
 }

@@ -8,6 +8,7 @@ const W = require('../../utils/watched.js');
 const I = require('../../utils/i18n.js');
 const Lib = require('../../utils/library.js');
 const Stats = require('../../utils/stats.js');
+const Remind = require('../../utils/remind.js');
 const t = I.tr;
 // 多选：pf 是 'all' 或逗号连接的多个专题 id（「或」关系）
 const sl = Lib.list, sh = Lib.has;
@@ -21,7 +22,13 @@ Page({
   onUnload() { this.off1 && this.off1(); this.off2 && this.off2(); },
   goneSwap(e) { const d = e.currentTarget.dataset; PC.swap(d.k, d.to); wx.showToast({ title: t('已换成新场次'), icon: 'none' }); this.build(); },
   goneOk(e) { PC.dismiss(e.currentTarget.dataset.k); this.build(); },
-  onShow() { Stats.stat('pv', 'plan'); wx.setNavigationBarTitle({ title: t('个人排片') }); this.build(); },
+  onShow() { Stats.stat('pv', 'plan'); wx.setNavigationBarTitle({ title: t('个人排片') }); this.build(); Remind.refresh(() => this.build()); },
+  // 开场提醒（微信订阅消息）：未开启时请求订阅；已开启时可关闭
+  remindTap(e) {
+    const { key, film } = e.currentTarget.dataset;
+    if (Remind.has(key)) { wx.showActionSheet({ itemList: [t('关闭这场的开场提醒')], itemColor: '#8e2a22', success: () => { Remind.cancel({ kind: 'show', key }); this.build(); } }); return; }
+    Remind.ask({ kind: 'show', key, film }, false, () => this.build());
+  },
   onReady() { if (this.to === 'tools') setTimeout(() => wx.pageScrollTo({ selector: '#plan-tools', offsetTop: -12, duration: 300 }), 200); },
   noop() { },
   openPlanSelector(){this.setData({planSelectorOpen:true,planQuery:'',planOptions:this.data.progs});},
@@ -73,6 +80,7 @@ Page({
           v.gap = { cls, txt, mapName: U.geoOf(vb) ? vb.id : '' };
           if (gap < -2) clash++;
         }
+        v.canRm = U.showDate(s).getTime() - Date.now() > 15 * 60e3; v.rm = v.canRm && Remind.has(v.key);
         return v;
       });
       return { d: g.d, wk: g.wk, cnt: t(items.length + ' 场'), items, range: g.items[0].t + ' – ' + items[items.length - 1].end };

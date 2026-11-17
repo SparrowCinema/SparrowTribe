@@ -21,6 +21,7 @@ try { Page = function (o) {
 }; } catch (e) { }
 
 App({
+  onShow() { try { require('./utils/remind.js').syncTmpl(); } catch (e) { } },
   onHide() { try { require('./utils/stats.js').flush(); } catch (e) { } },
   globalData: { data: LOCAL, source: 'local', raw: LOCAL },
   _waiters: [],

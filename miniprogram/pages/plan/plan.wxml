@@ -56,6 +56,7 @@
               <view class="pt">{{item.cn}}<text wx:if="{{item.version}}" class="ed">{{item.version}}</text></view>
               <text class="ps">{{item.dir}} · {{item.minTxt}}</text>
               <text class="pv">{{item.venue}}<text class="htag">{{item.hall}}</text></text>
+              <text wx:if="{{item.canRm}}" class="rmd {{item.rm ? 'on' : ''}}" data-key="{{item.key}}" data-film="{{item.id}}" catchtap="remindTap">{{item.rm ? L.t(i, '🔔 已开启开场提醒') : L.t(i, '🔔 开启开场提醒')}}</text>
             </view>
             <view class="rm" data-key="{{item.key}}" catchtap="remove">✕</view>
           </view>
