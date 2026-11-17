@@ -21,6 +21,7 @@ try { Page = function (o) {
 }; } catch (e) { }
 
 App({
+  onHide() { try { require('./utils/stats.js').flush(); } catch (e) { } },
   globalData: { data: LOCAL, source: 'local', raw: LOCAL },
   _waiters: [],
 

@@ -5,6 +5,7 @@ const t = I.tr;
 const app = getApp();
 const SM = require('../../utils/share-make.js');
 const HT = require('../../utils/hometip.js');
+const Stats = require('../../utils/stats.js');
 Page({
   data: { i: {}, evGroups: [], evN: 0, evOpen: false, p: null, films: [], gone: [], goneOpen: undefined, stats: {}, section: "", sections: [], selOpen: false, selRows: [], selQuery: "", selTitle: "", selPlaceholder: "", sectionName: "", sectionN: 0 },
   onLoad(q) { this.setData({ i: I.dict() }); HT.show(this); this.id = SM.fromScene(q, ((app.globalData.data || {}).programmes || []).map(x => x.id)) || 'style-kaleidoscope'; this.off = app.onData(() => this.build()); this.build(); },
@@ -14,6 +15,7 @@ Page({
   build() {
     const data = app.globalData.data, idx = U.index(data);
     if (this.id && !idx.PG[this.id]) { const hit = Object.keys(idx.PG).find(k => k.startsWith(this.id)); if (hit) this.id = hit; }
+    if (this._statted !== this.id && idx.PG[this.id]) { this._statted = this.id; Stats.stat('pv', 'prog'); Stats.stat('prog', this.id); }
     const p = idx.PG[this.id];
     if (!p) return;
     wx.setNavigationBarTitle({ title: p.name });
@@ -81,5 +83,5 @@ Page({
       blurb: p.blurb || '', img: await load(p.cover), posters: await Promise.all((this.data.films || []).slice(0, 5).map(x => load(x.poster))),
       qrText: t('长按识别小程序码'), qrSub: t('查看专题片单、排片与活动') }) });
   },
-  onShareAppMessage() { const p = this.data.p || {}; return { title: p.name, path: '/pages/programme/programme?id=' + this.id }; }
+  onShareAppMessage() { Stats.stat('share', 'p'); const p = this.data.p || {}; return { title: p.name, path: '/pages/programme/programme?id=' + this.id }; }
 });

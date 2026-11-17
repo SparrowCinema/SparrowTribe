@@ -13,7 +13,9 @@ function save(push = true) {
   listeners.forEach(fn => fn(cache));
   if (push && wx.cloud) wx.cloud.callFunction({ name: 'plan', data: { action: 'set', keys: [...cache] } }).catch(() => {});
 }
-function toggle(k) { const s = get(); if (s.has(k)) s.delete(k); else s.add(k); touch(); save(); return s.has(k); }
+function toggle(k) { const s = get(); if (s.has(k)) s.delete(k); else s.add(k); touch(); save();
+  try { const d = getApp().globalData.data, sh = d && d.shows.find(x => [x.d, x.t, x.v, x.h].join('-') === k); require('./stats.js').stat(s.has(k) ? 'plan_add' : 'plan_remove', sh && sh.id); } catch (e) { }
+  return s.has(k); }
 function addMany(keys) { const s = get(); keys.forEach(k => s.add(k)); touch(); save(); }
 function remove(k) { get().delete(k); touch(); save(); }
 function clear() { get().clear(); touch(); save(); }

@@ -5,6 +5,7 @@ const plan = require('../../utils/plan.js');
 const W = require('../../utils/watched.js');
 const Want = require('../../utils/want.js');
 const Library = require('../../utils/library.js');
+const Stats = require('../../utils/stats.js');
 const t = I.tr;
 // 多选：reg / len / year / city / mine / pf 是 'all' 或逗号连接的多个值（同一筛选内为「或」）
 const sl = Library.list, sh = Library.has;
@@ -31,7 +32,7 @@ Page({
     this.off = app.onData(() => this.build());this.offPlan=plan.onChange(()=>this.build());this.offWatched=W.onChange(()=>this.build());this.build();
   },
   onUnload() {this.off&&this.off();this.offPlan&&this.offPlan();this.offWatched&&this.offWatched();},
-  onShow() {const mode=app.globalData.jumpLibraryMine;if(mode){app.globalData.jumpLibraryMine='';this.setData({mine:mode,pf:'all',q:''});}this.build();},
+  onShow() { Stats.stat('pv', 'films');const mode=app.globalData.jumpLibraryMine;if(mode){app.globalData.jumpLibraryMine='';this.setData({mine:mode,pf:'all',q:''});}this.build();},
   context() {const data=app.globalData.data,idx=U.index(data);return {shows:data.shows,picked:plan.get(),watched:W.all(),want:Want.all(),keyOf:U.keyOf,programme:this.data.pf,city:this.data.city,cityOfShow:s=>idx.VN[s.v]?.city,programmeOf:f=>idx.progOf(f).id,programmeIds:f=>idx.progsOf(f).map(x=>x.p.id),showProgramme:s=>U.progForShow(s,idx).id};},
 
   row(f, data, idx, withNext, pid) {

@@ -1240,3 +1240,7 @@ input:not([type=checkbox]):not([type=radio]),select,textarea{font-size:16px!impo
 .pg-item{border-top:1px dashed var(--line);padding:10px 0 4px}.pg-was strong{display:block;font-size:13px}.pg-was span{display:block;font-size:11px;color:var(--muted);text-decoration:line-through;margin-top:2px}
 .pg-alt{display:flex;justify-content:space-between;align-items:center;gap:8px;width:100%;min-height:40px;margin-top:8px;padding:6px 12px;border:1px solid var(--accent);border-radius:10px;color:var(--accent);background:transparent;font-size:11.5px;text-align:left}.pg-alt b{font-size:16px}
 .pg-none{font-size:11px;color:var(--muted);margin:8px 0 0}.pg-ok{margin-top:6px;min-height:32px}
+/* 使用统计页 #stats（2026-11-16） */
+.st-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:8px;margin:12px 0}.st-cards div{border:1px solid var(--line);border-radius:10px;padding:10px;background:var(--surface)}.st-cards b{display:block;font:600 20px var(--f-mono)}.st-cards small{font-size:10.5px;color:var(--muted)}
+.st-table{overflow-x:auto;margin-top:10px}.st-table table{width:100%;border-collapse:collapse;font-size:11.5px}.st-table th,.st-table td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:right;white-space:nowrap}.st-table th:first-child,.st-table td:first-child{text-align:left}
+.st-top{margin:10px 0 0;padding-left:22px;font-size:12px}.st-top li{display:flex;justify-content:space-between;gap:10px;padding:4px 0;border-bottom:1px dashed var(--line)}.st-top b{font-family:var(--f-mono)}

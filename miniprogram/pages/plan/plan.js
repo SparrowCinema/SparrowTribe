@@ -7,6 +7,7 @@ const poster = require('../../utils/poster.js');
 const W = require('../../utils/watched.js');
 const I = require('../../utils/i18n.js');
 const Lib = require('../../utils/library.js');
+const Stats = require('../../utils/stats.js');
 const t = I.tr;
 // 多选：pf 是 'all' 或逗号连接的多个专题 id（「或」关系）
 const sl = Lib.list, sh = Lib.has;
@@ -20,7 +21,7 @@ Page({
   onUnload() { this.off1 && this.off1(); this.off2 && this.off2(); },
   goneSwap(e) { const d = e.currentTarget.dataset; PC.swap(d.k, d.to); wx.showToast({ title: t('已换成新场次'), icon: 'none' }); this.build(); },
   goneOk(e) { PC.dismiss(e.currentTarget.dataset.k); this.build(); },
-  onShow() { wx.setNavigationBarTitle({ title: t('个人排片') }); this.build(); },
+  onShow() { Stats.stat('pv', 'plan'); wx.setNavigationBarTitle({ title: t('个人排片') }); this.build(); },
   onReady() { if (this.to === 'tools') setTimeout(() => wx.pageScrollTo({ selector: '#plan-tools', offsetTop: -12, duration: 300 }), 200); },
   noop() { },
   openPlanSelector(){this.setData({planSelectorOpen:true,planQuery:'',planOptions:this.data.progs});},
@@ -128,7 +129,7 @@ Page({
           title: I.isEn() ? f.cn + (f.version ? ' · ' + t(f.version) : '') : `《${f.cn}》${f.version ? ' · ' + f.version : ''}`, startTime: start, endTime: start + U.durationOf(s, idx) * 60,
           location: idx.venueName(s) + ' · ' + idx.hallName(s), description: t('麻雀观影护照'), alarm: true, alarmOffset: 3600,
           success: () => rs(1), fail: err => rs(/cancel/.test((err && err.errMsg) || '') ? -1 : 0) }));
-        if (res === 1) { ok++; done[U.keyOf(s)] = 1; } else if (res === -1) { stop = true; break; }
+        if (res === 1) { ok++; done[U.keyOf(s)] = 1; Stats.stat('remind', s.id); } else if (res === -1) { stop = true; break; }
       }
       try { wx.setStorageSync('sk-cal-done', done); } catch (e) { }
       this.calBusy = false;

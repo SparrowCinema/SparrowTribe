@@ -492,7 +492,7 @@ function films(){
 const isField=e=>e&&e.matches&&e.matches('input:not([type=checkbox]):not([type=radio]):not([type=range]),textarea,select');
 document.addEventListener('focusin',e=>{if(isField(e.target))m.content=lock;});
 document.addEventListener('focusout',e=>{if(isField(e.target))setTimeout(()=>{if(!isField(document.activeElement))m.content=base;},50);});})();
-document.addEventListener("input",e=>{ if(e.target.id!=="fq") return; fq=e.target.value.trim(); const w=document.getElementById("flist-wrap"); if(w) w.innerHTML=filmsListHTML(); });
+document.addEventListener("input",e=>{ if(e.target.id!=="fq") return; fq=e.target.value.trim(); if(fq&&!ST.searched){ST.searched=true;stat("search");} const w=document.getElementById("flist-wrap"); if(w) w.innerHTML=filmsListHTML(); });
 
 function honorHTML(x){const i=x.indexOf("｜");const t=i>0?x.slice(0,i):"",rest=i>0?x.slice(i+1):x;const m=rest.match(/^(\d{4})\s*(.*)$/);const yr=m?m[1]:"",body=m?m[2]:rest;const cls=t==="获奖"?"win":t==="提名"?"nom":/评选|入选/.test(t)?"list":"sel";const parts=body.split(" · ");return `<li class="fd-honor ${cls}"><span class="fd-ht">${esc(t||"荣誉")}</span><span class="fd-hy">${esc(yr)}</span><span class="fd-hb"><b>${esc(parts[0])}</b>${parts.length>1?`<small>${esc(parts.slice(1).join(" · "))}</small>`:""}</span></li>`;}
 const EXT_ARROW='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>';
@@ -709,6 +709,39 @@ function touchMeta(k){try{const m=readMeta();m[k]=Date.now();localStorage.setIte
 let validKeys=new Set();
 function readSelection(){try{const a=JSON.parse(localStorage.getItem(PLAN_KEY)||'[]');return new Set(Array.isArray(a)?a.filter(k=>validKeys.has(k)):[]);}catch{return new Set();}}
 let picked=new Set(),currentExport=[];
+/* ===== 使用统计（2026-11-16）=====
+   匿名、按天汇总：只上报「事件名 + 影片/专题 id 或页面类型」，不上报搜索词、个人档案、IP 以外的任何信息（IP 也不入库）。
+   访客标识每天在本机重新随机生成（sparrow-stat-vid），只用来数当天的设备数，跨天无法关联。
+   浏览器开启「请勿追踪」/ GPC、本地预览、网址带 ?now= 调试时不上报。后端 backend/stats-v1.sql 的 ss_hit 还没建好（404）时自动停止。
+   汇总页：#stats（不在菜单里）。 */
+const ST={q:[],off:false,searched:false};
+function statVid(){const day=new Date(Date.now()+8*3600e3).toISOString().slice(0,10);let o={};try{o=JSON.parse(localStorage.getItem('sparrow-stat-vid')||'{}')||{};}catch{}
+  if(o.d!==day||!/^[a-z0-9]{8,32}$/.test(o.v||'')){const b=new Uint8Array(12);(window.crypto||{}).getRandomValues?crypto.getRandomValues(b):b.forEach((x,i)=>b[i]=Math.random()*256);o={d:day,v:Array.from(b,x=>(x%36).toString(36)).join('')};try{localStorage.setItem('sparrow-stat-vid',JSON.stringify(o));}catch{}}return o.v;}
+const statOff=()=>ST.off||navigator.doNotTrack==='1'||window.doNotTrack==='1'||navigator.globalPrivacyControl===true||/^(localhost|127\.|\[::1\])/.test(location.hostname)||location.protocol==='file:'||new URLSearchParams(location.search).has('now');
+function stat(e,k){if(statOff())return;ST.q.push({e,k:String(k==null?'':k).replace(/[^A-Za-z0-9_:.\-]/g,'').slice(0,80)});if(ST.q.length>=40)statFlush();}
+function statFlush(){if(statOff()||!ST.q.length)return;const evs=ST.q.splice(0,60);
+  try{fetch(SB_API+'ss_hit',{method:'POST',keepalive:true,headers:{apikey:SB_KEY,Authorization:'Bearer '+SB_KEY,'Content-Type':'application/json'},body:JSON.stringify({p:'web',vid:statVid(),evs})}).then(r=>{if(r.status===404||r.status===400)ST.off=true;}).catch(()=>{});}catch{}}
+setInterval(statFlush,30000);
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')statFlush();});
+window.addEventListener('pagehide',statFlush);
+const statRouteKind=h=>h.startsWith('film-')?'film':h.startsWith('prog-')?'prog':h.startsWith('events-')?'events':h.startsWith('share=')?'share-in':/^[a-z-]{1,24}$/.test(h)?h:'other';
+async function statsPage(){main.innerHTML='<section class="view gut"><div class="page-heading"><div><small>USAGE</small><h2 class="sec">使用统计</h2></div><button class="text-button" data-tab="my">返回我的</button></div><p class="local-note" id="st-body">读取中…</p></section>';
+  let d;try{d=await sbRpc('ss_summary',{days:30});}catch(e){document.getElementById('st-body').textContent=tr('统计后端还没有启用：请在 Supabase 执行 backend/stats-v1.sql。');return;}
+  const el=document.getElementById('st-body');if(!el)return;el.className='';
+  const days=[...new Set([...d.visitors.map(x=>x.day),...d.events.map(x=>x.day)])].sort().reverse();
+  const v=(day,p)=>(d.visitors.find(x=>x.day===day&&x.platform===p)||{}).n||0;
+  const evn=(day,ev)=>d.events.filter(x=>x.day===day&&x.ev===ev).reduce((a,x)=>a+x.n,0);
+  const tot=ev=>d.events.filter(x=>x.ev===ev).reduce((a,x)=>a+x.n,0);
+  const name=(ev,k)=>ev==='film'||ev==='plan_add'||ev==='want'||ev==='watched'?(F[k]?F[k].cn:k):ev==='prog'?(PG[k]?PG[k].name:k):k;
+  const top=ev=>d.top.filter(x=>x.ev===ev).slice(0,10);
+  const lab={pv:'页面浏览',film:'影片页',prog:'专题页',plan_add:'加入排片',plan_remove:'移出排片',want:'标想看',watched:'盖章',share:'分享',export:'导出',remind:'开场提醒',sync_link:'连接同步',search:'搜索'};
+  const sum=['pv','film','plan_add','want','watched','share','export','remind','sync_link','search'];
+  el.innerHTML='<p class="local-note">'+tr('最近 30 天 · 匿名汇总 · 访客为每天的设备数')+'</p>'+
+   '<div class="st-cards">'+sum.map(k=>'<div><b>'+tot(k)+'</b><small>'+tr(lab[k])+'</small></div>').join('')+'</div>'+
+   '<h3 class="my-group">'+tr('每日')+'</h3><div class="st-table"><table><thead><tr><th>'+tr('日期')+'</th><th>'+tr('网站访客')+'</th><th>'+tr('小程序访客')+'</th><th>'+tr('页面浏览')+'</th><th>'+tr('加入排片')+'</th><th>'+tr('盖章')+'</th></tr></thead><tbody>'+
+   (days.length?days.map(day=>'<tr><td>'+day.slice(5)+'</td><td>'+v(day,'web')+'</td><td>'+v(day,'mini')+'</td><td>'+evn(day,'pv')+'</td><td>'+evn(day,'plan_add')+'</td><td>'+evn(day,'watched')+'</td></tr>').join(''):'<tr><td colspan="6">'+tr('还没有数据')+'</td></tr>')+'</tbody></table></div>'+
+   [['film','看得最多的影片'],['plan_add','加入排片最多'],['want','最多人想看'],['prog','看得最多的专题'],['pv','页面']].map(([ev,t])=>{const r=top(ev);return r.length?'<h3 class="my-group">'+tr(t)+'</h3><ol class="st-top">'+r.map(x=>'<li><span>'+esc(name(ev,x.key))+'</span><b>'+x.n+'</b></li>').join('')+'</ol>':'';}).join('');}
+
 /* ===== 场次变更（2026-11-16）=====
    排片数据里删掉或改了时间 / 影厅的场次，原来会在 readSelection 时被静默丢掉。现在：
    - sparrow-plan-memo-v1：本机记下每个已选场次的影片、日期时间、影院影厅（{场次键:{f,d,t,v,h,at}}），加入或载入时更新；
@@ -748,7 +781,7 @@ async function copyText(v){try{await navigator.clipboard.writeText(v);}catch{con
 function progActsHTML(p){if(!p||!p.file)return "";return `<div class="pg-acts"><button class="pg-act" type="button" data-share="p:${p.id}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M8 7l4-4 4 4M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg>分享专题</button><button class="pg-act" type="button" data-sposter="p:${p.id}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 15l3-3 2 2 3-3"/><circle cx="9" cy="8" r="1.5"/></svg>分享海报</button><a class="pg-act" href="${calURL(p.id).replace(/^https?:/,"webcal:")}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>订阅日历</a><button class="pg-act" type="button" data-copyurl="${esc(calURL(p.id))}">复制订阅链接</button></div><p class="pg-hint">订阅后，场次有调整会自动同步到你的日历。</p>`;}
 document.addEventListener('click',async e=>{
   const sh=e.target.closest('[data-share]');
-  if(sh){const [k,id]=sh.dataset.share.split(':'),f=k==='f'?F[id]:null,p=k==='p'?PG[id]:null,title=(f?f.cn:p&&p.name)||'',url=pageShareURL(k,id);
+  if(sh){stat('share',sh.dataset.share.split(':')[0]);const [k,id]=sh.dataset.share.split(':'),f=k==='f'?F[id]:null,p=k==='p'?PG[id]:null,title=(f?f.cn:p&&p.name)||'',url=pageShareURL(k,id);
     if(navigator.share){try{await navigator.share({title:p?title:title+' | '+tr('麻雀观影护照'),url});return;}catch(err){if(err&&err.name==='AbortError')return;}}
     await copyText(url);toast('分享链接已复制');return;}
   const cu=e.target.closest('[data-copyurl]');
@@ -1120,11 +1153,11 @@ document.addEventListener('touchend',e=>{if(!ppGesture)return;const dx=e.changed
 // —— 看过 / 打分 / 护照按钮 ——
 document.addEventListener('click',e=>{
   const wb=e.target.closest('[data-want]');
-  if(wb){const id=wb.dataset.want,on=!isWant(id);setWant(id,on);toast(on?tr('已加入想看 · 有新场次时会在片目标出'):tr('已移出想看'));refreshMyRate(id);return;}
+  if(wb){const id=wb.dataset.want,on=!isWant(id);setWant(id,on);if(on)stat('want',id);toast(on?tr('已加入想看 · 有新场次时会在片目标出'):tr('已移出想看'));refreshMyRate(id);return;}
   const wl=e.target.closest('[data-want-list]');
   if(wl){fmine='want';ffilt=fcity=fyear=freg=flen='all';fq='';if(location.hash==='#films')films();else location.hash='films';return;}
   const sv=e.target.closest('[data-seen]');
-  if(sv){const id=sv.dataset.seen;if(watched[id]&&watched[id].d){if(!confirm(tr('移出观影护照？这部电影的印章和评分会一起删除。')))return;unstamp(id);return;}else{watched[id]=Object.assign({r:0,t:Date.now()},watchGuess(id));saveWatched();toast('已盖章 · 加入观影护照');}refreshMyRate(id);return;}
+  if(sv){const id=sv.dataset.seen;if(!(watched[id]&&watched[id].d))stat('watched',id);if(watched[id]&&watched[id].d){if(!confirm(tr('移出观影护照？这部电影的印章和评分会一起删除。')))return;unstamp(id);return;}else{watched[id]=Object.assign({r:0,t:Date.now()},watchGuess(id));saveWatched();toast('已盖章 · 加入观影护照');}refreshMyRate(id);return;}
   const taste=e.target.closest('[data-taste]');if(taste){const id=taste.dataset.taste,k=taste.dataset.key,v=+taste.dataset.value,rec=watched[id];if(rec&&rec.d&&['fun','bore'].includes(k)&&window.SparrowTaste.valid(v)){watched[id]=window.SparrowTaste.toggle(rec,k,v);saveWatched();refreshMyRate(id);}return;}
   const rt=e.target.closest('[data-rate]');
   if(rt){const id=rt.dataset.rate,v=+rt.dataset.v,isNew=!(watched[id]&&watched[id].d);if(isNew)watched[id]=Object.assign({r:0},watchGuess(id));{const G=window.SparrowGrowth,vs=G.views(watched[id]);if(vs.length>1){vs[vs.length-1].r=vs[vs.length-1].r===v?0:v;watched[id].v=vs;G.normRec(watched[id]);}else watched[id].r=watched[id].r===v?0:v;}watched[id].t=Date.now();saveWatched();if(isNew)toast('已盖章 · 加入观影护照');refreshMyRate(id);return;}
@@ -1201,7 +1234,7 @@ function syncQRSVG(code){const m=qrMatrix('SPARROW-SYNC:'+code);if(!m)return '';
 function syncQRWatch(on){clearInterval(syncQRTimer);syncQRTimer=0;syncQR=!!on;if(!on)return;syncQRUntil=Date.now()+18e4;
  syncQRTimer=setInterval(()=>{if(!syncQR||!syncSt||!syncSt.code||Date.now()>syncQRUntil||!document.getElementById('sync-card')){const was=syncQR;syncQRWatch(false);if(was)syncPaint();return;}
   if(document.visibilityState!=='visible')return;
-  syncNow().then(r=>{if(syncQR&&r&&r.changed){syncQRWatch(false);syncPaint();toast('已和小程序连接，记录已合并');}}).catch(()=>{});},5000);}
+  syncNow().then(r=>{if(syncQR&&r&&r.changed){syncQRWatch(false);syncPaint();stat('sync_link','qr-done');toast('已和小程序连接，记录已合并');}}).catch(()=>{});},5000);}
 let communityStatus='idle',communityReadAt=0,communityReading=null,tasteObserved={};
 const TC=window.SparrowTasteClient.create({defer:f=>setTimeout(f,0),load:()=>{try{return JSON.parse(localStorage.getItem('sparrow-taste-outbox-v1')||'{}');}catch{return {};}},save:v=>localStorage.setItem('sparrow-taste-outbox-v1',JSON.stringify(v)),rpc:async(fn,body)=>{const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),15000);try{return await sbRpc(fn,body,controller.signal);}finally{clearTimeout(timer);}}});
 function tasteChanged(){if(!syncSt?.code)return;Object.keys(watched).forEach(id=>{if(!F[id]||F[id].ev)return;const r=watched[id],signature=JSON.stringify([syncSt.code,r.fun,r.bore,r.tastePublic,r.del]),old=tasteObserved[id];if(old?.signature===signature)return;tasteObserved[id]={signature,published:window.SparrowTaste.publicVote(r)};if(window.SparrowTaste.publicVote(r)||old?.published)TC.enqueue(syncSt.code,id,r);});}
@@ -1243,7 +1276,7 @@ document.addEventListener('click',async e=>{const b=e.target.closest('[data-sync
   if(a==='start'){syncSt={code:window.SparrowSync.newCode(n=>crypto.getRandomValues(new Uint8Array(n))),rev:0,at:0};syncReveal=true;syncSave();syncPaint();try{await syncNow();toast('已开启同步，请保存好同步码');}catch(err){toast(tr('同步失败：')+err.message);}return;}
   if(a==='reveal'){syncReveal=!syncReveal;syncPaint();return;}
   if(a==='qr'){syncQRWatch(!syncQR);syncPaint();return;}
-  if(a==='qrstart'){syncSt={code:window.SparrowSync.newCode(n=>crypto.getRandomValues(new Uint8Array(n))),rev:0,at:0};syncSave();syncQRWatch(true);syncPaint();try{await syncNow();}catch(err){toast(tr('同步失败：')+err.message);}return;}
+  if(a==='qrstart'){stat('sync_link','qr');syncSt={code:window.SparrowSync.newCode(n=>crypto.getRandomValues(new Uint8Array(n))),rev:0,at:0};syncSave();syncQRWatch(true);syncPaint();try{await syncNow();}catch(err){toast(tr('同步失败：')+err.message);}return;}
   if(a==='copy'){syncCopy(syncSt.code).then(()=>toast('同步码已复制'),()=>toast('复制失败，请长按同步码手动复制'));return;}
   if(a==='now'){try{const r=await syncNow();toast(r&&r.changed?'已同步，并合并了其他设备的更改':'已同步');}catch(err){toast(tr('同步失败：')+err.message);}return;}
   if(a==='stop'){if(!confirm(tr('在这台设备停止同步？本机记录会保留，云端的记录也不会删除；已公开的社区评分仍保留，可在影片页撤回。以后输入同步码可以重新连接。')))return;syncQRWatch(false);syncSt=null;syncSave();syncStatus={state:'idle',msg:'',at:0};syncMode='';syncReveal=false;syncPaint();}
@@ -1551,13 +1584,13 @@ function showImageSheet(blob,opt){opt=opt||{};const url=URL.createObjectURL(blob
 }
 /* 日历导出（2026-11-16 起每场带开场前 1 小时提醒，与小程序「加入手机日历」一致）。list 不传时导出当前导出页的场次；remindOne 导出单场 */
 function exportCalendar(list,name){list=list||currentExport;if(!list.length)return;const stamp=d=>d.getFullYear()+String(d.getMonth()+1).padStart(2,'0')+String(d.getDate()).padStart(2,'0')+'T'+String(d.getHours()).padStart(2,'0')+String(d.getMinutes()).padStart(2,'0')+'00';const escapeIcs=s=>String(s).replace(/\\/g,'\\\\').replace(/\n/g,'\\n').replace(/,/g,'\\,').replace(/;/g,'\\;');let lines=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//SparrowCinema//Style Kaleidoscope//ZH','CALSCALE:GREGORIAN','X-WR-CALNAME:'+tr('麻雀观影护照'),'X-WR-TIMEZONE:Asia/Shanghai','BEGIN:VTIMEZONE','TZID:Asia/Shanghai','BEGIN:STANDARD','DTSTART:19700101T000000','TZOFFSETFROM:+0800','TZOFFSETTO:+0800','TZNAME:CST','END:STANDARD','END:VTIMEZONE'];for(const s of list){const start=showDate(s),end=new Date(start.getTime()+durationOf(s)*60000);lines.push('BEGIN:VEVENT','UID:'+encodeURIComponent(keyOf(s))+'@style-kaleidoscope','DTSTAMP:'+new Date().toISOString().replace(/[-:]/g,'').replace(/\.\d+Z/,'Z'),'DTSTART;TZID=Asia/Shanghai:'+stamp(start),'DTEND;TZID=Asia/Shanghai:'+stamp(end),'SUMMARY:'+escapeIcs([F[s.id].cn,editionOf(F[s.id])].filter(Boolean).join(' · ')),'LOCATION:'+escapeIcs(VN[s.v].name+' · '+hallOf(s).name),'DESCRIPTION:'+escapeIcs((PG[s.p]||progOf(F[s.id])).name+' · '+(PG[s.p]||progOf(F[s.id])).sub+'\n'+tr('影片片长 '+minText(F[s.id]))+'\n'+tr('麻雀观影护照')),'BEGIN:VALARM','ACTION:DISPLAY','DESCRIPTION:'+escapeIcs(tr('1 小时后开场')+' · '+F[s.id].cn),'TRIGGER:-PT1H','END:VALARM','END:VEVENT');}lines.push('END:VCALENDAR');downloadBlob(new Blob([lines.join('\r\n')+'\r\n'],{type:'text/calendar;charset=utf-8'}),name||'麻雀观影护照_我的观影日程.ics');toast(name?tr('已生成提醒，打开文件加入日历'):'日历文件已生成');}
-function remindOne(k){const s=SH.find(x=>keyOf(x)===k);if(!s)return;exportCalendar([s],tr('开场提醒')+'_'+F[s.id].cn+'_'+s.d.replace('/','-')+'.ics');}
+function remindOne(k){const s=SH.find(x=>keyOf(x)===k);if(!s)return;stat('remind',s.id);exportCalendar([s],tr('开场提醒')+'_'+F[s.id].cn+'_'+s.d.replace('/','-')+'.ics');}
 document.addEventListener('click',e=>{const b=e.target.closest('[data-remind]');if(b)remindOne(b.dataset.remind);});
 /* 重绘后把被点的元素钉回原来的屏幕位置；上方图片、字体晚加载造成的位移在之后几帧内继续修正，用户一滑动就停止 */
 function keepAnchor(find,ay,gx){let stop=false;const off=()=>{stop=true;};['touchstart','wheel','keydown'].forEach(ev=>window.addEventListener(ev,off,{once:true,passive:true}));
   const fix=()=>{if(stop)return;const n=find();if(n){const d=n.getBoundingClientRect().top-ay;if(Math.abs(d)>.5)window.scrollTo({top:window.scrollY+d,behavior:'instant'});}const g=document.getElementById('gantt');if(g&&gx!=null&&g.scrollLeft!==gx)g.scrollLeft=gx;};
   fix();requestAnimationFrame(fix);[60,150,300,600,1000].forEach(ms=>setTimeout(fix,ms));setTimeout(()=>['touchstart','wheel','keydown'].forEach(ev=>window.removeEventListener(ev,off)),1100);}
-document.addEventListener('click',async e=>{const button=e.target.closest('[data-plan],[data-action]');if(!button)return;if(button.dataset.plan){const k=button.dataset.plan;if(!validKeys.has(k))return;if(picked.has(k))picked.delete(k);else picked.add(k);saveSelection();const scroll=window.scrollY,gx=document.getElementById('gantt')?.scrollLeft,ay=button.getBoundingClientRect().top;route();window.scrollTo(0,scroll);const g2=document.getElementById('gantt');if(g2&&gx!=null)g2.scrollLeft=gx;/* 锚点：以被点的 +/✓ 按钮在屏幕上的位置为准，重绘后页面上方高度变化也不跳动 */const inG=!!button.closest('.tt');keepAnchor(()=>[...document.querySelectorAll('[data-plan]')].find(n=>n.dataset.plan===k&&!!n.closest('.tt')===inG),ay,gx);toast(picked.has(k)?'已加入个人排片':'已移出个人排片');return;}switch(button.dataset.action){case 'clear-plan':if(confirm(tr('清空当前浏览器保存的个人排片？'))){picked.clear();saveSelection();route();}break;case 'png':exportPNG();break;case 'calendar':exportCalendar();break;case 'print':window.print();break;case 'copy-link':{const input=document.getElementById('share-url');if(!input)break;try{await navigator.clipboard.writeText(input.value);toast('分享链接已复制');}catch{input.focus();input.select();toast('请复制已选中的分享链接');}break;}case 'system-share':{try{await navigator.share({title:tr('麻雀观影护照 · 观影日程'),text:tr('我的观影日程（'+currentExport.length+' 场）'),url:shareURL(currentExport)});}catch(err){}break;}case 'import-plan':currentExport.forEach(s=>picked.add(keyOf(s)));saveSelection();go('plan');break;}});
+document.addEventListener('click',async e=>{const button=e.target.closest('[data-plan],[data-action]');if(!button)return;if(button.dataset.plan){const k=button.dataset.plan;if(!validKeys.has(k))return;if(picked.has(k))picked.delete(k);else picked.add(k);saveSelection();{const sh=SH.find(x=>keyOf(x)===k);stat(picked.has(k)?'plan_add':'plan_remove',sh&&sh.id);}const scroll=window.scrollY,gx=document.getElementById('gantt')?.scrollLeft,ay=button.getBoundingClientRect().top;route();window.scrollTo(0,scroll);const g2=document.getElementById('gantt');if(g2&&gx!=null)g2.scrollLeft=gx;/* 锚点：以被点的 +/✓ 按钮在屏幕上的位置为准，重绘后页面上方高度变化也不跳动 */const inG=!!button.closest('.tt');keepAnchor(()=>[...document.querySelectorAll('[data-plan]')].find(n=>n.dataset.plan===k&&!!n.closest('.tt')===inG),ay,gx);toast(picked.has(k)?'已加入个人排片':'已移出个人排片');return;}switch(button.dataset.action){case 'clear-plan':if(confirm(tr('清空当前浏览器保存的个人排片？'))){picked.clear();saveSelection();route();}break;case 'png':stat('export','png');exportPNG();break;case 'calendar':stat('export','ics');exportCalendar();break;case 'print':stat('export','pdf');window.print();break;case 'copy-link':{const input=document.getElementById('share-url');if(!input)break;try{await navigator.clipboard.writeText(input.value);toast('分享链接已复制');}catch{input.focus();input.select();toast('请复制已选中的分享链接');}break;}case 'system-share':{try{await navigator.share({title:tr('麻雀观影护照 · 观影日程'),text:tr('我的观影日程（'+currentExport.length+' 场）'),url:shareURL(currentExport)});}catch(err){}break;}case 'import-plan':currentExport.forEach(s=>picked.add(keyOf(s)));saveSelection();go('plan');break;}});
 
 let pendingFlash=null, lastList="schedule";
 let activeRoute="", filmReturn="schedule", capturedRoute="";
@@ -1583,6 +1616,7 @@ function route(){
   if(!READY) return;
   const h = location.hash.slice(1) || "schedule";
   const changing=activeRoute!==h;
+  if(changing){ stat('pv',statRouteKind(h)); if(h.startsWith('film-')) stat('film',h.slice(5)); else if(h.startsWith('prog-')) stat('prog',h.slice(5)); }
   if(changing){if(capturedRoute!==activeRoute)rememberView(activeRoute);capturedRoute="";resetFilmSwipe();if(h.startsWith("film-")&&activeRoute&&!activeRoute.startsWith("film-"))filmReturn=activeRoute;}
   const fwd=navFwd,bk=navBack;navFwd=false;navBack=false;
   const returning=changing&&viewPositions.has(h)&&(bk||!fwd||(activeRoute.startsWith("film-")&&h===filmReturn));
@@ -1598,6 +1632,7 @@ function route(){
   else if(h==="programmes") programmesPage();
   else if(h==="my"||h==="about") myPage();
   else if(h==="plan") planPage();
+  else if(h==="stats") statsPage();
   else if(h==="poster-wall") posterWallPage();
   else if(h==="taste-map") tasteMapPage();
   else if(h==="install") installPage();

@@ -22,6 +22,7 @@ function honor(x) {
 
 const SM = require('../../utils/share-make.js');
 const HT = require('../../utils/hometip.js');
+const Stats = require('../../utils/stats.js');
 Page({
   onPageScroll(e) { T.scroll(this, e); },
   toTop() { T.go(); },
@@ -101,6 +102,7 @@ Page({
     });
     this.buildMine();
     Want.markSeen(this.id, this.wantKeys());
+    if (this._statted !== this.id) { this._statted = this.id; Stats.stat('pv', 'film'); Stats.stat('film', this.id); }
     this.setData({ fs: 1 }, () => this.fitHero());
   },
   // 头图：文字较多时逐步缩小字号，使文字区高度不超过海报（上下对齐）
@@ -113,7 +115,7 @@ Page({
   // 我的观影：看过 + 五星十分制评分（每颗星 2 分，可半颗）
   // 想看：切换后按当前待映场次记下「已见过」，之后新增的场次在片目标「新场次」
   wantKeys() { const data = app.globalData.data, idx = U.index(data); return data.shows.filter(s => s.id === this.id && !U.ended(s, idx)).map(U.keyOf); },
-  toggleWant() { const on = !Want.isOn(this.id); Want.set(this.id, on, this.wantKeys()); wx.showToast({ title: on ? t('已加入想看') : t('已移出想看'), icon: 'none' }); this.buildMine(); },
+  toggleWant() { const on = !Want.isOn(this.id); Want.set(this.id, on, this.wantKeys()); if (on) Stats.stat('want', this.id); wx.showToast({ title: on ? t('已加入想看') : t('已移出想看'), icon: 'none' }); this.buildMine(); },
   dyToggle() { this.dyOpen = !this.dyOpen; this.buildMine(); },
   buildMine() {
     const data = app.globalData.data, idx = U.index(data), rec = W.get(this.id), r = rec ? rec.r || 0 : 0, en = I.isEn();
@@ -195,6 +197,7 @@ Page({
     const it = (this._fm[v[0]] || { items: [] }).items[v[1]]; o.f = it && it.id ? it.id : ''; this.lgPaint();
   },
   toggleSeen() {
+    if (!W.get(this.id)) Stats.stat('watched', this.id);
     if (W.get(this.id)) {
       wx.showModal({ title: t('移出观影护照？'), content: t('这部电影的印章和评分会一起删除。'), confirmText: t('移出'), confirmColor: '#8e2a22', success: r => { if (r.confirm) { W.remove(this.id); wx.showToast({ title: t('已移出观影护照'), icon: 'none' }); } } });
     } else { const data = app.globalData.data; W.set(this.id, W.guess(this.id, data, U.index(data), plan.get())); wx.showToast({ title: t('已盖章 · 加入观影护照'), icon: 'none' }); }
@@ -219,6 +222,7 @@ Page({
   openMap(e) { const v = app.globalData.data.venues.find(x => x.id === e.currentTarget.dataset.v); if (v) U.openMap(v); },
   toggle(e) { const on = plan.toggle(e.currentTarget.dataset.key); wx.showToast({ title: t(on ? '已加入排片' : '已移出排片'), icon: 'none' }); },
   calendar(e) {
+    Stats.stat('remind', this.id);
     const data = app.globalData.data, s = data.shows.find(x => U.keyOf(x) === e.currentTarget.dataset.key), idx = U.index(data), f = idx.F[s.id];
     const start = Math.floor(U.showDate(s).getTime() / 1000);
     wx.addPhoneCalendar({
@@ -253,6 +257,6 @@ Page({
       lines: up.map(s => ({ when: U.ymd(s) + ' ' + s.t, where: idx.venueName(s) + ' · ' + idx.hallName(s) })),
       img: await load(U.poster(f)), qrText: t('长按识别小程序码'), qrSub: t('查看影片详情、场次与购票') }) });
   },
-  onShareAppMessage() { const f = this.data.f || {}; return { title: (I.isEn() ? f.cn + (f.version ? ' ' + f.version : '') : `《${f.cn}》${f.version ? f.version : ''}`) + ' · ' + t('麻雀观影护照'), path: '/pages/film/film?id=' + this.id, imageUrl: f.poster || undefined }; },
+  onShareAppMessage() { Stats.stat('share', 'f'); const f = this.data.f || {}; return { title: (I.isEn() ? f.cn + (f.version ? ' ' + f.version : '') : `《${f.cn}》${f.version ? f.version : ''}`) + ' · ' + t('麻雀观影护照'), path: '/pages/film/film?id=' + this.id, imageUrl: f.poster || undefined }; },
   onShareTimeline() { const f = this.data.f || {}; return { title: (I.isEn() ? f.cn : `《${f.cn}》`) + ' · ' + t('麻雀观影护照'), query: 'id=' + this.id }; }
 });
