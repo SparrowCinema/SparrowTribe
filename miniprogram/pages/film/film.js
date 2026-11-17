@@ -23,6 +23,7 @@ function honor(x) {
 const SM = require('../../utils/share-make.js');
 const HT = require('../../utils/hometip.js');
 const Stats = require('../../utils/stats.js');
+const Remind = require('../../utils/remind.js');
 Page({
   onPageScroll(e) { T.scroll(this, e); },
   toTop() { T.go(); },
@@ -115,7 +116,7 @@ Page({
   // 我的观影：看过 + 五星十分制评分（每颗星 2 分，可半颗）
   // 想看：切换后按当前待映场次记下「已见过」，之后新增的场次在片目标「新场次」
   wantKeys() { const data = app.globalData.data, idx = U.index(data); return data.shows.filter(s => s.id === this.id && !U.ended(s, idx)).map(U.keyOf); },
-  toggleWant() { const on = !Want.isOn(this.id); Want.set(this.id, on, this.wantKeys()); if (on) Stats.stat('want', this.id); wx.showToast({ title: on ? t('已加入想看') : t('已移出想看'), icon: 'none' }); this.buildMine(); },
+  toggleWant() { const on = !Want.isOn(this.id); Want.set(this.id, on, this.wantKeys()); if (on) Stats.stat('want', this.id); wx.showToast({ title: on ? t('已加入想看') : t('已移出想看'), icon: 'none' }); if (on) Remind.ask({ kind: 'want', film: this.id }, true); else Remind.cancel({ kind: 'want', film: this.id }); this.buildMine(); },
   dyToggle() { this.dyOpen = !this.dyOpen; this.buildMine(); },
   buildMine() {
     const data = app.globalData.data, idx = U.index(data), rec = W.get(this.id), r = rec ? rec.r || 0 : 0, en = I.isEn();
@@ -220,7 +221,7 @@ Page({
   toStamp() { app.globalData.openPassport = this.id; wx.switchTab({ url: '/pages/my/my' }); },
   toMy() { app.globalData.openPassport = 1; wx.switchTab({ url: '/pages/my/my' }); },
   openMap(e) { const v = app.globalData.data.venues.find(x => x.id === e.currentTarget.dataset.v); if (v) U.openMap(v); },
-  toggle(e) { const on = plan.toggle(e.currentTarget.dataset.key); wx.showToast({ title: t(on ? '已加入排片' : '已移出排片'), icon: 'none' }); },
+  toggle(e) { const key = e.currentTarget.dataset.key, on = plan.toggle(key); wx.showToast({ title: t(on ? '已加入排片' : '已移出排片'), icon: 'none' }); if (on) Remind.ask({ kind: 'show', key, film: this.id }, true); },
   calendar(e) {
     Stats.stat('remind', this.id);
     const data = app.globalData.data, s = data.shows.find(x => U.keyOf(x) === e.currentTarget.dataset.key), idx = U.index(data), f = idx.F[s.id];

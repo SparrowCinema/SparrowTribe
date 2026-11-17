@@ -104,3 +104,6 @@
 .pg-plus { font-size: calc(28 * var(--fr)); }
 .pg-none { font-size: calc(19 * var(--fr)); color: var(--muted); margin-top: calc(12 * var(--r)); }
 .pg-ok { align-self: flex-start; color: var(--accent); font-size: calc(20 * var(--fr)); padding: calc(14 * var(--r)) 0 calc(4 * var(--r)); }
+/* 开场提醒（微信订阅消息）：未开启为描边小胶囊，已开启为强调色底 */
+.rmd { align-self: flex-start; margin-top: calc(8 * var(--r)); padding: calc(6 * var(--r)) calc(16 * var(--r)); border: 1px solid var(--line); border-radius: 999px; font-size: calc(17 * var(--fr)); color: var(--muted); }
+.rmd.on { border-color: transparent; background: var(--accent); color: #fff; }

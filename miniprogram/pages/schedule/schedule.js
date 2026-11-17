@@ -4,6 +4,7 @@ const plan = require('../../utils/plan.js');
 const I = require('../../utils/i18n.js');
 const Lib = require('../../utils/library.js');
 const Stats = require('../../utils/stats.js');
+const Remind = require('../../utils/remind.js');
 const t = I.tr;
 // 多选：pf / city / vf 是 'all' 或逗号连接的多个 id（同一筛选内为「或」）
 const sl = Lib.list, sh = Lib.has;
@@ -184,8 +185,9 @@ Page({
   openFilm(e) { wx.navigateTo({ url: '/pages/film/film?id=' + e.currentTarget.dataset.id }); },
   openProg(e) { wx.navigateTo({ url: '/pages/programme/programme?id=' + e.currentTarget.dataset.id }); },
   toggle(e) {
-    const on = plan.toggle(e.currentTarget.dataset.key);
+    const key = e.currentTarget.dataset.key, on = plan.toggle(key);
     wx.showToast({ title: t(on ? '已加入排片' : '已移出排片'), icon: 'none' });
+    if (on) { const s = ((app.globalData.data || {}).shows || []).find(x => U.keyOf(x) === key); if (s) Remind.ask({ kind: 'show', key, film: s.id }, true); }
   },
   onShareAppMessage() { return { title: t('麻雀观影护照 · 影展排片与观影日程'), path: '/pages/schedule/schedule' }; },
   onShareTimeline() { return { title: t('麻雀观影护照 · 影展排片与观影日程') }; }
