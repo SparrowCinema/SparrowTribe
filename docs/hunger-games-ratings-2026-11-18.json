@@ -1,0 +1,137 @@
+{
+ "film": "hunger-games-sunrise-on-the-reaping",
+ "checked": "2026-11-18",
+ "before": [
+  null,
+  null,
+  null,
+  null,
+  null
+ ],
+ "after": [
+  null,
+  null,
+  72,
+  56,
+  3.7
+ ],
+ "order": [
+  "Douban /10",
+  "IMDb /10",
+  "Rotten Tomatoes critics %",
+  "Metacritic /100",
+  "Letterboxd /5"
+ ],
+ "platforms": {
+  "douban": {
+   "value": null,
+   "status": "not-verified",
+   "url": "https://movie.douban.com/subject/36915988/",
+   "note": "桌面及移动公开页返回访问验证，未取到可核实的当前分数；不把访问失败推断为0分或已确认未开分。"
+  },
+  "imdb": {
+   "value": null,
+   "status": "not-verified",
+   "url": "https://www.imdb.com/title/tt32558705/ratings/",
+   "note": "实时公开请求返回HTTP202空正文；浏览工具403。IMDb标题搜索结果无本片评分，仅作辅证，不能以旧索引断言实时未开分。"
+  },
+  "rt": {
+   "value": 72,
+   "reviews": 68,
+   "url": "https://www.rottentomatoes.com/m/the_hunger_games_sunrise_on_the_reaping",
+   "note": "采用实时页面JSON-LD及criticsScore的72%，旧搜索/浏览快照69%/62篇未采用；认证观众暂无可核实分数，不混入影评人栏。"
+  },
+  "mc": {
+   "value": 56,
+   "reviews": 27,
+   "url": "https://www.metacritic.com/movie/the-hunger-games-sunrise-on-the-reaping/",
+   "note": "采用实时JSON-LD 56/27篇，浏览搜索缓存tbd和旧55未采用。"
+  },
+  "lb": {
+   "raw": 3.67,
+   "display": 3.7,
+   "ratings": 1055,
+   "reviews": 678,
+   "url": "https://letterboxd.com/film/the-hunger-games-sunrise-on-the-reaping/",
+   "note": "实时JSON-LD和twitter:data2，模板一位小数。"
+  }
+ },
+ "liveEvidence": [
+  {
+   "url": "https://www.rottentomatoes.com/m/the_hunger_games_sunrise_on_the_reaping",
+   "jsonld": [
+    {
+     "name": "The Hunger Games: Sunrise on the Reaping",
+     "aggregateRating": {
+      "@type": "AggregateRating",
+      "bestRating": "100",
+      "description": "The Tomatometer rating – based on the published opinions of hundreds of film and television critics – is a trusted measurement of movie and TV programming quality for millions of moviegoers. It represents the percentage of professional critic reviews that are positive for a given film or television show.",
+      "name": "Tomatometer",
+      "ratingCount": 68,
+      "ratingValue": "72",
+      "reviewCount": 68,
+      "worstRating": "0"
+     }
+    }
+   ],
+   "signals": [
+    "ve for a given film or television show.\",\"name\":\"Tomatometer\",\"ratingCount\":68,\"ratingValue\":\"72\",\"reviewCount\":68,\"worstRating\":\"0\"},\"contentRating\":\"PG-13\",\"dateCreated\":\"2026-11-20\",\"director\":[{\"@type\":\"Person\",\"name\":\"Francis Lawrence\",\"sameAs\":\"https://www.rottento",
+    "ount\":68,\"reviewsPageUrl\":\"/m/the_hunger_games_sunrise_on_the_reaping/reviews\",\"scorePercent\":\"72%\",\"sentiment\":\"POSITIVE\",\"title\":\"Tomatometer\"},\"criticReviewHref\":\"/critics/self-submission/movie/f266b88d-337e-363a-b507-48fd1f0beff1\",\"cta\":{\"buttonText\":\"Buy Tickets\",\"bu",
+    "ount\":68,\"reviewsPageUrl\":\"/m/the_hunger_games_sunrise_on_the_reaping/reviews\",\"scorePercent\":\"72%\",\"sentiment\":\"POSITIVE\",\"title\":\"Tomatometer\",\"scoreLinkUrl\":\"/m/the_hunger_games_sunrise_on_the_reaping/reviews/all-critics\",\"scoreLinkText\":\"68 Reviews\"},\"criticsTitle\":\"T"
+   ]
+  },
+  {
+   "url": "https://www.metacritic.com/movie/the-hunger-games-sunrise-on-the-reaping/",
+   "jsonld": [
+    {
+     "name": "The Hunger Games: Sunrise on the Reaping",
+     "aggregateRating": {
+      "@type": "AggregateRating",
+      "name": "Metascore",
+      "description": "Metascore is a single score representing the critical consensus for games, movies, TV shows, and albums.",
+      "bestRating": 100,
+      "worstRating": 0,
+      "ratingValue": 56,
+      "reviewCount": 27,
+      "url": "https://www.metacritic.com/movie/the-hunger-games-sunrise-on-the-reaping/critic-reviews/"
+     }
+    }
+   ],
+   "signals": [
+    "sus for games, movies, TV shows, and albums.\",\"bestRating\":100,\"worstRating\":0,\"ratingValue\":56,\"reviewCount\":27,\"url\":\"https://www.metacritic.com/movie/the-hunger-games-sunrise-on-the-reaping/critic-reviews/\"},\"trailer\":{\"@type\":\"VideoObject\",\"name\":\"The Hunger Games: S"
+   ]
+  },
+  {
+   "url": "https://letterboxd.com/film/the-hunger-games-sunrise-on-the-reaping/",
+   "jsonld": [
+    {
+     "name": "The Hunger Games: Sunrise on the Reaping",
+     "aggregateRating": {
+      "bestRating": 5,
+      "reviewCount": 678,
+      "@type": "AggregateRating",
+      "ratingValue": 3.67,
+      "description": "The Letterboxd rating is a weighted average score for a movie based on all ratings cast to date by our members.",
+      "ratingCount": 1055,
+      "worstRating": 0.5
+     }
+    }
+   ],
+   "signals": [
+    "\t<meta name=\"twitter:label2\" content=\"Average rating\"><meta name=\"twitter:data2\" content=\"3.67 out of 5\">",
+    ",\"aggregateRating\":{\"bestRating\":5,\"reviewCount\":678,\"@type\":\"AggregateRating\",\"ratingValue\":3.67,\"description\":\"The Letterboxd rating is a weighted average score for a movie based on all ratings cast to date by our members.\",\"ratingCount\":1055,\"worstRating\":0.5}}"
+   ]
+  },
+  {
+   "url": "https://www.imdb.com/title/tt32558705/",
+   "jsonld": [],
+   "signals": []
+  },
+  {
+   "url": "https://movie.douban.com/subject/36915988/",
+   "jsonld": [],
+   "signals": []
+  }
+ ],
+ "scope": "只更新本片五平台评分、核查日期及中英荐片笔记中已过时的“评分暂缺”句子；保留158分钟、海报、购票码、现有场次及其他影片。"
+}
