@@ -96,6 +96,8 @@ fs.writeFileSync(path.join(root, 'miniprogram/utils/library.js'), fs.readFileSyn
 
 fs.copyFileSync(path.join(root,'shared/profile-backup.js'),path.join(root,'miniprogram/utils/profile-backup.js'));
 fs.copyFileSync(path.join(root,'shared/growth.js'),path.join(root,'miniprogram/utils/growth.js'));
+// 对排片：shared/overlap.js 复制给小程序（pages/share）
+fs.writeFileSync(path.join(root,'miniprogram/utils/overlap.js'),'/* 由 tools/build-fallback.js 从 shared/overlap.js 复制，请改 shared/overlap.js 后重新运行。 */\n'+fs.readFileSync(path.join(root,'shared/overlap.js'),'utf8'));
 
 fs.copyFileSync(path.join(root,'shared/premiere.js'),path.join(root,'miniprogram/utils/premiere.js'));
 

@@ -15,6 +15,33 @@
         <view class="btn outline" bindtap="home">{{L.t(i,'进入首页')}}</view>
       </view>
     </view>
+    <view class="ov card">
+      <text class="ov-k mono">PLAN MATCH</text>
+      <block wx:if="{{ov.empty}}">
+        <text class="ov-none">{{L.t(i,'和 TA 对一对排片')}}</text>
+        <text class="ov-p">{{L.t(i,'先加入你自己想看的场次，这里就会显示你们哪几场在一起、哪几场时间冲突。')}}</text>
+        <text class="ov-link" bindtap="pick">{{L.t(i,'去选场次 ›')}}</text>
+      </block>
+      <block wx:else>
+        <view wx:if="{{ov.same}}" class="ov-big"><text class="ov-n mono">{{ov.same}}</text><text class="ov-u">{{L.t(i,'场同场')}}</text></view>
+        <text wx:else class="ov-none">{{L.t(i,'你们还没有同一场的电影')}}</text>
+        <view wx:if="{{ov.facts.length}}" class="ov-facts"><text wx:for="{{ov.facts}}" wx:key="*this" class="ov-fact">{{item}}</text></view>
+        <view wx:for="{{ov.secs}}" wx:for-item="sec" wx:key="k" class="ov-sec">
+          <text class="ov-h">{{sec.title}}</text>
+          <view wx:for="{{sec.rows}}" wx:key="key" class="ov-row">
+            <view class="ov-t mono"><text class="ov-d">{{item.d}}</text><text class="ov-tm">{{item.t}}</text></view>
+            <view class="ov-i" data-id="{{item.id}}" bindtap="open">
+              <text class="ov-f">{{item.cn}}<text wx:if="{{item.version}}" class="ed">{{item.version}}</text></text>
+              <text class="ov-pl">{{item.place}}</text>
+              <text wx:if="{{item.extra}}" class="ov-x {{sec.bad ? 'bad' : ''}}">{{item.extra}}</text>
+            </view>
+            <view wx:if="{{sec.add}}" class="ov-add {{item.on ? 'on' : ''}}" data-key="{{item.key}}" catchtap="addOne">{{item.on ? '✓' : '+'}}</view>
+          </view>
+        </view>
+      </block>
+      <text wx:if="{{ov.miss}}" class="ov-p">{{ov.miss}}</text>
+    </view>
+    <text class="ov-all">{{L.t(i,'TA 的全部场次')}}</text>
     <view wx:for="{{items}}" wx:key="key" class="row" data-id="{{item.id}}" bindtap="open">
       <view class="tm mono"><text class="d">{{item.y}}/{{item.d}} {{item.wk}}</text><text class="b">{{item.t}}</text></view>
       <image wx:if="{{item.poster}}" class="th" src="{{item.poster}}" mode="aspectFill" />

@@ -7,6 +7,13 @@ let EN={ui:{},exact:{},films:{},programmes:{},venues:{}},UIK=[];
 const MON=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 const pl=(n,one,many)=>n+" "+(+n===1?one:many);
 const PATS=[
+ [/你们有\s*(\d+)\s*场同场/g,(m,n)=>"You share "+n+" screening"+(n==1?"":"s")],
+ [/同一部电影、不同场次\s*(\d+)\s*部/g,(m,n)=>n+" same film"+(n==1?"":"s")+", different screening"],
+ [/TA 还有\s*(\d+)\s*场和你不冲突/g,(m,n)=>n+" more of theirs fit your plan"],
+ [/与你的排片冲突\s*(\d+)\s*场/g,(m,n)=>n+" clash"+(n==1?"":"es")+" with your plan"],
+ [/TA 的\s*(\d+)\s*场已更新或取消，没有显示/g,(m,n)=>n+" of their screenings "+(n==1?"was":"were")+" changed or cancelled and "+(n==1?"is":"are")+" not shown"],
+ [/你选的是\s*/g,()=>"You picked "],
+ [/与你的《([^》]+)》\s*([\d/]+ [\d:]+)\s*冲突/g,(m,t,w)=>"Clashes with your "+t+" at "+w],
  [/间隔仅\s*(\d+)\s*分钟，留意入场时间/g,(m,n)=>"Only "+n+" min between screenings — mind the entry time"],
  [/有\s*(\d+)\s*组场次时间重叠/g,(m,n)=>pl(n,"pair of screenings overlaps","pairs of screenings overlap")],
  [/(\d+)\s*天后/g,(m,n)=>"in "+n+" days"],
@@ -1473,8 +1480,26 @@ function qrSVG(text){const m=qrMatrix(text);if(!m)return '';const n=m.length,q=4
 function exportTitleHTML(list){const ids=[...new Set(list.map(x=>x.p))].filter(id=>PG[id]),names=ids.map(id=>PG[id].name);if(!names.length)return '';
   const lines=names.length>3?[names[0],names[1],(LANG==='en'?'+ '+(names.length-2)+' more':'等 '+(names.length)+' 个专题')]:names;
   return '<h3 class="pb-title'+(names.length>1?' multi':'')+'">'+lines.map(l=>'<span>'+esc(l)+'</span>').join('')+'</h3>';}
+/* 对排片：朋友分享的排片 vs 我的排片（规则在 shared/overlap.js，小程序 pages/share 同步）
+   同场 / 同一部电影不同场 / 可以一起加入（不冲突）/ 与我的排片冲突；只比较尚未散场的场次 */
+function overlapRowHTML(s,extra){const f=F[s.id],V=VN[s.v]||{};return '<li class="ov-row"><div class="ov-t"><b>'+s.d+' '+wk(s.d)+'</b><span>'+s.t+'</span></div><div class="ov-i"><button class="ov-f" data-film="'+esc(f.id)+'">'+esc(f.cn)+(f.version?'<em>'+esc(f.version)+'</em>':'')+'</button><small>'+esc(venueLabel(V))+' · '+esc((hallOf(s)||{}).name||s.h)+'</small>'+(extra||'')+'</div>'+(extra===undefined?planToggleHTML(s):'')+'</li>';}
+function overlapHTML(list,missing){
+  const mine=selectedRows(),note=missing?'<p class="ov-miss">TA 的 '+missing+' 场已更新或取消，没有显示</p>':'';
+  if(!mine.length)return '<div class="ov-card ov-empty"><b>和 TA 对一对排片</b><p>先加入你自己想看的场次，这里就会显示你们哪几场在一起、哪几场时间冲突。</p><button class="text-button" data-tab="schedule">去选场次 ›</button>'+note+'</div>';
+  const c=SparrowOverlap.compare(list,mine,{key:keyOf,film:s=>s.id,span:s=>[showDate(s).getTime(),showEnd(s)],now:now()});
+  const sec=(title,items)=>items.length?'<div class="ov-sec"><h4>'+title+'</h4><ul>'+items.join('')+'</ul></div>':'';
+  const head=c.same.length?'<div class="ov-big"><b>'+c.same.length+'</b><span>场同场</span></div><p class="ov-sub">你们有 '+c.same.length+' 场同场</p>':'<p class="ov-sub ov-none">你们还没有同一场的电影</p>';
+  const facts=[c.sameFilm.length?'同一部电影、不同场次 '+c.sameFilm.length+' 部':'',c.free.length?'TA 还有 '+c.free.length+' 场和你不冲突':'',c.clash.length?'与你的排片冲突 '+c.clash.length+' 场':''].filter(Boolean);
+  return '<div class="ov-card"><small class="ov-k">PLAN MATCH · 对排片</small>'+head+(facts.length?'<p class="ov-facts">'+facts.map(x=>'<span>'+x+'</span>').join('')+'</p>':'')+
+    sec('同场',c.same.map(s=>overlapRowHTML(s,'')))+
+    sec('同一部电影，不同场次',c.sameFilm.map(x=>overlapRowHTML(x.their,'<small class="ov-me">你选的是 '+x.mine.map(m=>m.d+' '+m.t).join('、')+'</small>')))+
+    sec('可以一起去（和你的排片不冲突）',c.free.map(s=>overlapRowHTML(s)))+
+    sec('时间冲突',c.clash.map(x=>overlapRowHTML(x.their,'<small class="ov-clash">与你的《'+esc(F[x.mine.id].cn)+'》'+x.mine.d+' '+x.mine.t+' 冲突</small>')))+
+    note+'<p class="ov-tip">想让 TA 也看到对比？<button class="text-button" data-tab="export">把我的排片发给 TA ›</button></p></div>';
+}
 function exportPage(shared){let list;
-  if(shared!==undefined){try{const raw=decodeURIComponent(shared);const keys=raw.split('~');if(!keys.length||keys.some(k=>!validKeys.has(k)))throw Error();list=selectedRows(keys);}catch{main.innerHTML='<section class="view gut"><h2 class="sec">这个分享链接无法读取</h2><p>链接可能不完整，或其中场次已更新。</p><button class="primary-button" data-tab="my">打开我的影展</button></section>';currentExport=[];return;}}
+  let missing=0;
+  if(shared!==undefined){try{const raw=decodeURIComponent(shared);const keys=raw.split('~').filter(Boolean),ok=keys.filter(k=>validKeys.has(k));/* 部分场次已改期 / 取消时仍显示其余场次，并提示少了几场 */if(!ok.length)throw Error();missing=keys.length-ok.length;list=selectedRows(ok);}catch{main.innerHTML='<section class="view gut"><h2 class="sec">这个分享链接无法读取</h2><p>链接可能不完整，或其中场次已更新。</p><button class="primary-button" data-tab="my">打开我的影展</button></section>';currentExport=[];return;}}
   else list=scopedRows();
   currentExport=list;const isShared=shared!==undefined,st=planStats(list);
   if(!list.length){main.innerHTML='<section class="view gut export-view"><div class="page-heading"><div><small>TAKE CINEMA WITH YOU</small><h2 class="sec">导出与分享</h2></div><button class="text-button" data-tab="plan">我的排片</button></div><div class="share-empty">'+(selectedRows().length?planProgChips(selectedRows())+'<div class="empty-plan"><h3>这个专题还没有加入场次</h3><p>请切换到「全部专题」或其他专题，再导出与分享。</p></div>':'<div class="empty-plan"><h3>先为自己选几场电影</h3><p>加入场次后，就能生成带二维码的分享日程。</p><button class="primary-button" data-tab="schedule">去选电影</button></div>')+'</div></section>';return;}
@@ -1483,7 +1508,7 @@ function exportPage(shared){let list;
   const tile=(act,ic,t,s,cls='')=>'<button class="xtile '+cls+'" data-action="'+act+'"><span class="xt-ic">'+ic+'</span><b>'+t+'</b><small>'+s+'</small></button>';
   const IC={img:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-5-5L5 21"/></svg>',cal:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M9 15h6"/></svg>',pdf:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 9V3h12v6M6 18H4v-7h16v7h-2M7 14h10v7H7z"/></svg>',add:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 5v14M5 12h14"/></svg>',share:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/></svg>'};
   main.innerHTML='<section class="view gut export-view"><div class="page-heading"><div><small>'+(isShared?'SHARED PROGRAMME':'TAKE CINEMA WITH YOU')+'</small><h2 class="sec">'+(isShared?'朋友分享的排片':'导出与分享')+'</h2></div><button class="text-button" data-tab="plan">我的排片</button></div>'+chips+
-  (isShared?'<div class="shared-banner"><b>'+st.n+' 场电影 · '+st.days+' 天</b><p>这是一份别人分享给你的观影日程。加入后会和你自己的排片合并。</p><button class="primary-button" data-action="import-plan">全部加入我的排片</button></div>':'')+
+  (isShared?'<div class="shared-banner"><b>'+st.n+' 场电影 · '+st.days+' 天</b><p>这是一份别人分享给你的观影日程。加入后会和你自己的排片合并。</p><button class="primary-button" data-action="import-plan">全部加入我的排片</button></div>'+overlapHTML(list,missing):'')+
   '<div class="share-panel">'+(qr?'<div class="qr-box">'+qr+'</div>':'')+'<div class="share-body"><b>扫码直达排片首页</b><small>二维码打开网站首页，查看完整片目与最新排片。下方链接可分享这份个人日程。</small><div class="link-row"><input id="share-url" readonly value="'+esc(shareURL(list))+'" aria-label="分享链接"><button class="secondary-button" data-action="copy-link">复制链接</button></div>'+(canShare?'<button class="text-button share-sys" data-action="system-share">'+IC.share+' 通过手机分享…</button>':'')+'</div></div>'+
   '<div class="export-grid">'+tile('png',IC.img,'排片长图','含海报与二维码 · PNG','main')+tile('calendar',IC.cal,'导入日历','.ics · 手机/电脑日历')+tile('print',IC.pdf,'打印 / PDF','A4 排版')+'</div>'+
   '<h3 class="blockh">预览 <small>PREVIEW</small></h3><div class="share-paper"><div class="paper-band"><div class="pb-top"><div class="pb-brand">'+DUO_PRINT+'<b>'+tr('麻雀观影护照')+'</b></div>'+(LANG==='en'?'':'<span class="pb-en">SPARROW FILM PASSPORT</span>')+'</div><em>'+(isShared?'观影日程':'我的观影日程')+'</em>'+exportTitleHTML(list)+'</div><div class="paper-stats"><span><b>'+st.n+'</b>场</span><span><b>'+st.days+'</b>天</span><span><b>'+st.hm+'</b>银幕时长</span></div><div class="plan-days">'+planRowsHTML(list,false)+'</div><footer>'+(qr?'<div class="paper-qr">'+qr+'</div>':'')+'<div><b>扫码进入排片首页</b><span>麻雀观影护照 · 麻雀映画 × 麻雀部落</span></div></footer></div>'+
