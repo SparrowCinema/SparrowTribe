@@ -1244,3 +1244,12 @@ input:not([type=checkbox]):not([type=radio]),select,textarea{font-size:16px!impo
 .st-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:8px;margin:12px 0}.st-cards div{border:1px solid var(--line);border-radius:10px;padding:10px;background:var(--surface)}.st-cards b{display:block;font:600 20px var(--f-mono)}.st-cards small{font-size:10.5px;color:var(--muted)}
 .st-table{overflow-x:auto;margin-top:10px}.st-table table{width:100%;border-collapse:collapse;font-size:11.5px}.st-table th,.st-table td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:right;white-space:nowrap}.st-table th:first-child,.st-table td:first-child{text-align:left}
 .st-top{margin:10px 0 0;padding-left:22px;font-size:12px}.st-top li{display:flex;justify-content:space-between;gap:10px;padding:4px 0;border-bottom:1px dashed var(--line)}.st-top b{font-family:var(--f-mono)}
+/* 二级页面左上角返回按钮（subBackHTML）：胶囊底色 + 粗箭头，触控区 ≥ 44px */
+.sub-back{display:inline-flex;align-items:center;gap:2px;min-height:40px;margin:-6px 0 14px -4px;padding:0 16px 0 8px;border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--fg);font-size:15px;font-weight:600;line-height:1;box-shadow:0 1px 2px rgba(0,0,0,.06);cursor:pointer;-webkit-tap-highlight-color:transparent;transition:background .15s,transform .1s}
+.sub-back svg{width:22px;height:22px;color:var(--accent);flex:none}
+.sub-back::after{content:"";position:absolute;inset:-4px}
+.sub-back{position:relative}
+.sub-back:hover{background:var(--line-soft)}
+.sub-back:active{transform:scale(.96);background:var(--line-soft)}
+.sub-back:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media print{.sub-back{display:none!important}}
