@@ -12,6 +12,7 @@ const SY = require('../../utils/sync.js');
 const Backup=require('../../utils/profile-backup.js');
 const G = require('../../utils/growth.js');
 const CFG = require('../../utils/cfg.js');
+const Stats = require('../../utils/stats.js');
 const t = I.tr;
 const app = getApp();
 
@@ -23,7 +24,7 @@ Page({
   setTheme(e) { CFG.setTheme(e.currentTarget.dataset.p); },
   onLoad() { try{const v=wx.getStorageSync('sk-recap-sections-v1');if(Array.isArray(v))this.setData({rcSections:R.SECTIONS.map(x=>x[0]).filter(k=>v.includes(k))});}catch(e){} this.setData({ i: I.dict(), en: I.isEn() }); this.measure(); this._rz = () => { this._bw = 0; this.measure(); this.buildSpreads(); }; wx.onWindowResize && wx.onWindowResize(this._rz); this.off1 = plan.onChange(() => this.build()); this.off2 = app.onData(() => { this.build(); this.buildPassport(); }); this.off3 = W.onChange(() => this.buildPassport()); },
   onUnload() { this.offC&&this.offC();this._rz && wx.offWindowResize && wx.offWindowResize(this._rz); this.off1 && this.off1(); this.off2 && this.off2(); this.off3 && this.off3(); },
-  onShow() { wx.setNavigationBarTitle({ title: t('我的观影护照') }); this.openPassportFromFilm(); this.build(); this.buildPassport(); this.ppJump(); this.buildSync();C.flush(); if (!this.offS) this.offS = SY.onStatus(() => this.buildSync()); if (SY.stale()) SY.quiet(); },
+  onShow() { Stats.stat('pv', 'my'); wx.setNavigationBarTitle({ title: t('我的观影护照') }); this.openPassportFromFilm(); this.build(); this.buildPassport(); this.ppJump(); this.buildSync();C.flush(); if (!this.offS) this.offS = SY.onStatus(() => this.buildSync()); if (SY.stale()) SY.quiet(); },
   onHide() { this.offS && this.offS(); this.offS = null; },
   toggleCollection(){this.setData({collectionOpen:!this.data.collectionOpen});},
   openPassportFromFilm(){const o=app.globalData.openPassport;if(o){app.globalData.openPassport=0;this._jump=typeof o==='string'?o:'';this.setData({collectionOpen:true});}},
@@ -128,7 +129,7 @@ Page({
       wx.showModal({ title: t('连接网站档案'), content: t('小程序和网站的看过记录、评分、照片和个人排片会合并成一份，之后两边自动同步。'), confirmText: t('连接'), success: m => {
         if (!m.confirm) return;
         wx.showLoading({ title: t('同步中…'), mask: true });
-        SY.join(code).then(() => { wx.hideLoading(); this.build(); this.buildPassport(); this.buildSync(); wx.showToast({ title: t('已连接，记录已合并'), icon: 'none' }); }).catch(e => { wx.hideLoading(); this.buildSync(); wx.showToast({ title: t('同步失败：') + ((e && e.message) || ''), icon: 'none' }); });
+        SY.join(code).then(() => { Stats.stat('sync_link', 'scan'); wx.hideLoading(); this.build(); this.buildPassport(); this.buildSync(); wx.showToast({ title: t('已连接，记录已合并'), icon: 'none' }); }).catch(e => { wx.hideLoading(); this.buildSync(); wx.showToast({ title: t('同步失败：') + ((e && e.message) || ''), icon: 'none' }); });
       } });
     } });
   },

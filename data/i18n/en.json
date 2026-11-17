@@ -1,7 +1,9 @@
 {
  "exact": {
   "场": "screenings",
-  "天": "days"
+  "天": "days",
+  "搜索": "Search",
+  "页面": "Page"
  },
  "_readme": "English layer for the site. films/programmes/venues overlay data fields when ?lang=en; ui is the zh→en dictionary used by tr(). Missing entries fall back to the Chinese text.",
  "films": {
@@ -11268,6 +11270,24 @@
   "自杀相关情节": "Suicide-related content",
   "电影海报一张": "One film poster",
   "杭州站（星光嘉映影城）": "Hangzhou screenings (Star-Light Jiaying Cinema)",
-  "微信小程序扫码报名": "Scan with WeChat Mini Program to sign up"
+  "微信小程序扫码报名": "Scan with WeChat Mini Program to sign up",
+  "使用统计": "Usage",
+  "最近 30 天 · 匿名汇总 · 访客为每天的设备数": "Last 30 days · anonymous totals · visitors are devices per day",
+  "页面浏览": "Page views",
+  "影片页": "Film pages",
+  "专题页": "Programme pages",
+  "标想看": "Want to see",
+  "导出": "Exports",
+  "连接同步": "Sync links",
+  "网站访客": "Web visitors",
+  "小程序访客": "Mini program visitors",
+  "每日": "Daily",
+  "看得最多的影片": "Most viewed films",
+  "看得最多的专题": "Most viewed programmes",
+  "加入排片最多": "Most added to plans",
+  "最多人想看": "Most wanted",
+  "读取中…": "Loading…",
+  "还没有数据": "No data yet",
+  "统计后端还没有启用：请在 Supabase 执行 backend/stats-v1.sql。": "The stats backend is not set up yet: run backend/stats-v1.sql in Supabase."
  }
 }

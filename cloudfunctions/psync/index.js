@@ -48,6 +48,12 @@ exports.main = async (event) => {
       return { ok: true, code };
     } catch (e) { return { ok: false, msg: String((e && e.message) || e) }; }
   }
+  // 'stat' { vid, evs }：匿名使用统计，转发给 Supabase 的 ss_hit（backend/stats-v1.sql）；不带 openid
+  if (event.action === 'stat') {
+    const vid = String(event.vid || ''), evs = Array.isArray(event.evs) ? event.evs.slice(0, 60) : [];
+    if (!/^[a-z0-9]{8,32}$/.test(vid) || !evs.length) return { ok: false, msg: 'bad stat' };
+    try { const n = await rpc('ss_hit', { p: 'mini', vid, evs }); return { ok: true, n }; } catch (e) { return { ok: false, msg: String((e && e.message) || e) }; }
+  }
   if (event.action === 'new') return { ok: true, code: S.newCode(n => Array.from(crypto.randomBytes(n))) };
   if (event.action === 'sync') {
     const code = S.normalize(event.code);

@@ -3,6 +3,7 @@ const U = require('../../utils/util.js');
 const plan = require('../../utils/plan.js');
 const I = require('../../utils/i18n.js');
 const Lib = require('../../utils/library.js');
+const Stats = require('../../utils/stats.js');
 const t = I.tr;
 // 多选：pf / city / vf 是 'all' 或逗号连接的多个 id（同一筛选内为「或」）
 const sl = Lib.list, sh = Lib.has;
@@ -43,7 +44,7 @@ Page({
     const t = new Date(), m = t.getHours() * 60 + t.getMinutes();
     return m >= c.S && m <= c.E ? { top: Math.round((m - c.S) * K), label: U.fmt(m) } : null;
   },
-  onShow() { wx.setNavigationBarTitle({ title: t('麻雀观影护照') }); app.chrome(); try { require('../../utils/locate.js').locate(app.globalData.data, () => this.build()); } catch (e) { } this.startTick(); const j = app.globalData.jumpDay, jp = app.globalData.jumpProg; if (j) { app.globalData.jumpDay = ''; this.cityManual(); this.setData({ pf: 'all', vf: 'all', city: 'all', venueQuery: '', day: j }); } if (jp) { app.globalData.jumpProg = ''; this.cityManual(); this.setData({ pf: jp, vf: 'all', city: 'all', venueQuery: '', day: '' }); } this.build(); },
+  onShow() { Stats.stat('pv', 'schedule'); wx.setNavigationBarTitle({ title: t('麻雀观影护照') }); app.chrome(); try { require('../../utils/locate.js').locate(app.globalData.data, () => this.build()); } catch (e) { } this.startTick(); const j = app.globalData.jumpDay, jp = app.globalData.jumpProg; if (j) { app.globalData.jumpDay = ''; this.cityManual(); this.setData({ pf: 'all', vf: 'all', city: 'all', venueQuery: '', day: j }); } if (jp) { app.globalData.jumpProg = ''; this.cityManual(); this.setData({ pf: jp, vf: 'all', city: 'all', venueQuery: '', day: '' }); } this.build(); },
   onPullDownRefresh() { app.loadRemote(); setTimeout(() => { this.build(); wx.stopPullDownRefresh(); }, 600); },
 
   // 首页默认城市：没手动选过城市时，默认只看所在城市（定位城市有场次用它，否则杭州）的排片；手动选择记在本机 sk-city-pref（与网站 cityDefault 一致）

@@ -1,6 +1,7 @@
 const T = require('../../utils/totop.js');
 const U = require('../../utils/util.js');
 const I = require('../../utils/i18n.js');
+const Stats = require('../../utils/stats.js');
 const t = I.tr;
 const app = getApp();
 const SITE = 'https://sparrowcinema.github.io/SparrowTribe/';
@@ -14,7 +15,7 @@ Page({
   data: { live: [], soon: [], past: [], total: 0, pastOpen: false },
   switchLang() { app.switchLang(); },
   onLoad() { this.setData({ i: I.dict(), en: I.isEn() }); this.off = app.onData(() => this.build()); this.build(); },
-  onShow() { wx.setNavigationBarTitle({ title: t('专题') }); this.build(); },
+  onShow() { Stats.stat('pv', 'programmes'); wx.setNavigationBarTitle({ title: t('专题') }); this.build(); },
   onUnload() { this.off && this.off(); },
   onPullDownRefresh() { app.loadRemote(); setTimeout(() => { this.build(); wx.stopPullDownRefresh(); }, 600); },
   build() {
