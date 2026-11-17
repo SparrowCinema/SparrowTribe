@@ -174,12 +174,39 @@ function slim(data) {
   if (data.en && data.en.films) { const ef = {}; Object.keys(data.en.films).forEach(id => { ef[id] = drop(data.en.films[id], HEAVY); }); out.en = Object.assign({}, data.en, { films: ef }); }
   return out;
 }
-function detailPart(data, i) {
+function detailPart(data, i, en = true) {
   const d = {}, e = {};
-  data.films.slice(i * PART, (i + 1) * PART).forEach(f => { d[f.id] = pick(f, HEAVY); const en = data.en && data.en.films && data.en.films[f.id]; if (en) e[f.id] = pick(en, HEAVY); });
+  data.films.slice(i * PART, (i + 1) * PART).forEach(f => { d[f.id] = pick(f, HEAVY); const x = en && data.en && data.en.films && data.en.films[f.id]; if (x) e[f.id] = pick(x, HEAVY); });
   return { ok: true, part: i, d, e };
 }
-const shape = (data, event) => (event && event.part !== undefined ? detailPart(data, +event.part || 0) : slim(data));
+// ---- v2（2026-11-18，新版小程序传 {v:2}）：首屏只给进行中 / 即将开始 / 常设专题，且不带任何长文 ----
+// 云函数返回上限约 1MB；旧版首屏（全部影片 + 简介 + 导演介绍）在 325 部时已约 820KB。v2 首屏大小只跟当期专题有关：
+//   {v:2}            → 当期专题的影片（不含长文）+ 场次 + 全部影院 / 专题目录 + 当期影片的英文名；past 列出其余专题 id
+//   {v:2, prog:id}   → 某个往期专题的影片与场次（小程序在后台逐个补齐，补齐后存本机缓存）
+//   {v:2, part:i}    → 长文分段，与旧版相同
+// 另带 lang：'zh' 时不返回英文层 en（中文界面用不到，约 200KB；切到英文时小程序再按 lang:'en' 取一次，期间用安装包里的英文兜底）。
+// 不带 v 的旧版小程序仍拿到原来的格式，不受影响。
+const todayBJ = () => new Date(Date.now() + 8 * 3600e3).toISOString().slice(0, 10);
+const activeIds = data => new Set((data.programmes || []).filter(p => p.ongoing || !p.end || p.end >= todayBJ()).map(p => p.id));
+function packOf(data, keep) {
+  const shows = data.shows.filter(s => keep(s.p)), used = new Set(shows.map(s => s.id));
+  const films = data.films.filter(f => keep(f.prog) || used.has(f.id)).map(f => drop(f, HEAVY));
+  const e = {}; const ef = data.en && data.en.films; if (ef) films.forEach(f => { if (ef[f.id]) e[f.id] = drop(ef[f.id], HEAVY); });
+  return { films, shows, e };
+}
+function leanV2(data, en) {
+  const act = activeIds(data), pk = packOf(data, id => act.has(id));
+  const out = Object.assign({}, data, { films: pk.films, shows: pk.shows, lean: true, v2: true, active: [...act], past: (data.programmes || []).map(p => p.id).filter(id => !act.has(id)), detailParts: Math.ceil(data.films.length / PART) });
+  if (data.en && en) out.en = Object.assign({}, data.en, { films: pk.e }); else { delete out.en; out.enOmitted = true; }
+  return out;
+}
+function progPack(data, id, en) { const pk = packOf(data, p => p === id); return { ok: true, prog: id, films: pk.films, shows: pk.shows, e: en ? pk.e : {} }; }
+const shape = (data, event) => {
+  const v2 = event && +event.v >= 2, en = !v2 || event.lang === 'en';
+  if (event && event.part !== undefined) return detailPart(data, +event.part || 0, en);
+  if (v2) return event.prog ? progPack(data, String(event.prog), en) : leanV2(data, en);
+  return slim(data);
+};
 
 // 诊断模式：测试参数为 {"diag":true} 时会逐步执行「读网站 → 转换 → 写缓存」并把每步耗时与报错返回，
 // 用于排查调用失败。小程序不会传 diag，不受影响。
