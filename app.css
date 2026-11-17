@@ -1235,3 +1235,8 @@ input:not([type=checkbox]):not([type=radio]),select,textarea{font-size:16px!impo
 .mr-want{display:inline-flex;align-items:center;justify-content:center;height:40px;padding:0 12px;border-radius:10px;font-size:11.1px;font-weight:700;border:1.5px solid var(--line);color:var(--fg);background:transparent;white-space:nowrap}
 .mr-want.on{border-color:#c79a3a;color:#8a6516;background:#e8d9aa30}
 .film-statuses i.want{color:#8a6516;border-color:#d9c08a}.film-statuses i.new{color:#fffaf0;background:var(--accent);border-color:var(--accent)}
+/* 场次变更（2026-11-16） */
+.plan-gone{border:1px solid #d9a441;background:#f3e1b326;border-radius:12px;padding:14px 16px;margin:0 0 18px}.plan-gone>b{display:block;font-size:13px;color:#8a5a00}.plan-gone>p{margin:4px 0 6px;font-size:11px;color:var(--muted);line-height:1.7}
+.pg-item{border-top:1px dashed var(--line);padding:10px 0 4px}.pg-was strong{display:block;font-size:13px}.pg-was span{display:block;font-size:11px;color:var(--muted);text-decoration:line-through;margin-top:2px}
+.pg-alt{display:flex;justify-content:space-between;align-items:center;gap:8px;width:100%;min-height:40px;margin-top:8px;padding:6px 12px;border:1px solid var(--accent);border-radius:10px;color:var(--accent);background:transparent;font-size:11.5px;text-align:left}.pg-alt b{font-size:16px}
+.pg-none{font-size:11px;color:var(--muted);margin:8px 0 0}.pg-ok{margin-top:6px;min-height:32px}

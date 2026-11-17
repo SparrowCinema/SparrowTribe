@@ -92,3 +92,15 @@
 .selector-foot{flex:none;display:flex;align-items:center;justify-content:space-between;gap:calc(20 * var(--r));padding:calc(18 * var(--r)) calc(16 * var(--r)) calc(6 * var(--r));border-top:calc(1 * var(--r)) solid var(--line-soft);margin-top:calc(8 * var(--r))}
 .selector-foot text{font-size:calc(17.1 * var(--fr));color:var(--muted)}
 .selector-done{min-width:calc(200 * var(--r));height:calc(76 * var(--r));border-radius:calc(99 * var(--r));background:var(--accent);color:#fffaf0;font-size: calc(18.8 * var(--fr));font-weight:700;display:flex;align-items:center;justify-content:center}
+
+/* 场次变更（2026-11-16） */
+.plan-gone { border: calc(2 * var(--r)) solid #d9a441; background: rgba(243, 225, 179, 0.15); border-radius: calc(20 * var(--r)); padding: calc(24 * var(--r)) calc(28 * var(--r)); margin: 0 0 calc(28 * var(--r)); display: flex; flex-direction: column; }
+.pg-h { font-size: calc(23 * var(--fr)); font-weight: 700; color: #8a5a00; }
+.pg-p { font-size: calc(19 * var(--fr)); color: var(--muted); line-height: 1.7; margin: calc(6 * var(--r)) 0 calc(8 * var(--r)); }
+.pg-item { border-top: calc(1 * var(--r)) dashed var(--line); padding: calc(18 * var(--r)) 0 calc(6 * var(--r)); display: flex; flex-direction: column; }
+.pg-t { font-size: calc(23 * var(--fr)); font-weight: 700; } .pg-ver { font-size: calc(18 * var(--fr)); color: var(--muted); font-weight: 400; }
+.pg-was { font-size: calc(19 * var(--fr)); color: var(--muted); text-decoration: line-through; margin-top: calc(4 * var(--r)); }
+.pg-alt { display: flex; justify-content: space-between; align-items: center; gap: calc(12 * var(--r)); min-height: calc(72 * var(--r)); margin-top: calc(14 * var(--r)); padding: calc(10 * var(--r)) calc(20 * var(--r)); border: calc(2 * var(--r)) solid var(--accent); border-radius: calc(16 * var(--r)); color: var(--accent); font-size: calc(20 * var(--fr)); }
+.pg-plus { font-size: calc(28 * var(--fr)); }
+.pg-none { font-size: calc(19 * var(--fr)); color: var(--muted); margin-top: calc(12 * var(--r)); }
+.pg-ok { align-self: flex-start; color: var(--accent); font-size: calc(20 * var(--fr)); padding: calc(14 * var(--r)) 0 calc(4 * var(--r)); }

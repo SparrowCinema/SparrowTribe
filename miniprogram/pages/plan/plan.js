@@ -2,6 +2,7 @@ const T = require('../../utils/totop.js');
 const U = require('../../utils/util.js');
 const CFG = require('../../utils/cfg.js');
 const plan = require('../../utils/plan.js');
+const PC = require('../../utils/planchange.js');
 const poster = require('../../utils/poster.js');
 const W = require('../../utils/watched.js');
 const I = require('../../utils/i18n.js');
@@ -17,6 +18,8 @@ Page({
   data: { i: {}, planSelectorOpen: false, planQuery: '', planOptions: [], stats: {}, days: [], clash: 0, empty: true, pf: 'all', progs: [] },
   onLoad(q) { this.to = q && q.to; this.setData({ i: I.dict() }); this.off1 = plan.onChange(() => this.build()); this.off2 = app.onData(() => this.build()); },
   onUnload() { this.off1 && this.off1(); this.off2 && this.off2(); },
+  goneSwap(e) { const d = e.currentTarget.dataset; PC.swap(d.k, d.to); wx.showToast({ title: t('已换成新场次'), icon: 'none' }); this.build(); },
+  goneOk(e) { PC.dismiss(e.currentTarget.dataset.k); this.build(); },
   onShow() { wx.setNavigationBarTitle({ title: t('个人排片') }); this.build(); },
   onReady() { if (this.to === 'tools') setTimeout(() => wx.pageScrollTo({ selector: '#plan-tools', offsetTop: -12, duration: 300 }), 200); },
   noop() { },
@@ -28,6 +31,13 @@ Page({
 
   build() {
     const data = app.globalData.data, idx = U.index(data), picked = plan.get();
+    { // 场次变更：已选但最新排片里找不到的场次（规则见 utils/planchange.js）
+      const en = I.isEn(), place = (v, h) => { const vn = idx.VN[v], hl = vn && vn.halls.find(x => x.id === h); return vn ? W.vShort(vn) + (hl ? ' ' + hl.name : '') : ''; };
+      PC.track(data);
+      this.setData({ gone: PC.list(data).map(g => { const f = idx.F[g.f]; return { k: g.k, title: f ? f.cn : t('原场次'), ver: f ? t(f.version || '') : '', was: g.d + ' ' + t(U.wk(g.d)) + ' ' + g.t + ' · ' + place(g.v, g.h),
+        alts: g.alts.map(s => ({ to: U.keyOf(s), txt: t('换成') + ' ' + s.d + ' ' + t(U.wk(s.d)) + ' ' + s.t + ' · ' + place(s.v, s.h) })) }; }),
+        goneHead: (n => en ? n + (n === 1 ? ' screening in your plan changed' : ' screenings in your plan changed') : n + ' 场排片有变动')(PC.list(data).length) });
+    }
     const all = data.shows.filter(s => idx.F[s.id] && picked.has(U.keyOf(s))).sort((a, b) => U.showDate(a) - U.showDate(b));
     // 专题筛选：只列出个人排片里有场次的专题；选中的专题已无场次时回到「全部」
     // 专题筛选：只要个人排片不为空就显示；列出所有有放映场次的专题（未加入的显示「未加入」），与网站一致
