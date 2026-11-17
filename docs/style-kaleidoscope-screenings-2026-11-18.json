@@ -1,0 +1,115 @@
+{
+ "programme": "style-kaleidoscope",
+ "updated": "2026-11-18",
+ "source": "用户提供的风格万相百美汇排片海报：11月23日至29日",
+ "venue": "杭州百美汇影城",
+ "hall": "LUXE4K激光巨幕厅",
+ "timezone": "Asia/Shanghai",
+ "addedScreenings": [
+  {
+   "date": "2026-11-23",
+   "time": "19:30",
+   "film": "leningrad-cowboys",
+   "title": "列宁格勒牛仔征美记",
+   "venue": "premiere",
+   "hall": "luxe",
+   "sid": "swu5hrwnl"
+  },
+  {
+   "date": "2026-11-24",
+   "time": "19:30",
+   "film": "turin-horse",
+   "title": "都灵之马",
+   "venue": "premiere",
+   "hall": "luxe",
+   "sid": "s14hrgnpr"
+  },
+  {
+   "date": "2026-11-25",
+   "time": "19:30",
+   "film": "long-live-the-missus",
+   "title": "太太万岁",
+   "venue": "premiere",
+   "hall": "luxe",
+   "sid": "s2dppwafl"
+  },
+  {
+   "date": "2026-11-26",
+   "time": "19:30",
+   "film": "bullets-over-broadway",
+   "title": "子弹横飞百老汇",
+   "venue": "premiere",
+   "hall": "luxe",
+   "sid": "s1948tif3"
+  },
+  {
+   "date": "2026-11-27",
+   "time": "19:30",
+   "film": "where-is-the-friends-house",
+   "title": "何处是我朋友的家",
+   "venue": "premiere",
+   "hall": "luxe",
+   "sid": "s8rl77j6n"
+  },
+  {
+   "date": "2026-11-28",
+   "time": "12:30",
+   "film": "wild-strawberries",
+   "title": "野草莓",
+   "venue": "premiere",
+   "hall": "luxe",
+   "sid": "s15zl4bpo"
+  },
+  {
+   "date": "2026-11-28",
+   "time": "14:20",
+   "film": "mon-oncle",
+   "title": "我的舅舅",
+   "venue": "premiere",
+   "hall": "luxe",
+   "sid": "s2gilt1jv"
+  },
+  {
+   "date": "2026-11-28",
+   "time": "16:40",
+   "film": "the-sacrifice",
+   "title": "牺牲",
+   "venue": "premiere",
+   "hall": "luxe",
+   "sid": "s1dccoudv"
+  },
+  {
+   "date": "2026-11-29",
+   "time": "12:30",
+   "film": "dogville",
+   "title": "狗镇",
+   "venue": "premiere",
+   "hall": "luxe",
+   "sid": "sckec8g7g"
+  },
+  {
+   "date": "2026-11-29",
+   "time": "15:50",
+   "film": "spring-in-a-small-town",
+   "title": "小城之春",
+   "venue": "premiere",
+   "hall": "luxe",
+   "sid": "s1yyqenoi"
+  },
+  {
+   "date": "2026-11-29",
+   "time": "17:50",
+   "film": "blood-simple",
+   "title": "血迷宫",
+   "venue": "premiere",
+   "hall": "luxe",
+   "sid": "s2l058257"
+  }
+ ],
+ "notes": "海报标示LUXE，沿用已有premiere/luxe影院影厅标识；原34场及所有影片资料、已有sid保持不变。新增11场由assign-sids.js分配稳定编号。",
+ "validation": [
+  "原34场与所有影片元数据及既有sid保持原样，新增11场无重复",
+  "新增场次均进入实际对应影片详情模板的场次列表，小程序字段及sid一致",
+  "assign-sids / build-fallback / build-lite / check-content / check-library / check-companion / check-taste / check-taste-db / git diff --check通过"
+ ]
+}
