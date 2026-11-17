@@ -48,6 +48,7 @@ async function fromSite(ms, prev) {
   // 英文层和云端配置是可选的：与节目文件同时开始读；读不完就沿用上一次缓存里的，绝不拖垮整次刷新
   const enP = getJSON(SITE + 'data/i18n/en.json', ms).catch(() => null);
   const cfgP = getJSON(SITE + 'data/config.json', ms).catch(() => null);
+  const chP = getJSON(SITE + 'data/changes.json', ms).catch(() => null); // 场次变更记录（tools/build-changes.js），没有时为空
   const optional = p => Promise.race([p, new Promise(r => setTimeout(() => r(null), Math.max(0, deadline - Date.now() - 1500)))]);
   const cat = await getJSON(SITE + 'data/catalog.json', ms, 6, 3000); // 目录是唯一没有后备的文件：多试几次、卡住 3 秒就换连接
   const progs = cat.programmes || [];
@@ -83,8 +84,8 @@ async function fromSite(ms, prev) {
       films.push(o);
     });
     (pk.shows || []).forEach(r => {
-      const [d, t, id, v = 'premiere', h = 'luxe'] = Array.isArray(r) ? r : [r.d, r.t, r.id, r.v, r.h];
-      shows.push({ d, t, id, v, h, p: p.id }); // p：场次所属专题（跨影展合并影片按此区分）
+      const [d, t, id, v = 'premiere', h = 'luxe', sid] = Array.isArray(r) ? r : [r.d, r.t, r.id, r.v, r.h, r.sid];
+      shows.push(Object.assign({ d, t, id, v, h, p: p.id }, sid ? { sid } : {})); // sid：固定场次编号（见 tools/assign-sids.js） // p：场次所属专题（跨影展合并影片按此区分）
     });
   });
   const programmes = progs.map(p => {
@@ -96,7 +97,8 @@ async function fromSite(ms, prev) {
   if (!films.length || !shows.length) throw new Error('empty site data');
   const en = (await optional(enP)) || (prev && prev.en) || null; // 英文层：读不到时沿用上次缓存，再不行小程序用安装包里的
   const config = (await optional(cfgP)) || (prev && prev.config) || null; // 云端配置：字号缩放、公告、提示文案
-  return { films, shows, venues: cat.venues || [], programmes, aliases: cat.aliases || {}, en, config, source: 'site' };
+  const ch = await optional(chP), changes = (ch && ch.moves) || (prev && prev.changes) || {}; // {旧场次键:{to,f,sid,was}}：小程序据此迁移个人排片，remind 据此发准确的改期通知
+  return { films, shows, venues: cat.venues || [], programmes, aliases: cat.aliases || {}, en, config, changes, source: 'site' };
 }
 
 async function all(name) {

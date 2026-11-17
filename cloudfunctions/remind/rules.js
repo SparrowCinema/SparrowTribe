@@ -14,7 +14,7 @@ function index(data) {
   const F = {}, VN = {};
   (data.films || []).forEach(f => { F[f.id] = f; });
   (data.venues || []).forEach(v => { VN[v.id] = v; });
-  return { F, VN, shows: data.shows || [] };
+  return { F, VN, shows: data.shows || [], moves: data.changes || {} }; // moves：场次变更记录（getData 从网站 data/changes.json 读入）
 }
 const filmName = f => f ? cut(f.cn + (f.version ? ' ' + f.version : '')) : '';
 // 地点：城市·影院·影厅，超过 20 字先去掉城市，再用影厅简称
@@ -33,6 +33,8 @@ const upcoming = (idx, film, now) => idx.shows.filter(s => s.id === film && star
 const TXT = {
   start: ['1 小时内开场，请提前取票入场', '请提前到场，观影时手机静音'],
   change: ['场次有变动，点此查看最新场次', '原场次已调整，请在小程序里重新选择'],
+  moved: ['场次已改期，请按新时间入场', '你的排片已自动换成新场次'],
+  cancelled: ['场次已取消，点此查看其他场次', '可在小程序里改选同片其他场次'],
   want: ['你想看的影片有新场次了', '点此查看全部场次并加入排片'],
 };
 function message(kind, f, s, idx, when) {
@@ -54,7 +56,14 @@ function decide(doc, idx, now, trusted) {
       if (st - HOUR <= now && st > now) return { act: 'send', kind: 'start', page, data: message('start', f, s, idx, st) };
       return { act: 'wait' };
     }
-    // 场次键在最新排片里找不到：时间或影厅改了。数据可信且影片本身还在时才发变更通知
+    // 场次键在最新排片里找不到：先查场次变更记录——改期就按新时间、新地点发「已改期」，取消就发「已取消」
+    const mv = idx.moves[doc.key];
+    if (mv && mv.to) {
+      const ns = idx.shows.find(x => keyOf(x) === mv.to);
+      if (ns && startOf(ns) > now) return { act: 'send', kind: 'moved', page, data: message('moved', f, ns, idx, startOf(ns)) };
+    }
+    if (mv && !mv.to && doc.start > now) return { act: 'send', kind: 'cancelled', page, data: message('cancelled', f, doc.show || {}, idx, doc.start) };
+    // 记录里没有：时间或影厅改了。数据可信且影片本身还在时才发笼统的变更通知
     if (!trusted || !f || doc.start <= now) return { act: 'wait' };
     const old = doc.show || {}; // 订阅时记下的原场次（影院 id 本身可能含「-」，不能从场次键拆）
     return { act: 'send', kind: 'change', page, data: message('change', f, old, idx, doc.start) };

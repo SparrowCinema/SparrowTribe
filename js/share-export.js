@@ -34,7 +34,7 @@ function overlapHTML(list,missing){
 }
 function exportPage(shared){let list;
   let missing=0;
-  if(shared!==undefined){try{const raw=decodeURIComponent(shared);const keys=raw.split('~').filter(Boolean),ok=keys.filter(k=>validKeys.has(k));/* 部分场次已改期 / 取消时仍显示其余场次，并提示少了几场 */if(!ok.length)throw Error();missing=keys.length-ok.length;list=selectedRows(ok);}catch{main.innerHTML='<section class="view gut"><h2 class="sec">这个分享链接无法读取</h2><p>链接可能不完整，或其中场次已更新。</p><button class="primary-button" data-tab="my">打开我的影展</button></section>';currentExport=[];return;}}
+  if(shared!==undefined){try{const raw=decodeURIComponent(shared);const keys=raw.split('~').filter(Boolean),ok=[...new Set(keys.map(resolveKey).filter(k=>validKeys.has(k)))]; /* 改期的场次按变更记录换成新场次 *//* 部分场次已改期 / 取消时仍显示其余场次，并提示少了几场 */if(!ok.length)throw Error();missing=keys.length-ok.length;list=selectedRows(ok);}catch{main.innerHTML='<section class="view gut"><h2 class="sec">这个分享链接无法读取</h2><p>链接可能不完整，或其中场次已更新。</p><button class="primary-button" data-tab="my">打开我的影展</button></section>';currentExport=[];return;}}
   else list=scopedRows();
   currentExport=list;const isShared=shared!==undefined,st=planStats(list);
   if(!list.length){main.innerHTML='<section class="view gut export-view"><div class="page-heading"><div><small>TAKE CINEMA WITH YOU</small><h2 class="sec">导出与分享</h2></div><button class="text-button" data-tab="plan">我的排片</button></div><div class="share-empty">'+(selectedRows().length?planProgChips(selectedRows())+'<div class="empty-plan"><h3>这个专题还没有加入场次</h3><p>请切换到「全部专题」或其他专题，再导出与分享。</p></div>':'<div class="empty-plan"><h3>先为自己选几场电影</h3><p>加入场次后，就能生成带二维码的分享日程。</p><button class="primary-button" data-tab="schedule">去选电影</button></div>')+'</div></section>';return;}

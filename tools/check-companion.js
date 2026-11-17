@@ -22,3 +22,5 @@ require('./check-taste-report.js');
 require('./check-remind.js');
 require('./check-overlap.js');
 require('./check-getdata.js');
+// 场次编号：每场都有、不重复（tools/assign-sids.js）
+require('child_process').execFileSync(process.execPath, [require('path').join(__dirname, 'assign-sids.js'), '--check'], { stdio: 'inherit' });

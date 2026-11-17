@@ -103,7 +103,9 @@ App({
     return (async () => {
       for (let i = 0; i < ids.length; i += 2) await Promise.all([one(ids[i]), ids[i + 1] ? one(ids[i + 1]) : null]);
       if (this._en) I.setEN(this._en);
-      this.globalData.data = I.localize(raw); this._waiters.forEach(fn => fn(this.globalData.data));
+      this.globalData.data = I.localize(raw);
+      try { require('./utils/planchange.js').track(this.globalData.data); } catch (e) { } // 往期专题换成最新数据后再核对一次场次变更
+      this._waiters.forEach(fn => fn(this.globalData.data));
     })();
   },
 

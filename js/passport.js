@@ -11,7 +11,7 @@ function saveWatched(){try{localStorage.setItem(WATCH_KEY,JSON.stringify(watched
 const isoOf=d=>d.getFullYear()+'-'+pad2(d.getMonth()+1)+'-'+pad2(d.getDate());
 // 默认观影日期：优先已放映的「个人排片」场次，其次本片最近一场已放映场次，否则今天
 function watchGuess(id){const past=SH.filter(s=>s.id===id&&isPast(s)),mine=past.filter(s=>picked.has(keyOf(s))),s=(mine.length?mine:past).slice(-1)[0];return s?{d:isoOf(showDate(s)),k:keyOf(s)}:{d:isoOf(new Date(now())),k:''};}
-function watchShow(rec){const s=rec&&rec.k&&SH.find(x=>keyOf(x)===rec.k);return s&&isoOf(showDate(s))===rec.d?s:null;}
+function watchShow(rec){const k=rec&&rec.k&&resolveKey(rec.k),s=k&&SH.find(x=>keyOf(x)===k);return s&&isoOf(showDate(s))===rec.d?s:null;}
 function watchEntries(){return Object.keys(watched).filter(id=>F[id]&&watched[id]&&!watched[id].del&&watched[id].d).map(id=>{const rec=watched[id],s=watchShow(rec);return {id,f:F[id],rec,s,venue:s?vShort(VN[s.v]):''};})
   .sort((a,b)=>a.rec.d.localeCompare(b.rec.d)||(a.s&&b.s?showDate(a.s)-showDate(b.s):0)||a.id.localeCompare(b.id));}
 /* ===== 想看（2026-11-16）=====

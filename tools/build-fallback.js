@@ -32,8 +32,8 @@ progs.forEach(p => {
     films.push(o);
   });
   (pk.shows || []).forEach(r => {
-    const [d, t, id, v = 'premiere', h = 'luxe'] = Array.isArray(r) ? r : [r.d, r.t, r.id, r.v, r.h];
-    shows.push(Object.assign({ d, t, id, v, h, p: p.id }, !Array.isArray(r) && r.year ? { year: r.year, archive: r.archive === true } : {})); // p：场次所属专题（跨影展合并影片按此区分）
+    const [d, t, id, v = 'premiere', h = 'luxe', sid] = Array.isArray(r) ? r : [r.d, r.t, r.id, r.v, r.h, r.sid];
+    shows.push(Object.assign({ d, t, id, v, h, p: p.id }, sid ? { sid } : {}, !Array.isArray(r) && r.year ? { year: r.year, archive: r.archive === true } : {})); // p：场次所属专题（跨影展合并影片按此区分）
   });
 });
 const programmes = progs.map(p => {

@@ -141,13 +141,14 @@ async function loadData(){
  const vn=Object.fromEntries(venues.map(v=>[v.id,v])),films=[],filmMap={},shows=[];
  programmes.forEach((p,i)=>{const pk=packs[i];if(!pk)return;
   (pk.films||[]).forEach(source=>{if(filmMap[source.id])return;const f=normalizeFilm({...source},p.id);if(f._lite)f._file=p.file;filmMap[f.id]=f;films.push(f);});
-  (pk.shows||[]).forEach(r=>{const [d,t,id,v="premiere",hall="luxe"]=Array.isArray(r)?r:[r.d,r.t,r.id,r.v,r.h];
-   if(!filmMap[id]||!vn[v]||!vn[v].halls.some(x=>x.id===hall)){console.warn("场次数据不完整，已跳过",r);return;}shows.push(Object.assign({d,t,id,v,h:hall,p:p.id},!Array.isArray(r)&&r.year?{year:r.year,archive:r.archive===true}:{}));});});
+  (pk.shows||[]).forEach(r=>{const [d,t,id,v="premiere",hall="luxe",sid]=Array.isArray(r)?r:[r.d,r.t,r.id,r.v,r.h,r.sid];
+   if(!filmMap[id]||!vn[v]||!vn[v].halls.some(x=>x.id===hall)){console.warn("场次数据不完整，已跳过",r);return;}shows.push(Object.assign({d,t,id,v,h:hall,p:p.id},sid?{sid}:{},!Array.isArray(r)&&r.year?{year:r.year,archive:r.archive===true}:{}));});});
  venues.forEach((v,i)=>{v._o=i;});const rank=venueRank(venues,shows); /* 定位城市（有未散场场次时）→ 杭州 → 其余城市按目录顺序；用于甘特图列、城市/影院选择器、同时间场次 */
  venues.sort((a,b)=>rank[a.id]-rank[b.id]);
  shows.sort((a,b)=>showDate(a)-showDate(b)||rank[a.v]-rank[b.v]);
  VENUES=venues;VN=vn;PROGRAMMES=programmes;PG=Object.fromEntries(programmes.map(p=>[p.id,p]));
  Object.entries(cat.aliases||{}).forEach(([o,n])=>{if(filmMap[n]&&!filmMap[o])filmMap[o]=filmMap[n];});
+ {let ch=null;try{ch=await get("data/changes.json");}catch(e){}MOVES=(ch&&ch.moves)||{};} /* 场次变更记录：没有（本地预览）时为空，照旧按本机记录识别 */
  FILMS=films.filter(f=>!f.ev);F=filmMap;SH=shows;days=[...new Set(SH.map(s=>s.d))];validKeys=new Set(SH.map(keyOf));planTrack();picked=readSelection();watched=readWatched();want=readWant();wantSeen=readWantSeen();migrateAliases(cat.aliases);dataSignature=signature;return true;
 }
 async function refreshProgrammeData(){

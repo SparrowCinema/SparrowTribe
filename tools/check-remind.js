@@ -45,6 +45,14 @@ const ch = R.decide(moved, idx, st - 5 * R.HOUR, true);
 assert.strictEqual(ch.kind, 'change'); assert.strictEqual(ch.data.thing5.value, R.placeOf(s, idx)); checkMsg(ch.data);
 assert.strictEqual(R.decide(moved, idx, st - 5 * R.HOUR, false).act, 'wait');
 
+// 场次变更记录：改期按新时间新地点发「已改期」；取消发「已取消」；不依赖数据新鲜度
+const ns = shows.find(x => idx.F[x.id] && x !== s && R.startOf(x) > st + 3 * R.HOUR);
+const idxM = Object.assign({}, idx, { moves: { [key + 'z']: { to: R.keyOf(ns), f: s.id }, [key + 'y']: { to: null, f: s.id } } });
+const mv = R.decide(Object.assign({}, doc, { key: key + 'z' }), idxM, st - 5 * R.HOUR, false);
+assert.strictEqual(mv.kind, 'moved'); assert.strictEqual(mv.data.time2.value, R.timeText(R.startOf(ns))); assert.strictEqual(mv.data.thing5.value, R.placeOf(ns, idx)); checkMsg(mv.data);
+const cc = R.decide(Object.assign({}, doc, { key: key + 'y' }), idxM, st - 5 * R.HOUR, false);
+assert.strictEqual(cc.kind, 'cancelled'); assert.strictEqual(cc.data.time2.value, R.timeText(st)); checkMsg(cc.data);
+
 // 想看：已知场次不提醒；出现新场次提醒最早的一场
 const now = st - 3 * R.HOUR, ups = R.upcoming(idx, s.id, now);
 assert.strictEqual(R.decide({ kind: 'want', film: s.id, known: ups.map(R.keyOf) }, idx, now, true).act, 'wait');

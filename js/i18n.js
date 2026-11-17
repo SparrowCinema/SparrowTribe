@@ -9,6 +9,7 @@ let EN={ui:{},exact:{},films:{},programmes:{},venues:{}},UIK=[];
 const MON=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 const pl=(n,one,many)=>n+" "+(+n===1?one:many);
 const PATS=[
+ [/(\d+)\s*场排片已按最新排片更新/g,(m,n)=>n+" screening"+(n==1?" in your plan was":"s in your plan were")+" updated to the new schedule"],
  [/你们有\s*(\d+)\s*场同场/g,(m,n)=>"You share "+n+" screening"+(n==1?"":"s")],
  [/同一部电影、不同场次\s*(\d+)\s*部/g,(m,n)=>n+" same film"+(n==1?"":"s")+", different screening"],
  [/TA 还有\s*(\d+)\s*场和你不冲突/g,(m,n)=>n+" more of theirs fit your plan"],

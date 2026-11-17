@@ -11,8 +11,8 @@ Page({
   data: { i: {}, items: [], days: 0, bad: false },
   onLoad(q) {
     wx.setNavigationBarTitle({ title: t('朋友分享的排片') });
-    const keys = decodeURIComponent(q.k || '').split('~').filter(Boolean);
-    const data = app.globalData.data, idx = U.index(data);
+    const data = app.globalData.data, idx = U.index(data), PC = require('../../utils/planchange.js');
+    const keys = [...new Set(decodeURIComponent(q.k || '').split('~').filter(Boolean).map(k => PC.resolve(data, k)))]; // 改期的场次按变更记录换成新场次
     const list = data.shows.filter(s => idx.F[s.id] && keys.includes(U.keyOf(s))).sort((a, b) => U.showDate(a) - U.showDate(b));
     this.keys = list.map(U.keyOf); this._list = list; this._miss = keys.length - list.length;
     this.setData({ i: I.dict(), cnt: t(list.length + ' 场电影 · ' + new Set(list.map(s => s.d)).size + ' 天'), bad: !list.length, items: list.map(s => U.showView(s, idx, data, plan.get())), days: new Set(list.map(s => s.d)).size });
