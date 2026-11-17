@@ -186,6 +186,23 @@ html.ts-lock{overflow:hidden}
 <script src="shared/growth.js"></script>
 <script src="shared/overlap.js"></script>
 <script src="shared/profile-backup.js"></script>
-<script src="app.js"></script>
+<!-- 网站主脚本：按功能拆在 js/ 下，按下面的顺序加载；部署时 tools/build-assets.js 把这一段合并成一个 app.js?v=… -->
+<!-- app-js:start -->
+<script src="js/i18n.js"></script>
+<script src="js/core.js"></script>
+<script src="js/schedule.js"></script>
+<script src="js/films.js"></script>
+<script src="js/film-detail.js"></script>
+<script src="js/programmes.js"></script>
+<script src="js/plan-store.js"></script>
+<script src="js/stats.js"></script>
+<script src="js/plan.js"></script>
+<script src="js/install.js"></script>
+<script src="js/passport.js"></script>
+<script src="js/sync.js"></script>
+<script src="js/my.js"></script>
+<script src="js/share-export.js"></script>
+<script src="js/router.js"></script>
+<!-- app-js:end -->
 
 </body></html>
