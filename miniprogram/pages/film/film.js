@@ -5,6 +5,7 @@ const Premiere = require('../../utils/premiere.js');
 const Library = require('../../utils/library.js');
 const plan = require('../../utils/plan.js');
 const W = require('../../utils/watched.js');
+const Want = require('../../utils/want.js');
 const G = require('../../utils/growth.js');
 const I = require('../../utils/i18n.js');
 const t = I.tr;
@@ -99,6 +100,7 @@ Page({
       shows, goneShows, goneN: t(goneShows.length + ' 场'), goneOpen: this.data.goneOpen === undefined ? !showsAllN : this.data.goneOpen, ratings, credits, nav, parts: (f.parts || []).map(m => { const en = I.isEn(); return { n: en ? m.en : m.cn, sub: [en ? m.cn : m.en, m.y, m.min ? m.min + t('分钟') : '', m.c].filter(Boolean).join(' · '), dir: (en && m.dirO) || m.dir || '', src: (en && m.printSourceEn) || m.printSource || '', syn: (en ? m.synEn : m.syn) || '', bio:(en?m.bioEn:m.bio)||'', honors: (m.honors || []).map(honor) }; }), ended: allShows.length > 0 && !shows.length
     });
     this.buildMine();
+    Want.markSeen(this.id, this.wantKeys());
     this.setData({ fs: 1 }, () => this.fitHero());
   },
   // 头图：文字较多时逐步缩小字号，使文字区高度不超过海报（上下对齐）
@@ -109,6 +111,9 @@ Page({
     });
   },
   // 我的观影：看过 + 五星十分制评分（每颗星 2 分，可半颗）
+  // 想看：切换后按当前待映场次记下「已见过」，之后新增的场次在片目标「新场次」
+  wantKeys() { const data = app.globalData.data, idx = U.index(data); return data.shows.filter(s => s.id === this.id && !U.ended(s, idx)).map(U.keyOf); },
+  toggleWant() { const on = !Want.isOn(this.id); Want.set(this.id, on, this.wantKeys()); wx.showToast({ title: on ? t('已加入想看') : t('已移出想看'), icon: 'none' }); this.buildMine(); },
   dyToggle() { this.dyOpen = !this.dyOpen; this.buildMine(); },
   buildMine() {
     const data = app.globalData.data, idx = U.index(data), rec = W.get(this.id), r = rec ? rec.r || 0 : 0, en = I.isEn();
@@ -120,6 +125,7 @@ Page({
     const fold = n > 3, open = !!this.dyOpen, hid = n - 3, shown = fold && !open ? diary.slice(0, 3) : diary;
     const taste = rec ? ['fun','bore'].map(k => ({ key:k, value: Taste.valid(rec[k]) ? rec[k] : null, stars: [1,2,3,4,5].map(n => ({ n, fill: Taste.valid(rec[k]) ? (rec[k] >= n ? 100 : rec[k] >= n - 0.5 ? 50 : 0) : 0 })) })) : ['fun','bore'].map(k => ({ key:k, value:null, stars:[1,2,3,4,5].map(n=>({n,fill:0})) }));
     this.setData({ community:C.model(this.id,I.isEn()), tsRow:this.tsRowModel(), taste, mine: { seen: !!rec, n, r, diary: shown, dyFold: fold, dyOpen: open, dyMoreTxt: open ? (en ? 'Show fewer' : '收起较早的观影') : (en ? 'Show ' + hid + ' earlier' : '展开其余 ' + hid + ' 次'), nTxt: en ? '×' + n : n + ' 次', stars: [1, 2, 3, 4, 5].map(i => Math.max(0, Math.min(2, r - (i - 1) * 2)) * 50),
+      want: Want.isOn(this.id), wantTxt: Want.isOn(this.id) ? (en ? '★ On my list' : '★ 已想看') : (en ? '☆ Want to see' : '☆ 想看'),
       seenTxt: I.isEn() ? '+ Watched · stamp' : '＋ 看过 · 盖章', scoreTxt: r ? r + '/10' : t('点星打分') } });
   },
   // 影片页一行摘要（与网页 tasteRowHTML 同规则）；点开为底部弹层 page-container

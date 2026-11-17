@@ -62,3 +62,6 @@
   .filter-label { font-size: calc(19 * var(--fr)); margin-bottom: calc(6 * var(--r)); }
   .filter-value { font-size: calc(21 * var(--fr)); gap: calc(8 * var(--r)); }
 }
+
+/* 想看（2026-11-16） */
+.film-statuses .want{color:#8a6516;border-color:#d9c08a}.film-statuses .new{color:#fffaf0;background:var(--accent);border-color:var(--accent)}

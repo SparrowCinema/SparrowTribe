@@ -4,6 +4,7 @@ const U = require('../../utils/util.js');
 const plan = require('../../utils/plan.js');
 const poster = require('../../utils/poster.js');
 const W = require('../../utils/watched.js');
+const Want = require('../../utils/want.js');
 const R = require('../../utils/recap.js');
 const I = require('../../utils/i18n.js');
 const SY = require('../../utils/sync.js');
@@ -140,6 +141,9 @@ Page({
     const list = data.shows.filter(s => idx.F[s.id] && picked.has(U.keyOf(s))).sort((a, b) => U.showDate(a) - U.showDate(b));
     const now = Date.now(), next = list.find(s => U.showDate(s) >= now);
     const en = I.isEn(), md = next ? next.d.slice(5).replace('-', '/') + ' ' + U.wk(next.d) + ' ' + next.t : '';
+    { const d = app.globalData.data, ix = U.index(d), ids = d.films.filter(f => !f.ev && Want.isOn(f.id)).map(f => f.id), up = id => d.shows.filter(s => s.id === id && !U.ended(s, ix)).map(U.keyOf);
+      const live = ids.filter(id => up(id).length).length, fresh = ids.filter(id => Want.newCount(id, up(id))).length;
+      this.setData({ wantSub: ids.length ? (en ? ids.length + (ids.length === 1 ? ' film' : ' films') + (fresh ? ' · ' + fresh + ' with new screenings' : live ? ' · ' + live + ' now screening' : '') : ids.length + ' 部' + (fresh ? ' · ' + fresh + ' 部有新场次' : live ? ' · ' + live + ' 部有场次' : '')) : t('在影片页点「想看」，有新场次时会标出') }); }
     this.setData({ planSub: list.length ? (en ? list.length + (list.length === 1 ? ' show' : ' shows') + ' · ' + (next ? 'next ' + md : 'all screened') : list.length + ' 场 · ' + (next ? '下一场 ' + md : '已全部放映')) : t('按天查看日程 · 导出长图 · 导入日历 · 分享') });
   },
   toPlan(e) { const to = e && e.currentTarget.dataset.to; wx.navigateTo({ url: '/pages/plan/plan' + (to ? '?to=' + to : '') }); },

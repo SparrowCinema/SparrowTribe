@@ -271,3 +271,9 @@
 
 /* 趣味弹层底部：电影趣味图谱入口（醒目胶囊） */
 .ts-map-btn{display:flex;align-items:center;gap:calc(12 * var(--r));min-width:0;padding:calc(16 * var(--r)) calc(26 * var(--r)) calc(16 * var(--r)) calc(20 * var(--r));border:calc(3 * var(--r)) solid rgba(47,111,108,.5);border-radius:999px;background:rgba(47,111,108,.09);color:var(--teal);font-size:calc(23 * var(--fr));font-weight:700;white-space:nowrap}.ts-map-ic{width:calc(34 * var(--r));height:calc(34 * var(--r));flex:none}.ts-map-go{font-size:calc(28 * var(--fr));line-height:1}
+
+/* 想看（2026-11-16） */
+.mr-acts { display: flex; gap: calc(18 * var(--r)); margin-top: calc(18 * var(--r)); }
+.mr-acts .mr-seen-full { flex: 1.35; margin-top: 0; }
+.mr-want { flex: 1; height: calc(68 * var(--r)); display: flex; align-items: center; justify-content: center; border-radius: calc(16 * var(--r)); border: calc(3 * var(--r)) solid var(--line); color: var(--fg); font-size: calc(22 * var(--fr)); font-weight: 700; white-space: nowrap; box-sizing: border-box; }
+.mr-want.on { border-color: #c79a3a; color: #8a6516; background: rgba(232, 217, 170, 0.19); }

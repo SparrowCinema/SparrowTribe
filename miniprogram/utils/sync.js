@@ -3,6 +3,7 @@
 const S = require('./psync.js');
 const Backup=require('./profile-backup.js');
 const W = require('./watched.js');
+const Want = require('./want.js');
 const plan = require('./plan.js');
 const KEY = 'sk-sync';
 let busy = null, applying = false, clearing = false, timer = 0;
@@ -21,7 +22,7 @@ function photoB64() {
 }
 function snapshot() {
   const m = W.meta();
-  return { v: 1, watched: W.all(), holder: { n: W.holder(), t: m.holder || 0 }, photo: { d: photoB64(), t: m.photo || 0 }, picks: { k: [...plan.get()], t: m.picks || 0 } };
+  return { v: 1, watched: W.all(), holder: { n: W.holder(), t: m.holder || 0 }, photo: { d: photoB64(), t: m.photo || 0 }, picks: { k: [...plan.get()], t: m.picks || 0 }, want: JSON.parse(JSON.stringify(Want.all())) };
 }
 function apply(d) {
   applying = true;
@@ -38,6 +39,7 @@ function apply(d) {
       }
     } else if (old) { W.setPhoto('', true); try { fs.unlinkSync(old); } catch (e) { } }
     plan.replace(d.picks.k);
+    if (d.want) Want.replaceAll(d.want);
     W.setMeta({ holder: d.holder.t, photo: d.photo.t, picks: d.picks.t });
   } finally { applying = false; }
 }
@@ -83,7 +85,7 @@ function fromScan(text) { const m = /SP-[A-Za-z0-9-]+/i.exec(String(text || ''))
 function stop() { setOff(true); setState(null); status.state = 'idle'; status.msg = ''; status.at = 0; emit(); }
 // 本机有改动时 3 秒后自动同步；应用从后台回来或进入「我的」页时拉取一次
 function changed() { if (applying||clearing) return; const st = state(); if (!st || !st.code) return; clearTimeout(timer); timer = setTimeout(quiet, 3000); }
-function init() { W.onChange(changed); plan.onChange(changed); const st = state(); if (st && st.code) quiet(); else if (!isOff() && !clearing) wxLogin().catch(() => { }); }
+function init() { W.onChange(changed); plan.onChange(changed); Want.onChange(changed); const st = state(); if (st && st.code) quiet(); else if (!isOff() && !clearing) wxLogin().catch(() => { }); }
 function stale() { const st = state(); return !!(st && st.code && Date.now() - (st.at || 0) > 30000); }
 
 async function restore(value){if(busy)await busy;const next=Backup.restore(snapshot(),value);apply(next);changed();}

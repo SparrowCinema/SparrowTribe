@@ -12,9 +12,10 @@
  function status(f,ctx){
   const shows=ctx.shows.filter(s=>s.id===f.id&&has(ctx.programme,ctx.showProgramme(s))&&has(ctx.city,ctx.cityOfShow&&ctx.cityOfShow(s)));
   const rec=ctx.watched[f.id],seen=!!(rec&&!rec.del&&rec.d);
-  return {planned:shows.some(s=>ctx.picked.has(ctx.keyOf(s))),watched:seen,event:shows.some(s=>/^\s*(?:映后活动|映后交流|Post-screening event|Q&A)/i.test((f.screeningNotes||{})[ctx.keyOf(s)]||'')||!!(f.qaGuest&&minutes(f.qaEnd)>minutes(f.qaStart)))};
+  const w=ctx.want&&ctx.want[f.id];
+  return {planned:shows.some(s=>ctx.picked.has(ctx.keyOf(s))),watched:seen,wanted:!seen&&!!(w&&!w.del),event:shows.some(s=>/^\s*(?:映后活动|映后交流|Post-screening event|Q&A)/i.test((f.screeningNotes||{})[ctx.keyOf(s)]||'')||!!(f.qaGuest&&minutes(f.qaEnd)>minutes(f.qaStart)))};
  }
- function category(f,mode,ctx){const m=list(mode);if(!m.length)return true;const s=status(f,ctx);return m.some(k=>k==='planned'?s.planned:k==='watched'?s.watched:k==='unwatched'?!s.watched:k==='qa'?s.event:false);}
+ function category(f,mode,ctx){const m=list(mode);if(!m.length)return true;const s=status(f,ctx);return m.some(k=>k==='planned'?s.planned:k==='want'?s.wanted:k==='watched'?s.watched:k==='unwatched'?!s.watched:k==='qa'?s.event:false);}
  // Film-hero labels only: retain full programme membership everywhere else.
  function featuredProgrammes(entries,info){
   const seen=new Set();
