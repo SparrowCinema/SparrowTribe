@@ -9,6 +9,8 @@ const fmt = m => String(Math.floor(m / 60)).padStart(2, '0') + ':' + String(m % 
 const keyOf = require('./screenings.js').keyOf;
 const showDate = s => { const [m, d] = s.d.split('/').map(Number); const [h, mi] = s.t.split(':').map(Number); return new Date(year(s.d, s.year), m - 1, d, h, mi); };
 const poster = f => f.posterUrl || ''; // 海报全部读网站，换图自动同步
+// 列表用的缩略图：网站部署时生成 posters/w360/<名>.jpg（tools/build-thumbs.py），安装包里的海报本来就是 300px，不换
+const thumb = f => { const u = poster(f); return /^https?:\/\/[^?#]+\/posters\/[^/?#]+\.(jpe?g|png)$/i.test(u) ? u.replace(/\/posters\/([^/?#]+)\.(jpe?g|png)$/i, '/posters/w360/$1.jpg') : u; };
 const ticket = f => f.ticketUrl || ''; // 购票码走网站在线图（离线时不显示），不再打进小程序包
 const durText = m => I.tr(m < 60 ? m + ' 分钟' : Math.floor(m / 60) + ' 小时' + (m % 60 ? ' ' + (m % 60) + ' 分' : ''));
 
@@ -80,7 +82,7 @@ function showView(s, idx, data, picked) {
     venue: idx.venueName(s), hall: idx.hallName(s),
     color: (data.reg[f.reg] || {}).c || '#8e2a22',
     tone: filmTone(idx.ORD ? idx.ORD[s.id] : 0), langSub: langSub(f),
-    note: I.tr((f.screeningNotes||{})[keyOf(s)]||""), ev: EV_RE.test(I.tr((f.screeningNotes||{})[keyOf(s)]||"")), noteRest: I.tr((f.screeningNotes||{})[keyOf(s)]||"").replace(EV_RE, ''), poster: poster(f), picked: picked ? picked.has(keyOf(s)) : false,
+    note: I.tr((f.screeningNotes||{})[keyOf(s)]||""), ev: EV_RE.test(I.tr((f.screeningNotes||{})[keyOf(s)]||"")), noteRest: I.tr((f.screeningNotes||{})[keyOf(s)]||"").replace(EV_RE, ''), poster: thumb(f), picked: picked ? picked.has(keyOf(s)) : false,
     past: showDate(s).getTime() + durationOf(s, idx) * 60000 < Date.now()
   };
 }
@@ -129,4 +131,4 @@ const SITE_URL = 'https://sparrowcinema.github.io/SparrowTribe/';
 const webTip = (hash, lines, t, title) => {
   wx.setClipboardData({ data: SITE_URL + (hash || ''), success: () => wx.showModal({ title: t(title || '网页版地址已复制'), content: lines.map(x => t(x)).join('\n'), showCancel: false, confirmText: t('知道了') }) });
 };
-module.exports = { localFirst, homeCity, ymd: showYmd, geoCity, localProg, webTip, calSub, geoOf, distKm, transfer, openMap, progForShow, durationOf, progInfo, qaOf, ended, isFest, keepPast, relTime, nextShowOf, filmOrder, filmTone, langSub, WK, year, wk, toMin, fmt, keyOf, showDate, poster, ticket, durText, index, showView };
+module.exports = { thumb, localFirst, homeCity, ymd: showYmd, geoCity, localProg, webTip, calSub, geoOf, distKm, transfer, openMap, progForShow, durationOf, progInfo, qaOf, ended, isFest, keepPast, relTime, nextShowOf, filmOrder, filmTone, langSub, WK, year, wk, toMin, fmt, keyOf, showDate, poster, ticket, durText, index, showView };

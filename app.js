@@ -145,8 +145,14 @@ function programmesPage(){
 function progCardsHTML(){ const all=progOrdered(), open=all.filter(p=>progStatus(p)!=="ended"), past=all.filter(p=>progStatus(p)==="ended");
   return `<div class="prog-strip">${open.map(progCardHTML).join("")}</div>${past.length?`<details class="past-progs"><summary>往期专题 <small>${past.length} 个已结束</small></summary><div class="prog-strip">${past.map(progCardHTML).join("")}</div></details>`:""}`; }
 const pst = id => (F[id]&&F[id].poster)||null;
+/* 海报缩略图：部署时 tools/build-thumbs.py 生成 posters/w360、w720（WebP），data/version.json 带 th:1 时启用；
+   列表 / 网格 / 海报墙用 w360，影片页大图用 w720，长图与分享海报等画布仍用原图。图片带 data-full，缩略图读不到时自动换回原图。 */
+let THUMBS=false;
+const pthumb = (id,w=360) => { const p=pst(id); if(!p||!THUMBS) return p; const m=/^posters\/([^/?#]+)\.(jpe?g|png)$/i.exec(p); return m?'posters/w'+w+'/'+m[1]+'.webp':p; };
+const pimg = (id,w,attrs) => '<img src="'+esc(pthumb(id,w))+'" data-full="'+esc(pst(id))+'" '+attrs+'>';
+document.addEventListener('error',e=>{const t=e.target;if(t&&t.tagName==='IMG'&&t.dataset&&t.dataset.full&&!t.src.endsWith(t.dataset.full)){t.src=t.dataset.full;}},true);
 const minText = f => f.minTbd ? "片长待定" : f.min+" 分钟";
-const slateHTML = f => pst(f.id) ? `<span class="slate has" style="background:${REG[f.reg].c}"><img src="${pst(f.id)}" alt="${esc(f.cn)} 海报" loading="lazy"></span>` : `<span class="slate" style="background:${REG[f.reg].c}"><b>${esc(f.cn[0])}</b><span>${f.y}</span></span>`;
+const slateHTML = f => pst(f.id) ? `<span class="slate has" style="background:${REG[f.reg].c}">${pimg(f.id,360,`alt="${esc(f.cn)} 海报" loading="lazy"`)}</span>` : `<span class="slate" style="background:${REG[f.reg].c}"><b>${esc(f.cn[0])}</b><span>${f.y}</span></span>`;
 const WK = ["周日","周一","周二","周三","周四","周五","周六"];
 const year = (d, explicit) => Number.isInteger(+explicit) && +explicit >= 1888 && +explicit <= 2200 ? +explicit : (+d.split("/")[0] >= 10 ? 2026 : 2027);
 const wk = d => { const [m,dd]=d.split("/").map(Number); return WK[new Date(year(d),m-1,dd).getDay()]; };
@@ -445,7 +451,7 @@ function filmCardHTML(f, ns){
 let folds=(()=>{try{return JSON.parse(localStorage.getItem('sparrow-fold-v1')||'{}')||{};}catch{return {};}})();
 function saveFolds(){try{localStorage.setItem('sparrow-fold-v1',JSON.stringify(folds));}catch{}}
 const CHEV='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>';
-function stackHTML(rows){return '<span class="fstack" aria-hidden="true">'+rows.slice(0,4).map(f=>pst(f.id)?'<img src="'+pst(f.id)+'" alt="" loading="lazy">':'<i style="background:'+REG[f.reg].c+'">'+esc(f.cn[0])+'</i>').join('')+'</span>';}
+function stackHTML(rows){return '<span class="fstack" aria-hidden="true">'+rows.slice(0,4).map(f=>pst(f.id)?pimg(f.id,360,'alt="" loading="lazy"'):'<i style="background:'+REG[f.reg].c+'">'+esc(f.cn[0])+'</i>').join('')+'</span>';}
 /* 片目渐进渲染：每个列表先画前 FL_FIRST 张卡片，滚到附近再每次补 FL_STEP 张；收起的专题、「本专题已放映」「往期专题」展开时才画。
    片库到几千部时页面节点数仍然只跟已浏览的范围有关。已画到多少张记在 flShown（按列表 key），从影片页返回时原样恢复，滚动位置不会跳；
    搜索或筛选变化时清零。不支持 IntersectionObserver 的浏览器一次画完。 */
@@ -565,12 +571,12 @@ function detail(id){
   const syn = String(f.syn||""), long = syn.length > 220;
   const has = {syn:!!syn, watch:!!f.editorial||f.highlights.length>0, hon:f.honors.length>0, dir:!!(f.dir&&(f.bio||f.dirO||f.dirLife)), ctx:!!f.st};
   const secs = [["fd-syn","剧情",has.syn],["fd-watch","荐片",has.watch],["fd-hon","荣誉",has.hon],["fd-dir","导演",has.dir],["fd-ctx","背景",has.ctx]].filter(x=>x[2]);
-  const navBtn = (x,lab) => x?`<button class="fd-nb" data-film="${x.id}">${pst(x.id)?`<img src="${pst(x.id)}" alt="">`:`<span class="fd-nbs" style="background:${REG[x.reg].c}">${esc(x.cn[0])}</span>`}<span><small>${lab}</small><b>${esc(x.cn)}</b></span></button>`:"<span></span>";
+  const navBtn = (x,lab) => x?`<button class="fd-nb" data-film="${x.id}">${pst(x.id)?pimg(x.id,360,'alt=""'):`<span class="fd-nbs" style="background:${REG[x.reg].c}">${esc(x.cn[0])}</span>`}<span><small>${lab}</small><b>${esc(x.cn)}</b></span></button>`:"<span></span>";
   main.innerHTML = `<article class="fd" style="--fc:${col}">
-  <header class="fd-hero">${P?`<img class="fd-bg" src="${P}" alt="">`:""}<div class="fd-shade"></div>
+  <header class="fd-hero">${P?pimg(id,360,'class="fd-bg" alt=""'):""}<div class="fd-shade"></div>
     <div class="fd-hin gut">
 <div class="fd-progrow">${window.SparrowLibrary.featuredProgrammes(filmProgsOf(f),p=>{const [a,b]=progRange(p);return {status:progStatus(p),a,b};}).map(x=>`<button class="fd-prog" data-prog="${x.p.id}">${esc(x.p.kind)} · ${esc(x.p.name)} ›</button>${x.sec?`<span class="fd-unit"><i aria-hidden="true">◆</i><span class="sr-only">展映单元：</span>${esc(x.sec)}</span>`:""}`).join("")}</div>
-      ${P?`<img class="fd-poster" src="${P}" alt="${esc(f.cn)} 海报">`:`<div class="fd-poster fd-ph"><b>${esc(f.cn[0])}</b></div>`}
+      ${P?pimg(id,720,`class="fd-poster" alt="${esc(f.cn)} 海报"`):`<div class="fd-poster fd-ph"><b>${esc(f.cn[0])}</b></div>`}
       <div class="fd-title">
         <div class="fd-eyebrow"><span class="fd-reg">${REG[f.reg].n}</span><span title="${esc([f.y,f.c].filter(Boolean).join(" · "))}">${[f.y,f.c].filter(Boolean).map(esc).join(" · ")}</span></div>
         <h1>${esc(f.cn)}</h1>
@@ -626,7 +632,7 @@ function progFilmSub(f,pid,ended){ // 与小程序一致：版本 · 下一场�
   const ed=editionOf(f), mine=SH.filter(x=>x.id===f.id&&x.p===pid).sort((x,y)=>showDate(x)-showDate(y)), next=ended?null:localFirst(mine.filter(x=>!isPast(x)));
   const when=next?next.d+" "+next.t:(!mine.length&&!ended?"场次待公布":"");
   return [ed,when].filter(Boolean).map(x=>"<span>"+esc(x)+"</span>").join(""); }
-function progFilmCard(f,pid,ended){ const sub=progFilmSub(f,pid,ended); return `<button class="pg-film" data-film="${f.id}">${pst(f.id)?`<img src="${pst(f.id)}" alt="" loading="lazy">`:`<span class="pg-ph" style="background:${REG[f.reg].c}">${esc(f.cn[0])}</span>`}<span class="pg-caption"><b class="pg-name">${esc(f.cn)}</b>${sub?`<span class="pg-sub1">${sub}</span>`:""}</span></button>`; }
+function progFilmCard(f,pid,ended){ const sub=progFilmSub(f,pid,ended); return `<button class="pg-film" data-film="${f.id}">${pst(f.id)?pimg(f.id,360,'alt="" loading="lazy"'):`<span class="pg-ph" style="background:${REG[f.reg].c}">${esc(f.cn[0])}</span>`}<span class="pg-caption"><b class="pg-name">${esc(f.cn)}</b>${sub?`<span class="pg-sub1">${sub}</span>`:""}</span></button>`; }
 // 专题页影片分组：即将放映（含场次待公布）按下一场先后；已结束按最近一场由近及远
 function progFilmGroups(pid,films){
   const up=[], gone=[];
@@ -816,7 +822,7 @@ const durText = m => m<60 ? m+" 分钟" : Math.floor(m/60)+" 小时"+(m%60?" "+m
 function planStats(list){const minutes=list.reduce((n,s)=>n+F[s.id].min,0);return {n:list.length,days:new Set(list.map(s=>s.d)).size,minutes,hm:Math.floor(minutes/60)+"h"+String(minutes%60).padStart(2,"0"),clash:conflicts(list).length};}
 function byDay(list){const m=new Map();list.forEach(s=>{if(!m.has(s.d))m.set(s.d,[]);m.get(s.d).push(s);});return [...m.entries()];}
 function gapOf(a,b){const g=toMin(b.t)-endMin(a);if(g<0)return {cls:"clash",txt:"与上一场重叠 "+(-g)+" 分钟"};if(g<20)return {cls:"tight",txt:"间隔仅 "+g+" 分钟，留意入场时间"};return {cls:"ok",txt:"间隔 "+durText(g)};}
-function thumbHTML(f){return pst(f.id)?'<img class="pthumb" src="'+pst(f.id)+'" alt="" loading="lazy">':'<span class="pthumb pslate" style="background:'+REG[f.reg].c+'">'+esc(f.cn[0])+'</span>';}
+function thumbHTML(f){return pst(f.id)?pimg(f.id,360,'class="pthumb" alt="" loading="lazy"'):'<span class="pthumb pslate" style="background:'+REG[f.reg].c+'">'+esc(f.cn[0])+'</span>';}
 function planRowsHTML(list,editable){
   return byDay(list).map(([d,items])=>{
     const first=items[0],last=items[items.length-1];
@@ -1459,7 +1465,7 @@ function posterWallPage(){const all=posterArchive(),lib=window.SparrowLibrary,pe
  const fields=[['programme','专题',programmeLabel,false],['mode','海报墙',tr(title),false],['period','观影时间',posterSelection?lib.posterPeriodLabel(posterSelection,typeof LANG!=='undefined'&&LANG==='en'):'—',!periods.length]];
  main.innerHTML='<section class="view gut poster-wall-page">'+subBackHTML()+'<div class="page-heading"><div><small>MY CINEMA POSTER WALL</small><h2 class="sec">我的影院观影海报墙</h2></div></div>'+
  '<div class="schedule-filterbar poster-wall-filterbar" aria-label="'+tr('海报墙筛选')+'">'+fields.map(([key,label,value,disabled])=>'<button type="button" class="schedule-filter'+(key==='programme'&&posterProgramme!=='all'?' active':'')+'" data-poster-filter="'+key+'" aria-haspopup="dialog" aria-label="'+esc(tr(label)+'：'+tr(value))+'" '+(disabled?'disabled':'')+'><span><small>'+tr(label)+'</small><b>'+esc(tr(value))+'</b></span>'+filterChevron+'</button>').join('')+'</div><div class="pw-actions"><p class="pw-hint pw-count">'+tr(list.length+' 部影片')+((typeof LANG!=='undefined'&&LANG==='en')?', ':'，')+tr('按最近观影排列')+'</p><label class="pw-score-toggle"><input type="checkbox" id="pw-score" '+(pwScores()?'checked':'')+'>'+tr('导出时显示评分')+'</label><button id="pw-export" class="secondary-button" '+(list.length?'':'disabled')+'>'+tr('导出海报墙')+'</button></div>'+
- (list.length?'<p class="pw-hint">'+tr('点击海报查看影片，向下浏览更多。')+'</p><div class="pw-grid" style="--cols:'+cols+'">'+list.map(e=>{const score=e.rec.r?e.rec.r+'/10':tr('未评分');return '<a class="pw-card" href="#film-'+esc(e.id)+'" aria-label="'+esc(e.f.cn+' · '+tr('我的评分')+' '+score)+'"><div class="pw-poster"><span class="pw-placeholder">'+esc(e.f.cn)+'</span>'+(pst(e.id)?'<img loading="lazy" class="pw-image" src="'+esc(pst(e.id))+'" alt="'+esc(e.f.cn)+'">':'')+'</div><span class="pw-stars" role="img" aria-label="'+esc(score)+'">'+[0,1,2,3,4].map(k=>'<u>★<b style="width:'+(Math.max(0,Math.min(2,(e.rec.r||0)-2*k))*50)+'%">★</b></u>').join('')+'</span></a>';}).join('')+'</div>':
+ (list.length?'<p class="pw-hint">'+tr('点击海报查看影片，向下浏览更多。')+'</p><div class="pw-grid" style="--cols:'+cols+'">'+list.map(e=>{const score=e.rec.r?e.rec.r+'/10':tr('未评分');return '<a class="pw-card" href="#film-'+esc(e.id)+'" aria-label="'+esc(e.f.cn+' · '+tr('我的评分')+' '+score)+'"><div class="pw-poster"><span class="pw-placeholder">'+esc(e.f.cn)+'</span>'+(pst(e.id)?pimg(e.id,360,'loading="lazy" class="pw-image" alt="'+esc(e.f.cn)+'"'):'')+'</div><span class="pw-stars" role="img" aria-label="'+esc(score)+'">'+[0,1,2,3,4].map(k=>'<u>★<b style="width:'+(Math.max(0,Math.min(2,(e.rec.r||0)-2*k))*50)+'%">★</b></u>').join('')+'</span></a>';}).join('')+'</div>':
  '<div class="empty-plan"><h3>'+tr(posterProgramme==='all'?'海报墙还没有影片':'所选条件下暂无影片')+'</h3><p>'+tr(posterProgramme==='all'?'在影片页标记看过，海报和评分就会收进这里。':'试试其他专题或观影时间。')+'</p><button class="primary-button" data-tab="films">'+tr('去选电影')+'</button></div>')+'</section>';
  const pwBox=main.querySelector('#pw-score');if(pwBox)pwBox.onchange=e=>{try{localStorage.setItem('sparrow-pw-score',e.target.checked?'1':'0');}catch(_){}};
  main.querySelector('#pw-export').onclick=()=>makeRecap({list,...wallTitle(),cols:window.SparrowLibrary.posterColumns(innerWidth,innerHeight),scores:pwBox?pwBox.checked:pwScores()});
@@ -1747,7 +1753,7 @@ async function loadData(){
  /* 精简启动：部署时 tools/build-lite.js 生成 data/version.json（数据版本号）和 data/lite.json（去掉详情页长文字段的全部专题数据）。
     先读版本号，没变就什么都不下载；变了只读 catalog + lite 两个文件。影片详情的长文字段在打开影片页时按需补全（ensureFull）。
     没有这两个文件（本地预览、未构建）或读取失败时，退回原来的整份加载。 */
- let ver="";try{ver=(await get("data/version.json")).v||"";}catch(e){}
+ let ver="";try{const vj=await get("data/version.json");ver=vj.v||"";THUMBS=!!vj.th;}catch(e){}
  if(ver&&"v:"+ver===dataSignature)return false;
  const cat=await get("data/catalog.json"),programmes=cat.programmes||[],venues=cat.venues||[];
  if(!Object.keys(CITIES).length)try{CITIES=(await get("data/cities.json")).cities||{};}catch(e){console.warn("城市坐标未加载，定位仅用影院坐标",e);}

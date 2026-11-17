@@ -29,6 +29,13 @@ jobs:
           node tools/check-taste.js
       - name: Build share pages and calendar feeds
         run: node tools/build-extras.js
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build poster thumbnails (WebP 360/720, JPEG 360)
+        run: |
+          python -m pip install --quiet pillow
+          python tools/build-thumbs.py
       - name: Build lite startup data and data version
         run: node tools/build-lite.js
       - name: Version app.css and app.js by content hash

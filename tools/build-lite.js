@@ -23,7 +23,9 @@ let full = Buffer.byteLength(catText), films = 0;
 const v = h.digest('hex').slice(0, 16);
 const lite = JSON.stringify({ v, detail: DETAIL, packs });
 fs.writeFileSync(path.join(root, 'data/lite.json'), lite);
-fs.writeFileSync(path.join(root, 'data/version.json'), JSON.stringify({ v }));
+// th：部署时已生成海报缩略图（tools/build-thumbs.py → posters/w360、w720），网页据此改用缩略图；本地预览没有缩略图时用原图
+const th = fs.existsSync(path.join(root, 'posters/w360')) && fs.readdirSync(path.join(root, 'posters/w360')).some(n => n.endsWith('.webp')) ? 1 : 0;
+fs.writeFileSync(path.join(root, 'data/version.json'), JSON.stringify(th ? { v, th } : { v }));
 // 自检：精简数据里不能再有长文字段，影片数量与原文件一致
 const back = JSON.parse(lite); let n = 0;
 Object.values(back.packs).forEach(pk => pk.films.forEach(f => { n++; DETAIL.forEach(k => { if (k in f) throw new Error('lite.json 仍含字段 ' + k + '：' + f.id); }); }));

@@ -337,3 +337,11 @@ Claude 与 GPT 可能使用同一 GitHub 身份，审批人数可先设为0；�
 - 规则在 `shared/overlap.js`（网站直接加载；小程序副本 `miniprogram/utils/overlap.js` 由 `node tools/build-fallback.js` 复制，不要直接改小程序那份），测试 `tools/check-overlap.js`（随 check-companion 运行）。网站 `overlapHTML` / `overlapRowHTML`。
 - 分享链接里部分场次已改期或取消时，不再整页报「无法读取」：其余场次照常显示，并提示「TA 的 N 场已更新或取消，没有显示」（网站与小程序一致）。
 - 卡片底部「把我的排片发给 TA」跳到导出与分享，对方打开后同样能看到对比。
+
+## 海报缩略图（2026-11-18）
+
+- 部署时 `.github/workflows/pages.yml` 安装 Pillow 并运行 `python tools/build-thumbs.py`，从 `posters/<名>.jpg` 生成 `posters/w360/<名>.webp`（列表 / 网格 / 海报墙）、`posters/w360/<名>.jpg`（小程序列表）和 `posters/w720/<名>.webp`（影片页大图）。产物不提交（已在 `.gitignore`），本地想预览可自己运行一次（需 `pip install pillow`）。2026-11-18 时 357 张海报：原图 19.5MB，w360 WebP 7MB（少 65%），最大的一张 992KB → 列表 24KB / 详情 149KB。
+- `tools/build-lite.js` 在 `data/version.json` 里写 `th:1` 表示缩略图已生成；网站读到才改用缩略图（`THUMBS` / `pthumb(id, 360|720)` / `pimg()`），本地预览没有缩略图时照常用原图。所有缩略图 `<img>` 带 `data-full`，读不到时全局 `error` 监听自动换回原图。
+- 长图导出、观影结算、分享海报等画布仍用原图，画质不变。新增显示海报的地方请用 `pimg(id, 360, 属性)`，不要直接拼 `pst(id)`。
+- 小程序：`utils/util.js` 的 `thumb(f)` 把网站海报地址换成 `posters/w360/<名>.jpg`，用于片目、专题页、排片行、影片页上下篇和海报墙；安装包内的 300px 海报不换；影片页大图和画布用原图。海报墙缩略图读不到时先换回原图。
+

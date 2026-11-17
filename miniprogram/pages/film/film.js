@@ -73,7 +73,7 @@ Page({
       [(f.genre || []).includes('纪录片') ? '出镜' : '主演', (f.cast || []).join(' / ')], ['影片版权', (I.isEn() && f.printSourceEn) || f.printSource], ['类型', (f.genre || []).map(t).join(' / ')], ['原始语言', t(f.language)], ['海报说明', f.posterNote]]
       .filter(x => x[1]).map(x => ({ k: t(x[0]), v: x[1] }));
     const all = data.films.filter(x => !x.ev), i = all.indexOf(f);
-    const nav = (f.ev ? [null, null] : [all[i - 1], all[i + 1]]).map(x => x ? { id: x.id, cn: x.cn, poster: U.poster(x) } : null);
+    const nav = (f.ev ? [null, null] : [all[i - 1], all[i + 1]]).map(x => x ? { id: x.id, cn: x.cn, poster: U.thumb(x) } : null);
     const para = s => String(s || '').split(/\n{2,}/).filter(Boolean);
     // 购票码：影片自带 + 所属各专题的购票码（跨影展影片可有多张，按专题标注）
     const SITE = 'https://sparrowcinema.github.io/SparrowTribe/', tks = [], seenTk = {};
