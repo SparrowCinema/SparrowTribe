@@ -814,9 +814,9 @@
    "r": [
     null,
     null,
-    null,
-    null,
-    null
+    72,
+    56,
+    3.7
    ],
    "syn": "故事回到凯特尼斯参加饥饿游戏的24年前。第50届饥饿游戏迎来第二次「世纪极限赛」，参赛贡品人数翻倍，来自第十二区的少年黑密斯·阿伯纳西被迫踏入竞技场。\n\n面对48人争夺唯一生还名额的残酷规则，他必须在生存、信任和反抗之间作出选择。后来那位看似玩世不恭的导师，在这里还是一个想回家的年轻人。",
    "bio": "弗朗西斯·劳伦斯1970年生于维也纳，早年拍摄音乐录影带，之后执导《康斯坦丁》《我是传奇》和《间谍》等影片。自《饥饿游戏：星火燎原》起，他执导了系列此后的每一部，包括2023年的《鸣鸟与蛇的歌》。《收获日出》是他又一次回到潘姆。",
@@ -855,7 +855,7 @@
     "吸烟与未成年人饮酒"
    ],
    "contentNote": "参考美国MPA与英国BBFC的院线版内容说明，涉及较强暴力、血腥伤口、死亡与不安情节，以及吸烟、未成年人饮酒。此处不是内地官方分级，内地版本差异及闪烁、音量等感官信息尚未核实。",
-   "editorial": "系列影迷更能看出门道，不熟悉前作也能跟上。影片涉及未成年人之间的生死竞赛与暴力，情绪沉重。上映前评分和内容提示暂缺。",
+   "editorial": "系列影迷更能看出门道，不熟悉前作也能跟上。影片涉及未成年人之间的生死竞赛与暴力，情绪沉重。早期口碑仍在变化，评分请结合样本量与个人偏好参考。",
    "contentReview": {
     "status": "official-advisory",
     "checked": "2026-11-05",
@@ -873,7 +873,7 @@
     "rt": "https://www.rottentomatoes.com/m/the_hunger_games_sunrise_on_the_reaping",
     "mc": "https://www.metacritic.com/movie/the-hunger-games-sunrise-on-the-reaping/"
    },
-   "ratingChecked": "2026-11-05",
+   "ratingChecked": "2026-11-18",
    "poster": "posters/hunger-games-sunrise-on-the-reaping-2026-art.jpg",
    "worldPremiere": {
     "status": "verified",
