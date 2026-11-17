@@ -5,3 +5,7 @@ s/
 cal/
 data/lite.json
 data/version.json
+
+# 海报缩略图（部署时 tools/build-thumbs.py 生成）
+posters/w360/
+posters/w720/
