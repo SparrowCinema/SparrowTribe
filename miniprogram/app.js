@@ -25,7 +25,9 @@ App({
   _waiters: [],
 
   onLaunch() {
-    I.init(); this.globalData.data = I.localize(LOCAL); this.chrome(); try { watched.migrate(LOCAL.aliases); } catch (e) { }
+    I.init(); this.globalData.data = I.localize(LOCAL); this.chrome();
+    // 场次变更：个人排片一变就记下各场次的影片与时间（utils/planchange.js），之后数据里找不到时才能提示
+    try { const PC = require('./utils/planchange.js'), P = require('./utils/plan.js'); P.onChange(() => PC.track(this.globalData.data)); PC.track(this.globalData.data); } catch (e) { } try { watched.migrate(LOCAL.aliases); } catch (e) { }
     if (wx.cloud) {
       wx.cloud.init({ env: 'cloud1-d9gvudh6vc59007ac', traceUser: true });
       this.loadRemote();
@@ -52,6 +54,7 @@ App({
         this.globalData.data = I.localize(this.globalData.raw);
         this.globalData.source = 'cloud';
         DataCache.save(r);
+        try { require('./utils/planchange.js').track(this.globalData.data); } catch (e) { }
         try { watched.migrate(this.globalData.raw.aliases); } catch (e) { }
         this._waiters.forEach(fn => fn(this.globalData.data));
         if (r.lean && r.detailParts) this.loadDetail(r.detailParts, r.en);

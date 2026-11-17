@@ -15,6 +15,7 @@ const PATS=[
  [/(\d{1,2})月(\d{1,2})日/g,(m,a,b)=>MON[a-1]+" "+(+b)],
  [/(\d{1,2})月(?!\d)/g,(m,a)=>MON[a-1]],
  [/(\d+)\s*部有新场次/g,(m,n)=>n+" with new screenings"],
+ [/(\d+)\s*场排片有变动/g,(m,n)=>pl(n,"screening in your plan changed","screenings in your plan changed")],
  [/(\d+)\s*部有场次/g,(m,n)=>n+" now screening"],
  [/(\d+)\s*部影片/g,(m,n)=>pl(n,"film","films")],
  [/(\d+)\s*部/g,(m,n)=>pl(n,"film","films")],
@@ -708,6 +709,39 @@ function touchMeta(k){try{const m=readMeta();m[k]=Date.now();localStorage.setIte
 let validKeys=new Set();
 function readSelection(){try{const a=JSON.parse(localStorage.getItem(PLAN_KEY)||'[]');return new Set(Array.isArray(a)?a.filter(k=>validKeys.has(k)):[]);}catch{return new Set();}}
 let picked=new Set(),currentExport=[];
+/* ===== 场次变更（2026-11-16）=====
+   排片数据里删掉或改了时间 / 影厅的场次，原来会在 readSelection 时被静默丢掉。现在：
+   - sparrow-plan-memo-v1：本机记下每个已选场次的影片、日期时间、影院影厅（{场次键:{f,d,t,v,h,at}}），加入或载入时更新；
+   - 载入时，已选但数据里已不存在、且原定未开场（6 小时内）的场次，移到 sparrow-plan-gone-v1，个人排片页顶部列出：
+     同一部影片还有别的待映场次时给出最接近的两场一键替换，否则提示「暂时没有其他场次」，可以「知道了」移除提醒。
+   - 原定时间过去一天后提醒自动清除；场次键重新出现（数据改回）时也自动清除。 */
+const PLAN_MEMO_KEY='sparrow-plan-memo-v1',PLAN_GONE_KEY='sparrow-plan-gone-v1';
+let planGone={};
+function rjson(k){try{const o=JSON.parse(localStorage.getItem(k)||'{}');return o&&typeof o==='object'&&!Array.isArray(o)?o:{};}catch{return {};}}
+function wjson(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch{}}
+function planMemoFor(keys){const memo=rjson(PLAN_MEMO_KEY),byKey=new Map(SH.map(s=>[keyOf(s),s])),out={};
+  keys.forEach(k=>{const s=byKey.get(k);if(s)out[k]={f:s.id,d:s.d,t:s.t,v:s.v,h:s.h,at:showDate(s).getTime()};else if(memo[k])out[k]=memo[k];});return out;}
+/* 在 readSelection 之前调用（此时 validKeys 已是新数据） */
+function planTrack(){let raw=[];try{const a=JSON.parse(localStorage.getItem(PLAN_KEY)||'[]');raw=Array.isArray(a)?a.filter(k=>typeof k==='string'):[];}catch{}
+  const memo=rjson(PLAN_MEMO_KEY),gone=rjson(PLAN_GONE_KEY),t=+now();
+  raw.forEach(k=>{const m=memo[k];if(validKeys.has(k)||gone[k]||!m||!m.at||m.at<t-6*3600e3)return;gone[k]=Object.assign({},m,{seen:t});});
+  Object.keys(gone).forEach(k=>{const g=gone[k];if(validKeys.has(k)||!g||!g.at||g.at<t-24*3600e3)delete gone[k];});
+  planGone=gone;wjson(PLAN_GONE_KEY,gone);wjson(PLAN_MEMO_KEY,planMemoFor(raw.filter(k=>validKeys.has(k))));}
+function planGoneList(){return Object.keys(planGone).map(k=>Object.assign({k},planGone[k])).sort((a,b)=>a.at-b.at);}
+function planGoneDrop(k){delete planGone[k];wjson(PLAN_GONE_KEY,planGone);}
+function planAlts(g){return SH.filter(s=>s.id===g.f&&!isPast(s)&&!picked.has(keyOf(s))).map(s=>[s,(s.d===g.d?0:2e7)+(s.v===g.v?0:1e7)+Math.abs(showDate(s).getTime()-g.at)/6e4]).sort((a,b)=>a[1]-b[1]).slice(0,2).map(x=>x[0]);}
+function planGoneHTML(){const list=planGoneList();if(!list.length)return '';
+  const was=g=>{const v=VN[g.v],h=v&&v.halls.find(x=>x.id===g.h);return esc(g.d+' '+tr(wk(g.d))+' '+g.t)+(v?' · '+esc(venueLabel(v))+(h?' '+esc(h.name):''):'');};
+  return '<div class="plan-gone" role="status"><b>'+tr(list.length+' 场排片有变动')+'</b><p>'+tr('这些场次在最新排片里已经找不到了，可能改了时间、换了影厅或取消。')+'</p>'+list.map(g=>{const f=F[g.f],alts=planAlts(g);
+    return '<div class="pg-item"><div class="pg-was"><strong>'+(f?esc(f.cn)+(f.version?' <span class="ped">'+esc(f.version)+'</span>':''):tr('原场次'))+'</strong><span>'+tr('原定')+' '+was(g)+'</span></div>'+
+      (alts.length?alts.map(s=>'<button class="pg-alt" data-gone-swap="'+esc(g.k)+'" data-to="'+esc(keyOf(s))+'"><span>'+tr('换成')+' '+esc(s.d+' '+tr(wk(s.d))+' '+s.t)+' · '+placeHTML(s)+'</span><b>＋</b></button>').join(''):'<p class="pg-none">'+tr('这部影片暂时没有其他待映场次')+'</p>')+
+      '<button class="text-button pg-ok" data-gone-ok="'+esc(g.k)+'">'+tr('知道了')+'</button></div>';}).join('')+'</div>';}
+document.addEventListener('click',e=>{
+  const sw=e.target.closest('[data-gone-swap]');
+  if(sw){const to=sw.dataset.to;if(validKeys.has(to)){picked.add(to);saveSelection();}planGoneDrop(sw.dataset.goneSwap);toast(tr('已换成新场次'));if(location.hash==='#plan')planPage();return;}
+  const ok=e.target.closest('[data-gone-ok]');
+  if(ok){planGoneDrop(ok.dataset.goneOk);if(location.hash==='#plan')planPage();else ok.closest('.pg-item')?.remove();}
+});
 const pageShareURL=(k,id)=>new URL('s/'+(LANG==='en'?'en/':'')+k+'/'+encodeURIComponent(id)+'.html',document.baseURI).href;
 const calURL=id=>new URL('cal/'+(LANG==='en'?'en/':'')+encodeURIComponent(id)+'.ics',document.baseURI).href;
 async function copyText(v){try{await navigator.clipboard.writeText(v);}catch{const i=document.createElement('textarea');i.value=v;i.style.cssText='position:fixed;opacity:0';document.body.appendChild(i);i.select();try{document.execCommand('copy');}catch{}i.remove();}}
@@ -721,7 +755,7 @@ document.addEventListener('click',async e=>{
   if(cu){await copyText(cu.dataset.copyurl);toast('订阅链接已复制');}
 });
 function toast(message){let el=document.getElementById('toast');if(!el){el=document.createElement('div');el.id='toast';el.setAttribute('role','status');document.body.appendChild(el);}el.textContent=message;el.classList.add('visible');clearTimeout(toast.timer);toast.timer=setTimeout(()=>el.classList.remove('visible'),2800);}
-function saveSelection(){try{localStorage.setItem(PLAN_KEY,JSON.stringify([...picked]));touchMeta('picks');return true;}catch{toast('当前浏览器无法保存，离开页面后可能丢失');return false;}}
+function saveSelection(){try{localStorage.setItem(PLAN_KEY,JSON.stringify([...picked]));touchMeta('picks');wjson(PLAN_MEMO_KEY,planMemoFor([...picked]));return true;}catch{toast('当前浏览器无法保存，离开页面后可能丢失');return false;}}
 let planFilt="all";
 function planSelectorOptions(query=''){
  const all=selectedRows(),q=query.trim().toLocaleLowerCase(),rows=[{id:'all',name:tr('全部专题'),n:all.length},...progOrdered().map(p=>({id:p.id,name:p.name,n:all.filter(x=>x.p===p.id).length}))];
@@ -1345,7 +1379,7 @@ function myPage(){const list=selectedRows(),st=planStats(list),next=list.find(s=
  main.innerHTML='<section class="view gut my-dashboard"><div class="my-page-head"><h2 class="sec">我的</h2><p>带着日程出发，带着电影回来。</p></div>'+
  /* 「我的」分三段：护照（默认展开，是这页的主角）→ 我的电影 → 设置与帮助 */
  '<div class="my-menu my-pass">'+passportCollectionHTML()+'</div><h3 class="my-group">'+tr('我的电影')+(LANG==='en'?'':' <small>MY CINEMA</small>')+'</h3><div class="my-menu">'+
- menuRowHTML('plan','个人排片',list.length?st.n+' 场 · '+(next?'下一场 '+next.d+' '+wk(next.d)+' '+next.t:'已全部放映'):'按天查看日程 · 自动检查时间冲突','data-tab="plan"')+
+ menuRowHTML('plan','个人排片',(planGoneList().length?tr(planGoneList().length+' 场排片有变动')+' · ':'')+(list.length?st.n+' 场 · '+(next?'下一场 '+next.d+' '+wk(next.d)+' '+next.t:'已全部放映'):'按天查看日程 · 自动检查时间冲突'),'data-tab="plan"')+
  (ws=>menuRowHTML('want','想看清单',ws.n?tr(ws.n+' 部')+(ws.fresh?' · '+tr(ws.fresh+' 部有新场次'):ws.live?' · '+tr(ws.live+' 部有场次'):''):'在影片页点「想看」，有新场次时会标出','data-want-list'))(wantStats())+
  menuRowHTML('recap','我的影院观影结算','按年份与专题，收藏印章与评分。','data-pp="recap"')+
  menuRowHTML('taste','我的电影趣味图谱',tasteMenuSub(),'data-tab="taste-map"')+
@@ -1392,7 +1426,7 @@ function posterWallPage(){const all=posterArchive(),lib=window.SparrowLibrary,pe
  main.querySelectorAll('.pw-image').forEach(img=>img.addEventListener('error',()=>{img.hidden=true;}));
 }
 function planPage(){const all=selectedRows(),list=scopedRows(),st=planStats(list);
-  main.innerHTML='<section class="view gut"><div class="page-heading"><div><small>MY PROGRAMME</small><h2 class="sec">个人排片</h2></div><button class="text-button" data-tab="my">返回我的</button></div>'+
+  main.innerHTML='<section class="view gut"><div class="page-heading"><div><small>MY PROGRAMME</small><h2 class="sec">个人排片</h2></div><button class="text-button" data-tab="my">返回我的</button></div>'+planGoneHTML()+
   (all.length?planProgChips(all)+(!list.length?'<div class="empty-plan"><h3>这个专题还没有加入场次</h3><p>可以切换到「全部专题」，或去排片表挑选。</p><button class="primary-button" data-prog-sched="'+esc(selList(planFilt)[0]||'')+'">去看这个专题的排片</button></div>':statsHTML(st)+'<div class="plan-toolbar"><button class="primary-button" data-tab="export">导出与分享</button><button class="secondary-button" data-tab="schedule">继续选片</button><button class="text-button" data-action="clear-plan">清空排片</button></div>'+(st.clash?'<div class="conflict" role="status"><b>有 '+st.clash+' 组场次时间重叠</b><p>重叠处已在日程中标红，移出其中一场即可解决。</p></div>':'')+'<div class="plan-days">'+planRowsHTML(list,true)+'</div>')
   :'<div class="empty-plan"><span>＋</span><h3>还没有加入场次</h3><p>在排片表或影片详情里，点击“加入排片”。</p><button class="primary-button" data-tab="schedule">去选电影</button></div>')+
   '<p class="local-note">散场时间以排片表为准，未公布时按影片片长计算。映后交流及跨影院交通请另留时间。</p></section>';}
@@ -1667,7 +1701,7 @@ async function loadData(){
  shows.sort((a,b)=>showDate(a)-showDate(b)||rank[a.v]-rank[b.v]);
  VENUES=venues;VN=vn;PROGRAMMES=programmes;PG=Object.fromEntries(programmes.map(p=>[p.id,p]));
  Object.entries(cat.aliases||{}).forEach(([o,n])=>{if(filmMap[n]&&!filmMap[o])filmMap[o]=filmMap[n];});
- FILMS=films.filter(f=>!f.ev);F=filmMap;SH=shows;days=[...new Set(SH.map(s=>s.d))];validKeys=new Set(SH.map(keyOf));picked=readSelection();watched=readWatched();want=readWant();wantSeen=readWantSeen();migrateAliases(cat.aliases);dataSignature=signature;return true;
+ FILMS=films.filter(f=>!f.ev);F=filmMap;SH=shows;days=[...new Set(SH.map(s=>s.d))];validKeys=new Set(SH.map(keyOf));planTrack();picked=readSelection();watched=readWatched();want=readWant();wantSeen=readWantSeen();migrateAliases(cat.aliases);dataSignature=signature;return true;
 }
 async function refreshProgrammeData(){
  if(!READY||dataRefreshBusy||document.visibilityState==="hidden"||Date.now()-lastDataCheck<15000)return;
