@@ -3,7 +3,8 @@
   "场": "screenings",
   "天": "days",
   "搜索": "Search",
-  "页面": "Page"
+  "页面": "Page",
+  "同场": "Same screening"
  },
  "_readme": "English layer for the site. films/programmes/venues overlay data fields when ?lang=en; ui is the zh→en dictionary used by tr(). Missing entries fall back to the Chinese text.",
  "films": {
@@ -11294,6 +11295,20 @@
   "离开场不到 15 分钟，来不及提醒了": "Less than 15 min to go — too late for a reminder",
   "关闭这场的开场提醒": "Turn off reminder for this screening",
   "🔔 已开启开场提醒": "🔔 Reminder on",
-  "🔔 开启开场提醒": "🔔 Remind me"
+  "🔔 开启开场提醒": "🔔 Remind me",
+  "和 TA 对一对排片": "Compare plans with them",
+  "先加入你自己想看的场次，这里就会显示你们哪几场在一起、哪几场时间冲突。": "Add the screenings you want first — then you'll see which ones you share and which clash.",
+  "去选场次 ›": "Pick screenings ›",
+  "场同场": "shared",
+  "你们还没有同一场的电影": "No shared screenings yet",
+  "同一部电影，不同场次": "Same film, different screening",
+  "可以一起去（和你的排片不冲突）": "Fits your plan — go together",
+  "想让 TA 也看到对比？": "Want them to see the match too?",
+  "把我的排片发给 TA ›": "Send them my plan ›",
+  "PLAN MATCH · 对排片": "PLAN MATCH",
+  "和朋友对排片": "Compare with your plan",
+  "加入这一场": "Add this screening",
+  "已在我的排片": "In my plan",
+  "TA 的全部场次": "All their screenings"
  }
 }

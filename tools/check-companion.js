@@ -20,3 +20,4 @@ require('./check-mini-ended.js');
 
 require('./check-taste-report.js');
 require('./check-remind.js');
+require('./check-overlap.js');
