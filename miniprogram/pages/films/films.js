@@ -3,13 +3,14 @@ const U = require('../../utils/util.js');
 const I = require('../../utils/i18n.js');
 const plan = require('../../utils/plan.js');
 const W = require('../../utils/watched.js');
+const Want = require('../../utils/want.js');
 const Library = require('../../utils/library.js');
 const t = I.tr;
 // 多选：reg / len / year / city / mine / pf 是 'all' 或逗号连接的多个值（同一筛选内为「或」）
 const sl = Library.list, sh = Library.has;
 const summ = (v, all, one, unit) => { const a = sl(v); return !a.length ? all : a.length === 1 ? one(a[0]) : t(a.length + ' ' + (I.isEn() && unit === '家影院' ? '家' : unit)); };
 const app = getApp();
-const MODES = [['all','全部影片','浏览完整片目'],['planned','已加入排片','已保存在个人排片中的影片'],['watched','已看过','收进观影护照的影片'],['unwatched','还没看过','继续探索新的银幕相遇'],['qa','主创映后场','有主创映后活动的影片']];
+const MODES = [['all','全部影片','浏览完整片目'],['want','想看','标记了想看的影片 · 有新场次会标出'],['planned','已加入排片','已保存在个人排片中的影片'],['watched','已看过','收进观影护照的影片'],['unwatched','还没看过','继续探索新的银幕相遇'],['qa','主创映后场','有主创映后活动的影片']];
 const FOLD_KEY = 'sk-fold-v1';
 // 片长分档（与网站一致）
 const LEN_BINS = [['s','60 分钟以内',0,60],['m','60–90 分钟',61,90],['l','90–120 分钟',91,120],['xl','120 分钟以上',121,1e9]];
@@ -31,11 +32,12 @@ Page({
   },
   onUnload() {this.off&&this.off();this.offPlan&&this.offPlan();this.offWatched&&this.offWatched();},
   onShow() {const mode=app.globalData.jumpLibraryMine;if(mode){app.globalData.jumpLibraryMine='';this.setData({mine:mode,pf:'all',q:''});}this.build();},
-  context() {const data=app.globalData.data,idx=U.index(data);return {shows:data.shows,picked:plan.get(),watched:W.all(),keyOf:U.keyOf,programme:this.data.pf,city:this.data.city,cityOfShow:s=>idx.VN[s.v]?.city,programmeOf:f=>idx.progOf(f).id,programmeIds:f=>idx.progsOf(f).map(x=>x.p.id),showProgramme:s=>U.progForShow(s,idx).id};},
+  context() {const data=app.globalData.data,idx=U.index(data);return {shows:data.shows,picked:plan.get(),watched:W.all(),want:Want.all(),keyOf:U.keyOf,programme:this.data.pf,city:this.data.city,cityOfShow:s=>idx.VN[s.v]?.city,programmeOf:f=>idx.progOf(f).id,programmeIds:f=>idx.progsOf(f).map(x=>x.p.id),showProgramme:s=>U.progForShow(s,idx).id};},
 
   row(f, data, idx, withNext, pid) {
     const nx = withNext ? data.shows.filter(s=>s.id===f.id&&!U.ended(s,idx)&&(pid?U.progForShow(s,idx).id===pid:sh(this.data.pf,U.progForShow(s,idx).id))&&sh(this.data.city,idx.VN[s.v]?.city)).sort((a,b)=>U.showDate(a)-U.showDate(b)) : null, nxl = nx && U.localFirst(nx, idx), status=Library.status(f,this.context());
-    return {planned:status.planned,watched:status.watched,event:status.event,id:f.id, cn: f.cn, en: f.en || f.o, dir: f.dir, c: t(f.c), y: f.y, version: t(f.version || ''), db: f.r && f.r[0] != null ? f.r[0] : '—',
+    const wanted=status.wanted,fresh=wanted&&Want.newCount(f.id,data.shows.filter(s=>s.id===f.id&&!U.ended(s,idx)).map(U.keyOf))>0;
+    return {wanted,fresh,planned:status.planned,watched:status.watched,event:status.event,id:f.id, cn: f.cn, en: f.en || f.o, dir: f.dir, c: t(f.c), y: f.y, version: t(f.version || ''), db: f.r && f.r[0] != null ? f.r[0] : '—',
       release: f.ended ? t('已下映') : t(f.release || ''), poster: U.poster(f), color: (data.reg[f.reg] || {}).c, next: nxl ? U.ymd(nxl) + ' ' + nxl.t : '' };
   },
   build() {

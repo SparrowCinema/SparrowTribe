@@ -28,7 +28,7 @@
       <scroll-view scroll-y class="selector-results"><view wx:for="{{selectorRows}}" wx:key="id" class="selector-option {{item.selected?'selected':''}}" data-id="{{item.id}}" bindtap="chooseFilter"><view class="selector-copy"><text class="b">{{item.name}}</text><text class="small muted">{{item.sub}}</text></view><text class="selector-check box {{item.selected?'on':''}}">{{item.selected?'✓':''}}</text></view><view wx:if="{{!selectorRows.length}}" class="selector-empty">{{L.t(i,'没有匹配的结果')}}</view></scroll-view><view class="selector-foot"><text>{{L.t(i,'可多选')}}</text><view class="selector-done" bindtap="closeSelector">{{L.t(i,'完成')}}</view></view>
     </view>
   </view>
-  <view wx:if="{{!n}}" class="library-empty"><text class="b">{{L.t(i,'当前分类暂无影片')}}</text><text>{{mine==='planned'?L.t(i,'在排片表中加入场次，就会出现在这里。'):mine==='watched'?L.t(i,'在影片页点「看过」，开始收集你的电影印章。'):L.t(i,'换个分类，或试试片名、导演、演员。')}}</text></view>
+  <view wx:if="{{!n}}" class="library-empty"><text class="b">{{L.t(i,'当前分类暂无影片')}}</text><text>{{mine==='planned'?L.t(i,'在排片表中加入场次，就会出现在这里。'):mine==='want'?L.t(i,'在影片页点「想看」，有新场次时会标出'):mine==='watched'?L.t(i,'在影片页点「看过」，开始收集你的电影印章。'):L.t(i,'换个分类，或试试片名、导演、演员。')}}</text></view>
   <view wx:for="{{secs}}" wx:for-item="g" wx:key="id" class="sec">
     <view class="gh2" data-id="{{g.id}}" bindtap="toggleSec">
       <view class="ghm"><text class="gh-kind">{{g.kind}}</text><text class="gh-name">{{g.name}}</text><text class="gh-meta mono">{{L.n(i,g.meta,'f')}}{{g.en ? ' · ' + g.en : ''}}</text></view>
@@ -46,7 +46,7 @@
         <text class="d">{{item.dir}} · {{item.c}} · {{item.y}}</text>
         <text wx:if="{{item.next}}" class="f mono">{{L.t(i,'下一场')}} {{item.next}}</text>
         <text wx:elif="{{item.release}}" class="f">{{item.release}}</text>
-        <view class="film-statuses"><text wx:if="{{item.planned}}">{{L.t(i,'已排片')}}</text><text wx:if="{{item.watched}}">{{L.t(i,'已看过')}}</text><text wx:if="{{item.event}}" class="event">{{L.t(i,'主创映后')}}</text></view>
+        <view class="film-statuses"><text wx:if="{{item.fresh}}" class="new">{{L.t(i,'新场次')}}</text><text wx:if="{{item.wanted}}" class="want">{{L.t(i,'想看')}}</text><text wx:if="{{item.planned}}">{{L.t(i,'已排片')}}</text><text wx:if="{{item.watched}}">{{L.t(i,'已看过')}}</text><text wx:if="{{item.event}}" class="event">{{L.t(i,'主创映后')}}</text></view>
       </view>
       <view class="sc"><text class="n mono">{{item.db}}</text><text class="l">{{L.t(i,'豆瓣')}}</text></view>
     </view>
@@ -63,7 +63,7 @@
         <text class="d">{{item.dir}} · {{item.c}} · {{item.y}}</text>
         <text wx:if="{{item.next}}" class="f mono">{{L.t(i,'下一场')}} {{item.next}}</text>
         <text wx:elif="{{item.release}}" class="f">{{item.release}}</text>
-        <view class="film-statuses"><text wx:if="{{item.planned}}">{{L.t(i,'已排片')}}</text><text wx:if="{{item.watched}}">{{L.t(i,'已看过')}}</text><text wx:if="{{item.event}}" class="event">{{L.t(i,'主创映后')}}</text></view>
+        <view class="film-statuses"><text wx:if="{{item.fresh}}" class="new">{{L.t(i,'新场次')}}</text><text wx:if="{{item.wanted}}" class="want">{{L.t(i,'想看')}}</text><text wx:if="{{item.planned}}">{{L.t(i,'已排片')}}</text><text wx:if="{{item.watched}}">{{L.t(i,'已看过')}}</text><text wx:if="{{item.event}}" class="event">{{L.t(i,'主创映后')}}</text></view>
       </view>
       <view class="sc"><text class="n mono">{{item.db}}</text><text class="l">{{L.t(i,'豆瓣')}}</text></view>
     </view>
@@ -91,7 +91,7 @@
         <text class="d">{{item.dir}} · {{item.c}} · {{item.y}}</text>
         <text wx:if="{{item.next}}" class="f mono">{{L.t(i,'下一场')}} {{item.next}}</text>
         <text wx:elif="{{item.release}}" class="f">{{item.release}}</text>
-        <view class="film-statuses"><text wx:if="{{item.planned}}">{{L.t(i,'已排片')}}</text><text wx:if="{{item.watched}}">{{L.t(i,'已看过')}}</text><text wx:if="{{item.event}}" class="event">{{L.t(i,'主创映后')}}</text></view>
+        <view class="film-statuses"><text wx:if="{{item.fresh}}" class="new">{{L.t(i,'新场次')}}</text><text wx:if="{{item.wanted}}" class="want">{{L.t(i,'想看')}}</text><text wx:if="{{item.planned}}">{{L.t(i,'已排片')}}</text><text wx:if="{{item.watched}}">{{L.t(i,'已看过')}}</text><text wx:if="{{item.event}}" class="event">{{L.t(i,'主创映后')}}</text></view>
       </view>
       <view class="sc"><text class="n mono">{{item.db}}</text><text class="l">{{L.t(i,'豆瓣')}}</text></view>
     </view>

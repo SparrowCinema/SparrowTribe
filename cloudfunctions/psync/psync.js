@@ -1,7 +1,7 @@
 /* 由 tools/build-fallback.js 从 shared/psync.js 复制，请改 shared/psync.js 后重新运行。 */
 /* 麻雀观影护照 · 个人档案云端同步（同步码，不用注册）
    网站（window.SparrowSync）、小程序（utils/psync.js）、psync 云函数共用同一份合并规则。
-   档案 = { v:1, watched:{影片id:{d,r,k,t}|{del:1,t}}, holder:{n,t}, photo:{d,t}, picks:{k:[场次键],t} }
+   档案 = { v:1, watched:{影片id:{d,r,k,t}|{del:1,t}}, holder:{n,t}, photo:{d,t}, picks:{k:[场次键],t}, want:{影片id:{t}|{del:1,t}} }
    每一项都带更新时间 t，合并时同一项取较新的一份（删除用 {del:1,t} 留痕），所以不需要“上次同步的副本”，
    两台设备各自改了不同的片子会全部保留，改了同一部片子则以最后一次修改为准。 */
 (function (root) {
@@ -16,7 +16,7 @@
   }
   var num = function (x) { return Number.isFinite(+x) ? +x : 0; };
   function clean(d) {
-    var out = { v: 1, watched: {}, holder: { n: '', t: 0 }, photo: { d: '', t: 0 }, picks: { k: [], t: 0 } };
+    var out = { v: 1, watched: {}, holder: { n: '', t: 0 }, photo: { d: '', t: 0 }, picks: { k: [], t: 0 }, want: {} };
     if (!d || typeof d !== 'object') return out;
     var w = d.watched && typeof d.watched === 'object' ? d.watched : {};
     Object.keys(w).slice(0, 12000).forEach(function (id) {
@@ -41,13 +41,22 @@
     if (d.holder && typeof d.holder.n === 'string') out.holder = { n: d.holder.n.slice(0, 20), t: num(d.holder.t) };
     if (d.photo && typeof d.photo.d === 'string' && (d.photo.d === '' || (/^data:image\/jpeg;base64,/.test(d.photo.d) && d.photo.d.length < 400000))) out.photo = { d: d.photo.d, t: num(d.photo.t) };
     if (d.picks && Array.isArray(d.picks.k)) out.picks = { k: d.picks.k.filter(function (k) { return typeof k === 'string' && k.length <= 80; }).slice(0, 2000), t: num(d.picks.t) };
+    // 想看（2026-11-16）：{影片id:{t}|{del:1,t}}，和看过一样逐项取较新者；旧版本没有这个字段时为空，不会删掉别处的记录
+    var wt = d.want && typeof d.want === 'object' ? d.want : {};
+    Object.keys(wt).slice(0, 5000).forEach(function (id) {
+      var r = wt[id]; if (!/^[\w-]{1,80}$/.test(id) || !r || typeof r !== 'object') return;
+      out.want[id] = r.del ? { del: 1, t: num(r.t) } : { t: num(r.t) };
+    });
     return out;
   }
   function merge(a, b) {            // a = 本机，b = 云端；同一项取较新者，时间相同取本机
     a = clean(a); b = clean(b);
-    var out = { v: 1, watched: {}, holder: null, photo: null, picks: null };
+    var out = { v: 1, watched: {}, holder: null, photo: null, picks: null, want: {} };
     Object.keys(a.watched).concat(Object.keys(b.watched)).forEach(function (id) {
       var x = a.watched[id], y = b.watched[id]; out.watched[id] = !x ? y : !y ? x : Taste.mergeFields(x,y,y.t>x.t?y:x);
+    });
+    Object.keys(a.want).concat(Object.keys(b.want)).forEach(function (id) {
+      var x = a.want[id], y = b.want[id]; out.want[id] = !x ? y : !y ? x : (y.t > x.t ? y : x);
     });
     ['holder', 'photo', 'picks'].forEach(function (k) { out[k] = b[k].t > a[k].t ? b[k] : a[k]; });
     return out;

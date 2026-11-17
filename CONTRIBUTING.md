@@ -287,3 +287,10 @@ Claude 与 GPT 可能使用同一 GitHub 身份，审批人数可先设为0；�
 - 拆分是原样搬出，没有改写：`app.js` 仍是普通脚本（不是 ES module），顶层变量和函数的作用域、加载顺序都和原来一样，排在 `shared/*.js` 之后。两个文件放在根目录，是为了样式和脚本里的相对路径不变。
 - 部署时 `node tools/build-assets.js` 给 `index.html` 里这两个文件的引用加上内容哈希参数 `v`，该改动只在部署产物里，不要提交。service worker 对带哈希参数的文件缓存优先，对不带的（本地预览）网络优先，所以改这两个文件**不需要**再升级 `sw.js` 的缓存名。
 - 需要「整页源码」的检查脚本用 `require('./web-source').read()`（`tools/web-source.js`），它把两个文件按原位置内嵌回去，等价于拆分前的 `index.html`。新写检查脚本时不要直接读 `index.html` 找函数。
+
+## 想看（2026-11-16）
+
+- 影片页「我的观影」在未看过时有两个按钮：「☆ 想看」和「＋ 看过 · 盖章」。盖章后自动不再算想看（记录保留，取消盖章后恢复）。
+- 存储：网站 localStorage `sparrow-want-v1`，小程序 storage `sk-want-v1`，格式 `{影片id:{t}|{del:1,t}}`。随个人档案云端同步：`shared/psync.js` 的 `want` 字段，逐项取较新者。**`psync` 与 `plan` 云函数里的 `psync.js` 副本需要重新部署**，否则小程序同步时会丢掉这个字段（逐项合并不会删除别处的记录，但想看在小程序和网站之间不会互通）。
+- 新场次：想看的影片出现本机没见过的待映场次时，片目卡片标「新场次」，「我的 → 想看清单」显示「N 部有新场次」。已见过的场次键只存在本机（网站 `sparrow-want-seen-v1`，小程序 `sk-want-seen-v1`）；标想看和打开影片页时更新。
+- 入口：片目「我的」筛选新增「想看」（`shared/library.js` 的 `status().wanted` / `category === 'want'`）；「我的 → 我的电影」新增「想看清单」，点开即片目按想看筛选。网站 `isWant` / `setWant` / `wantNew` / `wantStats`，小程序 `utils/want.js`。
