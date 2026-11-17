@@ -17,11 +17,12 @@ const app = getApp();
 Page({
   onPageScroll(e) { T.scroll(this, e); },
   toTop() { T.go(); },
-  data: { i: {}, planSelectorOpen: false, planQuery: '', planOptions: [], stats: {}, days: [], clash: 0, empty: true, pf: 'all', progs: [] },
+  data: { i: {}, planSelectorOpen: false, planQuery: '', planOptions: [], stats: {}, days: [], clash: 0, empty: true, pf: 'all', progs: [], moved: [], gone: [] },
   onLoad(q) { this.to = q && q.to; this.setData({ i: I.dict() }); this.off1 = plan.onChange(() => this.build()); this.off2 = app.onData(() => this.build()); },
   onUnload() { this.off1 && this.off1(); this.off2 && this.off2(); },
   goneSwap(e) { const d = e.currentTarget.dataset; PC.swap(d.k, d.to); wx.showToast({ title: t('已换成新场次'), icon: 'none' }); this.build(); },
   goneOk(e) { PC.dismiss(e.currentTarget.dataset.k); this.build(); },
+  movedOk(e) { PC.movedOk(e.currentTarget.dataset.k); this.build(); },
   onShow() { Stats.stat('pv', 'plan'); wx.setNavigationBarTitle({ title: t('个人排片') }); this.build(); Remind.refresh(() => this.build()); },
   // 开场提醒（微信订阅消息）：未开启时请求订阅；已开启时可关闭
   remindTap(e) {
@@ -42,9 +43,12 @@ Page({
     { // 场次变更：已选但最新排片里找不到的场次（规则见 utils/planchange.js）
       const en = I.isEn(), place = (v, h) => { const vn = idx.VN[v], hl = vn && vn.halls.find(x => x.id === h); return vn ? W.vShort(vn) + (hl ? ' ' + hl.name : '') : ''; };
       PC.track(data);
-      this.setData({ gone: PC.list(data).map(g => { const f = idx.F[g.f]; return { k: g.k, title: f ? f.cn : t('原场次'), ver: f ? t(f.version || '') : '', was: g.d + ' ' + t(U.wk(g.d)) + ' ' + g.t + ' · ' + place(g.v, g.h),
+      this.setData({ gone: PC.list(data).map(g => { const f = idx.F[g.f]; return { k: g.k, title: f ? f.cn : t('原场次'), ver: f ? t(f.version || '') : '', cancel: !!g.cancel, was: g.d + ' ' + t(U.wk(g.d)) + ' ' + g.t + ' · ' + place(g.v, g.h),
         alts: g.alts.map(s => ({ to: U.keyOf(s), txt: t('换成') + ' ' + s.d + ' ' + t(U.wk(s.d)) + ' ' + s.t + ' · ' + place(s.v, s.h) })) }; }),
         goneHead: (n => en ? n + (n === 1 ? ' screening in your plan changed' : ' screenings in your plan changed') : n + ' 场排片有变动')(PC.list(data).length) });
+      const mv = PC.moved(data);
+      this.setData({ moved: mv.map(g => ({ k: g.k, title: (idx.F[g.f] || {}).cn || '', ver: t((idx.F[g.f] || {}).version || ''), was: g.d + ' ' + t(U.wk(g.d)) + ' ' + g.t + ' · ' + place(g.v, g.h), now: g.s.d + ' ' + t(U.wk(g.s.d)) + ' ' + g.s.t + ' · ' + place(g.s.v, g.s.h) })),
+        movedHead: en ? mv.length + (mv.length === 1 ? ' screening in your plan was updated to the new schedule' : ' screenings in your plan were updated to the new schedule') : mv.length + ' 场排片已按最新排片更新' });
     }
     const all = data.shows.filter(s => idx.F[s.id] && picked.has(U.keyOf(s))).sort((a, b) => U.showDate(a) - U.showDate(b));
     // 专题筛选：只列出个人排片里有场次的专题；选中的专题已无场次时回到「全部」

@@ -11309,6 +11309,9 @@
   "和朋友对排片": "Compare with your plan",
   "加入这一场": "Add this screening",
   "已在我的排片": "In my plan",
-  "TA 的全部场次": "All their screenings"
+  "TA 的全部场次": "All their screenings",
+  "主办方调整了这些场次，你的排片已经自动换成新时间。": "The organiser changed these screenings — your plan has been switched to the new times.",
+  "改为": "Now",
+  "已取消": "Cancelled"
  }
 }

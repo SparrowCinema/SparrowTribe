@@ -4,12 +4,22 @@
  <view wx:if="{{planSelectorOpen}}" class="selector-mask" catchtouchmove="noop" catchtap="closePlanSelector"><view class="selector-panel" catchtap="noop"><view class="selector-head"><text>{{L.t(i,'选择专题')}}</text><text bindtap="closePlanSelector">×</text></view><input class="selector-search" placeholder="{{L.t(i,'搜索专题')}}" value="{{planQuery}}" bindinput="searchPlanSelector"/><scroll-view scroll-y class="selector-results"><view wx:for="{{planOptions}}" wx:key="id" data-id="{{item.id}}" bindtap="choosePlanScope" class="selector-option"><view><text class="b">{{item.n}}</text><text class="small">{{item.lab}}</text></view><text class="selector-check box {{item.selected?'on':''}}">{{item.selected?'✓':''}}</text></view><view wx:if="{{!planOptions.length}}" class="small">{{L.t(i,'没有匹配的专题')}}</view></scroll-view><view class="selector-foot"><text>{{L.t(i,'可多选')}}</text><view class="selector-done" bindtap="closePlanSelector">{{L.t(i,'完成')}}</view></view></view></view>
 
   <view id="plan" class="blockh">{{L.t(i,'个人排片')}} <text class="en">MY PLAN</text></view>
+  <view wx:if="{{moved.length}}" class="plan-gone plan-moved">
+    <text class="pg-h">{{movedHead}}</text>
+    <text class="pg-p">{{L.t(i,'主办方调整了这些场次，你的排片已经自动换成新时间。')}}</text>
+    <view wx:for="{{moved}}" wx:key="k" class="pg-item">
+      <text class="pg-t">{{item.title}}<text wx:if="{{item.ver}}" class="pg-ver"> {{item.ver}}</text></text>
+      <text class="pg-was">{{L.t(i,'原定')}} {{item.was}}</text>
+      <text class="pg-now">{{L.t(i,'改为')}} {{item.now}}</text>
+      <text class="pg-ok" bindtap="movedOk" data-k="{{item.k}}">{{L.t(i,'知道了')}}</text>
+    </view>
+  </view>
   <view wx:if="{{gone.length}}" class="plan-gone">
     <text class="pg-h">{{goneHead}}</text>
     <text class="pg-p">{{L.t(i,'这些场次在最新排片里已经找不到了，可能改了时间、换了影厅或取消。')}}</text>
     <view wx:for="{{gone}}" wx:key="k" class="pg-item">
       <text class="pg-t">{{item.title}}<text wx:if="{{item.ver}}" class="pg-ver"> {{item.ver}}</text></text>
-      <text class="pg-was">{{L.t(i,'原定')}} {{item.was}}</text>
+      <text class="pg-was"><text wx:if="{{item.cancel}}">{{L.t(i,'已取消')}} · </text>{{L.t(i,'原定')}} {{item.was}}</text>
       <view wx:for="{{item.alts}}" wx:for-item="a" wx:key="to" class="pg-alt" hover-class="hv" bindtap="goneSwap" data-k="{{item.k}}" data-to="{{a.to}}"><text>{{a.txt}}</text><text class="pg-plus">＋</text></view>
       <text wx:if="{{!item.alts.length}}" class="pg-none">{{L.t(i,'这部影片暂时没有其他待映场次')}}</text>
       <text class="pg-ok" bindtap="goneOk" data-k="{{item.k}}">{{L.t(i,'知道了')}}</text>

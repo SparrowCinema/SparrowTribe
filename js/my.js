@@ -107,7 +107,7 @@ function myPage(){const list=selectedRows(),st=planStats(list),next=list.find(s=
  main.innerHTML='<section class="view gut my-dashboard"><div class="my-page-head"><h2 class="sec">我的</h2><p>带着日程出发，带着电影回来。</p></div>'+
  /* 「我的」分三段：护照（默认展开，是这页的主角）→ 我的电影 → 设置与帮助 */
  '<div class="my-menu my-pass">'+passportCollectionHTML()+'</div><h3 class="my-group">'+tr('我的电影')+(LANG==='en'?'':' <small>MY CINEMA</small>')+'</h3><div class="my-menu">'+
- menuRowHTML('plan','个人排片',(planGoneList().length?tr(planGoneList().length+' 场排片有变动')+' · ':'')+(list.length?st.n+' 场 · '+(next?'下一场 '+next.d+' '+wk(next.d)+' '+next.t:'已全部放映'):'按天查看日程 · 自动检查时间冲突'),'data-tab="plan"')+
+ menuRowHTML('plan','个人排片',(planChangeCount()?tr(planChangeCount()+' 场排片有变动')+' · ':'')+(list.length?st.n+' 场 · '+(next?'下一场 '+next.d+' '+wk(next.d)+' '+next.t:'已全部放映'):'按天查看日程 · 自动检查时间冲突'),'data-tab="plan"')+
  (ws=>menuRowHTML('want','想看清单',ws.n?tr(ws.n+' 部')+(ws.fresh?' · '+tr(ws.fresh+' 部有新场次'):ws.live?' · '+tr(ws.live+' 部有场次'):''):'在影片页点「想看」，有新场次时会标出','data-want-list'))(wantStats())+
  menuRowHTML('recap','我的影院观影结算','按年份与专题，收藏印章与评分。','data-pp="recap"')+
  menuRowHTML('taste','我的电影趣味图谱',tasteMenuSub(),'data-tab="taste-map"')+

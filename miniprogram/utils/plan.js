@@ -20,6 +20,8 @@ function toggle(k) { const s = get(); if (s.has(k)) { s.delete(k); unremind(k); 
 function addMany(keys) { const s = get(); keys.forEach(k => s.add(k)); touch(); save(); }
 function remove(k) { get().delete(k); unremind(k); touch(); save(); }
 function clear() { const s = get(); [...s].forEach(unremind); s.clear(); touch(); save(); }
+// 场次改期后整体换成新场次（utils/planchange.js）：和用户自己改一样更新修改时间，其他设备随同步一起更新
+function migrate(keys) { cache = new Set(keys || []); touch(); save(); }
 function replace(keys) { cache = new Set(keys || []); save(true); }
 function onChange(fn) { listeners.push(fn); return () => { const i = listeners.indexOf(fn); if (i >= 0) listeners.splice(i, 1); }; }
 
@@ -33,4 +35,4 @@ function syncFromCloud() {
   }).catch(() => {});
 }
 
-module.exports = { get, toggle, addMany, remove, clear, replace, onChange, syncFromCloud };
+module.exports = { get, toggle, addMany, remove, clear, replace, migrate, onChange, syncFromCloud };

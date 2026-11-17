@@ -7,7 +7,8 @@
    - 载入时，已选但数据里已不存在、且原定未开场（6 小时内）的场次，移到 sparrow-plan-gone-v1，个人排片页顶部列出：
      同一部影片还有别的待映场次时给出最接近的两场一键替换，否则提示「暂时没有其他场次」，可以「知道了」移除提醒。
    - 原定时间过去一天后提醒自动清除；场次键重新出现（数据改回）时也自动清除。 */
-const PLAN_MEMO_KEY='sparrow-plan-memo-v1',PLAN_GONE_KEY='sparrow-plan-gone-v1';
+const PLAN_MEMO_KEY='sparrow-plan-memo-v1',PLAN_GONE_KEY='sparrow-plan-gone-v1',PLAN_MOVED_KEY='sparrow-plan-moved-v1';
+let planMoved={};
 let planGone={};
 function rjson(k){try{const o=JSON.parse(localStorage.getItem(k)||'{}');return o&&typeof o==='object'&&!Array.isArray(o)?o:{};}catch{return {};}}
 function wjson(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch{}}
@@ -15,22 +16,42 @@ function planMemoFor(keys){const memo=rjson(PLAN_MEMO_KEY),byKey=new Map(SH.map(
   keys.forEach(k=>{const s=byKey.get(k);if(s)out[k]={f:s.id,d:s.d,t:s.t,v:s.v,h:s.h,at:showDate(s).getTime()};else if(memo[k])out[k]=memo[k];});return out;}
 /* 在 readSelection 之前调用（此时 validKeys 已是新数据） */
 function planTrack(){let raw=[];try{const a=JSON.parse(localStorage.getItem(PLAN_KEY)||'[]');raw=Array.isArray(a)?a.filter(k=>typeof k==='string'):[];}catch{}
-  const memo=rjson(PLAN_MEMO_KEY),gone=rjson(PLAN_GONE_KEY),t=+now();
+  const memo=rjson(PLAN_MEMO_KEY),gone=rjson(PLAN_GONE_KEY),moved=rjson(PLAN_MOVED_KEY),t=+now();
+  /* 按场次变更记录（MOVES，data/changes.json）自动处理：改期 / 换厅 → 直接换成新场次并记一条「已自动更新」；取消 → 进「有变动」列表给出同片其他场次。
+     旧键仍有效时只在「被别的影片占用」且本机记录的影片对不上时才迁移。迁移后写回本机并更新同步时间，其他设备随同步一起更新。 */
+  let mig=false;
+  raw=raw.map(k=>{const m=MOVES[k];if(!m)return k;
+    if(validKeys.has(k)){const mm=memo[k],s=SH.find(x=>keyOf(x)===k);if(!(m.reused&&mm&&mm.f&&s&&s.id!==mm.f))return k;}
+    const w=m.was||{},at=w.d?showDate(w).getTime():0;
+    if(m.to&&validKeys.has(m.to)){moved[k]={to:m.to,f:m.f,d:w.d,t:w.t,v:w.v,h:w.h,at,seen:t};mig=true;return m.to;}
+    if(!m.to){if(at>=t-6*3600e3)gone[k]={f:m.f,d:w.d,t:w.t,v:w.v,h:w.h,at,seen:t,cancel:1};mig=true;return null;}
+    return k;}).filter(Boolean);
+  if(mig){raw=[...new Set(raw)];try{localStorage.setItem(PLAN_KEY,JSON.stringify(raw));touchMeta('picks');}catch{}}
+  Object.keys(moved).forEach(k=>{const s=SH.find(x=>keyOf(x)===moved[k].to);if(!s||isPast(s))delete moved[k];});
+  planMoved=moved;wjson(PLAN_MOVED_KEY,moved);
   raw.forEach(k=>{const m=memo[k];if(validKeys.has(k)||gone[k]||!m||!m.at||m.at<t-6*3600e3)return;gone[k]=Object.assign({},m,{seen:t});});
   Object.keys(gone).forEach(k=>{const g=gone[k];if(validKeys.has(k)||!g||!g.at||g.at<t-24*3600e3)delete gone[k];});
   planGone=gone;wjson(PLAN_GONE_KEY,gone);wjson(PLAN_MEMO_KEY,planMemoFor(raw.filter(k=>validKeys.has(k))));}
 function planGoneList(){return Object.keys(planGone).map(k=>Object.assign({k},planGone[k])).sort((a,b)=>a.at-b.at);}
 function planGoneDrop(k){delete planGone[k];wjson(PLAN_GONE_KEY,planGone);}
+function planMovedList(){return Object.keys(planMoved).map(k=>Object.assign({k},planMoved[k])).sort((a,b)=>a.at-b.at);}
+function planChangeCount(){return planGoneList().length+planMovedList().length;}
 function planAlts(g){return SH.filter(s=>s.id===g.f&&!isPast(s)&&!picked.has(keyOf(s))).map(s=>[s,(s.d===g.d?0:2e7)+(s.v===g.v?0:1e7)+Math.abs(showDate(s).getTime()-g.at)/6e4]).sort((a,b)=>a[1]-b[1]).slice(0,2).map(x=>x[0]);}
-function planGoneHTML(){const list=planGoneList();if(!list.length)return '';
+function planMovedHTML(){const list=planMovedList();if(!list.length)return '';
+  const when=(d,t,v,h)=>{const V=VN[v],H=V&&V.halls.find(x=>x.id===h);return esc(d+' '+tr(wk(d))+' '+t)+(V?' · '+esc(venueLabel(V))+(H?' '+esc(H.name):''):'');};
+  return '<div class="plan-gone plan-moved" role="status"><b>'+tr(list.length+' 场排片已按最新排片更新')+'</b><p>'+tr('主办方调整了这些场次，你的排片已经自动换成新时间。')+'</p>'+list.map(g=>{const f=F[g.f],s=SH.find(x=>keyOf(x)===g.to);
+    return '<div class="pg-item"><div class="pg-was"><strong>'+(f?esc(f.cn)+(f.version?' <span class="ped">'+esc(f.version)+'</span>':''):'')+'</strong><span class="pg-old">'+tr('原定')+' '+when(g.d,g.t,g.v,g.h)+'</span><span class="pg-new">'+tr('改为')+' '+(s?when(s.d,s.t,s.v,s.h):'')+'</span></div><button class="text-button pg-ok" data-moved-ok="'+esc(g.k)+'">'+tr('知道了')+'</button></div>';}).join('')+'</div>';}
+function planGoneHTML(){const list=planGoneList();if(!list.length)return planMovedHTML();
   const was=g=>{const v=VN[g.v],h=v&&v.halls.find(x=>x.id===g.h);return esc(g.d+' '+tr(wk(g.d))+' '+g.t)+(v?' · '+esc(venueLabel(v))+(h?' '+esc(h.name):''):'');};
   return '<div class="plan-gone" role="status"><b>'+tr(list.length+' 场排片有变动')+'</b><p>'+tr('这些场次在最新排片里已经找不到了，可能改了时间、换了影厅或取消。')+'</p>'+list.map(g=>{const f=F[g.f],alts=planAlts(g);
-    return '<div class="pg-item"><div class="pg-was"><strong>'+(f?esc(f.cn)+(f.version?' <span class="ped">'+esc(f.version)+'</span>':''):tr('原场次'))+'</strong><span>'+tr('原定')+' '+was(g)+'</span></div>'+
+    return '<div class="pg-item"><div class="pg-was"><strong>'+(f?esc(f.cn)+(f.version?' <span class="ped">'+esc(f.version)+'</span>':''):tr('原场次'))+'</strong><span>'+(g.cancel?tr('已取消')+' · ':'')+tr('原定')+' '+was(g)+'</span></div>'+
       (alts.length?alts.map(s=>'<button class="pg-alt" data-gone-swap="'+esc(g.k)+'" data-to="'+esc(keyOf(s))+'"><span>'+tr('换成')+' '+esc(s.d+' '+tr(wk(s.d))+' '+s.t)+' · '+placeHTML(s)+'</span><b>＋</b></button>').join(''):'<p class="pg-none">'+tr('这部影片暂时没有其他待映场次')+'</p>')+
-      '<button class="text-button pg-ok" data-gone-ok="'+esc(g.k)+'">'+tr('知道了')+'</button></div>';}).join('')+'</div>';}
+      '<button class="text-button pg-ok" data-gone-ok="'+esc(g.k)+'">'+tr('知道了')+'</button></div>';}).join('')+'</div>'+planMovedHTML();}
 document.addEventListener('click',e=>{
   const sw=e.target.closest('[data-gone-swap]');
   if(sw){const to=sw.dataset.to;if(validKeys.has(to)){picked.add(to);saveSelection();}planGoneDrop(sw.dataset.goneSwap);toast(tr('已换成新场次'));if(location.hash==='#plan')planPage();return;}
+  const mv=e.target.closest('[data-moved-ok]');
+  if(mv){delete planMoved[mv.dataset.movedOk];wjson(PLAN_MOVED_KEY,planMoved);if(location.hash==='#plan')planPage();else mv.closest('.pg-item')?.remove();return;}
   const ok=e.target.closest('[data-gone-ok]');
   if(ok){planGoneDrop(ok.dataset.goneOk);if(location.hash==='#plan')planPage();else ok.closest('.pg-item')?.remove();}
 });

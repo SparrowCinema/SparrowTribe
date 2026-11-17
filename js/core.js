@@ -7,6 +7,10 @@ let FILMS=[], VENUES=[], PROGRAMMES=[], SH=[], VN={}, F={}, PG={}, days=[];
 const hallOf = s => VN[s.v].halls.find(x=>x.id===s.h);
 const placeOf = s => `${venueLabel(VN[s.v])} ${hallOf(s).name}`;
 const placeHTML = s => `${esc(venueLabel(VN[s.v]))}<span class="hall-tag">${esc(hallOf(s).name)}</span>`; /* 影厅名较长时（如「5号Dolby Cinema 杜比影院厅」）作为独立小标签整体换行，不挤乱影院名 */
+/* 场次变更记录（部署时 tools/build-changes.js 生成 data/changes.json，loadData 读入）：{旧场次键:{to,f,sid,was,reused}}。
+   resolveKey：旧场次键 → 现在的场次键（改期后），用于分享链接、观影记录关联的场次；找不到时原样返回。 */
+let MOVES={};
+const resolveKey = k => { if(validKeys.has(k)) return k; const m=MOVES[k]; return m&&m.to&&validKeys.has(m.to)?m.to:k; };
 const keyOf = s => window.SparrowScreenings.keyOf(s);
 let vfilt = "all", cityFilt = "all", venueQuery = "";
 /* 首页默认城市：没手动选过城市时，默认只看所在城市（定位城市有场次用它，否则杭州）的排片，甘特图首屏就是本地影厅。
