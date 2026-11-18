@@ -7,6 +7,7 @@ const poster = require('../../utils/poster.js');
 const W = require('../../utils/watched.js');
 const Want = require('../../utils/want.js');
 const R = require('../../utils/recap.js');
+const SV = require('../../utils/svguri.js');
 const I = require('../../utils/i18n.js');
 const SY = require('../../utils/sync.js');
 const Backup=require('../../utils/profile-backup.js');
@@ -32,7 +33,7 @@ Page({
   ppJump(){const id=this._jump;this._jump='';if(!id)return;const ids=this._ppIds||[],k=ids.indexOf(id);if(k<0)return;
     const vol=Math.floor(k/285)+1,page=1+Math.floor((k%285)/15);
     if(vol!==this.data.pp.vol){this.setData({ppVol:vol});this.buildPassport();}
-    this.setData({ppShelf:false,ppOpen:true,ppTab:'stamps',ppPage:page,ppSp:Math.floor(page/2),'pp.hit':id});this.setData({cuCfg:this.cuCfg(page,Math.floor(page/2))});this.spLabel();setTimeout(()=>this.cuMeasure(),400);
+    this.setData({ppShelf:false,ppOpen:true,ppTab:'stamps',ppPage:page,ppSp:Math.floor(page/2),'pp.hit':id});this.setData({cuCfg:this.cuCfg(page,Math.floor(page/2))});this.spLabel();this.ensureSvg();setTimeout(()=>this.cuMeasure(),400);
     setTimeout(()=>wx.pageScrollTo({selector:'.fp',offsetTop:-8,duration:300}),120);
     clearTimeout(this._hitT);this._hitT=setTimeout(()=>this.setData({'pp.hit':''}),2400);},
   toggleToday(){this.setData({todayExpanded:!this.data.todayExpanded});},
@@ -46,11 +47,14 @@ Page({
     const rated = list.filter(e => e.rec.r), mins = list.reduce((n, e) => n + (e.f.min || 0), 0);
     const st = { n: list.length, progs: new Set(list.map(e => idx.progOf(e.f).id)).size, venues: new Set(list.filter(e => e.s).map(e => e.s.v)).size,
       avg: rated.length ? (rated.reduce((n, e) => n + e.rec.r, 0) / rated.length).toFixed(1) : '—', hm: Math.floor(mins / 60) + 'h' + String(mins % 60).padStart(2, '0') };
+    this._stSrc = {};
     const stamps = list.map((e, k) => {
       const lk = R.look(e.id), p = idx.progOf(e.f), r = e.rec.r || 0;
       const stt = R.stampTitle(e.f.cn, lk.shape); // 片名排版与网站 / 长图印章同一套（shared/recap.js 的 stampTitle）
-      return { id: e.id, x: G.views(e.rec).length > 1 ? '×' + G.views(e.rec).length : '', title: e.f.cn, tl: stt.lines, tfs: Math.round(stt.fs * 1.18 * 10) / 10, date: R.dstamp(e.rec.d), top: String((p && p.en) || 'SPARROW FILM PASSPORT').toUpperCase().split(/ · | & /)[0], venue: e.venue || t('影院观影'),
-        shape: lk.shape, tilt: Math.round((((R.hash(e.id) % 21) - 10) * 1.1) * 10) / 10, dx: ((R.hash(e.id) >>> 5) % 9 - 4) * 3 + (Math.floor(k % 15 / 3) % 2 ? 10 : -2), dy: ((R.hash(e.id) >>> 9) % 7 - 3) * 3, ink: lk.ink, r, stars: r ? [1, 2, 3, 4, 5].map(i => Math.max(0, Math.min(2, r - (i - 1) * 2)) * 50) : [] };
+      // 印章画面与网站护照同一份 SVG（shared/recap.js 的 stampSVG，自带油墨纹理），只在当前页附近按需生成（见 ensureSvg）
+      const q = R.stampPose(e.id, k % 15);
+      this._stSrc[e.id] = { id: e.id, title: e.f.cn, top: (p && p.en) || '', venue: e.venue || t('影院观影'), date: e.rec.d, r, views: G.views(e.rec).length };
+      return { id: e.id, sk: 's' + R.hash(e.id + '|' + JSON.stringify(this._stSrc[e.id])), title: e.f.cn, ink: R.look(e.id).ink, tilt: q.tilt, dx: Math.round(q.dx * 60) / 10, dy: Math.round(q.dy * 60) / 10 };
     });
     this._ppIds = stamps.map(x => x.id);
     // 分册：每册 285 枚（1 资料页 + 19 印章页），按观影日期从早到晚，满了换下一册
@@ -59,7 +63,7 @@ Page({
     const rng = l => l.length ? (ym(l[0].rec.d) === ym(l[l.length - 1].rec.d) ? ym(l[0].rec.d) : ym(l[0].rec.d) + ' – ' + ym(l[l.length - 1].rec.d)) : '—';
     const pages = []; for (let k = 0; k < Math.max(1, cur.s.length); k += 15) { const items = cur.s.slice(k, k + 15); pages.push({ k: pages.length + 1, no: String(pages.length + 2).padStart(2, '0'), items, slots: Array.from({ length: Math.min(1, 15 - items.length) }, (x, j) => j) }); }
     const hn = W.holder(), first = vlist[0], last = vlist[vlist.length - 1];
-    this.setData({ pp: { st, pages, n: pages.length + 1, nv: vols.length, vol: vi, volNo: p2(vi), volTxt: p2(vi) + ' / ' + p2(vols.length), vn: vlist.length, cv: (vi - 1) % 5 + 1, capPre: vols.length > 1 ? (en ? 'Vol. ' + vi + ' of ' + vols.length + ' · ' : '第 ' + vi + ' 册 · 共 ' + vols.length + ' 册 · ') : '', shelfTxt: en ? 'Passport shelf · ' + vols.length + ' volumes ↗' : '护照书架 · 共 ' + vols.length + ' 册 ↗', shelfLk: en ? 'Shelf · ' + vols.length + ' vols' : '书架 · ' + vols.length + ' 册',
+    this.setData({ pp: { svg: this._svgKeep(pages), st, pages, n: pages.length + 1, nv: vols.length, vol: vi, volNo: p2(vi), volTxt: p2(vi) + ' / ' + p2(vols.length), vn: vlist.length, cv: (vi - 1) % 5 + 1, capPre: vols.length > 1 ? (en ? 'Vol. ' + vi + ' of ' + vols.length + ' · ' : '第 ' + vi + ' 册 · 共 ' + vols.length + ' 册 · ') : '', shelfTxt: en ? 'Passport shelf · ' + vols.length + ' volumes ↗' : '护照书架 · 共 ' + vols.length + ' 册 ↗', shelfLk: en ? 'Shelf · ' + vols.length + ' vols' : '书架 · ' + vols.length + ' 册',
       vols: vols.map((v, k) => ({ k: k + 1, no: p2(k + 1), cv: k % 5 + 1, range: rng(v.l), nTxt: v.l.length + (en ? ' films' : ' 部') + (k === vols.length - 1 ? (en ? ' · Latest' : ' · 最新') : v.l.length >= PER ? (en ? ' · Full' : ' · 已满') : '') })), empty: !list.length, holder: hn || t('影迷'), photo: W.photo(), holderEn: hn ? '' : 'CINEPHILE',
       first: first ? R.dstamp(first.rec.d) : '—', last: last ? R.dstamp(last.rec.d) : '—',
       mrz1: 'P<SPARROW<FILM<PASSPORT<<' + (hn && !/[^\x00-\x7f]/.test(hn) ? hn.toUpperCase().replace(/[^A-Z]/g, '<').slice(0, 14) : 'CINEPHILE') + '<<<',
@@ -181,14 +185,27 @@ Page({
     for (let j = 0; j < c; j++) spreads.push({ k: j, l: 2 * j, r: 2 * j + 1, rno: String(2 * j + 2).padStart(2, '0') });
     const sp = Math.min(this.data.ppSp, c - 1);
     const pg = Math.min(this.data.ppPage, n - 1);
-    this.setData({ spreads, ppSp: sp, ppPage: pg, cuCfg: this.cuCfg(pg, sp) }); this.spLabel(); setTimeout(() => this.cuMeasure(), 60);
+    this.setData({ spreads, ppSp: sp, ppPage: pg, cuCfg: this.cuCfg(pg, sp) }); this.spLabel(); this.ensureSvg(); setTimeout(() => this.cuMeasure(), 60);
   },
   spLabel() { const n = this.data.pp.n, l = this.data.ppSp * 2 + 1; this.setData({ ppLabel: l + 1 <= n ? l + '–' + (l + 1) + ' / ' + n : l + ' / ' + n }); },
-  ppOpen() { this.setData({ ppOpen: true, ppPage: 0, ppSp: 0 }); this.setData({ cuCfg: this.cuCfg(0, 0) }); this.spLabel(); setTimeout(() => this.cuMeasure(), 60); },
+  ppOpen() { this.setData({ ppOpen: true, ppPage: 0, ppSp: 0 }); this.setData({ cuCfg: this.cuCfg(0, 0) }); this.spLabel(); this.ensureSvg(); setTimeout(() => this.cuMeasure(), 60); },
   ppClose() { this.setData({ ppOpen: false, ppVol: 0 }); this.buildPassport(); },
   ppShelfOpen() { this.setData({ ppOpen: false, ppShelf: true }); },
   ppShelfClose() { this.setData({ ppShelf: false, ppVol: 0 }); this.buildPassport(); },
   ppPickVol(e) { this.setData({ ppVol: +e.currentTarget.dataset.v || 0, ppShelf: false, ppOpen: true, ppPage: 0, ppSp: 0 }); this.buildPassport(); this.spLabel(); },
+  // 印章图片：只生成当前页与前后几页（单页 ±1，双页前后两跨页），翻页后补上新露出的页；已生成的按内容键沿用
+  _svgKeep(pages) { const old = (this.data.pp && this.data.pp.svg) || {}, keep = {}; (pages || []).forEach(pg => (pg.items || []).forEach(s => { if (old[s.sk]) keep[s.sk] = old[s.sk]; })); return keep; },
+  // 万一某台设备的图片组件不显示 SVG：改用简单的文字印章兜底（本次打开内有效）
+  stErr() { if (!this.data.stFail) this.setData({ stFail: true }); },
+  ensureSvg(page, sp) {
+    const pp = this.data.pp; if (!pp || !pp.pages || !this._stSrc) return;
+    const wide = this.data.wide, c = wide ? (sp === undefined ? this.data.ppSp : sp) * 2 : (page === undefined ? this.data.ppPage : page), lo = wide ? c - 2 : c - 1, hi = wide ? c + 3 : c + 1, have = pp.svg || {}, d = {};
+    for (let k = Math.max(1, lo); k <= hi && k < pp.n; k++) {
+      const pg = pp.pages[k - 1]; if (!pg) continue;
+      pg.items.forEach(s => { if (!have[s.sk] && !d['pp.svg.' + s.sk] && this._stSrc[s.id]) d['pp.svg.' + s.sk] = SV.svgUri(R.stampSVG(this._stSrc[s.id], { inline: true })); });
+    }
+    const ks = Object.keys(d); for (let i = 0; i < ks.length; i += 15) { const part = {}; ks.slice(i, i + 15).forEach(k => { part[k] = d[k]; }); this.setData(part); } // 分批，避免单次 setData 过大
+  },
   // 按钮翻页：交给 curl-ctl.wxs 做卷曲动画，翻完回调 cuDone 换页
   ppPrev() { this.setData({ cuCmd: { dir: -1, n: (this._cmdN = (this._cmdN || 0) + 1) } }); },
   ppNext() { this.setData({ cuCmd: { dir: 1, n: (this._cmdN = (this._cmdN || 0) + 1) } }); },
@@ -209,8 +226,8 @@ Page({
   // 卷曲翻完：页码和卷曲参数同一次 setData，渲染层在新页码到达时复位各层，避免闪一下
   cuDone(o) {
     const d = o && o.dir; if (!d) return;
-    if (this.data.wide) { const sp = this.data.ppSp + d; if (sp < 0 || sp >= this.data.spreads.length) return; this.setData({ ppSp: sp, cuCfg: this.cuCfg(this.data.ppPage, sp) }); this.spLabel(); }
-    else { const p = this.data.ppPage + d; if (p < 0 || p >= this.data.pp.n) return; this.setData({ ppPage: p, cuCfg: this.cuCfg(p, this.data.ppSp) }); }
+    if (this.data.wide) { const sp = this.data.ppSp + d; if (sp < 0 || sp >= this.data.spreads.length) return; this.setData({ ppSp: sp, cuCfg: this.cuCfg(this.data.ppPage, sp) }); this.spLabel(); this.ensureSvg(); }
+    else { const p = this.data.ppPage + d; if (p < 0 || p >= this.data.pp.n) return; this.setData({ ppPage: p, cuCfg: this.cuCfg(p, this.data.ppSp) }); this.ensureSvg(); }
   },
   openStamp(e) { wx.navigateTo({ url: '/pages/film/film?id=' + e.currentTarget.dataset.id }); },
   pickPhoto() {

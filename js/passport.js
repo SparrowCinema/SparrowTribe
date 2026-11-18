@@ -129,20 +129,8 @@ function refreshMyRate(id){const b=document.getElementById('my-rate');if(b&&F[id
 
 // —— 印章（SVG）——
 /* 片名排版改用 shared/recap.js 的 SparrowRecap.stampTitle（2026-11-18） */
-const svgStar=(cx,cy,R)=>{let p='';for(let i=0;i<10;i++){const r=i%2?R*.45:R,a=-Math.PI/2+i*Math.PI/5;p+=(i?'L':'M')+(cx+r*Math.cos(a)).toFixed(1)+' '+(cy+r*Math.sin(a)).toFixed(1);}return p+'Z';};
-const octPts=s=>{const k=s*.42;return [[-k,-s],[k,-s],[s,-k],[s,k],[k,s],[-k,s],[-s,k],[-s,-k]].map(([x,y])=>(100+x)+','+(100+y)).join(' ');};
-function stampSVG(e){const R=window.SparrowRecap,lk=R.look(e.id),col=lk.ink,p=progOf(e.f),uid='st-'+e.id,
-  topRaw=String((p&&p.en)||'SPARROW FILM PASSPORT').toUpperCase().split(/ · | & /)[0],top=esc(topRaw.slice(0,26)),venue=esc(e.venue||'影院观影'),date=R.dstamp(e.rec.d),r=e.rec.r||0;
-  const stt=R.stampTitle(e.f.cn,lk.shape),ls=stt.lines,fs=stt.fs; /* 片名排版：shared/recap.js 的 stampTitle，小程序与长图印章同一套 */
-  let frame='',ty=88,dy=124,sy=146,topY=0,botY=0;
-  if(lk.shape===0){frame='<circle cx="100" cy="100" r="95" stroke-width="5"/><circle cx="100" cy="100" r="71" stroke-width="1.6"/><path id="'+uid+'-a" d="M22 100a78 78 0 0 1 156 0" fill="none" stroke="none"/><path id="'+uid+'-b" d="M15 100a85 85 0 0 0 170 0" fill="none" stroke="none"/>'+
-    '<text class="st-arc"><textPath href="#'+uid+'-a" startOffset="50%" text-anchor="middle">'+top+'</textPath></text><text class="st-arc st-v"><textPath href="#'+uid+'-b" startOffset="50%" text-anchor="middle">'+venue+'</textPath></text><path d="'+svgStar(14,100,4)+svgStar(186,100,4)+'" stroke="none"/>';ty=86;dy=122;sy=143;}
-  else if(lk.shape===2){frame='<polygon points="'+octPts(94)+'" stroke-width="5"/><polygon points="'+octPts(81)+'" stroke-width="1.6"/>';topY=40;botY=163;ty=84;dy=120;sy=141;}
-  else{const t=lk.shape===3;frame='<rect x="5" y="14" width="190" height="172" rx="'+(t?3:16)+'" stroke-width="5"/><rect x="15" y="24" width="170" height="152" rx="'+(t?2:9)+'" stroke-width="1.6"'+(t?' stroke-dasharray="5 4"':'')+'/>';topY=44;botY=164;ty=84;dy=120;sy=141;}
-  const lines=ls.map((l,i)=>'<text class="st-t" x="100" y="'+(ty-(ls.length-1)*fs*.56+i*fs*1.12)+'" font-size="'+fs+'">'+esc(l)+'</text>').join('');
-  const side=topY?'<text class="st-s" x="100" y="'+topY+'">'+esc(topRaw.slice(0,lk.shape===2?16:20))+'</text><text class="st-s st-v" x="100" y="'+botY+'">'+venue+'</text>':'';
-  const sc=r?[1,2,3,4,5].map(i=>{const part=Math.max(0,Math.min(2,r-(i-1)*2))/2,cx=72+(i-1)*14;return '<path d="'+svgStar(cx,sy,5.4)+'" fill="none" stroke-width="1.1"/>'+(part?'<path d="'+svgStar(cx,sy,5.4)+'" stroke="none" clip-path="url(#'+uid+'-c'+i+')"/><clipPath id="'+uid+'-c'+i+'"><rect x="'+(cx-6)+'" y="'+(sy-6)+'" width="'+(12*part)+'" height="12"/></clipPath>':'');}).join(''):'';
-  return '<svg class="st-svg" viewBox="0 0 200 200" role="img" aria-label="'+esc(e.f.cn)+' · '+date+(r?' · '+r+'/10':'')+'" style="--ink:'+col+'"><g class="st-g" filter="url(#pp-ink)" fill="'+col+'" stroke="'+col+'">'+frame+side+lines+'<text class="st-d" x="100" y="'+dy+'">'+date+'</text>'+sc+'</g>'+((window.SparrowGrowth&&window.SparrowGrowth.views(e.rec).length>1)?'<g class="st-x"><circle cx="172" cy="28" r="19" fill="#8e2a22" stroke="#f8f2e6" stroke-width="3"/><text x="172" y="34" text-anchor="middle" font-size="16" font-weight="700" fill="#fff6e4" font-family="ui-monospace,Menlo,monospace">×'+window.SparrowGrowth.views(e.rec).length+'</text></g>':'')+'</svg>';}
+// 印章 SVG 与姿态在 shared/recap.js（stampSVG / stampPose），小程序护照用同一份（inline 模式当图片显示）
+function stampSVG(e){const p=progOf(e.f);return window.SparrowRecap.stampSVG({id:e.id,title:e.f.cn,top:(p&&p.en)||'',venue:e.venue||'影院观影',date:e.rec.d,r:e.rec.r||0,views:window.SparrowGrowth?window.SparrowGrowth.views(e.rec).length:0});}
 
 // —— 护照（封面 → 资料页 → 印章页，单页翻动）——
 const PP={mc:'',open:false,page:0,busy:false,vol:0,shelf:false,tab:'stamps',lvAll:false,gt:'level',cAll:false,gOpen:null},PP_PER=15,PP_VOL=285; // 每册 = 1 资料页 + 19 印章页（每页 15 枚）= 20 页 = 10 个跨页；满册自动换下一册
@@ -156,8 +144,7 @@ function passportStats(list){const venues=new Set(list.filter(e=>e.s).map(e=>e.s
   return {n:list.length,venues:venues.size,progs:progs.size,avg:rated.length?rated.reduce((n,e)=>n+e.rec.r,0)/rated.length:0,mins,hm:Math.floor(mins/60)+'h'+pad2(mins%60)};}
 function passportPages(list){const pages=['id'];for(let i=0;i<Math.max(1,list.length);i+=PP_PER)pages.push(i);return pages;}
 // 印章像真护照那样盖：位置略有偏移、角度各不相同，边缘允许轻微重叠（同一枚章每次位置固定）
-function stampPose(id,i){const h=window.SparrowRecap.hash(id),row=Math.floor(i/3);
-  return {tilt:(((h%21)-10)*1.1).toFixed(1),dx:(((h>>>5)%9-4)*.5+(row%2?1.6:-.4)).toFixed(2),dy:(((h>>>9)%7-3)*.55).toFixed(2)};}
+function stampPose(id,i){const q=window.SparrowRecap.stampPose(id,i);return {tilt:q.tilt.toFixed(1),dx:q.dx.toFixed(2),dy:q.dy.toFixed(2)};}
 function ppPageHTML(list,pg,n){const R=window.SparrowRecap,C=ppCur(),st=passportStats(C.all),no=String(pg+1).padStart(2,'0'),hn=holderName(),hp=holderPhoto();
   if(pg===0){const first=list[0],last=list[list.length-1];
     return '<section class="fp-page fp-id" aria-label="护照资料页"><div class="fp-ph"><span>FILM PASSPORT / 资料页'+(C.nv>1?' · VOL. '+pad2(C.vol):'')+'</span><span>'+no+'</span></div>'+

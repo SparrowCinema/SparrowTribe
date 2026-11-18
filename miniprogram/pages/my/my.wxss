@@ -126,28 +126,7 @@
 .fp-slot .b { font-size: calc(22 * var(--r)); font-weight: 800; color: var(--ink); letter-spacing: 0; }
 .fp-pf { display: flex; justify-content: space-between; font-size: calc(15 * var(--r)); letter-spacing: calc(3 * var(--r)); color: var(--pink); padding-top: calc(14 * var(--r)); border-top: calc(2 * var(--r)) solid var(--rule); }
 /* 印章：0 圆章 / 1 方章 / 2 八角章 / 3 票根章 */
-.st { position: relative; width: calc(236 * var(--r)); height: calc(236 * var(--r)); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; color: var(--ink); opacity: .9; box-sizing: border-box; padding: 0 calc(30 * var(--r)); }
-.st .st-in { position: absolute; }
-.st0 { border: calc(8 * var(--r)) solid var(--ink); border-radius: 50%; }
-.st0 .st-in { left: calc(18 * var(--r)); right: calc(18 * var(--r)); top: calc(18 * var(--r)); bottom: calc(18 * var(--r)); border: calc(2 * var(--r)) solid var(--ink); border-radius: 50%; }
-.st1 { height: calc(206 * var(--r)); border: calc(7 * var(--r)) solid var(--ink); border-radius: calc(22 * var(--r)); }
-.st1 .st-in { left: calc(10 * var(--r)); right: calc(10 * var(--r)); top: calc(10 * var(--r)); bottom: calc(10 * var(--r)); border: calc(2 * var(--r)) solid var(--ink); border-radius: calc(12 * var(--r)); }
-.st3 { height: calc(206 * var(--r)); border: calc(7 * var(--r)) solid var(--ink); border-radius: calc(4 * var(--r)); }
-.st3 .st-in { left: calc(10 * var(--r)); right: calc(10 * var(--r)); top: calc(10 * var(--r)); bottom: calc(10 * var(--r)); border: calc(2 * var(--r)) dashed var(--ink); }
-.st2 { background: var(--ink); clip-path: polygon(29% 0, 71% 0, 100% 29%, 100% 71%, 71% 100%, 29% 100%, 0 71%, 0 29%); }
-.st2 .st-in { left: calc(8 * var(--r)); right: calc(8 * var(--r)); top: calc(8 * var(--r)); bottom: calc(8 * var(--r)); background: var(--paper); clip-path: polygon(29% 0, 71% 0, 100% 29%, 100% 71%, 71% 100%, 29% 100%, 0 71%, 0 29%); }
-.st .st-in { z-index: 0; }
-.st-top, .st-title, .st-date, .st-stars, .st-venue { position: relative; z-index: 1; }
-.st-top { font-family: Menlo, monospace; font-size: calc(18.5 * var(--r)); font-weight: 700; letter-spacing: calc(2 * var(--r)); max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 /* 片名：行与字号由 shared/recap.js 的 stampTitle 算好（与网站、长图印章一致），这里不再截断；每行不换行、居中，可略超出内边距 */
-.st-title { font-family: "Songti SC", "Noto Serif SC", serif; font-weight: 900; line-height: 1.12; margin: calc(8 * var(--r)) calc(-20 * var(--r)) calc(6 * var(--r)); display: flex; flex-direction: column; align-items: center; }
-.st-tl { display: block; white-space: nowrap; }
-.st-date { font-family: Menlo, monospace; font-size: calc(21.2 * var(--r)); font-weight: 700; letter-spacing: calc(1 * var(--r)); }
-.st-stars { display: flex; margin-top: calc(2 * var(--r)); }
-.st-stars .ss { position: relative; width: calc(22 * var(--r)); height: calc(24 * var(--r)); font-size: calc(21.2 * var(--r)); line-height: calc(24 * var(--r)); }
-.st-stars .s1 { position: absolute; left: 0; top: 0; height: 100%; overflow: hidden; }
-.st-stars .s1 text { display: block; width: calc(22 * var(--r)); }
-.st-venue { font-size: calc(19.8 * var(--r)); font-weight: 600; margin-top: calc(4 * var(--r)); max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .fp-nav { display: flex; align-items: center; justify-content: space-between; width: calc(600 * var(--r)); margin: calc(20 * var(--r)) auto 0; font-size: calc(24 * var(--r)); color: var(--muted); }
 .fp-nav .nb { height: calc(64 * var(--r)); padding: 0 calc(26 * var(--r)); display: flex; align-items: center; border-radius: calc(99 * var(--r)); border: calc(2 * var(--r)) solid var(--line); background: var(--surface); color: var(--fg); font-weight: 600; }
 .fp-nav .nb.dis { opacity: .35; }
@@ -395,7 +374,6 @@
 .gg-a { color: var(--muted); font-size: calc(26.7 * var(--fr)); transition: transform .2s; } .gg.open .gg-a { transform: rotate(90deg); }
 .gg-b { padding: 0 calc(4 * var(--r)) calc(28 * var(--r)); } .gg-v { display: block; margin-bottom: calc(16 * var(--r)); font-size: calc(21.8 * var(--fr)); color: var(--muted); }
 
-.st-x { position: absolute; top: calc(-8 * var(--r)); right: calc(-8 * var(--r)); min-width: calc(68 * var(--r)); height: calc(52 * var(--r)); padding: 0 calc(10 * var(--r)); box-sizing: border-box; border-radius: calc(26 * var(--r)); background: #8e2a22; color: #fff6e4; border: calc(5 * var(--r)) solid #f8f2e6; font-size: calc(24.7 * var(--r)); font-weight: 700; line-height: calc(42 * var(--r)); text-align: center; }
 
 .gcat { display: flex; flex-direction: row; align-items: baseline; gap: calc(14 * var(--r)); margin: calc(34 * var(--r)) 0 calc(8 * var(--r)); font-size: calc(23.2 * var(--fr)); letter-spacing: calc(2 * var(--r)); color: var(--muted); font-weight: 600; }
 .gcat-n { font-size: calc(21.8 * var(--fr)); color: var(--accent); font-weight: 500; }
@@ -464,3 +442,11 @@
 .cu-in { position: absolute; left: 0; top: 0; transform: scaleX(-1); }
 .cu-paper { position: absolute; left: 0; top: 0; right: 0; bottom: 0; background: linear-gradient(90deg, #efe5cf, var(--paper) 30%); }
 .cu-flap .fp-cell.hit { animation: none; }
+
+/* 印章（2026-11-18）：画面是网站同一份 SVG 图片；版式同网站——3 列 × 5 行均分，印章宽 = 页宽 21%（126/600），正片叠底 */
+.fp-grid { flex: 1; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: repeat(5, minmax(0, 1fr)); align-items: center; justify-items: center; min-height: 0; align-content: stretch; }
+.fp-cell { width: 100%; height: 100%; min-height: 0; }
+.st { width: calc(126 * var(--r)); height: calc(126 * var(--r)); padding: 0; border: 0; border-radius: 0; background: none; clip-path: none; opacity: 1; mix-blend-mode: multiply; display: block; }
+.st-img { display: block; width: 100%; height: 100%; }
+.fp-visa .fp-pf { margin-top: calc(14 * var(--r)); }
+.st-fb { width: 100%; height: 100%; box-sizing: border-box; border: calc(6 * var(--r)) solid; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-align: center; padding: calc(14 * var(--r)); font-size: calc(18 * var(--r)); font-weight: 900; line-height: 1.2; font-family: "Songti SC", "Noto Serif SC", serif; opacity: .85; }

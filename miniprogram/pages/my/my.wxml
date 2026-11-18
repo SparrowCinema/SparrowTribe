@@ -246,15 +246,8 @@ ONE STAMP</text><text class="fp-open-icon">↗</text></view>
   <view class="fp-sub">{{pp.empty ? L.t(i,'在影片页点「看过」，就会在这里盖章。') : L.t(i,'点印章回到影片 · 评分印在章上')}}</view>
   <view class="fp-grid">
     <view wx:for="{{pg.items}}" wx:for-item="s" wx:key="id" class="fp-cell {{pp.hit === s.id ? 'hit' : ''}}">
-  <view class="st st{{s.shape}}" style="--ink:{{s.ink}};transform:translate(calc({{s.dx}} * var(--r)),calc({{s.dy}} * var(--r))) rotate({{s.tilt}}deg) scale(.5)" data-id="{{s.id}}" bindtap="openStamp">
-    <view class="st-in" />
-    <text class="st-top">{{s.top}}</text>
-    <view class="st-title" style="font-size:calc({{s.tfs}} * var(--r))"><text wx:for="{{s.tl}}" wx:key="index" class="st-tl">{{item}}</text></view>
-    <text class="st-date">{{s.date}}</text>
-    <view wx:if="{{s.r}}" class="st-stars"><view wx:for="{{s.stars}}" wx:for-item="w" wx:key="index" class="ss"><text class="s0">☆</text><view class="s1" style="width:{{w}}%"><text>★</text></view></view></view>
-    <text class="st-venue">{{s.venue}}</text>
-    <text wx:if="{{s.x}}" class="st-x mono">{{s.x}}</text>
-  </view>
+  <!-- 印章：与网站护照同一份 SVG（shared/recap.js stampSVG，油墨纹理 + 片名排版），大小、姿态同网站 -->
+  <view class="st" style="transform:translate(calc({{s.dx}} * var(--r)),calc({{s.dy}} * var(--r))) rotate({{s.tilt}}deg)" data-id="{{s.id}}" bindtap="openStamp"><view wx:if="{{stFail}}" class="st-fb" style="color:{{s.ink}};border-color:{{s.ink}}">{{s.title}}</view><image wx:elif="{{pp.svg[s.sk]}}" class="st-img" src="{{pp.svg[s.sk]}}" mode="aspectFit" binderror="stErr" /></view>
     </view>
     <view wx:for="{{pg.slots}}" wx:key="*this" class="fp-cell"><view class="fp-slot {{index ? 'dim' : ''}}"><text wx:if="{{pp.empty && index === 0}}" class="b">{{L.t(i,'第一枚印章')}}</text><text class="mono">NEXT STAMP</text></view></view>
   </view>
