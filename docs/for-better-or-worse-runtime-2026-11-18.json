@@ -1,0 +1,33 @@
+{
+  "checked": "2026-11-18",
+  "id": "for-better-or-worse",
+  "cn": "夫妻一场",
+  "runtimeMinutes": 101,
+  "edition": "中国内地院线公映版",
+  "requestedSource": "https://movie.douban.com/subject/37388286/",
+  "requestedSourceStatus": "豆瓣首页已核对同片条目链接；详情页触发访问验证，未直接读取其片长。",
+  "sources": [
+    {
+      "url": "https://www.maoyan.com/cinema/9459?movieId=1528864&poi=4572438",
+      "finding": "猫眼电影影院排片页标注101分钟，14:00至15:41等排片时段一致。"
+    },
+    {
+      "url": "https://weibo.com/2/detail/5358615152035182",
+      "finding": "2026-10-27院线电影资料库影讯明确101分钟、FIRST展映版105分钟。"
+    },
+    {
+      "url": "https://www.thepaper.cn/newsDetail_forward_34271188",
+      "finding": "放映主办方书本放映首映礼资料标注101 min，19:30至21:11。"
+    },
+    {
+      "url": "https://www.firstfilm.org.cn/movies/film-library/夫妻一场/",
+      "finding": "FIRST官方标注2025年展映版105分钟，仅作版本区分。"
+    }
+  ],
+  "screening": {
+    "date": "2026-11-27",
+    "start": "20:00",
+    "estimatedFeatureEnd": "21:41",
+    "note": "映后交流时间不计入正片片长；固定场次编号和开场时间不变。"
+  }
+}
