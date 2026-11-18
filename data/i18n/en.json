@@ -9306,12 +9306,26 @@
   },
   "wtm26-tiger-tonight": {
    "title": "The Angry People",
-   "editorial": "A first feature selected for the Wu Tianming Young Film Festival's \"Beyond the First Feature\" industry screenings. Public information is limited; story and credits will be added once the festival or producers release them.",
+   "editorial": "For viewers who like dark comedy and ensembles of ordinary people. Behind a night of absurd brawling lies the price-war pressure on freight drivers; the laughter leaves the weight of life at the bottom.",
    "honors": [
     "Screening｜2026 Wu Tianming Young Film Festival · Industry Screenings: Beyond the First Feature (closed screening)"
    ],
-   "warnings": [],
-   "contentNote": "Story and release materials for this film have not been published, so content notes are still to be verified. No notes listed does not mean no sensitive content; this is not an official rating."
+   "warnings": [
+    "Fighting and violent conflict",
+    "Property damage"
+   ],
+   "contentNote": "Based on the official synopsis: arguments, fighting and property damage among truck drivers, in a dark-comedy tone. Not reviewed shot by shot; intensity, flashing and sudden loud sounds are unverified. This is not an official rating.",
+   "genre": [
+    "Drama",
+    "Comedy",
+    "Dark comedy"
+   ],
+   "syn": "Shen Can, a young truck driver, takes jobs at low prices and upsets the freight market. Middle-aged driver Ma Dehu only wants to warn him off, but the talk goes badly, Ma loses control, hits Shen and smashes his windscreen. Humiliated and furious, Shen decides to hit back, and the two have an absurd, fierce fight that lasts the night. By dawn the storm has passed and they make peace, only to see other drivers brawling over cheap cargo. Watching them, the two finally resolve to face together the chaos of cut-throat competition and survival at the bottom of the industry.",
+   "st": "Supervising producer Zhou Youchao; producers A Xin and Yue Yichen; written and directed by Deng Xinyangyi.",
+   "highlights": [
+    "A quarrel escalates into an absurd all-night fight, and by dawn the two make peace.",
+    "The price war among freight drivers told as dark-comedy ensemble drama."
+   ]
   },
   "wtm26-nine-piece-band": {
    "dir": "Sun Xiangyu",
@@ -9392,12 +9406,27 @@
   },
   "wtm26-i-am-angry": {
    "dir": "Wang Yabin",
-   "editorial": "A first feature selected for the Wu Tianming Young Film Festival's \"Beyond the First Feature\" industry screenings. Public information is limited; story and credits will be added once the festival or producers release them.",
+   "editorial": "For families, and for anyone who remembers being ten. A misunderstood boy runs away into an imagined jianghu; the title is the most direct cry of growing up.",
    "honors": [
     "Screening｜2026 Wu Tianming Young Film Festival · Industry Screenings: Beyond the First Feature (closed screening)"
    ],
-   "warnings": [],
-   "contentNote": "Story and release materials for this film have not been published, so content notes are still to be verified. No notes listed does not mean no sensitive content; this is not an official rating."
+   "warnings": [
+    "Child running away from home",
+    "Mother-son conflict"
+   ],
+   "contentNote": "Based on the official synopsis: a ten-year-old leaves home after a quarrel with his mother and meets a \"fake hero\" and a \"real scoundrel\". Not reviewed shot by shot; intensity, flashing and sudden loud sounds are unverified. This is not an official rating.",
+   "genre": [
+    "Children's",
+    "Comedy",
+    "Adventure",
+    "Art house"
+   ],
+   "syn": "Ten-year-old Junqiang has long suffered his mother's disapproval and misunderstanding. After a bitter quarrel he leaves home and sets off on a pioneering adventure into his own \"jianghu\". On the road he allies with a \"fake hero\" and is rescued by a \"real scoundrel\". Where is the jianghu he longs for, and can he become a hero of his own?",
+   "st": "Supervising producer Wang Weihua; written and directed by Wang Yabin.",
+   "highlights": [
+    "A ten-year-old runs away after a quarrel with his mother and starts his own adventure.",
+    "Between a \"fake hero\" and a \"real scoundrel\", he looks for a way to be himself."
+   ]
   },
   "wtm26-west-chamber": {
    "title": "The Romance of the Western Chamber",
@@ -9438,12 +9467,26 @@
   },
   "wtm26-goodbye-furkid": {
    "dir": "Zhang Yizhe",
-   "editorial": "A first feature selected for the Wu Tianming Young Film Festival's \"Beyond the First Feature\" industry screenings. Public information is limited; story and credits will be added once the festival or producers release them.",
+   "editorial": "For viewers willing to find comfort in goodbyes. A pet funeral home brings together a few losers into a family without blood ties; in sending off other people's furkids, they lay their own pasts to rest.",
    "honors": [
     "Screening｜2026 Wu Tianming Young Film Festival · Industry Screenings: Beyond the First Feature (closed screening)"
    ],
-   "warnings": [],
-   "contentNote": "Story and release materials for this film have not been published, so content notes are still to be verified. No notes listed does not mean no sensitive content; this is not an official rating."
+   "warnings": [
+    "Pet death and funerals",
+    "Loss of a child",
+    "Debt and criminal record"
+   ],
+   "contentNote": "Based on the official synopsis: handling of pets' remains, grief over a lost child, debt and a criminal record. Not reviewed shot by shot; intensity, flashing and sudden loud sounds are unverified. This is not an official rating.",
+   "title": "Goodbye, Furkid",
+   "genre": [
+    "Drama"
+   ],
+   "syn": "Dongting, at a low point in life, ends up with a few other losers: a father with a criminal record, a mother who has lost a child and a young driver in debt. These overlooked people drift together and run a pet funeral home. On the ruins of their lives, by helping others send off their pets, they lay their own broken pasts to rest and form a family without blood ties, supporting one another as they look for a glimmer of light.",
+   "st": "Producer Xu Weiliang; written by Zhang Yizhe and Li Yixuan.",
+   "highlights": [
+    "A pet funeral home becomes the stage for overlooked people supporting each other.",
+    "On the ruins of their lives, a family without blood ties looks for light."
+   ]
   },
   "wtm26-west-border": {
    "title": "West Border",
@@ -11868,6 +11911,6 @@
   "内部放映": "Closed screening",
   "内部放映 · 不对外售票": "Closed screening · no public tickets",
   "内部放映，不对外售票": "closed screening, no public tickets",
-  "本片为内部放映，不对外售票，麻雀观影护照不收录具体场次。": "This is a closed industry screening with no public tickets; Sparrow Film Passport does not list its sessions."
+  "本片为产业放映，不对外展映、不对外售票，场次仅供行业观摩。": "This is an industry screening, not open to the public and without public tickets; sessions are for industry viewing only."
  }
 }

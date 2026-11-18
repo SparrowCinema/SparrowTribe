@@ -34,7 +34,7 @@
     <view wx:if="{{sf.filtered}}" class="sf-note">{{L.t(i,'已筛选')}} <text class="mono b">{{shows.length}} / {{sfAll}}</text> {{L.t(i,'场')}} · <text class="sf-clear" bindtap="sfTap">{{L.t(i,'清除')}}</text></view>
     <view wx:if="{{sf.filtered && !shows.length}}" class="noshow card"><text class="b">{{L.t(i,'所选日期和影院暂无场次')}}</text><text class="sf-clear" bindtap="sfTap">{{L.t(i,'清除筛选')}}</text></view>
     <view wx:if="{{!shows.length && !sf.filtered && !(internals.length && !ended)}}" class="noshow card"><text class="b">{{ended ? L.t(i,'本片场次已全部放映结束') : (f.ended ? L.t(i,'已下映') : (f.release || L.t(i,'上映信息待公布')))}}</text><text class="muted small">{{ended ? L.t(i,'已放映的场次不再显示在这里。') : (f.ended ? L.t(i,'本片院线放映已结束，麻雀观影护照未收录具体场次。') : L.t(i,'场次公布后会更新到这里，也可以先在各影院售票平台查看。'))}}</text></view>
-    <view wx:for="{{internals}}" wx:key="name" class="internal card"><text class="b">{{L.t(i,'内部放映 · 不对外售票')}}</text><text class="muted small">{{item.name}}{{item.sec ? ' · ' + item.sec : ''}}</text><text class="muted small">{{L.t(i,'本片为内部放映，不对外售票，麻雀观影护照不收录具体场次。')}}</text></view>
+    <view wx:for="{{internals}}" wx:key="name" class="internal card"><text class="b">{{L.t(i,'内部放映 · 不对外售票')}}</text><text class="muted small">{{item.name}}{{item.sec ? ' · ' + item.sec : ''}}</text><text class="muted small">{{L.t(i,'本片为产业放映，不对外展映、不对外售票，场次仅供行业观摩。')}}</text></view>
     <view wx:for="{{shows}}" wx:key="key" class="ticket card">
       <view class="td" style="background:{{item.tone.bg}};color:{{item.tone.ink}};border-right:calc(2 * var(--r)) solid {{item.tone.line}}"><text class="tm">{{item.mon}}</text><text class="tdd mono">{{item.dd}}</text><text class="tw">{{item.wk}}</text></view>
       <view class="tb">
