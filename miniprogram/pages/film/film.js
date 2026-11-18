@@ -81,9 +81,11 @@ Page({
     const addTk = (url, pl, lb, h, p) => { if (!url || seenTk[url]) return; seenTk[url] = 1; tks.push({ url, hint: hintOf(pl, lb, h), label: t(lb || '购票'), prog: p ? p.name : '' }); };
     // 专题已结束 / 影片已下映 / 全部场次已放映后，不再显示购票码（待排片的保留）
     const progEnded = p => !!p && U.progInfo(p, data, idx).status === 'ended';
-    const filmLive = !f.ended && !progEnded(idx.progOf(f)) && (!allShows.length || allShows.some(s => !U.ended(s, idx)));
+    // 按专题分开算（与网站 ticketLive 相同）：影展专题里本片在该专题还有未散场场次、或场次未公布时显示，全部放完隐藏，加场后自动恢复；院线专题看本片全部场次
+    const tkLive = p => { if (f.ended || progEnded(p)) return false; const mine = p && p.kind !== '院线' ? allShows.filter(s => (s.p || f.prog) === p.id) : allShows; return !mine.length || mine.some(s => !U.ended(s, idx)); };
+    const filmLive = tkLive(idx.progOf(f));
     if (filmLive) addTk(U.ticket(f), f.ticketPlatform, f.ticketLabel, f.ticketHint, idx.progOf(f));
-    if (!f.ev) idx.progsOf(f).forEach(x => { if (x.p.ticket && !progEnded(x.p)) addTk(/^https?:|^\//.test(x.p.ticket) ? x.p.ticket : SITE + x.p.ticket, x.p.ticketPlatform, '', x.p.ticketHint, x.p); });
+    if (!f.ev) idx.progsOf(f).forEach(x => { if (x.p.ticket && tkLive(x.p)) addTk(/^https?:|^\//.test(x.p.ticket) ? x.p.ticket : SITE + x.p.ticket, x.p.ticketPlatform, '', x.p.ticketHint, x.p); });
     if (tks.length < 2) tks.forEach(x => { x.prog = ''; });
     this.setData({
       tickets: tks,
