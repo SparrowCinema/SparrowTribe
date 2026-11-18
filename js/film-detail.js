@@ -39,20 +39,22 @@ document.addEventListener("click",e=>{const t=e.target.closest("[data-showf-filt
 function screeningHTML(s,f){const k=keyOf(s),yes=picked.has(k),gone=isPast(s);const [m,d]=s.d.split("/");return `<div class="fd-ticket${gone?" past":""}"><div class="fd-tdate fc" style="--h:${fhue(s.id)}"><small>${m}月</small><b>${d}</b><span>${wk(s.d)}</span></div><div class="fd-tbody"><div class="fd-ttime"><b>${s.t}</b><span>–</span><b class="end">${f.minTbd?"":fmt(toMin(s.t)+durationOf(s))}</b>${gone?'<em class="fd-gone">已放映</em>':""}</div><small>${placeHTML(s)}</small>${(PG[s.p]&&filmProgsOf(f).length>1)?`<span class="fd-sprog">${esc(PG[s.p].name)}</span>`:""}${f.screeningNotes?.[k]?noteHTML(f.screeningNotes[k]):""}<div class="fd-tact"><button class="fd-add${yes?" on":""}" data-plan="${esc(k)}" aria-pressed="${yes}">${yes?"✓ 已加入排片":"+ 加入排片"}</button><button class="fd-see" data-jump="${k}">在排片中查看</button>${gone?"":`<button class="fd-see fd-remind" data-remind="${esc(k)}" title="${esc(tr("下载日历文件，开场前 1 小时提醒"))}">⏰ 提醒我</button>`}</div></div></div>`;}
 // 购票码：影片自带的购票码 + 所属各专题的购票码（跨影展影片会有多张，按专题标注）
 const TK={};
-function ticketLive(f){ // 影片自带购票码：所属专题已结束、已下映，或全部场次都已放映后不再显示（待排片的保留）
-  const p=PG[f.prog]; if(p&&progStatus(p)==="ended") return false;
+// 购票码是否显示（按专题分开算）：专题已结束或影片已下映不显示；影展专题里这部片在该专题还有未散场的场次、或场次还没公布时显示，全部放完就隐藏，补了加场会自动重新出现。院线专题不录全部场次，沿用「本片任一场未散场或尚无场次」
+function ticketLive(f,p){
+  p=p||PG[f.prog]; if(p&&progStatus(p)==="ended") return false;
   if(f.ended) return false;
-  const mine=SH.filter(s=>s.id===f.id); return !mine.length||mine.some(s=>!isPast(s));
+  const all=SH.filter(s=>s.id===f.id),mine=p&&p.kind!=="院线"?all.filter(s=>(s.p||f.prog)===p.id):all;
+  return !mine.length||mine.some(s=>!isPast(s));
 }
 function ticketsOf(f){
   if(f.ev) return f.ticket&&ticketLive(f)?[{ticket:f.ticket,ticketPlatform:f.ticketPlatform,ticketHint:f.ticketHint,ticketLabel:f.ticketLabel,p:PG[f.prog]}]:[];
   const out=[],seen=new Set(),add=(t,p)=>{if(!t.ticket||seen.has(t.ticket))return;seen.add(t.ticket);out.push(Object.assign({},t,{p}));};
   if(f.ticket&&ticketLive(f)) add({ticket:f.ticket,ticketPlatform:f.ticketPlatform,ticketHint:f.ticketHint,ticketLabel:f.ticketLabel},PG[f.prog]);
-  (typeof filmProgsOf==="function"&&F[f.id]?filmProgsOf(f):[]).forEach(({p})=>{if(p.ticket&&progStatus(p)!=="ended")add({ticket:p.ticket,ticketPlatform:p.ticketPlatform,ticketHint:p.ticketHint},p);});
+  (typeof filmProgsOf==="function"&&F[f.id]?filmProgsOf(f):[]).forEach(({p})=>{if(p.ticket&&ticketLive(f,p))add({ticket:p.ticket,ticketPlatform:p.ticketPlatform,ticketHint:p.ticketHint},p);});
   return out;
 }
 function ticketCardHTML(t,cn,key,tag){TK[key]=Object.assign({cn},t);const w=t.ticketLabel||'购票';return `<section class="ticket-card" aria-label="${esc(cn)}${w}"><div class="ticket-copy"><small>BOOK YOUR SEAT${tag?` · ${esc(tag)}`:""}</small><h2>银幕见</h2><p>${esc(t.ticketPlatform||"微信")}扫码${w}<br>${esc((t.ticketHint||"麻雀映画小程序").replace(/^淘票票扫码购票\s*[·・]?\s*/,""))}</p><button class="ticket-expand" data-ticket="${esc(key)}">查看${w}码 ↗</button></div><button class="ticket-code" data-ticket="${esc(key)}" aria-label="放大${esc(cn)}${w}码"><img src="${t.ticket}" alt="${esc(cn)}${w}码" width="430" height="430"></button></section>`;}
-function ticketHTML(f){const ts=ticketsOf(f);return ts.map((t,i)=>ticketCardHTML(t,f.cn,f.id+"#"+i,ts.length>1&&t.p?t.p.name:"")).join("");}
+function ticketHTML(f){const ts=ticketsOf(f),multi=ts.length>1||(typeof filmProgsOf==="function"&&filmProgsOf(f).length>1);return ts.map((t,i)=>ticketCardHTML(t,f.cn,f.id+"#"+i,multi&&t.p?t.p.name:"")).join("");} // 跨影展影片只剩一张购票码时也标出是哪个影展
 document.addEventListener('click',e=>{const b=e.target.closest('[data-ticket]');if(!b)return;const f=TK[b.dataset.ticket],src=f&&f.ticket;if(!f||!src)return;const w=f.ticketLabel||'购票';document.getElementById('ticket-modal')?.remove();const d=document.createElement('dialog');d.id='ticket-modal';d.className='ticket-modal';d.setAttribute('aria-label',f.cn+w);d.innerHTML=`<header><h2>${esc(f.cn)} · ${w}</h2><button class="ticket-close" aria-label="关闭${w}码">×</button></header><img src="${src}" alt="${esc(f.cn)}${w}码"><p>${esc(f.ticketHint||"微信内可长按图片识别。其他浏览器请先保存图片，再用微信「扫一扫」从相册选择。")}</p><a class="primary-button ticket-save" href="${src}" download="${esc(f.cn)}-${w}码.${src.endsWith(".jpg")?"jpg":"png"}">保存${w}码</a>`;document.body.append(d);d.querySelector('.ticket-close').onclick=()=>d.close();d.onclick=ev=>{if(ev.target===d){const r=d.getBoundingClientRect();if(ev.clientX<r.left||ev.clientX>r.right||ev.clientY<r.top||ev.clientY>r.bottom)d.close();}};d.addEventListener('close',()=>{d.remove();if(b.isConnected)b.focus({preventScroll:true});});d.showModal();});
 
 function detail(id){
