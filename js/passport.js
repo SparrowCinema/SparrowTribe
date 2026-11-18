@@ -131,11 +131,6 @@ function refreshMyRate(id){const b=document.getElementById('my-rate');if(b&&F[id
 /* 片名排版改用 shared/recap.js 的 SparrowRecap.stampTitle（2026-11-18） */
 // 印章 SVG 与姿态在 shared/recap.js（stampSVG / stampPose），小程序护照用同一份（inline 模式当图片显示）
 function stampSVG(e,inline){const p=progOf(e.f);return window.SparrowRecap.stampSVG({id:e.id,title:e.f.cn,top:(p&&p.en)||'',venue:e.venue||'影院观影',date:e.rec.d,r:e.rec.r||0,views:window.SparrowGrowth?window.SparrowGrowth.views(e.rec).length:0},inline?{inline:true}:undefined);}
-// 翻页卷曲时把印章换成图片：带油墨滤镜的 SVG 每帧重绘很慢，还会随裁切抖动；图片只解码一次（与小程序同法）。按内容缓存，空闲时预先解码当前页附近的印章
-const PP_IMG=new Map();
-function ppStampImg(e){const svg=stampSVG(e,true);let u=PP_IMG.get(svg);if(!u){u=URL.createObjectURL(new Blob([svg],{type:'image/svg+xml'}));PP_IMG.set(svg,u);const im=new Image();im.src=u;if(im.decode)im.decode().catch(()=>{});}return u;}
-function ppImgify(root){const byId=new Map(ppCur().list.map(e=>[e.id,e]));root.querySelectorAll('.fp-stamp').forEach(b=>{const e=byId.get(b.dataset.film),svg=b.querySelector('svg.st-svg');if(!e||!svg)return;const im=document.createElement('img');im.className='st-img';im.alt='';im.src=ppStampImg(e);svg.replaceWith(im);});}
-function ppWarm(){const run=()=>{try{const C=ppCur(),list=C.list,sp=ppSpread(),c=sp?PP.page-PP.page%2:PP.page,lo=Math.max(1,c-(sp?2:1)),hi=c+(sp?3:1);for(let pg=lo;pg<=hi;pg++)list.slice((pg-1)*PP_PER,pg*PP_PER).forEach(ppStampImg);}catch(_){}};(window.requestIdleCallback||setTimeout)(run,{timeout:600});}
 
 // —— 护照（封面 → 资料页 → 印章页，单页翻动）——
 const PP={mc:'',open:false,page:0,busy:false,vol:0,shelf:false,tab:'stamps',lvAll:false,gt:'level',cAll:false,gOpen:null},PP_PER=15,PP_VOL=285; // 每册 = 1 资料页 + 19 印章页（每页 15 枚）= 20 页 = 10 个跨页；满册自动换下一册
@@ -221,7 +216,7 @@ function passportHTML(){const C=ppCur(),list=C.list,pages=passportPages(list),n=
 function sizeBook(){const b=document.querySelector('.fp-book,.fp-cover');if(!b)return;const set=el=>el.style.setProperty('--u',(el.clientWidth/(el.classList.contains('fp-spread')?200:100))+'px');document.querySelectorAll('.fp-book,.fp-cover').forEach(set);}
 let ppWasSpread=ppSpread();
 window.addEventListener('resize',()=>{if(PP.open&&ppSpread()!==ppWasSpread&&document.getElementById('fp'))renderPassport();ppWasSpread=ppSpread();sizeBook();});
-function renderPassport(){const el=document.getElementById('fp');if(!el)return;el.outerHTML=passportHTML();sizeBook();if(PP.open)ppWarm();}
+function renderPassport(){const el=document.getElementById('fp');if(!el)return;el.outerHTML=passportHTML();sizeBook();}
 
 // 影片页「已盖章」：跳到「我的」，展开护照并翻到这部电影印章所在的那一页，印章闪一下
 function ppJump(id){const all=watchEntries(),k=all.findIndex(e=>e.id===id);if(k<0){go('my');return;}
@@ -278,19 +273,19 @@ function ppCurlStart(dir,cy0){const root=document.getElementById('fp'),book=root
   const ov=document.createElement('div');ov.className='fp-curl';ov.setAttribute('aria-hidden','true');ov.inert=true;
   const reg=document.createElement('div');reg.className='fc-r';reg.style.left=x0+'px';reg.style.width=W+'px';reg.style.setProperty('--fcw',W+'px');reg.style.setProperty('--fch',H+'px');ov.append(reg);
   const sh=()=>{const i=document.createElement('i');i.className='fc-sh';return i;};
-  // 当前页与折起的纸放在同一个沿折痕旋转的裁切容器里（cw > ci），每帧只改 transform，由合成器完成，不重绘印章
+  // 折起的纸放在沿折痕旋转的裁切容器里（cw > ci），每帧只改 transform，由合成器完成；当前页仍用 clip-path（不旋转，印章保持清晰，重绘也便宜）
   const cw=document.createElement('div');cw.className='fc-cw';const ci=document.createElement('div');ci.className='fc-ci';cw.append(ci);
   const lay=(c,el,to)=>{const d=document.createElement('div');d.className='fc-l '+c;d.append(el);const s=sh();d.append(s);to.append(d);return [d,s];};
-  const [U,ush]=lay('fc-under',under,reg);reg.append(cw);const [Cu,csh]=lay('fc-cur',cur,ci),[F,fsh]=lay('fc-flap',back,ci);
-  ppImgify(ov);book.append(ov);PP.busy=true;
+  const [U,ush]=lay('fc-under',under,reg),[Cu,csh]=lay('fc-cur',cur,reg);reg.append(cw);const [F,fsh]=lay('fc-flap',back,ci);
+  book.append(ov);PP.busy=true;
   const cy=cy0<H/2?0:H,rev=!sp&&dir<0; // rev：单页向前翻，上一页从左边（已翻过去的位置）卷回来
   PC.t={dir,next,W,H,cy,mirror,rev,x0,ov,cur:Cu,flap:F,ush,csh,fsh,book,cw,ci,S:Math.ceil(Math.hypot(BW,H)*3),P:rev?{x:-W,y:cy}:{x:W,y:cy}};
   ppCurlRender();return PC.t;}
 function ppCurlRender(){const t=PC.t;if(!t)return;const r=SparrowCurl.fold({W:t.W,H:t.H,cx:t.W,cy:t.cy,px:t.P.x,py:t.P.y,mirror:t.mirror});t.Pc={x:r.px,y:r.py};
   const clip=(x,y,a)=>{const S=t.S;t.cw.style.width=t.cw.style.height=S+'px';t.cw.style.transform='translate('+x+'px,'+y+'px) rotate('+a+'deg) translate('+(-S)+'px,'+(-S/2)+'px)';t.ci.style.transform='translate('+S+'px,'+(S/2)+'px) rotate('+(-a)+'deg) translate('+(-x)+'px,'+(-y)+'px)';};
-  if(r.none){clip(t.W*4,0,0);t.flap.style.display=t.ush.style.display=t.csh.style.display=t.fsh.style.display='none';return;}
+  if(r.none){clip(t.W*4,0,0);t.cur.style.clipPath='none';t.flap.style.display=t.ush.style.display=t.csh.style.display=t.fsh.style.display='none';return;}
   const put=(el,s)=>{el.style.display='block';el.style.width=s.w+'px';el.style.height=s.size+'px';el.style.transform=s.t;el.style.background=s.bg;};
-  clip(r.cl.x,r.cl.y,r.cl.a);t.flap.style.display='block';t.flap.style.transform=r.flapT;
+  clip(r.cl.x,r.cl.y,r.cl.a);t.cur.style.clipPath=r.front;t.flap.style.display='block';t.flap.style.transform=r.flapT;
   put(t.fsh,r.fshade);put(t.csh,r.cshade);put(t.ush,r.ushade);}
 function ppCurlTo(target,commit,lift){const t=PC.t;if(!t)return;cancelAnimationFrame(PC.anim);
   const end=()=>{cancelAnimationFrame(PC.anim);PC.t=null;PP.busy=false;if(commit){PP.page=t.next;renderPassport();const nb=document.querySelector('#fp .fp-book');if(nb)nb.classList.add('fp-still');}else t.ov.remove();}; // 翻页时已经看到整页印章，翻完不再重放盖章动画

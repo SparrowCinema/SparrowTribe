@@ -51,10 +51,10 @@ Page({
     const stamps = list.map((e, k) => {
       const lk = R.look(e.id), p = idx.progOf(e.f), r = e.rec.r || 0;
       const stt = R.stampTitle(e.f.cn, lk.shape); // 片名排版与网站 / 长图印章同一套（shared/recap.js 的 stampTitle）
-      // 印章画面与网站护照同一份 SVG（shared/recap.js 的 stampSVG，自带油墨纹理），只在当前页附近按需生成（见 ensureSvg）
+      // 印章画面与网站护照同一份 SVG（shared/recap.js 的 stampSVG）。不带 SVG 滤镜，保证文字清晰；油墨纹理由 my.wxss 的 .st 遮罩提供（较网站淡一些）。只在当前页附近按需生成（见 ensureSvg）
       const q = R.stampPose(e.id, k % 15);
       this._stSrc[e.id] = { id: e.id, title: e.f.cn, top: (p && p.en) || '', venue: e.venue || t('影院观影'), date: e.rec.d, r, views: G.views(e.rec).length };
-      return { id: e.id, sk: 's' + R.hash(e.id + '|' + JSON.stringify(this._stSrc[e.id])), title: e.f.cn, ink: R.look(e.id).ink, tilt: q.tilt, dx: Math.round(q.dx * 60) / 10, dy: Math.round(q.dy * 60) / 10 };
+      return { id: e.id, sk: 's' + R.hash(e.id + '|' + JSON.stringify(this._stSrc[e.id])), title: e.f.cn, ink: R.look(e.id).ink, x: G.views(e.rec).length > 1 ? '×' + G.views(e.rec).length : '', tilt: q.tilt, dx: Math.round(q.dx * 60) / 10, dy: Math.round(q.dy * 60) / 10 };
     });
     this._ppIds = stamps.map(x => x.id);
     // 分册：每册 285 枚（1 资料页 + 19 印章页），按观影日期从早到晚，满了换下一册
@@ -202,7 +202,7 @@ Page({
     const wide = this.data.wide, c = wide ? (sp === undefined ? this.data.ppSp : sp) * 2 : (page === undefined ? this.data.ppPage : page), lo = wide ? c - 2 : c - 1, hi = wide ? c + 3 : c + 1, have = pp.svg || {}, d = {};
     for (let k = Math.max(1, lo); k <= hi && k < pp.n; k++) {
       const pg = pp.pages[k - 1]; if (!pg) continue;
-      pg.items.forEach(s => { if (!have[s.sk] && !d['pp.svg.' + s.sk] && this._stSrc[s.id]) d['pp.svg.' + s.sk] = SV.svgUri(R.stampSVG(this._stSrc[s.id], { inline: true })); });
+      pg.items.forEach(s => { if (!have[s.sk] && !d['pp.svg.' + s.sk] && this._stSrc[s.id]) d['pp.svg.' + s.sk] = SV.svgUri(R.stampSVG(this._stSrc[s.id], { inline: true, ink: false, badge: false })); });
     }
     const ks = Object.keys(d); for (let i = 0; i < ks.length; i += 15) { const part = {}; ks.slice(i, i + 15).forEach(k => { part[k] = d[k]; }); this.setData(part); } // 分批，避免单次 setData 过大
   },
