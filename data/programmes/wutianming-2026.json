@@ -816,7 +816,11 @@
    "ratingChecked": "2026-11-12",
    "screeningNotes": {
     "11/20-17:00-jx-jygh-helecheng-cinity-led-1": "映后活动 · 映后嘉宾：杨劲松（以实际到场为准）· 免费放映"
-   }
+   },
+   "ticket": "tickets/and-the-spring-comes.png",
+   "ticketHint": "吴天明青年电影展｜嘉影银河影城（嘉兴合乐城CINITY LED店）",
+   "ticketLabel": "预约",
+   "ticketPlatform": "微信小程序"
   },
   {
    "id": "crows-and-sparrows",
@@ -903,7 +907,11 @@
    "ratingChecked": "2026-11-12",
    "screeningNotes": {
     "11/24-19:00-jx-sfc-bbb-luxe-8": "映后活动 · 映后嘉宾：沙丹（以实际到场为准）· 免费放映"
-   }
+   },
+   "ticket": "tickets/crows-and-sparrows.png",
+   "ticketHint": "吴天明青年电影展｜SFC上影影城（嘉兴八佰伴LUXE店）",
+   "ticketLabel": "预约",
+   "ticketPlatform": "微信小程序"
   },
   {
    "reg": "cn",

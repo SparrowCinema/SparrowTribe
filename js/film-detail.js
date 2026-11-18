@@ -50,6 +50,7 @@ function ticketsOf(f){
   if(f.ev) return f.ticket&&ticketLive(f)?[{ticket:f.ticket,ticketPlatform:f.ticketPlatform,ticketHint:f.ticketHint,ticketLabel:f.ticketLabel,p:PG[f.prog]}]:[];
   const out=[],seen=new Set(),add=(t,p)=>{if(!t.ticket||seen.has(t.ticket))return;seen.add(t.ticket);out.push(Object.assign({},t,{p}));};
   if(f.ticket&&ticketLive(f)) add({ticket:f.ticket,ticketPlatform:f.ticketPlatform,ticketHint:f.ticketHint,ticketLabel:f.ticketLabel},PG[f.prog]);
+  (f.tickets||[]).forEach(t=>{const p=PG[t.prog];if(p&&ticketLive(f,p))add(t,p);}); // 同一部影片在其他专题另有报名码：{prog,ticket,ticketLabel,ticketHint,ticketPlatform}
   (typeof filmProgsOf==="function"&&F[f.id]?filmProgsOf(f):[]).forEach(({p})=>{if(p.ticket&&ticketLive(f,p))add({ticket:p.ticket,ticketPlatform:p.ticketPlatform,ticketHint:p.ticketHint},p);});
   return out;
 }

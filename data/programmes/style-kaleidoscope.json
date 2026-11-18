@@ -1037,7 +1037,16 @@
    "metadataChecked": "2026-11-12",
    "screeningNotes": {
     "11/20-19:00-jx-sfc-bbb-luxe-8": "映后活动 · 映后嘉宾：李镇（以实际到场为准）· 免费放映"
-   }
+   },
+   "tickets": [
+    {
+     "prog": "wutianming-2026",
+     "ticket": "tickets/wutianming-2026-spring-in-a-small-town.png",
+     "ticketHint": "吴天明青年电影展｜SFC上影影城（嘉兴八佰伴LUXE店）",
+     "ticketLabel": "预约",
+     "ticketPlatform": "微信小程序"
+    }
+   ]
   },
   {
    "id": "mon-oncle",
