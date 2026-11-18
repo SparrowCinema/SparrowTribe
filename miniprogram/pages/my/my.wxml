@@ -244,7 +244,7 @@ ONE STAMP</text><text class="fp-open-icon">↗</text></view>
   <view class="st st{{s.shape}}" style="--ink:{{s.ink}};transform:translate(calc({{s.dx}} * var(--r)),calc({{s.dy}} * var(--r))) rotate({{s.tilt}}deg) scale(.5)" data-id="{{s.id}}" bindtap="openStamp">
     <view class="st-in" />
     <text class="st-top">{{s.top}}</text>
-    <text class="st-title">{{s.title}}</text>
+    <view class="st-title" style="font-size:calc({{s.tfs}} * var(--r))"><text wx:for="{{s.tl}}" wx:key="index" class="st-tl">{{item}}</text></view>
     <text class="st-date">{{s.date}}</text>
     <view wx:if="{{s.r}}" class="st-stars"><view wx:for="{{s.stars}}" wx:for-item="w" wx:key="index" class="ss"><text class="s0">☆</text><view class="s1" style="width:{{w}}%"><text>★</text></view></view></view>
     <text class="st-venue">{{s.venue}}</text>

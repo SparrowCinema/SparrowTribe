@@ -128,13 +128,12 @@ window.addEventListener('hashchange',()=>{if(LG)lgClose(true);});
 function refreshMyRate(id){const b=document.getElementById('my-rate');if(b&&F[id])b.outerHTML=myRateHTML(F[id]);if(tsOpen===id)tsPaint();}
 
 // —— 印章（SVG）——
-const stampTitle=t=>{t=String(t||'');if(CJK.test(t)){const a=[...t],n=a.length<=6?6:a.length<=8?4:7;let ls=[];for(let i=0;i<a.length;i+=n)ls.push(a.slice(i,i+n).join(''));for(let i=1;i<ls.length;i++){const m=ls[i].match(/^[：:，、·。！？）」]+/);if(m){ls[i-1]+=m[0];ls[i]=ls[i].slice(m[0].length);}}ls=ls.filter(Boolean);return ls.length>2?[ls[0],[...ls[1]].slice(0,-1).join('')+'…']:ls;}
-  const out=[];let line='';t.split(/\s+/).forEach(w=>{const x=line?line+' '+w:w;if(x.length>13&&line){out.push(line);line=w;}else line=x;});if(line)out.push(line);return out.length>2?[out[0],out[1].slice(0,12)+'…']:out;};
+/* 片名排版改用 shared/recap.js 的 SparrowRecap.stampTitle（2026-11-18） */
 const svgStar=(cx,cy,R)=>{let p='';for(let i=0;i<10;i++){const r=i%2?R*.45:R,a=-Math.PI/2+i*Math.PI/5;p+=(i?'L':'M')+(cx+r*Math.cos(a)).toFixed(1)+' '+(cy+r*Math.sin(a)).toFixed(1);}return p+'Z';};
 const octPts=s=>{const k=s*.42;return [[-k,-s],[k,-s],[s,-k],[s,k],[k,s],[-k,s],[-s,k],[-s,-k]].map(([x,y])=>(100+x)+','+(100+y)).join(' ');};
 function stampSVG(e){const R=window.SparrowRecap,lk=R.look(e.id),col=lk.ink,p=progOf(e.f),uid='st-'+e.id,
   topRaw=String((p&&p.en)||'SPARROW FILM PASSPORT').toUpperCase().split(/ · | & /)[0],top=esc(topRaw.slice(0,26)),venue=esc(e.venue||'影院观影'),date=R.dstamp(e.rec.d),r=e.rec.r||0;
-  const ls=stampTitle(e.f.cn),big=ls.length===1&&[...ls[0]].length<=4,fs=CJK.test(e.f.cn)?(big?28:ls.join('').length>10?18:21):(ls.join(' ').length>16?15:17);
+  const stt=R.stampTitle(e.f.cn,lk.shape),ls=stt.lines,fs=stt.fs; /* 片名排版：shared/recap.js 的 stampTitle，小程序与长图印章同一套 */
   let frame='',ty=88,dy=124,sy=146,topY=0,botY=0;
   if(lk.shape===0){frame='<circle cx="100" cy="100" r="95" stroke-width="5"/><circle cx="100" cy="100" r="71" stroke-width="1.6"/><path id="'+uid+'-a" d="M22 100a78 78 0 0 1 156 0" fill="none" stroke="none"/><path id="'+uid+'-b" d="M15 100a85 85 0 0 0 170 0" fill="none" stroke="none"/>'+
     '<text class="st-arc"><textPath href="#'+uid+'-a" startOffset="50%" text-anchor="middle">'+top+'</textPath></text><text class="st-arc st-v"><textPath href="#'+uid+'-b" startOffset="50%" text-anchor="middle">'+venue+'</textPath></text><path d="'+svgStar(14,100,4)+svgStar(186,100,4)+'" stroke="none"/>';ty=86;dy=122;sy=143;}

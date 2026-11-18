@@ -48,7 +48,8 @@ Page({
       avg: rated.length ? (rated.reduce((n, e) => n + e.rec.r, 0) / rated.length).toFixed(1) : '—', hm: Math.floor(mins / 60) + 'h' + String(mins % 60).padStart(2, '0') };
     const stamps = list.map((e, k) => {
       const lk = R.look(e.id), p = idx.progOf(e.f), r = e.rec.r || 0;
-      return { id: e.id, x: G.views(e.rec).length > 1 ? '×' + G.views(e.rec).length : '', title: e.f.cn, date: R.dstamp(e.rec.d), top: String((p && p.en) || 'SPARROW FILM PASSPORT').toUpperCase().split(/ · | & /)[0], venue: e.venue || t('影院观影'),
+      const stt = R.stampTitle(e.f.cn, lk.shape); // 片名排版与网站 / 长图印章同一套（shared/recap.js 的 stampTitle）
+      return { id: e.id, x: G.views(e.rec).length > 1 ? '×' + G.views(e.rec).length : '', title: e.f.cn, tl: stt.lines, tfs: Math.round(stt.fs * 1.18 * 10) / 10, date: R.dstamp(e.rec.d), top: String((p && p.en) || 'SPARROW FILM PASSPORT').toUpperCase().split(/ · | & /)[0], venue: e.venue || t('影院观影'),
         shape: lk.shape, tilt: Math.round((((R.hash(e.id) % 21) - 10) * 1.1) * 10) / 10, dx: ((R.hash(e.id) >>> 5) % 9 - 4) * 3 + (Math.floor(k % 15 / 3) % 2 ? 10 : -2), dy: ((R.hash(e.id) >>> 9) % 7 - 3) * 3, ink: lk.ink, r, stars: r ? [1, 2, 3, 4, 5].map(i => Math.max(0, Math.min(2, r - (i - 1) * 2)) * 50) : [] };
     });
     this._ppIds = stamps.map(x => x.id);
