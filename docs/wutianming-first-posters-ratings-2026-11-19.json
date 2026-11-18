@@ -1,0 +1,1126 @@
+{
+  "checked": "2026-11-19",
+  "scope": "Only the 13 films in wutianming-2026 / 产业放映 · 首作之上",
+  "platformOrder": [
+    "douban/10",
+    "imdb/10",
+    "rt critics %",
+    "metacritic/100",
+    "letterboxd/5"
+  ],
+  "posterSummary": {
+    "replaced": 13,
+    "highResolutionSources": 8,
+    "higherResolutionOfficialExtracts": 5,
+    "note": "Eight posters are 750–1080px wide. Five rare films only have a 340px-wide official announcement extract available, replacing 145px-wide thumbnails. No image was upscaled or AI reconstructed; those five are not HD."
+  },
+  "method": "Preserve programme membership, IDs, all screening rows/sids/notes, runtimes, versions, user-provided synopses and QR codes. Existing synopses are retained and only extended when sourced. Editorial interpretation is written independently. Unknown scores remain null; access failures are distinguished from unpublished aggregates. Two IMDb values retain earlier evidence. All platform searches were read-only.",
+  "films": [
+    {
+      "id": "gr26-013",
+      "title": "发现之旅",
+      "owner": "data/programmes/golden-rooster-2026.json",
+      "poster": {
+        "id": "gr26-013",
+        "before": {
+          "path": "posters/golden-rooster-gr26-013.jpg",
+          "size": [
+            270,
+            404
+          ]
+        },
+        "after": {
+          "path": "posters/wtm-first-gr26-013-20261119.jpg",
+          "size": [
+            1000,
+            1500
+          ]
+        },
+        "source": "https://a.ltrbxd.com/resized/film-poster/1/2/8/3/9/0/4/1283904-zoom-in-zoom-out-0-1000-0-1500-crop.jpg?v=2dc5e62450",
+        "quality": "high-resolution-source"
+      },
+      "sources": [
+        "https://bydongjie.com/work/zoom-in-zoom-out/",
+        "https://bydongjie.com/media/deepfocus-zoom-in-zoom-out-interview/"
+      ],
+      "before": {
+        "r": [
+          null,
+          6.7,
+          null,
+          null,
+          3.22
+        ],
+        "links": {
+          "douban": "36146113",
+          "lb": "zoom-in-zoom-out",
+          "imdb": "tt43729090"
+        }
+      },
+      "after": {
+        "r": [
+          null,
+          6.7,
+          null,
+          null,
+          3.22
+        ],
+        "links": {
+          "douban": "36146113",
+          "lb": "zoom-in-zoom-out",
+          "imdb": "tt43729090"
+        }
+      },
+      "ratings": {
+        "douban": {
+          "value": null,
+          "status": "access-limited",
+          "url": "https://movie.douban.com/subject/36146113/",
+          "note": "Entry identity confirmed; subject page returned a verification page, so no aggregate score could be checked."
+        },
+        "imdb": {
+          "value": 6.7,
+          "status": "retained-historical",
+          "url": "https://www.imdb.com/title/tt43729090/",
+          "note": "Direct page returned an empty 202 response. Retain the established value; do not substitute conflicting cached snippets. This value was not freshly verified."
+        },
+        "rt": {
+          "value": null,
+          "status": "no-matching-entry-found",
+          "url": null,
+          "note": "No matching entry established by title/director searches; not proof that no entry exists."
+        },
+        "mc": {
+          "value": null,
+          "status": "access-limited",
+          "url": null,
+          "note": "Search access was blocked by robots.txt. No score asserted."
+        },
+        "lb": {
+          "value": 3.22,
+          "status": "verified-aggregate",
+          "url": "https://letterboxd.com/film/zoom-in-zoom-out/",
+          "note": "Checked page JSON-LD aggregateRating; scale is 0.5–5. No aggregateRating means null, not zero."
+        }
+      }
+    },
+    {
+      "id": "gr26-018",
+      "title": "寒夜灯柱",
+      "owner": "data/programmes/golden-rooster-2026.json",
+      "poster": {
+        "id": "gr26-018",
+        "before": {
+          "path": "posters/golden-rooster-gr26-018.jpg",
+          "size": [
+            270,
+            375
+          ]
+        },
+        "after": {
+          "path": "posters/wtm-first-gr26-018-20261119.jpg",
+          "size": [
+            776,
+            1080
+          ]
+        },
+        "source": "https://img9.doubanio.com/view/photo/l/public/p2929435156.jpg",
+        "quality": "high-resolution-source"
+      },
+      "sources": [
+        "https://www.berlinale.de/en/2026/programme/202615603.html"
+      ],
+      "before": {
+        "r": [
+          null,
+          6.7,
+          null,
+          null,
+          3.44
+        ],
+        "links": {
+          "douban": "36650614",
+          "lb": "light-pillar",
+          "imdb": "tt32409947",
+          "rt": "https://www.rottentomatoes.com/m/light_pillar"
+        }
+      },
+      "after": {
+        "r": [
+          null,
+          6.6,
+          null,
+          null,
+          3.45
+        ],
+        "links": {
+          "douban": "36650614",
+          "lb": "light-pillar",
+          "imdb": "tt32409947",
+          "rt": "https://www.rottentomatoes.com/m/light_pillar"
+        }
+      },
+      "ratings": {
+        "douban": {
+          "value": null,
+          "status": "access-limited",
+          "url": "https://movie.douban.com/subject/36650614/",
+          "note": "Entry identity confirmed; subject page returned a verification page, so no aggregate score could be checked."
+        },
+        "imdb": {
+          "value": 6.6,
+          "status": "verified-search-snapshot",
+          "url": "https://www.imdb.com/title/tt32409947/ratings/",
+          "note": "IMDb ratings search snapshot: 6.6/10, 117 votes; crawl stated last week."
+        },
+        "rt": {
+          "value": null,
+          "status": "no-public-aggregate",
+          "url": "https://www.rottentomatoes.com/m/light_pillar",
+          "note": "Matching page has critic reviews but no Tomatometer aggregate; individual critic scores are not the aggregate."
+        },
+        "mc": {
+          "value": null,
+          "status": "access-limited",
+          "url": null,
+          "note": "Search access was blocked by robots.txt. No score asserted."
+        },
+        "lb": {
+          "value": 3.45,
+          "status": "verified-aggregate",
+          "url": "https://letterboxd.com/film/light-pillar/",
+          "note": "Checked page JSON-LD aggregateRating; scale is 0.5–5. No aggregateRating means null, not zero."
+        }
+      }
+    },
+    {
+      "id": "gr26-027",
+      "title": "斯琴图的秋天",
+      "owner": "data/programmes/golden-rooster-2026.json",
+      "poster": {
+        "id": "gr26-027",
+        "before": {
+          "path": "posters/golden-rooster-gr26-027.jpg",
+          "size": [
+            270,
+            404
+          ]
+        },
+        "after": {
+          "path": "posters/wtm-first-gr26-027-20261119.jpg",
+          "size": [
+            1000,
+            1500
+          ]
+        },
+        "source": "https://a.ltrbxd.com/resized/film-poster/1/6/6/3/2/8/2/1663282-roaming-over-the-horseback-0-1000-0-1500-crop.jpg?v=128e40a510",
+        "quality": "high-resolution-source"
+      },
+      "sources": [
+        "https://www.maoyan.com/films/news/20396515"
+      ],
+      "before": {
+        "r": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "links": {
+          "douban": "36995421",
+          "lb": "roaming-over-the-horseback"
+        }
+      },
+      "after": {
+        "r": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "links": {
+          "douban": "36995421",
+          "lb": "roaming-over-the-horseback"
+        }
+      },
+      "ratings": {
+        "douban": {
+          "value": null,
+          "status": "access-limited",
+          "url": "https://movie.douban.com/subject/36995421/",
+          "note": "Entry identity confirmed; subject page returned a verification page, so no aggregate score could be checked."
+        },
+        "imdb": {
+          "value": null,
+          "status": "no-matching-entry-found",
+          "url": null,
+          "note": "No matching entry established by title/director searches; not proof that no entry exists."
+        },
+        "rt": {
+          "value": null,
+          "status": "no-matching-entry-found",
+          "url": null,
+          "note": "No matching entry established by title/director searches; not proof that no entry exists."
+        },
+        "mc": {
+          "value": null,
+          "status": "access-limited",
+          "url": null,
+          "note": "Search access was blocked by robots.txt. No score asserted."
+        },
+        "lb": {
+          "value": null,
+          "status": "no-public-aggregate",
+          "url": "https://letterboxd.com/film/roaming-over-the-horseback/",
+          "note": "Checked page JSON-LD aggregateRating; scale is 0.5–5. No aggregateRating means null, not zero."
+        }
+      }
+    },
+    {
+      "id": "gr26-041",
+      "title": "第四幕",
+      "owner": "data/programmes/golden-rooster-2026.json",
+      "poster": {
+        "id": "gr26-041",
+        "before": {
+          "path": "posters/golden-horse-gr26-041.jpg",
+          "size": [
+            270,
+            380
+          ]
+        },
+        "after": {
+          "path": "posters/wtm-first-gr26-041-20261119.jpg",
+          "size": [
+            864,
+            1215
+          ]
+        },
+        "source": "https://a.ltrbxd.com/resized/film-poster/1/4/4/2/3/1/3/1442313-afterpiece-0-1000-0-1500-crop.jpg?v=ddf218526e",
+        "quality": "high-resolution-source"
+      },
+      "sources": [
+        "https://cgv.com.mo/zh/movie/1078"
+      ],
+      "before": {
+        "r": [
+          null,
+          7.7,
+          null,
+          null,
+          null
+        ],
+        "links": {
+          "imdb": "tt38798617",
+          "lb": "afterpiece",
+          "douban": "37817037"
+        }
+      },
+      "after": {
+        "r": [
+          null,
+          7.7,
+          null,
+          null,
+          3.48
+        ],
+        "links": {
+          "imdb": "tt38798617",
+          "lb": "afterpiece",
+          "douban": "37817037",
+          "rt": "https://www.rottentomatoes.com/m/afterpiece"
+        }
+      },
+      "ratings": {
+        "douban": {
+          "value": null,
+          "status": "access-limited",
+          "url": "https://movie.douban.com/subject/37817037/",
+          "note": "Entry identity confirmed; subject page returned a verification page, so no aggregate score could be checked."
+        },
+        "imdb": {
+          "value": 7.7,
+          "status": "retained-historical",
+          "url": "https://www.imdb.com/title/tt38798617/",
+          "note": "Direct page returned an empty 202 response. Retain the established value; do not substitute conflicting cached snippets. This value was not freshly verified."
+        },
+        "rt": {
+          "value": null,
+          "status": "no-public-aggregate",
+          "url": "https://www.rottentomatoes.com/m/afterpiece",
+          "note": "Matching page has critic reviews but no Tomatometer aggregate; individual critic scores are not the aggregate."
+        },
+        "mc": {
+          "value": null,
+          "status": "access-limited",
+          "url": null,
+          "note": "Search access was blocked by robots.txt. No score asserted."
+        },
+        "lb": {
+          "value": 3.48,
+          "status": "verified-aggregate",
+          "url": "https://letterboxd.com/film/afterpiece/",
+          "note": "Checked page JSON-LD aggregateRating; scale is 0.5–5. No aggregateRating means null, not zero."
+        }
+      }
+    },
+    {
+      "id": "wtm26-ai-and-you",
+      "title": "爱（AI）与你之间",
+      "owner": "data/programmes/wutianming-2026.json",
+      "poster": {
+        "id": "wtm26-ai-and-you",
+        "before": {
+          "path": "posters/wtm26-ai-and-you.jpg",
+          "size": [
+            145,
+            194
+          ]
+        },
+        "after": {
+          "path": "posters/wtm-first-wtm26-ai-and-you-20261119.jpg",
+          "size": [
+            1080,
+            1620
+          ]
+        },
+        "source": "https://img9.doubanio.com/view/photo/l/public/p2932958524.jpg",
+        "quality": "high-resolution-source"
+      },
+      "sources": [
+        "https://m.thepaper.cn/newsDetail_forward_33610824"
+      ],
+      "before": {
+        "r": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "links": {}
+      },
+      "after": {
+        "r": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "links": {
+          "douban": "37407358"
+        }
+      },
+      "ratings": {
+        "douban": {
+          "value": null,
+          "status": "access-limited",
+          "url": "https://movie.douban.com/subject/37407358/",
+          "note": "Entry identity confirmed; subject page returned a verification page, so no aggregate score could be checked."
+        },
+        "imdb": {
+          "value": null,
+          "status": "no-matching-entry-found",
+          "url": null,
+          "note": "No matching entry established by title/director searches; not proof that no entry exists."
+        },
+        "rt": {
+          "value": null,
+          "status": "no-matching-entry-found",
+          "url": null,
+          "note": "No matching entry established by title/director searches; not proof that no entry exists."
+        },
+        "mc": {
+          "value": null,
+          "status": "access-limited",
+          "url": null,
+          "note": "Search access was blocked by robots.txt. No score asserted."
+        },
+        "lb": {
+          "value": null,
+          "status": "no-matching-entry-found",
+          "url": null,
+          "note": "No matching entry established by title/director searches; not proof that no entry exists."
+        }
+      }
+    },
+    {
+      "id": "wtm26-tiger-tonight",
+      "title": "今晚打老虎",
+      "owner": "data/programmes/wutianming-2026.json",
+      "poster": {
+        "id": "wtm26-tiger-tonight",
+        "before": {
+          "path": "posters/wtm26-tiger-tonight.jpg",
+          "size": [
+            145,
+            195
+          ]
+        },
+        "after": {
+          "path": "posters/wtm-first-wtm26-tiger-tonight-20261119.jpg",
+          "size": [
+            340,
+            508
+          ]
+        },
+        "source": "https://meizi-chao-pub.8531.cn/2120370365895921664_1280px.jpg",
+        "quality": "higher-resolution-official-extract-not-HD",
+        "crop": [
+          104,
+          4175,
+          444,
+          4683
+        ]
+      },
+      "sources": [
+        "https://tidenews.com.cn/news.html?id=3611163",
+        "https://news.hsw.cn/system/2026/0924/1962412.shtml"
+      ],
+      "before": {
+        "r": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "links": {}
+      },
+      "after": {
+        "r": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "links": {}
+      },
+      "ratings": {
+        "douban": {
+          "value": null,
+          "status": "no-matching-entry-found",
+          "url": null,
+          "note": "No matching entry established by title/director searches; not proof that no entry exists."
+        },
+        "imdb": {
+          "value": null,
+          "status": "no-matching-entry-found",
+          "url": null,
+          "note": "No matching entry established by title/director searches; not proof that no entry exists."
+        },
+        "rt": {
+          "value": null,
+          "status": "no-matching-entry-found",
+          "url": null,
+          "note": "No matching entry established by title/director searches; not proof that no entry exists."
+        },
+        "mc": {
+          "value": null,
+          "status": "access-limited",
+          "url": null,
+          "note": "Search access was blocked by robots.txt. No score asserted."
+        },
+        "lb": {
+          "value": null,
+          "status": "no-matching-entry-found",
+          "url": null,
+          "note": "No matching entry established by title/director searches; not proof that no entry exists."
+        }
+      }
+    },
+    {
+      "id": "wtm26-nine-piece-band",
+      "title": "九人乐队",
+      "owner": "data/programmes/wutianming-2026.json",
+      "poster": {
+        "id": "wtm26-nine-piece-band",
+        "before": {
+          "path": "posters/wtm26-nine-piece-band.jpg",
+          "size": [
+            145,
+            195
+          ]
+        },
+        "after": {
+          "path": "posters/wtm-first-wtm26-nine-piece-band-20261119.jpg",
+          "size": [
+            340,
+            482
+          ]
+        },
+        "source": "https://meizi-chao-pub.8531.cn/2120370365895921664_1280px.jpg",
+        "quality": "higher-resolution-official-extract-not-HD",
+        "crop": [
+          104,
+          4888,
+          444,
+          5370
+        ]
+      },
+      "sources": [
+        "https://tidenews.com.cn/news.html?id=3611163",
+        "https://www.chinafilm.gov.cn/xxgk/gsxx/dybalx/202507/t20250711_920943.html"
+      ],
+      "before": {
+        "r": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "links": {}
+      },
+      "after": {
+        "r": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "links": {}
+      },
+      "ratings": {
+        "douban": {
+          "value": null,
+          "status": "no-matching-entry-found",
+          "url": null,
+          "note": "No matching entry established by title/director searches; not proof that no entry exists."
+        },
+        "imdb": {
+          "value": null,
+          "status": "no-matching-entry-found",
+          "url": null,
+          "note": "No matching entry established by title/director searches; not proof that no entry exists."
+        },
+        "rt": {
+          "value": null,
+          "status": "no-matching-entry-found",
+          "url": null,
+          "note": "No matching entry established by title/director searches; not proof that no entry exists."
+        },
+        "mc": {
+          "value": null,
+          "status": "access-limited",
+          "url": null,
+          "note": "Search access was blocked by robots.txt. No score asserted."
+        },
+        "lb": {
+          "value": null,
+          "status": "no-matching-entry-found",
+          "url": null,
+          "note": "No matching entry established by title/director searches; not proof that no entry exists."
+        }
+      }
+    },
+    {
+      "id": "wtm26-hoh-xil-and-me",
+      "title": "可可西里与我",
+      "owner": "data/programmes/wutianming-2026.json",
+      "poster": {
+        "id": "wtm26-hoh-xil-and-me",
+        "before": {
+          "path": "posters/wtm26-hoh-xil-and-me.jpg",
+          "size": [
+            145,
+            195
+          ]
+        },
+        "after": {
+          "path": "posters/wtm-first-wtm26-hoh-xil-and-me-20261119.jpg",
+          "size": [
+            750,
+            1125
+          ]
+        },
+        "source": "https://media.guidedoc.tv/docs/poster/a-woman-in-their-eyes.jpg",
+        "quality": "high-resolution-source"
+      },
+      "sources": [
+        "https://tidenews.com.cn/news.html?id=3611163",
+        "https://guidedoc.tv/documentary/a-woman-in-their-eyes-tmdb-1550351-documentary-film/"
+      ],
+      "before": {
+        "r": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "links": {}
+      },
+      "after": {
+        "r": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "links": {
+          "douban": "37529062",
+          "lb": "a-woman-in-their-eyes"
+        }
+      },
+      "ratings": {
+        "douban": {
+          "value": null,
+          "status": "access-limited",
+          "url": "https://movie.douban.com/subject/37529062/",
+          "note": "Entry identity confirmed; subject page returned a verification page, so no aggregate score could be checked."
+        },
+        "imdb": {
+          "value": null,
+          "status": "no-matching-entry-found",
+          "url": null,
+          "note": "No matching entry established by title/director searches; not proof that no entry exists."
+        },
+        "rt": {
+          "value": null,
+          "status": "no-matching-entry-found",
+          "url": null,
+          "note": "No matching entry established by title/director searches; not proof that no entry exists."
+        },
+        "mc": {
+          "value": null,
+          "status": "access-limited",
+          "url": null,
+          "note": "Search access was blocked by robots.txt. No score asserted."
+        },
+        "lb": {
+          "value": null,
+          "status": "no-public-aggregate",
+          "url": "https://letterboxd.com/film/a-woman-in-their-eyes/",
+          "note": "Checked page JSON-LD aggregateRating; scale is 0.5–5. No aggregateRating means null, not zero."
+        }
+      }
+    },
+    {
+      "id": "wtm26-migration",
+      "title": "迁途",
+      "owner": "data/programmes/wutianming-2026.json",
+      "poster": {
+        "id": "wtm26-migration",
+        "before": {
+          "path": "posters/wtm26-migration.jpg",
+          "size": [
+            145,
+            195
+          ]
+        },
+        "after": {
+          "path": "posters/wtm-first-wtm26-migration-20261119.jpg",
+          "size": [
+            340,
+            514
+          ]
+        },
+        "source": "https://meizi-chao-pub.8531.cn/2120370365895921664_1280px.jpg",
+        "quality": "higher-resolution-official-extract-not-HD",
+        "crop": [
+          104,
+          6290,
+          444,
+          6804
+        ]
+      },
+      "sources": [
+        "https://www.xy1958.com/qz/toActivity4ID/3712cba7fcaf4efdb096bd0d85689886"
+      ],
+      "before": {
+        "r": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "links": {}
+      },
+      "after": {
+        "r": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "links": {}
+      },
+      "ratings": {
+        "douban": {
+          "value": null,
+          "status": "no-matching-entry-found",
+          "url": null,
+          "note": "No matching entry established by title/director searches; not proof that no entry exists."
+        },
+        "imdb": {
+          "value": null,
+          "status": "no-matching-entry-found",
+          "url": null,
+          "note": "No matching entry established by title/director searches; not proof that no entry exists."
+        },
+        "rt": {
+          "value": null,
+          "status": "no-matching-entry-found",
+          "url": null,
+          "note": "No matching entry established by title/director searches; not proof that no entry exists."
+        },
+        "mc": {
+          "value": null,
+          "status": "access-limited",
+          "url": null,
+          "note": "Search access was blocked by robots.txt. No score asserted."
+        },
+        "lb": {
+          "value": null,
+          "status": "no-matching-entry-found",
+          "url": null,
+          "note": "No matching entry established by title/director searches; not proof that no entry exists."
+        }
+      }
+    },
+    {
+      "id": "wtm26-i-am-angry",
+      "title": "我生气了",
+      "owner": "data/programmes/wutianming-2026.json",
+      "poster": {
+        "id": "wtm26-i-am-angry",
+        "before": {
+          "path": "posters/wtm26-i-am-angry.jpg",
+          "size": [
+            145,
+            194
+          ]
+        },
+        "after": {
+          "path": "posters/wtm-first-wtm26-i-am-angry-20261119.jpg",
+          "size": [
+            340,
+            488
+          ]
+        },
+        "source": "https://meizi-chao-pub.8531.cn/2120370365895921664_1280px.jpg",
+        "quality": "higher-resolution-official-extract-not-HD",
+        "crop": [
+          104,
+          7735,
+          444,
+          8223
+        ]
+      },
+      "sources": [
+        "https://tidenews.com.cn/news.html?id=3611163",
+        "https://www.chinafilm.gov.cn/xxgk/gsxx/dybalx/202512/t20251211_942209.html"
+      ],
+      "before": {
+        "r": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "links": {}
+      },
+      "after": {
+        "r": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "links": {}
+      },
+      "ratings": {
+        "douban": {
+          "value": null,
+          "status": "no-matching-entry-found",
+          "url": null,
+          "note": "No matching entry established by title/director searches; not proof that no entry exists."
+        },
+        "imdb": {
+          "value": null,
+          "status": "no-matching-entry-found",
+          "url": null,
+          "note": "No matching entry established by title/director searches; not proof that no entry exists."
+        },
+        "rt": {
+          "value": null,
+          "status": "no-matching-entry-found",
+          "url": null,
+          "note": "No matching entry established by title/director searches; not proof that no entry exists."
+        },
+        "mc": {
+          "value": null,
+          "status": "access-limited",
+          "url": null,
+          "note": "Search access was blocked by robots.txt. No score asserted."
+        },
+        "lb": {
+          "value": null,
+          "status": "no-matching-entry-found",
+          "url": null,
+          "note": "No matching entry established by title/director searches; not proof that no entry exists."
+        }
+      }
+    },
+    {
+      "id": "wtm26-west-chamber",
+      "title": "西厢记（昆曲）",
+      "owner": "data/programmes/wutianming-2026.json",
+      "poster": {
+        "id": "wtm26-west-chamber",
+        "before": {
+          "path": "posters/wtm26-west-chamber.jpg",
+          "size": [
+            145,
+            195
+          ]
+        },
+        "after": {
+          "path": "posters/wtm-first-wtm26-west-chamber-20261119.jpg",
+          "size": [
+            1080,
+            1922
+          ]
+        },
+        "source": "https://n.sinaimg.cn/spider20260614/602/w1080h1922/20260614/9d22-242b717587384f24d9cba9beced23692.jpg",
+        "quality": "high-resolution-source"
+      },
+      "sources": [
+        "https://www.suzhou.gov.cn/szsrmzf/wtly/202606/59fa2186f959434b9a8b5d1c5c12e96c.shtml"
+      ],
+      "before": {
+        "r": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "links": {}
+      },
+      "after": {
+        "r": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "links": {}
+      },
+      "ratings": {
+        "douban": {
+          "value": null,
+          "status": "no-matching-entry-found",
+          "url": null,
+          "note": "No matching entry established by title/director searches; not proof that no entry exists."
+        },
+        "imdb": {
+          "value": null,
+          "status": "no-matching-entry-found",
+          "url": null,
+          "note": "No matching entry established by title/director searches; not proof that no entry exists."
+        },
+        "rt": {
+          "value": null,
+          "status": "no-matching-entry-found",
+          "url": null,
+          "note": "No matching entry established by title/director searches; not proof that no entry exists."
+        },
+        "mc": {
+          "value": null,
+          "status": "access-limited",
+          "url": null,
+          "note": "Search access was blocked by robots.txt. No score asserted."
+        },
+        "lb": {
+          "value": null,
+          "status": "no-matching-entry-found",
+          "url": null,
+          "note": "No matching entry established by title/director searches; not proof that no entry exists."
+        }
+      }
+    },
+    {
+      "id": "wtm26-goodbye-furkid",
+      "title": "再见，毛孩子",
+      "owner": "data/programmes/wutianming-2026.json",
+      "poster": {
+        "id": "wtm26-goodbye-furkid",
+        "before": {
+          "path": "posters/wtm26-goodbye-furkid.jpg",
+          "size": [
+            145,
+            194
+          ]
+        },
+        "after": {
+          "path": "posters/wtm-first-wtm26-goodbye-furkid-20261119.jpg",
+          "size": [
+            340,
+            508
+          ]
+        },
+        "source": "https://meizi-chao-pub.8531.cn/2120370365895921664_1280px.jpg",
+        "quality": "higher-resolution-official-extract-not-HD",
+        "crop": [
+          104,
+          9880,
+          444,
+          10388
+        ]
+      },
+      "sources": [
+        "https://tidenews.com.cn/news.html?id=3611163"
+      ],
+      "before": {
+        "r": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "links": {}
+      },
+      "after": {
+        "r": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "links": {}
+      },
+      "ratings": {
+        "douban": {
+          "value": null,
+          "status": "no-matching-entry-found",
+          "url": null,
+          "note": "No matching entry established by title/director searches; not proof that no entry exists."
+        },
+        "imdb": {
+          "value": null,
+          "status": "no-matching-entry-found",
+          "url": null,
+          "note": "No matching entry established by title/director searches; not proof that no entry exists."
+        },
+        "rt": {
+          "value": null,
+          "status": "no-matching-entry-found",
+          "url": null,
+          "note": "No matching entry established by title/director searches; not proof that no entry exists."
+        },
+        "mc": {
+          "value": null,
+          "status": "access-limited",
+          "url": null,
+          "note": "Search access was blocked by robots.txt. No score asserted."
+        },
+        "lb": {
+          "value": null,
+          "status": "no-matching-entry-found",
+          "url": null,
+          "note": "No matching entry established by title/director searches; not proof that no entry exists."
+        }
+      }
+    },
+    {
+      "id": "wtm26-west-border",
+      "title": "西渡",
+      "owner": "data/programmes/wutianming-2026.json",
+      "poster": {
+        "id": "wtm26-west-border",
+        "before": {
+          "path": "posters/wtm26-west-border.jpg",
+          "size": [
+            145,
+            194
+          ]
+        },
+        "after": {
+          "path": "posters/wtm-first-wtm26-west-border-20261119.jpg",
+          "size": [
+            1080,
+            1684
+          ]
+        },
+        "source": "https://img3.doubanio.com/view/photo/l/public/p2925307330.jpg",
+        "quality": "high-resolution-source"
+      },
+      "sources": [
+        "https://www.midnightblurfilms.com/west-border",
+        "https://letterboxd.com/film/western-border/",
+        "https://www.imdb.com/title/tt10198892/"
+      ],
+      "before": {
+        "r": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "links": {}
+      },
+      "after": {
+        "r": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "links": {
+          "douban": "30481978",
+          "lb": "western-border",
+          "imdb": "tt10198892"
+        }
+      },
+      "ratings": {
+        "douban": {
+          "value": null,
+          "status": "access-limited",
+          "url": "https://movie.douban.com/subject/30481978/",
+          "note": "Entry identity confirmed; subject page returned a verification page, so no aggregate score could be checked."
+        },
+        "imdb": {
+          "value": null,
+          "status": "no-public-aggregate",
+          "url": "https://www.imdb.com/title/tt10198892/",
+          "note": "IMDb entry under the earlier title 1999 matches Luo Yan and the six principal actors. No aggregate published in the retrieved result; do not replace catalogue year with the inconsistent IMDb year."
+        },
+        "rt": {
+          "value": null,
+          "status": "no-matching-entry-found",
+          "url": null,
+          "note": "No matching entry established by title/director searches; not proof that no entry exists."
+        },
+        "mc": {
+          "value": null,
+          "status": "access-limited",
+          "url": null,
+          "note": "Search access was blocked by robots.txt. No score asserted."
+        },
+        "lb": {
+          "value": null,
+          "status": "no-public-aggregate",
+          "url": "https://letterboxd.com/film/western-border/",
+          "note": "Checked page JSON-LD aggregateRating; scale is 0.5–5. No aggregateRating means null, not zero."
+        }
+      }
+    }
+  ]
+}
