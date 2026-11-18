@@ -911,10 +911,11 @@
    "section": "拾光：华语新片展映",
    "ticket": "tickets/golden-rooster-2026.jpg",
    "ticketPlatform": "淘票票",
-   "ticketHint": "购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门｜加场11月20日12:00开票",
    "poster": "posters/golden-horse-gr26-011.jpg",
    "screeningEnds": {
-    "11/7-17:45-xm-gr26-1-hall-6": "19:24"
+    "11/7-17:45-xm-gr26-1-hall-6": "19:24",
+    "11/29-12:10-xm-gr26-1-hall-6": "13:49"
    },
    "r": [
     8.5,
@@ -940,7 +941,8 @@
    "subtitles": "原文发音，中文字幕",
    "screeningNotes": {
     "11/18-16:20-tp-vieshow-xinyi-hall-10": "映后活动 · 影人出席（嘉宾待公布）",
-    "11/20-18:50-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）"
+    "11/20-18:50-tp-vieshow-xinyi-hall-11": "映后活动 · 影人出席（嘉宾待公布）",
+    "11/29-12:10-xm-gr26-1-hall-6": "加场 · 11月20日12:00开票"
    },
    "printSource": "高先电影有限公司 Golden Scene Company Limited",
    "printSourceEn": "Golden Scene Company Limited",
@@ -5246,16 +5248,18 @@
    "section": "回声：国际经典展映",
    "ticket": "tickets/golden-rooster-2026.jpg",
    "ticketPlatform": "淘票票",
-   "ticketHint": "购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门｜加场11月20日12:00开票",
    "version": "4K修复",
    "poster": "posters/golden-rooster-gr26-063.jpg",
    "screeningEnds": {
     "11/14-18:50-xm-gr26-1-hall-5": "20:47",
     "11/24-20:00-xm-gr26-1-hall-5": "21:57",
-    "11/29-20:00-xm-gr26-1-hall-5": "21:57"
+    "11/29-20:00-xm-gr26-1-hall-5": "21:57",
+    "11/27-20:30-xm-gr26-1-hall-5": "22:27"
    },
    "screeningNotes": {
-    "11/29-20:00-xm-gr26-1-hall-5": "告别场"
+    "11/29-20:00-xm-gr26-1-hall-5": "告别场",
+    "11/27-20:30-xm-gr26-1-hall-5": "加场 · 11月20日12:00开票 · 本场无工艺海报"
    },
    "r": [
     8.6,
@@ -6022,11 +6026,12 @@
    "section": "回声：国际经典展映",
    "ticket": "tickets/golden-rooster-2026.jpg",
    "ticketPlatform": "淘票票",
-   "ticketHint": "购票城市选择厦门",
+   "ticketHint": "购票城市选择厦门｜加场11月20日12:00开票",
    "poster": "posters/golden-rooster-gr26-072.jpg",
    "screeningEnds": {
     "11/15-14:15-xm-gr26-1-hall-5": "18:08",
-    "11/22-15:20-xm-gr26-1-hall-5": "19:13"
+    "11/22-15:20-xm-gr26-1-hall-5": "19:13",
+    "11/29-14:50-xm-gr26-1-hall-5": "18:49"
    },
    "version": "4K修复",
    "r": [
@@ -6072,7 +6077,10 @@
     "kind": "theatrical",
     "checked": "2026-11-07"
    },
-   "dirLife": "1889—1949 · 美国"
+   "dirLife": "1889—1949 · 美国",
+   "screeningNotes": {
+    "11/29-14:50-xm-gr26-1-hall-5": "加场 · 11月20日12:00开票"
+   }
   },
   {
    "id": "gr26-073",
@@ -8326,6 +8334,30 @@
    "xm-gr26-1",
    "hall-5",
    "s11wkx6y0"
+  ],
+  [
+   "11/27",
+   "20:30",
+   "gr26-063",
+   "xm-gr26-1",
+   "hall-5",
+   "sn6odnl81"
+  ],
+  [
+   "11/29",
+   "12:10",
+   "gr26-011",
+   "xm-gr26-1",
+   "hall-6",
+   "s1po3rmlj"
+  ],
+  [
+   "11/29",
+   "14:50",
+   "gr26-072",
+   "xm-gr26-1",
+   "hall-5",
+   "s2iozxpa8"
   ]
  ]
 }

@@ -900,7 +900,7 @@
     "sensory": "unverified"
    },
    "ticketPlatform": "微信",
-   "ticketLabel": "报名",
+   "ticketLabel": "免费报名",
    "id": "hideaway-the-dossiers",
    "cn": "密档",
    "o": "密档",
@@ -972,9 +972,9 @@
     "checked": "2026-11-18"
    },
    "ticket": "tickets/wutianming-2026-hideaway-the-dossiers.png",
-   "ticketHint": "吴天明青年电影展·星火放映｜11月21日14:30｜华影星空影城3号厅",
+   "ticketHint": "免费放映｜吴天明青年电影展·星火放映｜11月21日14:30｜华影星空影城3号厅",
    "screeningNotes": {
-    "11/21-14:30-jx-hyxk-hall-3": "映后活动 · 导演：郑大圣；演员：邵峰 · 交流约30分钟（以实际到场为准）"
+    "11/21-14:30-jx-hyxk-hall-3": "映后活动 · 导演：郑大圣；演员：邵峰 · 交流约30分钟（以实际到场为准） · 免费放映"
    }
   },
   {
@@ -988,7 +988,7 @@
     "sensory": "unverified"
    },
    "ticketPlatform": "微信",
-   "ticketLabel": "报名",
+   "ticketLabel": "免费报名",
    "id": "never-too-late-2024",
    "cn": "爷爷奶奶那些事儿",
    "cnDb": "爷爷奶奶那些事",
@@ -1057,9 +1057,9 @@
     "checked": "2026-11-18"
    },
    "ticket": "tickets/wutianming-2026-never-too-late.png",
-   "ticketHint": "吴天明青年电影展·星火放映｜11月22日19:00｜SFC嘉兴八佰伴LUXE店1号厅",
+   "ticketHint": "免费放映｜吴天明青年电影展·星火放映｜11月22日19:00｜SFC嘉兴八佰伴LUXE店1号厅",
    "screeningNotes": {
-    "11/22-19:00-jx-sfc-bbb-hall-1": "映后活动 · 制片人：郑泉 · 交流约30分钟（以实际到场为准）"
+    "11/22-19:00-jx-sfc-bbb-hall-1": "映后活动 · 制片人：郑泉 · 交流约30分钟（以实际到场为准） · 免费放映"
    }
   },
   {
@@ -1073,7 +1073,7 @@
     "sensory": "unverified"
    },
    "ticketPlatform": "微信",
-   "ticketLabel": "报名",
+   "ticketLabel": "免费报名",
    "id": "red-river-2009",
    "cn": "红河",
    "o": "红河",
@@ -1145,9 +1145,9 @@
     "dateNoteEn": "Global premiere event, Kunming"
    },
    "ticket": "tickets/wutianming-2026-red-river.png",
-   "ticketHint": "吴天明青年电影展·星火放映｜11月24日18:30｜嘉兴大学TCL报告厅",
+   "ticketHint": "免费放映｜吴天明青年电影展·星火放映｜11月24日18:30｜嘉兴大学TCL报告厅",
    "screeningNotes": {
-    "11/24-18:30-jx-university-tcl-tcl": "映后活动 · 导演：章家瑞；嘉宾：李香墨 · 交流约30分钟（以实际到场为准）"
+    "11/24-18:30-jx-university-tcl-tcl": "映后活动 · 导演：章家瑞；嘉宾：李香墨 · 交流约30分钟（以实际到场为准） · 免费放映"
    }
   }
  ],
