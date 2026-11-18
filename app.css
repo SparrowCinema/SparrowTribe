@@ -1284,3 +1284,17 @@ input:not([type=checkbox]):not([type=radio]),select,textarea{font-size:16px!impo
 .plan-moved>b{color:var(--fg)}
 .pg-was .pg-old{text-decoration:line-through;text-decoration-color:var(--muted);color:var(--muted)}
 .pg-was .pg-new{font-weight:700;color:var(--fg)}
+
+/* 护照翻页卷曲（shared/curl.js）：只在书页范围内显示 */
+.fp-book{touch-action:pan-y;-webkit-user-select:none;user-select:none}
+.fp-curl{position:absolute;inset:0;overflow:hidden;z-index:6;pointer-events:none;border-radius:4px 14px 14px 4px;-webkit-user-select:none;user-select:none}
+.fp-spread .fp-curl{border-radius:14px}
+.fc-r{position:absolute;top:0;bottom:0}
+.fc-l{position:absolute;inset:0;overflow:hidden}
+.fc-l>.fp-page,.fc-in>.fp-page,.fc-paper>.fp-page{inset:0!important;left:0!important;width:100%!important}
+.fc-flap{display:none;transform-origin:0 0}
+.fc-in{position:absolute;inset:0;transform:scaleX(-1)}
+.fc-paper{position:absolute;inset:0;background:linear-gradient(90deg,#efe5cf,var(--pp-paper) 30%)}
+.fc-paper>.fc-ghost{opacity:.07}
+.fp-curl .fp-stamp,.fp-still .fp-stamp{animation:none}
+.fc-sh{position:absolute;left:0;top:0;transform-origin:0 0;pointer-events:none;display:none;z-index:9}

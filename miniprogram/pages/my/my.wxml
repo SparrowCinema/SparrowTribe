@@ -1,5 +1,6 @@
 <page-meta page-style="{{ps}}" />
 <wxs src="../../utils/l.wxs" module="L" />
+<wxs src="./curl-ctl.wxs" module="CU" />
 <view class="brandbar">
   <image class="sq" src="{{dk ? '/images/brand/sparrow-movies-sq-dark.png' : '/images/brand/sparrow-movies-sq.png'}}" mode="aspectFit" />
   <text class="x">×</text>
@@ -80,14 +81,14 @@ ONE STAMP</text><text class="fp-open-icon">↗</text></view>
       <view wx:if="{{pp.nv>1}}" class="fp-shelfbtn" hover-class="hv" bindtap="ppShelfOpen">{{pp.shelfTxt}}</view>
     </view>
     <block wx:elif="{{!wide}}">
-      <swiper class="fp-book" current="{{ppPage}}" bindchange="ppChange" easing-function="easeOutCubic" duration="420">
-        <swiper-item>
-          <view class="fp-fx"><template is="fp-id" data="{{pp,i}}" /></view>
-        </swiper-item>
-        <swiper-item wx:for="{{pp.pages}}" wx:for-item="pg" wx:key="no">
-          <view class="fp-fx"><template is="fp-visa" data="{{pg,pp,i}}" /></view>
-        </swiper-item>
-      </swiper>
+      <!-- 翻页卷曲（curl-ctl.wxs）：只渲染上一页、当前页、下一页，翻页时折起的纸只在书页范围内显示 -->
+      <view class="cu-book cu-single" bindtouchstart="{{CU.start}}" bindtouchmove="{{CU.move}}" bindtouchend="{{CU.end}}" bindtouchcancel="{{CU.end}}" change:cfg="{{CU.cfg}}" cfg="{{cuCfg}}" change:cmd="{{CU.cmd}}" cmd="{{cuCmd}}">
+        <view class="cu-pg cu-nx"><template is="fp-any" data="{{k:ppPage+1,pp,i}}" /></view>
+        <view class="cu-pg cu-cp"><template is="fp-any" data="{{k:ppPage,pp,i}}" /><view class="cu-sh cu-csh-cp" /></view>
+        <view class="cu-pg cu-pv"><template is="fp-any" data="{{k:ppPage-1,pp,i}}" /><view class="cu-sh cu-csh-pv" /></view>
+        <view class="cu-clip cu-ushw"><view class="cu-sh cu-ush" /></view>
+        <view class="cu-clip cu-flw"><view class="cu-flap cu-fl"><view class="cu-paper" /><view class="cu-sh cu-fsh" /></view></view>
+      </view>
       <view class="fp-nav">
         <view class="nb {{ppPage === 0 ? 'dis' : ''}}" bindtap="ppPrev">{{L.t(i,'← 上一页')}}</view>
         <text class="mono">{{ppPage + 1}} / {{pp.n}}</text>
@@ -97,17 +98,19 @@ ONE STAMP</text><text class="fp-open-icon">↗</text></view>
     </block>
     <block wx:else>
       <view class="fp-sw" style="height:{{ppH}}px">
-        <swiper class="fp-sbook" current="{{ppSp}}" bindchange="ppChange" easing-function="easeOutCubic" duration="460">
-          <swiper-item wx:for="{{spreads}}" wx:for-item="sp" wx:key="k">
-            <view class="fp-fx">
-            <view class="fp-spread" style="transform:scale({{ppK}})">
-              <view class="fp-sl"><template wx:if="{{sp.l === 0}}" is="fp-id" data="{{pp,i}}" /><template wx:else is="fp-visa" data="{{pg:pp.pages[sp.l - 1],pp,i}}" /></view>
-              <view class="fp-sr"><template wx:if="{{sp.r < pp.n}}" is="fp-visa" data="{{pg:pp.pages[sp.r - 1],pp,i}}" /><view wx:else class="fp-page fp-blank"><view class="fp-ph mono"><text>SPARROW FILM PASSPORT</text><text>{{sp.rno}}</text></view></view></view>
-              <view class="fp-spine" />
-            </view>
-            </view>
-          </swiper-item>
-        </swiper>
+        <!-- 双页：右页翻向左边时背面是下一跨页的左页，左页翻回右边时背面是上一跨页的右页（真实印章） -->
+        <view class="fp-spread cu-book" style="transform:scale({{ppK}})" bindtouchstart="{{CU.start}}" bindtouchmove="{{CU.move}}" bindtouchend="{{CU.end}}" bindtouchcancel="{{CU.end}}" change:cfg="{{CU.cfg}}" cfg="{{cuCfg}}" change:cmd="{{CU.cmd}}" cmd="{{cuCmd}}">
+          <view class="cu-pg cu-r cu-rn fp-sr"><template is="fp-any" data="{{k:ppSp*2+3,pp,i,bl:1}}" /></view>
+          <view class="cu-pg cu-lp fp-sl"><template is="fp-any" data="{{k:ppSp*2-2,pp,i}}" /></view>
+          <view class="cu-pg cu-L fp-sl"><template is="fp-any" data="{{k:ppSp*2,pp,i}}" /><view class="cu-sh cu-csh-L" /></view>
+          <view class="cu-pg cu-r cu-R fp-sr"><template is="fp-any" data="{{k:ppSp*2+1,pp,i,bl:1}}" /><view class="cu-sh cu-csh-R" /></view>
+          <view class="fp-spine" />
+          <view class="cu-clip cu-ushw"><view class="cu-sh cu-ush" /></view>
+          <view class="cu-clip cu-flw">
+            <view class="cu-reg"><view class="cu-flap cu-flb"><view class="cu-in fp-sr"><template is="fp-any" data="{{k:ppSp*2-1,pp,i,bl:1}}" /></view><view class="cu-sh cu-fshb" /></view></view>
+            <view class="cu-reg cu-r"><view class="cu-flap cu-flf"><view class="cu-in fp-sl"><template is="fp-any" data="{{k:ppSp*2+2,pp,i,bl:1}}" /></view><view class="cu-sh cu-fshf" /></view></view>
+          </view>
+        </view>
       </view>
       <view class="fp-nav fp-navw">
         <view class="nb {{ppSp === 0 ? 'dis' : ''}}" bindtap="ppPrev">{{L.t(i,'← 上一页')}}</view>
@@ -202,6 +205,8 @@ ONE STAMP</text><text class="fp-open-icon">↗</text></view>
   </view>
 </view>
 <canvas type="2d" id="recap" class="poster-cv" />
+<!-- 护照任意一页：0 资料页，1… 印章页；bl 时超出页数显示空白页（双页右侧） -->
+<template name="fp-any"><template wx:if="{{k === 0}}" is="fp-id" data="{{pp,i}}" /><template wx:elif="{{k > 0 && k < pp.n}}" is="fp-visa" data="{{pg:pp.pages[k - 1],pp,i}}" /><view wx:elif="{{bl && k >= pp.n}}" class="fp-page fp-blank"><view class="fp-ph mono"><text>SPARROW FILM PASSPORT</text><text>{{k < 9 ? '0' + (k + 1) : k + 1}}</text></view></view></template>
 <template name="fp-id">
           <view class="fp-page fp-id">
   <view class="fp-ph mono"><text>{{L.t(i,'FILM PASSPORT / 资料页')}}</text><text>01</text></view>
