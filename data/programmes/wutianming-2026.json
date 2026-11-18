@@ -82,7 +82,11 @@
    "book": "诺埃尔·卡莱夫《通往绞刑架的电梯》",
    "screeningNotes": {
     "11/21-19:00-jx-sfc-bbb-omis-4": "映后活动 · 映后嘉宾：杨劲松（以实际到场为准）"
-   }
+   },
+   "ticket": "tickets/elevator-to-the-gallows.png",
+   "ticketLabel": "报名",
+   "ticketHint": "杭州站（星光嘉映影城）",
+   "ticketPlatform": "微信小程序"
   },
   {
    "id": "la-haine",
@@ -166,7 +170,11 @@
    "version": "4K",
    "screeningNotes": {
     "11/21-13:30-jx-jygh-helecheng-laser-3": "映后活动 · 映后嘉宾：杨劲松、战台烽（以实际到场为准）"
-   }
+   },
+   "ticket": "tickets/la-haine.png",
+   "ticketLabel": "报名",
+   "ticketHint": "杭州站（星光嘉映影城）",
+   "ticketPlatform": "微信小程序"
   },
   {
    "id": "rosetta",
@@ -341,7 +349,11 @@
    "version": "4K",
    "screeningNotes": {
     "11/22-19:00-jx-sfc-bbb-luxe-8": "映后活动 · 映后嘉宾：杨劲松、沙丹（以实际到场为准）"
-   }
+   },
+   "ticket": "tickets/ponette.png",
+   "ticketLabel": "报名",
+   "ticketHint": "杭州站（星光嘉映影城）",
+   "ticketPlatform": "微信小程序"
   },
   {
    "id": "amour-2012",
@@ -721,7 +733,11 @@
    "contentNote": "依据公开剧情与发行资料整理，涉及窥视与关系越界、情感操控与背叛。未完整审片；具体画面强度、闪烁及音量尚未核实，不替代正式分级。",
    "metadataChecked": "2026-11-11",
    "ratingChecked": "2026-11-11",
-   "version": "4K"
+   "version": "4K",
+   "ticket": "tickets/parallel-tales.png",
+   "ticketLabel": "报名",
+   "ticketHint": "杭州站（星光嘉映影城）",
+   "ticketPlatform": "微信小程序"
   },
   {
    "id": "and-the-spring-comes",
