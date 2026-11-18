@@ -458,6 +458,7 @@
 .cu-ushw { z-index: 2; }
 .cu-flw { z-index: 5; }
 .cu-reg { position: absolute; left: 0; top: 0; width: calc(600 * var(--r)); height: calc(852 * var(--r)); }
+.cu-reg.cu-r { left: calc(600 * var(--r)); } /* 双页向后翻的折页区域在右页：必须写在 .cu-reg 之后，否则被 left:0 覆盖 */
 .cu-flap { position: absolute; left: 0; top: 0; width: calc(600 * var(--r)); height: calc(852 * var(--r)); transform-origin: 0 0; display: none; overflow: hidden; }
 .cu-in { position: absolute; left: 0; top: 0; transform: scaleX(-1); }
 .cu-paper { position: absolute; left: 0; top: 0; right: 0; bottom: 0; background: linear-gradient(90deg, #efe5cf, var(--paper) 30%); }
