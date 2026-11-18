@@ -82,15 +82,13 @@ Page({
     // 专题已结束 / 影片已下映 / 全部场次已放映后，不再显示购票码（待排片的保留）
     const progEnded = p => !!p && U.progInfo(p, data, idx).status === 'ended';
     // 按专题分开算（与网站 ticketLive 相同）：影展专题里本片在该专题还有未散场场次、或场次未公布时显示，全部放完隐藏，加场后自动恢复；院线专题看本片全部场次
-    const isInternal = p => !!(p && (p.internal || []).includes(f.id)); // 内部放映（如吴天明青年电影展「产业放映 · 首作之上」）：不对外售票
-    const internals = idx.progsOf(f).filter(x => isInternal(x.p)).map(x => ({ name: x.p.name, sec: t(x.sec || '') }));
-    const tkLive = p => { if (f.ended || progEnded(p) || isInternal(p)) return false; const mine = p && p.kind !== '院线' ? allShows.filter(s => (s.p || f.prog) === p.id) : allShows; return !mine.length || mine.some(s => !U.ended(s, idx)); };
+    const tkLive = p => { if (f.ended || progEnded(p)) return false; const mine = p && p.kind !== '院线' ? allShows.filter(s => (s.p || f.prog) === p.id) : allShows; return !mine.length || mine.some(s => !U.ended(s, idx)); };
     const filmLive = tkLive(idx.progOf(f));
     if (filmLive) addTk(U.ticket(f), f.ticketPlatform, f.ticketLabel, f.ticketHint, idx.progOf(f));
     if (!f.ev) idx.progsOf(f).forEach(x => { if (x.p.ticket && tkLive(x.p)) addTk(/^https?:|^\//.test(x.p.ticket) ? x.p.ticket : SITE + x.p.ticket, x.p.ticketPlatform, '', x.p.ticketHint, x.p); });
     if (tks.length < 2) tks.forEach(x => { x.prog = ''; });
     this.setData({
-      tickets: tks, internals,
+      tickets: tks,
       f: {
         id: f.id, ev: !!f.ev, ended: !!f.ended, cn: f.cn, cnDb: (!I.isEn() && f.cnDb && f.cnDb !== f.cn) ? f.cnDb : '',warnings:f.warnings||[],contentNote:f.contentNote||t('具体内容尚待核实，不代表没有敏感内容或适合所有年龄。'),sensory:f.contentReview?.sensory==='flashing', en: f.en || f.o, minText: t(f.min ? f.min + ' 分钟' : '片长待定'), release: t(f.release || ''), o: f.o !== f.cn && f.o !== (f.en || f.o) ? f.o : '', y: f.y, c: t(f.c), min: f.min, lang: t(f.language),
         version: t(f.version || ''), genre: (f.genre || []).map(t), dir: f.dir, dirO: f.dirO, dirLife: f.dirLife,

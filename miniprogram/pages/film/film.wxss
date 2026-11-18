@@ -277,7 +277,3 @@
 .mr-acts .mr-seen-full { flex: 1.35; margin-top: 0; }
 .mr-want { flex: 1; height: calc(68 * var(--r)); display: flex; align-items: center; justify-content: center; border-radius: calc(16 * var(--r)); border: calc(3 * var(--r)) solid var(--line); color: var(--fg); font-size: calc(22 * var(--fr)); font-weight: 700; white-space: nowrap; box-sizing: border-box; }
 .mr-want.on { border-color: #c79a3a; color: #8a6516; background: rgba(232, 217, 170, 0.19); }
-
-/* 内部放映提示（不对外售票） */
-.internal { display: flex; flex-direction: column; gap: calc(6 * var(--r)); padding: calc(22 * var(--r)) calc(26 * var(--r)); margin-top: calc(16 * var(--r)); }
-.internal .b { color: var(--accent); font-size: calc(24 * var(--fr)); font-weight: 700; }

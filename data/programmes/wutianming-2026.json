@@ -1190,6 +1190,9 @@
     "festival": null,
     "festivalEn": null,
     "kind": "unknown"
+   },
+   "screeningNotes": {
+    "11/23-10:00-jx-jygh-helecheng-hall-5": "产业放映 · 不对外展映 · 不对外售票"
    }
   },
   {
@@ -1244,7 +1247,10 @@
    "highlights": [
     "一夜之间由争执升级为荒诞激烈的互殴，天亮后又彼此谅解。",
     "把货运行业的低价内卷，写成一出黑色幽默的底层群像。"
-   ]
+   ],
+   "screeningNotes": {
+    "11/21-15:30-jx-jygh-helecheng-hall-5": "产业放映 · 不对外展映 · 不对外售票"
+   }
   },
   {
    "reg": "cn",
@@ -1287,6 +1293,9 @@
     "festival": null,
     "festivalEn": null,
     "kind": "unknown"
+   },
+   "screeningNotes": {
+    "11/20-10:00-jx-jygh-helecheng-hall-5": "产业放映 · 不对外展映 · 不对外售票"
    }
   },
   {
@@ -1337,6 +1346,9 @@
     "festival": null,
     "festivalEn": null,
     "kind": "unknown"
+   },
+   "screeningNotes": {
+    "11/20-13:00-jx-jygh-helecheng-hall-5": "产业放映 · 不对外展映 · 不对外售票"
    }
   },
   {
@@ -1384,6 +1396,9 @@
     "festival": null,
     "festivalEn": null,
     "kind": "unknown"
+   },
+   "screeningNotes": {
+    "11/21-13:00-jx-jygh-helecheng-hall-5": "产业放映 · 不对外展映 · 不对外售票"
    }
   },
   {
@@ -1436,7 +1451,10 @@
    "highlights": [
     "十岁男孩因母子争吵离家出走，踏上自己的江湖冒险。",
     "在“假英雄”与“真混蛋”之间，寻找成为自己的方式。"
-   ]
+   ],
+   "screeningNotes": {
+    "11/23-13:00-jx-jygh-helecheng-hall-5": "产业放映 · 不对外展映 · 不对外售票"
+   }
   },
   {
    "reg": "cn",
@@ -1496,6 +1514,9 @@
     "festivalEn": "Shanghai International Film Festival",
     "kind": "festival",
     "checked": "2026-11-18"
+   },
+   "screeningNotes": {
+    "11/22-15:30-jx-jygh-helecheng-hall-5": "产业放映 · 不对外展映 · 不对外售票"
    }
   },
   {
@@ -1614,6 +1635,9 @@
     "festivalEn": "Pingyao International Film Festival",
     "kind": "festival",
     "checked": "2026-11-18"
+   },
+   "screeningNotes": {
+    "11/24-10:00-jx-jygh-helecheng-hall-5": "产业放映 · 不对外展映 · 不对外售票"
    }
   }
  ],
