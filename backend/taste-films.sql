@@ -316,5 +316,14 @@ insert into sparrow_taste.films(id) values
 ('we-live-in-time'),
 ('when-pigs-fly'),
 ('where-is-the-friends-house'),
-('wild-strawberries')
+('wild-strawberries'),
+('wtm26-ai-and-you'),
+('wtm26-goodbye-furkid'),
+('wtm26-hoh-xil-and-me'),
+('wtm26-i-am-angry'),
+('wtm26-migration'),
+('wtm26-nine-piece-band'),
+('wtm26-tiger-tonight'),
+('wtm26-west-border'),
+('wtm26-west-chamber')
 on conflict do nothing;

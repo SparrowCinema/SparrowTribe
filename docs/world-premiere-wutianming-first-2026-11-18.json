@@ -1,0 +1,32 @@
+{
+ "checked": "2026-11-18",
+ "verifiedRecords": {
+  "wtm26-west-chamber": {
+   "status": "verified",
+   "date": "2026-06-15",
+   "festival": "上海国际电影节",
+   "festivalEn": "Shanghai International Film Festival",
+   "kind": "festival",
+   "checked": "2026-11-18",
+   "sources": [
+    "https://www.yzwb.net/news/yysp/202606/t20260615_362781.html",
+    "https://www.yzwb.net/news/wy/202606/t20260605_359553.html",
+    "https://www.thepaper.cn/newsDetail_forward_33306986"
+   ],
+   "note": "紫牛新闻：6月15日下午作为第28届上海国际电影节「特别放映」单元作品，在上海影城SHO举行全球首映。"
+  },
+  "wtm26-west-border": {
+   "status": "partial",
+   "date": "2025-09",
+   "festival": "平遥国际电影展",
+   "festivalEn": "Pingyao International Film Festival",
+   "kind": "festival",
+   "checked": "2026-11-18",
+   "sources": [
+    "https://www.midnightblurfilms.com/west-border",
+    "https://news.ifeng.com/c/8n3CtuKJcgq"
+   ],
+   "note": "第九届平遥国际电影展（2025年9月）藏龙单元，主创亮相9月29日闭幕红毯；平遥藏龙以全球首映为主，但未查到具体首映场次日期，只登记到月份。"
+  }
+ }
+}
