@@ -1,0 +1,24 @@
+{
+  "checked": "2026-11-18",
+  "scope": "补齐沙丘两部曲豆瓣评分",
+  "supersedes": "docs/world-premiere-dune-24flavors-2026-11-18.json 中最初未取得的豆瓣评分空值；其他平台评分未变",
+  "method": "豆瓣电影详情页仍跳转访问验证；改用豆瓣公开片单中由豆瓣电影提供的影片评分，核对片名、年份、导演和链接所指条目。采用页面返回数据，不采用旧新闻开分。",
+  "source": "https://www.douban.com/doulist/156450129/",
+  "records": {
+    "dune-2021": {
+      "cn": "沙丘",
+      "year": 2021,
+      "subject": "https://movie.douban.com/subject/3001114/",
+      "score": 7.7,
+      "votes": 790309
+    },
+    "dune-part-two": {
+      "cn": "沙丘2",
+      "year": 2024,
+      "subject": "https://movie.douban.com/subject/35575567/",
+      "score": 8.1,
+      "votes": 563633,
+      "corroboration": "https://www.douban.com/doulist/158185553/"
+    }
+  }
+}
