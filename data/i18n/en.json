@@ -1265,13 +1265,15 @@
    "contentNote": "Available story information indicates: Family conflict or separation; Distress or pressure affecting children. Detailed depiction and intensity have not been verified; consider your individual needs.",
    "screeningNotes": {
     "11/18-16:20-tp-vieshow-xinyi-hall-10": "Post-screening event · Filmmakers attending (guests to be announced)",
-    "11/20-18:50-tp-vieshow-xinyi-hall-11": "Post-screening event · Filmmakers attending (guests to be announced)"
+    "11/20-18:50-tp-vieshow-xinyi-hall-11": "Post-screening event · Filmmakers attending (guests to be announced)",
+    "11/29-12:10-xm-gr26-1-hall-6": "Additional screening · Tickets on sale 20 November at 12:00"
    },
    "language": "English / Mandarin Chinese / Japanese",
    "writers": [
     "Ang Geck Geck"
    ],
-   "dirLife": "Singapore"
+   "dirLife": "Singapore",
+   "ticketHint": "Select Xiamen as the ticketing city | Additional screening: on sale 20 November at 12:00"
   },
   "gr26-012": {
    "title": "The Evil Inside",
@@ -2563,7 +2565,11 @@
     "Death and bereavement"
    ],
    "contentNote": "Available story information indicates: Violence or injury; Death and bereavement. Detailed depiction and intensity have not been verified; consider your individual needs.",
-   "dirLife": "1937– · United Kingdom"
+   "dirLife": "1937– · United Kingdom",
+   "screeningNotes": {
+    "11/27-20:30-xm-gr26-1-hall-5": "Additional screening · Tickets on sale 20 November at 12:00 · No art poster for this screening"
+   },
+   "ticketHint": "Select Xiamen as the ticketing city | Additional screening: on sale 20 November at 12:00"
   },
   "gr26-064": {
    "title": "We Are All Strangers",
@@ -2781,7 +2787,11 @@
     "Harm or death involving children"
    ],
    "contentNote": "Also informed by a published overseas content advisory. The running time and cut may differ from this screening; consider your individual needs.",
-   "dirLife": "1889–1949 · United States"
+   "dirLife": "1889–1949 · United States",
+   "screeningNotes": {
+    "11/29-14:50-xm-gr26-1-hall-5": "Additional screening · Tickets on sale 20 November at 12:00"
+   },
+   "ticketHint": "Select Xiamen as the ticketing city | Additional screening: on sale 20 November at 12:00"
   },
   "gr26-073": {
    "title": "Princess Iron Fan",
@@ -9120,9 +9130,9 @@
     "Emotional pressure surrounding demolition and family relationships"
    ],
    "contentNote": "Based on official festival synopses and program notes: parental separation, infidelity, family conflict, April’s past self-harm and psychological distress. A full classification report and scene-by-scene review of the Mainland theatrical edition were not available. The intensity of individual images, flashing effects and sudden loud sounds remain unverified. These topic notes are not an official age classification.",
-   "ticketHint": "Wutianming Film Festival | 23 November, 19:00 | MQ Cinema, 3F, Shuangxihu Cultural Centre",
+   "ticketHint": "Free screening | Wutianming Film Festival | 23 November, 19:00 | MQ Cinema, 3F, Shuangxihu Cultural Centre",
    "screeningNotes": {
-    "11/23-19:00-sparrow-tribe-screening-room": "Post-screening event · Director: Elaine Huang; producer: Ding Yu · This screening is scheduled for 117 minutes, followed by approximately 30 minutes of discussion (attendance subject to the event)"
+    "11/23-19:00-sparrow-tribe-screening-room": "Post-screening event · Director: Elaine Huang; producer: Ding Yu · This screening is scheduled for 117 minutes, followed by approximately 30 minutes of discussion (attendance subject to the event) · Free screening"
    }
   },
   "hideaway-the-dossiers": {
@@ -9170,9 +9180,9 @@
     "Violence and death-related material"
    ],
    "contentNote": "Available story and release information indicates wartime occupation, surveillance, searches, violence and death-related material. The specific print has not been reviewed shot by shot; intensity, flashing images and sudden loud sounds remain unverified. This is not an official age rating.",
-   "ticketHint": "Wutianming Film Festival | 21 November, 14:30 | Huaying Xingkong Cinema, Hall 3",
+   "ticketHint": "Free screening | Wutianming Film Festival | 21 November, 14:30 | Huaying Xingkong Cinema, Hall 3",
    "screeningNotes": {
-    "11/21-14:30-jx-hyxk-hall-3": "Post-screening event · Director: Zheng Dasheng; actor: Shao Feng · Approximately 30 minutes (attendance subject to the event)"
+    "11/21-14:30-jx-hyxk-hall-3": "Post-screening event · Director: Zheng Dasheng; actor: Shao Feng · Approximately 30 minutes (attendance subject to the event) · Free screening"
    }
   },
   "never-too-late-2024": {
@@ -9215,9 +9225,9 @@
     "Death and bereavement"
    ],
    "contentNote": "Available story and screening information indicates marital conflict, ageing, illness, memory loss and bereavement. The specific print has not been reviewed shot by shot, and sensory intensity remains unverified. Consider individual needs when approaching these subjects.",
-   "ticketHint": "Wutianming Film Festival | 22 November, 19:00 | SFC Jiaxing Babaiban LUXE, Hall 1",
+   "ticketHint": "Free screening | Wutianming Film Festival | 22 November, 19:00 | SFC Jiaxing Babaiban LUXE, Hall 1",
    "screeningNotes": {
-    "11/22-19:00-jx-sfc-bbb-hall-1": "Post-screening event · Producer: Zheng Quan · Approximately 30 minutes (attendance subject to the event)"
+    "11/22-19:00-jx-sfc-bbb-hall-1": "Post-screening event · Producer: Zheng Quan · Approximately 30 minutes (attendance subject to the event) · Free screening"
    }
   },
   "red-river-2009": {
@@ -9262,9 +9272,9 @@
     "Bereavement and strong emotional distress"
    ],
    "contentNote": "Available story and release information indicates war trauma, a landmine explosion, gun violence, death, coercion, exploitation and sexual material. Release cuts differ; the specific screening print has not been reviewed shot by shot and sensory intensity remains unverified.",
-   "ticketHint": "Wutianming Film Festival | 24 November, 18:30 | Jiaxing University TCL Auditorium",
+   "ticketHint": "Free screening | Wutianming Film Festival | 24 November, 18:30 | Jiaxing University TCL Auditorium",
    "screeningNotes": {
-    "11/24-18:30-jx-university-tcl-tcl": "Post-screening event · Director: Zhang Jiarui; guest: Li Xiangmo · Approximately 30 minutes (attendance subject to the event)"
+    "11/24-18:30-jx-university-tcl-tcl": "Post-screening event · Director: Zhang Jiarui; guest: Li Xiangmo · Approximately 30 minutes (attendance subject to the event) · Free screening"
    }
   }
  },
@@ -9872,19 +9882,11 @@
   },
   "wutianming-2026": {
    "name": "2026 Wu Tianming Young Film Festival",
-   "sub": "French Realism Masterworks",
+   "sub": "Opening & Tributes · French Realism · Star Screenings",
    "kind": "Film festival",
    "period": "Nov 20 – 25, 2026 (Jiaxing) · Nov 27 – 29 (Hangzhou)",
    "city": "Jiaxing · Hangzhou",
-   "blurb": "Eight masterworks of French realism in three sections: Masters' Debut, Mirrors of the Era and Cinema Today. They run from Malle's prelude to the New Wave, through the social realism of Kassovitz, the Dardennes and Doillon, to the present-day echoes of Haneke, Ladj Ly, Triet and Farhadi. On screen, yesterday is never far. The films screen first in Jiaxing (November 20–25), then in Hangzhou (November 27 and 29). Tickets go on sale at 12:00 noon on November 13 on Taopiaopiao."
-  },
-  "wutianming-star-2026": {
-   "name": "2026 Wutianming Film Festival · Star Screenings",
-   "sub": "Jiaxing · Nanhu | Four films and post-screening discussions",
-   "kind": "Film festival",
-   "period": "21–24 November 2026",
-   "city": "Jiaxing",
-   "blurb": "Four screenings in Jiaxing: Hideaway: The Dossiers, Never Too Late, 24 Flavors and Red River. Each film page has its own WeChat Mini Program registration code. Guest discussions last approximately 30 minutes; attendance and final arrangements are subject to the event."
+   "blurb": "Eight masterworks of French realism in three sections: Masters' Debut, Mirrors of the Era and Cinema Today. They run from Malle's prelude to the New Wave, through the social realism of Kassovitz, the Dardennes and Doillon, to the present-day echoes of Haneke, Ladj Ly, Triet and Farhadi. On screen, yesterday is never far. The films screen first in Jiaxing (November 20–25), then in Hangzhou (November 27 and 29). Tickets go on sale at 12:00 noon on November 13 on Taopiaopiao.\n\nStar Screenings | Four free screenings in Jiaxing on 21–24 November: Hideaway: The Dossiers, Never Too Late, 24 Flavors and Red River, each with a post-screening discussion of approximately 30 minutes. Guest and venue details, together with the individual WeChat Mini Program registration code, are on each film page."
   }
  },
  "venues": {
@@ -11603,7 +11605,7 @@
   "外貌羞辱与排斥": "Appearance-based humiliation and exclusion",
   "政治压迫、逮捕与处决": "Political oppression, arrest and execution",
   "儿童重病": "Child’s serious illness",
-  "免费放映": "Free admission",
+  "免费放映": "Free screening",
   "自杀相关情节": "Suicide-related content",
   "电影海报一张": "One film poster",
   "杭州站（星光嘉映影城）": "Hangzhou screenings (Star-Light Jiaying Cinema)",
@@ -11648,6 +11650,8 @@
   "TA 的全部场次": "All their screenings",
   "主办方调整了这些场次，你的排片已经自动换成新时间。": "The organiser changed these screenings — your plan has been switched to the new times.",
   "改为": "Now",
-  "已取消": "Cancelled"
+  "已取消": "Cancelled",
+  "星火放映": "Star Screenings",
+  "免费报名": "Free registration"
  }
 }
