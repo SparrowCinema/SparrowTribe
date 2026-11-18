@@ -85,7 +85,7 @@
    },
    "ticket": "tickets/elevator-to-the-gallows.png",
    "ticketLabel": "报名",
-   "ticketHint": "杭州站（星光嘉映影城）",
+   "ticketHint": "嘉兴站（嘉影银河影城、SFC上影影城）",
    "ticketPlatform": "微信小程序"
   },
   {
@@ -173,7 +173,7 @@
    },
    "ticket": "tickets/la-haine.png",
    "ticketLabel": "报名",
-   "ticketHint": "杭州站（星光嘉映影城）",
+   "ticketHint": "嘉兴站（嘉影银河影城、SFC上影影城）",
    "ticketPlatform": "微信小程序"
   },
   {
@@ -352,7 +352,7 @@
    },
    "ticket": "tickets/ponette.png",
    "ticketLabel": "报名",
-   "ticketHint": "杭州站（星光嘉映影城）",
+   "ticketHint": "嘉兴站（嘉影银河影城、SFC上影影城）",
    "ticketPlatform": "微信小程序"
   },
   {
@@ -736,7 +736,7 @@
    "version": "4K",
    "ticket": "tickets/parallel-tales.png",
    "ticketLabel": "报名",
-   "ticketHint": "杭州站（星光嘉映影城）",
+   "ticketHint": "嘉兴站（嘉影银河影城、SFC上影影城）",
    "ticketPlatform": "微信小程序"
   },
   {
