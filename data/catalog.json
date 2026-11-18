@@ -1147,7 +1147,7 @@
   {
    "id": "wutianming-2026",
    "name": "2026吴天明青年电影展",
-   "sub": "开幕与致敬 · 法国现实主义名作 · 星火放映",
+   "sub": "开幕与致敬 · 法国现实主义名作 · 星火放映 · 首作之上（产业放映）",
    "en": "WU TIANMING YOUNG FILM FESTIVAL",
    "kind": "影展专题",
    "period": "2026.11.20 – 11.25（嘉兴）· 11.27 – 11.29（杭州）",
@@ -1173,10 +1173,42 @@
     "hideaway-the-dossiers": "星火放映",
     "never-too-late-2024": "星火放映",
     "red-river-2009": "星火放映",
-    "24-flavors": "星火放映"
+    "24-flavors": "星火放映",
+    "wtm26-ai-and-you": "产业放映 · 首作之上",
+    "gr26-041": "产业放映 · 首作之上",
+    "gr26-013": "产业放映 · 首作之上",
+    "gr26-018": "产业放映 · 首作之上",
+    "wtm26-tiger-tonight": "产业放映 · 首作之上",
+    "wtm26-nine-piece-band": "产业放映 · 首作之上",
+    "wtm26-hoh-xil-and-me": "产业放映 · 首作之上",
+    "wtm26-migration": "产业放映 · 首作之上",
+    "gr26-027": "产业放映 · 首作之上",
+    "wtm26-i-am-angry": "产业放映 · 首作之上",
+    "wtm26-west-chamber": "产业放映 · 首作之上",
+    "wtm26-goodbye-furkid": "产业放映 · 首作之上",
+    "wtm26-west-border": "产业放映 · 首作之上"
    },
    "members": [
-    "24-flavors"
+    "24-flavors",
+    "gr26-041",
+    "gr26-013",
+    "gr26-018",
+    "gr26-027"
+   ],
+   "internal": [
+    "wtm26-ai-and-you",
+    "gr26-041",
+    "gr26-013",
+    "gr26-018",
+    "wtm26-tiger-tonight",
+    "wtm26-nine-piece-band",
+    "wtm26-hoh-xil-and-me",
+    "wtm26-migration",
+    "gr26-027",
+    "wtm26-i-am-angry",
+    "wtm26-west-chamber",
+    "wtm26-goodbye-furkid",
+    "wtm26-west-border"
    ]
   }
  ],

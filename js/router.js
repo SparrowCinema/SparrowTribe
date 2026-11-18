@@ -172,7 +172,7 @@ function programmeFilmSlots(f,pid,compact){
  const all=SH.filter(s=>s.id===f.id&&s.p===pid).sort((a,b)=>showDate(a)-showDate(b));
  const upcoming=all.filter(s=>!isPast(s)),past=all.filter(isPast),fest=keepPast(PG[pid]);
  const list=(upcoming.length&&fest)||!upcoming.length?(upcoming.length?upcoming:all):upcoming;
- if(!all.length)return '<span class="pg-slot pg-unscheduled">场次待公布</span>';
+ if(!all.length)return '<span class="pg-slot pg-unscheduled">'+(isInternalIn(f,PG[pid])?'内部放映 · 不对外售票':'场次待公布')+'</span>';
  const row=s=>'<span class="pg-slot'+(isPast(s)?' pg-slot-past':'')+'" aria-label="'+esc(s.d+' '+s.t+' '+placeOf(s))+'"><time>'+esc(s.d.split("/").map(n=>n.padStart(2,"0")).join("."))+'</time><time>'+esc(s.t)+'</time><small>'+placeHTML(s)+'</small></span>';
  // 影展：已放映的场次折叠保留（变暗），点「已放映 N 场」展开；院线片不显示
  const fold=fest&&upcoming.length&&past.length?'<span class="pg-past"><span class="pg-past-t" role="button" tabindex="0" data-pgpast aria-expanded="false">已放映 '+past.length+' 场 <i>▾</i></span><span class="pg-past-l">'+past.map(row).join("")+'</span></span>':"";

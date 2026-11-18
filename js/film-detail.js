@@ -42,6 +42,7 @@ const TK={};
 // 购票码是否显示（按专题分开算）：专题已结束或影片已下映不显示；影展专题里这部片在该专题还有未散场的场次、或场次还没公布时显示，全部放完就隐藏，补了加场会自动重新出现。院线专题不录全部场次，沿用「本片任一场未散场或尚无场次」
 function ticketLive(f,p){
   p=p||PG[f.prog]; if(p&&progStatus(p)==="ended") return false;
+  if(isInternalIn(f,p)) return false; // 内部放映不对外售票
   if(f.ended) return false;
   const all=SH.filter(s=>s.id===f.id),mine=p&&p.kind!=="院线"?all.filter(s=>(s.p||f.prog)===p.id):all;
   return !mine.length||mine.some(s=>!isPast(s));
@@ -54,6 +55,7 @@ function ticketsOf(f){
   return out;
 }
 function ticketCardHTML(t,cn,key,tag){TK[key]=Object.assign({cn},t);const w=t.ticketLabel||'购票';return `<section class="ticket-card" aria-label="${esc(cn)}${w}"><div class="ticket-copy"><small>BOOK YOUR SEAT${tag?` · ${esc(tag)}`:""}</small><h2>银幕见</h2><p>${esc(t.ticketPlatform||"微信")}扫码${w}<br>${esc((t.ticketHint||"麻雀映画小程序").replace(/^淘票票扫码购票\s*[·・]?\s*/,""))}</p><button class="ticket-expand" data-ticket="${esc(key)}">查看${w}码 ↗</button></div><button class="ticket-code" data-ticket="${esc(key)}" aria-label="放大${esc(cn)}${w}码"><img src="${t.ticket}" alt="${esc(cn)}${w}码" width="430" height="430"></button></section>`;}
+function internalNoteHTML(f){const ps=internalProgsOf(f);if(!ps.length)return "";return ps.map(p=>{const sec=(p.sections||{})[f.id];return `<div class="fd-internal"><b>内部放映 · 不对外售票</b><span>${esc(p.name)}${sec?` · ${esc(sec)}`:""}</span><span>本片为内部放映，不对外售票，麻雀观影护照不收录具体场次。</span></div>`;}).join("");}
 function ticketHTML(f){const ts=ticketsOf(f),multi=ts.length>1||(typeof filmProgsOf==="function"&&filmProgsOf(f).length>1);return ts.map((t,i)=>ticketCardHTML(t,f.cn,f.id+"#"+i,multi&&t.p?t.p.name:"")).join("");} // 跨影展影片只剩一张购票码时也标出是哪个影展
 document.addEventListener('click',e=>{const b=e.target.closest('[data-ticket]');if(!b)return;const f=TK[b.dataset.ticket],src=f&&f.ticket;if(!f||!src)return;const w=f.ticketLabel||'购票';document.getElementById('ticket-modal')?.remove();const d=document.createElement('dialog');d.id='ticket-modal';d.className='ticket-modal';d.setAttribute('aria-label',f.cn+w);d.innerHTML=`<header><h2>${esc(f.cn)} · ${w}</h2><button class="ticket-close" aria-label="关闭${w}码">×</button></header><img src="${src}" alt="${esc(f.cn)}${w}码"><p>${esc(f.ticketHint||"微信内可长按图片识别。其他浏览器请先保存图片，再用微信「扫一扫」从相册选择。")}</p><a class="primary-button ticket-save" href="${src}" download="${esc(f.cn)}-${w}码.${src.endsWith(".jpg")?"jpg":"png"}">保存${w}码</a>`;document.body.append(d);d.querySelector('.ticket-close').onclick=()=>d.close();d.onclick=ev=>{if(ev.target===d){const r=d.getBoundingClientRect();if(ev.clientX<r.left||ev.clientX>r.right||ev.clientY<r.top||ev.clientY>r.bottom)d.close();}};d.addEventListener('close',()=>{d.remove();if(b.isConnected)b.focus({preventScroll:true});});d.showModal();});
 
@@ -85,8 +87,8 @@ function detail(id){
   </header>
   <div class="fd-body gut">
     <aside class="fd-side">
-      ${/* 顺序：先看场次、加入排片，再购票、记录观影，最后才是各家评分 */""}<section class="fd-block"><h3 class="fd-h">放映场次 <small id="fd-showcount">${shows.length?showCountText(f,shows):(f.ended&&!allShows.length?"已下映":"排片待公布")}</small></h3>${shows.length?showFilterHTML(f,shows)+`<div id="fd-showlist">${showListHTML(f,shows)}</div>`+pastShowsHTML(allShows,f,true):`<div class="fd-noshow"><b>${allShows.length?"本片场次已全部放映结束":(f.ended?"已下映":f.release?esc(f.release):"上映信息待公布")}</b><span>${allShows.length?(pastShowsHTML(allShows,f,false)?"":"已放映的场次不再显示在这里。"):(f.ended?"本片院线放映已结束，麻雀观影护照未收录具体场次。":"麻雀观影护照收录的场次公布后会更新到这里，也可以先在各影院售票平台查看。")}</span></div>`+pastShowsHTML(allShows,f,false)}</section>
-      ${ticketHTML(f)}
+      ${/* 顺序：先看场次、加入排片，再购票、记录观影，最后才是各家评分 */""}<section class="fd-block"><h3 class="fd-h">放映场次 <small id="fd-showcount">${shows.length?showCountText(f,shows):(f.ended&&!allShows.length?"已下映":(internalNoteHTML(f)&&!allShows.length?"内部放映":"排片待公布"))}</small></h3>${shows.length?showFilterHTML(f,shows)+`<div id="fd-showlist">${showListHTML(f,shows)}</div>`+pastShowsHTML(allShows,f,true):(internalNoteHTML(f)&&!allShows.length?internalNoteHTML(f):`<div class="fd-noshow"><b>${allShows.length?"本片场次已全部放映结束":(f.ended?"已下映":f.release?esc(f.release):"上映信息待公布")}</b><span>${allShows.length?(pastShowsHTML(allShows,f,false)?"":"已放映的场次不再显示在这里。"):(f.ended?"本片院线放映已结束，麻雀观影护照未收录具体场次。":"麻雀观影护照收录的场次公布后会更新到这里，也可以先在各影院售票平台查看。")}</span></div>`)+pastShowsHTML(allShows,f,false)}</section>
+      ${shows.length||allShows.length?internalNoteHTML(f):""}${ticketHTML(f)}
       ${f.ev?"":myRateHTML(f)}
       ${f.ev?"":ratingsHTML(f)}
       ${f.ev?"":extLinksHTML(f)}
