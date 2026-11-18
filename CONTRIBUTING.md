@@ -398,3 +398,4 @@ Claude 与 GPT 可能使用同一 GitHub 身份，审批人数可先设为0；�
 - 折痕几何共用 `shared/curl.js`（只用 ES5）：网站直接加载（`window.SparrowCurl`，`js/passport.js` 的 `ppCurlStart` / `ppCurlRender` / `ppCurlTo`）；小程序由 `node tools/build-fallback.js` 生成 `miniprogram/utils/curl.wxs`，`pages/my/curl-ctl.wxs` 在渲染层跟手计算、每帧 `setStyle`，翻完调页面的 `cuDone` 换页（页码与 `cuCfg` 同一次 setData），按钮用 `cuCmd` 触发。测试 `tools/check-curl.js`（随 check-companion 运行）。
 - 小程序护照不再用 swiper：单页只渲染上一页 / 当前页 / 下一页，双页渲染前后两跨页共 6 页（`fp-any` 模板）。书页位置由 `cuMeasure` 量取（页面坐标），改动护照上方布局不需要额外处理。
 - 翻页过程中整页印章已经可见，翻完不重放盖章动画（网站 `.fp-still`）。
+- 网站流畅度（2026-11-18）：当前页与折起的纸放在沿折痕旋转的 `overflow:hidden` 容器里（`.fc-cw` / `.fc-ci`，用 `fold()` 返回的 `cl`），每帧只改 transform，不用 clip-path；翻页层里的印章换成缓存的图片（`ppImgify` / `ppStampImg`，空闲时 `ppWarm` 预解码），光影元素按实际宽度 `w` 绘制。4 倍降速下桌面双页从中位 50ms/帧降到 16.7ms。小程序不受影响。

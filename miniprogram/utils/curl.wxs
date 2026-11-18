@@ -36,9 +36,9 @@ var SparrowCurl = (function () {
     for (i = 0; i < pts.length; i++) { x = mirror ? W - pts[i][0] : pts[i][0]; s.push(fx(x) + 'px ' + fx(pts[i][1]) + 'px'); }
     return 'polygon(' + s.join(',') + ')';
   }
-  function shade(W, mx, my, ang, big, mirror, bg) {
+  function shade(W, mx, my, ang, big, mirror, bg, w) {
     var x = mirror ? W - mx : mx, a = mirror ? 180 - ang : ang;
-    return { t: 'translate(' + fx(x) + 'px,' + fx(my) + 'px) rotate(' + fx(a) + 'deg) translate(0,-50%)', bg: bg, size: fx(big) };
+    return { t: 'translate(' + fx(x) + 'px,' + fx(my) + 'px) rotate(' + fx(a) + 'deg) translate(0,-50%)', bg: bg, size: fx(big), w: fx(Math.min(big, w + 2)) }; // w：光影只有这么宽，元素不必画成大方块（网站据此省掉大片重绘）
   }
   function rgba(c, a) { return 'rgba(' + c + ',' + (Math.round(a * 1000) / 1000) + ')'; }
   // o: {W,H,cx,cy,px,py,mirror}
@@ -52,17 +52,19 @@ var SparrowCurl = (function () {
     if (m) { b = -b; c = -c; e = W - a * W - e; f = b * -W + f; } // 换到镜像坐标：F∘R∘F，F(x,y)=(W-x,y)
     var depth = Math.min(L / 2, W * 0.9), k = Math.min(1, L / (W * 0.5)), ang = Math.atan2(ny, nx) * 180 / Math.PI, big = len(W, H) * 2.2;
     var ink = '60,40,20', dark = '30,18,10', deep = '20,12,6', light = '255,250,235';
+    // 折痕在元素坐标里的位置与法线角度：网站用一个旋转的 overflow:hidden 容器沿折痕裁切（只改 transform，不触发重绘）
+    var cl = { x: fx(m ? W - mx : mx), y: fx(my), a: fx(m ? 180 - ang : ang) };
     return {
-      none: false, px: P.x, py: P.y,
+      none: false, px: P.x, py: P.y, cl: cl,
       front: poly(cut(W, H, mx, my, nx, ny, -1), W, m),
       flapClip: poly(cut(W, H, mx, my, nx, ny, 1), W, m),
       flapT: 'matrix(' + [a, b, c, d, e, f].map(function (v) { return Math.round(v * 10000) / 10000; }).join(',') + ')',
       // 背面卷起处：折痕一道暗部，往外先亮（高光）再渐暗，像弯曲的纸面
-      fshade: shade(W, mx, my, ang, big, m, 'linear-gradient(90deg,' + rgba(ink, 0.30 * k) + ' 0px,' + rgba(ink, 0.06 * k) + ' ' + fx(depth * 0.08) + 'px,' + rgba(light, 0.55 * k) + ' ' + fx(depth * 0.22) + 'px,' + rgba(light, 0) + ' ' + fx(depth * 0.45) + 'px,' + rgba(ink, 0.10 * k) + ' ' + fx(depth) + 'px,transparent ' + fx(depth) + 'px)'),
+      fshade: shade(W, mx, my, ang, big, m, 'linear-gradient(90deg,' + rgba(ink, 0.30 * k) + ' 0px,' + rgba(ink, 0.06 * k) + ' ' + fx(depth * 0.08) + 'px,' + rgba(light, 0.55 * k) + ' ' + fx(depth * 0.22) + 'px,' + rgba(light, 0) + ' ' + fx(depth * 0.45) + 'px,' + rgba(ink, 0.10 * k) + ' ' + fx(depth) + 'px,transparent ' + fx(depth) + 'px)', depth),
       // 当前页上：折起的纸投下的阴影，贴着折痕
-      cshade: shade(W, mx, my, ang + 180, big, m, 'linear-gradient(90deg,' + rgba(dark, 0.28 * k) + ' 0px,' + rgba(dark, 0) + ' ' + fx(Math.min(46, depth * 0.35)) + 'px,transparent)'),
+      cshade: shade(W, mx, my, ang + 180, big, m, 'linear-gradient(90deg,' + rgba(dark, 0.28 * k) + ' 0px,' + rgba(dark, 0) + ' ' + fx(Math.min(46, depth * 0.35)) + 'px,transparent)', Math.min(46, depth * 0.35)),
       // 下一页上：从折痕往外的投影
-      ushade: shade(W, mx, my, ang, big, m, 'linear-gradient(90deg,' + rgba(deep, 0.42 * k) + ' 0px,' + rgba(deep, 0.14 * k) + ' ' + fx(Math.min(26, depth * 0.2)) + 'px,' + rgba(deep, 0) + ' ' + fx(Math.min(80, depth * 0.55)) + 'px,transparent)')
+      ushade: shade(W, mx, my, ang, big, m, 'linear-gradient(90deg,' + rgba(deep, 0.42 * k) + ' 0px,' + rgba(deep, 0.14 * k) + ' ' + fx(Math.min(26, depth * 0.2)) + 'px,' + rgba(deep, 0) + ' ' + fx(Math.min(80, depth * 0.55)) + 'px,transparent)', Math.min(80, depth * 0.55))
     };
   }
   // 松手后 / 点按钮时页角的动画轨迹：t∈[0,1]，从 (fx0,fy0) 到 (tx,ty)，lift>0 时中途略抬起（像手指带着纸翻过去）
