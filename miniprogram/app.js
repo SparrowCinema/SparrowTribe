@@ -6,6 +6,7 @@ const DataCache = require('./utils/datacache.js');
 // 启动数据：安装包里的兜底数据（只含进行中 / 即将开始的专题）；本机有更新的缓存（上次联网取到的完整片目）时优先用缓存
 const BUNDLED = require('./data/data.js');
 const LOCAL = Screenings.apply((() => { const c = DataCache.load(BUNDLED); return c ? Object.assign({}, BUNDLED, c, { reg: BUNDLED.reg }) : BUNDLED; })());
+sortShows(LOCAL.shows); // 安装包兜底数据按专题文件顺序排列，启动时与联网数据一样按日期时间排序（影片页场次依赖此顺序）
 const plan = require('./utils/plan.js');
 const watched = require('./utils/watched.js');
 const I = require('./utils/i18n.js');
