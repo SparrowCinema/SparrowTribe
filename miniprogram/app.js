@@ -1,4 +1,7 @@
 const Screenings = require('./utils/screenings.js');
+// 场次按日期、开场时间排好：往期专题沿用旧数据再拼上当期场次时顺序会乱，排片页日期条就会出现 18…29 之后才是 21、22
+const showSortKey = s => { const U = require('./utils/util.js'), [m, d] = String(s.d).split('/').map(Number); return U.year(s.d, s.year) * 1e6 + m * 1e4 + d * 100 + U.toMin(s.t) / 1e4; };
+const sortShows = list => list.sort((a, b) => showSortKey(a) - showSortKey(b));
 const DataCache = require('./utils/datacache.js');
 // 启动数据：安装包里的兜底数据（只含进行中 / 即将开始的专题）；本机有更新的缓存（上次联网取到的完整片目）时优先用缓存
 const BUNDLED = require('./data/data.js');
@@ -74,7 +77,7 @@ App({
     const byId = new Map((prev.films || []).map(f => [f.id, f]));
     r.films.forEach(f => byId.set(f.id, f));
     const known = new Set((r.active || []).concat(r.past || []));
-    const shows = (prev.shows || []).filter(s => !act.has(s.p) && known.has(s.p)).concat(r.shows); // 往期专题的场次先沿用旧数据，已删除的专题不再保留
+    const shows = sortShows((prev.shows || []).filter(s => !act.has(s.p) && known.has(s.p)).concat(r.shows)); // 往期专题的场次先沿用旧数据，已删除的专题不再保留
     if (r.en) { this._en = r.en; I.setEN(r.en); }
     this._enLang = r.en ? 'en' : (this._enLang || '');
     const base = Object.assign({}, LOCAL, r); delete base.en;
@@ -97,7 +100,7 @@ App({
       const r = res.result || {}; if (!r.ok || !r.films) return;
       const byId = new Map(raw.films.map(f => [f.id, f])); r.films.forEach(f => byId.set(f.id, Object.assign({}, byId.get(f.id) || {}, f)));
       raw.films = [...byId.values()];
-      raw.shows = raw.shows.filter(s => s.p !== id).concat(Screenings.apply({ films: raw.films, shows: r.shows }).shows);
+      raw.shows = sortShows(raw.shows.filter(s => s.p !== id).concat(Screenings.apply({ films: raw.films, shows: r.shows }).shows));
       if (this._en && r.e) Object.assign(this._en.films || (this._en.films = {}), r.e);
     }).catch(() => {});
     return (async () => {
