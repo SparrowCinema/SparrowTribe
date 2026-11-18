@@ -1,5 +1,6 @@
 -- Allow only real catalogue films. Re-run after adding films.
 insert into sparrow_taste.films(id) values
+('24-flavors'),
 ('a-better-tomorrow'),
 ('all-wishes-come-true'),
 ('amour-2012'),
@@ -18,7 +19,9 @@ insert into sparrow_taste.films(id) values
 ('dogville'),
 ('dragonfly'),
 ('dry-leaf'),
+('dune-2021'),
 ('dune-part-three'),
+('dune-part-two'),
 ('elevator-to-the-gallows'),
 ('empty-gun'),
 ('everest-the-other-side'),

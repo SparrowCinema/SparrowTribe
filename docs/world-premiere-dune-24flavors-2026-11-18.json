@@ -1,0 +1,175 @@
+{
+  "checked": "2026-11-18",
+  "scope": "2026院线新片新增沙丘、沙丘2、二十四味；原有影片和场次保持不变",
+  "verifiedRecords": {
+    "dune-2021": {
+      "cn": "沙丘",
+      "status": "verified",
+      "date": "2021-09-03",
+      "festival": "威尼斯国际电影节",
+      "festivalEn": "Venice International Film Festival",
+      "kind": "festival",
+      "checked": "2026-11-18",
+      "sources": [
+        "https://www.labiennale.org/en/news/dune-denis-villeneuve-have-world-premiere-venice-film-festival",
+        "https://www.labiennale.org/en/cinema/2021/lineup/out-competition/dune",
+        "https://bfidatadigipres.github.io/pdf/2021-10-05-dune.pdf",
+        "https://www.festival-cannes.com/en/p/denis-villeneuve/",
+        "https://www.oscars.org/oscars/ceremonies/2022",
+        "https://www.ifco.ie/en/ifco/pages/8AC82F0A00418201",
+        "https://www.bbfc.co.uk/release/dune-q29sbgvjdglvbjpwwc00otg2odm",
+        "https://tv.apple.com/in/movie/dune/umc.cmc.2l7qj9p33t3jww1roxi8cgiw5"
+      ]
+    },
+    "dune-part-two": {
+      "cn": "沙丘2",
+      "status": "verified",
+      "date": "2024-02-12",
+      "festival": null,
+      "festivalEn": null,
+      "kind": "theatrical",
+      "checked": "2026-11-18",
+      "dateNote": "巴黎大雷克斯先行首映；伦敦“世界首映”典礼为2月15日",
+      "dateNoteEn": "Paris Grand Rex premiere; London event billed as the world premiere followed on February 15",
+      "sources": [
+        "https://www.allocine.fr/article/fichearticle_gen_carticle%3D1000065851.html",
+        "https://www.imago-images.com/en/st/0413051758",
+        "https://www.youtube.com/watch?v=fT4O8mbD7g0",
+        "https://uk.investing.com/news/general/starstudded-dune-part-two-rolls-into-london-for-world-premiere-3340071",
+        "https://press.wbd.com/us/ca/media-release/warner-bros-pictures-and-legendary-pictures-return-arrakis-denis-villeneuves-dune?language_content_entity=en",
+        "https://theasc.com/article/expanding-view-dune-part-two/",
+        "https://www.arrirental.com/en/about/overview/news/interview-on-dune-part-two-with-greig-fraser-acs-asc?mibextid=Zxz2cZ",
+        "https://www.unrealengine.com/spotlights/unreal-engine-streamlines-desert-production-on-dune-part-two",
+        "https://www.oscars.org/oscars/ceremonies/2025",
+        "https://www.bbfc.co.uk/release/dune-part-two-q29sbgvjdglvbjpwwc0xmdezmtm2"
+      ],
+      "note": "按目前已核最早完整首映记巴黎2024-02-12；伦敦2024-02-15活动对外标为world premiere。保留两者口径，不将后者当作最早放映。商业首映不构成影展入围。"
+    },
+    "24-flavors": {
+      "cn": "二十四味",
+      "status": "verified",
+      "date": "2024-11-14",
+      "festival": "金鸡百花电影节",
+      "festivalEn": "Golden Rooster and Hundred Flowers Film Festival",
+      "kind": "festival",
+      "checked": "2026-11-18",
+      "dateNote": "厦门 · 金鸡华语影展",
+      "dateNoteEn": "Chinese-language showcase, Xiamen",
+      "sources": [
+        "https://www.cgrhfff.com/film-festival/golden-rooster-chinese-film-festival/screening-list/screening-2024/",
+        "https://www.sohu.com/a/827409339_351966",
+        "https://www.siff.com/content?aid=101250601170610698906809687085061728",
+        "https://www.siff.com/content?aid=101250601172722698912143973552133506",
+        "https://hiff.org/wp-content/uploads/2025/09/HIFF45-Program-Guide-Digital.pdf",
+        "https://hiff.org/24-flavors-video-essay/",
+        "https://lefilmfrancais.com/images/CMN5_1705_DIGITAL_BD.pdf",
+        "https://www.sohu.com/a/897175523_122229740",
+        "https://ep.ycwb.com/epaper/ycwb/resfile/2025-05-16/A09/ycwb20250516A09.pdf",
+        "https://www.vistopia.com.cn/en/article/661616",
+        "https://ep.ycwb.com/epaper/ycwb/html/2022-03/10/content_13_477512.htm",
+        "https://www.maoyan.com/films/news/20542513",
+        "https://m.1905.com/m/news/touch/1703335.shtml?fr=newsmjyh5_xgxw_01"
+      ],
+      "note": "环球银幕2024-11-16现场报道明确11月14日下午金鸡华语影展世界首映礼。HIFF后来的International Premiere不是全球首映。戛纳电影市场不是戛纳电影节官方竞赛。"
+    }
+  },
+  "ratings": {
+    "dune-2021": {
+      "display": [
+        null,
+        8.0,
+        83,
+        74,
+        3.9
+      ],
+      "imdb": {
+        "url": "https://datasets.imdbws.com/title.ratings.tsv.gz",
+        "id": "tt1160419",
+        "averageRating": 8.0,
+        "numVotes": 1103478
+      },
+      "rt": {
+        "url": "https://www.rottentomatoes.com/m/dune_2021",
+        "score": 83,
+        "reviews": 512
+      },
+      "mc": {
+        "url": "https://www.metacritic.com/movie/dune-part-one/",
+        "score": 74,
+        "reviews": 68
+      },
+      "lb": {
+        "url": "https://letterboxd.com/film/dune-2021/",
+        "rawScore": 3.9,
+        "ratingCount": 4646845
+      }
+    },
+    "dune-part-two": {
+      "display": [
+        null,
+        8.4,
+        92,
+        79,
+        4.4
+      ],
+      "imdb": {
+        "url": "https://datasets.imdbws.com/title.ratings.tsv.gz",
+        "id": "tt15239678",
+        "averageRating": 8.4,
+        "numVotes": 807235
+      },
+      "rt": {
+        "url": "https://www.rottentomatoes.com/m/dune_part_two",
+        "score": 92,
+        "reviews": 466
+      },
+      "mc": {
+        "url": "https://www.metacritic.com/movie/dune-part-two/",
+        "score": 79,
+        "reviews": 62
+      },
+      "lb": {
+        "url": "https://letterboxd.com/film/dune-part-two/",
+        "rawScore": 4.38,
+        "ratingCount": 3815835
+      }
+    },
+    "24-flavors": {
+      "display": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "links": {
+        "douban": "33412900",
+        "imdb": "tt5619286",
+        "lb": "24-flavors"
+      },
+      "note": "Letterboxd无可核aggregateRating；豆瓣页面验证阻断；IMDb条目已核但未取得当前评分。未找到可确认同片RT/MC评分页。空值表示未核得，不能断言各平台从未评分。"
+    }
+  },
+  "ratingMethod": "顺序为豆瓣、IMDb、RT影评人好评率、Metacritic影评人分、Letterboxd；各量尺不等同。IMDb官方公开dataset实取，其他平台live JSON-LD。豆瓣核对ID但未越过验证页，故留空；未沿用历史报道评分。排除/metacritic.com/movie/dune/，该页为1984版。",
+  "releaseAndPosters": {
+    "source": "用户2026-11-18附件中的上映列表、沙丘两部曲定档海报及二十四味海报；二十四味另有猫眼2026-11-11定档稿交叉核对",
+    "releaseDates": {
+      "dune-2021": "2026-11-27",
+      "dune-part-two": "2026-12-04",
+      "24-flavors": "2026-11-27"
+    },
+    "posters": {
+      "dune-2021": "用户沙虫美术海报",
+      "dune-part-two": "用户2026两部曲联合重映海报，非第二部原始单片海报",
+      "24-flavors": "用户张艾嘉/钟镇涛/袁澧林海报"
+    },
+    "processing": "仅等比缩小及JPEG压缩；未生成或重绘图像",
+    "screenings": "没有用户提供的具体场次；不新增shows，不推断影院、影厅、购票或附加片段安排"
+  },
+  "limitations": [
+    "二十四味片长按市场及Letterboxd资料107分钟；HIFF场刊106分钟；内地最终版待发行确认。",
+    "二十四味地区按用户院线物料标中国大陆；2024金鸡和2025HIFF使用香港节目归属，属于不同目录口径。",
+    "导演与幕后为公开资料改写；推荐与观察角度为编辑建议，并非主创原话。",
+    "海报宣传的沙丘3片段与IMAX/CINITY不等于每场配置，不计入正片片长。"
+  ]
+}
