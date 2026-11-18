@@ -1,0 +1,167 @@
+{
+  "checked": "2026-11-18",
+  "scope": "2026吴天明青年电影展·星火放映，新增三部影片与四场放映、逐片报名码",
+  "verifiedRecords": {
+    "hideaway-the-dossiers": {
+      "cn": "密档",
+      "status": "verified",
+      "date": "2026-08-07",
+      "festival": "大众电影百花奖开幕放映",
+      "festivalEn": "Hundred Flowers Awards opening screening",
+      "kind": "festival",
+      "checked": "2026-11-18",
+      "sources": [
+        "https://www.sina.cn/media/7460633616",
+        "https://chinafilmnews.cn/Html/2026-06-17/21159.html",
+        "https://www.xinhuanet.com/ent/20260911/00d0f6205d6a4a89a5410795fca0bd2f/c.html",
+        "https://dyds.sta.edu.cn/a7/35/c4156a108341/page.htm",
+        "https://www3.xinhuanet.com/politics/20261110/f38d9fab0bd74d31880012273e19379b/c.html",
+        "https://movie.douban.com/awards/golden-rooster/39/nominees?k=a",
+        "https://movie.douban.com/explore",
+        "https://m.maoyan.com/moviedp/1365174?_v_=yes&channelId=60008"
+      ]
+    },
+    "never-too-late-2024": {
+      "cn": "爷爷奶奶那些事儿",
+      "status": "verified",
+      "date": "2024-11-14",
+      "festival": "塔林黑夜电影节",
+      "festivalEn": "Tallinn Black Nights Film Festival",
+      "kind": "festival",
+      "checked": "2026-11-18",
+      "sources": [
+        "https://poff.ee/en/film/never-too-late/",
+        "https://poff.ee/en/news/p-o-ff-reveals-the-line-up-for-the-new-doc-p-oe-ff-competition/",
+        "https://letterboxd.com/film/never-too-late-2024/",
+        "https://www.thepaper.cn/newsDetail_forward_34435874",
+        "https://m.thepaper.cn/newsDetail_forward_32145988",
+        "https://newspaper.gzdaily.cn/pc/html/2025-10/31/content_552_898698.htm",
+        "https://www.alulafilm.org/never-too-late"
+      ]
+    },
+    "red-river-2009": {
+      "cn": "红河",
+      "status": "verified",
+      "date": "2009-04-05",
+      "festival": null,
+      "festivalEn": null,
+      "kind": "theatrical",
+      "checked": "2026-11-18",
+      "dateNote": "昆明 · 全球首映活动",
+      "dateNoteEn": "Global premiere event, Kunming",
+      "sources": [
+        "https://ent.sina.com.cn/m/p/2009-04-06/09352457671.shtml",
+        "https://news.hndaily.cn/html/2009-04/07/content_117283.htm",
+        "https://ent.sina.com.cn/f/m/redriver/",
+        "https://ent.sina.com.cn/m/c/2009-03-16/12252422279.shtml",
+        "https://bcsff.bnu.edu.cn/BCSFF/fzlc/index.htm",
+        "https://yule.sohu.com/20090427/n263642654.shtml",
+        "https://www.imdb.com/title/tt1245719/",
+        "https://letterboxd.com/film/red-river-2009/"
+      ]
+    }
+  },
+  "screenings": {
+    "source": "用户提供的2026吴天明青年电影展星火放映排期表",
+    "shows": [
+      [
+        "11/21",
+        "14:30",
+        "hideaway-the-dossiers",
+        "jx-hyxk",
+        "hall-3"
+      ],
+      [
+        "11/22",
+        "19:00",
+        "never-too-late-2024",
+        "jx-sfc-bbb",
+        "hall-1"
+      ],
+      [
+        "11/23",
+        "19:00",
+        "24-flavors",
+        "sparrow-tribe",
+        "screening-room"
+      ],
+      [
+        "11/24",
+        "18:30",
+        "red-river-2009",
+        "jx-university-tcl",
+        "tcl"
+      ]
+    ],
+    "qaMinutes": 30,
+    "guests": [
+      [
+        "郑大圣",
+        "邵峰"
+      ],
+      [
+        "郑泉"
+      ],
+      [
+        "黄绮玲",
+        "丁宇"
+      ],
+      [
+        "章家瑞",
+        "李香墨"
+      ]
+    ],
+    "runtimes": {
+      "hideaway-the-dossiers": 132,
+      "never-too-late-2024": 81,
+      "24-flavors": 117,
+      "red-river-2009": 103
+    },
+    "runtimeCorrection": "用户明确将11月23日二十四味本场片长改为117分钟，正片19:00–20:57；保留影片资料原有107分钟，以场次结束时间及备注表达本场安排。"
+  },
+  "qrImages": {
+    "24-flavors": {
+      "file": "tickets/wutianming-2026-24-flavors.png",
+      "original": "codex-clipboard-12e7430f-8089-4388-b79d-12055aa96368.png"
+    },
+    "hideaway-the-dossiers": {
+      "file": "tickets/wutianming-2026-hideaway-the-dossiers.png",
+      "original": "codex-clipboard-dd469f82-2a40-4c92-9cf1-c2f0d3bcdd6b.png"
+    },
+    "never-too-late-2024": {
+      "file": "tickets/wutianming-2026-never-too-late.png",
+      "original": "codex-clipboard-4be2e7a5-287e-4bef-ae8a-3ca5e1ee8ac1.png"
+    },
+    "red-river-2009": {
+      "file": "tickets/wutianming-2026-red-river.png",
+      "original": "codex-clipboard-3e848a5f-edd5-411b-a3c7-e910d48cef5b.png"
+    }
+  },
+  "ratings": {
+    "hideaway-the-dossiers": {
+      "douban": 6.7,
+      "source": "https://movie.douban.com/explore",
+      "otherPlatforms": "IMDb、RT、MC、Letterboxd未取得可核实聚合分数，保留空值。"
+    },
+    "never-too-late-2024": {
+      "source": "https://movie.douban.com/",
+      "note": "豆瓣首页显示暂无评分；IMDb详情触发验证；Letterboxd页面未返回聚合值；RT/MC未核得同片评分页。"
+    },
+    "red-river-2009": {
+      "imdb": 6.3,
+      "imdbVotes": 210,
+      "source": "https://www.imdb.com/title/tt1245719/",
+      "note": "其他平台未取得可核实当前聚合分数；旧新闻和第三方转载的豆瓣7.2未作为直接核实数据写入。"
+    }
+  },
+  "posterSources": {
+    "hideaway-the-dossiers": "https://chinafilmnews.cn/UploadFiles/image/20260617/1781685741418440.png",
+    "never-too-late-2024": "https://imgpai.thepaper.cn/pphimage/20261109/25db7e62-51f2-4076-a24a-a6192315ef3b.jpg",
+    "red-river-2009": "https://m.media-amazon.com/images/M/MV5BODlkMzU2MzItZmExMy00ZDhmLTgwMmUtYzhjMDQ1ODYyOTBlXkEyXkFqcGc@._V1_QL75_UX600_.jpg"
+  },
+  "notes": [
+    "报名码逐张按用户原图字节复制，未重绘或重编码。",
+    "海报标注爷爷奶奶那些事儿为活动片名，公开发行片名爷爷奶奶那些事记录在cnDb。",
+    "本次不声称已核实小程序实际报名名额或报名价格。"
+  ]
+}
