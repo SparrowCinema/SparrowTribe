@@ -79,7 +79,7 @@ Page({
     const myToday = upc.filter(s => s.d === nkey)
       .sort((a, b) => U.toMin(a.t) - U.toMin(b.t))
       .map(s => { const vw = U.showView(s, idx, data, picked); return { key: vw.key, id: s.id, t: vw.t, end: vw.end, endTxt: I.isEn() ? 'ends ' + vw.end : vw.end + ' 散场', cn: vw.cn, venue: vw.venue, hall: vw.hall, tone: vw.tone, color: vw.color, poster: vw.poster, dir: vw.dir, minTxt: vw.minTxt, version: vw.version }; });
-    const allDays = [...new Set(data.shows.map(s => s.d))];
+    const dayKey = d => { const [m, dd] = d.split('/').map(Number); return U.year(d) * 1e4 + m * 100 + dd; }, allDays = [...new Set(data.shows.map(s => s.d))].sort((a, b) => dayKey(a) - dayKey(b)); // 日期条按日期排，不依赖场次数组的顺序
     const ds = allDays.filter(d => list.some(s => s.d === d));
     let day = this.data.day;
     if (!ds.includes(day)) {
