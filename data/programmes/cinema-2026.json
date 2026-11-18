@@ -3044,7 +3044,11 @@
     "checked": "2026-11-17",
     "dateNote": "洛杉矶 · 好莱坞军团剧院",
     "dateNoteEn": "Hollywood Legion Theater, Los Angeles"
-   }
+   },
+   "ticket": "tickets/clayface.png",
+   "ticketLabel": "报名",
+   "ticketPlatform": "微信小程序",
+   "ticketHint": "杭州百美汇影城｜11月28日19:30｜LUXE4K激光巨幕厅"
   },
   {
    "id": "dune-2021",
