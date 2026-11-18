@@ -90,10 +90,8 @@
       inner = size * 0.74; ty = -s * 0.14;
     }
     // 片名（最多两行）、日期、评分
-    let fs = size * 0.11; c.font = '900 ' + Math.round(fs) + 'px ' + SERIF;
-    let ls = wrapLines(c, it.title, inner);
-    if (ls.length > 2) { fs = size * 0.085; c.font = '900 ' + Math.round(fs) + 'px ' + SERIF; ls = wrapLines(c, it.title, inner); }
-    if (ls.length > 2) ls = [ls[0], clip1(c, ls.slice(1).join(CJK.test(it.title) ? '' : ' '), inner)];
+    // 片名：与网站 / 小程序印章同一套排版（stampTitle，200×200 坐标按 size 等比换算）
+    const st = stampTitle(it.title, shape), fs = st.fs * size / 200, ls = st.lines; c.font = '900 ' + Math.round(fs) + 'px ' + SERIF;
     const lh = fs * 1.12, y0 = ty - (ls.length - 1) * lh / 2;
     ls.forEach((l, i) => c.fillText(l, 0, y0 + i * lh));
     c.font = '700 ' + Math.round(size * 0.07) + 'px ' + MONO; c.fillText(it.dstamp || '', 0, s * 0.2);
@@ -255,6 +253,61 @@
   const MON = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
   function dstamp(iso) { if (!iso) return ''; const [y, m, d] = String(iso).split('-'); return d + ' ' + (MON[+m - 1] || m) + ' ' + y; }
 
-  const api = { W, SECTIONS, hasSection, heightOf, draw, footer, FOOT: L.FOOT, drawStamp, look, dstamp, hash, INKS };
+
+  // —— 印章片名排版（2026-11-18，网站 SVG 印章、小程序印章、长图画布印章共用）——
+  // 在 200×200 的印章坐标里给出 {lines, fs}：先试一行（字号 28 → 20），再两行（21 → 16），再三行（15.5 → 13.5），
+  // 能放下就用；三行最小字号还放不下才在末行加「…」。断行优先在「：」「·」、空格之后，或「（」之前；英文单词不拆开；
+  // 行首不放「，。、：）」等，行尾不放「（「」。宽度按字估算：中日文和全角符号 1 个字宽，英文字母约 0.56，空格 0.3。
+  const ST_W = { 0: 128, 1: 148, 2: 138, 3: 148 }; // 各形状片名区可用宽度（圆章最窄）
+  const ST_TRY = [[1, [28, 24, 21, 19.5]], [2, [21, 19, 17.5, 16, 15]], [3, [15.5, 14.5, 13.5]]];
+  const WIDE = /[⺀-鿿豈-﫿　-〿＀-￯぀-ヿ가-힯]/;
+  const OPEN = /^[（「『《〈(\[“‘]$/, CLOSE = /^[，。、：；！？）」』》〉,.:;!?)\]”’…·]$/;
+  function stTokens(t) { return String(t || '').replace(/\s+/g, ' ').trim().match(/[⺀-鿿豈-﫿　-〿＀-￯぀-ヿ가-힯]|[^\s⺀-鿿豈-﫿　-〿＀-￯぀-ヿ가-힯]+|\s/g) || []; }
+  function stW(tok) { if (tok === ' ') return 0.3; if (WIDE.test(tok)) return 1; let w = 0; for (const ch of tok) w += /[A-Z]/.test(ch) ? 0.66 : /[\s'.,:;!|il]/.test(ch) ? 0.3 : 0.56; return w; }
+  // 在 n 行内、每行不超过 cap 个字宽的前提下，选「最长一行最短」且断点最自然的分法（动态规划，片名很短，代价可忽略）
+  function stSplit(toks, n, cap) {
+    const T = toks.length, ws = toks.map(stW), pre = [0];
+    ws.forEach(w => pre.push(pre[pre.length - 1] + w));
+    const width = (a, b) => { while (a < b && toks[a] === ' ') a++; while (b > a && toks[b - 1] === ' ') b--; return pre[b] - pre[a]; };
+    const okBreak = i => i > 0 && i < T && !CLOSE.test(toks[i]) && !OPEN.test(toks[i - 1]);
+    const bonus = i => (toks[i - 1] === ' ' || toks[i] === ' ' || /^[：:·—，、；]$/.test(toks[i - 1]) || OPEN.test(toks[i])) ? 0 : (WIDE.test(toks[i - 1]) && WIDE.test(toks[i]) ? 0.35 : 3);
+    const memo = new Map();
+    const best = (a, k) => { // 从第 a 个记号起排成 k 行：[最长行, 断点代价, 断点列表]
+      const key = a + ',' + k; if (memo.has(key)) return memo.get(key);
+      let r = null;
+      if (k === 1) { const w = width(a, T); r = w <= cap ? [w, 0, []] : null; }
+      else for (let b = a + 1; b < T; b++) {
+        if (!okBreak(b)) continue; const w = width(a, b); if (w > cap) break; if (w === 0) continue;
+        const rest = best(b, k - 1); if (!rest) continue;
+        const cand = [Math.max(w, rest[0]), rest[1] + bonus(b), [b].concat(rest[2])];
+        if (!r || cand[1] < r[1] - 1e-9 || (Math.abs(cand[1] - r[1]) < 1e-9 && cand[0] < r[0])) r = cand; // 先看断点是否自然，再看各行是否匀称
+      }
+      memo.set(key, r); return r;
+    };
+    const r = best(0, n); if (!r) return null;
+    const cuts = [0].concat(r[2], [T]), out = [];
+    for (let i = 0; i < cuts.length - 1; i++) out.push(toks.slice(cuts[i], cuts[i + 1]).join('').trim());
+    return { lines: out.filter(Boolean), pen: r[1] };
+  }
+  function stampTitle(title, shape) {
+    const toks = stTokens(title), W0 = ST_W[shape || 0] || 140;
+    if (!toks.length) return { lines: [], fs: 21 };
+    // 每种行数取能放下的最大字号，再在各行数之间比较：字号越大越好，但在词中间断开（如「蓝调时 / 光」）扣分，三行略扣分
+    let pick = null;
+    for (const [n, sizes] of ST_TRY) for (const fs of sizes) {
+      const r = stSplit(toks, n, W0 / fs); if (!r) continue;
+      const score = fs - r.pen * 11.5 - (n === 3 ? 1.5 : 0);
+      if (!pick || score > pick.score + 0.01) pick = { lines: r.lines, fs, score };
+    }
+    if (pick) return { lines: pick.lines, fs: pick.fs };
+    // 三行最小字号也放不下：逐个记号填满三行，末行加省略号
+    const fs = 13.5, cap = W0 / fs, lines = []; let cur = '', w = 0;
+    for (const tok of toks) { const tw = stW(tok); if (w + tw > cap && cur.trim()) { lines.push(cur.trim()); if (lines.length === 3) break; cur = ''; w = 0; if (tok === ' ') continue; } cur += tok; w += tw; }
+    if (lines.length < 3 && cur.trim()) lines.push(cur.trim());
+    const last = [...lines[2] || lines[lines.length - 1]]; lines[lines.length - 1] = last.slice(0, Math.max(1, last.length - 1)).join('') + '…';
+    return { lines: lines.slice(0, 3), fs };
+  }
+
+  const api = { W, SECTIONS, hasSection, heightOf, draw, footer, FOOT: L.FOOT, drawStamp, look, dstamp, hash, INKS, stampTitle };
   if (typeof module !== 'undefined' && module.exports) module.exports = api; else root.SparrowRecap = api;
 })(typeof window !== 'undefined' ? window : this);

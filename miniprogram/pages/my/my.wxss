@@ -141,7 +141,9 @@
 .st .st-in { z-index: 0; }
 .st-top, .st-title, .st-date, .st-stars, .st-venue { position: relative; z-index: 1; }
 .st-top { font-family: Menlo, monospace; font-size: calc(18.5 * var(--r)); font-weight: 700; letter-spacing: calc(2 * var(--r)); max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.st-title { font-family: "Songti SC", "Noto Serif SC", serif; font-size: calc(25.5 * var(--r)); font-weight: 900; line-height: 1.15; margin: calc(8 * var(--r)) 0 calc(6 * var(--r)); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+/* 片名：行与字号由 shared/recap.js 的 stampTitle 算好（与网站、长图印章一致），这里不再截断；每行不换行、居中，可略超出内边距 */
+.st-title { font-family: "Songti SC", "Noto Serif SC", serif; font-weight: 900; line-height: 1.12; margin: calc(8 * var(--r)) calc(-20 * var(--r)) calc(6 * var(--r)); display: flex; flex-direction: column; align-items: center; }
+.st-tl { display: block; white-space: nowrap; }
 .st-date { font-family: Menlo, monospace; font-size: calc(21.2 * var(--r)); font-weight: 700; letter-spacing: calc(1 * var(--r)); }
 .st-stars { display: flex; margin-top: calc(2 * var(--r)); }
 .st-stars .ss { position: relative; width: calc(22 * var(--r)); height: calc(24 * var(--r)); font-size: calc(21.2 * var(--r)); line-height: calc(24 * var(--r)); }
