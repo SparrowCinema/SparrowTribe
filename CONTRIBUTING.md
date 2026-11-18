@@ -80,7 +80,7 @@ Claude 与 GPT 可能使用同一 GitHub 身份，审批人数可先设为0；�
 - 影片页「我的观影」：点「看过」盖章，五星十分制打分（每颗星 2 分，可半颗；再点同一分数清除）。默认观影日期取已放映的个人排片场次，其次本片最近一场已放映场次，否则今天；可改日期。
 - 「我的」页顶部是可翻页的观影护照：封面 → 资料页 → 印章页（每页 4 枚）。每部影片一枚印章，形状（圆章 / 方章 / 八角章 / 票根章）、倾角、墨色按影片 id 固定，网站与小程序一致。
 - 「生成我的影院观影结算」按年份、专题筛选，生成长图（统计、本期最爱、按专题、印章墙、观影清单）。
-- 护照页印章（2026-11-18 起两端一致）：画面是 `shared/recap.js` 的 `stampSVG`（油墨纹理滤镜、片名排版、评分星、×N 角标），姿态是 `stampPose`；网站直接插入 SVG，小程序用 `inline` 模式转成 data URI 图片（`utils/svguri.js`），只为当前页及前后页按需生成（`pages/my` 的 `ensureSvg`），图片显示失败时退回文字印章。版式同网站：3 列 × 5 行，印章宽为页宽 21%。`shared/*.js` 被 service worker 缓存优先，改了网站依赖的新函数时要同时改 `index.html` 里该脚本的 `?v=` 并升级 `sw.js` 缓存名。
+- 护照页印章（2026-11-18 起两端一致）：画面是 `shared/recap.js` 的 `stampSVG`（油墨纹理滤镜、片名排版、评分星、×N 角标），姿态是 `stampPose`；网站直接插入 SVG，小程序用 `inline` 模式转成 data URI 图片（`utils/svguri.js`），只为当前页及前后页按需生成（`pages/my` 的 `ensureSvg`），图片显示失败时退回文字印章。小程序的 SVG 不带滤镜（`ink:false`，手机按低分辨率处理 SVG 滤镜会让字发虚），油墨纹理改用 `my.wxss` 里 `.st-img` 的遮罩图（由网站滤镜的斑驳层渲染而来，最淡处保留 62% 墨色），×N 角标用 `.st-x` 单独显示。版式同网站：3 列 × 5 行，印章宽为页宽 21%。`shared/*.js` 被 service worker 缓存优先，改了网站依赖的新函数时要同时改 `index.html` 里该脚本的 `?v=` 并升级 `sw.js` 缓存名。
 - 结算长图与画布印章的代码在 `shared/recap.js`，网站直接加载；小程序用的 `miniprogram/utils/recap.js` 由 `node tools/build-fallback.js` 复制生成，不要直接改小程序那份。
 - 记录保存：网站存在浏览器 localStorage `sparrow-watched-v1`（护照持有人名 `sparrow-holder`）；小程序存在本机 `sk-watched-v1` 并通过 `plan` 云函数（action `setWatched` / `get`）按微信用户同步，`plan` 云函数改动后需重新部署。
 
@@ -398,4 +398,4 @@ Claude 与 GPT 可能使用同一 GitHub 身份，审批人数可先设为0；�
 - 折痕几何共用 `shared/curl.js`（只用 ES5）：网站直接加载（`window.SparrowCurl`，`js/passport.js` 的 `ppCurlStart` / `ppCurlRender` / `ppCurlTo`）；小程序由 `node tools/build-fallback.js` 生成 `miniprogram/utils/curl.wxs`，`pages/my/curl-ctl.wxs` 在渲染层跟手计算、每帧 `setStyle`，翻完调页面的 `cuDone` 换页（页码与 `cuCfg` 同一次 setData），按钮用 `cuCmd` 触发。测试 `tools/check-curl.js`（随 check-companion 运行）。
 - 小程序护照不再用 swiper：单页只渲染上一页 / 当前页 / 下一页，双页渲染前后两跨页共 6 页（`fp-any` 模板）。书页位置由 `cuMeasure` 量取（页面坐标），改动护照上方布局不需要额外处理。
 - 翻页过程中整页印章已经可见，翻完不重放盖章动画（网站 `.fp-still`）。
-- 网站流畅度（2026-11-18）：当前页与折起的纸放在沿折痕旋转的 `overflow:hidden` 容器里（`.fc-cw` / `.fc-ci`，用 `fold()` 返回的 `cl`），每帧只改 transform，不用 clip-path；翻页层里的印章换成缓存的图片（`ppImgify` / `ppStampImg`，空闲时 `ppWarm` 预解码），光影元素按实际宽度 `w` 绘制。4 倍降速下桌面双页从中位 50ms/帧降到 16.7ms。小程序不受影响。
+- 网站流畅度（2026-11-18）：折起的纸放在沿折痕旋转的 `overflow:hidden` 容器里（`.fc-cw` / `.fc-ci`，用 `fold()` 返回的 `cl`），每帧只改 transform；当前页不旋转、仍用 clip-path（印章保持清晰，与静止时逐像素一致）；光影元素按实际宽度 `w` 绘制。翻页层里的书页克隆要 `box-sizing:border-box`，否则单页模式会比书页宽、印章跑出边界。4 倍降速下桌面双页从中位 50ms/帧降到 16.7ms。小程序不受影响。

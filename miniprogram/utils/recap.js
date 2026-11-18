@@ -310,7 +310,7 @@
   }
 
   // —— 护照印章 SVG（网站护照页与小程序护照页共用，2026-11-18）——
-  // e: {id, title, top, venue, date(ISO), r(0–10), views}；图片模式的固有尺寸是 600px（坐标仍是 200），让手机按高分辨率栅格化油墨滤镜，文字与边框不发虚；opt.inline=true 时自带油墨滤镜与字体（小程序当图片用），否则用网站的 CSS 类与 #pp-ink 滤镜
+  // e: {id, title, top, venue, date(ISO), r(0–10), views}；opt.ink=false 去掉油墨滤镜（小程序：手机对 SVG 滤镜按低分辨率处理会让字发虚，改用 CSS 遮罩做纹理），opt.badge=false 不画 ×N 角标；图片模式的固有尺寸是 600px（坐标仍是 200），让手机按高分辨率栅格化油墨滤镜，文字与边框不发虚；opt.inline=true 时自带油墨滤镜与字体（小程序当图片用），否则用网站的 CSS 类与 #pp-ink 滤镜
   const FONT = { mono: '"IBM Plex Mono",ui-monospace,Menlo,monospace', body: '"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif', display: '"Noto Serif SC","Songti SC","STSong",serif' };
   const ST_CSS = { 'st-arc': ['mono', 700, 12.5, 1.2], 'st-arc st-v': ['body', 600, 12, 0.6], 'st-s': ['mono', 700, 11.5, 1], 'st-s st-v': ['body', 600, 11.5, 0.4], 'st-d': ['mono', 700, 14, 1] };
   const INK_FILTER = '<feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="4" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="1.1" result="d"/><feTurbulence type="fractalNoise" baseFrequency=".05" numOctaves="3" seed="11" result="b"/><feColorMatrix in="b" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -2.2 2.05" result="m"/><feComposite in="d" in2="m" operator="in"/>';
@@ -323,7 +323,7 @@
   // 印章在页面上的姿态：位置略有偏移、角度各不相同（单位：页宽的 1%；同一枚章每次位置固定）
   function stampPose(id, i) { const h = hash(id), row = Math.floor(i / 3); return { tilt: +(((h % 21) - 10) * 1.1).toFixed(1), dx: +(((h >>> 5) % 9 - 4) * 0.5 + (row % 2 ? 1.6 : -0.4)).toFixed(2), dy: +(((h >>> 9) % 7 - 3) * 0.55).toFixed(2) }; }
   function stampSVG(e, opt) {
-    opt = opt || {}; const inl = !!opt.inline, lk = look(e.id), col = lk.ink, uid = 'st-' + String(e.id).replace(/[^\w-]/g, '_');
+    opt = opt || {}; const inl = !!opt.inline, ink = opt.ink !== false, badge = opt.badge !== false, lk = look(e.id), col = lk.ink, uid = 'st-' + String(e.id).replace(/[^\w-]/g, '_');
     const topRaw = String(e.top || 'SPARROW FILM PASSPORT').toUpperCase().split(/ · | & /)[0], top = xesc(topRaw.slice(0, 26)), venue = xesc(e.venue || '影院观影'), date = dstamp(e.date), r = e.r || 0;
     const T = cls => 'class="' + cls + '"', TT = 'class="st-t"';
     const stt = stampTitle(e.title, lk.shape), ls = stt.lines, fs = stt.fs;
@@ -336,10 +336,10 @@
     const side = topY ? '<text ' + T('st-s') + ' x="100" y="' + topY + '">' + xesc(topRaw.slice(0, lk.shape === 2 ? 16 : 20)) + '</text><text ' + T('st-s st-v') + ' x="100" y="' + botY + '">' + venue + '</text>' : '';
     const sc = r ? [1, 2, 3, 4, 5].map(i => { const part = Math.max(0, Math.min(2, r - (i - 1) * 2)) / 2, cx = 72 + (i - 1) * 14; return '<path d="' + svgStar(cx, sy, 5.4) + '" fill="none" stroke-width="1.1"/>' + (part ? '<path d="' + svgStar(cx, sy, 5.4) + '" stroke="none" clip-path="url(#' + uid + '-c' + i + ')"/><clipPath id="' + uid + '-c' + i + '"><rect x="' + (cx - 6) + '" y="' + (sy - 6) + '" width="' + (12 * part) + '" height="12"/></clipPath>' : ''); }).join('') : '';
     const fid = inl ? uid + '-ink' : 'pp-ink', views = e.views || 0;
-    const head = inl ? '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="600" height="600" overflow="visible"><style>' + ST_STYLE + '</style><defs><filter id="' + fid + '" x="-5%" y="-5%" width="110%" height="110%">' + INK_FILTER + '</filter></defs><g opacity=".9">'
+    const head = inl ? '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="600" height="600" overflow="visible"><style>' + ST_STYLE + '</style>' + (ink ? '<defs><filter id="' + fid + '" x="-5%" y="-5%" width="110%" height="110%">' + INK_FILTER + '</filter></defs>' : '') + '<g opacity=".9">'
       : '<svg class="st-svg" viewBox="0 0 200 200" role="img" aria-label="' + xesc(e.title) + ' · ' + date + (r ? ' · ' + r + '/10' : '') + '" style="--ink:' + col + '">';
-    return head + '<g class="st-g" filter="url(#' + fid + ')" fill="' + col + '" stroke="' + col + '">' + frame + side + lines + '<text ' + T('st-d') + ' x="100" y="' + dy + '">' + date + '</text>' + sc + '</g>' +
-      (views > 1 ? '<g class="st-x"><circle cx="172" cy="28" r="19" fill="#8e2a22" stroke="#f8f2e6" stroke-width="3"/><text x="172" y="34" text-anchor="middle" font-size="16" font-weight="700" fill="#fff6e4" font-family="ui-monospace,Menlo,monospace">×' + views + '</text></g>' : '') + (inl ? '</g>' : '') + '</svg>';
+    return head + '<g class="st-g"' + (ink ? ' filter="url(#' + fid + ')"' : '') + ' fill="' + col + '" stroke="' + col + '">' + frame + side + lines + '<text ' + T('st-d') + ' x="100" y="' + dy + '">' + date + '</text>' + sc + '</g>' +
+      (views > 1 && badge ? '<g class="st-x"><circle cx="172" cy="28" r="19" fill="#8e2a22" stroke="#f8f2e6" stroke-width="3"/><text x="172" y="34" text-anchor="middle" font-size="16" font-weight="700" fill="#fff6e4" font-family="ui-monospace,Menlo,monospace">×' + views + '</text></g>' : '') + (inl ? '</g>' : '') + '</svg>';
   }
 
   const api = { W, SECTIONS, hasSection, heightOf, draw, footer, FOOT: L.FOOT, drawStamp, look, dstamp, hash, INKS, stampTitle, stampSVG, stampPose };

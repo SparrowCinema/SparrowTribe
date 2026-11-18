@@ -1291,16 +1291,15 @@ input:not([type=checkbox]):not([type=radio]),select,textarea{font-size:16px!impo
 .fp-spread .fp-curl{border-radius:14px}
 .fc-r{position:absolute;top:0;bottom:0}
 .fc-l{position:absolute;inset:0;overflow:hidden}
-.fc-l>.fp-page,.fc-in>.fp-page,.fc-paper>.fp-page{inset:0!important;left:0!important;width:100%!important}
+.fc-l>.fp-page,.fc-in>.fp-page,.fc-paper>.fp-page{inset:0!important;left:0!important;width:100%!important;height:100%!important;box-sizing:border-box!important} /* 单页模式 .fp-page 是 content-box，width:100% 再加内边距会比书页宽 */
 .fc-flap{display:none;transform-origin:0 0}
 .fc-in{position:absolute;inset:0;transform:scaleX(-1)}
 .fc-paper{position:absolute;inset:0;background:linear-gradient(90deg,#efe5cf,var(--pp-paper) 30%)}
 .fc-paper>.fc-ghost{opacity:.07}
 .fp-curl .fp-stamp,.fp-still .fp-stamp{animation:none}
-.fp-curl .st-img{display:block;width:100%;height:100%}
 
 .fc-sh{position:absolute;left:0;top:0;transform-origin:0 0;pointer-events:none;display:none;z-index:9;will-change:transform}
 .fc-cw{position:absolute;left:0;top:0;overflow:hidden;transform-origin:0 0;will-change:transform}
 .fc-ci{position:absolute;left:0;top:0;transform-origin:0 0;will-change:transform}
-.fc-ci>.fc-l{width:var(--fcw);height:var(--fch);inset:auto;left:0;top:0}
 .fc-flap{will-change:transform}
+.fc-ci>.fc-l{width:var(--fcw);height:var(--fch);inset:auto;left:0;top:0}
