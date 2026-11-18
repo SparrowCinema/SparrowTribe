@@ -96,6 +96,8 @@ fs.writeFileSync(path.join(root, 'miniprogram/utils/library.js'), fs.readFileSyn
 
 fs.copyFileSync(path.join(root,'shared/profile-backup.js'),path.join(root,'miniprogram/utils/profile-backup.js'));
 fs.copyFileSync(path.join(root,'shared/growth.js'),path.join(root,'miniprogram/utils/growth.js'));
+// 护照翻页卷曲：shared/curl.js 转成小程序 WXS（在渲染层跟手计算，pages/my/curl-ctl.wxs 引用）
+{const s=fs.readFileSync(path.join(root,'shared/curl.js'),'utf8');fs.writeFileSync(path.join(root,'miniprogram/utils/curl.wxs'),'/* 由 tools/build-fallback.js 从 shared/curl.js 生成，请改 shared/curl.js 后重新运行。 */\n'+s.slice(0,s.indexOf('if (typeof module'))+'module.exports = SparrowCurl;\n');}
 // 对排片：shared/overlap.js 复制给小程序（pages/share）
 fs.writeFileSync(path.join(root,'miniprogram/utils/overlap.js'),'/* 由 tools/build-fallback.js 从 shared/overlap.js 复制，请改 shared/overlap.js 后重新运行。 */\n'+fs.readFileSync(path.join(root,'shared/overlap.js'),'utf8'));
 

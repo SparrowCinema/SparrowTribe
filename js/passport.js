@@ -242,7 +242,7 @@ function ppJump(id){const all=watchEntries(),k=all.findIndex(e=>e.id===id);if(k<
       if(st){st.classList.remove('fp-hit');void st.offsetWidth;st.classList.add('fp-hit');}});};
   if(activeRoute==='my')find();else{go('my');requestAnimationFrame(find);}}
 document.addEventListener('click',e=>{const j=e.target.closest('[data-pp-jump]');if(j){e.preventDefault();ppJump(j.dataset.ppJump);}});
-function turnPassport(action){if(PP.busy)return;const root=document.getElementById('fp');if(!root)return;
+function turnPassport(action){if(action==='next'||action==='prev'){ppCurlAuto(action==='next'?1:-1);return;}if(PP.busy)return;const root=document.getElementById('fp');if(!root)return;
   const list=ppCur().list,n=passportPages(list).length,sp=ppSpread(),oldPages=[...root.querySelectorAll('.fp-book>.fp-page')],oldPage=oldPages[0],oldCover=root.querySelector('.fp-cover');
   if(action==='open'){PP.open=true;PP.page=0;}else if(action==='close'){PP.open=false;PP.vol=0;}
   else{const base=sp?PP.page-PP.page%2:PP.page,next=base+(action==='next'?(sp?2:1):-(sp?2:1));if(next<0||next>n-1)return;PP.page=next;}
@@ -266,8 +266,67 @@ function turnPassport(action){if(PP.busy)return;const root=document.getElementBy
   const an=leaf.animate([{transform:'rotateY('+(rev?-180:0)+'deg)'},{transform:'rotateY('+(rev?0:-180)+'deg)'}],{duration:620,easing:'cubic-bezier(.22,.7,.25,1)',fill:'forwards'});
   const done=()=>{leaf.remove();PP.busy=false;};an.finished.then(done,done);}
 let ppGesture=null,ppSuppress=0;
-document.addEventListener('touchstart',e=>{ppGesture=null;if(e.touches.length!==1||!e.target.closest('#fp .fp-book,#fp .fp-cover'))return;ppGesture={x:e.touches[0].clientX,y:e.touches[0].clientY};},{passive:true});
+document.addEventListener('touchstart',e=>{ppGesture=null;if(e.touches.length!==1||!e.target.closest('#fp .fp-cover')||e.target.closest('#fp .fp-book'))return;ppGesture={x:e.touches[0].clientX,y:e.touches[0].clientY};},{passive:true});
 document.addEventListener('touchend',e=>{if(!ppGesture)return;const dx=e.changedTouches[0].clientX-ppGesture.x,dy=e.changedTouches[0].clientY-ppGesture.y;ppGesture=null;if(Math.abs(dx)<40||Math.abs(dx)<Math.abs(dy)*1.3)return;ppSuppress=performance.now()+400;turnPassport(PP.open?(dx<0?'next':'prev'):'open');},{passive:true});
+// —— 翻页卷曲（2026-11-18）：跟手拖动或点按钮，纸页沿折痕卷起；只在护照书页范围内显示 ——
+// 单页：当前页卷起，背面是纸（透出一点正面），下面是下一页；向前翻是上一页从左边卷回来。
+// 双页：右页翻向左边，背面就是下一跨页的左页（真实印章）；向前翻是左页从左外角卷向右边，背面是上一跨页的右页。
+const PC={t:null,anim:0,drag:null};
+const ppReduce=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
+function ppCurlStart(dir,cy0){const root=document.getElementById('fp'),book=root&&root.querySelector('.fp-book');if(!book||PP.busy||PC.t||!window.SparrowCurl)return null;
+  const list=ppCur().list,n=passportPages(list).length,sp=book.classList.contains('fp-spread'),base=sp?PP.page-PP.page%2:PP.page,next=base+dir*(sp?2:1);if(next<0||next>n-1)return null;
+  const BW=book.clientWidth,H=book.clientHeight,W=sp?BW/2:BW;if(!W||!H)return null;
+  const keep=PP.page;PP.page=next;const tmp=document.createElement('div');tmp.innerHTML=bookHTML(list,n);PP.page=keep;const nb=tmp.querySelector('.fp-book');
+  const q=(b,c)=>b.querySelector(c),clone=el=>el.cloneNode(true);let cur,under,back,mirror=false,x0=0;
+  const paper=src=>{const d=document.createElement('div');d.className='fc-paper';const g=clone(src);g.classList.add('fc-ghost');d.append(g);return d;}; // 纸背透出一点正面（左右相反）
+  const flip=el=>{const d=document.createElement('div');d.className='fc-in';d.append(el);return d;}; // 背面内容先左右翻转，镜像后才是正的
+  if(sp){if(dir>0){x0=W;cur=clone(q(book,'.fp-right'));under=q(nb,'.fp-right');back=flip(q(nb,'.fp-left'));}
+    else{mirror=true;cur=clone(q(book,'.fp-left'));under=q(nb,'.fp-left');back=flip(q(nb,'.fp-right'));}}
+  else{const pg=q(book,'.fp-page'),np=q(nb,'.fp-page');if(dir>0){cur=clone(pg);under=np;back=paper(pg);}else{cur=np;under=clone(pg);back=paper(np);}}
+  const ov=document.createElement('div');ov.className='fp-curl';ov.setAttribute('aria-hidden','true');ov.inert=true;
+  const reg=document.createElement('div');reg.className='fc-r';reg.style.left=x0+'px';reg.style.width=W+'px';ov.append(reg);
+  const sh=()=>{const i=document.createElement('i');i.className='fc-sh';return i;};
+  const lay=(c,el)=>{const d=document.createElement('div');d.className='fc-l '+c;d.append(el);const s=sh();d.append(s);reg.append(d);return [d,s];};
+  const [U,ush]=lay('fc-under',under),[Cu,csh]=lay('fc-cur',cur),[F,fsh]=lay('fc-flap',back);
+  book.append(ov);PP.busy=true;
+  const cy=cy0<H/2?0:H,rev=!sp&&dir<0; // rev：单页向前翻，上一页从左边（已翻过去的位置）卷回来
+  PC.t={dir,next,W,H,cy,mirror,rev,x0,ov,cur:Cu,flap:F,ush,csh,fsh,book,P:rev?{x:-W,y:cy}:{x:W,y:cy}};
+  ppCurlRender();return PC.t;}
+function ppCurlRender(){const t=PC.t;if(!t)return;const r=SparrowCurl.fold({W:t.W,H:t.H,cx:t.W,cy:t.cy,px:t.P.x,py:t.P.y,mirror:t.mirror});t.Pc={x:r.px,y:r.py};
+  if(r.none){t.cur.style.clipPath='none';t.flap.style.display=t.ush.style.display=t.csh.style.display=t.fsh.style.display='none';return;}
+  const put=(el,s)=>{el.style.display='block';el.style.width=el.style.height=s.size+'px';el.style.transform=s.t;el.style.background=s.bg;};
+  t.cur.style.clipPath=r.front;t.flap.style.display='block';t.flap.style.clipPath=r.flapClip;t.flap.style.transform=r.flapT;
+  put(t.fsh,r.fshade);put(t.csh,r.cshade);put(t.ush,r.ushade);}
+function ppCurlTo(target,commit,lift){const t=PC.t;if(!t)return;cancelAnimationFrame(PC.anim);
+  const end=()=>{cancelAnimationFrame(PC.anim);PC.t=null;PP.busy=false;if(commit){PP.page=t.next;renderPassport();const nb=document.querySelector('#fp .fp-book');if(nb)nb.classList.add('fp-still');}else t.ov.remove();}; // 翻页时已经看到整页印章，翻完不再重放盖章动画
+  if(ppReduce())return end();
+  const from=t.Pc||t.P,t0=performance.now(),dur=520*(lift?1.15:1);
+  const step=now=>{const k=Math.min(1,(now-t0)/dur);t.P=SparrowCurl.path(k,from.x,from.y,target.x,target.y,t.H,lift);ppCurlRender();if(k<1)PC.anim=requestAnimationFrame(step);else end();};
+  PC.anim=requestAnimationFrame(step);}
+function ppCurlAuto(dir){if(ppReduce()){const book=document.querySelector('#fp .fp-book');if(!book)return;const list=ppCur().list,n=passportPages(list).length,sp=book.classList.contains('fp-spread'),base=sp?PP.page-PP.page%2:PP.page,next=base+dir*(sp?2:1);if(next<0||next>n-1)return;PP.page=next;renderPassport();return;}
+  const book=document.querySelector('#fp .fp-book');if(!book)return;const t=ppCurlStart(dir,book.clientHeight*.92);if(!t)return;
+  // 按钮：页角沿一条略抬起的弧线翻过去
+  ppCurlTo(t.rev?{x:t.W,y:t.cy}:{x:-t.W,y:t.cy},true,t.cy>0?.16:-.16);}
+// 拖动：横向移动超过 6px 才开始翻页，竖向滑动照常滚动页面（.fp-book 设了 touch-action:pan-y），轻点不翻页（留给印章）
+function ppCurlLocal(e){const t=PC.t,r=t.book.getBoundingClientRect();let x=e.clientX-r.left-t.x0;if(t.mirror)x=t.W-x;return {x,y:e.clientY-r.top};}
+document.addEventListener('pointerdown',e=>{if(!e.isPrimary||e.button>0||PC.t||PP.busy)return;const book=e.target.closest('#fp .fp-book');if(!book)return;
+  PC.drag={id:e.pointerId,sx:e.clientX,sy:e.clientY,moved:false,book};});
+document.addEventListener('pointermove',e=>{const d=PC.drag;if(!d||e.pointerId!==d.id)return;
+  if(!d.moved){const dx=e.clientX-d.sx,dy=e.clientY-d.sy;if(Math.abs(dx)<7||Math.abs(dx)<Math.abs(dy)*1.2){if(Math.abs(dy)>12)PC.drag=null;return;}
+    const r=d.book.getBoundingClientRect(),t=ppCurlStart(dx<0?1:-1,d.sy-r.top);if(!t){PC.drag=null;return;}
+    d.moved=true;try{d.book.setPointerCapture(e.pointerId);}catch(_){}
+    const s=ppCurlLocal({clientX:d.sx,clientY:d.sy});d.x0=s.x;d.y0=s.y;d.lx=s.x;d.vx=0;}
+  const t=PC.t;if(!t)return;e.preventDefault();const p=ppCurlLocal(e);
+  // 向后翻：页角跟着手指（加上按下时离角的距离）；单页向前翻：手指直接把上一页从左边带回来
+  t.P=t.rev?{x:p.x,y:p.y+(t.cy-d.y0)*.6}:{x:p.x+(t.W-d.x0),y:p.y+(t.cy-d.y0)*.6};
+  d.vx=p.x-d.lx;d.lx=p.x;cancelAnimationFrame(PC.anim);PC.anim=requestAnimationFrame(ppCurlRender);});
+const ppCurlUp=e=>{const d=PC.drag;if(!d||e.pointerId!==d.id)return;PC.drag=null;if(!d.moved||!PC.t)return;ppSuppress=performance.now()+400;
+  const t=PC.t,P=t.Pc||t.P,cancel=e.type==='pointercancel';
+  if(!t.rev){const go=!cancel&&(P.x<t.W*.55||d.vx<-6);ppCurlTo(go?{x:-t.W,y:t.cy}:{x:t.W,y:t.cy},go);}
+  else{const go=!cancel&&(P.x>t.W*.45||d.vx>6);ppCurlTo(go?{x:t.W,y:t.cy}:{x:-t.W,y:t.cy},go);}};
+document.addEventListener('pointerup',ppCurlUp);document.addEventListener('pointercancel',ppCurlUp);
+// 拖完松手时不要顺带点开印章
+document.addEventListener('click',e=>{if(performance.now()<ppSuppress&&e.target.closest('#fp')){e.preventDefault();e.stopPropagation();}},true);
 
 // —— 看过 / 打分 / 护照按钮 ——
 document.addEventListener('click',e=>{

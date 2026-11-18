@@ -94,8 +94,6 @@
 .fp-tallies > view + view { border-left: calc(2 * var(--r)) solid var(--line-soft); }
 .fp-tallies .n { font-size: calc(34.2 * var(--r)); font-weight: 700; }
 .fp-tallies .l, .fp-tally .l { font-size: calc(20 * var(--r)); color: var(--muted); white-space: nowrap; }
-.fp-fx { width: 100%; }
-.fp-book { height: calc(880 * var(--r)); margin-top: calc(24 * var(--r)); }
 .fp-page { position: relative; width: calc(600 * var(--r)); height: calc(852 * var(--r)); margin: 0 auto; box-sizing: border-box; padding: calc(40 * var(--r)) calc(40 * var(--r)) calc(34 * var(--r)); display: flex; flex-direction: column; color: var(--ink); border-radius: calc(8 * var(--r)) calc(24 * var(--r)) calc(24 * var(--r)) calc(8 * var(--r)); overflow: hidden;
   background: radial-gradient(circle at 50% 118%, rgba(142,42,34,.08), transparent 58%), repeating-linear-gradient(60deg, rgba(130,100,60,.05) 0 calc(2 * var(--r)), transparent calc(2 * var(--r)) calc(16 * var(--r))), repeating-linear-gradient(-60deg, rgba(47,111,108,.045) 0 calc(2 * var(--r)), transparent calc(2 * var(--r)) calc(16 * var(--r))), var(--paper);
   box-shadow: inset calc(20 * var(--r)) 0 calc(26 * var(--r)) calc(-20 * var(--r)) rgba(60,40,20,.35), 0 calc(20 * var(--r)) calc(40 * var(--r)) calc(-20 * var(--r)) rgba(60,40,20,.45), calc(6 * var(--r)) calc(6 * var(--r)) 0 calc(-2 * var(--r)) #e9e0cc; }
@@ -266,7 +264,6 @@
 
 /* 折叠屏展开 / 宽窗口：双页翻开（页宽 calc(600 * var(--r)) × 2，由 JS 按 px 缩放） */
 .fp-sw { position: relative; width: 100%; margin-top: calc(24 * var(--r)); }
-.fp-sbook { width: 100%; height: 100%; }
 .fp-spread { position: absolute; left: 50%; top: 0; width: calc(1200 * var(--r)); height: calc(852 * var(--r)); margin-left: calc(-600 * var(--r)); transform-origin: top center; display: flex; }
 .fp-spread .fp-sl, .fp-spread .fp-sr { width: calc(600 * var(--r)); height: calc(852 * var(--r)); flex: none; }
 .fp-spread .fp-page { margin: 0; }
@@ -429,7 +426,6 @@
 .fp-stage.wide .fp-tallies > view:nth-child(n+3) { border-top: calc(2 * var(--r)) solid var(--line-soft); }
 .fp-stage.wide .fp-shelfbtn { text-align: center; }
 .fp-stage.wide { align-items: flex-start; }
-.fp-sbook .fp-fx { height: 100%; }
 
 .rc-panel{max-height:90vh;display:flex;flex-direction:column}.rc-head,.rc-go{flex-shrink:0}.rc-scroll{min-height:0;max-height:68vh}.rc-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:calc(12 * var(--r)) calc(16 * var(--r));margin:calc(18 * var(--r)) 0}.rc-options label{display:flex;align-items:center;gap:calc(8 * var(--r));min-height:calc(72 * var(--r));font-size:calc(24.7 * var(--fr))}.rc-note{display:block;color:var(--muted);font-size:calc(22.7 * var(--fr));line-height:1.7;margin-top:calc(12 * var(--r))}
 
@@ -448,3 +444,21 @@
 
 /* 「我的」分组标题与护照主卡 */
 .my-group{margin:calc(44 * var(--r)) calc(4 * var(--r)) calc(16 * var(--r));font-size:calc(21.2 * var(--fr));font-weight:700;letter-spacing:calc(2 * var(--r));color:var(--fg)}.my-group .mono{font-size:calc(17 * var(--fr));font-weight:500;letter-spacing:calc(3 * var(--r));color:var(--muted);margin-left:calc(10 * var(--r))}
+
+/* 护照翻页卷曲（curl-ctl.wxs）：各层叠在同一本书里，翻页时折起的纸只在书页范围内显示 */
+.cu-book { position: relative; }
+.cu-single { width: calc(600 * var(--r)); height: calc(852 * var(--r)); margin: calc(24 * var(--r)) auto 0; }
+.cu-pg { position: absolute; left: 0; top: 0; width: calc(600 * var(--r)); height: calc(852 * var(--r)); z-index: 2; }
+.cu-r { left: calc(600 * var(--r)); }
+.cu-pg .fp-page { margin: 0; }
+.cu-nx, .cu-pv, .cu-lp, .cu-rn { visibility: hidden; z-index: 0; }
+.fp-spread .fp-spine { z-index: 4; }
+.cu-sh { position: absolute; left: 0; top: 0; transform-origin: 0 0; display: none; pointer-events: none; z-index: 9; }
+.cu-clip { position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; pointer-events: none; }
+.cu-ushw { z-index: 2; }
+.cu-flw { z-index: 5; }
+.cu-reg { position: absolute; left: 0; top: 0; width: calc(600 * var(--r)); height: calc(852 * var(--r)); }
+.cu-flap { position: absolute; left: 0; top: 0; width: calc(600 * var(--r)); height: calc(852 * var(--r)); transform-origin: 0 0; display: none; overflow: hidden; }
+.cu-in { position: absolute; left: 0; top: 0; transform: scaleX(-1); }
+.cu-paper { position: absolute; left: 0; top: 0; right: 0; bottom: 0; background: linear-gradient(90deg, #efe5cf, var(--paper) 30%); }
+.cu-flap .fp-cell.hit { animation: none; }

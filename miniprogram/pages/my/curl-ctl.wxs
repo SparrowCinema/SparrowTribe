@@ -1,0 +1,120 @@
+/* 护照翻页卷曲（2026-11-18）：在渲染层跟手计算，每帧直接 setStyle，不经过逻辑层 setData。
+   折痕几何在 utils/curl.wxs（由 shared/curl.js 生成，与网站同一份算法）。
+   逻辑层通过 cfg 传入书页尺寸与当前页（页码变化时这里复位样式），通过 cmd 让按钮触发自动翻页；
+   翻完调用页面的 cuDone 换页，cuMeasure 刷新书页位置。
+   单页：cu-cp 当前页、cu-nx 下一页、cu-pv 上一页；双页：cu-L / cu-R 当前左右页、cu-lp 上一跨页左页、cu-rn 下一跨页右页，
+   cu-flf / cu-flb 是向后 / 向前翻时折起的那一页（背面放真实的下一跨页左页 / 上一跨页右页）。 */
+var C = require('../../utils/curl.wxs');
+var ALL = ['.cu-nx', '.cu-cp', '.cu-pv', '.cu-lp', '.cu-rn', '.cu-L', '.cu-R', '.cu-csh-cp', '.cu-csh-pv', '.cu-csh-L', '.cu-csh-R', '.cu-ush', '.cu-fl', '.cu-fsh', '.cu-flf', '.cu-fshf', '.cu-flb', '.cu-fshb'];
+function el(ins, s) { return ins.selectComponent(s); }
+function css(ins, s, v) { var e = el(ins, s); if (e) e.setStyle(v); }
+function now() { return getDate().getTime(); }
+function reset(ins) { for (var i = 0; i < ALL.length; i++) css(ins, ALL[i], ''); }
+function can(cfg, dir) { return cfg && (dir > 0 ? cfg.cf : cfg.cb); }
+// 选出这次翻页各层扮演的角色
+function begin(ins, st, dir, ly) {
+  var cfg = st.cfg, sp = cfg.sp, W = cfg.W, H = cfg.H, t;
+  var cy = ly < H / 2 ? 0 : H;
+  if (!sp) t = dir > 0 ? { under: '.cu-nx', cur: '.cu-cp', csh: '.cu-csh-cp', flap: '.cu-fl', fsh: '.cu-fsh', x0: 0, mirror: false, rev: false }
+    : { under: '.cu-cp', cur: '.cu-pv', csh: '.cu-csh-pv', flap: '.cu-fl', fsh: '.cu-fsh', x0: 0, mirror: false, rev: true };
+  else t = dir > 0 ? { under: '.cu-rn', cur: '.cu-R', csh: '.cu-csh-R', flap: '.cu-flf', fsh: '.cu-fshf', x0: W, mirror: false, rev: false }
+    : { under: '.cu-lp', cur: '.cu-L', csh: '.cu-csh-L', flap: '.cu-flb', fsh: '.cu-fshb', x0: 0, mirror: true, rev: false };
+  t.dir = dir; t.W = W; t.H = H; t.cy = cy; t.page = cfg.page;
+  t.P = t.rev ? { x: -W, y: cy } : { x: W, y: cy };
+  st.t = t;
+  css(ins, t.under, 'visibility:visible;z-index:1');
+  render(ins, st);
+  return t;
+}
+function shade(s, x0) { return 'display:block;width:' + s.size + 'px;height:' + s.size + 'px;transform:translate(' + x0 + 'px,0) ' + s.t + ';background:' + s.bg; }
+function render(ins, st) {
+  var t = st.t; if (!t) return;
+  var r = C.fold({ W: t.W, H: t.H, cx: t.W, cy: t.cy, px: t.P.x, py: t.P.y, mirror: t.mirror });
+  t.Pc = { x: r.px, y: r.py };
+  if (r.none) {
+    css(ins, t.cur, 'visibility:visible;z-index:3'); css(ins, t.flap, ''); css(ins, t.csh, ''); css(ins, '.cu-ush', ''); css(ins, t.fsh, '');
+    return;
+  }
+  css(ins, t.cur, 'visibility:visible;z-index:3;-webkit-clip-path:' + r.front + ';clip-path:' + r.front);
+  css(ins, t.flap, 'display:block;-webkit-clip-path:' + r.flapClip + ';clip-path:' + r.flapClip + ';transform:' + r.flapT);
+  css(ins, t.fsh, shade(r.fshade, 0));
+  css(ins, t.csh, shade(r.cshade, 0));
+  css(ins, '.cu-ush', shade(r.ushade, t.x0));
+}
+function finish(ins, st, commit) {
+  var t = st.t; st.anim = 0;
+  if (!t) return;
+  if (commit) { st.wait = t.page; ins.callMethod('cuDone', { dir: t.dir }); } // 保持最后一帧，等新页码到达后再复位（见 cfg）
+  else { st.t = null; reset(ins); }
+}
+function animate(ins, st, to, commit, lift) {
+  var t = st.t; if (!t) return;
+  var from = t.Pc || t.P, t0 = now(), dur = 520 * (lift ? 1.15 : 1), id = (st.seq = (st.seq || 0) + 1);
+  st.anim = 1;
+  function step() {
+    if (st.seq !== id || !st.t) return;
+    var k = Math.min(1, (now() - t0) / dur);
+    t.P = C.path(k, from.x, from.y, to.x, to.y, t.H, lift);
+    render(ins, st);
+    if (k < 1) ins.requestAnimationFrame(step); else finish(ins, st, commit);
+  }
+  ins.requestAnimationFrame(step);
+}
+// 触摸点换成这一页的坐标（书脊在 x=0；双页向前翻时左右镜像）
+function local(st, e) {
+  var cfg = st.cfg, t = st.t, tc = e.touches && e.touches.length ? e.touches[0] : e.changedTouches[0];
+  var x = (tc.pageX - cfg.left) / cfg.k, y = (tc.pageY - cfg.top) / cfg.k;
+  if (t) { x = x - t.x0; if (t.mirror) x = t.W - x; }
+  return { x: x, y: y };
+}
+function start(e, ins) {
+  var st = ins.getState(); ins.callMethod('cuMeasure');
+  if (!st.cfg || st.t || st.anim) { st.drag = null; return; }
+  var tc = e.touches[0];
+  st.drag = { sx: tc.pageX, sy: tc.pageY, moved: false };
+}
+function move(e, ins) {
+  var st = ins.getState(), d = st.drag; if (!d) return;
+  var tc = e.touches[0], dx = tc.pageX - d.sx, dy = tc.pageY - d.sy;
+  if (!d.moved) {
+    if (Math.abs(dx) < 7 || Math.abs(dx) < Math.abs(dy) * 1.2) { if (Math.abs(dy) > 12) st.drag = null; return; }
+    var dir = dx < 0 ? 1 : -1;
+    if (!can(st.cfg, dir) || !st.cfg.W) { st.drag = null; return; }
+    var t = begin(ins, st, dir, (d.sy - st.cfg.top) / st.cfg.k);
+    var s = local(st, { touches: [{ pageX: d.sx, pageY: d.sy }] });
+    d.x0 = s.x; d.y0 = s.y; d.lx = s.x; d.vx = 0; d.moved = true;
+  }
+  var t2 = st.t; if (!t2) return;
+  var p = local(st, e);
+  // 向后翻：页角跟着手指（加上按下时离角的距离）；单页向前翻：手指直接把上一页从左边带回来
+  t2.P = t2.rev ? { x: p.x, y: p.y + (t2.cy - d.y0) * 0.6 } : { x: p.x + (t2.W - d.x0), y: p.y + (t2.cy - d.y0) * 0.6 };
+  d.vx = p.x - d.lx; d.lx = p.x;
+  render(ins, st);
+  return false; // 正在翻页：不滚动页面
+}
+function end(e, ins) {
+  var st = ins.getState(), d = st.drag; st.drag = null;
+  if (!d || !d.moved || !st.t) return;
+  var t = st.t, P = t.Pc || t.P, cancel = e.type === 'touchcancel', go;
+  if (!t.rev) { go = !cancel && (P.x < t.W * 0.55 || d.vx < -6); animate(ins, st, go ? { x: -t.W, y: t.cy } : { x: t.W, y: t.cy }, go, 0); }
+  else { go = !cancel && (P.x > t.W * 0.45 || d.vx > 6); animate(ins, st, go ? { x: t.W, y: t.cy } : { x: -t.W, y: t.cy }, go, 0); }
+  return false;
+}
+// 逻辑层更新书页尺寸 / 当前页：页码变了就复位所有层（翻页提交后、跳页、换册）
+function cfg(nv, ov, ins) {
+  if (!nv) return;
+  var st = ins.getState(), old = st.cfg;
+  st.cfg = nv;
+  if (!old || old.page !== nv.page || old.sp !== nv.sp) { if (!st.anim) { st.t = null; st.wait = null; reset(ins); } }
+}
+// 按钮：页角沿一条略抬起的弧线翻过去；还没量到尺寸时直接换页
+function cmd(nv, ov, ins) {
+  if (!nv || !nv.n || (ov && ov.n === nv.n)) return;
+  var st = ins.getState();
+  if (st.t || st.anim) return;
+  if (!can(st.cfg, nv.dir)) return;
+  if (!st.cfg.W) { ins.callMethod('cuDone', { dir: nv.dir }); return; }
+  var t = begin(ins, st, nv.dir, st.cfg.H * 0.92);
+  animate(ins, st, t.rev ? { x: t.W, y: t.cy } : { x: -t.W, y: t.cy }, true, t.cy > 0 ? 0.16 : -0.16);
+}
+module.exports = { start: start, move: move, end: end, cfg: cfg, cmd: cmd };
