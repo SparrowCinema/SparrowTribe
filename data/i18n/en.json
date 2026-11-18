@@ -9872,19 +9872,11 @@
   },
   "wutianming-2026": {
    "name": "2026 Wu Tianming Young Film Festival",
-   "sub": "French Realism Masterworks",
+   "sub": "Opening & Tributes · French Realism · Star Screenings",
    "kind": "Film festival",
    "period": "Nov 20 – 25, 2026 (Jiaxing) · Nov 27 – 29 (Hangzhou)",
    "city": "Jiaxing · Hangzhou",
-   "blurb": "Eight masterworks of French realism in three sections: Masters' Debut, Mirrors of the Era and Cinema Today. They run from Malle's prelude to the New Wave, through the social realism of Kassovitz, the Dardennes and Doillon, to the present-day echoes of Haneke, Ladj Ly, Triet and Farhadi. On screen, yesterday is never far. The films screen first in Jiaxing (November 20–25), then in Hangzhou (November 27 and 29). Tickets go on sale at 12:00 noon on November 13 on Taopiaopiao."
-  },
-  "wutianming-star-2026": {
-   "name": "2026 Wutianming Film Festival · Star Screenings",
-   "sub": "Jiaxing · Nanhu | Four films and post-screening discussions",
-   "kind": "Film festival",
-   "period": "21–24 November 2026",
-   "city": "Jiaxing",
-   "blurb": "Four screenings in Jiaxing: Hideaway: The Dossiers, Never Too Late, 24 Flavors and Red River. Each film page has its own WeChat Mini Program registration code. Guest discussions last approximately 30 minutes; attendance and final arrangements are subject to the event."
+   "blurb": "Eight masterworks of French realism in three sections: Masters' Debut, Mirrors of the Era and Cinema Today. They run from Malle's prelude to the New Wave, through the social realism of Kassovitz, the Dardennes and Doillon, to the present-day echoes of Haneke, Ladj Ly, Triet and Farhadi. On screen, yesterday is never far. The films screen first in Jiaxing (November 20–25), then in Hangzhou (November 27 and 29). Tickets go on sale at 12:00 noon on November 13 on Taopiaopiao.\n\nStar Screenings | Four screenings in Jiaxing on 21–24 November: Hideaway: The Dossiers, Never Too Late, 24 Flavors and Red River, each with a post-screening discussion of approximately 30 minutes. Guest and venue details, together with the individual WeChat Mini Program registration code, are on each film page."
   }
  },
  "venues": {
@@ -11648,6 +11640,7 @@
   "TA 的全部场次": "All their screenings",
   "主办方调整了这些场次，你的排片已经自动换成新时间。": "The organiser changed these screenings — your plan has been switched to the new times.",
   "改为": "Now",
-  "已取消": "Cancelled"
+  "已取消": "Cancelled",
+  "星火放映": "Star Screenings"
  }
 }
