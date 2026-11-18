@@ -259,7 +259,7 @@
    "ticket": "tickets/rosetta.png",
    "ticketLabel": "报名",
    "ticketPlatform": "微信小程序",
-   "ticketHint": "杭州站（星光嘉映影城）"
+   "ticketHint": "嘉兴站（嘉影银河影城、SFC上影影城）、杭州站（星光嘉映影城）"
   },
   {
    "id": "ponette",
@@ -448,7 +448,7 @@
    "ticket": "tickets/amour-2012.png",
    "ticketLabel": "报名",
    "ticketPlatform": "微信小程序",
-   "ticketHint": "杭州站（星光嘉映影城）"
+   "ticketHint": "嘉兴站（嘉影银河影城、SFC上影影城）、杭州站（星光嘉映影城）"
   },
   {
    "id": "les-miserables-2019",
@@ -555,7 +555,7 @@
    "ticket": "tickets/les-miserables-2019.png",
    "ticketLabel": "报名",
    "ticketPlatform": "微信小程序",
-   "ticketHint": "杭州站（星光嘉映影城）"
+   "ticketHint": "嘉兴站（嘉影银河影城、SFC上影影城）、杭州站（星光嘉映影城）"
   },
   {
    "id": "anatomy-of-a-fall",
@@ -650,7 +650,7 @@
    "ticket": "tickets/anatomy-of-a-fall.png",
    "ticketLabel": "报名",
    "ticketPlatform": "微信小程序",
-   "ticketHint": "杭州站（星光嘉映影城）"
+   "ticketHint": "嘉兴站（嘉影银河影城、SFC上影影城）、杭州站（星光嘉映影城）"
   },
   {
    "id": "parallel-tales",
