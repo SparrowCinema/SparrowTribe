@@ -30,8 +30,27 @@
    "file": "data/programmes/cinema-2026.json",
    "members": [
     "gr26-032",
-    "gr26-002"
+    "gr26-002",
+    "hideaway-the-dossiers",
+    "never-too-late-2024"
    ]
+  },
+  {
+   "id": "wutianming-star-2026",
+   "name": "2026吴天明青年电影展·星火放映",
+   "sub": "嘉兴·南湖｜四场放映与映后交流",
+   "en": "WUTIANMING FILM FESTIVAL · STAR SCREENINGS",
+   "kind": "影展专题",
+   "period": "2026.11.21 – 11.24",
+   "start": "2026-11-21",
+   "end": "2026-11-24",
+   "city": "嘉兴",
+   "cover": "programmes/wutianming-2026-star.png",
+   "file": "data/programmes/wutianming-star-2026.json",
+   "members": [
+    "24-flavors"
+   ],
+   "blurb": "11月21日至24日，在嘉兴·南湖以四场电影相见。《密档》《爷爷奶奶那些事儿》《二十四味》《红河》分别安排映后交流，嘉宾与放映地点见各影片页。使用对应影片页的吴天明青年电影展小程序码预约报名；映后交流约30分钟，实际安排以现场为准。"
   },
   {
    "id": "sparrow-tribe-space",
@@ -1376,6 +1395,11 @@
      "id": "omis-4",
      "short": "4号Omis厅",
      "name": "4号Omis激光巨幕厅"
+    },
+    {
+     "id": "hall-1",
+     "short": "1号厅",
+     "name": "1号厅"
     }
    ],
    "city": "嘉兴"
@@ -1836,6 +1860,38 @@
    "fmt": [],
    "halls": [],
    "city": "上海"
+  },
+  {
+   "id": "jx-hyxk",
+   "short": "华影星空",
+   "name": "浙影时代·华影星空影城",
+   "brand": "浙影时代",
+   "store": "华影星空影城",
+   "fmt": [],
+   "city": "嘉兴",
+   "halls": [
+    {
+     "id": "hall-3",
+     "short": "3号厅",
+     "name": "3号厅"
+    }
+   ]
+  },
+  {
+   "id": "jx-university-tcl",
+   "short": "嘉兴大学",
+   "name": "嘉兴大学TCL报告厅",
+   "brand": "嘉兴大学",
+   "store": "TCL报告厅",
+   "fmt": [],
+   "city": "嘉兴",
+   "halls": [
+    {
+     "id": "tcl",
+     "short": "TCL报告厅",
+     "name": "TCL报告厅"
+    }
+   ]
   }
  ],
  "reg": {
