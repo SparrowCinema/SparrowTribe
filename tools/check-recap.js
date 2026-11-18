@@ -77,3 +77,18 @@ require('./check-share-poster.js');
 
 // Poster exports use five path-drawn stars, including true half-star clipping.
 for(const cols of [5,10]){const c=context();R.draw(c,{sections:['posters'],posterCols:cols,items:[{title:'Half-star film',score:7},{title:'Unrated film',score:0}]});assert(c.calls.some(x=>x[0]==='rect'&&Math.abs(x[3]/x[4]-.5)<.001));assert(!c.calls.some(x=>x[0]==='fillText'&&/\d+\/10/.test(String(x[1]))));assert(c.calls.some(x=>x[0]==='fillText'&&x[1]==='未评分'));}
+
+// 护照印章 SVG（网站与小程序共用）：图片模式自带滤镜与样式、可被 XML 解析的转义；网站模式引用页面里的 #pp-ink
+{
+  const R2 = require('../shared/recap.js'), assert2 = require('assert');
+  for (const shape of [0, 1, 2, 3]) {
+    let id = 'x'; for (let n = 0; R2.look(id).shape !== shape; n++) id = 'x' + n;
+    const e = { id, title: '时光 & <爱人>', top: 'Golden Rooster · X', venue: '厦门"万象"', date: '2026-11-09', r: 7, views: 3 };
+    const a = R2.stampSVG(e, { inline: true }), b = R2.stampSVG(e);
+    assert2(a.startsWith('<svg xmlns="http://www.w3.org/2000/svg"') && a.endsWith('</svg>') && a.includes('<filter id=') && a.includes('<style>'), 'inline stamp svg');
+    assert2(b.includes('url(#pp-ink)') && !b.includes('<filter'), 'web stamp svg uses page filter');
+    assert2(!/[&<>"](?!amp;|lt;|gt;|quot;)/.test(a.replace(/<style>[\s\S]*?<\/style>/, '').replace(/<[^>]*>/g, '')), 'text is escaped');
+    assert2(a.includes('×3'), 'repeat badge');
+  }
+  const q = R2.stampPose('abc', 4); assert2(typeof q.tilt === 'number' && Math.abs(q.dx) < 5 && Math.abs(q.dy) < 3);
+}

@@ -309,6 +309,39 @@
     return { lines: lines.slice(0, 3), fs };
   }
 
-  const api = { W, SECTIONS, hasSection, heightOf, draw, footer, FOOT: L.FOOT, drawStamp, look, dstamp, hash, INKS, stampTitle };
+  // —— 护照印章 SVG（网站护照页与小程序护照页共用，2026-11-18）——
+  // e: {id, title, top, venue, date(ISO), r(0–10), views}；opt.inline=true 时自带油墨滤镜与字体（小程序当图片用），否则用网站的 CSS 类与 #pp-ink 滤镜
+  const FONT = { mono: '"IBM Plex Mono",ui-monospace,Menlo,monospace', body: '"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif', display: '"Noto Serif SC","Songti SC","STSong",serif' };
+  const ST_CSS = { 'st-arc': ['mono', 700, 12.5, 1.2], 'st-arc st-v': ['body', 600, 12, 0.6], 'st-s': ['mono', 700, 11.5, 1], 'st-s st-v': ['body', 600, 11.5, 0.4], 'st-d': ['mono', 700, 14, 1] };
+  const INK_FILTER = '<feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="4" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="1.1" result="d"/><feTurbulence type="fractalNoise" baseFrequency=".05" numOctaves="3" seed="11" result="b"/><feColorMatrix in="b" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -2.2 2.05" result="m"/><feComposite in="d" in2="m" operator="in"/>';
+  // 图片模式自带的样式：与网站 app.css 的 .st-g / .st-arc / .st-s / .st-t / .st-d 相同
+  const ST_STYLE = '.st-g text{stroke:none;text-anchor:middle;dominant-baseline:middle}.st-g circle,.st-g rect,.st-g polygon,.st-g [fill="none"]{fill:none}.st-t{font-family:' + FONT.display + ';font-weight:900}' +
+    Object.keys(ST_CSS).map(k => { const c = ST_CSS[k]; return '.' + k.replace(' ', '.') + '{font:' + c[1] + ' ' + c[2] + 'px ' + FONT[c[0]] + ';letter-spacing:' + c[3] + 'px}'; }).join('');
+  function xesc(v) { return String(v == null ? '' : v).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+  function svgStar(cx, cy, R) { let p = ''; for (let i = 0; i < 10; i++) { const r = i % 2 ? R * 0.45 : R, a = -Math.PI / 2 + i * Math.PI / 5; p += (i ? 'L' : 'M') + (cx + r * Math.cos(a)).toFixed(1) + ' ' + (cy + r * Math.sin(a)).toFixed(1); } return p + 'Z'; }
+  function octPts(s) { const k = s * 0.42; return [[-k, -s], [k, -s], [s, -k], [s, k], [k, s], [-k, s], [-s, k], [-s, -k]].map(([x, y]) => (100 + x) + ',' + (100 + y)).join(' '); }
+  // 印章在页面上的姿态：位置略有偏移、角度各不相同（单位：页宽的 1%；同一枚章每次位置固定）
+  function stampPose(id, i) { const h = hash(id), row = Math.floor(i / 3); return { tilt: +(((h % 21) - 10) * 1.1).toFixed(1), dx: +(((h >>> 5) % 9 - 4) * 0.5 + (row % 2 ? 1.6 : -0.4)).toFixed(2), dy: +(((h >>> 9) % 7 - 3) * 0.55).toFixed(2) }; }
+  function stampSVG(e, opt) {
+    opt = opt || {}; const inl = !!opt.inline, lk = look(e.id), col = lk.ink, uid = 'st-' + String(e.id).replace(/[^\w-]/g, '_');
+    const topRaw = String(e.top || 'SPARROW FILM PASSPORT').toUpperCase().split(/ · | & /)[0], top = xesc(topRaw.slice(0, 26)), venue = xesc(e.venue || '影院观影'), date = dstamp(e.date), r = e.r || 0;
+    const T = cls => 'class="' + cls + '"', TT = 'class="st-t"';
+    const stt = stampTitle(e.title, lk.shape), ls = stt.lines, fs = stt.fs;
+    let frame = '', ty = 88, dy = 124, sy = 146, topY = 0, botY = 0;
+    if (lk.shape === 0) { frame = '<circle cx="100" cy="100" r="95" stroke-width="5"/><circle cx="100" cy="100" r="71" stroke-width="1.6"/><path id="' + uid + '-a" d="M22 100a78 78 0 0 1 156 0" fill="none" stroke="none"/><path id="' + uid + '-b" d="M15 100a85 85 0 0 0 170 0" fill="none" stroke="none"/>' +
+      '<text ' + T('st-arc') + '><textPath href="#' + uid + '-a" startOffset="50%" text-anchor="middle">' + top + '</textPath></text><text ' + T('st-arc st-v') + '><textPath href="#' + uid + '-b" startOffset="50%" text-anchor="middle">' + venue + '</textPath></text><path d="' + svgStar(14, 100, 4) + svgStar(186, 100, 4) + '" stroke="none"/>'; ty = 86; dy = 122; sy = 143; }
+    else if (lk.shape === 2) { frame = '<polygon points="' + octPts(94) + '" stroke-width="5"/><polygon points="' + octPts(81) + '" stroke-width="1.6"/>'; topY = 40; botY = 163; ty = 84; dy = 120; sy = 141; }
+    else { const t = lk.shape === 3; frame = '<rect x="5" y="14" width="190" height="172" rx="' + (t ? 3 : 16) + '" stroke-width="5"/><rect x="15" y="24" width="170" height="152" rx="' + (t ? 2 : 9) + '" stroke-width="1.6"' + (t ? ' stroke-dasharray="5 4"' : '') + '/>'; topY = 44; botY = 164; ty = 84; dy = 120; sy = 141; }
+    const lines = ls.map((l, i) => '<text ' + TT + ' x="100" y="' + (ty - (ls.length - 1) * fs * 0.56 + i * fs * 1.12) + '" font-size="' + fs + '">' + xesc(l) + '</text>').join('');
+    const side = topY ? '<text ' + T('st-s') + ' x="100" y="' + topY + '">' + xesc(topRaw.slice(0, lk.shape === 2 ? 16 : 20)) + '</text><text ' + T('st-s st-v') + ' x="100" y="' + botY + '">' + venue + '</text>' : '';
+    const sc = r ? [1, 2, 3, 4, 5].map(i => { const part = Math.max(0, Math.min(2, r - (i - 1) * 2)) / 2, cx = 72 + (i - 1) * 14; return '<path d="' + svgStar(cx, sy, 5.4) + '" fill="none" stroke-width="1.1"/>' + (part ? '<path d="' + svgStar(cx, sy, 5.4) + '" stroke="none" clip-path="url(#' + uid + '-c' + i + ')"/><clipPath id="' + uid + '-c' + i + '"><rect x="' + (cx - 6) + '" y="' + (sy - 6) + '" width="' + (12 * part) + '" height="12"/></clipPath>' : ''); }).join('') : '';
+    const fid = inl ? uid + '-ink' : 'pp-ink', views = e.views || 0;
+    const head = inl ? '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" overflow="visible"><style>' + ST_STYLE + '</style><defs><filter id="' + fid + '" x="-5%" y="-5%" width="110%" height="110%">' + INK_FILTER + '</filter></defs><g opacity=".9">'
+      : '<svg class="st-svg" viewBox="0 0 200 200" role="img" aria-label="' + xesc(e.title) + ' · ' + date + (r ? ' · ' + r + '/10' : '') + '" style="--ink:' + col + '">';
+    return head + '<g class="st-g" filter="url(#' + fid + ')" fill="' + col + '" stroke="' + col + '">' + frame + side + lines + '<text ' + T('st-d') + ' x="100" y="' + dy + '">' + date + '</text>' + sc + '</g>' +
+      (views > 1 ? '<g class="st-x"><circle cx="172" cy="28" r="19" fill="#8e2a22" stroke="#f8f2e6" stroke-width="3"/><text x="172" y="34" text-anchor="middle" font-size="16" font-weight="700" fill="#fff6e4" font-family="ui-monospace,Menlo,monospace">×' + views + '</text></g>' : '') + (inl ? '</g>' : '') + '</svg>';
+  }
+
+  const api = { W, SECTIONS, hasSection, heightOf, draw, footer, FOOT: L.FOOT, drawStamp, look, dstamp, hash, INKS, stampTitle, stampSVG, stampPose };
   if (typeof module !== 'undefined' && module.exports) module.exports = api; else root.SparrowRecap = api;
 })(typeof window !== 'undefined' ? window : this);
