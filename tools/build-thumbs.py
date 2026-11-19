@@ -50,5 +50,23 @@ def main():
     print(f'海报 {len(names)} 张，原图共 {src // 1024} KB；新生成 {made} 个文件；w360 WebP 共 {w360 // 1024} KB（平均 {w360 // len(names) // 1024} KB）')
 
 
+def covers():
+    """专题头图 programmes/<名>.jpg → programmes/w930/<名>.jpg（小程序联网时用，getData 云函数返回此地址，换图无需重新上传小程序）。"""
+    src = os.path.join(ROOT, 'programmes'); out = os.path.join(src, 'w930'); os.makedirs(out, exist_ok=True); n = 0
+    for name in sorted(os.listdir(src)):
+        f = os.path.join(src, name)
+        if not (os.path.isfile(f) and name.lower().endswith(('.jpg', '.jpeg', '.png'))):
+            continue
+        dst = os.path.join(out, os.path.splitext(name)[0] + '.jpg')
+        if os.path.exists(dst) and os.path.getmtime(dst) >= os.path.getmtime(f):
+            continue
+        with Image.open(f) as im:
+            im = im.convert('RGB')
+            t = im if im.width <= 930 else im.resize((930, round(im.height * 930 / im.width)), Image.LANCZOS)
+            t.save(dst, 'JPEG', quality=82, optimize=True, progressive=True); n += 1
+    print(f'专题头图缩略图新生成 {n} 张')
+
+
 if __name__ == '__main__':
     main()
+    covers()

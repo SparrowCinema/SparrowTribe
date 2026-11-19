@@ -90,7 +90,8 @@ async function fromSite(ms, prev) {
   });
   const programmes = progs.map(p => {
     const o = Object.assign({}, p); delete o.file;
-    o.cover = has('brand', 'prog-' + p.id + '.jpg') ? '/images/brand/prog-' + p.id + '.jpg' : (p.cover ? SITE + p.cover : '');
+    // 联网时头图一律用网站在线图（部署生成的 930px 缩略图 programmes/w930/），换图后无需重新上传小程序；包内缩略图只在离线兜底数据里使用（build-fallback.js）。catalog 可写 coverV 让微信图片缓存失效
+    o.cover = p.cover ? SITE + p.cover.replace(/^programmes\/([^/]+)\.(jpe?g|png)$/i, 'programmes/w930/$1.jpg') + (p.coverV ? '?v=' + p.coverV : '') : (has('brand', 'prog-' + p.id + '.jpg') ? '/images/brand/prog-' + p.id + '.jpg' : '');
     o.cardCover = p.cardCover ? SITE + p.cardCover : '';
     return o;
   });
