@@ -8995,8 +8995,10 @@
    ],
    "contentNote": "Based on UK BBFC theatrical advice and the US release classification: strong bloody violence, injury and medical detail, disfigurement, bodily transformation, threat, strong language, nudity, sexual references, drug use and verbal references to sexual violence. The UK cinema version carries a flashing-image warning for photosensitive viewers. The US theatrical version is MPA R, not a Mainland classification. The supplied Mainland poster advises caution for minors. The Mainland theatrical runtime matches the international version; specific editing and sensory differences remain unverified.",
    "screeningNotes": {
-    "11/27-19:30-hz-mixc-yaao-dolby": "Dolby Giant Screen 4K",
-    "11/30-19:30-hz-xgjy-raffles-hall-4": "Dolby Starry-Sky Giant Screen 4K"
+    "11/27-19:20-hz-mixc-yaao-dolby": "Dolby Giant Screen 4K",
+    "11/28-15:20-hz-xgjy-raffles-hall-4": "Dolby Starry-Sky Giant Screen 4K",
+    "11/28-19:30-hz-xgjy-raffles-hall-4": "Dolby Starry-Sky Giant Screen 4K",
+    "11/29-17:00-hz-xgjy-raffles-hall-4": "Dolby Starry-Sky Giant Screen 4K"
    }
   },
   "dune-2021": {
