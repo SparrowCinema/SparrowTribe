@@ -1,0 +1,100 @@
+{
+ "checked": "2026-11-20",
+ "scope": "第八届海南岛国际电影节「焦点影人」鲁本·奥斯特伦德回顾",
+ "verifiedRecords": {
+  "triangle-of-sadness": {
+   "status": "partial",
+   "date": "2022-05",
+   "festival": "戛纳电影节",
+   "festivalEn": "Cannes Film Festival",
+   "kind": "festival",
+   "checked": "2026-11-20",
+   "sources": [
+    "https://www.europeanfilmawards.eu/efa-movie/triangle-of-sadness/",
+    "https://sharingsweden.se/toolkits/triangle-of-sadness"
+   ]
+  },
+  "the-square-2017": {
+   "status": "partial",
+   "date": "2017-05",
+   "festival": "戛纳电影节",
+   "festivalEn": "Cannes Film Festival",
+   "kind": "festival",
+   "checked": "2026-11-20",
+   "sources": [
+    "https://newsletter.oscars.org/what-to-watch/post/ruben-ostlund-5-films-that-inspired-my-own-filmmaking",
+    "https://www.filmfestival.gr/en/movie-tiff/movie/7994"
+   ]
+  },
+  "force-majeure-2014": {
+   "status": "partial",
+   "date": "2014-05",
+   "festival": "戛纳电影节",
+   "festivalEn": "Cannes Film Festival",
+   "kind": "festival",
+   "checked": "2026-11-20",
+   "sources": [
+    "https://cinemadedemain.festival-cannes.com/en/f/turist/",
+    "https://variety.com/2014/film/reviews/cannes-film-review-force-majeur-turist-1201184517"
+   ]
+  },
+  "play-2011": {
+   "status": "partial",
+   "date": "2011-05",
+   "festival": "戛纳电影节导演双周",
+   "festivalEn": "Cannes Directors’ Fortnight",
+   "kind": "festival",
+   "checked": "2026-11-20",
+   "sources": [
+    "https://norden.org/en/nominee/prize-winner-2012-0",
+    "https://africultures.com/films?no=12652"
+   ]
+  },
+  "involuntary-2008": {
+   "status": "verified",
+   "date": "2008-05-19",
+   "festival": "戛纳电影节",
+   "festivalEn": "Cannes Film Festival",
+   "kind": "festival",
+   "checked": "2026-11-20",
+   "sources": [
+    "https://en.wikipedia.org/wiki/Involuntary_(film)",
+    "https://www.kviff.com/en/programme/film/14/4444-involuntary"
+   ]
+  }
+ },
+ "otherSources": {
+  "incident-by-a-bank": [
+   "https://www.dfi.dk/en/viden-om-film/filmdatabasen/film/incident-bank",
+   "https://www.filmfestival.gr/en/movie-tiff/movie/7838",
+   "https://neweuropefilmsales.com/?p=2922"
+  ],
+  "autobiographical-scene-6882": [
+   "https://plattformproduktion.se/scen-6882",
+   "https://www.filmfestival.gr/en/movie-tiff/movie/7837",
+   "https://www.dfi.dk/en/viden-om-film/filmdatabasen/film/autobiographical-scene-number-6882"
+  ],
+  "the-guitar-mongoloid": [
+   "https://program.goteborgfilmfestival.se/en/program/the-guitar-mongoloid",
+   "https://www.plattformproduktion.se/gitarrmongot/",
+   "https://en.wikipedia.org/wiki/The_Guitar_Mongoloid",
+   "https://www.filmfestival.gr/en/movie-tiff/movie/7993"
+  ],
+  "play-2011": [
+   "https://cineuropa.org/film/201451",
+   "https://www.filmfestival.gr/en/movie-tiff/movie/7836"
+  ],
+  "involuntary-2008": [
+   "https://www.festival-cannes.com/en/f/de-ofrivilliga/",
+   "https://cinemadedemain.festival-cannes.com/en/f/de-ofrivilliga"
+  ],
+  "force-majeure-2014": [
+   "https://gupea.ub.gu.se/handle/2077/41508",
+   "https://www.nziff.co.nz/2014/film/force-majeure"
+  ],
+  "triangle-of-sadness": [
+   "https://www.imdb.com/title/tt7322224"
+  ]
+ },
+ "notes": "简介、导演介绍与片单、中国大陆首映标注来自用户提供的海影节官方物料，原文保留；《吉他蒙古人》物料写“2004年 莫斯科国际电影节 费比西奖”，经核第27届莫斯科电影节在2005年举办，按2005登记。演员名保留原文拼写，避免音译错误。"
+}
