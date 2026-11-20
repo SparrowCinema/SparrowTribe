@@ -3053,7 +3053,8 @@
     "11/27-19:20-hz-mixc-yaao-dolby": "杜比巨幕4K",
     "11/28-15:20-hz-xgjy-raffles-hall-4": "杜比星空巨幕4K",
     "11/28-19:30-hz-xgjy-raffles-hall-4": "杜比星空巨幕4K",
-    "11/29-17:00-hz-xgjy-raffles-hall-4": "杜比星空巨幕4K"
+    "11/29-17:00-hz-xgjy-raffles-hall-4": "杜比星空巨幕4K",
+    "11/30-19:30-hz-xgjy-raffles-hall-4": "杜比星空巨幕4K"
    }
   },
   {
@@ -3575,7 +3576,7 @@
    "s1uzg50qv"
   ],
   [
-   "11/28",
+   "11/30",
    "19:30",
    "clayface",
    "hz-xgjy-raffles",
@@ -3597,6 +3598,14 @@
    "hz-xgjy-raffles",
    "hall-4",
    "sortqcqj4"
+  ],
+  [
+   "11/28",
+   "19:30",
+   "clayface",
+   "hz-xgjy-raffles",
+   "hall-4",
+   "svlqg4051"
   ]
  ]
 }
