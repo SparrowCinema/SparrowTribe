@@ -3,8 +3,10 @@
 
 const EV_RE=/^(映后活动|Post-screening event)\s*·\s*/;
 function evOf(s,f){return EV_RE.test((f&&f.screeningNotes&&f.screeningNotes[keyOf(s)])||"");}
-const TAG_SEG=/^(字幕机|Subtitle display)$/; // 场次备注里单独成段（以 · 分隔）的「字幕机」显示成标签
-function noteHTML(n){const ev=EV_RE.test(n),parts=n.replace(EV_RE,"").split(/\s*·\s*/),tags=parts.filter(p=>TAG_SEG.test(p)),rest=parts.filter(p=>!TAG_SEG.test(p)).join(" · ");return `<p class="src${ev||tags.length?" ev":""}">${ev?'<span class="ev-tag">映后活动</span>':""}${tags.map(t=>`<span class="ev-tag sub-tag">${esc(t)}</span>`).join("")}${esc(rest)}</p>`;}
+const TAG_SEG=/^(字幕机|Subtitle display)$/; // 场次备注里单独成段（以 · 分隔）的「字幕机」：从备注中拿掉，在影厅标签旁显示成标签（subTagHTML）
+const subOf=n=>!!n&&n.replace(EV_RE,"").split(/\s*·\s*/).some(p=>TAG_SEG.test(p));
+function subTagHTML(n){return subOf(n)?'<span class="ev-tag sub-tag">字幕机</span>':"";}
+function noteHTML(n){const ev=EV_RE.test(n),rest=n.replace(EV_RE,"").split(/\s*·\s*/).filter(p=>!TAG_SEG.test(p)).join(" · ");if(!ev&&!rest)return "";return ev?`<p class="src ev"><span class="ev-tag">映后活动</span>${esc(rest)}</p>`:`<p class="src">${esc(rest)}</p>`;}
 function qaForShow(s,f){return f.qaStart&&f.qaEnd&&f.qaGuest&&toMin(f.qaEnd)>toMin(f.qaStart)?{start:toMin(f.qaStart),end:toMin(f.qaEnd)}:null;}
 function ganttHTML(k, rowH, labW, compact, list){
   const S = list.length?Math.max(0,Math.floor((Math.min(...list.map(x=>toMin(x.t)))-30)/30)*30):720, E = list.length?Math.max(...list.map(x=>Math.max(toMin(x.t)+durationOf(x),qaForShow(x,F[x.id])?.end||0))):1350, W = Math.round((E-S)*k);
