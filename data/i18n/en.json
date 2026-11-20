@@ -8993,14 +8993,7 @@
     "Verbal references to sexual violence",
     "Flashing images"
    ],
-   "contentNote": "Based on UK BBFC theatrical advice and the US release classification: strong bloody violence, injury and medical detail, disfigurement, bodily transformation, threat, strong language, nudity, sexual references, drug use and verbal references to sexual violence. The UK cinema version carries a flashing-image warning for photosensitive viewers. The US theatrical version is MPA R, not a Mainland classification. The supplied Mainland poster advises caution for minors. The Mainland theatrical runtime matches the international version; specific editing and sensory differences remain unverified.",
-   "screeningNotes": {
-    "11/27-19:20-hz-mixc-yaao-dolby": "Dolby Giant Screen 4K",
-    "11/28-15:20-hz-xgjy-raffles-hall-4": "Dolby Starry-Sky Giant Screen 4K",
-    "11/28-19:30-hz-xgjy-raffles-hall-4": "Dolby Starry-Sky Giant Screen 4K",
-    "11/29-17:00-hz-xgjy-raffles-hall-4": "Dolby Starry-Sky Giant Screen 4K",
-    "11/30-19:30-hz-xgjy-raffles-hall-4": "Dolby Starry-Sky Giant Screen 4K"
-   }
+   "contentNote": "Based on UK BBFC theatrical advice and the US release classification: strong bloody violence, injury and medical detail, disfigurement, bodily transformation, threat, strong language, nudity, sexual references, drug use and verbal references to sexual violence. The UK cinema version carries a flashing-image warning for photosensitive viewers. The US theatrical version is MPA R, not a Mainland classification. The supplied Mainland poster advises caution for minors. The Mainland theatrical runtime matches the international version; specific editing and sensory differences remain unverified."
   },
   "dune-2021": {
    "title": "Dune",
@@ -11981,6 +11974,7 @@
   "星火放映": "Star Screenings",
   "免费报名": "Free registration",
   "产业放映 · 首作之上": "Industry Screenings · Beyond the First Feature",
-  "字幕机": "Subtitle display"
+  "字幕机": "Subtitle display",
+  "杭州百美汇影城、星光嘉映影城（来福士）、万象影城（亚奥万象）": "Hangzhou Premiere Cinema, Star-Light Jiaying Cinema (Raffles City), MixC Cinema (Yaao MixC)"
  }
 }
