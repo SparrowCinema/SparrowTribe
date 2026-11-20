@@ -82,7 +82,7 @@ function showView(s, idx, data, picked) {
     venue: idx.venueName(s), hall: idx.hallName(s),
     color: (data.reg[f.reg] || {}).c || '#8e2a22',
     tone: filmTone(idx.ORD ? idx.ORD[s.id] : 0), langSub: langSub(f),
-    note: I.tr((f.screeningNotes||{})[keyOf(s)]||""), ev: EV_RE.test(I.tr((f.screeningNotes||{})[keyOf(s)]||"")), noteRest: I.tr((f.screeningNotes||{})[keyOf(s)]||"").replace(EV_RE, ''), poster: thumb(f), picked: picked ? picked.has(keyOf(s)) : false,
+    note: I.tr((f.screeningNotes||{})[keyOf(s)]||""), ev: EV_RE.test(I.tr((f.screeningNotes||{})[keyOf(s)]||"")), noteRest: I.tr((f.screeningNotes||{})[keyOf(s)]||"").replace(EV_RE, '').split(/\s*·\s*/).filter(x => !SUB_SEG.test(x)).join(' · '), sub: I.tr((f.screeningNotes||{})[keyOf(s)]||"").replace(EV_RE, '').split(/\s*·\s*/).some(x => SUB_SEG.test(x)), poster: thumb(f), picked: picked ? picked.has(keyOf(s)) : false,
     past: showDate(s).getTime() + durationOf(s, idx) * 60000 < Date.now()
   };
 }
@@ -115,6 +115,7 @@ function openMap(v) {
   return true;
 }
 const EV_RE = /^(映后活动|Post-screening event)\s*·\s*/;
+const SUB_SEG = /^(字幕机|Subtitle display)$/; // 场次备注里单独成段的「字幕机」显示成标签（与网站 noteHTML 一致）
 // 日历订阅：小程序不能直接打开 webcal。推荐去网页版一键订阅（复制网页地址到手机浏览器打开）；也可复制订阅链接手动添加
 const calSub = (id, en, t) => {
   const SITE = 'https://sparrowcinema.github.io/SparrowTribe/';
