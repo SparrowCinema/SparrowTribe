@@ -770,10 +770,9 @@ html.sheet-open,html.sheet-open body{overflow:hidden}
 .tt-corner{padding:0;align-items:center;font-size:10.0px;color:var(--muted);letter-spacing:.1em}
 .tt-ticks{position:relative}
 .tt-ticks span{position:absolute;left:0;right:0;text-align:center;font:500 10.5px var(--f-mono);color:var(--muted);transform:translateY(-50%);background:var(--surface)}
-.tt-ticks span:first-child{transform:none}
 .tt-col{min-width:0;border-right:1px solid var(--line-soft)}
 .tt-col:last-child{border-right:0}
-.tt-body{position:relative;background-image:repeating-linear-gradient(to bottom,var(--line) 0 1px,transparent 1px var(--hh)),repeating-linear-gradient(to bottom,var(--line-soft) 0 1px,transparent 1px var(--hlf))}
+.tt-body{position:relative;background-image:repeating-linear-gradient(to bottom,var(--line) 0 1px,transparent 1px var(--hh)),repeating-linear-gradient(to bottom,var(--line-soft) 0 1px,transparent 1px var(--hlf));background-position:0 var(--tp,0px)}
 .tt-b{position:absolute;left:4px;right:4px;display:flex;flex-direction:column;align-items:flex-start;gap:1px;padding:6px 8px;border-radius:8px;color:var(--on-block);text-align:left;overflow:hidden;box-shadow:0 1px 0 rgba(0,0,0,.08)}
 .tt-b:hover{filter:brightness(1.08)}
 .tt-s{font:600 13px/1.2 var(--f-mono)}

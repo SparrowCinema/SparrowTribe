@@ -10,6 +10,7 @@ const t = I.tr;
 const sl = Lib.list, sh = Lib.has;
 const summ = (v, all, one, unit) => { const a = sl(v); return !a.length ? all : a.length === 1 ? one(a[0]) : t(a.length + ' ' + (I.isEn() && unit === '家影院' ? '家' : unit)); };
 const app = getApp();
+const PAD = 20; // 时刻表顶部留白（rpx）：第一个整点刻度也能居中压在格线上
 const K = 3.4; // 每分钟 3.4rpx（每小时约 204rpx，片名与版本标签都能完整显示）
 
 const vShort = v => (v.city ? t(v.city) + ' · ' : '') + (v.short || v.brand || v.name).replace(new RegExp('^(' + [v.city,t(v.city||'')].filter(Boolean).join('|') + ')\\s*[·・]?\\s*'), '');
@@ -43,7 +44,7 @@ Page({
   nowLineOf(c) {
     if (!c.isToday) return null;
     const t = new Date(), m = t.getHours() * 60 + t.getMinutes();
-    return m >= c.S && m <= c.E ? { top: Math.round((m - c.S) * K), label: U.fmt(m) } : null;
+    return m >= c.S && m <= c.E ? { top: PAD + Math.round((m - c.S) * K), label: U.fmt(m) } : null;
   },
   onShow() { Stats.stat('pv', 'schedule'); wx.setNavigationBarTitle({ title: t('麻雀观影护照') }); app.chrome(); try { require('../../utils/locate.js').locate(app.globalData.data, () => this.build()); } catch (e) { } this.startTick(); const j = app.globalData.jumpDay, jp = app.globalData.jumpProg; if (j) { app.globalData.jumpDay = ''; this.cityManual(); this.setData({ pf: 'all', vf: 'all', city: 'all', venueQuery: '', day: j }); } if (jp) { app.globalData.jumpProg = ''; this.cityManual(); this.setData({ pf: jp, vf: 'all', city: 'all', venueQuery: '', day: '' }); } this.build(); },
   onPullDownRefresh() { app.loadRemote(); setTimeout(() => { this.build(); wx.stopPullDownRefresh(); }, 600); },
@@ -101,21 +102,21 @@ Page({
       // Only show the current-time marker inside the screening window.
       const tn = new Date(), todayKey = (tn.getMonth() + 1) + '/' + tn.getDate(), isToday = todayKey === day;
       // Leave 30–59 minutes before the first screening.
-      S = Math.max(0, Math.floor((S - 30) / 30) * 30);
+      S = Math.max(0, Math.floor((S - 15) / 60) * 60); // 从整点开始，刻度与粗线都落在整点（与网站一致）
       E = Math.ceil(E / 60) * 60; if (E - S < 180) E = S + 180;
       this.ttCtx = { day, S, E, isToday, today: todayKey };
       nowLine = this.nowLineOf(this.ttCtx);
-      H = Math.round((E - S) * K) + 30;
-      for (let m = S; m <= E; m += 60) ticks.push({ y: Math.round((m - S) * K), t: U.fmt(m) });
+      H = PAD + Math.round((E - S) * K) + 30;
+      for (let m = S; m <= E; m += 60) ticks.push({ y: PAD + Math.round((m - S) * K), t: U.fmt(m) });
       data.venues.forEach(v => v.halls.forEach(h => {
         const hs = dl.filter(s => s.v === v.id && s.h === h.id);
         if (!hs.length) return;
         const qas = [];
         cols.push({ key: v.id + h.id, vn: vShort(v), hn: hShort(h), qas, blocks: hs.map(s => {
           const vw = U.showView(s, idx, data, picked), st = U.toMin(s.t), qa = U.qaOf(idx.F[s.id]);
-          if (qa) qas.push({ key: vw.key + '-qa', nm: '映后交流', id: s.id, top: Math.round((qa.start - S) * K), h: Math.max(60, Math.round((qa.end - qa.start) * K) - 6), label: qa.label });
-          else if (vw.ev) { const pe = st + U.durationOf(s, idx), nx = Math.min(Infinity, ...hs.map(y => U.toMin(y.t)).filter(m => m > st)), pm = Math.min(30, nx - pe); if (pm >= 10) qas.push({ key: vw.key + '-post', nm: '映后', id: s.id, top: Math.round((pe - S) * K), h: Math.round(pm * K) - 6, label: U.fmt(pe) + '–' + U.fmt(pe + pm) }); }
-          return Object.assign(vw, { top: Math.round((st - S) * K), h: Math.max(150, Math.round(U.durationOf(s, idx) * K) - 6) });
+          if (qa) qas.push({ key: vw.key + '-qa', nm: '映后交流', id: s.id, top: PAD + Math.round((qa.start - S) * K), h: Math.max(60, Math.round((qa.end - qa.start) * K) - 6), label: qa.label });
+          else if (vw.ev) { const pe = st + U.durationOf(s, idx), nx = Math.min(Infinity, ...hs.map(y => U.toMin(y.t)).filter(m => m > st)), pm = Math.min(30, nx - pe); if (pm >= 10) qas.push({ key: vw.key + '-post', nm: '映后', id: s.id, top: PAD + Math.round((pe - S) * K), h: Math.round(pm * K) - 6, label: U.fmt(pe) + '–' + U.fmt(pe + pm) }); }
+          return Object.assign(vw, { top: PAD + Math.round((st - S) * K), h: Math.max(150, Math.round(U.durationOf(s, idx) * K) - 6) });
         }) });
       }));
     }
