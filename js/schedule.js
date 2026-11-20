@@ -62,7 +62,8 @@ function dayStripHTML(ds, list){
   }).join("")}</div>`;
 }
 // 单日时刻表：纵轴为时间，横向每列一个影厅
-const POST_MIN=30; // 映后活动：甘特图在影片结束后预留 30 分钟
+const POST_MIN=30;
+const TT_PAD=10; // 时刻表顶部留白：第一个整点刻度也能居中压在格线上 // 映后活动：甘特图在影片结束后预留 30 分钟
 function timetableHTML(day, list){
   const ds = list.filter(x=>x.d===day);
   if(!ds.length) return "";
@@ -71,21 +72,21 @@ function timetableHTML(day, list){
   // The current-time marker is shown only inside the screening window.
   const nowD=new Date(now()), isToday=(nowD.getMonth()+1)+"/"+nowD.getDate()===day;
   // Add a bounded lead-in, independent of the current time.
-  S=Math.max(0,Math.floor((S-30)/30)*30);
+  S=Math.max(0,Math.floor((S-15)/60)*60); // 从整点开始，刻度与粗线都落在整点（至少留 15 分钟）
   E=Math.ceil(E/60)*60; if(E-S<180) E=S+180;
-  const K=1.8, H=Math.round((E-S)*K);
-  let axis=""; for(let m=S;m<=E;m+=60) axis+=`<span style="top:${Math.round((m-S)*K)}px">${fmt(m)}</span>`;
+  const K=1.8, H=Math.round((E-S)*K), P=TT_PAD;
+  let axis=""; for(let m=S;m<=E;m+=60) axis+=`<span style="top:${P+Math.round((m-S)*K)}px">${fmt(m)}</span>`;
   const colHTML = cols.map(({v,h})=>{
     const items = ds.filter(x=>x.v===v.id&&x.h===h.id).map(x=>{
-      const f=F[x.id], st=toMin(x.t), top=Math.round((st-S)*K), ht=Math.max(78,Math.round(durationOf(x)*K)-3), mine=picked.has(keyOf(x)), gone=isPast(x);
-      return `<button class="tt-b fc${f.ev?" tt-evs":""}${mine?" mine":""}${gone?" past":""}" data-film="${x.id}" data-key="${keyOf(x)}" style="--h:${fhue(x.id)};top:${top}px;height:${ht}px" aria-label="${d2(x)} ${esc(f.cn)} ${esc(placeOf(x))}"><b class="tt-s">${x.t}${evOf(x,f)?'<i class="tt-ev">映后</i>':""}</b>${f.ev?`<span class="tt-evk">${esc(tr("活动"))}</span>`:""}<span class="tt-n">${esc(f.cn)}</span>${f.version?`<span class="tt-v">${esc(f.version)}</span>`:""}${langSub(f)?`<span class="tt-l">${esc(langSub(f))}</span>`:""}<span class="tt-e">${gone?"已放映":`至 ${fmt(st+durationOf(x))}${f.minTbd?"":` · ${f.min}′`}`}</span></button>${(()=>{if(!evOf(x,f)||qaForShow(x,f))return "";const pe=st+durationOf(x),nx=Math.min(Infinity,...ds.filter(y=>y.v===v.id&&y.h===h.id&&toMin(y.t)>st).map(y=>toMin(y.t))),pm=Math.min(POST_MIN,nx-pe);if(pm<10)return "";/* 同厅下一场开场前截止，避免压住下一场 */return `<div class="tt-post" style="top:${top+Math.round(durationOf(x)*K)}px;height:${Math.round(pm*K)-3}px" aria-label="映后活动 ${fmt(pe)}至${fmt(pe+pm)}"><b>映后</b><small>${fmt(pe)}–${fmt(pe+pm)}</small></div>`;})()}${qaForShow(x,f)?`<button class="tt-qa" data-film="${x.id}" style="top:${Math.round((qaForShow(x,f).start-S)*K)}px;height:${Math.max(24,Math.round((qaForShow(x,f).end-qaForShow(x,f).start)*K)-3)}px" aria-label="映后交流 ${esc(f.qaStart)}至${esc(f.qaEnd)}"><b>映后交流</b><small>${esc(f.qaStart)}–${esc(f.qaEnd)}</small></button>`:""}${gone&&!mine?"":`<button class="tt-add fa${mine?" on":""}" data-plan="${keyOf(x)}" aria-pressed="${mine}" style="--h:${fhue(x.id)};top:${top+5}px" aria-label="${mine?"移出排片":"加入排片"} ${esc(f.cn)} ${d2(x)}">${mine?"✓":"+"}</button>`}`;
+      const f=F[x.id], st=toMin(x.t), top=P+Math.round((st-S)*K), ht=Math.max(78,Math.round(durationOf(x)*K)-3), mine=picked.has(keyOf(x)), gone=isPast(x);
+      return `<button class="tt-b fc${f.ev?" tt-evs":""}${mine?" mine":""}${gone?" past":""}" data-film="${x.id}" data-key="${keyOf(x)}" style="--h:${fhue(x.id)};top:${top}px;height:${ht}px" aria-label="${d2(x)} ${esc(f.cn)} ${esc(placeOf(x))}"><b class="tt-s">${x.t}${evOf(x,f)?'<i class="tt-ev">映后</i>':""}</b>${f.ev?`<span class="tt-evk">${esc(tr("活动"))}</span>`:""}<span class="tt-n">${esc(f.cn)}</span>${f.version?`<span class="tt-v">${esc(f.version)}</span>`:""}${langSub(f)?`<span class="tt-l">${esc(langSub(f))}</span>`:""}<span class="tt-e">${gone?"已放映":`至 ${fmt(st+durationOf(x))}${f.minTbd?"":` · ${f.min}′`}`}</span></button>${(()=>{if(!evOf(x,f)||qaForShow(x,f))return "";const pe=st+durationOf(x),nx=Math.min(Infinity,...ds.filter(y=>y.v===v.id&&y.h===h.id&&toMin(y.t)>st).map(y=>toMin(y.t))),pm=Math.min(POST_MIN,nx-pe);if(pm<10)return "";/* 同厅下一场开场前截止，避免压住下一场 */return `<div class="tt-post" style="top:${top+Math.round(durationOf(x)*K)}px;height:${Math.round(pm*K)-3}px" aria-label="映后活动 ${fmt(pe)}至${fmt(pe+pm)}"><b>映后</b><small>${fmt(pe)}–${fmt(pe+pm)}</small></div>`;})()}${qaForShow(x,f)?`<button class="tt-qa" data-film="${x.id}" style="top:${P+Math.round((qaForShow(x,f).start-S)*K)}px;height:${Math.max(24,Math.round((qaForShow(x,f).end-qaForShow(x,f).start)*K)-3)}px" aria-label="映后交流 ${esc(f.qaStart)}至${esc(f.qaEnd)}"><b>映后交流</b><small>${esc(f.qaStart)}–${esc(f.qaEnd)}</small></button>`:""}${gone&&!mine?"":`<button class="tt-add fa${mine?" on":""}" data-plan="${keyOf(x)}" aria-pressed="${mine}" style="--h:${fhue(x.id)};top:${top+5}px" aria-label="${mine?"移出排片":"加入排片"} ${esc(f.cn)} ${d2(x)}">${mine?"✓":"+"}</button>`}`;
     }).join("");
-    return `<div class="tt-col"><div class="tt-h" title="${esc(v.name)} · ${esc(h.name)}"><b>${esc(vShort(v))}</b><small>${esc(hShort(h))}</small></div><div class="tt-body" style="height:${H+16}px">${items}</div></div>`;
+    return `<div class="tt-col"><div class="tt-h" title="${esc(v.name)} · ${esc(h.name)}"><b>${esc(vShort(v))}</b><small>${esc(hShort(h))}</small></div><div class="tt-body" style="height:${H+P+14}px">${items}</div></div>`;
   }).join("");
   const nowLine=isToday?`<div class="tt-now" aria-hidden="true" hidden><i></i></div>`:"";
   const nowLab=isToday?`<b class="tt-nowlab" aria-hidden="true" hidden></b>`:"";
-  return `<div class="tt" id="gantt" data-ttday="${day}" data-s="${S}" data-e="${E}" data-k="${K}"><div class="tt-grid" style="--n:${cols.length};--hh:${Math.round(60*K)}px;--hlf:${Math.round(30*K)}px">${nowLine}
-    <div class="tt-axis"><div class="tt-h tt-corner">时间</div><div class="tt-ticks" style="height:${H+16}px">${axis}${nowLab}</div></div>${colHTML}</div></div>`;
+  return `<div class="tt" id="gantt" data-ttday="${day}" data-s="${S}" data-e="${E}" data-k="${K}"><div class="tt-grid" style="--n:${cols.length};--hh:${60*K}px;--hlf:${30*K}px;--tp:${P}px">${nowLine}
+    <div class="tt-axis"><div class="tt-h tt-corner">时间</div><div class="tt-ticks" style="height:${H+P+14}px">${axis}${nowLab}</div></div>${colHTML}</div></div>`;
 }
 const d2 = x => `${x.d} ${wk(x.d)} ${x.t}`;
 // 当前时间线：像 iPhone 日历一样，在今天的时刻表上画一条红线，并每 30 秒移动一次
@@ -95,7 +96,7 @@ function updateNowLine(){
   const t=new Date(now()), m=t.getHours()*60+t.getMinutes(), S=+g.dataset.s, E=+g.dataset.e, K=+g.dataset.k;
   const same=(t.getMonth()+1)+"/"+t.getDate()===g.dataset.ttday, show=same&&m>=S&&m<=E;
   line.hidden=lab.hidden=!show; if(!show) return;
-  const y=Math.round((m-S)*K); line.style.top="calc(46px + "+y+"px)"; lab.style.top=y+"px"; lab.textContent=fmt(m);
+  const y=TT_PAD+Math.round((m-S)*K); line.style.top="calc(46px + "+y+"px)"; lab.style.top=y+"px"; lab.textContent=fmt(m);
 }
 setInterval(()=>{ if(document.visibilityState==="visible") updateNowLine(); },30000);
 const filterChevron='<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m4 6 4 4 4-4"/></svg>';
