@@ -3047,8 +3047,7 @@
    },
    "ticket": "tickets/clayface.png",
    "ticketLabel": "报名",
-   "ticketPlatform": "微信小程序",
-   "ticketHint": "杭州百美汇影城、星光嘉映影城（来福士）、万象影城（亚奥万象）"
+   "ticketPlatform": "微信小程序"
   },
   {
    "id": "dune-2021",
