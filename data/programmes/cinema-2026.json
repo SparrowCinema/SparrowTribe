@@ -3050,8 +3050,10 @@
    "ticketPlatform": "微信小程序",
    "ticketHint": "杭州百美汇影城",
    "screeningNotes": {
-    "11/27-19:30-hz-mixc-yaao-dolby": "杜比巨幕4K",
-    "11/30-19:30-hz-xgjy-raffles-hall-4": "杜比星空巨幕4K"
+    "11/27-19:20-hz-mixc-yaao-dolby": "杜比巨幕4K",
+    "11/28-15:20-hz-xgjy-raffles-hall-4": "杜比星空巨幕4K",
+    "11/28-19:30-hz-xgjy-raffles-hall-4": "杜比星空巨幕4K",
+    "11/29-17:00-hz-xgjy-raffles-hall-4": "杜比星空巨幕4K"
    }
   },
   {
@@ -3558,7 +3560,7 @@
   ],
   [
    "11/27",
-   "19:30",
+   "19:20",
    "clayface",
    "hz-mixc-yaao",
    "dolby",
@@ -3573,12 +3575,28 @@
    "s1uzg50qv"
   ],
   [
-   "11/30",
+   "11/28",
    "19:30",
    "clayface",
    "hz-xgjy-raffles",
    "hall-4",
    "s2bw4pzre"
+  ],
+  [
+   "11/28",
+   "15:20",
+   "clayface",
+   "hz-xgjy-raffles",
+   "hall-4",
+   "s171rmk52"
+  ],
+  [
+   "11/29",
+   "17:00",
+   "clayface",
+   "hz-xgjy-raffles",
+   "hall-4",
+   "sortqcqj4"
   ]
  ]
 }
