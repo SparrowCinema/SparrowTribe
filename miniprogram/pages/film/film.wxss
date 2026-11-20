@@ -138,7 +138,7 @@
 .mr-tip { display: block; margin-top: calc(16 * var(--r)); font-size: calc(16.5 * var(--fr)); color: var(--muted); line-height: 1.6; }
 
 .evtag { display: inline-block; font-size: calc(16 * var(--fr)); font-weight: 700; line-height: calc(32 * var(--r)); padding: 0 calc(14 * var(--r)); margin-right: calc(12 * var(--r)); border-radius: calc(99 * var(--r)); background: #ffe94a; color: #2b2110; vertical-align: calc(2 * var(--r)); }
-.evtag.subtag { background: #d8ecf2; color: #173b47; }
+.evtag.subtag { align-self: flex-start; margin-top: calc(6 * var(--r)); background: #d8ecf2; color: #173b47; }
 
 .tvrow { display: flex; align-items: center; gap: calc(16 * var(--r)); flex-wrap: wrap; }
 .tmap { font-size: calc(16.5 * var(--fr)); font-weight: 700; color: var(--accent); padding: calc(4 * var(--r)) calc(14 * var(--r)); border: calc(2 * var(--r)) solid var(--accent); border-radius: calc(99 * var(--r)); }
