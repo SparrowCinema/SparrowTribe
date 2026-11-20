@@ -3048,14 +3048,7 @@
    "ticket": "tickets/clayface.png",
    "ticketLabel": "报名",
    "ticketPlatform": "微信小程序",
-   "ticketHint": "杭州百美汇影城",
-   "screeningNotes": {
-    "11/27-19:20-hz-mixc-yaao-dolby": "杜比巨幕4K",
-    "11/28-15:20-hz-xgjy-raffles-hall-4": "杜比星空巨幕4K",
-    "11/28-19:30-hz-xgjy-raffles-hall-4": "杜比星空巨幕4K",
-    "11/29-17:00-hz-xgjy-raffles-hall-4": "杜比星空巨幕4K",
-    "11/30-19:30-hz-xgjy-raffles-hall-4": "杜比星空巨幕4K"
-   }
+   "ticketHint": "杭州百美汇影城、星光嘉映影城（来福士）、万象影城（亚奥万象）"
   },
   {
    "id": "dune-2021",
