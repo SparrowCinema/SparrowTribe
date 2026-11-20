@@ -3,7 +3,8 @@
 
 const EV_RE=/^(映后活动|Post-screening event)\s*·\s*/;
 function evOf(s,f){return EV_RE.test((f&&f.screeningNotes&&f.screeningNotes[keyOf(s)])||"");}
-function noteHTML(n){return EV_RE.test(n)?`<p class="src ev"><span class="ev-tag">映后活动</span>${esc(n.replace(EV_RE,""))}</p>`:`<p class="src">${esc(n)}</p>`;}
+const TAG_SEG=/^(字幕机|Subtitle display)$/; // 场次备注里单独成段（以 · 分隔）的「字幕机」显示成标签
+function noteHTML(n){const ev=EV_RE.test(n),parts=n.replace(EV_RE,"").split(/\s*·\s*/),tags=parts.filter(p=>TAG_SEG.test(p)),rest=parts.filter(p=>!TAG_SEG.test(p)).join(" · ");return `<p class="src${ev||tags.length?" ev":""}">${ev?'<span class="ev-tag">映后活动</span>':""}${tags.map(t=>`<span class="ev-tag sub-tag">${esc(t)}</span>`).join("")}${esc(rest)}</p>`;}
 function qaForShow(s,f){return f.qaStart&&f.qaEnd&&f.qaGuest&&toMin(f.qaEnd)>toMin(f.qaStart)?{start:toMin(f.qaStart),end:toMin(f.qaEnd)}:null;}
 function ganttHTML(k, rowH, labW, compact, list){
   const S = list.length?Math.max(0,Math.floor((Math.min(...list.map(x=>toMin(x.t)))-30)/30)*30):720, E = list.length?Math.max(...list.map(x=>Math.max(toMin(x.t)+durationOf(x),qaForShow(x,F[x.id])?.end||0))):1350, W = Math.round((E-S)*k);

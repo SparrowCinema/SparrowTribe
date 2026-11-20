@@ -8144,7 +8144,10 @@
    "highlights": [
     "Riseborough and Blethyn build the relationship through everyday gestures and pauses.",
     "Care, loneliness and institutional responsibility give the suspense a social dimension."
-   ]
+   ],
+   "screeningNotes": {
+    "11/28-19:00-hz-mixc-yaao-dolby": "Subtitle display · Tickets ¥65"
+   }
   },
   "three-goodbyes": {
    "title": "Three Goodbyes",
@@ -8183,7 +8186,10 @@
    "highlights": [
     "Food and the loss of appetite connect physical change with emotional change.",
     "The adaptation joins three stories from Murgia's collection in a Roman setting."
-   ]
+   ],
+   "screeningNotes": {
+    "11/29-15:50-hz-mixc-yaao-dolby": "Tickets ¥65"
+   }
   },
   "isabel": {
    "title": "Isabel",
@@ -8258,7 +8264,10 @@
    "highlights": [
     "The leads portray a lifetime together through conversation, humour and habits.",
     "A St Petersburg apartment, books and records preserve the texture of a generation."
-   ]
+   ],
+   "screeningNotes": {
+    "11/28-13:10-hz-mixc-yaao-dolby": "Subtitle display · Tickets ¥65"
+   }
   },
   "ky-nam-inn": {
    "title": "Ky Nam Inn",
@@ -8300,7 +8309,10 @@
    "highlights": [
     "35mm photography evokes the old buildings and daily textures of Saigon in 1985.",
     "Translation and food connect private longing with post-war social change."
-   ]
+   ],
+   "screeningNotes": {
+    "11/29-18:40-hz-mixc-yaao-dolby": "Subtitle display · Tickets ¥60"
+   }
   },
   "our-girls": {
    "title": "Our Girls",
@@ -8346,7 +8358,10 @@
    "highlights": [
     "The open Alpine landscape contrasts with increasingly confined relationships.",
     "Long scenes allow all four adults to change the balance of an argument."
-   ]
+   ],
+   "screeningNotes": {
+    "11/29-13:20-hz-mixc-yaao-dolby": "Subtitle display · Tickets ¥60"
+   }
   },
   "in-my-parents-house": {
    "title": "In My Parents' House",
@@ -8391,7 +8406,7 @@
   },
   "the-summer-book": {
    "title": "The Summer Book",
-   "c": "Finland / United Kingdom / United States",
+   "c": "United States / Finland / United Kingdom",
    "dir": "Charlie McDowell",
    "genre": [
     "Drama"
@@ -8426,7 +8441,10 @@
    "highlights": [
     "16mm and natural light shape the island's changing atmosphere.",
     "Three generations respond differently to the same loss; weather and daily routines become narrative rhythms."
-   ]
+   ],
+   "screeningNotes": {
+    "11/28-15:40-hz-mixc-yaao-dolby": "Post-screening event · Discussion of approximately 30 minutes (subject to actual attendance) · Subtitle display · Tickets ¥60"
+   }
   },
   "elevator-to-the-gallows": {
    "title": "Elevator to the Gallows",
@@ -11959,6 +11977,7 @@
   "已取消": "Cancelled",
   "星火放映": "Star Screenings",
   "免费报名": "Free registration",
-  "产业放映 · 首作之上": "Industry Screenings · Beyond the First Feature"
+  "产业放映 · 首作之上": "Industry Screenings · Beyond the First Feature",
+  "字幕机": "Subtitle display"
  }
 }
