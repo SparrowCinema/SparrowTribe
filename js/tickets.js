@@ -210,8 +210,25 @@ function ticketSpineHTML(row){
 }
 
 // ——— 弹层（沿用排片 / 海报墙的 schedule-selector 样式） ———
+function ticketLockStyleDialog(dialog){
+  const root=document.documentElement,body=document.body;
+  const {scrollX,scrollY}=window;
+  body.style.setProperty("--ticket-style-page-top",`${-scrollY}px`);
+  root.classList.add("ticket-style-dialog-open");
+  const onNavigate=()=>{dialog.releaseScroll?.(false);dialog.close();};
+  dialog.releaseScroll=(restore=true)=>{
+    dialog.releaseScroll=null;
+    window.removeEventListener("hashchange",onNavigate);
+    root.classList.remove("ticket-style-dialog-open");
+    body.style.removeProperty("--ticket-style-page-top");
+    if(restore)window.scrollTo({left:scrollX,top:scrollY,behavior:"instant"});
+  };
+  window.addEventListener("hashchange",onNavigate);
+}
 function ticketDialog(kind,title,body,foot){
-  document.getElementById("ticket-selector")?.close();
+  const previous=document.getElementById("ticket-selector");
+  previous?.close();
+  previous?.releaseScroll?.();
   const d=document.createElement("dialog");d.id="ticket-selector";d.className="schedule-selector ticket-selector";d.dataset.kind=kind;
   d.setAttribute("aria-labelledby","ticket-selector-title");
   d.innerHTML=`<header class="selector-head"><h2 id="ticket-selector-title">${title}</h2><button type="button" class="selector-close" data-ticket-dlg="close" aria-label="${ticketDict("关闭")}">×</button></header>${body}${foot?`<footer class="selector-foot">${foot}</footer>`:""}`;
@@ -219,7 +236,13 @@ function ticketDialog(kind,title,body,foot){
   d.addEventListener("click",e=>{if(e.target===d){d.close();return;}ticketDialogClick(e,d);});
   d.addEventListener("input",e=>{if(e.target.id==="ticket-q"){clearTimeout(ticketSearchTimer);ticketSearchTimer=setTimeout(()=>{ticketQ.text=e.target.value;ticketPaintList();ticketFilterRefresh(d);},160);}});
   d.addEventListener("change",e=>ticketDialogChange(e,d));
-  d.addEventListener("close",()=>{d.remove();if(kind==="export"&&!ticketPick)ticketExportOpen=false;main.querySelector(`[data-ticket-filter="${kind}"]`)?.focus({preventScroll:true});});
+  d.addEventListener("close",()=>{
+    d.releaseScroll?.();
+    d.remove();
+    if(kind==="export"&&!ticketPick)ticketExportOpen=false;
+    main.querySelector(`[data-ticket-filter="${kind}"]`)?.focus({preventScroll:true});
+  });
+  if(kind==="art-style")ticketLockStyleDialog(d);
   d.showModal();return d;
 }
 const ticketOptionRow=(attr,value,name,sub,selected)=>`<button type="button" class="selector-option" role="option" aria-selected="${selected}" ${attr}="${esc(value)}"><span><b>${esc(name)}</b>${sub?`<small>${esc(sub)}</small>`:""}</span><span class="selector-check" aria-hidden="true">${selected?"✓":""}</span></button>`;

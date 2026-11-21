@@ -86,6 +86,10 @@
 .ticket-pickbar{position:sticky;bottom:calc(env(safe-area-inset-bottom) + 72px);z-index:5;display:flex;align-items:center;gap:12px;margin-top:14px;padding:10px 14px 10px 18px;border-radius:999px;background:var(--surface);border:1px solid var(--line);box-shadow:0 8px 24px #2b211729;font-size:.85rem}
 .ticket-pickbar>span{margin-right:auto}
 .ticket-pickbar b{color:var(--accent)}
+/* Keep the page in place while the art-style dialog scrolls on touch screens. */
+html.ticket-style-dialog-open{overflow:hidden;overscroll-behavior:none;scrollbar-gutter:stable}
+.ticket-style-dialog-open body{position:fixed;inset:var(--ticket-style-page-top) 0 auto;overflow:hidden}
+.ticket-selector[data-kind="art-style"] .selector-results{overscroll-behavior:none}
 .ticket-selector .ticket-facet-box{padding-top:2px}
 .ticket-facet{padding:4px 4px 12px}
 .ticket-facet h3{margin:0 0 8px;font-size:.78rem;font-weight:600;color:var(--muted)}
