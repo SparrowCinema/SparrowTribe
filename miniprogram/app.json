@@ -8,12 +8,23 @@
     "pages/programme/programme",
     "pages/events/events",
     "pages/share/share",
-    "pages/plan/plan",
-    "pages/poster-wall/poster-wall",
-    "pages/tickets/tickets",
-    "pages/ticket-edit/ticket-edit",
-    "pages/taste-map/taste-map"
+    "pages/plan/plan"
   ],
+  "subPackages": [
+    {
+      "root": "packages/collect",
+      "name": "collect",
+      "pages": [
+        "tickets/tickets",
+        "ticket-edit/ticket-edit",
+        "poster-wall/poster-wall",
+        "taste-map/taste-map"
+      ]
+    }
+  ],
+  "preloadRule": {
+    "pages/my/my": { "network": "all", "packages": ["collect"] }
+  },
   "window": {
     "navigationBarBackgroundColor": "@navBg",
     "navigationBarTextStyle": "@navText",

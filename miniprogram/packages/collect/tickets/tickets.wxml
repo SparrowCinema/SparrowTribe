@@ -1,5 +1,5 @@
 <page-meta page-style="{{ps}}" />
-<wxs src="../../utils/l.wxs" module="L" />
+<wxs src="../../../utils/l.wxs" module="L" />
 <view class="wrap album tk-page">
   <view class="tk-head">
     <text class="tk-heading">{{L.t(i,mode==='pending'?'待制作的票根':mode==='search'?'制作票根':'我的票根收藏册')}}</text>
