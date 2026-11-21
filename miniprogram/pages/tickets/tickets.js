@@ -208,6 +208,8 @@ Page({
     const name=e.currentTarget.dataset.field;
     this._draft[name]=name==='crop'?Number(e.detail.value):e.detail.value;
     this.setData({['draft.'+name]:this._draft[name]});
+    // 裁切只作用于正面海报：在看背面时拖动就先翻回正面
+    if(name==='crop'&&this._side!=='front'&&!(this._preview&&this._preview.flipping))this.flipEditor();
     clearTimeout(this._edT);this._edT=setTimeout(()=>this.drawEditor(),name==='crop'?0:250);
   },
   // 可见画布只画当前面，翻转时用透视投影连续重绘。

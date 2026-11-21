@@ -30,7 +30,8 @@
     "小图": "S",
     "分成": "Split into",
     "一键生成": "Create all",
-    "图像": "Image"
+    "图像": "Image",
+    "裁切": "Crop"
   },
   "_readme": "English layer for the site. films/programmes/venues overlay data fields when ?lang=en; ui is the zh→en dictionary used by tr(). Missing entries fall back to the Chinese text.",
   "films": {
