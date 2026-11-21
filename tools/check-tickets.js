@@ -144,24 +144,33 @@ assert.equal(new Set(renders).size,Sketch.styles.length,'each style has distinct
 const doodle=Sketch.stylize(patch,12,8,48,32,'doodle');
 const hasInk=doodle.some((value,i)=>i%4===0&&value<40&&doodle[i+1]<40&&doodle[i+2]<40);
 assert(hasInk,'comic panel outlines strongly contrasting colors');
-assert.deepStrictEqual(Sketch.styles.slice(-3).map(x=>x.id),['doodle','kid-crayon','cartoon']);
+assert.deepStrictEqual(Sketch.styles.map(x=>x.id),['crayon','kid-crayon','doodle','watercolor','pop-dots','memphis']);
+// 已删除的风格换成相近的一款
+assert.deepStrictEqual(['woodcut','blue-ink','cartoon','nope'].map(Sketch.normalize),['crayon','watercolor','pop-dots','crayon']);
+assert.equal(Sketch.readFilmStyles(()=>JSON.stringify({'old-film':'cartoon'})).get('old-film'),'pop-dots');
 // 影片的覆盖值与收藏册默认分开，清除覆盖后重新使用默认值。
-const artStorage=new Map([[Sketch.storageKey,'woodcut']]);
+const artStorage=new Map([[Sketch.storageKey,'watercolor']]);
 const readArt=key=>artStorage.get(key),writeArt=(key,value)=>artStorage.set(key,value);
 assert.equal(Sketch.filmStyleOptions[0].id,'');
 assert.equal(Sketch.saveFilmStyle(readArt,writeArt,'first-film','doodle').get('first-film'),'doodle');
-assert.equal(Sketch.saveFilmStyle(readArt,writeArt,'second-film','cartoon').get('first-film'),'doodle');
-assert.equal(Sketch.saveFilmStyle(readArt,writeArt,'first-film','').get('second-film'),'cartoon');
+assert.equal(Sketch.saveFilmStyle(readArt,writeArt,'second-film','memphis').get('first-film'),'doodle');
+assert.equal(Sketch.saveFilmStyle(readArt,writeArt,'first-film','').get('second-film'),'memphis');
 assert.equal(Sketch.readFilmStyles(readArt).has('first-film'),false);
-assert.equal(readArt(Sketch.storageKey),'woodcut');
+assert.equal(readArt(Sketch.storageKey),'watercolor');
 assert.equal(Sketch.saveFilmStyle(readArt,writeArt,'second-film','invalid-style'),null);
 assert.equal(Sketch.saveFilmStyle(()=>{throw Error('storage read failed');},writeArt,'third-film','doodle'),null);
-assert.equal(Sketch.readFilmStyles(readArt).get('second-film'),'cartoon');
+assert.equal(Sketch.readFilmStyles(readArt).get('second-film'),'memphis');
 
-// 卡通漫画：色块分明、有黑色勾线；童趣蜡笔：有露白的蜡笔纹（比彩色涂鸦浅色像素更多）
-const disc=new Uint8ClampedArray(40*30*4);for(let y=0;y<30;y++)for(let x=0;x<40;x++){const i=(y*40+x)*4,inside=(x-20)**2+(y-15)**2<64;disc.set(inside?[40,60,150,255]:[235,225,200,255],i);}
-const toon=Sketch.stylize(disc,40,30,80,60,'cartoon');
-assert(toon.some((value,i)=>i%4===0&&value<60&&toon[i+1]<60&&toon[i+2]<60),'cartoon draws ink outlines');
+// 波普网点：亮色块印网点（白底 + 彩色点），有黑色勾线；孟菲斯涂鸦：糖果色块上叠花纹，不出现大片纯黑
+const disc=new Uint8ClampedArray(40*30*4);for(let y=0;y<30;y++)for(let x=0;x<40;x++){const i=(y*40+x)*4,inside=(x-20)**2+(y-15)**2<64;disc.set(inside?[40,60,150,255]:[250,200,210,255],i);}
+const pop=Sketch.stylize(disc,40,30,200,150,'pop-dots');
+assert(pop.some((v,i)=>i%4===0&&v<40&&pop[i+1]<40&&pop[i+2]<40),'pop art draws ink outlines');
+assert(pop.some((v,i)=>i%4===0&&v>250&&pop[i+1]>245)&&pop.some((v,i)=>i%4===0&&v===255&&pop[i+1]===138),'pop art prints dots on white');
+const mem=Sketch.stylize(sat0(),40,30,200,150,'memphis');
+const blackShare=mem.filter((v,i)=>i%4===0&&v<40&&mem[i+1]<40&&mem[i+2]<40).length/(200*150);
+assert(blackShare<.3,'memphis keeps black to outlines and patterns: '+blackShare);
+assert(new Set(Array.from({length:200*150},(_,i)=>mem[i*4]+','+mem[i*4+1]+','+mem[i*4+2])).size>=4,'memphis mixes several candy colours');
+function sat0(){const a=new Uint8ClampedArray(40*30*4);for(let i=0;i<a.length;i+=4){const p=i/4,x=p%40,y=Math.floor(p/40);a.set(x<14?[30,30,40,255]:x<27?[220,90,70,255]:y<15?[250,240,220,255]:[70,160,200,255],i);}return a;}
 const sat=new Uint8ClampedArray(40*30*4);for(let i=0;i<sat.length;i+=4)sat.set(i%160<80?[200,40,40,255]:[40,90,200,255],i);
 const kid=Sketch.stylize(sat,40,30,200,150,'kid-crayon'),flat=Sketch.stylize(sat,40,30,200,150,'doodle');
 const pale=a=>a.filter((v,i)=>i%4===0&&Math.min(v,a[i+1],a[i+2])>140).length;

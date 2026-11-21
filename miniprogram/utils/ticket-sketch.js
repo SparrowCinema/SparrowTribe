@@ -7,19 +7,18 @@
 
   const PAPER=[249,241,224];
   const INK=[45,36,34];
-  const BLUE_PAPER=[239,247,251];
-  const BLUE_INK=[20,53,105];
+  // 2026-11-21：去掉木刻版画、蓝墨速写、卡通漫画；新增波普网点、孟菲斯涂鸦。旧的选择会换成相近的一款（ALIAS）。
   const styles=[
     {id:"crayon",label:"蜡笔乱涂"},
-    {id:"watercolor",label:"淡彩水彩"},
-    {id:"woodcut",label:"木刻版画"},
-    {id:"blue-ink",label:"蓝墨速写"},
-    {id:"doodle",label:"彩色涂鸦"},
     {id:"kid-crayon",label:"童趣蜡笔"},
-    {id:"cartoon",label:"卡通漫画"}
+    {id:"doodle",label:"彩色涂鸦"},
+    {id:"watercolor",label:"淡彩水彩"},
+    {id:"pop-dots",label:"波普网点"},
+    {id:"memphis",label:"孟菲斯涂鸦"}
   ];
+  const ALIAS={woodcut:"crayon","blue-ink":"watercolor",cartoon:"pop-dots"};
   const storageKey="sparrow-ticket-art-style";
-  const normalize=value=>styles.some(style=>style.id===value)?value:styles[0].id;
+  const normalize=value=>styles.some(style=>style.id===value)?value:ALIAS[value]||styles[0].id;
   const filmStyleOptions=[{id:"",label:"跟随收藏册"},...styles];
   const filmStorageKey="sparrow-ticket-art-style-by-film";
   const filmIdPattern=/^[\w-]{1,80}$/;
@@ -28,7 +27,8 @@
     try{
       const values=JSON.parse(raw||"{}");
       if(!values||typeof values!=="object"||Array.isArray(values))return new Map();
-      return new Map(Object.entries(values).filter(([filmId,style])=>filmIdPattern.test(filmId)&&normalize(style)===style));
+      // 已删除的风格（如卡通漫画）按 ALIAS 换成相近的一款，不丢掉这部电影的选择
+      return new Map(Object.entries(values).filter(([filmId,style])=>filmIdPattern.test(filmId)&&(normalize(style)===style||ALIAS[style])).map(([filmId,style])=>[filmId,normalize(style)]));
     }catch(_){return new Map();}
   }
 
@@ -103,9 +103,10 @@
     const style=normalize(styleId);
     if(style==="doodle")return drawDoodle(pixels,w,h,width,height);
     if(style==="kid-crayon")return drawKidCrayon(pixels,w,h,width,height);
-    if(style==="cartoon")return drawCartoon(pixels,w,h,width,height);
-    const crayon=style==="crayon",wash=style==="watercolor",wood=style==="woodcut";
-    const paper=style==="blue-ink"?BLUE_PAPER:PAPER,ink=style==="blue-ink"?BLUE_INK:INK;
+    if(style==="pop-dots")return drawPopDots(pixels,w,h,width,height);
+    if(style==="memphis")return drawMemphis(pixels,w,h,width,height);
+    const crayon=style==="crayon",wash=style==="watercolor",wood=false;
+    const paper=PAPER,ink=INK;
     const {labels,palette:source}=reduceColors(pixels,w,h);
     const tones=source.map(color=>clamp((luma(...color)-19)/211,0,1));
     const palette=source.map((color,k)=>{
@@ -329,65 +330,100 @@
     return out;
   }
 
-  // 卡通漫画：保边磨皮（Kuwahara）→ 明暗压成几档、提高饱和 → 按亮度轮廓勾黑线（XDoG），保留人物形状。
-  function blur(src,w,h,sigma){
-    const r=Math.max(1,Math.ceil(sigma*2.5)),k=[];let sum=0;
-    for(let i=-r;i<=r;i++){const v=Math.exp(-i*i/(2*sigma*sigma));k.push(v);sum+=v;}
-    const tmp=new Float32Array(src.length),out=new Float32Array(src.length);
-    for(let y=0;y<h;y++) for(let x=0;x<w;x++){let a=0;for(let i=-r;i<=r;i++)a+=src[y*w+clamp(x+i,0,w-1)]*k[i+r];tmp[y*w+x]=a/sum;}
-    for(let y=0;y<h;y++) for(let x=0;x<w;x++){let a=0;for(let i=-r;i<=r;i++)a+=tmp[clamp(y+i,0,h-1)*w+x]*k[i+r];out[y*w+x]=a/sum;}
-    return out;
+  // 波普网点：六十年代波普 / 老漫画——粗黑勾线，红黄蓝粉白几种纯色，中间调用 45° 本戴网点（Ben-Day dots）在白底上印出来。
+  const POP=[[255,214,0],[232,32,42],[30,91,216],[255,138,179],[38,190,140]];
+  const POP_WHITE=[255,253,246],POP_BLACK=[16,14,18];
+  function popPigment(color){
+    const light=luma(...color),chroma=Math.max(...color)-Math.min(...color);
+    if(light>200&&chroma<36)return POP_WHITE;
+    // 暗而有颜色的块保留色相（暗红仍是红）；只有近黑的中性色才用黑，暗灰用波普常见的蓝色阴影
+    if(chroma<26)return light<26?POP_BLACK:light<120||color[2]>=color[0]?POP[2]:POP[3];
+    // 按色相角找最近的波普原色：黄 52°、红 0°、蓝 222°、粉 335°、绿 160°（橙偏红，紫偏粉）
+    const [r,g,b]=color,mx=Math.max(r,g,b),mn=Math.min(r,g,b),d=mx-mn;
+    let hue=mx===r?((g-b)/d)%6:mx===g?(b-r)/d+2:(r-g)/d+4;hue=(hue*60+360)%360;
+    const HUES=[52,0,222,335,160];let best=POP[0],min=Infinity;
+    HUES.forEach((hh,i)=>{const dd=Math.min(Math.abs(hue-hh),360-Math.abs(hue-hh));if(dd<min){min=dd;best=POP[i];}});
+    return best;
   }
-  // 保边磨皮（双边滤波）：同色块内抹平，颜色差得多的地方不混，轮廓留得住
-  function bilateral(rgb,w,h,r,sigmaR){
-    const out=new Float32Array(rgb.length),offs=[],sp=[];
-    for(let dy=-r;dy<=r;dy++) for(let dx=-r;dx<=r;dx++){offs.push(dx,dy);sp.push(Math.exp(-(dx*dx+dy*dy)/(2*(r*.6)**2)));}
-    // 颜色差的权重查表（按平方距离 / 8 取整）
-    const lut=new Float32Array(4096),inv=1/(2*sigmaR*sigmaR);
-    for(let i=0;i<4096;i++)lut[i]=Math.exp(-i*8*inv);
-    const m=sp.length;
-    for(let y=0;y<h;y++) for(let x=0;x<w;x++){
-      const o=(y*w+x)*3,R=rgb[o],G=rgb[o+1],B=rgb[o+2];let n=0,sr=0,sg=0,sb=0;
-      for(let k=0;k<m;k++){
-        const xx=x+offs[k*2],yy=y+offs[k*2+1];
-        const j=((yy<0?0:yy>=h?h-1:yy)*w+(xx<0?0:xx>=w?w-1:xx))*3,dr=rgb[j]-R,dg=rgb[j+1]-G,db=rgb[j+2]-B;
-        const d=(dr*dr+dg*dg+db*db)>>3,wt=sp[k]*(d<4096?lut[d]:0);
-        n+=wt;sr+=rgb[j]*wt;sg+=rgb[j+1]*wt;sb+=rgb[j+2]*wt;
-      }
-      out[o]=sr/n;out[o+1]=sg/n;out[o+2]=sb/n;
-    }
-    return out;
-  }
-  const TOON_INK=[24,20,26];
-  function drawCartoon(pixels,w,h,width,height){
-    let rgb=new Float32Array(w*h*3);
-    for(let i=0;i<w*h;i++){const a=pixels[i*4+3]/255;for(let c=0;c<3;c++)rgb[i*3+c]=pixels[i*4+c]*a+PAPER[c]*(1-a);}
-    for(let pass=0;pass<3;pass++)rgb=bilateral(rgb,w,h,2,pass?18:26);
-    // 明暗分档（4 档，带一点过渡）+ 饱和度提升，暗部稍偏冷、亮部偏暖，像漫画上色
-    const L=new Float32Array(w*h),col=new Float32Array(w*h*3);
-    for(let i=0;i<w*h;i++){
-      const R=rgb[i*3],G=rgb[i*3+1],B=rgb[i*3+2],l=luma(R,G,B);L[i]=l;
-      const t=l/255,band=Math.floor(t*4),f=t*4-band,soft=band+clamp((f-.42)/.16,0,1);
-      const q=clamp(soft/4,0,1),lq=30+q*215;
-      for(let c=0;c<3;c++){
-        const tint=c===2?(1-q)*10:c===0?q*6:0;
-        col[i*3+c]=clamp(lq+(rgb[i*3+c]-l)*1.45+tint,0,255);
-      }
-    }
-    // XDoG 线稿
-    const s1=Math.max(.7,w/300),g1=blur(L,w,h,s1),g2=blur(L,w,h,s1*1.6),line=new Float32Array(w*h);
-    for(let i=0;i<w*h;i++){const d=g1[i]-.985*g2[i];line[i]=d>=0?0:clamp(-d/9,0,1);}
+  function drawPopDots(pixels,w,h,width,height){
+    const {labels,palette}=reduceColors(pixels,w,h,7);
+    const regions=doodleRegions(doodleRegions(labels,w,h,palette.length,w>=70?2:1),w,h,palette.length,1);
+    const fills=palette.map(popPigment),tones=palette.map(c=>luma(...c)/255);
+    // 最多只留一块黑（最暗的那块），其余暗块换成蓝 / 红实色，画面不至于大片发黑
+    let darkest=-1;fills.forEach((f,i)=>{if(f===POP_BLACK&&(darkest<0||tones[i]<tones[darkest]))darkest=i;});
+    fills.forEach((f,i)=>{if(f===POP_BLACK&&i!==darkest)fills[i]=palette[i][0]>palette[i][2]?POP[1]:POP[2];});
+    const edges=palette.map((a,i)=>palette.map((b,j)=>i===j?0:clamp((Math.sqrt(distance(...a,b))-22)/40,0,1)));
     const out=new Uint8ClampedArray(width*height*4);
-    const sx=w/width,sy=h/height;
-    const at=(arr,x,y,stride,c)=>{
-      const fx=clamp(x,0,w-1),fy=clamp(y,0,h-1),x0=Math.floor(fx),y0=Math.floor(fy),x1=Math.min(w-1,x0+1),y1=Math.min(h-1,y0+1),u=fx-x0,v=fy-y0;
-      const g=(xx,yy)=>arr[(yy*w+xx)*stride+c];
-      return mix(mix(g(x0,y0),g(x1,y0),u),mix(g(x0,y1),g(x1,y1),u),v);
-    };
+    const cell=(x,y)=>clamp(Math.floor(y),0,h-1)*w+clamp(Math.floor(x),0,w-1);
+    const label=(x,y)=>regions[cell(x,y)];
+    const unit=width/200,ew=Math.max(.55,1.05/Math.sqrt(width/w)),step=unit*3.6;
     for(let y=0;y<height;y++) for(let x=0;x<width;x++){
-      const X=(x+.5)*sx-.5,Y=(y+.5)*sy-.5,o=(y*width+x)*4;
-      const ink=clamp((at(line,X,Y,1,0)-.18)/.4,0,1);
-      for(let c=0;c<3;c++)out[o+c]=mix(at(col,X,Y,3,c),TOON_INK[c],ink);
+      const sx=(x+unit*.5*Math.sin(y/unit*.21))*w/width,sy=(y+unit*.5*Math.sin(x/unit*.19))*h/height;
+      const k=label(sx,sy),env=edges[k],fill=fills[k],o=(y*width+x)*4;
+      const pen=Math.max(env[label(sx-ew,sy)],env[label(sx+ew,sy)],env[label(sx,sy-ew)],env[label(sx,sy+ew)]);
+      let color=fill;
+      if(fill!==POP_BLACK&&fill!==POP_WHITE){
+        // 亮的颜色块印网点，暗的、纯的块整片平涂
+        const cover=clamp(1.25-tones[k]*1.1,0,1);
+        if(cover<.92){
+          const u=(x+y)/Math.SQRT2/step,v=(x-y)/Math.SQRT2/step,du=u-Math.round(u),dv=v-Math.round(v);
+          const r=Math.sqrt(du*du+dv*dv),rad=.62*Math.sqrt(cover);
+          const t=clamp((rad-r)*step/1.1+.5,0,1);           // 网点边缘稍微柔一点，避免锯齿
+          color=[0,1,2].map(c=>mix(POP_WHITE[c],fill[c],t));
+        }
+      }
+      const ink=pen>.4?1:0;
+      for(let c=0;c<3;c++)out[o+c]=mix(color[c],POP_BLACK[c],ink);
+      out[o+3]=255;
+    }
+    return out;
+  }
+
+  // 孟菲斯涂鸦：八十年代孟菲斯设计风——糖果色大色块，每块叠一种涂鸦花纹（波浪线、圆点阵、锯齿条纹、彩纸屑、网格），
+  // 粗黑描边带一点错位投影，画面抽象、热闹。
+  const MEM=[[255,111,89],[255,216,77],[127,214,194],[184,161,255],[91,192,235],[255,158,205]];
+  const MEM_BG=[255,248,236],MEM_INK=[20,18,24],MEM_DARK=[52,44,112];
+  function drawMemphis(pixels,w,h,width,height){
+    const {labels,palette}=reduceColors(pixels,w,h,6);
+    const regions=doodleRegions(doodleRegions(labels,w,h,palette.length,w>=70?3:1),w,h,palette.length,w>=70?2:1);
+    // 按明暗顺序分配糖果色：最暗一块用黑、最亮一块留奶油底，其余轮流取色
+    const order=palette.map((c,i)=>[luma(...c),i]).sort((a,b)=>a[0]-b[0]).map(x=>x[1]);
+    const fills=[],pattern=[];
+    order.forEach((k,rank)=>{
+      // 最暗一块用深靛蓝（上面印亮色花纹），最亮一块留奶油底，其余轮流取糖果色；不出现大片纯黑
+      fills[k]=rank===0&&luma(...palette[k])<90?MEM_DARK:rank===order.length-1&&luma(...palette[k])>190?MEM_BG:MEM[(k*2+rank)%MEM.length];
+      pattern[k]=(k*3+rank)%5;
+    });
+    const edges=palette.map((a,i)=>palette.map((b,j)=>i===j?0:1));
+    const out=new Uint8ClampedArray(width*height*4);
+    const cell=(x,y)=>clamp(Math.floor(y),0,h-1)*w+clamp(Math.floor(x),0,w-1);
+    const label=(x,y)=>regions[cell(x,y)];
+    const unit=width/200,ew=Math.max(.6,1.1/Math.sqrt(width/w)),sh=1.6*unit*w/width;
+    for(let y=0;y<height;y++) for(let x=0;x<width;x++){
+      const px=x/unit,py=y/unit,o=(y*width+x)*4;
+      const sx=(x+unit*.8*Math.sin(py*.17))*w/width,sy=(y+unit*.8*Math.sin(px*.15))*h/height;
+      const k=label(sx,sy),fill=fills[k],env=edges[k];
+      const pen=Math.max(env[label(sx-ew,sy)],env[label(sx+ew,sy)],env[label(sx,sy-ew)],env[label(sx,sy+ew)]);
+      // 错位投影：描边往右下再画一道
+      const kd=label(sx-sh,sy-sh),shadow=kd!==k&&fills[kd]!==MEM_BG&&fill!==MEM_INK;
+      let color=shadow?[0,1,2].map(c=>mix(fill[c],MEM_INK[c],.85)):fill;
+      if(fill!==MEM_INK&&!shadow){
+        const ink=fill===MEM_BG?MEM[(k+2)%MEM.length]:fill===MEM_DARK?MEM[1]:MEM_INK;
+        let mark=false;
+        switch(pattern[k]){
+          case 0:{const wv=py+Math.sin(px*.42+k)*2.4;mark=Math.abs(((wv%9)+9)%9-4.5)<.75;break;}           // 波浪线
+          case 1:{const gx=((px%7)+7)%7-3.5,gy=((py%7)+7)%7-3.5;mark=gx*gx+gy*gy<1.6;break;}           // 圆点阵
+          case 2:{const t=px*.7+Math.abs(((py*.9)%6+6)%6-3)*1.4;mark=((t%8)+8)%8<1.4;break;}                // 锯齿条纹
+          case 3:{const cx=Math.floor(px/14),cy=Math.floor(py/14),r=hash(cx+k*7,cy);                 // 彩纸屑
+            if(r>.45){const ox=cx*14+3+hash(cy,cx)*8,oy=cy*14+3+hash(cx*3,cy*5)*8,a=r*6.28,dx=px-ox,dy=py-oy;
+              const u=dx*Math.cos(a)+dy*Math.sin(a),v=-dx*Math.sin(a)+dy*Math.cos(a);
+              mark=r>.72?Math.abs(u)<2.6&&Math.abs(v)<.8:(v>-1.4&&v<1.6&&Math.abs(u)<(1.6-v)*.9);}break;}
+          default:{mark=((px%10)+10)%10<.8||((py%10)+10)%10<.8;}                                         // 网格
+        }
+        if(mark)color=pattern[k]===3&&fill!==MEM_BG?MEM[(k+3)%MEM.length]:ink;
+      }
+      const lineInk=pen>.5?1:0;
+      for(let c=0;c<3;c++)out[o+c]=mix(color[c],MEM_INK[c],lineInk);
       out[o+3]=255;
     }
     return out;
@@ -406,7 +442,7 @@
       let drawing=cache.get(key);
       if(!drawing){
         // 童趣蜡笔、卡通要保留人物轮廓，取样更细（其余风格保持原来的粗取样）
-        const sw=style==="cartoon"?Math.min(380,Math.max(64,Math.round(width))):style==="kid-crayon"?Math.min(160,Math.max(48,Math.round(width*.5))):Math.min(92,Math.max(32,Math.round(width*.4)));
+        const sw=style==="pop-dots"||style==="memphis"?Math.min(120,Math.max(40,Math.round(width*.4))):style==="kid-crayon"?Math.min(160,Math.max(48,Math.round(width*.5))):Math.min(92,Math.max(32,Math.round(width*.4)));
         const sh=Math.max(1,Math.round(sw*h/w));
         const sample=createCanvas(sw,sh).getContext("2d");
         cropCover(sample,image,crop,{x:0,y:0,w:sw,h:sh});
