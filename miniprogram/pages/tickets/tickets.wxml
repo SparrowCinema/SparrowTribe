@@ -1,28 +1,33 @@
 <page-meta page-style="{{ps}}" />
 <wxs src="../../utils/l.wxs" module="L" />
 <view class="album">
-  <view class="al-head"><view><text class="al-brand">SPARROW FILM PASSPORT</text><view class="al-title">{{L.t(i,'我的票根收藏册')}}</view>
-      <view wx:if="{{mode==='album'}}" class="al-sum">{{L.t(i,'已收藏')}} <text class="al-b">{{sum.n}}</text> {{L.t(i,'张票根')}}<text wx:if="{{sum.pending}}" class="al-link" bindtap="openPending"> · {{L.t(i,'待制作')}} {{sum.pending}} {{L.t(i,'场')}} ›</text></view></view>
-    <button wx:if="{{mode==='album'}}" class="al-primary" bindtap="start">{{L.t(i,'制作票根')}}</button>
-    <button wx:else class="al-alt" bindtap="backAlbum">{{L.t(i,'返回收藏册')}}</button>
+  <view class="al-top">
+    <view class="al-top-l"><text class="al-brand">SPARROW FILM PASSPORT</text><view class="al-title">{{L.t(i,'我的票根收藏册')}}</view>
+      <view wx:if="{{mode==='album' && all}}" class="al-sum"><text class="al-b">{{sum.n}}</text> {{L.t(i,'张票根')}}</view></view>
+    <view wx:if="{{mode==='album'}}" class="al-make" hover-class="al-hv" bindtap="start" aria-role="button">＋ {{L.t(i,'制作')}}</view>
+    <view wx:else class="al-pill" hover-class="al-hv" bindtap="backAlbum" aria-role="button">‹ {{L.t(i,'返回收藏册')}}</view>
   </view>
 
   <block wx:if="{{mode==='album'}}">
+    <view wx:if="{{sum.pending}}" class="al-todo">
+      <view class="al-todo-t"><text class="al-todo-n">{{sum.pending}}</text>{{L.t(i,'场观影还没做成票根')}}</view>
+      <view class="al-todo-a"><view class="al-pill al-pill-p" hover-class="al-hv" bindtap="makeAll" aria-role="button">{{L.t(i,'一键生成')}}</view><view class="al-pill" hover-class="al-hv" bindtap="openPending" aria-role="button">{{L.t(i,'逐张挑选')}} ›</view></view>
+    </view>
     <view wx:if="{{!all}}" class="al-empty">
       <view class="al-film">{{L.t(i,'还没有收藏票根')}}</view>
-      <block wx:if="{{sum.pending}}">
-        <text>{{L.t(i,'你的观影护照里有')}} {{sum.pending}} {{L.t(i,'场观影还没做成票根。')}}</text>
-        <view class="al-actions"><button class="al-primary" bindtap="makeAll">{{L.t(i,'一键生成全部')}} {{sum.pending}} {{L.t(i,'张票根')}}</button><button class="al-alt" bindtap="openPending">{{L.t(i,'逐张挑选')}}</button></view>
-      </block>
-      <text wx:else>{{L.t(i,'在影片页点「看过」盖章后，每一次观影都可以做成一张票根；也可以直接搜索影片制作。')}}</text>
+      <text>{{sum.pending?L.t(i,'每一次观影都可以做一张票根。一键生成使用专题默认款式，之后仍可逐张换款。'):L.t(i,'在影片页点「看过」盖章后，每一次观影都可以做成一张票根；也可以直接搜索影片制作。')}}</text>
     </view>
     <block wx:else>
-      <input class="al-q" type="text" confirm-type="search" value="{{text}}" bindinput="inputQuery" placeholder="{{L.t(i,'搜片名、导演、影院、专题')}}" />
-      <view class="al-tools">
-        <button class="al-alt" bindtap="toggleFacets">{{L.t(i,'筛选')}}{{activeN?' · '+activeN:''}}</button>
+      <view class="al-search">
+        <input class="al-q" type="text" confirm-type="search" value="{{text}}" bindinput="inputQuery" placeholder="{{L.t(i,'搜片名、导演、影院、专题')}}" />
+        <view class="al-pill {{activeN||facetsOpen?'on':''}}" hover-class="al-hv" bindtap="toggleFacets" aria-role="button">{{L.t(i,'筛选')}}{{activeN?' '+activeN:''}}</view>
+      </view>
+      <view class="al-ctl">
         <view class="al-seg"><view wx:for="{{dens}}" wx:key="v" class="{{density===item.v?'on':''}}" data-v="{{item.v}}" bindtap="setDensity" aria-role="button">{{L.t(i,item.l)}}</view></view>
-        <button class="al-alt" bindtap="flipWall">{{L.t(i,front?'正面':'背面')}} ↻</button>
-        <button class="al-alt" bindtap="toggleExport">{{L.t(i,'导出')}}</button>
+        <view class="al-ctl-r">
+          <view class="al-txt" hover-class="al-hv" bindtap="flipWall" aria-role="button">{{L.t(i,front?'正面':'背面')}} ⇄</view>
+          <view class="al-txt {{exportOpen?'on':''}}" hover-class="al-hv" bindtap="toggleExport" aria-role="button">{{L.t(i,'导出')}}</view>
+        </view>
       </view>
       <scroll-view wx:if="{{years.length}}" scroll-x class="al-years" enhanced show-scrollbar="{{false}}">
         <view class="al-chip {{!year?'on':''}}" data-v="" bindtap="pickYear">{{L.t(i,'全部年份')}}</view>
@@ -48,7 +53,7 @@
         <view class="al-actions"><button class="al-primary" disabled="{{loading || (ex.kind!=='pick' && !ex.n)}}" bindtap="exGo">{{L.t(i,ex.kind==='pick'?'开始挑选':'生成图片')}}</button><button class="al-alt" bindtap="toggleExport">{{L.t(i,'收起')}}</button></view>
       </view>
 
-      <view class="al-count">{{total===all?all+' '+L.t(i,'张票根'):L.t(i,'显示')+' '+total+' / '+all+' '+L.t(i,'张票根')}}{{pick?' · '+L.t(i,'点票根挑选，最多')+' 24 '+L.t(i,'张票根'):''}}</view>
+      <view wx:if="{{total!==all || pick}}" class="al-count">{{total===all?all+' '+L.t(i,'张票根'):L.t(i,'显示')+' '+total+' / '+all+' '+L.t(i,'张票根')}}{{pick?' · '+L.t(i,'点票根挑选，最多')+' 24 '+L.t(i,'张票根'):''}}</view>
       <view wx:if="{{groups.length}}" class="al-board al-d-{{density}}">
         <view wx:for="{{groups}}" wx:for-item="g" wx:for-index="gi" wx:key="id" class="al-month">
           <view class="al-mh">{{g.title}} <text>{{g.n}} {{L.t(i,'张票根')}}</text></view>
