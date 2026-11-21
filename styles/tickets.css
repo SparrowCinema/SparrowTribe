@@ -61,12 +61,12 @@
 .ticket-fx[data-fx=gloss]{background-image:radial-gradient(ellipse 45% 30% at 50% 50%,#ffffffd9,#fff0);background-size:200% 200%}
 .ticket-fx[data-fx=sense]{background-image:radial-gradient(ellipse 30% 18% at 50% 50%,#fffffff2,#fff0),linear-gradient(105deg,#fff0 40%,#ffffff80 50%,#fff0 60%);background-size:200% 200%,300% 100%}
 /* 海报上的隐形工艺（2026-11-22）：静止时看不见，转动时若隐若现 */
-.ticket-fx[data-fx=a-gloss]{background-image:radial-gradient(ellipse 50% 34% at 50% 50%,#ffffffcc,#fff0);background-size:220% 220%}
+.ticket-fx[data-fx=a-gloss]{background-image:radial-gradient(ellipse 50% 34% at 50% 50%,#fffffff2,#fff0);background-size:220% 220%}
 .ticket-fx[data-fx=a-rim]{background-image:radial-gradient(ellipse 40% 26% at 50% 50%,#fffffff2,#fff0);background-size:220% 220%}
-.ticket-fx[data-fx=a-holo]{background-image:linear-gradient(115deg,#ffb3e6,#ffe7a3,#b3ffe4,#a8dcff,#dcc4ff,#ffb3e6,#ffe7a3,#b3ffe4);background-size:300% 300%;mix-blend-mode:soft-light}
-.ticket-fx[data-fx=a-pearl]{background-image:linear-gradient(120deg,#fff0 18%,#ffe6f5 34%,#e3fbff 50%,#fff6d9 66%,#fff0 82%);background-size:300% 300%;mix-blend-mode:soft-light}
+.ticket-fx[data-fx=a-holo]{background-image:linear-gradient(115deg,#ffb3e6,#ffe7a3,#b3ffe4,#a8dcff,#dcc4ff,#ffb3e6,#ffe7a3,#b3ffe4);background-size:300% 300%;mix-blend-mode:screen}
+.ticket-fx[data-fx=a-pearl]{background-image:linear-gradient(120deg,#fff0 18%,#ffe6f5 34%,#e3fbff 50%,#fff6d9 66%,#fff0 82%);background-size:300% 300%;mix-blend-mode:screen}
 .ticket-fx[data-fx=a-guilloche]{background-image:linear-gradient(105deg,#fff0 38%,#ffffffe6 50%,#fff0 62%);background-size:300% 100%}
-.ticket-fx[data-fx=a-matte]{background-image:radial-gradient(ellipse 60% 40% at 50% 50%,#ffffffb3,#fff0);background-size:220% 220%}
+.ticket-fx[data-fx=a-matte]{background-image:radial-gradient(ellipse 60% 40% at 50% 50%,#ffffffeb,#fff0);background-size:220% 220%}
 .ticket-blind-box{margin:0;padding:0;border:0;min-width:0;display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
 .ticket-blind-box legend{padding:0;margin:0 auto 8px;color:#f4ead4;font-size:.82rem;font-weight:700}
 .ticket-edit-head{margin:0 0 12px}
