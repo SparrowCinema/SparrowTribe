@@ -19,6 +19,8 @@
 .al-pager{justify-content:flex-end;margin-top:19rpx;font-size:24rpx;color:var(--muted)}
 .al-stage{display:flex;flex-direction:column;align-items:center;padding:24rpx;gap:16rpx}
 .al-editor-canvas{width:370rpx;max-width:78%;height:auto;aspect-ratio:420/864;display:block}
+.al-blind-box{text-align:center;color:#f4ead3;font-size:23rpx;font-weight:700}
+.al-blind-box .al-actions{justify-content:center;margin-top:8rpx}
 .al-fields{padding-top:15rpx;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14rpx}
 .al-fields text,.al-empty text{color:var(--muted);font-size:23rpx}
 .al-film,.al-wide{grid-column:span 2}

@@ -37,6 +37,8 @@
 .ticket-flip[data-shine=soft] .ticket-face::after{opacity:.06}
 .ticket-flip[data-shine=spectrum] .ticket-front::after{inset:10.7% 5.2% 50.9%;background:none;border:1px solid transparent;border-image:radial-gradient(ellipse at var(--gx,42%) var(--gy,35%),var(--metal-highlight),#a5d7db78 27%,transparent 60%) 1;opacity:.95}
 .ticket-flip[data-shine=spectrum] .ticket-back::after{inset:15.5% 14% auto;aspect-ratio:1;mask-image:radial-gradient(circle closest-side,transparent 67%,#000 76%,#000 87%,transparent 100%);opacity:.62}
+.ticket-blind-box{margin:0;padding:0;border:0;min-width:0;display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
+.ticket-blind-box legend{padding:0;margin:0 auto 8px;color:#f4ead4;font-size:.82rem;font-weight:700}
 .ticket-edit-head{margin:0 0 12px}
 .ticket-edit-head h3{margin:0;max-width:100%;overflow-wrap:anywhere}
 .ticket-inputs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
