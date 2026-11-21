@@ -842,8 +842,7 @@
     "kind": "festival",
     "checked": "2026-11-21"
    },
-   "poster": "https://br.web.img3.acsta.net/img/22/ff/22ff8687dbdaf912e930c93933ace1f0.jpg",
-   "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/x-let-us-through-dear-ancestors.jpg?v=venice-20261121"
+   "poster": "posters/let-us-through-dear-ancestors.jpg"
   },
   {
    "id": "lover-not-a-fighter-2026",
