@@ -441,3 +441,8 @@ Claude 与 GPT 可能使用同一 GitHub 身份，审批人数可先设为0；�
 - **手绘风格新增「童趣蜡笔」「卡通漫画」（2026-11-21）**：`shared/ticket-sketch.js`。童趣蜡笔＝大块饱和平涂 + 粗毛糙黑线 + 斜向蜡笔露白 + 填色略错位（画面偏抽象，取样 ≤160px）；卡通漫画＝在接近原尺寸（≤380px）上做 3 次双边滤波磨平 → 明暗压成 4 档并提饱和 → XDoG 勾黑线，人物轮廓可辨，大图约 0.1 秒。其余风格取样不变。小程序副本由 `node tools/build-fallback.js` 复制。
 - **手绘风格调整（2026-11-21）**：顺序为 蜡笔乱涂、童趣蜡笔、彩色涂鸦、淡彩水彩、波普网点、孟菲斯涂鸦。去掉木刻版画、蓝墨速写、卡通漫画，旧选择（收藏册默认与按影片覆盖）按 `ALIAS` 换成蜡笔乱涂 / 淡彩水彩 / 波普网点。波普网点＝六十年代波普漫画：粗黑线、红黄蓝粉绿按色相归类、亮色块用 45° 本戴网点印在白底上、最多一块黑；孟菲斯涂鸦＝八十年代孟菲斯设计：糖果色块各叠一种花纹（波浪线、圆点阵、锯齿条纹、彩纸屑、网格），最暗块用深靛蓝配亮色花纹，粗黑描边带错位投影。
 - **手绘风格随云端同步（2026-11-21）**：个人档案新增 `art` 字段 `{d:{s,t}, f:{影片id:{s,t}|{del:1,t}}}`（`shared/psync.js` 的 `cleanArt` / `mergeArt`，逐项取较新；备份恢复与清空一并处理）。本机仍存在 `sparrow-ticket-art-style`（收藏册默认）和 `sparrow-ticket-art-style-by-film`（按影片），修改时间另存 `sparrow-ticket-art-meta`；改风格后调用 `shared/ticket-sketch.js` 的 `markArt`（网页 `ticketMarkArt`，小程序再 `Tix.nudge()` 触发同步），同步时 `artSnapshot` / `applyArt` 读写（清除单片风格留删除标记，云端旧风格名按 `ALIAS` 换算）。**`psync` 与 `plan` 云函数需要重新部署**才会保存这一项。
+
+## 外链海报写在 `poster`，不要写 `posterUrl`（2026-11-21）
+
+- 外站海报地址只填 `poster`。部署时 `tools/localize-posters.py` 会把整份专题文件里这串地址全部替换成相对路径 `posters/x-<id>.jpg`；如果同时手写了同值的 `posterUrl`，它也会变成相对路径，小程序会把它当成安装包里的文件，海报全部空白（海南岛国际电影节首映单元就是这样）。
+- `posterUrl` 只用于指向本站的地址（例如 `https://sparrowcinema.github.io/SparrowTribe/posters/<名>.jpg?v=37` 让微信刷新缓存）。`check-content.js` 会拦下其他写法；getData 与 `build-fallback.js` 也会忽略非本站的 `posterUrl`，按 `poster` 推出站内地址（兜底数据里的外链海报直接指向 `posters/x-<id>.jpg`）。

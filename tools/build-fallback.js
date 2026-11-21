@@ -26,7 +26,9 @@ progs.forEach(p => {
     if (seen.has(f.id)) return; seen.add(f.id);
     const o = Object.assign({}, f, { prog: f.prog || p.id });
     delete o.ticket;
-    if (!has('posters', f.id + '.jpg') && f.poster && !o.posterUrl) o.posterUrl = SITE + f.poster;
+    // 海报地址只认站内：资料里手写的 posterUrl 只有指向本站才用；外链 poster 部署时会存成站内 posters/x-<id>.jpg（tools/localize-posters.py），兜底数据直接指向那里
+    if (!(typeof o.posterUrl === 'string' && o.posterUrl.startsWith(SITE))) delete o.posterUrl;
+    if (!has('posters', f.id + '.jpg') && f.poster && !o.posterUrl) o.posterUrl = SITE + (/^https?:\/\//.test(f.poster) ? 'posters/x-' + f.id + '.jpg' : f.poster.replace(/^\//, ''));
     if (has('tickets', f.id + '.jpg')) o.ticketUrl = '/images/tickets/' + f.id + '.jpg';
     else if (f.ticket) o.ticketUrl = SITE + f.ticket;
     films.push(o);
