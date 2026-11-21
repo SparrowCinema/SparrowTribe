@@ -84,7 +84,7 @@ async function ticketPoster(row,small){
   const thumb=small?ticketThumb(row):row.art;
   return (await ticketImage(thumb))||(thumb!==row.art?await ticketImage(row.art):null);
 }
-const ticketSig=(row,side,w)=>[row.key,side,w,TE.packLook(row.look),row.crop,row.art,row.sketch,row.time,row.venue,row.hall,row.seat,row.format,row.title,row.programme,row.city].join("¦");
+const ticketSig=(row,side,w)=>[row.key,side,w,TE.packLook(row.look),row.crop,row.art,row.time,row.venue,row.hall,row.seat,row.format,row.title,row.programme,row.city].join("¦");
 async function ticketTileURL(row,side,w){
   const sig=ticketSig(row,side,w);
   if(ticketURLs.has(sig)){const url=ticketURLs.get(sig);ticketURLs.delete(sig);ticketURLs.set(sig,url);return url;}
@@ -359,10 +359,7 @@ function ticketEditor(row){
       <span class="ticket-face ticket-back"><canvas width="630" height="1296" id="ticket-preview-back" aria-hidden="true"></canvas></span></span></button>
       ${assets.length?`<div class="te-art">
         <label class="te-crop"><span>${ticketDict("裁切")}</span><input class="te-range" type="range" min="0" max="100" name="crop" value="${row.crop}" aria-label="${ticketDict("裁切位置")}"></label>
-        ${assets.length>1?`<select class="te-art-pick" name="art" aria-label="${ticketDict("票面图像")}">${assets.map((a,i)=>ticketOption(a,`${tr(i===0?"海报":"备用图像")} ${i+1}`,row.art)).join("")}</select>`:""}
-        <select class="te-art-pick" name="art-style" aria-label="${ticketDict("票面风格")}">
-          ${ticketOption("original",tr("原图"),row.sketch?"sketch":"original")}${ticketOption("sketch",tr("手绘"),row.sketch?"sketch":"original")}
-        </select></div>`:""}
+        ${assets.length>1?`<select class="te-art-pick" name="art" aria-label="${ticketDict("票面图像")}">${assets.map((a,i)=>ticketOption(a,`${tr(i===0?"海报":"备用图像")} ${i+1}`,row.art)).join("")}</select>`:""}</div>`:""}
       <div class="te-tools"><div class="te-seg" role="tablist" aria-label="${ticketDict("票根面")}">
         <button type="button" role="tab" data-ticket-side="front" aria-selected="${front}">${ticketDict("正面")}</button><button type="button" role="tab" data-ticket-side="back" aria-selected="${!front}">${ticketDict("背面")}</button></div>
         <button type="button" class="te-dice" data-ticket-action="shuffle">${ticketDict("随机换一款")}</button></div>
@@ -481,12 +478,6 @@ function ticketChange(event){
   if(!ticketDraft)return;
   const row=ticketDraft.row;
   if(name==="show"){if(Number(value)>=0)ticketPickShow(Number(value));return;}
-  if(name==="art-style"){
-    row.sketch=value==="sketch";
-    ticketFlipTo("front");
-    ticketDrawEditor();
-    return;
-  }
   if(["date","time","venue","hall","seat","format","art"].includes(name)){
     row[name]=value;
     if(name==="art")row.crop=50;

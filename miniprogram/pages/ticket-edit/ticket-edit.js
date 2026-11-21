@@ -22,7 +22,7 @@ function glowCss(x,y,kind){
   if(kind==='soft')return `radial-gradient(${at},rgba(255,255,255,.12),rgba(255,255,255,0) 55%)`;
   return `radial-gradient(${at},rgba(255,255,255,.36),rgba(255,255,255,0) 52%)`;
 }
-const sigOf=(row,side)=>[side,R.packLook(row.look),row.crop,row.art,row.sketch,row.title,row.subtitle,row.date,row.time,row.venue,row.hall,row.city,row.seat,row.format,row.programme,row.section].join('¦');
+const sigOf=(row,side)=>[side,R.packLook(row.look),row.crop,row.art,row.title,row.subtitle,row.date,row.time,row.venue,row.hall,row.city,row.seat,row.format,row.programme,row.section].join('¦');
 function canvas(page,id){return new Promise(resolve=>wx.createSelectorQuery().in(page).select('#'+id).fields({node:true}).exec(r=>resolve(r&&r[0]&&r[0].node||null)));}
 function image(node,src){
   return new Promise(resolve=>{
@@ -74,7 +74,7 @@ Page({
     this._shows=(this.data_.shows||[]).filter(x=>x.id===row.filmId).map(x=>{const v=this.idx.VN[x.v];return {date:iso(U.showDate(x)),time:x.t,venue:(v&&v.name)||'',hall:this.idx.hallName(x)||'',city:(v&&v.city)||''};})
       .filter(x=>!row.linked||x.date===row.date).sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time));
     this.setData({ok:true,draft:row,existing:!!this._original,linked:!!row.linked,
-      artStyles:[I.tr('原图'),I.tr('手绘')],arts:this._art.map((_,i)=>I.tr(i===0?'海报':'备用图像')+' '+(i+1)),artIndex:Math.max(0,this._art.indexOf(row.art)),
+      arts:this._art.map((_,i)=>I.tr(i===0?'海报':'备用图像')+' '+(i+1)),artIndex:Math.max(0,this._art.indexOf(row.art)),
       shows:this._shows.map(x=>`${x.date.slice(5).replace('-','/')} ${x.time} · ${x.venue}${x.hall?' '+x.hall:''}`),showIdx:this.showIndex(),
       shine:R.shineOf(row.look.finish).kind},()=>this.renderFaces());
   },
@@ -152,13 +152,6 @@ Page({
     if(!d.linked)d.date=x.date;
     Object.assign(d,{time:x.time,venue:x.venue,hall:x.hall,city:x.city});
     this.setData({draft:d,showIdx:Number(e.detail.value)});this.renderFaces();
-  },
-  // 票面风格：原图 / 手绘（#511），只作用于正面
-  chooseArtStyle(e){
-    const sketch=Number(e.detail.value)===1;this._draft.sketch=sketch;
-    this.setData({'draft.sketch':sketch});
-    if(!this.data.front)this.flip();
-    this.renderFaces();
   },
   chooseArt(e){this._draft.art=this._art[Number(e.detail.value)];this._draft.crop=50;this.setData({artIndex:Number(e.detail.value),'draft.crop':50});this.renderFaces();},
   store(){

@@ -634,7 +634,7 @@ function draw(surface,record,side,image,rect,createCanvas,light) {
     const {x,y,w,h}=SOURCE;
     surface.fillStyle=dark;surface.fillRect(x,y,w,h);
     if (image) {
-      if (!record.sketch || !Sketch?.paint(surface,image,record.crop,SOURCE,createCanvas,cropCover,rect.w/W)) {
+      if (!Sketch?.paint(surface,image,record.crop,SOURCE,createCanvas,cropCover,rect.w/W)) {
         cropCover(surface,image,record.crop);
       }
     } else {
