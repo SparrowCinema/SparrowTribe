@@ -3,6 +3,7 @@
 // 票面由页面里一块隐藏画布逐张画成图片（只画已加载的部分），缓存在本次打开期间；书脊模式不画图。
 const R=require('../../../utils/tickets.js');
 const Art=require('../../../utils/ticket-sketch.js');
+const readArtPreference=key=>wx.getStorageSync(key);
 const Tix=require('../../../utils/ticketstore.js');
 const U=require('../../../utils/util.js');
 const W=require('../../../utils/watched.js');
@@ -42,6 +43,7 @@ Page({
   onLoad(params){
     this._ready=true;this._render=0;this._draft=null;this._original='';this._q={text:'',year:'',programme:[],city:[],venue:[],format:[]};
     this._pick=null;this._queue=[];this._busy=false;this._imgPatch={};this._limit=STEP;
+    this._filmStyles=Art.readFilmStyles(readArtPreference);
     let density='m',artStyle=Art.normalize();
     try{density=wx.getStorageSync(DENS)||'m';artStyle=Art.normalize(wx.getStorageSync(Art.storageKey));}catch(e){}
     density=TILE_W[density]||density==='spine'?density:'m';
@@ -58,9 +60,13 @@ Page({
       try{style=Art.normalize(wx.getStorageSync(Art.storageKey));}catch(_){}
       const styleChanged=style!==this.data.artStyle;
       if(styleChanged)this.applyArtStyle(style);
+      const filmStyles=Art.readFilmStyles(readArtPreference);
+      const filmStylesChanged=filmStyles.size!==this._filmStyles.size||[...filmStyles].some(([filmId,value])=>this._filmStyles.get(filmId)!==value);
+      this._filmStyles=filmStyles;
+      if(filmStylesChanged)this._imgPatch={};
       if(this.data.mode==='album'){
         if(this._rev!==Tix.rev())this.album();
-        else if(styleChanged)this.paint(false);
+        else if(styleChanged||filmStylesChanged)this.paint(false);
       }
     }
     this._shownOnce=true;
@@ -110,10 +116,11 @@ Page({
     const turn=++this._render;this._queue=[];
     this.setData(patch,()=>{if(turn===this._render&&this.data.density!=='spine')this.queueAll(turn);});
   },
+  styleFor(row){return this._filmStyles.get(row.filmId)||this.data.artStyle;},
   item(r){
     const c=R.swatch(r),p=!!(this._pick&&this._pick.has(r.key));
     const side=this.data.front?'front':'back',w=TILE_W[this.data.density]||TILE_W.m;
-    return {k:r.key,t:r.title,img:paths.get(sigOf(r,side,w,this.data.artStyle))||'',sw:c.mid,sa:c.accent,sb:c.stock,d:[r.date.replace(/-/g,'.'),r.time].filter(Boolean).join(' '),m:[r.venue,r.programme].filter(Boolean).join(' · '),p};
+    return {k:r.key,t:r.title,img:paths.get(sigOf(r,side,w,this.styleFor(r)))||'',sw:c.mid,sa:c.accent,sb:c.stock,d:[r.date.replace(/-/g,'.'),r.time].filter(Boolean).join(' '),m:[r.venue,r.programme].filter(Boolean).join(' · '),p};
   },
   // ——— 逐张画票面（一块隐藏画布 → 临时图片） ———
   queueAll(turn){
@@ -127,7 +134,7 @@ Page({
       while(node&&this._ready&&this._queue.length){
         const job=this._queue.shift();if(job.turn!==this._render)continue;
         const row=this._byKey.get(job.k);if(!row)continue;
-        const side=this.data.front?'front':'back',w=TILE_W[this.data.density]||TILE_W.m,artStyle=this.data.artStyle,sig=sigOf(row,side,w,artStyle);
+        const side=this.data.front?'front':'back',w=TILE_W[this.data.density]||TILE_W.m,artStyle=this.styleFor(row),sig=sigOf(row,side,w,artStyle);
         let path=paths.get(sig);
         if(!path){
           const h=Math.round(w*R.H/R.W);node.width=w;node.height=h;
@@ -244,7 +251,7 @@ Page({
       caption=[`${all.length} ${I.tr('张票根')}`,I.tr(side==='front'?'正面':'背面'),parts>1?`${part+1} / ${parts}`:''].filter(Boolean).join(' · ');
     }
     if(!rows.length)return;
-    rows=rows.map(row=>({...row,artStyle:this.data.artStyle}));
+    rows=rows.map(row=>({...row,artStyle:this.styleFor(row)}));
     this.setData({loading:true});wx.showLoading({title:I.tr('正在生成图片'),mask:true});
     try{
       const node=await canvas(this,'ticket-export-canvas');

@@ -7,6 +7,9 @@ const TICKET_KEY="sparrow-tickets-v1",TICKET_STORE_KEY="sparrow-tickets-v2",TICK
 const ticketArtworkEngine=window.SparrowTickets,TE=ticketArtworkEngine;
 const TicketArt=window.SparrowTicketSketch;
 let ticketArtStyle=(()=>{try{return TicketArt.normalize(localStorage.getItem(TicketArt.storageKey));}catch{return TicketArt.normalize();}})();
+const readTicketPreference=key=>localStorage.getItem(key);
+let ticketFilmStyles=TicketArt.readFilmStyles(readTicketPreference);
+const ticketStyleFor=row=>ticketFilmStyles.get(row.filmId)||ticketArtStyle;
 const TICKET_W={l:320,m:200,s:130},TICKET_PICK_MAX=24,TICKET_PENDING_STEP=60;
 let ticketStoreCache=null,ticketRev=0,ticketData=null,ticketDataRev=-1,ticketByKey=new Map();
 let ticketQ={text:"",year:"",programme:[],city:[],venue:[],format:[]},ticketSide="front",ticketDraft=null,ticketMode="album";
@@ -100,7 +103,7 @@ async function ticketFonts(rows){
 }
 const ticketSig=(row,side,w,style)=>[row.key,side,w,side==="front"?style:"",TE.packLook(row.look),row.crop,row.art,row.time,row.venue,row.hall,row.seat,row.format,row.title,row.programme,row.city].join("¦");
 async function ticketTileURL(row,side,w){
-  const artStyle=ticketArtStyle,sig=ticketSig(row,side,w,artStyle);
+  const artStyle=ticketStyleFor(row),sig=ticketSig(row,side,w,artStyle);
   if(ticketURLs.has(sig)){const url=ticketURLs.get(sig);ticketURLs.delete(sig);ticketURLs.set(sig,url);return url;}
   const [image]=await Promise.all([side==="front"?ticketPoster(row,true):null,ticketFonts([row])]);
   const h=Math.round(w*TE.H/TE.W),canvas=ticketCanvas(w,h);
@@ -257,7 +260,9 @@ function ticketFilterRefresh(d){
 }
 function ticketOpenFilter(kind){
   if(kind==="art-style"){
-    ticketDialog("art-style",ticketDict("手绘风格"),`<div class="selector-results" role="listbox">${TicketArt.styles.map(({id,label})=>ticketOptionRow("data-ticket-art-style",id,tr(label),"",ticketArtStyle===id)).join("")}</div>`);
+    const options=ticketDraft?TicketArt.filmStyleOptions:TicketArt.styles;
+    const selected=ticketDraft?ticketFilmStyles.get(ticketDraft.row.filmId)||"":ticketArtStyle;
+    ticketDialog("art-style",ticketDict("手绘风格"),`<div class="selector-results" role="listbox">${options.map(({id,label})=>ticketOptionRow("data-ticket-art-style",id,tr(label),"",selected===id)).join("")}</div>`);
     return;
   }
   const {tickets,all}=ticketShown();
@@ -317,15 +322,23 @@ function ticketDialogClick(e,d){
   if(dens){ticketDensity=dens.dataset.ticketDensity;try{localStorage.setItem(TICKET_DENSITY_KEY,ticketDensity);}catch{}d.close();ticketPaintList();return;}
   const art=t.closest("[data-ticket-art-style]");
   if(art&&kind==="art-style"){
-    const style=TicketArt.normalize(art.dataset.ticketArtStyle);
+    const choice=art.dataset.ticketArtStyle;
     d.close();
+    if(ticketDraft){
+      const row=ticketDraft.row;
+      if(choice===(ticketFilmStyles.get(row.filmId)||""))return;
+      const updated=TicketArt.saveFilmStyle(readTicketPreference,(key,value)=>localStorage.setItem(key,value),row.filmId,choice);
+      if(!updated){toast(tr("票根保存失败，请检查本机存储"));return;}
+      ticketFilmStyles=updated;
+      ticketFlipTo("front");
+      ticketRenderCard(main.querySelector("#ticket-preview-front"),row,"front");
+      return;
+    }
+    const style=TicketArt.normalize(choice);
     if(style===ticketArtStyle)return;
     ticketArtStyle=style;ticketSide="front";
     try{localStorage.setItem(TicketArt.storageKey,style);}catch{}
-    if(ticketDraft){
-      ticketFlipTo("front");
-      ticketRenderCard(main.querySelector("#ticket-preview-front"),ticketDraft.row,"front");
-    }else ticketPaintList();
+    ticketPaintList();
     return;
   }
   const k=t.closest("[data-ticket-kind]");
@@ -466,7 +479,7 @@ function ticketDrawEditor(){
 }
 async function ticketRenderCard(canvas,row,side){
   const rendering=(canvas.ticketPainting||0)+1;canvas.ticketPainting=rendering;
-  const styled={...row,artStyle:ticketArtStyle};
+  const styled={...row,artStyle:ticketStyleFor(row)};
   const draw=image=>{const ctx=canvas.getContext("2d");ctx.clearRect(0,0,canvas.width,canvas.height);TE.draw(ctx,styled,side,image,{x:0,y:0,w:canvas.width,h:canvas.height},ticketCanvas);};
   await ticketFonts([row]);if(!canvas.isConnected||canvas.ticketPainting!==rendering)return;
   draw(null);
@@ -525,7 +538,7 @@ async function ticketExport(button,single){
     caption=[`${all.length} ${tr("张票根")}`,tr(side==="front"?"正面":"背面"),parts>1?`${part+1} / ${parts}`:""].filter(Boolean).join(" · ");
   }
   if(!shown.length)return;
-  shown=shown.map(row=>({...row,artStyle:ticketArtStyle}));
+  shown=shown.map(row=>({...row,artStyle:ticketStyleFor(row)}));
   button.disabled=true;const label=button.textContent;button.textContent=tr("正在生成图片");
   try{
     const small=shown.length>12;
