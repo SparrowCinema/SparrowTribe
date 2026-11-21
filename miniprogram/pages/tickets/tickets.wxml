@@ -22,12 +22,12 @@
       </view>
     </block>
     <view wx:if="{{sum.pending}}" class="tk-todo">
-      <text><text class="tk-b">{{sum.pending}}</text> {{L.t(i,'场观影还没做成票根')}}</text>
+      <text><text class="tk-b">{{sum.pending}}</text> {{L.t(i,'部电影还没做成票根')}}</text>
       <view class="tk-todo-a"><text class="tk-link" bindtap="makeAll" role="button">{{L.t(i,'一键生成')}}</text><text class="tk-dot">·</text><text class="tk-link" bindtap="openPending" role="button">{{L.t(i,'逐张挑选')}} ›</text></view>
     </view>
     <view wx:if="{{chips.length}}" class="tk-chips"><view wx:for="{{chips}}" wx:key="v" class="tk-chip" data-k="{{item.k}}" data-v="{{item.v}}" bindtap="toggleFacet">{{item.v}} ×</view><text class="tk-link" bindtap="clearFacets">{{L.t(i,'清除筛选')}}</text></view>
 
-    <view wx:if="{{!all}}" class="wall-empty"><text class="tk-heading">{{L.t(i,'还没有收藏票根')}}</text><text>{{L.t(i,'在影片页点「看过」盖章后，每一次观影都可以做成一张票根；也可以直接搜索影片制作。')}}</text><view class="btn" bindtap="{{sum.pending?'makeAll':'start'}}">{{L.t(i,sum.pending?'一键生成':'制作票根')}}</view></view>
+    <view wx:if="{{!all}}" class="wall-empty"><text class="tk-heading">{{L.t(i,'还没有收藏票根')}}</text><text>{{L.t(i,'在影片页点「看过」盖章后，每部电影都可以做成一张票根；也可以直接搜索影片制作（会同时盖章）。')}}</text><view class="btn" bindtap="{{sum.pending?'makeAll':'start'}}">{{L.t(i,sum.pending?'一键生成':'制作票根')}}</view></view>
     <view wx:elif="{{!groups.length}}" class="wall-empty"><text>{{L.t(i,'所选条件下暂无票根')}}</text><view class="btn ghost" bindtap="clearAll">{{L.t(i,'清除筛选')}}</view></view>
     <view wx:else class="tk-list tk-d-{{density}}">
       <view wx:for="{{groups}}" wx:for-item="g" wx:for-index="gi" wx:key="id" class="tk-month">
@@ -76,7 +76,7 @@
   </block>
 
   <block wx:elif="{{mode==='pending'}}">
-    <text class="wall-hint al-block">{{L.t(i,'每一次观影都可以做一张票根。一键生成使用专题默认款式，之后仍可逐张换款。')}}</text>
+    <text class="wall-hint al-block">{{L.t(i,'和观影护照一样，一部电影一张票根。一键生成使用专题默认款式，之后仍可逐张换款。')}}</text>
     <button wx:if="{{sum.pending}}" class="wall-export tk-make-all" bindtap="makeAll">{{L.t(i,'一键生成全部')}} {{sum.pending}} {{L.t(i,'张票根')}}</button>
     <text wx:else class="al-muted al-block">{{L.t(i,'所有观影都已经做成票根了。')}}</text>
     <view class="al-plist"><view wx:for="{{pending}}" wx:key="k" class="al-pend" data-k="{{item.k}}" bindtap="openPendingItem" aria-role="button">

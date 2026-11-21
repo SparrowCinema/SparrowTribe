@@ -5,6 +5,7 @@
 const R=require('../../utils/tickets.js');
 const Art=require('../../utils/ticket-sketch.js');
 const Tix=require('../../utils/ticketstore.js');
+const W=require('../../utils/watched.js');
 const U=require('../../utils/util.js');
 const I=require('../../utils/i18n.js');
 const CFG=require('../../utils/cfg.js');
@@ -57,10 +58,16 @@ Page({
     }else if(film&&this.idx.F[film]){
       const mine=views.filter(x=>x.filmId===film).sort((a,b)=>b.view.d.localeCompare(a.view.d));
       const made=new Set(built.tickets.map(r=>r.key));
-      const item=mine.find(x=>!made.has(x.key))||mine[0];
+      // 一部电影一张：已有票根就打开它，否则用最近一次观影新建
+      const item=mine.find(x=>made.has(x.key))||mine[0];
       if(item&&made.has(item.key)){const have=built.tickets.find(r=>r.key===item.key);row={...have,look:{...have.look}};original=item.key;}
       else if(item)row=fresh(item);
-      else{const k=Tix.freeKey(film,iso(new Date()),this.idx);const r=k&&R.build([],{[k]:{t:Date.now()}},this.base).tickets[0];if(r){r.look=R.randomLook(r);row=r;}}
+      else{
+        // 先找这部电影以前做过、现在没对上观影记录的票根（比如移出过护照），接着编辑它
+        const st=Tix.all(),old=Object.keys(st).filter(k=>k.startsWith(film+'|')&&!st[k].del&&R.parseKey(k)).sort((x,y)=>(st[y].t||0)-(st[x].t||0))[0];
+        const prev=old&&R.draft(old,st[old],this.base);
+        if(prev){row=prev;original=old;}
+        else{const k=Tix.freeKey(film,iso(new Date()),this.idx);const r=k&&R.draft(k,{t:Date.now()},this.base);if(r){r.look=R.randomLook(r);row=r;}}}
     }
     if(!row){say('找不到这张票根');setTimeout(()=>wx.navigateBack({fail:()=>wx.redirectTo({url:'/pages/tickets/tickets'})}),600);return;}
     const item=row.linked?views.find(x=>x.key===row.key):null;
@@ -177,14 +184,21 @@ Page({
   store(stay){
     const d=this._draft,row=R.sanitize({...d});
     if(!row.date){say('请填写放映日期');return;}
-    let key=d.key;
+    let key=d.key,stamped=false;
+    // 给还没盖章的电影做票根时同时盖章（观影日期＝票根日期），票根与观影护照保持一部一张
+    const rec=W.get(row.filmId);
+    if(!d.linked&&(!rec||rec.del)){
+      W.set(row.filmId,{d:row.date,r:0,k:''});stamped=true;
+      const item=Tix.viewings(this.idx).find(x=>x.filmId===row.filmId);
+      if(item){key=item.key;d.key=key;d.linked=true;this._view=item.view;this.setData({linked:true});}
+    }
     if(!d.linked){const p=R.parseKey(key);if(!p||p.date!==row.date)key=Tix.freeKey(row.filmId,row.date,this.idx,this._original);if(!key){say('这一天的票根已经太多了');return;}}
     const base=this.base(row.filmId,d.linked?this._view:null,row.date);
     const changes={[key]:base?R.entryFrom({...row,id:key},{...base,id:key}):{t:Date.now()}};
     if(this._original&&this._original!==key)changes[this._original]={del:1,t:Date.now()};
     if(!Tix.set(changes,this.data_,this.idx))return;
-    if(stay===true){this._original=key;this._draft.key=key;this._artSaved=artSig(this._draft);this.setData({existing:true,artDirty:false});say('已保存');return;}
-    wx.navigateBack({success:()=>say('已收进票根收藏册'),fail:()=>wx.redirectTo({url:'/pages/tickets/tickets'})});
+    if(stay===true){this._original=key;this._draft.key=key;this._artSaved=artSig(this._draft);this.setData({existing:true,artDirty:false});say(stamped?'已同时盖章 · 加入观影护照':'已保存');return;}
+    wx.navigateBack({success:()=>say(stamped?'已同时盖章 · 加入观影护照':'已收进票根收藏册'),fail:()=>wx.redirectTo({url:'/pages/tickets/tickets'})});
   },
   remove(){
     const linked=this._draft&&this._draft.linked;

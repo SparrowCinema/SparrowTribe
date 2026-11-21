@@ -9,9 +9,12 @@
 
 const W=420, H=864, TEAR=698, TEETH=17, DEPTH=8, NOTCH=11;
 const SOURCE={x:24,y:94,w:372,h:330};
-const SANS='"PingFang SC","Microsoft YaHei",sans-serif';
-const SERIF='"Songti SC","SimSun",serif';
-const MONO='monospace';
+// 与网站整体视觉一致：标题 Noto Serif SC（黑体粗度）、正文 Noto Sans SC、数字 IBM Plex Mono、英文片名 Barlow。
+// 网页画之前会等这些字体载入（js/tickets.js 的 ticketFonts）；小程序与没有网络时退回系统宋体 / 苹方。
+const SANS='"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif';
+const SERIF='"Noto Serif SC","Songti SC","STSong","SimSun",serif';
+const MONO='"IBM Plex Mono",ui-monospace,Menlo,monospace';
+const LATIN='"Barlow","Helvetica Neue",Arial,sans-serif';
 const WALL_PAGE=12;
 const finishes = {
   holo:    {label:"虹彩镭射箔", kind:"spectrum", stops:["#b58a59","#f5c1e6","#81ece0","#b5b9ff","#fff1a8","#c99aaa"], width:2.05},
@@ -367,23 +370,53 @@ function record(key,filmId,view,entry,base,date) {
   row.key=key; row.linked=!!view; row.arts=b.arts||[]; row.director=b.director||"";
   return row;
 }
+// 和观影护照对齐：一部电影一张票根（护照是一部电影一枚印章）。
+// - 同一部电影有多张已收藏的票根（重看、旧数据）时只显示最近保存的一张，其余留在存储里不删除；
+// - 还没做票根的电影进「待制作」，用最近一次观影；
+// - 不对应观影记录的票根（改过观影日期、旧版迁移、手工新建）先由 reconcile 挪到这部电影上；
+//   这部电影已不在护照里时不显示（存储保留，重新盖章后回来）。
 function build(list,store,base) {
-  const tickets=[], pending=[], linked=new Set();
-  for (const item of list) {
-    linked.add(item.key);
-    const entry=store[item.key];
-    if (entry && !entry.del) {
-      const row=record(item.key,item.filmId,item.view,entry,base,item.view.d);
-      if (row) tickets.push(row);
-    } else pending.push(item);
+  const tickets=[], pending=[], byFilm=new Map(), linked=new Set();
+  for (const item of list) {linked.add(item.key);if (!byFilm.has(item.filmId)) byFilm.set(item.filmId,[]);byFilm.get(item.filmId).push(item);}
+  let hidden=0;
+  for (const [filmId,items] of byFilm) {
+    const live=items.filter(item=>store[item.key] && !store[item.key].del);
+    if (live.length) {
+      live.sort((x,y)=>(store[y.key].t||0)-(store[x.key].t||0) || y.view.d.localeCompare(x.view.d));
+      const item=live[0], row=record(item.key,filmId,item.view,store[item.key],base,item.view.d);
+      if (row) {row.views=items.length;tickets.push(row);}
+      hidden+=live.length-1;
+    } else pending.push(items.reduce((x,y)=>y.view.d>x.view.d?y:x));
   }
   for (const key of Object.keys(store)) {
-    const entry=store[key], parsed=parseKey(key);
-    if (linked.has(key) || !entry || entry.del || !parsed) continue;
-    const row=record(key,parsed.filmId,null,entry,base,parsed.date);
-    if (row) tickets.push(row);
+    const entry=store[key];
+    if (!linked.has(key) && entry && !entry.del && parseKey(key)) hidden++;
   }
-  return {tickets:sorted(tickets),pending:pending.sort((a,b)=>b.view.d.localeCompare(a.view.d) || a.key.localeCompare(b.key))};
+  return {tickets:sorted(tickets),pending:pending.sort((a,b)=>b.view.d.localeCompare(a.view.d) || a.key.localeCompare(b.key)),hidden};
+}
+// 还没盖章的电影新建票根时的草稿（不对应观影记录，所以不经过 build）
+function draft(key,entry,base) {const p=parseKey(key);return p ? record(key,p.filmId,null,entry||{t:Date.now()},base,p.date) : null;}
+// 不对应观影记录的票根挪到同一部电影上（这部电影还没有票根时）：返回要写入存储的改动，没有就返回 null。
+// 只挪不删：原键留删除标记，内容原样搬到这部电影最近一次观影的键上，随同步传到其他设备。
+function reconcile(list,store,now) {
+  const linked=new Set(list.map(item=>item.key)), has=new Set(), latest=new Map(), changes={};
+  for (const item of list) {
+    if (store[item.key] && !store[item.key].del) has.add(item.filmId);
+    const cur=latest.get(item.filmId);
+    if (!cur || item.view.d>cur.view.d) latest.set(item.filmId,item);
+  }
+  const orphans=Object.keys(store).filter(key=>!linked.has(key) && store[key] && !store[key].del && parseKey(key))
+    .sort((a,b)=>(store[b].t||0)-(store[a].t||0));
+  let n=0;
+  for (const key of orphans) {
+    const filmId=parseKey(key).filmId, target=latest.get(filmId);
+    if (!target || has.has(filmId)) continue;
+    const gone=store[target.key];                       // 用户后来亲手移出过这张，就不再挪回来
+    if (gone && gone.del && (gone.t||0)>=(store[key].t||0)) continue;
+    const t=Math.max(now||Date.now(),(store[key].t||0)+1);
+    changes[target.key]={...store[key],t};changes[key]={del:1,t};has.add(filmId);n++;
+  }
+  return n ? changes : null;
 }
 // 编辑后的完整记录 → 只存和推导值不同的字段
 function entryFrom(row,base,t) {
@@ -458,6 +491,8 @@ function text(surface,StringValue,x,y,opts={}) {
   if (width>max) size=Math.max(Math.min(23,size),size*max/width);
   surface.font=`${weight} ${size}px ${font}`;
   surface.textAlign=align;
+  const spaced=opts.spacing && "letterSpacing" in surface;   // 英文字距；不支持的画布（部分小程序）照常绘制
+  if (spaced) surface.letterSpacing=opts.spacing+"px";
   if (opts.relief) {
     surface.fillStyle=opts.relief;
     surface.fillText(value,x+1.7,y+2.4,max);
@@ -466,6 +501,7 @@ function text(surface,StringValue,x,y,opts={}) {
   }
   surface.fillStyle=ink;
   surface.fillText(value,x,y,max);
+  if (spaced) surface.letterSpacing="0px";
 }
 
 // 片名：实体票根的激凸压印。投影 + 下缘暗边 + 上缘高光做出凸起；字面随工艺变化——
@@ -476,10 +512,10 @@ function embossTitle(surface,title,x,y,{accent,dark,finish,scale=1,createCanvas}
   const value=title.replace(/\s+/gu," ").trim(),max=359,metal=finishes[finish]||finishes.matte;
   let size=55;
   surface.save();
-  surface.font=`700 ${size}px ${SERIF}`;
+  surface.font=`900 ${size}px ${SERIF}`;
   const measured=surface.measureText(value).width;
   if (measured>max) size=Math.max(23,size*max/measured);
-  surface.font=`700 ${size}px ${SERIF}`;surface.textAlign="center";
+  surface.font=`900 ${size}px ${SERIF}`;surface.textAlign="center";
   const width=Math.min(max,surface.measureText(value).width),left=x-width/2,top=y-size*.86,bottom=y+size*.12;
   const fill=(color,dx,dy)=>{surface.fillStyle=color;surface.fillText(value,x+dx,y+dy,max);};
   // 1 柔和投影（shadowBlur 以设备像素计，按缩放换算）
@@ -742,9 +778,9 @@ function draw(surface,record,side,image,rect,createCanvas,light) {
     drawMedallion(surface,{motif,finish,seed:hashAppearance(record.id)},dark);
     const year=record.programme.match(/^\d{4}/)?.[0] || record.date.slice(0,4);
     const centre={align:"center",ink:bright};
-    text(surface,year || "麻雀",W/2,295,{...centre,size:36,weight:700,font:year ? MONO : SERIF,max:132,relief:edge});
+    text(surface,year || "麻雀",W/2,295,{...centre,size:36,weight:year?600:900,font:year ? MONO : SERIF,max:132,relief:edge});
     const heading=(year && record.programme.startsWith(year) ? record.programme.slice(4).trim() : record.programme) || "我的观影收藏";
-    text(surface,heading,W/2,511,{...centre,size:38,weight:700,font:SERIF,max:347,relief:edge,light:bright+"a0"});
+    text(surface,heading,W/2,511,{...centre,size:38,weight:900,font:SERIF,max:347,relief:edge,light:bright+"a0"});
     if (record.section) text(surface,record.section,W/2,552,{...centre,size:17,max:326});
     rule(surface,601,bright+"75",59,W-59);
     text(surface,record.title,W/2,652,{...centre,size:21,weight:650,max:331});
@@ -767,14 +803,14 @@ function draw(surface,record,side,image,rect,createCanvas,light) {
     } else {
       surface.strokeStyle=foilGradient(surface,x,y,x+w,y+h,finish);surface.lineWidth=1;
       for (let i=0;i<6;i++) surface.strokeRect(x+24+i*9,y+24+i*9,w-48-i*18,h-48-i*18);
-      text(surface,record.title,W/2,y+h/2,{align:"center",font:SERIF,size:30,weight:700,ink:bright,max:w-130});
+      text(surface,record.title,W/2,y+h/2,{align:"center",font:SERIF,size:30,weight:900,ink:bright,max:w-130});
     }
     surface.strokeStyle=foilGradient(surface,x,y+h,x+w,y,finish);
     surface.lineWidth=metal.width;surface.strokeRect(x-.8,y-.8,w+1.6,h+1.6);
     surface.lineWidth=.48;surface.strokeRect(x-3,y-3,w+6,h+6);
     embossTitle(surface,record.title,W/2,506,{accent,dark,finish,scale:rect.w/W,createCanvas});
     if (record.subtitle && record.subtitle.toLowerCase()!==record.title.toLowerCase()) {
-      text(surface,record.subtitle.toUpperCase(),W/2,538,{size:12,align:"center",ink:"#554b40"});
+      text(surface,record.subtitle.toUpperCase(),W/2,540,{size:12.5,weight:600,font:LATIN,spacing:2.2,align:"center",ink:"#5b5046",max:340});
     }
     rule(surface,561,accent+"58");
     text(surface,"放映日期",28,587,{size:12});
@@ -837,7 +873,7 @@ function drawWall(surface,records,side,images,caption,createCanvas,title,maxWidt
   background.addColorStop(0,"#383d35");background.addColorStop(1,"#1b231e");
   surface.fillStyle=background;surface.fillRect(0,0,width,height);
   text(surface,"麻雀观影护照",64,69,{size:22,ink:"#d6bd91",weight:650});
-  text(surface,title||"我的票根收藏册",62,144,{size:58,font:SERIF,ink:"#f5ebd5",weight:700,max:width-125});
+  text(surface,title||"我的票根收藏册",62,144,{size:58,font:SERIF,ink:"#f5ebd5",weight:900,max:width-125});
   text(surface,caption||`${records.length} 张 · ${side==="back" ? "背面" : "正面"}`,width-64,178,{size:22,align:"right",ink:"#e5d6bc",max:width-128});
   rule(surface,height-66,"#d5bb895c",64,width-64);
   text(surface,"SPARROW CINEMA",width/2,height-32,{size:17,font:MONO,ink:"#e5d6bc",align:"center"});
@@ -854,5 +890,5 @@ function drawWall(surface,records,side,images,caption,createCanvas,title,maxWidt
 
 const shineOf=key=>{const f=finishes[key]||finishes.matte;return {kind:f.kind,highlight:f.stops[f.stops.length-2]};};
 return {W,H,WALL_PAGE,MOSAIC_MAX,FACETS,options:labelOptions(),sanitize,read,sorted,defaults,randomLook,shineOf,draw,wallLayout,drawWall,
-  ticketKey,parseKey,cleanStore,mergeStore,packLook,unpackLook,normArt,viewings,build,entryFrom,migrateV1,filterTickets,facetCounts,groupByMonth,swatch};
+  ticketKey,parseKey,cleanStore,mergeStore,packLook,unpackLook,normArt,viewings,build,reconcile,draft,entryFrom,migrateV1,filterTickets,facetCounts,groupByMonth,swatch};
 });

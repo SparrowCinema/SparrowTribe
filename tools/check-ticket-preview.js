@@ -116,6 +116,13 @@ const flush=async()=>{for(let n=0;n<20;n++){await new Promise(r=>setImmediate(r)
   page.store();
   const saved=Object.entries(store['sk-tickets-v2']||{}).find(([k])=>k.startsWith(film.id+'|'));
   assert(saved&&saved[1].st==='7排7座'&&saved[1].tm&&saved[1].sk===undefined,'saved only the changed fields');assert.equal(navigatedBack,1);
+  // 一部电影一张票根、和护照同步：给没盖章的电影做票根时同时盖章，票根键就是这次观影的键
+  const stampRec=(store['sk-watched-v1']||{})[film.id];
+  assert(stampRec&&!stampRec.del,'saving a ticket stamps the passport');assert.equal(saved[0],film.id+'|'+stampRec.d);
+  assert(toasts.includes('已同时盖章 · 加入观影护照'));
+  // 再从收藏册点这部电影：打开已有的这张，不再新建第二张
+  const pageB={...options,data:JSON.parse(JSON.stringify(options.data)),setData:page.setData};
+  pageB.onLoad({film:film.id});await flush();assert(pageB.data.existing&&pageB.data.linked,'reopens the existing ticket');
   // 再次打开已收藏的票根：编辑模式，导出 PNG 不带预览高光
   const page2={...options,data:JSON.parse(JSON.stringify(options.data)),setData:page.setData};
   page2.onLoad({key:encodeURIComponent(saved[0])});await flush();
