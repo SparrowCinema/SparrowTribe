@@ -288,7 +288,6 @@ insert into sparrow_taste.films(id) values
 ('obsession'),
 ('oh-this-unspeakable-void'),
 ('once-upon-a-time-in-the-middle-east'),
-('orange-flavoured-wedding'),
 ('our-girls'),
 ('papa'),
 ('parallel-tales'),
