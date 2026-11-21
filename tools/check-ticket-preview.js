@@ -34,7 +34,7 @@ const files=new Map();let fileN=0;
 const worker={ctx:ctx2d(),width:0,height:0,getContext(){return this.ctx;},createImage(){const im={};setTimeout(()=>im.onload&&im.onload(),0);return im;}};
 const exporter={ctx:ctx2d(),width:0,height:0,getContext(){return this.ctx;},createImage(){const im={};setTimeout(()=>im.onload&&im.onload(),0);return im;}};
 const Art=require('../miniprogram/utils/ticket-sketch');
-const store={[Art.storageKey]:'woodcut'};let navigatedBack=0,toasts=[];
+const store={[Art.storageKey]:'watercolor'};let navigatedBack=0,toasts=[];
 const timers=[];
 const wx={
   getStorageSync:k=>store[k]===undefined?'':JSON.parse(JSON.stringify(store[k])),setStorageSync:(k,v)=>{store[k]=JSON.parse(JSON.stringify(v));},removeStorageSync:k=>{delete store[k];},
@@ -60,7 +60,7 @@ const flush=async()=>{for(let n=0;n<20;n++){await new Promise(r=>setImmediate(r)
 (async()=>{
   // 没有观影记录：新建手工票根，正反面都画成图片
   page.onLoad({film:film.id});await flush();
-  assert.equal(page._artStyle,'woodcut');
+  assert.equal(page._artStyle,'watercolor');
   assert(page.data.ok&&!page.data.existing&&!page.data.linked);
   assert(files.get(page.data.frontImg).includes('纪念票根'),'front face rendered to an image');
   assert(files.get(page.data.backImg).includes('收藏票根'),'back face rendered to an image');
@@ -80,39 +80,39 @@ const flush=async()=>{for(let n=0;n<20;n++){await new Promise(r=>setImmediate(r)
   const choose=(id)=>page.pickArtStyle({detail:{value:String(Art.filmStyleOptions.findIndex(style=>style.id===id))}});
   choose('doodle');await flush();
   assert.equal(Art.readFilmStyles(wx.getStorageSync).get(film.id),'doodle');
-  assert.equal(store[Art.storageKey],'woodcut');
+  assert.equal(store[Art.storageKey],'watercolor');
   assert.equal(page.data.artStyleLabels.length,Art.styles.length+1);
   assert.equal(page.data.front,true);
   assert.notEqual(page.data.frontImg,originalFront,'style must be part of the preview image cache key');
   assert.equal(page.data.backImg,originalBack);
   assert.equal(page.data.draft.crop,crop);
   // 翻面途中连续选风格，只展示最后的选择。
-  page.flip();choose('watercolor');choose('blue-ink');await flush();
+  page.flip();choose('kid-crayon');choose('pop-dots');await flush();
   assert.equal(page.data.front,true);
-  assert.equal(page._artStyle,'blue-ink');
-  assert.equal(Art.readFilmStyles(wx.getStorageSync).get(film.id),'blue-ink');
-  assert.equal(store[Art.storageKey],'woodcut');
+  assert.equal(page._artStyle,'pop-dots');
+  assert.equal(Art.readFilmStyles(wx.getStorageSync).get(film.id),'pop-dots');
+  assert.equal(store[Art.storageKey],'watercolor');
   assert.equal(page.data.backImg,originalBack);
   // 返回收藏册时，即使票根数据未修改，也更新样式和缩略图。
   const albumDir=path.join(__dirname,'../miniprogram/packages/collect/tickets');
   let albumOptions;
   const albumSandbox={...sandbox,Page:o=>{albumOptions=o;},require:name=>require(path.join(albumDir,name))};
   vm.runInNewContext(fs.readFileSync(path.join(albumDir,'tickets.js'),'utf8'),albumSandbox,{filename:'tickets.js'});
-  const album={...albumOptions,data:{...albumOptions.data,artStyle:'woodcut',front:false},setData:page.setData,
+  const album={...albumOptions,data:{...albumOptions.data,artStyle:'watercolor',front:false},setData:page.setData,
     _filmStyles:new Map(),_shownOnce:true,_rev:require('../miniprogram/utils/ticketstore').rev(),paint(){this.painted=true;}};
   album.onShow();
   assert.equal(album.data.front,false,'changing one film does not change the album side');
-  assert.equal(album.data.artStyle,'woodcut');
+  assert.equal(album.data.artStyle,'watercolor');
   const otherFilm=films.find(item=>item.id!==film.id);
-  assert.equal(album.styleFor({filmId:film.id}),'blue-ink');
-  assert.equal(album.styleFor({filmId:otherFilm.id}),'woodcut');
+  assert.equal(album.styleFor({filmId:film.id}),'pop-dots');
+  assert.equal(album.styleFor({filmId:otherFilm.id}),'watercolor');
   const otherPage={...options,data:JSON.parse(JSON.stringify(options.data)),setData:page.setData};
   otherPage.onLoad({film:otherFilm.id});await flush();
-  assert.equal(otherPage._artStyle,'woodcut');
+  assert.equal(otherPage._artStyle,'watercolor');
   assert.equal(otherPage.data.artStyleIndex,0);
-  album.pickArtStyle({detail:{value:String(Art.styles.findIndex(style=>style.id==='cartoon'))}});
-  assert.equal(album.styleFor({filmId:film.id}),'blue-ink');
-  assert.equal(album.styleFor({filmId:otherFilm.id}),'cartoon');
+  album.pickArtStyle({detail:{value:String(Art.styles.findIndex(style=>style.id==='memphis'))}});
+  assert.equal(album.styleFor({filmId:film.id}),'pop-dots');
+  assert.equal(album.styleFor({filmId:otherFilm.id}),'memphis');
   assert(album.painted,'the album refreshes even when no ticket record changed');
   // 在背面拖动裁切会翻回正面
   page.flip();await flush();
@@ -138,7 +138,7 @@ const flush=async()=>{for(let n=0;n<20;n++){await new Promise(r=>setImmediate(r)
   const page2={...options,data:JSON.parse(JSON.stringify(options.data)),setData:page.setData};
   page2.onLoad({key:encodeURIComponent(saved[0])});await flush();
   assert(page2.data.existing);assert.equal(page2.data.draft.seat,'7排7座');
-  assert.equal(page2._artStyle,'blue-ink');
+  assert.equal(page2._artStyle,'pop-dots');
   // 裁切后就地保存：不离开详情页，再打开时保持新的裁切
   assert.equal(page2.data.artDirty,false,'nothing to save right after opening');
   page2.changeField({currentTarget:{dataset:{field:'crop'}},detail:{value:83}});await flush();
@@ -151,9 +151,9 @@ const flush=async()=>{for(let n=0;n<20;n++){await new Promise(r=>setImmediate(r)
   await page2.exportSingle();await flush();
   assert(exporter.ctx.labels.includes('纪念票根'));
   page2.pickArtStyle({detail:{value:'0'}});await flush();
-  assert.equal(page2._artStyle,'cartoon');
+  assert.equal(page2._artStyle,'memphis');
   assert.equal(Art.readFilmStyles(wx.getStorageSync).has(film.id),false);
-  assert.equal(store[Art.storageKey],'cartoon');
+  assert.equal(store[Art.storageKey],'memphis');
   page2.remove();assert(store['sk-tickets-v2'][saved[0]].del);
   console.log('PASS: ticket editor page — native scrolling/back, image preview with CSS 3D flip & tilt, shuffle redraw, show picker, per-film artwork styles and album fallback, crop flips to front, crop save-in-place, save, export, remove.');
 })().catch(e=>{console.error(e);process.exitCode=1;});
