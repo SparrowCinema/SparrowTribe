@@ -100,7 +100,7 @@
         <view class="al-preview">
           <canvas type="2d" id="ticket-editor" class="al-editor-canvas" bindtap="flipEditor"
             aria-role="button" aria-label="{{L.t(i,'翻面')}}"
-            bindtouchstart="startEditorTouch" bindtouchmove="moveEditorTouch"
+            bindtouchstart="startEditorTouch" catchtouchmove="moveEditorTouch"
             bindtouchend="endEditorTouch" bindtouchcancel="endEditorTouch" />
         </view>
         <button class="al-alt" bindtap="flipEditor">{{L.t(i,editFront?'翻到背面':'翻回正面')}}</button>

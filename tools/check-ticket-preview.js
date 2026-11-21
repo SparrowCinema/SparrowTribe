@@ -3,19 +3,28 @@ const fs=require('node:fs');
 const path=require('node:path');
 const vm=require('node:vm');
 const tickets=require('../miniprogram/utils/tickets');
+const previewModule=require('../miniprogram/utils/ticket-preview');
 const pagePath=path.join(__dirname,'../miniprogram/pages/tickets');
 
 const template=fs.readFileSync(path.join(pagePath,'tickets.wxml'),'utf8');
 assert.equal((template.match(/class="al-editor-canvas"/g)||[]).length,1);
 assert.match(template,/<canvas [^>]*id="ticket-editor"[^>]*bindtap="flipEditor"/);
+assert.match(template,/catchtouchmove="moveEditorTouch"/);
 
+let rejectCanvasImage=false;
 function drawingContext(){
-  const ctx={labels:[],lights:[],scales:[]};
-  const gradient={addColorStop(){}};
+  const ctx={labels:[],lights:[],colors:[],transforms:[]};
+  const gradient={addColorStop(_,color){ctx.colors.push(color);}};
   return new Proxy(ctx,{get(target,key){
-    if(key==='clearRect')return ()=>{target.labels=[];target.lights=[];target.scales=[];};
+    if(key==='clearRect')return ()=>{target.labels=[];target.lights=[];target.colors=[];target.transforms=[];};
     if(key==='fillText')return label=>target.labels.push(label);
-    if(key==='scale')return (x,y)=>target.scales.push([x,y]);
+    if(key==='transform')return (...values)=>target.transforms.push(values);
+    if(key==='drawImage')return source=>{
+      if(!source.frame)return;
+      if(rejectCanvasImage)throw Error('Canvas image source unsupported');
+      const {labels,lights,colors}=source.frame;
+      Object.assign(target,{labels:[...labels],lights:[...lights],colors:[...colors]});
+    };
     if(key==='measureText')return label=>({width:label.length*12});
     if(key==='createLinearGradient')return ()=>gradient;
     if(key==='createRadialGradient')return (x,y)=>{target.lights.push([x,y]);return gradient;};
@@ -41,7 +50,7 @@ const wx={
       cb([{node:selected==='#ticket-editor'?node:exportNode}]);
     }};
   },
-  createOffscreenCanvas:()=>({getContext:drawingContext}),
+  createOffscreenCanvas(){const frame=drawingContext();return {frame,getContext:()=>frame};},
   showLoading(){},hideLoading(){},showActionSheet(){},
   canvasToTempFilePath({canvas,fileType,success}){
     assert.equal(canvas,exportNode);assert.equal(fileType,'png');
@@ -51,7 +60,7 @@ const wx={
 };
 vm.runInNewContext(fs.readFileSync(path.join(pagePath,'tickets.js'),'utf8'),{
   Page:page=>{options=page;},getApp:()=>({}),
-  require:name=>name.endsWith('/tickets.js')?tickets:{tr:text=>text},
+  require:name=>name.endsWith('/tickets.js')?tickets:name.endsWith('/ticket-preview.js')?previewModule:{tr:text=>text},
   wx,setTimeout,clearTimeout,Date:{now:()=>now}
 });
 
@@ -67,29 +76,40 @@ vm.runInNewContext(fs.readFileSync(path.join(pagePath,'tickets.js'),'utf8'),{
   };
   await page.drawEditor();
   assertFace('front');
-  const rest=preview.lights.at(-1);
+  const rest=preview.lights.at(-1),restRainbow=preview.colors.filter(color=>color.startsWith('hsla'));
   assert.deepEqual(rest,[.42*tickets.W,.35*tickets.H]);
+  assert.equal(new Set(restRainbow).size,5);
+  const assertPerspective=()=>{
+    const verticalScales=preview.transforms.map(matrix=>matrix[3]);
+    assert(Math.max(...verticalScales)-Math.min(...verticalScales)>.05,
+      'near and far sides must project at different heights');
+  };
   page.moveEditorTouch({touches:[{x:90,y:160}]});
   advance(16);
   assert.deepEqual(preview.lights.at(-1),[.9*tickets.W,.8*tickets.H]);
+  assert.notDeepEqual(preview.colors.filter(color=>color.startsWith('hsla')),restRainbow);
+  assertPerspective();
   page.endEditorTouch();
   advance(16);
   assert.deepEqual(preview.lights.at(-1),rest);
   page.flipEditor();
-  advance(120);assertFace('front');
-  assert(preview.scales[0][0]<630/tickets.W,'card narrows before swapping sides');
-  advance(80);assertFace('back');
+  advance(170);assertFace('front');assertPerspective();
+  advance(100);assertFace('back');assertPerspective();
   assert.equal(page.data.editFront,false);
-  advance(180);assertFace('back');
-  assert.equal(preview.scales[0][0],630/tickets.W);
+  advance(250);assertFace('back');
   pendingImage.onload();await Promise.resolve();
   assertFace('back');
   await page.export(true);
   assert(exportedFace.includes('收藏票根'));
   assert.equal(exportContext.lights.length,0,'preview reflection stays out of the exported PNG');
   page.flipEditor();
-  advance(190);assertFace('front');
-  advance(190);assertFace('front');
+  advance(270);assertFace('front');assertPerspective();
+  advance(250);assertFace('front');
   assert.equal(page.data.editFront,true);
-  console.log('PASS: native editor uses one canvas, swaps both ways, blocks late image overwrites and paints touch highlights.');
+  rejectCanvasImage=true;
+  page.moveEditorTouch({touches:[{x:90,y:160}]});
+  advance(16);
+  assertFace('front');assertPerspective();
+  assert(preview.colors.some(color=>color.startsWith('hsla')),'direct drawing keeps the rainbow');
+  console.log('PASS: one canvas, reversible perspective flip, moving rainbow, late-poster guard, direct-render fallback and still PNG.');
 })().catch(error=>{console.error(error);process.exitCode=1;});
