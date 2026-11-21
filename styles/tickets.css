@@ -40,6 +40,16 @@
 /* 2026-11-21 高光只在指针 / 手指移动时出现（data-glare），静止或松手淡出；手指在票根上滑动只倾斜票根，页面不滚动 */
 .ticket-flip:not([data-glare]) .ticket-face::after{opacity:0;transition-duration:.35s}
 .ticket-stage .ticket-flip,.te-stage .ticket-flip{touch-action:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+/* 2026-11-22 票根详情 360° 转动：转动由 js/tickets.js 的 ticketTurner 直接写在 .ticket-turn 上；两面贴在有厚度的纸上，侧边是纸色窄条（撕线缺口处断开） */
+.te-stage .ticket-flip{transform:none;transition:none;perspective:1100px;cursor:grab}
+.te-stage .ticket-flip:active{cursor:grabbing}
+.te-stage .ticket-front{transform:translateZ(1.5px)}
+.te-stage .ticket-back{transform:rotateY(180deg) translateZ(1.5px)}
+.ticket-edge{position:absolute;width:3px;margin-left:-1.5px;background:linear-gradient(90deg,#0000003a,#ffffff2e 50%,#00000047),var(--edge,#d8cdb8);transform:rotateY(90deg)}
+.ticket-edge.te-l1,.ticket-edge.te-r1{top:.9%;height:78.6%}
+.ticket-edge.te-l2,.ticket-edge.te-r2{top:82.1%;height:17%}
+.ticket-edge.te-l1,.ticket-edge.te-l2{left:0}
+.ticket-edge.te-r1,.ticket-edge.te-r2{left:100%}
 .ticket-blind-box{margin:0;padding:0;border:0;min-width:0;display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
 .ticket-blind-box legend{padding:0;margin:0 auto 8px;color:#f4ead4;font-size:.82rem;font-weight:700}
 .ticket-edit-head{margin:0 0 12px}

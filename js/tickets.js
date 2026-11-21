@@ -455,7 +455,8 @@ function ticketEditor(row){
   return `<div class="te">
     <div class="te-stage"><button type="button" data-ticket-action="flip" class="ticket-flip" data-side="${ticketDraft.side}" aria-label="${ticketDict("翻面")}">
       <span class="ticket-turn"><span class="ticket-face ticket-front"><canvas width="630" height="1296" id="ticket-preview-front" aria-hidden="true"></canvas></span>
-      <span class="ticket-face ticket-back"><canvas width="630" height="1296" id="ticket-preview-back" aria-hidden="true"></canvas></span></span></button>
+      <span class="ticket-face ticket-back"><canvas width="630" height="1296" id="ticket-preview-back" aria-hidden="true"></canvas></span>
+      <span class="ticket-edge te-l1"></span><span class="ticket-edge te-l2"></span><span class="ticket-edge te-r1"></span><span class="ticket-edge te-r2"></span></span></button>
       ${assets.length?`<div class="te-art">
         <label class="te-crop"><span>${ticketDict("裁切")}</span><input class="te-range" type="range" min="0" max="100" name="crop" value="${row.crop}" aria-label="${ticketDict("裁切位置")}"></label>
         ${assets.length>1?`<select class="te-art-pick" name="art" aria-label="${ticketDict("票面图像")}">${assets.map((a,i)=>ticketOption(a,`${tr(i===0?"海报":"备用图像")} ${i+1}`,row.art)).join("")}</select>`:""}
@@ -481,32 +482,62 @@ function ticketEditor(row){
 function ticketEditorMount(){
   ticketDrawEditor();
   const card=main.querySelector(".ticket-flip");if(!card)return;
-  // 倾斜 + 高光：高光只在指针移动时出现，停下约半秒或离开就淡出，不再停在图案上把它冲白。
-  // 触屏上手指滑动只倾斜票根（CSS touch-action:none），页面不跟着滚；滑动过的那次松手不算点击翻面。
-  let start=null,dragged=false,idle=0;
-  const glareOff=()=>{clearTimeout(idle);delete card.dataset.glare;};
-  const tilt=e=>{
-    if(!e.isPrimary)return;
-    if(start&&Math.hypot(e.clientX-start.x,e.clientY-start.y)>8)dragged=true;
-    const rect=card.getBoundingClientRect(),limit=value=>Math.max(0,Math.min(value,1));
-    const x=limit((e.clientX-rect.left)/rect.width),y=limit((e.clientY-rect.top)/rect.height);
-    card.style.setProperty("--tx",`${(0.5-y)*13}deg`);card.style.setProperty("--ty",`${(x-0.5)*17}deg`);
-    card.style.setProperty("--gx",`${(1-x)*100}%`);card.style.setProperty("--gy",`${(1-y)*100}%`);
-    card.dataset.glare="";clearTimeout(idle);idle=setTimeout(glareOff,450);
+  card.ticketTurn=ticketTurner(card);
+}
+// 360° 转动（与小程序 packages/collect/ticket-edit/turn.wxs 同一套规则，改这里记得同步那边）：
+// 左右随便转；上下最多倾斜 65°；松手按甩动速度带一点惯性，再慢慢转回最近的正面或背面；轻点翻面（走原来的 flip 动作）。
+// 高光跟着角度走：正对时不亮，越斜反光越往一边移；只在拖动时出现，停下淡出。
+// 触屏上手指在票根上滑动只转票根（CSS touch-action:none），页面不跟着滚；拖动过的那次松手不算点击。
+function ticketTurner(card){
+  const turn=card.querySelector(".ticket-turn"),REST_X=-2,REST_Y=-4,DEG_X=.45,DEG_Y=.35,TILT=65;
+  const still=matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let ry=(ticketDraft?.side==="back"?180:0)+REST_Y,rx=REST_X,start=null,dragged=false,samples=[],fade=0;
+  const face=y=>Math.round((y-REST_Y)/180),sideOf=y=>((face(y)%2)+2)%2?"back":"front";
+  const paint=(ms,lit)=>{
+    turn.style.transition=ms&&!still?`transform ${ms}ms cubic-bezier(.18,.8,.25,1)`:"none";
+    turn.style.transform=`rotateX(${rx}deg) rotateY(${ry}deg)`;
+    const rel=(ry-REST_Y-face(ry)*180)*Math.PI/180,tilt=(rx-REST_X)*Math.PI/180;
+    card.style.setProperty("--gx",`${Math.round(50+Math.sin(rel)*90)}%`);card.style.setProperty("--gy",`${Math.round(32-Math.sin(tilt)*90)}%`);
+    clearTimeout(fade);
+    if(lit)card.dataset.glare="";else fade=setTimeout(()=>delete card.dataset.glare,Math.min(ms||0,250));
   };
-  const untilt=()=>{glareOff();start=null;["--tx","--ty","--gx","--gy"].forEach(key=>card.style.removeProperty(key));};
-  card.addEventListener("pointermove",tilt);
-  card.addEventListener("pointerdown",e=>{if(!e.isPrimary)return;start={x:e.clientX,y:e.clientY};dragged=false;});
-  card.addEventListener("pointerup",e=>{if(e.pointerType!=="mouse")untilt();else start=null;});
-  card.addEventListener("pointerleave",untilt);
-  card.addEventListener("pointercancel",untilt);
+  const settle=target=>{
+    const ms=Math.round(Math.min(900,380+Math.abs(target-ry)*1.6));
+    ry=target;rx=REST_X;paint(ms,false);
+    const side=sideOf(ry);
+    if(ticketDraft&&side!==ticketDraft.side){ticketDraft.side=side;ticketSideTabs(side);}
+  };
+  paint(0,false);
+  card.addEventListener("pointerdown",e=>{
+    if(!e.isPrimary||e.button>0)return;
+    start={x:e.clientX,y:e.clientY,ry,rx};dragged=false;samples=[{t:performance.now(),ry}];
+    try{card.setPointerCapture(e.pointerId);}catch{}
+  });
+  card.addEventListener("pointermove",e=>{
+    if(!start||!e.isPrimary)return;
+    const dx=e.clientX-start.x,dy=e.clientY-start.y;
+    if(!dragged&&Math.abs(dx)+Math.abs(dy)<6)return;
+    dragged=true;
+    ry=start.ry+dx*DEG_X;rx=Math.max(-TILT,Math.min(TILT,start.rx-dy*DEG_Y));
+    const t=performance.now();samples.push({t,ry});while(samples.length>2&&t-samples[0].t>100)samples.shift();
+    paint(0,true);
+  });
+  const release=e=>{
+    if(!start)return;start=null;
+    if(!dragged)return;
+    const a=samples[0],b=samples[samples.length-1],dt=b.t-a.t;
+    const v=dt>0&&performance.now()-b.t<80?(b.ry-a.ry)/dt:0;
+    settle(face(ry+Math.max(-360,Math.min(360,v*250)))*180+REST_Y);
+  };
+  card.addEventListener("pointerup",release);card.addEventListener("pointercancel",release);
   card.addEventListener("click",e=>{if(dragged){dragged=false;e.preventDefault();e.stopPropagation();}},true);
+  return {to(side){if(sideOf(ry)!==side)settle((face(ry)+1)*180+REST_Y);},side:()=>sideOf(ry)};
 }
 function ticketDrawEditor(){
   if(!ticketDraft)return;
   const card=main.querySelector(".ticket-flip");if(!card)return;
   const shine=TE.shineOf(ticketDraft.row.look.finish);
-  card.dataset.shine=shine.kind;card.style.setProperty("--metal-highlight",shine.highlight+"af");
+  card.dataset.shine=shine.kind;card.style.setProperty("--metal-highlight",shine.highlight+"af");card.style.setProperty("--edge",TE.edgeOf(ticketDraft.row));
   for(const side of ["front","back"])ticketRenderCard(main.querySelector("#ticket-preview-"+side),ticketDraft.row,side);
 }
 async function ticketRenderCard(canvas,row,side){
@@ -662,8 +693,13 @@ function ticketClick(e){
   }
 }
 function ticketFlipTo(side){
-  if(!ticketDraft)return;ticketDraft.side=side;
-  main.querySelector(".ticket-flip").dataset.side=side;
+  if(!ticketDraft)return;
+  const card=main.querySelector(".ticket-flip");
+  if(card?.ticketTurn)card.ticketTurn.to(side);
+  ticketDraft.side=side;ticketSideTabs(side);
+}
+function ticketSideTabs(side){
+  const card=main.querySelector(".ticket-flip");if(card)card.dataset.side=side;
   main.querySelectorAll("[data-ticket-side]").forEach(b=>b.setAttribute("aria-selected",b.dataset.ticketSide===side));
 }
 

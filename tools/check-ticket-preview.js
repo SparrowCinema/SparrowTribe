@@ -9,11 +9,46 @@ const wxml=fs.readFileSync(path.join(dir,'ticket-edit.wxml'),'utf8');
 const tixWxml=fs.readFileSync(path.join(__dirname,'../miniprogram/packages/collect/tickets/tickets.wxml'),'utf8');
 const app=JSON.parse(fs.readFileSync(path.join(__dirname,'../miniprogram/app.json'),'utf8'));
 
-// 独立页面：注册在 app.json；不用 page-container（它会锁住整页滚动）；2026-11-21 起票根上用 catchtouchmove：手指在票根上滑动只倾斜票根、页面不跟着滚，票根以外照常滚动
+// 独立页面：注册在 app.json；不用 page-container（它会锁住整页滚动）；票根上用 catchtouchmove：手指在票根上滑动只转票根、页面不跟着滚，票根以外照常滚动
+// 2026-11-22 起 360° 转动由 turn.wxs 在视图层跟手（不经过 setData）
 assert((app.subPackages||[]).some(p=>p.root==='packages/collect'&&p.pages.includes('ticket-edit/ticket-edit')),'ticket editor lives in the collect subpackage');
 assert(!/page-container/.test(wxml)&&!/page-container/.test(tixWxml),'no page-container scroll lock');
-assert.match(wxml,/id="te-card"[^>]*catchtouchmove="touchMove"/,'swiping on the ticket tilts it without scrolling the page');
-assert.match(wxml,/class="te-glow \{\{glowOn\?'on':''\}\}"/,'glare layer is hidden unless the finger is moving');
+assert.match(wxml,/<wxs src="\.\/turn\.wxs" module="T" \/>/);
+assert.match(wxml,/id="te-card"[^>]*turn="\{\{turnReq\}\}" change:turn="\{\{T\.request\}\}"/,'tabs and crop edits ask the view layer to turn');
+assert.match(wxml,/id="te-card"[^>]*bindtouchstart="\{\{T\.start\}\}" catchtouchmove="\{\{T\.move\}\}" bindtouchend="\{\{T\.end\}\}"/,'dragging turns the ticket in the view layer without scrolling the page');
+assert(!/bindtap="flip"/.test(wxml),'taps are handled by turn.wxs so a drag never also flips');
+assert.equal((wxml.match(/class="te-glow"/g)||[]).length,2,'each face carries its own glare');
+assert.equal((wxml.match(/class="te-edge /g)||[]).length,4,'paper edges on both long sides, split at the tear notch');
+// turn.wxs：左右随便转，上下最多 65°，松手按速度转回最近的一面，轻点翻面，页面请求转到指定一面
+{
+  let clock=1000;
+  const T=require('vm').runInNewContext(fs.readFileSync(path.join(dir,'turn.wxs'),'utf8')+';module.exports',{module:{exports:{}},getDate:()=>({getTime:()=>clock}),Math});
+  const styles={},calls=[],st={};
+  const comp=name=>({setStyle(v){styles[name]=v;}});
+  const owner={selectComponent:s=>comp(s),selectAllComponents:s=>[comp(s+'0'),comp(s+'1')],callMethod:(n,a)=>calls.push([n,JSON.parse(JSON.stringify(a))])};
+  const inst={getState:()=>st,getDataset:()=>({shine:'spectrum'})};
+  const ev=(x,y)=>({instance:inst,touches:x==null?[]:[{clientX:x,clientY:y}]});
+  const rot=()=>styles['.te-rot'].transform.match(/rotateX\((-?[\d.]+)deg\) rotateY\((-?[\d.]+)deg\)/).slice(1).map(Number);
+  T.request({side:'front',n:0,kind:'metal'},null,owner,inst);assert.deepEqual(rot(),[-2,-4]);
+  // 拖动：左右 200px = 90°，向上 400px 超过 65° 时卡住
+  T.start(ev(100,300),owner);clock+=16;T.move(ev(160,200),owner);clock+=16;T.move(ev(300,-100),owner);
+  assert.deepEqual(rot(),[65,86],'yaw follows the finger, pitch is capped at 65°');
+  assert.equal(styles['.te-rot'].transition,'none');assert.equal(styles['.te-glow0'].opacity,1,'glare shows while dragging');
+  assert.match(styles['.te-glow0'].background,/^radial-gradient\(circle at -?\d+% -?\d+%,rgba\(255,255,255,\.22\)/,'spectrum glare follows the finish');
+  T.end(ev(),owner);
+  assert.deepEqual(rot(),[-2,536],'a hard flick spins on (inertia capped at one turn) and settles on the back, level');
+  assert.match(styles['.te-rot'].transition,/^transform \d+ms cubic-bezier/);assert.equal(styles['.te-glow0'].opacity,0,'glare fades after release');
+  assert.deepEqual(calls.pop(),['turned',{front:false}]);
+  // 慢慢拖一点点再松手：转回原来那一面
+  T.start(ev(100,100),owner);clock+=200;T.move(ev(140,100),owner);clock+=200;T.end(ev(),owner);
+  assert.deepEqual(rot(),[-2,536]);assert.deepEqual(calls.pop(),['turned',{front:false}]);
+  // 轻点：翻到另一面
+  T.start(ev(100,100),owner);T.end(ev(),owner);assert.deepEqual(rot(),[-2,716]);assert.deepEqual(calls.pop(),['turned',{front:true}]);
+  // 页面请求：已在正面不动，要背面就转过去
+  T.request({side:'front',n:1},null,owner,inst);assert.deepEqual(rot(),[-2,716]);
+  T.request({side:'back',n:2},null,owner,inst);assert.deepEqual(rot(),[-2,896]);assert.deepEqual(calls.pop(),['turned',{front:false}]);
+  assert.equal(T.sideOf(-184),'back');assert.equal(T.sideOf(-364),'front');
+}
 assert.match(wxml,/<image[^>]*class="te-face"/);
 assert.match(wxml,/<picker[^>]*range="{{artStyleLabels}}"[^>]*bindchange="pickArtStyle"/,'ticket details offer hand-drawn styles');
 assert.match(tixWxml,/bindchange="pickArtStyle"/,'the album keeps its own entry to the same styles');
@@ -55,6 +90,8 @@ const sandbox={Page:o=>{options=o;},getApp:()=>({globalData:{data}}),wx,console,
   require:name=>require(path.join(dir,name))};
 vm.runInNewContext(fs.readFileSync(path.join(dir,'ticket-edit.js'),'utf8'),sandbox,{filename:'ticket-edit.js'});
 const page={...options,data:JSON.parse(JSON.stringify(options.data))};
+// 测试里没有视图层：模拟 turn.wxs 转完后回调 turned
+{const turnTo=page.turnTo;page.turnTo=function(side){turnTo.call(this,side);this.turned({front:side==='front'});};}
 page.setData=function(p,cb){for(const [k,v] of Object.entries(p)){const parts=k.replace(/\[(\d+)\]/g,'.$1').split('.');let o=this.data;for(let i=0;i<parts.length-1;i++)o=o[parts[i]];o[parts[parts.length-1]]=v;}cb&&cb();};
 const flush=async()=>{for(let n=0;n<20;n++){await new Promise(r=>setImmediate(r));while(timers.length)timers.shift()();}};
 
@@ -69,16 +106,9 @@ const flush=async()=>{for(let n=0;n<20;n++){await new Promise(r=>setImmediate(r)
   const before=page.data.frontImg;let changed=false;
   for(let i=0;i<5&&!changed;i++){page.shuffle();await flush();changed=page.data.frontImg!==before;}
   assert(changed,'shuffle produces a new preview image');
-  // 翻面：CSS 转到 90° → 换面 → 无动画跳到 -90° → 回到正常角度
-  page.flip();assert.equal(page.data.ry,90);assert(page.data.turning);
-  await flush();assert.equal(page.data.front,false);assert.equal(page.data.turning,false);assert.equal(page.data.snap,false);
-  // 倾斜与高光跟手
-  // 高光与手指镜像、只在滑动时出现，松手就隐藏（不再常驻在海报上把图案冲白）
-  assert.equal(page.data.glowOn,false,'no glare while idle');
-  page.touchStart({touches:[{clientX:100,clientY:100}]});
-  page.touchMove({touches:[{clientX:180,clientY:40}]});
-  assert(page.data.ry>5&&page.data.rx>3,'tilt follows the finger');assert.match(page.data.glowBg,/circle at 10% 90%/);assert.equal(page.data.glowOn,true);
-  page.touchEnd();assert.equal(page.data.ry,-4);assert.equal(page.data.glowOn,false,'glare fades on release');
+  // 翻面：页面发转动请求（序号递增），视图层转完回报正反面
+  const n0=page.data.turnReq.n;page.flip();assert.equal(page.data.turnReq.side,'back');assert.equal(page.data.turnReq.n,n0+1);
+  await flush();assert.equal(page.data.front,false);assert.match(page.data.edge,/^#[0-9a-f]{6}$/,'paper edge colour comes from the palette');
   // 只为这部影片保存手绘风格，单独重画配图，翻到正面。
   const originalFront=page.data.frontImg,originalBack=page.data.backImg,crop=page.data.draft.crop;
   const choose=(id)=>page.pickArtStyle({detail:{value:String(Art.filmStyleOptions.findIndex(style=>style.id===id))}});
@@ -174,5 +204,5 @@ const flush=async()=>{for(let n=0;n<20;n++){await new Promise(r=>setImmediate(r)
   album2.onShow();
   assert.deepEqual(album2.painted2,[false,96],'returning keeps the tickets already loaded');
   assert.deepEqual(scrolls,[1234],'returning restores the scroll position');
-  console.log('PASS: ticket editor page — native scrolling/back, image preview with CSS 3D flip & tilt, shuffle redraw, show picker, per-film artwork styles and album fallback, crop flips to front, crop save-in-place, save, export, remove; album keeps its place after saving.');
+  console.log('PASS: ticket editor page — native scrolling/back, image preview with 360° turning (turn.wxs), shuffle redraw, show picker, per-film artwork styles and album fallback, crop flips to front, crop save-in-place, save, export, remove; album keeps its place after saving.');
 })().catch(e=>{console.error(e);process.exitCode=1;});

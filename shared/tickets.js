@@ -484,6 +484,8 @@ function groupByMonth(rows) {
   return groups;
 }
 const swatch=row=>{const p=palettes[row.look?.palette]||palettes.ink;return {dark:p[1],mid:p[2],bright:p[4],stock:p[5],accent:p[7]};};
+// 360° 展示时票根侧面（纸边）的颜色：纸色略压暗，像卡纸的切边
+const edgeOf=row=>{const s=swatch(row);return HEX.test(s.stock)&&HEX.test(s.dark)?mixHex(s.dark,s.stock,.22):"#d8cdb8";};
 
 function text(surface,StringValue,x,y,opts={}) {
   const {font=SANS,align="left",ink="#26241f",weight=500,max=364}=opts;
@@ -907,6 +909,6 @@ function drawWall(surface,records,side,images,caption,createCanvas,title,maxWidt
 }
 
 const shineOf=key=>{const f=finishes[key]||finishes.matte;return {kind:f.kind,highlight:f.stops[f.stops.length-2]};};
-return {W,H,TITLE_FAMILY,WALL_PAGE,MOSAIC_MAX,FACETS,options:labelOptions(),sanitize,read,sorted,defaults,randomLook,shineOf,draw,wallLayout,drawWall,
+return {W,H,TITLE_FAMILY,edgeOf,WALL_PAGE,MOSAIC_MAX,FACETS,options:labelOptions(),sanitize,read,sorted,defaults,randomLook,shineOf,draw,wallLayout,drawWall,
   ticketKey,parseKey,cleanStore,mergeStore,packLook,unpackLook,normArt,viewings,build,reconcile,draft,entryFrom,migrateV1,filterTickets,facetCounts,groupByMonth,swatch};
 });

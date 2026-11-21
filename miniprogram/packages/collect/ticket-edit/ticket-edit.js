@@ -13,21 +13,11 @@ const I=require('../../../utils/i18n.js');
 const CFG=require('../../../utils/cfg.js');
 const app=getApp();
 const SITE='https://sparrowcinema.github.io/SparrowTribe/';
-const FACE_W=600,FAST_W=360,FACE_H=Math.round(FACE_W*R.H/R.W),FLIP_MS=180;
+const FACE_W=600,FAST_W=360,FACE_H=Math.round(FACE_W*R.H/R.W);
 const say=phrase=>wx.showToast({title:I.tr(phrase),icon:'none'});
 const stock=(w,h)=>wx.createOffscreenCanvas({type:'2d',width:w,height:h});
 const iso=d=>[d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-');
 const artworkUrl=src=>/^(posters|images)\//i.test(src||'')?SITE+src:src;
-const clamp=v=>Math.max(0,Math.min(1,v));
-// 随手指移动的高光：只在手指滑动时出现、停下约半秒或松手就淡出（不再常驻在海报上把图案冲白）。
-// 位置与手指镜像（像真实反光那样落在倾斜的另一侧），强度压低：镭射箔带一点彩虹色，金属箔是淡白反光，哑光几乎没有
-const GLOW_IDLE_MS=450;
-function glowCss(x,y,kind){
-  const at=`circle at ${100-x}% ${100-y}%`;
-  if(kind==='spectrum')return `radial-gradient(${at},rgba(255,255,255,.22),rgba(255,170,235,.12) 24%,rgba(130,225,255,.08) 40%,rgba(255,240,170,.04) 54%,rgba(255,255,255,0) 66%)`;
-  if(kind==='soft')return `radial-gradient(${at},rgba(255,255,255,.07),rgba(255,255,255,0) 55%)`;
-  return `radial-gradient(${at},rgba(255,255,255,.18),rgba(255,255,255,0) 50%)`;
-}
 // 票面改动（裁切 / 配图）的指纹：和上次保存时不同才点亮「保存」
 const artSig=d=>[d.crop,d.art].join('|');
 const sigOf=(row,side)=>[side,side==='front'?row.artStyle:'',R.packLook(row.look),row.crop,row.art,row.title,row.subtitle,row.date,row.time,row.venue,row.hall,row.city,row.seat,row.format,row.programme,row.section].join('¦');
@@ -43,7 +33,7 @@ function image(node,src){
 }
 
 Page({
-  data:{i:{},ps:'',ok:false,draft:{},front:true,frontImg:'',backImg:'',rx:-2,ry:-4,turning:false,snap:false,glowBg:'',glowOn:false,shine:'metal',
+  data:{i:{},ps:'',ok:false,draft:{},front:true,frontImg:'',backImg:'',turnReq:{side:'front',n:0},edge:'',shine:'metal',
     arts:[],artIndex:0,artStyleLabels:[],artStyleIndex:0,shows:[],showIdx:-1,existing:false,linked:false,loading:false,busy:true,artDirty:false},
   onLoad(q){
     this._albumArtStyle=Art.normalize();
@@ -80,7 +70,7 @@ Page({
     wx.setNavigationBarTitle({title:I.tr(original?'编辑票根':'新票根')});
   },
   onShow(){CFG.chrome();},
-  onUnload(){this._ready=false;clearTimeout(this._glowTimer);this._turn++;this.__cfgOff&&this.__cfgOff();},
+  onUnload(){this._ready=false;this._turn++;this.__cfgOff&&this.__cfgOff();},
   setup(row){
     if(row.art)row.art=artworkUrl(row.art);
     this._draft=row;
@@ -135,7 +125,7 @@ Page({
       if(path)this.setData({[side==='front'?'frontImg':'backImg']:path});
     }
     const kind=R.shineOf(this._draft.look.finish).kind;
-    this.setData({busy:false,shine:kind,glowBg:glowCss(42,30,kind)});
+    this.setData({busy:false,shine:kind,edge:R.edgeOf(this._draft),turnReq:{...this.data.turnReq,kind}});
   },
   // 拖动裁切时实时预览（与网页一致）：只重画正面，上一张还没画完就只记下「还要再画」，画完立刻按最新位置再画一张，
   // 不会排队堆积，也不用等手指停下；松手（bindchange）后再按原来的流程画清晰的正反面
@@ -153,32 +143,11 @@ Page({
     }finally{this._liveBusy=false;}
   },
   soon(ms){clearTimeout(this._soonT);this._soonT=setTimeout(()=>this.renderFaces(),ms);},
-  // ——— 翻面与倾斜（CSS 3D） ———
-  flip(){
-    if(this.data.turning)return;
-    this._flipFront=!this.data.front;
-    this.setData({turning:true,ry:90});
-    setTimeout(()=>{
-      if(!this._ready)return;
-      this.setData({front:this._flipFront,ry:-90,snap:true});
-      setTimeout(()=>{if(this._ready)this.setData({front:this._flipFront,snap:false,ry:-4,rx:-2,turning:false});},40);
-    },FLIP_MS);
-  },
-  setSide(e){if((e.currentTarget.dataset.side==='front')!==this.data.front)this.flip();},
-  // 手指在票根上滑动只用来倾斜票根：wxml 里用 catchtouchmove 拦住，页面不会跟着滚动
-  touchStart(e){
-    const t=e.touches&&e.touches[0];this._touch0=t?{x:t.clientX,y:t.clientY}:null;
-    wx.createSelectorQuery().in(this).select('#te-card').boundingClientRect(r=>{this._box=r;}).exec();
-  },
-  touchMove(e){
-    const t=e.touches&&e.touches[0],b=this._box;if(!t||!b||this.data.turning)return;
-    const s=this._touch0;if(s&&Math.abs(t.clientX-s.x)+Math.abs(t.clientY-s.y)<6)return;
-    const now=Date.now();if(now-(this._tiltAt||0)<40)return;this._tiltAt=now;
-    const x=clamp((t.clientX-b.left)/b.width),y=clamp((t.clientY-b.top)/b.height);
-    this.setData({ry:Math.round((x-.5)*24),rx:Math.round((.5-y)*16),glowOn:true,glowBg:glowCss(Math.round(x*100),Math.round(y*100),this.data.shine)});
-    clearTimeout(this._glowTimer);this._glowTimer=setTimeout(()=>{if(this._ready&&this.data.glowOn)this.setData({glowOn:false});},GLOW_IDLE_MS);
-  },
-  touchEnd(){clearTimeout(this._glowTimer);this._touch0=null;if(!this.data.turning)this.setData({ry:-4,rx:-2,glowOn:false});},
+  // ——— 360° 转动（turn.wxs 在视图层跟手，这里只发请求、收结果） ———
+  turnTo(side){this._turnN=(this._turnN||0)+1;this.setData({turnReq:{side,n:this._turnN,kind:this.data.shine}});},
+  flip(){this.turnTo(this.data.front?'back':'front');},
+  turned(e){const front=!!(e&&e.front);if(front!==this.data.front)this.setData({front});},
+  setSide(e){if((e.currentTarget.dataset.side==='front')!==this.data.front)this.turnTo(e.currentTarget.dataset.side);},
   // ——— 编辑 ———
   shuffle(){this._draft.look=R.randomLook(this._draft);this.renderFaces();},
   reset(){this._draft.look=R.defaults(R.sanitize({...this._draft,look:null}));this.renderFaces();},
@@ -189,7 +158,7 @@ Page({
     if(['date','time','venue'].includes(name))patch.showIdx=this.showIndex();
     this.setData(patch);
     // 裁切只作用于正面海报：在看背面时拖动先翻回正面
-    if(name==='crop'){this.artState();if(!this.data.front)this.flip();}
+    if(name==='crop'){this.artState();if(!this.data.front)this.turnTo('front');}
     if(name==='crop'&&e.type==='changing'){clearTimeout(this._soonT);this.liveCrop();return;}
     this.soon(name==='crop'?120:350);
   },
@@ -208,8 +177,7 @@ Page({
     Art.markArt(readArtPreference,(k,v)=>wx.setStorageSync(k,v),this._draft.filmId);Tix.nudge();
     this._artStyle=style.id||this._albumArtStyle;
     this.setData({artStyleIndex});
-    if(this.data.turning)this._flipFront=true;
-    else if(!this.data.front)this.flip();
+    if(!this.data.front)this.turnTo('front');
     this.renderFaces('front');
   },
   chooseArt(e){this._draft.art=this._art[Number(e.detail.value)];this._draft.crop=50;this.setData({artIndex:Number(e.detail.value),'draft.crop':50});this.artState();this.renderFaces();},
