@@ -1,6 +1,5 @@
 <page-meta page-style="{{ps}}" />
 <wxs src="../../utils/l.wxs" module="L" />
-<wxs src="./ticket-tilt.wxs" module="tilt" />
 <view class="album">
   <view class="al-head"><view><text class="al-brand">SPARROW FILM PASSPORT</text><view class="al-title">{{L.t(i,'我的票根收藏册')}}</view></view>
     <button wx:if="{{mode==='wall'}}" class="al-primary" bindtap="start">{{L.t(i,'制作票根')}}</button>
@@ -35,15 +34,11 @@
   <block wx:else>
     <view class="al-edit">
       <view class="al-stage">
-        <view class="al-flip al-shine-{{editShine}}" style="--metal-highlight:{{editHighlight}};" bindtap="flipEditor"
-          aria-role="button" aria-label="{{L.t(i,'翻面')}}" tilt-bounds="{{tiltBounds}}" change:tilt-bounds="{{tilt.bounds}}"
-          bindtouchstart="{{tilt.start}}" bindtouchmove="{{tilt.move}}" bindtouchend="{{tilt.end}}" bindtouchcancel="{{tilt.end}}">
-          <view class="al-flip-motion">
-            <view class="al-turn {{editFront?'':'al-turned'}}">
-              <view class="al-face al-front"><canvas type="2d" id="ticket-editor-front" class="al-editor-canvas" /></view>
-              <view class="al-face al-back"><canvas type="2d" id="ticket-editor-back" class="al-editor-canvas" /></view>
-            </view>
-          </view>
+        <view class="al-preview">
+          <canvas type="2d" id="ticket-editor" class="al-editor-canvas" bindtap="flipEditor"
+            aria-role="button" aria-label="{{L.t(i,'翻面')}}"
+            bindtouchstart="startEditorTouch" bindtouchmove="moveEditorTouch"
+            bindtouchend="endEditorTouch" bindtouchcancel="endEditorTouch" />
         </view>
         <button class="al-alt" bindtap="flipEditor">{{L.t(i,editFront?'翻到背面':'翻回正面')}}</button>
         <view class="al-blind-box">

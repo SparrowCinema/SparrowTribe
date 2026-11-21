@@ -6,6 +6,9 @@ const CFG=require('../../utils/cfg.js');
 const app=getApp();
 const KEY='sk-tickets-v1';
 const SITE='https://sparrowcinema.github.io/SparrowTribe/';
+const REST_LIGHT={x:.42,y:.35};
+const clamp=value=>Math.max(0,Math.min(1,value));
+const nextFrame=(node,callback)=>typeof node.requestAnimationFrame==='function'?node.requestAnimationFrame(callback):setTimeout(callback,16);
 const read=()=>{try{return R.read(wx.getStorageSync(KEY));}catch(e){return [];}};
 const say=phrase=>wx.showToast({title:I.tr(phrase),icon:'none'});
 const stock=(w,h)=>wx.createOffscreenCanvas({type:'2d',width:w,height:h});
@@ -33,10 +36,6 @@ function artOf(f){
   const stills=Array.isArray(f.stills)?f.stills.map(s=>typeof s==='string'?s:s?.url):[];
   return [...new Set([f.poster,U.poster(f),...stills].filter(s=>typeof s==='string'&&s).map(artworkUrl))];
 }
-function finishStyle(row){
-  const {kind,highlight}=R.shineOf(row.look.finish);
-  return {editShine:kind,editHighlight:highlight+'af'};
-}
 
 Page({
   data:{i:{},ps:'',mode:'wall',year:0,programme:0,page:0,pages:0,front:true,rows:[],results:[],query:'',count:0,loading:false},
@@ -46,7 +45,7 @@ Page({
     if(params.id)this.openFilmId(params.id);else this.wall();
   },
   onShow(){CFG.chrome();},
-  onUnload(){this._ready=false;this._render++;this.__cfgOff?.();},
+  onUnload(){this._ready=false;this._preview=null;this._render++;this.__cfgOff?.();},
   wall(){
     const rows=read(),ys=[...new Set(rows.map(r=>r.date.slice(0,4)).filter(Boolean))].sort().reverse();
     const ps=[...new Set(rows.map(r=>r.programme).filter(Boolean))].sort();
@@ -55,7 +54,7 @@ Page({
     const pages=Math.ceil(list.length/R.WALL_PAGE);
     const page=Math.min(Math.max(0,pages-1),this.data.page);
     this._shown=list.slice(page*R.WALL_PAGE,(page+1)*R.WALL_PAGE);
-    this._draft=null; ++this._render;
+    this._draft=this._preview=this._ticketBounds=null; ++this._render;
     this.setData({mode:'wall',rows:this._shown,count:list.length,years:[I.tr('全部年份'),...ys],programmes:[I.tr('全部专题'),...ps],year,programme,page,pages},()=>this.drawWallTiles());
   },
   filter(e){
@@ -65,7 +64,7 @@ Page({
   move(e){this.setData({page:this.data.page+Number(e.currentTarget.dataset.move)});this.wall();},
   flipWall(){this.setData({front:!this.data.front});this.wall();},
   start(){
-    this._draft=null;++this._render;
+    this._draft=this._preview=this._ticketBounds=null;++this._render;
     this.setData({mode:'search',query:''});
     this.search('');
   },
@@ -104,7 +103,7 @@ Page({
     const showIndex=this._shows.findIndex(s=>showKey(s)===row.showId)+1;
     const arts=this._art.map((_,i)=>I.tr(i===0?'海报':'备用图像')+' '+(i+1));
     this.setData({mode:'edit',draft:row,shows,showIndex,arts,artIndex:Math.max(0,this._art.indexOf(row.art)),
-      editFront:side==='front',existing:!!original,...finishStyle(row)},()=>{
+      editFront:side==='front',existing:!!original},()=>{
       this.drawEditor();
       this.measureTicket();
     });
@@ -127,32 +126,76 @@ Page({
       if(!this._keepLook){
         this._draft.look=R.defaults(R.sanitize(this._draft));
         update['draft.look']=this._draft.look;
-        Object.assign(update,finishStyle(this._draft));
       }
     }
     this.setData(update);this.drawEditor();
   },
   flipEditor(){
-    this._side=this._side==='front'?'back':'front';
-    this.setData({editFront:this._side==='front'});
+    const preview=this._preview;
+    if(!this._draft||preview?.flipping)return;
+    const target=this._side==='front'?'back':'front';
+    const switchSide=()=>{
+      this._side=target;
+      this.setData({editFront:target==='front'});
+    };
+    if(!preview){switchSide();this.drawEditor();return;}
+    preview.flipping=true;
+    const start=Date.now();
+    const animate=()=>{
+      if(this._preview!==preview)return;
+      const progress=clamp((Date.now()-start)/380);
+      if(progress>=.5&&this._side!==target)switchSide();
+      if(progress===1){
+        preview.flipping=false;
+        this.paintEditor(preview);
+        return;
+      }
+      this.paintEditor(preview,Math.max(.035,Math.abs(Math.cos(progress*Math.PI))),{x:progress,y:.35});
+      nextFrame(preview.node,animate);
+    };
+    nextFrame(preview.node,animate);
+  },
+  startEditorTouch(e){this.measureTicket();this.moveEditorTouch(e);},
+  moveEditorTouch(e){
+    const preview=this._preview,box=this._ticketBounds,point=e.touches?.[0];
+    if(!preview||!box||e.touches?.length!==1)return;
+    const x=Number.isFinite(point.pageX)?point.pageX-box.left:point.x;
+    const y=Number.isFinite(point.pageY)?point.pageY-box.top:point.y;
+    if(!Number.isFinite(x)||!Number.isFinite(y))return;
+    preview.light={x:clamp(x/box.width),y:clamp(y/box.height)};
+    this.queueEditorPaint(preview);
+  },
+  endEditorTouch(){
+    const preview=this._preview;
+    if(!preview?.light)return;
+    preview.light=null;
+    this.queueEditorPaint(preview);
+  },
+  queueEditorPaint(preview){
+    if(preview.paintQueued||preview.flipping)return;
+    preview.paintQueued=true;
+    nextFrame(preview.node,()=>{
+      preview.paintQueued=false;
+      if(this._preview===preview&&!preview.flipping)this.paintEditor(preview);
+    });
   },
   measureTicket(){
-    wx.createSelectorQuery().in(this).select('.al-flip').boundingClientRect().selectViewport().scrollOffset().exec(result=>{
+    wx.createSelectorQuery().in(this).select('#ticket-editor').boundingClientRect().selectViewport().scrollOffset().exec(result=>{
       const [bounds,scroll]=result||[];
       if(!this._draft||!bounds?.width||!bounds.height)return;
-      this.setData({tiltBounds:{left:bounds.left+(scroll?.scrollLeft||0),top:bounds.top+(scroll?.scrollTop||0),
-        width:bounds.width,height:bounds.height}});
+      this._ticketBounds={left:bounds.left+(scroll?.scrollLeft||0),top:bounds.top+(scroll?.scrollTop||0),
+        width:bounds.width,height:bounds.height};
     });
   },
   shuffle(){
     this._keepLook=true;
     this._draft.look=R.randomLook(this._draft);
-    this.setData({'draft.look':this._draft.look,...finishStyle(this._draft)},()=>this.drawEditor());
+    this.setData({'draft.look':this._draft.look},()=>this.drawEditor());
   },
   reset(){
     this._keepLook=false;
     this._draft.look=R.defaults(R.sanitize(this._draft));
-    this.setData({'draft.look':this._draft.look,...finishStyle(this._draft)},()=>this.drawEditor());
+    this.setData({'draft.look':this._draft.look},()=>this.drawEditor());
   },
   store(){
     const row=R.sanitize({...this._draft,savedAt:Date.now()});
@@ -180,10 +223,36 @@ Page({
       if(art&&render===this._render){ctx.clearRect(0,0,node.width,node.height);R.draw(ctx,row,side,art,rect,stock);}
     }
   },
-  drawEditor(){
-    if(!this._draft)return;
+  async drawEditor(){
+    if(!this._draft||!this._ready)return;
     const render=++this._render;
-    for(const side of ['front','back'])this.drawTile('ticket-editor-'+side,this._draft,side,render,630);
+    if(!this._preview){
+      const node=await canvas(this,'ticket-editor');
+      if(!node||render!==this._render)return;
+      node.width=630;
+      node.height=1296;
+      this._preview={node,ctx:node.getContext('2d')};
+    }
+    const preview=this._preview,source=this._draft.art;
+    if(preview.source!==source){
+      preview.source=source;
+      preview.art=null;
+      preview.artRequest=source?image(preview.node,source):null;
+      const request=preview.artRequest;
+      if(request)request.then(art=>{
+        if(this._preview!==preview||preview.artRequest!==request)return;
+        preview.art=art;
+        if(!preview.flipping&&this._side==='front')this.paintEditor(preview);
+      });
+    }
+    if(!preview.flipping)this.paintEditor(preview);
+  },
+  paintEditor(preview,scale=1,light=preview.light||REST_LIGHT){
+    const {node,ctx,art}=preview;
+    const w=node.width*scale;
+    ctx.clearRect(0,0,node.width,node.height);
+    R.draw(ctx,this._draft,this._side,this._side==='front'?art:null,
+      {x:(node.width-w)/2,y:0,w,h:node.height},stock,light);
   },
   drawWallTiles(){
     const turn=++this._render,side=this.data.front?'front':'back';

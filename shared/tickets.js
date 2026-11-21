@@ -438,7 +438,34 @@ function paper(surface,key,side,createCanvas) {
   surface.restore();
 }
 
-function draw(surface,record,side,image,rect,createCanvas) {
+// Draw the light into the preview so it follows the card even on native canvases.
+function previewSheen(surface,metal,side,light) {
+  const bright=metal.stops[metal.stops.length-2];
+  const spectrum=metal.kind==="spectrum";
+  const soft=metal.kind==="soft";
+  const x=light.x*W,y=light.y*H;
+  const fill=surface.createRadialGradient(x,y,0,x,y,spectrum?250:200);
+  fill.addColorStop(0,bright+(soft?"18":spectrum?"54":"9e"));
+  fill.addColorStop(1,bright+"00");
+  surface.fillStyle=fill;
+  surface.fillRect(0,0,W,H);
+  if (soft) return;
+  const start=side==="front"?SOURCE.x:63;
+  const end=side==="front"?SOURCE.x+SOURCE.w:W-63;
+  const band=surface.createLinearGradient(start,y-115,end,y+115);
+  band.addColorStop(0,metal.stops[0]+"88");
+  band.addColorStop(Math.max(.08,Math.min(.92,light.x)),bright+"ff");
+  band.addColorStop(1,metal.stops[metal.stops.length-1]+"99");
+  surface.strokeStyle=band;surface.lineWidth=spectrum?3.3:2.3;
+  if (side==="front") {
+    const {x,y,w,h}=SOURCE;
+    surface.strokeRect(x-1,y-1,w+2,h+2);
+  } else {
+    surface.beginPath();surface.arc(W/2,283,149,0,Math.PI*2);surface.stroke();
+  }
+}
+
+function draw(surface,record,side,image,rect,createCanvas,light) {
   const {palette,finish,texture,motif}=record.look;
   const [,dark,mid,edge,bright,stock,stub,accent]=palettes[palette];
   const metal=finishes[finish];
@@ -505,6 +532,7 @@ function draw(surface,record,side,image,rect,createCanvas) {
     if (fields.length) rule(surface,792,accent+"58");
     text(surface,"SPARROW CINEMA",W/2,821,{size:10,font:MONO,align:"center",ink:accent});
   }
+  if (light) previewSheen(surface,metal,side,light);
   surface.restore();
 }
 
