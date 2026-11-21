@@ -1,5 +1,5 @@
 <page-meta page-style="{{ps}}" />
-<wxs src="../../utils/l.wxs" module="L" />
+<wxs src="../../../utils/l.wxs" module="L" />
 <view class="wrap wall-page">
  <view class="wall-heading">{{L.t(i,'我的影院观影海报墙')}}</view>
  <view class="wall-filters" aria-label="{{L.t(i,'海报墙筛选')}}">

@@ -1,13 +1,13 @@
 // 我的票根收藏册（与网站 js/tickets.js 一致，2026-11-21 重做）：
 // 票根 = 某一次观影的皮肤（utils/ticketstore.js）；按年 → 月连续滚动，先给 48 张、触底再补；
 // 票面由页面里一块隐藏画布逐张画成图片（只画已加载的部分），缓存在本次打开期间；书脊模式不画图。
-const R=require('../../utils/tickets.js');
-const Art=require('../../utils/ticket-sketch.js');
-const Tix=require('../../utils/ticketstore.js');
-const U=require('../../utils/util.js');
-const W=require('../../utils/watched.js');
-const I=require('../../utils/i18n.js');
-const CFG=require('../../utils/cfg.js');
+const R=require('../../../utils/tickets.js');
+const Art=require('../../../utils/ticket-sketch.js');
+const Tix=require('../../../utils/ticketstore.js');
+const U=require('../../../utils/util.js');
+const W=require('../../../utils/watched.js');
+const I=require('../../../utils/i18n.js');
+const CFG=require('../../../utils/cfg.js');
 const app=getApp();
 const DENS='sk-ticket-density',DENS_OPT=[['l','大图'],['m','中图'],['s','小图'],['spine','书脊']],STEP=48,PICK_MAX=24,PEND_STEP=60,TILE_W={l:300,m:200,s:130};
 const say=phrase=>wx.showToast({title:I.tr(phrase),icon:'none'});
@@ -202,7 +202,7 @@ Page({
   },
   openFilm(e){this.album();this.openEditor('film='+encodeURIComponent(e.currentTarget.dataset.id));},
   // 票根详情 / 编辑是独立页面（pages/ticket-edit）：系统返回手势、页面滚动都是原生的
-  openEditor(q){wx.navigateTo({url:'/pages/ticket-edit/ticket-edit?'+q});},
+  openEditor(q){wx.navigateTo({url:'/packages/collect/ticket-edit/ticket-edit?'+q});},
   backAlbum(){this.album();},
   // ——— 导出 ———
   toggleExport(){

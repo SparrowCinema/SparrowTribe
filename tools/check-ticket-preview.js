@@ -4,13 +4,13 @@ const fs=require('node:fs');
 const path=require('node:path');
 const vm=require('node:vm');
 const tickets=require('../miniprogram/utils/tickets');
-const dir=path.join(__dirname,'../miniprogram/pages/ticket-edit');
+const dir=path.join(__dirname,'../miniprogram/packages/collect/ticket-edit');
 const wxml=fs.readFileSync(path.join(dir,'ticket-edit.wxml'),'utf8');
-const tixWxml=fs.readFileSync(path.join(__dirname,'../miniprogram/pages/tickets/tickets.wxml'),'utf8');
+const tixWxml=fs.readFileSync(path.join(__dirname,'../miniprogram/packages/collect/tickets/tickets.wxml'),'utf8');
 const app=JSON.parse(fs.readFileSync(path.join(__dirname,'../miniprogram/app.json'),'utf8'));
 
 // 独立页面：注册在 app.json；不用 page-container（它会锁住页面滚动）；票根上用 bindtouchmove（不拦截页面滚动）
-assert(app.pages.includes('pages/ticket-edit/ticket-edit'));
+assert((app.subPackages||[]).some(p=>p.root==='packages/collect'&&p.pages.includes('ticket-edit/ticket-edit')),'ticket editor lives in the collect subpackage');
 assert(!/page-container/.test(wxml)&&!/page-container/.test(tixWxml),'no page-container scroll lock');
 assert(!/catchtouchmove/.test(wxml),'ticket card must not block page scrolling');
 assert.match(wxml,/<image[^>]*class="te-face"/);
@@ -92,7 +92,7 @@ const flush=async()=>{for(let n=0;n<20;n++){await new Promise(r=>setImmediate(r)
   assert.equal(store[Art.storageKey],'blue-ink');
   assert.equal(page.data.backImg,originalBack);
   // 返回收藏册时，即使票根数据未修改，也更新样式和缩略图。
-  const albumDir=path.join(__dirname,'../miniprogram/pages/tickets');
+  const albumDir=path.join(__dirname,'../miniprogram/packages/collect/tickets');
   let albumOptions;
   const albumSandbox={...sandbox,Page:o=>{albumOptions=o;},require:name=>require(path.join(albumDir,name))};
   vm.runInNewContext(fs.readFileSync(path.join(albumDir,'tickets.js'),'utf8'),albumSandbox,{filename:'tickets.js'});

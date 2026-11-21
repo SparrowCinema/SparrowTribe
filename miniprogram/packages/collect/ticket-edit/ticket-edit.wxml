@@ -1,5 +1,5 @@
 <page-meta page-style="{{ps}}" />
-<wxs src="../../utils/l.wxs" module="L" />
+<wxs src="../../../utils/l.wxs" module="L" />
 <view wx:if="{{ok}}" class="wrap te-page">
   <view class="te-stage">
     <view id="te-card" class="te-card3d {{snap?'te-snap':''}}" style="transform:perspective(900px) rotateX({{rx}}deg) rotateY({{ry}}deg)"
