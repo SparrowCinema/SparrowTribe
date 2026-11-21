@@ -7,7 +7,7 @@ function progFilmSub(f,pid,ended){ // 与小程序一致：版本 · 下一场�
   const ed=editionOf(f), mine=SH.filter(x=>x.id===f.id&&x.p===pid).sort((x,y)=>showDate(x)-showDate(y)), next=ended?null:localFirst(mine.filter(x=>!isPast(x)));
   const when=next?next.d+" "+next.t:(!mine.length&&!ended?"场次待公布":"");
   return [ed,when].filter(Boolean).map(x=>"<span>"+esc(x)+"</span>").join(""); }
-function progFilmCard(f,pid,ended){ const sub=progFilmSub(f,pid,ended); return `<button class="pg-film" data-film="${f.id}">${pst(f.id)?pimg(f.id,360,'alt="" loading="lazy"'):`<span class="pg-ph" style="background:${REG[f.reg].c}">${esc(f.cn[0])}</span>`}<span class="pg-caption"><b class="pg-name">${esc(f.cn)}</b>${sub?`<span class="pg-sub1">${sub}</span>`:""}</span></button>`; }
+function progFilmCard(f,pid,ended){ const sub=progFilmSub(f,pid,ended), title=(LANG!=="en"&&PG[pid]?.filmTitles?.[f.id])||f.cn; return `<button class="pg-film" data-film="${f.id}">${pst(f.id)?pimg(f.id,360,'alt="" loading="lazy"'):`<span class="pg-ph" style="background:${REG[f.reg].c}">${esc(title[0])}</span>`}<span class="pg-caption"><b class="pg-name">${esc(title)}</b>${sub?`<span class="pg-sub1">${sub}</span>`:""}</span></button>`; }
 // 专题页影片分组：即将放映（含场次待公布）按下一场先后；已结束按最近一场由近及远
 function progFilmGroups(pid,films){
   const up=[], gone=[];

@@ -24,7 +24,8 @@ Page({
     const mk = f => {
       const mine = shows.filter(s => s.id === f.id).sort((x, y) => U.showDate(x) - U.showDate(y)), next = U.localFirst(mine.filter(s => !U.ended(s, idx)), idx), last = mine[mine.length - 1];
       const first = next || last;
-      return { id: f.id, cn: f.cn, ini: (f.cn || '')[0], version: t(f.version || ''), poster: U.thumb(f), color: (data.reg[f.reg] || {}).c, first: first ? U.ymd(first) + ' ' + first.t : '',
+      const title = (!I.isEn() && p.filmTitles && p.filmTitles[f.id]) || f.cn;
+      return { id: f.id, cn: title, ini: (title || '')[0], version: t(f.version || ''), poster: U.thumb(f), color: (data.reg[f.reg] || {}).c, first: first ? U.ymd(first) + ' ' + first.t : '',
         at: next ? U.showDate(next).getTime() : Infinity, lastAt: last ? U.showDate(last).getTime() : (f.ended ? U.relTime(f) : 0), gone: (!!mine.length || !!f.ended) && !next };
     };
     const membership=new Set(Object.keys(p.sections||{}).concat(p.members||[]));

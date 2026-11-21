@@ -1,0 +1,356 @@
+{
+ "checked": "2026-11-21",
+ "scope": "第八届海南岛国际电影节「首映」单元（海影节本地首映标签与入选范围依据用户提供的官宣片单与节目卡）",
+ "ratingOrder": [
+  "Douban",
+  "IMDb",
+  "Rotten Tomatoes Tomatometer",
+  "Metacritic critic score",
+  "Letterboxd"
+ ],
+ "ratingNotes": "评分为可查的公开平台快照。缺少可核实的公开聚合分数时，保留 null。电影节最早公开放映记录与本届地区首映标签分别核对。",
+ "verifiedRecords": {
+  "faith-lacking-deed-lies-dead": {
+   "status": "verified",
+   "date": "2025-09-09",
+   "festival": null,
+   "festivalEn": null,
+   "kind": "theatrical",
+   "checked": "2026-11-21",
+   "sources": [
+    "https://museutapies.org/en/event/40729/",
+    "https://fidmarseille.org/en/festivals/festival-37/films/fe-sense-obres-morta-es",
+    "https://letterboxd.com/film/faith-lacking-deed-lies-dead/"
+   ]
+  },
+  "from-dawn-to-dawn-2026": {
+   "status": "partial",
+   "date": "2026-04",
+   "festival": "瑞士真实影展",
+   "festivalEn": "Visions du Réel",
+   "kind": "festival",
+   "checked": "2026-11-21",
+   "sources": [
+    "https://www.visionsdureel.ch/en/film/2026/from-dawn-to-dawn/",
+    "https://cineuropa.org/en/newsdetail/490630/",
+    "https://www.imdb.com/title/tt41740085/",
+    "https://dokufest.com/en/news/dokufest-announces-the-winners-for-the-25th-edition"
+   ]
+  },
+  "let-us-through-dear-ancestors": {
+   "status": "partial",
+   "date": "2026-09",
+   "festival": "威尼斯国际电影节",
+   "festivalEn": "Venice International Film Festival",
+   "kind": "festival",
+   "checked": "2026-11-21",
+   "sources": [
+    "https://www.labiennale.org/en/cinema/2026/venice-open-out-competition/makikiraan-po-let-us-through-dear-ancestors",
+    "https://www.rottentomatoes.com/m/let_us_through_dear_ancestors",
+    "https://magellan-lavdiaz.org/en/news/2026-10-tiff-lav-diaz-new-film",
+    "https://www.labiennale.org/en/news/collateral-awards-and-events-of-the-83rd-venice-film-festival"
+   ]
+  },
+  "lover-not-a-fighter-2026": {
+   "status": "verified",
+   "date": "2026-07-06",
+   "festival": "卡罗维发利国际电影节",
+   "festivalEn": "Karlovy Vary International Film Festival",
+   "kind": "festival",
+   "checked": "2026-11-21",
+   "sources": [
+    "https://www.kviff.com/en/programme/film/84/48780-lover-notafighter",
+    "https://sfu.sk/en/news/martina-buchelova-lover-not-a-fighter-kviff-2026/",
+    "https://letterboxd.com/film/lover-not-a-fighter/",
+    "https://www.imdb.com/title/tt43329650/",
+    "https://mdblist.com/movie/44wpy-lover-not-a-fighter?cache=1"
+   ]
+  },
+  "orange-flavoured-wedding": {
+   "status": "partial",
+   "date": "2026-05",
+   "festival": "戛纳电影节",
+   "festivalEn": "Cannes Film Festival",
+   "kind": "festival",
+   "checked": "2026-11-21",
+   "sources": [
+    "https://www.festival-cannes.com/en/f/mariage-au-gout-d-orange/",
+    "https://cineuropa.org/en/interview/491709/",
+    "https://www.imdb.com/title/tt42007277/",
+    "https://www.filmdraft.co/movies/orange-flavoured-wedding",
+    "https://inter.pyramidefilms.com/pyramidefilms-international-catalogue/orange-flavoured-wedding.html"
+   ]
+  },
+  "the-daughters-of-abraham": {
+   "status": "partial",
+   "date": "2026-08",
+   "festival": "昂古莱姆法语电影节",
+   "festivalEn": "Angoulême Francophone Film Festival",
+   "kind": "festival",
+   "checked": "2026-11-21",
+   "sources": [
+    "https://www.iffigoa.org/index.php/international-cinema/the-daughters-of-abraham",
+    "https://cineuropa.org/en/film/495245/",
+    "https://www.festivalenfrance.com/festival/festival-du-film-francophone-dangouleme/2026",
+    "https://www.imdb.com/title/tt43703119/",
+    "https://www.filmdraft.co/movies/the-daughters-of-abraham"
+   ]
+  },
+  "the-spiral-2026": {
+   "status": "verified",
+   "date": "2026-09-08",
+   "festival": "威尼斯国际电影节",
+   "festivalEn": "Venice International Film Festival",
+   "kind": "festival",
+   "checked": "2026-11-21",
+   "sources": [
+    "https://www.labiennale.org/en/cinema/2026/venezia-83-competition/l%E2%80%99estranea",
+    "https://filmitalia.org/en/film/169093/",
+    "https://www.rottentomatoes.com/m/lestranea",
+    "https://www.imdb.com/title/tt23411728/",
+    "https://iff.day/busan/31/film/the-spiral-2026",
+    "https://www.lacartelera.com/en/magazine/venice-83-lestranea-paolo-strippoli-jasmine-trinca-bruni-tedeschi/"
+   ]
+  },
+  "time-and-water-2026": {
+   "status": "verified",
+   "date": "2026-01-27",
+   "festival": "圣丹斯电影节",
+   "festivalEn": "Sundance Film Festival",
+   "kind": "festival",
+   "checked": "2026-11-21",
+   "sources": [
+    "https://andrimagnason.com/films-and-theater/time-and-water/",
+    "https://cphdox.dk/film/time-and-water/",
+    "https://releasing.dogwoof.com/time-and-water",
+    "https://www.rottentomatoes.com/m/time_and_water",
+    "https://www.metacritic.com/movie/time-and-water/",
+    "https://www.imdb.com/title/tt39163015/ratings/",
+    "https://www.gettyimages.co.uk/editorial-images/entertainment/event/2026-sundance-film-festival-time-and-water-premiere/776430900",
+    "https://www.flicks.co.uk/movie/time-and-water/"
+   ]
+  },
+  "woman-unknown-2026": {
+   "status": "verified",
+   "date": "2026-09-06",
+   "festival": "威尼斯国际电影节",
+   "festivalEn": "Venice International Film Festival",
+   "kind": "festival",
+   "checked": "2026-11-21",
+   "sources": [
+    "https://www.labiennale.org/en/cinema/2026/venezia-83-competition/kvinde-ukendt-woman-unknown",
+    "https://www.imdb.com/title/tt34888026/",
+    "https://www.rottentomatoes.com/m/woman_unknown",
+    "https://www.filmdraft.co/movies/woman-unknown/reviews",
+    "https://nordiskfilmogtvfond.com/movie/nordic-film-talks-may-el-toukhy",
+    "https://www.labiennale.org/en/news/official-awards-83rd-venice-international-film-festival",
+    "https://filmivast.com/films-series/productions/2026/woman-unknown"
+   ]
+  }
+ },
+ "filmResearch": {
+  "faith-lacking-deed-lies-dead": {
+   "title": "没有作品的信仰是死的",
+   "hainanPremiere": "亚洲首映",
+   "ratings": [
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "sources": [
+    "https://museutapies.org/en/event/40729/",
+    "https://fidmarseille.org/en/festivals/festival-37/films/fe-sense-obres-morta-es",
+    "https://letterboxd.com/film/faith-lacking-deed-lies-dead/",
+    "https://admin.fidmarseille.org/media/pages/festivals/festival-37/films/fe-sense-obres-morta-es/c7c8a55f8e-1780326490/fe-sense-obres-2560x-q85.jpg"
+   ]
+  },
+  "from-dawn-to-dawn-2026": {
+   "title": "昨夜的歌",
+   "hainanPremiere": "中国大陆首映",
+   "ratings": [
+    null,
+    7,
+    null,
+    null,
+    null
+   ],
+   "sources": [
+    "https://www.visionsdureel.ch/en/film/2026/from-dawn-to-dawn/",
+    "https://cineuropa.org/en/newsdetail/490630/",
+    "https://www.imdb.com/title/tt41740085/",
+    "https://dokufest.com/en/news/dokufest-announces-the-winners-for-the-25th-edition",
+    "https://letterboxd.com/film/from-dawn-to-dawn/",
+    "https://app.dokufest.com/assets/uploads/resampled/c3f6c7112fcafb6a713f63d3b9de1cd0.jpg"
+   ]
+  },
+  "let-us-through-dear-ancestors": {
+   "title": "先祖，借过一下",
+   "hainanPremiere": "中国首映",
+   "ratings": [
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "sources": [
+    "https://www.labiennale.org/en/cinema/2026/venice-open-out-competition/makikiraan-po-let-us-through-dear-ancestors",
+    "https://www.rottentomatoes.com/m/let_us_through_dear_ancestors",
+    "https://magellan-lavdiaz.org/en/news/2026-10-tiff-lav-diaz-new-film",
+    "https://www.labiennale.org/en/news/collateral-awards-and-events-of-the-83rd-venice-film-festival",
+    "https://letterboxd.com/film/let-us-through-dear-ancestors/",
+    "https://static.labiennale.org/files/styles/full_screen_slide/public/cinema/2026/Schede_film/970x647/Open_FC/makikiraan_po.jpg?itok=o53lunzT"
+   ]
+  },
+  "lover-not-a-fighter-2026": {
+   "title": "情人，不是战士",
+   "hainanPremiere": "亚洲首映",
+   "ratings": [
+    null,
+    7.5,
+    null,
+    null,
+    3.8
+   ],
+   "sources": [
+    "https://www.kviff.com/en/programme/film/84/48780-lover-notafighter",
+    "https://sfu.sk/en/news/martina-buchelova-lover-not-a-fighter-kviff-2026/",
+    "https://letterboxd.com/film/lover-not-a-fighter/",
+    "https://www.imdb.com/title/tt43329650/",
+    "https://mdblist.com/movie/44wpy-lover-not-a-fighter?cache=1",
+    "https://www.filmcenter.gov.cz/media/98/38/983848e1fa6e06e3-2360-880-e-60.webp"
+   ]
+  },
+  "orange-flavoured-wedding": {
+   "title": "橘子味的婚礼",
+   "hainanPremiere": "中国大陆首映",
+   "ratings": [
+    null,
+    6.5,
+    null,
+    null,
+    3.35
+   ],
+   "sources": [
+    "https://www.festival-cannes.com/en/f/mariage-au-gout-d-orange/",
+    "https://cineuropa.org/en/interview/491709/",
+    "https://www.imdb.com/title/tt42007277/",
+    "https://www.filmdraft.co/movies/orange-flavoured-wedding",
+    "https://inter.pyramidefilms.com/pyramidefilms-international-catalogue/orange-flavoured-wedding.html",
+    "https://letterboxd.com/film/orange-flavoured-wedding/",
+    "https://www.rottentomatoes.com/m/orange_flavoured_wedding",
+    "https://inter.pyramidefilms.com/images/films/1764/_thumb1/unknownvignette.jpg"
+   ]
+  },
+  "gh63-058": {
+   "title": "可能的爱",
+   "hainanPremiere": "中国大陆首映",
+   "ratings": [
+    8.6,
+    8,
+    98,
+    95,
+    4.17
+   ],
+   "sources": [
+    "https://www.labiennale.org/en/cinema/2026/venezia-83-competition/ga-neung-han-sa-rang-possible-love",
+    "https://www.netflix.com/tudum/articles/possible-love-venice-film-festival-silver-lion",
+    "https://www.rottentomatoes.com/m/possible_love",
+    "https://www.filmdraft.co/movies/possible-love/reviews",
+    "https://iff.day/film/possible-love-2026",
+    "https://www.imdb.com/title/tt37803364/ratings/",
+    "https://www.labiennale.org/en/news/official-awards-83rd-venice-international-film-festival"
+   ]
+  },
+  "the-daughters-of-abraham": {
+   "title": "亚伯拉罕的女儿们",
+   "hainanPremiere": "中国首映",
+   "ratings": [
+    null,
+    7.3,
+    null,
+    null,
+    3.57
+   ],
+   "sources": [
+    "https://www.iffigoa.org/index.php/international-cinema/the-daughters-of-abraham",
+    "https://cineuropa.org/en/film/495245/",
+    "https://www.festivalenfrance.com/festival/festival-du-film-francophone-dangouleme/2026",
+    "https://www.imdb.com/title/tt43703119/",
+    "https://www.filmdraft.co/movies/the-daughters-of-abraham",
+    "https://letterboxd.com/film/the-daughters-of-abraham/",
+    "https://cineuropa.org/Galleries/495/245/poster.jpg"
+   ]
+  },
+  "the-spiral-2026": {
+   "title": "不速之母",
+   "hainanPremiere": "中国首映",
+   "ratings": [
+    null,
+    7.5,
+    76,
+    null,
+    3.7
+   ],
+   "sources": [
+    "https://www.labiennale.org/en/cinema/2026/venezia-83-competition/l%E2%80%99estranea",
+    "https://filmitalia.org/en/film/169093/",
+    "https://www.rottentomatoes.com/m/lestranea",
+    "https://www.imdb.com/title/tt23411728/",
+    "https://iff.day/busan/31/film/the-spiral-2026",
+    "https://www.lacartelera.com/en/magazine/venice-83-lestranea-paolo-strippoli-jasmine-trinca-bruni-tedeschi/",
+    "https://letterboxd.com/film/the-spiral-2026/",
+    "https://static.labiennale.org/files/styles/full_screen_slide/public/cinema/2026/Schede_film/970x647/Venezia_83/lestranea.jpg?itok=cQ1DkZDP"
+   ]
+  },
+  "time-and-water-2026": {
+   "title": "逝水与流年",
+   "hainanPremiere": "中国首映",
+   "ratings": [
+    null,
+    6.9,
+    91,
+    76,
+    3.7
+   ],
+   "sources": [
+    "https://andrimagnason.com/films-and-theater/time-and-water/",
+    "https://cphdox.dk/film/time-and-water/",
+    "https://releasing.dogwoof.com/time-and-water",
+    "https://www.rottentomatoes.com/m/time_and_water",
+    "https://www.metacritic.com/movie/time-and-water/",
+    "https://www.imdb.com/title/tt39163015/ratings/",
+    "https://www.gettyimages.co.uk/editorial-images/entertainment/event/2026-sundance-film-festival-time-and-water-premiere/776430900",
+    "https://www.flicks.co.uk/movie/time-and-water/",
+    "https://www.imdb.com/title/tt39163015/",
+    "https://letterboxd.com/film/time-and-water-2026/",
+    "https://images.squarespace-cdn.com/content/v1/569cf0841c1210c8103543c7/1774960658906-HLIP6808SM7Y0MBUGYWH/TimeAndWater_UHD_23.jpg"
+   ]
+  },
+  "woman-unknown-2026": {
+   "title": "女人，未知",
+   "hainanPremiere": "中国首映",
+   "ratings": [
+    null,
+    7.3,
+    95,
+    84,
+    3.42
+   ],
+   "sources": [
+    "https://www.labiennale.org/en/cinema/2026/venezia-83-competition/kvinde-ukendt-woman-unknown",
+    "https://www.imdb.com/title/tt34888026/",
+    "https://www.rottentomatoes.com/m/woman_unknown",
+    "https://www.filmdraft.co/movies/woman-unknown/reviews",
+    "https://nordiskfilmogtvfond.com/movie/nordic-film-talks-may-el-toukhy",
+    "https://www.labiennale.org/en/news/official-awards-83rd-venice-international-film-festival",
+    "https://filmivast.com/films-series/productions/2026/woman-unknown",
+    "https://letterboxd.com/film/woman-unknown/",
+    "https://www.metacritic.com/movie/woman-unknown/",
+    "https://a.storyblok.com/f/309335/2500x3572/9e9bf431a8/womanunknown_keyartuk2_awweb.jpg"
+   ]
+  }
+ }
+}
