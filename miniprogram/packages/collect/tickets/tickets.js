@@ -65,13 +65,14 @@ Page({
       this._filmStyles=filmStyles;
       if(filmStylesChanged)this._imgPatch={};
       if(this.data.mode==='album'){
-        if(this._rev!==Tix.rev())this.album();
+        if(this._rev!==Tix.rev())this.refreshAlbum();
         else if(styleChanged||filmStylesChanged)this.paint(false);
       }
     }
     this._shownOnce=true;
   },
   onUnload(){this._ready=false;this._render++;this.__cfgOff?.();},
+  onPageScroll(e){this._scrollTop=e.scrollTop;},
   onReachBottom(){if(this.data.mode==='album'&&this.data.more){this._limit+=STEP;this.paint('more');}},
   load(){
     this.data_=app.globalData.data;this.idx=U.index(this.data_);
@@ -86,7 +87,16 @@ Page({
     this.setData({mode:'album',sum:{n:tickets.length,pending:pending.length}});
     this.paint(false);
   },
-  paint(append){
+  // 从票根详情保存 / 删除回来：原地刷新，保留已加载的张数、筛选和滚动位置（不再像 album() 那样把列表重置回前 48 张，导致回到错位的地方）
+  refreshAlbum(){
+    const top=this._scrollTop||0,limit=Math.max(this._limit||STEP,this.data.shown||0,STEP),opened=this._opened;
+    this.load();this._draft=null;this._limit=limit;
+    const {tickets,pending}=this._built;
+    if(opened){const at=R.filterTickets(tickets,this._q).findIndex(r=>r.key===opened);if(at>=this._limit)this._limit=Math.ceil((at+1)/STEP)*STEP;}
+    this.setData({sum:{n:tickets.length,pending:pending.length}});
+    this.paint(false,()=>{if(top)wx.pageScrollTo({scrollTop:top,duration:0});});
+  },
+  paint(append,done){
     const {tickets}=this._built,q=this._q,all=R.facetCounts(tickets);
     if(q.year&&!all.year.some(y=>y.value===q.year))q.year='';
     R.FACETS.forEach(k=>{q[k]=q[k].filter(v=>all[k].some(x=>x.value===v));});
@@ -114,7 +124,7 @@ Page({
         chips:R.FACETS.flatMap(k=>q[k].map(v=>({k,v}))),activeN:R.FACETS.reduce((n,k)=>n+q[k].length,0)});
     }
     const turn=++this._render;this._queue=[];
-    this.setData(patch,()=>{if(turn===this._render&&this.data.density!=='spine')this.queueAll(turn);});
+    this.setData(patch,()=>{done&&done();if(turn===this._render&&this.data.density!=='spine')this.queueAll(turn);});
   },
   styleFor(row){return this._filmStyles.get(row.filmId)||this.data.artStyle;},
   item(r){
@@ -180,7 +190,7 @@ Page({
       if(this._pick.has(k))this._pick.delete(k);else if(this._pick.size>=PICK_MAX){wx.showToast({title:I.tr('精选墙最多')+' '+PICK_MAX+' '+I.tr('张票根'),icon:'none'});return;}else this._pick.add(k);
       const {gi,ii}=e.currentTarget.dataset;this.setData({[`groups[${gi}].items[${ii}].p`]:this._pick.has(k),pickN:this._pick.size});return;
     }
-    this.openEditor('key='+encodeURIComponent(row.key));
+    this._opened=row.key;this.openEditor('key='+encodeURIComponent(row.key));
   },
   // ——— 待制作 ———
   openPending(){this._pendShown=PEND_STEP;this.pendingView();wx.pageScrollTo({scrollTop:0,duration:0});},
