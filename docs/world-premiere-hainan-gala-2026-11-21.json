@@ -12,12 +12,13 @@
  "verifiedRecords": {
   "faith-lacking-deed-lies-dead": {
    "status": "verified",
-   "date": "2025-09-09",
+   "date": "2025-05-08",
    "festival": null,
    "festivalEn": null,
    "kind": "theatrical",
    "checked": "2026-11-21",
    "sources": [
+    "https://museutapies.org/en/event/premiere-of-albert-serras-tribute-to-antoni-tapies/",
     "https://museutapies.org/en/event/40729/",
     "https://fidmarseille.org/en/festivals/festival-37/films/fe-sense-obres-morta-es",
     "https://letterboxd.com/film/faith-lacking-deed-lies-dead/"
@@ -38,17 +39,18 @@
    ]
   },
   "let-us-through-dear-ancestors": {
-   "status": "partial",
-   "date": "2026-09",
+   "status": "verified",
+   "date": "2026-09-11",
    "festival": "威尼斯国际电影节",
    "festivalEn": "Venice International Film Festival",
    "kind": "festival",
    "checked": "2026-11-21",
    "sources": [
+    "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/makikiraan-po-let-us-through-dear-ancestors-2026-09-11-20-30",
     "https://www.labiennale.org/en/cinema/2026/venice-open-out-competition/makikiraan-po-let-us-through-dear-ancestors",
     "https://www.rottentomatoes.com/m/let_us_through_dear_ancestors",
     "https://magellan-lavdiaz.org/en/news/2026-10-tiff-lav-diaz-new-film",
-    "https://www.labiennale.org/en/news/collateral-awards-and-events-of-the-83rd-venice-film-festival"
+    "https://www.labiennale.org/en/news/collateral-awards-and-events-83rd-venice-film-festival"
    ]
   },
   "lover-not-a-fighter-2026": {
@@ -64,21 +66,6 @@
     "https://letterboxd.com/film/lover-not-a-fighter/",
     "https://www.imdb.com/title/tt43329650/",
     "https://mdblist.com/movie/44wpy-lover-not-a-fighter?cache=1"
-   ]
-  },
-  "orange-flavoured-wedding": {
-   "status": "partial",
-   "date": "2026-05",
-   "festival": "戛纳电影节",
-   "festivalEn": "Cannes Film Festival",
-   "kind": "festival",
-   "checked": "2026-11-21",
-   "sources": [
-    "https://www.festival-cannes.com/en/f/mariage-au-gout-d-orange/",
-    "https://cineuropa.org/en/interview/491709/",
-    "https://www.imdb.com/title/tt42007277/",
-    "https://www.filmdraft.co/movies/orange-flavoured-wedding",
-    "https://inter.pyramidefilms.com/pyramidefilms-international-catalogue/orange-flavoured-wedding.html"
    ]
   },
   "the-daughters-of-abraham": {
@@ -146,6 +133,21 @@
     "https://www.labiennale.org/en/news/official-awards-83rd-venice-international-film-festival",
     "https://filmivast.com/films-series/productions/2026/woman-unknown"
    ]
+  },
+  "gh63-054": {
+   "status": "partial",
+   "date": "2026-05",
+   "festival": "戛纳电影节",
+   "festivalEn": "Cannes Film Festival",
+   "kind": "festival",
+   "checked": "2026-11-21",
+   "sources": [
+    "https://www.festival-cannes.com/en/f/mariage-au-gout-d-orange/",
+    "https://cineuropa.org/en/interview/491709/",
+    "https://www.imdb.com/title/tt42007277/",
+    "https://www.filmdraft.co/movies/orange-flavoured-wedding",
+    "https://inter.pyramidefilms.com/pyramidefilms-international-catalogue/orange-flavoured-wedding.html"
+   ]
   }
  },
  "filmResearch": {
@@ -163,7 +165,8 @@
     "https://museutapies.org/en/event/40729/",
     "https://fidmarseille.org/en/festivals/festival-37/films/fe-sense-obres-morta-es",
     "https://letterboxd.com/film/faith-lacking-deed-lies-dead/",
-    "https://admin.fidmarseille.org/media/pages/festivals/festival-37/films/fe-sense-obres-morta-es/c7c8a55f8e-1780326490/fe-sense-obres-2560x-q85.jpg"
+    "https://admin.fidmarseille.org/media/pages/festivals/festival-37/films/fe-sense-obres-morta-es/c7c8a55f8e-1780326490/fe-sense-obres-2560x-q85.jpg",
+    "https://museutapies.org/en/event/premiere-of-albert-serras-tribute-to-antoni-tapies/"
    ]
   },
   "from-dawn-to-dawn-2026": {
@@ -182,7 +185,11 @@
     "https://www.imdb.com/title/tt41740085/",
     "https://dokufest.com/en/news/dokufest-announces-the-winners-for-the-25th-edition",
     "https://letterboxd.com/film/from-dawn-to-dawn/",
-    "https://app.dokufest.com/assets/uploads/resampled/c3f6c7112fcafb6a713f63d3b9de1cd0.jpg"
+    "https://app.dokufest.com/assets/uploads/resampled/c3f6c7112fcafb6a713f63d3b9de1cd0.jpg",
+    "https://www.cccb.org/en/w/participants/xisi-sofia-ye-chen",
+    "https://ridm.ca/en/films/from-dawn-to-dawn",
+    "https://www.filmaffinity.com/es/film650419.html",
+    "https://pics.filmaffinity.com/la_noche_de_la_infancia-330758151-large.jpg"
    ]
   },
   "let-us-through-dear-ancestors": {
@@ -199,9 +206,12 @@
     "https://www.labiennale.org/en/cinema/2026/venice-open-out-competition/makikiraan-po-let-us-through-dear-ancestors",
     "https://www.rottentomatoes.com/m/let_us_through_dear_ancestors",
     "https://magellan-lavdiaz.org/en/news/2026-10-tiff-lav-diaz-new-film",
-    "https://www.labiennale.org/en/news/collateral-awards-and-events-of-the-83rd-venice-film-festival",
+    "https://www.labiennale.org/en/news/collateral-awards-and-events-83rd-venice-film-festival",
     "https://letterboxd.com/film/let-us-through-dear-ancestors/",
-    "https://static.labiennale.org/files/styles/full_screen_slide/public/cinema/2026/Schede_film/970x647/Open_FC/makikiraan_po.jpg?itok=o53lunzT"
+    "https://static.labiennale.org/files/styles/full_screen_slide/public/cinema/2026/Schede_film/970x647/Open_FC/makikiraan_po.jpg?itok=o53lunzT",
+    "https://fdcp.ph/news/another-win-acclaimed-filipino-filmmaker-lav-diaz",
+    "https://vogue.ph/lifestyle/entertainment/lav-diaz-makikiraan-po-venice-international-film-festival/",
+    "https://vp.eventival.com/thessaloniki/tiff67/film/1325396"
    ]
   },
   "lover-not-a-fighter-2026": {
@@ -220,28 +230,11 @@
     "https://letterboxd.com/film/lover-not-a-fighter/",
     "https://www.imdb.com/title/tt43329650/",
     "https://mdblist.com/movie/44wpy-lover-not-a-fighter?cache=1",
-    "https://www.filmcenter.gov.cz/media/98/38/983848e1fa6e06e3-2360-880-e-60.webp"
-   ]
-  },
-  "orange-flavoured-wedding": {
-   "title": "橘子味的婚礼",
-   "hainanPremiere": "中国大陆首映",
-   "ratings": [
-    null,
-    6.5,
-    null,
-    null,
-    3.35
-   ],
-   "sources": [
-    "https://www.festival-cannes.com/en/f/mariage-au-gout-d-orange/",
-    "https://cineuropa.org/en/interview/491709/",
-    "https://www.imdb.com/title/tt42007277/",
-    "https://www.filmdraft.co/movies/orange-flavoured-wedding",
-    "https://inter.pyramidefilms.com/pyramidefilms-international-catalogue/orange-flavoured-wedding.html",
-    "https://letterboxd.com/film/orange-flavoured-wedding/",
-    "https://www.rottentomatoes.com/m/orange_flavoured_wedding",
-    "https://inter.pyramidefilms.com/images/films/1764/_thumb1/unknownvignette.jpg"
+    "https://www.filmcenter.gov.cz/media/98/38/983848e1fa6e06e3-2360-880-e-60.webp",
+    "https://www.kviff.com/en/news/6023-the-crystal-globe-goes-to-fruit-gathering-lover-not-a-fighter-wins-the-proxima-competition",
+    "https://fipresci.org/awards/lover-not-a-fighter/",
+    "https://www.aerofilms.cz/filmy-a-prenosy/milovnik-ne-bojovnik/",
+    "https://cdn.aerofilms.cz/media/sqalgjoc/milovnik_cz.jpg"
    ]
   },
   "gh63-058": {
@@ -261,7 +254,13 @@
     "https://www.filmdraft.co/movies/possible-love/reviews",
     "https://iff.day/film/possible-love-2026",
     "https://www.imdb.com/title/tt37803364/ratings/",
-    "https://www.labiennale.org/en/news/official-awards-83rd-venice-international-film-festival"
+    "https://www.labiennale.org/en/news/official-awards-83rd-venice-international-film-festival",
+    "https://www.goldenhorse.org.tw/film/programme/films/detail/4435?search_category=FF&search_year=2026",
+    "https://www.netflix.com/tudum/articles/lee-chang-dong-directs-possible-love-interview",
+    "https://www.labiennale.org/en/news/collateral-awards-and-events-83rd-venice-film-festival",
+    "https://www.biff.kr/eng/html/program/prog_view.asp?c_idx=430&idx=91115",
+    "https://www.soompi.com/article/1867787wpp/jeon-do-yeon-sul-kyung-gu-zo-in-sung-and-cho-yeo-jeongs-possible-love-unveils-new-poster-director-to-receive-award",
+    "https://0.soompi.io/wp-content/uploads/2026/09/02200607/possible-love.jpg"
    ]
   },
   "the-daughters-of-abraham": {
@@ -281,7 +280,9 @@
     "https://www.imdb.com/title/tt43703119/",
     "https://www.filmdraft.co/movies/the-daughters-of-abraham",
     "https://letterboxd.com/film/the-daughters-of-abraham/",
-    "https://cineuropa.org/Galleries/495/245/poster.jpg"
+    "https://cineuropa.org/Galleries/495/245/poster.jpg",
+    "https://filmsdulosange.com/film/les-filles-dabraham/",
+    "https://moveablefest.com/hanael-el-yousfi-daughters-of-abraham/"
    ]
   },
   "the-spiral-2026": {
@@ -302,7 +303,10 @@
     "https://iff.day/busan/31/film/the-spiral-2026",
     "https://www.lacartelera.com/en/magazine/venice-83-lestranea-paolo-strippoli-jasmine-trinca-bruni-tedeschi/",
     "https://letterboxd.com/film/the-spiral-2026/",
-    "https://static.labiennale.org/files/styles/full_screen_slide/public/cinema/2026/Schede_film/970x647/Venezia_83/lestranea.jpg?itok=cQ1DkZDP"
+    "https://static.labiennale.org/files/styles/full_screen_slide/public/cinema/2026/Schede_film/970x647/Venezia_83/lestranea.jpg?itok=cQ1DkZDP",
+    "https://cineuropa.org/en/interview/495157/",
+    "https://www.comingsoon.it/cinema/news/torna-al-cinema-paolo-strippoli-ecco-quando-uscira-il-nuovo-l-estranea/n226013/",
+    "https://mr.comingsoon.it/imgdb/PrimoPiano/impaginate/l%27estraneaposter.jpg"
    ]
   },
   "time-and-water-2026": {
@@ -326,7 +330,12 @@
     "https://www.flicks.co.uk/movie/time-and-water/",
     "https://www.imdb.com/title/tt39163015/",
     "https://letterboxd.com/film/time-and-water-2026/",
-    "https://images.squarespace-cdn.com/content/v1/569cf0841c1210c8103543c7/1774960658906-HLIP6808SM7Y0MBUGYWH/TimeAndWater_UHD_23.jpg"
+    "https://images.squarespace-cdn.com/content/v1/569cf0841c1210c8103543c7/1774960658906-HLIP6808SM7Y0MBUGYWH/TimeAndWater_UHD_23.jpg",
+    "https://www.sundance.org/blogs/time-and-water-is-a-moving-portrait-of-family-history-and-a-warming-iceland/",
+    "https://www.sheffdocfest.com/film/time-and-water",
+    "https://schedule.sxsw.com/2026/films/2249905",
+    "https://dokufest.com/en/festival/2026/film/time-and-water",
+    "https://www.cinemaclock.com/images/posters/1000x1500/87/time-and-water-2026-orig-poster.jpg"
    ]
   },
   "woman-unknown-2026": {
@@ -349,7 +358,34 @@
     "https://filmivast.com/films-series/productions/2026/woman-unknown",
     "https://letterboxd.com/film/woman-unknown/",
     "https://www.metacritic.com/movie/woman-unknown/",
-    "https://a.storyblok.com/f/309335/2500x3572/9e9bf431a8/womanunknown_keyartuk2_awweb.jpg"
+    "https://a.storyblok.com/f/309335/2500x3572/9e9bf431a8/womanunknown_keyartuk2_awweb.jpg",
+    "https://nordiskfilmogtvfond.com/news/stories/nordic-film-talks-may-el-toukhy",
+    "https://www.iffigoa.org/pdfs/catalogue-57.pdf"
+   ]
+  },
+  "gh63-054": {
+   "title": "橘子味的婚礼",
+   "hainanPremiere": "中国大陆首映",
+   "ratings": [
+    null,
+    6.5,
+    null,
+    null,
+    3.35
+   ],
+   "sources": [
+    "https://www.festival-cannes.com/en/f/mariage-au-gout-d-orange/",
+    "https://cineuropa.org/en/interview/491709/",
+    "https://www.imdb.com/title/tt42007277/",
+    "https://www.filmdraft.co/movies/orange-flavoured-wedding",
+    "https://inter.pyramidefilms.com/pyramidefilms-international-catalogue/orange-flavoured-wedding.html",
+    "https://letterboxd.com/film/orange-flavoured-wedding/",
+    "https://www.rottentomatoes.com/m/orange_flavoured_wedding",
+    "https://inter.pyramidefilms.com/images/films/1764/_thumb1/unknownvignette.jpg",
+    "https://www.festival-cannes.com/2026/christophe-honore-filme-la-famille-en-crise-dans-mariage-au-gout-dorange/",
+    "https://www.goldenhorse.org.tw/film/programme/films/detail/4418?search_category=FF&search_year=2026",
+    "https://www.advitamdistribution.com/films/mariage-au-gout-dorange/",
+    "https://www.advitamdistribution.com/app/uploads/2026/11/MARIAGE-AU-GOUT-DORANGE-120X160_HD-1-526x712.jpg"
    ]
   }
  }
