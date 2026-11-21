@@ -101,6 +101,11 @@
             bindtouchstart="startEditorTouch" catchtouchmove="moveEditorTouch"
             bindtouchend="endEditorTouch" bindtouchcancel="endEditorTouch" />
         </view>
+        <view wx:if="{{arts.length}}" class="te-art">
+          <text class="te-art-k">{{L.t(i,'裁切')}}</text>
+          <slider class="te-slider" min="0" max="100" value="{{draft.crop}}" block-size="18" activeColor="#8e2a22" backgroundColor="#e6dcc7" bindchanging="changeField" bindchange="changeField" data-field="crop" />
+          <picker wx:if="{{arts.length>1}}" mode="selector" range="{{arts}}" value="{{artIndex}}" bindchange="chooseArt"><view class="te-art-pick">{{arts[artIndex]}} ›</view></picker>
+        </view>
         <view class="te-tools">
           <view class="te-seg" role="tablist">
             <view class="{{editFront?'on':''}}" data-side="front" bindtap="setSide" role="tab" aria-selected="{{editFront}}">{{L.t(i,'正面')}}</view>
@@ -123,14 +128,6 @@
         <view class="te-row"><text class="te-k">{{L.t(i,'座位')}}</text><input class="te-in" value="{{draft.seat}}" placeholder="{{L.t(i,'选填，如 5排8座')}}" placeholder-class="te-ph" data-field="seat" bindinput="changeField" /></view>
         <view class="te-row"><text class="te-k">{{L.t(i,'放映版本')}}</text><input class="te-in" value="{{draft.format}}" placeholder="{{L.t(i,'如 4K修复')}}" placeholder-class="te-ph" data-field="format" bindinput="changeField" /></view>
       </view>
-
-      <block wx:if="{{arts.length}}">
-        <view class="te-sec">{{L.t(i,'票面图像')}}</view>
-        <view class="te-card">
-          <picker wx:if="{{arts.length>1}}" class="te-first" mode="selector" range="{{arts}}" value="{{artIndex}}" bindchange="chooseArt"><view class="te-row"><text class="te-k">{{L.t(i,'图像')}}</text><view class="te-v"><text>{{arts[artIndex]}}</text><text class="te-go">›</text></view></view></picker>
-          <view class="te-row te-crop {{arts.length>1?'':'te-first'}}"><text class="te-k">{{L.t(i,'裁切位置')}}</text><slider class="te-slider" min="0" max="100" value="{{draft.crop}}" block-size="20" activeColor="#8e2a22" backgroundColor="#e6dcc7" bindchanging="changeField" bindchange="changeField" data-field="crop" /></view>
-        </view>
-      </block>
 
       <view class="te-acts">
         <view class="te-save" hover-class="te-hv" bindtap="store" role="button">{{L.t(i,existing?'保存修改':'加入收藏册')}}</view>

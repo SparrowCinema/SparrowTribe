@@ -227,3 +227,8 @@
 .te-dot{color:var(--line)}
 .te-off{opacity:.45}
 @media(min-width:700px){.te{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);column-gap:calc(36 * var(--r));align-items:start}.te-stage{grid-row:1 / span 6;position:sticky;top:calc(20 * var(--r))}.te-title,.te-sec,.te-card,.te-acts{grid-column:2}}
+/* 裁切与票面图像放在票根正下方，边拖边看 */
+.te-art{display:flex;align-items:center;gap:calc(16 * var(--r));width:88%;max-width:340px}
+.te-art-k{flex:none;font-size:calc(21 * var(--fr));color:var(--muted)}
+.te-art .te-slider{flex:1;margin:0 calc(6 * var(--r))}
+.te-art-pick{flex:none;padding:calc(8 * var(--r)) calc(18 * var(--r));border:calc(2 * var(--r)) solid var(--line);border-radius:999px;background:var(--surface);font-size:calc(20 * var(--fr));color:var(--fg);white-space:nowrap}

@@ -357,6 +357,9 @@ function ticketEditor(row){
     <div class="te-stage"><button type="button" data-ticket-action="flip" class="ticket-flip" data-side="${ticketDraft.side}" aria-label="${ticketDict("翻面")}">
       <span class="ticket-turn"><span class="ticket-face ticket-front"><canvas width="630" height="1296" id="ticket-preview-front" aria-hidden="true"></canvas></span>
       <span class="ticket-face ticket-back"><canvas width="630" height="1296" id="ticket-preview-back" aria-hidden="true"></canvas></span></span></button>
+      ${assets.length?`<div class="te-art">
+        <label class="te-crop"><span>${ticketDict("裁切")}</span><input class="te-range" type="range" min="0" max="100" name="crop" value="${row.crop}" aria-label="${ticketDict("裁切位置")}"></label>
+        ${assets.length>1?`<select class="te-art-pick" name="art" aria-label="${ticketDict("票面图像")}">${assets.map((a,i)=>ticketOption(a,`${tr(i===0?"海报":"备用图像")} ${i+1}`,row.art)).join("")}</select>`:""}</div>`:""}
       <div class="te-tools"><div class="te-seg" role="tablist" aria-label="${ticketDict("票根面")}">
         <button type="button" role="tab" data-ticket-side="front" aria-selected="${front}">${ticketDict("正面")}</button><button type="button" role="tab" data-ticket-side="back" aria-selected="${!front}">${ticketDict("背面")}</button></div>
         <button type="button" class="te-dice" data-ticket-action="shuffle">${ticketDict("随机换一款")}</button></div>
@@ -365,9 +368,6 @@ function ticketEditor(row){
       <div class="te-title"><h3>${esc(row.title)}</h3>${row.programme?`<small>${esc(row.programme)}</small>`:""}</div>
       <h4 class="te-sec">${ticketDict("放映信息")}</h4>
       <div class="te-card">${dateRow}${input("time","开场时间","","time")}${input("venue","影院","影院名称")}${input("hall","影厅","如 1号厅")}${input("seat","座位","选填，如 5排8座")}${input("format","放映版本","如 4K修复")}</div>
-      ${assets.length?`<h4 class="te-sec">${ticketDict("票面图像")}</h4><div class="te-card">
-        ${assets.length>1?`<label class="te-row"><span class="te-k">${ticketDict("图像")}</span><select class="te-in" name="art">${assets.map((a,i)=>ticketOption(a,`${tr(i===0?"海报":"备用图像")} ${i+1}`,row.art)).join("")}</select></label>`:""}
-        <label class="te-row"><span class="te-k">${ticketDict("裁切位置")}</span><input class="te-range" type="range" min="0" max="100" name="crop" value="${row.crop}"></label></div>`:""}
       <div class="te-acts"><button type="button" class="te-save" data-ticket-action="save">${ticketDict(ticketDraft.original?"保存修改":"加入收藏册")}</button>
         <div class="te-links"><button type="button" class="text-button" data-ticket-action="single">${ticketDict("导出这张票根")}</button>${ticketDraft.original?`<i aria-hidden="true">·</i><button type="button" class="text-button te-danger" data-ticket-action="remove">${ticketDict("移出收藏册")}</button>`:""}</div></div>
     </div></div>`;
@@ -468,7 +468,7 @@ async function ticketExport(button,single){
 function ticketInput(event){
   const t=event.target;
   if(t.id==="ticket-search")ticketSearch(t.value);
-  else if(t.name==="crop"&&ticketDraft){ticketDraft.row.crop=Number(t.value);ticketDrawEditor();}
+  else if(t.name==="crop"&&ticketDraft){ticketDraft.row.crop=Number(t.value);if(ticketDraft.side!=="front")ticketFlipTo("front");ticketDrawEditor();}
   // 边输入边更新预览（停顿 250ms 再画）
   else if(ticketDraft&&["time","venue","hall","seat","format"].includes(t.name)){ticketDraft.row[t.name]=t.value;clearTimeout(ticketSearchTimer);ticketSearchTimer=setTimeout(ticketDrawEditor,250);}
 }
