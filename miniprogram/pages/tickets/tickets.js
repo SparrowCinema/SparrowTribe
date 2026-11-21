@@ -232,6 +232,7 @@ Page({
     };
     nextFrame(preview.node,animate);
   },
+  setSide(e){if((e.currentTarget.dataset.side==='front')!==(this._side==='front'))this.flipEditor();},
   startEditorTouch(e){this.measureTicket();this.moveEditorTouch(e);},
   moveEditorTouch(e){
     const preview=this._preview,box=this._ticketBounds,point=e.touches?.[0];
@@ -327,7 +328,7 @@ Page({
   },
   pickExport(){this.setData({'ex.kind':'pick','ex.part':0});this.exportWall(true);},
   pickCancel(){this._pick=null;this.setData({pick:false,pickN:0});this.paint(true);},
-  exportSingle(){this.export(true);},
+  exportSingle(){if(!this.data.loading)this.export(true);},
   exportWall(){this.export(false);},
   async export(single){
     if(this.data.loading)return;
