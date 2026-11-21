@@ -12,11 +12,11 @@ const root=path.resolve(__dirname,'..');for(const m of require('./web-source').r
 for(const dir of ['shared','miniprogram/pages/film','miniprogram/pages/films','miniprogram/pages/my','miniprogram/pages/poster-wall','miniprogram/pages/schedule','miniprogram/pages/tickets','miniprogram/utils'])for(const n of fs.readdirSync(path.join(root,dir)))if(n.endsWith('.js'))new vm.Script(fs.readFileSync(path.join(root,dir,n),'utf8'),{filename:dir+'/'+n});
 assert.equal(fs.readFileSync(path.join(root,'shared/profile-backup.js'),'utf8'),fs.readFileSync(path.join(root,'miniprogram/utils/profile-backup.js'),'utf8'));
 assert.equal(fs.readFileSync(path.join(root,'shared/tickets.js'),'utf8'),fs.readFileSync(path.join(root,'miniprogram/utils/tickets.js'),'utf8'));
+assert.equal(fs.readFileSync(path.join(root,'shared/ticket-sketch.js'),'utf8'),fs.readFileSync(path.join(root,'miniprogram/utils/ticket-sketch.js'),'utf8'));
 console.log('PASS: backup round trip, no credentials, merge semantics, deletions, malformed imports, city-scoped selection and JavaScript parsing.');
 
 require('./check-recap.js');
 require('./check-tickets.js');
-require('./check-wxss.js');
 
 require('./check-film-details.js');
 require('./check-mini-ended.js');

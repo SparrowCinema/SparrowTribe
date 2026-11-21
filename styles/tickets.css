@@ -151,8 +151,8 @@
 .ticket-page .te-row input[type=time].te-in{display:flex;justify-content:flex-end}
 .ticket-page .te-row input[type=time].te-in::-webkit-datetime-edit{text-align:right}
 /* 裁切与票面图像放在票根正下方，边拖边看 */
-.te-art{display:flex;align-items:center;gap:10px;width:min(100%,340px)}
-.ticket-page .te-crop{flex:1;display:flex;align-items:center;gap:10px;min-width:0;font-size:.78rem;color:var(--muted)}
+.te-art{display:flex;flex-wrap:wrap;align-items:center;gap:8px;width:min(100%,340px)}
+.ticket-page .te-crop{flex:1;display:flex;align-items:center;gap:10px;min-width:92px;font-size:.78rem;color:var(--muted)}
 .te-crop .te-range{flex:1;min-width:0}
 .ticket-page .te-art-pick{flex:none;width:auto;max-width:42%;border:1px solid var(--line);border-radius:999px;padding:5px 10px;background:var(--surface);color:var(--fg);font-size:.8rem}
 .ticket-page .te-row select.te-in{appearance:none;-webkit-appearance:none;padding-right:16px;background:linear-gradient(45deg,transparent 50%,var(--muted) 50%) right 6px center/5px 5px no-repeat,linear-gradient(-45deg,transparent 50%,var(--muted) 50%) right 1px center/5px 5px no-repeat;text-overflow:ellipsis}

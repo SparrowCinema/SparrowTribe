@@ -97,6 +97,29 @@ assert.equal(B.restore(S.clean({}),pack,50).tix['a|2026-11-01'].t,50);
 assert.throws(()=>B.decode({...pack,profile:{...pack.profile,tix:{'a|2026-11-01':{t:1},'bad':{t:1}}}}));
 assert(S.merge(profile,B.empty(profile,100)).tix['a|2026-11-01'].del);
 
+// 可选配图手绘：旧票保留原图，保存、同步、备份和切回原图共用原来的票根规则。
+const artRow=rows.find(x=>x.filmId==='a');
+assert.equal(artRow.sketch,false);
+const drawn=T.entryFrom({...artRow,sketch:true},base('a',null,artRow.date),110);
+assert.equal(drawn.sk,1);
+const drawnStore={[artRow.key]:drawn};
+assert.equal(T.build(list,drawnStore,base).tickets[0].sketch,true);
+assert.equal(B.decode(JSON.parse(JSON.stringify(B.encode({...profile,tix:drawnStore},110)))).tix[artRow.key].sk,1);
+const original=T.entryFrom({...artRow,sketch:false},base('a',null,artRow.date),111);
+assert.equal(S.mergeTix(drawnStore,{[artRow.key]:original})[artRow.key].sk,undefined);
+assert.equal(S.cleanTixEntry({t:110,sk:'yes'}).sk,undefined);
+
+const Sketch=require('../shared/ticket-sketch.js');
+const patch=new Uint8ClampedArray(12*8*4);
+for(let i=0;i<patch.length;i+=4)patch.set(i%48<24?[194,62,56,255]:[48,142,196,255],i);
+const raster=Sketch.stylize(patch,12,8,48,32);
+assert.equal(raster.length,48*32*4);
+assert.deepStrictEqual(raster,Sketch.stylize(patch,12,8,48,32));
+assert(new Set(raster.filter((_,i)=>i%4===0)).size>8,'pencil strokes introduce pigment variation');
+assert(raster.every((value,i)=>i%4!==3||value===255));
+const blocked=()=>({getContext:()=>({getImageData(){throw Error('pixels unavailable');}})});
+assert.equal(Sketch.paint({}, {},50,{x:0,y:0,w:48,h:32},blocked,()=>{}),false);
+
 // 规模：5000 张一键生成后的存储大小与推导耗时（小程序单个存储项上限 1MB）
 const many={},manyFilms={};
 for(let i=0;i<5000;i++){const id='film-'+(i%900),d='20'+(20+(i%9))+'-'+String(1+i%12).padStart(2,'0')+'-'+String(1+i%28).padStart(2,'0');manyFilms[id]=1;many[id]=many[id]||{d,r:0,k:'',t:1,v:[]};many[id].v.push({d,r:0,k:''});}
