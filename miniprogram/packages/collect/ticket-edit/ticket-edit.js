@@ -109,7 +109,7 @@ Page({
     if(path&&turn===this._turn&&this._ready){this._cache.set(sig,path);if(this._cache.size>24)this._cache.delete(this._cache.keys().next().value);}
     return path;
   },
-  // 工艺反光层：每面最多三层——底箔反光、工艺组合里的烫印增效（同一张工艺遮罩）、海报画面增效（只有正面，遮罩从海报算出）。
+  // 工艺反光层：每面最多三层——底箔反光、工艺组合里的烫印增效（同一张工艺遮罩）、隐形底纹（正面在海报上、遮罩从海报算出；背面铺满背面）。
   // 遮罩画在隐藏画布上转成 data URI 给 .te-fx 当 mask-image；尺寸小即可（210px 宽）
   async fxLayers(node,side,turn){
     const row={...this._draft,artStyle:this._artStyle},base=R.fxOf(row.look.finish),extra=R.parseCraft(row.look.craft).foil.find(fx=>fx!==base);
@@ -127,6 +127,11 @@ Page({
       let mask=null;try{mask=R.artMask(row,art,stock,w);}catch(e){mask=null;}
       const m=mask&&snap(ctx=>{ctx.drawImage(mask,0,0,w,h);return true;});
       if(m)layers.push({i:'a',fx:mask.fx,k:1,m});
+    }
+    if(side==='back'){
+      let mask=null;try{mask=R.backMask(row,stock,w);}catch(e){mask=null;}
+      const m=mask&&snap(ctx=>{ctx.drawImage(mask,0,0,w,h);return true;});
+      if(m)layers.push({i:'k',fx:mask.fx,k:1,m});
     }
     if(turn===this._turn)this._cache.set(sig,layers);
     return layers;

@@ -47,7 +47,7 @@ assert.equal(entry.x===undefined,edited.look.craft===T.build(list,{},base).ticke
   assert.deepEqual(T.parseCraft('gs-uBv'),{foil:['glitter','sense'],art:'uv',braille:true,vde:true});
   assert.deepEqual(T.parseCraft('bad'),{foil:[],art:null,braille:false,vde:false},'invalid codes fall back to no extras');
   assert.equal(S.cleanTixEntry({t:1,x:'zz-q'}).x,undefined,'sync drops malformed craft codes');
-  assert.match(T.craftLabel({finish:'gold',craft:'g-rv'}),/^香槟金箔 \+ 金葱闪粉 \+ 海报隐形轮廓光油 \+ 日期可变数据烫印$/);
+  assert.match(T.craftLabel({finish:'gold',craft:'g-rv'}),/^香槟金箔 \+ 金葱闪粉 \+ 海报隐形轮廓光油 \+ 背面隐形环形扭索 \+ 日期可变数据烫印$/);
   // 稳定随机：同一张票根每次一样，不同票根分散在各种组合里
   const codes=new Set();for(let i=0;i<400;i++)codes.add(T.sanitize({filmId:'f'+i,title:'t',date:'2026-11-08',id:'f'+i+'|2026-11-08'}).look.craft);
   assert.equal(T.sanitize({filmId:'f1',title:'t',date:'2026-11-08',id:'f1|2026-11-08'}).look.craft,T.sanitize({filmId:'f1',title:'t',date:'2026-11-08',id:'f1|2026-11-08'}).look.craft);

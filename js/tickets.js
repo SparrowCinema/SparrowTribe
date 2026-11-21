@@ -578,7 +578,7 @@ async function ticketRenderCard(canvas,row,side){
   draw(null);
   if(side==="front"&&row.art){const image=await ticketPoster(row,false);if(canvas.isConnected&&canvas.ticketPainting===rendering&&image)draw(image);}
 }
-// 工艺反光层（只在详情页用）：每面最多三层——底箔的反光、工艺组合里的烫印增效、海报画面增效（只有正面）。
+// 工艺反光层（只在详情页用）：每面最多三层——底箔的反光、工艺组合里的烫印增效、隐形底纹（正面在海报上，背面铺满背面）。
 // 前两层用工艺遮罩（烫印 / 镭射 / 光油 / 盲文 / 可变数据烫印的区域），海报层用从海报算出的遮罩；转动时按角度移动（ticketTurner）。
 function ticketFxMask(canvas,row,side,image){
   const spans=[...(canvas.parentElement?.querySelectorAll(".ticket-fx")||[])];if(!spans.length)return;
@@ -593,6 +593,7 @@ function ticketFxMask(canvas,row,side,image){
     }
   }
   if(side==="front"&&image){const art=TE.artMask(row,image,ticketCanvas,w);if(art)layers.push({fx:art.fx,k:1,url:`url(${art.toDataURL("image/png")})`});}
+  if(side==="back"){const back=TE.backMask(row,ticketCanvas,w);if(back)layers.push({fx:back.fx,k:1,url:`url(${back.toDataURL("image/png")})`});}
   spans.forEach((el,i)=>{
     const layer=layers[i];el.hidden=!layer;
     if(!layer){el.style.webkitMaskImage=el.style.maskImage="none";delete el.dataset.fx;return;}
