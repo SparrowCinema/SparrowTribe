@@ -58,7 +58,10 @@ function ticketBase(filmId,view,date){
 }
 function ticketAll(){
   if(ticketData&&ticketDataRev===ticketRev+"|"+watchedSig())return ticketData;
-  ticketData=TE.build(ticketViewings(),ticketStore(),ticketBase);ticketDataRev=ticketRev+"|"+watchedSig();
+  // 不对应观影记录的票根先挪回所属影片（一部电影一张，和观影护照对齐）
+  const list=ticketViewings(),moves=TE.reconcile(list,ticketStore());
+  if(moves)ticketStorePut({...ticketStore(),...moves},true);
+  ticketData=TE.build(list,ticketStore(),ticketBase);ticketDataRev=ticketRev+"|"+watchedSig();
   ticketByKey=new Map(ticketData.tickets.map(row=>[row.key,row]));
   return ticketData;
 }
@@ -86,11 +89,20 @@ async function ticketPoster(row,small){
   const thumb=small?ticketThumb(row):row.art;
   return (await ticketImage(thumb))||(thumb!==row.art?await ticketImage(row.art):null);
 }
+// 票面字体（与网站一致，见 shared/tickets.js 的 SERIF / SANS / MONO / LATIN）：Google 字体按字分片加载，画之前先载入要用到的字，最多等 2.5 秒
+const TICKET_FIXED="麻雀观影护照纪念票根收藏放映日期开场影厅座位版本影院未填待定我的观影收藏册张正面背面";
+async function ticketFonts(rows){
+  if(!document.fonts?.load)return;
+  const text=[...new Set(TICKET_FIXED+rows.map(r=>[r.title,r.programme,r.section,r.venue,r.city,r.hall,r.format,r.seat].join("")).join(""))].join("");
+  const jobs=[`900 40px "Noto Serif SC"`,`700 14px "Noto Sans SC"`,`500 14px "Noto Sans SC"`].map(f=>document.fonts.load(f,text));
+  jobs.push(document.fonts.load(`500 20px "IBM Plex Mono"`,"0123456789.:—/ SPARROWCINEMA"),document.fonts.load(`600 12px "Barlow"`,rows.map(r=>(r.subtitle||"").toUpperCase()).join("")||"A"));
+  await Promise.race([Promise.all(jobs).catch(()=>{}),new Promise(r=>setTimeout(r,2500))]);
+}
 const ticketSig=(row,side,w,style)=>[row.key,side,w,side==="front"?style:"",TE.packLook(row.look),row.crop,row.art,row.time,row.venue,row.hall,row.seat,row.format,row.title,row.programme,row.city].join("¦");
 async function ticketTileURL(row,side,w){
   const artStyle=ticketArtStyle,sig=ticketSig(row,side,w,artStyle);
   if(ticketURLs.has(sig)){const url=ticketURLs.get(sig);ticketURLs.delete(sig);ticketURLs.set(sig,url);return url;}
-  const image=side==="front"?await ticketPoster(row,true):null;
+  const [image]=await Promise.all([side==="front"?ticketPoster(row,true):null,ticketFonts([row])]);
   const h=Math.round(w*TE.H/TE.W),canvas=ticketCanvas(w,h);
   TE.draw(canvas.getContext("2d"),{...row,artStyle},side,image,{x:0,y:0,w,h},ticketCanvas);
   const blob=await new Promise(resolve=>canvas.toBlob(resolve,"image/webp",.86));
@@ -147,10 +159,10 @@ function ticketHeading(album,title){
 }
 function ticketEmptyHTML(pending){
   if(pending.length)return `<div class="empty-plan"><h3>${ticketDict("还没有收藏票根")}</h3>
-    <p>${pending.length} ${ticketDict("场观影还没做成票根")}</p>
+    <p>${pending.length} ${ticketDict("部电影还没做成票根")}</p>
     <div class="ticket-edit-actions ticket-center"><button type="button" class="primary-button" data-ticket-action="make-all">${ticketDict("一键生成")}</button>
     <button type="button" class="secondary-button" data-ticket-action="pending">${ticketDict("逐张挑选")}</button></div></div>`;
-  return `<div class="ticket-empty"><h3>${ticketDict("还没有收藏票根")}</h3><p>${ticketDict("在影片页点「看过」盖章后，每一次观影都可以做成一张票根；也可以直接搜索影片制作。")}</p>
+  return `<div class="ticket-empty"><h3>${ticketDict("还没有收藏票根")}</h3><p>${ticketDict("在影片页点「看过」盖章后，每部电影都可以做成一张票根；也可以直接搜索影片制作（会同时盖章）。")}</p>
     <label>${ticketDict("搜索护照片库")}<input id="ticket-search" type="search" autocomplete="off"></label><div id="ticket-results" class="ticket-results"></div></div>`;
 }
 const ticketActiveCount=()=>TE.FACETS.reduce((n,k)=>n+ticketQ[k].length,0);
@@ -173,7 +185,7 @@ function ticketPaintList(){
     <div class="pw-actions"><p class="pw-hint pw-count" role="status">${esc(count)}${LANG==="en"?", ":"，"}${ticketDict("按观影日期排列")}</p>
       <label class="pw-score-toggle"><input type="checkbox" data-ticket-back${ticketSide==="back"?" checked":""}>${ticketDict("看背面")}</label>
       <button type="button" class="secondary-button ticket-export-btn" data-ticket-action="export-open"${shown.length?"":" disabled"}>${ticketDict("导出票根墙")}</button></div>
-    ${pending.length?`<div class="ticket-todo"><span><b>${pending.length}</b> ${ticketDict("场观影还没做成票根")}</span><span><button type="button" class="text-button" data-ticket-action="make-all">${ticketDict("一键生成")}</button><i aria-hidden="true">·</i><button type="button" class="text-button" data-ticket-action="pending">${ticketDict("逐张挑选")} ›</button></span></div>`:""}
+    ${pending.length?`<div class="ticket-todo"><span><b>${pending.length}</b> ${ticketDict("部电影还没做成票根")}</span><span><button type="button" class="text-button" data-ticket-action="make-all">${ticketDict("一键生成")}</button><i aria-hidden="true">·</i><button type="button" class="text-button" data-ticket-action="pending">${ticketDict("逐张挑选")} ›</button></span></div>`:""}
     ${n?`<div class="ticket-chips">${TE.FACETS.flatMap(k=>ticketQ[k].map(v=>`<button type="button" data-ticket-facet="${k}" data-value="${esc(v)}" aria-label="${ticketDict("移除筛选")} ${esc(v)}">${esc(v)} ×</button>`)).join("")}<button type="button" class="text-button" data-ticket-action="clear">${ticketDict("清除筛选")}</button></div>`:""}
     ${shown.length?`<div class="ticket-album" data-density="${ticketDensity}">${groups.map(g=>ticketMonthHTML(g)).join("")}</div>`:
       `<div class="empty-plan"><h3>${ticketDict("所选条件下暂无票根")}</h3><button type="button" class="secondary-button" data-ticket-action="clear-all">${ticketDict("清除筛选")}</button></div>`}
@@ -311,8 +323,8 @@ function ticketPendingHTML(){
   const line=item=>{const f=F[item.filmId],b=ticketBase(item.filmId,item.view,item.view.d)||{};
     return `<li><button type="button" class="ticket-pend" data-ticket-pending="${esc(item.key)}">${pst(item.filmId)?pimg(item.filmId,360,'loading="lazy" alt=""'):"<i></i>"}
       <b>${esc(f?.cn||item.filmId)}</b><span>${esc([item.view.d.replace(/-/g,"."),b.time,b.venue].filter(Boolean).join(" · "))}</span><em>${ticketDict("制作")} ›</em></button></li>`;};
-  return ticketHeading(false)+`<div class="ticket-pending"><h3>${ticketDict("待制作")} ${pending.length} ${ticketDict("场")}</h3>
-    <p>${ticketDict("每一次观影都可以做一张票根。一键生成使用专题默认款式，之后仍可逐张换款。")}</p>
+  return ticketHeading(false)+`<div class="ticket-pending"><h3>${ticketDict("待制作")} ${pending.length} ${ticketDict("部")}</h3>
+    <p>${ticketDict("和观影护照一样，一部电影一张票根。一键生成使用专题默认款式，之后仍可逐张换款。")}</p>
     ${pending.length?`<button type="button" class="primary-button" data-ticket-action="make-all">${ticketDict("一键生成全部")} ${pending.length} ${ticketDict("张票根")}</button>`:`<p>${ticketDict("所有观影都已经做成票根了。")}</p>`}
     <ul>${rows.map(line).join("")}</ul>
     ${pending.length>rows.length?`<button type="button" class="ticket-alt" data-ticket-action="pending-more">${ticketDict("显示更多")}（${pending.length-rows.length}）</button>`:""}</div>`;
@@ -349,11 +361,15 @@ function ticketBegin(id){
   const f=F[id];if(!f)return;
   const mine=ticketViewings().filter(item=>item.filmId===id).sort((a,b)=>b.view.d.localeCompare(a.view.d));
   const made=new Set(ticketAll().tickets.map(row=>row.key));
-  const item=mine.find(x=>!made.has(x.key))||mine[0];
+  // 一部电影一张：已有票根就打开它，否则用最近一次观影新建
+  const item=mine.find(x=>made.has(x.key))||mine[0];
   if(item){ticketOpenViewing(item);return;}
-  // 没有观影记录：手工票根，日期默认今天，可改
+  // 没有观影记录：先找这部电影以前做过、现在没对上观影记录的票根（比如移出过护照），接着编辑它
+  const store=ticketStore(),old=Object.keys(store).filter(k=>k.startsWith(id+"|")&&!store[k].del&&TE.parseKey(k)).sort((x,y)=>(store[y].t||0)-(store[x].t||0))[0];
+  if(old){const row=TE.draft(old,store[old],ticketBase);if(row){ticketDraft={row,original:old,side:"front",view:null};ticketRender();window.scrollTo(0,0);return;}}
+  // 都没有：手工票根，日期默认今天，可改；保存时同时盖章
   const date=isoOf(new Date(now())),key=ticketFreeKey(id,date);
-  const row=TE.build([],{[key]:{t:Date.now()}},ticketBase).tickets[0];if(!row)return;
+  const row=TE.draft(key,{t:Date.now()},ticketBase);if(!row)return;
   row.look=TE.randomLook(row);
   ticketDraft={row,original:"",side:"front",view:null};ticketRender();window.scrollTo(0,0);
 }
@@ -429,13 +445,21 @@ async function ticketRenderCard(canvas,row,side){
   const rendering=(canvas.ticketPainting||0)+1;canvas.ticketPainting=rendering;
   const styled={...row,artStyle:ticketArtStyle};
   const draw=image=>{const ctx=canvas.getContext("2d");ctx.clearRect(0,0,canvas.width,canvas.height);TE.draw(ctx,styled,side,image,{x:0,y:0,w:canvas.width,h:canvas.height},ticketCanvas);};
+  await ticketFonts([row]);if(!canvas.isConnected||canvas.ticketPainting!==rendering)return;
   draw(null);
   if(side==="front"&&row.art){const image=await ticketPoster(row,false);if(canvas.isConnected&&canvas.ticketPainting===rendering&&image)draw(image);}
 }
 function ticketSave(stay){
   const d=ticketDraft,row=TE.sanitize({...d.row});
   if(!row.date){toast(tr("请填写放映日期"));return;}
-  let key=d.row.key;
+  let key=d.row.key,stamped=false;
+  // 一部电影一张票根、和护照同步：给还没盖章的电影做票根，同时在护照里盖章（观影日期＝票根日期）
+  const rec=watched[row.filmId];
+  if(!d.row.linked&&(!rec||rec.del)){
+    watched[row.filmId]={d:row.date,r:0,k:"",t:Math.max(Date.now(),(rec?.t||0)+1)};saveWatched();stamped=true;
+    const item=ticketViewings().find(x=>x.filmId===row.filmId);
+    if(item){key=item.key;d.view=item.view;d.row.linked=true;d.row.key=key;}
+  }
   if(!d.row.linked){
     const parsed=TE.parseKey(key);
     if(!parsed||parsed.date!==row.date)key=ticketFreeKey(row.filmId,row.date,d.original);
@@ -448,9 +472,9 @@ function ticketSave(stay){
   if(!ticketSet(changes))return;
   if(stay){
     d.original=key;d.row.key=key;d.artSig=ticketArtSig(d.row);
-    const y=window.scrollY;ticketRender();window.scrollTo(0,y);toast(tr("已保存"));return;
+    const y=window.scrollY;ticketRender();window.scrollTo(0,y);toast(tr(stamped?"已同时盖章 · 加入观影护照":"已保存"));return;
   }
-  ticketDraft=null;ticketMode="album";ticketRender();toast(tr("已收进票根收藏册"));
+  ticketDraft=null;ticketMode="album";ticketRender();toast(tr(stamped?"已同时盖章 · 加入观影护照":"已收进票根收藏册"));
 }
 
 // ——— 导出 ———
@@ -482,7 +506,7 @@ async function ticketExport(button,single){
   button.disabled=true;const label=button.textContent;button.textContent=tr("正在生成图片");
   try{
     const small=shown.length>12;
-    const images=await Promise.all(shown.map(row=>side==="front"?ticketPoster(row,small):null));
+    const [images]=await Promise.all([Promise.all(shown.map(row=>side==="front"?ticketPoster(row,small):null)),ticketFonts(shown)]);
     const layout=single?{width:TE.W*3,height:TE.H*3}:TE.wallLayout(shown.length);
     const canvas=ticketCanvas(layout.width,layout.height),ctx=canvas.getContext("2d");
     if(single)TE.draw(ctx,shown[0],side,images[0],{x:0,y:0,w:layout.width,h:layout.height},ticketCanvas);

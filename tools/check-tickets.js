@@ -18,15 +18,15 @@ const watched={
 const list=T.viewings(watched,G.views,id=>!!films[id]);
 assert.deepStrictEqual(list.map(x=>x.key).sort(),['a|2026-11-01','a|2026-11-08','a|2026-11-08|2','b|2026-10-20']);
 
-// 空存储：所有观影都是待制作
+// 空存储：每部电影一项待制作（和观影护照一样一部一张，用最近一次观影）
 let built=T.build(list,{},base);
-assert.equal(built.tickets.length,0);assert.equal(built.pending.length,4);
-assert.equal(built.pending[0].view.d,'2026-11-08');
+assert.equal(built.tickets.length,0);assert.deepStrictEqual(built.pending.map(x=>x.key),['a|2026-11-08','b|2026-10-20']);
 
 // 一键生成：只存 {t}，票面字段全部推导
 const store={};built.pending.forEach(x=>{store[x.key]={t:5};});
 built=T.build(list,S.cleanTix(store),base);
-assert.equal(built.tickets.length,4);assert.equal(built.pending.length,0);
+assert.equal(built.tickets.length,2);assert.equal(built.pending.length,0);assert.equal(built.hidden,0);
+assert.equal(built.tickets.find(r=>r.filmId==='a').views,3);
 const second=built.tickets.find(r=>r.key==='a|2026-11-08');
 assert.equal(second.time,'19:30');assert.equal(second.venue,'麻雀部落');assert.equal(second.format,'4K 数字');assert(second.linked);
 assert.equal(second.programme,'2026 吴天明电影展');
@@ -40,6 +40,11 @@ const entry=T.entryFrom(edited,{...base('a',list.find(x=>x.key==='a|2026-11-08')
 assert.deepStrictEqual(Object.keys(entry).sort(),['c','l','st','t','vn']);   // 同一张海报（网址只是写法不同）不存
 assert(JSON.stringify(entry).length<120);
 store['a|2026-11-08']=entry;
+// 同一部电影其他观影已有的旧票根（重看、旧数据）不重复显示，只留最近保存的一张，存储不删
+store['a|2026-11-01']={t:6};store['a|2026-11-08|2']={t:7};
+built=T.build(list,S.cleanTix(store),base);
+assert.deepStrictEqual(built.tickets.map(r=>r.key),['a|2026-11-08','b|2026-10-20']);assert.equal(built.hidden,2);
+assert(store['a|2026-11-01']&&store['a|2026-11-08|2']);
 const again=T.build(list,S.cleanTix(store),base).tickets.find(r=>r.key==='a|2026-11-08');
 assert.equal(again.seat,'5排8座');assert.equal(again.venue,'麻雀部落电影文化空间');assert.equal(again.crop,30);assert.equal(T.packLook(again.look),T.packLook(edited.look));
 // 改回推导值后不再存这个字段
@@ -48,14 +53,23 @@ assert(!('vn' in T.entryFrom({...again,venue:'麻雀部落'},{...base('a',{k:'k1
 // 移出：留删除标记，这次观影回到待制作
 store['b|2026-10-20']={del:1,t:11};
 built=T.build(list,S.cleanTix(store),base);
-assert.equal(built.tickets.length,3);assert.deepStrictEqual(built.pending.map(x=>x.key),['b|2026-10-20']);
+assert.equal(built.tickets.length,1);assert.deepStrictEqual(built.pending.map(x=>x.key),['b|2026-10-20']);
 
-// 手工票根（没有观影记录）照常显示；片库里没有的影片跳过
+// 不对应观影记录的票根（改过观影日期、旧版迁移、手工新建）：build 不显示，reconcile 挪到这部电影最近一次观影上
 store['b|2025-05-01']={t:12,tm:'14:00',vn:'百老汇影城'};store['zz|2025-01-01']={t:1};
 built=T.build(list,S.cleanTix(store),base);
-const custom=built.tickets.find(r=>r.key==='b|2025-05-01');
-assert(custom&&!custom.linked);assert.equal(custom.time,'14:00');assert.equal(custom.venue,'百老汇影城');assert.equal(custom.date,'2025-05-01');
-assert(!built.tickets.some(r=>r.filmId==='zz'));
+assert(!built.tickets.some(r=>r.key==='b|2025-05-01'||r.filmId==='zz'));assert.equal(built.hidden,4);
+const moves=T.reconcile(list,S.cleanTix(store),20);
+assert.deepStrictEqual(Object.keys(moves).sort(),['b|2025-05-01','b|2026-10-20']);assert(moves['b|2025-05-01'].del);
+Object.assign(store,moves);
+built=T.build(list,S.cleanTix(store),base);
+const custom=built.tickets.find(r=>r.filmId==='b');
+assert(custom&&custom.linked);assert.equal(custom.key,'b|2026-10-20');assert.equal(custom.time,'14:00');assert.equal(custom.venue,'百老汇影城');
+assert.equal(built.tickets.length,2);assert.equal(built.pending.length,0);
+assert.equal(T.reconcile(list,S.cleanTix(store),21),null,'second pass is a no-op');
+// 已有票根的电影不挪；用户后来亲手移出的不挪回
+assert.equal(T.reconcile(list,{'a|2026-11-08':{t:1},'a|2020-01-01':{t:2}},3),null);
+assert.equal(T.reconcile(list,{'b|2026-10-20':{del:1,t:9},'b|2020-01-01':{t:2}},10),null);
 
 // 非法内容被清洗
 const dirty=S.cleanTix({'a|2026-13-99':{t:1},'bad key':{t:1},'a|2026-11-01':{t:1,tm:'7pm',a:'javascript:alert(1)',l:'x.y',c:50,st:'A'.repeat(99)},__proto__:{t:1}});
@@ -72,17 +86,17 @@ const migrated=T.migrateV1(v1,list,base);
 assert.deepStrictEqual(Object.keys(migrated).sort(),['a|2026-11-08','b|2024-02-02','gone|2023-01-01']);
 assert.equal(migrated['a|2026-11-08'].st,'3排1座');assert.equal(migrated['a|2026-11-08'].l,'jade.gold.kraft.waves');assert(!('vn' in migrated['a|2026-11-08']));
 assert.equal(migrated['b|2024-02-02'].vn,'某影院');assert.equal(migrated['gone|2023-01-01'].vn,'X');
-const afterMigration=T.build(list,migrated,base);
-assert.equal(afterMigration.tickets.length,2);assert.equal(afterMigration.pending.length,3);
+const afterMigration=T.build(list,{...migrated,...T.reconcile(list,migrated,30)},base);
+assert.equal(afterMigration.tickets.length,2);assert.equal(afterMigration.pending.length,0);   // b 的旧票根挪到 b 的观影上；下架影片不显示
 
 // 筛选与分组
 const rows=T.build(list,S.cleanTix(store),base).tickets;
 assert.equal(T.filterTickets(rows,{text:'雨果'}).length,1);
-assert.equal(T.filterTickets(rows,{programme:['2026 吴天明电影展']}).length,3);
+assert.equal(T.filterTickets(rows,{programme:['2026 吴天明电影展']}).length,1);
 assert.equal(T.filterTickets(rows,{programme:['2026 吴天明电影展'],venue:['百老汇影城']}).length,0);
-assert.equal(T.filterTickets(rows,{year:'2025'}).length,1);
-const counts=T.facetCounts(rows);assert.deepStrictEqual(counts.year.map(x=>x.value),['2026','2025']);
-assert.deepStrictEqual(T.groupByMonth(rows).map(g=>[g.id,g.rows.length]),[['2026-11',3],['2025-05',1]]);
+assert.equal(T.filterTickets(rows,{year:'2026'}).length,2);
+const counts=T.facetCounts(rows);assert.deepStrictEqual(counts.year.map(x=>x.value),['2026']);
+assert.deepStrictEqual(T.groupByMonth(rows).map(g=>[g.id,g.rows.length]),[['2026-11',1],['2026-10',1]]);
 
 // 同步合并：逐张取较新；旧版档案没有 tix 时不丢本机票根
 const m=S.merge({v:1,tix:{'a|2026-11-01':{t:1,st:'A'}}},{v:1,tix:{'a|2026-11-01':{t:2,st:'B'},'b|2026-10-20':{del:1,t:3}}});
@@ -164,7 +178,7 @@ const big=T.viewings(many,G.views,()=>true),bigStore={};big.forEach(x=>{bigStore
 const bigBase=(id,view,date)=>({filmId:id,title:'影片'+id,programmeId:'p1',programme:'专题',date,time:'19:30',venue:'影院',hall:'1号厅',city:'杭州',format:'2K',art:'',arts:[]});
 const t0=Date.now(),bigBuilt=T.build(big,S.cleanTix(bigStore),bigBase),ms=Date.now()-t0;
 const bytes=Buffer.byteLength(JSON.stringify(bigStore));
-assert(big.length>=4000,'many viewings');assert.equal(bigBuilt.tickets.length,big.length);
+assert(big.length>=4000,'many viewings');assert.equal(bigBuilt.tickets.length,900,'one ticket per film');
 assert(bytes<320*1024,'store too big: '+bytes);
 // 都换过款式、填了座位也远低于 1MB
 big.forEach(x=>{bigStore[x.key]={t:1700000000000,l:'burgundy.holo.cotton.rosette',st:'12排18座'};});

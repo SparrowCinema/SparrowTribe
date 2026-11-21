@@ -50,7 +50,12 @@ const set = (changes, data, idx) => put(Object.assign({}, all(data, idx), change
 function snapshot() { return JSON.parse(JSON.stringify(all())); }
 function replaceAll(store) { const before = rev; put(store, true); return rev !== before; }
 function onChange(fn) { listeners.push(fn); return () => { const i = listeners.indexOf(fn); if (i >= 0) listeners.splice(i, 1); }; }
-function build(data, idx) { return T.build(viewings(idx), all(data, idx), baseFor(data, idx)); }
+// 一部电影一张票根（和观影护照对齐）：不对应观影记录的票根先挪回所属影片，再推出收藏册
+function build(data, idx) {
+  const list = viewings(idx), moves = T.reconcile(list, all(data, idx));
+  if (moves) put(Object.assign({}, all(), moves), true);
+  return T.build(list, all(), baseFor(data, idx));
+}
 function freeKey(filmId, date, idx, except) {
   const store = all(), linked = new Set(viewings(idx).map(x => x.key));
   for (let n = 1; n < 10; n++) { const key = T.ticketKey(filmId, date, n); if (key === except || (!linked.has(key) && (!store[key] || store[key].del))) return key; }
