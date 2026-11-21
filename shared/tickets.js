@@ -791,7 +791,22 @@ function draw(surface,record,side,image,rect,createCanvas,light) {
       text(surface,value,left,768,{size:20,weight:700,max:width-10});
     });
     if (fields.length) rule(surface,792,accent+"58");
-    text(surface,"SPARROW CINEMA",W/2,821,{size:10,font:MONO,align:"center",ink:accent});
+    // 底部专题 / 影展标签：烫印细框胶囊，单元名跟在后面
+    const tag=[record.programme,record.section].filter(Boolean).join(" · ");
+    if (tag) {
+      surface.font=`700 11px ${SANS}`;
+      const tw=Math.min(300,surface.measureText(tag).width),pw=tw+30,ph=21,px=W/2-pw/2,py=802;
+      surface.save();
+      surface.beginPath();
+      if (surface.roundRect) surface.roundRect(px,py,pw,ph,ph/2); else surface.rect(px,py,pw,ph);
+      surface.fillStyle=accent+"14";surface.fill();
+      surface.strokeStyle=foilGradient(surface,px,py,px+pw,py+ph,finish);surface.lineWidth=1;surface.stroke();
+      surface.restore();
+      text(surface,tag,W/2,py+14.6,{size:11,weight:700,align:"center",ink:accent,max:300});
+      text(surface,"SPARROW CINEMA",W/2,840,{size:8.5,font:MONO,align:"center",ink:accent+"b0"});
+    } else {
+      text(surface,"SPARROW CINEMA",W/2,821,{size:10,font:MONO,align:"center",ink:accent});
+    }
   }
   if (light) previewSheen(surface,metal,side,light);
   surface.restore();

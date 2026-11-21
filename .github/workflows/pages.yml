@@ -29,15 +29,17 @@ jobs:
           node tools/check-library.js
           node tools/check-companion.js
           node tools/check-taste.js
-      - name: Build share pages and calendar feeds
-        run: node tools/build-extras.js
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Build poster thumbnails (WebP 360/720, JPEG 360)
+      - name: Save external posters as site files (canvas and mini program need same-site images)
         run: |
           python -m pip install --quiet pillow
-          python tools/build-thumbs.py
+          python tools/localize-posters.py
+      - name: Build share pages and calendar feeds
+        run: node tools/build-extras.js
+      - name: Build poster thumbnails (WebP 360/720, JPEG 360)
+        run: python tools/build-thumbs.py
       - name: Build screening change log (moves by stable screening id)
         run: node tools/build-changes.js
       - name: Build lite startup data and data version
