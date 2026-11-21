@@ -115,8 +115,8 @@
 
       <view class="te-sec">{{L.t(i,'放映信息')}}</view>
       <view class="te-card">
-        <view wx:if="{{linked}}" class="te-row"><text class="te-k">{{L.t(i,'观影日期')}}</text><view class="te-v"><text class="te-mono">{{draft.date}}</text><text class="te-note">{{L.t(i,'来自观影记录')}}</text></view></view>
-        <picker wx:else mode="date" value="{{draft.date}}" data-field="date" bindchange="changeField"><view class="te-row"><text class="te-k">{{L.t(i,'观影日期')}}</text><view class="te-v"><text class="te-mono">{{draft.date || L.t(i,'选择日期')}}</text><text class="te-go">›</text></view></view></picker>
+        <view wx:if="{{linked}}" class="te-row te-first"><text class="te-k">{{L.t(i,'观影日期')}}</text><view class="te-v"><text class="te-mono">{{draft.date}}</text><text class="te-note">{{L.t(i,'来自观影记录')}}</text></view></view>
+        <picker wx:else class="te-first" mode="date" value="{{draft.date}}" data-field="date" bindchange="changeField"><view class="te-row"><text class="te-k">{{L.t(i,'观影日期')}}</text><view class="te-v"><text class="te-mono">{{draft.date || L.t(i,'选择日期')}}</text><text class="te-go">›</text></view></view></picker>
         <picker mode="time" value="{{draft.time}}" data-field="time" bindchange="changeField"><view class="te-row"><text class="te-k">{{L.t(i,'开场时间')}}</text><view class="te-v"><text class="te-mono {{draft.time?'':'te-ph'}}">{{draft.time || L.t(i,'选择时间')}}</text><text class="te-go">›</text></view></view></picker>
         <view class="te-row"><text class="te-k">{{L.t(i,'影院')}}</text><input class="te-in" value="{{draft.venue}}" placeholder="{{L.t(i,'影院名称')}}" placeholder-class="te-ph" data-field="venue" bindinput="changeField" /></view>
         <view class="te-row"><text class="te-k">{{L.t(i,'影厅')}}</text><input class="te-in" value="{{draft.hall}}" placeholder="{{L.t(i,'如 1号厅')}}" placeholder-class="te-ph" data-field="hall" bindinput="changeField" /></view>
@@ -127,8 +127,8 @@
       <block wx:if="{{arts.length}}">
         <view class="te-sec">{{L.t(i,'票面图像')}}</view>
         <view class="te-card">
-          <picker wx:if="{{arts.length>1}}" mode="selector" range="{{arts}}" value="{{artIndex}}" bindchange="chooseArt"><view class="te-row"><text class="te-k">{{L.t(i,'图像')}}</text><view class="te-v"><text>{{arts[artIndex]}}</text><text class="te-go">›</text></view></view></picker>
-          <view class="te-row te-crop"><text class="te-k">{{L.t(i,'裁切位置')}}</text><slider class="te-slider" min="0" max="100" value="{{draft.crop}}" block-size="20" activeColor="#8e2a22" backgroundColor="#e6dcc7" bindchanging="changeField" bindchange="changeField" data-field="crop" /></view>
+          <picker wx:if="{{arts.length>1}}" class="te-first" mode="selector" range="{{arts}}" value="{{artIndex}}" bindchange="chooseArt"><view class="te-row"><text class="te-k">{{L.t(i,'图像')}}</text><view class="te-v"><text>{{arts[artIndex]}}</text><text class="te-go">›</text></view></view></picker>
+          <view class="te-row te-crop {{arts.length>1?'':'te-first'}}"><text class="te-k">{{L.t(i,'裁切位置')}}</text><slider class="te-slider" min="0" max="100" value="{{draft.crop}}" block-size="20" activeColor="#8e2a22" backgroundColor="#e6dcc7" bindchanging="changeField" bindchange="changeField" data-field="crop" /></view>
         </view>
       </block>
 
