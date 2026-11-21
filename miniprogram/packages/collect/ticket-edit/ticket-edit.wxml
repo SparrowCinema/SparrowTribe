@@ -1,13 +1,26 @@
 <page-meta page-style="{{ps}}" />
 <wxs src="../../../utils/l.wxs" module="L" />
+<wxs src="./turn.wxs" module="T" />
 <view wx:if="{{ok}}" class="wrap te-page">
   <view class="te-stage">
-    <view id="te-card" class="te-card3d {{snap?'te-snap':''}}" style="transform:perspective(900px) rotateX({{rx}}deg) rotateY({{ry}}deg)"
-      bindtap="flip" bindtouchstart="touchStart" catchtouchmove="touchMove" bindtouchend="touchEnd" bindtouchcancel="touchEnd"
+    <!-- 360° 转动：左右随便转、上下最多 65°，松手转回最近的正面或背面，轻点翻面（turn.wxs 在视图层跟手） -->
+    <view id="te-card" class="te-card3d" data-shine="{{shine}}" turn="{{turnReq}}" change:turn="{{T.request}}"
+      bindtouchstart="{{T.start}}" catchtouchmove="{{T.move}}" bindtouchend="{{T.end}}" bindtouchcancel="{{T.end}}"
       aria-role="button" aria-label="{{L.t(i,'翻面')}}">
-      <image wx:if="{{front?frontImg:backImg}}" class="te-face" src="{{front?frontImg:backImg}}" mode="widthFix" />
-      <view wx:else class="te-face te-wait"><text>{{L.t(i,'票根绘制中…')}}</text></view>
-      <view wx:if="{{front?frontImg:backImg}}" class="te-glow {{glowOn?'on':''}}" style="background:{{glowBg}}"></view>
+      <view class="te-rot" style="--edge:{{edge}}">
+        <view class="te-side te-front">
+          <image wx:if="{{frontImg}}" class="te-face" src="{{frontImg}}" mode="scaleToFill" />
+          <view wx:else class="te-face te-wait"><text>{{L.t(i,'票根绘制中…')}}</text></view>
+          <view class="te-glow"></view>
+        </view>
+        <view class="te-side te-back">
+          <image wx:if="{{backImg}}" class="te-face" src="{{backImg}}" mode="scaleToFill" />
+          <view wx:else class="te-face te-wait"><text>{{L.t(i,'票根绘制中…')}}</text></view>
+          <view class="te-glow"></view>
+        </view>
+        <view class="te-edge te-l1"></view><view class="te-edge te-l2"></view>
+        <view class="te-edge te-r1"></view><view class="te-edge te-r2"></view>
+      </view>
     </view>
     <view wx:if="{{arts.length}}" class="te-art">
       <text class="te-art-k">{{L.t(i,'裁切')}}</text>
