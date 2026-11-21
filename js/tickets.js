@@ -99,11 +99,25 @@ async function ticketPoster(row,small){
 }
 // 票面字体（与网站一致，见 shared/tickets.js 的 SERIF / SANS / MONO / LATIN）：Google 字体按字分片加载，画之前先载入要用到的字，最多等 2.5 秒
 const TICKET_FIXED="麻雀观影护照纪念票根收藏放映日期开场影厅座位版本影院未填待定我的观影收藏册张正面背面";
+// 片名字体（润植家康熙字典美化体子集，tools/build-title-font.py）：按 data/ticket-font.json 里的内容哈希加载，新片名上线后自动换新
+let ticketTitleFont=null;
+function loadTicketTitleFont(){
+  if(ticketTitleFont)return ticketTitleFont;
+  ticketTitleFont=(async()=>{
+    if(typeof FontFace!=="function"||!document.fonts)return false;
+    const meta=await fetch("data/ticket-font.json").then(r=>r.ok?r.json():{}).catch(()=>({}));
+    const face=new FontFace(meta.family||"SparrowKangxi",`url(fonts/ticket-title.woff2?v=${meta.v||"1"}) format("woff2"),url(fonts/ticket-title.woff?v=${meta.v||"1"}) format("woff")`,{display:"swap"});
+    document.fonts.add(await face.load());return true;
+  })().catch(()=>{ticketTitleFont=null;return false;});
+  return ticketTitleFont;
+}
 async function ticketFonts(rows){
   if(!document.fonts?.load)return;
+  const title=loadTicketTitleFont();
   const text=[...new Set(TICKET_FIXED+rows.map(r=>[r.title,r.programme,r.section,r.venue,r.city,r.hall,r.format,r.seat].join("")).join(""))].join("");
   const jobs=[`900 40px "Noto Serif SC"`,`700 14px "Noto Sans SC"`,`500 14px "Noto Sans SC"`].map(f=>document.fonts.load(f,text));
   jobs.push(document.fonts.load(`500 20px "IBM Plex Mono"`,"0123456789.:—/ SPARROWCINEMA"),document.fonts.load(`600 12px "Barlow"`,rows.map(r=>(r.subtitle||"").toUpperCase()).join("")||"A"));
+  jobs.push(title);
   await Promise.race([Promise.all(jobs).catch(()=>{}),new Promise(r=>setTimeout(r,2500))]);
 }
 const ticketSig=(row,side,w,style)=>[row.key,side,w,side==="front"?style:"",TE.packLook(row.look),row.crop,row.art,row.time,row.venue,row.hall,row.seat,row.format,row.title,row.programme,row.city].join("¦");
