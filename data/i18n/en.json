@@ -33,7 +33,8 @@
     "图像": "Image",
     "裁切": "Crop",
     "场次": "Screening",
-    "自填": "Manual"
+    "自填": "Manual",
+    "首映": "Gala"
   },
   "_readme": "English layer for the site. films/programmes/venues overlay data fields when ?lang=en; ui is the zh→en dictionary used by tr(). Missing entries fall back to the Chinese text.",
   "films": {
@@ -4529,7 +4530,7 @@
         "Infidelity"
       ],
       "contentNote": "Story information indicates: Financial hardship; Infidelity. Compiled from the synopsis and public information; detailed depiction and intensity have not been verified, so please consider your individual needs.",
-      "bio": "Lee Chang-dong moved from theatre and fiction into filmmaking. His work includes Peppermint Candy, Oasis, Secret Sunshine, Poetry and Burning.",
+      "bio": "Born in Daegu in 1954, Lee Chang-dong wrote fiction and taught before directing films, and also served as South Korea’s culture minister. His work includes Peppermint Candy, Oasis, Secret Sunshine, Poetry and Burning. Possible Love reunites him with Jeon Do-yeon and Sul Kyung-gu.",
       "language": "Korean / English",
       "cast": [
         "Jeon Do-yeon",
@@ -4544,6 +4545,21 @@
       "writers": [
         "Lee Chang-dong",
         "Oh Jung-mi"
+      ],
+      "st": "Lee Chang-dong’s first feature in eight years grew from his response to a mass layoff and the violent suppression of a strike in South Korea. In his Venice notes he questions what it means to turn workers’ lives into fiction. His script with Oh Jung-mi puts a similar question to Yeji and Miok. Kim Ji-yong shot the film, Jung Jaeil composed the score, and Netflix began streaming it on November 6, 2026.",
+      "highlights": [
+        "Follow who asks questions and who has the freedom to refuse an answer, at the funeral and in the documentary.",
+        "On the shared holiday, watch who can afford to relax and who has to think about the next pay cheque."
+      ],
+      "honors": [
+        "入选｜2027 Academy Awards · South Korea’s International Feature Film submission",
+        "获奖｜2026 Venice International Film Festival · Silver Lion Grand Jury Prize and FIPRESCI Prize",
+        "入选｜2026 San Sebastián International Film Festival",
+        "入选｜2026 Toronto International Film Festival",
+        "入选｜2026 BFI London Film Festival",
+        "入选｜2026 New York Film Festival",
+        "入选｜2026 Busan International Film Festival",
+        "入选｜2026 8th Hainan Island International Film Festival · Gala (Chinese Mainland Premiere)"
       ]
     },
     "gh63-060": {
@@ -9927,6 +9943,362 @@
         "Title contains an offensive term"
       ],
       "language": "Swedish"
+    },
+    "faith-lacking-deed-lies-dead": {
+      "title": "Faith Lacking Deed Lies Death",
+      "o": "Fe sense obres morta és",
+      "c": "Spain",
+      "dir": "Albert Serra",
+      "dirLife": "1975– · Spain",
+      "writers": [
+        "Albert Serra"
+      ],
+      "cast": [
+        "Lluís Serrat",
+        "Montse Triola",
+        "Gigiotto del Vecchio",
+        "Spyridoula Joumaki",
+        "Lavinia Filippi"
+      ],
+      "genre": [
+        "Documentary",
+        "Experimental"
+      ],
+      "language": "Catalan",
+      "syn": "Albert Serra begins with the textured surfaces and enigmatic markings of Antoni Tàpies’s paintings. Layered images bring figures, light and landscape together in the dark, while fragments of text appear among them. Image and sound guide the viewer through an experiment in faith, matter and perception.",
+      "bio": "Albert Serra is a Catalan filmmaker from Banyoles whose work encompasses film and museum installations. His features include Honour of the Knights, The Death of Louis XIV and the Cannes competition film Pacifiction. Afternoons of Solitude won the Golden Shell in San Sebastián.",
+      "st": "Commissioned by Barcelona's Museu Tàpies, the film revisits the painter after his centenary. Serra and cinematographer-editor Román Bayarri echo the artist’s material practice through digital superimposition, building shots from multiple layers. Marc Verdaguer composed the music. Hainan uses the English title ending in Death, while international catalogues often use Dead. The museum lists 52 minutes, and FIDMarseille lists 53.",
+      "editorial": "Allow the 53 minutes for an experiment in looking. Watch for what happens to a beam of light as it passes through overlapping images and for the moments when a human figure separates from the background.",
+      "highlights": [
+        "Watch how layers alter colour and the outline of a figure.",
+        "Follow the rhythms of the text, the score and the still bodies separately."
+      ],
+      "honors": [
+        "入选｜2026 FIDMarseille · Other Gems (international premiere)",
+        "入选｜2026 8th Hainan Island International Film Festival · Gala (Asian Premiere)"
+      ],
+      "contentNote": "The public materials provide no specific advisories. Image and sound intensity have yet to be verified.",
+      "warnings": []
+    },
+    "from-dawn-to-dawn-2026": {
+      "title": "From Dawn to Dawn",
+      "o": "La noche de la infancia",
+      "c": "Spain / France",
+      "dir": "Xisi Sofia Ye Chen",
+      "dirLife": "1994– · Spain",
+      "writers": [
+        "Xisi Sofia Ye Chen"
+      ],
+      "cast": [
+        "A Wen"
+      ],
+      "genre": [
+        "Documentary"
+      ],
+      "language": "Spanish / Mandarin / Chinese regional dialects",
+      "syn": "A Wen, a 38-year-old businessman in Barcelona, is filmmaker Xisi Sofia Ye Chen’s brother. They grew up watching Hong Kong gangster films on VHS, and A Wen later became involved with local gangs. As Ye Chen returns to his daily life, his work, family obligations and sleepless nights open up a history that was difficult to discuss at home.",
+      "bio": "Born in Barcelona in 1994 to Chinese parents, Xisi Sofia Ye Chen grew up speaking Qingtianese, Mandarin, Catalan and Spanish. She studied humanities and creative documentary at Pompeu Fabra University. From Dawn to Dawn, her first feature, draws on her interest in migration, family and belonging.",
+      "st": "The project grew from memories shared by the filmmaker and her brother. Childhood VHS tapes became a way to talk about the past. In the present, conversations around family, depression, insomnia and feng shui make space for the details of daily life. Pablo Paloma shot the film and Juliana Montañés edited it. Visions du Réel lists 93 minutes and DokuFest lists 96.",
+      "editorial": "Consider the gangster films the siblings grew up with alongside the documentary’s patient attention to what adulthood demands of A Wen. The filmmaker’s unusual access as his sister also allows the silences between them to carry weight.",
+      "highlights": [
+        "Watch how the brotherhood of the old films compares with the duties A Wen has in the present.",
+        "Listen to when people switch languages, and whom they address in each."
+      ],
+      "honors": [
+        "获奖｜2026 Visions du Réel · International Feature Film Competition Grand Jury Prize",
+        "获奖｜2026 DokuFest · Best International Feature Documentary",
+        "入选｜2026 8th Hainan Island International Film Festival · Gala (Chinese Mainland Premiere)"
+      ],
+      "contentNote": "Story information indicates: Discussion of gang life and violence; Discussion of depression and insomnia. Detailed depiction and intensity have yet to be verified.",
+      "warnings": [
+        "Discussion of gang life and violence",
+        "Discussion of depression and insomnia"
+      ]
+    },
+    "let-us-through-dear-ancestors": {
+      "title": "Let Us through, Dear Ancestors",
+      "o": "Makikiraan po",
+      "c": "Philippines",
+      "dir": "Lav Diaz",
+      "dirLife": "1958– · Philippines",
+      "writers": [
+        "Lav Diaz"
+      ],
+      "cast": [
+        "Bart Guingona",
+        "Ronnie Lazaro",
+        "Isabel Sandoval",
+        "Yul Servo",
+        "Christian Bables",
+        "Bong Cabrera"
+      ],
+      "genre": [
+        "Drama",
+        "History"
+      ],
+      "language": "Tagalog",
+      "syn": "In 1617 a Spanish friar, Father Enciso, rules an island in the Philippines. In the name of salvation he takes control of land, labour and bodies. The islanders first receive the visitors according to their own customs, then find ways to resist or survive as their space for living contracts.",
+      "bio": "Filipino filmmaker Lav Diaz works as a director, writer and cinematographer. From What Is Before won Locarno’s Golden Leopard, and The Woman Who Left won the Golden Lion in Venice. Magellan and his other films look at the long effects of colonialism and dictatorship, often through black-and-white images and extended takes.",
+      "st": "Following Magellan’s depiction of early contact, Diaz moves to the seventeenth century, when imperial rule has entered everyday life. His Venice director’s statement connects evangelisation to the forced labour behind churches, ports and forts. Diaz wrote, photographed and edited the film.",
+      "editorial": "Set aside an alert stretch of the day for this one. In the time Diaz leaves the camera in place, the arrangement of bodies in a room starts to tell its own story about power. It makes a rewarding companion to Magellan.",
+      "highlights": [
+        "Watch the gestures and forms of address the islanders use to maintain their own ways of living.",
+        "Notice how doors, windows and walls divide the same space between people."
+      ],
+      "honors": [
+        "获奖｜2026 Venice International Film Festival · Brian Award (collateral award)",
+        "入选｜2026 Venice International Film Festival · Out of Competition",
+        "入选｜2026 São Paulo International Film Festival",
+        "入选｜2026 Thessaloniki International Film Festival",
+        "入选｜2026 Tokyo International Film Festival",
+        "入选｜2026 8th Hainan Island International Film Festival · Gala (China Premiere)"
+      ],
+      "contentNote": "Story information indicates: Colonial violence and forced labour; Sexual violence. Detailed depiction and intensity have yet to be verified.",
+      "warnings": [
+        "Colonial violence and forced labour",
+        "Sexual violence"
+      ]
+    },
+    "lover-not-a-fighter-2026": {
+      "title": "Lover, Not a Fighter",
+      "o": "Milovník, nie bojovník",
+      "c": "Slovakia / Czech Republic",
+      "dir": "Martina Buchelová",
+      "writers": [
+        "Martina Buchelová"
+      ],
+      "cast": [
+        "Adam Kubala",
+        "Michaela Kostková",
+        "František Beleš",
+        "Jaroslav Vojtek",
+        "Marián Mitaš",
+        "Jaroslava Pokorná"
+      ],
+      "genre": [
+        "Drama",
+        "Romance"
+      ],
+      "language": "Slovak",
+      "syn": "Andrej makes rules for a quieter summer: help his grandmother, avoid most people and stop getting so drunk that he climbs trees he cannot get down from. Then he shares a Fanta with Miša. As they grow closer, their friends, families and hesitant ideas about intimacy get in the way.",
+      "bio": "Slovak writer-director Martina Buchelová made the shorts Magic Moments, R+J and Who Wants to Be a Hero? and co-directed the documentary Kam patrím? Lover, Not a Fighter is her solo narrative feature debut and won the Proxima Grand Prix in Karlovy Vary.",
+      "st": "This Slovak-Czech co-production was written and directed by Buchelová and shot by Adam Mach. Ninja Film and NOCHI FILM were among the producers. Set over a summer, the story gives its characters time to play, talk and make mistakes. It premiered in Karlovy Vary’s Proxima Competition.",
+      "editorial": "An easy pick for a lighter slot in this lineup. Notice what happens before anyone works up the nerve to speak. A shared soft drink or a brief hesitation often says more about what it is to be that age than a declaration can.",
+      "highlights": [
+        "Start with Andrej’s rules and watch which ones are the first to go.",
+        "Notice how the awkwardness changes when the pair are alone or among friends."
+      ],
+      "honors": [
+        "获奖｜2026 Karlovy Vary International Film Festival · Proxima Grand Prix",
+        "获奖｜2026 Warsaw International Film Festival · Young FIPRESCI Critics Award",
+        "入选｜2026 8th Hainan Island International Film Festival · Gala (Asian Premiere)"
+      ],
+      "contentNote": "Story information indicates: Drinking and impulsive behaviour. Detailed depiction and intensity have yet to be verified.",
+      "warnings": [
+        "Drinking and impulsive behaviour"
+      ]
+    },
+    "orange-flavoured-wedding": {
+      "title": "Orange-Flavoured Wedding",
+      "o": "Mariage au goût d’orange",
+      "c": "France",
+      "dir": "Christophe Honoré",
+      "dirLife": "1970– · France",
+      "writers": [
+        "Christophe Honoré"
+      ],
+      "cast": [
+        "Adèle Exarchopoulos",
+        "Vincent Lacoste",
+        "Paul Kircher",
+        "Alban Lenoir",
+        "Nadia Tereszkiewicz",
+        "Malou Khebizi"
+      ],
+      "genre": [
+        "Drama",
+        "Family"
+      ],
+      "language": "French",
+      "syn": "In March 1978, the seven Puig siblings gather near Nantes to celebrate the marriage of the youngest, Jacques, to Martine. The bride and groom are in love, and the since-banished father is absent. As the festivities go on, the siblings’ old injuries change what they can say to one another, and who is expected to carry the past.",
+      "bio": "French filmmaker, writer and theatre director Christophe Honoré made Dans Paris, Love Songs, Sorry Angel and Winter Boy. His work moves among cinema, theatre and literature, often putting music and ensemble performances in close contact with personal memory.",
+      "st": "Honoré drew on his own family memories and reshaped them into a story shared by several siblings. The wedding offers a setting for toasts, photos and dancing to coexist with long-buried questions. Adèle Exarchopoulos and Vincent Lacoste join the ensemble. The film was selected for Cannes Première.",
+      "editorial": "Watch the bystanders at the wedding. The people who laugh, jump in or lower their eyes are all making decisions about what can be said out loud. The pleasure of the celebration makes the return of the past especially unsettling.",
+      "highlights": [
+        "Listen for songs and small talk that fill awkward silences.",
+        "Follow the absent father through the people who still speak for him."
+      ],
+      "honors": [
+        "入选｜2026 Cannes Film Festival · Cannes Première",
+        "入选｜2026 8th Hainan Island International Film Festival · Gala (Chinese Mainland Premiere)"
+      ],
+      "contentNote": "Story information indicates: Childhood trauma within the family; Family conflict. Detailed depiction and intensity have yet to be verified.",
+      "warnings": [
+        "Childhood trauma within the family",
+        "Family conflict"
+      ]
+    },
+    "the-daughters-of-abraham": {
+      "title": "The Daughters of Abraham",
+      "o": "Les Filles d’Abraham",
+      "c": "France",
+      "dir": "Hanaël El Yousfi",
+      "writers": [
+        "Hanaël El Yousfi",
+        "Raphaël Chevènement",
+        "Mia Grace Brown"
+      ],
+      "cast": [
+        "Mélissa Guers",
+        "Ava Baya",
+        "Gabrielle Cohen",
+        "Bilel Chegrani",
+        "Syrus Shahidi",
+        "Jalila Talemsi"
+      ],
+      "genre": [
+        "Drama",
+        "Coming of age"
+      ],
+      "language": "French / Arabic",
+      "syn": "Myriam, from a Muslim family in Marseille, reconnects with Eva, who comes from a Jewish family, after years apart. During a summer together they find pockets of freedom away from home. When a crisis pulls in their friends and relatives, they must decide what they can do for each other and what the friendship may cost them.",
+      "bio": "Hanaël El Yousfi grew up in Provence in a family of Moroccan heritage. She studied law before moving into filmmaking. The Daughters of Abraham, her feature debut, draws on a setting she knows and follows the pressure that family and public life can put on a friendship.",
+      "st": "El Yousfi collaborated with Raphaël Chevènement and Mia Grace Brown on the screenplay. Produced by CG Cinéma and France 2 Cinéma, the film places the two friends in the everyday social life of Marseille. It won the Audience Award and a Special Mention in Angoulême and screened in TIFF’s Discovery section.",
+      "editorial": "Start by watching how easy the friends are with each other after years apart. Later, when people tell them where their loyalties should lie, those early scenes give you a way to weigh what is being asked of them.",
+      "highlights": [
+        "Listen to what can be said at home, in front of friends, and in private.",
+        "Notice how the streets and social spaces the pair can move through change after the crisis."
+      ],
+      "honors": [
+        "获奖｜2026 Angoulême Francophone Film Festival · Audience Award and Special Mention",
+        "入选｜2026 Toronto International Film Festival · Discovery",
+        "入选｜2026 8th Hainan Island International Film Festival · Gala (China Premiere)"
+      ],
+      "contentNote": "Story information indicates: Family and community conflict. Detailed depiction and intensity have yet to be verified.",
+      "warnings": [
+        "Family and community conflict"
+      ]
+    },
+    "the-spiral-2026": {
+      "title": "The Spiral",
+      "o": "L’estranea",
+      "c": "Italy / France / Belgium",
+      "dir": "Paolo Strippoli",
+      "writers": [
+        "Paolo Strippoli",
+        "Salvatore de Chirico"
+      ],
+      "cast": [
+        "Jasmine Trinca",
+        "Romana Maggiora Vergano",
+        "Adriano Giannini",
+        "Valeria Bruni Tedeschi"
+      ],
+      "genre": [
+        "Drama",
+        "Thriller",
+        "Horror"
+      ],
+      "language": "Italian",
+      "syn": "On a stormy night Anna arrives at her daughter Alice’s flat in Rome. Twenty years earlier, Alice nearly lost a leg in an accident. Anna says a stranger saved it in exchange for a deal. As Anna begins to tell her what happened, Alice must find out who paid the price and whether she can make a decision of her own.",
+      "bio": "Paolo Strippoli is an Italian screenwriter and director whose films include the co-directed A Classic Horror Story and his work on Flowing and The Holy Boy. He brings horror into intimate settings. The Spiral was selected for competition at Venice.",
+      "st": "Strippoli and Salvatore de Chirico had been developing the story for years. Speaking in Venice, Strippoli described how horror gave him room to explore control within a family. Propaganda Italia worked with Italian, French and Belgian partners on the film. Valeria Bruni Tedeschi plays the stranger.",
+      "editorial": "Watch the reasons Anna gives for her choice and the moment Alice begins asking her own questions. The conflict is especially sharp when both women remember the same act of protection differently.",
+      "highlights": [
+        "Notice who controls the story before and after the storm.",
+        "Watch how later information changes the meaning of the family portrait."
+      ],
+      "honors": [
+        "入选｜2026 Venice International Film Festival · Competition",
+        "入选｜2026 Toronto International Film Festival · Midnight Madness",
+        "入选｜2026 8th Hainan Island International Film Festival · Gala (China Premiere)"
+      ],
+      "contentNote": "Story information indicates: Serious accident and injury; Supernatural scares; Family control. Detailed depiction and intensity have yet to be verified.",
+      "warnings": [
+        "Serious accident and injury",
+        "Supernatural scares",
+        "Family control"
+      ]
+    },
+    "time-and-water-2026": {
+      "title": "Time and Water",
+      "o": "Time and Water",
+      "c": "Iceland / United States",
+      "dir": "Sara Dosa",
+      "dirLife": "1983– · United States",
+      "writers": [
+        "Sara Dosa",
+        "Andri Snær Magnason",
+        "Erin Casper",
+        "Jocelyne Chaput"
+      ],
+      "cast": [
+        "Andri Snær Magnason"
+      ],
+      "genre": [
+        "Documentary"
+      ],
+      "language": "Icelandic / English",
+      "syn": "As Iceland’s glaciers recede and his grandparents die, writer Andri Snær Magnason gathers family films and photographs. Working with Sara Dosa, he combines them with glacier archives, songs and folktales in a time capsule for future viewers. The film asks what can be passed on when familiar places and the people who remember them are disappearing.",
+      "bio": "Sara Dosa is an American documentary director and producer whose films include The Last Season, The Seer and the Unseen and Fire of Love. The latter was nominated for the Academy Award for Best Documentary Feature. She often works with archives left by participants to explore how people inhabit landscapes.",
+      "st": "Inspired by Magnason’s nonfiction book On Time and Water, the film combines family albums with scientific footage, folk songs and oral histories. National Geographic Documentary Films took part in the production and release. Festival listings put the running time at around 90 to 93 minutes.",
+      "editorial": "A good choice for viewers drawn to the archive material in Fire of Love and the stories people tell about their families. When an old picture of a glacier meets a family photograph, consider who remembers what they show and who will come to know them through the images alone.",
+      "highlights": [
+        "Notice how photographs, home movies and scientific footage record time differently.",
+        "Listen for what the songs and stories carry that measurements cannot."
+      ],
+      "honors": [
+        "入选｜2026 Sundance Film Festival",
+        "入选｜2026 CPH:DOX",
+        "入选｜2026 Sheffield DocFest",
+        "入选｜2026 8th Hainan Island International Film Festival · Gala (China Premiere)"
+      ],
+      "contentNote": "Story information indicates: Bereavement and grief; Climate change and ecological loss. Detailed depiction and intensity have yet to be verified.",
+      "warnings": [
+        "Bereavement and grief",
+        "Climate change and ecological loss"
+      ]
+    },
+    "woman-unknown-2026": {
+      "title": "Woman Unknown",
+      "o": "Kvinde ukendt",
+      "c": "Denmark / Sweden / Latvia",
+      "dir": "May el-Toukhy",
+      "dirLife": "1977– · Denmark",
+      "writers": [
+        "Maren Louise Käehne",
+        "May el-Toukhy"
+      ],
+      "cast": [
+        "Mathilde Arcel",
+        "Carsten Bjørnlund",
+        "Thorbjørn Hedegaard",
+        "Marina Bouras",
+        "Mia Plantin",
+        "Sofia Nolsøe"
+      ],
+      "genre": [
+        "Drama",
+        "History"
+      ],
+      "language": "Danish",
+      "syn": "After the German occupation of Denmark ends, a young maid named Marie is about to marry her employer, the wealthy widower Christian. She had a relationship with a German soldier during the war. As people begin to investigate what their neighbours did under occupation, Marie tries to hold on to the place she has earned and decide how long she can conceal her past.",
+      "bio": "May el-Toukhy is a Danish filmmaker of Danish and Egyptian heritage. She directed Long Story Short and Queen of Hearts and has directed for The Crown. Queen of Hearts won the Sundance World Cinema Dramatic Audience Award. Woman Unknown, her third feature, reunites her with writer Maren Louise Käehne.",
+      "st": "The project grew from research into women publicly humiliated and attacked after the Danish liberation because of their relationships with German soldiers. The filmmakers heard few first-person testimonies. They placed this history within five days of Marie’s life, played by Mathilde Arcel.",
+      "editorial": "Follow where Marie walks through the house and who has the right to sit where. The quiet division between a maid’s spaces and her prospective place as mistress of the house makes the stakes of the returning gossip tangible.",
+      "highlights": [
+        "Watch how access to the same house changes with Marie’s position in it.",
+        "Compare what other people say about Marie during the war with the choices you see her make over the film’s five days."
+      ],
+      "honors": [
+        "获奖｜2026 Venice International Film Festival · Golden Lion",
+        "入选｜2026 Toronto International Film Festival",
+        "入选｜2026 8th Hainan Island International Film Festival · Gala (China Premiere)"
+      ],
+      "contentNote": "Story information indicates: Public shaming and violence against women in the post-war period. Detailed depiction and intensity have yet to be verified.",
+      "warnings": [
+        "Public shaming and violence against women in the post-war period"
+      ]
     }
   },
   "programmes": {
@@ -10521,7 +10893,7 @@
       "kind": "Film festival",
       "period": "Dec 6–12, 2026",
       "city": "Sanya",
-      "blurb": "Dec 6–12 in Sanya, themed “Many Wonders of the Sea, Cinema Leading the Future”. Co-hosted by China Media Group and the Hainan Provincial Government, with 11 sections including the Golden Coconut competition and screenings. Jury president: Ruben Östlund; festival ambassador: Audrey Tautou. Plans 100–120 films in 250–295 screenings, with Egypt, Greece, Serbia, Thailand, ASEAN and Hong Kong, China spotlights and a retrospective of the jury president. Weekend extension screenings in Sanya and Haikou follow the closing. The Spotlight section traces Ruben Östlund’s filmography through 8 features and shorts; other sections and the schedule will be added as they are announced."
+      "blurb": "Dec 6–12 in Sanya, themed “Many Wonders of the Sea, Cinema Leading the Future”. Co-hosted by China Media Group and the Hainan Provincial Government, with 11 sections including the Golden Coconut competition and screenings. Jury president: Ruben Östlund; festival ambassador: Audrey Tautou. Plans 100–120 films in 250–295 screenings, with Egypt, Greece, Serbia, Thailand, ASEAN and Hong Kong, China spotlights and a retrospective of the jury president. Weekend extension screenings in Sanya and Haikou follow the closing. The Spotlight section traces Ruben Östlund’s filmography through 8 features and shorts; the Gala has 10 films. Programme additions and screening times will be updated as announced."
     },
     "tiantan-tour-2026": {
       "name": "2026 BJIFF Tour",
