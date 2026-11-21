@@ -7,7 +7,7 @@
 })(typeof self === "undefined" ? this : self, function (Sync,Sketch) {
 "use strict";
 
-const W=420, H=864, TEAR=698, TEETH=31, DEPTH=5, NOTCH=11;
+const W=420, H=864, TEAR=698, TEETH=17, DEPTH=8, NOTCH=11;
 const SOURCE={x:24,y:94,w:372,h:330};
 const SANS='"PingFang SC","Microsoft YaHei",sans-serif';
 const SERIF='"Songti SC","SimSun",serif';
@@ -231,16 +231,16 @@ function drawMedallion(surface, style, fill) {
   surface.restore();
 }
 
+// 上下边的波浪齿：每个齿是一段平滑的余弦波（贝塞尔近似），齿大而圆润，不是细碎的锯齿
 function teeth(surface, y, direction, inset) {
-  const shoulder = 2.5;
-  const pitch = (W - 2*shoulder) / TEETH;
+  const shoulder = 3;
+  const pitch = (W - 2*shoulder) / TEETH, k = .3642;
   const start = direction > 0 ? shoulder : W-shoulder;
   surface.lineTo(start,y);
   for (let i = 0; i < TEETH; i += 1) {
-    const x = start + direction*pitch*i;
-    const step = direction*pitch;
-    surface.bezierCurveTo(x+step*.22,y,x+step*.29,y+inset,x+step*.5,y+inset);
-    surface.bezierCurveTo(x+step*.71,y+inset,x+step*.78,y,x+step,y);
+    const x = start + direction*pitch*i, half = direction*pitch/2;
+    surface.bezierCurveTo(x+half*k,y,x+half*(1-k),y+inset,x+half,y+inset);
+    surface.bezierCurveTo(x+half*(1+k),y+inset,x+half*(2-k),y,x+2*half,y);
   }
   surface.lineTo(direction > 0 ? W : 0,y);
 }

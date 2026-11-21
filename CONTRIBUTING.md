@@ -433,3 +433,4 @@ Claude 与 GPT 可能使用同一 GitHub 身份，审批人数可先设为0；�
 
 - 影片 `poster` 最好用站内文件 `posters/<名>.jpg`。填外站地址（https://…）时，画布（票根、长图、分享海报）和小程序都读不到这张图（外站没有跨域许可，小程序也不能从非合法域名下载）。
 - 部署时 `python tools/localize-posters.py`（`pages.yml` 里，在 build-extras / build-thumbs 之前）会把外链海报下载成 `posters/x-<影片id>.jpg`（最宽 900px），并改写部署目录里对应专题文件的 `poster`，仓库不变；getData 读到的也是站内地址。下载失败的保留原地址并在 Actions 日志里给警告。想换图或某张一直下载失败时，可以把图片手动提交为 `posters/x-<影片id>.jpg`，脚本会直接使用。
+- **上下波浪齿（2026-11-21）**：`teeth` 用余弦波贝塞尔近似，17 个齿、深 8（原 31 个、深 5 的细锯齿），更大更圆润。
