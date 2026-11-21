@@ -40,11 +40,12 @@ function ticketBegin(id){
   const seen=watched[id],s=watchShow(seen);
   const d=ticketFromFilm(f,s,seen?.d||isoOf(new Date(now())));
   const existing=ticketRead().find(row=>row.id===d.id);
-  ticketDraft={row:existing||d,original:existing?.id||"",side:"front",locked:[]};
+  if(!existing)d.look=ticketArtworkEngine.randomLook(d);
+  ticketDraft={row:existing||d,original:existing?.id||"",side:"front",keepLook:true};
   ticketWallPage();
 }
 function ticketOpen(row){
-  ticketDraft={row:{...row,look:{...row.look}},original:row.id,side:ticketSide,locked:[]};ticketWallPage();
+  ticketDraft={row:{...row,look:{...row.look}},original:row.id,side:ticketSide,keepLook:true};ticketWallPage();
 }
 
 function ticketWallPage(){
@@ -87,7 +88,7 @@ function ticketScope(rows=ticketRead()){
   return all.slice(ticketPage*ticketArtworkEngine.WALL_PAGE,(ticketPage+1)*ticketArtworkEngine.WALL_PAGE);
 }
 function ticketWall(rows){
-  if(!rows.length)return `<div class="ticket-empty"><h3>${ticketDict("还没有收藏票根")}</h3><p>${ticketDict("从看过的电影开始，挑一张海报和喜欢的工艺。")}</p>
+  if(!rows.length)return `<div class="ticket-empty"><h3>${ticketDict("还没有收藏票根")}</h3>
     <label>${ticketDict("搜索护照片库")}<input id="ticket-search" type="search" autocomplete="off"></label><div id="ticket-results" class="ticket-results"></div></div>`;
   const years=[...new Set(rows.map(row=>row.date.slice(0,4)).filter(Boolean))].sort().reverse();
   const progs=[...new Set(rows.map(row=>row.programme).filter(Boolean))].sort((a,b)=>a.localeCompare(b,"zh"));
@@ -124,7 +125,11 @@ function ticketEditor(row){
     <div class="ticket-stage"><button type="button" data-ticket-action="flip" class="ticket-flip" data-side="${ticketDraft.side}" aria-label="${ticketDict("翻面")}">
       <span class="ticket-turn"><span class="ticket-face ticket-front"><canvas width="630" height="1296" id="ticket-preview-front" aria-hidden="true"></canvas></span>
       <span class="ticket-face ticket-back"><canvas width="630" height="1296" id="ticket-preview-back" aria-hidden="true"></canvas></span></span></button>
-      <button type="button" class="ticket-alt" data-ticket-action="flip">${ticketDict(ticketDraft.side==="front"?"翻到背面":"翻回正面")}</button></div>
+      <button type="button" class="ticket-alt" data-ticket-action="flip">${ticketDict(ticketDraft.side==="front"?"翻到背面":"翻回正面")}</button>
+      <fieldset class="ticket-blind-box"><legend>${ticketDict("票根盲盒")}</legend>
+        <button type="button" class="ticket-alt" data-ticket-action="shuffle">${ticketDict("随机换一款")}</button>
+        <button type="button" class="ticket-alt" data-ticket-action="reset">${ticketDict("恢复专题默认")}</button>
+      </fieldset></div>
     <div class="ticket-edit-fields"><div class="ticket-edit-head"><h3>${esc(row.title)}</h3><button type="button" class="ticket-alt" data-ticket-action="cancel">${ticketDict("返回收藏册")}</button></div>
       <div class="ticket-inputs">
         ${shows.length?`<label class="ticket-wide">${ticketDict("护照场次")}<select name="show">${ticketOption("",tr("自填场次"),row.showId)}
@@ -132,11 +137,8 @@ function ticketEditor(row){
         ${assets.length>1?`<label>${ticketDict("票面图像")}<select name="art">${assets.map((a,i)=>ticketOption(a,`${tr(i===0?"海报":"备用图像")} ${i+1}`,row.art)).join("")}</select></label>`:""}
         ${assets.length?`<label>${ticketDict("调整裁切位置")}<input type="range" min="0" max="100" name="crop" value="${row.crop}"></label>`:""}
         ${input("date","日期","date")}${input("time","开场时间","time")}${input("venue","影院")}${input("hall","影厅")}${input("seat","座位")}${input("format","放映版本")}
-        ${Object.entries({finish:"工艺",texture:"纸面纹理",palette:"票根配色",motif:"背面纹样"}).map(([key,label])=>`<label>${ticketDict(label)}<select name="${key}">${ticketArtworkEngine.options[key].map(o=>ticketOption(o.id,tr(o.label),row.look[key])).join("")}</select></label>`).join("")}
       </div><div class="ticket-edit-actions">
         <button class="primary-button" data-ticket-action="save">${ticketDict(ticketDraft.original?"更新票根":"加入收藏册")}</button>
-        <button class="ticket-alt" data-ticket-action="shuffle">${ticketDict("随机换一款")}</button>
-        <button class="ticket-alt" data-ticket-action="reset">${ticketDict("恢复专题默认")}</button>
         <button class="ticket-alt" data-ticket-action="single">${ticketDict("导出这张票根")}</button>
         ${ticketDraft.original?`<button class="ticket-alt" data-ticket-action="remove">${ticketDict("移出票根")}</button>`:""}</div></div></div>`;
 }
@@ -172,19 +174,18 @@ function ticketChange(event){
   const row=ticketDraft.row;
   if(name==="show"){
     const f=F[row.filmId],show=SH.find(s=>s.id===row.filmId&&(s.sid||keyOf(s))===value);
-    if(show&&f){
-      ticketDraft.row=ticketFromFilm(f,show);
-      for(const key of ticketDraft.locked)ticketDraft.row.look[key]=row.look[key];
-    }else ticketDraft.row={...row,id:"",showId:""};
+    const next=show&&f?ticketFromFilm(f,show):ticketArtworkEngine.sanitize({...row,id:"",showId:"",look:null});
+    if(ticketDraft.keepLook)next.look=row.look;
+    ticketDraft.row=next;
     ticketWallPage();return;
   }
-  if(Object.prototype.hasOwnProperty.call(ticketArtworkEngine.options,name)){
-    row.look[name]=value;
-    if(!ticketDraft.locked.includes(name))ticketDraft.locked.push(name);
-  }
-  else if(["date","time","venue","hall","seat","format","art"].includes(name)){
+  if(["date","time","venue","hall","seat","format","art"].includes(name)){
     row[name]=value;
-    if(["date","time","venue","hall"].includes(name)){row.id="";row.showId="";const select=main.querySelector('[name="show"]');if(select)select.value="";}
+    if(["date","time","venue","hall"].includes(name)){
+      row.id="";row.showId="";
+      if(!ticketDraft.keepLook)row.look=ticketArtworkEngine.defaults(ticketArtworkEngine.sanitize(row));
+      const select=main.querySelector('[name="show"]');if(select)select.value="";
+    }
     if(name==="art")row.crop=50;
   }
   ticketDrawEditor();
@@ -230,11 +231,17 @@ function ticketClick(e){
     case "flip": {
       ticketDraft.side=ticketDraft.side==="front"?"back":"front";
       main.querySelector(".ticket-flip").dataset.side=ticketDraft.side;
-      main.querySelector(".ticket-stage .ticket-alt").textContent=tr(ticketDraft.side==="front"?"翻到背面":"翻回正面");
+      main.querySelector(".ticket-stage > .ticket-alt").textContent=tr(ticketDraft.side==="front"?"翻到背面":"翻回正面");
       break;
     }
-    case "shuffle":ticketDraft.row.look=ticketArtworkEngine.randomLook(ticketDraft.row,ticketDraft.locked);ticketWallPage();break;
-    case "reset":ticketDraft.locked=[];ticketDraft.row.look=ticketArtworkEngine.defaults(ticketArtworkEngine.sanitize(ticketDraft.row));ticketWallPage();break;
+    case "shuffle":
+      ticketDraft.keepLook=true;
+      ticketDraft.row.look=ticketArtworkEngine.randomLook(ticketDraft.row);
+      ticketDrawEditor();break;
+    case "reset":
+      ticketDraft.keepLook=false;
+      ticketDraft.row.look=ticketArtworkEngine.defaults(ticketArtworkEngine.sanitize(ticketDraft.row));
+      ticketDrawEditor();break;
     case "save":ticketSave();break;
     case "remove":
       if(confirm(tr("将这张票根移出收藏册？"))&&ticketWrite(ticketRead().filter(row=>row.id!==ticketDraft.original))){

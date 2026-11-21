@@ -7,7 +7,6 @@ const app=getApp();
 const KEY='sk-tickets-v1';
 const read=()=>{try{return R.read(wx.getStorageSync(KEY));}catch(e){return [];}};
 const say=phrase=>wx.showToast({title:I.tr(phrase),icon:'none'});
-const fields={finish:'工艺',texture:'纸面纹理',palette:'票根配色',motif:'背面纹样'};
 const stock=(w,h)=>wx.createOffscreenCanvas({type:'2d',width:w,height:h});
 const iso=d=>[d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-');
 const showKey=s=>s.sid||U.keyOf(s);
@@ -76,34 +75,31 @@ Page({
     const entry=W.entries(data,idx).find(e=>e.id===f.id);
     const row=buildRecord(f,entry?.s,idx,entry?.rec.d||iso(new Date()));
     const existing=read().find(r=>r.id===row.id);
-    this._locked=[];
+    this._keepLook=true;
+    if(!existing)row.look=R.randomLook(row);
     this.edit(existing||row,existing?.id||'');
   },
   openTicket(e){
-    this._locked=[];
+    this._keepLook=true;
     const row=this._shown[Number(e.currentTarget.dataset.index)];
     if(row)this.edit({...row,look:{...row.look}},row.id);
   },
   edit(row,original=this._original,side='front'){
-    this._draft=row;this._original=original;this._side=side;this._locked=this._locked||[];
+    this._draft=row;this._original=original;this._side=side;
     const data=app.globalData.data,idx=U.index(data),f=idx.F[row.filmId];
     this._shows=data.shows.filter(s=>s.id===row.filmId);
     this._art=f?artOf(f):[];
     if(row.art&&!this._art.includes(row.art))this._art.unshift(row.art);
-    const styles=Object.entries(fields).map(([key,heading])=>{
-      const options=R.options[key];
-      return {key,label:I.tr(heading),names:options.map(x=>I.tr(x.label)),index:Math.max(0,options.findIndex(x=>x.id===row.look[key]))};
-    });
     const shows=[I.tr('自填场次'),...this._shows.map(s=>`${iso(U.showDate(s))} ${s.t} · ${idx.VN[s.v]?.name||s.v}`)];
     const showIndex=this._shows.findIndex(s=>showKey(s)===row.showId)+1;
     const arts=this._art.map((_,i)=>I.tr(i===0?'海报':'备用图像')+' '+(i+1));
-    this.setData({mode:'edit',draft:row,styles,shows,showIndex,arts,artIndex:Math.max(0,this._art.indexOf(row.art)),editFront:side==='front',existing:!!original},()=>this.drawEditor());
+    this.setData({mode:'edit',draft:row,shows,showIndex,arts,artIndex:Math.max(0,this._art.indexOf(row.art)),editFront:side==='front',existing:!!original},()=>this.drawEditor());
   },
   chooseShow(e){
     const s=this._shows[Number(e.detail.value)-1];
     const data=app.globalData.data,idx=U.index(data),f=idx.F[this._draft.filmId];
-    const next=s&&f?buildRecord(f,s,idx):{...this._draft,id:'',showId:''};
-    for(const key of this._locked)next.look[key]=this._draft.look[key];
+    const next=s&&f?buildRecord(f,s,idx):R.sanitize({...this._draft,id:'',showId:'',look:null});
+    if(this._keepLook)next.look=this._draft.look;
     this.edit(next,this._original,this._side);
   },
   chooseArt(e){this._draft.art=this._art[Number(e.detail.value)];this._draft.crop=50;this.edit(this._draft,this._original,this._side);},
@@ -111,18 +107,27 @@ Page({
     const name=e.currentTarget.dataset.field;
     this._draft[name]=name==='crop'?Number(e.detail.value):e.detail.value;
     const modifySlot=['date','time','venue','hall'].includes(name);
-    if(modifySlot){this._draft.id='';this._draft.showId='';}
-    this.setData({['draft.'+name]:this._draft[name],...(modifySlot?{showIndex:0}:{})});this.drawEditor();
-  },
-  chooseStyle(e){
-    const key=e.currentTarget.dataset.field,index=Number(e.detail.value);
-    this._draft.look[key]=R.options[key][index].id;
-    if(!this._locked.includes(key))this._locked.push(key);
-    this.edit(this._draft,this._original,this._side);
+    const update={['draft.'+name]:this._draft[name]};
+    if(modifySlot){
+      this._draft.id='';this._draft.showId='';update.showIndex=0;
+      if(!this._keepLook){
+        this._draft.look=R.defaults(R.sanitize(this._draft));
+        update['draft.look']=this._draft.look;
+      }
+    }
+    this.setData(update);this.drawEditor();
   },
   flipEditor(){this._side=this._side==='front'?'back':'front';this.setData({editFront:this._side==='front'});this.drawEditor();},
-  shuffle(){this._draft.look=R.randomLook(this._draft,this._locked);this.edit(this._draft,this._original,this._side);},
-  reset(){this._locked=[];this._draft.look=R.defaults(R.sanitize(this._draft));this.edit(this._draft,this._original,this._side);},
+  shuffle(){
+    this._keepLook=true;
+    this._draft.look=R.randomLook(this._draft);
+    this.setData({'draft.look':this._draft.look},()=>this.drawEditor());
+  },
+  reset(){
+    this._keepLook=false;
+    this._draft.look=R.defaults(R.sanitize(this._draft));
+    this.setData({'draft.look':this._draft.look},()=>this.drawEditor());
+  },
   store(){
     const row=R.sanitize({...this._draft,savedAt:Date.now()});
     if(!row.date){say('请填写放映日期');return;}

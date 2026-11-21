@@ -18,8 +18,7 @@
         <text>{{item.title}}</text>
       </view>
     </view>
-    <view wx:else class="al-empty"><view>{{L.t(i,year || programme ? '所选条件下暂无票根' : '还没有收藏票根')}}</view>
-      <text wx:if="{{!year && !programme}}">{{L.t(i,'从看过的电影开始，挑一张海报和喜欢的工艺。')}}</text></view>
+    <view wx:else class="al-empty">{{L.t(i,year || programme ? '所选条件下暂无票根' : '还没有收藏票根')}}</view>
     <view wx:if="{{count}}" class="al-pager"><text>{{count}} {{L.t(i,'张票根')}} {{pages>1?' · '+(page+1)+' / '+pages:''}}</text>
       <button wx:if="{{pages>1}}" disabled="{{page<=0}}" class="al-alt" data-move="-1" bindtap="move">{{L.t(i,'上一页')}}</button>
       <button wx:if="{{pages>1}}" disabled="{{page+1>=pages}}" class="al-alt" data-move="1" bindtap="move">{{L.t(i,'下一页')}}</button>
@@ -35,7 +34,15 @@
   <block wx:else>
     <view class="al-edit">
       <view class="al-stage"><canvas type="2d" id="ticket-editor-canvas" class="al-editor-canvas" bindtap="flipEditor" />
-        <button class="al-alt" bindtap="flipEditor">{{L.t(i,editFront?'翻到背面':'翻回正面')}}</button></view>
+        <button class="al-alt" bindtap="flipEditor">{{L.t(i,editFront?'翻到背面':'翻回正面')}}</button>
+        <view class="al-blind-box">
+          <text>{{L.t(i,'票根盲盒')}}</text>
+          <view class="al-actions">
+            <button class="al-alt" bindtap="shuffle">{{L.t(i,'随机换一款')}}</button>
+            <button class="al-alt" bindtap="reset">{{L.t(i,'恢复专题默认')}}</button>
+          </view>
+        </view>
+      </view>
       <view class="al-fields">
         <view class="al-film">{{draft.title}}</view>
         <picker wx:if="{{shows.length>1}}" mode="selector" range="{{shows}}" value="{{showIndex}}" bindchange="chooseShow" class="al-wide"><text>{{L.t(i,'护照场次')}}</text><view class="al-value">{{shows[showIndex]}} ›</view></picker>
@@ -47,11 +54,8 @@
         <label><text>{{L.t(i,'影厅')}}</text><input value="{{draft.hall}}" data-field="hall" bindblur="changeField" /></label>
         <label><text>{{L.t(i,'座位')}}</text><input value="{{draft.seat}}" data-field="seat" bindblur="changeField" /></label>
         <label><text>{{L.t(i,'放映版本')}}</text><input value="{{draft.format}}" data-field="format" bindblur="changeField" /></label>
-        <picker wx:for="{{styles}}" wx:key="key" mode="selector" range="{{item.names}}" value="{{item.index}}" data-field="{{item.key}}" bindchange="chooseStyle"><text>{{item.label}}</text><view class="al-value">{{item.names[item.index]}} ›</view></picker>
         <view class="al-actions al-wide">
           <button class="al-primary" bindtap="store">{{L.t(i,existing?'更新票根':'加入收藏册')}}</button>
-          <button class="al-alt" bindtap="shuffle">{{L.t(i,'随机换一款')}}</button>
-          <button class="al-alt" bindtap="reset">{{L.t(i,'恢复专题默认')}}</button>
           <button class="al-alt" disabled="{{loading}}" bindtap="exportSingle">{{L.t(i,'导出这张票根')}}</button>
           <button wx:if="{{existing}}" class="al-alt" bindtap="remove">{{L.t(i,'移出票根')}}</button>
         </view>
