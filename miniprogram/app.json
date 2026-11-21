@@ -10,6 +10,7 @@
     "pages/share/share",
     "pages/plan/plan",
     "pages/poster-wall/poster-wall",
+    "pages/tickets/tickets",
     "pages/taste-map/taste-map"
   ],
   "window": {

@@ -31,7 +31,7 @@ function route(){
   const returning=changing&&viewPositions.has(h)&&(bk||!fwd||(activeRoute.startsWith("film-")&&h===filmReturn));
   activeRoute=h;
   main.classList.toggle("prog-scale",h==="programmes"||h.startsWith("prog-")||h.startsWith("events-"));
-  const tab = ["plan","export","about","install","poster-wall","taste-map"].includes(h)||h.startsWith("share=") ? "my" : h==="gantt" ? "schedule" : h.startsWith("prog-")||h.startsWith("events-") ? "programmes" : h.startsWith("film-") ? null : h;
+  const tab = ["plan","export","about","install","poster-wall","ticket-wall","taste-map"].includes(h)||h.startsWith("share=") ? "my" : h==="gantt" ? "schedule" : h.startsWith("prog-")||h.startsWith("events-") ? "programmes" : h.startsWith("film-") ? null : h;
   document.querySelectorAll(".tab").forEach(t=>t.setAttribute("aria-current", t.dataset.tab===(tab||lastList)?"page":"false"));
   if(tab){ lastList = tab; topEl.innerHTML = brandBar(); }
   if(h.startsWith("film-")){ detail(h.slice(5)); wantMarkSeen(h.slice(5)); const lf=F[h.slice(5)]; if(lf&&lf._lite) ensureFull(lf).then(ok=>{ if(!ok) return; const paint=()=>{ if(activeRoute!==h||location.hash.slice(1)!==h) return; if(document.querySelector("dialog[open],.img-sheet,.ts-wrap")){ setTimeout(paint,600); return; } const y=window.scrollY; detail(h.slice(5)); window.scrollTo(0,y); }; paint(); }); }
@@ -43,6 +43,7 @@ function route(){
   else if(h==="plan") planPage();
   else if(h==="stats") statsPage();
   else if(h==="poster-wall") posterWallPage();
+  else if(h==="ticket-wall") {if(changing) ticketDraft=null;ticketWallPage();}
   else if(h==="taste-map") tasteMapPage();
   else if(h==="install") installPage();
   else if(h==="export") exportPage();
