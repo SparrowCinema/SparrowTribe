@@ -75,7 +75,9 @@ App({
   applyV2(r, lang) {
     if (!(r.films && r.films.length && r.shows && r.shows.length)) return;
     const prev = this.globalData.raw || LOCAL, act = new Set(r.active || []);
-    const byId = new Map((prev.films || []).map(f => [f.id, f]));
+    // 本机缓存里的旧影片：已改名合并的旧 id（aliases 的键）和当期专题里已被删掉的影片都不再沿用，否则同一部片会在专题里出现两次
+    const gone = new Set(Object.keys(r.aliases || prev.aliases || {})), fresh = new Set(r.films.map(f => f.id));
+    const byId = new Map((prev.films || []).filter(f => !gone.has(f.id) && !(act.has(f.prog) && !fresh.has(f.id))).map(f => [f.id, f]));
     r.films.forEach(f => byId.set(f.id, f));
     const known = new Set((r.active || []).concat(r.past || []));
     const shows = sortShows((prev.shows || []).filter(s => !act.has(s.p) && known.has(s.p)).concat(r.shows)); // 往期专题的场次先沿用旧数据，已删除的专题不再保留
@@ -99,7 +101,8 @@ App({
     const raw = this.globalData.raw;
     const one = id => wx.cloud.callFunction({ name: 'getData', data: { v: 2, prog: id, lang } }).then(res => {
       const r = res.result || {}; if (!r.ok || !r.films) return;
-      const byId = new Map(raw.films.map(f => [f.id, f])); r.films.forEach(f => byId.set(f.id, Object.assign({}, byId.get(f.id) || {}, f)));
+      const fresh = new Set(r.films.map(f => f.id)), gone = new Set(Object.keys(raw.aliases || {})); // 该专题里已删除 / 已改名的旧影片不再沿用
+      const byId = new Map(raw.films.filter(f => !gone.has(f.id) && !(f.prog === id && !fresh.has(f.id))).map(f => [f.id, f])); r.films.forEach(f => byId.set(f.id, Object.assign({}, byId.get(f.id) || {}, f)));
       raw.films = [...byId.values()];
       raw.shows = sortShows(raw.shows.filter(s => s.p !== id).concat(Screenings.apply({ films: raw.films, shows: r.shows }).shows));
       if (this._en && r.e) Object.assign(this._en.films || (this._en.films = {}), r.e);
