@@ -1,4 +1,4 @@
-const Taste=require('../../utils/taste.js'),C=require('../../utils/community.js'),SY=require('../../utils/sync.js');
+const Taste=require('../../utils/taste.js'),C=require('../../utils/community.js');
 const T = require('../../utils/totop.js');
 const U = require('../../utils/util.js');
 const Premiere = require('../../utils/premiere.js');
@@ -30,7 +30,7 @@ Page({
   data: { i: {}, f: null, open: false, fs: 1, tsShow: false, tsRow: {}, lgShow: false, lg: { shows: [], fmt: { cols: [[], []], val: [0, 0] }, stars: [0, 0, 0, 0, 0] } },
   onLoad(q) { this.setData({ i: I.dict() }); HT.show(this); this.id = SM.fromScene(q, ((app.globalData.data || {}).films || []).map(x => x.id)); this.off1 = app.onData(() => this.build()); this.off2 = plan.onChange(() => this.build()); this.off3 = W.onChange(() => this.buildMine()); this.offC=C.subscribe(()=>this.setData({community:C.model(this.id,I.isEn()),tsRow:this.tsRowModel()}));this.build();this.loadCommunity(); },
   loadCommunity(){C.read([this.id]).then(()=>this.setData({community:C.model(this.id,I.isEn()),tsRow:this.tsRowModel(),communityError:false})).catch(()=>this.setData({communityError:true}));},
-  async communityAction(e){const action=e.currentTarget.dataset.action;if(action==='retry'){await SY.quiet();C.changed();await C.flush();return this.loadCommunity();}if(!C.identity()){wx.showToast({title:t('请先在「我的」开启云端同步'),icon:'none'});return;}const rec=W.get(this.id);if(!rec)return;const commit=async()=>{await SY.quiet();const current=W.get(this.id);if(!current)return;W.set(this.id,Taste.set(current,'tastePublic',action==='publish'));C.changed();await C.flush();this.loadCommunity();};commit();},
+  withdrawCommunity(){C.withdraw(this.id);},
   toggleGone() { this.setData({ goneOpen: !this.data.goneOpen }); },
   homeTipGo() { HT.home(); },
   homeTipClose() { HT.close(this); },
@@ -139,11 +139,11 @@ Page({
     const fa=a&&a.funAvg!=null?Number(a.funAvg).toFixed(1):'',ba=a&&a.boreAvg!=null?Number(a.boreAvg).toFixed(1):'',n=a?Math.max(a.funN||0,a.boreN||0):0;
     const comm=!a?'':fa||ba?(en?'Community ':'社区 ')+(fa||'—')+' · '+(ba||'—'):n?(en?n+' ratings':n+' 人评价'):seen?(en?'Be the first to rate':'成为第一个评价的人'):(en?'No ratings yet':'社区暂无评价');
     return {mine,fun:v('fun'),bore:v('bore'),comm};},
-  openTaste(){this.setData({tsShow:true,lgShow:false});this.loadCommunity();},
+  openTaste(){this.setData({tsShow:true,lgShow:false});if(C.status()==='error')C.flush();this.loadCommunity();},
   sheetLeave(){this.closeTaste();this.lgClose();},
   closeTaste(){if(this.data.tsShow)this.setData({tsShow:false});},
   toTasteMap(){this.setData({tsShow:false});wx.navigateTo({url:'/packages/collect/taste-map/taste-map'});},
-  tasteRate(e){const rec=W.get(this.id),k=e.currentTarget.dataset.k,n=Number(e.currentTarget.dataset.n);if(rec&&['fun','bore'].includes(k)&&Taste.valid(n))W.set(this.id,Taste.toggle(rec,k,n));},
+  tasteRate(e){const rec=W.get(this.id),k=e.currentTarget.dataset.k,n=Number(e.currentTarget.dataset.n);if(rec&&['fun','bore'].includes(k)&&Taste.valid(n))W.set(this.id,Taste.rateForCommunity(rec,k,n));},
   // 多次观影：保存时让顶层字段与各次观影一致（规则在 shared/growth.js setViews）
   saveViews(vs) { const rec = W.get(this.id); if (!rec) return; const o = G.setViews(rec, vs); if (o) W.set(this.id, o); },
   // —— 观影日记：点一行或「再看一次」打开底部编辑弹层（与网页 lgOpen 同规则）——

@@ -60,13 +60,19 @@ function run() {
   status.state = 'busy'; emit();
   return call({ action: 'sync', code: st.code, state: snapshot() }).then(r => {
     if (!r.ok) throw new Error(r.msg || 'fail');
-    if (r.changed) apply(S.clean(r.merged));
+    if (r.changed) {
+      const merged = S.clean(r.merged);
+      const watched = S.merge({ watched: W.all() }, { watched: merged.watched }).watched;
+      if (!S.same({ watched }, { watched: merged.watched })) { clearTimeout(timer); timer = setTimeout(quiet, 3000); }
+      apply({ ...merged, watched });
+    }
     setState(Object.assign({}, st, { rev: r.rev, at: Date.now() }));
     status.state = 'ok'; status.msg = ''; status.at = Date.now(); emit(); return r;
   }).catch(e => { status.state = 'error'; status.msg = friendly((e && (e.message || e.errMsg)) || String(e)); emit(); throw e; });
 }
 function sync() { if(clearing)return Promise.resolve();if (busy) return busy; busy = run().finally(() => { busy = null; }); return busy; }
 const quiet = () => sync().catch(() => { });
+async function syncBeforeVote() { if (busy) await busy; return sync(); }
 const OFF = 'sk-sync-off';
 const setOff = v => { try { v ? wx.setStorageSync(OFF, 1) : wx.removeStorageSync(OFF); } catch (e) { } };
 const isOff = () => { try { return !!wx.getStorageSync(OFF); } catch (e) { return false; } };
@@ -93,4 +99,4 @@ function stale() { const st = state(); return !!(st && st.code && Date.now() - (
 
 async function restore(value){if(busy)await busy;const next=Backup.restore(snapshot(),value);apply(next);changed();}
 async function clearCloud(){if(clearing)return;if(busy)await busy;await sync();clearing=true;clearTimeout(timer);try{const st=state();if(!st?.code)throw new Error('No sync code');const empty=Backup.empty(snapshot()),r=await call({action:'sync',code:st.code,state:empty});if(!r.ok)throw new Error('Cloud clear failed');stop();}finally{clearing=false;}}
-module.exports = { fromScan, snapshot,restore,clearCloud,state, status, onStatus, sync, quiet, start, join, stop, init, stale, normalize: S.normalize };
+module.exports = { fromScan, snapshot,restore,clearCloud,state, status, onStatus, sync, quiet, syncBeforeVote, start, join, stop, init, stale, normalize: S.normalize };

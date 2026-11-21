@@ -14,9 +14,13 @@ let storage={},page,watch;const context={require:n=>n==='./taste.js'?T:n==='./ut
 (async()=>{let doc={keys:['existing-plan'],watched:{a:r}},txCount=0;const ref={get:async()=>({data:doc}),set:async({data})=>{doc=data;}};const db={command:{set:x=>x},serverDate:()=>0,createCollection:async()=>{},collection:()=>({doc:()=>ref}),runTransaction:async fn=>{txCount++;return fn({collection:()=>({doc:()=>ref})});}};const mod={exports:{}};vm.runInNewContext(fs.readFileSync('cloudfunctions/plan/index.js','utf8'),{require:n=>n==='wx-server-sdk'?{init(){},database:()=>db,getWXContext:()=>({OPENID:'owner'})}:n==='./psync.js'?S:T,exports:mod.exports,module:mod});await mod.exports.main({action:'setWatched',watched:{a:{...record,r:7,t:100}}});assert.equal(txCount,1);assert.equal(doc.watched.a.fun,0);assert.equal(doc.watched.a.bore,5);assert.equal(doc.watched.a.r,7);assert.deepEqual(doc.keys,['existing-plan']);console.log('PASS: private WeChat plan transaction retains taste fields, existing scores and planned screenings.');})().catch(e=>{console.error(e);process.exitCode=1;});
 
 // Actual web renderers distinguish 0, missing, offline and unpublished values.
-const web=require('./web-source').read(),cut=(a,b)=>web.slice(web.indexOf(a),web.indexOf(b,web.indexOf(a))),sandbox=vm.createContext({watched:{a:r},LANG:'zh',window:{SparrowTaste:T},TC:{get:()=>({funN:2,funAvg:null,boreN:3,boreAvg:0}),pending:()=>false},communityStatus:'ok',esc:String,ppV:(zh,en)=>zh});
-vm.runInContext("const STAR_D='M0 0Z';"+cut('function tasteStar(','function myRateHTML(f)')+cut('function communityHTML(f)','function paintCommunity()'),sandbox);let html=vm.runInContext("tasteHTML({id:'a'})",sandbox);assert(html.includes('<b>0</b><small>/5</small>'));assert(html.includes('未评'));assert(html.includes('aria-pressed="true"'));assert.equal(vm.runInContext("tasteHTML({id:'missing'})",sandbox),'');html=vm.runInContext("communityHTML({id:'a'})",sandbox);assert(html.includes('<b>0.0</b><small>/5</small>'));assert(html.includes('样本不足 · 还差 1 人'));assert(html.includes('2 人评价'));assert(html.includes('公开到影迷社区'));assert(html.includes('role="switch" aria-checked="false"'));
-console.log('PASS: actual web renderer handles zero, missing dimensions, sample thresholds and opt-in controls.');
+const web=require('./web-source').read(),cut=(a,b)=>web.slice(web.indexOf(a),web.indexOf(b,web.indexOf(a))),sandbox=vm.createContext({watched:{a:r},LANG:'zh',window:{SparrowTaste:T},TC:{get:()=>({funN:2,funAvg:null,boreN:3,boreAvg:0}),pending:()=>false},communityStatus:'ok',syncSt:{code:'test'},esc:String,ppV:(zh,en)=>zh});
+vm.runInContext("const STAR_D='M0 0Z';"+cut('function tasteStar(','function myRateHTML(f)')+cut('function communityHTML(f)','function paintCommunity()'),sandbox);let html=vm.runInContext("tasteHTML({id:'a'})",sandbox);assert(html.includes('<b>0</b><small>/5</small>'));assert(html.includes('未评'));assert(html.includes('aria-pressed="true"'));assert.equal(vm.runInContext("tasteHTML({id:'missing'})",sandbox),'');html=vm.runInContext("communityHTML({id:'a'})",sandbox);assert(html.includes('<b>0.0</b><small>/5</small>'));assert(html.includes('样本不足 · 还差 1 人'));assert(html.includes('2 人评价'));assert(!html.includes('data-community-action="publish"'));assert(!html.includes('role="switch"'));
+assert(!html.includes('撤回社区评分'));
+assert(vm.runInContext("tasteHTML({id:'a'})",sandbox).includes('自动计入社区汇总'));
+sandbox.watched.a={...r,tastePublic:true};
+assert(vm.runInContext("communityHTML({id:'a'})",sandbox).includes('撤回社区评分'));
+console.log('PASS: actual web renderer handles zero, missing dimensions, sample thresholds, auto-share notice and withdrawal.');
 
 (async()=>{let release,follow;const sent=[],c=Client.create({load:()=>({}),save(){},defer:f=>{follow=f;},rpc:async(fn,j)=>{sent.push(j);if(sent.length===1)return new Promise(r=>release=r);return {ok:true};}});const first=c.enqueue('code','race',{...r,tastePublic:true});c.enqueue('code','race',T.set({...r,tastePublic:true},'fun',4,50));release({ok:true});await first;assert(c.pending('race'));assert(follow);await follow();assert(!c.pending('race'));assert.equal(sent.at(-1).fun,4);
  const stale=Client.create({load:()=>({}),save(){},rpc:async()=>({ok:false,reason:'stale'})});await stale.enqueue('code','old',{...r,tastePublic:true});assert(!stale.pending('old'));assert.equal(stale.status(),'ok');console.log('PASS: edits during in-flight upload survive acknowledgement; obsolete device votes do not block the durable queue.');})().catch(e=>{console.error(e);process.exitCode=1;});
@@ -25,3 +29,33 @@ console.log('PASS: actual web renderer handles zero, missing dimensions, sample 
  const vote={action:'vote',code:'owner-code',film:'a',fun:0,bore:5,revision:1,photo:'private',watched:{secret:1}};assert.equal((await mod.exports.main(vote)).reason,'identity');owner='owner';assert.equal((await mod.exports.main({...vote,code:'another-code'})).reason,'identity');assert.equal(requests.length,0);assert((await mod.exports.main(vote)).ok);assert.deepEqual(Object.keys(requests[0].body).sort(),['bore','code','film','fun','revision']);assert.equal((await mod.exports.main({action:'read',films:Array(501).fill('a')})).reason,'invalid');console.log('PASS: WeChat public-rating bridge requires the bound identity and sends only ballot fields.');})().catch(e=>{console.error(e);process.exitCode=1;});
 
 (async()=>{const sent=[],c=Client.create({load:()=>({}),save(){},rpc:async(fn,j)=>{sent.push(j);return {ok:true};}});await c.enqueue('code','a',{...r,t:9999,tastePublic:true});assert.equal(sent[0].revision,20);await c.enqueue('code','a',{del:1,t:10000});assert.equal(sent[1].revision,10000);console.log('PASS: unrelated ten-point/date edits cannot overwrite a newer community vote; deletion still withdraws it.');})().catch(e=>{console.error(e);process.exitCode=1;});
+
+const privateRating={...record,fun:2,bore:4,tastePublic:false};
+const rated=T.rateForCommunity(privateRating,'fun',0,400);
+assert.equal(rated.fun,0);assert.equal(rated.bore,4);assert.equal(rated.tastePublic,true);
+assert.equal(privateRating.tastePublic,false);
+assert(T.publicVote(rated));
+assert.equal(T.rateForCommunity(privateRating,'fun',2,400).tastePublic,false,'clearing a private score does not publish it');
+const only=T.rateForCommunity(record,'fun',2.5,401);
+const clearedAuto=T.rateForCommunity(only,'fun',2.5,402);
+assert.equal(clearedAuto.fun,null);assert(!T.publicVote(clearedAuto));
+(async()=>{
+ let disk={},unblock,follow;
+ const sent=[];
+ const touch=(fun,at)=>T.rateForCommunity(record,'fun',fun,at);
+ const options={load:()=>JSON.parse(JSON.stringify(disk)),save:v=>{disk=JSON.parse(JSON.stringify(v));},
+   rpc:async(fn,job)=>{sent.push(job);return {ok:true};},defer:fn=>{follow=fn;}};
+ let client=Client.create({...options,beforeVote:()=>new Promise(resolve=>{unblock=resolve;})});
+ await client.flush();
+ const first=client.enqueue('code','a',touch(1.5,401));
+ client.enqueue('code','a',touch(3.5,402));
+ assert.equal(sent.length,0,'await cloud watched proof before writing a ballot');
+ unblock();await first;assert.equal(sent.length,0,'never submit a superseded score after sync');
+ assert(follow&&client.pending('a'));
+ client=Client.create(options);await client.flush();
+ assert.equal(sent.at(-1).fun,3.5,'offline half-star survives reload');
+ const withdrawal=Client.create({...options,beforeVote:()=>{throw Error('withdrawal should not sync first');}});
+ await withdrawal.enqueue('code','a',clearedAuto);
+ assert.equal(sent.at(-1).fun,null);assert.equal(sent.at(-1).bore,null);
+ console.log('PASS: new scores auto-share, clearing a private score stays private, preparation skips superseded votes, half-stars survive reload, and withdrawal can run independently.');
+})().catch(e=>{console.error(e);process.exitCode=1;});
