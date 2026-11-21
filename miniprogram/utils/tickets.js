@@ -30,6 +30,11 @@ const finishes = {
   silver:  {label:"镜面银箔", kind:"metal", stops:["#72818f","#c1d5e0","#fafbfb","#8393a1"], width:1.62},
   copper:  {label:"玫瑰铜箔", kind:"metal", stops:["#7b4050","#d8898b","#ffdec2","#af676d"], width:1.7},
   pearl:   {label:"月光珠母箔", kind:"metal", stops:["#9e98ad","#d7e1e3","#fff5f0","#d2c3df","#91a7b4"], width:1.85},
+  // 2026-11-22 参考视高迪（Scodix）数字增效工艺新增：全息纹理（Cast&Cure）、水晶幻彩（Crystal）、金葱闪粉（Glitter）、立体光油（Sense）
+  cast:    {label:"全息纹理箔", kind:"spectrum", fx:"cast", stops:["#8d94b8","#e8f4ff","#ffb8ec","#9ef3ff","#fff6b8","#b8a6ff","#8d94b8"], width:1.6},
+  crystal: {label:"水晶幻彩钻", kind:"spectrum", fx:"crystal", stops:["#a9b4cc","#ffffff","#ffd1f1","#d3fbff","#fff3c7","#e2d4ff","#a9b4cc"], width:1.55},
+  glitter: {label:"金葱闪粉", kind:"metal", fx:"glitter", stops:["#7d5a2e","#e9c77c","#fff6d6","#a87b3f"], width:1.7},
+  sense:   {label:"立体光油", kind:"soft", fx:"sense", stops:["#a69f92","#e6e0d3","#fffdf6","#bdb5a5"], width:2.1},
   varnish: {label:"滴晶亮釉", kind:"soft", stops:["#8495a6","#b1c4c6","#f6f1e4","#9bb2a9"], width:1.95},
   matte:   {label:"哑光压纹", kind:"soft", stops:["#9d8969","#c1ae8d","#a69273"], width:1.08}
 };
@@ -93,11 +98,11 @@ const motifs = {
 };
 
 const families = {
-  festival: {palette:["burgundy","honey","ember","rust","peach","crimson"], finish:["holo","gold","copper","solar"], texture:["cotton","laid","parchment","deckle","fleck","felt"], motif:["rosette","rays","arches"]},
-  region: {palette:["jade","navy","cyan","teal","fern","cobalt"], finish:["silver","aurora","opal","pearl"], texture:["silk","washi","frost","xuan","moire","vellum"], motif:["waves","orbit","contour"]},
-  theme: {palette:["violet","indigo","rose","iris","plum","cobalt"], finish:["prism","opal","cobalt","varnish"], texture:["linen","crosshatch","satin","leather","velvet","mica"], motif:["facets","rays","orbit"]},
-  venue: {palette:["moss","clay","olive","peach","sepia","rust"], finish:["copper","gold","varnish","matte"], texture:["kraft","washi","cotton","felt","xuan","laid"], motif:["arches","contour","frames"]},
-  cinema: {palette:["ink","graphite","navy","lemon","sepia","indigo"], finish:["silver","matte","cobalt","pearl"], texture:["ribbed","frost","satin","velvet","vellum","mica"], motif:["frames","rays","facets"]}
+  festival: {palette:["burgundy","honey","ember","rust","peach","crimson"], finish:["holo","gold","copper","solar","glitter","cast"], texture:["cotton","laid","parchment","deckle","fleck","felt"], motif:["rosette","rays","arches"]},
+  region: {palette:["jade","navy","cyan","teal","fern","cobalt"], finish:["silver","aurora","opal","pearl","crystal"], texture:["silk","washi","frost","xuan","moire","vellum"], motif:["waves","orbit","contour"]},
+  theme: {palette:["violet","indigo","rose","iris","plum","cobalt"], finish:["prism","opal","cobalt","varnish","cast","crystal","sense"], texture:["linen","crosshatch","satin","leather","velvet","mica"], motif:["facets","rays","orbit"]},
+  venue: {palette:["moss","clay","olive","peach","sepia","rust"], finish:["copper","gold","varnish","matte","sense","glitter"], texture:["kraft","washi","cotton","felt","xuan","laid"], motif:["arches","contour","frames"]},
+  cinema: {palette:["ink","graphite","navy","lemon","sepia","indigo"], finish:["silver","matte","cobalt","pearl","sense"], texture:["ribbed","frost","satin","velvet","vellum","mica"], motif:["frames","rays","facets"]}
 };
 
 const programmeLooks = {
@@ -126,9 +131,14 @@ function inferFamily(name) {
   if (/院线|公映/.test(name)) return "cinema";
   return "theme";
 }
+// 转动时的工艺效果：镭射 holo（彩虹流动）、全息纹理 cast、水晶 crystal、金属 sweep（光带扫过）、闪粉 glitter、亮釉 gloss、立体光油 sense；哑光 none
+const fxOf=key=>{const f=finishes[key];return !f?"none":f.fx||(f.kind==="spectrum"?"holo":f.kind==="metal"?"sweep":key==="varnish"?"gloss":"none");};
+// 用烫印渐变画的东西都记下来，画「工艺遮罩」时只留这些（见 foilMask）
+const FOIL=typeof WeakSet==="function"?new WeakSet():null;
 function foilGradient(surface,x1,y1,x2,y2,finish) {
   const range=finishes[finish].stops;
   const foil=surface.createLinearGradient(x1,y1,x2,y2);
+  FOIL?.add(foil);
   range.forEach((color,i)=>{
     const stop=i/(range.length-1);
     if (finish === "prism" && i>0) foil.addColorStop(stop-.07,range[i-1]);
@@ -542,6 +552,7 @@ function embossTitle(surface,title,x,y,{accent,dark,finish,scale=1,createCanvas}
   surface.font=`${TITLE_WEIGHT} ${size}px ${TITLE}`;surface.textAlign="center";
   const width=Math.min(max,surface.measureText(value).width),left=x-width/2,top=y-size*.86,bottom=y+size*.12;
   const fill=(color,dx,dy)=>{surface.fillStyle=color;surface.fillText(value,x+dx,y+dy,max);};
+  if (surface.__foilMask) {surface.__solid("#fff");surface.fillText(value,x,y,max);surface.restore();return;}
   // 1 柔和投影（shadowBlur 以设备像素计，按缩放换算）
   surface.shadowColor="rgba(46,32,20,.34)";surface.shadowBlur=5*scale;surface.shadowOffsetX=1.2*scale;surface.shadowOffsetY=2.6*scale;
   fill(dark,0,0);
@@ -816,8 +827,8 @@ function draw(surface,record,side,image,rect,createCanvas,light) {
     rule(surface,73,accent+"62");
     const {x,y,w,h}=SOURCE;
     surface.fillStyle=dark;surface.fillRect(x,y,w,h);
-    if (image) {
-      if (!Sketch?.paint(surface,image,record.crop,SOURCE,createCanvas,cropCover,rect.w/W,record.artStyle)) {
+    if (surface.__foilMask ? surface.__foilArt : image) {
+      if (image && !Sketch?.paint(surface,image,record.crop,SOURCE,createCanvas,cropCover,rect.w/W,record.artStyle)) {
         cropCover(surface,image,record.crop);
       }
     } else {
@@ -866,6 +877,77 @@ function draw(surface,record,side,image,rect,createCanvas,light) {
   }
   if (light) previewSheen(surface,metal,side,light);
   surface.restore();
+  if (!surface.__foilMask && createCanvas && TEXTURED[fxOf(finish)]) foilTexture(surface,record,side,rect,createCanvas,!!image);
+}
+
+// 工艺遮罩：把票根再画一遍，只留下用烫印渐变画的部分（烫印框线、纹章、专题胶囊）和压凸片名，涂成白色，其余全透明。
+// 用 Proxy 包住画布：烫印渐变换成白色，其他颜色换成透明，不画图片和阴影，所以版式永远和票面一致，不用另写一份。
+// 网页 / 小程序转动时在这个范围里叠随角度变化的工艺反光；闪粉、水晶、全息纹理的静态纹理也画在这里面。
+function foilMask(ctx,record,side,rect,createCanvas,hasArt) {
+  if (typeof Proxy!=="function" || !FOIL || fxOf(record.look?.finish)==="none") return false;
+  const styles={fillStyle:"#000",strokeStyle:"#000"},stack=[],bound={};
+  const clear="rgba(0,0,0,0)",map=v=>v && typeof v==="object" && FOIL.has(v) ? "#fff" : clear;
+  const proxy=new Proxy(ctx,{
+    get(target,key) {
+      if (key==="__foilMask") return true;
+      if (key==="__foilArt") return hasArt;
+      if (key==="__solid") return color=>{target.fillStyle=color;styles.fillStyle=color;};
+      if (key==="fillStyle" || key==="strokeStyle") return styles[key];
+      if (key==="drawImage" || key==="putImageData") return ()=>{};
+      if (key==="save") return ()=>{stack.push({...styles});target.save();};
+      if (key==="restore") return ()=>{Object.assign(styles,stack.pop()||{});target.restore();};
+      const value=target[key];
+      return typeof value==="function" ? (bound[key]||(bound[key]=value.bind(target))) : value;
+    },
+    set(target,key,value) {
+      if (key==="fillStyle" || key==="strokeStyle") {styles[key]=value;target[key]=map(value);return true;}
+      if (key==="shadowColor") {target.shadowColor=clear;return true;}
+      target[key]=value;return true;
+    }
+  });
+  try {draw(proxy,record,side,null,rect,createCanvas);return true;} catch (error) {return false;}
+}
+
+// 闪粉 / 水晶 / 全息纹理的静态纹理（导出图里也有）：在工艺遮罩范围里撒亮片、钻面或衍射纹
+const TEXTURED={glitter:1,crystal:1,cast:1};
+const seeded=start=>{let seed=start>>>0||1;return ()=>{seed=(Math.imul(1664525,seed)+1013904223)>>>0;return seed/4294967296;};};
+function foilTexture(surface,record,side,rect,createCanvas,hasArt) {
+  const w=Math.max(1,Math.round(Math.min(rect.w,900))),h=Math.max(1,Math.round(w*H/W));
+  let canvas;
+  try {canvas=createCanvas(w,h);} catch (error) {return;}
+  const ctx=canvas.getContext("2d");
+  if (!foilMask(ctx,record,side,{x:0,y:0,w,h},createCanvas,hasArt)) return;
+  const fx=fxOf(record.look.finish),k=w/W,rand=seeded(hashAppearance((record.id||record.key||"")+side+fx));
+  // 纹理先画在另一块画布上，再一次性 source-in 进遮罩（逐笔 source-in 会把前面画的都擦掉）
+  let texture;
+  try {texture=createCanvas(w,h);} catch (error) {return;}
+  const paint=ctx;{const ctx=texture.getContext("2d");
+  ctx.save();ctx.scale(k,k);
+  if (fx==="cast") {
+    // 全息纹理：同心衍射环 + 斜向细纹，颜色沿彩虹循环
+    const hues=["#ffffff","#ff9fdc","#5a6890","#8ff0ff","#ffe27a","#5a6890","#b9a2ff"];
+    ctx.globalAlpha=.55;
+    for (let r=6,i=0;r<760;r+=4.2,i++) {ctx.strokeStyle=hues[i%hues.length];ctx.lineWidth=1.1;ctx.beginPath();ctx.arc(W*.5,H*.36,r,0,Math.PI*2);ctx.stroke();}
+    ctx.globalAlpha=.3;ctx.strokeStyle="#ffffff";ctx.lineWidth=.6;
+    for (let x=-H;x<W+H;x+=3.4) {ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x+H*.58,H);ctx.stroke();}
+  } else {
+    // 闪粉：密集的小亮片 + 少量十字星芒；水晶：较大的彩色钻面
+    const crystal=fx==="crystal",count=crystal?11000:16000;
+    // 亮片要有明有暗才看得出来：一半是亮点，一半是比箔面深的颗粒
+    const colors=crystal?["#ffffff","#ff86d4","#5fdcff","#ffd84d","#a98bff","#3d4766"]:["#ffffff","#fff1c2","#5a3d16","#7a5420","#ffffff"];
+    for (let i=0;i<count;i++) {
+      const x=rand()*W,y=rand()*H,r=crystal?.5+rand()*1.2:.3+rand()*.7;
+      ctx.globalAlpha=.45+rand()*.55;ctx.fillStyle=colors[Math.floor(rand()*colors.length)];
+      ctx.beginPath();
+      if (crystal) {const a=rand()*Math.PI;for (let j=0;j<4;j++) {const t=a+j*Math.PI/2,q=j%2?r*.55:r;ctx.lineTo(x+Math.cos(t)*q,y+Math.sin(t)*q);}ctx.closePath();}
+      else ctx.arc(x,y,r,0,Math.PI*2);
+      ctx.fill();
+      if (!crystal && rand()<.035) {ctx.globalAlpha=.8;ctx.fillRect(x-2.6,y-.25,5.2,.5);ctx.fillRect(x-.25,y-2.6,.5,5.2);}
+    }
+  }
+  ctx.restore();}
+  paint.globalCompositeOperation="source-in";paint.drawImage(texture,0,0);
+  surface.save();surface.globalAlpha=fx==="cast"?.6:.85;surface.drawImage(canvas,rect.x,rect.y,rect.w,rect.h);surface.restore();
 }
 
 // 12 张以内是大票根墙；更多时是密排拼图（年度 / 专题票根墙），每张图最多 MOSAIC_MAX 张，超出由调用方分成多张图。
@@ -908,7 +990,7 @@ function drawWall(surface,records,side,images,caption,createCanvas,title,maxWidt
   return layout;
 }
 
-const shineOf=key=>{const f=finishes[key]||finishes.matte;return {kind:f.kind,highlight:f.stops[f.stops.length-2]};};
-return {W,H,TITLE_FAMILY,edgeOf,WALL_PAGE,MOSAIC_MAX,FACETS,options:labelOptions(),sanitize,read,sorted,defaults,randomLook,shineOf,draw,wallLayout,drawWall,
+const shineOf=key=>{const f=finishes[key]||finishes.matte;return {kind:f.kind,fx:fxOf(key),highlight:f.stops[f.stops.length-2]};};
+return {W,H,TITLE_FAMILY,edgeOf,foilMask,fxOf,WALL_PAGE,MOSAIC_MAX,FACETS,options:labelOptions(),sanitize,read,sorted,defaults,randomLook,shineOf,draw,wallLayout,drawWall,
   ticketKey,parseKey,cleanStore,mergeStore,packLook,unpackLook,normArt,viewings,build,reconcile,draft,entryFrom,migrateV1,filterTickets,facetCounts,groupByMonth,swatch};
 });

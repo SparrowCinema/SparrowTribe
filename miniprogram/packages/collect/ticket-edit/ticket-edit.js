@@ -33,7 +33,7 @@ function image(node,src){
 }
 
 Page({
-  data:{i:{},ps:'',ok:false,draft:{},front:true,frontImg:'',backImg:'',turnReq:{side:'front',n:0},edge:'',shine:'metal',
+  data:{i:{},ps:'',ok:false,draft:{},front:true,frontImg:'',backImg:'',turnReq:{side:'front',n:0},edge:'',shine:'metal',fx:'none',maskF:'',maskB:'',
     arts:[],artIndex:0,artStyleLabels:[],artStyleIndex:0,shows:[],showIdx:-1,existing:false,linked:false,loading:false,busy:true,artDirty:false},
   onLoad(q){
     this._albumArtStyle=Art.normalize();
@@ -109,6 +109,21 @@ Page({
     if(path&&turn===this._turn&&this._ready){this._cache.set(sig,path);if(this._cache.size>24)this._cache.delete(this._cache.keys().next().value);}
     return path;
   },
+  // 工艺遮罩：烫印 / 镭射 / 光油的区域涂白（shared/tickets.js 的 foilMask），转成 data URI 给 .te-fx 当 mask-image；小尺寸即可
+  async fxMask(node,side,turn){
+    const row={...this._draft,artStyle:this._artStyle},fx=R.fxOf(row.look.finish);
+    if(fx==='none')return '';
+    const sig=sigOf(row,side)+'¦mask';
+    if(this._cache.has(sig))return this._cache.get(sig);
+    const hasArt=side==='front'&&!!row.art&&!!(await this._artImage);
+    if(turn!==this._turn||!this._ready)return '';
+    const w=210,h=Math.round(w*R.H/R.W);node.width=w;node.height=h;
+    const ctx=node.getContext('2d');ctx.clearRect(0,0,w,h);
+    let url='';
+    try{if(R.foilMask(ctx,row,side,{x:0,y:0,w,h},stock,hasArt))url=node.toDataURL('image/png');}catch(e){url='';}
+    if(url&&turn===this._turn)this._cache.set(sig,url);
+    return url;
+  },
   async renderFaces(first=this.data.front?'front':'back'){
     if(!this._draft||!this._ready)return;
     const turn=++this._turn;
@@ -124,8 +139,10 @@ Page({
       if(turn!==this._turn||!this._ready)return;
       if(path)this.setData({[side==='front'?'frontImg':'backImg']:path});
     }
-    const kind=R.shineOf(this._draft.look.finish).kind;
-    this.setData({busy:false,shine:kind,edge:R.edgeOf(this._draft),turnReq:{...this.data.turnReq,kind}});
+    const {kind,fx}=R.shineOf(this._draft.look.finish);
+    const maskF=await this.fxMask(node,'front',turn),maskB=await this.fxMask(node,'back',turn);
+    if(turn!==this._turn||!this._ready)return;
+    this.setData({busy:false,shine:kind,fx,maskF,maskB,edge:R.edgeOf(this._draft),turnReq:{...this.data.turnReq,kind,fx}});
   },
   // 拖动裁切时实时预览（与网页一致）：只重画正面，上一张还没画完就只记下「还要再画」，画完立刻按最新位置再画一张，
   // 不会排队堆积，也不用等手指停下；松手（bindchange）后再按原来的流程画清晰的正反面
@@ -144,7 +161,7 @@ Page({
   },
   soon(ms){clearTimeout(this._soonT);this._soonT=setTimeout(()=>this.renderFaces(),ms);},
   // ——— 360° 转动（turn.wxs 在视图层跟手，这里只发请求、收结果） ———
-  turnTo(side){this._turnN=(this._turnN||0)+1;this.setData({turnReq:{side,n:this._turnN,kind:this.data.shine}});},
+  turnTo(side){this._turnN=(this._turnN||0)+1;this.setData({turnReq:{side,n:this._turnN,kind:this.data.shine,fx:this.data.fx}});},
   flip(){this.turnTo(this.data.front?'back':'front');},
   turned(e){const front=!!(e&&e.front);if(front!==this.data.front)this.setData({front});},
   setSide(e){if((e.currentTarget.dataset.side==='front')!==this.data.front)this.turnTo(e.currentTarget.dataset.side);},

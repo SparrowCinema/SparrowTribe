@@ -33,8 +33,8 @@
 .ticket-face{backface-visibility:hidden;-webkit-backface-visibility:hidden}
 .ticket-front{transform:translateZ(1px)}
 .ticket-back{transform:rotateY(180deg) translateZ(1px)}
-.ticket-face::after{content:"";position:absolute;inset:2% 3%;pointer-events:none;mix-blend-mode:screen;background:radial-gradient(ellipse at var(--gx,42%) var(--gy,35%),var(--metal-highlight,#ffe1ac8c),transparent 46%);opacity:.14;transition:opacity .12s ease-out}
-.ticket-flip[data-shine=soft] .ticket-face::after{opacity:.04}
+.ticket-face::after{content:"";position:absolute;inset:2% 3%;pointer-events:none;mix-blend-mode:screen;background:radial-gradient(ellipse at var(--gx,42%) var(--gy,35%),var(--metal-highlight,#ffe1ac8c),transparent 46%);opacity:.07;transition:opacity .12s ease-out}
+.ticket-flip[data-shine=soft] .ticket-face::after{opacity:.02}
 .ticket-flip[data-shine=spectrum] .ticket-front::after{inset:10.7% 5.2% 50.9%;background:none;border:1px solid transparent;border-image:radial-gradient(ellipse at var(--gx,42%) var(--gy,35%),var(--metal-highlight),#a5d7db78 27%,transparent 60%) 1;opacity:.95}
 .ticket-flip[data-shine=spectrum] .ticket-back::after{inset:15.5% 14% auto;aspect-ratio:1;mask-image:radial-gradient(circle closest-side,transparent 67%,#000 76%,#000 87%,transparent 100%);opacity:.62}
 /* 2026-11-21 高光只在指针 / 手指移动时出现（data-glare），静止或松手淡出；手指在票根上滑动只倾斜票根，页面不滚动 */
@@ -50,6 +50,15 @@
 .ticket-edge.te-l2,.ticket-edge.te-r2{top:82.1%;height:17%}
 .ticket-edge.te-l1,.ticket-edge.te-l2{left:0}
 .ticket-edge.te-r1,.ticket-edge.te-r2{left:100%}
+/* 2026-11-22 工艺反光（参考视高迪数字增效）：只在工艺遮罩里显示，位置与强度由 ticketTurner 按角度写入 */
+.ticket-fx{position:absolute;inset:0;pointer-events:none;opacity:0;background-repeat:no-repeat;-webkit-mask-size:100% 100%;mask-size:100% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;mix-blend-mode:screen}
+.ticket-flip[data-fx=holo] .ticket-fx{background-image:linear-gradient(115deg,#ff8ad8,#ffd36e,#7dffcf,#6fc3ff,#c49bff,#ff8ad8,#ffd36e,#7dffcf,#6fc3ff);background-size:300% 300%;mix-blend-mode:color-dodge}
+.ticket-flip[data-fx=cast] .ticket-fx{background-image:repeating-radial-gradient(circle at 50% 50%,#ffffff8c 0 1.5px,#fff0 2px 5px),linear-gradient(115deg,#ff8ad8,#ffd36e,#7dffcf,#6fc3ff,#c49bff,#ff8ad8,#ffd36e,#7dffcf,#6fc3ff);background-size:200% 200%,300% 300%;mix-blend-mode:color-dodge}
+.ticket-flip[data-fx=crystal] .ticket-fx{background-image:linear-gradient(135deg,#ffc2ec,#fff4c2,#c2fbff,#d9c8ff,#ffc2ec,#fff4c2,#c2fbff),linear-gradient(105deg,#fff0 42%,#ffffffe6 50%,#fff0 58%);background-size:250% 250%,300% 100%}
+.ticket-flip[data-fx=sweep] .ticket-fx{background-image:linear-gradient(105deg,#fff0 40%,#fffffff2 50%,#fff0 60%);background-size:300% 100%}
+.ticket-flip[data-fx=glitter] .ticket-fx{background-image:linear-gradient(105deg,#fff0 44%,#fffffff2 50%,#fff0 56%),linear-gradient(75deg,#fff0 46%,#fff7d6b3 50%,#fff0 54%);background-size:300% 100%,300% 100%}
+.ticket-flip[data-fx=gloss] .ticket-fx{background-image:radial-gradient(ellipse 45% 30% at 50% 50%,#ffffffd9,#fff0);background-size:200% 200%}
+.ticket-flip[data-fx=sense] .ticket-fx{background-image:radial-gradient(ellipse 30% 18% at 50% 50%,#fffffff2,#fff0),linear-gradient(105deg,#fff0 40%,#ffffff80 50%,#fff0 60%);background-size:200% 200%,300% 100%}
 .ticket-blind-box{margin:0;padding:0;border:0;min-width:0;display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
 .ticket-blind-box legend{padding:0;margin:0 auto 8px;color:#f4ead4;font-size:.82rem;font-weight:700}
 .ticket-edit-head{margin:0 0 12px}
