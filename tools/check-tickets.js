@@ -97,7 +97,7 @@ assert.equal(B.restore(S.clean({}),pack,50).tix['a|2026-11-01'].t,50);
 assert.throws(()=>B.decode({...pack,profile:{...pack.profile,tix:{'a|2026-11-01':{t:1},'bad':{t:1}}}}));
 assert(S.merge(profile,B.empty(profile,100)).tix['a|2026-11-01'].del);
 
-// 可选配图手绘：旧票保留原图，保存、同步、备份和切回原图共用原来的票根规则。
+// 旧客户端保存的手绘标记仍可读写和备份，当前票面始终以手绘渲染。
 const artRow=rows.find(x=>x.filmId==='a');
 assert.equal(artRow.sketch,false);
 const drawn=T.entryFrom({...artRow,sketch:true},base('a',null,artRow.date),110);
@@ -119,6 +119,26 @@ assert(new Set(raster.filter((_,i)=>i%4===0)).size>8,'pencil strokes introduce p
 assert(raster.every((value,i)=>i%4!==3||value===255));
 const blocked=()=>({getContext:()=>({getImageData(){throw Error('pixels unavailable');}})});
 assert.equal(Sketch.paint({}, {},50,{x:0,y:0,w:48,h:32},blocked,()=>{}),false);
+
+// 详情、首页缩略图和导出都从共享画布使用手绘，无需设置旧版偏好。
+const calls=[];
+const image={width:270,height:405},gradient={addColorStop(){}};
+const context=new Proxy({}, {get(target,key){
+  if(key==='measureText')return text=>({width:text.length*8});
+  if(key==='createLinearGradient'||key==='createRadialGradient')return ()=>gradient;
+  return target[key]??(()=>{});
+}});
+const abovePaint=Sketch.paint;
+try{
+  Sketch.paint=(_surface,asset,_crop,_frame,_canvas,_cover,scale)=>{assert.equal(asset,image);calls.push(scale);return true;};
+  T.draw(context,artRow,'front',image,{x:0,y:0,w:630,h:1296});
+  T.draw(context,artRow,'front',image,{x:0,y:0,w:130,h:267});
+  T.drawWall(context,[artRow],'front',[image],'');
+  T.draw(context,artRow,'back',image,{x:0,y:0,w:630,h:1296});
+  assert.equal(calls.length,3);
+  assert.equal(calls[0],630/T.W);
+  assert.equal(calls[1],130/T.W);
+}finally{Sketch.paint=abovePaint;}
 
 // 规模：5000 张一键生成后的存储大小与推导耗时（小程序单个存储项上限 1MB）
 const many={},manyFilms={};

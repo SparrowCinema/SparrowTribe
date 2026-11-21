@@ -14,6 +14,7 @@ assert(app.pages.includes('pages/ticket-edit/ticket-edit'));
 assert(!/page-container/.test(wxml)&&!/page-container/.test(tixWxml),'no page-container scroll lock');
 assert(!/catchtouchmove/.test(wxml),'ticket card must not block page scrolling');
 assert.match(wxml,/<image[^>]*class="te-face"/);
+assert.doesNotMatch(wxml,/chooseArtStyle|artStyles/,'the preview uses hand-drawn artwork by default');
 assert(!/canvas[^>]*id="te-worker"[^>]*bindtap/.test(wxml),'visible preview is an image, the canvas stays hidden');
 
 // 模拟画布：记录画过的文字；canvasToTempFilePath 把当前画面存成「图片」
@@ -78,14 +79,11 @@ const flush=async()=>{for(let n=0;n<20;n++){await new Promise(r=>setImmediate(r)
   assert(page.data.shows.length>0);
   page.chooseShow({detail:{value:0}});await flush();
   assert(page.data.draft.time&&page.data.draft.venue);assert.equal(page.data.showIdx,0);
-  // 原图 / 手绘（#511）：切换后重画正面并保存为 sk:1
-  const plain=page.data.frontImg;page.chooseArtStyle({detail:{value:1}});await flush();
-  assert.equal(page.data.draft.sketch,true);assert.notEqual(page.data.frontImg,plain,'sketch style redraws the front');
   page.changeField({currentTarget:{dataset:{field:'seat'}},detail:{value:'7排7座'}});
   // 保存：写入本机存储并返回收藏册
   page.store();
   const saved=Object.entries(store['sk-tickets-v2']||{}).find(([k])=>k.startsWith(film.id+'|'));
-  assert(saved&&saved[1].st==='7排7座'&&saved[1].tm&&saved[1].sk===1,'saved only the changed fields');assert.equal(navigatedBack,1);
+  assert(saved&&saved[1].st==='7排7座'&&saved[1].tm&&saved[1].sk===undefined,'saved only the changed fields');assert.equal(navigatedBack,1);
   // 再次打开已收藏的票根：编辑模式，导出 PNG 不带预览高光
   const page2={...options,data:JSON.parse(JSON.stringify(options.data)),setData:page.setData};
   page2.onLoad({key:encodeURIComponent(saved[0])});await flush();
@@ -93,5 +91,5 @@ const flush=async()=>{for(let n=0;n<20;n++){await new Promise(r=>setImmediate(r)
   await page2.exportSingle();await flush();
   assert(exporter.ctx.labels.includes('纪念票根'));
   page2.remove();assert(store['sk-tickets-v2'][saved[0]].del);
-  console.log('PASS: ticket editor page — native scrolling/back, image preview with CSS 3D flip & tilt, shuffle redraw, show picker, sketch style, crop flips to front, save, export, remove.');
+  console.log('PASS: ticket editor page — native scrolling/back, image preview with CSS 3D flip & tilt, shuffle redraw, show picker, default artwork without a style picker, crop flips to front, save, export, remove.');
 })().catch(e=>{console.error(e);process.exitCode=1;});
