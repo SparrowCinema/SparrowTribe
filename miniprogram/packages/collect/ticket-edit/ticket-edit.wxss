@@ -78,13 +78,14 @@
 .fx-glitter{background-image:linear-gradient(105deg,rgba(255,255,255,0) 44%,rgba(255,255,255,.95) 50%,rgba(255,255,255,0) 56%),linear-gradient(75deg,rgba(255,255,255,0) 46%,rgba(255,247,214,.7) 50%,rgba(255,255,255,0) 54%);background-size:300% 100%,300% 100%}
 .fx-gloss{background-image:radial-gradient(ellipse 45% 30% at 50% 50%,rgba(255,255,255,.85),rgba(255,255,255,0));background-size:200% 200%}
 .fx-sense{background-image:radial-gradient(ellipse 30% 18% at 50% 50%,rgba(255,255,255,.95),rgba(255,255,255,0)),linear-gradient(105deg,rgba(255,255,255,0) 40%,rgba(255,255,255,.5) 50%,rgba(255,255,255,0) 60%);background-size:200% 200%,300% 100%}
-/* 海报上的隐形工艺：静止时看不见，转动时若隐若现 */
-.fx-a-gloss{background-image:radial-gradient(ellipse 50% 34% at 50% 50%,rgba(255,255,255,0.95),rgba(255,255,255,0));background-size:220% 220%}
-.fx-a-rim{background-image:radial-gradient(ellipse 40% 26% at 50% 50%,rgba(255,255,255,0.95),rgba(255,255,255,0));background-size:220% 220%}
-.fx-a-holo{background-image:linear-gradient(115deg,#ffb3e6,#ffe7a3,#b3ffe4,#a8dcff,#dcc4ff,#ffb3e6,#ffe7a3,#b3ffe4);background-size:300% 300%;mix-blend-mode:screen}
-.fx-a-pearl{background-image:linear-gradient(120deg,rgba(255,255,255,0) 18%,#ffe6f5 34%,#e3fbff 50%,#fff6d9 66%,rgba(255,255,255,0) 82%);background-size:300% 300%;mix-blend-mode:screen}
-.fx-a-guilloche{background-image:linear-gradient(105deg,rgba(255,255,255,0) 38%,rgba(255,255,255,0.9) 50%,rgba(255,255,255,0) 62%);background-size:300% 100%}
-.fx-a-matte{background-image:radial-gradient(ellipse 60% 40% at 50% 50%,rgba(255,255,255,0.92),rgba(255,255,255,0));background-size:220% 220%}
+/* 海报 / 背面的隐形工艺：静止时看不见，转动时浮现；hard-light 混合，亮部暗部都看得出 */
+.fx-a-gloss{background-image:radial-gradient(ellipse 52% 36% at 50% 50%,#ffffff 0%,rgba(255,255,255,0.7) 34%,rgba(127,140,163,0.4) 60%,rgba(127,140,163,0.0) 82%);background-size:220% 220%;mix-blend-mode:hard-light}
+.fx-a-rim{background-image:radial-gradient(ellipse 42% 28% at 50% 50%,#ffffff 0%,rgba(255,255,255,0.8) 30%,rgba(118,131,156,0.5) 58%,rgba(118,131,156,0.0) 80%);background-size:220% 220%;mix-blend-mode:hard-light}
+.fx-a-holo{background-image:linear-gradient(115deg,#ff5fc4,#ffc23d,#3fe8b0,#4c9bff,#b06bff,#ff5fc4,#ffc23d,#3fe8b0,#4c9bff);background-size:300% 300%;mix-blend-mode:hard-light}
+.fx-a-pearl{background-image:linear-gradient(120deg,rgba(255,255,255,0.0) 14%,#ff9fd6 30%,#8fe6ff 46%,#ffffff 52%,#ffdc7a 66%,rgba(255,255,255,0.0) 86%);background-size:300% 300%;mix-blend-mode:hard-light}
+.fx-a-guilloche{background-image:linear-gradient(105deg,rgba(127,140,163,0.0) 34%,rgba(127,140,163,0.5) 44%,#ffffff 50%,rgba(127,140,163,0.5) 56%,rgba(127,140,163,0.0) 66%);background-size:300% 100%;mix-blend-mode:hard-light}
+.fx-a-matte{background-image:radial-gradient(ellipse 60% 40% at 50% 50%,#ffffff 0%,rgba(255,255,255,0.65) 36%,rgba(127,140,163,0.35) 62%,rgba(127,140,163,0.0) 84%);background-size:220% 220%;mix-blend-mode:hard-light}
+.fx-a-rainbow{background-image:linear-gradient(115deg,#ff4fb8,#ffb300,#2fe0a8,#3a8cff,#a45cff,#ff4fb8,#ffb300,#2fe0a8,#3a8cff,#a45cff);background-size:400% 400%;mix-blend-mode:hard-light}
 .te-r1,.te-r2{left:100%}
 .te-wait{aspect-ratio:420/864;display:flex;align-items:center;justify-content:center;border-radius:calc(8 * var(--r));background:var(--surface);border:calc(2 * var(--r)) dashed var(--line);color:var(--muted);font-size:calc(21 * var(--fr))}
 .te-hidden{position:fixed;left:-3000px;top:0;width:2px;height:2px;pointer-events:none}

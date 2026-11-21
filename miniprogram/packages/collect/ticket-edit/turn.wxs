@@ -27,7 +27,7 @@ function glow(rx, ry, kind) {
 // 工艺反光（与网页 js/tickets.js 的 ticketFxStyle 一致）：只在工艺遮罩范围里，按角度移动背景；越斜越明显，松手淡出
 function pct(v) { return Math.round(v) + '%'; }
 function fxStyle(fx, a, b, lit) {
-  var o = lit ? Math.min(1, Math.abs(a) * 2.4 + Math.abs(b) * 1.6) : 0, pos = '50% 50%', peak = 0;
+  var o = lit ? Math.min(1, Math.abs(a) * 3 + Math.abs(b) * 2) : 0, pos = '50% 50%', peak = 0;
   if (fx === 'holo') { pos = pct(50 + a * 60) + ' ' + pct(50 + b * 60); peak = .6; }
   else if (fx === 'cast') { pos = pct(50 - a * 45) + ' ' + pct(50 - b * 45) + ', ' + pct(50 + a * 60) + ' ' + pct(50 + b * 60); peak = .75; }
   else if (fx === 'crystal') { pos = pct(50 + a * 70) + ' ' + pct(50 + b * 50) + ', ' + pct(50 - a * 60) + ' 0%'; peak = .75; }
@@ -35,13 +35,14 @@ function fxStyle(fx, a, b, lit) {
   else if (fx === 'glitter') { pos = pct(50 - a * 60) + ' 0%, ' + pct(50 + a * 50) + ' 0%'; peak = .95; }
   else if (fx === 'gloss') { pos = pct(50 - a * 90) + ' ' + pct(50 + b * 90); peak = .75; }
   else if (fx === 'sense') { pos = pct(50 - a * 90) + ' ' + pct(50 + b * 90) + ', ' + pct(50 - a * 60) + ' 0%'; peak = .9; }
-  // 海报上的隐形工艺：静止时完全看不见，转动时浮现（2026-11-22 调强一档，一般人转一下就能看出来）
-  else if (fx === 'a-gloss') { pos = pct(50 - a * 90) + ' ' + pct(50 + b * 90); peak = .6; }
-  else if (fx === 'a-rim') { pos = pct(50 - a * 90) + ' ' + pct(50 + b * 90); peak = .72; }
-  else if (fx === 'a-holo') { pos = pct(50 + a * 60) + ' ' + pct(50 + b * 60); peak = .6; }
-  else if (fx === 'a-pearl') { pos = pct(50 + a * 70) + ' ' + pct(50 + b * 70); peak = .62; }
-  else if (fx === 'a-guilloche') { pos = pct(50 - a * 60) + ' 0%'; peak = .68; }
-  else if (fx === 'a-matte') { pos = pct(50 - a * 90) + ' ' + pct(50 + b * 90); peak = .55; }
+  // 海报 / 背面的隐形工艺：静止时完全看不见，转动时浮现；2026-11-22 再调强并改用 hard-light（亮处、暗处都看得出）
+  else if (fx === 'a-gloss') { pos = pct(50 - a * 90) + ' ' + pct(50 + b * 90); peak = .78; }
+  else if (fx === 'a-rim') { pos = pct(50 - a * 90) + ' ' + pct(50 + b * 90); peak = .85; }
+  else if (fx === 'a-holo') { pos = pct(50 + a * 60) + ' ' + pct(50 + b * 60); peak = .62; }
+  else if (fx === 'a-pearl') { pos = pct(50 + a * 70) + ' ' + pct(50 + b * 70); peak = .7; }
+  else if (fx === 'a-guilloche') { pos = pct(50 - a * 60) + ' 0%'; peak = .8; }
+  else if (fx === 'a-rainbow') { pos = pct(50 + a * 80) + ' ' + pct(50 + b * 80); peak = .55; }
+  else if (fx === 'a-matte') { pos = pct(50 - a * 90) + ' ' + pct(50 + b * 90); peak = .72; }
   return { pos: pos, o: Math.round(o * peak * 1000) / 1000 };
 }
 

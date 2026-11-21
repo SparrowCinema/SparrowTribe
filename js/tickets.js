@@ -491,7 +491,7 @@ function ticketEditorMount(){
 // 触屏上手指在票根上滑动只转票根（CSS touch-action:none），页面不跟着滚；拖动过的那次松手不算点击。
 // 各种工艺的反光层位置与强度（背景图在 styles/tickets.css 的 .ticket-flip[data-fx=…] .ticket-fx）
 function ticketFxStyle(fx,s,t,lit){
-  const p=v=>`${Math.round(v)}%`,o=lit?Math.min(1,Math.abs(s)*2.4+Math.abs(t)*1.6):0;
+  const p=v=>`${Math.round(v)}%`,o=lit?Math.min(1,Math.abs(s)*3+Math.abs(t)*2):0;
   const table={
     holo:[`${p(50+s*60)} ${p(50+t*60)}`,.6],
     cast:[`${p(50-s*45)} ${p(50-t*45)}, ${p(50+s*60)} ${p(50+t*60)}`,.75],
@@ -500,13 +500,14 @@ function ticketFxStyle(fx,s,t,lit){
     glitter:[`${p(50-s*60)} 0%, ${p(50+s*50)} 0%`,.95],
     gloss:[`${p(50-s*90)} ${p(50+t*90)}`,.75],
     sense:[`${p(50-s*90)} ${p(50+t*90)}, ${p(50-s*60)} 0%`,.9],
-    // 海报上的隐形工艺：静止时完全看不见，转动时浮现（2026-11-22 调强一档，一般人转一下就能看出来）
-    "a-gloss":[`${p(50-s*90)} ${p(50+t*90)}`,.6],
-    "a-rim":[`${p(50-s*90)} ${p(50+t*90)}`,.72],
-    "a-holo":[`${p(50+s*60)} ${p(50+t*60)}`,.6],
-    "a-pearl":[`${p(50+s*70)} ${p(50+t*70)}`,.62],
-    "a-guilloche":[`${p(50-s*60)} 0%`,.68],
-    "a-matte":[`${p(50-s*90)} ${p(50+t*90)}`,.55]
+    // 海报 / 背面的隐形工艺：静止时完全看不见，转动时浮现；2026-11-22 再调强并改用 hard-light（亮处、暗处都看得出）
+    "a-gloss":[`${p(50-s*90)} ${p(50+t*90)}`,.78],
+    "a-rim":[`${p(50-s*90)} ${p(50+t*90)}`,.85],
+    "a-holo":[`${p(50+s*60)} ${p(50+t*60)}`,.62],
+    "a-pearl":[`${p(50+s*70)} ${p(50+t*70)}`,.7],
+    "a-guilloche":[`${p(50-s*60)} 0%`,.8],
+    "a-matte":[`${p(50-s*90)} ${p(50+t*90)}`,.72],
+    "a-rainbow":[`${p(50+s*80)} ${p(50+t*80)}`,.55]
   };
   const [pos,peak]=table[fx]||["50% 50%",0];
   return {pos,o:+(o*peak).toFixed(3)};
