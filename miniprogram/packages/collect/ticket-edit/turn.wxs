@@ -35,6 +35,13 @@ function fxStyle(fx, a, b, lit) {
   else if (fx === 'glitter') { pos = pct(50 - a * 60) + ' 0%, ' + pct(50 + a * 50) + ' 0%'; peak = .95; }
   else if (fx === 'gloss') { pos = pct(50 - a * 90) + ' ' + pct(50 + b * 90); peak = .75; }
   else if (fx === 'sense') { pos = pct(50 - a * 90) + ' ' + pct(50 + b * 90) + ', ' + pct(50 - a * 60) + ' 0%'; peak = .9; }
+  // 海报上的隐形工艺：强度压低，静止时完全看不见，转动时若隐若现
+  else if (fx === 'a-gloss') { pos = pct(50 - a * 90) + ' ' + pct(50 + b * 90); peak = .32; }
+  else if (fx === 'a-rim') { pos = pct(50 - a * 90) + ' ' + pct(50 + b * 90); peak = .42; }
+  else if (fx === 'a-holo') { pos = pct(50 + a * 60) + ' ' + pct(50 + b * 60); peak = .5; }
+  else if (fx === 'a-pearl') { pos = pct(50 + a * 70) + ' ' + pct(50 + b * 70); peak = .55; }
+  else if (fx === 'a-guilloche') { pos = pct(50 - a * 60) + ' 0%'; peak = .38; }
+  else if (fx === 'a-matte') { pos = pct(50 - a * 90) + ' ' + pct(50 + b * 90); peak = .3; }
   return { pos: pos, o: Math.round(o * peak * 1000) / 1000 };
 }
 

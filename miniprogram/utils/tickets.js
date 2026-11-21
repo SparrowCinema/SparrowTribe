@@ -299,7 +299,7 @@ const options={finish:finishes,texture:papers,palette:palettes,motif:motifs};
 const CRAFT_FOIL={s:"sense",g:"glitter",c:"crystal",h:"cast"};
 const CRAFT_ART={u:"uv",r:"rim",o:"holo",k:"sparkle",b:"band",d:"dust"};
 const CRAFT_LABEL={sense:"立体光油",glitter:"金葱闪粉",crystal:"水晶幻彩",cast:"全息纹理",
-  uv:"高光局部UV",rim:"轮廓立体光油",holo:"全息光斑",sparkle:"高光闪粉",band:"全息斜带",dust:"水晶星点",braille:"盲文凸点",vde:"日期可变数据烫印"};
+  uv:"隐形高光UV",rim:"隐形轮廓光油",holo:"隐形全息水印",sparkle:"隐形珠光",band:"隐形扭索纹",dust:"亮哑对比纹",braille:"盲文凸点",vde:"日期可变数据烫印"};
 const CRAFT_RE=/^[sgch]{0,2}-[0urokbd][Bv]{0,2}$/;
 function makeCraft(rand,finish) {
   const own=finishes[finish]?.fx;
@@ -871,7 +871,6 @@ function draw(surface,record,side,image,rect,createCanvas,light) {
       if (image && !Sketch?.paint(surface,image,record.crop,SOURCE,createCanvas,cropCover,rect.w/W,record.artStyle)) {
         cropCover(surface,image,record.crop);
       }
-      if (image && craft.art && !surface.__foilMask && createCanvas && rect.w>=CRAFT_MIN) artCraft(surface,record,image,craft.art,createCanvas,rect.w/W);
     } else {
       surface.strokeStyle=foilGradient(surface,x,y,x+w,y+h,finish);surface.lineWidth=1;
       for (let i=0;i<6;i++) surface.strokeRect(x+24+i*9,y+24+i*9,w-48-i*18,h-48-i*18);
@@ -1005,17 +1004,18 @@ function craftTexture(ctx,fx,rand,box={x:0,y:0,w:W,h:H},cx=W*.5,cy=H*.36) {
   }
 }
 
-// ——— 海报画面增效（工艺组合的第二段）———
-// 遮罩从海报本身算出来（按裁切位置取样，和票面一致）：高光局部UV＝最亮的两成；轮廓立体光油＝明暗边缘；
-// 高光闪粉＝亮部撒亮片；水晶星点＝中间调撒钻面；全息光斑＝随机位置的圆 / 六边形；全息斜带＝一条斜向宽带。
-// artCraft 画进票面（导出也有）；artMask 给网页 / 小程序转动时的反光层用。
-const ART_FX={uv:"gloss",rim:"sense",holo:"holo",sparkle:"glitter",band:"cast",dust:"crystal"};
+// ——— 海报画面增效（工艺组合的第二段，2026-11-22 改为隐形）———
+// 静止时海报完全不变，只有转动时才在对应区域若隐若现地泛起光泽（像印刷上的透明光油、隐形全息、防伪扭索纹）：
+// 隐形高光UV＝海报最亮的两成；隐形轮廓光油＝明暗边缘；隐形全息水印＝片名斜向平铺的透明全息字；
+// 隐形珠光＝中高调区域的柔和珠光；隐形扭索纹＝钞票式的玫瑰曲线防伪纹；亮哑对比纹＝细密的亮油网点（像亮哑对比的透明光油）。
+// 编码字母沿用（u r o k b d），已保存的组合照常有效，只是效果换成隐形的。遮罩从海报取样（artMask），只给网页 / 小程序转动时的反光层用。
+const ART_FX={uv:"a-gloss",rim:"a-rim",holo:"a-holo",sparkle:"a-pearl",band:"a-guilloche",dust:"a-matte"};
 function artMaskCanvas(record,image,kind,createCanvas,mw) {
   const mh=Math.max(1,Math.round(mw*SOURCE.h/SOURCE.w)),rand=seeded(hashAppearance("art|"+(record.id||record.key||"")+kind));
   let mask;
   try {mask=createCanvas(mw,mh);} catch (error) {return null;}
   const m=mask.getContext("2d");
-  const geometric=kind==="holo" || kind==="band";
+  const geometric=kind==="holo" || kind==="band" || kind==="dust";
   let L=null;
   if (!geometric) {
     try {
@@ -1042,56 +1042,39 @@ function artMaskCanvas(record,image,kind,createCanvas,mw) {
     const t=pct(G,.88)||.1,a=new Uint8ClampedArray(L.length);
     for (let i=0;i<G.length;i++) a[i]=Math.max(0,Math.min(1,(G[i]-t)/t*2))*255;
     put(a);
-  } else if (kind==="sparkle" || kind==="dust") {
-    const dust=kind==="dust",n=Math.round(mw*mh/(dust?26:14)),hi=pct(L,.6);
-    for (let i=0;i<n;i++) {
-      const x=rand()*mw,y=rand()*mh,v=L[Math.min(L.length-1,Math.floor(y)*mw+Math.floor(x))];
-      if (dust ? (v<.2||v>.88) : (v<hi||rand()>v)) continue;
-      const r=(dust?.9+rand()*1.6:.5+rand()*1.1)*mw/240;
-      m.globalAlpha=.55+rand()*.45;m.beginPath();
-      if (dust) {const a=rand()*Math.PI;for (let j=0;j<4;j++) {const t=a+j*Math.PI/2,q=j%2?r*.55:r;m.lineTo(x+Math.cos(t)*q,y+Math.sin(t)*q);}m.closePath();}
-      else m.arc(x,y,r,0,Math.PI*2);
-      m.fill();
-    }
-    m.globalAlpha=1;
+  } else if (kind==="sparkle") {
+    // 隐形珠光：中高调柔和地铺开（亮度 0.45 以上逐渐变满）
+    const a=new Uint8ClampedArray(L.length);
+    for (let i=0;i<L.length;i++) {const t=Math.max(0,Math.min(1,(L[i]-.42)/.45));a[i]=t*t*(3-2*t)*255;}
+    put(a);
+  } else if (kind==="dust") {
+    // 亮哑对比纹：细密的 45° 网点，像透明亮油印在哑面上
+    const step=Math.max(2.6,mw/90),r=step*.3;
+    m.save();m.translate(mw/2,mh/2);m.rotate(Math.PI/4);
+    const span=Math.hypot(mw,mh);
+    for (let y=-span/2;y<span/2;y+=step) for (let x=-span/2;x<span/2;x+=step) {m.beginPath();m.arc(x,y,r,0,Math.PI*2);m.fill();}
+    m.restore();
   } else if (kind==="band") {
-    const angle=(25+rand()*40)*Math.PI/180*(rand()<.5?1:-1),width=Math.hypot(mw,mh)*(.14+rand()*.08),off=(rand()-.5)*mw*.5;
-    m.save();m.translate(mw/2+off,mh/2);m.rotate(angle);
-    const g=m.createLinearGradient(-width/2,0,width/2,0);g.addColorStop(0,"rgba(255,255,255,0)");g.addColorStop(.18,"#fff");g.addColorStop(.82,"#fff");g.addColorStop(1,"rgba(255,255,255,0)");
-    m.fillStyle=g;m.fillRect(-width/2,-mw*2,width,mw*4);m.restore();
+    // 隐形扭索纹：钞票防伪那种玫瑰曲线，一组细线绕中心交织
+    const cx=mw*(.35+rand()*.3),cy=mh*(.35+rand()*.3),R=Math.hypot(mw,mh)*.42,petals=5+Math.floor(rand()*5);
+    m.strokeStyle="#fff";m.lineWidth=Math.max(.6,mw/320);
+    for (let k=0;k<22;k++) {
+      const base=R*(.18+k*.038),amp=R*.07,phase=k*.21;
+      m.beginPath();
+      for (let i=0;i<=360;i++) {const t=i/360*Math.PI*2,r=base+amp*Math.sin(petals*t+phase)+amp*.45*Math.sin((petals*2+1)*t-phase);m.lineTo(cx+Math.cos(t)*r,cy+Math.sin(t)*r);}
+      m.stroke();
+    }
   } else {
-    const cx=mw*(.28+rand()*.44),cy=mh*(.28+rand()*.44),r=Math.min(mw,mh)*(.18+rand()*.12);
-    const g=m.createRadialGradient(cx,cy,r*.82,cx,cy,r);g.addColorStop(0,"#fff");g.addColorStop(1,"rgba(255,255,255,0)");m.fillStyle=g;m.beginPath();
-    if (rand()<.5) m.arc(cx,cy,r,0,Math.PI*2);
-    else {const a=rand()*Math.PI;for (let j=0;j<6;j++) m.lineTo(cx+Math.cos(a+j*Math.PI/3)*r,cy+Math.sin(a+j*Math.PI/3)*r);m.closePath();}
-    m.fill();
+    // 隐形全息水印：片名斜向平铺，像透明全息膜里压的字
+    const word=(record.title||"麻雀观影护照").replace(/\s+/g,"").slice(0,10)||"SPARROW",size=Math.max(9,mw/11);
+    m.save();m.translate(mw/2,mh/2);m.rotate(-Math.PI*.13);
+    m.font=`700 ${size}px ${SERIF}`;m.textAlign="center";m.textBaseline="middle";
+    const gap=m.measureText(word).width+size*1.6,span=Math.hypot(mw,mh);
+    for (let y=-span/2,row=0;y<span/2;y+=size*2.1,row++) for (let x=-span/2+(row%2)*gap/2;x<span/2;x+=gap) m.fillText(word,x,y);
+    m.restore();
   }
   mask.kind=kind;
   return mask;
-}
-function artCraft(surface,record,image,kind,createCanvas,scale) {
-  const mw=Math.max(60,Math.min(360,Math.round(SOURCE.w*scale))),mask=artMaskCanvas(record,image,kind,createCanvas,mw);
-  if (!mask) return;
-  kind=mask.kind;
-  const mh=mask.height;let layer;
-  try {layer=createCanvas(mw,mh);} catch (error) {return;}
-  const ctx=layer.getContext("2d"),k=mw/SOURCE.w,rand=seeded(hashAppearance("artfx|"+(record.id||record.key||"")+kind));
-  if (kind==="uv" || kind==="rim" || kind==="sparkle") {
-    const g=ctx.createLinearGradient(0,0,mw,mh);g.addColorStop(0,"rgba(255,255,255,.95)");g.addColorStop(.5,"rgba(255,250,236,.55)");g.addColorStop(1,"rgba(255,255,255,.85)");
-    ctx.fillStyle=kind==="sparkle"?"#fff6dc":g;ctx.fillRect(0,0,mw,mh);
-  } else if (kind==="dust") {
-    const g=ctx.createLinearGradient(0,0,mw,mh);["#ffc2ec","#c2fbff","#fff4c2","#d9c8ff","#ffffff"].forEach((c,i,a)=>g.addColorStop(i/(a.length-1),c));
-    ctx.fillStyle=g;ctx.fillRect(0,0,mw,mh);
-  } else {
-    const g=ctx.createLinearGradient(0,mh,mw,0);["#ff8ad8","#ffd36e","#7dffcf","#6fc3ff","#c49bff","#ff8ad8"].forEach((c,i,a)=>g.addColorStop(i/(a.length-1),c));
-    ctx.fillStyle=g;ctx.globalAlpha=.85;ctx.fillRect(0,0,mw,mh);ctx.globalAlpha=1;
-    ctx.save();ctx.scale(k,k);ctx.translate(-SOURCE.x,-SOURCE.y);craftTexture(ctx,"cast",rand,SOURCE,SOURCE.x+SOURCE.w*rand(),SOURCE.y+SOURCE.h*rand());ctx.restore();
-  }
-  ctx.globalCompositeOperation="destination-in";ctx.drawImage(mask,0,0);
-  surface.save();
-  surface.globalAlpha={uv:.42,rim:.55,sparkle:.95,dust:.9,holo:.5,band:.5}[kind]||.5;
-  surface.drawImage(layer,SOURCE.x,SOURCE.y,SOURCE.w,SOURCE.h);
-  surface.restore();
 }
 // 转动反光层用的海报增效遮罩：整张票根大小（w 宽），只有海报区域里有内容；没有海报或没有这项工艺时返回 null
 function artMask(record,image,createCanvas,w) {

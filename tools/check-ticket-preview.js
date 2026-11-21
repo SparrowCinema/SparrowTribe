@@ -52,7 +52,7 @@ assert.equal((wxml.match(/class="te-edge /g)||[]).length,4,'paper edges on both 
   // 工艺反光：小程序 turn.wxs 与网页 ticketFxStyle 同一张表
   const web=fs.readFileSync(path.join(__dirname,'../js/tickets.js'),'utf8'),a=web.indexOf('function ticketFxStyle('),b=web.indexOf('\nfunction ticketTurner(',a);
   const webFx=vm.runInNewContext(web.slice(a,b)+';ticketFxStyle',{Math});
-  for(const fx of ['holo','cast','crystal','sweep','glitter','gloss','sense','none'])for(const [x,y,lit] of [[.3,-.2,true],[-.8,.5,true],[.5,.1,false]]){
+  for(const fx of ['holo','cast','crystal','sweep','glitter','gloss','sense','a-gloss','a-rim','a-holo','a-pearl','a-guilloche','a-matte','none'])for(const [x,y,lit] of [[.3,-.2,true],[-.8,.5,true],[.5,.1,false]]){
     assert.equal(JSON.stringify(T.fxStyle(fx,x,y,lit)),JSON.stringify(webFx(fx,x,y,lit)),'foil effect table matches the website: '+fx);
   }
   assert.equal(webFx('none',.5,.5,true).o,0,'matte has no foil effect');
