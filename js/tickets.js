@@ -66,7 +66,7 @@ function ticketBase(filmId,view,date){
 }
 function ticketAll(){
   if(ticketData&&ticketDataRev===ticketRev+"|"+watchedSig())return ticketData;
-  // 不对应观影记录的票根先挪回所属影片（一部电影一张，和观影护照对齐）
+  // 不对应观影记录的票根先挪到所属影片还没有票根的观影上（每次观影一张）
   const list=ticketViewings(),moves=TE.reconcile(list,ticketStore());
   if(moves)ticketStorePut({...ticketStore(),...moves},true);
   ticketData=TE.build(list,ticketStore(),ticketBase);ticketDataRev=ticketRev+"|"+watchedSig();
@@ -380,7 +380,7 @@ function ticketPendingHTML(){
     return `<li><button type="button" class="ticket-pend" data-ticket-pending="${esc(item.key)}">${pst(item.filmId)?pimg(item.filmId,360,'loading="lazy" alt=""'):"<i></i>"}
       <b>${esc(f?.cn||item.filmId)}</b><span>${esc([item.view.d.replace(/-/g,"."),b.time,b.venue].filter(Boolean).join(" · "))}</span><em>${ticketDict("制作")} ›</em></button></li>`;};
   return ticketHeading(false)+`<div class="ticket-pending"><h3>${ticketDict("待制作")} ${pending.length} ${ticketDict("部")}</h3>
-    <p>${ticketDict("和观影护照一样，一部电影一张票根。一键生成使用专题默认款式，之后仍可逐张换款。")}</p>
+    <p>${ticketDict("每一次观影一张票根，重看同一部电影会多开一个盲盒。一键生成会把待制作的观影全部开成盲盒票根。")}</p>
     ${pending.length?`<button type="button" class="primary-button" data-ticket-action="make-all">${ticketDict("一键生成全部")} ${pending.length} ${ticketDict("张票根")}</button>`:`<p>${ticketDict("所有观影都已经做成票根了。")}</p>`}
     <ul>${rows.map(line).join("")}</ul>
     ${pending.length>rows.length?`<button type="button" class="ticket-alt" data-ticket-action="pending-more">${ticketDict("显示更多")}（${pending.length-rows.length}）</button>`:""}</div>`;
@@ -415,9 +415,8 @@ function ticketOpenViewing(item){
 function ticketBegin(id){
   const f=F[id];if(!f)return;
   const mine=ticketViewings().filter(item=>item.filmId===id).sort((a,b)=>b.view.d.localeCompare(a.view.d));
-  const made=new Set(ticketAll().tickets.map(row=>row.key));
-  // 一部电影一张：已有票根就打开它，否则用最近一次观影新建
-  const item=mine.find(x=>made.has(x.key))||mine[0];
+  // 每次观影一张：打开最近一次观影的票根（没做过就新建）
+  const item=mine[0];
   if(item){ticketOpenViewing(item);return;}
   // 没有观影记录：先找这部电影以前做过、现在没对上观影记录的票根（比如移出过护照），接着编辑它
   const store=ticketStore(),old=Object.keys(store).filter(k=>k.startsWith(id+"|")&&!store[k].del&&TE.parseKey(k)).sort((x,y)=>(store[y].t||0)-(store[x].t||0))[0];
@@ -634,7 +633,7 @@ function ticketSave(stay){
   const d=ticketDraft,row=TE.sanitize({...d.row});
   if(!row.date){toast(tr("请填写放映日期"));return;}
   let key=d.row.key,stamped=false;
-  // 一部电影一张票根、和护照同步：给还没盖章的电影做票根，同时在护照里盖章（观影日期＝票根日期）
+  // 和护照同步：给还没盖章的电影做票根，同时在护照里盖章（观影日期＝票根日期）
   const rec=watched[row.filmId];
   if(!d.row.linked&&(!rec||rec.del)){
     watched[row.filmId]={d:row.date,r:0,k:"",t:Math.max(Date.now(),(rec?.t||0)+1)};saveWatched();stamped=true;

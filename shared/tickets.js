@@ -304,19 +304,22 @@ const options={finish:finishes,texture:papers,palette:palettes,motif:motifs};
 
 // ——— 工艺组合（2026-11-22，参考视高迪 Scodix 全套数字增效）———
 // 一张票根 = 烫印底箔（finish）+ 0–2 种烫印增效 + 1 种海报画面增效 + 盲文 / 可变数据烫印两个开关。
-// 编码 craft = "<烫印增效字母>-<海报增效字母><开关>"，如 "gs-uBv"：闪粉 + 立体光油；海报高光局部UV；盲文；日期可变数据烫印。
+// 编码 craft = "<烫印增效字母>-<海报字母>[<背面字母>]<开关>"，如 "gs-uaBv"：闪粉 + 立体光油；海报隐形高光UV；背面隐形菱格纹；盲文；日期可变数据烫印。
+// 背面字母省略时（2026-11-22 之前的编码）背面跟海报同一个字母。2026-11-22 起海报与背面各自独立抽，25 × 25 种隐形组合。
 // 默认按票根 id 稳定随机（同一张票根永远一样），「随机换一款」会一起换；改过的存在票根的 x 字段（shared/psync.js）。
 // 组合数：11 种烫印增效 × 7 种海报增效 × 4 种开关 = 308 种，再乘 16 种底箔、各家族的配色 / 纸张 / 纹样。
 const CRAFT_FOIL={s:"sense",g:"glitter",c:"crystal",h:"cast"};
-const CRAFT_ART={u:"uv",r:"rim",o:"holo",k:"sparkle",b:"band",d:"dust",w:"rainbow",p:"pixel",q:"ripple",m:"moire",l:"lenticular",i:"glint",n:"cateye"};
+const CRAFT_ART={u:"uv",r:"rim",o:"holo",k:"sparkle",b:"band",d:"dust",w:"rainbow",p:"pixel",q:"ripple",m:"moire",l:"lenticular",i:"glint",n:"cateye",
+  a:"argyle",c:"cloud",e:"meander",f:"perf",g:"firework",h:"honeycomb",j:"caustic",s:"beam",t:"diag",x:"contour",y:"postmark",z:"frames"};
 const CRAFT_LABEL={sense:"立体光油",glitter:"金葱闪粉",crystal:"水晶幻彩",cast:"全息纹理",
   uv:"隐形高光UV",rim:"隐形轮廓光油",holo:"隐形全息水印",sparkle:"隐形珠光",band:"隐形扭索纹",dust:"亮哑对比纹",
   // 背面同一个字母对应另一种隐形底纹（2026-11-22）
   rainbow:"隐形镭射彩虹",pixel:"隐形像素镭射",ripple:"隐形同心波纹",moire:"隐形莫尔纹",lenticular:"隐形光栅变色",glint:"隐形星芒",cateye:"隐形猫眼光",
+  argyle:"隐形菱格纹",cloud:"隐形祥云纹",meander:"隐形回纹",perf:"隐形胶片齿孔",firework:"隐形烟花",honeycomb:"隐形蜂巢纹",caustic:"隐形水波光",beam:"隐形放映光束",diag:"隐形斜纹光栅",contour:"隐形等高线",postmark:"隐形邮戳",frames:"隐形胶片帧",
   "back-moire":"隐形莫尔纹","back-lenticular":"隐形光栅变色","back-glint":"隐形星芒","back-cateye":"隐形猫眼光",
   "back-rainbow":"隐形镭射彩虹","back-pixel":"隐形像素镭射","back-ripple":"隐形同心波纹",
   "back-uv":"隐形放射纹","back-rim":"隐形环形扭索","back-holo":"隐形专题水印","back-sparkle":"隐形星尘","back-band":"隐形扭索底纹","back-dust":"亮哑网点底纹",braille:"盲文凸点",vde:"日期可变数据烫印"};
-const CRAFT_RE=/^[sgch]{0,2}-[0urokbdwpqmlin][Bv]{0,2}$/;
+const CRAFT_RE=/^[sgch]{0,2}-[0urokbdwpqmlinacefghjstxyz][urokbdwpqmlinacefghjstxyz]?[Bv]{0,2}$/;
 // 搭配规则：闪粉 / 水晶 / 全息纹理这类显眼的增效一张最多一种，底箔本身已经是其中之一就不再加；立体光油可以和它们搭。
 // 海报 / 背面的隐形工艺每张都有（静止时看不见，转动时才出来），不再抽到「无」。
 const SHOWY=["g","c","h"];
@@ -325,18 +328,19 @@ function makeCraft(rand,finish) {
   const picked=[];
   if (!ownShowy && rand()<.55) picked.push(SHOWY[Math.floor(rand()*SHOWY.length)]);
   if (own!=="sense" && rand()<(picked.length?.3:.45)) picked.push("s");
-  const arts=Object.keys(CRAFT_ART),art=arts[Math.floor(rand()*arts.length)];
-  return picked.sort().join("")+"-"+art+(rand()<.25?"B":"")+(rand()<.35?"v":"");
+  const arts=Object.keys(CRAFT_ART),art=arts[Math.floor(rand()*arts.length)],back=arts[Math.floor(rand()*arts.length)];
+  return picked.sort().join("")+"-"+art+back+(rand()<.25?"B":"")+(rand()<.35?"v":"");
 }
 const craftFor=(record,finish)=>makeCraft(seeded(hashAppearance("craft|"+(record.id||record.key||""))),finish);
 function parseCraft(code) {
   const text=CRAFT_RE.test(code||"") ? code : "-0";
   const [foil,rest]=text.split("-");
-  return {foil:[...foil].map(c=>CRAFT_FOIL[c]),art:CRAFT_ART[rest[0]]||null,braille:rest.includes("B"),vde:rest.includes("v")};
+  const art=CRAFT_ART[rest[0]]||null,back=CRAFT_ART[rest[1]]||art;
+  return {foil:[...foil].map(c=>CRAFT_FOIL[c]),art,back,braille:rest.includes("B"),vde:rest.includes("v")};
 }
 function craftLabel(look,tr=x=>x) {
   const c=parseCraft(look?.craft),parts=[finishes[look?.finish]?.label||""];
-  c.foil.forEach(k=>parts.push(CRAFT_LABEL[k]));if (c.art) parts.push("海报"+CRAFT_LABEL[c.art],"背面"+CRAFT_LABEL["back-"+c.art]);
+  c.foil.forEach(k=>parts.push(CRAFT_LABEL[k]));if (c.art) parts.push("海报"+CRAFT_LABEL[c.art]);if (c.back) parts.push("背面"+(CRAFT_LABEL["back-"+c.back]||CRAFT_LABEL[c.back]));
   if (c.braille) parts.push(CRAFT_LABEL.braille);if (c.vde) parts.push(CRAFT_LABEL.vde);
   return parts.filter(Boolean).map(tr).join(" + ");
 }
@@ -439,24 +443,25 @@ function record(key,filmId,view,entry,base,date) {
   row.key=key; row.linked=!!view; row.arts=b.arts||[]; row.director=b.director||"";
   return row;
 }
-// 和观影护照对齐：一部电影一张票根（护照是一部电影一枚印章）。
-// - 同一部电影有多张已收藏的票根（重看、旧数据）时只显示最近保存的一张，其余留在存储里不删除；
-// - 还没做票根的电影进「待制作」，用最近一次观影；
-// - 不对应观影记录的票根（改过观影日期、旧版迁移、手工新建）先由 reconcile 挪到这部电影上；
-//   这部电影已不在护照里时不显示（存储保留，重新盖章后回来）。
+// 每一次观影一张票根（2026-11-22 起；之前是一部电影一张）：重看同一部电影会多一张，盲盒款式也不同。
+// - 已收藏的观影显示为票根，还没做的观影进「待制作」；
+// - 不对应观影记录的票根（改过观影日期、旧版迁移、手工新建）先由 reconcile 挪到这部电影还没有票根的观影上；
+//   挪不了的（这部电影的观影都已有票根，或已不在护照里）不显示，存储保留。
+// row.views＝这部电影一共看了几次，row.nth＝这是第几次（按观影日期，从 1 开始）。
 function build(list,store,base) {
-  const tickets=[], pending=[], byFilm=new Map(), linked=new Set();
+  const tickets=[], pending=[], linked=new Set(), byFilm=new Map();
   for (const item of list) {linked.add(item.key);if (!byFilm.has(item.filmId)) byFilm.set(item.filmId,[]);byFilm.get(item.filmId).push(item);}
-  let hidden=0;
   for (const [filmId,items] of byFilm) {
-    const live=items.filter(item=>store[item.key] && !store[item.key].del);
-    if (live.length) {
-      live.sort((x,y)=>(store[y.key].t||0)-(store[x.key].t||0) || y.view.d.localeCompare(x.view.d));
-      const item=live[0], row=record(item.key,filmId,item.view,store[item.key],base,item.view.d);
-      if (row) {row.views=items.length;tickets.push(row);}
-      hidden+=live.length-1;
-    } else pending.push(items.reduce((x,y)=>y.view.d>x.view.d?y:x));
+    items.sort((x,y)=>x.view.d.localeCompare(y.view.d) || x.key.localeCompare(y.key));
+    items.forEach((item,i)=>{
+      const entry=store[item.key];
+      if (entry && !entry.del) {
+        const row=record(item.key,filmId,item.view,entry,base,item.view.d);
+        if (row) {row.views=items.length;row.nth=i+1;tickets.push(row);}
+      } else pending.push(item);
+    });
   }
+  let hidden=0;
   for (const key of Object.keys(store)) {
     const entry=store[key];
     if (!linked.has(key) && entry && !entry.del && parseKey(key)) hidden++;
@@ -465,25 +470,24 @@ function build(list,store,base) {
 }
 // 还没盖章的电影新建票根时的草稿（不对应观影记录，所以不经过 build）
 function draft(key,entry,base) {const p=parseKey(key);return p ? record(key,p.filmId,null,entry||{t:Date.now()},base,p.date) : null;}
-// 不对应观影记录的票根挪到同一部电影上（这部电影还没有票根时）：返回要写入存储的改动，没有就返回 null。
-// 只挪不删：原键留删除标记，内容原样搬到这部电影最近一次观影的键上，随同步传到其他设备。
+// 不对应观影记录的票根挪到同一部电影还没有票根的观影上（最近的优先）：返回要写入存储的改动，没有就返回 null。
+// 只挪不删：原键留删除标记，内容原样搬到目标观影的键上，随同步传到其他设备。用户后来亲手移出的那次观影不挪回。
 function reconcile(list,store,now) {
-  const linked=new Set(list.map(item=>item.key)), has=new Set(), latest=new Map(), changes={};
-  for (const item of list) {
-    if (store[item.key] && !store[item.key].del) has.add(item.filmId);
-    const cur=latest.get(item.filmId);
-    if (!cur || item.view.d>cur.view.d) latest.set(item.filmId,item);
+  const linked=new Set(list.map(item=>item.key)), free=new Map(), changes={};
+  for (const item of [...list].sort((x,y)=>y.view.d.localeCompare(x.view.d) || y.key.localeCompare(x.key))) {
+    if (store[item.key] && !store[item.key].del) continue;
+    if (!free.has(item.filmId)) free.set(item.filmId,[]);
+    free.get(item.filmId).push(item);
   }
   const orphans=Object.keys(store).filter(key=>!linked.has(key) && store[key] && !store[key].del && parseKey(key))
     .sort((a,b)=>(store[b].t||0)-(store[a].t||0));
   let n=0;
   for (const key of orphans) {
-    const filmId=parseKey(key).filmId, target=latest.get(filmId);
-    if (!target || has.has(filmId)) continue;
-    const gone=store[target.key];                       // 用户后来亲手移出过这张，就不再挪回来
-    if (gone && gone.del && (gone.t||0)>=(store[key].t||0)) continue;
-    const t=Math.max(now||Date.now(),(store[key].t||0)+1);
-    changes[target.key]={...store[key],t};changes[key]={del:1,t};has.add(filmId);n++;
+    const slots=free.get(parseKey(key).filmId)||[];
+    const at=slots.findIndex(item=>{const gone=store[item.key];return !(gone && gone.del && (gone.t||0)>=(store[key].t||0));});
+    if (at<0) continue;
+    const target=slots.splice(at,1)[0],t=Math.max(now||Date.now(),(store[key].t||0)+1);
+    changes[target.key]={...store[key],t};changes[key]={del:1,t};n++;
   }
   return n ? changes : null;
 }
@@ -1030,13 +1034,77 @@ function craftTexture(ctx,fx,rand,box={x:0,y:0,w:W,h:H},cx=W*.5,cy=H*.36) {
 // 隐形镭射彩虹＝整幅海报流过彩虹；隐形像素镭射＝细方格光栅；隐形同心波纹＝从一点荡开的细环（2026-11-22 新增，转动时最容易看出来）；
 // 隐形莫尔纹＝两组细线的干涉条纹；隐形光栅变色＝竖向细光栅；隐形星芒＝最亮处的十字星芒；隐形猫眼光＝随角度滑动的细亮带。
 // 编码字母沿用（u r o k b d），已保存的组合照常有效，只是效果换成隐形的。遮罩从海报取样（artMask），只给网页 / 小程序转动时的反光层用。
-const ART_FX={uv:"a-gloss",rim:"a-rim",holo:"a-holo",sparkle:"a-pearl",band:"a-guilloche",dust:"a-matte",rainbow:"a-rainbow",pixel:"a-holo",ripple:"a-holo",moire:"a-holo",lenticular:"a-rainbow",glint:"a-gloss",cateye:"a-cateye"};
+const ART_FX={uv:"a-gloss",rim:"a-rim",holo:"a-holo",sparkle:"a-pearl",band:"a-guilloche",dust:"a-matte",rainbow:"a-rainbow",pixel:"a-holo",ripple:"a-holo",moire:"a-holo",lenticular:"a-rainbow",glint:"a-gloss",cateye:"a-cateye",argyle:"a-guilloche",cloud:"a-holo",meander:"a-rim",perf:"a-guilloche",firework:"a-holo",honeycomb:"a-holo",caustic:"a-pearl",beam:"a-cateye",diag:"a-rainbow",contour:"a-pearl",postmark:"a-rim",frames:"a-guilloche"};
+// 新增的 12 种隐形纹样（2026-11-22）：海报和背面共用，画在 (0,0,w,h) 里，白色＝反光范围
+const PATTERNS=["argyle","cloud","meander","perf","firework","honeycomb","caustic","beam","diag","contour","postmark","frames"];
+function paintPattern(m,kind,w,h,rand,u) {
+  m.fillStyle="#fff";m.strokeStyle="#fff";m.lineCap="round";m.lineJoin="round";
+  const line=(x1,y1,x2,y2)=>{m.beginPath();m.moveTo(x1,y1);m.lineTo(x2,y2);m.stroke();};
+  if (kind==="argyle") {
+    // 菱格纹：两组斜线交出菱形格
+    m.lineWidth=u*.35;const step=u*6,span=w+h;
+    for (let x=-span;x<span;x+=step) {line(x,0,x+h*.6,h);line(x,h,x+h*.6,0);}
+  } else if (kind==="cloud") {
+    // 祥云纹：几朵三瓣卷云
+    m.lineWidth=u*.45;
+    const n=Math.max(7,Math.round(h/w*7));
+    for (let i=0;i<n;i++) {
+      const cx=rand()*w,cy=rand()*h,r=Math.min(w,h)*(.05+rand()*.05);
+      m.beginPath();m.arc(cx,cy,r,Math.PI*.9,Math.PI*2.1);m.arc(cx+r*1.5,cy-r*.5,r*.85,Math.PI*1.1,Math.PI*2.3);m.arc(cx+r*2.8,cy,r*.7,Math.PI*1.3,Math.PI*2.6);m.stroke();
+      m.beginPath();m.arc(cx+r*.4,cy+r*.1,r*.45,0,Math.PI*1.6);m.stroke();
+    }
+  } else if (kind==="meander") {
+    // 回纹：一行行连续的方折回纹
+    m.lineWidth=u*.4;const s=u*3.2;
+    for (let y=s*1.5;y<h;y+=s*5) {m.beginPath();for (let x=-s;x<w+s*4;x+=s*4) {m.moveTo(x,y+s*2);m.lineTo(x,y);m.lineTo(x+s*3,y);m.lineTo(x+s*3,y+s*2);m.lineTo(x+s,y+s*2);m.lineTo(x+s,y+s);m.lineTo(x+s*2,y+s);}m.stroke();}
+  } else if (kind==="perf") {
+    // 胶片齿孔：上下（或左右）两排圆角齿孔
+    const hw=u*1.6,hh=u*2.2,gap=u*3.4,vertical=h>w;
+    for (const edge of [u*2.2,(vertical?w:h)-u*2.2-hh]) for (let p=u;p<(vertical?h:w);p+=gap) {
+      m.beginPath();if (vertical) (m.roundRect?m.roundRect(edge,p,hh,hw,u*.4):m.rect(edge,p,hh,hw));else (m.roundRect?m.roundRect(p,edge,hw,hh,u*.4):m.rect(p,edge,hw,hh));m.fill();
+    }
+  } else if (kind==="firework") {
+    // 烟花：几簇放射短线
+    m.lineWidth=u*.3;
+    for (let i=0,n=Math.max(5,Math.round(h/w*5));i<n;i++) {const cx=rand()*w,cy=rand()*h,r=Math.min(w,h)*(.09+rand()*.1),n=18+Math.floor(rand()*10);for (let j=0;j<n;j++) {const a=j/n*Math.PI*2;line(cx+Math.cos(a)*r*.35,cy+Math.sin(a)*r*.35,cx+Math.cos(a)*r,cy+Math.sin(a)*r);}}
+  } else if (kind==="honeycomb") {
+    m.lineWidth=u*.3;const r=u*3,dx=r*Math.sqrt(3),dy=r*1.5;
+    for (let row=0,y=0;y<h+r;y+=dy,row++) for (let x=(row%2)*dx/2;x<w+r;x+=dx) {m.beginPath();for (let k=0;k<6;k++) {const a=Math.PI/6+k*Math.PI/3;m.lineTo(x+Math.cos(a)*r,y+Math.sin(a)*r);}m.closePath();m.stroke();}
+  } else if (kind==="caustic") {
+    // 水波光：几组交错的正弦波线，像池底的光纹
+    m.lineWidth=u*.35;
+    for (let k=0;k<3;k++) {const a=rand()*Math.PI,f=(2+rand()*2)/w*Math.PI*2,amp=u*(1.5+rand()*2);
+      for (let o=-h;o<h*2;o+=u*3.2) {m.beginPath();for (let x=-w*.2;x<=w*1.2;x+=u) {const y=o+Math.sin(x*f+k)*amp;m.lineTo(w/2+(x-w/2)*Math.cos(a)-(y-h/2)*Math.sin(a),h/2+(x-w/2)*Math.sin(a)+(y-h/2)*Math.cos(a));}m.stroke();}}
+  } else if (kind==="beam") {
+    // 放映光束：从上方一点散开的光锥 + 几道细光线
+    const cx=w*(.3+rand()*.4),g=m.createLinearGradient(0,0,0,h);g.addColorStop(0,"#fff");g.addColorStop(1,"rgba(255,255,255,.25)");
+    m.fillStyle=g;m.beginPath();m.moveTo(cx-u,0);m.lineTo(cx+u,0);m.lineTo(cx+w*.42,h);m.lineTo(cx-w*.42,h);m.closePath();m.fill();
+    m.lineWidth=u*.25;for (let i=0;i<9;i++) {const t=(i/8-.5)*.8;line(cx,0,cx+t*w,h);}
+  } else if (kind==="diag") {
+    m.lineWidth=u*.35;const step=u*1.6;for (let x=-h;x<w+h;x+=step) line(x,0,x+h,h);
+  } else if (kind==="contour") {
+    // 等高线：围着两三处起伏的不规则闭合线
+    m.lineWidth=u*.3;
+    for (let c=0;c<3;c++) {const cx=rand()*w,cy=rand()*h,ph=[rand()*6,rand()*6,rand()*6];
+      for (let r=u*2;r<Math.max(w,h)*.5;r+=u*2.4) {m.beginPath();for (let i=0;i<=96;i++) {const t=i/96*Math.PI*2,q=r*(1+.16*Math.sin(3*t+ph[0])+.1*Math.sin(5*t+ph[1])+.06*Math.sin(7*t+ph[2]));m.lineTo(cx+Math.cos(t)*q,cy+Math.sin(t)*q);}m.stroke();}}
+  } else if (kind==="postmark") {
+    // 邮戳：一圈双环 + 环内字 + 波浪注销线
+    const cx=w*(.3+rand()*.4),cy=h*(.3+rand()*.4),r=Math.min(w,h)*.22;
+    m.lineWidth=u*.45;m.beginPath();m.arc(cx,cy,r,0,Math.PI*2);m.stroke();m.lineWidth=u*.25;m.beginPath();m.arc(cx,cy,r*.78,0,Math.PI*2);m.stroke();
+    m.font=`700 ${r*.28}px ${MONO}`;m.textAlign="center";m.textBaseline="middle";m.fillText("SPARROW",cx,cy-r*.16);m.fillText("CINEMA",cx,cy+r*.2);
+    m.lineWidth=u*.4;for (let k=0;k<6;k++) {m.beginPath();for (let x=cx+r*1.1;x<w+u;x+=u*.8) m.lineTo(x,cy-r*.6+k*r*.24+Math.sin(x/u*.6)*u*.8);m.stroke();}
+  } else if (kind==="frames") {
+    // 胶片帧：一格格圆角画框，像印样
+    m.lineWidth=u*.35;const fw=u*9,fh=u*6.5;
+    for (let y=u;y<h;y+=fh+u*1.6) for (let x=u;x<w;x+=fw+u*1.6) {m.beginPath();(m.roundRect?m.roundRect(x,y,fw,fh,u*.9):m.rect(x,y,fw,fh));m.stroke();}
+  }
+}
 function artMaskCanvas(record,image,kind,createCanvas,mw) {
   const mh=Math.max(1,Math.round(mw*SOURCE.h/SOURCE.w)),rand=seeded(hashAppearance("art|"+(record.id||record.key||"")+kind));
   let mask;
   try {mask=createCanvas(mw,mh);} catch (error) {return null;}
   const m=mask.getContext("2d");
-  const geometric=["holo","band","dust","rainbow","pixel","ripple","moire","lenticular","cateye"].includes(kind);
+  const geometric=["holo","band","dust","rainbow","pixel","ripple","moire","lenticular","cateye",...PATTERNS].includes(kind);
   let L=null;
   if (!geometric) {
     try {
@@ -1077,6 +1145,8 @@ function artMaskCanvas(record,image,kind,createCanvas,mw) {
     const cx=mw*(.25+rand()*.5),cy=mh*(.25+rand()*.5),step=Math.max(3,mw/40);
     m.strokeStyle="#fff";m.lineWidth=step*.42;
     for (let r=step;r<Math.hypot(mw,mh);r+=step) {m.beginPath();m.arc(cx,cy,r,0,Math.PI*2);m.stroke();}
+  } else if (PATTERNS.includes(kind)) {
+    paintPattern(m,kind,mw,mh,rand,mw/90);
   } else if (kind==="moire") {
     // 隐形莫尔纹：两组角度差几度的细线叠在一起，转动时出现流动的干涉条纹
     const step=Math.max(2.4,mw/70),a0=rand()*Math.PI,span=Math.hypot(mw,mh);
@@ -1157,9 +1227,9 @@ function artMask(record,image,createCanvas,w) {
 // u 放射纹（从纹章中心放出的细光束）、r 环形扭索（绕纹章的玫瑰曲线）、o 专题水印（专题名斜向平铺）、
 // k 星尘（稀疏的亮点和星芒）、b 扭索底纹（铺满整面的防伪玫瑰曲线）、d 亮哑网点底纹；
 // w 镭射彩虹（整面）、p 像素镭射（细方格光栅）、q 同心波纹（从纹章荡开）、m 莫尔纹、l 光栅变色、i 星芒、n 猫眼光。
-const BACK_FX={uv:"a-guilloche",rim:"a-rim",holo:"a-holo",sparkle:"a-guilloche",band:"a-holo",dust:"a-matte",rainbow:"a-rainbow",pixel:"a-holo",ripple:"a-holo",moire:"a-holo",lenticular:"a-rainbow",glint:"a-gloss",cateye:"a-cateye"};
+const BACK_FX={uv:"a-guilloche",rim:"a-rim",holo:"a-holo",sparkle:"a-guilloche",band:"a-holo",dust:"a-matte",rainbow:"a-rainbow",pixel:"a-holo",ripple:"a-holo",moire:"a-holo",lenticular:"a-rainbow",glint:"a-gloss",cateye:"a-cateye",argyle:"a-guilloche",cloud:"a-holo",meander:"a-rim",perf:"a-guilloche",firework:"a-holo",honeycomb:"a-holo",caustic:"a-pearl",beam:"a-cateye",diag:"a-rainbow",contour:"a-pearl",postmark:"a-rim",frames:"a-guilloche"};
 function backMask(record,createCanvas,w) {
-  const kind=parseCraft(record.look?.craft).art;
+  const kind=parseCraft(record.look?.craft).back;
   if (!kind) return null;
   const h=Math.round(w*H/W),k=w/W;let full;
   try {full=createCanvas(w,h);} catch (error) {return null;}
@@ -1186,6 +1256,8 @@ function backMask(record,createCanvas,w) {
     const gap=m.measureText(word).width+size*1.8,span=Math.hypot(W,H);
     for (let y=-span/2,row=0;y<span/2;y+=size*2.3,row++) for (let x=-span/2+(row%2)*gap/2;x<span/2;x+=gap) m.fillText(word,x,y);
     m.restore();
+  } else if (PATTERNS.includes(kind)) {
+    m.save();m.translate(20,18);paintPattern(m,kind,W-40,H-36,rand,2.6);m.restore();
   } else if (kind==="rainbow" || kind==="cateye") {
     m.fillRect(0,0,W,H);
   } else if (kind==="moire") {

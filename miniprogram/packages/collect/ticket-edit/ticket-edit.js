@@ -58,10 +58,10 @@ Page({
       else{const item=views.find(x=>x.key===key);if(item)row=fresh(item);}
     }else if(film&&this.idx.F[film]){
       const mine=views.filter(x=>x.filmId===film).sort((a,b)=>b.view.d.localeCompare(a.view.d));
-      const made=new Set(built.tickets.map(r=>r.key));
-      // 一部电影一张：已有票根就打开它，否则用最近一次观影新建
-      const item=mine.find(x=>made.has(x.key))||mine[0];
-      if(item&&made.has(item.key)){const have=built.tickets.find(r=>r.key===item.key);row={...have,look:{...have.look}};original=item.key;}
+      // 每次观影一张：打开最近一次观影的票根（没做过就新建）
+      const item=mine[0];
+      const have=item&&built.tickets.find(r=>r.key===item.key);
+      if(have){row={...have,look:{...have.look}};original=item.key;}
       else if(item)row=fresh(item);
       else{
         // 先找这部电影以前做过、现在没对上观影记录的票根（比如移出过护照），接着编辑它
