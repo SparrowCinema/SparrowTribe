@@ -28,7 +28,8 @@
     "大图": "L",
     "中图": "M",
     "小图": "S",
-    "分成": "Split into"
+    "分成": "Split into",
+    "一键生成": "Create all"
   },
   "_readme": "English layer for the site. films/programmes/venues overlay data fields when ?lang=en; ui is the zh→en dictionary used by tr(). Missing entries fall back to the Chinese text.",
   "films": {
@@ -12432,6 +12433,12 @@
     "这一天的票根已经太多了": "Too many tickets on this day",
     "每次观影一张票根 · 年度与专题票根墙": "A ticket for every viewing · annual & programme walls",
     "开始挑选": "Start picking",
-    "生成图片": "Create image"
+    "生成图片": "Create image",
+    "场观影还没做成票根": " viewings without a ticket yet",
+    "筛选票根": "Filter tickets",
+    "票根筛选": "Ticket filters",
+    "看背面": "Show back",
+    "按观影日期排列": "by viewing date",
+    "待制作的票根": "Tickets to make"
   }
 }
