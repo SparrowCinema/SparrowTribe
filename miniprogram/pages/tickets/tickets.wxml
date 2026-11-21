@@ -2,7 +2,7 @@
 <wxs src="../../utils/l.wxs" module="L" />
 <view class="wrap album tk-page">
   <view class="tk-head">
-    <text class="tk-heading">{{L.t(i,mode==='pending'?'待制作的票根':mode==='search'?'制作票根':mode==='edit'?(existing?'编辑票根':'新票根'):'我的票根收藏册')}}</text>
+    <text class="tk-heading">{{L.t(i,mode==='pending'?'待制作的票根':mode==='search'?'制作票根':'我的票根收藏册')}}</text>
     <text wx:if="{{mode==='album'}}" class="tk-link" bindtap="start" role="button">＋ {{L.t(i,'制作票根')}}</text>
     <text wx:else class="tk-link" bindtap="backAlbum" role="button">‹ {{L.t(i,'返回收藏册')}}</text>
   </view>
@@ -92,55 +92,6 @@
     </view>
   </block>
 
-  <block wx:else>
-    <view class="te">
-      <view class="te-stage">
-        <view class="al-preview">
-          <canvas type="2d" id="ticket-editor" class="al-editor-canvas" bindtap="flipEditor"
-            aria-role="button" aria-label="{{L.t(i,'翻面')}}"
-            bindtouchstart="startEditorTouch" catchtouchmove="moveEditorTouch"
-            bindtouchend="endEditorTouch" bindtouchcancel="endEditorTouch" />
-        </view>
-        <view wx:if="{{arts.length}}" class="te-art">
-          <text class="te-art-k">{{L.t(i,'裁切')}}</text>
-          <slider class="te-slider" min="0" max="100" value="{{draft.crop}}" block-size="18" activeColor="#8e2a22" backgroundColor="#e6dcc7" bindchanging="changeField" bindchange="changeField" data-field="crop" />
-          <picker wx:if="{{arts.length>1}}" mode="selector" range="{{arts}}" value="{{artIndex}}" bindchange="chooseArt"><view class="te-art-pick">{{arts[artIndex]}} ›</view></picker>
-          <picker mode="selector" range="{{artStyles}}" value="{{draft.sketch?1:0}}" bindchange="chooseArtStyle" aria-label="{{L.t(i,'票面风格')}}"><view class="te-art-pick">{{artStyles[draft.sketch?1:0]}} ›</view></picker>
-        </view>
-        <view class="te-tools">
-          <view class="te-seg" role="tablist">
-            <view class="{{editFront?'on':''}}" data-side="front" bindtap="setSide" role="tab" aria-selected="{{editFront}}">{{L.t(i,'正面')}}</view>
-            <view class="{{editFront?'':'on'}}" data-side="back" bindtap="setSide" role="tab" aria-selected="{{!editFront}}">{{L.t(i,'背面')}}</view>
-          </view>
-          <view class="te-dice" hover-class="te-hv" bindtap="shuffle" role="button">{{L.t(i,'随机换一款')}}</view>
-        </view>
-        <text class="te-reset" bindtap="reset" role="button">{{L.t(i,'恢复专题默认款式')}}</text>
-      </view>
-
-      <view class="te-title"><text class="te-name">{{draft.title}}</text><text wx:if="{{draft.programme}}" class="te-sub">{{draft.programme}}</text></view>
-
-      <view class="te-sec">{{L.t(i,'放映信息')}}</view>
-      <view class="te-card">
-        <picker wx:if="{{shows.length}}" class="te-first" mode="selector" range="{{shows}}" value="{{showIdx<0?0:showIdx}}" bindchange="chooseShow"><view class="te-row"><text class="te-k">{{L.t(i,'场次')}}</text><view class="te-v"><text class="{{showIdx<0?'te-ph':''}}">{{showIdx<0?L.t(i,'选择场次'):shows[showIdx]}}</text><text class="te-go">›</text></view></view></picker>
-        <view wx:if="{{linked}}" class="te-row {{shows.length?'':'te-first'}}"><text class="te-k">{{L.t(i,'观影日期')}}</text><view class="te-v"><text class="te-mono">{{draft.date}}</text><text class="te-note">{{L.t(i,'来自观影记录')}}</text></view></view>
-        <picker wx:else class="{{shows.length?'':'te-first'}}" mode="date" value="{{draft.date}}" data-field="date" bindchange="changeField"><view class="te-row"><text class="te-k">{{L.t(i,'观影日期')}}</text><view class="te-v"><text class="te-mono">{{draft.date || L.t(i,'选择日期')}}</text><text class="te-go">›</text></view></view></picker>
-        <picker mode="time" value="{{draft.time}}" data-field="time" bindchange="changeField"><view class="te-row"><text class="te-k">{{L.t(i,'开场时间')}}</text><view class="te-v"><text class="te-mono {{draft.time?'':'te-ph'}}">{{draft.time || L.t(i,'选择时间')}}</text><text class="te-go">›</text></view></view></picker>
-        <view class="te-row"><text class="te-k">{{L.t(i,'影院')}}</text><input class="te-in" value="{{draft.venue}}" placeholder="{{L.t(i,'影院名称')}}" placeholder-class="te-ph" data-field="venue" bindinput="changeField" /></view>
-        <view class="te-row"><text class="te-k">{{L.t(i,'影厅')}}</text><input class="te-in" value="{{draft.hall}}" placeholder="{{L.t(i,'如 1号厅')}}" placeholder-class="te-ph" data-field="hall" bindinput="changeField" /></view>
-        <view class="te-row"><text class="te-k">{{L.t(i,'座位')}}</text><input class="te-in" value="{{draft.seat}}" placeholder="{{L.t(i,'选填，如 5排8座')}}" placeholder-class="te-ph" data-field="seat" bindinput="changeField" /></view>
-        <view class="te-row"><text class="te-k">{{L.t(i,'放映版本')}}</text><input class="te-in" value="{{draft.format}}" placeholder="{{L.t(i,'如 4K修复')}}" placeholder-class="te-ph" data-field="format" bindinput="changeField" /></view>
-      </view>
-
-      <view class="te-acts">
-        <view class="te-save" hover-class="te-hv" bindtap="store" role="button">{{L.t(i,existing?'保存修改':'加入收藏册')}}</view>
-        <view class="te-links">
-          <text class="te-link {{loading?'te-off':''}}" bindtap="exportSingle" role="button">{{L.t(i,'导出这张票根')}}</text>
-          <block wx:if="{{existing}}"><text class="te-dot">·</text><text class="te-link te-danger" bindtap="remove" role="button">{{L.t(i,'移出收藏册')}}</text></block>
-        </view>
-      </view>
-    </view>
-  </block>
 </view>
-<page-container show="{{mode!=='album'}}" overlay="{{false}}" duration="{{0}}" z-index="{{-1}}" custom-style="height:0;overflow:hidden;background:transparent" bind:afterleave="onBackGesture"></page-container>
 <canvas type="2d" id="ticket-export-canvas" class="al-export-canvas" />
 <canvas type="2d" id="ticket-worker" class="al-export-canvas" />

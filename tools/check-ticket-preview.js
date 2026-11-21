@@ -1,127 +1,97 @@
+// 票根详情页（pages/ticket-edit）：独立页面、图片预览 + CSS 3D 倾斜翻面、换款重画、场次选择、保存、导出。
 const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const path=require('node:path');
 const vm=require('node:vm');
 const tickets=require('../miniprogram/utils/tickets');
-const previewModule=require('../miniprogram/utils/ticket-preview');
-const pagePath=path.join(__dirname,'../miniprogram/pages/tickets');
+const dir=path.join(__dirname,'../miniprogram/pages/ticket-edit');
+const wxml=fs.readFileSync(path.join(dir,'ticket-edit.wxml'),'utf8');
+const tixWxml=fs.readFileSync(path.join(__dirname,'../miniprogram/pages/tickets/tickets.wxml'),'utf8');
+const app=JSON.parse(fs.readFileSync(path.join(__dirname,'../miniprogram/app.json'),'utf8'));
 
-const template=fs.readFileSync(path.join(pagePath,'tickets.wxml'),'utf8');
-assert.equal((template.match(/class="al-editor-canvas"/g)||[]).length,1);
-assert.match(template,/<canvas [^>]*id="ticket-editor"[^>]*bindtap="flipEditor"/);
-assert.match(template,/catchtouchmove="moveEditorTouch"/);
+// 独立页面：注册在 app.json；不用 page-container（它会锁住页面滚动）；票根上用 bindtouchmove（不拦截页面滚动）
+assert(app.pages.includes('pages/ticket-edit/ticket-edit'));
+assert(!/page-container/.test(wxml)&&!/page-container/.test(tixWxml),'no page-container scroll lock');
+assert(!/catchtouchmove/.test(wxml),'ticket card must not block page scrolling');
+assert.match(wxml,/<image[^>]*class="te-face"/);
+assert(!/canvas[^>]*id="te-worker"[^>]*bindtap/.test(wxml),'visible preview is an image, the canvas stays hidden');
 
-let rejectCanvasImage=false,silentCanvasImage=false;
-function drawingContext(){
-  const ctx={labels:[],lights:[],colors:[],transforms:[]};
-  const gradient={addColorStop(_,color){ctx.colors.push(color);}};
-  return new Proxy(ctx,{get(target,key){
-    if(key==='clearRect')return ()=>{target.labels=[];target.lights=[];target.colors=[];target.transforms=[];};
-    if(key==='fillText')return label=>target.labels.push(label);
-    if(key==='transform')return (...values)=>target.transforms.push(values);
-    if(key==='getImageData')return ()=>({data:target.copied?[255,0,0,255]:[0,0,0,0]});
-    if(key==='drawImage')return source=>{
-      if(!source.frame)return;
-      if(rejectCanvasImage)throw Error('Canvas image source unsupported');
-      // 部分手机：drawImage 离屏画布不报错也不画
-      if(silentCanvasImage)return;
-      target.copied=true;
-      const {labels,lights,colors}=source.frame;
-      Object.assign(target,{labels:[...labels],lights:[...lights],colors:[...colors]});
-    };
-    if(key==='measureText')return label=>({width:label.length*12});
-    if(key==='createLinearGradient')return ()=>gradient;
-    if(key==='createRadialGradient')return (x,y)=>{target.lights.push([x,y]);return gradient;};
-    if(key==='createPattern')return ()=>({});
-    return target[key]??(()=>{});
+// 模拟画布：记录画过的文字；canvasToTempFilePath 把当前画面存成「图片」
+function ctx2d(){
+  const c={labels:[]};const g={addColorStop(){}};
+  return new Proxy(c,{get(t,k){
+    if(k==='clearRect')return ()=>{t.labels=[];};
+    if(k==='fillText')return s=>t.labels.push(s);
+    if(k==='measureText')return s=>({width:s.length*12});
+    if(k==='createLinearGradient'||k==='createRadialGradient')return ()=>g;
+    if(k==='createPattern')return ()=>({});
+    return t[k]??(()=>{});
   }});
 }
-
-let now=0,options,pendingImage,exportedFace;
-const callbacks=[];
-const preview=drawingContext(),exportContext=drawingContext();
-const node={
-  getContext:()=>preview,
-  requestAnimationFrame:cb=>callbacks.push(cb),
-  createImage:()=>{pendingImage={width:120,height:180};return pendingImage;}
-};
-const exportNode={getContext:()=>exportContext};
+const files=new Map();let fileN=0;
+const worker={ctx:ctx2d(),width:0,height:0,getContext(){return this.ctx;},createImage(){const im={};setTimeout(()=>im.onload&&im.onload(),0);return im;}};
+const exporter={ctx:ctx2d(),width:0,height:0,getContext(){return this.ctx;},createImage(){const im={};setTimeout(()=>im.onload&&im.onload(),0);return im;}};
+const store={};let navigatedBack=0,toasts=[];
+const timers=[];
 const wx={
-  createSelectorQuery(){
-    let selected;
-    return {in(){return this;},select(id){selected=id;return this;},fields(){return this;},exec(cb){
-      assert(['#ticket-editor','#ticket-export-canvas'].includes(selected),selected);
-      cb([{node:selected==='#ticket-editor'?node:exportNode}]);
-    }};
-  },
-  createOffscreenCanvas(){const frame=drawingContext();return {frame,getContext:()=>frame};},
-  showLoading(){},hideLoading(){},showActionSheet(){},
-  canvasToTempFilePath({canvas,fileType,success}){
-    assert.equal(canvas,exportNode);assert.equal(fileType,'png');
-    exportedFace=canvas.getContext().labels;
-    success({tempFilePath:'test.png'});
-  }
+  getStorageSync:k=>store[k]===undefined?'':JSON.parse(JSON.stringify(store[k])),setStorageSync:(k,v)=>{store[k]=JSON.parse(JSON.stringify(v));},removeStorageSync:k=>{delete store[k];},
+  createSelectorQuery(){let id;return {in(){return this;},select(s){id=s;return this;},fields(){return this;},boundingClientRect(cb){cb&&cb({left:0,top:0,width:200,height:400});return this;},exec(cb){cb&&cb([{node:id==='#te-worker'?worker:exporter}]);}};},
+  createOffscreenCanvas:()=>({getContext:ctx2d}),
+  canvasToTempFilePath({canvas,success}){const p='tmp://'+(++fileN)+'.png';files.set(p,[...canvas.ctx.labels]);success({tempFilePath:p});},
+  showToast:o=>toasts.push(o.title),showLoading(){},hideLoading(){},showActionSheet(){},setNavigationBarTitle(){},
+  navigateBack:o=>{navigatedBack++;o&&o.success&&o.success();},showModal:o=>o.success({confirm:true}),
+  getAppBaseInfo:()=>({theme:'light',language:'zh_CN'}),getSystemSetting:()=>({}),getWindowInfo:()=>({}),onThemeChange(){}
 };
-vm.runInNewContext(fs.readFileSync(path.join(pagePath,'tickets.js'),'utf8'),{
-  Page:page=>{options=page;},getApp:()=>({}),
-  require:name=>name.endsWith('/tickets.js')?tickets:name.endsWith('/ticket-preview.js')?previewModule:{tr:text=>text},
-  wx,setTimeout,clearTimeout,Date:{now:()=>now}
-});
+global.wx=wx;
+const data=require('../miniprogram/data/data.js');
+const films=data.films.filter(f=>!f.ev&&data.shows.some(s=>s.id===f.id));
+const film=films[0];
+let options;
+const sandbox={Page:o=>{options=o;},getApp:()=>({globalData:{data}}),wx,console,setTimeout:(f,ms)=>{timers.push(f);},clearTimeout(){},Date,
+  require:name=>require(path.join(dir,name))};
+vm.runInNewContext(fs.readFileSync(path.join(dir,'ticket-edit.js'),'utf8'),sandbox,{filename:'ticket-edit.js'});
+const page={...options,data:JSON.parse(JSON.stringify(options.data))};
+page.setData=function(p,cb){for(const [k,v] of Object.entries(p)){const parts=k.replace(/\[(\d+)\]/g,'.$1').split('.');let o=this.data;for(let i=0;i<parts.length-1;i++)o=o[parts[i]];o[parts[parts.length-1]]=v;}cb&&cb();};
+const flush=async()=>{for(let n=0;n<20;n++){await new Promise(r=>setImmediate(r));while(timers.length)timers.shift()();}};
 
-(async function(){
-  const draft=tickets.sanitize({filmId:'one',title:'罗赛塔',art:'posters/rosetta.jpg',
-    programme:'法国电影展',date:'2026-11-21',look:{finish:'holo',texture:'linen'}});
-  const page={...options,data:{...options.data},_ready:true,_render:0,_side:'front',_draft:draft,
-    _ticketBounds:{left:10,top:20,width:100,height:200},setData(data){Object.assign(this.data,data);}};
-  const advance=millis=>{now+=millis;for(const callback of callbacks.splice(0))callback();};
-  const assertFace=side=>{
-    assert.equal(preview.labels.includes('纪念票根'),side==='front');
-    assert.equal(preview.labels.includes('收藏票根'),side==='back');
-  };
-  await page.drawEditor();
-  assertFace('front');
-  const rest=preview.lights.at(-1),restRainbow=preview.colors.filter(color=>color.startsWith('hsla'));
-  assert.deepEqual(rest,[.42*tickets.W,.35*tickets.H]);
-  assert.equal(new Set(restRainbow).size,5);
-  const assertPerspective=()=>{
-    const verticalScales=preview.transforms.map(matrix=>matrix[3]);
-    assert(Math.max(...verticalScales)-Math.min(...verticalScales)>.05,
-      'near and far sides must project at different heights');
-  };
-  page.moveEditorTouch({touches:[{x:90,y:160}]});
-  advance(16);
-  assert.deepEqual(preview.lights.at(-1),[.9*tickets.W,.8*tickets.H]);
-  assert.notDeepEqual(preview.colors.filter(color=>color.startsWith('hsla')),restRainbow);
-  assertPerspective();
-  page.endEditorTouch();
-  advance(16);
-  assert.deepEqual(preview.lights.at(-1),rest);
-  page.flipEditor();
-  advance(170);assertFace('front');assertPerspective();
-  advance(100);assertFace('back');assertPerspective();
-  assert.equal(page.data.editFront,false);
-  advance(250);assertFace('back');
-  pendingImage.onload();await Promise.resolve();
-  assertFace('back');
-  await page.export(true);
-  assert(exportedFace.includes('收藏票根'));
-  assert.equal(exportContext.lights.length,0,'preview reflection stays out of the exported PNG');
-  page.flipEditor();
-  advance(270);assertFace('front');assertPerspective();
-  advance(250);assertFace('front');
-  assert.equal(page.data.editFront,true);
-  rejectCanvasImage=true;
-  page.moveEditorTouch({touches:[{x:90,y:160}]});
-  advance(16);
-  assertFace('front');assertPerspective();
-  assert(preview.colors.some(color=>color.startsWith('hsla')),'direct drawing keeps the rainbow');
-  // 离屏复制静默失败的手机：创建预览时检测出来，直接在页面画布上画（正反面、换款都能看到）
-  rejectCanvasImage=false;silentCanvasImage=true;
-  const quiet=drawingContext(),quietNode={width:630,height:1296,getContext:()=>quiet};
-  const render=previewModule.createPreview(quietNode,()=>{const frame=drawingContext();return {frame,getContext:()=>frame};});
-  render(draft,'front',null);
-  assert(quiet.labels.includes('纪念票根'),'silent offscreen copy falls back to direct drawing');
-  const shuffled={...draft,look:tickets.randomLook(draft)};quiet.colors=[];render(shuffled,'back',null);
-  assert(quiet.labels.includes('收藏票根'));
-  console.log('PASS: one canvas, reversible perspective flip, moving rainbow, late-poster guard, direct-render fallback, silent-copy detection and still PNG.');
-})().catch(error=>{console.error(error);process.exitCode=1;});
+(async()=>{
+  // 没有观影记录：新建手工票根，正反面都画成图片
+  page.onLoad({film:film.id});await flush();
+  assert(page.data.ok&&!page.data.existing&&!page.data.linked);
+  assert(files.get(page.data.frontImg).includes('纪念票根'),'front face rendered to an image');
+  assert(files.get(page.data.backImg).includes('收藏票根'),'back face rendered to an image');
+  // 换款：重新画，图片换成新的
+  const before=page.data.frontImg;let changed=false;
+  for(let i=0;i<5&&!changed;i++){page.shuffle();await flush();changed=page.data.frontImg!==before;}
+  assert(changed,'shuffle produces a new preview image');
+  // 翻面：CSS 转到 90° → 换面 → 无动画跳到 -90° → 回到正常角度
+  page.flip();assert.equal(page.data.ry,90);assert(page.data.turning);
+  await flush();assert.equal(page.data.front,false);assert.equal(page.data.turning,false);assert.equal(page.data.snap,false);
+  // 倾斜与高光跟手
+  page.touchStart({touches:[{clientX:180,clientY:40}]});
+  assert(page.data.ry>5&&page.data.rx>3,'tilt follows the finger');assert.match(page.data.glowBg,/circle at 90% 10%/);
+  page.touchEnd();assert.equal(page.data.ry,-4);
+  // 在背面拖动裁切会翻回正面
+  page.changeField({currentTarget:{dataset:{field:'crop'}},detail:{value:20}});await flush();
+  assert.equal(page.data.front,true);assert.equal(page.data.draft.crop,20);
+  // 场次选择：日期、开场、影院、影厅一起填
+  assert(page.data.shows.length>0);
+  page.chooseShow({detail:{value:0}});await flush();
+  assert(page.data.draft.time&&page.data.draft.venue);assert.equal(page.data.showIdx,0);
+  // 原图 / 手绘（#511）：切换后重画正面并保存为 sk:1
+  const plain=page.data.frontImg;page.chooseArtStyle({detail:{value:1}});await flush();
+  assert.equal(page.data.draft.sketch,true);assert.notEqual(page.data.frontImg,plain,'sketch style redraws the front');
+  page.changeField({currentTarget:{dataset:{field:'seat'}},detail:{value:'7排7座'}});
+  // 保存：写入本机存储并返回收藏册
+  page.store();
+  const saved=Object.entries(store['sk-tickets-v2']||{}).find(([k])=>k.startsWith(film.id+'|'));
+  assert(saved&&saved[1].st==='7排7座'&&saved[1].tm&&saved[1].sk===1,'saved only the changed fields');assert.equal(navigatedBack,1);
+  // 再次打开已收藏的票根：编辑模式，导出 PNG 不带预览高光
+  const page2={...options,data:JSON.parse(JSON.stringify(options.data)),setData:page.setData};
+  page2.onLoad({key:encodeURIComponent(saved[0])});await flush();
+  assert(page2.data.existing);assert.equal(page2.data.draft.seat,'7排7座');
+  await page2.exportSingle();await flush();
+  assert(exporter.ctx.labels.includes('纪念票根'));
+  page2.remove();assert(store['sk-tickets-v2'][saved[0]].del);
+  console.log('PASS: ticket editor page — native scrolling/back, image preview with CSS 3D flip & tilt, shuffle redraw, show picker, sketch style, crop flips to front, save, export, remove.');
+})().catch(e=>{console.error(e);process.exitCode=1;});
