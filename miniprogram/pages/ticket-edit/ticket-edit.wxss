@@ -45,3 +45,5 @@
 .te-glow{position:absolute;left:4%;right:4%;top:2.5%;bottom:2.5%;pointer-events:none;mix-blend-mode:screen}
 .te-hidden{position:fixed;left:-3000px;top:0;width:2px;height:2px;pointer-events:none}
 @media(min-width:700px){.te-page{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);column-gap:calc(36 * var(--r));align-items:start}.te-stage{grid-row:1 / span 6;position:sticky;top:calc(20 * var(--r))}.te-title,.te-sec,.te-card,.te-acts{grid-column:2}}
+.te-art-save{flex:none;padding:calc(8 * var(--r)) calc(22 * var(--r));border-radius:999px;background:var(--accent);color:#fff;font-size:calc(20 * var(--fr));font-weight:700}
+.te-art-save.off{background:var(--line);color:var(--muted)}

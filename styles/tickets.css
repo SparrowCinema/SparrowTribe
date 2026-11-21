@@ -146,13 +146,15 @@
 .te-links .text-button{font-size:inherit;text-decoration:none;color:var(--fg);padding:0}
 .te-links i{font-style:normal;color:var(--line)}
 .te-links .te-danger{color:var(--bad-fg,#c4372d)}
-@media(max-width:700px){.te{grid-template-columns:1fr}.te-stage{position:static}.te-stage .ticket-flip{width:min(58%,240px)}}
+@media(max-width:700px){.te{grid-template-columns:minmax(0,1fr)}.te-stage{position:static;min-width:0}.te-stage .ticket-flip{width:min(58%,240px)}}
 .ticket-page .te-row .te-in{flex:1;min-width:0;border:0;background:none;padding:12px 0;text-align:right;color:var(--fg);width:auto;border-radius:0;box-shadow:none}
 .ticket-page .te-row input[type=time].te-in{display:flex;justify-content:flex-end}
 .ticket-page .te-row input[type=time].te-in::-webkit-datetime-edit{text-align:right}
 /* 裁切与票面图像放在票根正下方，边拖边看 */
-.te-art{display:flex;flex-wrap:wrap;align-items:center;gap:8px;width:min(100%,340px)}
-.ticket-page .te-crop{flex:1;display:flex;align-items:center;gap:10px;min-width:92px;font-size:.78rem;color:var(--muted)}
+.te-art{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:8px;width:100%;max-width:340px;box-sizing:border-box}
+.ticket-page .te-crop{flex:1;display:flex;align-items:center;gap:10px;min-width:150px;font-size:.78rem;color:var(--muted)}
 .te-crop .te-range{flex:1;min-width:0}
 .ticket-page .te-art-pick{flex:none;width:auto;max-width:42%;border:1px solid var(--line);border-radius:999px;padding:5px 10px;background:var(--surface);color:var(--fg);font-size:.8rem}
 .ticket-page .te-row select.te-in{appearance:none;-webkit-appearance:none;padding-right:16px;background:linear-gradient(45deg,transparent 50%,var(--muted) 50%) right 6px center/5px 5px no-repeat,linear-gradient(-45deg,transparent 50%,var(--muted) 50%) right 1px center/5px 5px no-repeat;text-overflow:ellipsis}
+.ticket-page .te-art-save{flex:none;border:0;border-radius:999px;padding:6px 14px;background:var(--accent);color:#fff;font-size:.8rem;font-weight:700;cursor:pointer}
+.ticket-page .te-art-save:disabled{background:var(--line);color:var(--muted);cursor:default}
