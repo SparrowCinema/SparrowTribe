@@ -16,7 +16,8 @@
 .te-name{font-size:calc(32 * var(--fr));font-family:"Songti SC",serif;font-weight:700;line-height:1.3;color:var(--fg)}
 .te-sub{font-size:calc(20 * var(--fr));color:var(--muted)}
 .te-name,.te-sub{overflow-wrap:anywhere}
-.te-actions{display:flex;align-items:center;flex-wrap:wrap;gap:calc(12 * var(--r));max-width:100%}
+.te-actions{display:flex;align-items:center;flex-wrap:nowrap;gap:calc(12 * var(--r));max-width:100%}
+.te-actions .te-action{width:auto;margin:0;flex:none;white-space:nowrap}
 .te-action{display:inline-flex;align-items:center;justify-content:center;gap:calc(10 * var(--r));min-height:44px;margin:0;padding:5px calc(18 * var(--r));border:calc(2 * var(--r)) solid var(--line);border-radius:calc(20 * var(--r));background:var(--surface);color:var(--fg);font-size:calc(23 * var(--fr));font-weight:650;line-height:1.25}
 .te-action::after{border:0}
 .te-action-export{background:var(--chip);color:var(--accent)}
