@@ -18,12 +18,14 @@ const stock=(w,h)=>wx.createOffscreenCanvas({type:'2d',width:w,height:h});
 const iso=d=>[d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-');
 const artworkUrl=src=>/^(posters|images)\//i.test(src||'')?SITE+src:src;
 const clamp=v=>Math.max(0,Math.min(1,v));
-// 随手指移动的高光：镭射箔带一点彩虹色，金属箔是白色反光，哑光几乎没有
+// 随手指移动的高光：只在手指滑动时出现、停下约半秒或松手就淡出（不再常驻在海报上把图案冲白）。
+// 位置与手指镜像（像真实反光那样落在倾斜的另一侧），强度压低：镭射箔带一点彩虹色，金属箔是淡白反光，哑光几乎没有
+const GLOW_IDLE_MS=450;
 function glowCss(x,y,kind){
-  const at=`circle at ${x}% ${y}%`;
-  if(kind==='spectrum')return `radial-gradient(${at},rgba(255,255,255,.42),rgba(255,170,235,.16) 22%,rgba(130,225,255,.12) 38%,rgba(255,240,170,.06) 52%,rgba(255,255,255,0) 64%)`;
-  if(kind==='soft')return `radial-gradient(${at},rgba(255,255,255,.12),rgba(255,255,255,0) 55%)`;
-  return `radial-gradient(${at},rgba(255,255,255,.36),rgba(255,255,255,0) 52%)`;
+  const at=`circle at ${100-x}% ${100-y}%`;
+  if(kind==='spectrum')return `radial-gradient(${at},rgba(255,255,255,.22),rgba(255,170,235,.12) 24%,rgba(130,225,255,.08) 40%,rgba(255,240,170,.04) 54%,rgba(255,255,255,0) 66%)`;
+  if(kind==='soft')return `radial-gradient(${at},rgba(255,255,255,.07),rgba(255,255,255,0) 55%)`;
+  return `radial-gradient(${at},rgba(255,255,255,.18),rgba(255,255,255,0) 50%)`;
 }
 // 票面改动（裁切 / 配图）的指纹：和上次保存时不同才点亮「保存」
 const artSig=d=>[d.crop,d.art].join('|');
@@ -40,7 +42,7 @@ function image(node,src){
 }
 
 Page({
-  data:{i:{},ps:'',ok:false,draft:{},front:true,frontImg:'',backImg:'',rx:-2,ry:-4,turning:false,snap:false,glowBg:'',shine:'metal',
+  data:{i:{},ps:'',ok:false,draft:{},front:true,frontImg:'',backImg:'',rx:-2,ry:-4,turning:false,snap:false,glowBg:'',glowOn:false,shine:'metal',
     arts:[],artIndex:0,artStyleLabels:[],artStyleIndex:0,shows:[],showIdx:-1,existing:false,linked:false,loading:false,busy:true,artDirty:false},
   onLoad(q){
     this._albumArtStyle=Art.normalize();
@@ -77,7 +79,7 @@ Page({
     wx.setNavigationBarTitle({title:I.tr(original?'编辑票根':'新票根')});
   },
   onShow(){CFG.chrome();},
-  onUnload(){this._ready=false;this._turn++;this.__cfgOff&&this.__cfgOff();},
+  onUnload(){this._ready=false;clearTimeout(this._glowTimer);this._turn++;this.__cfgOff&&this.__cfgOff();},
   setup(row){
     if(row.art)row.art=artworkUrl(row.art);
     this._draft=row;
@@ -145,14 +147,20 @@ Page({
     },FLIP_MS);
   },
   setSide(e){if((e.currentTarget.dataset.side==='front')!==this.data.front)this.flip();},
-  touchStart(e){wx.createSelectorQuery().in(this).select('#te-card').boundingClientRect(r=>{this._box=r;}).exec();this.touchMove(e);},
+  // 手指在票根上滑动只用来倾斜票根：wxml 里用 catchtouchmove 拦住，页面不会跟着滚动
+  touchStart(e){
+    const t=e.touches&&e.touches[0];this._touch0=t?{x:t.clientX,y:t.clientY}:null;
+    wx.createSelectorQuery().in(this).select('#te-card').boundingClientRect(r=>{this._box=r;}).exec();
+  },
   touchMove(e){
     const t=e.touches&&e.touches[0],b=this._box;if(!t||!b||this.data.turning)return;
+    const s=this._touch0;if(s&&Math.abs(t.clientX-s.x)+Math.abs(t.clientY-s.y)<6)return;
     const now=Date.now();if(now-(this._tiltAt||0)<40)return;this._tiltAt=now;
     const x=clamp((t.clientX-b.left)/b.width),y=clamp((t.clientY-b.top)/b.height);
-    this.setData({ry:Math.round((x-.5)*24),rx:Math.round((.5-y)*16),glowBg:glowCss(Math.round(x*100),Math.round(y*100),this.data.shine)});
+    this.setData({ry:Math.round((x-.5)*24),rx:Math.round((.5-y)*16),glowOn:true,glowBg:glowCss(Math.round(x*100),Math.round(y*100),this.data.shine)});
+    clearTimeout(this._glowTimer);this._glowTimer=setTimeout(()=>{if(this._ready&&this.data.glowOn)this.setData({glowOn:false});},GLOW_IDLE_MS);
   },
-  touchEnd(){if(!this.data.turning)this.setData({ry:-4,rx:-2,glowBg:glowCss(42,30,this.data.shine)});},
+  touchEnd(){clearTimeout(this._glowTimer);this._touch0=null;if(!this.data.turning)this.setData({ry:-4,rx:-2,glowOn:false});},
   // ——— 编辑 ———
   shuffle(){this._draft.look=R.randomLook(this._draft);this.renderFaces();},
   reset(){this._draft.look=R.defaults(R.sanitize({...this._draft,look:null}));this.renderFaces();},
