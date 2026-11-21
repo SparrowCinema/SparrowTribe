@@ -65,15 +65,22 @@ function ticketWallPage(){
   if(ticketDraft){
     ticketDrawEditor();
     const card=panel.querySelector(".ticket-flip");
-    card.addEventListener("pointermove",e=>{
-      if(e.pointerType==="touch")return;
-      const rect=card.getBoundingClientRect(),x=(e.clientX-rect.left)/rect.width,y=(e.clientY-rect.top)/rect.height;
+    const tilt=e=>{
+      if(!e.isPrimary)return;
+      const rect=card.getBoundingClientRect();
+      const limit=value=>Math.max(0,Math.min(value,1));
+      const x=limit((e.clientX-rect.left)/rect.width),y=limit((e.clientY-rect.top)/rect.height);
       card.style.setProperty("--tx",`${(0.5-y)*13}deg`);
       card.style.setProperty("--ty",`${(x-0.5)*17}deg`);
       card.style.setProperty("--gx",`${x*100}%`);
       card.style.setProperty("--gy",`${y*100}%`);
-    });
-    card.addEventListener("pointerleave",()=>["--tx","--ty","--gx","--gy"].forEach(key=>card.style.removeProperty(key)));
+    };
+    const untilt=()=>["--tx","--ty","--gx","--gy"].forEach(key=>card.style.removeProperty(key));
+    card.addEventListener("pointermove",tilt);
+    card.addEventListener("pointerdown",e=>{if(e.pointerType==="touch")tilt(e);});
+    card.addEventListener("pointerup",e=>{if(e.pointerType==="touch")untilt();});
+    card.addEventListener("pointerleave",untilt);
+    card.addEventListener("pointercancel",untilt);
   }
   else if(panel.querySelector("#ticket-search"))ticketSearch("");
   else {
