@@ -1,4 +1,4 @@
-// 我的票根收藏册（与网站 js/tickets.js 一致，2026-11-21 重做）：
+// 我的典藏票根册（与网站 js/tickets.js 一致，2026-11-21 重做）：
 // 票根 = 某一次观影的皮肤（utils/ticketstore.js）；按年 → 月连续滚动，先给 48 张、触底再补；
 // 票面由页面里一块隐藏画布逐张画成图片（只画已加载的部分），缓存在本次打开期间；书脊模式不画图。
 const R=require('../../../utils/tickets.js');
@@ -48,7 +48,7 @@ Page({
     try{density=wx.getStorageSync(DENS)||'m';artStyle=Art.normalize(wx.getStorageSync(Art.storageKey));}catch(e){}
     density=TILE_W[density]||density==='spine'?density:'m';
     CFG.bind(this);this.setData({i:I.dict(),density,densLabels:DENS_OPT.map(x=>I.tr(x[1])),densIndex:DENS_OPT.findIndex(x=>x[0]===density),
-      artStyle,artStyleLabels:Art.styles.map(style=>I.tr(style.label)),artStyleIndex:Art.styles.findIndex(style=>style.id===artStyle)});wx.setNavigationBarTitle({title:I.tr('我的票根收藏册')});
+      artStyle,artStyleLabels:Art.styles.map(style=>I.tr(style.label)),artStyleIndex:Art.styles.findIndex(style=>style.id===artStyle)});wx.setNavigationBarTitle({title:I.tr('我的典藏票根册')});
     this.load();
     this.album();
     if(params.id)this.openEditor('film='+encodeURIComponent(params.id));
@@ -243,7 +243,7 @@ Page({
   async export(single){
     if(this.data.loading)return;
     const ex=this.data.ex||{},side=single?this._side:(this.data.front?'front':'back');
-    let rows,title=I.tr('我的票根收藏册'),caption='',part=0,parts=1;
+    let rows,title=I.tr('我的典藏票根册'),caption='',part=0,parts=1;
     if(single)rows=[{...this._draft,look:{...this._draft.look}}];
     else{
       const all=this.exRows();parts=Math.max(1,Math.ceil(all.length/R.MOSAIC_MAX));part=Math.min(ex.part||0,parts-1);

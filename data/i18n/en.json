@@ -11377,7 +11377,7 @@
     }
   },
   "ui": {
-    "我的票根收藏册": "My Ticket Album",
+    "我的典藏票根册": "My Collector's Ticket Book",
     "收藏正反面票根 · 导出整页票根墙": "Collect double-sided tickets and export your ticket wall",
     "制作票根": "Make a ticket",
     "还没有收藏票根": "No tickets collected yet",
@@ -11427,7 +11427,7 @@
     "将这张票根移出收藏册？": "Remove this ticket from your album?",
     "票根保存失败，请检查本机存储": "Could not save the ticket. Check device storage.",
     "请填写放映日期": "Enter the screening date.",
-    "已收进票根收藏册": "Saved to your ticket album",
+    "已收进典藏票根册": "Saved to your collector's ticket book",
     "票根图片已生成": "Ticket image is ready",
     "票根图片": "Ticket image",
     "正在生成图片": "Generating image",

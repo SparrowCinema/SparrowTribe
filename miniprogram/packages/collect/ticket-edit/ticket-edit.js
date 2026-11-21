@@ -213,7 +213,7 @@ Page({
     if(this._original&&this._original!==key)changes[this._original]={del:1,t:Date.now()};
     if(!Tix.set(changes,this.data_,this.idx))return;
     if(stay===true){this._original=key;this._draft.key=key;this._artSaved=artSig(this._draft);this.setData({existing:true,artDirty:false});say(stamped?'已同时盖章 · 加入观影护照':'已保存');return;}
-    wx.navigateBack({success:()=>say(stamped?'已同时盖章 · 加入观影护照':'已收进票根收藏册'),fail:()=>wx.redirectTo({url:'/packages/collect/tickets/tickets'})});
+    wx.navigateBack({success:()=>say(stamped?'已同时盖章 · 加入观影护照':'已收进典藏票根册'),fail:()=>wx.redirectTo({url:'/packages/collect/tickets/tickets'})});
   },
   remove(){
     const linked=this._draft&&this._draft.linked;
