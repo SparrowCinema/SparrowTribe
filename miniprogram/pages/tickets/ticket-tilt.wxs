@@ -1,0 +1,26 @@
+/* Move the card and its reflection in the view layer while the finger moves. */
+function bounds(value, oldValue, owner) {
+  owner.getState().bounds = value;
+}
+function limit(value) {
+  return Math.max(0, Math.min(value, 1));
+}
+function move(event, owner) {
+  var box = owner.getState().bounds;
+  var touch = event.touches[0];
+  var card = owner.selectComponent('.al-flip-motion');
+  if (!box || !touch || !card || event.touches.length !== 1) return;
+  var x = limit((touch.pageX - box.left) / box.width);
+  var y = limit((touch.pageY - box.top) / box.height);
+  card.setStyle('--tx:' + ((0.5 - y) * 13) + 'deg;--ty:' + ((x - 0.5) * 17) +
+    'deg;--gx:' + (x * 100) + '%;--gy:' + (y * 100) + '%');
+}
+function start(event, owner) {
+  owner.callMethod('measureTicket');
+  move(event, owner);
+}
+function end(event, owner) {
+  var card = owner.selectComponent('.al-flip-motion');
+  if (card) card.setStyle('');
+}
+module.exports = { bounds: bounds, start: start, move: move, end: end };

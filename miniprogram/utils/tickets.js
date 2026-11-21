@@ -347,9 +347,8 @@ function cropCover(surface,image,position) {
 
 // A small repeat tile keeps the pattern sharp without drawing thousands of dots per card.
 const textureCaches=new WeakMap();
-function textureTile(createCanvas,material) {
-  const tile=createCanvas(120,120);
-  const ctx=tile.getContext("2d");
+const TEXTURE_SIZE=120;
+function paintTexture(ctx,material) {
   let seed=74323;
   const rng=()=>{seed=(Math.imul(1664525,seed)+1013904223)>>>0;return seed/4294967296;};
   const kind=material.kind;
@@ -392,7 +391,40 @@ function textureTile(createCanvas,material) {
       for (let x=8;x<120;x+=24) ctx.fillRect(x,0,.8,120);
     }
   }
-  return tile;
+}
+
+function textureTile(createCanvas,key) {
+  if (!textureCaches.has(createCanvas)) textureCaches.set(createCanvas,new Map());
+  const cache=textureCaches.get(createCanvas);
+  if (!cache.has(key)) {
+    const tile=createCanvas(TEXTURE_SIZE,TEXTURE_SIZE);
+    paintTexture(tile.getContext("2d"),papers[key]);
+    cache.set(key,tile);
+  }
+  return cache.get(key);
+}
+
+function paintPaper(surface,key,createCanvas) {
+  let tile;
+  if (createCanvas) {
+    try { tile=textureTile(createCanvas,key); } catch (_) { /* Render the same texture directly if offscreen canvas is unavailable. */ }
+  }
+  if (tile && surface.createPattern) {
+    try {
+      const pattern=surface.createPattern(tile,"repeat");
+      if (pattern) {surface.fillStyle=pattern;surface.fillRect(0,0,W,H);return;}
+    } catch (_) { /* Some mini-program canvases can draw the tile but cannot create a pattern from it. */ }
+  }
+  for (let y=0;y<H;y+=TEXTURE_SIZE) for (let x=0;x<W;x+=TEXTURE_SIZE) {
+    if (tile) {
+      try { surface.drawImage(tile,x,y,TEXTURE_SIZE,TEXTURE_SIZE);continue; }
+      catch (_) { tile=null; }
+    }
+    surface.save();
+    surface.translate(x,y);surface.beginPath();surface.rect(0,0,TEXTURE_SIZE,TEXTURE_SIZE);surface.clip();
+    paintTexture(surface,papers[key]);
+    surface.restore();
+  }
 }
 
 function paper(surface,key,side,createCanvas) {
@@ -401,15 +433,8 @@ function paper(surface,key,side,createCanvas) {
   if (material.tint && side==="front") {
     surface.globalAlpha=material.warmth;surface.fillStyle=material.tint;surface.fillRect(0,0,W,H);
   }
-  if (createCanvas && surface.createPattern) {
-    try {
-      if (!textureCaches.has(createCanvas)) textureCaches.set(createCanvas,new Map());
-      const cache=textureCaches.get(createCanvas);
-      if (!cache.has(key)) cache.set(key,textureTile(createCanvas,material));
-      const pattern=surface.createPattern(cache.get(key),"repeat");
-      if (pattern) {surface.globalAlpha=material.inking;surface.fillStyle=pattern;surface.fillRect(0,0,W,H);}
-    } catch (_) { /* Offscreen patterns are optional on older mini-program runtimes. */ }
-  }
+  surface.globalAlpha=material.inking;
+  paintPaper(surface,key,createCanvas);
   surface.restore();
 }
 

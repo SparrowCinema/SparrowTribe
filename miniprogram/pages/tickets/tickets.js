@@ -5,11 +5,13 @@ const I=require('../../utils/i18n.js');
 const CFG=require('../../utils/cfg.js');
 const app=getApp();
 const KEY='sk-tickets-v1';
+const SITE='https://sparrowcinema.github.io/SparrowTribe/';
 const read=()=>{try{return R.read(wx.getStorageSync(KEY));}catch(e){return [];}};
 const say=phrase=>wx.showToast({title:I.tr(phrase),icon:'none'});
 const stock=(w,h)=>wx.createOffscreenCanvas({type:'2d',width:w,height:h});
 const iso=d=>[d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-');
 const showKey=s=>s.sid||U.keyOf(s);
+const artworkUrl=src=>/^(posters|images)\//i.test(src)?SITE+src:src;
 function save(rows){try{wx.setStorageSync(KEY,rows);return true;}catch(e){say('票根保存失败，请检查本机存储');return false;}}
 function image(node,src){
   return new Promise(resolve=>{
@@ -17,7 +19,7 @@ function image(node,src){
     const im=node.createImage();
     const done=value=>{clearTimeout(timer);im.onload=im.onerror=null;resolve(value);};
     const timer=setTimeout(()=>done(null),4500);
-    im.onload=()=>done(im);im.onerror=()=>done(null);im.src=src;
+    im.onload=()=>done(im);im.onerror=()=>done(null);im.src=artworkUrl(src);
   });
 }
 function canvas(page,id){return new Promise(resolve=>wx.createSelectorQuery().in(page).select('#'+id).fields({node:true}).exec(result=>resolve(result?.[0]?.node||null)));}
@@ -25,9 +27,16 @@ function buildRecord(f,s,idx,date){
   const p=s?U.progForShow(s,idx):idx.progOf(f),v=s&&idx.VN[s.v];
   return R.sanitize({filmId:f.id,title:f.cn,subtitle:f.o||f.en,showId:s&&showKey(s),
     programmeId:p?.id,programme:p?.name,section:p?.sections?.[f.id]||(p?.id===f.prog?f.section:''),
-    date:s?iso(U.showDate(s)):date,time:s?.t,city:v?.city,venue:v?.name,hall:s&&idx.hallName(s),format:f.version,art:U.poster(f)});
+    date:s?iso(U.showDate(s)):date,time:s?.t,city:v?.city,venue:v?.name,hall:s&&idx.hallName(s),format:f.version,art:artOf(f)[0]});
 }
-function artOf(f){return [...new Set([U.poster(f),...(Array.isArray(f.stills)?f.stills.map(s=>typeof s==='string'?s:s?.url):[])].filter(s=>typeof s==='string'&&s))];}
+function artOf(f){
+  const stills=Array.isArray(f.stills)?f.stills.map(s=>typeof s==='string'?s:s?.url):[];
+  return [...new Set([f.poster,U.poster(f),...stills].filter(s=>typeof s==='string'&&s).map(artworkUrl))];
+}
+function finishStyle(row){
+  const {kind,highlight}=R.shineOf(row.look.finish);
+  return {editShine:kind,editHighlight:highlight+'af'};
+}
 
 Page({
   data:{i:{},ps:'',mode:'wall',year:0,programme:0,page:0,pages:0,front:true,rows:[],results:[],query:'',count:0,loading:false},
@@ -82,18 +91,23 @@ Page({
   openTicket(e){
     this._keepLook=true;
     const row=this._shown[Number(e.currentTarget.dataset.index)];
-    if(row)this.edit({...row,look:{...row.look}},row.id);
+    if(row)this.edit({...row,look:{...row.look}},row.id,this.data.front?'front':'back');
   },
   edit(row,original=this._original,side='front'){
     this._draft=row;this._original=original;this._side=side;
     const data=app.globalData.data,idx=U.index(data),f=idx.F[row.filmId];
     this._shows=data.shows.filter(s=>s.id===row.filmId);
     this._art=f?artOf(f):[];
+    if(row.art)row.art=artworkUrl(row.art);
     if(row.art&&!this._art.includes(row.art))this._art.unshift(row.art);
     const shows=[I.tr('自填场次'),...this._shows.map(s=>`${iso(U.showDate(s))} ${s.t} · ${idx.VN[s.v]?.name||s.v}`)];
     const showIndex=this._shows.findIndex(s=>showKey(s)===row.showId)+1;
     const arts=this._art.map((_,i)=>I.tr(i===0?'海报':'备用图像')+' '+(i+1));
-    this.setData({mode:'edit',draft:row,shows,showIndex,arts,artIndex:Math.max(0,this._art.indexOf(row.art)),editFront:side==='front',existing:!!original},()=>this.drawEditor());
+    this.setData({mode:'edit',draft:row,shows,showIndex,arts,artIndex:Math.max(0,this._art.indexOf(row.art)),
+      editFront:side==='front',existing:!!original,...finishStyle(row)},()=>{
+      this.drawEditor();
+      this.measureTicket();
+    });
   },
   chooseShow(e){
     const s=this._shows[Number(e.detail.value)-1];
@@ -113,20 +127,32 @@ Page({
       if(!this._keepLook){
         this._draft.look=R.defaults(R.sanitize(this._draft));
         update['draft.look']=this._draft.look;
+        Object.assign(update,finishStyle(this._draft));
       }
     }
     this.setData(update);this.drawEditor();
   },
-  flipEditor(){this._side=this._side==='front'?'back':'front';this.setData({editFront:this._side==='front'});this.drawEditor();},
+  flipEditor(){
+    this._side=this._side==='front'?'back':'front';
+    this.setData({editFront:this._side==='front'});
+  },
+  measureTicket(){
+    wx.createSelectorQuery().in(this).select('.al-flip').boundingClientRect().selectViewport().scrollOffset().exec(result=>{
+      const [bounds,scroll]=result||[];
+      if(!this._draft||!bounds?.width||!bounds.height)return;
+      this.setData({tiltBounds:{left:bounds.left+(scroll?.scrollLeft||0),top:bounds.top+(scroll?.scrollTop||0),
+        width:bounds.width,height:bounds.height}});
+    });
+  },
   shuffle(){
     this._keepLook=true;
     this._draft.look=R.randomLook(this._draft);
-    this.setData({'draft.look':this._draft.look},()=>this.drawEditor());
+    this.setData({'draft.look':this._draft.look,...finishStyle(this._draft)},()=>this.drawEditor());
   },
   reset(){
     this._keepLook=false;
     this._draft.look=R.defaults(R.sanitize(this._draft));
-    this.setData({'draft.look':this._draft.look},()=>this.drawEditor());
+    this.setData({'draft.look':this._draft.look,...finishStyle(this._draft)},()=>this.drawEditor());
   },
   store(){
     const row=R.sanitize({...this._draft,savedAt:Date.now()});
@@ -143,15 +169,22 @@ Page({
   async drawTile(id,row,side,render,width){
     const node=await canvas(this,id);
     if(!node||render!==this._render)return;
-    node.width=width;node.height=Math.round(width*R.H/R.W);
-    const ctx=node.getContext('2d'),rect={x:0,y:0,w:node.width,h:node.height};
+    const height=Math.round(width*R.H/R.W);
+    if(node.width!==width)node.width=width;
+    if(node.height!==height)node.height=height;
+    const ctx=node.getContext('2d'),rect={x:0,y:0,w:width,h:height};
+    ctx.clearRect(0,0,width,height);
     R.draw(ctx,row,side,null,rect,stock);
     if(side==='front'){
       const art=await image(node,row.art);
       if(art&&render===this._render){ctx.clearRect(0,0,node.width,node.height);R.draw(ctx,row,side,art,rect,stock);}
     }
   },
-  drawEditor(){if(this._draft)this.drawTile('ticket-editor-canvas',this._draft,this._side,++this._render,480);},
+  drawEditor(){
+    if(!this._draft)return;
+    const render=++this._render;
+    for(const side of ['front','back'])this.drawTile('ticket-editor-'+side,this._draft,side,render,630);
+  },
   drawWallTiles(){
     const turn=++this._render,side=this.data.front?'front':'back';
     this._shown.forEach((row,i)=>this.drawTile('ticket-tile-'+i,row,side,turn,210));
@@ -163,6 +196,8 @@ Page({
     const rows=single?[{...this._draft,look:{...this._draft.look}}]:this._shown.slice();
     if(!rows.length)return;
     const side=single?this._side:(this.data.front?'front':'back'),page=this.data.page+1;
+    const caption=[this.data.year&&this.data.years[this.data.year],this.data.programme&&this.data.programmes[this.data.programme],
+      `${rows.length} ${I.tr('张票根')}`,`#${page}`].filter(Boolean).join(' · ');
     this.setData({loading:true});wx.showLoading({title:I.tr('正在生成图片'),mask:true});
     try{
       const node=await canvas(this,'ticket-export-canvas');
@@ -172,7 +207,7 @@ Page({
       node.width=layout.width;node.height=layout.height;
       const ctx=node.getContext('2d');
       if(single)R.draw(ctx,rows[0],side,images[0],{x:0,y:0,w:node.width,h:node.height},stock);
-      else R.drawWall(ctx,rows,side,images,`${rows.length} ${I.tr('张票根')} · #${page}`,stock);
+      else R.drawWall(ctx,rows,side,images,caption,stock);
       const png=await new Promise((resolve,reject)=>wx.canvasToTempFilePath({canvas:node,fileType:'png',success:r=>resolve(r.tempFilePath),fail:reject},this));
       if(this._ready){
         wx.hideLoading();
