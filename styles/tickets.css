@@ -158,3 +158,6 @@
 .ticket-page .te-row select.te-in{appearance:none;-webkit-appearance:none;padding-right:16px;background:linear-gradient(45deg,transparent 50%,var(--muted) 50%) right 6px center/5px 5px no-repeat,linear-gradient(-45deg,transparent 50%,var(--muted) 50%) right 1px center/5px 5px no-repeat;text-overflow:ellipsis}
 .ticket-page .te-art-save{flex:none;border:0;border-radius:999px;padding:6px 14px;background:var(--accent);color:#fff;font-size:.8rem;font-weight:700;cursor:pointer}
 .ticket-page .te-art-save:disabled{background:var(--line);color:var(--muted);cursor:default}
+.schedule-filterbar.ticket-style-filterbar{grid-template-columns:repeat(4,minmax(0,1fr))}
+.ticket-style-filterbar [data-ticket-filter="art-style"] b{white-space:normal;overflow-wrap:anywhere}
+@media(max-width:400px){.ticket-style-filterbar .schedule-filter{padding-inline:7px;gap:3px}.ticket-style-filterbar .schedule-filter svg{width:10px;height:10px}}

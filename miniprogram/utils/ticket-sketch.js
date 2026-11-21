@@ -1,4 +1,4 @@
-/* Optional wax-pencil treatment for the picture on a ticket. */
+/* Hand-drawn artwork treatments shared by the ticket album and exports. */
 (function(root,factory){
   if(typeof module==="object"&&module.exports) module.exports=factory();
   else root.SparrowTicketSketch=factory();
@@ -7,6 +7,16 @@
 
   const PAPER=[249,241,224];
   const INK=[45,36,34];
+  const BLUE_PAPER=[239,247,251];
+  const BLUE_INK=[20,53,105];
+  const styles=[
+    {id:"crayon",label:"蜡笔乱涂"},
+    {id:"watercolor",label:"淡彩水彩"},
+    {id:"woodcut",label:"木刻版画"},
+    {id:"blue-ink",label:"蓝墨速写"}
+  ];
+  const storageKey="sparrow-ticket-art-style";
+  const normalize=value=>styles.some(style=>style.id===value)?value:styles[0].id;
   const clamp=(n,lo,hi)=>Math.max(lo,Math.min(hi,n));
   const luma=(r,g,b)=>.24*r+.58*g+.18*b;
   const distance=(r,g,b,color)=>.30*(r-color[0])**2+.52*(g-color[1])**2+.18*(b-color[2])**2;
@@ -56,55 +66,90 @@
       if(pass===4)break;
       sums.forEach(([r,g,b,n],i)=>{if(n)palette[i]=[r/n,g/n,b/n];});
     }
-    return {labels,palette:palette.map(color=>{
-      const light=luma(...color);
-      const lifted=235*(light/255)**.92;
-      return color.map((c,i)=>clamp((c-light)*1.48+lifted+PAPER[i]*.10,0,255));
-    })};
+    return {labels,palette};
   }
 
-  function stylize(pixels,w,h,width,height){
-    const {labels,palette}=reduceColors(pixels,w,h);
-    const nearby=palette.map(a=>palette.map(b=>{
-      const delta=Math.sqrt(distance(...a,b));
-      return clamp((delta-30)/90,0,.71);
+  const mix=(a,b,weight)=>a+(b-a)*weight;
+  function stylize(pixels,w,h,width,height,styleId){
+    const style=normalize(styleId);
+    const crayon=style==="crayon",wash=style==="watercolor",wood=style==="woodcut";
+    const paper=style==="blue-ink"?BLUE_PAPER:PAPER,ink=style==="blue-ink"?BLUE_INK:INK;
+    const {labels,palette:source}=reduceColors(pixels,w,h);
+    const tones=source.map(color=>clamp((luma(...color)-19)/211,0,1));
+    const palette=source.map((color,k)=>{
+      const light=luma(...color);
+      if(wood)return ink.map((c,i)=>mix(c,paper[i],Math.round(tones[k]*5)/5));
+      if(!wash&&!crayon)return paper.map((c,i)=>mix(c,ink[i],(1-tones[k])*.25));
+      const lifted=235*(light/255)**.92;
+      return color.map((c,i)=>{
+        const saturated=clamp((c-light)*(wash?1.22:1.54)+lifted+PAPER[i]*.10,0,255);
+        return wash?mix(saturated,paper[i],.29):saturated;
+      });
+    });
+    const nearby=source.map(a=>source.map(b=>{
+      const contrast=Math.sqrt(distance(...a,b));
+      return clamp((contrast-(crayon?24:18))/85,0,wood ? .82 : .69);
     }));
     const out=new Uint8ClampedArray(width*height*4);
-    const regions=new Uint8Array(width*height);
+    const regions=crayon?new Uint8Array(width*height):null;
     const label=(x,y)=>labels[clamp(Math.floor(y),0,h-1)*w+clamp(Math.floor(x),0,w-1)];
     let seed=87191;
     const random=()=>{seed=(Math.imul(1664525,seed)+1013904223)>>>0;return seed/4294967296;};
     for(let y=0;y<height;y++) for(let x=0;x<width;x++){
-      const sx=(x+1.4*Math.sin(y*.20)+.6*Math.sin((x+y)*.43))*w/width;
-      const sy=(y+1.3*Math.sin(x*.18)+.6*Math.sin((x-y)*.36))*h/height;
-      const i=y*width+x,s=i*4,k=label(sx,sy),r=nearby[k];
-      regions[i]=k;
-      const edge=Math.max(r[label(sx-.32,sy)],r[label(sx+.32,sy)],r[label(sx,sy-.32)],r[label(sx,sy+.32)]);
-      const ink=edge*(.78+random()*.22);
-      const tooth=random();
-      const grain=tooth>.95 ? .21 : tooth*.035;
-      for(let c=0;c<3;c++) out[s+c]=palette[k][c]*(1-ink-grain)+INK[c]*ink+PAPER[c]*grain;
+      const wobbleX=Math.sin(y*.20),wobbleY=Math.sin(x*.18);
+      const sx=(x+1.4*wobbleX+.6*Math.sin((x+y)*.43))*w/width;
+      const sy=(y+1.3*wobbleY+.6*Math.sin((x-y)*.36))*h/height;
+      const i=y*width+x,s=i*4,k=label(sx,sy);
+      const color=palette[k],tone=tones[k],edges=nearby[k],tooth=random();
+      if(crayon)regions[i]=k;
+      const d=wash ? 0 : wood||crayon ? .46 : .32;
+      const edge=wash?0:Math.max(edges[label(sx-d,sy)],edges[label(sx+d,sy)],edges[label(sx,sy-d)],edges[label(sx,sy+d)]);
+      if(wash){
+        const ux=sx-.5,uy=sy-.5,fx=ux-Math.floor(ux),fy=uy-Math.floor(uy);
+        const nw=palette[label(ux,uy)],ne=palette[label(ux+1,uy)],sw=palette[label(ux,uy+1)],se=palette[label(ux+1,uy+1)];
+        const bloom=.035+.065*Math.sin(x*.056+y*.039)+.034*wobbleY;
+        for(let c=0;c<3;c++){
+          const washColor=mix(mix(nw[c],ne[c],fx),mix(sw[c],se[c],fx),fy);
+          out[s+c]=mix(washColor,paper[c],bloom+tooth*.095);
+        }
+      }else{
+        const depth=1-tone;
+        const ridge=y+x*.68+wobbleY*1.25;
+        const grainLine=(ridge%7+7)%7<.9+tone*1.7;
+        const cross=(x-y*.33+height+wobbleX*1.2)%8<1.35;
+        let shade=edge*(.74+tooth*.26);
+        let grain=tooth>.95 ? .22 : tooth*.034;
+        if(wood)grain=grainLine ? .34+tone*.25 : grain*.55;
+        else if(!crayon){
+          const hatch=clamp((depth-.22)/.78,0,1);
+          shade=Math.max(shade,grainLine?hatch*.72:cross&&depth>.59?hatch*.25:0);
+          grain=tooth*.04;
+        }
+        for(let c=0;c<3;c++) out[s+c]=mix(mix(color[c],ink[c],shade),paper[c],grain);
+      }
       out[s+3]=255;
     }
-    // Short, uneven pencil strokes leave little gaps in each patch of pigment.
+    if(!crayon)return out;
+    // Staggered wax-pencil strokes expose small slivers of paper inside colour patches.
     for(let y=0;y<height;y+=5) for(let x=0;x<width;x+=5){
       const sx=Math.min(width-1,x+Math.floor(random()*5));
       const sy=Math.min(height-1,y+Math.floor(random()*5));
-      const k=regions[sy*width+sx],length=2+Math.floor(random()*12),angle=.46+random()*.38;
-      const pigment=random()>.22?PAPER:INK;
-      const strength=.10+random()*.27;
+      const k=regions[sy*width+sx],length=4+Math.floor(random()*13);
+      const angle=-.68+Math.sin(k*1.9+sy*.02)*.48+(random()-.5)*.68;
+      const pigment=random()>.25?paper:ink;
+      const strength=.16+random()*.36;
       for(let step=0;step<length;step++){
-        const tx=sx+step,ty=sy-Math.round(step*angle);
-        if(tx>=width||ty<0||regions[ty*width+tx]!==k)break;
-        const i=(ty*width+tx)*4,mix=strength*(1-step/length);
-        for(let c=0;c<3;c++) out[i+c]=out[i+c]*(1-mix)+pigment[c]*mix;
+        const tx=sx+step,ty=sy+Math.round(step*angle+Math.sin(step*.5)*.4);
+        if(tx>=width||ty<0||ty>=height||regions[ty*width+tx]!==k)break;
+        const i=(ty*width+tx)*4,weight=strength*(1-step/length);
+        for(let c=0;c<3;c++) out[i+c]=mix(out[i+c],pigment[c],weight);
       }
     }
     return out;
   }
 
   const imageCache=new WeakMap();
-  function paint(surface,image,crop,frame,createCanvas,cropCover,ticketScale=1){
+  function paint(surface,image,crop,frame,createCanvas,cropCover,ticketScale=1,styleId){
     if(!createCanvas)return false;
     try{
       let cache=imageCache.get(image);
@@ -112,7 +157,7 @@
       const {x,y,w,h}=frame;
       const width=Math.min(w,ticketScale>=.7?w:ticketScale>=.36?220:120);
       const height=Math.max(1,Math.round(width*h/w));
-      const key=width+":"+crop;
+      const style=normalize(styleId),key=style+":"+width+":"+crop;
       let drawing=cache.get(key);
       if(!drawing){
         const sw=Math.min(92,Math.max(32,Math.round(width*.4)));
@@ -124,7 +169,7 @@
         drawing=createCanvas(width,height);
         const target=drawing.getContext("2d");
         const data=target.createImageData(width,height);
-        data.data.set(stylize(source.data,sw,sh,width,height));
+        data.data.set(stylize(source.data,sw,sh,width,height,style));
         target.putImageData(data,0,0);
         if(cache.size===2)cache.delete(cache.keys().next().value);
         cache.set(key,drawing);
@@ -137,5 +182,5 @@
     }
   }
 
-  return {stylize,paint};
+  return {styles,storageKey,normalize,stylize,paint};
 });

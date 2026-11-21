@@ -3,6 +3,7 @@
 // 用 <image> 显示，倾斜、翻面用 CSS 3D 变换完成，高光是一层随手指移动的渐变——不再逐帧在画布上重画。
 // 参数：key=票根键（已收藏或待制作），film=影片id（没有观影记录时新建手工票根）。
 const R=require('../../utils/tickets.js');
+const Art=require('../../utils/ticket-sketch.js');
 const Tix=require('../../utils/ticketstore.js');
 const U=require('../../utils/util.js');
 const I=require('../../utils/i18n.js');
@@ -40,6 +41,8 @@ Page({
   data:{i:{},ps:'',ok:false,draft:{},front:true,frontImg:'',backImg:'',rx:-2,ry:-4,turning:false,snap:false,glowBg:'',shine:'metal',
     arts:[],artIndex:0,shows:[],showIdx:-1,existing:false,linked:false,loading:false,busy:true,artDirty:false},
   onLoad(q){
+    this._artStyle=Art.normalize();
+    try{this._artStyle=Art.normalize(wx.getStorageSync(Art.storageKey));}catch(_){}
     this._ready=true;this._turn=0;this._cache=new Map();
     CFG.bind(this);this.setData({i:I.dict()});
     this.data_=app.globalData.data;this.idx=U.index(this.data_);this.base=Tix.baseFor(this.data_,this.idx);
@@ -94,7 +97,7 @@ Page({
     node.width=FACE_W;node.height=FACE_H;
     const ctx=node.getContext('2d');
     ctx.clearRect(0,0,FACE_W,FACE_H);
-    R.draw(ctx,row,side,art,{x:0,y:0,w:FACE_W,h:FACE_H},stock);
+    R.draw(ctx,{...row,artStyle:this._artStyle},side,art,{x:0,y:0,w:FACE_W,h:FACE_H},stock);
     const path=await new Promise(resolve=>wx.canvasToTempFilePath({canvas:node,fileType:'png',success:r=>resolve(r.tempFilePath),fail:()=>resolve('')},this));
     if(path){this._cache.set(sig,path);if(this._cache.size>24)this._cache.delete(this._cache.keys().next().value);}
     return path;
@@ -180,7 +183,7 @@ Page({
   // ——— 导出这张 ———
   async exportSingle(){
     if(this.data.loading)return;
-    const side=this.data.front?'front':'back',row={...this._draft,look:{...this._draft.look}};
+    const side=this.data.front?'front':'back',row={...this._draft,look:{...this._draft.look},artStyle:this._artStyle};
     this.setData({loading:true});wx.showLoading({title:I.tr('正在生成图片'),mask:true});
     try{
       const node=await canvas(this,'te-export');if(!node)throw Error('canvas');
