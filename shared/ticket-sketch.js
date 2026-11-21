@@ -20,6 +20,32 @@
   ];
   const storageKey="sparrow-ticket-art-style";
   const normalize=value=>styles.some(style=>style.id===value)?value:styles[0].id;
+  const filmStyleOptions=[{id:"",label:"跟随收藏册"},...styles];
+  const filmStorageKey="sparrow-ticket-art-style-by-film";
+  const filmIdPattern=/^[\w-]{1,80}$/;
+
+  function parseFilmStyles(raw){
+    try{
+      const values=JSON.parse(raw||"{}");
+      if(!values||typeof values!=="object"||Array.isArray(values))return new Map();
+      return new Map(Object.entries(values).filter(([filmId,style])=>filmIdPattern.test(filmId)&&normalize(style)===style));
+    }catch(_){return new Map();}
+  }
+
+  function readFilmStyles(read){
+    try{return parseFilmStyles(read(filmStorageKey));}catch(_){return new Map();}
+  }
+
+  function saveFilmStyle(read,write,filmId,style){
+    if(typeof filmId!=="string"||!filmIdPattern.test(filmId)||(style!==""&&normalize(style)!==style))return null;
+    try{
+      const overrides=parseFilmStyles(read(filmStorageKey));
+      if(style)overrides.set(filmId,style);
+      else overrides.delete(filmId);
+      write(filmStorageKey,JSON.stringify(Object.fromEntries(overrides)));
+      return overrides;
+    }catch(_){return null;}
+  }
   const clamp=(n,lo,hi)=>Math.max(lo,Math.min(hi,n));
   const luma=(r,g,b)=>.24*r+.58*g+.18*b;
   const distance=(r,g,b,color)=>.30*(r-color[0])**2+.52*(g-color[1])**2+.18*(b-color[2])**2;
@@ -402,5 +428,5 @@
     }
   }
 
-  return {styles,storageKey,normalize,stylize,paint};
+  return {styles,storageKey,normalize,filmStyleOptions,readFilmStyles,saveFilmStyle,stylize,paint};
 });

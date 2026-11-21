@@ -4,6 +4,7 @@
 // 参数：key=票根键（已收藏或待制作），film=影片id（没有观影记录时新建手工票根）。
 const R=require('../../utils/tickets.js');
 const Art=require('../../utils/ticket-sketch.js');
+const readArtPreference=key=>wx.getStorageSync(key);
 const Tix=require('../../utils/ticketstore.js');
 const W=require('../../utils/watched.js');
 const U=require('../../utils/util.js');
@@ -42,10 +43,10 @@ Page({
   data:{i:{},ps:'',ok:false,draft:{},front:true,frontImg:'',backImg:'',rx:-2,ry:-4,turning:false,snap:false,glowBg:'',shine:'metal',
     arts:[],artIndex:0,artStyleLabels:[],artStyleIndex:0,shows:[],showIdx:-1,existing:false,linked:false,loading:false,busy:true,artDirty:false},
   onLoad(q){
-    this._artStyle=Art.normalize();
-    try{this._artStyle=Art.normalize(wx.getStorageSync(Art.storageKey));}catch(_){}
+    this._albumArtStyle=Art.normalize();
+    try{this._albumArtStyle=Art.normalize(readArtPreference(Art.storageKey));}catch(_){}
     this._ready=true;this._turn=0;this._cache=new Map();
-    CFG.bind(this);this.setData({i:I.dict(),artStyleLabels:Art.styles.map(style=>I.tr(style.label)),artStyleIndex:Art.styles.findIndex(style=>style.id===this._artStyle)});
+    CFG.bind(this);this.setData({i:I.dict(),artStyleLabels:Art.filmStyleOptions.map(style=>I.tr(style.label))});
     this.data_=app.globalData.data;this.idx=U.index(this.data_);this.base=Tix.baseFor(this.data_,this.idx);
     const key=q.key?decodeURIComponent(q.key):'',film=q.film?decodeURIComponent(q.film):'';
     const built=Tix.build(this.data_,this.idx),views=Tix.viewings(this.idx);
@@ -80,6 +81,8 @@ Page({
   setup(row){
     if(row.art)row.art=artworkUrl(row.art);
     this._draft=row;
+    const style=Art.readFilmStyles(readArtPreference).get(row.filmId)||'';
+    this._artStyle=style||this._albumArtStyle;
     this._artSaved=this._original?artSig(row):'';
     this._art=[...(row.arts||[])].map(artworkUrl);
     if(row.art&&!this._art.includes(row.art))this._art.unshift(row.art);
@@ -87,6 +90,7 @@ Page({
     this._shows=(this.data_.shows||[]).filter(x=>x.id===row.filmId).map(x=>{const v=this.idx.VN[x.v];return {date:iso(U.showDate(x)),time:x.t,venue:(v&&v.name)||'',hall:this.idx.hallName(x)||'',city:(v&&v.city)||''};})
       .filter(x=>!row.linked||x.date===row.date).sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time));
     this.setData({ok:true,draft:row,existing:!!this._original,artDirty:!this._original,linked:!!row.linked,
+      artStyleIndex:Art.filmStyleOptions.findIndex(option=>option.id===style),
       arts:this._art.map((_,i)=>I.tr(i===0?'海报':'备用图像')+' '+(i+1)),artIndex:Math.max(0,this._art.indexOf(row.art)),
       shows:this._shows.map(x=>`${x.date.slice(5).replace('-','/')} ${x.time} · ${x.venue}${x.hall?' '+x.hall:''}`),showIdx:this.showIndex(),
       shine:R.shineOf(row.look.finish).kind},()=>this.renderFaces());
@@ -169,10 +173,12 @@ Page({
     this.setData({draft:d,showIdx:Number(e.detail.value)});this.renderFaces();
   },
   pickArtStyle(e){
-    const artStyleIndex=Number(e.detail.value),style=Art.styles[artStyleIndex];
-    if(!style||style.id===this._artStyle)return;
-    this._artStyle=style.id;
-    try{wx.setStorageSync(Art.storageKey,style.id);}catch(_){}
+    const artStyleIndex=Number(e.detail.value),style=Art.filmStyleOptions[artStyleIndex];
+    if(!style||artStyleIndex===this.data.artStyleIndex)return;
+    if(!Art.saveFilmStyle(readArtPreference,(key,value)=>wx.setStorageSync(key,value),this._draft.filmId,style.id)){
+      say('票根保存失败，请检查本机存储');return;
+    }
+    this._artStyle=style.id||this._albumArtStyle;
     this.setData({artStyleIndex});
     if(this.data.turning)this._flipFront=true;
     else if(!this.data.front)this.flip();

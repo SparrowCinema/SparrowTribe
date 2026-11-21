@@ -145,6 +145,19 @@ const doodle=Sketch.stylize(patch,12,8,48,32,'doodle');
 const hasInk=doodle.some((value,i)=>i%4===0&&value<40&&doodle[i+1]<40&&doodle[i+2]<40);
 assert(hasInk,'comic panel outlines strongly contrasting colors');
 assert.deepStrictEqual(Sketch.styles.slice(-3).map(x=>x.id),['doodle','kid-crayon','cartoon']);
+// 影片的覆盖值与收藏册默认分开，清除覆盖后重新使用默认值。
+const artStorage=new Map([[Sketch.storageKey,'woodcut']]);
+const readArt=key=>artStorage.get(key),writeArt=(key,value)=>artStorage.set(key,value);
+assert.equal(Sketch.filmStyleOptions[0].id,'');
+assert.equal(Sketch.saveFilmStyle(readArt,writeArt,'first-film','doodle').get('first-film'),'doodle');
+assert.equal(Sketch.saveFilmStyle(readArt,writeArt,'second-film','cartoon').get('first-film'),'doodle');
+assert.equal(Sketch.saveFilmStyle(readArt,writeArt,'first-film','').get('second-film'),'cartoon');
+assert.equal(Sketch.readFilmStyles(readArt).has('first-film'),false);
+assert.equal(readArt(Sketch.storageKey),'woodcut');
+assert.equal(Sketch.saveFilmStyle(readArt,writeArt,'second-film','invalid-style'),null);
+assert.equal(Sketch.saveFilmStyle(()=>{throw Error('storage read failed');},writeArt,'third-film','doodle'),null);
+assert.equal(Sketch.readFilmStyles(readArt).get('second-film'),'cartoon');
+
 // 卡通漫画：色块分明、有黑色勾线；童趣蜡笔：有露白的蜡笔纹（比彩色涂鸦浅色像素更多）
 const disc=new Uint8ClampedArray(40*30*4);for(let y=0;y<30;y++)for(let x=0;x<40;x++){const i=(y*40+x)*4,inside=(x-20)**2+(y-15)**2<64;disc.set(inside?[40,60,150,255]:[235,225,200,255],i);}
 const toon=Sketch.stylize(disc,40,30,80,60,'cartoon');

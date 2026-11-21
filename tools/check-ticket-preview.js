@@ -75,12 +75,13 @@ const flush=async()=>{for(let n=0;n<20;n++){await new Promise(r=>setImmediate(r)
   page.touchStart({touches:[{clientX:180,clientY:40}]});
   assert(page.data.ry>5&&page.data.rx>3,'tilt follows the finger');assert.match(page.data.glowBg,/circle at 90% 10%/);
   page.touchEnd();assert.equal(page.data.ry,-4);
-  // 手绘风格复用本机偏好，单独重画配图，翻到正面。
+  // 只为这部影片保存手绘风格，单独重画配图，翻到正面。
   const originalFront=page.data.frontImg,originalBack=page.data.backImg,crop=page.data.draft.crop;
-  const choose=(id)=>page.pickArtStyle({detail:{value:String(Art.styles.findIndex(style=>style.id===id))}});
+  const choose=(id)=>page.pickArtStyle({detail:{value:String(Art.filmStyleOptions.findIndex(style=>style.id===id))}});
   choose('doodle');await flush();
-  assert.equal(store[Art.storageKey],'doodle');
-  assert.equal(page.data.artStyleLabels.length,Art.styles.length);
+  assert.equal(Art.readFilmStyles(wx.getStorageSync).get(film.id),'doodle');
+  assert.equal(store[Art.storageKey],'woodcut');
+  assert.equal(page.data.artStyleLabels.length,Art.styles.length+1);
   assert.equal(page.data.front,true);
   assert.notEqual(page.data.frontImg,originalFront,'style must be part of the preview image cache key');
   assert.equal(page.data.backImg,originalBack);
@@ -89,7 +90,8 @@ const flush=async()=>{for(let n=0;n<20;n++){await new Promise(r=>setImmediate(r)
   page.flip();choose('watercolor');choose('blue-ink');await flush();
   assert.equal(page.data.front,true);
   assert.equal(page._artStyle,'blue-ink');
-  assert.equal(store[Art.storageKey],'blue-ink');
+  assert.equal(Art.readFilmStyles(wx.getStorageSync).get(film.id),'blue-ink');
+  assert.equal(store[Art.storageKey],'woodcut');
   assert.equal(page.data.backImg,originalBack);
   // 返回收藏册时，即使票根数据未修改，也更新样式和缩略图。
   const albumDir=path.join(__dirname,'../miniprogram/pages/tickets');
@@ -97,11 +99,20 @@ const flush=async()=>{for(let n=0;n<20;n++){await new Promise(r=>setImmediate(r)
   const albumSandbox={...sandbox,Page:o=>{albumOptions=o;},require:name=>require(path.join(albumDir,name))};
   vm.runInNewContext(fs.readFileSync(path.join(albumDir,'tickets.js'),'utf8'),albumSandbox,{filename:'tickets.js'});
   const album={...albumOptions,data:{...albumOptions.data,artStyle:'woodcut',front:false},setData:page.setData,
-    _shownOnce:true,_rev:require('../miniprogram/utils/ticketstore').rev(),paint(){this.painted=true;}};
+    _filmStyles:new Map(),_shownOnce:true,_rev:require('../miniprogram/utils/ticketstore').rev(),paint(){this.painted=true;}};
   album.onShow();
-  assert.equal(album.data.front,true);
-  assert.equal(album.data.artStyle,'blue-ink');
-  assert.equal(album.data.artStyleIndex,Art.styles.findIndex(style=>style.id==='blue-ink'));
+  assert.equal(album.data.front,false,'changing one film does not change the album side');
+  assert.equal(album.data.artStyle,'woodcut');
+  const otherFilm=films.find(item=>item.id!==film.id);
+  assert.equal(album.styleFor({filmId:film.id}),'blue-ink');
+  assert.equal(album.styleFor({filmId:otherFilm.id}),'woodcut');
+  const otherPage={...options,data:JSON.parse(JSON.stringify(options.data)),setData:page.setData};
+  otherPage.onLoad({film:otherFilm.id});await flush();
+  assert.equal(otherPage._artStyle,'woodcut');
+  assert.equal(otherPage.data.artStyleIndex,0);
+  album.pickArtStyle({detail:{value:String(Art.styles.findIndex(style=>style.id==='cartoon'))}});
+  assert.equal(album.styleFor({filmId:film.id}),'blue-ink');
+  assert.equal(album.styleFor({filmId:otherFilm.id}),'cartoon');
   assert(album.painted,'the album refreshes even when no ticket record changed');
   // 在背面拖动裁切会翻回正面
   page.flip();await flush();
@@ -139,6 +150,10 @@ const flush=async()=>{for(let n=0;n<20;n++){await new Promise(r=>setImmediate(r)
   page3.onLoad({key:encodeURIComponent(saved[0])});await flush();assert.equal(page3.data.draft.crop,83);
   await page2.exportSingle();await flush();
   assert(exporter.ctx.labels.includes('纪念票根'));
+  page2.pickArtStyle({detail:{value:'0'}});await flush();
+  assert.equal(page2._artStyle,'cartoon');
+  assert.equal(Art.readFilmStyles(wx.getStorageSync).has(film.id),false);
+  assert.equal(store[Art.storageKey],'cartoon');
   page2.remove();assert(store['sk-tickets-v2'][saved[0]].del);
-  console.log('PASS: ticket editor page — native scrolling/back, image preview with CSS 3D flip & tilt, shuffle redraw, show picker, shared artwork style picker and album refresh, crop flips to front, crop save-in-place, save, export, remove.');
+  console.log('PASS: ticket editor page — native scrolling/back, image preview with CSS 3D flip & tilt, shuffle redraw, show picker, per-film artwork styles and album fallback, crop flips to front, crop save-in-place, save, export, remove.');
 })().catch(e=>{console.error(e);process.exitCode=1;});
