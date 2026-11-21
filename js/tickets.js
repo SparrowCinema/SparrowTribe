@@ -1,4 +1,4 @@
-/* 我的票根收藏册（2026-11-21 重做）。
+/* 我的典藏票根册（2026-11-21 重做）。
    票根 = 某一次观影的「皮肤」：本机 sparrow-tickets-v2 只存用户改过的字段（规则见 shared/tickets.js、shared/psync.js），
    日期、影院、片名、专题由观影记录与片库推出；随个人档案云端同步与完整备份一起保存。
    浏览：按年 → 月连续滚动（月份标题吸顶）、年份切换、搜索 + 分面筛选、四档密度（大 / 中 / 小 / 书脊）；
@@ -162,7 +162,7 @@ function ticketRender(){
 }
 // 页面结构与「我的海报墙」一致：标题 → 检索条 → 工具栏 → 列表；筛选、年份、显示、手绘风格和导出使用弹层
 function ticketHeading(album,title){
-  return `<div class="page-heading ticket-page-heading"><div><small>MY TICKET ALBUM</small><h2 class="sec">${ticketDict(title||"我的票根收藏册")}</h2></div>
+  return `<div class="page-heading ticket-page-heading"><div><small>COLLECTOR'S TICKET BOOK</small><h2 class="sec">${ticketDict(title||"我的典藏票根册")}</h2></div>
     ${album?`<button type="button" class="text-button ticket-make" data-ticket-action="new">＋ ${ticketDict("制作票根")}</button>`:`<button type="button" class="text-button ticket-make" data-ticket-action="cancel">‹ ${ticketDict("返回收藏册")}</button>`}</div>`;
 }
 function ticketEmptyHTML(pending){
@@ -528,7 +528,7 @@ function ticketSave(stay){
     d.original=key;d.row.key=key;d.artSig=ticketArtSig(d.row);
     const y=window.scrollY;ticketRender();window.scrollTo(0,y);toast(tr(stamped?"已同时盖章 · 加入观影护照":"已保存"));return;
   }
-  ticketDraft=null;ticketMode="album";ticketRender();toast(tr(stamped?"已同时盖章 · 加入观影护照":"已收进票根收藏册"));
+  ticketDraft=null;ticketMode="album";ticketRender();toast(tr(stamped?"已同时盖章 · 加入观影护照":"已收进典藏票根册"));
 }
 
 // ——— 导出 ———
@@ -544,11 +544,11 @@ function ticketExportTitle(){
   if(o.kind==="year")return (o.year||counts.year[0]?.value)+" "+tr("年度票根墙");
   if(o.kind==="prog")return (o.prog||counts.programme[0]?.value)+tr("票根墙");
   if(o.kind==="pick")return tr("精选票根墙");
-  return tr("我的票根收藏册");
+  return tr("我的典藏票根册");
 }
 async function ticketExport(button,single){
   const side=single?ticketDraft.side:ticketSide;
-  let shown,title=tr("我的票根收藏册"),caption="",part=0,parts=1;
+  let shown,title=tr("我的典藏票根册"),caption="",part=0,parts=1;
   if(single)shown=[{...ticketDraft.row,look:{...ticketDraft.row.look}}];
   else{
     const all=ticketExportRows();parts=Math.max(1,Math.ceil(all.length/TE.MOSAIC_MAX));part=Math.min(ticketExportOpen?.part||0,parts-1);

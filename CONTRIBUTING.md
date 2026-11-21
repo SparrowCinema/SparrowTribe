@@ -149,7 +149,7 @@ Claude 与 GPT 可能使用同一 GitHub 身份，审批人数可先设为0；�
 - 品牌方形标志（`images/brand/*-sq*.png`）在页面里按 76rpx 显示，文件不超过 240×240；2026-11-16 把两张深色版从 600×600 缩到 240×240、友情链接图标压成 128 色，主包从 1806KB 降到 1671KB。
 - 主包构成（2026-11-16）：离线兜底数据约 650KB、图片约 340KB、页面约 406KB、工具代码约 254KB。页面分包能省的不到 100KB，持续增长的是兜底数据。
 - 兜底数据只含进行中和即将开始的专题（2026-11-16 起）：`tools/build-fallback.js` 按运行当天（北京时间，可用环境变量 `FALLBACK_TODAY` 指定日期）去掉已结束专题的影片、场次和专题条目；常设专题一直保留，被保留场次引用的跨专题影片也保留。**所以发小程序新版本前一定要重新运行一次**，否则已结束的影展会留在包里。以 11-30 为例：453KB → 103KB。
-- **分包（2026-11-21）**：只从「我的」进入的四个页面放在分包 `miniprogram/packages/collect/`（`tickets` 票根收藏册、`ticket-edit` 票根详情、`poster-wall` 海报墙、`taste-map` 趣味图谱），只有趣味图谱用的 `taste-report.js` 也放在分包 `utils/` 里（`build-fallback.js` 复制到那里）。页面路径是 `/packages/collect/<页>/<页>`；`app.json` 的 `preloadRule` 在打开「我的」时预下载分包。分包页面引用主包工具用 `../../../utils/`。影片页、专题页、分享页等会被分享卡片 / 小程序码直接打开的页面留在主包，路径不要动。新增只从「我的」进入、不需要分享直达的页面，优先放进这个分包（单个分包上限 2MB，全部合计 20MB）。
+- **分包（2026-11-21）**：只从「我的」进入的四个页面放在分包 `miniprogram/packages/collect/`（`tickets` 典藏票根册、`ticket-edit` 票根详情、`poster-wall` 海报墙、`taste-map` 趣味图谱），只有趣味图谱用的 `taste-report.js` 也放在分包 `utils/` 里（`build-fallback.js` 复制到那里）。页面路径是 `/packages/collect/<页>/<页>`；`app.json` 的 `preloadRule` 在打开「我的」时预下载分包。分包页面引用主包工具用 `../../../utils/`。影片页、专题页、分享页等会被分享卡片 / 小程序码直接打开的页面留在主包，路径不要动。新增只从「我的」进入、不需要分享直达的页面，优先放进这个分包（单个分包上限 2MB，全部合计 20MB）。
 - **离线英文层瘦身（2026-11-21）**：`miniprogram/data/en.js` 只保留兜底数据里有的影片和专题，影片只留片名、原名、导演、国家、年份、类型、语言、版本、上映（`build-fallback.js` 的 `EN_FILM_KEEP`），演职员、场次备注等联网后由 getData 带回。226KB → 158KB。2026-11-21 主包 1986KB → 1759KB，分包 160KB；金马、金鸡结束（11-30 之后）重新运行 build-fallback，data.js 还会再降约 400KB。
 - 本机数据缓存：`miniprogram/utils/datacache.js`。每次从 getData 取到数据后，把列表 / 排片 / 护照需要的字段写到用户目录的 `sparrow-data-cache.json`；下次启动时如果它比安装包里的兜底数据新（`savedAt` 大于 `builtAt`），就先用它，云端返回后照常替换。因此往期影片只在「第一次打开且没有网络」时看不到。
 
@@ -416,7 +416,7 @@ Claude 与 GPT 可能使用同一 GitHub 身份，审批人数可先设为0；�
 
 - 不对外展映、不对外售票的场次（如吴天明青年电影展「产业放映 · 首作之上」），照常录入场次，并在该影片 `screeningNotes["日期-时间-影院id-厅id"]` 写「产业放映 · 不对外展映 · 不对外售票」（英文在 `en.json` 对应键写 Industry screening · not open to the public · no public tickets）。只用现有的场次备注显示，不增加单独的页面板块，因此不需要重新上传小程序。
 
-## 我的票根收藏册（2026-11-21 重做，按上千张设计）
+## 我的典藏票根册（2026-11-21 重做，按上千张设计；2026-11-22 由「我的票根收藏册」改名）
 
 - **数据**：票根是某一次观影的「皮肤」。键 `影片id|观影日期`（同一天第二次看加 `|2`），本机只存用户改过的字段：款式 `l`（`palette.finish.texture.motif`）、座位 `st`、裁切 `c`、票面图 `a`、开场 `tm`、影院 `vn`、影厅 `hl`、城市 `cy`、版本 `fm`，删除留 `{del:1,t}`。片名、日期、影院、专题由观影记录（`shared/growth.js` 的 `views`）与片库实时推出，片库改字后票根自动更新。没有观影记录的手工票根用同样的键。5000 张一键生成约 200KB，全部换过款式、填了座位约 460KB，低于小程序单项 1MB 上限。
 - **存储**：网站 `sparrow-tickets-v2`（`js/tickets.js`），小程序 `sk-tickets-v2`（`utils/ticketstore.js`）。旧版整条记录 `sparrow-tickets-v1` / `sk-tickets-v1` 第一次打开时自动迁移（`shared/tickets.js` 的 `migrateV1`，同影片同一天关联到观影记录，款式与座位保留），旧键不删除。
