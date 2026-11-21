@@ -96,10 +96,24 @@ function sheen(ctx,finish,side,light,active){
   ctx.restore();
 }
 
+// 部分手机的微信里，把离屏画布 drawImage 到页面画布上不会报错、但什么也画不出来（预览一片空白，换款也不变）。
+// 先画一个色块读回像素确认真的复制上去了；读不回或是透明的，就一直直接在页面画布上画。
+function canCopy(ctx,texture,source){
+  try{
+    source.clearRect(0,0,8,8);source.fillStyle='#ff0000';source.fillRect(0,0,8,8);
+    ctx.clearRect(0,0,8,8);ctx.drawImage(texture,0,0,8,8,0,0,8,8);
+    const pixel=ctx.getImageData(0,0,1,1);
+    ctx.clearRect(0,0,8,8);source.clearRect(0,0,8,8);
+    const data=pixel&&pixel.data;
+    return !!data&&data[3]>200&&data[0]>200;
+  }catch(_){return false;}
+}
+
 function createPreview(node,createCanvas){
   const ctx=node.getContext('2d');
   let texture,source;
   try{texture=createCanvas(W,H);source=texture.getContext('2d');}catch(_){texture=null;}
+  if(texture&&!canCopy(ctx,texture,source))texture=null;
   return (record,side,image,turn,position)=>{
     const light=position||REST_LIGHT;
     const yaw=turn??radians(position?(light.x-.5)*34:-3);

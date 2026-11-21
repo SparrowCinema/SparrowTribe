@@ -11,7 +11,7 @@ assert.equal((template.match(/class="al-editor-canvas"/g)||[]).length,1);
 assert.match(template,/<canvas [^>]*id="ticket-editor"[^>]*bindtap="flipEditor"/);
 assert.match(template,/catchtouchmove="moveEditorTouch"/);
 
-let rejectCanvasImage=false;
+let rejectCanvasImage=false,silentCanvasImage=false;
 function drawingContext(){
   const ctx={labels:[],lights:[],colors:[],transforms:[]};
   const gradient={addColorStop(_,color){ctx.colors.push(color);}};
@@ -19,9 +19,13 @@ function drawingContext(){
     if(key==='clearRect')return ()=>{target.labels=[];target.lights=[];target.colors=[];target.transforms=[];};
     if(key==='fillText')return label=>target.labels.push(label);
     if(key==='transform')return (...values)=>target.transforms.push(values);
+    if(key==='getImageData')return ()=>({data:target.copied?[255,0,0,255]:[0,0,0,0]});
     if(key==='drawImage')return source=>{
       if(!source.frame)return;
       if(rejectCanvasImage)throw Error('Canvas image source unsupported');
+      // 部分手机：drawImage 离屏画布不报错也不画
+      if(silentCanvasImage)return;
+      target.copied=true;
       const {labels,lights,colors}=source.frame;
       Object.assign(target,{labels:[...labels],lights:[...lights],colors:[...colors]});
     };
@@ -111,5 +115,13 @@ vm.runInNewContext(fs.readFileSync(path.join(pagePath,'tickets.js'),'utf8'),{
   advance(16);
   assertFace('front');assertPerspective();
   assert(preview.colors.some(color=>color.startsWith('hsla')),'direct drawing keeps the rainbow');
-  console.log('PASS: one canvas, reversible perspective flip, moving rainbow, late-poster guard, direct-render fallback and still PNG.');
+  // 离屏复制静默失败的手机：创建预览时检测出来，直接在页面画布上画（正反面、换款都能看到）
+  rejectCanvasImage=false;silentCanvasImage=true;
+  const quiet=drawingContext(),quietNode={width:630,height:1296,getContext:()=>quiet};
+  const render=previewModule.createPreview(quietNode,()=>{const frame=drawingContext();return {frame,getContext:()=>frame};});
+  render(draft,'front',null);
+  assert(quiet.labels.includes('纪念票根'),'silent offscreen copy falls back to direct drawing');
+  const shuffled={...draft,look:tickets.randomLook(draft)};quiet.colors=[];render(shuffled,'back',null);
+  assert(quiet.labels.includes('收藏票根'));
+  console.log('PASS: one canvas, reversible perspective flip, moving rainbow, late-poster guard, direct-render fallback, silent-copy detection and still PNG.');
 })().catch(error=>{console.error(error);process.exitCode=1;});
