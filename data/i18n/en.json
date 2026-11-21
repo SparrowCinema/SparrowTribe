@@ -31,7 +31,9 @@
     "分成": "Split into",
     "一键生成": "Create all",
     "图像": "Image",
-    "裁切": "Crop"
+    "裁切": "Crop",
+    "场次": "Screening",
+    "自填": "Manual"
   },
   "_readme": "English layer for the site. films/programmes/venues overlay data fields when ?lang=en; ui is the zh→en dictionary used by tr(). Missing entries fall back to the Chinese text.",
   "films": {
@@ -12454,6 +12456,8 @@
     "移出收藏册": "Remove from album",
     "恢复专题默认款式": "Restore programme style",
     "编辑票根": "Edit ticket",
-    "新票根": "New ticket"
+    "新票根": "New ticket",
+    "选择场次": "Choose a screening",
+    "自填 / 选择场次": "Enter manually / choose"
   }
 }

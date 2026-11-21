@@ -120,8 +120,9 @@
 
       <view class="te-sec">{{L.t(i,'放映信息')}}</view>
       <view class="te-card">
-        <view wx:if="{{linked}}" class="te-row te-first"><text class="te-k">{{L.t(i,'观影日期')}}</text><view class="te-v"><text class="te-mono">{{draft.date}}</text><text class="te-note">{{L.t(i,'来自观影记录')}}</text></view></view>
-        <picker wx:else class="te-first" mode="date" value="{{draft.date}}" data-field="date" bindchange="changeField"><view class="te-row"><text class="te-k">{{L.t(i,'观影日期')}}</text><view class="te-v"><text class="te-mono">{{draft.date || L.t(i,'选择日期')}}</text><text class="te-go">›</text></view></view></picker>
+        <picker wx:if="{{shows.length}}" class="te-first" mode="selector" range="{{shows}}" value="{{showIdx<0?0:showIdx}}" bindchange="chooseShow"><view class="te-row"><text class="te-k">{{L.t(i,'场次')}}</text><view class="te-v"><text class="{{showIdx<0?'te-ph':''}}">{{showIdx<0?L.t(i,'选择场次'):shows[showIdx]}}</text><text class="te-go">›</text></view></view></picker>
+        <view wx:if="{{linked}}" class="te-row {{shows.length?'':'te-first'}}"><text class="te-k">{{L.t(i,'观影日期')}}</text><view class="te-v"><text class="te-mono">{{draft.date}}</text><text class="te-note">{{L.t(i,'来自观影记录')}}</text></view></view>
+        <picker wx:else class="{{shows.length?'':'te-first'}}" mode="date" value="{{draft.date}}" data-field="date" bindchange="changeField"><view class="te-row"><text class="te-k">{{L.t(i,'观影日期')}}</text><view class="te-v"><text class="te-mono">{{draft.date || L.t(i,'选择日期')}}</text><text class="te-go">›</text></view></view></picker>
         <picker mode="time" value="{{draft.time}}" data-field="time" bindchange="changeField"><view class="te-row"><text class="te-k">{{L.t(i,'开场时间')}}</text><view class="te-v"><text class="te-mono {{draft.time?'':'te-ph'}}">{{draft.time || L.t(i,'选择时间')}}</text><text class="te-go">›</text></view></view></picker>
         <view class="te-row"><text class="te-k">{{L.t(i,'影院')}}</text><input class="te-in" value="{{draft.venue}}" placeholder="{{L.t(i,'影院名称')}}" placeholder-class="te-ph" data-field="venue" bindinput="changeField" /></view>
         <view class="te-row"><text class="te-k">{{L.t(i,'影厅')}}</text><input class="te-in" value="{{draft.hall}}" placeholder="{{L.t(i,'如 1号厅')}}" placeholder-class="te-ph" data-field="hall" bindinput="changeField" /></view>
