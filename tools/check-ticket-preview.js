@@ -122,6 +122,13 @@ const flush=async()=>{for(let n=0;n<20;n++){await new Promise(r=>setImmediate(r)
   page.flip();await flush();
   page.changeField({currentTarget:{dataset:{field:'crop'}},detail:{value:20}});await flush();
   assert.equal(page.data.front,true);assert.equal(page.data.draft.crop,20);
+  // 拖动中（bindchanging）实时重画正面，不等松手
+  const beforeLive=page.data.frontImg;
+  page.changeField({type:'changing',currentTarget:{dataset:{field:'crop'}},detail:{value:35}});await flush();
+  assert.notEqual(page.data.frontImg,beforeLive,'crop preview updates while dragging');assert.equal(page.data.draft.crop,35);
+  page.changeField({type:'changing',currentTarget:{dataset:{field:'crop'}},detail:{value:36}});page.changeField({type:'changing',currentTarget:{dataset:{field:'crop'}},detail:{value:37}});await flush();
+  assert.equal(page._liveBusy,false,'live crop loop settles');
+  page.changeField({type:'change',currentTarget:{dataset:{field:'crop'}},detail:{value:20}});await flush();await new Promise(r=>setTimeout(r,200));await flush();
   // 场次选择：日期、开场、影院、影厅一起填
   assert(page.data.shows.length>0);
   page.chooseShow({detail:{value:0}});await flush();
