@@ -68,6 +68,16 @@
 .te-l1,.te-r1{top:.9%;height:78.6%}
 .te-l2,.te-r2{top:82.1%;height:17%}
 .te-l1,.te-l2{left:0}
+.te-craft{font-size:calc(19 * var(--fr));line-height:1.5;color:var(--muted);text-align:center;padding:0 calc(16 * var(--r))}
+/* 工艺反光（参考视高迪数字增效）：遮罩来自票面的烫印 / 镭射 / 光油区域，位置与强度由 turn.wxs 按角度写入；与网页 styles/tickets.css 一致 */
+.te-fx{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;opacity:0;background-repeat:no-repeat;-webkit-mask-size:100% 100%;mask-size:100% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;mix-blend-mode:screen}
+.fx-holo{background-image:linear-gradient(115deg,#ff8ad8,#ffd36e,#7dffcf,#6fc3ff,#c49bff,#ff8ad8,#ffd36e,#7dffcf,#6fc3ff);background-size:300% 300%;mix-blend-mode:color-dodge}
+.fx-cast{background-image:repeating-radial-gradient(circle at 50% 50%,rgba(255,255,255,.55) 0 1.5px,rgba(255,255,255,0) 2px 5px),linear-gradient(115deg,#ff8ad8,#ffd36e,#7dffcf,#6fc3ff,#c49bff,#ff8ad8,#ffd36e,#7dffcf,#6fc3ff);background-size:200% 200%,300% 300%;mix-blend-mode:color-dodge}
+.fx-crystal{background-image:linear-gradient(135deg,#ffc2ec,#fff4c2,#c2fbff,#d9c8ff,#ffc2ec,#fff4c2,#c2fbff),linear-gradient(105deg,rgba(255,255,255,0) 42%,rgba(255,255,255,.9) 50%,rgba(255,255,255,0) 58%);background-size:250% 250%,300% 100%}
+.fx-sweep{background-image:linear-gradient(105deg,rgba(255,255,255,0) 40%,rgba(255,255,255,.95) 50%,rgba(255,255,255,0) 60%);background-size:300% 100%}
+.fx-glitter{background-image:linear-gradient(105deg,rgba(255,255,255,0) 44%,rgba(255,255,255,.95) 50%,rgba(255,255,255,0) 56%),linear-gradient(75deg,rgba(255,255,255,0) 46%,rgba(255,247,214,.7) 50%,rgba(255,255,255,0) 54%);background-size:300% 100%,300% 100%}
+.fx-gloss{background-image:radial-gradient(ellipse 45% 30% at 50% 50%,rgba(255,255,255,.85),rgba(255,255,255,0));background-size:200% 200%}
+.fx-sense{background-image:radial-gradient(ellipse 30% 18% at 50% 50%,rgba(255,255,255,.95),rgba(255,255,255,0)),linear-gradient(105deg,rgba(255,255,255,0) 40%,rgba(255,255,255,.5) 50%,rgba(255,255,255,0) 60%);background-size:200% 200%,300% 100%}
 .te-r1,.te-r2{left:100%}
 .te-wait{aspect-ratio:420/864;display:flex;align-items:center;justify-content:center;border-radius:calc(8 * var(--r));background:var(--surface);border:calc(2 * var(--r)) dashed var(--line);color:var(--muted);font-size:calc(21 * var(--fr))}
 .te-hidden{position:fixed;left:-3000px;top:0;width:2px;height:2px;pointer-events:none}

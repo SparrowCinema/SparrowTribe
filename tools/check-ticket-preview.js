@@ -24,9 +24,9 @@ assert.equal((wxml.match(/class="te-edge /g)||[]).length,4,'paper edges on both 
   let clock=1000;
   const T=require('vm').runInNewContext(fs.readFileSync(path.join(dir,'turn.wxs'),'utf8')+';module.exports',{module:{exports:{}},getDate:()=>({getTime:()=>clock}),Math});
   const styles={},calls=[],st={};
-  const comp=name=>({setStyle(v){styles[name]=v;}});
+  const comp=name=>({setStyle(v){styles[name]=v;},getDataset:()=>name.startsWith('.te-fx')?{fx:'cast',k:1}:{}});
   const owner={selectComponent:s=>comp(s),selectAllComponents:s=>[comp(s+'0'),comp(s+'1')],callMethod:(n,a)=>calls.push([n,JSON.parse(JSON.stringify(a))])};
-  const inst={getState:()=>st,getDataset:()=>({shine:'spectrum'})};
+  const inst={getState:()=>st,getDataset:()=>({shine:'spectrum',fx:'cast'})};
   const ev=(x,y)=>({instance:inst,touches:x==null?[]:[{clientX:x,clientY:y}]});
   const rot=()=>styles['.te-rot'].transform.match(/rotateX\((-?[\d.]+)deg\) rotateY\((-?[\d.]+)deg\)/).slice(1).map(Number);
   T.request({side:'front',n:0,kind:'metal'},null,owner,inst);assert.deepEqual(rot(),[-2,-4]);
@@ -34,10 +34,11 @@ assert.equal((wxml.match(/class="te-edge /g)||[]).length,4,'paper edges on both 
   T.start(ev(100,300),owner);clock+=16;T.move(ev(160,200),owner);clock+=16;T.move(ev(300,-100),owner);
   assert.deepEqual(rot(),[65,86],'yaw follows the finger, pitch is capped at 65°');
   assert.equal(styles['.te-rot'].transition,'none');assert.equal(styles['.te-glow0'].opacity,1,'glare shows while dragging');
-  assert.match(styles['.te-glow0'].background,/^radial-gradient\(circle at -?\d+% -?\d+%,rgba\(255,255,255,\.22\)/,'spectrum glare follows the finish');
+  assert.match(styles['.te-glow0'].background,/^radial-gradient\(circle at -?\d+% -?\d+%,rgba\(255,255,255,\.11\)/,'spectrum glare follows the finish (half strength now that foil effects carry the shine)');
+  assert.match(styles['.te-fx0']['background-position'],/^-?\d+% -?\d+%, -?\d+% -?\d+%$/,'cast foil effect moves both layers with the angle');assert(styles['.te-fx0'].opacity>0,'foil effect shows while turning');
   T.end(ev(),owner);
   assert.deepEqual(rot(),[-2,536],'a hard flick spins on (inertia capped at one turn) and settles on the back, level');
-  assert.match(styles['.te-rot'].transition,/^transform \d+ms cubic-bezier/);assert.equal(styles['.te-glow0'].opacity,0,'glare fades after release');
+  assert.match(styles['.te-rot'].transition,/^transform \d+ms cubic-bezier/);assert.equal(styles['.te-glow0'].opacity,0,'glare fades after release');assert.equal(styles['.te-fx0'].opacity,0,'foil effect fades after release');
   assert.deepEqual(calls.pop(),['turned',{front:false}]);
   // 慢慢拖一点点再松手：转回原来那一面
   T.start(ev(100,100),owner);clock+=200;T.move(ev(140,100),owner);clock+=200;T.end(ev(),owner);
@@ -48,6 +49,17 @@ assert.equal((wxml.match(/class="te-edge /g)||[]).length,4,'paper edges on both 
   T.request({side:'front',n:1},null,owner,inst);assert.deepEqual(rot(),[-2,716]);
   T.request({side:'back',n:2},null,owner,inst);assert.deepEqual(rot(),[-2,896]);assert.deepEqual(calls.pop(),['turned',{front:false}]);
   assert.equal(T.sideOf(-184),'back');assert.equal(T.sideOf(-364),'front');
+  // 工艺反光：小程序 turn.wxs 与网页 ticketFxStyle 同一张表
+  const web=fs.readFileSync(path.join(__dirname,'../js/tickets.js'),'utf8'),a=web.indexOf('function ticketFxStyle('),b=web.indexOf('\nfunction ticketTurner(',a);
+  const webFx=vm.runInNewContext(web.slice(a,b)+';ticketFxStyle',{Math});
+  for(const fx of ['holo','cast','crystal','sweep','glitter','gloss','sense','none'])for(const [x,y,lit] of [[.3,-.2,true],[-.8,.5,true],[.5,.1,false]]){
+    assert.equal(JSON.stringify(T.fxStyle(fx,x,y,lit)),JSON.stringify(webFx(fx,x,y,lit)),'foil effect table matches the website: '+fx);
+  }
+  assert.equal(webFx('none',.5,.5,true).o,0,'matte has no foil effect');
+  // 工艺分类：新加的视高迪式工艺 + 原有工艺
+  const fxOf=tickets.fxOf;
+  assert.deepEqual(['holo','gold','varnish','matte','cast','crystal','glitter','sense'].map(fxOf),['holo','sweep','gloss','none','cast','crystal','glitter','sense']);
+  assert(['cast','crystal','glitter','sense'].every(k=>tickets.options.finish.some(o=>o.id===k)),'new finishes are selectable');
 }
 assert.match(wxml,/<image[^>]*class="te-face"/);
 assert.match(wxml,/<picker[^>]*range="{{artStyleLabels}}"[^>]*bindchange="pickArtStyle"/,'ticket details offer hand-drawn styles');

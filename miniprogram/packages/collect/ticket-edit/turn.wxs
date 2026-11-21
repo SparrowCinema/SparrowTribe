@@ -1,6 +1,7 @@
 // 票根 360° 转动（WXS 在视图层直接改样式，手指每一帧都不经过 setData，所以跟手不卡）
 // 左右随便转；上下最多倾斜 65°；松手按甩动速度带一点惯性，再慢慢转回最近的正面或背面；轻点翻面。
 // 高光跟着角度走：正对时不亮，越斜反光越往一边移；只在拖动时出现，停下淡出。
+// 2026-11-22 起另有工艺反光层 .te-fx（镭射流动、金属光带、闪粉、立体光油……），只在工艺遮罩范围里显示。
 // 与网页 js/tickets.js 的 ticketTurner 规则一致，改这里记得同步那边。
 var REST_X = -2, REST_Y = -4, DEG_X = 0.45, DEG_Y = 0.35, TILT = 65;
 var EASE = 'cubic-bezier(.18,.8,.25,1)';
@@ -9,7 +10,7 @@ function now() { return getDate().getTime(); }
 function clamp(v, a, b) { return v < a ? a : (v > b ? b : v); }
 function state(ins) {
   var s = ins.getState();
-  if (s.ry === undefined) { s.ry = REST_Y; s.rx = REST_X; s.kind = 'metal'; }
+  if (s.ry === undefined) { s.ry = REST_Y; s.rx = REST_X; s.kind = 'metal'; s.fx = 'none'; }
   return s;
 }
 function faceIndex(ry) { return Math.round((ry - REST_Y) / 180); }
@@ -18,9 +19,23 @@ function sideOf(ry) { var k = faceIndex(ry) % 2; return (k + 2) % 2 ? 'back' : '
 function glow(rx, ry, kind) {
   var rel = (ry - REST_Y - faceIndex(ry) * 180) * Math.PI / 180, tilt = (rx - REST_X) * Math.PI / 180;
   var at = 'circle at ' + Math.round(50 + Math.sin(rel) * 90) + '% ' + Math.round(32 - Math.sin(tilt) * 90) + '%';
-  if (kind === 'spectrum') return 'radial-gradient(' + at + ',rgba(255,255,255,.22),rgba(255,170,235,.12) 24%,rgba(130,225,255,.08) 40%,rgba(255,240,170,.04) 54%,rgba(255,255,255,0) 66%)';
-  if (kind === 'soft') return 'radial-gradient(' + at + ',rgba(255,255,255,.07),rgba(255,255,255,0) 55%)';
-  return 'radial-gradient(' + at + ',rgba(255,255,255,.18),rgba(255,255,255,0) 50%)';
+  if (kind === 'spectrum') return 'radial-gradient(' + at + ',rgba(255,255,255,.11),rgba(255,170,235,.06) 24%,rgba(130,225,255,.04) 40%,rgba(255,240,170,.02) 54%,rgba(255,255,255,0) 66%)';
+  if (kind === 'soft') return 'radial-gradient(' + at + ',rgba(255,255,255,.035),rgba(255,255,255,0) 55%)';
+  return 'radial-gradient(' + at + ',rgba(255,255,255,.09),rgba(255,255,255,0) 50%)';
+}
+
+// 工艺反光（与网页 js/tickets.js 的 ticketFxStyle 一致）：只在工艺遮罩范围里，按角度移动背景；越斜越明显，松手淡出
+function pct(v) { return Math.round(v) + '%'; }
+function fxStyle(fx, a, b, lit) {
+  var o = lit ? Math.min(1, Math.abs(a) * 2.4 + Math.abs(b) * 1.6) : 0, pos = '50% 50%', peak = 0;
+  if (fx === 'holo') { pos = pct(50 + a * 60) + ' ' + pct(50 + b * 60); peak = .6; }
+  else if (fx === 'cast') { pos = pct(50 - a * 45) + ' ' + pct(50 - b * 45) + ', ' + pct(50 + a * 60) + ' ' + pct(50 + b * 60); peak = .75; }
+  else if (fx === 'crystal') { pos = pct(50 + a * 70) + ' ' + pct(50 + b * 50) + ', ' + pct(50 - a * 60) + ' 0%'; peak = .75; }
+  else if (fx === 'sweep') { pos = pct(50 - a * 60) + ' 0%'; peak = .9; }
+  else if (fx === 'glitter') { pos = pct(50 - a * 60) + ' 0%, ' + pct(50 + a * 50) + ' 0%'; peak = .95; }
+  else if (fx === 'gloss') { pos = pct(50 - a * 90) + ' ' + pct(50 + b * 90); peak = .75; }
+  else if (fx === 'sense') { pos = pct(50 - a * 90) + ' ' + pct(50 + b * 90) + ', ' + pct(50 - a * 60) + ' 0%'; peak = .9; }
+  return { pos: pos, o: Math.round(o * peak * 1000) / 1000 };
 }
 
 function paint(owner, s, ms, lit) {
@@ -37,6 +52,16 @@ function paint(owner, s, ms, lit) {
   };
   var glows = owner.selectAllComponents('.te-glow');
   for (var i = 0; i < glows.length; i++) glows[i].setStyle(style);
+  var rel = (s.ry - REST_Y - faceIndex(s.ry) * 180) * Math.PI / 180, tilt = (s.rx - REST_X) * Math.PI / 180;
+  // 每层用自己的工艺（data-fx）和强度（data-k）：底箔反光、烫印增效、海报画面增效
+  var layers = owner.selectAllComponents('.te-fx');
+  for (var j = 0; j < layers.length; j++) {
+    var ds = layers[j].getDataset(), fx = fxStyle(ds.fx || s.fx, Math.sin(rel), Math.sin(tilt), lit);
+    layers[j].setStyle({
+      'background-position': fx.pos, opacity: Math.round(fx.o * (ds.k ? +ds.k : 1) * 1000) / 1000,
+      transition: lit ? 'opacity .12s' : 'opacity ' + Math.max(ms || 0, 350) + 'ms ease-out'
+    });
+  }
 }
 
 function settle(owner, s, target) {
@@ -50,7 +75,8 @@ function start(e, owner) {
   var t = e.touches && e.touches[0];
   if (!t) return;
   var s = state(e.instance), at = now();
-  s.kind = e.instance.getDataset().shine || s.kind;
+  var ds = e.instance.getDataset();
+  s.kind = ds.shine || s.kind; s.fx = ds.fx || s.fx;
   s.x0 = t.clientX; s.y0 = t.clientY; s.ry0 = s.ry; s.rx0 = s.rx; s.moved = false;
   s.samples = [{ t: at, ry: s.ry }];
 }
@@ -86,9 +112,10 @@ function request(value, old, owner, ins) {
   if (!value) return;
   var s = state(ins);
   if (value.kind) s.kind = value.kind;
+  if (value.fx) s.fx = value.fx;
   if (!value.n) { paint(owner, s, 0, false); return; }
   if (sideOf(s.ry) === value.side) return;
   settle(owner, s, (faceIndex(s.ry) + 1) * 180 + REST_Y);
 }
 
-module.exports = { start: start, move: move, end: end, request: request, sideOf: sideOf, glow: glow };
+module.exports = { start: start, move: move, end: end, request: request, sideOf: sideOf, glow: glow, fxStyle: fxStyle };

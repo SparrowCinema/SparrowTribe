@@ -120,7 +120,7 @@ async function ticketFonts(rows){
   jobs.push(title);
   await Promise.race([Promise.all(jobs).catch(()=>{}),new Promise(r=>setTimeout(r,2500))]);
 }
-const ticketSig=(row,side,w,style)=>[row.key,side,w,side==="front"?style:"",TE.packLook(row.look),row.crop,row.art,row.time,row.venue,row.hall,row.seat,row.format,row.title,row.programme,row.city].join("¦");
+const ticketSig=(row,side,w,style)=>[row.key,side,w,side==="front"?style:"",TE.lookSig(row.look),row.crop,row.art,row.time,row.venue,row.hall,row.seat,row.format,row.title,row.programme,row.city].join("¦");
 async function ticketTileURL(row,side,w){
   const artStyle=ticketStyleFor(row),sig=ticketSig(row,side,w,artStyle);
   if(ticketURLs.has(sig)){const url=ticketURLs.get(sig);ticketURLs.delete(sig);ticketURLs.set(sig,url);return url;}
@@ -454,8 +454,8 @@ function ticketEditor(row){
   const dateRow=row.linked?`<div class="te-row"><span class="te-k">${ticketDict("观影日期")}</span><span class="te-v"><b class="te-mono">${esc(row.date.replace(/-/g,"."))}</b><small class="te-note">${ticketDict("来自观影记录")}</small></span></div>`:input("date","观影日期","","date");
   return `<div class="te">
     <div class="te-stage"><button type="button" data-ticket-action="flip" class="ticket-flip" data-side="${ticketDraft.side}" aria-label="${ticketDict("翻面")}">
-      <span class="ticket-turn"><span class="ticket-face ticket-front"><canvas width="630" height="1296" id="ticket-preview-front" aria-hidden="true"></canvas></span>
-      <span class="ticket-face ticket-back"><canvas width="630" height="1296" id="ticket-preview-back" aria-hidden="true"></canvas></span>
+      <span class="ticket-turn"><span class="ticket-face ticket-front"><canvas width="630" height="1296" id="ticket-preview-front" aria-hidden="true"></canvas><span class="ticket-fx" aria-hidden="true" hidden></span><span class="ticket-fx" aria-hidden="true" hidden></span><span class="ticket-fx" aria-hidden="true" hidden></span></span>
+      <span class="ticket-face ticket-back"><canvas width="630" height="1296" id="ticket-preview-back" aria-hidden="true"></canvas><span class="ticket-fx" aria-hidden="true" hidden></span><span class="ticket-fx" aria-hidden="true" hidden></span><span class="ticket-fx" aria-hidden="true" hidden></span></span>
       <span class="ticket-edge te-l1"></span><span class="ticket-edge te-l2"></span><span class="ticket-edge te-r1"></span><span class="ticket-edge te-r2"></span></span></button>
       ${assets.length?`<div class="te-art">
         <label class="te-crop"><span>${ticketDict("裁切")}</span><input class="te-range" type="range" min="0" max="100" name="crop" value="${row.crop}" aria-label="${ticketDict("裁切位置")}"></label>
@@ -465,6 +465,7 @@ function ticketEditor(row){
         <button type="button" role="tab" data-ticket-side="front" aria-selected="${front}">${ticketDict("正面")}</button><button type="button" role="tab" data-ticket-side="back" aria-selected="${!front}">${ticketDict("背面")}</button></div>
         <button type="button" class="te-dice" data-ticket-action="shuffle">${ticketDict("随机换一款")}</button>
         <button type="button" class="te-style" data-ticket-filter="art-style" aria-haspopup="dialog">${ticketDict("手绘风格")}${filterChevron}</button></div>
+      <p class="te-craft" aria-live="polite"></p>
       <button type="button" class="te-reset" data-ticket-action="reset">${ticketDict("恢复专题默认款式")}</button></div>
     <div class="te-body">
       <div class="te-heading">
@@ -488,6 +489,21 @@ function ticketEditorMount(){
 // 左右随便转；上下最多倾斜 65°；松手按甩动速度带一点惯性，再慢慢转回最近的正面或背面；轻点翻面（走原来的 flip 动作）。
 // 高光跟着角度走：正对时不亮，越斜反光越往一边移；只在拖动时出现，停下淡出。
 // 触屏上手指在票根上滑动只转票根（CSS touch-action:none），页面不跟着滚；拖动过的那次松手不算点击。
+// 各种工艺的反光层位置与强度（背景图在 styles/tickets.css 的 .ticket-flip[data-fx=…] .ticket-fx）
+function ticketFxStyle(fx,s,t,lit){
+  const p=v=>`${Math.round(v)}%`,o=lit?Math.min(1,Math.abs(s)*2.4+Math.abs(t)*1.6):0;
+  const table={
+    holo:[`${p(50+s*60)} ${p(50+t*60)}`,.6],
+    cast:[`${p(50-s*45)} ${p(50-t*45)}, ${p(50+s*60)} ${p(50+t*60)}`,.75],
+    crystal:[`${p(50+s*70)} ${p(50+t*50)}, ${p(50-s*60)} 0%`,.75],
+    sweep:[`${p(50-s*60)} 0%`,.9],
+    glitter:[`${p(50-s*60)} 0%, ${p(50+s*50)} 0%`,.95],
+    gloss:[`${p(50-s*90)} ${p(50+t*90)}`,.75],
+    sense:[`${p(50-s*90)} ${p(50+t*90)}, ${p(50-s*60)} 0%`,.9]
+  };
+  const [pos,peak]=table[fx]||["50% 50%",0];
+  return {pos,o:+(o*peak).toFixed(3)};
+}
 function ticketTurner(card){
   const turn=card.querySelector(".ticket-turn"),REST_X=-2,REST_Y=-4,DEG_X=.45,DEG_Y=.35,TILT=65;
   const still=matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -496,8 +512,14 @@ function ticketTurner(card){
   const paint=(ms,lit)=>{
     turn.style.transition=ms&&!still?`transform ${ms}ms cubic-bezier(.18,.8,.25,1)`:"none";
     turn.style.transform=`rotateX(${rx}deg) rotateY(${ry}deg)`;
-    const rel=(ry-REST_Y-face(ry)*180)*Math.PI/180,tilt=(rx-REST_X)*Math.PI/180;
-    card.style.setProperty("--gx",`${Math.round(50+Math.sin(rel)*90)}%`);card.style.setProperty("--gy",`${Math.round(32-Math.sin(tilt)*90)}%`);
+    const rel=(ry-REST_Y-face(ry)*180)*Math.PI/180,tilt=(rx-REST_X)*Math.PI/180,s=Math.sin(rel),t=Math.sin(tilt);
+    card.style.setProperty("--gx",`${Math.round(50+s*90)}%`);card.style.setProperty("--gy",`${Math.round(32-t*90)}%`);
+    // 工艺反光（与小程序 turn.wxs 的 fxStyle 一致）：只在烫印范围里，按角度移动；越斜越明显，松手淡出
+    card.querySelectorAll(".ticket-fx").forEach(el=>{
+      if(el.hidden)return;
+      const fx=ticketFxStyle(el.dataset.fx,s,t,lit);
+      el.style.backgroundPosition=fx.pos;el.style.opacity=+(fx.o*(+el.dataset.k||1)).toFixed(3);el.style.transition=lit?"opacity .12s":`opacity ${Math.max(ms||0,350)}ms ease-out`;
+    });
     clearTimeout(fade);
     if(lit)card.dataset.glare="";else fade=setTimeout(()=>delete card.dataset.glare,Math.min(ms||0,250));
   };
@@ -538,15 +560,37 @@ function ticketDrawEditor(){
   const card=main.querySelector(".ticket-flip");if(!card)return;
   const shine=TE.shineOf(ticketDraft.row.look.finish);
   card.dataset.shine=shine.kind;card.style.setProperty("--metal-highlight",shine.highlight+"af");card.style.setProperty("--edge",TE.edgeOf(ticketDraft.row));
+  const craft=main.querySelector(".te-craft");if(craft)craft.textContent=tr("工艺")+"："+TE.craftLabel(ticketDraft.row.look,tr);
   for(const side of ["front","back"])ticketRenderCard(main.querySelector("#ticket-preview-"+side),ticketDraft.row,side);
 }
 async function ticketRenderCard(canvas,row,side){
   const rendering=(canvas.ticketPainting||0)+1;canvas.ticketPainting=rendering;
   const styled={...row,artStyle:ticketStyleFor(row)};
-  const draw=image=>{const ctx=canvas.getContext("2d");ctx.clearRect(0,0,canvas.width,canvas.height);TE.draw(ctx,styled,side,image,{x:0,y:0,w:canvas.width,h:canvas.height},ticketCanvas);};
+  const draw=image=>{const ctx=canvas.getContext("2d");ctx.clearRect(0,0,canvas.width,canvas.height);TE.draw(ctx,styled,side,image,{x:0,y:0,w:canvas.width,h:canvas.height},ticketCanvas);ticketFxMask(canvas,styled,side,image);};
   await ticketFonts([row]);if(!canvas.isConnected||canvas.ticketPainting!==rendering)return;
   draw(null);
   if(side==="front"&&row.art){const image=await ticketPoster(row,false);if(canvas.isConnected&&canvas.ticketPainting===rendering&&image)draw(image);}
+}
+// 工艺反光层（只在详情页用）：每面最多三层——底箔的反光、工艺组合里的烫印增效、海报画面增效（只有正面）。
+// 前两层用工艺遮罩（烫印 / 镭射 / 光油 / 盲文 / 可变数据烫印的区域），海报层用从海报算出的遮罩；转动时按角度移动（ticketTurner）。
+function ticketFxMask(canvas,row,side,image){
+  const spans=[...(canvas.parentElement?.querySelectorAll(".ticket-fx")||[])];if(!spans.length)return;
+  const w=315,h=Math.round(w*TE.H/TE.W),layers=[];
+  const base=TE.fxOf(row.look.finish),extra=TE.parseCraft(row.look.craft).foil.find(fx=>fx!==base);
+  if(base!=="none"||extra){
+    const mask=ticketCanvas(w,h);
+    if(TE.foilMask(mask.getContext("2d"),row,side,{x:0,y:0,w,h},ticketCanvas,!!image)){
+      const url=`url(${mask.toDataURL("image/png")})`;
+      if(base!=="none")layers.push({fx:base,k:1,url});
+      if(extra)layers.push({fx:extra,k:.7,url});
+    }
+  }
+  if(side==="front"&&image){const art=TE.artMask(row,image,ticketCanvas,w);if(art)layers.push({fx:art.fx,k:1,url:`url(${art.toDataURL("image/png")})`});}
+  spans.forEach((el,i)=>{
+    const layer=layers[i];el.hidden=!layer;
+    if(!layer){el.style.webkitMaskImage=el.style.maskImage="none";delete el.dataset.fx;return;}
+    el.dataset.fx=layer.fx;el.dataset.k=layer.k;el.style.webkitMaskImage=layer.url;el.style.maskImage=layer.url;
+  });
 }
 function ticketSave(stay){
   const d=ticketDraft,row=TE.sanitize({...d.row});

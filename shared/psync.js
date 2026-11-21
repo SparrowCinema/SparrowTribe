@@ -30,6 +30,8 @@
     if (typeof e.c === 'number' && isFinite(e.c)) { var c = Math.max(0, Math.min(100, Math.round(e.c))); if (c !== 50) out.c = c; }
     if (e.sk === 1) out.sk = 1;
     if (typeof e.l === 'string' && TIX_LOOK.test(e.l)) out.l = e.l;
+    // 工艺组合（2026-11-22）：烫印增效-海报增效[盲文][可变数据烫印]，见 shared/tickets.js 的 CRAFT_RE；只在改过时才存
+    if (typeof e.x === 'string' && /^[sgch]{0,2}-[0urokbd][Bv]{0,2}$/.test(e.x)) out.x = e.x;
     return out;
   }
   function cleanTix(raw) {

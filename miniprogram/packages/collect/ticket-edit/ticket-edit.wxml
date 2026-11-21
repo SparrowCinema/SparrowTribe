@@ -4,7 +4,7 @@
 <view wx:if="{{ok}}" class="wrap te-page">
   <view class="te-stage">
     <!-- 360° 转动：左右随便转、上下最多 65°，松手转回最近的正面或背面，轻点翻面（turn.wxs 在视图层跟手） -->
-    <view id="te-card" class="te-card3d" data-shine="{{shine}}" turn="{{turnReq}}" change:turn="{{T.request}}"
+    <view id="te-card" class="te-card3d" data-shine="{{shine}}" data-fx="{{fx}}" turn="{{turnReq}}" change:turn="{{T.request}}"
       bindtouchstart="{{T.start}}" catchtouchmove="{{T.move}}" bindtouchend="{{T.end}}" bindtouchcancel="{{T.end}}"
       aria-role="button" aria-label="{{L.t(i,'翻面')}}">
       <view class="te-rot" style="--edge:{{edge}}">
@@ -12,11 +12,13 @@
           <image wx:if="{{frontImg}}" class="te-face" src="{{frontImg}}" mode="scaleToFill" />
           <view wx:else class="te-face te-wait"><text>{{L.t(i,'票根绘制中…')}}</text></view>
           <view class="te-glow"></view>
+          <view wx:for="{{layersF}}" wx:key="i" class="te-fx fx-{{item.fx}}" data-fx="{{item.fx}}" data-k="{{item.k}}" style="-webkit-mask-image:url({{item.m}});mask-image:url({{item.m}})"></view>
         </view>
         <view class="te-side te-back">
           <image wx:if="{{backImg}}" class="te-face" src="{{backImg}}" mode="scaleToFill" />
           <view wx:else class="te-face te-wait"><text>{{L.t(i,'票根绘制中…')}}</text></view>
           <view class="te-glow"></view>
+          <view wx:for="{{layersB}}" wx:key="i" class="te-fx fx-{{item.fx}}" data-fx="{{item.fx}}" data-k="{{item.k}}" style="-webkit-mask-image:url({{item.m}});mask-image:url({{item.m}})"></view>
         </view>
         <view class="te-edge te-l1"></view><view class="te-edge te-l2"></view>
         <view class="te-edge te-r1"></view><view class="te-edge te-r2"></view>
@@ -38,6 +40,7 @@
         <view class="te-style" hover-class="te-hv" role="button">{{L.t(i,'手绘风格')}}<text class="te-style-chevron" aria-hidden="true">⌄</text></view>
       </picker>
     </view>
+    <view wx:if="{{craft}}" class="te-craft">{{L.t(i,'工艺')}}：{{craft}}</view>
     <text class="te-reset" bindtap="reset" role="button">{{L.t(i,'恢复专题默认款式')}}</text>
   </view>
 
