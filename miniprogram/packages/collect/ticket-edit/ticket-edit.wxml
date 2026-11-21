@@ -4,7 +4,7 @@
 <view wx:if="{{ok}}" class="wrap te-page">
   <view class="te-stage">
     <!-- 360° 转动：左右随便转、上下最多 65°，松手转回最近的正面或背面，轻点翻面（turn.wxs 在视图层跟手） -->
-    <view id="te-card" class="te-card3d" data-shine="{{shine}}" turn="{{turnReq}}" change:turn="{{T.request}}"
+    <view id="te-card" class="te-card3d" data-shine="{{shine}}" data-fx="{{fx}}" turn="{{turnReq}}" change:turn="{{T.request}}"
       bindtouchstart="{{T.start}}" catchtouchmove="{{T.move}}" bindtouchend="{{T.end}}" bindtouchcancel="{{T.end}}"
       aria-role="button" aria-label="{{L.t(i,'翻面')}}">
       <view class="te-rot" style="--edge:{{edge}}">
@@ -12,11 +12,13 @@
           <image wx:if="{{frontImg}}" class="te-face" src="{{frontImg}}" mode="scaleToFill" />
           <view wx:else class="te-face te-wait"><text>{{L.t(i,'票根绘制中…')}}</text></view>
           <view class="te-glow"></view>
+          <view wx:if="{{maskF}}" class="te-fx fx-{{fx}}" style="-webkit-mask-image:url({{maskF}});mask-image:url({{maskF}})"></view>
         </view>
         <view class="te-side te-back">
           <image wx:if="{{backImg}}" class="te-face" src="{{backImg}}" mode="scaleToFill" />
           <view wx:else class="te-face te-wait"><text>{{L.t(i,'票根绘制中…')}}</text></view>
           <view class="te-glow"></view>
+          <view wx:if="{{maskB}}" class="te-fx fx-{{fx}}" style="-webkit-mask-image:url({{maskB}});mask-image:url({{maskB}})"></view>
         </view>
         <view class="te-edge te-l1"></view><view class="te-edge te-l2"></view>
         <view class="te-edge te-r1"></view><view class="te-edge te-r2"></view>
