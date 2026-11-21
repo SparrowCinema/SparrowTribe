@@ -468,6 +468,75 @@ function text(surface,StringValue,x,y,opts={}) {
   surface.fillText(value,x,y,max);
 }
 
+// 片名：实体票根的激凸压印。投影 + 下缘暗边 + 上缘高光做出凸起；字面随工艺变化——
+// 镭射类（spectrum）是虹彩镭射烫印，金属类是烫金/烫银，哑光与亮釉是同色压凸。
+const mixHex=(a,b,t)=>{const p=h=>[1,3,5].map(i=>parseInt(h.slice(i,i+2),16));const A=p(a),B=p(b);
+  return "#"+A.map((v,i)=>Math.round(v*t+B[i]*(1-t)).toString(16).padStart(2,"0")).join("");};
+function embossTitle(surface,title,x,y,{accent,dark,finish,scale=1,createCanvas}) {
+  const value=title.replace(/\s+/gu," ").trim(),max=359,metal=finishes[finish]||finishes.matte;
+  let size=55;
+  surface.save();
+  surface.font=`700 ${size}px ${SERIF}`;
+  const measured=surface.measureText(value).width;
+  if (measured>max) size=Math.max(23,size*max/measured);
+  surface.font=`700 ${size}px ${SERIF}`;surface.textAlign="center";
+  const width=Math.min(max,surface.measureText(value).width),left=x-width/2,top=y-size*.86,bottom=y+size*.12;
+  const fill=(color,dx,dy)=>{surface.fillStyle=color;surface.fillText(value,x+dx,y+dy,max);};
+  // 1 柔和投影（shadowBlur 以设备像素计，按缩放换算）
+  surface.shadowColor="rgba(46,32,20,.34)";surface.shadowBlur=5*scale;surface.shadowOffsetX=1.2*scale;surface.shadowOffsetY=2.6*scale;
+  fill(dark,0,0);
+  surface.shadowColor="transparent";surface.shadowBlur=0;surface.shadowOffsetX=0;surface.shadowOffsetY=0;
+  // 2 凸起侧壁：下缘暗、上缘亮
+  surface.globalAlpha=.85;fill(dark,.6,1.5);
+  surface.globalAlpha=.95;fill("rgba(255,251,240,.95)",-.7,-1);
+  surface.globalAlpha=1;
+  // 烫印压边：一圈细暗线，浅色镭射字在浅纸上也看得清
+  surface.lineJoin="round";surface.strokeStyle=dark;surface.globalAlpha=metal.kind==="soft"?.3:.45;surface.lineWidth=1;
+  surface.strokeText(value,x,y,max);surface.globalAlpha=1;
+  // 3 字面
+  let face;
+  if (metal.kind==="spectrum") {
+    // 高级镭射：珍珠银底 + 很淡的一轮幻彩（颜色先向银色靠拢，避免大面积彩虹的廉价感）
+    face=surface.createLinearGradient(x,top,x,bottom);
+    face.addColorStop(0,"#f4f5f6");face.addColorStop(.45,"#c9cdd2");face.addColorStop(.62,"#9aa0a8");face.addColorStop(1,"#d9dce0");
+    } else if (metal.kind==="metal") {
+    face=surface.createLinearGradient(x,top,x,bottom);
+    const st=metal.stops;
+    face.addColorStop(0,st[1]);face.addColorStop(.38,st[2]);face.addColorStop(.55,st[0]);face.addColorStop(1,st[st.length-1]);
+  } else {
+    face=surface.createLinearGradient(x,top,x,bottom);
+    face.addColorStop(0,accent);face.addColorStop(1,dark);
+  }
+  fill(face,0,0);
+  if (metal.kind==="spectrum") {
+    const hue=surface.createLinearGradient(left,bottom,left+width,top),st=metal.stops;
+    st.forEach((c,i)=>hue.addColorStop(i/(st.length-1),mixHex(c,"#dfe3e8",.6)));
+    surface.globalAlpha=.72;fill(hue,0,0);surface.globalAlpha=1;
+  }
+  // 4 光泽：镭射加一道斜向白光与细密衍射纹，金属加一道窄高光，压凸只加上半部的柔光
+  if (metal.kind!=="soft") {
+    const sheen=surface.createLinearGradient(left,top,left+width*.7,bottom+size*.4);
+    sheen.addColorStop(0,"rgba(255,255,255,0)");sheen.addColorStop(.42,"rgba(255,255,255,0)");
+    sheen.addColorStop(.5,metal.kind==="spectrum"?"rgba(255,255,255,.55)":"rgba(255,255,255,.6)");
+    sheen.addColorStop(.58,"rgba(255,255,255,0)");sheen.addColorStop(1,"rgba(255,255,255,0)");
+    fill(sheen,0,0);
+  } else {
+    const soft=surface.createLinearGradient(x,top,x,bottom);
+    soft.addColorStop(0,"rgba(255,250,236,.32)");soft.addColorStop(.5,"rgba(255,250,236,0)");
+    fill(soft,0,0);
+  }
+  if (metal.kind==="spectrum" && createCanvas) {
+    // 镭射衍射纹：6px 斜线贴片平铺在字面上；画布不支持图案时省略这一层
+    try {
+      const tile=createCanvas(4,4),c=tile.getContext("2d");
+      c.strokeStyle="rgba(255,255,255,.7)";c.lineWidth=.6;c.beginPath();c.moveTo(-1,5);c.lineTo(5,-1);c.stroke();
+      const pattern=surface.createPattern(tile,"repeat");
+      if (pattern) {surface.globalAlpha=.16;fill(pattern,0,0);surface.globalAlpha=1;}
+    } catch (_) { /* 退回无衍射纹 */ }
+  }
+  surface.restore();
+}
+
 function rule(surface,y,ink,x=28,x2=W-28,dashed=false) {
   surface.save();
   if (dashed) surface.setLineDash([2.5,4]);
@@ -703,7 +772,7 @@ function draw(surface,record,side,image,rect,createCanvas,light) {
     surface.strokeStyle=foilGradient(surface,x,y+h,x+w,y,finish);
     surface.lineWidth=metal.width;surface.strokeRect(x-.8,y-.8,w+1.6,h+1.6);
     surface.lineWidth=.48;surface.strokeRect(x-3,y-3,w+6,h+6);
-    text(surface,record.title,W/2,506,{size:55,font:SERIF,weight:700,align:"center",max:359,ink:accent,relief:accent+"c9"});
+    embossTitle(surface,record.title,W/2,506,{accent,dark,finish,scale:rect.w/W,createCanvas});
     if (record.subtitle && record.subtitle.toLowerCase()!==record.title.toLowerCase()) {
       text(surface,record.subtitle.toUpperCase(),W/2,538,{size:12,align:"center",ink:"#554b40"});
     }

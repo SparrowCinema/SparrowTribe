@@ -88,8 +88,17 @@ const flush=async()=>{for(let n=0;n<20;n++){await new Promise(r=>setImmediate(r)
   const page2={...options,data:JSON.parse(JSON.stringify(options.data)),setData:page.setData};
   page2.onLoad({key:encodeURIComponent(saved[0])});await flush();
   assert(page2.data.existing);assert.equal(page2.data.draft.seat,'7排7座');
+  // 裁切后就地保存：不离开详情页，再打开时保持新的裁切
+  assert.equal(page2.data.artDirty,false,'nothing to save right after opening');
+  page2.changeField({currentTarget:{dataset:{field:'crop'}},detail:{value:83}});await flush();
+  assert.equal(page2.data.artDirty,true,'crop change lights up the save button');
+  page2.saveHere();await flush();
+  assert.equal(page2.data.artDirty,false);assert.equal(navigatedBack,1,'save-in-place stays on the page');
+  assert.equal(store['sk-tickets-v2'][saved[0]].c,83,'crop persisted');
+  const page3={...options,data:JSON.parse(JSON.stringify(options.data)),setData:page.setData};
+  page3.onLoad({key:encodeURIComponent(saved[0])});await flush();assert.equal(page3.data.draft.crop,83);
   await page2.exportSingle();await flush();
   assert(exporter.ctx.labels.includes('纪念票根'));
   page2.remove();assert(store['sk-tickets-v2'][saved[0]].del);
-  console.log('PASS: ticket editor page — native scrolling/back, image preview with CSS 3D flip & tilt, shuffle redraw, show picker, default artwork without a style picker, crop flips to front, save, export, remove.');
+  console.log('PASS: ticket editor page — native scrolling/back, image preview with CSS 3D flip & tilt, shuffle redraw, show picker, default artwork without a style picker, crop flips to front, crop save-in-place, save, export, remove.');
 })().catch(e=>{console.error(e);process.exitCode=1;});
