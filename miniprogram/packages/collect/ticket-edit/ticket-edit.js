@@ -178,6 +178,7 @@ Page({
     if(!Art.saveFilmStyle(readArtPreference,(key,value)=>wx.setStorageSync(key,value),this._draft.filmId,style.id)){
       say('票根保存失败，请检查本机存储');return;
     }
+    Art.markArt(readArtPreference,(k,v)=>wx.setStorageSync(k,v),this._draft.filmId);Tix.nudge();
     this._artStyle=style.id||this._albumArtStyle;
     this.setData({artStyleIndex});
     if(this.data.turning)this._flipFront=true;

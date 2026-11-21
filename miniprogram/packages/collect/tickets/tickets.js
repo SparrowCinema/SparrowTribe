@@ -157,6 +157,7 @@ Page({
     const artStyleIndex=Number(e.detail.value),style=Art.styles[artStyleIndex];
     if(!style||style.id===this.data.artStyle)return;
     try{wx.setStorageSync(Art.storageKey,style.id);}catch(_){}
+    Art.markArt(readArtPreference,(k,v)=>wx.setStorageSync(k,v),null);Tix.nudge();
     this.applyArtStyle(style.id);
     this.paint(false);
   },

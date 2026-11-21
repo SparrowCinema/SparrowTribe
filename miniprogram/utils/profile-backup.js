@@ -20,10 +20,11 @@
   Object.keys(backup.watched).forEach(id=>{backup.watched[id].t=t;if(backup.watched[id].tasteAt)Object.keys(backup.watched[id].tasteAt).forEach(k=>backup.watched[id].tasteAt[k]=t);});
   ['holder','photo','picks'].forEach(k=>{backup[k].t=t;});
   Object.keys(backup.tix).forEach(k=>{backup.tix[k].t=t;});
+  if(backup.art.d.s)backup.art.d.t=t;Object.keys(backup.art.f).forEach(id=>{backup.art.f[id].t=t;});
   // Preserve planned screenings already present on the importing device.
   backup.picks.k=[...new Set(local.picks.k.concat(backup.picks.k))];
   return S.merge(local,backup);
  }
- function empty(remote,at){remote=S.clean(remote);const out=S.clean({}),t=Math.max(at||Date.now(),...Object.values(remote.watched).map(r=>r.t+1),...['holder','photo','picks'].map(k=>remote[k].t+1));Object.keys(remote.watched).forEach(id=>{out.watched[id]={del:1,t};});Object.keys(remote.tix).forEach(k=>{out.tix[k]={del:1,t:Math.max(t,remote.tix[k].t+1)};});['holder','photo','picks'].forEach(k=>out[k].t=t);return out;}
+ function empty(remote,at){remote=S.clean(remote);const out=S.clean({}),t=Math.max(at||Date.now(),...Object.values(remote.watched).map(r=>r.t+1),...['holder','photo','picks'].map(k=>remote[k].t+1));Object.keys(remote.watched).forEach(id=>{out.watched[id]={del:1,t};});Object.keys(remote.tix).forEach(k=>{out.tix[k]={del:1,t:Math.max(t,remote.tix[k].t+1)};});out.art.d={s:'',t:Math.max(t,remote.art.d.t+1)};Object.keys(remote.art.f).forEach(id=>{out.art.f[id]={del:1,t:Math.max(t,remote.art.f[id].t+1)};});['holder','photo','picks'].forEach(k=>out[k].t=t);return out;}
  const api={encode,decode,restore,empty};if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.SparrowBackup=api;
 })(typeof window!=='undefined'?window:this);

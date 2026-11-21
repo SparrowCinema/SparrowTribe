@@ -46,6 +46,43 @@
       return overrides;
     }catch(_){return null;}
   }
+  // 云端同步（2026-11-21）：两个风格设置各自记一个修改时间（META_KEY），随个人档案的 art 字段同步，合并时逐项取较新的
+  const metaKey="sparrow-ticket-art-meta";
+  function readMeta(read){try{const m=JSON.parse(read(metaKey)||"{}");return {d:+m.d||0,f:m.f&&typeof m.f==="object"&&!Array.isArray(m.f)?m.f:{}};}catch(_){return {d:0,f:{}};}}
+  // 改完风格后调用：filmId 为空表示改的是收藏册默认风格
+  function markArt(read,write,filmId,at){
+    try{const m=readMeta(read),t=Math.max(at||Date.now(),(filmId?+m.f[filmId]||0:m.d)+1);if(filmId)m.f[filmId]=t;else m.d=t;write(metaKey,JSON.stringify(m));return true;}catch(_){return false;}
+  }
+  function artSnapshot(read){
+    const m=readMeta(read),films=readFilmStyles(read),out={d:{s:"",t:m.d},f:{}};
+    try{const d=read(storageKey);if(d&&normalize(d)===d)out.d.s=d;}catch(_){}
+    films.forEach((s,id)=>{out.f[id]={s,t:+m.f[id]||0};});
+    Object.keys(m.f).forEach(id=>{if(!films.has(id)&&filmIdPattern.test(id))out.f[id]={del:1,t:+m.f[id]||0};});
+    return out;
+  }
+  // 把云端的风格设置合进本机：逐项取较新的；返回是否有变化
+  function applyArt(read,write,remote){
+    if(!remote||typeof remote!=="object")return false;
+    try{
+      const local=artSnapshot(read),m=readMeta(read),films=readFilmStyles(read);let changed=false;
+      const rd=remote.d||{};
+      if(+rd.t>local.d.t&&typeof rd.s==="string"){
+        const s=rd.s?normalize(rd.s):"";
+        if(s!==local.d.s){if(s)write(storageKey,s);changed=true;}
+        m.d=+rd.t;
+      }
+      const rf=remote.f&&typeof remote.f==="object"?remote.f:{};
+      Object.keys(rf).forEach(id=>{
+        const e=rf[id];if(!filmIdPattern.test(id)||!e||!(+e.t>(+m.f[id]||0)))return;
+        if(e.del){if(films.delete(id))changed=true;}
+        else{const s=normalize(e.s);if(films.get(id)!==s){films.set(id,s);changed=true;}}
+        m.f[id]=+e.t;
+      });
+      if(changed)write(filmStorageKey,JSON.stringify(Object.fromEntries(films)));
+      write(metaKey,JSON.stringify(m));
+      return changed;
+    }catch(_){return false;}
+  }
   const clamp=(n,lo,hi)=>Math.max(lo,Math.min(hi,n));
   const luma=(r,g,b)=>.24*r+.58*g+.18*b;
   const distance=(r,g,b,color)=>.30*(r-color[0])**2+.52*(g-color[1])**2+.18*(b-color[2])**2;
@@ -464,5 +501,5 @@
     }
   }
 
-  return {styles,storageKey,normalize,filmStyleOptions,readFilmStyles,saveFilmStyle,stylize,paint};
+  return {styles,storageKey,normalize,filmStyleOptions,readFilmStyles,saveFilmStyle,markArt,artSnapshot,applyArt,stylize,paint};
 });
