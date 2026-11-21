@@ -6,6 +6,8 @@ const W = require('./watched.js');
 const Want = require('./want.js');
 const plan = require('./plan.js');
 const Tix = require('./ticketstore.js');
+const Art = require('./ticket-sketch.js');
+const artRead = k => wx.getStorageSync(k), artWrite = (k, v) => wx.setStorageSync(k, v);
 const KEY = 'sk-sync';
 let busy = null, applying = false, clearing = false, timer = 0;
 const status = { state: 'idle', msg: '', at: 0 };
@@ -23,7 +25,7 @@ function photoB64() {
 }
 function snapshot() {
   const m = W.meta();
-  return { v: 1, watched: W.all(), holder: { n: W.holder(), t: m.holder || 0 }, photo: { d: photoB64(), t: m.photo || 0 }, picks: { k: [...plan.get()], t: m.picks || 0 }, want: JSON.parse(JSON.stringify(Want.all())), tix: Tix.snapshot() };
+  return { v: 1, watched: W.all(), holder: { n: W.holder(), t: m.holder || 0 }, photo: { d: photoB64(), t: m.photo || 0 }, picks: { k: [...plan.get()], t: m.picks || 0 }, want: JSON.parse(JSON.stringify(Want.all())), tix: Tix.snapshot(), art: Art.artSnapshot(artRead) };
 }
 function apply(d) {
   applying = true;
@@ -43,6 +45,7 @@ function apply(d) {
     if (d.want) Want.replaceAll(d.want);
     // 合并而不是覆盖：旧版 psync 云函数不认识 tix，返回的档案里没有票根，覆盖会清空本机票根（删除靠删除标记合并）
     if (d.tix) Tix.replaceAll(S.mergeTix(Tix.all(), d.tix));
+    if (d.art) Art.applyArt(artRead, artWrite, d.art);
     W.setMeta({ holder: d.holder.t, photo: d.photo.t, picks: d.picks.t });
   } finally { applying = false; }
 }

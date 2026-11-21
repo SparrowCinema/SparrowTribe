@@ -49,6 +49,8 @@ const set = (changes, data, idx) => put(Object.assign({}, all(data, idx), change
 // 同步：快照与应用（没有片库时只读写已有存储，不做迁移）
 function snapshot() { return JSON.parse(JSON.stringify(all())); }
 function replaceAll(store) { const before = rev; put(store, true); return rev !== before; }
+// 票根以外、但随票根一起同步的设置（手绘风格）改动后调用，通知云端同步
+function nudge() { listeners.forEach(fn => fn()); }
 function onChange(fn) { listeners.push(fn); return () => { const i = listeners.indexOf(fn); if (i >= 0) listeners.splice(i, 1); }; }
 // 一部电影一张票根（和观影护照对齐）：不对应观影记录的票根先挪回所属影片，再推出收藏册
 function build(data, idx) {
@@ -61,4 +63,4 @@ function freeKey(filmId, date, idx, except) {
   for (let n = 1; n < 10; n++) { const key = T.ticketKey(filmId, date, n); if (key === except || (!linked.has(key) && (!store[key] || store[key].del))) return key; }
   return '';
 }
-module.exports = { all, put, set, snapshot, replaceAll, onChange, build, baseFor, viewings, freeKey, rev: () => rev };
+module.exports = { all, put, set, snapshot, replaceAll, onChange, nudge, build, baseFor, viewings, freeKey, rev: () => rev };

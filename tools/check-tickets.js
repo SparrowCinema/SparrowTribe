@@ -175,6 +175,37 @@ const sat=new Uint8ClampedArray(40*30*4);for(let i=0;i<sat.length;i+=4)sat.set(i
 const kid=Sketch.stylize(sat,40,30,200,150,'kid-crayon'),flat=Sketch.stylize(sat,40,30,200,150,'doodle');
 const pale=a=>a.filter((v,i)=>i%4===0&&Math.min(v,a[i+1],a[i+2])>140).length;
 assert(pale(kid)>pale(flat)*1.5+50,'kid crayon leaves paper showing through the wax');
+// 手绘风格随云端同步：两台设备各改各的，合并后逐项取较新；清除单片风格留删除标记；云端的旧名字按 ALIAS 换算
+{
+  const mem=()=>{const m=new Map();return {read:k=>m.has(k)?m.get(k):null,write:(k,v)=>m.set(k,v),m};};
+  const A=mem(),B=mem();
+  A.write(Sketch.storageKey,'memphis');Sketch.markArt(A.read,A.write,null,100);
+  Sketch.saveFilmStyle(A.read,A.write,'film-a','pop-dots');Sketch.markArt(A.read,A.write,'film-a',110);
+  Sketch.saveFilmStyle(B.read,B.write,'film-b','watercolor');Sketch.markArt(B.read,B.write,'film-b',120);
+  B.write(Sketch.storageKey,'doodle');Sketch.markArt(B.read,B.write,null,90);
+  const merged=S.mergeArt(Sketch.artSnapshot(A.read),Sketch.artSnapshot(B.read));
+  assert.equal(merged.d.s,'memphis','newer album default wins');
+  assert.deepStrictEqual(Object.keys(merged.f).sort(),['film-a','film-b']);
+  assert.equal(Sketch.applyArt(B.read,B.write,merged),true);
+  assert.equal(B.read(Sketch.storageKey),'memphis');assert.equal(Sketch.readFilmStyles(B.read).get('film-a'),'pop-dots');
+  assert.equal(Sketch.applyArt(B.read,B.write,merged),false,'second apply changes nothing');
+  // 在 A 上清除 film-a 的单片风格 → 删除标记传到 B
+  Sketch.saveFilmStyle(A.read,A.write,'film-a','');Sketch.markArt(A.read,A.write,'film-a',130);
+  const snapA=Sketch.artSnapshot(A.read);assert.deepStrictEqual(snapA.f['film-a'],{del:1,t:130});
+  Sketch.applyArt(B.read,B.write,S.mergeArt(Sketch.artSnapshot(B.read),snapA));
+  assert.equal(Sketch.readFilmStyles(B.read).has('film-a'),false);
+  // 旧时间的云端数据不会覆盖本机较新的选择；已删除的风格名按 ALIAS 换算
+  assert.equal(Sketch.applyArt(B.read,B.write,{d:{s:'woodcut',t:5},f:{'film-b':{s:'cartoon',t:5}}}),false);
+  Sketch.applyArt(B.read,B.write,{f:{'film-c':{s:'cartoon',t:999}}});assert.equal(Sketch.readFilmStyles(B.read).get('film-c'),'pop-dots');
+  // 档案清洗：随整份档案同步，旧档案没有 art 也不出错；备份恢复与清空
+  const prof=S.clean({art:{d:{s:'memphis',t:3},f:{'x':{s:'pop-dots',t:4},'bad id!':{s:'x',t:1},'y':{del:1,t:2}}}});
+  assert.deepStrictEqual(prof.art,{d:{s:'memphis',t:3},f:{x:{s:'pop-dots',t:4},y:{del:1,t:2}}});
+  assert.deepStrictEqual(S.clean({}).art,{d:{s:'',t:0},f:{}});
+  assert.deepStrictEqual(S.merge({},{art:prof.art}).art.f.x,{s:'pop-dots',t:4});
+  const Backup=require('../shared/profile-backup.js');
+  const restored=Backup.restore({},Backup.encode({art:prof.art}),500);assert.equal(restored.art.f.x.t,500);
+  const wiped=Backup.empty({art:prof.art},600);assert.deepStrictEqual(wiped.art.f.x,{del:1,t:600});
+}
 const blocked=()=>({getContext:()=>({getImageData(){throw Error('pixels unavailable');}})});
 assert.equal(Sketch.paint({}, {},50,{x:0,y:0,w:48,h:32},blocked,()=>{}),false);
 

@@ -1,7 +1,8 @@
 /* 麻雀观影护照 · 个人档案云端同步（同步码，不用注册）
    网站（window.SparrowSync）、小程序（utils/psync.js）、psync 云函数共用同一份合并规则。
    档案 = { v:1, watched:{影片id:{d,r,k,t}|{del:1,t}}, holder:{n,t}, photo:{d,t}, picks:{k:[场次键],t}, want:{影片id:{t}|{del:1,t}},
-          tix:{"影片id|观影日期[|第N次]":{t, 只存改过的字段}|{del:1,t}} }（票根收藏册，2026-11-21）
+          tix:{"影片id|观影日期[|第N次]":{t, 只存改过的字段}|{del:1,t}}（票根收藏册，2026-11-21）,
+          art:{d:{s,t}, f:{影片id:{s,t}|{del:1,t}}}（票根手绘风格：收藏册默认 + 按影片单独选的，2026-11-21） }
    每一项都带更新时间 t，合并时同一项取较新的一份（删除用 {del:1,t} 留痕），所以不需要“上次同步的副本”，
    两台设备各自改了不同的片子会全部保留，改了同一部片子则以最后一次修改为准。 */
 (function (root) {
@@ -36,11 +37,32 @@
     Object.keys(raw).slice(0, 12000).forEach(function (k) { if (!TIX_KEY.test(k)) return; var e = cleanTixEntry(raw[k]); if (e) out[k] = e; });
     return out;
   }
+  // 票根手绘风格（2026-11-21）：d＝收藏册默认风格，f＝按影片单独选的风格；风格名由客户端 ticket-sketch.js 校验和换算，这里只检查格式
+  var ART_STYLE = /^[a-z][a-z-]{1,23}$/;
+  function cleanArt(raw) {
+    var out = { d: { s: '', t: 0 }, f: {} };
+    if (!raw || typeof raw !== 'object') return out;
+    if (raw.d && typeof raw.d === 'object') out.d = { s: ART_STYLE.test(String(raw.d.s || '')) ? raw.d.s : '', t: num(raw.d.t) };
+    var f = raw.f && typeof raw.f === 'object' ? raw.f : {};
+    Object.keys(f).slice(0, 12000).forEach(function (id) {
+      var e = f[id]; if (!/^[\w-]{1,80}$/.test(id) || !e || typeof e !== 'object') return;
+      if (e.del) out.f[id] = { del: 1, t: num(e.t) };
+      else if (ART_STYLE.test(String(e.s || ''))) out.f[id] = { s: e.s, t: num(e.t) };
+    });
+    return out;
+  }
+  function mergeArt(a, b) {
+    a = cleanArt(a); b = cleanArt(b);
+    var out = { d: b.d.t > a.d.t ? b.d : a.d, f: {} };
+    Object.keys(a.f).concat(Object.keys(b.f)).forEach(function (id) { var x = a.f[id], y = b.f[id]; out.f[id] = !x ? y : !y ? x : (y.t > x.t ? y : x); });
+    return out;
+  }
   function mergeTix(a, b) { var out = {}; Object.keys(a).concat(Object.keys(b)).forEach(function (k) { var x = a[k], y = b[k]; out[k] = !x ? y : !y ? x : (y.t > x.t ? y : x); }); return out; }
   function clean(d) {
-    var out = { v: 1, watched: {}, holder: { n: '', t: 0 }, photo: { d: '', t: 0 }, picks: { k: [], t: 0 }, want: {}, tix: {} };
+    var out = { v: 1, watched: {}, holder: { n: '', t: 0 }, photo: { d: '', t: 0 }, picks: { k: [], t: 0 }, want: {}, tix: {}, art: cleanArt(null) };
     if (!d || typeof d !== 'object') return out;
     out.tix = cleanTix(d.tix);
+    out.art = cleanArt(d.art);
     var w = d.watched && typeof d.watched === 'object' ? d.watched : {};
     Object.keys(w).slice(0, 12000).forEach(function (id) {
       var r = w[id]; if (!/^[\w-]{1,80}$/.test(id) || !r || typeof r !== 'object') return;
@@ -74,7 +96,7 @@
   }
   function merge(a, b) {            // a = 本机，b = 云端；同一项取较新者，时间相同取本机
     a = clean(a); b = clean(b);
-    var out = { v: 1, watched: {}, holder: null, photo: null, picks: null, want: {}, tix: mergeTix(a.tix, b.tix) };
+    var out = { v: 1, watched: {}, holder: null, photo: null, picks: null, want: {}, tix: mergeTix(a.tix, b.tix), art: mergeArt(a.art, b.art) };
     Object.keys(a.watched).concat(Object.keys(b.watched)).forEach(function (id) {
       var x = a.watched[id], y = b.watched[id]; out.watched[id] = !x ? y : !y ? x : Taste.mergeFields(x,y,y.t>x.t?y:x);
     });
@@ -85,6 +107,6 @@
     return out;
   }
   var same = function (a, b) { return JSON.stringify(clean(a)) === JSON.stringify(clean(b)); };
-  var api = { newCode: newCode, normalize: normalize, clean: clean, merge: merge, same: same, cleanTix: cleanTix, cleanTixEntry: cleanTixEntry, mergeTix: mergeTix, TIX_KEY: TIX_KEY };
+  var api = { newCode: newCode, normalize: normalize, clean: clean, merge: merge, same: same, cleanTix: cleanTix, cleanTixEntry: cleanTixEntry, mergeTix: mergeTix, TIX_KEY: TIX_KEY, cleanArt: cleanArt, mergeArt: mergeArt };
   if (typeof module !== 'undefined' && module.exports) module.exports = api; else root.SparrowSync = api;
 })(typeof window !== 'undefined' ? window : this);

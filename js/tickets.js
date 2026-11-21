@@ -9,6 +9,11 @@ const TicketArt=window.SparrowTicketSketch;
 let ticketArtStyle=(()=>{try{return TicketArt.normalize(localStorage.getItem(TicketArt.storageKey));}catch{return TicketArt.normalize();}})();
 const readTicketPreference=key=>localStorage.getItem(key);
 let ticketFilmStyles=TicketArt.readFilmStyles(readTicketPreference);
+// 手绘风格随个人档案云端同步：记下修改时间，ticketArtRev 让同步发现有改动
+let ticketArtRev=0;
+function ticketMarkArt(filmId){TicketArt.markArt(readTicketPreference,(k,v)=>localStorage.setItem(k,v),filmId);ticketArtRev++;}
+// 云端合并后刷新内存里的风格设置
+function ticketArtReload(){ticketArtStyle=(()=>{try{return TicketArt.normalize(localStorage.getItem(TicketArt.storageKey));}catch{return TicketArt.normalize();}})();ticketFilmStyles=TicketArt.readFilmStyles(readTicketPreference);ticketArtRev++;}
 const ticketStyleFor=row=>ticketFilmStyles.get(row.filmId)||ticketArtStyle;
 const TICKET_W={l:320,m:200,s:130},TICKET_PICK_MAX=24,TICKET_PENDING_STEP=60;
 let ticketStoreCache=null,ticketRev=0,ticketData=null,ticketDataRev=-1,ticketByKey=new Map();
@@ -329,7 +334,7 @@ function ticketDialogClick(e,d){
       if(choice===(ticketFilmStyles.get(row.filmId)||""))return;
       const updated=TicketArt.saveFilmStyle(readTicketPreference,(key,value)=>localStorage.setItem(key,value),row.filmId,choice);
       if(!updated){toast(tr("票根保存失败，请检查本机存储"));return;}
-      ticketFilmStyles=updated;
+      ticketFilmStyles=updated;ticketMarkArt(row.filmId);
       ticketFlipTo("front");
       ticketRenderCard(main.querySelector("#ticket-preview-front"),row,"front");
       return;
@@ -338,6 +343,7 @@ function ticketDialogClick(e,d){
     if(style===ticketArtStyle)return;
     ticketArtStyle=style;ticketSide="front";
     try{localStorage.setItem(TicketArt.storageKey,style);}catch{}
+    ticketMarkArt(null);
     ticketPaintList();
     return;
   }
