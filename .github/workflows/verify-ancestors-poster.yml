@@ -17,7 +17,7 @@ jobs:
           import base64, io, urllib.request
           from concurrent.futures import ThreadPoolExecutor
           from PIL import Image
-          candidates = [["tmdb","https://image.tmdb.org/t/p/original/1LCbsi1Djz1yp1aJPM4Zr6PklLC.jpg"],["cineamo","https://cineamo-tmdb.b-cdn.net/t/p/w780/1LCbsi1Djz1yp1aJPM4Zr6PklLC.jpg?width=640"],["flixster","https://resizing.flixster.com/s6dFIignY1HgiHyjZ3xleRJAzno%3D/ems.cHJkLWVtcy1hc3NldHMvbW92aWVzL2U4YjBjNTAxLTU1ZDktNDVmNS04MDMyLTA5ZjlhZTJhNmRkOC5qcGc%3D"],["adoro","https://br.web.img3.acsta.net/img/22/ff/22ff8687dbdaf912e930c93933ace1f0.jpg"]]
+          candidates = [["mostra_cover","https://static.mostra.org/_img/_filmes/12107-large.jpg"],["mostra_gallery","https://static.mostra.org/_filmes/12107-galeria-7f78560a-5368-402d-adac-1984afb059d1.jpg"],["philippines_fdcp","https://fdcp.ph/sites/default/files/inline-images/image_11.png"]]
           def inspect(candidate):
               name, url = candidate
               try:
