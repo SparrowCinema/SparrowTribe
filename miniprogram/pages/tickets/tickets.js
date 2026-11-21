@@ -51,7 +51,20 @@ Page({
     this.album();
     if(params.id)this.openEditor('film='+encodeURIComponent(params.id));
   },
-  onShow(){CFG.chrome();if(this._shownOnce&&this.data.mode==='album'&&this._rev!==Tix.rev())this.album();this._shownOnce=true;},
+  onShow(){
+    CFG.chrome();
+    if(this._shownOnce){
+      let style=this.data.artStyle;
+      try{style=Art.normalize(wx.getStorageSync(Art.storageKey));}catch(_){}
+      const styleChanged=style!==this.data.artStyle;
+      if(styleChanged)this.applyArtStyle(style);
+      if(this.data.mode==='album'){
+        if(this._rev!==Tix.rev())this.album();
+        else if(styleChanged)this.paint(false);
+      }
+    }
+    this._shownOnce=true;
+  },
   onUnload(){this._ready=false;this._render++;this.__cfgOff?.();},
   onReachBottom(){if(this.data.mode==='album'&&this.data.more){this._limit+=STEP;this.paint('more');}},
   load(){
@@ -78,7 +91,7 @@ Page({
     const groups=R.groupByMonth(shownRows).map(g=>({id:g.id,title:monthTitle(g,en),n:monthN[g.id],items:g.rows.map(r=>this.item(r))}));
     const patch={shown:shownRows.length,total:rows.length,all:tickets.length,more:rows.length>shownRows.length};
     // 触底加载：前面的票根不变，只把新增的写进 setData，避免越滚越慢
-    const sig=JSON.stringify([q,this.data.density,this.data.front,this._rev]),prev=this.data.groups;
+    const sig=JSON.stringify([q,this.data.density,this.data.front,this.data.artStyle,this._rev]),prev=this.data.groups;
     if(append==='more'&&sig===this._sig&&prev.length){
       groups.forEach((g,gi)=>{const old=prev[gi];
         if(!old||old.id!==g.id){patch[`groups[${gi}]`]=g;return;}
@@ -137,8 +150,12 @@ Page({
     const artStyleIndex=Number(e.detail.value),style=Art.styles[artStyleIndex];
     if(!style||style.id===this.data.artStyle)return;
     try{wx.setStorageSync(Art.storageKey,style.id);}catch(_){}
+    this.applyArtStyle(style.id);
+    this.paint(false);
+  },
+  applyArtStyle(artStyle){
     this._imgPatch={};
-    this.setData({artStyle:style.id,artStyleIndex,front:true});this.paint(false);
+    this.setData({artStyle,artStyleIndex:Art.styles.findIndex(style=>style.id===artStyle),front:true});
   },
   toggleFacets(){this.setData({facetsOpen:!this.data.facetsOpen});},
   stopMove(){},
