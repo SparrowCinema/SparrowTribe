@@ -200,8 +200,19 @@ Page({
     this._art=[...(row.arts||[])];
     if(row.art&&!this._art.includes(row.art))this._art.unshift(row.art);
     const arts=this._art.map((_,i)=>I.tr(i===0?'海报':'备用图像')+' '+(i+1));
-    this.setData({mode:'edit',draft:row,arts,artIndex:Math.max(0,this._art.indexOf(row.art)),editFront:side==='front',existing:!!original,linked:!!row.linked},()=>{this.drawEditor();this.measureTicket();});
+    // 场次选择：自建票根列出本片全部场次；来自观影记录的票根日期固定，只列当天场次
+    this._shows=(this.data_.shows||[]).filter(x=>x.id===row.filmId).map(x=>{const v=this.idx.VN[x.v];return {date:iso(U.showDate(x)),time:x.t,venue:(v&&v.name)||'',hall:this.idx.hallName(x)||'',city:(v&&v.city)||''};})
+      .filter(x=>!row.linked||x.date===row.date).sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time));
+    const showIdx=this._shows.findIndex(x=>x.date===row.date&&x.time===row.time&&x.venue===row.venue);
+    const shows=this._shows.map(x=>`${x.date.slice(5).replace('-','/')} ${x.time} · ${x.venue}${x.hall?' '+x.hall:''}`);
+    this.setData({mode:'edit',draft:row,arts,shows,showIdx,artIndex:Math.max(0,this._art.indexOf(row.art)),editFront:side==='front',existing:!!original,linked:!!row.linked},()=>{this.drawEditor();this.measureTicket();});
     wx.pageScrollTo({scrollTop:0,duration:0});
+  },
+  chooseShow(e){
+    const x=this._shows[Number(e.detail.value)];if(!x||!this._draft)return;
+    if(!this._draft.linked)this._draft.date=x.date;
+    Object.assign(this._draft,{time:x.time,venue:x.venue,hall:x.hall,city:x.city});
+    this.setData({draft:this._draft,showIdx:Number(e.detail.value)});this.drawEditor();
   },
   chooseArt(e){this._draft.art=this._art[Number(e.detail.value)];this._draft.crop=50;this.edit(this._draft,this._original,this._side);},
   changeField(e){

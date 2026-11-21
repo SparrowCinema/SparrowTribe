@@ -367,7 +367,7 @@ function ticketEditor(row){
     <div class="te-body">
       <div class="te-title"><h3>${esc(row.title)}</h3>${row.programme?`<small>${esc(row.programme)}</small>`:""}</div>
       <h4 class="te-sec">${ticketDict("放映信息")}</h4>
-      <div class="te-card">${dateRow}${input("time","开场时间","","time")}${input("venue","影院","影院名称")}${input("hall","影厅","如 1号厅")}${input("seat","座位","选填，如 5排8座")}${input("format","放映版本","如 4K修复")}</div>
+      <div class="te-card">${ticketShowRow(row)}${dateRow}${input("time","开场时间","","time")}${input("venue","影院","影院名称")}${input("hall","影厅","如 1号厅")}${input("seat","座位","选填，如 5排8座")}${input("format","放映版本","如 4K修复")}</div>
       <div class="te-acts"><button type="button" class="te-save" data-ticket-action="save">${ticketDict(ticketDraft.original?"保存修改":"加入收藏册")}</button>
         <div class="te-links"><button type="button" class="text-button" data-ticket-action="single">${ticketDict("导出这张票根")}</button>${ticketDraft.original?`<i aria-hidden="true">·</i><button type="button" class="text-button te-danger" data-ticket-action="remove">${ticketDict("移出收藏册")}</button>`:""}</div></div>
     </div></div>`;
@@ -477,6 +477,7 @@ function ticketChange(event){
   if(t.matches("[data-ticket-back]")){ticketSide=t.checked?"back":"front";ticketPaintList();return;}
   if(!ticketDraft)return;
   const row=ticketDraft.row;
+  if(name==="show"){if(Number(value)>=0)ticketPickShow(Number(value));return;}
   if(["date","time","venue","hall","seat","format","art"].includes(name)){
     row[name]=value;
     if(name==="art")row.crop=50;
@@ -536,4 +537,22 @@ function ticketFlipTo(side){
   if(!ticketDraft)return;ticketDraft.side=side;
   main.querySelector(".ticket-flip").dataset.side=side;
   main.querySelectorAll("[data-ticket-side]").forEach(b=>b.setAttribute("aria-selected",b.dataset.ticketSide===side));
+}
+
+// 场次选择：自建票根列出本片全部场次（选中后连日期一起填）；来自观影记录的票根日期固定，只列当天场次
+function ticketShows(row){
+  return SH.filter(s=>s.id===row.filmId).map(s=>{const v=VN[s.v],h=v?.halls?.find(x=>x.id===s.h);return {s,date:isoOf(showDate(s)),time:s.t,venue:v?.name||"",hall:h?.name||s.h||"",city:v?.city||""};})
+    .filter(x=>!row.linked||x.date===row.date).sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time));
+}
+function ticketShowRow(row){
+  const list=ticketShows(row);if(!list.length)return "";
+  const cur=list.findIndex(x=>x.date===row.date&&x.time===row.time&&x.venue===row.venue);
+  const label=x=>`${x.date.slice(5).replace("-","/")} ${x.time} · ${x.venue}${x.hall?" "+x.hall:""}`;
+  return `<label class="te-row"><span class="te-k">${ticketDict("场次")}</span><select class="te-in" name="show" aria-label="${ticketDict("选择场次")}">${ticketOption("-1",tr(cur<0?"自填 / 选择场次":"自填"),String(cur))}${list.map((x,i)=>ticketOption(String(i),label(x),String(cur))).join("")}</select></label>`;
+}
+function ticketPickShow(i){
+  const row=ticketDraft.row,x=ticketShows(row)[i];if(!x)return;
+  if(!row.linked)row.date=x.date;
+  Object.assign(row,{time:x.time,venue:x.venue,hall:x.hall,city:x.city});
+  ticketRender();
 }
