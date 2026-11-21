@@ -2,7 +2,6 @@
 // 票根 = 某一次观影的皮肤（utils/ticketstore.js）；按年 → 月连续滚动，先给 48 张、触底再补；
 // 票面由页面里一块隐藏画布逐张画成图片（只画已加载的部分），缓存在本次打开期间；书脊模式不画图。
 const R=require('../../utils/tickets.js');
-const {createPreview}=require('../../utils/ticket-preview.js');
 const Tix=require('../../utils/ticketstore.js');
 const U=require('../../utils/util.js');
 const W=require('../../utils/watched.js');
@@ -15,8 +14,6 @@ const stock=(w,h)=>wx.createOffscreenCanvas({type:'2d',width:w,height:h});
 const iso=d=>[d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-');
 const thumbOf=u=>/^https?:\/\/[^?#]+\/posters\/[^/?#]+\.(jpe?g|png)$/i.test(u||'')?u.replace(/\/posters\/([^/?#]+)\.(jpe?g|png)$/i,'/posters/w360/$1.jpg'):u;
 const SITE='https://sparrowcinema.github.io/SparrowTribe/';
-const clamp=value=>Math.max(0,Math.min(1,value));
-const nextFrame=(node,callback)=>typeof node.requestAnimationFrame==='function'?node.requestAnimationFrame(callback):setTimeout(callback,16);
 const artworkUrl=src=>/^(posters|images)\//i.test(src||'')?SITE+src:src;
 const FACET_LABEL={programme:'专题',city:'城市',venue:'影院',format:'放映版本'};
 const paths=new Map(); // 票面图片缓存：签名 → 临时文件
@@ -48,10 +45,11 @@ Page({
     density=TILE_W[density]||density==='spine'?density:'m';
     CFG.bind(this);this.setData({i:I.dict(),density,densLabels:DENS_OPT.map(x=>I.tr(x[1])),densIndex:DENS_OPT.findIndex(x=>x[0]===density)});wx.setNavigationBarTitle({title:I.tr('我的票根收藏册')});
     this.load();
-    if(params.id)this.begin(params.id);else this.album();
+    this.album();
+    if(params.id)this.openEditor('film='+encodeURIComponent(params.id));
   },
   onShow(){CFG.chrome();if(this._shownOnce&&this.data.mode==='album'&&this._rev!==Tix.rev())this.album();this._shownOnce=true;},
-  onUnload(){this._ready=false;this._preview=null;this._render++;this.__cfgOff?.();},
+  onUnload(){this._ready=false;this._render++;this.__cfgOff?.();},
   onReachBottom(){if(this.data.mode==='album'&&this.data.more){this._limit+=STEP;this.paint('more');}},
   load(){
     this.data_=app.globalData.data;this.idx=U.index(this.data_);
@@ -61,7 +59,7 @@ Page({
   // ——— 收藏册 ———
   album(){
     if(this._rev!==Tix.rev())this.load();
-    this._draft=this._preview=this._ticketBounds=null;++this._render;this._limit=STEP;
+    this._draft=null;++this._render;this._limit=STEP;
     const {tickets,pending}=this._built;
     this.setData({mode:'album',sum:{n:tickets.length,pending:pending.length}});
     this.paint(false);
@@ -147,14 +145,14 @@ Page({
       if(this._pick.has(k))this._pick.delete(k);else if(this._pick.size>=PICK_MAX){wx.showToast({title:I.tr('精选墙最多')+' '+PICK_MAX+' '+I.tr('张票根'),icon:'none'});return;}else this._pick.add(k);
       const {gi,ii}=e.currentTarget.dataset;this.setData({[`groups[${gi}].items[${ii}].p`]:this._pick.has(k),pickN:this._pick.size});return;
     }
-    this.edit({...row,look:{...row.look}},row.key,this.data.front?'front':'back');
+    this.openEditor('key='+encodeURIComponent(row.key));
   },
   // ——— 待制作 ———
   openPending(){this._pendShown=PEND_STEP;this.pendingView();wx.pageScrollTo({scrollTop:0,duration:0});},
   pendingView(){
     if(this._rev!==Tix.rev())this.load();
     const {pending}=this._built,base=Tix.baseFor(this.data_,this.idx),shown=pending.slice(0,this._pendShown||PEND_STEP);
-    this._draft=this._preview=this._ticketBounds=null;++this._render;
+    this._draft=null;++this._render;
     this.setData({mode:'pending',sum:{n:this._built.tickets.length,pending:pending.length},pendingMore:pending.length-shown.length,
       pending:shown.map(x=>{const f=this.idx.F[x.filmId],b=base(x.filmId,x.view,x.view.d)||{};return {k:x.key,t:(f&&f.cn)||x.filmId,poster:f?U.thumb(f):'',m:[x.view.d.replace(/-/g,'.'),b.time,b.venue].filter(Boolean).join(' · ')};})});
   },
@@ -165,9 +163,9 @@ Page({
     if(!Tix.set(changes,this.data_,this.idx))return;
     this.load();this.album();wx.showToast({title:I.tr('已生成')+' '+pending.length+' '+I.tr('张票根'),icon:'none'});
   },
-  openPendingItem(e){const item=this._built.pending.find(x=>x.key===e.currentTarget.dataset.k);if(item)this.openViewing(item);},
+  openPendingItem(e){this.openEditor('key='+encodeURIComponent(e.currentTarget.dataset.k));},
   // ——— 制作 ———
-  start(){this._draft=this._preview=this._ticketBounds=null;++this._render;this.setData({mode:'search',query:''});this.search('');},
+  start(){this._draft=null;++this._render;this.setData({mode:'search',query:''});this.search('');},
   inputSearch(e){const query=e.detail.value;this.setData({query});this.search(query);},
   search(query){
     const data=this.data_,terms=query.trim().toLowerCase().split(/\s+/).filter(Boolean);
@@ -175,155 +173,10 @@ Page({
       W.entries(data,this.idx).slice(-18).reverse().map(e=>e.f);
     this.setData({results:films.map(f=>({id:f.id,title:f.cn,poster:U.thumb(f)}))});
   },
-  openFilm(e){this.begin(e.currentTarget.dataset.id);},
-  openViewing(item){
-    const existing=this._byKey.get(item.key);
-    if(existing){this.edit({...existing,look:{...existing.look}},existing.key);return;}
-    const row=R.build([item],{[item.key]:{t:Date.now()}},Tix.baseFor(this.data_,this.idx)).tickets[0];if(!row)return;
-    row.look=R.randomLook(row);this._view=item.view;this.edit(row,'');
-  },
-  begin(id){
-    const f=this.idx.F[id];if(!f){this.album();return;}
-    const mine=Tix.viewings(this.idx).filter(x=>x.filmId===id).sort((a,b)=>b.view.d.localeCompare(a.view.d));
-    const item=mine.find(x=>!this._byKey.has(x.key))||mine[0];
-    if(item){this.openViewing(item);return;}
-    const date=iso(new Date()),key=Tix.freeKey(id,date,this.idx);
-    const row=R.build([],{[key]:{t:Date.now()}},Tix.baseFor(this.data_,this.idx)).tickets[0];if(!row){this.album();return;}
-    row.look=R.randomLook(row);this._view=null;this.edit(row,'');
-  },
-  // ——— 编辑 ———
-  edit(row,original,side='front'){
-    if(original&&row.linked){const item=Tix.viewings(this.idx).find(x=>x.key===row.key);this._view=item?item.view:null;}
-    else if(original)this._view=null;
-    this._draft=row;this._original=original;this._side=side;
-    if(row.art)row.art=artworkUrl(row.art);
-    this._art=[...(row.arts||[])];
-    if(row.art&&!this._art.includes(row.art))this._art.unshift(row.art);
-    const arts=this._art.map((_,i)=>I.tr(i===0?'海报':'备用图像')+' '+(i+1));
-    // 场次选择：自建票根列出本片全部场次；来自观影记录的票根日期固定，只列当天场次
-    this._shows=(this.data_.shows||[]).filter(x=>x.id===row.filmId).map(x=>{const v=this.idx.VN[x.v];return {date:iso(U.showDate(x)),time:x.t,venue:(v&&v.name)||'',hall:this.idx.hallName(x)||'',city:(v&&v.city)||''};})
-      .filter(x=>!row.linked||x.date===row.date).sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time));
-    const showIdx=this._shows.findIndex(x=>x.date===row.date&&x.time===row.time&&x.venue===row.venue);
-    const shows=this._shows.map(x=>`${x.date.slice(5).replace('-','/')} ${x.time} · ${x.venue}${x.hall?' '+x.hall:''}`);
-    this.setData({mode:'edit',draft:row,arts,artStyles:[I.tr('原图'),I.tr('手绘')],shows,showIdx,artIndex:Math.max(0,this._art.indexOf(row.art)),editFront:side==='front',existing:!!original,linked:!!row.linked},()=>{this.drawEditor();this.measureTicket();});
-    wx.pageScrollTo({scrollTop:0,duration:0});
-  },
-  chooseShow(e){
-    const x=this._shows[Number(e.detail.value)];if(!x||!this._draft)return;
-    if(!this._draft.linked)this._draft.date=x.date;
-    Object.assign(this._draft,{time:x.time,venue:x.venue,hall:x.hall,city:x.city});
-    this.setData({draft:this._draft,showIdx:Number(e.detail.value)});this.drawEditor();
-  },
-  chooseArt(e){this._draft.art=this._art[Number(e.detail.value)];this._draft.crop=50;this.edit(this._draft,this._original,this._side);},
-  chooseArtStyle(e){
-    const sketch=Number(e.detail.value)===1;
-    this._draft.sketch=sketch;
-    this.setData({'draft.sketch':sketch},()=>this.drawEditor());
-    if(this._side==='back'&&!this._preview?.flipping)this.flipEditor();
-  },
-  changeField(e){
-    const name=e.currentTarget.dataset.field;
-    this._draft[name]=name==='crop'?Number(e.detail.value):e.detail.value;
-    this.setData({['draft.'+name]:this._draft[name]});
-    // 裁切只作用于正面海报：在看背面时拖动就先翻回正面
-    if(name==='crop'&&this._side!=='front'&&!(this._preview&&this._preview.flipping))this.flipEditor();
-    clearTimeout(this._edT);this._edT=setTimeout(()=>this.drawEditor(),name==='crop'?0:250);
-  },
-  // 可见画布只画当前面，翻转时用透视投影连续重绘。
-  flipEditor(){
-    const preview=this._preview;
-    if(!this._draft||preview?.flipping)return;
-    const target=this._side==='front'?'back':'front';
-    const switchSide=()=>{this._side=target;this.setData({editFront:target==='front'});};
-    if(!preview){switchSide();this.drawEditor();return;}
-    preview.flipping=true;
-    const start=Date.now();
-    const animate=()=>{
-      if(this._preview!==preview)return;
-      const progress=clamp((Date.now()-start)/520);
-      if(progress>=.5&&this._side!==target)switchSide();
-      if(progress===1){preview.flipping=false;this.paintEditor(preview);return;}
-      const eased=(1-Math.cos(progress*Math.PI))/2;
-      const halfTurn=progress<.5?eased:eased-1;
-      const angle=Math.PI*halfTurn*(target==='back'?1:-1);
-      this.paintEditor(preview,angle,{x:eased,y:.35});
-      nextFrame(preview.node,animate);
-    };
-    nextFrame(preview.node,animate);
-  },
-  setSide(e){if((e.currentTarget.dataset.side==='front')!==(this._side==='front'))this.flipEditor();},
-  startEditorTouch(e){this.measureTicket();this.moveEditorTouch(e);},
-  moveEditorTouch(e){
-    const preview=this._preview,box=this._ticketBounds,point=e.touches?.[0];
-    if(!preview||!box||e.touches?.length!==1)return;
-    const x=Number.isFinite(point.pageX)?point.pageX-box.left:point.x;
-    const y=Number.isFinite(point.pageY)?point.pageY-box.top:point.y;
-    if(!Number.isFinite(x)||!Number.isFinite(y))return;
-    preview.light={x:clamp(x/box.width),y:clamp(y/box.height)};
-    this.queueEditorPaint(preview);
-  },
-  endEditorTouch(){const preview=this._preview;if(!preview?.light)return;preview.light=null;this.queueEditorPaint(preview);},
-  queueEditorPaint(preview){
-    if(preview.paintQueued||preview.flipping)return;
-    preview.paintQueued=true;
-    nextFrame(preview.node,()=>{preview.paintQueued=false;if(this._preview===preview&&!preview.flipping)this.paintEditor(preview);});
-  },
-  measureTicket(){
-    wx.createSelectorQuery().in(this).select('#ticket-editor').boundingClientRect().selectViewport().scrollOffset().exec(result=>{
-      const [bounds,scroll]=result||[];
-      if(!this._draft||!bounds?.width||!bounds.height)return;
-      this._ticketBounds={left:bounds.left+(scroll?.scrollLeft||0),top:bounds.top+(scroll?.scrollTop||0),width:bounds.width,height:bounds.height};
-    });
-  },
-  shuffle(){this._draft.look=R.randomLook(this._draft);this.setData({'draft.look':this._draft.look},()=>this.drawEditor());},
-  reset(){this._draft.look=R.defaults(R.sanitize({...this._draft,look:null}));this.setData({'draft.look':this._draft.look},()=>this.drawEditor());},
-  store(){
-    const d=this._draft,row=R.sanitize({...d});
-    if(!row.date){say('请填写放映日期');return;}
-    let key=d.key;
-    if(!d.linked){const p=R.parseKey(key);if(!p||p.date!==row.date)key=Tix.freeKey(row.filmId,row.date,this.idx,this._original);if(!key){say('这一天的票根已经太多了');return;}}
-    const base=Tix.baseFor(this.data_,this.idx)(row.filmId,d.linked?this._view:null,row.date);
-    const changes={[key]:base?R.entryFrom({...row,id:key},{...base,id:key}):{t:Date.now()}};
-    if(this._original&&this._original!==key)changes[this._original]={del:1,t:Date.now()};
-    if(!Tix.set(changes,this.data_,this.idx))return;
-    this.load();this.album();say('已收进票根收藏册');
-  },
-  remove(){
-    const original=this._original,linked=this._draft&&this._draft.linked;
-    wx.showModal({title:I.tr('移出票根'),content:I.tr(linked?'将这张票根移出收藏册？这次观影会回到「待制作」。':'将这张票根移出收藏册？'),success:r=>{
-      if(r.confirm&&Tix.set({[original]:{del:1,t:Date.now()}},this.data_,this.idx)){this.load();this.album();}
-    }});
-  },
-  async drawEditor(){
-    if(!this._draft||!this._ready)return;
-    const render=++this._render;
-    if(!this._preview){
-      // 刚切到编辑页时画布可能还没准备好，最多再等 10 次
-      let node=null;
-      for(let i=0;i<10&&!node;i++){node=await canvas(this,'ticket-editor');if(!node)await new Promise(r=>setTimeout(r,60));if(render!==this._render||!this._draft)return;}
-      if(!node)return;
-      node.width=630;node.height=1296;
-      this._preview={node,render:createPreview(node,stock)};
-    }
-    const preview=this._preview,source=this._draft.art;
-    if(preview.source!==source){
-      preview.source=source;preview.art=null;
-      preview.artRequest=source?image(preview.node,source):null;
-      const request=preview.artRequest;
-      if(request)request.then(art=>{
-        if(this._preview!==preview||preview.artRequest!==request)return;
-        preview.art=art;
-        if(!preview.flipping&&this._side==='front')this.paintEditor(preview);
-      });
-    }
-    if(!preview.flipping)this.paintEditor(preview);
-  },
-  paintEditor(preview,turn,light=preview.light){
-    preview.render(this._draft,this._side,this._side==='front'?preview.art:null,turn,light);
-  },
+  openFilm(e){this.album();this.openEditor('film='+encodeURIComponent(e.currentTarget.dataset.id));},
+  // 票根详情 / 编辑是独立页面（pages/ticket-edit）：系统返回手势、页面滚动都是原生的
+  openEditor(q){wx.navigateTo({url:'/pages/ticket-edit/ticket-edit?'+q});},
   backAlbum(){this.album();},
-  // 隐藏的 page-container：在编辑、待制作、制作票根时，系统返回手势只关掉它，回到收藏册而不是退出页面
-  onBackGesture(){if(this.data.mode!=='album')this.album();},
   // ——— 导出 ———
   toggleExport(){
     if(this.data.exportOpen){this.setData({exportOpen:false});return;}
@@ -351,7 +204,6 @@ Page({
   },
   pickExport(){this.setData({'ex.kind':'pick','ex.part':0});this.exportWall(true);},
   pickCancel(){this._pick=null;this.setData({pick:false,pickN:0});this.paint(true);},
-  exportSingle(){if(!this.data.loading)this.export(true);},
   exportWall(){this.export(false);},
   async export(single){
     if(this.data.loading)return;
