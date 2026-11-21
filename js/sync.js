@@ -7,12 +7,12 @@ try{syncSt=JSON.parse(localStorage.getItem(SYNC_KEY)||'null');}catch{}
 function syncSave(){try{syncSt?localStorage.setItem(SYNC_KEY,JSON.stringify(syncSt)):localStorage.removeItem(SYNC_KEY);}catch{}}
 async function sbRpc(fn,body,signal){const r=await fetch(SB_API+fn,{method:'POST',headers:{apikey:SB_KEY,Authorization:'Bearer '+SB_KEY,'Content-Type':'application/json'},body:JSON.stringify(body),signal});
   if(!r.ok){let m='';try{m=(await r.json()).message||'';}catch{}throw new Error(m||('HTTP '+r.status));}return r.json();}
-function profileSnap(){const m=readMeta();return {v:1,watched:JSON.parse(JSON.stringify(watched)),holder:{n:holderName(),t:m.holder||0},photo:{d:holderPhoto(),t:m.photo||0},picks:{k:[...picked],t:m.picks||0},want:JSON.parse(JSON.stringify(want))};}
-function profileApply(d){watched=d.watched;saveWatched();if(d.want){want=d.want;saveWant();}
+function profileSnap(){const m=readMeta();return {v:1,watched:JSON.parse(JSON.stringify(watched)),holder:{n:holderName(),t:m.holder||0},photo:{d:holderPhoto(),t:m.photo||0},picks:{k:[...picked],t:m.picks||0},want:JSON.parse(JSON.stringify(want)),tix:JSON.parse(JSON.stringify(ticketStore()))};}
+function profileApply(d){watched=d.watched;saveWatched();if(d.want){want=d.want;saveWant();}if(d.tix)ticketStorePut(window.SparrowSync.mergeTix(ticketStore(),d.tix),true);
   try{localStorage.setItem(HOLDER_KEY,d.holder.n);d.photo.d?localStorage.setItem(PHOTO_KEY,d.photo.d):localStorage.removeItem(PHOTO_KEY);localStorage.setItem(PLAN_KEY,JSON.stringify(d.picks.k));
     localStorage.setItem(META_KEY,JSON.stringify({holder:d.holder.t,photo:d.photo.t,picks:d.picks.t}));}catch{throw new Error(tr('浏览器未能保存，请检查存储空间'));}
   picked=readSelection();}
-const profilePrint=()=>{try{return JSON.stringify([watched,holderName(),holderPhoto().length,[...picked].sort(),want]);}catch{return '';}};
+const profilePrint=()=>{try{return JSON.stringify([watched,holderName(),holderPhoto().length,[...picked].sort(),want,ticketRev]);}catch{return '';}};
 async function syncRun(){
   if(!syncSt||!syncSt.code)return;syncStatus={state:'busy',msg:tr('同步中…'),at:syncStatus.at};syncPaint();
   const S=window.SparrowSync;let merged,rev;

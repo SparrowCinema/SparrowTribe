@@ -15,6 +15,7 @@ assert.equal(fs.readFileSync(path.join(root,'shared/tickets.js'),'utf8'),fs.read
 console.log('PASS: backup round trip, no credentials, merge semantics, deletions, malformed imports, city-scoped selection and JavaScript parsing.');
 
 require('./check-recap.js');
+require('./check-tickets.js');
 
 require('./check-film-details.js');
 require('./check-mini-ended.js');

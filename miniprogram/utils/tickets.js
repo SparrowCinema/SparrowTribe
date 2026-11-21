@@ -1,8 +1,10 @@
 // Companion ticket artwork and data model, shared by the website and mini program.
+// 2026-11-21 起票根是「某一次观影的皮肤」：存储只留用户改过的字段（见 shared/psync.js 的 cleanTix），
+// 日期、影院、片名、专题都在显示时由观影记录与片库推出。旧版整条记录（sparrow-tickets-v1 / sk-tickets-v1）用 migrateV1 迁移。
 (function (root, factory) {
-  if (typeof module === "object" && module.exports) module.exports = factory();
-  else root.SparrowTickets = factory();
-})(typeof self === "undefined" ? this : self, function () {
+  if (typeof module === "object" && module.exports) module.exports = factory(require("./psync.js"));
+  else root.SparrowTickets = factory(root.SparrowSync);
+})(typeof self === "undefined" ? this : self, function (Sync) {
 "use strict";
 
 const W=420, H=864, TEAR=698, TEETH=31, DEPTH=5, NOTCH=11;
@@ -310,6 +312,133 @@ function sorted(records,programme,year) {
     (b.date+b.time).localeCompare(a.date+a.time) || b.savedAt-a.savedAt || a.id.localeCompare(b.id));
 }
 
+// ——— 存储：票根 = 观影记录的皮肤 ———
+const SITE=/^https:\/\/sparrowcinema\.github\.io\/SparrowTribe\//i;
+const ticketKey=(filmId,date,n)=>filmId+"|"+date+(n>1?"|"+n:"");
+function parseKey(key) {
+  if (typeof key!=="string" || !Sync.TIX_KEY.test(key)) return null;
+  const [filmId,date,n]=key.split("|");
+  return {filmId,date,n:Number(n||1)};
+}
+const cleanStore=raw=>Sync.cleanTix(typeof raw==="string" ? (()=>{try{return JSON.parse(raw);}catch(_){return {};}})() : raw);
+const mergeStore=(a,b)=>Sync.mergeTix(Sync.cleanTix(a),Sync.cleanTix(b));
+const packLook=look=>look ? [look.palette,look.finish,look.texture,look.motif].join(".") : "";
+function unpackLook(text) {
+  if (typeof text!=="string") return null;
+  const [palette,finish,texture,motif]=text.split(".");
+  return {palette,finish,texture,motif};
+}
+const normArt=url=>typeof url==="string" ? url.replace(SITE,"") : "";
+function pickArt(arts,stored) {
+  if (!stored) return "";
+  return (arts||[]).find(url=>url===stored || normArt(url)===stored || url.endsWith("/"+stored)) || (/^https:\/\//i.test(stored) ? stored : "");
+}
+// 每一次观影一张票根；同一天看两次第二张键加 |2。views 为 SparrowGrowth.views，exists 判断影片还在片库里。
+function viewings(watched,views,exists) {
+  const out=[];
+  for (const filmId of Object.keys(watched||{})) {
+    const rec=watched[filmId];
+    if (!rec || rec.del || !rec.d || !/^[\w-]{1,80}$/.test(filmId) || (exists && !exists(filmId))) continue;
+    const seen={};
+    for (const view of views(rec)) {
+      const n=seen[view.d]=(seen[view.d]||0)+1;
+      if (n<=9) out.push({key:ticketKey(filmId,view.d,n),filmId,view});
+    }
+  }
+  return out;
+}
+// base(filmId, view|null, date) 由网站 / 小程序各自提供：返回 sanitize 之前的完整字段（含 arts 备选图像），影片不在片库时返回 null。
+function record(key,filmId,view,entry,base,date) {
+  const b=base(filmId,view,date);
+  if (!b) return null;
+  const pick=(field,value)=>value===undefined ? b[field] : value;
+  const row=sanitize({...b,id:key,time:pick("time",entry.tm),venue:pick("venue",entry.vn),hall:pick("hall",entry.hl),
+    city:pick("city",entry.cy),format:pick("format",entry.fm),seat:entry.st||"",art:pickArt(b.arts,entry.a) || b.art,
+    crop:entry.c===undefined ? 50 : entry.c,savedAt:entry.t,look:unpackLook(entry.l)});
+  row.key=key; row.linked=!!view; row.arts=b.arts||[]; row.director=b.director||"";
+  return row;
+}
+function build(list,store,base) {
+  const tickets=[], pending=[], linked=new Set();
+  for (const item of list) {
+    linked.add(item.key);
+    const entry=store[item.key];
+    if (entry && !entry.del) {
+      const row=record(item.key,item.filmId,item.view,entry,base,item.view.d);
+      if (row) tickets.push(row);
+    } else pending.push(item);
+  }
+  for (const key of Object.keys(store)) {
+    const entry=store[key], parsed=parseKey(key);
+    if (linked.has(key) || !entry || entry.del || !parsed) continue;
+    const row=record(key,parsed.filmId,null,entry,base,parsed.date);
+    if (row) tickets.push(row);
+  }
+  return {tickets:sorted(tickets),pending:pending.sort((a,b)=>b.view.d.localeCompare(a.view.d) || a.key.localeCompare(b.key))};
+}
+// 编辑后的完整记录 → 只存和推导值不同的字段
+function entryFrom(row,base,t) {
+  const entry={t:t||Date.now()};
+  const diff=(key,field)=>{const value=String(row[field]||"").trim();if(value!==String(base[field]||"").trim()) entry[key]=value;};
+  diff("tm","time");diff("vn","venue");diff("hl","hall");diff("cy","city");diff("fm","format");
+  if (row.seat) entry.st=row.seat;
+  if (row.art && normArt(row.art)!==normArt(base.art)) entry.a=normArt(row.art);
+  if (row.crop!==50) entry.c=row.crop;
+  const look=packLook(row.look);
+  if (look!==packLook(defaults({...base,id:row.id}))) entry.l=look;
+  return Sync.cleanTixEntry(entry);
+}
+// 旧版整条记录 → 新存储；同一影片同一天的观影记录优先关联
+function migrateV1(rows,list,base) {
+  const store={}, slots={};
+  for (const item of list) (slots[item.filmId+"|"+item.view.d] ||= []).push(item);
+  for (const row of rows) {
+    if (!row.date || !/^[\w-]{1,80}$/.test(row.filmId)) continue;
+    const candidates=slots[row.filmId+"|"+row.date]||[];
+    const match=candidates.find(item=>!store[item.key]);
+    let key=match?.key, n=1;
+    while (!key && n<10) {const next=ticketKey(row.filmId,row.date,n++);if(!store[next])key=next;}
+    if (!key) continue;
+    const b=base(row.filmId,match?match.view:null,row.date);
+    store[key]=b ? entryFrom(sanitize({...row,id:key,programmeId:b.programmeId,programme:b.programme}),{...b,id:key},row.savedAt||Date.now()) :
+      Sync.cleanTixEntry({t:row.savedAt||Date.now(),tm:row.time,vn:row.venue,hl:row.hall,cy:row.city,st:row.seat,fm:row.format,a:normArt(row.art),c:row.crop,l:packLook(row.look)});
+  }
+  return store;
+}
+// 搜索 + 分面筛选：q = {text, year, programme:[], city:[], venue:[], format:[]}，同一分面内为「或」，不同分面为「且」
+const FACETS=["programme","city","venue","format"];
+function filterTickets(rows,q={}) {
+  const terms=String(q.text||"").trim().toLowerCase().split(/\s+/).filter(Boolean);
+  return rows.filter(row=>(!q.year || row.date.slice(0,4)===q.year) &&
+    FACETS.every(field=>!q[field]?.length || q[field].includes(row[field])) &&
+    terms.every(term=>[row.title,row.subtitle,row.venue,row.programme,row.city,row.director,row.hall,row.format].join(" ").toLowerCase().includes(term)));
+}
+// 每个分面的计数只受其他筛选条件影响（选了 2024 年，专题后面就显示 2024 年里的张数）
+function facetCounts(rows,q={}) {
+  const list=obj=>Object.entries(obj).sort((a,b)=>b[1]-a[1] || a[0].localeCompare(b[0],"zh")).map(([value,count])=>({value,count}));
+  const tally=(subset,field,key)=>{const out={};for(const row of subset){const v=key?key(row):row[field];if(v) out[v]=(out[v]||0)+1;}return out;};
+  const years=tally(filterTickets(rows,{...q,year:""}),"",row=>row.date.slice(0,4));
+  const out={year:Object.keys(years).sort().reverse().map(value=>({value,count:years[value]}))};
+  FACETS.forEach(field=>{
+    const counted=list(tally(filterTickets(rows,{...q,[field]:[]}),field));
+    // 已选但当前条件下为 0 的项也保留，方便取消
+    (q[field]||[]).forEach(value=>{if(!counted.some(x=>x.value===value)) counted.push({value,count:0});});
+    out[field]=counted;
+  });
+  return out;
+}
+// 按年 → 月分组（已按日期从新到旧排好）
+function groupByMonth(rows) {
+  const groups=[];
+  for (const row of rows) {
+    const id=row.date.slice(0,7) || "undated", last=groups[groups.length-1];
+    if (last && last.id===id) last.rows.push(row);
+    else groups.push({id,year:row.date.slice(0,4),month:Number(row.date.slice(5,7))||0,rows:[row]});
+  }
+  return groups;
+}
+const swatch=row=>{const p=palettes[row.look?.palette]||palettes.ink;return {dark:p[1],mid:p[2],bright:p[4],stock:p[5],accent:p[7]};};
+
 function text(surface,StringValue,x,y,opts={}) {
   const {font=SANS,align="left",ink="#26241f",weight=500,max=364}=opts;
   const value=StringValue.replace(/\s+/gu," ").trim();
@@ -536,10 +665,13 @@ function draw(surface,record,side,image,rect,createCanvas,light) {
   surface.restore();
 }
 
-function wallLayout(count) {
-  const columns=count===1 ? 1 : count<=4 ? 2 : count<=6 ? 3 : 4;
-  const width=columns===1 ? 940 : 1580;
-  const margin=64, gap=33, top=206, bottom=92;
+// 12 张以内是大票根墙；更多时是密排拼图（年度 / 专题票根墙），每张图最多 MOSAIC_MAX 张，超出由调用方分成多张图。
+const MOSAIC_MAX=180;
+function wallLayout(count,maxWidth=2160) {
+  const big=count<=12;
+  const columns=count===1 ? 1 : count<=4 ? 2 : count<=6 ? 3 : count<=12 ? 4 : count<=24 ? 6 : count<=48 ? 8 : count<=96 ? 10 : 12;
+  const width=big ? Math.min(maxWidth,columns===1 ? 940 : 1580) : Math.min(maxWidth,2160);
+  const margin=big ? 64 : 56, gap=big ? 33 : Math.max(8,Math.round(width/150)), top=206, bottom=92;
   const cardW=Math.min(520,(width-margin*2-(columns-1)*gap)/columns);
   const cardH=cardW*H/W;
   const rows=Math.ceil(count/columns);
@@ -551,14 +683,14 @@ function wallLayout(count) {
   })};
 }
 
-function drawWall(surface,records,side,images,caption,createCanvas) {
-  const layout=wallLayout(records.length);
+function drawWall(surface,records,side,images,caption,createCanvas,title,maxWidth) {
+  const layout=wallLayout(records.length,maxWidth);
   const {width,height,rects}=layout;
   const background=surface.createLinearGradient(0,0,width,height);
   background.addColorStop(0,"#383d35");background.addColorStop(1,"#1b231e");
   surface.fillStyle=background;surface.fillRect(0,0,width,height);
   text(surface,"麻雀观影护照",64,69,{size:22,ink:"#d6bd91",weight:650});
-  text(surface,"我的票根收藏册",62,144,{size:58,font:SERIF,ink:"#f5ebd5",weight:700,max:width-125});
+  text(surface,title||"我的票根收藏册",62,144,{size:58,font:SERIF,ink:"#f5ebd5",weight:700,max:width-125});
   text(surface,caption||`${records.length} 张 · ${side==="back" ? "背面" : "正面"}`,width-64,178,{size:22,align:"right",ink:"#e5d6bc",max:width-128});
   rule(surface,height-66,"#d5bb895c",64,width-64);
   text(surface,"SPARROW CINEMA",width/2,height-32,{size:17,font:MONO,ink:"#e5d6bc",align:"center"});
@@ -574,5 +706,6 @@ function drawWall(surface,records,side,images,caption,createCanvas) {
 }
 
 const shineOf=key=>{const f=finishes[key]||finishes.matte;return {kind:f.kind,highlight:f.stops[f.stops.length-2]};};
-return {W,H,WALL_PAGE,options:labelOptions(),sanitize,read,sorted,defaults,randomLook,shineOf,draw,wallLayout,drawWall};
+return {W,H,WALL_PAGE,MOSAIC_MAX,FACETS,options:labelOptions(),sanitize,read,sorted,defaults,randomLook,shineOf,draw,wallLayout,drawWall,
+  ticketKey,parseKey,cleanStore,mergeStore,packLook,unpackLook,normArt,viewings,build,entryFrom,migrateV1,filterTickets,facetCounts,groupByMonth,swatch};
 });
