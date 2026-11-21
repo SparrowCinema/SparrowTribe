@@ -2,6 +2,7 @@
 // 票根 = 某一次观影的皮肤（utils/ticketstore.js）；按年 → 月连续滚动，先给 48 张、触底再补；
 // 票面由页面里一块隐藏画布逐张画成图片（只画已加载的部分），缓存在本次打开期间；书脊模式不画图。
 const R=require('../../utils/tickets.js');
+const {createPreview}=require('../../utils/ticket-preview.js');
 const Tix=require('../../utils/ticketstore.js');
 const U=require('../../utils/util.js');
 const W=require('../../utils/watched.js');
@@ -14,7 +15,6 @@ const stock=(w,h)=>wx.createOffscreenCanvas({type:'2d',width:w,height:h});
 const iso=d=>[d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-');
 const thumbOf=u=>/^https?:\/\/[^?#]+\/posters\/[^/?#]+\.(jpe?g|png)$/i.test(u||'')?u.replace(/\/posters\/([^/?#]+)\.(jpe?g|png)$/i,'/posters/w360/$1.jpg'):u;
 const SITE='https://sparrowcinema.github.io/SparrowTribe/';
-const REST_LIGHT={x:.42,y:.35};
 const clamp=value=>Math.max(0,Math.min(1,value));
 const nextFrame=(node,callback)=>typeof node.requestAnimationFrame==='function'?node.requestAnimationFrame(callback):setTimeout(callback,16);
 const artworkUrl=src=>/^(posters|images)\//i.test(src||'')?SITE+src:src;
@@ -201,7 +201,7 @@ Page({
     this.setData({['draft.'+name]:this._draft[name]});
     clearTimeout(this._edT);this._edT=setTimeout(()=>this.drawEditor(),name==='crop'?0:250);
   },
-  // 预览：一块原生画布，翻面时横向收窄再展开，手指移动时高光跟随（与 #501/#502 一致）
+  // 可见画布只画当前面，翻转时用透视投影连续重绘。
   flipEditor(){
     const preview=this._preview;
     if(!this._draft||preview?.flipping)return;
@@ -212,10 +212,13 @@ Page({
     const start=Date.now();
     const animate=()=>{
       if(this._preview!==preview)return;
-      const progress=clamp((Date.now()-start)/380);
+      const progress=clamp((Date.now()-start)/520);
       if(progress>=.5&&this._side!==target)switchSide();
       if(progress===1){preview.flipping=false;this.paintEditor(preview);return;}
-      this.paintEditor(preview,Math.max(.035,Math.abs(Math.cos(progress*Math.PI))),{x:progress,y:.35});
+      const eased=(1-Math.cos(progress*Math.PI))/2;
+      const halfTurn=progress<.5?eased:eased-1;
+      const angle=Math.PI*halfTurn*(target==='back'?1:-1);
+      this.paintEditor(preview,angle,{x:eased,y:.35});
       nextFrame(preview.node,animate);
     };
     nextFrame(preview.node,animate);
@@ -269,7 +272,7 @@ Page({
       const node=await canvas(this,'ticket-editor');
       if(!node||render!==this._render)return;
       node.width=630;node.height=1296;
-      this._preview={node,ctx:node.getContext('2d')};
+      this._preview={node,render:createPreview(node,stock)};
     }
     const preview=this._preview,source=this._draft.art;
     if(preview.source!==source){
@@ -284,10 +287,8 @@ Page({
     }
     if(!preview.flipping)this.paintEditor(preview);
   },
-  paintEditor(preview,scale=1,light=preview.light||REST_LIGHT){
-    const {node,ctx,art}=preview,w=node.width*scale;
-    ctx.clearRect(0,0,node.width,node.height);
-    R.draw(ctx,this._draft,this._side,this._side==='front'?art:null,{x:(node.width-w)/2,y:0,w,h:node.height},stock,light);
+  paintEditor(preview,turn,light=preview.light){
+    preview.render(this._draft,this._side,this._side==='front'?preview.art:null,turn,light);
   },
   backAlbum(){this.album();},
   // ——— 导出 ———
