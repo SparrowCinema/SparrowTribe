@@ -247,9 +247,9 @@ Page({
     wx.showModal({ title: t('护照持有人（显示在资料页）'), editable: true, placeholderText: t('影迷'), content: W.holder(), success: r => { if (r.confirm) { W.setHolder(r.content); this.buildPassport(); } } });
   },
   tasteSub(list){const n=list.filter(e=>!e.rec.del&&!e.f.ev&&Taste.valid(e.rec.fun)&&Taste.valid(e.rec.bore)).length;return (n?I.tr(n+' 部影片')+' · ':'')+I.tr('有趣与无聊四象限');},
-  toTasteMap(){wx.navigateTo({url:'/pages/taste-map/taste-map'});},
-  toTicketAlbum(){wx.navigateTo({url:'/pages/tickets/tickets'});},
-  toPosterWall(){wx.navigateTo({url:'/pages/poster-wall/poster-wall'});},
+  toTasteMap(){wx.navigateTo({url:'/packages/collect/taste-map/taste-map'});},
+  toTicketAlbum(){wx.navigateTo({url:'/packages/collect/tickets/tickets'});},
+  toPosterWall(){wx.navigateTo({url:'/packages/collect/poster-wall/poster-wall'});},
   setRcSections(e){const values=e.detail.value||[],sections=R.SECTIONS.map(x=>x[0]).filter(k=>values.includes(k));this.setData({rcSections:sections});try{wx.setStorageSync('sk-recap-sections-v1',sections);}catch(err){}this.buildRecap();},
   // ===== 影院观影结算：按年份 / 专题 =====
   recapScope() {

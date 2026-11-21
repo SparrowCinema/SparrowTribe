@@ -1,5 +1,5 @@
 <page-meta page-style="{{ps}}" />
-<wxs src="../../utils/l.wxs" module="L" />
+<wxs src="../../../utils/l.wxs" module="L" />
 <view class="wrap tm-page">
  <view class="wall-heading">{{L.t(i,'我的电影趣味图谱')}}</view>
  <view class="wall-hint">{{i.__en?'Across: how interesting. Up: how boring. Rate both on a film page and it appears here.':'横轴是有趣度，纵轴是无聊度。在影片页「趣味」一栏给两项都打分，影片就会出现在图上。'}}</view>

@@ -71,6 +71,15 @@ const en = readJSON('data/i18n/en.json'); delete en._readme;
 // 同理：离线英文层去掉影片长文字段（联网时 getData 带回完整英文层）
 const EN_DROP = ['syn', 'st', 'contentNote', 'editorial', 'bio', 'highlights', 'honors', 'warnings', 'parts', 'contentReview'];
 Object.values(en.films || {}).forEach(o => EN_DROP.forEach(k => { delete o[k]; }));
+// 包体积（2026-11-21）：离线英文层只留兜底数据里有的影片和专题，影片只留列表 / 排片 / 票根要用的短字段；
+// 演职员、场次备注等联网后由 getData 带回（小程序主包上限 2MB）
+const EN_FILM_KEEP = ['title', 'o', 'dir', 'c', 'y', 'genre', 'language', 'version', 'release'];
+const keptFilms = new Set(films.map(f => f.id)), keptProgs = new Set(programmes.map(p => p.id));
+for (const id of Object.keys(en.films || {})) {
+  if (!keptFilms.has(id)) { delete en.films[id]; continue; }
+  for (const k of Object.keys(en.films[id])) if (!EN_FILM_KEEP.includes(k)) delete en.films[id][k];
+}
+for (const id of Object.keys(en.programmes || {})) if (!keptProgs.has(id)) delete en.programmes[id];
 fs.writeFileSync(path.join(root, 'miniprogram/data/en.js'), '/* 英文层：由 tools/build-fallback.js 从 data/i18n/en.json 生成。 */\nmodule.exports = ' + JSON.stringify(en) + ';\n');
 console.log('en.js films', Object.keys(en.films).length, 'ui', Object.keys(en.ui).length);
 
@@ -83,7 +92,7 @@ fs.copyFileSync(path.join(root,'shared/ticket-sketch.js'),path.join(root,'minipr
 fs.writeFileSync(path.join(root, 'miniprogram/utils/share-poster.js'), '/* 由 tools/build-fallback.js 从 shared/share-poster.js 复制，请改 shared/share-poster.js 后重新运行。 */\n' + fs.readFileSync(path.join(root, 'shared/share-poster.js'), 'utf8'));
 console.log('share-poster.js copied');
 // 趣味图谱长图：shared/taste-report.js 复制给小程序
-fs.writeFileSync(path.join(root, 'miniprogram/utils/taste-report.js'), '/* 由 tools/build-fallback.js 从 shared/taste-report.js 复制，请改 shared/taste-report.js 后重新运行。 */\n' + fs.readFileSync(path.join(root, 'shared/taste-report.js'), 'utf8'));
+fs.writeFileSync(path.join(root, 'miniprogram/packages/collect/utils/taste-report.js'), '/* 由 tools/build-fallback.js 从 shared/taste-report.js 复制，请改 shared/taste-report.js 后重新运行。 */\n' + fs.readFileSync(path.join(root, 'shared/taste-report.js'), 'utf8'));
 console.log('taste-report.js copied');
 
 // 个人档案同步：合并规则 shared/psync.js 同时复制给小程序和 psync 云函数

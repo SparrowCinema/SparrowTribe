@@ -1,4 +1,4 @@
-const U=require('../../utils/util.js'),W=require('../../utils/watched.js'),I=require('../../utils/i18n.js'),Lib=require('../../utils/library.js');
+const U=require('../../../utils/util.js'),W=require('../../../utils/watched.js'),I=require('../../../utils/i18n.js'),Lib=require('../../../utils/library.js');
 const app=getApp();
 Page({
  data:{i:{},cols:5,items:[],mode:'year',modeIndex:0,modes:['年度海报墙','季度海报墙','月度海报墙'],periods:[],periodIndex:0,period:'',programme:'all',programmeLabel:'全部专题',showScore:true,selectorType:'',selectorQuery:'',selectorRows:[]},
@@ -18,7 +18,7 @@ Page({
 
  setMode(e){const n=Number(e.detail.value);this.setData({mode:['year','quarter','month'][n],modeIndex:n,period:''});this.build();},
  setPeriod(e){this.setData({period:this.data.periods[Number(e.detail.value)]});this.build();},
- exportWall(){if(this.busy||!this._entries||!this._entries.length)return;const list=this._entries.slice(),cols=this.data.cols,period=[this.data.period,...this.programmeNames()].filter(Boolean).join(' · '),title=this.data.modes[this.data.modeIndex],R=require('../../utils/recap.js');this.busy=true;wx.showLoading({title:I.tr('正在生成海报墙…'),mask:true});
+ exportWall(){if(this.busy||!this._entries||!this._entries.length)return;const list=this._entries.slice(),cols=this.data.cols,period=[this.data.period,...this.programmeNames()].filter(Boolean).join(' · '),title=this.data.modes[this.data.modeIndex],R=require('../../../utils/recap.js');this.busy=true;wx.showLoading({title:I.tr('正在生成海报墙…'),mask:true});
   const fail=()=>{this.busy=false;wx.hideLoading();wx.showToast({title:I.tr('图片生成失败，请稍后再试'),icon:'none'});};
   wx.createSelectorQuery().in(this).select('#poster-wall-canvas').fields({node:true,size:true}).exec(async res=>{try{const canvas=res&&res[0]&&res[0].node;if(!canvas)return fail();const load=src=>new Promise(r=>{if(!src)return r(null);const im=canvas.createImage();im.onload=()=>r(im);im.onerror=()=>r(null);im.src=src;});
    const items=await Promise.all(list.map(async e=>({id:e.id,title:e.f.cn,score:e.rec.r||0,img:await load(U.poster(e.f))}))),marks=await Promise.all(['/images/brand/sparrow-movies-sq.png','/images/brand/sparrow-tribe-sq.png'].map(load)),qrImg=await load('/images/brand/miniprogram-code.jpg');

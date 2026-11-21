@@ -2,14 +2,14 @@
 // 预览：在隐藏画布上画好正面、背面，各存成一张图片（与收藏册缩略图同一条路，手机上稳定），
 // 用 <image> 显示，倾斜、翻面用 CSS 3D 变换完成，高光是一层随手指移动的渐变——不再逐帧在画布上重画。
 // 参数：key=票根键（已收藏或待制作），film=影片id（没有观影记录时新建手工票根）。
-const R=require('../../utils/tickets.js');
-const Art=require('../../utils/ticket-sketch.js');
+const R=require('../../../utils/tickets.js');
+const Art=require('../../../utils/ticket-sketch.js');
 const readArtPreference=key=>wx.getStorageSync(key);
-const Tix=require('../../utils/ticketstore.js');
-const W=require('../../utils/watched.js');
-const U=require('../../utils/util.js');
-const I=require('../../utils/i18n.js');
-const CFG=require('../../utils/cfg.js');
+const Tix=require('../../../utils/ticketstore.js');
+const W=require('../../../utils/watched.js');
+const U=require('../../../utils/util.js');
+const I=require('../../../utils/i18n.js');
+const CFG=require('../../../utils/cfg.js');
 const app=getApp();
 const SITE='https://sparrowcinema.github.io/SparrowTribe/';
 const FACE_W=600,FACE_H=Math.round(FACE_W*R.H/R.W),FLIP_MS=180;
@@ -70,7 +70,7 @@ Page({
         if(prev){row=prev;original=old;}
         else{const k=Tix.freeKey(film,iso(new Date()),this.idx);const r=k&&R.draft(k,{t:Date.now()},this.base);if(r){r.look=R.randomLook(r);row=r;}}}
     }
-    if(!row){say('找不到这张票根');setTimeout(()=>wx.navigateBack({fail:()=>wx.redirectTo({url:'/pages/tickets/tickets'})}),600);return;}
+    if(!row){say('找不到这张票根');setTimeout(()=>wx.navigateBack({fail:()=>wx.redirectTo({url:'/packages/collect/tickets/tickets'})}),600);return;}
     const item=row.linked?views.find(x=>x.key===row.key):null;
     this._view=item?item.view:null;this._original=original;
     this.setup(row);
@@ -204,12 +204,12 @@ Page({
     if(this._original&&this._original!==key)changes[this._original]={del:1,t:Date.now()};
     if(!Tix.set(changes,this.data_,this.idx))return;
     if(stay===true){this._original=key;this._draft.key=key;this._artSaved=artSig(this._draft);this.setData({existing:true,artDirty:false});say(stamped?'已同时盖章 · 加入观影护照':'已保存');return;}
-    wx.navigateBack({success:()=>say(stamped?'已同时盖章 · 加入观影护照':'已收进票根收藏册'),fail:()=>wx.redirectTo({url:'/pages/tickets/tickets'})});
+    wx.navigateBack({success:()=>say(stamped?'已同时盖章 · 加入观影护照':'已收进票根收藏册'),fail:()=>wx.redirectTo({url:'/packages/collect/tickets/tickets'})});
   },
   remove(){
     const linked=this._draft&&this._draft.linked;
     wx.showModal({title:I.tr('移出票根'),content:I.tr(linked?'将这张票根移出收藏册？这次观影会回到「待制作」。':'将这张票根移出收藏册？'),success:r=>{
-      if(r.confirm&&Tix.set({[this._original]:{del:1,t:Date.now()}},this.data_,this.idx))wx.navigateBack({fail:()=>wx.redirectTo({url:'/pages/tickets/tickets'})});
+      if(r.confirm&&Tix.set({[this._original]:{del:1,t:Date.now()}},this.data_,this.idx))wx.navigateBack({fail:()=>wx.redirectTo({url:'/packages/collect/tickets/tickets'})});
     }});
   },
   // ——— 导出这张 ———

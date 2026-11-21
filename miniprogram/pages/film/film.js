@@ -142,7 +142,7 @@ Page({
   openTaste(){this.setData({tsShow:true,lgShow:false});this.loadCommunity();},
   sheetLeave(){this.closeTaste();this.lgClose();},
   closeTaste(){if(this.data.tsShow)this.setData({tsShow:false});},
-  toTasteMap(){this.setData({tsShow:false});wx.navigateTo({url:'/pages/taste-map/taste-map'});},
+  toTasteMap(){this.setData({tsShow:false});wx.navigateTo({url:'/packages/collect/taste-map/taste-map'});},
   tasteRate(e){const rec=W.get(this.id),k=e.currentTarget.dataset.k,n=Number(e.currentTarget.dataset.n);if(rec&&['fun','bore'].includes(k)&&Taste.valid(n))W.set(this.id,Taste.toggle(rec,k,n));},
   // 多次观影：保存时让顶层字段与各次观影一致（规则在 shared/growth.js setViews）
   saveViews(vs) { const rec = W.get(this.id); if (!rec) return; const o = G.setViews(rec, vs); if (o) W.set(this.id, o); },
