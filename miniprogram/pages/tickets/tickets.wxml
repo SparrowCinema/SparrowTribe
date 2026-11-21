@@ -13,6 +13,7 @@
         <view class="wall-filter {{activeN||text?'active':''}}" bindtap="toggleFacets" role="button"><view class="wall-filter-copy"><text class="wall-label">{{L.t(i,'筛选')}}</text><text class="wall-value">{{filterLabel}}</text></view><text class="wall-chevron">⌄</text></view>
         <picker class="wall-picker" range="{{yearLabels}}" value="{{yearIndex}}" bindchange="pickYearIdx"><view class="wall-filter {{yearIndex?'active':''}}"><view class="wall-filter-copy"><text class="wall-label">{{L.t(i,'年份')}}</text><text class="wall-value">{{yearLabels[yearIndex]}}</text></view><text class="wall-chevron">⌄</text></view></picker>
         <picker class="wall-picker" range="{{densLabels}}" value="{{densIndex}}" bindchange="pickDens"><view class="wall-filter"><view class="wall-filter-copy"><text class="wall-label">{{L.t(i,'显示')}}</text><text class="wall-value">{{densLabels[densIndex]}}</text></view><text class="wall-chevron">⌄</text></view></picker>
+        <picker class="wall-picker" range="{{artStyleLabels}}" value="{{artStyleIndex}}" bindchange="pickArtStyle"><view class="wall-filter"><view class="wall-filter-copy"><text class="wall-label">{{L.t(i,'手绘风格')}}</text><text class="wall-value">{{artStyleLabels[artStyleIndex]}}</text></view><text class="wall-chevron">⌄</text></view></picker>
       </view>
       <view class="wall-toolbar">
         <text class="wall-count">{{total===all?total+' '+L.t(i,'张票根'):total+' / '+all+' '+L.t(i,'张票根')}}{{i.__en?', ':'，'}}{{L.t(i,'按观影日期排列')}}</text>

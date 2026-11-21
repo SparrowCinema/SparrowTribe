@@ -32,7 +32,8 @@ function ctx2d(){
 const files=new Map();let fileN=0;
 const worker={ctx:ctx2d(),width:0,height:0,getContext(){return this.ctx;},createImage(){const im={};setTimeout(()=>im.onload&&im.onload(),0);return im;}};
 const exporter={ctx:ctx2d(),width:0,height:0,getContext(){return this.ctx;},createImage(){const im={};setTimeout(()=>im.onload&&im.onload(),0);return im;}};
-const store={};let navigatedBack=0,toasts=[];
+const Art=require('../miniprogram/utils/ticket-sketch');
+const store={[Art.storageKey]:'woodcut'};let navigatedBack=0,toasts=[];
 const timers=[];
 const wx={
   getStorageSync:k=>store[k]===undefined?'':JSON.parse(JSON.stringify(store[k])),setStorageSync:(k,v)=>{store[k]=JSON.parse(JSON.stringify(v));},removeStorageSync:k=>{delete store[k];},
@@ -58,6 +59,7 @@ const flush=async()=>{for(let n=0;n<20;n++){await new Promise(r=>setImmediate(r)
 (async()=>{
   // 没有观影记录：新建手工票根，正反面都画成图片
   page.onLoad({film:film.id});await flush();
+  assert.equal(page._artStyle,'woodcut');
   assert(page.data.ok&&!page.data.existing&&!page.data.linked);
   assert(files.get(page.data.frontImg).includes('纪念票根'),'front face rendered to an image');
   assert(files.get(page.data.backImg).includes('收藏票根'),'back face rendered to an image');

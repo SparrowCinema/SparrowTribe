@@ -117,10 +117,20 @@ assert.equal(raster.length,48*32*4);
 assert.deepStrictEqual(raster,Sketch.stylize(patch,12,8,48,32));
 assert(new Set(raster.filter((_,i)=>i%4===0)).size>8,'pencil strokes introduce pigment variation');
 assert(raster.every((value,i)=>i%4!==3||value===255));
+const renders=Sketch.styles.map(({id})=>{
+  assert.equal(Sketch.normalize(id),id);
+  const painted=Sketch.stylize(patch,12,8,48,32,id);
+  assert.equal(painted.length,raster.length);
+  assert(painted.every((value,i)=>i%4!==3||value===255));
+  assert.deepStrictEqual(painted,Sketch.stylize(patch,12,8,48,32,id));
+  return Buffer.from(painted).toString('base64');
+});
+assert.equal(Sketch.normalize('unknown'),'crayon');
+assert.equal(new Set(renders).size,4,'each style has distinct pixels');
 const blocked=()=>({getContext:()=>({getImageData(){throw Error('pixels unavailable');}})});
 assert.equal(Sketch.paint({}, {},50,{x:0,y:0,w:48,h:32},blocked,()=>{}),false);
 
-// 详情、首页缩略图和导出都从共享画布使用手绘，无需设置旧版偏好。
+// 详情、首页缩略图和导出使用同一种配图风格，背面不绘制配图。
 const calls=[];
 const image={width:270,height:405},gradient={addColorStop(){}};
 const context=new Proxy({}, {get(target,key){
@@ -130,14 +140,16 @@ const context=new Proxy({}, {get(target,key){
 }});
 const abovePaint=Sketch.paint;
 try{
-  Sketch.paint=(_surface,asset,_crop,_frame,_canvas,_cover,scale)=>{assert.equal(asset,image);calls.push(scale);return true;};
-  T.draw(context,artRow,'front',image,{x:0,y:0,w:630,h:1296});
-  T.draw(context,artRow,'front',image,{x:0,y:0,w:130,h:267});
-  T.drawWall(context,[artRow],'front',[image],'');
-  T.draw(context,artRow,'back',image,{x:0,y:0,w:630,h:1296});
+  const styled={...artRow,artStyle:'blue-ink'};
+  Sketch.paint=(_surface,asset,_crop,_frame,_canvas,_cover,scale,style)=>{assert.equal(asset,image);calls.push({scale,style});return true;};
+  T.draw(context,styled,'front',image,{x:0,y:0,w:630,h:1296});
+  T.draw(context,styled,'front',image,{x:0,y:0,w:130,h:267});
+  T.drawWall(context,[styled],'front',[image],'');
+  T.draw(context,styled,'back',image,{x:0,y:0,w:630,h:1296});
   assert.equal(calls.length,3);
-  assert.equal(calls[0],630/T.W);
-  assert.equal(calls[1],130/T.W);
+  assert(calls.every(call=>call.style==='blue-ink'));
+  assert.equal(calls[0].scale,630/T.W);
+  assert.equal(calls[1].scale,130/T.W);
 }finally{Sketch.paint=abovePaint;}
 
 // 规模：5000 张一键生成后的存储大小与推导耗时（小程序单个存储项上限 1MB）

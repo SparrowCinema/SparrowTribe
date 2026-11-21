@@ -102,13 +102,13 @@
 .wall-score{margin-top:calc(12 * var(--r));text-align:center;font:500 calc(24 * var(--fr))/1.6 Menlo,monospace;color:var(--muted)}
 .wall-score.rated{color:var(--teal)}
 .wall-empty{display:flex;flex-direction:column;align-items:center;text-align:center;gap:calc(30 * var(--r));padding:calc(60 * var(--r)) 0;color:var(--muted);font-size:calc(19.8 * var(--fr));line-height:1.8}
-.wall-filters{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:calc(1 * var(--r)) solid var(--line);border-radius:calc(24 * var(--r));background:var(--surface);overflow:hidden;margin:calc(24 * var(--r)) 0 0}
+.wall-filters{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:calc(1 * var(--r)) solid var(--line);border-radius:calc(24 * var(--r));background:var(--surface);overflow:hidden;margin:calc(24 * var(--r)) 0 0}
 .wall-picker{min-width:0;border-left:calc(1 * var(--r)) solid var(--line)}
-.wall-filter{display:flex;align-items:center;justify-content:space-between;gap:calc(12 * var(--r));min-height:calc(128 * var(--r));padding:calc(22 * var(--r)) calc(24 * var(--r));box-sizing:border-box;min-width:0}
+.wall-filter{display:flex;align-items:center;justify-content:space-between;gap:calc(6 * var(--r));min-height:calc(128 * var(--r));padding:calc(22 * var(--r)) calc(14 * var(--r));box-sizing:border-box;min-width:0}
 .wall-filter.active{box-shadow:inset 0 calc(-3 * var(--r)) var(--accent)}
 .wall-filter-copy{min-width:0}
 .wall-filter-copy text{display:block}
-.wall-label{font-size:calc(22 * var(--fr));line-height:1.4;color:var(--muted);margin-bottom:calc(10 * var(--r));white-space:nowrap}
+.wall-label{font-size:calc(22 * var(--fr));line-height:1.4;color:var(--muted);margin-bottom:calc(10 * var(--r))}
 .wall-value{font-size:calc(24 * var(--fr));line-height:1.4;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--fg)}
 .wall-chevron{color:var(--muted);font-size:calc(24 * var(--fr));flex:none}
 .wall-toolbar{border:0;flex-wrap:nowrap;padding:calc(24 * var(--r)) 0;gap:calc(16 * var(--r))}

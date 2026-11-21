@@ -156,3 +156,4 @@
 .te-crop .te-range{flex:1;min-width:0}
 .ticket-page .te-art-pick{flex:none;width:auto;max-width:42%;border:1px solid var(--line);border-radius:999px;padding:5px 10px;background:var(--surface);color:var(--fg);font-size:.8rem}
 .ticket-page .te-row select.te-in{appearance:none;-webkit-appearance:none;padding-right:16px;background:linear-gradient(45deg,transparent 50%,var(--muted) 50%) right 6px center/5px 5px no-repeat,linear-gradient(-45deg,transparent 50%,var(--muted) 50%) right 1px center/5px 5px no-repeat;text-overflow:ellipsis}
+.schedule-filterbar.ticket-style-filterbar{grid-template-columns:repeat(4,minmax(0,1fr))}

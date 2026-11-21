@@ -2,6 +2,7 @@
 // 票根 = 某一次观影的皮肤（utils/ticketstore.js）；按年 → 月连续滚动，先给 48 张、触底再补；
 // 票面由页面里一块隐藏画布逐张画成图片（只画已加载的部分），缓存在本次打开期间；书脊模式不画图。
 const R=require('../../utils/tickets.js');
+const Art=require('../../utils/ticket-sketch.js');
 const Tix=require('../../utils/ticketstore.js');
 const U=require('../../utils/util.js');
 const W=require('../../utils/watched.js');
@@ -32,18 +33,20 @@ async function poster(node,row,small){
   return (await image(node,t))||(t!==row.art?await image(node,row.art):null);
 }
 function canvas(page,id){return new Promise(resolve=>wx.createSelectorQuery().in(page).select('#'+id).fields({node:true}).exec(result=>resolve(result?.[0]?.node||null)));}
-const sigOf=(row,side,w)=>[row.key,side,w,R.packLook(row.look),row.crop,row.art,row.time,row.venue,row.hall,row.seat,row.format,row.title,row.programme].join('¦');
+const sigOf=(row,side,w,style)=>[row.key,side,w,side==='front'?style:'',R.packLook(row.look),row.crop,row.art,row.time,row.venue,row.hall,row.seat,row.format,row.title,row.programme].join('¦');
 const monthTitle=(g,en)=>g.id==='undated'?I.tr('日期待定'):en?`${['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][g.month-1]} ${g.year}`:`${g.year}年${g.month}月`;
 
 Page({
   data:{i:{},ps:'',mode:'album',sum:{n:0,pending:0},query:'',text:'',years:[],year:'',facetsOpen:false,facets:[],chips:[],activeN:0,
-    density:'m',densLabels:[],densIndex:1,yearLabels:[],yearIndex:0,filterLabel:'',front:true,groups:[],shown:0,total:0,all:0,more:false,pick:false,pickN:0,exportOpen:false,ex:{},pending:[],pendingMore:0,results:[],loading:false},
+    density:'m',densLabels:[],densIndex:1,artStyle:Art.normalize(),artStyleLabels:[],artStyleIndex:0,yearLabels:[],yearIndex:0,filterLabel:'',front:true,groups:[],shown:0,total:0,all:0,more:false,pick:false,pickN:0,exportOpen:false,ex:{},pending:[],pendingMore:0,results:[],loading:false},
   onLoad(params){
     this._ready=true;this._render=0;this._draft=null;this._original='';this._q={text:'',year:'',programme:[],city:[],venue:[],format:[]};
     this._pick=null;this._queue=[];this._busy=false;this._imgPatch={};this._limit=STEP;
-    let density='m';try{density=wx.getStorageSync(DENS)||'m';}catch(e){}
+    let density='m',artStyle=Art.normalize();
+    try{density=wx.getStorageSync(DENS)||'m';artStyle=Art.normalize(wx.getStorageSync(Art.storageKey));}catch(e){}
     density=TILE_W[density]||density==='spine'?density:'m';
-    CFG.bind(this);this.setData({i:I.dict(),density,densLabels:DENS_OPT.map(x=>I.tr(x[1])),densIndex:DENS_OPT.findIndex(x=>x[0]===density)});wx.setNavigationBarTitle({title:I.tr('我的票根收藏册')});
+    CFG.bind(this);this.setData({i:I.dict(),density,densLabels:DENS_OPT.map(x=>I.tr(x[1])),densIndex:DENS_OPT.findIndex(x=>x[0]===density),
+      artStyle,artStyleLabels:Art.styles.map(style=>I.tr(style.label)),artStyleIndex:Art.styles.findIndex(style=>style.id===artStyle)});wx.setNavigationBarTitle({title:I.tr('我的票根收藏册')});
     this.load();
     this.album();
     if(params.id)this.openEditor('film='+encodeURIComponent(params.id));
@@ -97,7 +100,7 @@ Page({
   item(r){
     const c=R.swatch(r),p=!!(this._pick&&this._pick.has(r.key));
     const side=this.data.front?'front':'back',w=TILE_W[this.data.density]||TILE_W.m;
-    return {k:r.key,t:r.title,img:paths.get(sigOf(r,side,w))||'',sw:c.mid,sa:c.accent,sb:c.stock,d:[r.date.replace(/-/g,'.'),r.time].filter(Boolean).join(' '),m:[r.venue,r.programme].filter(Boolean).join(' · '),p};
+    return {k:r.key,t:r.title,img:paths.get(sigOf(r,side,w,this.data.artStyle))||'',sw:c.mid,sa:c.accent,sb:c.stock,d:[r.date.replace(/-/g,'.'),r.time].filter(Boolean).join(' '),m:[r.venue,r.programme].filter(Boolean).join(' · '),p};
   },
   // ——— 逐张画票面（一块隐藏画布 → 临时图片） ———
   queueAll(turn){
@@ -111,14 +114,14 @@ Page({
       while(node&&this._ready&&this._queue.length){
         const job=this._queue.shift();if(job.turn!==this._render)continue;
         const row=this._byKey.get(job.k);if(!row)continue;
-        const side=this.data.front?'front':'back',w=TILE_W[this.data.density]||TILE_W.m,sig=sigOf(row,side,w);
+        const side=this.data.front?'front':'back',w=TILE_W[this.data.density]||TILE_W.m,artStyle=this.data.artStyle,sig=sigOf(row,side,w,artStyle);
         let path=paths.get(sig);
         if(!path){
           const h=Math.round(w*R.H/R.W);node.width=w;node.height=h;
           const ctx=node.getContext('2d'),rect={x:0,y:0,w,h};
           const art=side==='front'?await poster(node,row,true):null;
           if(job.turn!==this._render)continue;
-          ctx.clearRect(0,0,w,h);R.draw(ctx,row,side,art,rect,stock);
+          ctx.clearRect(0,0,w,h);R.draw(ctx,{...row,artStyle},side,art,rect,stock);
           path=await new Promise(resolve=>wx.canvasToTempFilePath({canvas:node,fileType:'png',success:r=>resolve(r.tempFilePath),fail:()=>resolve('')},this));
           if(path)paths.set(sig,path);
         }
@@ -130,6 +133,13 @@ Page({
   // ——— 工具条 ———
   inputQuery(e){const v=e.detail.value;clearTimeout(this._qt);this._qt=setTimeout(()=>{this._q.text=v;this._limit=STEP;this.paint(false);},200);},
   pickYear(e){this._q.year=e.currentTarget.dataset.v;this._limit=STEP;this.paint(false);},
+  pickArtStyle(e){
+    const artStyleIndex=Number(e.detail.value),style=Art.styles[artStyleIndex];
+    if(!style||style.id===this.data.artStyle)return;
+    try{wx.setStorageSync(Art.storageKey,style.id);}catch(_){}
+    this._imgPatch={};
+    this.setData({artStyle:style.id,artStyleIndex,front:true});this.paint(false);
+  },
   toggleFacets(){this.setData({facetsOpen:!this.data.facetsOpen});},
   stopMove(){},
   pickYearIdx(e){const n=Number(e.detail.value);this._q.year=n?this._years[n-1]:'';this._limit=STEP;this.paint(false);},
@@ -217,6 +227,7 @@ Page({
       caption=[`${all.length} ${I.tr('张票根')}`,I.tr(side==='front'?'正面':'背面'),parts>1?`${part+1} / ${parts}`:''].filter(Boolean).join(' · ');
     }
     if(!rows.length)return;
+    rows=rows.map(row=>({...row,artStyle:this.data.artStyle}));
     this.setData({loading:true});wx.showLoading({title:I.tr('正在生成图片'),mask:true});
     try{
       const node=await canvas(this,'ticket-export-canvas');
