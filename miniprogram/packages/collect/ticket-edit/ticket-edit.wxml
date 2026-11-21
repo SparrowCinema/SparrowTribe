@@ -28,7 +28,13 @@
     <text class="te-reset" bindtap="reset" role="button">{{L.t(i,'恢复专题默认款式')}}</text>
   </view>
 
-  <view class="te-title"><text class="te-name">{{draft.title}}</text><text wx:if="{{draft.programme}}" class="te-sub">{{draft.programme}}</text></view>
+  <view class="te-heading">
+    <view class="te-title"><text class="te-name">{{draft.title}}</text><text wx:if="{{draft.programme}}" class="te-sub">{{draft.programme}}</text></view>
+    <view class="te-actions">
+      <button class="te-action te-action-export" hover-class="te-hv" bindtap="exportSingle" disabled="{{loading}}" aria-label="{{L.t(i,'导出这张票根')}}">{{L.t(i,'导出')}}</button>
+      <button wx:if="{{existing}}" class="te-action te-action-remove" hover-class="te-hv" bindtap="remove">{{L.t(i,'移出收藏册')}}</button>
+    </view>
+  </view>
 
   <view class="te-sec">{{L.t(i,'放映信息')}}</view>
   <view class="te-card">
@@ -44,10 +50,6 @@
 
   <view class="te-acts">
     <view class="te-save" hover-class="te-hv" bindtap="store" role="button">{{L.t(i,existing?'保存修改':'加入收藏册')}}</view>
-    <view class="te-links">
-      <text class="te-link {{loading?'te-off':''}}" bindtap="exportSingle" role="button">{{L.t(i,'导出这张票根')}}</text>
-      <block wx:if="{{existing}}"><text class="te-dot">·</text><text class="te-link te-danger" bindtap="remove" role="button">{{L.t(i,'移出收藏册')}}</text></block>
-    </view>
   </view>
 </view>
 <canvas type="2d" id="te-worker" class="te-hidden" />

@@ -446,11 +446,16 @@ function ticketEditor(row){
         <button type="button" class="te-style" data-ticket-filter="art-style" aria-haspopup="dialog">${ticketDict("手绘风格")}${filterChevron}</button></div>
       <button type="button" class="te-reset" data-ticket-action="reset">${ticketDict("恢复专题默认款式")}</button></div>
     <div class="te-body">
-      <div class="te-title"><h3>${esc(row.title)}</h3>${row.programme?`<small>${esc(row.programme)}</small>`:""}</div>
+      <div class="te-heading">
+        <div class="te-title"><h3>${esc(row.title)}</h3>${row.programme?`<small>${esc(row.programme)}</small>`:""}</div>
+        <div class="te-actions">
+          <button type="button" class="te-action te-action-export" data-ticket-action="single" aria-label="${ticketDict("导出这张票根")}">${ticketDict("导出")}</button>
+          ${ticketDraft.original?`<button type="button" class="te-action te-action-remove" data-ticket-action="remove">${ticketDict("移出收藏册")}</button>`:""}
+        </div>
+      </div>
       <h4 class="te-sec">${ticketDict("放映信息")}</h4>
       <div class="te-card">${ticketShowRow(row)}${dateRow}${input("time","开场时间","","time")}${input("venue","影院","影院名称")}${input("hall","影厅","如 1号厅")}${input("seat","座位","选填，如 5排8座")}${input("format","放映版本","如 4K修复")}</div>
-      <div class="te-acts"><button type="button" class="te-save" data-ticket-action="save">${ticketDict(ticketDraft.original?"保存修改":"加入收藏册")}</button>
-        <div class="te-links"><button type="button" class="text-button" data-ticket-action="single">${ticketDict("导出这张票根")}</button>${ticketDraft.original?`<i aria-hidden="true">·</i><button type="button" class="text-button te-danger" data-ticket-action="remove">${ticketDict("移出收藏册")}</button>`:""}</div></div>
+      <div class="te-acts"><button type="button" class="te-save" data-ticket-action="save">${ticketDict(ticketDraft.original?"保存修改":"加入收藏册")}</button></div>
     </div></div>`;
 }
 function ticketEditorMount(){
