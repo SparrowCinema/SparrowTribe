@@ -130,7 +130,7 @@ function ticketWallPage(){
 function ticketRender(){
   const body=main.querySelector("#ticket-body");if(!body)return;
   ticketIO?.disconnect();
-  if(ticketDraft){body.innerHTML=ticketHeading(false)+ticketEditor(ticketDraft.row);ticketEditorMount();return;}
+  if(ticketDraft){body.innerHTML=ticketHeading(false,ticketDraft.original?"编辑票根":"新票根")+ticketEditor(ticketDraft.row);ticketEditorMount();return;}
   if(ticketMode==="create"){body.innerHTML=ticketCreateHTML();ticketSearch("");body.querySelector("#ticket-search")?.focus();return;}
   if(ticketMode==="pending"){body.innerHTML=ticketPendingHTML();return;}
   const {tickets,pending}=ticketAll();
@@ -139,8 +139,8 @@ function ticketRender(){
   ticketPaintList();
 }
 // 页面结构与「我的海报墙」一致：标题 → 三栏检索条 → 一行工具栏 → 列表；筛选、年份、显示、导出都是弹层
-function ticketHeading(album){
-  return `<div class="page-heading ticket-page-heading"><div><small>MY TICKET ALBUM</small><h2 class="sec">${ticketDict("我的票根收藏册")}</h2></div>
+function ticketHeading(album,title){
+  return `<div class="page-heading ticket-page-heading"><div><small>MY TICKET ALBUM</small><h2 class="sec">${ticketDict(title||"我的票根收藏册")}</h2></div>
     ${album?`<button type="button" class="text-button ticket-make" data-ticket-action="new">＋ ${ticketDict("制作票根")}</button>`:`<button type="button" class="text-button ticket-make" data-ticket-action="cancel">‹ ${ticketDict("返回收藏册")}</button>`}</div>`;
 }
 function ticketEmptyHTML(pending){
@@ -350,26 +350,27 @@ function ticketOpen(row){
 function ticketEditor(row){
   const assets=[...(row.arts||[])];
   if(row.art&&!assets.includes(row.art))assets.unshift(row.art);
-  const input=(key,label,type="text")=>`<label>${ticketDict(label)}<input type="${type}" name="${key}" value="${esc(row[key])}"></label>`;
-  const dateField=row.linked?`<div class="ticket-wide ticket-fixed"><span>${ticketDict("观影日期")}</span><b>${esc(row.date.replace(/-/g,"."))}</b><small>${ticketDict("来自观影记录，可在影片页「我的观影」里修改")}</small></div>`:input("date","日期","date");
-  return `<div class="ticket-editor">
-    <div class="ticket-stage"><button type="button" data-ticket-action="flip" class="ticket-flip" data-side="${ticketDraft.side}" aria-label="${ticketDict("翻面")}">
+  const front=ticketDraft.side==="front";
+  const input=(key,label,placeholder,type="text")=>`<label class="te-row"><span class="te-k">${ticketDict(label)}</span><input class="te-in" type="${type}" name="${key}" value="${esc(row[key])}" placeholder="${ticketDict(placeholder)}"></label>`;
+  const dateRow=row.linked?`<div class="te-row"><span class="te-k">${ticketDict("观影日期")}</span><span class="te-v"><b class="te-mono">${esc(row.date.replace(/-/g,"."))}</b><small class="te-note">${ticketDict("来自观影记录")}</small></span></div>`:input("date","观影日期","","date");
+  return `<div class="te">
+    <div class="te-stage"><button type="button" data-ticket-action="flip" class="ticket-flip" data-side="${ticketDraft.side}" aria-label="${ticketDict("翻面")}">
       <span class="ticket-turn"><span class="ticket-face ticket-front"><canvas width="630" height="1296" id="ticket-preview-front" aria-hidden="true"></canvas></span>
       <span class="ticket-face ticket-back"><canvas width="630" height="1296" id="ticket-preview-back" aria-hidden="true"></canvas></span></span></button>
-      <button type="button" class="ticket-alt ticket-flip-label" data-ticket-action="flip">${ticketDict(ticketDraft.side==="front"?"翻到背面":"翻回正面")}</button>
-      <fieldset class="ticket-blind-box"><legend>${ticketDict("票根盲盒")}</legend>
-        <button type="button" class="ticket-alt" data-ticket-action="shuffle">${ticketDict("随机换一款")}</button>
-        <button type="button" class="ticket-alt" data-ticket-action="reset">${ticketDict("恢复专题默认")}</button>
-      </fieldset></div>
-    <div class="ticket-edit-fields"><div class="ticket-edit-head"><h3>${esc(row.title)}</h3></div>
-      <div class="ticket-inputs">${dateField}
-        ${assets.length>1?`<label>${ticketDict("票面图像")}<select name="art">${assets.map((a,i)=>ticketOption(a,`${tr(i===0?"海报":"备用图像")} ${i+1}`,row.art)).join("")}</select></label>`:""}
-        ${assets.length?`<label>${ticketDict("调整裁切位置")}<input type="range" min="0" max="100" name="crop" value="${row.crop}"></label>`:""}
-        ${input("time","开场时间","time")}${input("venue","影院")}${input("hall","影厅")}${input("seat","座位")}${input("format","放映版本")}
-      </div><div class="ticket-edit-actions">
-        <button class="primary-button" data-ticket-action="save">${ticketDict(ticketDraft.original?"更新票根":"加入收藏册")}</button>
-        <button class="ticket-alt" data-ticket-action="single">${ticketDict("导出这张票根")}</button>
-        ${ticketDraft.original?`<button class="ticket-alt" data-ticket-action="remove">${ticketDict("移出票根")}</button>`:""}</div></div></div>`;
+      <div class="te-tools"><div class="te-seg" role="tablist" aria-label="${ticketDict("票根面")}">
+        <button type="button" role="tab" data-ticket-side="front" aria-selected="${front}">${ticketDict("正面")}</button><button type="button" role="tab" data-ticket-side="back" aria-selected="${!front}">${ticketDict("背面")}</button></div>
+        <button type="button" class="te-dice" data-ticket-action="shuffle">${ticketDict("随机换一款")}</button></div>
+      <button type="button" class="te-reset" data-ticket-action="reset">${ticketDict("恢复专题默认款式")}</button></div>
+    <div class="te-body">
+      <div class="te-title"><h3>${esc(row.title)}</h3>${row.programme?`<small>${esc(row.programme)}</small>`:""}</div>
+      <h4 class="te-sec">${ticketDict("放映信息")}</h4>
+      <div class="te-card">${dateRow}${input("time","开场时间","","time")}${input("venue","影院","影院名称")}${input("hall","影厅","如 1号厅")}${input("seat","座位","选填，如 5排8座")}${input("format","放映版本","如 4K修复")}</div>
+      ${assets.length?`<h4 class="te-sec">${ticketDict("票面图像")}</h4><div class="te-card">
+        ${assets.length>1?`<label class="te-row"><span class="te-k">${ticketDict("图像")}</span><select class="te-in" name="art">${assets.map((a,i)=>ticketOption(a,`${tr(i===0?"海报":"备用图像")} ${i+1}`,row.art)).join("")}</select></label>`:""}
+        <label class="te-row"><span class="te-k">${ticketDict("裁切位置")}</span><input class="te-range" type="range" min="0" max="100" name="crop" value="${row.crop}"></label></div>`:""}
+      <div class="te-acts"><button type="button" class="te-save" data-ticket-action="save">${ticketDict(ticketDraft.original?"保存修改":"加入收藏册")}</button>
+        <div class="te-links"><button type="button" class="text-button" data-ticket-action="single">${ticketDict("导出这张票根")}</button>${ticketDraft.original?`<i aria-hidden="true">·</i><button type="button" class="text-button te-danger" data-ticket-action="remove">${ticketDict("移出收藏册")}</button>`:""}</div></div>
+    </div></div>`;
 }
 function ticketEditorMount(){
   ticketDrawEditor();
@@ -468,6 +469,8 @@ function ticketInput(event){
   const t=event.target;
   if(t.id==="ticket-search")ticketSearch(t.value);
   else if(t.name==="crop"&&ticketDraft){ticketDraft.row.crop=Number(t.value);ticketDrawEditor();}
+  // 边输入边更新预览（停顿 250ms 再画）
+  else if(ticketDraft&&["time","venue","hall","seat","format"].includes(t.name)){ticketDraft.row[t.name]=t.value;clearTimeout(ticketSearchTimer);ticketSearchTimer=setTimeout(ticketDrawEditor,250);}
 }
 function ticketChange(event){
   const t=event.target,{name,value}=t;
@@ -499,6 +502,8 @@ function ticketClick(e){
     }
     ticketOpen(row);return;
   }
+  const sideBtn=e.target.closest("[data-ticket-side]");
+  if(sideBtn&&ticketDraft){ticketFlipTo(sideBtn.dataset.ticketSide);return;}
   const cell=e.target.closest("[data-ticket-filter]");
   if(cell){ticketOpenFilter(cell.dataset.ticketFilter);return;}
   const facet=e.target.closest("[data-ticket-facet]");
@@ -515,12 +520,7 @@ function ticketClick(e){
     case "export-open":ticketOpenExport();break;
     case "pick-export":ticketExportOpen={kind:"pick"};ticketExport(b,false).finally(()=>{ticketExportOpen=false;});break;
     case "pick-cancel":ticketPick=null;ticketPaintList();break;
-    case "flip": {
-      ticketDraft.side=ticketDraft.side==="front"?"back":"front";
-      main.querySelector(".ticket-flip").dataset.side=ticketDraft.side;
-      main.querySelector(".ticket-flip-label").textContent=tr(ticketDraft.side==="front"?"翻到背面":"翻回正面");
-      break;
-    }
+    case "flip":ticketFlipTo(ticketDraft.side==="front"?"back":"front");break;
     case "shuffle":ticketDraft.row.look=TE.randomLook(ticketDraft.row);ticketDrawEditor();break;
     case "reset":ticketDraft.row.look=TE.defaults(TE.sanitize({...ticketDraft.row,look:null}));ticketDrawEditor();break;
     case "save":ticketSave();break;
@@ -531,4 +531,9 @@ function ticketClick(e){
     case "export":ticketExport(b,false);break;
     case "single":ticketExport(b,true);break;
   }
+}
+function ticketFlipTo(side){
+  if(!ticketDraft)return;ticketDraft.side=side;
+  main.querySelector(".ticket-flip").dataset.side=side;
+  main.querySelectorAll("[data-ticket-side]").forEach(b=>b.setAttribute("aria-selected",b.dataset.ticketSide===side));
 }

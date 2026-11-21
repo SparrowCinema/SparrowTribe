@@ -29,7 +29,8 @@
     "中图": "M",
     "小图": "S",
     "分成": "Split into",
-    "一键生成": "Create all"
+    "一键生成": "Create all",
+    "图像": "Image"
   },
   "_readme": "English layer for the site. films/programmes/venues overlay data fields when ?lang=en; ui is the zh→en dictionary used by tr(). Missing entries fall back to the Chinese text.",
   "films": {
@@ -12439,6 +12440,19 @@
     "票根筛选": "Ticket filters",
     "看背面": "Show back",
     "按观影日期排列": "by viewing date",
-    "待制作的票根": "Tickets to make"
+    "待制作的票根": "Tickets to make",
+    "放映信息": "Screening",
+    "来自观影记录": "From your log",
+    "选择时间": "Choose time",
+    "影院名称": "Cinema name",
+    "如 1号厅": "e.g. Hall 1",
+    "选填，如 5排8座": "Optional, e.g. Row 5 Seat 8",
+    "如 4K修复": "e.g. 4K restoration",
+    "裁切位置": "Crop",
+    "保存修改": "Save changes",
+    "移出收藏册": "Remove from album",
+    "恢复专题默认款式": "Restore programme style",
+    "编辑票根": "Edit ticket",
+    "新票根": "New ticket"
   }
 }

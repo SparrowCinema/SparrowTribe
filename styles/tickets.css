@@ -26,7 +26,7 @@
 .ticket-result span{padding:2px;text-overflow:ellipsis;white-space:nowrap;overflow:hidden}
 .ticket-editor{display:grid;grid-template-columns:minmax(220px,1fr) minmax(0,1fr);gap:clamp(12px,3vw,30px);align-items:start}
 .ticket-stage{display:grid;justify-items:center;padding:clamp(15px,3vw,27px);gap:12px;perspective:1000px}
-.ticket-stage .ticket-flip{position:relative;width:min(100%,300px);aspect-ratio:420/864;transform-style:preserve-3d;transform:rotateY(var(--ty,-3deg)) rotateX(var(--tx,1deg));transition:transform .18s ease-out}
+.ticket-stage .ticket-flip,.te-stage .ticket-flip{position:relative;width:min(100%,300px);aspect-ratio:420/864;transform-style:preserve-3d;transform:rotateY(var(--ty,-3deg)) rotateX(var(--tx,1deg));transition:transform .18s ease-out}
 .ticket-turn,.ticket-face{position:absolute;inset:0;display:block}
 .ticket-turn{transform-style:preserve-3d;transition:transform .56s cubic-bezier(.2,.7,.24,1)}
 .ticket-flip[data-side=back] .ticket-turn{transform:rotateY(180deg)}
@@ -46,7 +46,7 @@
 .ticket-edit-actions{margin-top:14px}
 @media(max-width:700px){.ticket-wall-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.ticket-results{grid-template-columns:repeat(4,minmax(0,1fr))}.ticket-editor{grid-template-columns:1fr}.ticket-stage .ticket-flip{width:min(72%,250px)}}
 @media(max-width:420px){.ticket-wall-grid,.ticket-results{grid-template-columns:repeat(3,minmax(0,1fr))}.ticket-tools label{min-width:0;max-width:none;flex:1 1 25%}.ticket-tools .primary-button{flex-basis:100%}.ticket-pager{justify-content:center}.ticket-wall-item span{font-size:.73rem}}
-@media(prefers-reduced-motion:reduce){.ticket-stage .ticket-flip{transition:none;transform:none}.ticket-turn{transition:none}}
+@media(prefers-reduced-motion:reduce){.ticket-stage .ticket-flip,.te-stage .ticket-flip{transition:none;transform:none}.ticket-turn{transition:none}}
 /* 2026-11-21 收藏册：与「我的海报墙」同一套版式（page-heading、schedule-filterbar、pw-actions、schedule-selector 弹层），票根放在页面底色上 */
 .ticket-page-heading{align-items:end}
 .ticket-make{flex:none;color:var(--accent);font-weight:650;font-size:.86rem;padding:0;background:none;border:0;cursor:pointer}
@@ -112,3 +112,41 @@
 .ticket-page .pw-score-toggle{display:inline-flex;align-items:center;gap:6px;color:var(--muted);font-size:12px}
 .ticket-page .pw-score-toggle input{width:16px;height:16px;padding:0;margin:0;flex:none}
 .ticket-page .ticket-make,.ticket-todo .text-button{text-decoration:none}
+/* 2026-11-21 票根编辑页重新设计：浅色展台 + 与影片页「我的观影」同款分组卡片 */
+.te{display:grid;grid-template-columns:minmax(260px,1fr) minmax(0,1.1fr);gap:clamp(18px,3vw,36px);align-items:start}
+.te-stage{position:sticky;top:calc(env(safe-area-inset-top,0px) + 76px);display:grid;justify-items:center;gap:14px;padding:28px 18px 20px;border:1px solid var(--line);border-radius:14px;background:radial-gradient(ellipse at 50% 0%,var(--surface),var(--bg) 78%);perspective:1000px}
+.te-stage .ticket-flip{width:min(62%,260px);padding:0;background:none;border:0;cursor:pointer}
+.te-stage .ticket-flip canvas{display:block;width:100%;height:auto;filter:drop-shadow(0 8px 14px #2b211747)}
+.te-tools{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:center}
+.te-seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;background:var(--surface);overflow:hidden}
+.te-seg button{border:0;background:none;color:var(--muted);padding:7px 16px;font:inherit;font-size:.82rem;cursor:pointer}
+.te-seg button[aria-selected=true]{background:var(--fg);color:var(--bg);font-weight:650}
+.te-dice{border:0;border-radius:999px;background:#a66e3d;color:#fff;padding:7px 16px;font:inherit;font-size:.82rem;font-weight:700;cursor:pointer}
+.te-reset{border:0;background:none;color:var(--muted);font:inherit;font-size:.76rem;cursor:pointer;padding:2px}
+.te-title{display:grid;gap:4px;margin:4px 2px 0}
+.te-title h3{margin:0;font-family:var(--f-serif,"Songti SC",serif);font-size:1.35rem;line-height:1.3;overflow-wrap:anywhere}
+.te-title small{font-size:.8rem;color:var(--muted)}
+.te-sec{margin:22px 4px 8px;font-size:.76rem;font-weight:500;color:var(--muted);letter-spacing:.04em}
+.te-card{border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}
+.te-card>*+*{border-top:1px solid var(--line-soft,var(--line))}
+.ticket-page .te-row{display:flex;align-items:center;gap:12px;min-height:52px;padding:0 14px;box-sizing:border-box;color:var(--fg);font-size:.9rem}
+.te-k{flex:none;width:68px;font-size:.78rem;color:var(--muted)}
+.te-v{flex:1;min-width:0;display:flex;align-items:center;justify-content:flex-end;gap:8px}
+.te-mono{font-family:var(--f-mono,ui-monospace,monospace);font-weight:600;letter-spacing:.04em}
+.te-note{flex:none;font-size:.7rem;color:var(--muted);padding:2px 8px;border-radius:999px;background:var(--bg)}
+.ticket-page .te-in{flex:1;min-width:0;border:0;background:none;padding:12px 0;text-align:right;color:var(--fg);width:auto;border-radius:0}
+.ticket-page select.te-in{text-align-last:right;cursor:pointer}
+.ticket-page .te-in:focus{outline:none}
+.te-row:focus-within{background:var(--bg)}
+.te-in::placeholder{color:#b3a48c}
+.te-range{flex:1;accent-color:var(--accent)}
+.te-acts{display:grid;justify-items:center;gap:14px;margin-top:26px}
+.te-save{width:100%;border:0;border-radius:999px;background:var(--accent);color:#fffaf0;padding:13px 0;font:inherit;font-size:.95rem;font-weight:700;cursor:pointer}
+.te-links{display:flex;align-items:center;gap:10px;font-size:.86rem}
+.te-links .text-button{font-size:inherit;text-decoration:none;color:var(--fg);padding:0}
+.te-links i{font-style:normal;color:var(--line)}
+.te-links .te-danger{color:var(--bad-fg,#c4372d)}
+@media(max-width:700px){.te{grid-template-columns:1fr}.te-stage{position:static}.te-stage .ticket-flip{width:min(58%,240px)}}
+.ticket-page .te-row .te-in{flex:1;min-width:0;border:0;background:none;padding:12px 0;text-align:right;color:var(--fg);width:auto;border-radius:0;box-shadow:none}
+.ticket-page .te-row input[type=time].te-in{display:flex;justify-content:flex-end}
+.ticket-page .te-row input[type=time].te-in::-webkit-datetime-edit{text-align:right}
