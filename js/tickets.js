@@ -221,6 +221,10 @@ function ticketFilterRefresh(d){
   d.querySelector(".selector-done").textContent=tr("显示")+" "+ticketShown().shown.length+" "+tr("张票根");
 }
 function ticketOpenFilter(kind){
+  if(kind==="art-style"){
+    ticketDialog("art-style",ticketDict("手绘风格"),`<div class="selector-results" role="listbox">${TicketArt.styles.map(({id,label})=>ticketOptionRow("data-ticket-art-style",id,tr(label),"",ticketArtStyle===id)).join("")}</div>`);
+    return;
+  }
   const {tickets,all}=ticketShown();
   if(kind==="filter"){
     const d=ticketDialog("filter",ticketDict("筛选票根"),`<label class="selector-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg><input type="search" id="ticket-q" autocomplete="off" value="${esc(ticketQ.text)}" placeholder="${ticketDict("搜片名、导演、影院、专题")}" aria-label="${ticketDict("搜索票根")}"></label><div class="selector-results ticket-facet-box"></div>`,
@@ -230,10 +234,6 @@ function ticketOpenFilter(kind){
   if(kind==="year"){
     const counts=TE.facetCounts(tickets,ticketQ),n=Object.fromEntries(counts.year.map(y=>[y.value,y.count]));
     ticketDialog("year",ticketDict("年份"),`<div class="selector-results" role="listbox">${ticketOptionRow("data-ticket-year","",tr("全部年份"),`${tickets.length} ${tr("张票根")}`,!ticketQ.year)}${all.year.map(y=>ticketOptionRow("data-ticket-year",y.value,y.value,`${n[y.value]||0} ${tr("张票根")}`,ticketQ.year===y.value)).join("")}</div>`);
-    return;
-  }
-  if(kind==="art-style"){
-    ticketDialog("art-style",ticketDict("手绘风格"),`<div class="selector-results" role="listbox">${TicketArt.styles.map(({id,label})=>ticketOptionRow("data-ticket-art-style",id,tr(label),"",ticketArtStyle===id)).join("")}</div>`);
     return;
   }
   if(kind==="density"){
@@ -287,7 +287,11 @@ function ticketDialogClick(e,d){
     if(style===ticketArtStyle)return;
     ticketArtStyle=style;ticketSide="front";
     try{localStorage.setItem(TicketArt.storageKey,style);}catch{}
-    ticketPaintList();return;
+    if(ticketDraft){
+      ticketFlipTo("front");
+      ticketRenderCard(main.querySelector("#ticket-preview-front"),ticketDraft.row,"front");
+    }else ticketPaintList();
+    return;
   }
   const k=t.closest("[data-ticket-kind]");
   if(k&&kind==="export"){ticketExportOpen={...ticketExportOpen,kind:k.dataset.ticketKind,part:0};ticketExportRefresh(d);}
@@ -386,7 +390,8 @@ function ticketEditor(row){
         <button type="button" class="te-art-save" data-ticket-action="save-here" ${ticketArtDirty()?"":"disabled"}>${ticketDict("保存")}</button></div>`:""}
       <div class="te-tools"><div class="te-seg" role="tablist" aria-label="${ticketDict("票根面")}">
         <button type="button" role="tab" data-ticket-side="front" aria-selected="${front}">${ticketDict("正面")}</button><button type="button" role="tab" data-ticket-side="back" aria-selected="${!front}">${ticketDict("背面")}</button></div>
-        <button type="button" class="te-dice" data-ticket-action="shuffle">${ticketDict("随机换一款")}</button></div>
+        <button type="button" class="te-dice" data-ticket-action="shuffle">${ticketDict("随机换一款")}</button>
+        <button type="button" class="te-style" data-ticket-filter="art-style" aria-haspopup="dialog">${ticketDict("手绘风格")}${filterChevron}</button></div>
       <button type="button" class="te-reset" data-ticket-action="reset">${ticketDict("恢复专题默认款式")}</button></div>
     <div class="te-body">
       <div class="te-title"><h3>${esc(row.title)}</h3>${row.programme?`<small>${esc(row.programme)}</small>`:""}</div>

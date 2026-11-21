@@ -14,7 +14,8 @@ assert(app.pages.includes('pages/ticket-edit/ticket-edit'));
 assert(!/page-container/.test(wxml)&&!/page-container/.test(tixWxml),'no page-container scroll lock');
 assert(!/catchtouchmove/.test(wxml),'ticket card must not block page scrolling');
 assert.match(wxml,/<image[^>]*class="te-face"/);
-assert.doesNotMatch(wxml,/chooseArtStyle|artStyles/,'the preview uses hand-drawn artwork by default');
+assert.match(wxml,/<picker[^>]*range="{{artStyleLabels}}"[^>]*bindchange="pickArtStyle"/,'ticket details offer hand-drawn styles');
+assert.match(tixWxml,/bindchange="pickArtStyle"/,'the album keeps its own entry to the same styles');
 assert(!/canvas[^>]*id="te-worker"[^>]*bindtap/.test(wxml),'visible preview is an image, the canvas stays hidden');
 
 // 模拟画布：记录画过的文字；canvasToTempFilePath 把当前画面存成「图片」
@@ -74,7 +75,36 @@ const flush=async()=>{for(let n=0;n<20;n++){await new Promise(r=>setImmediate(r)
   page.touchStart({touches:[{clientX:180,clientY:40}]});
   assert(page.data.ry>5&&page.data.rx>3,'tilt follows the finger');assert.match(page.data.glowBg,/circle at 90% 10%/);
   page.touchEnd();assert.equal(page.data.ry,-4);
+  // 手绘风格复用本机偏好，单独重画配图，翻到正面。
+  const originalFront=page.data.frontImg,originalBack=page.data.backImg,crop=page.data.draft.crop;
+  const choose=(id)=>page.pickArtStyle({detail:{value:String(Art.styles.findIndex(style=>style.id===id))}});
+  choose('doodle');await flush();
+  assert.equal(store[Art.storageKey],'doodle');
+  assert.equal(page.data.artStyleLabels.length,Art.styles.length);
+  assert.equal(page.data.front,true);
+  assert.notEqual(page.data.frontImg,originalFront,'style must be part of the preview image cache key');
+  assert.equal(page.data.backImg,originalBack);
+  assert.equal(page.data.draft.crop,crop);
+  // 翻面途中连续选风格，只展示最后的选择。
+  page.flip();choose('watercolor');choose('blue-ink');await flush();
+  assert.equal(page.data.front,true);
+  assert.equal(page._artStyle,'blue-ink');
+  assert.equal(store[Art.storageKey],'blue-ink');
+  assert.equal(page.data.backImg,originalBack);
+  // 返回收藏册时，即使票根数据未修改，也更新样式和缩略图。
+  const albumDir=path.join(__dirname,'../miniprogram/pages/tickets');
+  let albumOptions;
+  const albumSandbox={...sandbox,Page:o=>{albumOptions=o;},require:name=>require(path.join(albumDir,name))};
+  vm.runInNewContext(fs.readFileSync(path.join(albumDir,'tickets.js'),'utf8'),albumSandbox,{filename:'tickets.js'});
+  const album={...albumOptions,data:{...albumOptions.data,artStyle:'woodcut',front:false},setData:page.setData,
+    _shownOnce:true,_rev:require('../miniprogram/utils/ticketstore').rev(),paint(){this.painted=true;}};
+  album.onShow();
+  assert.equal(album.data.front,true);
+  assert.equal(album.data.artStyle,'blue-ink');
+  assert.equal(album.data.artStyleIndex,Art.styles.findIndex(style=>style.id==='blue-ink'));
+  assert(album.painted,'the album refreshes even when no ticket record changed');
   // 在背面拖动裁切会翻回正面
+  page.flip();await flush();
   page.changeField({currentTarget:{dataset:{field:'crop'}},detail:{value:20}});await flush();
   assert.equal(page.data.front,true);assert.equal(page.data.draft.crop,20);
   // 场次选择：日期、开场、影院、影厅一起填
@@ -90,6 +120,7 @@ const flush=async()=>{for(let n=0;n<20;n++){await new Promise(r=>setImmediate(r)
   const page2={...options,data:JSON.parse(JSON.stringify(options.data)),setData:page.setData};
   page2.onLoad({key:encodeURIComponent(saved[0])});await flush();
   assert(page2.data.existing);assert.equal(page2.data.draft.seat,'7排7座');
+  assert.equal(page2._artStyle,'blue-ink');
   // 裁切后就地保存：不离开详情页，再打开时保持新的裁切
   assert.equal(page2.data.artDirty,false,'nothing to save right after opening');
   page2.changeField({currentTarget:{dataset:{field:'crop'}},detail:{value:83}});await flush();
@@ -102,5 +133,5 @@ const flush=async()=>{for(let n=0;n<20;n++){await new Promise(r=>setImmediate(r)
   await page2.exportSingle();await flush();
   assert(exporter.ctx.labels.includes('纪念票根'));
   page2.remove();assert(store['sk-tickets-v2'][saved[0]].del);
-  console.log('PASS: ticket editor page — native scrolling/back, image preview with CSS 3D flip & tilt, shuffle redraw, show picker, default artwork without a style picker, crop flips to front, crop save-in-place, save, export, remove.');
+  console.log('PASS: ticket editor page — native scrolling/back, image preview with CSS 3D flip & tilt, shuffle redraw, show picker, shared artwork style picker and album refresh, crop flips to front, crop save-in-place, save, export, remove.');
 })().catch(e=>{console.error(e);process.exitCode=1;});
