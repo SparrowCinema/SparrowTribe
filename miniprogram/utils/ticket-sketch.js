@@ -14,7 +14,9 @@
     {id:"watercolor",label:"淡彩水彩"},
     {id:"woodcut",label:"木刻版画"},
     {id:"blue-ink",label:"蓝墨速写"},
-    {id:"doodle",label:"彩色涂鸦"}
+    {id:"doodle",label:"彩色涂鸦"},
+    {id:"kid-crayon",label:"童趣蜡笔"},
+    {id:"cartoon",label:"卡通漫画"}
   ];
   const storageKey="sparrow-ticket-art-style";
   const normalize=value=>styles.some(style=>style.id===value)?value:styles[0].id;
@@ -74,6 +76,8 @@
   function stylize(pixels,w,h,width,height,styleId){
     const style=normalize(styleId);
     if(style==="doodle")return drawDoodle(pixels,w,h,width,height);
+    if(style==="kid-crayon")return drawKidCrayon(pixels,w,h,width,height);
+    if(style==="cartoon")return drawCartoon(pixels,w,h,width,height);
     const crayon=style==="crayon",wash=style==="watercolor",wood=style==="woodcut";
     const paper=style==="blue-ink"?BLUE_PAPER:PAPER,ink=style==="blue-ink"?BLUE_INK:INK;
     const {labels,palette:source}=reduceColors(pixels,w,h);
@@ -243,6 +247,126 @@
     return out;
   }
 
+  // 童趣蜡笔：像孩子用油蜡笔画的——大块饱和平涂、粗而毛糙的黑色勾线、蜡笔在粗纸上留下的白色斜纹，
+  // 颜色还会稍微涂出线外（填色层相对勾线错开一点）。画面偏抽象。
+  const KID_PAPER=[255,254,249];
+  const KID_INK=[22,18,20];
+  const hash=(x,y)=>{const n=Math.sin(x*127.1+y*311.7)*43758.5453;return n-Math.floor(n);};
+  function valueNoise(x,y){
+    const ix=Math.floor(x),iy=Math.floor(y),fx=x-ix,fy=y-iy,u=fx*fx*(3-2*fx),v=fy*fy*(3-2*fy);
+    return mix(mix(hash(ix,iy),hash(ix+1,iy),u),mix(hash(ix,iy+1),hash(ix+1,iy+1),u),v);
+  }
+  function kidPigment(color){
+    const base=doodlePigment(color);
+    if(base===DOODLE_INK)return KID_INK;
+    if(base===DOODLE_PAPER)return KID_PAPER;
+    const light=luma(...base);
+    return base.map(c=>clamp(light+(c-light)*1.25-6,10,250));
+  }
+  function drawKidCrayon(pixels,w,h,width,height){
+    const {labels,palette}=reduceColors(pixels,w,h,8);
+    const regions=doodleRegions(doodleRegions(labels,w,h,palette.length,w>=120?3:w>=70?2:1),w,h,palette.length,w>=70?2:1);
+    const fills=palette.map(kidPigment),details=doodleDetail(pixels,w,h);
+    const warm=fills.map(([r,g,b])=>r>225&&g>165&&g<240&&b<215);
+    const edges=fills.map((a,i)=>fills.map((b,j)=>{
+      if(i===j)return 0;
+      const contrast=Math.min(Math.sqrt(distance(...a,b)),Math.sqrt(distance(...palette[i],palette[j]))*1.7);
+      return clamp((contrast-26)/48,0,1);
+    }));
+    const angles=fills.map((_,k)=>-.62+Math.sin(k*2.17+.4)*.55);   // 每块颜色的涂抹方向不同
+    const out=new Uint8ClampedArray(width*height*4);
+    const cell=(x,y)=>clamp(Math.floor(y),0,h-1)*w+clamp(Math.floor(x),0,w-1);
+    const label=(x,y)=>regions[cell(x,y)];
+    const unit=width/200,edgeWidth=Math.max(.6,1.25/Math.sqrt(width/w));
+    const offX=1.6*unit*w/width,offY=1.1*unit*h/height;     // 填色错位：颜色涂出线外一点
+    for(let y=0;y<height;y++) for(let x=0;x<width;x++){
+      const px=x/unit,py=y/unit;
+      const sx=(x+unit*(.9*Math.sin(py*.29)+.35*Math.sin((px+py)*.61)))*w/width;
+      const sy=(y+unit*(.9*Math.sin(px*.27)+.3*Math.sin((px-py)*.57)))*h/height;
+      const i=y*width+x,s=i*4,source=cell(sx,sy),k=regions[source],env=edges[k];
+      const detail=warm[k]?details[source]*1.1:0;
+      let pen=Math.max(detail,env[label(sx-edgeWidth,sy)],env[label(sx+edgeWidth,sy)],env[label(sx,sy-edgeWidth)],env[label(sx,sy+edgeWidth)]);
+      const grit=valueNoise(px*1.9,py*1.9);
+      pen=pen>.35?clamp(pen*(.78+grit*.5)-(valueNoise(px*.35+40,py*.35)>.86?.6:0),0,1):0;   // 粗、毛、偶尔断笔
+      const f=label(sx+offX,sy+offY),fill=fills[f],a=angles[f];
+      const along=px*Math.cos(a)+py*Math.sin(a),across=-px*Math.sin(a)+py*Math.cos(a);
+      const streak=(across*.62+valueNoise(along*.18,across*.9)*1.6)%1;
+      const tooth=valueNoise(px*2.6,py*2.6);
+      let bare=0;
+      if(fill!==KID_PAPER){
+        bare=(streak<.16?.62:0)+(tooth>.72?(tooth-.72)*2.4:0);
+        bare=clamp(bare*(.65+valueNoise(px*.12,py*.12)*.7),0,.88);
+      }
+      for(let c=0;c<3;c++)out[s+c]=mix(mix(fill[c],KID_PAPER[c],bare),KID_INK[c],pen);
+      out[s+3]=255;
+    }
+    return out;
+  }
+
+  // 卡通漫画：保边磨皮（Kuwahara）→ 明暗压成几档、提高饱和 → 按亮度轮廓勾黑线（XDoG），保留人物形状。
+  function blur(src,w,h,sigma){
+    const r=Math.max(1,Math.ceil(sigma*2.5)),k=[];let sum=0;
+    for(let i=-r;i<=r;i++){const v=Math.exp(-i*i/(2*sigma*sigma));k.push(v);sum+=v;}
+    const tmp=new Float32Array(src.length),out=new Float32Array(src.length);
+    for(let y=0;y<h;y++) for(let x=0;x<w;x++){let a=0;for(let i=-r;i<=r;i++)a+=src[y*w+clamp(x+i,0,w-1)]*k[i+r];tmp[y*w+x]=a/sum;}
+    for(let y=0;y<h;y++) for(let x=0;x<w;x++){let a=0;for(let i=-r;i<=r;i++)a+=tmp[clamp(y+i,0,h-1)*w+x]*k[i+r];out[y*w+x]=a/sum;}
+    return out;
+  }
+  // 保边磨皮（双边滤波）：同色块内抹平，颜色差得多的地方不混，轮廓留得住
+  function bilateral(rgb,w,h,r,sigmaR){
+    const out=new Float32Array(rgb.length),offs=[],sp=[];
+    for(let dy=-r;dy<=r;dy++) for(let dx=-r;dx<=r;dx++){offs.push(dx,dy);sp.push(Math.exp(-(dx*dx+dy*dy)/(2*(r*.6)**2)));}
+    // 颜色差的权重查表（按平方距离 / 8 取整）
+    const lut=new Float32Array(4096),inv=1/(2*sigmaR*sigmaR);
+    for(let i=0;i<4096;i++)lut[i]=Math.exp(-i*8*inv);
+    const m=sp.length;
+    for(let y=0;y<h;y++) for(let x=0;x<w;x++){
+      const o=(y*w+x)*3,R=rgb[o],G=rgb[o+1],B=rgb[o+2];let n=0,sr=0,sg=0,sb=0;
+      for(let k=0;k<m;k++){
+        const xx=x+offs[k*2],yy=y+offs[k*2+1];
+        const j=((yy<0?0:yy>=h?h-1:yy)*w+(xx<0?0:xx>=w?w-1:xx))*3,dr=rgb[j]-R,dg=rgb[j+1]-G,db=rgb[j+2]-B;
+        const d=(dr*dr+dg*dg+db*db)>>3,wt=sp[k]*(d<4096?lut[d]:0);
+        n+=wt;sr+=rgb[j]*wt;sg+=rgb[j+1]*wt;sb+=rgb[j+2]*wt;
+      }
+      out[o]=sr/n;out[o+1]=sg/n;out[o+2]=sb/n;
+    }
+    return out;
+  }
+  const TOON_INK=[24,20,26];
+  function drawCartoon(pixels,w,h,width,height){
+    let rgb=new Float32Array(w*h*3);
+    for(let i=0;i<w*h;i++){const a=pixels[i*4+3]/255;for(let c=0;c<3;c++)rgb[i*3+c]=pixels[i*4+c]*a+PAPER[c]*(1-a);}
+    for(let pass=0;pass<3;pass++)rgb=bilateral(rgb,w,h,2,pass?18:26);
+    // 明暗分档（4 档，带一点过渡）+ 饱和度提升，暗部稍偏冷、亮部偏暖，像漫画上色
+    const L=new Float32Array(w*h),col=new Float32Array(w*h*3);
+    for(let i=0;i<w*h;i++){
+      const R=rgb[i*3],G=rgb[i*3+1],B=rgb[i*3+2],l=luma(R,G,B);L[i]=l;
+      const t=l/255,band=Math.floor(t*4),f=t*4-band,soft=band+clamp((f-.42)/.16,0,1);
+      const q=clamp(soft/4,0,1),lq=30+q*215;
+      for(let c=0;c<3;c++){
+        const tint=c===2?(1-q)*10:c===0?q*6:0;
+        col[i*3+c]=clamp(lq+(rgb[i*3+c]-l)*1.45+tint,0,255);
+      }
+    }
+    // XDoG 线稿
+    const s1=Math.max(.7,w/300),g1=blur(L,w,h,s1),g2=blur(L,w,h,s1*1.6),line=new Float32Array(w*h);
+    for(let i=0;i<w*h;i++){const d=g1[i]-.985*g2[i];line[i]=d>=0?0:clamp(-d/9,0,1);}
+    const out=new Uint8ClampedArray(width*height*4);
+    const sx=w/width,sy=h/height;
+    const at=(arr,x,y,stride,c)=>{
+      const fx=clamp(x,0,w-1),fy=clamp(y,0,h-1),x0=Math.floor(fx),y0=Math.floor(fy),x1=Math.min(w-1,x0+1),y1=Math.min(h-1,y0+1),u=fx-x0,v=fy-y0;
+      const g=(xx,yy)=>arr[(yy*w+xx)*stride+c];
+      return mix(mix(g(x0,y0),g(x1,y0),u),mix(g(x0,y1),g(x1,y1),u),v);
+    };
+    for(let y=0;y<height;y++) for(let x=0;x<width;x++){
+      const X=(x+.5)*sx-.5,Y=(y+.5)*sy-.5,o=(y*width+x)*4;
+      const ink=clamp((at(line,X,Y,1,0)-.18)/.4,0,1);
+      for(let c=0;c<3;c++)out[o+c]=mix(at(col,X,Y,3,c),TOON_INK[c],ink);
+      out[o+3]=255;
+    }
+    return out;
+  }
+
   const imageCache=new WeakMap();
   function paint(surface,image,crop,frame,createCanvas,cropCover,ticketScale=1,styleId){
     if(!createCanvas)return false;
@@ -255,7 +379,8 @@
       const style=normalize(styleId),key=style+":"+width+":"+crop;
       let drawing=cache.get(key);
       if(!drawing){
-        const sw=Math.min(92,Math.max(32,Math.round(width*.4)));
+        // 童趣蜡笔、卡通要保留人物轮廓，取样更细（其余风格保持原来的粗取样）
+        const sw=style==="cartoon"?Math.min(380,Math.max(64,Math.round(width))):style==="kid-crayon"?Math.min(160,Math.max(48,Math.round(width*.5))):Math.min(92,Math.max(32,Math.round(width*.4)));
         const sh=Math.max(1,Math.round(sw*h/w));
         const sample=createCanvas(sw,sh).getContext("2d");
         cropCover(sample,image,crop,{x:0,y:0,w:sw,h:sh});
