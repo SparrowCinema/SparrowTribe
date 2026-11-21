@@ -111,7 +111,7 @@ function myPage(){const list=selectedRows(),st=planStats(list),next=list.find(s=
  (ws=>menuRowHTML('want','想看清单',ws.n?tr(ws.n+' 部')+(ws.fresh?' · '+tr(ws.fresh+' 部有新场次'):ws.live?' · '+tr(ws.live+' 部有场次'):''):'在影片页点「想看」，有新场次时会标出','data-want-list'))(wantStats())+
  menuRowHTML('recap','我的影院观影结算','按年份与专题，收藏印章与评分。','data-pp="recap"')+
  menuRowHTML('wall','我的海报墙','看过的影片 · 我的评分','data-tab="poster-wall"')+
- menuRowHTML('ticket','我的票根收藏册','收藏正反面票根 · 导出整页票根墙','data-tab="ticket-wall"')+
+ menuRowHTML('ticket','我的票根收藏册','每次观影一张票根 · 年度与专题票根墙','data-tab="ticket-wall"')+
  menuRowHTML('taste','我的电影趣味图谱',tasteMenuSub(),'data-tab="taste-map"')+
  menuRowHTML('export','导出与分享','带二维码的排片长图 · 分享链接 · 日历 · PDF','data-tab="export"')+
  '</div><h3 class="my-group">'+tr('设置与帮助')+(LANG==='en'?'':' <small>SETTINGS</small>')+'</h3><div class="my-menu">'+sync+themeRowHTML()+

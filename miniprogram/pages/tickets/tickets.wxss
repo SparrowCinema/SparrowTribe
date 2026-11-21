@@ -38,3 +38,58 @@
 .al-result image{width:100%;height:160rpx;border-radius:7rpx}
 .al-export-canvas{position:fixed;top:-3000px;left:-3000px;width:1px;height:1px;pointer-events:none}
 @media(min-width:700px){.al-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.al-edit{display:grid;grid-template-columns:minmax(210px,1fr) minmax(0,1.2fr);gap:20rpx;align-items:start}}
+/* 2026-11-21 收藏册：按年月滚动、搜索 + 分面筛选、四档密度 */
+.al-sum{margin-top:6rpx;font-size:23rpx;color:var(--muted)}
+.al-b{color:var(--fg);font-weight:700}
+.al-link{color:var(--accent);font-weight:650}
+.al-q{box-sizing:border-box;width:100%;min-height:64rpx;padding:10rpx 16rpx;margin-bottom:12rpx;background:var(--surface);color:var(--fg);border:1px solid var(--line);border-radius:10rpx;font-size:16px}
+.al-seg{display:flex;border:1px solid var(--line);border-radius:10rpx;overflow:hidden;background:var(--surface)}
+.al-seg view{padding:10rpx 15rpx;font-size:24rpx;line-height:1.45}
+.al-seg view+view{border-left:1px solid var(--line)}
+.al-seg .on{background:var(--fg);color:var(--bg)}
+.al-years{white-space:nowrap;margin:0 0 10rpx}
+.al-chip{display:inline-block;margin:0 10rpx 10rpx 0;padding:8rpx 18rpx;border:1px solid var(--line);border-radius:999rpx;background:var(--surface);font-size:23rpx;line-height:1.4}
+.al-chip.on{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+.al-n{color:var(--muted);font-size:20rpx}
+.al-chip.on .al-n{color:inherit;opacity:.8}
+.al-facets,.al-export{border:1px solid var(--line);border-radius:14rpx;background:var(--surface);padding:16rpx 18rpx 8rpx;margin:4rpx 0 14rpx}
+.al-facet{margin-bottom:8rpx}
+.al-fh{display:block;font-size:21rpx;color:var(--muted);margin-bottom:6rpx}
+.al-fwrap{max-height:260rpx;overflow-y:auto}
+.al-chips{margin:0 0 6rpx}
+.al-chips .al-link{font-size:23rpx;margin-left:6rpx}
+.al-muted{color:var(--muted);font-size:22rpx}
+.al-block{display:block;margin:8rpx 0 14rpx}
+.al-mt{margin:6rpx 0 16rpx}
+.al-radios label{display:flex;align-items:center;gap:10rpx;flex-wrap:wrap;margin:10rpx 0;font-size:25rpx}
+.al-radios radio{transform:scale(.8)}
+.al-radios picker{flex:1;min-width:240rpx}
+.al-export .al-actions{margin:12rpx 0}
+.al-count{font-size:22rpx;color:var(--muted);margin:4rpx 0 12rpx}
+.al-board{background:linear-gradient(142deg,#41483c,#202921);border-radius:16rpx;padding:0 16rpx 18rpx}
+.al-mh{position:sticky;top:0;z-index:2;padding:16rpx 4rpx 10rpx;color:#f4ead3;font-size:26rpx;font-weight:700;background:linear-gradient(#323a31f2 70%,#323a3100)}
+.al-mh text{color:#d9cbb0;font-weight:500;font-size:21rpx;margin-left:6rpx}
+.al-board .al-grid{padding:0;background:none;border-radius:0;display:grid;gap:12rpx;grid-template-columns:repeat(4,minmax(0,1fr))}
+.al-d-l .al-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:20rpx}
+.al-d-s .al-grid{grid-template-columns:repeat(6,minmax(0,1fr));gap:8rpx}
+.al-d-spine .al-grid{grid-template-columns:1fr;gap:6rpx}
+.al-img{display:block;width:100%;height:auto;aspect-ratio:420/864;border-radius:4rpx}
+.al-ph{opacity:.55}
+.al-tile.picked .al-img,.al-spine.picked{outline:4rpx solid #f8db9a;outline-offset:3rpx}
+.al-spine{display:grid;grid-template-columns:10rpx minmax(0,1fr) auto;grid-template-areas:"bar title date" "bar meta meta";column-gap:16rpx;align-items:center;border-radius:8rpx;padding:10rpx 16rpx 10rpx 0;overflow:hidden}
+.al-bar{grid-area:bar;align-self:stretch}
+.al-st{grid-area:title;font-size:26rpx;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.al-sd{grid-area:date;font-family:monospace;font-size:21rpx;color:#4a443b}
+.al-sm{grid-area:meta;font-size:20rpx;color:#5d554a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.al-more{text-align:center;color:#d9cbb0;font-size:22rpx;padding:20rpx 0 4rpx}
+.al-pickbar{position:sticky;bottom:20rpx;z-index:5;display:flex;align-items:center;gap:12rpx;margin-top:16rpx;padding:14rpx 18rpx;border-radius:14rpx;background:var(--surface);border:1px solid var(--line);box-shadow:0 8rpx 24rpx rgba(0,0,0,.25);font-size:25rpx}
+.al-pickbar text{margin-right:auto}
+.al-fixed{border:1px dashed var(--line);border-radius:9rpx;padding:10rpx 14rpx}
+.al-fixed .al-b{font-family:monospace;font-size:28rpx;margin:4rpx 0}
+.al-plist{display:flex;flex-direction:column;gap:10rpx;margin:10rpx 0 16rpx}
+.al-pend{display:flex;align-items:center;gap:16rpx;border:1px solid var(--line);background:var(--surface);border-radius:12rpx;padding:8rpx 16rpx 8rpx 8rpx}
+.al-pend image,.al-pimg{width:64rpx;height:96rpx;border-radius:6rpx;flex:none;background:var(--line)}
+.al-pc{flex:1;min-width:0;display:flex;flex-direction:column}
+.al-pt{font-size:26rpx;font-weight:650;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.al-pm{font-size:21rpx;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.al-go{color:var(--accent);font-size:23rpx;font-weight:650}

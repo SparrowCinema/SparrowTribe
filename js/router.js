@@ -43,7 +43,7 @@ function route(){
   else if(h==="plan") planPage();
   else if(h==="stats") statsPage();
   else if(h==="poster-wall") posterWallPage();
-  else if(h==="ticket-wall") {if(changing) ticketDraft=null;ticketWallPage();}
+  else if(h==="ticket-wall") {if(changing){ticketDraft=null;ticketMode="album";ticketPick=null;ticketExportOpen=false;}ticketWallPage();}
   else if(h==="taste-map") tasteMapPage();
   else if(h==="install") installPage();
   else if(h==="export") exportPage();
