@@ -166,5 +166,13 @@ const flush=async()=>{for(let n=0;n<20;n++){await new Promise(r=>setImmediate(r)
   assert.equal(Art.readFilmStyles(wx.getStorageSync).has(film.id),false);
   assert.equal(store[Art.storageKey],'memphis');
   page2.remove();assert(store['sk-tickets-v2'][saved[0]].del);
-  console.log('PASS: ticket editor page — native scrolling/back, image preview with CSS 3D flip & tilt, shuffle redraw, show picker, per-film artwork styles and album fallback, crop flips to front, crop save-in-place, save, export, remove.');
+  // 从详情页保存回来：收藏册原地刷新，保留已加载的张数和滚动位置（不重置回前 48 张，否则会回到错位的地方）
+  const scrolls=[];wx.pageScrollTo=o=>scrolls.push(o.scrollTop);
+  const album2={...albumOptions,data:{...albumOptions.data,mode:'album',shown:96},setData:page.setData,_filmStyles:Art.readFilmStyles(wx.getStorageSync),_shownOnce:true,
+    _q:{text:'',year:'',programme:[],city:[],venue:[],format:[]},_limit:96,_scrollTop:1234,_rev:-1,_opened:'',
+    paint(append,done){this.painted2=[append,this._limit];done&&done();}};
+  album2.onShow();
+  assert.deepEqual(album2.painted2,[false,96],'returning keeps the tickets already loaded');
+  assert.deepEqual(scrolls,[1234],'returning restores the scroll position');
+  console.log('PASS: ticket editor page — native scrolling/back, image preview with CSS 3D flip & tilt, shuffle redraw, show picker, per-film artwork styles and album fallback, crop flips to front, crop save-in-place, save, export, remove; album keeps its place after saving.');
 })().catch(e=>{console.error(e);process.exitCode=1;});
