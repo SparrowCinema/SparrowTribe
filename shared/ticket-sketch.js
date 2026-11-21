@@ -13,7 +13,8 @@
     {id:"crayon",label:"蜡笔乱涂"},
     {id:"watercolor",label:"淡彩水彩"},
     {id:"woodcut",label:"木刻版画"},
-    {id:"blue-ink",label:"蓝墨速写"}
+    {id:"blue-ink",label:"蓝墨速写"},
+    {id:"doodle",label:"彩色涂鸦"}
   ];
   const storageKey="sparrow-ticket-art-style";
   const normalize=value=>styles.some(style=>style.id===value)?value:styles[0].id;
@@ -21,7 +22,7 @@
   const luma=(r,g,b)=>.24*r+.58*g+.18*b;
   const distance=(r,g,b,color)=>.30*(r-color[0])**2+.52*(g-color[1])**2+.18*(b-color[2])**2;
 
-  function reduceColors(pixels,w,h){
+  function reduceColors(pixels,w,h,limit=12){
     // Clean fine noise before grouping similar pigments into a small palette.
     const samples=new Float32Array(w*h*3);
     for(let y=0;y<h;y++) for(let x=0;x<w;x++){
@@ -39,7 +40,7 @@
     const palette=[pigmentAt(byLight[Math.floor(byLight.length/2)])];
     const nearest=new Float32Array(labels.length).fill(Infinity);
     let picker=0x61c88647;
-    while(palette.length<12){
+    while(palette.length<limit){
       const last=palette[palette.length-1];
       let total=0;
       for(let i=0;i<labels.length;i++){
@@ -72,6 +73,7 @@
   const mix=(a,b,weight)=>a+(b-a)*weight;
   function stylize(pixels,w,h,width,height,styleId){
     const style=normalize(styleId);
+    if(style==="doodle")return drawDoodle(pixels,w,h,width,height);
     const crayon=style==="crayon",wash=style==="watercolor",wood=style==="woodcut";
     const paper=style==="blue-ink"?BLUE_PAPER:PAPER,ink=style==="blue-ink"?BLUE_INK:INK;
     const {labels,palette:source}=reduceColors(pixels,w,h);
@@ -143,6 +145,99 @@
         if(tx>=width||ty<0||ty>=height||regions[ty*width+tx]!==k)break;
         const i=(ty*width+tx)*4,weight=strength*(1-step/length);
         for(let c=0;c<3;c++) out[i+c]=mix(out[i+c],pigment[c],weight);
+      }
+    }
+    return out;
+  }
+
+  const DOODLE_PAPER=[255,253,245];
+  const DOODLE_INK=[26,20,24];
+
+  function doodlePigment(color){
+    const [r,g,b]=color,light=luma(r,g,b),chroma=Math.max(...color)-Math.min(...color);
+    if(light<38)return DOODLE_INK;
+    if(light>164&&chroma<30)return DOODLE_PAPER;
+    // Keep warm highlights peach and reduce neutral shadows to broad, muted fills.
+    if(r-g>12&&r-b>12&&r-g<57&&light>83&&light<211){
+      return light>119?[255,224,184]:[247,199,151];
+    }
+    if(chroma<17){
+      if(light<66)return [124,128,151];
+      return g>=r&&g>=b?[193,211,194]:[201,204,218];
+    }
+    const base=clamp(175+(light-125)*.92,77,244);
+    return color.map(channel=>clamp(base+(channel-light)*2.8,17,252));
+  }
+
+  function doodleRegions(labels,w,h,paletteSize,radius){
+    const regions=new Uint8Array(labels),votes=new Uint8Array(paletteSize);
+    for(let y=radius;y<h-radius;y++) for(let x=radius;x<w-radius;x++){
+      const i=y*w+x,k=labels[i];
+      votes.fill(0);
+      for(let dy=-radius;dy<=radius;dy++) for(let dx=-radius;dx<=radius;dx++)votes[labels[i+dy*w+dx]]++;
+      if(votes[k]>=3*radius)continue;
+      const dominant=votes.findIndex(count=>count>=5*radius);
+      if(dominant!==-1)regions[i]=dominant;
+    }
+    return regions;
+  }
+
+  function doodleDetail(pixels,w,h){
+    const tones=new Float32Array(w*h),details=new Float32Array(w*h);
+    for(let i=0;i<tones.length;i++)tones[i]=luma(pixels[i*4],pixels[i*4+1],pixels[i*4+2]);
+    for(let y=1;y<h-1;y++) for(let x=1;x<w-1;x++){
+      const i=y*w+x;
+      const surround=(tones[i-w-1]+tones[i-w+1]+tones[i+w-1]+tones[i+w+1])/4;
+      details[i]=clamp((surround-tones[i]-9)/44,0,.84);
+    }
+    return details;
+  }
+
+  function drawDoodle(pixels,w,h,width,height){
+    const {labels,palette}=reduceColors(pixels,w,h,9);
+    const radius=w>=70?2:1;
+    const regions=doodleRegions(labels,w,h,palette.length,radius);
+    const fills=palette.map(doodlePigment),details=doodleDetail(pixels,w,h);
+    const warm=fills.map(([r,g,b])=>r>235&&g>175&&g<237&&b<210);
+    const edges=fills.map((a,i)=>fills.map((b,j)=>{
+      if(i===j)return 0;
+      const contrast=Math.min(Math.sqrt(distance(...a,b)),Math.sqrt(distance(...palette[i],palette[j]))*1.65);
+      return clamp((contrast-31)/56,0,1);
+    }));
+    const out=new Uint8ClampedArray(width*height*4),field=new Uint8Array(width*height);
+    const cell=(x,y)=>clamp(Math.floor(y),0,h-1)*w+clamp(Math.floor(x),0,w-1);
+    const label=(x,y)=>regions[cell(x,y)];
+    const unit=width/200,edgeWidth=Math.max(.45,.84/Math.sqrt(width/w));
+    let seed=0x85ebca6b;
+    const random=()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296;};
+    // Offset the contour by a fraction of a sample to give the black line uneven edges.
+    for(let y=0;y<height;y++) for(let x=0;x<width;x++){
+      const px=x/unit,py=y/unit;
+      const sx=(x+unit*(.69*Math.sin(py*.37)+.27*Math.sin((px+py)*.73)))*w/width;
+      const sy=(y+unit*(.71*Math.sin(px*.32)+.23*Math.sin((px-py)*.69)))*h/height;
+      const i=y*width+x,s=i*4,source=cell(sx,sy),k=regions[source],env=edges[k];
+      // Keep a few small dark marks inside warm fills for fine detail such as eyes.
+      const detail=warm[k]?details[source]:0;
+      const pen=Math.max(detail,env[label(sx-edgeWidth,sy)],env[label(sx+edgeWidth,sy)],env[label(sx,sy-edgeWidth)],env[label(sx,sy+edgeWidth)]);
+      field[i]=pen>.45?255:k;
+      const dry=random(),ink=pen*(dry>.982?.54:1);
+      for(let c=0;c<3;c++)out[s+c]=mix(fills[k][c],DOODLE_INK[c],ink);
+      out[s+3]=255;
+    }
+    // Break up wide filled areas with short, tapered gaps like dry marker on paper.
+    const spacing=Math.max(4,Math.round(unit*7));
+    for(let y=0;y<height;y+=spacing) for(let x=0;x<width;x+=spacing){
+      const sx=x+Math.floor(random()*spacing),sy=y+Math.floor(random()*spacing);
+      if(sx>=width||sy>=height)continue;
+      const k=field[sy*width+sx];
+      if(k===255||fills[k]===DOODLE_PAPER||random()<.54)continue;
+      const length=Math.max(2,Math.round(unit*(2+random()*9)));
+      const angle=-.9+Math.sin(k*2.4)*.39+(random()-.5)*.45;
+      for(let dx=0;dx<length;dx++){
+        const tx=sx+dx,ty=sy+Math.round(dx*angle);
+        if(tx>=width||ty<0||field[ty*width+tx]!==k)break;
+        const i=(ty*width+tx)*4,weight=.29+.59*Math.sin(Math.PI*(dx+1)/(length+1));
+        for(let c=0;c<3;c++)out[i+c]=mix(out[i+c],DOODLE_PAPER[c],weight);
       }
     }
     return out;
