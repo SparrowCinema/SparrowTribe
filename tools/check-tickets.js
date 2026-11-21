@@ -39,7 +39,7 @@ const edited={...second,seat:'5排8座',hall:'1号厅',venue:'麻雀部落电影
 const entry=T.entryFrom(edited,{...base('a',list.find(x=>x.key==='a|2026-11-08').view,'2026-11-08'),id:'a|2026-11-08'},9);
 assert.deepStrictEqual(Object.keys(entry).filter(k=>k!=='x').sort(),['c','l','st','t','vn']);
 // 工艺组合（2026-11-22）：随机换款连工艺组合一起换，和默认不同时存在 x；默认组合按票根键固定、不存
-assert(!('x' in entry) || /^[sgch]{0,2}-[0urokbd][Bv]{0,2}$/.test(entry.x),'craft code is stored in a valid form');
+assert(!('x' in entry) || /^[sgch]{0,2}-[0urokbdwpq][Bv]{0,2}$/.test(entry.x),'craft code is stored in a valid form');
 assert.equal(entry.x===undefined,edited.look.craft===T.build(list,{},base).tickets.find(r=>r.key===edited.key)?.look.craft);
 {
   const k='a|2026-11-08',store1=S.cleanTix({[k]:{t:5,x:'gs-uBv'}}),row=T.build(list,store1,base).tickets.find(r=>r.key===k);

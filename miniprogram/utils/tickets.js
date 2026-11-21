@@ -297,12 +297,14 @@ const options={finish:finishes,texture:papers,palette:palettes,motif:motifs};
 // 默认按票根 id 稳定随机（同一张票根永远一样），「随机换一款」会一起换；改过的存在票根的 x 字段（shared/psync.js）。
 // 组合数：11 种烫印增效 × 7 种海报增效 × 4 种开关 = 308 种，再乘 16 种底箔、各家族的配色 / 纸张 / 纹样。
 const CRAFT_FOIL={s:"sense",g:"glitter",c:"crystal",h:"cast"};
-const CRAFT_ART={u:"uv",r:"rim",o:"holo",k:"sparkle",b:"band",d:"dust"};
+const CRAFT_ART={u:"uv",r:"rim",o:"holo",k:"sparkle",b:"band",d:"dust",w:"rainbow",p:"pixel",q:"ripple"};
 const CRAFT_LABEL={sense:"立体光油",glitter:"金葱闪粉",crystal:"水晶幻彩",cast:"全息纹理",
   uv:"隐形高光UV",rim:"隐形轮廓光油",holo:"隐形全息水印",sparkle:"隐形珠光",band:"隐形扭索纹",dust:"亮哑对比纹",
   // 背面同一个字母对应另一种隐形底纹（2026-11-22）
+  rainbow:"隐形镭射彩虹",pixel:"隐形像素镭射",ripple:"隐形同心波纹",
+  "back-rainbow":"隐形镭射彩虹","back-pixel":"隐形像素镭射","back-ripple":"隐形同心波纹",
   "back-uv":"隐形放射纹","back-rim":"隐形环形扭索","back-holo":"隐形专题水印","back-sparkle":"隐形星尘","back-band":"隐形扭索底纹","back-dust":"亮哑网点底纹",braille:"盲文凸点",vde:"日期可变数据烫印"};
-const CRAFT_RE=/^[sgch]{0,2}-[0urokbd][Bv]{0,2}$/;
+const CRAFT_RE=/^[sgch]{0,2}-[0urokbdwpq][Bv]{0,2}$/;
 function makeCraft(rand,finish) {
   const own=finishes[finish]?.fx;
   const foil=Object.keys(CRAFT_FOIL).filter(key=>CRAFT_FOIL[key]!==own);
@@ -1009,15 +1011,16 @@ function craftTexture(ctx,fx,rand,box={x:0,y:0,w:W,h:H},cx=W*.5,cy=H*.36) {
 // ——— 海报画面增效（工艺组合的第二段，2026-11-22 改为隐形）———
 // 静止时海报完全不变，只有转动时才在对应区域若隐若现地泛起光泽（像印刷上的透明光油、隐形全息、防伪扭索纹）：
 // 隐形高光UV＝海报最亮的两成；隐形轮廓光油＝明暗边缘；隐形全息水印＝片名斜向平铺的透明全息字；
-// 隐形珠光＝中高调区域的柔和珠光；隐形扭索纹＝钞票式的玫瑰曲线防伪纹；亮哑对比纹＝细密的亮油网点（像亮哑对比的透明光油）。
+// 隐形珠光＝中高调区域的柔和珠光；隐形扭索纹＝钞票式的玫瑰曲线防伪纹；亮哑对比纹＝细密的亮油网点（像亮哑对比的透明光油）；
+// 隐形镭射彩虹＝整幅海报流过彩虹；隐形像素镭射＝细方格光栅；隐形同心波纹＝从一点荡开的细环（2026-11-22 新增，转动时最容易看出来）。
 // 编码字母沿用（u r o k b d），已保存的组合照常有效，只是效果换成隐形的。遮罩从海报取样（artMask），只给网页 / 小程序转动时的反光层用。
-const ART_FX={uv:"a-gloss",rim:"a-rim",holo:"a-holo",sparkle:"a-pearl",band:"a-guilloche",dust:"a-matte"};
+const ART_FX={uv:"a-gloss",rim:"a-rim",holo:"a-holo",sparkle:"a-pearl",band:"a-guilloche",dust:"a-matte",rainbow:"a-rainbow",pixel:"a-holo",ripple:"a-holo"};
 function artMaskCanvas(record,image,kind,createCanvas,mw) {
   const mh=Math.max(1,Math.round(mw*SOURCE.h/SOURCE.w)),rand=seeded(hashAppearance("art|"+(record.id||record.key||"")+kind));
   let mask;
   try {mask=createCanvas(mw,mh);} catch (error) {return null;}
   const m=mask.getContext("2d");
-  const geometric=kind==="holo" || kind==="band" || kind==="dust";
+  const geometric=kind==="holo" || kind==="band" || kind==="dust" || kind==="rainbow" || kind==="pixel" || kind==="ripple";
   let L=null;
   if (!geometric) {
     try {
@@ -1044,6 +1047,20 @@ function artMaskCanvas(record,image,kind,createCanvas,mw) {
     const t=pct(G,.88)||.1,a=new Uint8ClampedArray(L.length);
     for (let i=0;i<G.length;i++) a[i]=Math.max(0,Math.min(1,(G[i]-t)/t*2))*255;
     put(a);
+  } else if (kind==="rainbow") {
+    // 隐形镭射彩虹：整幅海报（边缘柔化），转动时彩虹整片流过
+    const g=m.createRadialGradient(mw/2,mh/2,Math.min(mw,mh)*.2,mw/2,mh/2,Math.hypot(mw,mh)*.55);g.addColorStop(0,"#fff");g.addColorStop(1,"rgba(255,255,255,.35)");
+    m.fillStyle=g;m.fillRect(0,0,mw,mh);
+  } else if (kind==="pixel") {
+    // 隐形像素镭射：防伪烫印那种细小方格光栅，随机缺格
+    const cell=Math.max(3,mw/48);
+    for (let y=0;y<mh;y+=cell) for (let x=0;x<mw;x+=cell) if (rand()<.62) {m.globalAlpha=.5+rand()*.5;m.fillRect(x+cell*.12,y+cell*.12,cell*.76,cell*.76);}
+    m.globalAlpha=1;
+  } else if (kind==="ripple") {
+    // 隐形同心波纹：从一点荡开的细环
+    const cx=mw*(.25+rand()*.5),cy=mh*(.25+rand()*.5),step=Math.max(3,mw/40);
+    m.strokeStyle="#fff";m.lineWidth=step*.42;
+    for (let r=step;r<Math.hypot(mw,mh);r+=step) {m.beginPath();m.arc(cx,cy,r,0,Math.PI*2);m.stroke();}
   } else if (kind==="sparkle") {
     // 隐形珠光：中高调柔和地铺开（亮度 0.45 以上逐渐变满）
     const a=new Uint8ClampedArray(L.length);
@@ -1094,8 +1111,9 @@ function artMask(record,image,createCanvas,w) {
 // ——— 背面隐形底纹（2026-11-22）———
 // 和海报增效用同一个字母，背面换成另一种底纹，铺满背面边框以内；静止时看不见，转动时在深色底上浮现：
 // u 放射纹（从纹章中心放出的细光束）、r 环形扭索（绕纹章的玫瑰曲线）、o 专题水印（专题名斜向平铺）、
-// k 星尘（稀疏的亮点和星芒）、b 扭索底纹（铺满整面的防伪玫瑰曲线）、d 亮哑网点底纹。
-const BACK_FX={uv:"a-guilloche",rim:"a-rim",holo:"a-holo",sparkle:"a-guilloche",band:"a-holo",dust:"a-matte"};
+// k 星尘（稀疏的亮点和星芒）、b 扭索底纹（铺满整面的防伪玫瑰曲线）、d 亮哑网点底纹；
+// w 镭射彩虹（整面）、p 像素镭射（细方格光栅）、q 同心波纹（从纹章荡开）。
+const BACK_FX={uv:"a-guilloche",rim:"a-rim",holo:"a-holo",sparkle:"a-guilloche",band:"a-holo",dust:"a-matte",rainbow:"a-rainbow",pixel:"a-holo",ripple:"a-holo"};
 function backMask(record,createCanvas,w) {
   const kind=parseCraft(record.look?.craft).art;
   if (!kind) return null;
@@ -1124,6 +1142,13 @@ function backMask(record,createCanvas,w) {
     const gap=m.measureText(word).width+size*1.8,span=Math.hypot(W,H);
     for (let y=-span/2,row=0;y<span/2;y+=size*2.3,row++) for (let x=-span/2+(row%2)*gap/2;x<span/2;x+=gap) m.fillText(word,x,y);
     m.restore();
+  } else if (kind==="rainbow") {
+    m.fillRect(0,0,W,H);
+  } else if (kind==="pixel") {
+    for (let y=18;y<H-18;y+=7) for (let x=20;x<W-20;x+=7) if (rand()<.6) {m.globalAlpha=.5+rand()*.5;m.fillRect(x+1,y+1,5,5);}
+    m.globalAlpha=1;
+  } else if (kind==="ripple") {
+    m.lineWidth=2.4;for (let r=82;r<900;r+=6.5) {m.beginPath();m.arc(cx,cy,r,0,Math.PI*2);m.stroke();}
   } else if (kind==="sparkle") {
     for (let i=0;i<520;i++) {
       const x=20+rand()*(W-40),y=18+rand()*(H-36),r=.5+rand()*1.3;
