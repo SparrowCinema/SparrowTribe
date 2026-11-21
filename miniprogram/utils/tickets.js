@@ -2,9 +2,9 @@
 // 2026-11-21 起票根是「某一次观影的皮肤」：存储只留用户改过的字段（见 shared/psync.js 的 cleanTix），
 // 日期、影院、片名、专题都在显示时由观影记录与片库推出。旧版整条记录（sparrow-tickets-v1 / sk-tickets-v1）用 migrateV1 迁移。
 (function (root, factory) {
-  if (typeof module === "object" && module.exports) module.exports = factory(require("./psync.js"));
-  else root.SparrowTickets = factory(root.SparrowSync);
-})(typeof self === "undefined" ? this : self, function (Sync) {
+  if (typeof module === "object" && module.exports) module.exports = factory(require("./psync.js"),require("./ticket-sketch.js"));
+  else root.SparrowTickets = factory(root.SparrowSync,root.SparrowTicketSketch);
+})(typeof self === "undefined" ? this : self, function (Sync,Sketch) {
 "use strict";
 
 const W=420, H=864, TEAR=698, TEETH=31, DEPTH=5, NOTCH=11;
@@ -278,6 +278,7 @@ function sanitize(input) {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(record.date)) record.date="";
   if (!/^\d{2}:\d{2}$/.test(record.time)) record.time="";
   record.id ||= JSON.stringify([record.filmId,record.showId || [record.programmeId,record.date,record.time,record.venue,record.hall]]);
+  record.sketch=input.sketch===true;
   record.crop=Number.isFinite(input.crop) ? Math.max(0,Math.min(100,input.crop)) : 50;
   record.savedAt=Number.isFinite(input.savedAt) ? input.savedAt : 0;
   const fallback=defaults(record);
@@ -354,7 +355,7 @@ function record(key,filmId,view,entry,base,date) {
   const pick=(field,value)=>value===undefined ? b[field] : value;
   const row=sanitize({...b,id:key,time:pick("time",entry.tm),venue:pick("venue",entry.vn),hall:pick("hall",entry.hl),
     city:pick("city",entry.cy),format:pick("format",entry.fm),seat:entry.st||"",art:pickArt(b.arts,entry.a) || b.art,
-    crop:entry.c===undefined ? 50 : entry.c,savedAt:entry.t,look:unpackLook(entry.l)});
+    crop:entry.c===undefined ? 50 : entry.c,sketch:entry.sk===1,savedAt:entry.t,look:unpackLook(entry.l)});
   row.key=key; row.linked=!!view; row.arts=b.arts||[]; row.director=b.director||"";
   return row;
 }
@@ -384,6 +385,7 @@ function entryFrom(row,base,t) {
   if (row.seat) entry.st=row.seat;
   if (row.art && normArt(row.art)!==normArt(base.art)) entry.a=normArt(row.art);
   if (row.crop!==50) entry.c=row.crop;
+  if (row.sketch) entry.sk=1;
   const look=packLook(row.look);
   if (look!==packLook(defaults({...base,id:row.id}))) entry.l=look;
   return Sync.cleanTixEntry(entry);
@@ -401,7 +403,7 @@ function migrateV1(rows,list,base) {
     if (!key) continue;
     const b=base(row.filmId,match?match.view:null,row.date);
     store[key]=b ? entryFrom(sanitize({...row,id:key,programmeId:b.programmeId,programme:b.programme}),{...b,id:key},row.savedAt||Date.now()) :
-      Sync.cleanTixEntry({t:row.savedAt||Date.now(),tm:row.time,vn:row.venue,hl:row.hall,cy:row.city,st:row.seat,fm:row.format,a:normArt(row.art),c:row.crop,l:packLook(row.look)});
+      Sync.cleanTixEntry({t:row.savedAt||Date.now(),tm:row.time,vn:row.venue,hl:row.hall,cy:row.city,st:row.seat,fm:row.format,a:normArt(row.art),c:row.crop,sk:row.sketch?1:0,l:packLook(row.look)});
   }
   return store;
 }
@@ -466,8 +468,8 @@ function rule(surface,y,ink,x=28,x2=W-28,dashed=false) {
   surface.restore();
 }
 
-function cropCover(surface,image,position) {
-  const {x,y,w,h}=SOURCE;
+function cropCover(surface,image,position,frame=SOURCE) {
+  const {x,y,w,h}=frame;
   const iw=image.naturalWidth || image.width, ih=image.naturalHeight || image.height;
   if (!iw || !ih) return;
   const sw=Math.min(iw,ih*w/h), sh=Math.min(ih,iw*h/w);
@@ -631,8 +633,11 @@ function draw(surface,record,side,image,rect,createCanvas,light) {
     rule(surface,73,accent+"62");
     const {x,y,w,h}=SOURCE;
     surface.fillStyle=dark;surface.fillRect(x,y,w,h);
-    if (image) cropCover(surface,image,record.crop);
-    else {
+    if (image) {
+      if (!record.sketch || !Sketch?.paint(surface,image,record.crop,SOURCE,createCanvas,cropCover,rect.w/W)) {
+        cropCover(surface,image,record.crop);
+      }
+    } else {
       surface.strokeStyle=foilGradient(surface,x,y,x+w,y+h,finish);surface.lineWidth=1;
       for (let i=0;i<6;i++) surface.strokeRect(x+24+i*9,y+24+i*9,w-48-i*18,h-48-i*18);
       text(surface,record.title,W/2,y+h/2,{align:"center",font:SERIF,size:30,weight:700,ink:bright,max:w-130});

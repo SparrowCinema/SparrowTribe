@@ -35,7 +35,7 @@ async function poster(node,row,small){
   return (await image(node,t))||(t!==row.art?await image(node,row.art):null);
 }
 function canvas(page,id){return new Promise(resolve=>wx.createSelectorQuery().in(page).select('#'+id).fields({node:true}).exec(result=>resolve(result?.[0]?.node||null)));}
-const sigOf=(row,side,w)=>[row.key,side,w,R.packLook(row.look),row.crop,row.art,row.time,row.venue,row.hall,row.seat,row.format,row.title,row.programme].join('¦');
+const sigOf=(row,side,w)=>[row.key,side,w,R.packLook(row.look),row.crop,row.art,row.sketch,row.time,row.venue,row.hall,row.seat,row.format,row.title,row.programme].join('¦');
 const monthTitle=(g,en)=>g.id==='undated'?I.tr('日期待定'):en?`${['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][g.month-1]} ${g.year}`:`${g.year}年${g.month}月`;
 
 Page({
@@ -205,7 +205,7 @@ Page({
       .filter(x=>!row.linked||x.date===row.date).sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time));
     const showIdx=this._shows.findIndex(x=>x.date===row.date&&x.time===row.time&&x.venue===row.venue);
     const shows=this._shows.map(x=>`${x.date.slice(5).replace('-','/')} ${x.time} · ${x.venue}${x.hall?' '+x.hall:''}`);
-    this.setData({mode:'edit',draft:row,arts,shows,showIdx,artIndex:Math.max(0,this._art.indexOf(row.art)),editFront:side==='front',existing:!!original,linked:!!row.linked},()=>{this.drawEditor();this.measureTicket();});
+    this.setData({mode:'edit',draft:row,arts,artStyles:[I.tr('原图'),I.tr('手绘')],shows,showIdx,artIndex:Math.max(0,this._art.indexOf(row.art)),editFront:side==='front',existing:!!original,linked:!!row.linked},()=>{this.drawEditor();this.measureTicket();});
     wx.pageScrollTo({scrollTop:0,duration:0});
   },
   chooseShow(e){
@@ -215,6 +215,12 @@ Page({
     this.setData({draft:this._draft,showIdx:Number(e.detail.value)});this.drawEditor();
   },
   chooseArt(e){this._draft.art=this._art[Number(e.detail.value)];this._draft.crop=50;this.edit(this._draft,this._original,this._side);},
+  chooseArtStyle(e){
+    const sketch=Number(e.detail.value)===1;
+    this._draft.sketch=sketch;
+    this.setData({'draft.sketch':sketch},()=>this.drawEditor());
+    if(this._side==='back'&&!this._preview?.flipping)this.flipEditor();
+  },
   changeField(e){
     const name=e.currentTarget.dataset.field;
     this._draft[name]=name==='crop'?Number(e.detail.value):e.detail.value;

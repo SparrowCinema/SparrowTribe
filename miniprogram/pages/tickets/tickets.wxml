@@ -105,6 +105,7 @@
           <text class="te-art-k">{{L.t(i,'裁切')}}</text>
           <slider class="te-slider" min="0" max="100" value="{{draft.crop}}" block-size="18" activeColor="#8e2a22" backgroundColor="#e6dcc7" bindchanging="changeField" bindchange="changeField" data-field="crop" />
           <picker wx:if="{{arts.length>1}}" mode="selector" range="{{arts}}" value="{{artIndex}}" bindchange="chooseArt"><view class="te-art-pick">{{arts[artIndex]}} ›</view></picker>
+          <picker mode="selector" range="{{artStyles}}" value="{{draft.sketch?1:0}}" bindchange="chooseArtStyle" aria-label="{{L.t(i,'票面风格')}}"><view class="te-art-pick">{{artStyles[draft.sketch?1:0]}} ›</view></picker>
         </view>
         <view class="te-tools">
           <view class="te-seg" role="tablist">

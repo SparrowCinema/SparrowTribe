@@ -78,6 +78,7 @@ console.log('en.js films', Object.keys(en.films).length, 'ui', Object.keys(en.ui
 fs.writeFileSync(path.join(root, 'miniprogram/utils/recap.js'), '/* 由 tools/build-fallback.js 从 shared/recap.js 复制，请改 shared/recap.js 后重新运行。 */\n' + fs.readFileSync(path.join(root, 'shared/recap.js'), 'utf8'));
 console.log('recap.js copied');
 fs.copyFileSync(path.join(root,'shared/tickets.js'),path.join(root,'miniprogram/utils/tickets.js'));
+fs.copyFileSync(path.join(root,'shared/ticket-sketch.js'),path.join(root,'miniprogram/utils/ticket-sketch.js'));
 // 影片 / 专题分享海报：shared/share-poster.js 复制给小程序
 fs.writeFileSync(path.join(root, 'miniprogram/utils/share-poster.js'), '/* 由 tools/build-fallback.js 从 shared/share-poster.js 复制，请改 shared/share-poster.js 后重新运行。 */\n' + fs.readFileSync(path.join(root, 'shared/share-poster.js'), 'utf8'));
 console.log('share-poster.js copied');
