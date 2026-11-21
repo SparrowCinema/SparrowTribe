@@ -9,7 +9,7 @@ const W=require('../../utils/watched.js');
 const I=require('../../utils/i18n.js');
 const CFG=require('../../utils/cfg.js');
 const app=getApp();
-const DENS='sk-ticket-density',STEP=48,PICK_MAX=24,PEND_STEP=60,TILE_W={l:300,m:200,s:130};
+const DENS='sk-ticket-density',DENS_OPT=[['l','大图'],['m','中图'],['s','小图'],['spine','书脊']],STEP=48,PICK_MAX=24,PEND_STEP=60,TILE_W={l:300,m:200,s:130};
 const say=phrase=>wx.showToast({title:I.tr(phrase),icon:'none'});
 const stock=(w,h)=>wx.createOffscreenCanvas({type:'2d',width:w,height:h});
 const iso=d=>[d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-');
@@ -40,12 +40,13 @@ const monthTitle=(g,en)=>g.id==='undated'?I.tr('日期待定'):en?`${['Jan','Feb
 
 Page({
   data:{i:{},ps:'',mode:'album',sum:{n:0,pending:0},query:'',text:'',years:[],year:'',facetsOpen:false,facets:[],chips:[],activeN:0,
-    density:'m',dens:[{v:'l',l:'大图'},{v:'m',l:'中图'},{v:'s',l:'小图'},{v:'spine',l:'书脊'}],front:true,groups:[],shown:0,total:0,all:0,more:false,pick:false,pickN:0,exportOpen:false,ex:{},pending:[],pendingMore:0,results:[],loading:false},
+    density:'m',densLabels:[],densIndex:1,yearLabels:[],yearIndex:0,filterLabel:'',front:true,groups:[],shown:0,total:0,all:0,more:false,pick:false,pickN:0,exportOpen:false,ex:{},pending:[],pendingMore:0,results:[],loading:false},
   onLoad(params){
     this._ready=true;this._render=0;this._draft=null;this._original='';this._q={text:'',year:'',programme:[],city:[],venue:[],format:[]};
     this._pick=null;this._queue=[];this._busy=false;this._imgPatch={};this._limit=STEP;
     let density='m';try{density=wx.getStorageSync(DENS)||'m';}catch(e){}
-    CFG.bind(this);this.setData({i:I.dict(),density:TILE_W[density]||density==='spine'?density:'m'});wx.setNavigationBarTitle({title:I.tr('我的票根收藏册')});
+    density=TILE_W[density]||density==='spine'?density:'m';
+    CFG.bind(this);this.setData({i:I.dict(),density,densLabels:DENS_OPT.map(x=>I.tr(x[1])),densIndex:DENS_OPT.findIndex(x=>x[0]===density)});wx.setNavigationBarTitle({title:I.tr('我的票根收藏册')});
     this.load();
     if(params.id)this.begin(params.id);else this.album();
   },
@@ -84,7 +85,11 @@ Page({
     }else patch.groups=groups;
     this._sig=sig;
     if(!append){
-      Object.assign(patch,{years:all.year.length>1?all.year.map(y=>({v:y.value,c:yearN[y.value]||0})):[],year:q.year,
+      const activeN=R.FACETS.reduce((n,k)=>n+q[k].length,0);
+      this._years=all.year.map(y=>y.value);
+      Object.assign(patch,{yearLabels:[I.tr('全部年份'),...all.year.map(y=>`${y.value}（${yearN[y.value]||0}）`)],yearIndex:q.year?this._years.indexOf(q.year)+1:0,text:q.text,
+        filterLabel:activeN?(I.isEn()?activeN+' selected':`已选 ${activeN} 项`):q.text?`“${q.text}”`:I.tr('全部'),
+        years:all.year.length>1?all.year.map(y=>({v:y.value,c:yearN[y.value]||0})):[],year:q.year,
         facets:R.FACETS.filter(k=>all[k].length>1||q[k].length).map(k=>({k,label:I.tr(FACET_LABEL[k]),items:counts[k].slice(0,k==='programme'?80:40).map(x=>({v:x.value,c:x.count,on:q[k].includes(x.value)}))})),
         chips:R.FACETS.flatMap(k=>q[k].map(v=>({k,v}))),activeN:R.FACETS.reduce((n,k)=>n+q[k].length,0)});
     }
@@ -128,6 +133,10 @@ Page({
   inputQuery(e){const v=e.detail.value;clearTimeout(this._qt);this._qt=setTimeout(()=>{this._q.text=v;this._limit=STEP;this.paint(false);},200);},
   pickYear(e){this._q.year=e.currentTarget.dataset.v;this._limit=STEP;this.paint(false);},
   toggleFacets(){this.setData({facetsOpen:!this.data.facetsOpen});},
+  stopMove(){},
+  pickYearIdx(e){const n=Number(e.detail.value);this._q.year=n?this._years[n-1]:'';this._limit=STEP;this.paint(false);},
+  pickDens(e){const d=DENS_OPT[Number(e.detail.value)][0];try{wx.setStorageSync(DENS,d);}catch(_){}this.setData({density:d,densIndex:Number(e.detail.value)});this.paint(false);},
+  clearAll(){R.FACETS.forEach(k=>{this._q[k]=[];});this._q.text='';this._q.year='';this._limit=STEP;this.paint(false);},
   toggleFacet(e){const {k,v}=e.currentTarget.dataset,l=this._q[k];this._q[k]=l.includes(v)?l.filter(x=>x!==v):[...l,v];this._limit=STEP;this.paint(false);},
   clearFacets(){R.FACETS.forEach(k=>{this._q[k]=[];});this._limit=STEP;this.paint(false);},
   setDensity(e){const d=e.currentTarget.dataset.v;try{wx.setStorageSync(DENS,d);}catch(_){}this.setData({density:d});this.paint(false);},
@@ -298,6 +307,7 @@ Page({
     this._exYears=counts.year.map(y=>y.value);this._exProgs=counts.programme.map(p=>p.value);
     this.setData({exportOpen:true,ex:{kind:'current',years:counts.year.map(y=>`${y.value}（${y.count}）`),progs:counts.programme.map(p=>`${p.value}（${p.count}）`),y:0,p:0,part:0}},()=>this.exParts());
   },
+  exKindTap(e){this.setData({'ex.kind':e.currentTarget.dataset.kind,'ex.part':0},()=>this.exParts());},
   exKind(e){this.setData({'ex.kind':e.detail.value,'ex.part':0},()=>this.exParts());},
   exYear(e){this.setData({'ex.y':Number(e.detail.value),'ex.kind':'year','ex.part':0},()=>this.exParts());},
   exProg(e){this.setData({'ex.p':Number(e.detail.value),'ex.kind':'prog','ex.part':0},()=>this.exParts());},
@@ -311,6 +321,7 @@ Page({
   },
   exParts(){const n=this.exRows().length,k=Math.ceil(n/R.MOSAIC_MAX);this.setData({'ex.n':n,'ex.parts':k>1?Array.from({length:k},(_,i)=>`${i+1} / ${k}`):[]});},
   exGo(){
+    if(this.data.loading||(this.data.ex.kind!=='pick'&&!this.data.ex.n))return;
     if(this.data.ex.kind==='pick'){this._pick=new Set();this.setData({exportOpen:false,pick:true,pickN:0});this.paint(true);return;}
     this.exportWall(false);
   },

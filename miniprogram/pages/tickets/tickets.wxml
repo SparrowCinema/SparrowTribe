@@ -1,89 +1,82 @@
 <page-meta page-style="{{ps}}" />
 <wxs src="../../utils/l.wxs" module="L" />
-<view class="album">
-  <view class="al-top">
-    <view class="al-top-l"><text class="al-brand">SPARROW FILM PASSPORT</text><view class="al-title">{{L.t(i,'我的票根收藏册')}}</view>
-      <view wx:if="{{mode==='album' && all}}" class="al-sum"><text class="al-b">{{sum.n}}</text> {{L.t(i,'张票根')}}</view></view>
-    <view wx:if="{{mode==='album'}}" class="al-make" hover-class="al-hv" bindtap="start" aria-role="button">＋ {{L.t(i,'制作')}}</view>
-    <view wx:else class="al-pill" hover-class="al-hv" bindtap="backAlbum" aria-role="button">‹ {{L.t(i,'返回收藏册')}}</view>
+<view class="wrap album tk-page">
+  <view class="tk-head">
+    <text class="tk-heading">{{L.t(i,mode==='pending'?'待制作的票根':mode==='search'?'制作票根':'我的票根收藏册')}}</text>
+    <text wx:if="{{mode==='album'}}" class="tk-link" bindtap="start" role="button">＋ {{L.t(i,'制作票根')}}</text>
+    <text wx:else class="tk-link" bindtap="backAlbum" role="button">‹ {{L.t(i,'返回收藏册')}}</text>
   </view>
 
   <block wx:if="{{mode==='album'}}">
-    <view wx:if="{{sum.pending}}" class="al-todo">
-      <view class="al-todo-t"><text class="al-todo-n">{{sum.pending}}</text>{{L.t(i,'场观影还没做成票根')}}</view>
-      <view class="al-todo-a"><view class="al-pill al-pill-p" hover-class="al-hv" bindtap="makeAll" aria-role="button">{{L.t(i,'一键生成')}}</view><view class="al-pill" hover-class="al-hv" bindtap="openPending" aria-role="button">{{L.t(i,'逐张挑选')}} ›</view></view>
-    </view>
-    <view wx:if="{{!all}}" class="al-empty">
-      <view class="al-film">{{L.t(i,'还没有收藏票根')}}</view>
-      <text>{{sum.pending?L.t(i,'每一次观影都可以做一张票根。一键生成使用专题默认款式，之后仍可逐张换款。'):L.t(i,'在影片页点「看过」盖章后，每一次观影都可以做成一张票根；也可以直接搜索影片制作。')}}</text>
-    </view>
-    <block wx:else>
-      <view class="al-search">
-        <input class="al-q" type="text" confirm-type="search" value="{{text}}" bindinput="inputQuery" placeholder="{{L.t(i,'搜片名、导演、影院、专题')}}" />
-        <view class="al-pill {{activeN||facetsOpen?'on':''}}" hover-class="al-hv" bindtap="toggleFacets" aria-role="button">{{L.t(i,'筛选')}}{{activeN?' '+activeN:''}}</view>
+    <block wx:if="{{all}}">
+      <view class="wall-filters" aria-label="{{L.t(i,'票根筛选')}}">
+        <view class="wall-filter {{activeN||text?'active':''}}" bindtap="toggleFacets" role="button"><view class="wall-filter-copy"><text class="wall-label">{{L.t(i,'筛选')}}</text><text class="wall-value">{{filterLabel}}</text></view><text class="wall-chevron">⌄</text></view>
+        <picker class="wall-picker" range="{{yearLabels}}" value="{{yearIndex}}" bindchange="pickYearIdx"><view class="wall-filter {{yearIndex?'active':''}}"><view class="wall-filter-copy"><text class="wall-label">{{L.t(i,'年份')}}</text><text class="wall-value">{{yearLabels[yearIndex]}}</text></view><text class="wall-chevron">⌄</text></view></picker>
+        <picker class="wall-picker" range="{{densLabels}}" value="{{densIndex}}" bindchange="pickDens"><view class="wall-filter"><view class="wall-filter-copy"><text class="wall-label">{{L.t(i,'显示')}}</text><text class="wall-value">{{densLabels[densIndex]}}</text></view><text class="wall-chevron">⌄</text></view></picker>
       </view>
-      <view class="al-ctl">
-        <view class="al-seg"><view wx:for="{{dens}}" wx:key="v" class="{{density===item.v?'on':''}}" data-v="{{item.v}}" bindtap="setDensity" aria-role="button">{{L.t(i,item.l)}}</view></view>
-        <view class="al-ctl-r">
-          <view class="al-txt" hover-class="al-hv" bindtap="flipWall" aria-role="button">{{L.t(i,front?'正面':'背面')}} ⇄</view>
-          <view class="al-txt {{exportOpen?'on':''}}" hover-class="al-hv" bindtap="toggleExport" aria-role="button">{{L.t(i,'导出')}}</view>
-        </view>
+      <view class="wall-toolbar">
+        <text class="wall-count">{{total===all?total+' '+L.t(i,'张票根'):total+' / '+all+' '+L.t(i,'张票根')}}{{i.__en?', ':'，'}}{{L.t(i,'按观影日期排列')}}</text>
+        <view class="wall-score {{!front?'on':''}}" bindtap="flipWall" role="checkbox" aria-checked="{{!front}}"><text class="wall-check">{{front?'':'✓'}}</text>{{L.t(i,'看背面')}}</view>
+        <button class="wall-export" bindtap="toggleExport">{{L.t(i,'导出票根墙')}}</button>
       </view>
-      <scroll-view wx:if="{{years.length}}" scroll-x class="al-years" enhanced show-scrollbar="{{false}}">
-        <view class="al-chip {{!year?'on':''}}" data-v="" bindtap="pickYear">{{L.t(i,'全部年份')}}</view>
-        <view wx:for="{{years}}" wx:key="v" class="al-chip {{year===item.v?'on':''}}" data-v="{{item.v}}" bindtap="pickYear">{{item.v}} <text class="al-n">{{item.c}}</text></view>
-      </scroll-view>
-      <view wx:if="{{facetsOpen}}" class="al-facets">
-        <view wx:for="{{facets}}" wx:for-item="fc" wx:key="k" class="al-facet"><text class="al-fh">{{fc.label}}</text>
-          <view class="al-fwrap"><view wx:for="{{fc.items}}" wx:key="v" class="al-chip {{item.on?'on':''}}" data-k="{{fc.k}}" data-v="{{item.v}}" bindtap="toggleFacet">{{item.v}} <text class="al-n">{{item.c}}</text></view></view></view>
-        <text wx:if="{{!facets.length}}" class="al-muted">{{L.t(i,'票根还不多，暂时没有可筛选的项目')}}</text>
-      </view>
-      <view wx:if="{{chips.length}}" class="al-chips"><view wx:for="{{chips}}" wx:key="v" class="al-chip on" data-k="{{item.k}}" data-v="{{item.v}}" bindtap="toggleFacet">{{item.v}} ×</view><text class="al-link" bindtap="clearFacets">{{L.t(i,'清除筛选')}}</text></view>
-
-      <view wx:if="{{exportOpen}}" class="al-export">
-        <view class="al-film">{{L.t(i,'导出票根墙')}}</view>
-        <radio-group bindchange="exKind" class="al-radios">
-          <label><radio value="current" checked="{{ex.kind==='current'}}" />{{L.t(i,'当前结果')}}（{{total}} {{L.t(i,'张票根')}}）</label>
-          <label wx:if="{{ex.years.length}}"><radio value="year" checked="{{ex.kind==='year'}}" />{{L.t(i,'年度票根墙')}}<picker range="{{ex.years}}" value="{{ex.y}}" bindchange="exYear"><view class="al-value">{{ex.years[ex.y]}} ›</view></picker></label>
-          <label wx:if="{{ex.progs.length}}"><radio value="prog" checked="{{ex.kind==='prog'}}" />{{L.t(i,'专题票根墙')}}<picker range="{{ex.progs}}" value="{{ex.p}}" bindchange="exProg"><view class="al-value">{{ex.progs[ex.p]}} ›</view></picker></label>
-          <label><radio value="pick" checked="{{ex.kind==='pick'}}" />{{L.t(i,'精选票根墙')}}（{{L.t(i,'自己挑')}} ≤24 {{L.t(i,'张票根')}}）</label>
-        </radio-group>
-        <picker wx:if="{{ex.parts.length && ex.kind!=='pick'}}" range="{{ex.parts}}" value="{{ex.part}}" bindchange="exPart"><text class="al-muted">{{L.t(i,'分成')}} {{ex.parts.length}} {{L.t(i,'张图导出')}}（{{ex.n}} {{L.t(i,'张票根')}}）</text><view class="al-value">{{ex.parts[ex.part]}} ›</view></picker>
-        <text class="al-muted">{{L.t(i,front?'导出正面；切换「背面」可导出背面。':'导出背面；切换「正面」可导出正面。')}}</text>
-        <view class="al-actions"><button class="al-primary" disabled="{{loading || (ex.kind!=='pick' && !ex.n)}}" bindtap="exGo">{{L.t(i,ex.kind==='pick'?'开始挑选':'生成图片')}}</button><button class="al-alt" bindtap="toggleExport">{{L.t(i,'收起')}}</button></view>
-      </view>
-
-      <view wx:if="{{total!==all || pick}}" class="al-count">{{total===all?all+' '+L.t(i,'张票根'):L.t(i,'显示')+' '+total+' / '+all+' '+L.t(i,'张票根')}}{{pick?' · '+L.t(i,'点票根挑选，最多')+' 24 '+L.t(i,'张票根'):''}}</view>
-      <view wx:if="{{groups.length}}" class="al-board al-d-{{density}}">
-        <view wx:for="{{groups}}" wx:for-item="g" wx:for-index="gi" wx:key="id" class="al-month">
-          <view class="al-mh">{{g.title}} <text>{{g.n}} {{L.t(i,'张票根')}}</text></view>
-          <view class="al-grid">
-            <block wx:if="{{density==='spine'}}">
-              <view wx:for="{{g.items}}" wx:key="k" class="al-spine {{item.p?'picked':''}}" style="background:{{item.sb}}" data-k="{{item.k}}" data-gi="{{gi}}" data-ii="{{index}}" bindtap="tapTicket" aria-role="button" aria-label="{{item.t}}">
-                <view class="al-bar" style="background:linear-gradient({{item.sw}},{{item.sa}})"></view><text class="al-st" style="color:{{item.sa}}">{{item.t}}</text><text class="al-sd">{{item.d}}</text><text class="al-sm">{{item.m}}</text>
-              </view>
-            </block>
-            <block wx:else>
-              <view wx:for="{{g.items}}" wx:key="k" class="al-tile {{item.p?'picked':''}}" data-k="{{item.k}}" data-gi="{{gi}}" data-ii="{{index}}" bindtap="tapTicket" aria-role="button" aria-label="{{item.t}}">
-                <image wx:if="{{item.img}}" class="al-img" src="{{item.img}}" mode="widthFix" />
-                <view wx:else class="al-img al-ph" style="background:linear-gradient(160deg,{{item.sw}},#191e19)"></view>
-                <text wx:if="{{density==='l'}}">{{item.t}}</text>
-              </view>
-            </block>
-          </view>
-        </view>
-        <view wx:if="{{more}}" class="al-more">{{L.t(i,'继续下滑加载更多')}} · {{shown}} / {{total}}</view>
-      </view>
-      <view wx:else class="al-empty">{{L.t(i,'所选条件下暂无票根')}}</view>
-      <view wx:if="{{pick}}" class="al-pickbar"><text>{{L.t(i,'已选')}} {{pickN}} / 24</text>
-        <button class="al-primary" disabled="{{!pickN || loading}}" bindtap="pickExport">{{L.t(i,'导出精选墙')}}</button><button class="al-alt" bindtap="pickCancel">{{L.t(i,'取消')}}</button></view>
     </block>
+    <view wx:if="{{sum.pending}}" class="tk-todo">
+      <text><text class="tk-b">{{sum.pending}}</text> {{L.t(i,'场观影还没做成票根')}}</text>
+      <view class="tk-todo-a"><text class="tk-link" bindtap="makeAll" role="button">{{L.t(i,'一键生成')}}</text><text class="tk-dot">·</text><text class="tk-link" bindtap="openPending" role="button">{{L.t(i,'逐张挑选')}} ›</text></view>
+    </view>
+    <view wx:if="{{chips.length}}" class="tk-chips"><view wx:for="{{chips}}" wx:key="v" class="tk-chip" data-k="{{item.k}}" data-v="{{item.v}}" bindtap="toggleFacet">{{item.v}} ×</view><text class="tk-link" bindtap="clearFacets">{{L.t(i,'清除筛选')}}</text></view>
+
+    <view wx:if="{{!all}}" class="wall-empty"><text class="tk-heading">{{L.t(i,'还没有收藏票根')}}</text><text>{{L.t(i,'在影片页点「看过」盖章后，每一次观影都可以做成一张票根；也可以直接搜索影片制作。')}}</text><view class="btn" bindtap="{{sum.pending?'makeAll':'start'}}">{{L.t(i,sum.pending?'一键生成':'制作票根')}}</view></view>
+    <view wx:elif="{{!groups.length}}" class="wall-empty"><text>{{L.t(i,'所选条件下暂无票根')}}</text><view class="btn ghost" bindtap="clearAll">{{L.t(i,'清除筛选')}}</view></view>
+    <view wx:else class="tk-list tk-d-{{density}}">
+      <view wx:for="{{groups}}" wx:for-item="g" wx:for-index="gi" wx:key="id" class="tk-month">
+        <view class="tk-mh"><text>{{g.title}}</text><text class="tk-mn">{{g.n}} {{L.t(i,'张票根')}}</text></view>
+        <view class="tk-grid">
+          <block wx:if="{{density==='spine'}}">
+            <view wx:for="{{g.items}}" wx:key="k" class="tk-spine {{item.p?'picked':''}}" data-k="{{item.k}}" data-gi="{{gi}}" data-ii="{{index}}" bindtap="tapTicket" role="button" aria-label="{{item.t}}">
+              <view class="tk-bar" style="background:{{item.sa}}"></view>
+              <view class="tk-sc"><text class="tk-st">{{item.t}}</text><text class="tk-sm">{{item.m}}</text></view>
+              <text class="tk-sd">{{item.d}}</text>
+            </view>
+          </block>
+          <block wx:else>
+            <view wx:for="{{g.items}}" wx:key="k" class="tk-tile {{item.p?'picked':''}}" data-k="{{item.k}}" data-gi="{{gi}}" data-ii="{{index}}" bindtap="tapTicket" role="button" aria-label="{{item.t}}">
+              <image wx:if="{{item.img}}" class="tk-img" src="{{item.img}}" mode="widthFix" />
+              <view wx:else class="tk-img tk-ph" style="background:{{item.sb}};border-color:{{item.sa}}"><text style="color:{{item.sa}}">{{item.t}}</text></view>
+              <text wx:if="{{density==='l'}}" class="tk-cap">{{item.t}}</text>
+            </view>
+          </block>
+        </view>
+      </view>
+      <view wx:if="{{more}}" class="wall-hint tk-more">{{L.t(i,'继续下滑加载更多')}} · {{shown}} / {{total}}</view>
+    </view>
+    <view wx:if="{{pick}}" class="tk-pickbar"><text>{{L.t(i,'已选')}} <text class="tk-b">{{pickN}}</text> / 24</text><text class="tk-link" bindtap="pickCancel">{{L.t(i,'取消')}}</text><button class="wall-export" disabled="{{!pickN || loading}}" bindtap="pickExport">{{L.t(i,'导出精选墙')}}</button></view>
+
+    <view wx:if="{{facetsOpen}}" class="selector-mask" catchtap="toggleFacets" catchtouchmove="stopMove"><view class="selector-panel" catchtap="stopMove">
+      <view class="selector-head"><text>{{L.t(i,'筛选票根')}}</text><view class="selector-close" bindtap="toggleFacets" role="button" aria-label="{{L.t(i,'关闭筛选')}}">×</view></view>
+      <input class="selector-search" placeholder="{{L.t(i,'搜片名、导演、影院、专题')}}" value="{{text}}" bindinput="inputQuery" />
+      <scroll-view scroll-y class="selector-results">
+        <view wx:for="{{facets}}" wx:for-item="fc" wx:key="k" class="tk-facet"><text class="tk-fh">{{fc.label}}</text>
+          <view class="tk-fwrap"><view wx:for="{{fc.items}}" wx:key="v" class="tk-chip {{item.on?'on':''}}" data-k="{{fc.k}}" data-v="{{item.v}}" bindtap="toggleFacet">{{item.v}} <text class="tk-n">{{item.c}}</text></view></view></view>
+        <view wx:if="{{!facets.length}}" class="selector-empty">{{L.t(i,'票根还不多，暂时没有可筛选的项目')}}</view>
+      </scroll-view>
+      <view class="selector-foot"><text bindtap="clearFacets">{{L.t(i,'清除筛选')}}</text><view class="selector-done" bindtap="toggleFacets">{{L.t(i,'显示')}} {{total}} {{L.t(i,'张票根')}}</view></view>
+    </view></view>
+
+    <view wx:if="{{exportOpen}}" class="selector-mask" catchtap="toggleExport" catchtouchmove="stopMove"><view class="selector-panel" catchtap="stopMove">
+      <view class="selector-head"><text>{{L.t(i,'导出票根墙')}}</text><view class="selector-close" bindtap="toggleExport" role="button" aria-label="{{L.t(i,'收起')}}">×</view></view>
+      <view class="selector-option {{ex.kind==='current'?'selected':''}}" data-kind="current" bindtap="exKindTap" role="radio" aria-checked="{{ex.kind==='current'}}"><view class="selector-copy"><text>{{L.t(i,'当前结果')}}</text><text class="small muted">{{total}} {{L.t(i,'张票根')}}</text></view><text class="selector-check {{ex.kind==='current'?'on':''}}">{{ex.kind==='current'?'✓':''}}</text></view>
+      <picker wx:if="{{ex.years.length}}" range="{{ex.years}}" value="{{ex.y}}" bindchange="exYear"><view class="selector-option {{ex.kind==='year'?'selected':''}}" role="radio"><view class="selector-copy"><text>{{L.t(i,'年度票根墙')}}</text><text class="small muted">{{ex.years[ex.y]}} ⌄</text></view><text class="selector-check {{ex.kind==='year'?'on':''}}">{{ex.kind==='year'?'✓':''}}</text></view></picker>
+      <picker wx:if="{{ex.progs.length}}" range="{{ex.progs}}" value="{{ex.p}}" bindchange="exProg"><view class="selector-option {{ex.kind==='prog'?'selected':''}}" role="radio"><view class="selector-copy"><text>{{L.t(i,'专题票根墙')}}</text><text class="small muted">{{ex.progs[ex.p]}} ⌄</text></view><text class="selector-check {{ex.kind==='prog'?'on':''}}">{{ex.kind==='prog'?'✓':''}}</text></view></picker>
+      <view class="selector-option {{ex.kind==='pick'?'selected':''}}" data-kind="pick" bindtap="exKindTap" role="radio"><view class="selector-copy"><text>{{L.t(i,'精选票根墙')}}</text><text class="small muted">{{L.t(i,'自己挑')}} ≤24 {{L.t(i,'张票根')}}</text></view><text class="selector-check {{ex.kind==='pick'?'on':''}}">{{ex.kind==='pick'?'✓':''}}</text></view>
+      <picker wx:if="{{ex.parts.length && ex.kind!=='pick'}}" range="{{ex.parts}}" value="{{ex.part}}" bindchange="exPart"><view class="selector-option"><view class="selector-copy"><text>{{L.t(i,'分成')}} {{ex.parts.length}} {{L.t(i,'张图导出')}}</text><text class="small muted">{{ex.parts[ex.part]}} ⌄</text></view></view></picker>
+      <view class="selector-foot"><text>{{L.t(i,front?'正面':'背面')}}</text><view class="selector-done {{loading || (ex.kind!=='pick' && !ex.n)?'off':''}}" bindtap="exGo">{{L.t(i,ex.kind==='pick'?'开始挑选':'生成图片')}}</view></view>
+    </view></view>
   </block>
 
   <block wx:elif="{{mode==='pending'}}">
-    <view class="al-film">{{L.t(i,'待制作')}} {{sum.pending}} {{L.t(i,'场')}}</view>
-    <text class="al-muted al-block">{{L.t(i,'每一次观影都可以做一张票根。一键生成使用专题默认款式，之后仍可逐张换款。')}}</text>
-    <button wx:if="{{sum.pending}}" class="al-primary al-mt" bindtap="makeAll">{{L.t(i,'一键生成全部')}} {{sum.pending}} {{L.t(i,'张票根')}}</button>
+    <text class="wall-hint al-block">{{L.t(i,'每一次观影都可以做一张票根。一键生成使用专题默认款式，之后仍可逐张换款。')}}</text>
+    <button wx:if="{{sum.pending}}" class="wall-export tk-make-all" bindtap="makeAll">{{L.t(i,'一键生成全部')}} {{sum.pending}} {{L.t(i,'张票根')}}</button>
     <text wx:else class="al-muted al-block">{{L.t(i,'所有观影都已经做成票根了。')}}</text>
     <view class="al-plist"><view wx:for="{{pending}}" wx:key="k" class="al-pend" data-k="{{item.k}}" bindtap="openPendingItem" aria-role="button">
       <image wx:if="{{item.poster}}" src="{{item.poster}}" mode="aspectFill" lazy-load /><view wx:else class="al-pimg"></view>
