@@ -135,68 +135,155 @@ function ticketRender(){
   if(ticketMode==="pending"){body.innerHTML=ticketPendingHTML();return;}
   const {tickets,pending}=ticketAll();
   if(!tickets.length){body.innerHTML=ticketHeading(true)+ticketEmptyHTML(pending);if(!pending.length)ticketSearch("");return;}
-  body.innerHTML=ticketHeading(true)+`<div class="ticket-bar">
-      <label class="ticket-search-box"><span class="sr-only">${ticketDict("搜索票根")}</span><input id="ticket-q" type="search" autocomplete="off" value="${esc(ticketQ.text)}" placeholder="${ticketDict("搜片名、导演、影院、专题")}"></label>
-      <button type="button" class="ticket-alt" data-ticket-action="facets" aria-expanded="${ticketFacets}">${ticketDict("筛选")}${ticketActiveCount()?` · ${ticketActiveCount()}`:""}</button>
-      <div class="ticket-seg" role="group" aria-label="${ticketDict("显示密度")}">${[["l","大图"],["m","中图"],["s","小图"],["spine","书脊"]].map(([v,l])=>`<button type="button" data-ticket-density="${v}" aria-pressed="${ticketDensity===v}">${ticketDict(l)}</button>`).join("")}</div>
-      <button type="button" class="ticket-alt" data-ticket-action="side">${ticketDict(ticketSide==="front"?"正面":"背面")} ↻</button>
-      <button type="button" class="ticket-alt" data-ticket-action="export-open" aria-expanded="${ticketExportOpen}">${ticketDict("导出票根墙")}</button>
-    </div><div id="ticket-list"></div>`;
+  body.innerHTML=ticketHeading(true)+`<div id="ticket-list"></div>`;
   ticketPaintList();
 }
+// 页面结构与「我的海报墙」一致：标题 → 三栏检索条 → 一行工具栏 → 列表；筛选、年份、显示、导出都是弹层
 function ticketHeading(album){
-  const {tickets,pending}=ticketAll();
-  return `<div class="ticket-heading"><div><span>SPARROW FILM PASSPORT</span><h2 class="sec">${ticketDict("我的票根收藏册")}</h2>
-    ${album?`<p class="ticket-sum">${ticketDict("已收藏")} <b>${tickets.length}</b> ${ticketDict("张票根")}${pending.length?` · <button type="button" class="text-button" data-ticket-action="pending">${ticketDict("待制作")} ${pending.length} ${ticketDict("场")} ›</button>`:""}</p>`:""}</div>
-    ${album?`<button type="button" class="primary-button" data-ticket-action="new">${ticketDict("制作票根")}</button>`:`<button type="button" class="ticket-alt" data-ticket-action="cancel">${ticketDict("返回收藏册")}</button>`}</div>`;
+  return `<div class="page-heading ticket-page-heading"><div><small>MY TICKET ALBUM</small><h2 class="sec">${ticketDict("我的票根收藏册")}</h2></div>
+    ${album?`<button type="button" class="text-button ticket-make" data-ticket-action="new">＋ ${ticketDict("制作票根")}</button>`:`<button type="button" class="text-button ticket-make" data-ticket-action="cancel">‹ ${ticketDict("返回收藏册")}</button>`}</div>`;
 }
 function ticketEmptyHTML(pending){
-  if(pending.length)return `<div class="ticket-empty"><h3>${ticketDict("还没有收藏票根")}</h3>
-    <p>${ticketDict("你的观影护照里有")} ${pending.length} ${ticketDict("场观影还没做成票根。")}</p>
-    <div class="ticket-edit-actions"><button type="button" class="primary-button" data-ticket-action="make-all">${ticketDict("一键生成全部")} ${pending.length} ${ticketDict("张票根")}</button>
-    <button type="button" class="ticket-alt" data-ticket-action="pending">${ticketDict("逐张挑选")}</button></div></div>`;
+  if(pending.length)return `<div class="empty-plan"><h3>${ticketDict("还没有收藏票根")}</h3>
+    <p>${pending.length} ${ticketDict("场观影还没做成票根")}</p>
+    <div class="ticket-edit-actions ticket-center"><button type="button" class="primary-button" data-ticket-action="make-all">${ticketDict("一键生成")}</button>
+    <button type="button" class="secondary-button" data-ticket-action="pending">${ticketDict("逐张挑选")}</button></div></div>`;
   return `<div class="ticket-empty"><h3>${ticketDict("还没有收藏票根")}</h3><p>${ticketDict("在影片页点「看过」盖章后，每一次观影都可以做成一张票根；也可以直接搜索影片制作。")}</p>
     <label>${ticketDict("搜索护照片库")}<input id="ticket-search" type="search" autocomplete="off"></label><div id="ticket-results" class="ticket-results"></div></div>`;
 }
 const ticketActiveCount=()=>TE.FACETS.reduce((n,k)=>n+ticketQ[k].length,0);
 const ticketFacetLabel={programme:"专题",city:"城市",venue:"影院",format:"放映版本"};
-function ticketPaintList(){
-  const box=main.querySelector("#ticket-list");if(!box)return;
+const TICKET_DENS=[["l","大图"],["m","中图"],["s","小图"],["spine","书脊"]];
+function ticketShown(){
   const {tickets}=ticketAll(),all=TE.facetCounts(tickets);
   // 删除票根后已不存在的筛选项自动去掉
   if(ticketQ.year&&!all.year.some(y=>y.value===ticketQ.year))ticketQ.year="";
   TE.FACETS.forEach(k=>{ticketQ[k]=ticketQ[k].filter(v=>all[k].some(x=>x.value===v));});
-  const counts=TE.facetCounts(tickets,ticketQ);
-  const shown=TE.filterTickets(tickets,ticketQ),groups=TE.groupByMonth(shown);
-  const yearN=Object.fromEntries(counts.year.map(y=>[y.value,y.count]));
-  const years=all.year.length>1?`<div class="ticket-years" role="group" aria-label="${ticketDict("年份")}">
-    <button type="button" data-ticket-year="" aria-pressed="${!ticketQ.year}">${ticketDict("全部年份")}</button>
-    ${all.year.map(y=>`<button type="button" data-ticket-year="${esc(y.value)}" aria-pressed="${ticketQ.year===y.value}">${esc(y.value)} <small>${yearN[y.value]||0}</small></button>`).join("")}</div>`:"";
-  const facets=ticketFacets?`<div class="ticket-facets">${TE.FACETS.filter(k=>all[k].length>1||ticketQ[k].length).map(k=>`<div class="ticket-facet"><h4>${ticketDict(ticketFacetLabel[k])}</h4><div>
-    ${counts[k].slice(0,k==="programme"?80:40).map(x=>`<button type="button" data-ticket-facet="${k}" data-value="${esc(x.value)}" aria-pressed="${ticketQ[k].includes(x.value)}">${esc(x.value)} <small>${x.count}</small></button>`).join("")}</div></div>`).join("")||`<p>${ticketDict("票根还不多，暂时没有可筛选的项目")}</p>`}</div>`:"";
-  const chips=ticketActiveCount()?`<div class="ticket-chips">${TE.FACETS.flatMap(k=>ticketQ[k].map(v=>`<button type="button" data-ticket-facet="${k}" data-value="${esc(v)}" aria-label="${ticketDict("移除筛选")} ${esc(v)}">${esc(v)} ×</button>`)).join("")}<button type="button" class="text-button" data-ticket-action="clear">${ticketDict("清除筛选")}</button></div>`:"";
-  const filtered=shown.length!==tickets.length;
-  box.innerHTML=years+facets+chips+(ticketExportOpen?ticketExportHTML(shown,all):"")+
-    `<p class="ticket-count" role="status">${filtered?`${ticketDict("显示")} ${shown.length} / ${tickets.length} ${ticketDict("张票根")}`:`${tickets.length} ${ticketDict("张票根")}`}${ticketPick?` · ${ticketDict("点票根挑选，最多")} ${TICKET_PICK_MAX} ${ticketDict("张票根")}`:""}</p>`+
-    (shown.length?`<div class="ticket-album" data-density="${ticketDensity}">${groups.map(g=>ticketMonthHTML(g)).join("")}</div>`:`<p class="ticket-empty">${ticketDict("所选条件下暂无票根")}</p>`)+
-    (ticketPick?`<div class="ticket-pickbar" role="region" aria-label="${ticketDict("精选票根墙")}"><span>${ticketDict("已选")} <b>${ticketPick.size}</b> / ${TICKET_PICK_MAX}</span>
-      <button type="button" class="primary-button" data-ticket-action="pick-export"${ticketPick.size?"":" disabled"}>${ticketDict("导出精选墙")}</button><button type="button" class="ticket-alt" data-ticket-action="pick-cancel">${ticketDict("取消")}</button></div>`:"");
+  return {tickets,all,shown:TE.filterTickets(tickets,ticketQ)};
+}
+function ticketPaintList(){
+  const box=main.querySelector("#ticket-list");if(!box)return;
+  const {tickets,pending}=ticketAll(),{shown}=ticketShown(),groups=TE.groupByMonth(shown),n=ticketActiveCount();
+  const filterValue=n?(LANG==="en"?n+" selected":`已选 ${n} 项`):ticketQ.text?`“${ticketQ.text}”`:tr("全部");
+  const cells=[["filter","筛选",filterValue,!!(n||ticketQ.text)],["year","年份",ticketQ.year||tr("全部年份"),!!ticketQ.year],["density","显示",tr(TICKET_DENS.find(x=>x[0]===ticketDensity)[1]),false]];
+  const count=shown.length===tickets.length?`${tickets.length} ${tr("张票根")}`:`${shown.length} / ${tickets.length} ${tr("张票根")}`;
+  box.innerHTML=`<div class="schedule-filterbar poster-wall-filterbar" aria-label="${ticketDict("票根筛选")}">${cells.map(([key,label,value,active])=>`<button type="button" class="schedule-filter${active?" active":""}" data-ticket-filter="${key}" aria-haspopup="dialog" aria-label="${esc(tr(label)+"："+value)}"><span><small>${ticketDict(label)}</small><b>${esc(value)}</b></span>${filterChevron}</button>`).join("")}</div>
+    <div class="pw-actions"><p class="pw-hint pw-count" role="status">${esc(count)}${LANG==="en"?", ":"，"}${ticketDict("按观影日期排列")}</p>
+      <label class="pw-score-toggle"><input type="checkbox" data-ticket-back${ticketSide==="back"?" checked":""}>${ticketDict("看背面")}</label>
+      <button type="button" class="secondary-button ticket-export-btn" data-ticket-action="export-open"${shown.length?"":" disabled"}>${ticketDict("导出票根墙")}</button></div>
+    ${pending.length?`<div class="ticket-todo"><span><b>${pending.length}</b> ${ticketDict("场观影还没做成票根")}</span><span><button type="button" class="text-button" data-ticket-action="make-all">${ticketDict("一键生成")}</button><i aria-hidden="true">·</i><button type="button" class="text-button" data-ticket-action="pending">${ticketDict("逐张挑选")} ›</button></span></div>`:""}
+    ${n?`<div class="ticket-chips">${TE.FACETS.flatMap(k=>ticketQ[k].map(v=>`<button type="button" data-ticket-facet="${k}" data-value="${esc(v)}" aria-label="${ticketDict("移除筛选")} ${esc(v)}">${esc(v)} ×</button>`)).join("")}<button type="button" class="text-button" data-ticket-action="clear">${ticketDict("清除筛选")}</button></div>`:""}
+    ${shown.length?`<div class="ticket-album" data-density="${ticketDensity}">${groups.map(g=>ticketMonthHTML(g)).join("")}</div>`:
+      `<div class="empty-plan"><h3>${ticketDict("所选条件下暂无票根")}</h3><button type="button" class="secondary-button" data-ticket-action="clear-all">${ticketDict("清除筛选")}</button></div>`}
+    ${ticketPick?`<div class="ticket-pickbar" role="region" aria-label="${ticketDict("精选票根墙")}"><span>${ticketDict("已选")} <b>${ticketPick.size}</b> / ${TICKET_PICK_MAX}</span>
+      <button type="button" class="text-button" data-ticket-action="pick-cancel">${ticketDict("取消")}</button><button type="button" class="secondary-button ticket-export-btn" data-ticket-action="pick-export"${ticketPick.size?"":" disabled"}>${ticketDict("导出精选墙")}</button></div>`:""}`;
   if(ticketDensity!=="spine")ticketObserve(box);
 }
 function ticketMonthHTML(g){
   const title=g.id==="undated"?tr("日期待定"):(LANG==="en"?`${new Date(Date.UTC(+g.year,g.month-1,1)).toLocaleString("en",{month:"long",timeZone:"UTC"})} ${g.year}`:`${g.year}年${g.month}月`);
-  return `<section class="ticket-month" style="--rows:${g.rows.length}"><h3 class="ticket-month-h">${esc(title)} <small>${g.rows.length} ${ticketDict("张票根")}</small></h3>
+  return `<section class="ticket-month" style="--rows:${g.rows.length}"><h3 class="ticket-month-h"><span>${esc(title)}</span><small>${g.rows.length} ${ticketDict("张票根")}</small></h3>
     <div class="ticket-grid">${g.rows.map(row=>ticketDensity==="spine"?ticketSpineHTML(row):ticketTileHTML(row)).join("")}</div></section>`;
 }
 function ticketTileHTML(row){
   const c=TE.swatch(row),picked=ticketPick?.has(row.key);
-  return `<button type="button" class="ticket-tile${picked?" picked":""}" data-key="${esc(row.key)}" style="--sw:${c.mid};--sa:${c.accent}" aria-label="${esc(row.title+" "+row.date+" "+row.venue)}"${ticketPick?` aria-pressed="${!!picked}"`:""}>
+  return `<button type="button" class="ticket-tile${picked?" picked":""}" data-key="${esc(row.key)}" style="--sw:${c.stock};--sa:${c.accent}" aria-label="${esc(row.title+" "+row.date+" "+row.venue)}"${ticketPick?` aria-pressed="${!!picked}"`:""}>
     <img alt="" decoding="async"><span>${esc(row.title)}</span></button>`;
 }
 function ticketSpineHTML(row){
   const c=TE.swatch(row),picked=ticketPick?.has(row.key);
-  return `<button type="button" class="ticket-spine${picked?" picked":""}" data-key="${esc(row.key)}" style="--sw:${c.mid};--sa:${c.accent};--sb:${c.stock}"${ticketPick?` aria-pressed="${!!picked}"`:""}>
-    <i aria-hidden="true"></i><b>${esc(row.title)}</b><span>${esc([row.date.replace(/-/g,"."),row.time].filter(Boolean).join(" "))}</span><em>${esc([row.venue,row.programme].filter(Boolean).join(" · "))}</em></button>`;
+  return `<button type="button" class="ticket-spine${picked?" picked":""}" data-key="${esc(row.key)}" style="--sa:${c.accent}"${ticketPick?` aria-pressed="${!!picked}"`:""}>
+    <i aria-hidden="true"></i><span class="ts-main"><b>${esc(row.title)}</b><em>${esc([row.venue,row.programme].filter(Boolean).join(" · "))}</em></span><span class="ts-date">${esc([row.date.replace(/-/g,"."),row.time].filter(Boolean).join(" "))}</span></button>`;
+}
+
+// ——— 弹层（沿用排片 / 海报墙的 schedule-selector 样式） ———
+function ticketDialog(kind,title,body,foot){
+  document.getElementById("ticket-selector")?.close();
+  const d=document.createElement("dialog");d.id="ticket-selector";d.className="schedule-selector ticket-selector";d.dataset.kind=kind;
+  d.setAttribute("aria-labelledby","ticket-selector-title");
+  d.innerHTML=`<header class="selector-head"><h2 id="ticket-selector-title">${title}</h2><button type="button" class="selector-close" data-ticket-dlg="close" aria-label="${ticketDict("关闭")}">×</button></header>${body}${foot?`<footer class="selector-foot">${foot}</footer>`:""}`;
+  document.body.appendChild(d);
+  d.addEventListener("click",e=>{if(e.target===d){d.close();return;}ticketDialogClick(e,d);});
+  d.addEventListener("input",e=>{if(e.target.id==="ticket-q"){clearTimeout(ticketSearchTimer);ticketSearchTimer=setTimeout(()=>{ticketQ.text=e.target.value;ticketPaintList();ticketFilterRefresh(d);},160);}});
+  d.addEventListener("change",e=>ticketDialogChange(e,d));
+  d.addEventListener("close",()=>{d.remove();if(kind==="export"&&!ticketPick)ticketExportOpen=false;main.querySelector(`[data-ticket-filter="${kind}"]`)?.focus({preventScroll:true});});
+  d.showModal();return d;
+}
+const ticketOptionRow=(attr,value,name,sub,selected)=>`<button type="button" class="selector-option" role="option" aria-selected="${selected}" ${attr}="${esc(value)}"><span><b>${esc(name)}</b>${sub?`<small>${esc(sub)}</small>`:""}</span><span class="selector-check" aria-hidden="true">${selected?"✓":""}</span></button>`;
+function ticketFilterBody(){
+  const {tickets}=ticketAll(),all=TE.facetCounts(tickets),counts=TE.facetCounts(tickets,ticketQ);
+  const groups=TE.FACETS.filter(k=>all[k].length>1||ticketQ[k].length);
+  return groups.length?groups.map(k=>`<div class="ticket-facet"><h3>${ticketDict(ticketFacetLabel[k])}</h3><div>${counts[k].slice(0,k==="programme"?80:40).map(x=>`<button type="button" data-ticket-facet="${k}" data-value="${esc(x.value)}" aria-pressed="${ticketQ[k].includes(x.value)}">${esc(x.value)} <small>${x.count}</small></button>`).join("")}</div></div>`).join(""):`<p class="selector-empty">${ticketDict("票根还不多，暂时没有可筛选的项目")}</p>`;
+}
+function ticketFilterRefresh(d){
+  const box=d.querySelector(".selector-results"),top=box.scrollTop;box.innerHTML=ticketFilterBody();box.scrollTop=top;
+  d.querySelector(".selector-done").textContent=tr("显示")+" "+ticketShown().shown.length+" "+tr("张票根");
+}
+function ticketOpenFilter(kind){
+  const {tickets,all}=ticketShown();
+  if(kind==="filter"){
+    const d=ticketDialog("filter",ticketDict("筛选票根"),`<label class="selector-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg><input type="search" id="ticket-q" autocomplete="off" value="${esc(ticketQ.text)}" placeholder="${ticketDict("搜片名、导演、影院、专题")}" aria-label="${ticketDict("搜索票根")}"></label><div class="selector-results ticket-facet-box"></div>`,
+      `<button type="button" class="text-button" data-ticket-dlg="clear">${ticketDict("清除筛选")}</button><button type="button" class="selector-done" data-ticket-dlg="close"></button>`);
+    ticketFilterRefresh(d);return;
+  }
+  if(kind==="year"){
+    const counts=TE.facetCounts(tickets,ticketQ),n=Object.fromEntries(counts.year.map(y=>[y.value,y.count]));
+    ticketDialog("year",ticketDict("年份"),`<div class="selector-results" role="listbox">${ticketOptionRow("data-ticket-year","",tr("全部年份"),`${tickets.length} ${tr("张票根")}`,!ticketQ.year)}${all.year.map(y=>ticketOptionRow("data-ticket-year",y.value,y.value,`${n[y.value]||0} ${tr("张票根")}`,ticketQ.year===y.value)).join("")}</div>`);
+    return;
+  }
+  if(kind==="density"){
+    const sub={l:"每排 2–4 张，显示片名",m:"默认",s:"一屏看更多",spine:"只列文字，几千张也很快"};
+    ticketDialog("density",ticketDict("显示"),`<div class="selector-results" role="listbox">${TICKET_DENS.map(([v,l])=>ticketOptionRow("data-ticket-density",v,tr(l),tr(sub[v]),ticketDensity===v)).join("")}</div>`);
+  }
+}
+
+// ——— 导出弹层 ———
+function ticketExportBody(){
+  const o=ticketExportOpen||{},counts=TE.facetCounts(ticketAll().tickets),shown=ticketShown().shown;
+  const year=o.year||counts.year[0]?.value||"",prog=o.prog||counts.programme[0]?.value||"",kind=o.kind||"current";
+  const rows=ticketExportRows(),parts=Math.ceil(rows.length/TE.MOSAIC_MAX),part=Math.min(o.part||0,Math.max(0,parts-1));
+  const opt=(v,name,sub,extra="")=>`<div class="ticket-ex-opt">${ticketOptionRow("data-ticket-kind",v,name,sub,kind===v)}${kind===v?extra:""}</div>`;
+  return `<div class="selector-results" role="listbox">
+    ${opt("current",tr("当前结果"),`${shown.length} ${tr("张票根")}`)}
+    ${counts.year.length?opt("year",tr("年度票根墙"),year,`<select class="ticket-ex-select" name="export-year" aria-label="${ticketDict("年份")}">${counts.year.map(y=>ticketOption(y.value,`${y.value}（${y.count}）`,year)).join("")}</select>`):""}
+    ${counts.programme.length?opt("prog",tr("专题票根墙"),prog,`<select class="ticket-ex-select" name="export-prog" aria-label="${ticketDict("专题")}">${counts.programme.map(p=>ticketOption(p.value,`${p.value}（${p.count}）`,prog)).join("")}</select>`):""}
+    ${opt("pick",tr("精选票根墙"),`${tr("自己挑")} ≤${TICKET_PICK_MAX} ${tr("张票根")}`)}
+    ${parts>1&&kind!=="pick"?`<label class="ticket-ex-part">${ticketDict("分成")} ${parts} ${ticketDict("张图导出")}<select class="ticket-ex-select" name="export-part">${Array.from({length:parts},(_,i)=>ticketOption(String(i),`${i+1} / ${parts}`,String(part))).join("")}</select></label>`:""}
+  </div>`;
+}
+function ticketExportFoot(){
+  const o=ticketExportOpen||{},n=ticketExportRows().length;
+  return `<small>${ticketDict(ticketSide==="front"?"正面":"背面")}</small><button type="button" class="selector-done" data-ticket-dlg="go"${o.kind!=="pick"&&!n?" disabled":""}>${ticketDict(o.kind==="pick"?"开始挑选":"生成图片")}</button>`;
+}
+function ticketOpenExport(){
+  if(!ticketExportOpen)ticketExportOpen={kind:"current"};
+  ticketDialog("export",ticketDict("导出票根墙"),ticketExportBody(),ticketExportFoot());
+}
+function ticketExportRefresh(d){d.querySelector(".selector-results").outerHTML=ticketExportBody();d.querySelector(".selector-foot").innerHTML=ticketExportFoot();}
+function ticketDialogClick(e,d){
+  const kind=d.dataset.kind,t=e.target;
+  const act=t.closest("[data-ticket-dlg]")?.dataset.ticketDlg;
+  if(act==="close"){d.close();return;}
+  if(act==="clear"){TE.FACETS.forEach(k=>{ticketQ[k]=[];});ticketQ.text="";const q=d.querySelector("#ticket-q");if(q)q.value="";ticketPaintList();ticketFilterRefresh(d);return;}
+  if(act==="go"){
+    if(ticketExportOpen?.kind==="pick"){ticketPick=new Set();d.close();ticketExportOpen=false;ticketPaintList();toast(tr("点票根挑选，最多")+" "+TICKET_PICK_MAX+" "+tr("张票根"));return;}
+    const b=t.closest("button");ticketExport(b,false).finally(()=>{if(d.open)d.close();});return;
+  }
+  const facet=t.closest("[data-ticket-facet]");
+  if(facet){const k=facet.dataset.ticketFacet,v=facet.dataset.value,list=ticketQ[k];ticketQ[k]=list.includes(v)?list.filter(x=>x!==v):[...list,v];ticketPaintList();ticketFilterRefresh(d);return;}
+  const year=t.closest("[data-ticket-year]");
+  if(year){ticketQ.year=year.dataset.ticketYear;d.close();ticketPaintList();return;}
+  const dens=t.closest("[data-ticket-density]");
+  if(dens){ticketDensity=dens.dataset.ticketDensity;try{localStorage.setItem(TICKET_DENSITY_KEY,ticketDensity);}catch{}d.close();ticketPaintList();return;}
+  const k=t.closest("[data-ticket-kind]");
+  if(k&&kind==="export"){ticketExportOpen={...ticketExportOpen,kind:k.dataset.ticketKind,part:0};ticketExportRefresh(d);}
+}
+function ticketDialogChange(e,d){
+  const {name,value}=e.target;
+  if(name==="export-year")ticketExportOpen={...ticketExportOpen,year:value,part:0};
+  else if(name==="export-prog")ticketExportOpen={...ticketExportOpen,prog:value,part:0};
+  else if(name==="export-part"){ticketExportOpen={...ticketExportOpen,part:Number(value)};return;}
+  else return;
+  ticketExportRefresh(d);
 }
 
 // ——— 待制作 ———
@@ -332,20 +419,6 @@ function ticketSave(){
 }
 
 // ——— 导出 ———
-function ticketExportHTML(shown,counts){
-  const kind=ticketExportOpen.kind||"current",year=ticketExportOpen.year||counts.year[0]?.value||"",prog=ticketExportOpen.prog||counts.programme[0]?.value||"";
-  const rows=ticketExportRows(),parts=Math.ceil(rows.length/TE.MOSAIC_MAX),part=Math.min(ticketExportOpen.part||0,Math.max(0,parts-1));
-  const radio=(v,label,extra="")=>`<label class="ticket-radio"><input type="radio" name="export-kind" value="${v}"${kind===v?" checked":""}> ${label}${extra}</label>`;
-  return `<div class="ticket-export"><h3>${ticketDict("导出票根墙")}</h3>
-    ${radio("current",`${ticketDict("当前结果")}（${shown.length} ${ticketDict("张票根")}）`)}
-    ${counts.year.length?radio("year",ticketDict("年度票根墙"),` <select name="export-year">${counts.year.map(y=>ticketOption(y.value,`${y.value}（${y.count}）`,year)).join("")}</select>`):""}
-    ${counts.programme.length?radio("prog",ticketDict("专题票根墙"),` <select name="export-prog">${counts.programme.map(p=>ticketOption(p.value,`${p.value}（${p.count}）`,prog)).join("")}</select>`):""}
-    ${radio("pick",`${ticketDict("精选票根墙")}（${ticketDict("自己挑")} ≤${TICKET_PICK_MAX} ${ticketDict("张票根")}）`)}
-    ${parts>1?`<label>${ticketDict("分成")} ${parts} ${ticketDict("张图导出")}（${rows.length} ${ticketDict("张票根")}） <select name="export-part">${Array.from({length:parts},(_,i)=>ticketOption(String(i),`${i+1} / ${parts}`,String(part))).join("")}</select></label>`:""}
-    <p class="ticket-note">${ticketDict(ticketSide==="front"?"导出正面；切换「背面」可导出背面。":"导出背面；切换「正面」可导出正面。")}</p>
-    <div class="ticket-edit-actions"><button type="button" class="primary-button" data-ticket-action="do-export"${kind!=="pick"&&!rows.length?" disabled":""}>${ticketDict(kind==="pick"?"开始挑选":"生成图片")}</button>
-    <button type="button" class="ticket-alt" data-ticket-action="export-close">${ticketDict("收起")}</button></div></div>`;
-}
 function ticketExportRows(){
   const {tickets}=ticketAll(),o=ticketExportOpen||{},counts=TE.facetCounts(tickets);
   if(o.kind==="year")return TE.filterTickets(tickets,{year:o.year||counts.year[0]?.value});
@@ -383,7 +456,7 @@ async function ticketExport(button,single){
     const blob=await new Promise(resolve=>canvas.toBlob(resolve,jpeg?"image/jpeg":"image/png",.9));
     if(!blob)throw Error("image");
     const safe=(single?shown[0].title:title).replace(/[\\/:*?"<>|]/g,"-");
-    if(!button.isConnected||location.hash!=="#ticket-wall")return;
+    if(location.hash!=="#ticket-wall")return;
     if(side==="front"&&images.some((image,i)=>!image&&shown[i].art))toast(tr("海报读取失败，已用片名代替"));
     showImageSheet(blob,{file:`${safe}-${side==="front"?"正面":"背面"}${parts>1?"-"+(part+1):""}.${jpeg?"jpg":"png"}`,head:tr("票根图片已生成"),alt:tr("票根图片")});
   }catch{toast(tr("图片生成失败，请稍后再试"));}
@@ -394,14 +467,11 @@ async function ticketExport(button,single){
 function ticketInput(event){
   const t=event.target;
   if(t.id==="ticket-search")ticketSearch(t.value);
-  else if(t.id==="ticket-q"){clearTimeout(ticketSearchTimer);ticketSearchTimer=setTimeout(()=>{ticketQ.text=t.value;ticketPaintList();},160);}
   else if(t.name==="crop"&&ticketDraft){ticketDraft.row.crop=Number(t.value);ticketDrawEditor();}
 }
 function ticketChange(event){
-  const {name,value}=event.target;
-  if(name==="export-kind"){ticketExportOpen={...ticketExportOpen,kind:value,part:0};ticketPaintList();return;}
-  if(name==="export-year"||name==="export-prog"){ticketExportOpen={...ticketExportOpen,[name==="export-year"?"year":"prog"]:value,kind:name==="export-year"?"year":"prog",part:0};ticketPaintList();return;}
-  if(name==="export-part"){ticketExportOpen={...ticketExportOpen,part:Number(value)};return;}
+  const t=event.target,{name,value}=t;
+  if(t.matches("[data-ticket-back]")){ticketSide=t.checked?"back":"front";ticketPaintList();return;}
   if(!ticketDraft)return;
   const row=ticketDraft.row;
   if(["date","time","venue","hall","seat","format","art"].includes(name)){
@@ -429,13 +499,10 @@ function ticketClick(e){
     }
     ticketOpen(row);return;
   }
-  const year=e.target.closest("[data-ticket-year]");
-  if(year){ticketQ.year=year.dataset.ticketYear;ticketPaintList();return;}
+  const cell=e.target.closest("[data-ticket-filter]");
+  if(cell){ticketOpenFilter(cell.dataset.ticketFilter);return;}
   const facet=e.target.closest("[data-ticket-facet]");
-  if(facet){const k=facet.dataset.ticketFacet,v=facet.dataset.value,list=ticketQ[k];ticketQ[k]=list.includes(v)?list.filter(x=>x!==v):[...list,v];ticketPaintList();ticketBarCount();return;}
-  const dens=e.target.closest("[data-ticket-density]");
-  if(dens){ticketDensity=dens.dataset.ticketDensity;try{localStorage.setItem(TICKET_DENSITY_KEY,ticketDensity);}catch{}
-    main.querySelectorAll("[data-ticket-density]").forEach(b=>b.setAttribute("aria-pressed",b===dens));ticketPaintList();return;}
+  if(facet){const k=facet.dataset.ticketFacet,v=facet.dataset.value;ticketQ[k]=ticketQ[k].filter(x=>x!==v);ticketPaintList();return;}
   const b=e.target.closest("[data-ticket-action]");if(!b)return;
   switch(b.dataset.ticketAction){
     case "new":ticketDraft=null;ticketMode="create";ticketRender();break;
@@ -443,15 +510,9 @@ function ticketClick(e){
     case "pending-more":ticketPendingShown+=TICKET_PENDING_STEP;ticketRender();break;
     case "make-all":ticketMakeAll();break;
     case "cancel":ticketDraft=null;ticketMode="album";ticketRender();break;
-    case "facets":ticketFacets=!ticketFacets;b.setAttribute("aria-expanded",ticketFacets);ticketPaintList();break;
-    case "clear":TE.FACETS.forEach(k=>{ticketQ[k]=[];});ticketPaintList();ticketBarCount();break;
-    case "side":ticketSide=ticketSide==="front"?"back":"front";b.textContent=tr(ticketSide==="front"?"正面":"背面")+" ↻";ticketPaintList();break;
-    case "export-open":ticketExportOpen=ticketExportOpen?false:{kind:"current"};b.setAttribute("aria-expanded",!!ticketExportOpen);ticketPaintList();break;
-    case "export-close":ticketExportOpen=false;ticketRender();break;
-    case "do-export":
-      if(ticketExportOpen?.kind==="pick"){ticketPick=new Set();ticketExportOpen=false;ticketRender();}
-      else ticketExport(b,false);
-      break;
+    case "clear":TE.FACETS.forEach(k=>{ticketQ[k]=[];});ticketPaintList();break;
+    case "clear-all":TE.FACETS.forEach(k=>{ticketQ[k]=[];});ticketQ.text="";ticketQ.year="";ticketPaintList();break;
+    case "export-open":ticketOpenExport();break;
     case "pick-export":ticketExportOpen={kind:"pick"};ticketExport(b,false).finally(()=>{ticketExportOpen=false;});break;
     case "pick-cancel":ticketPick=null;ticketPaintList();break;
     case "flip": {
@@ -471,4 +532,3 @@ function ticketClick(e){
     case "single":ticketExport(b,true);break;
   }
 }
-function ticketBarCount(){const b=main.querySelector("[data-ticket-action=facets]");if(b)b.textContent=tr("筛选")+(ticketActiveCount()?" · "+ticketActiveCount():"");}
