@@ -126,7 +126,11 @@ const renders=Sketch.styles.map(({id})=>{
   return Buffer.from(painted).toString('base64');
 });
 assert.equal(Sketch.normalize('unknown'),'crayon');
-assert.equal(new Set(renders).size,4,'each style has distinct pixels');
+assert.equal(new Set(renders).size,Sketch.styles.length,'each style has distinct pixels');
+const doodle=Sketch.stylize(patch,12,8,48,32,'doodle');
+const hasInk=doodle.some((value,i)=>i%4===0&&value<40&&doodle[i+1]<40&&doodle[i+2]<40);
+assert(hasInk,'comic panel outlines strongly contrasting colors');
+assert.equal(Sketch.styles.at(-1).id,'doodle');
 const blocked=()=>({getContext:()=>({getImageData(){throw Error('pixels unavailable');}})});
 assert.equal(Sketch.paint({}, {},50,{x:0,y:0,w:48,h:32},blocked,()=>{}),false);
 
@@ -140,14 +144,14 @@ const context=new Proxy({}, {get(target,key){
 }});
 const abovePaint=Sketch.paint;
 try{
-  const styled={...artRow,artStyle:'blue-ink'};
+  const styled={...artRow,artStyle:'doodle'};
   Sketch.paint=(_surface,asset,_crop,_frame,_canvas,_cover,scale,style)=>{assert.equal(asset,image);calls.push({scale,style});return true;};
   T.draw(context,styled,'front',image,{x:0,y:0,w:630,h:1296});
   T.draw(context,styled,'front',image,{x:0,y:0,w:130,h:267});
   T.drawWall(context,[styled],'front',[image],'');
   T.draw(context,styled,'back',image,{x:0,y:0,w:630,h:1296});
   assert.equal(calls.length,3);
-  assert(calls.every(call=>call.style==='blue-ink'));
+  assert(calls.every(call=>call.style==='doodle'));
   assert.equal(calls[0].scale,630/T.W);
   assert.equal(calls[1].scale,130/T.W);
 }finally{Sketch.paint=abovePaint;}
