@@ -20,7 +20,7 @@ const iso=d=>[d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.ge
 const artworkUrl=src=>/^(posters|images)\//i.test(src||'')?SITE+src:src;
 // 票面改动（裁切 / 配图）的指纹：和上次保存时不同才点亮「保存」
 const artSig=d=>[d.crop,d.art].join('|');
-const sigOf=(row,side)=>[side,side==='front'?row.artStyle:'',R.packLook(row.look),row.crop,row.art,row.title,row.subtitle,row.date,row.time,row.venue,row.hall,row.city,row.seat,row.format,row.programme,row.section].join('¦');
+const sigOf=(row,side)=>[side,side==='front'?row.artStyle:'',R.lookSig(row.look),row.crop,row.art,row.title,row.subtitle,row.date,row.time,row.venue,row.hall,row.city,row.seat,row.format,row.programme,row.section].join('¦');
 function canvas(page,id){return new Promise(resolve=>wx.createSelectorQuery().in(page).select('#'+id).fields({node:true}).exec(r=>resolve(r&&r[0]&&r[0].node||null)));}
 function image(node,src){
   return new Promise(resolve=>{
@@ -33,7 +33,7 @@ function image(node,src){
 }
 
 Page({
-  data:{i:{},ps:'',ok:false,draft:{},front:true,frontImg:'',backImg:'',turnReq:{side:'front',n:0},edge:'',shine:'metal',fx:'none',maskF:'',maskB:'',
+  data:{i:{},ps:'',ok:false,draft:{},front:true,frontImg:'',backImg:'',turnReq:{side:'front',n:0},edge:'',shine:'metal',fx:'none',layersF:[],layersB:[],craft:'',
     arts:[],artIndex:0,artStyleLabels:[],artStyleIndex:0,shows:[],showIdx:-1,existing:false,linked:false,loading:false,busy:true,artDirty:false},
   onLoad(q){
     this._albumArtStyle=Art.normalize();
@@ -109,20 +109,27 @@ Page({
     if(path&&turn===this._turn&&this._ready){this._cache.set(sig,path);if(this._cache.size>24)this._cache.delete(this._cache.keys().next().value);}
     return path;
   },
-  // 工艺遮罩：烫印 / 镭射 / 光油的区域涂白（shared/tickets.js 的 foilMask），转成 data URI 给 .te-fx 当 mask-image；小尺寸即可
-  async fxMask(node,side,turn){
-    const row={...this._draft,artStyle:this._artStyle},fx=R.fxOf(row.look.finish);
-    if(fx==='none')return '';
-    const sig=sigOf(row,side)+'¦mask';
+  // 工艺反光层：每面最多三层——底箔反光、工艺组合里的烫印增效（同一张工艺遮罩）、海报画面增效（只有正面，遮罩从海报算出）。
+  // 遮罩画在隐藏画布上转成 data URI 给 .te-fx 当 mask-image；尺寸小即可（210px 宽）
+  async fxLayers(node,side,turn){
+    const row={...this._draft,artStyle:this._artStyle},base=R.fxOf(row.look.finish),extra=R.parseCraft(row.look.craft).foil.find(fx=>fx!==base);
+    const sig=sigOf(row,side)+'¦fx';
     if(this._cache.has(sig))return this._cache.get(sig);
-    const hasArt=side==='front'&&!!row.art&&!!(await this._artImage);
-    if(turn!==this._turn||!this._ready)return '';
-    const w=210,h=Math.round(w*R.H/R.W);node.width=w;node.height=h;
-    const ctx=node.getContext('2d');ctx.clearRect(0,0,w,h);
-    let url='';
-    try{if(R.foilMask(ctx,row,side,{x:0,y:0,w,h},stock,hasArt))url=node.toDataURL('image/png');}catch(e){url='';}
-    if(url&&turn===this._turn)this._cache.set(sig,url);
-    return url;
+    const art=side==='front'&&row.art?await this._artImage:null;
+    if(turn!==this._turn||!this._ready)return [];
+    const w=210,h=Math.round(w*R.H/R.W),layers=[];
+    const snap=paint=>{node.width=w;node.height=h;const ctx=node.getContext('2d');ctx.clearRect(0,0,w,h);try{return paint(ctx)?node.toDataURL('image/png'):'';}catch(e){return '';}};
+    if(base!=='none'||extra){
+      const m=snap(ctx=>R.foilMask(ctx,row,side,{x:0,y:0,w,h},stock,!!art));
+      if(m){if(base!=='none')layers.push({i:'b',fx:base,k:1,m});if(extra)layers.push({i:'e',fx:extra,k:.7,m});}
+    }
+    if(art){
+      let mask=null;try{mask=R.artMask(row,art,stock,w);}catch(e){mask=null;}
+      const m=mask&&snap(ctx=>{ctx.drawImage(mask,0,0,w,h);return true;});
+      if(m)layers.push({i:'a',fx:mask.fx,k:1,m});
+    }
+    if(turn===this._turn)this._cache.set(sig,layers);
+    return layers;
   },
   async renderFaces(first=this.data.front?'front':'back'){
     if(!this._draft||!this._ready)return;
@@ -140,9 +147,9 @@ Page({
       if(path)this.setData({[side==='front'?'frontImg':'backImg']:path});
     }
     const {kind,fx}=R.shineOf(this._draft.look.finish);
-    const maskF=await this.fxMask(node,'front',turn),maskB=await this.fxMask(node,'back',turn);
+    const layersF=await this.fxLayers(node,'front',turn),layersB=await this.fxLayers(node,'back',turn);
     if(turn!==this._turn||!this._ready)return;
-    this.setData({busy:false,shine:kind,fx,maskF,maskB,edge:R.edgeOf(this._draft),turnReq:{...this.data.turnReq,kind,fx}});
+    this.setData({busy:false,shine:kind,fx,layersF,layersB,craft:R.craftLabel(this._draft.look,I.tr),edge:R.edgeOf(this._draft),turnReq:{...this.data.turnReq,kind,fx}});
   },
   // 拖动裁切时实时预览（与网页一致）：只重画正面，上一张还没画完就只记下「还要再画」，画完立刻按最新位置再画一张，
   // 不会排队堆积，也不用等手指停下；松手（bindchange）后再按原来的流程画清晰的正反面

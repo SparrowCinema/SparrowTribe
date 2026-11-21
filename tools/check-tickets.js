@@ -37,7 +37,22 @@ assert.deepStrictEqual(T.build(list,S.cleanTix(store),base).tickets.map(r=>T.pac
 // 编辑：只存和推导值不同的字段
 const edited={...second,seat:'5排8座',hall:'1号厅',venue:'麻雀部落电影文化空间',look:T.randomLook(second),crop:30,art:'https://sparrowcinema.github.io/SparrowTribe/posters/a.jpg'};
 const entry=T.entryFrom(edited,{...base('a',list.find(x=>x.key==='a|2026-11-08').view,'2026-11-08'),id:'a|2026-11-08'},9);
-assert.deepStrictEqual(Object.keys(entry).sort(),['c','l','st','t','vn']);   // 同一张海报（网址只是写法不同）不存
+assert.deepStrictEqual(Object.keys(entry).filter(k=>k!=='x').sort(),['c','l','st','t','vn']);
+// 工艺组合（2026-11-22）：随机换款连工艺组合一起换，和默认不同时存在 x；默认组合按票根键固定、不存
+assert(!('x' in entry) || /^[sgch]{0,2}-[0urokbd][Bv]{0,2}$/.test(entry.x),'craft code is stored in a valid form');
+assert.equal(entry.x===undefined,edited.look.craft===T.build(list,{},base).tickets.find(r=>r.key===edited.key)?.look.craft);
+{
+  const k='a|2026-11-08',store1=S.cleanTix({[k]:{t:5,x:'gs-uBv'}}),row=T.build(list,store1,base).tickets.find(r=>r.key===k);
+  assert.equal(row.look.craft,'gs-uBv','stored craft is read back');
+  assert.deepEqual(T.parseCraft('gs-uBv'),{foil:['glitter','sense'],art:'uv',braille:true,vde:true});
+  assert.deepEqual(T.parseCraft('bad'),{foil:[],art:null,braille:false,vde:false},'invalid codes fall back to no extras');
+  assert.equal(S.cleanTixEntry({t:1,x:'zz-q'}).x,undefined,'sync drops malformed craft codes');
+  assert.match(T.craftLabel({finish:'gold',craft:'g-rv'}),/^香槟金箔 \+ 金葱闪粉 \+ 海报轮廓立体光油 \+ 日期可变数据烫印$/);
+  // 稳定随机：同一张票根每次一样，不同票根分散在各种组合里
+  const codes=new Set();for(let i=0;i<400;i++)codes.add(T.sanitize({filmId:'f'+i,title:'t',date:'2026-11-08',id:'f'+i+'|2026-11-08'}).look.craft);
+  assert.equal(T.sanitize({filmId:'f1',title:'t',date:'2026-11-08',id:'f1|2026-11-08'}).look.craft,T.sanitize({filmId:'f1',title:'t',date:'2026-11-08',id:'f1|2026-11-08'}).look.craft);
+  assert(codes.size>=120,'400 tickets spread over many craft combinations: '+codes.size);
+}   // 同一张海报（网址只是写法不同）不存
 assert(JSON.stringify(entry).length<120);
 store['a|2026-11-08']=entry;
 // 同一部电影其他观影已有的旧票根（重看、旧数据）不重复显示，只留最近保存的一张，存储不删

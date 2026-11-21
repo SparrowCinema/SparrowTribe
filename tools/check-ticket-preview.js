@@ -24,7 +24,7 @@ assert.equal((wxml.match(/class="te-edge /g)||[]).length,4,'paper edges on both 
   let clock=1000;
   const T=require('vm').runInNewContext(fs.readFileSync(path.join(dir,'turn.wxs'),'utf8')+';module.exports',{module:{exports:{}},getDate:()=>({getTime:()=>clock}),Math});
   const styles={},calls=[],st={};
-  const comp=name=>({setStyle(v){styles[name]=v;}});
+  const comp=name=>({setStyle(v){styles[name]=v;},getDataset:()=>name.startsWith('.te-fx')?{fx:'cast',k:1}:{}});
   const owner={selectComponent:s=>comp(s),selectAllComponents:s=>[comp(s+'0'),comp(s+'1')],callMethod:(n,a)=>calls.push([n,JSON.parse(JSON.stringify(a))])};
   const inst={getState:()=>st,getDataset:()=>({shine:'spectrum',fx:'cast'})};
   const ev=(x,y)=>({instance:inst,touches:x==null?[]:[{clientX:x,clientY:y}]});

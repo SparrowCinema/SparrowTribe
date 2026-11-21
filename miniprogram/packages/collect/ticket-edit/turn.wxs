@@ -53,12 +53,15 @@ function paint(owner, s, ms, lit) {
   var glows = owner.selectAllComponents('.te-glow');
   for (var i = 0; i < glows.length; i++) glows[i].setStyle(style);
   var rel = (s.ry - REST_Y - faceIndex(s.ry) * 180) * Math.PI / 180, tilt = (s.rx - REST_X) * Math.PI / 180;
-  var fx = fxStyle(s.fx, Math.sin(rel), Math.sin(tilt), lit);
+  // 每层用自己的工艺（data-fx）和强度（data-k）：底箔反光、烫印增效、海报画面增效
   var layers = owner.selectAllComponents('.te-fx');
-  for (var j = 0; j < layers.length; j++) layers[j].setStyle({
-    'background-position': fx.pos, opacity: fx.o,
-    transition: lit ? 'opacity .12s' : 'opacity ' + Math.max(ms || 0, 350) + 'ms ease-out'
-  });
+  for (var j = 0; j < layers.length; j++) {
+    var ds = layers[j].getDataset(), fx = fxStyle(ds.fx || s.fx, Math.sin(rel), Math.sin(tilt), lit);
+    layers[j].setStyle({
+      'background-position': fx.pos, opacity: Math.round(fx.o * (ds.k ? +ds.k : 1) * 1000) / 1000,
+      transition: lit ? 'opacity .12s' : 'opacity ' + Math.max(ms || 0, 350) + 'ms ease-out'
+    });
+  }
 }
 
 function settle(owner, s, target) {

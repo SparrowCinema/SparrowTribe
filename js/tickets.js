@@ -120,7 +120,7 @@ async function ticketFonts(rows){
   jobs.push(title);
   await Promise.race([Promise.all(jobs).catch(()=>{}),new Promise(r=>setTimeout(r,2500))]);
 }
-const ticketSig=(row,side,w,style)=>[row.key,side,w,side==="front"?style:"",TE.packLook(row.look),row.crop,row.art,row.time,row.venue,row.hall,row.seat,row.format,row.title,row.programme,row.city].join("¦");
+const ticketSig=(row,side,w,style)=>[row.key,side,w,side==="front"?style:"",TE.lookSig(row.look),row.crop,row.art,row.time,row.venue,row.hall,row.seat,row.format,row.title,row.programme,row.city].join("¦");
 async function ticketTileURL(row,side,w){
   const artStyle=ticketStyleFor(row),sig=ticketSig(row,side,w,artStyle);
   if(ticketURLs.has(sig)){const url=ticketURLs.get(sig);ticketURLs.delete(sig);ticketURLs.set(sig,url);return url;}
@@ -454,8 +454,8 @@ function ticketEditor(row){
   const dateRow=row.linked?`<div class="te-row"><span class="te-k">${ticketDict("观影日期")}</span><span class="te-v"><b class="te-mono">${esc(row.date.replace(/-/g,"."))}</b><small class="te-note">${ticketDict("来自观影记录")}</small></span></div>`:input("date","观影日期","","date");
   return `<div class="te">
     <div class="te-stage"><button type="button" data-ticket-action="flip" class="ticket-flip" data-side="${ticketDraft.side}" aria-label="${ticketDict("翻面")}">
-      <span class="ticket-turn"><span class="ticket-face ticket-front"><canvas width="630" height="1296" id="ticket-preview-front" aria-hidden="true"></canvas><span class="ticket-fx" aria-hidden="true" hidden></span></span>
-      <span class="ticket-face ticket-back"><canvas width="630" height="1296" id="ticket-preview-back" aria-hidden="true"></canvas><span class="ticket-fx" aria-hidden="true" hidden></span></span>
+      <span class="ticket-turn"><span class="ticket-face ticket-front"><canvas width="630" height="1296" id="ticket-preview-front" aria-hidden="true"></canvas><span class="ticket-fx" aria-hidden="true" hidden></span><span class="ticket-fx" aria-hidden="true" hidden></span><span class="ticket-fx" aria-hidden="true" hidden></span></span>
+      <span class="ticket-face ticket-back"><canvas width="630" height="1296" id="ticket-preview-back" aria-hidden="true"></canvas><span class="ticket-fx" aria-hidden="true" hidden></span><span class="ticket-fx" aria-hidden="true" hidden></span><span class="ticket-fx" aria-hidden="true" hidden></span></span>
       <span class="ticket-edge te-l1"></span><span class="ticket-edge te-l2"></span><span class="ticket-edge te-r1"></span><span class="ticket-edge te-r2"></span></span></button>
       ${assets.length?`<div class="te-art">
         <label class="te-crop"><span>${ticketDict("裁切")}</span><input class="te-range" type="range" min="0" max="100" name="crop" value="${row.crop}" aria-label="${ticketDict("裁切位置")}"></label>
@@ -465,6 +465,7 @@ function ticketEditor(row){
         <button type="button" role="tab" data-ticket-side="front" aria-selected="${front}">${ticketDict("正面")}</button><button type="button" role="tab" data-ticket-side="back" aria-selected="${!front}">${ticketDict("背面")}</button></div>
         <button type="button" class="te-dice" data-ticket-action="shuffle">${ticketDict("随机换一款")}</button>
         <button type="button" class="te-style" data-ticket-filter="art-style" aria-haspopup="dialog">${ticketDict("手绘风格")}${filterChevron}</button></div>
+      <p class="te-craft" aria-live="polite"></p>
       <button type="button" class="te-reset" data-ticket-action="reset">${ticketDict("恢复专题默认款式")}</button></div>
     <div class="te-body">
       <div class="te-heading">
@@ -514,8 +515,11 @@ function ticketTurner(card){
     const rel=(ry-REST_Y-face(ry)*180)*Math.PI/180,tilt=(rx-REST_X)*Math.PI/180,s=Math.sin(rel),t=Math.sin(tilt);
     card.style.setProperty("--gx",`${Math.round(50+s*90)}%`);card.style.setProperty("--gy",`${Math.round(32-t*90)}%`);
     // 工艺反光（与小程序 turn.wxs 的 fxStyle 一致）：只在烫印范围里，按角度移动；越斜越明显，松手淡出
-    const fx=ticketFxStyle(card.dataset.fx,s,t,lit);
-    card.querySelectorAll(".ticket-fx").forEach(el=>{el.style.backgroundPosition=fx.pos;el.style.opacity=fx.o;el.style.transition=lit?"opacity .12s":`opacity ${Math.max(ms||0,350)}ms ease-out`;});
+    card.querySelectorAll(".ticket-fx").forEach(el=>{
+      if(el.hidden)return;
+      const fx=ticketFxStyle(el.dataset.fx,s,t,lit);
+      el.style.backgroundPosition=fx.pos;el.style.opacity=+(fx.o*(+el.dataset.k||1)).toFixed(3);el.style.transition=lit?"opacity .12s":`opacity ${Math.max(ms||0,350)}ms ease-out`;
+    });
     clearTimeout(fade);
     if(lit)card.dataset.glare="";else fade=setTimeout(()=>delete card.dataset.glare,Math.min(ms||0,250));
   };
@@ -556,23 +560,37 @@ function ticketDrawEditor(){
   const card=main.querySelector(".ticket-flip");if(!card)return;
   const shine=TE.shineOf(ticketDraft.row.look.finish);
   card.dataset.shine=shine.kind;card.style.setProperty("--metal-highlight",shine.highlight+"af");card.style.setProperty("--edge",TE.edgeOf(ticketDraft.row));
+  const craft=main.querySelector(".te-craft");if(craft)craft.textContent=tr("工艺")+"："+TE.craftLabel(ticketDraft.row.look,tr);
   for(const side of ["front","back"])ticketRenderCard(main.querySelector("#ticket-preview-"+side),ticketDraft.row,side);
 }
 async function ticketRenderCard(canvas,row,side){
   const rendering=(canvas.ticketPainting||0)+1;canvas.ticketPainting=rendering;
   const styled={...row,artStyle:ticketStyleFor(row)};
-  const draw=image=>{const ctx=canvas.getContext("2d");ctx.clearRect(0,0,canvas.width,canvas.height);TE.draw(ctx,styled,side,image,{x:0,y:0,w:canvas.width,h:canvas.height},ticketCanvas);ticketFxMask(canvas,styled,side,!!image);};
+  const draw=image=>{const ctx=canvas.getContext("2d");ctx.clearRect(0,0,canvas.width,canvas.height);TE.draw(ctx,styled,side,image,{x:0,y:0,w:canvas.width,h:canvas.height},ticketCanvas);ticketFxMask(canvas,styled,side,image);};
   await ticketFonts([row]);if(!canvas.isConnected||canvas.ticketPainting!==rendering)return;
   draw(null);
   if(side==="front"&&row.art){const image=await ticketPoster(row,false);if(canvas.isConnected&&canvas.ticketPainting===rendering&&image)draw(image);}
 }
-// 工艺遮罩（只在详情页用）：转动时 .ticket-fx 只在烫印 / 镭射 / 光油的地方显示随角度变化的工艺反光
-function ticketFxMask(canvas,row,side,hasArt){
-  const layer=canvas.parentElement?.querySelector(".ticket-fx");if(!layer)return;
-  const fx=TE.fxOf(row.look.finish),card=canvas.closest(".ticket-flip");if(card)card.dataset.fx=fx;
-  const w=315,h=Math.round(w*TE.H/TE.W),mask=ticketCanvas(w,h);
-  if(fx==="none"||!TE.foilMask(mask.getContext("2d"),row,side,{x:0,y:0,w,h},ticketCanvas,hasArt)){layer.style.webkitMaskImage=layer.style.maskImage="none";layer.hidden=true;return;}
-  const url=`url(${mask.toDataURL("image/png")})`;layer.hidden=false;layer.style.webkitMaskImage=url;layer.style.maskImage=url;
+// 工艺反光层（只在详情页用）：每面最多三层——底箔的反光、工艺组合里的烫印增效、海报画面增效（只有正面）。
+// 前两层用工艺遮罩（烫印 / 镭射 / 光油 / 盲文 / 可变数据烫印的区域），海报层用从海报算出的遮罩；转动时按角度移动（ticketTurner）。
+function ticketFxMask(canvas,row,side,image){
+  const spans=[...(canvas.parentElement?.querySelectorAll(".ticket-fx")||[])];if(!spans.length)return;
+  const w=315,h=Math.round(w*TE.H/TE.W),layers=[];
+  const base=TE.fxOf(row.look.finish),extra=TE.parseCraft(row.look.craft).foil.find(fx=>fx!==base);
+  if(base!=="none"||extra){
+    const mask=ticketCanvas(w,h);
+    if(TE.foilMask(mask.getContext("2d"),row,side,{x:0,y:0,w,h},ticketCanvas,!!image)){
+      const url=`url(${mask.toDataURL("image/png")})`;
+      if(base!=="none")layers.push({fx:base,k:1,url});
+      if(extra)layers.push({fx:extra,k:.7,url});
+    }
+  }
+  if(side==="front"&&image){const art=TE.artMask(row,image,ticketCanvas,w);if(art)layers.push({fx:art.fx,k:1,url:`url(${art.toDataURL("image/png")})`});}
+  spans.forEach((el,i)=>{
+    const layer=layers[i];el.hidden=!layer;
+    if(!layer){el.style.webkitMaskImage=el.style.maskImage="none";delete el.dataset.fx;return;}
+    el.dataset.fx=layer.fx;el.dataset.k=layer.k;el.style.webkitMaskImage=layer.url;el.style.maskImage=layer.url;
+  });
 }
 function ticketSave(stay){
   const d=ticketDraft,row=TE.sanitize({...d.row});

@@ -67,6 +67,7 @@
 .te-l1,.te-r1{top:.9%;height:78.6%}
 .te-l2,.te-r2{top:82.1%;height:17%}
 .te-l1,.te-l2{left:0}
+.te-craft{font-size:calc(19 * var(--fr));line-height:1.5;color:var(--muted);text-align:center;padding:0 calc(16 * var(--r))}
 /* 工艺反光（参考视高迪数字增效）：遮罩来自票面的烫印 / 镭射 / 光油区域，位置与强度由 turn.wxs 按角度写入；与网页 styles/tickets.css 一致 */
 .te-fx{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;opacity:0;background-repeat:no-repeat;-webkit-mask-size:100% 100%;mask-size:100% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;mix-blend-mode:screen}
 .fx-holo{background-image:linear-gradient(115deg,#ff8ad8,#ffd36e,#7dffcf,#6fc3ff,#c49bff,#ff8ad8,#ffd36e,#7dffcf,#6fc3ff);background-size:300% 300%;mix-blend-mode:color-dodge}
