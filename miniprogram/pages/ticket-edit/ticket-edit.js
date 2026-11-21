@@ -23,6 +23,8 @@ function glowCss(x,y,kind){
   if(kind==='soft')return `radial-gradient(${at},rgba(255,255,255,.12),rgba(255,255,255,0) 55%)`;
   return `radial-gradient(${at},rgba(255,255,255,.36),rgba(255,255,255,0) 52%)`;
 }
+// 票面改动（裁切 / 配图）的指纹：和上次保存时不同才点亮「保存」
+const artSig=d=>[d.crop,d.art].join('|');
 const sigOf=(row,side)=>[side,R.packLook(row.look),row.crop,row.art,row.title,row.subtitle,row.date,row.time,row.venue,row.hall,row.city,row.seat,row.format,row.programme,row.section].join('¦');
 function canvas(page,id){return new Promise(resolve=>wx.createSelectorQuery().in(page).select('#'+id).fields({node:true}).exec(r=>resolve(r&&r[0]&&r[0].node||null)));}
 function image(node,src){
@@ -37,7 +39,7 @@ function image(node,src){
 
 Page({
   data:{i:{},ps:'',ok:false,draft:{},front:true,frontImg:'',backImg:'',rx:-2,ry:-4,turning:false,snap:false,glowBg:'',shine:'metal',
-    arts:[],artIndex:0,shows:[],showIdx:-1,existing:false,linked:false,loading:false,busy:true},
+    arts:[],artIndex:0,shows:[],showIdx:-1,existing:false,linked:false,loading:false,busy:true,artDirty:false},
   onLoad(q){
     this._artStyle=Art.normalize();
     try{this._artStyle=Art.normalize(wx.getStorageSync(Art.storageKey));}catch(_){}
@@ -71,12 +73,13 @@ Page({
   setup(row){
     if(row.art)row.art=artworkUrl(row.art);
     this._draft=row;
+    this._artSaved=this._original?artSig(row):'';
     this._art=[...(row.arts||[])].map(artworkUrl);
     if(row.art&&!this._art.includes(row.art))this._art.unshift(row.art);
     // 场次：手工票根列出本片全部场次；来自观影记录的只列当天
     this._shows=(this.data_.shows||[]).filter(x=>x.id===row.filmId).map(x=>{const v=this.idx.VN[x.v];return {date:iso(U.showDate(x)),time:x.t,venue:(v&&v.name)||'',hall:this.idx.hallName(x)||'',city:(v&&v.city)||''};})
       .filter(x=>!row.linked||x.date===row.date).sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time));
-    this.setData({ok:true,draft:row,existing:!!this._original,linked:!!row.linked,
+    this.setData({ok:true,draft:row,existing:!!this._original,artDirty:!this._original,linked:!!row.linked,
       arts:this._art.map((_,i)=>I.tr(i===0?'海报':'备用图像')+' '+(i+1)),artIndex:Math.max(0,this._art.indexOf(row.art)),
       shows:this._shows.map(x=>`${x.date.slice(5).replace('-','/')} ${x.time} · ${x.venue}${x.hall?' '+x.hall:''}`),showIdx:this.showIndex(),
       shine:R.shineOf(row.look.finish).kind},()=>this.renderFaces());
@@ -147,7 +150,7 @@ Page({
     if(['date','time','venue'].includes(name))patch.showIdx=this.showIndex();
     this.setData(patch);
     // 裁切只作用于正面海报：在看背面时拖动先翻回正面
-    if(name==='crop'&&!this.data.front)this.flip();
+    if(name==='crop'){this.artState();if(!this.data.front)this.flip();}
     this.soon(name==='crop'?120:350);
   },
   chooseShow(e){
@@ -156,8 +159,10 @@ Page({
     Object.assign(d,{time:x.time,venue:x.venue,hall:x.hall,city:x.city});
     this.setData({draft:d,showIdx:Number(e.detail.value)});this.renderFaces();
   },
-  chooseArt(e){this._draft.art=this._art[Number(e.detail.value)];this._draft.crop=50;this.setData({artIndex:Number(e.detail.value),'draft.crop':50});this.renderFaces();},
-  store(){
+  chooseArt(e){this._draft.art=this._art[Number(e.detail.value)];this._draft.crop=50;this.setData({artIndex:Number(e.detail.value),'draft.crop':50});this.artState();this.renderFaces();},
+  artState(){const dirty=!this._original||artSig(this._draft)!==this._artSaved;if(dirty!==this.data.artDirty)this.setData({artDirty:dirty});},
+  saveHere(){if(this.data.artDirty)this.store(true);},
+  store(stay){
     const d=this._draft,row=R.sanitize({...d});
     if(!row.date){say('请填写放映日期');return;}
     let key=d.key;
@@ -166,6 +171,7 @@ Page({
     const changes={[key]:base?R.entryFrom({...row,id:key},{...base,id:key}):{t:Date.now()}};
     if(this._original&&this._original!==key)changes[this._original]={del:1,t:Date.now()};
     if(!Tix.set(changes,this.data_,this.idx))return;
+    if(stay===true){this._original=key;this._draft.key=key;this._artSaved=artSig(this._draft);this.setData({existing:true,artDirty:false});say('已保存');return;}
     wx.navigateBack({success:()=>say('已收进票根收藏册'),fail:()=>wx.redirectTo({url:'/pages/tickets/tickets'})});
   },
   remove(){

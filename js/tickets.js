@@ -362,6 +362,14 @@ function ticketOpen(row){
   const item=row.linked?ticketViewings().find(x=>x.key===row.key):null;
   ticketDraft={row:{...row,look:{...row.look}},original:row.key,side:ticketSide,view:item?.view||null};ticketRender();window.scrollTo(0,0);
 }
+// 票面（裁切 / 配图）改动后，可以就地保存，不用离开详情页
+const ticketArtSig=row=>[row.crop,row.art].join("|");
+function ticketArtDirty(){
+  const d=ticketDraft;if(!d)return false;
+  if(d.artSig===undefined)d.artSig=d.original?ticketArtSig(d.row):"";
+  return ticketArtSig(d.row)!==d.artSig;
+}
+function ticketArtSaveState(){const b=main.querySelector(".te-art-save");if(b)b.disabled=!ticketArtDirty();}
 function ticketEditor(row){
   const assets=[...(row.arts||[])];
   if(row.art&&!assets.includes(row.art))assets.unshift(row.art);
@@ -374,7 +382,8 @@ function ticketEditor(row){
       <span class="ticket-face ticket-back"><canvas width="630" height="1296" id="ticket-preview-back" aria-hidden="true"></canvas></span></span></button>
       ${assets.length?`<div class="te-art">
         <label class="te-crop"><span>${ticketDict("裁切")}</span><input class="te-range" type="range" min="0" max="100" name="crop" value="${row.crop}" aria-label="${ticketDict("裁切位置")}"></label>
-        ${assets.length>1?`<select class="te-art-pick" name="art" aria-label="${ticketDict("票面图像")}">${assets.map((a,i)=>ticketOption(a,`${tr(i===0?"海报":"备用图像")} ${i+1}`,row.art)).join("")}</select>`:""}</div>`:""}
+        ${assets.length>1?`<select class="te-art-pick" name="art" aria-label="${ticketDict("票面图像")}">${assets.map((a,i)=>ticketOption(a,`${tr(i===0?"海报":"备用图像")} ${i+1}`,row.art)).join("")}</select>`:""}
+        <button type="button" class="te-art-save" data-ticket-action="save-here" ${ticketArtDirty()?"":"disabled"}>${ticketDict("保存")}</button></div>`:""}
       <div class="te-tools"><div class="te-seg" role="tablist" aria-label="${ticketDict("票根面")}">
         <button type="button" role="tab" data-ticket-side="front" aria-selected="${front}">${ticketDict("正面")}</button><button type="button" role="tab" data-ticket-side="back" aria-selected="${!front}">${ticketDict("背面")}</button></div>
         <button type="button" class="te-dice" data-ticket-action="shuffle">${ticketDict("随机换一款")}</button></div>
@@ -418,7 +427,7 @@ async function ticketRenderCard(canvas,row,side){
   draw(null);
   if(side==="front"&&row.art){const image=await ticketPoster(row,false);if(canvas.isConnected&&canvas.ticketPainting===rendering&&image)draw(image);}
 }
-function ticketSave(){
+function ticketSave(stay){
   const d=ticketDraft,row=TE.sanitize({...d.row});
   if(!row.date){toast(tr("请填写放映日期"));return;}
   let key=d.row.key;
@@ -432,6 +441,10 @@ function ticketSave(){
   const changes={[key]:entry};
   if(d.original&&d.original!==key)changes[d.original]={del:1,t:Date.now()};
   if(!ticketSet(changes))return;
+  if(stay){
+    d.original=key;d.row.key=key;d.artSig=ticketArtSig(d.row);
+    const y=window.scrollY;ticketRender();window.scrollTo(0,y);toast(tr("已保存"));return;
+  }
   ticketDraft=null;ticketMode="album";ticketRender();toast(tr("已收进票根收藏册"));
 }
 
@@ -485,7 +498,7 @@ async function ticketExport(button,single){
 function ticketInput(event){
   const t=event.target;
   if(t.id==="ticket-search")ticketSearch(t.value);
-  else if(t.name==="crop"&&ticketDraft){ticketDraft.row.crop=Number(t.value);if(ticketDraft.side!=="front")ticketFlipTo("front");ticketDrawEditor();}
+  else if(t.name==="crop"&&ticketDraft){ticketDraft.row.crop=Number(t.value);if(ticketDraft.side!=="front")ticketFlipTo("front");ticketDrawEditor();ticketArtSaveState();}
   // 边输入边更新预览（停顿 250ms 再画）
   else if(ticketDraft&&["time","venue","hall","seat","format"].includes(t.name)){ticketDraft.row[t.name]=t.value;clearTimeout(ticketSearchTimer);ticketSearchTimer=setTimeout(ticketDrawEditor,250);}
 }
@@ -498,7 +511,7 @@ function ticketChange(event){
   if(["date","time","venue","hall","seat","format","art"].includes(name)){
     row[name]=value;
     if(name==="art")row.crop=50;
-    ticketDrawEditor();
+    ticketDrawEditor();ticketArtSaveState();
   }
 }
 function ticketClick(e){
@@ -542,6 +555,7 @@ function ticketClick(e){
     case "shuffle":ticketDraft.row.look=TE.randomLook(ticketDraft.row);ticketDrawEditor();break;
     case "reset":ticketDraft.row.look=TE.defaults(TE.sanitize({...ticketDraft.row,look:null}));ticketDrawEditor();break;
     case "save":ticketSave();break;
+    case "save-here":ticketSave(true);break;
     case "remove":
       if(confirm(tr(ticketDraft.row.linked?"将这张票根移出收藏册？这次观影会回到「待制作」。":"将这张票根移出收藏册？"))&&ticketSet({[ticketDraft.original]:{del:1,t:Date.now()}})){
         ticketDraft=null;ticketMode="album";ticketRender();
