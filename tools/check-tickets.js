@@ -144,7 +144,15 @@ assert.equal(new Set(renders).size,Sketch.styles.length,'each style has distinct
 const doodle=Sketch.stylize(patch,12,8,48,32,'doodle');
 const hasInk=doodle.some((value,i)=>i%4===0&&value<40&&doodle[i+1]<40&&doodle[i+2]<40);
 assert(hasInk,'comic panel outlines strongly contrasting colors');
-assert.equal(Sketch.styles.at(-1).id,'doodle');
+assert.deepStrictEqual(Sketch.styles.slice(-3).map(x=>x.id),['doodle','kid-crayon','cartoon']);
+// 卡通漫画：色块分明、有黑色勾线；童趣蜡笔：有露白的蜡笔纹（比彩色涂鸦浅色像素更多）
+const disc=new Uint8ClampedArray(40*30*4);for(let y=0;y<30;y++)for(let x=0;x<40;x++){const i=(y*40+x)*4,inside=(x-20)**2+(y-15)**2<64;disc.set(inside?[40,60,150,255]:[235,225,200,255],i);}
+const toon=Sketch.stylize(disc,40,30,80,60,'cartoon');
+assert(toon.some((value,i)=>i%4===0&&value<60&&toon[i+1]<60&&toon[i+2]<60),'cartoon draws ink outlines');
+const sat=new Uint8ClampedArray(40*30*4);for(let i=0;i<sat.length;i+=4)sat.set(i%160<80?[200,40,40,255]:[40,90,200,255],i);
+const kid=Sketch.stylize(sat,40,30,200,150,'kid-crayon'),flat=Sketch.stylize(sat,40,30,200,150,'doodle');
+const pale=a=>a.filter((v,i)=>i%4===0&&Math.min(v,a[i+1],a[i+2])>140).length;
+assert(pale(kid)>pale(flat)*1.5+50,'kid crayon leaves paper showing through the wax');
 const blocked=()=>({getContext:()=>({getImageData(){throw Error('pixels unavailable');}})});
 assert.equal(Sketch.paint({}, {},50,{x:0,y:0,w:48,h:32},blocked,()=>{}),false);
 
