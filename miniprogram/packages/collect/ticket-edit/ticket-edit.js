@@ -12,7 +12,7 @@ const I=require('../../../utils/i18n.js');
 const CFG=require('../../../utils/cfg.js');
 const app=getApp();
 const SITE='https://sparrowcinema.github.io/SparrowTribe/';
-const FACE_W=600,FACE_H=Math.round(FACE_W*R.H/R.W),FLIP_MS=180;
+const FACE_W=600,FAST_W=360,FACE_H=Math.round(FACE_W*R.H/R.W),FLIP_MS=180;
 const say=phrase=>wx.showToast({title:I.tr(phrase),icon:'none'});
 const stock=(w,h)=>wx.createOffscreenCanvas({type:'2d',width:w,height:h});
 const iso=d=>[d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-');
@@ -99,8 +99,9 @@ Page({
   },
   showIndex(){const d=this._draft;return this._shows.findIndex(x=>x.date===d.date&&x.time===d.time&&x.venue===d.venue);},
   // ——— 预览：画成图片 ———
-  async faceImage(node,side,turn){
-    const row={...this._draft,artStyle:this._artStyle},sig=sigOf(row,side);
+  // fast：拖动裁切时用，导出一张较小的图（编码快很多），松手后再画清晰的
+  async faceImage(node,side,turn,fast){
+    const row={...this._draft,artStyle:this._artStyle},sig=sigOf(row,side)+(fast?'¦fast':'');
     if(this._cache.has(sig))return this._cache.get(sig);
     let art=null;
     if(side==='front'&&row.art){
@@ -112,7 +113,7 @@ Page({
     const ctx=node.getContext('2d');
     ctx.clearRect(0,0,FACE_W,FACE_H);
     R.draw(ctx,row,side,art,{x:0,y:0,w:FACE_W,h:FACE_H},stock);
-    const path=await new Promise(resolve=>wx.canvasToTempFilePath({canvas:node,fileType:'png',success:r=>resolve(r.tempFilePath),fail:()=>resolve('')},this));
+    const path=await new Promise(resolve=>wx.canvasToTempFilePath({canvas:node,fileType:'png',...(fast?{destWidth:FAST_W,destHeight:Math.round(FAST_W*FACE_H/FACE_W)}:{}),success:r=>resolve(r.tempFilePath),fail:()=>resolve('')},this));
     if(path&&turn===this._turn&&this._ready){this._cache.set(sig,path);if(this._cache.size>24)this._cache.delete(this._cache.keys().next().value);}
     return path;
   },
@@ -133,6 +134,21 @@ Page({
     }
     const kind=R.shineOf(this._draft.look.finish).kind;
     this.setData({busy:false,shine:kind,glowBg:glowCss(42,30,kind)});
+  },
+  // 拖动裁切时实时预览（与网页一致）：只重画正面，上一张还没画完就只记下「还要再画」，画完立刻按最新位置再画一张，
+  // 不会排队堆积，也不用等手指停下；松手（bindchange）后再按原来的流程画清晰的正反面
+  async liveCrop(){
+    if(this._liveBusy){this._livePending=true;return;}
+    this._liveBusy=true;
+    try{
+      do{
+        this._livePending=false;
+        const turn=++this._turn,node=await canvas(this,'te-worker');
+        if(!node||turn!==this._turn||!this._ready)break;
+        const path=await this.faceImage(node,'front',turn,true);
+        if(path&&turn===this._turn&&this._ready)this.setData({frontImg:path});
+      }while(this._livePending&&this._ready);
+    }finally{this._liveBusy=false;}
   },
   soon(ms){clearTimeout(this._soonT);this._soonT=setTimeout(()=>this.renderFaces(),ms);},
   // ——— 翻面与倾斜（CSS 3D） ———
@@ -172,6 +188,7 @@ Page({
     this.setData(patch);
     // 裁切只作用于正面海报：在看背面时拖动先翻回正面
     if(name==='crop'){this.artState();if(!this.data.front)this.flip();}
+    if(name==='crop'&&e.type==='changing'){clearTimeout(this._soonT);this.liveCrop();return;}
     this.soon(name==='crop'?120:350);
   },
   chooseShow(e){
