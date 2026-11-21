@@ -142,5 +142,6 @@
     </view>
   </block>
 </view>
+<page-container show="{{mode!=='album'}}" overlay="{{false}}" duration="{{0}}" z-index="{{-1}}" custom-style="height:0;overflow:hidden;background:transparent" bind:afterleave="onBackGesture"></page-container>
 <canvas type="2d" id="ticket-export-canvas" class="al-export-canvas" />
 <canvas type="2d" id="ticket-worker" class="al-export-canvas" />

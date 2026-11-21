@@ -279,8 +279,10 @@ Page({
     if(!this._draft||!this._ready)return;
     const render=++this._render;
     if(!this._preview){
-      const node=await canvas(this,'ticket-editor');
-      if(!node||render!==this._render)return;
+      // 刚切到编辑页时画布可能还没准备好，最多再等 10 次
+      let node=null;
+      for(let i=0;i<10&&!node;i++){node=await canvas(this,'ticket-editor');if(!node)await new Promise(r=>setTimeout(r,60));if(render!==this._render||!this._draft)return;}
+      if(!node)return;
       node.width=630;node.height=1296;
       this._preview={node,render:createPreview(node,stock)};
     }
@@ -301,6 +303,8 @@ Page({
     preview.render(this._draft,this._side,this._side==='front'?preview.art:null,turn,light);
   },
   backAlbum(){this.album();},
+  // 隐藏的 page-container：在编辑、待制作、制作票根时，系统返回手势只关掉它，回到收藏册而不是退出页面
+  onBackGesture(){if(this.data.mode!=='album')this.album();},
   // ——— 导出 ———
   toggleExport(){
     if(this.data.exportOpen){this.setData({exportOpen:false});return;}
