@@ -3,6 +3,7 @@
 // 用 <image> 显示，倾斜、翻面用 CSS 3D 变换完成，高光是一层随手指移动的渐变——不再逐帧在画布上重画。
 // 参数：key=票根键（已收藏或待制作），film=影片id（没有观影记录时新建手工票根）。
 const R=require('../../../utils/tickets.js');
+const TitleFont=require('../../../utils/ticket-font.js');
 const Art=require('../../../utils/ticket-sketch.js');
 const readArtPreference=key=>wx.getStorageSync(key);
 const Tix=require('../../../utils/ticketstore.js');
@@ -108,6 +109,7 @@ Page({
       if(this._artSrc!==row.art){this._artSrc=row.art;this._artImage=image(node,row.art);}
       art=await this._artImage;
     }
+    await TitleFont.ready();
     if(turn!==this._turn||!this._ready)return '';
     node.width=FACE_W;node.height=FACE_H;
     const ctx=node.getContext('2d');
@@ -245,7 +247,7 @@ Page({
     this.setData({loading:true});wx.showLoading({title:I.tr('正在生成图片'),mask:true});
     try{
       const node=await canvas(this,'te-export');if(!node)throw Error('canvas');
-      const art=side==='front'?await image(node,row.art):null;
+      const [art]=await Promise.all([side==='front'?image(node,row.art):null,TitleFont.ready()]);
       node.width=R.W*3;node.height=R.H*3;
       R.draw(node.getContext('2d'),row,side,art,{x:0,y:0,w:node.width,h:node.height},stock);
       const file=await new Promise((resolve,reject)=>wx.canvasToTempFilePath({canvas:node,fileType:'png',success:r=>resolve(r.tempFilePath),fail:reject},this));

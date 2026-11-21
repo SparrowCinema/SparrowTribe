@@ -2,6 +2,7 @@
 // 票根 = 某一次观影的皮肤（utils/ticketstore.js）；按年 → 月连续滚动，先给 48 张、触底再补；
 // 票面由页面里一块隐藏画布逐张画成图片（只画已加载的部分），缓存在本次打开期间；书脊模式不画图。
 const R=require('../../../utils/tickets.js');
+const TitleFont=require('../../../utils/ticket-font.js');
 const Art=require('../../../utils/ticket-sketch.js');
 const readArtPreference=key=>wx.getStorageSync(key);
 const Tix=require('../../../utils/ticketstore.js');
@@ -140,7 +141,7 @@ Page({
   async pump(){
     if(this._busy)return;this._busy=true;
     try{
-      const node=await canvas(this,'ticket-worker');
+      const [node]=await Promise.all([canvas(this,'ticket-worker'),TitleFont.ready()]);
       while(node&&this._ready&&this._queue.length){
         const job=this._queue.shift();if(job.turn!==this._render)continue;
         const row=this._byKey.get(job.k);if(!row)continue;
@@ -267,7 +268,7 @@ Page({
     try{
       const node=await canvas(this,'ticket-export-canvas');
       if(!node)throw Error('Canvas');
-      const small=rows.length>12,images=await Promise.all(rows.map(r=>side==='front'?poster(node,r,small):null));
+      const small=rows.length>12,[images]=await Promise.all([Promise.all(rows.map(r=>side==='front'?poster(node,r,small):null)),TitleFont.ready()]);
       const layout=single?{width:R.W*3,height:R.H*3}:R.wallLayout(rows.length,1440);
       node.width=layout.width;node.height=layout.height;
       const ctx=node.getContext('2d');

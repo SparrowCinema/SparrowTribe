@@ -13,6 +13,9 @@ const SOURCE={x:24,y:94,w:372,h:330};
 // 网页画之前会等这些字体载入（js/tickets.js 的 ticketFonts）；小程序与没有网络时退回系统宋体 / 苹方。
 const SANS='"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif';
 const SERIF='"Noto Serif SC","Songti SC","STSong","SimSun",serif';
+// 片名专用：润植家康熙字典美化体（免费可商用，按片名取字子集，见 tools/build-title-font.py）。
+// 输入简体会显示成《康熙字典》里对应的字形；字体没载入或缺字时退回上面的宋体。只有常规一档，用 500 避免浏览器合成假粗体。
+const TITLE_FAMILY="SparrowKangxi",TITLE=`"${TITLE_FAMILY}",${SERIF}`,TITLE_WEIGHT=500;
 const MONO='"IBM Plex Mono",ui-monospace,Menlo,monospace';
 const LATIN='"Barlow","Helvetica Neue",Arial,sans-serif';
 const WALL_PAGE=12;
@@ -508,14 +511,33 @@ function text(surface,StringValue,x,y,opts={}) {
 // 镭射类（spectrum）是虹彩镭射烫印，金属类是烫金/烫银，哑光与亮釉是同色压凸。
 const mixHex=(a,b,t)=>{const p=h=>[1,3,5].map(i=>parseInt(h.slice(i,i+2),16));const A=p(a),B=p(b);
   return "#"+A.map((v,i)=>Math.round(v*t+B[i]*(1-t)).toString(16).padStart(2,"0")).join("");};
+// 平滑渐变：关键色之间按 smoothstep 补中间色，交界处不会出现一条硬分界线（镭射烫印那种缓慢过渡）
+const HEX=/^#[0-9a-f]{6}$/i;
+function smoothGradient(grad,keys,steps=8) {
+  keys.forEach(([at,color],i)=>{
+    if (i) {
+      const [from,prev]=keys[i-1];
+      if (HEX.test(color)&&HEX.test(prev)) for (let k=1;k<steps;k++) {
+        const t=k/steps,e=t*t*(3-2*t);grad.addColorStop(from+(at-from)*t,mixHex(color,prev,e));
+      }
+    }
+    grad.addColorStop(at,color);
+  });
+  return grad;
+}
+// 一道柔和的宽光带：高斯形状的透明度，没有边缘
+function glowBand(grad,peak,center=.5,spread=.16,rgb="255,255,255") {
+  for (let k=0;k<=24;k++) {const t=k/24,a=peak*Math.exp(-(((t-center)/spread)**2));grad.addColorStop(t,`rgba(${rgb},${a.toFixed(3)})`);}
+  return grad;
+}
 function embossTitle(surface,title,x,y,{accent,dark,finish,scale=1,createCanvas}) {
   const value=title.replace(/\s+/gu," ").trim(),max=359,metal=finishes[finish]||finishes.matte;
   let size=55;
   surface.save();
-  surface.font=`900 ${size}px ${SERIF}`;
+  surface.font=`${TITLE_WEIGHT} ${size}px ${TITLE}`;
   const measured=surface.measureText(value).width;
   if (measured>max) size=Math.max(23,size*max/measured);
-  surface.font=`900 ${size}px ${SERIF}`;surface.textAlign="center";
+  surface.font=`${TITLE_WEIGHT} ${size}px ${TITLE}`;surface.textAlign="center";
   const width=Math.min(max,surface.measureText(value).width),left=x-width/2,top=y-size*.86,bottom=y+size*.12;
   const fill=(color,dx,dy)=>{surface.fillStyle=color;surface.fillText(value,x+dx,y+dy,max);};
   // 1 柔和投影（shadowBlur 以设备像素计，按缩放换算）
@@ -529,32 +551,28 @@ function embossTitle(surface,title,x,y,{accent,dark,finish,scale=1,createCanvas}
   // 烫印压边：一圈细暗线，浅色镭射字在浅纸上也看得清
   surface.lineJoin="round";surface.strokeStyle=dark;surface.globalAlpha=metal.kind==="soft"?.3:.45;surface.lineWidth=1;
   surface.strokeText(value,x,y,max);surface.globalAlpha=1;
-  // 3 字面
+  // 3 字面：所有渐变都用平滑过渡，斜向铺开（像烫印箔随角度慢慢变色），不再在字中间一刀切开
   let face;
+  const diag=()=>surface.createLinearGradient(left,top,left+width*.28,bottom+size*.35);
   if (metal.kind==="spectrum") {
     // 高级镭射：珍珠银底 + 很淡的一轮幻彩（颜色先向银色靠拢，避免大面积彩虹的廉价感）
-    face=surface.createLinearGradient(x,top,x,bottom);
-    face.addColorStop(0,"#f4f5f6");face.addColorStop(.45,"#c9cdd2");face.addColorStop(.62,"#9aa0a8");face.addColorStop(1,"#d9dce0");
-    } else if (metal.kind==="metal") {
-    face=surface.createLinearGradient(x,top,x,bottom);
-    const st=metal.stops;
-    face.addColorStop(0,st[1]);face.addColorStop(.38,st[2]);face.addColorStop(.55,st[0]);face.addColorStop(1,st[st.length-1]);
+    face=smoothGradient(diag(),[[0,"#f6f7f8"],[.5,"#d3d7dc"],[1,"#b4bac2"]]);
+  } else if (metal.kind==="metal") {
+    const st=metal.stops,light=st[st.length-2];
+    face=smoothGradient(diag(),[[0,mixHex(light,st[1],.5)],[.34,light],[.68,st[1]],[1,mixHex(st[0],st[1],.55)]]);
   } else {
-    face=surface.createLinearGradient(x,top,x,bottom);
-    face.addColorStop(0,accent);face.addColorStop(1,dark);
+    face=smoothGradient(surface.createLinearGradient(x,top,x,bottom),[[0,accent],[1,dark]]);
   }
   fill(face,0,0);
   if (metal.kind==="spectrum") {
-    const hue=surface.createLinearGradient(left,bottom,left+width,top),st=metal.stops;
-    st.forEach((c,i)=>hue.addColorStop(i/(st.length-1),mixHex(c,"#dfe3e8",.6)));
+    const st=metal.stops,hue=surface.createLinearGradient(left,bottom,left+width,top);
+    smoothGradient(hue,st.map((c,i)=>[i/(st.length-1),mixHex(c,"#dfe3e8",.6)]));
     surface.globalAlpha=.72;fill(hue,0,0);surface.globalAlpha=1;
   }
-  // 4 光泽：镭射加一道斜向白光与细密衍射纹，金属加一道窄高光，压凸只加上半部的柔光
+  // 4 光泽：镭射 / 金属加一道很宽、边缘完全柔化的斜向反光；压凸只加上半部的柔光
   if (metal.kind!=="soft") {
     const sheen=surface.createLinearGradient(left,top,left+width*.7,bottom+size*.4);
-    sheen.addColorStop(0,"rgba(255,255,255,0)");sheen.addColorStop(.42,"rgba(255,255,255,0)");
-    sheen.addColorStop(.5,metal.kind==="spectrum"?"rgba(255,255,255,.55)":"rgba(255,255,255,.6)");
-    sheen.addColorStop(.58,"rgba(255,255,255,0)");sheen.addColorStop(1,"rgba(255,255,255,0)");
+    glowBand(sheen,metal.kind==="spectrum"?.34:.38,.5,.17);
     fill(sheen,0,0);
   } else {
     const soft=surface.createLinearGradient(x,top,x,bottom);
@@ -803,7 +821,7 @@ function draw(surface,record,side,image,rect,createCanvas,light) {
     } else {
       surface.strokeStyle=foilGradient(surface,x,y,x+w,y+h,finish);surface.lineWidth=1;
       for (let i=0;i<6;i++) surface.strokeRect(x+24+i*9,y+24+i*9,w-48-i*18,h-48-i*18);
-      text(surface,record.title,W/2,y+h/2,{align:"center",font:SERIF,size:30,weight:900,ink:bright,max:w-130});
+      text(surface,record.title,W/2,y+h/2,{align:"center",font:TITLE,size:30,weight:TITLE_WEIGHT,ink:bright,max:w-130});
     }
     surface.strokeStyle=foilGradient(surface,x,y+h,x+w,y,finish);
     surface.lineWidth=metal.width;surface.strokeRect(x-.8,y-.8,w+1.6,h+1.6);
@@ -889,6 +907,6 @@ function drawWall(surface,records,side,images,caption,createCanvas,title,maxWidt
 }
 
 const shineOf=key=>{const f=finishes[key]||finishes.matte;return {kind:f.kind,highlight:f.stops[f.stops.length-2]};};
-return {W,H,WALL_PAGE,MOSAIC_MAX,FACETS,options:labelOptions(),sanitize,read,sorted,defaults,randomLook,shineOf,draw,wallLayout,drawWall,
+return {W,H,TITLE_FAMILY,WALL_PAGE,MOSAIC_MAX,FACETS,options:labelOptions(),sanitize,read,sorted,defaults,randomLook,shineOf,draw,wallLayout,drawWall,
   ticketKey,parseKey,cleanStore,mergeStore,packLook,unpackLook,normArt,viewings,build,reconcile,draft,entryFrom,migrateV1,filterTickets,facetCounts,groupByMonth,swatch};
 });
