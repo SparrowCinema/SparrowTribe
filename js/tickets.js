@@ -500,13 +500,13 @@ function ticketFxStyle(fx,s,t,lit){
     glitter:[`${p(50-s*60)} 0%, ${p(50+s*50)} 0%`,.95],
     gloss:[`${p(50-s*90)} ${p(50+t*90)}`,.75],
     sense:[`${p(50-s*90)} ${p(50+t*90)}, ${p(50-s*60)} 0%`,.9],
-    // 海报上的隐形工艺：强度压低，静止时完全看不见，转动时若隐若现
-    "a-gloss":[`${p(50-s*90)} ${p(50+t*90)}`,.32],
-    "a-rim":[`${p(50-s*90)} ${p(50+t*90)}`,.42],
-    "a-holo":[`${p(50+s*60)} ${p(50+t*60)}`,.5],
-    "a-pearl":[`${p(50+s*70)} ${p(50+t*70)}`,.55],
-    "a-guilloche":[`${p(50-s*60)} 0%`,.38],
-    "a-matte":[`${p(50-s*90)} ${p(50+t*90)}`,.3]
+    // 海报上的隐形工艺：静止时完全看不见，转动时浮现（2026-11-22 调强一档，一般人转一下就能看出来）
+    "a-gloss":[`${p(50-s*90)} ${p(50+t*90)}`,.6],
+    "a-rim":[`${p(50-s*90)} ${p(50+t*90)}`,.72],
+    "a-holo":[`${p(50+s*60)} ${p(50+t*60)}`,.6],
+    "a-pearl":[`${p(50+s*70)} ${p(50+t*70)}`,.62],
+    "a-guilloche":[`${p(50-s*60)} 0%`,.68],
+    "a-matte":[`${p(50-s*90)} ${p(50+t*90)}`,.55]
   };
   const [pos,peak]=table[fx]||["50% 50%",0];
   return {pos,o:+(o*peak).toFixed(3)};
@@ -578,7 +578,7 @@ async function ticketRenderCard(canvas,row,side){
   draw(null);
   if(side==="front"&&row.art){const image=await ticketPoster(row,false);if(canvas.isConnected&&canvas.ticketPainting===rendering&&image)draw(image);}
 }
-// 工艺反光层（只在详情页用）：每面最多三层——底箔的反光、工艺组合里的烫印增效、海报画面增效（只有正面）。
+// 工艺反光层（只在详情页用）：每面最多三层——底箔的反光、工艺组合里的烫印增效、隐形底纹（正面在海报上，背面铺满背面）。
 // 前两层用工艺遮罩（烫印 / 镭射 / 光油 / 盲文 / 可变数据烫印的区域），海报层用从海报算出的遮罩；转动时按角度移动（ticketTurner）。
 function ticketFxMask(canvas,row,side,image){
   const spans=[...(canvas.parentElement?.querySelectorAll(".ticket-fx")||[])];if(!spans.length)return;
@@ -593,6 +593,7 @@ function ticketFxMask(canvas,row,side,image){
     }
   }
   if(side==="front"&&image){const art=TE.artMask(row,image,ticketCanvas,w);if(art)layers.push({fx:art.fx,k:1,url:`url(${art.toDataURL("image/png")})`});}
+  if(side==="back"){const back=TE.backMask(row,ticketCanvas,w);if(back)layers.push({fx:back.fx,k:1,url:`url(${back.toDataURL("image/png")})`});}
   spans.forEach((el,i)=>{
     const layer=layers[i];el.hidden=!layer;
     if(!layer){el.style.webkitMaskImage=el.style.maskImage="none";delete el.dataset.fx;return;}

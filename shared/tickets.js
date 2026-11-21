@@ -299,7 +299,9 @@ const options={finish:finishes,texture:papers,palette:palettes,motif:motifs};
 const CRAFT_FOIL={s:"sense",g:"glitter",c:"crystal",h:"cast"};
 const CRAFT_ART={u:"uv",r:"rim",o:"holo",k:"sparkle",b:"band",d:"dust"};
 const CRAFT_LABEL={sense:"立体光油",glitter:"金葱闪粉",crystal:"水晶幻彩",cast:"全息纹理",
-  uv:"隐形高光UV",rim:"隐形轮廓光油",holo:"隐形全息水印",sparkle:"隐形珠光",band:"隐形扭索纹",dust:"亮哑对比纹",braille:"盲文凸点",vde:"日期可变数据烫印"};
+  uv:"隐形高光UV",rim:"隐形轮廓光油",holo:"隐形全息水印",sparkle:"隐形珠光",band:"隐形扭索纹",dust:"亮哑对比纹",
+  // 背面同一个字母对应另一种隐形底纹（2026-11-22）
+  "back-uv":"隐形放射纹","back-rim":"隐形环形扭索","back-holo":"隐形专题水印","back-sparkle":"隐形星尘","back-band":"隐形扭索底纹","back-dust":"亮哑网点底纹",braille:"盲文凸点",vde:"日期可变数据烫印"};
 const CRAFT_RE=/^[sgch]{0,2}-[0urokbd][Bv]{0,2}$/;
 function makeCraft(rand,finish) {
   const own=finishes[finish]?.fx;
@@ -317,7 +319,7 @@ function parseCraft(code) {
 }
 function craftLabel(look,tr=x=>x) {
   const c=parseCraft(look?.craft),parts=[finishes[look?.finish]?.label||""];
-  c.foil.forEach(k=>parts.push(CRAFT_LABEL[k]));if (c.art) parts.push("海报"+CRAFT_LABEL[c.art]);
+  c.foil.forEach(k=>parts.push(CRAFT_LABEL[k]));if (c.art) parts.push("海报"+CRAFT_LABEL[c.art],"背面"+CRAFT_LABEL["back-"+c.art]);
   if (c.braille) parts.push(CRAFT_LABEL.braille);if (c.vde) parts.push(CRAFT_LABEL.vde);
   return parts.filter(Boolean).map(tr).join(" + ");
 }
@@ -1089,6 +1091,56 @@ function artMask(record,image,createCanvas,w) {
   return full;
 }
 
+// ——— 背面隐形底纹（2026-11-22）———
+// 和海报增效用同一个字母，背面换成另一种底纹，铺满背面边框以内；静止时看不见，转动时在深色底上浮现：
+// u 放射纹（从纹章中心放出的细光束）、r 环形扭索（绕纹章的玫瑰曲线）、o 专题水印（专题名斜向平铺）、
+// k 星尘（稀疏的亮点和星芒）、b 扭索底纹（铺满整面的防伪玫瑰曲线）、d 亮哑网点底纹。
+const BACK_FX={uv:"a-guilloche",rim:"a-rim",holo:"a-holo",sparkle:"a-guilloche",band:"a-holo",dust:"a-matte"};
+function backMask(record,createCanvas,w) {
+  const kind=parseCraft(record.look?.craft).art;
+  if (!kind) return null;
+  const h=Math.round(w*H/W),k=w/W;let full;
+  try {full=createCanvas(w,h);} catch (error) {return null;}
+  const m=full.getContext("2d"),rand=seeded(hashAppearance("back|"+(record.id||record.key||"")+kind));
+  m.save();m.scale(k,k);
+  m.beginPath();m.rect(20,18,W-40,H-36);m.clip();
+  m.fillStyle="#fff";m.strokeStyle="#fff";
+  const cx=W/2,cy=283;
+  if (kind==="uv") {
+    for (let i=0;i<96;i++) {const a=i/96*Math.PI*2,b=a+Math.PI/96*.55;m.beginPath();m.moveTo(cx+Math.cos(a)*78,cy+Math.sin(a)*78);m.lineTo(cx+Math.cos(a)*900,cy+Math.sin(a)*900);m.lineTo(cx+Math.cos(b)*900,cy+Math.sin(b)*900);m.lineTo(cx+Math.cos(b)*78,cy+Math.sin(b)*78);m.closePath();m.fill();}
+  } else if (kind==="rim" || kind==="band") {
+    const ring=kind==="rim",ox=ring?cx:W*(.3+rand()*.4),oy=ring?cy:H*(.35+rand()*.3),petals=6+Math.floor(rand()*6),R=ring?150:Math.hypot(W,H)*.5;
+    m.lineWidth=.7;
+    for (let j=0;j<(ring?16:30);j++) {
+      const base=ring?82+j*5.2:R*(.08+j*.032),amp=ring?9:R*.05,phase=j*.23;
+      m.beginPath();
+      for (let i=0;i<=360;i++) {const t=i/360*Math.PI*2,r=base+amp*Math.sin(petals*t+phase)+amp*.4*Math.sin((petals*2+1)*t-phase);m.lineTo(ox+Math.cos(t)*r,oy+Math.sin(t)*r);}
+      m.stroke();
+    }
+  } else if (kind==="holo") {
+    const word=(record.programme||"麻雀观影护照").replace(/^\d{4}\s*/,"").replace(/\s+/g,"").slice(0,12)||"SPARROW",size=19;
+    m.save();m.translate(cx,H/2);m.rotate(-Math.PI*.13);
+    m.font=`700 ${size}px ${SERIF}`;m.textAlign="center";m.textBaseline="middle";
+    const gap=m.measureText(word).width+size*1.8,span=Math.hypot(W,H);
+    for (let y=-span/2,row=0;y<span/2;y+=size*2.3,row++) for (let x=-span/2+(row%2)*gap/2;x<span/2;x+=gap) m.fillText(word,x,y);
+    m.restore();
+  } else if (kind==="sparkle") {
+    for (let i=0;i<520;i++) {
+      const x=20+rand()*(W-40),y=18+rand()*(H-36),r=.5+rand()*1.3;
+      m.globalAlpha=.5+rand()*.5;m.beginPath();m.arc(x,y,r,0,Math.PI*2);m.fill();
+      if (rand()<.06) {m.fillRect(x-4,y-.3,8,.6);m.fillRect(x-.3,y-4,.6,8);}
+    }
+    m.globalAlpha=1;
+  } else {
+    const step=5.2,r=1.5;m.save();m.translate(cx,H/2);m.rotate(Math.PI/4);const span=Math.hypot(W,H);
+    for (let y=-span/2;y<span/2;y+=step) for (let x=-span/2;x<span/2;x+=step) {m.beginPath();m.arc(x,y,r,0,Math.PI*2);m.fill();}
+    m.restore();
+  }
+  m.restore();
+  full.fx=BACK_FX[kind];
+  return full;
+}
+
 // ——— 盲文凸点（视高迪 Braille）：透明立体光油点，英文一级盲文 ———
 const BRAILLE={S:[2,3,4],P:[1,2,3,4],A:[1],R:[1,2,3,5],O:[1,3,5],W:[2,4,5,6],C:[1,4],I:[2,4],N:[1,3,4,5],E:[1,5],M:[1,3,4]};
 function drawBraille(surface,word,x,y) {
@@ -1215,6 +1267,6 @@ function drawWall(surface,records,side,images,caption,createCanvas,title,maxWidt
 }
 
 const shineOf=key=>{const f=finishes[key]||finishes.matte;return {kind:f.kind,fx:fxOf(key),highlight:f.stops[f.stops.length-2]};};
-return {W,H,TITLE_FAMILY,edgeOf,foilMask,fxOf,artMask,parseCraft,craftLabel,lookSig,foilLayers,WALL_PAGE,MOSAIC_MAX,FACETS,options:labelOptions(),sanitize,read,sorted,defaults,randomLook,shineOf,draw,wallLayout,drawWall,
+return {W,H,TITLE_FAMILY,edgeOf,foilMask,fxOf,artMask,backMask,parseCraft,craftLabel,lookSig,foilLayers,WALL_PAGE,MOSAIC_MAX,FACETS,options:labelOptions(),sanitize,read,sorted,defaults,randomLook,shineOf,draw,wallLayout,drawWall,
   ticketKey,parseKey,cleanStore,mergeStore,packLook,unpackLook,normArt,viewings,build,reconcile,draft,entryFrom,migrateV1,filterTickets,facetCounts,groupByMonth,swatch};
 });
