@@ -278,14 +278,25 @@ function frame(surface) {
 }
 
 
+// 盲盒搭配规则（2026-11-22）：配色分冷暖，底箔只从和配色调子相配的里面抽（暖色配金铜、冷色配银与冷调镭射、紫粉配珠光棱镜）
+const TONE={warm:["burgundy","honey","ember","rust","peach","crimson","clay","sepia","lemon","olive","moss"],
+  cool:["jade","navy","cyan","teal","fern","cobalt","ink","graphite","indigo"],mauve:["violet","rose","iris","plum"]};
+const TONE_FINISH={warm:["gold","copper","solar","holo","glitter","sense","varnish","matte","pearl"],
+  cool:["silver","aurora","opal","pearl","cobalt","crystal","prism","cast","sense","varnish","matte"],
+  mauve:["prism","opal","pearl","crystal","copper","holo","cast","sense","varnish"]};
+const toneOf=palette=>Object.keys(TONE).find(t=>TONE[t].includes(palette))||"cool";
+function matchFinish(list,palette) {const ok=TONE_FINISH[toneOf(palette)];const hit=list.filter(f=>ok.includes(f));return hit.length?hit:list;}
 function defaults(record) {
   const preset=programmeLooks[record.programmeId] || {};
   const family=families[preset.family] || families[inferFamily(record.programme)];
   const key="sparrow-collectible-1|"+record.programmeId;
+  const palette=preset.palette || pick(family.palette,key);
+  // 盲盒：专题指定的底箔 / 纸张只占四成，其余从同家族里按搭配规则抽，同一专题的票根也各不相同；配色与纹样仍按专题固定（专题的识别感）
+  const often=(value,salt)=>value && hashAppearance(key+"|"+record.id+"|"+salt)%10<4 ? value : null;
   return {
-    palette:preset.palette || pick(family.palette,key),
-    finish:preset.finish || pick(family.finish,key+"|"+record.id),
-    texture:preset.texture || pick(family.texture,key+"|"+record.id),
+    palette,
+    finish:often(preset.finish,"finish") || pick(matchFinish(family.finish,palette),key+"|"+record.id),
+    texture:often(preset.texture,"texture") || pick(family.texture,key+"|"+record.id),
     motif:preset.motif || pick(family.motif,key+"|"+record.id)
   };
 }
@@ -297,20 +308,24 @@ const options={finish:finishes,texture:papers,palette:palettes,motif:motifs};
 // 默认按票根 id 稳定随机（同一张票根永远一样），「随机换一款」会一起换；改过的存在票根的 x 字段（shared/psync.js）。
 // 组合数：11 种烫印增效 × 7 种海报增效 × 4 种开关 = 308 种，再乘 16 种底箔、各家族的配色 / 纸张 / 纹样。
 const CRAFT_FOIL={s:"sense",g:"glitter",c:"crystal",h:"cast"};
-const CRAFT_ART={u:"uv",r:"rim",o:"holo",k:"sparkle",b:"band",d:"dust",w:"rainbow",p:"pixel",q:"ripple"};
+const CRAFT_ART={u:"uv",r:"rim",o:"holo",k:"sparkle",b:"band",d:"dust",w:"rainbow",p:"pixel",q:"ripple",m:"moire",l:"lenticular",i:"glint",n:"cateye"};
 const CRAFT_LABEL={sense:"立体光油",glitter:"金葱闪粉",crystal:"水晶幻彩",cast:"全息纹理",
   uv:"隐形高光UV",rim:"隐形轮廓光油",holo:"隐形全息水印",sparkle:"隐形珠光",band:"隐形扭索纹",dust:"亮哑对比纹",
   // 背面同一个字母对应另一种隐形底纹（2026-11-22）
-  rainbow:"隐形镭射彩虹",pixel:"隐形像素镭射",ripple:"隐形同心波纹",
+  rainbow:"隐形镭射彩虹",pixel:"隐形像素镭射",ripple:"隐形同心波纹",moire:"隐形莫尔纹",lenticular:"隐形光栅变色",glint:"隐形星芒",cateye:"隐形猫眼光",
+  "back-moire":"隐形莫尔纹","back-lenticular":"隐形光栅变色","back-glint":"隐形星芒","back-cateye":"隐形猫眼光",
   "back-rainbow":"隐形镭射彩虹","back-pixel":"隐形像素镭射","back-ripple":"隐形同心波纹",
   "back-uv":"隐形放射纹","back-rim":"隐形环形扭索","back-holo":"隐形专题水印","back-sparkle":"隐形星尘","back-band":"隐形扭索底纹","back-dust":"亮哑网点底纹",braille:"盲文凸点",vde:"日期可变数据烫印"};
-const CRAFT_RE=/^[sgch]{0,2}-[0urokbdwpq][Bv]{0,2}$/;
+const CRAFT_RE=/^[sgch]{0,2}-[0urokbdwpqmlin][Bv]{0,2}$/;
+// 搭配规则：闪粉 / 水晶 / 全息纹理这类显眼的增效一张最多一种，底箔本身已经是其中之一就不再加；立体光油可以和它们搭。
+// 海报 / 背面的隐形工艺每张都有（静止时看不见，转动时才出来），不再抽到「无」。
+const SHOWY=["g","c","h"];
 function makeCraft(rand,finish) {
-  const own=finishes[finish]?.fx;
-  const foil=Object.keys(CRAFT_FOIL).filter(key=>CRAFT_FOIL[key]!==own);
-  const n=rand()<.3?0:rand()<.64?1:2,picked=[];
-  while (picked.length<n && foil.length) picked.push(foil.splice(Math.floor(rand()*foil.length),1)[0]);
-  const arts=Object.keys(CRAFT_ART),art=rand()<.18?"0":arts[Math.floor(rand()*arts.length)];
+  const own=finishes[finish]?.fx,ownShowy=["glitter","crystal","cast"].includes(own);
+  const picked=[];
+  if (!ownShowy && rand()<.55) picked.push(SHOWY[Math.floor(rand()*SHOWY.length)]);
+  if (own!=="sense" && rand()<(picked.length?.3:.45)) picked.push("s");
+  const arts=Object.keys(CRAFT_ART),art=arts[Math.floor(rand()*arts.length)];
   return picked.sort().join("")+"-"+art+(rand()<.25?"B":"")+(rand()<.35?"v":"");
 }
 const craftFor=(record,finish)=>makeCraft(seeded(hashAppearance("craft|"+(record.id||record.key||""))),finish);
@@ -1012,15 +1027,16 @@ function craftTexture(ctx,fx,rand,box={x:0,y:0,w:W,h:H},cx=W*.5,cy=H*.36) {
 // 静止时海报完全不变，只有转动时才在对应区域若隐若现地泛起光泽（像印刷上的透明光油、隐形全息、防伪扭索纹）：
 // 隐形高光UV＝海报最亮的两成；隐形轮廓光油＝明暗边缘；隐形全息水印＝片名斜向平铺的透明全息字；
 // 隐形珠光＝中高调区域的柔和珠光；隐形扭索纹＝钞票式的玫瑰曲线防伪纹；亮哑对比纹＝细密的亮油网点（像亮哑对比的透明光油）；
-// 隐形镭射彩虹＝整幅海报流过彩虹；隐形像素镭射＝细方格光栅；隐形同心波纹＝从一点荡开的细环（2026-11-22 新增，转动时最容易看出来）。
+// 隐形镭射彩虹＝整幅海报流过彩虹；隐形像素镭射＝细方格光栅；隐形同心波纹＝从一点荡开的细环（2026-11-22 新增，转动时最容易看出来）；
+// 隐形莫尔纹＝两组细线的干涉条纹；隐形光栅变色＝竖向细光栅；隐形星芒＝最亮处的十字星芒；隐形猫眼光＝随角度滑动的细亮带。
 // 编码字母沿用（u r o k b d），已保存的组合照常有效，只是效果换成隐形的。遮罩从海报取样（artMask），只给网页 / 小程序转动时的反光层用。
-const ART_FX={uv:"a-gloss",rim:"a-rim",holo:"a-holo",sparkle:"a-pearl",band:"a-guilloche",dust:"a-matte",rainbow:"a-rainbow",pixel:"a-holo",ripple:"a-holo"};
+const ART_FX={uv:"a-gloss",rim:"a-rim",holo:"a-holo",sparkle:"a-pearl",band:"a-guilloche",dust:"a-matte",rainbow:"a-rainbow",pixel:"a-holo",ripple:"a-holo",moire:"a-holo",lenticular:"a-rainbow",glint:"a-gloss",cateye:"a-cateye"};
 function artMaskCanvas(record,image,kind,createCanvas,mw) {
   const mh=Math.max(1,Math.round(mw*SOURCE.h/SOURCE.w)),rand=seeded(hashAppearance("art|"+(record.id||record.key||"")+kind));
   let mask;
   try {mask=createCanvas(mw,mh);} catch (error) {return null;}
   const m=mask.getContext("2d");
-  const geometric=kind==="holo" || kind==="band" || kind==="dust" || kind==="rainbow" || kind==="pixel" || kind==="ripple";
+  const geometric=["holo","band","dust","rainbow","pixel","ripple","moire","lenticular","cateye"].includes(kind);
   let L=null;
   if (!geometric) {
     try {
@@ -1061,6 +1077,34 @@ function artMaskCanvas(record,image,kind,createCanvas,mw) {
     const cx=mw*(.25+rand()*.5),cy=mh*(.25+rand()*.5),step=Math.max(3,mw/40);
     m.strokeStyle="#fff";m.lineWidth=step*.42;
     for (let r=step;r<Math.hypot(mw,mh);r+=step) {m.beginPath();m.arc(cx,cy,r,0,Math.PI*2);m.stroke();}
+  } else if (kind==="moire") {
+    // 隐形莫尔纹：两组角度差几度的细线叠在一起，转动时出现流动的干涉条纹
+    const step=Math.max(2.4,mw/70),a0=rand()*Math.PI,span=Math.hypot(mw,mh);
+    m.strokeStyle="#fff";m.lineWidth=step*.42;
+    for (const a of [a0,a0+.07]) {m.save();m.translate(mw/2,mh/2);m.rotate(a);for (let x=-span/2;x<span/2;x+=step) {m.beginPath();m.moveTo(x,-span/2);m.lineTo(x,span/2);m.stroke();}m.restore();}
+  } else if (kind==="lenticular") {
+    // 隐形光栅变色：竖向细光栅，像光栅卡片换角度变色
+    const step=Math.max(2.4,mw/64);
+    for (let x=0,i=0;x<mw;x+=step,i++) {m.globalAlpha=i%2?.55:1;m.fillRect(x,0,step*.5,mh);}
+    m.globalAlpha=1;
+  } else if (kind==="cateye") {
+    // 隐形猫眼光：整幅柔和铺满，反光是一道随角度滑动的细亮带（磁性猫眼油墨）
+    const g=m.createRadialGradient(mw/2,mh/2,Math.min(mw,mh)*.25,mw/2,mh/2,Math.hypot(mw,mh)*.6);g.addColorStop(0,"#fff");g.addColorStop(1,"rgba(255,255,255,.4)");
+    m.fillStyle=g;m.fillRect(0,0,mw,mh);
+  } else if (kind==="glint") {
+    // 隐形星芒：画面最亮的几处冒出十字星芒
+    const spots=[];
+    if (L) {
+      const cell=Math.max(4,Math.round(mw/10));
+      for (let y=0;y<mh;y+=cell) for (let x=0;x<mw;x+=cell) {let best=-1,bi=0;for (let yy=y;yy<Math.min(mh,y+cell);yy++) for (let xx=x;xx<Math.min(mw,x+cell);xx++) {const v=L[yy*mw+xx];if (v>best) {best=v;bi=yy*mw+xx;}}spots.push([bi%mw,Math.floor(bi/mw),best]);}
+      spots.sort((a,b)=>b[2]-a[2]);spots.length=Math.min(spots.length,14);
+    } else for (let i=0;i<12;i++) spots.push([rand()*mw,rand()*mh,1]);
+    for (const [x,y] of spots) {
+      const r=mw*(.035+rand()*.035);
+      m.save();m.translate(x,y);m.rotate(rand()*.5);
+      for (const [len,wid] of [[r,r*.09],[r*.55,r*.06]]) for (let j=0;j<2;j++) {m.rotate(Math.PI/2*j+(len<r?Math.PI/4:0));const g=m.createLinearGradient(-len,0,len,0);g.addColorStop(0,"rgba(255,255,255,0)");g.addColorStop(.5,"#fff");g.addColorStop(1,"rgba(255,255,255,0)");m.fillStyle=g;m.fillRect(-len,-wid,len*2,wid*2);}
+      m.restore();
+    }
   } else if (kind==="sparkle") {
     // 隐形珠光：中高调柔和地铺开（亮度 0.45 以上逐渐变满）
     const a=new Uint8ClampedArray(L.length);
@@ -1112,8 +1156,8 @@ function artMask(record,image,createCanvas,w) {
 // 和海报增效用同一个字母，背面换成另一种底纹，铺满背面边框以内；静止时看不见，转动时在深色底上浮现：
 // u 放射纹（从纹章中心放出的细光束）、r 环形扭索（绕纹章的玫瑰曲线）、o 专题水印（专题名斜向平铺）、
 // k 星尘（稀疏的亮点和星芒）、b 扭索底纹（铺满整面的防伪玫瑰曲线）、d 亮哑网点底纹；
-// w 镭射彩虹（整面）、p 像素镭射（细方格光栅）、q 同心波纹（从纹章荡开）。
-const BACK_FX={uv:"a-guilloche",rim:"a-rim",holo:"a-holo",sparkle:"a-guilloche",band:"a-holo",dust:"a-matte",rainbow:"a-rainbow",pixel:"a-holo",ripple:"a-holo"};
+// w 镭射彩虹（整面）、p 像素镭射（细方格光栅）、q 同心波纹（从纹章荡开）、m 莫尔纹、l 光栅变色、i 星芒、n 猫眼光。
+const BACK_FX={uv:"a-guilloche",rim:"a-rim",holo:"a-holo",sparkle:"a-guilloche",band:"a-holo",dust:"a-matte",rainbow:"a-rainbow",pixel:"a-holo",ripple:"a-holo",moire:"a-holo",lenticular:"a-rainbow",glint:"a-gloss",cateye:"a-cateye"};
 function backMask(record,createCanvas,w) {
   const kind=parseCraft(record.look?.craft).art;
   if (!kind) return null;
@@ -1142,8 +1186,21 @@ function backMask(record,createCanvas,w) {
     const gap=m.measureText(word).width+size*1.8,span=Math.hypot(W,H);
     for (let y=-span/2,row=0;y<span/2;y+=size*2.3,row++) for (let x=-span/2+(row%2)*gap/2;x<span/2;x+=gap) m.fillText(word,x,y);
     m.restore();
-  } else if (kind==="rainbow") {
+  } else if (kind==="rainbow" || kind==="cateye") {
     m.fillRect(0,0,W,H);
+  } else if (kind==="moire") {
+    m.lineWidth=1.6;const a0=rand()*Math.PI,span=Math.hypot(W,H);
+    for (const a of [a0,a0+.07]) {m.save();m.translate(W/2,H/2);m.rotate(a);for (let x=-span/2;x<span/2;x+=3.8) {m.beginPath();m.moveTo(x,-span/2);m.lineTo(x,span/2);m.stroke();}m.restore();}
+  } else if (kind==="lenticular") {
+    for (let x=20,i=0;x<W-20;x+=4.4,i++) {m.globalAlpha=i%2?.55:1;m.fillRect(x,18,2.2,H-36);}
+    m.globalAlpha=1;
+  } else if (kind==="glint") {
+    for (let i=0;i<16;i++) {
+      const x=30+rand()*(W-60),y=30+rand()*(H-60),r=9+rand()*12;
+      m.save();m.translate(x,y);
+      for (let j=0;j<4;j++) {m.rotate(Math.PI/4);const len=j%2?r*.55:r,g=m.createLinearGradient(-len,0,len,0);g.addColorStop(0,"rgba(255,255,255,0)");g.addColorStop(.5,"#fff");g.addColorStop(1,"rgba(255,255,255,0)");m.fillStyle=g;m.fillRect(-len,-.9,len*2,1.8);}
+      m.restore();
+    }
   } else if (kind==="pixel") {
     for (let y=18;y<H-18;y+=7) for (let x=20;x<W-20;x+=7) if (rand()<.6) {m.globalAlpha=.5+rand()*.5;m.fillRect(x+1,y+1,5,5);}
     m.globalAlpha=1;

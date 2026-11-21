@@ -39,7 +39,7 @@ const edited={...second,seat:'5排8座',hall:'1号厅',venue:'麻雀部落电影
 const entry=T.entryFrom(edited,{...base('a',list.find(x=>x.key==='a|2026-11-08').view,'2026-11-08'),id:'a|2026-11-08'},9);
 assert.deepStrictEqual(Object.keys(entry).filter(k=>k!=='x').sort(),['c','l','st','t','vn']);
 // 工艺组合（2026-11-22）：随机换款连工艺组合一起换，和默认不同时存在 x；默认组合按票根键固定、不存
-assert(!('x' in entry) || /^[sgch]{0,2}-[0urokbdwpq][Bv]{0,2}$/.test(entry.x),'craft code is stored in a valid form');
+assert(!('x' in entry) || /^[sgch]{0,2}-[0urokbdwpqmlin][Bv]{0,2}$/.test(entry.x),'craft code is stored in a valid form');
 assert.equal(entry.x===undefined,edited.look.craft===T.build(list,{},base).tickets.find(r=>r.key===edited.key)?.look.craft);
 {
   const k='a|2026-11-08',store1=S.cleanTix({[k]:{t:5,x:'gs-uBv'}}),row=T.build(list,store1,base).tickets.find(r=>r.key===k);
@@ -52,6 +52,18 @@ assert.equal(entry.x===undefined,edited.look.craft===T.build(list,{},base).ticke
   const codes=new Set();for(let i=0;i<400;i++)codes.add(T.sanitize({filmId:'f'+i,title:'t',date:'2026-11-08',id:'f'+i+'|2026-11-08'}).look.craft);
   assert.equal(T.sanitize({filmId:'f1',title:'t',date:'2026-11-08',id:'f1|2026-11-08'}).look.craft,T.sanitize({filmId:'f1',title:'t',date:'2026-11-08',id:'f1|2026-11-08'}).look.craft);
   assert(codes.size>=120,'400 tickets spread over many craft combinations: '+codes.size);
+  // 盲盒搭配规则：底箔和配色冷暖相配；显眼增效（闪粉 / 水晶 / 全息纹理）最多一种，底箔本身显眼就不再加；海报隐形工艺每张都有
+  const showy={g:'glitter',c:'crystal',h:'cast'};
+  for(let i=0;i<600;i++){
+    const look=T.sanitize({filmId:'f'+i,title:'t',date:'2026-11-08',id:'f'+i+'|2026-11-0'+(i%9+1),programmeId:['hainan-2026','golden-horse-63','cinema-2026','sparrow-space','wu-tianming'][i%5],programme:['2026海南岛国际电影节','2026第63届金马影展','2026院线新片','麻雀部落电影空间','2026 吴天明电影展'][i%5]}).look;
+    const [foil,rest]=look.craft.split('-'),hits=[...foil].filter(c=>showy[c]);
+    assert(hits.length<=1,'at most one showy enhancement: '+look.craft);
+    if(['glitter','crystal','cast'].includes(look.finish))assert.equal(hits.length,0,'no showy enhancement on a showy finish: '+look.finish+' '+look.craft);
+    assert(rest[0]!=='0','every ticket carries an invisible poster craft');
+  }
+  // 同一部电影不同日期看的票根，盲盒各不相同
+  const a=T.sanitize({filmId:'f1',title:'t',date:'2026-11-08',id:'f1|2026-11-08',programmeId:'hainan-2026',programme:'2026海南岛国际电影节'}).look,b=T.sanitize({filmId:'f1',title:'t',date:'2026-11-20',id:'f1|2026-11-20',programmeId:'hainan-2026',programme:'2026海南岛国际电影节'}).look;
+  assert.notEqual(T.lookSig(a),T.lookSig(b),'rewatching opens a different blind box');
 }   // 同一张海报（网址只是写法不同）不存
 assert(JSON.stringify(entry).length<120);
 store['a|2026-11-08']=entry;

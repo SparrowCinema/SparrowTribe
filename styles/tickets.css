@@ -50,7 +50,12 @@
 .ticket-edge.te-l2,.ticket-edge.te-r2{top:82.1%;height:17%}
 .ticket-edge.te-l1,.ticket-edge.te-l2{left:0}
 .ticket-edge.te-r1,.ticket-edge.te-r2{left:100%}
-.te-craft{margin:2px 0 0;font-size:.74rem;line-height:1.5;color:var(--muted);text-align:center;max-width:340px}
+.te-craft{margin:2px 0 0;font-size:.74rem;line-height:1.5;color:var(--muted);text-align:center;max-width:340px;transition:color .3s}
+.te-craft.reveal{color:var(--accent);font-weight:700}
+/* 拆盲盒：翻到正面时工艺层整片流过一遍光（动画优先于转动时写入的行内透明度） */
+@keyframes ticketReveal{0%{opacity:0;background-position:0% 0%}40%{opacity:.85}100%{opacity:0;background-position:100% 100%}}
+.ticket-flip.reveal .ticket-fx:not([hidden]){animation:ticketReveal 1.7s ease-out .3s both}
+@media (prefers-reduced-motion:reduce){.ticket-flip.reveal .ticket-fx{animation:none}}
 /* 2026-11-22 工艺反光（参考视高迪数字增效）：只在工艺遮罩里显示，位置与强度由 ticketTurner 按角度写入 */
 .ticket-fx{position:absolute;inset:0;pointer-events:none;opacity:0;background-repeat:no-repeat;-webkit-mask-size:100% 100%;mask-size:100% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;mix-blend-mode:screen}
 .ticket-fx[data-fx=holo]{background-image:linear-gradient(115deg,#ff8ad8,#ffd36e,#7dffcf,#6fc3ff,#c49bff,#ff8ad8,#ffd36e,#7dffcf,#6fc3ff);background-size:300% 300%;mix-blend-mode:color-dodge}
@@ -68,6 +73,7 @@
 .ticket-fx[data-fx=a-guilloche]{background-image:linear-gradient(105deg,#7f8ca300 34%,#7f8ca380 44%,#ffffff 50%,#7f8ca380 56%,#7f8ca300 66%);background-size:300% 100%;mix-blend-mode:hard-light}
 .ticket-fx[data-fx=a-matte]{background-image:radial-gradient(ellipse 60% 40% at 50% 50%,#ffffff 0%,#ffffffa6 36%,#7f8ca359 62%,#7f8ca300 84%);background-size:220% 220%;mix-blend-mode:hard-light}
 .ticket-fx[data-fx=a-rainbow]{background-image:linear-gradient(115deg,#ff4fb8,#ffb300,#2fe0a8,#3a8cff,#a45cff,#ff4fb8,#ffb300,#2fe0a8,#3a8cff,#a45cff);background-size:400% 400%;mix-blend-mode:hard-light}
+.ticket-fx[data-fx=a-cateye]{background-image:linear-gradient(100deg,#7f8ca300 38%,#9fc4ff99 46%,#ffffff 50%,#ffd9a399 54%,#7f8ca300 62%);background-size:300% 100%;mix-blend-mode:hard-light}
 .ticket-blind-box{margin:0;padding:0;border:0;min-width:0;display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
 .ticket-blind-box legend{padding:0;margin:0 auto 8px;color:#f4ead4;font-size:.82rem;font-weight:700}
 .ticket-edit-head{margin:0 0 12px}
@@ -161,6 +167,7 @@ html.ticket-style-dialog-open{overflow:hidden;overscroll-behavior:none;scrollbar
 .te-style svg{width:12px;height:12px;flex:none;color:var(--muted)}
 @media(max-width:430px){.te-tools{gap:6px}.te-seg button,.te-dice,.te-style{padding-inline:9px}}
 .te-reset{border:0;background:none;color:var(--muted);font:inherit;font-size:.76rem;cursor:pointer;padding:2px}
+.te-reset[hidden]{display:none}
 .te-heading{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px 14px;margin:4px 2px 0}
 .te-title{display:grid;gap:4px;flex:1 1 120px;min-width:0}
 .te-title h3{margin:0;font-family:var(--f-serif,"Songti SC",serif);font-size:1.35rem;line-height:1.3;overflow-wrap:anywhere}

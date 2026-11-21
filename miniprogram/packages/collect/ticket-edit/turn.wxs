@@ -42,6 +42,7 @@ function fxStyle(fx, a, b, lit) {
   else if (fx === 'a-pearl') { pos = pct(50 + a * 70) + ' ' + pct(50 + b * 70); peak = .7; }
   else if (fx === 'a-guilloche') { pos = pct(50 - a * 60) + ' 0%'; peak = .8; }
   else if (fx === 'a-rainbow') { pos = pct(50 + a * 80) + ' ' + pct(50 + b * 80); peak = .55; }
+  else if (fx === 'a-cateye') { pos = pct(50 - a * 110) + ' 0%'; peak = .85; }
   else if (fx === 'a-matte') { pos = pct(50 - a * 90) + ' ' + pct(50 + b * 90); peak = .72; }
   return { pos: pos, o: Math.round(o * peak * 1000) / 1000 };
 }
@@ -122,6 +123,13 @@ function request(value, old, owner, ins) {
   if (value.kind) s.kind = value.kind;
   if (value.fx) s.fx = value.fx;
   if (!value.n) { paint(owner, s, 0, false); return; }
+  // 拆盲盒：先无动画地停在指定一面（背面），之后页面再请求转到正面
+  if (value.snap) {
+    s.ry = (value.side === 'back' ? 180 : 0) + REST_Y; s.rx = REST_X;
+    paint(owner, s, 0, false);
+    owner.callMethod('turned', { front: value.side !== 'back' });
+    return;
+  }
   if (sideOf(s.ry) === value.side) return;
   settle(owner, s, (faceIndex(s.ry) + 1) * 180 + REST_Y);
 }
