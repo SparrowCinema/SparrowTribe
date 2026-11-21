@@ -3,11 +3,11 @@
 <view wx:if="{{ok}}" class="wrap te-page">
   <view class="te-stage">
     <view id="te-card" class="te-card3d {{snap?'te-snap':''}}" style="transform:perspective(900px) rotateX({{rx}}deg) rotateY({{ry}}deg)"
-      bindtap="flip" bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd" bindtouchcancel="touchEnd"
+      bindtap="flip" bindtouchstart="touchStart" catchtouchmove="touchMove" bindtouchend="touchEnd" bindtouchcancel="touchEnd"
       aria-role="button" aria-label="{{L.t(i,'翻面')}}">
       <image wx:if="{{front?frontImg:backImg}}" class="te-face" src="{{front?frontImg:backImg}}" mode="widthFix" />
       <view wx:else class="te-face te-wait"><text>{{L.t(i,'票根绘制中…')}}</text></view>
-      <view wx:if="{{front?frontImg:backImg}}" class="te-glow" style="background:{{glowBg}}"></view>
+      <view wx:if="{{front?frontImg:backImg}}" class="te-glow {{glowOn?'on':''}}" style="background:{{glowBg}}"></view>
     </view>
     <view wx:if="{{arts.length}}" class="te-art">
       <text class="te-art-k">{{L.t(i,'裁切')}}</text>

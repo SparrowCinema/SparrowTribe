@@ -467,19 +467,26 @@ function ticketEditor(row){
 function ticketEditorMount(){
   ticketDrawEditor();
   const card=main.querySelector(".ticket-flip");if(!card)return;
+  // 倾斜 + 高光：高光只在指针移动时出现，停下约半秒或离开就淡出，不再停在图案上把它冲白。
+  // 触屏上手指滑动只倾斜票根（CSS touch-action:none），页面不跟着滚；滑动过的那次松手不算点击翻面。
+  let start=null,dragged=false,idle=0;
+  const glareOff=()=>{clearTimeout(idle);delete card.dataset.glare;};
   const tilt=e=>{
     if(!e.isPrimary)return;
+    if(start&&Math.hypot(e.clientX-start.x,e.clientY-start.y)>8)dragged=true;
     const rect=card.getBoundingClientRect(),limit=value=>Math.max(0,Math.min(value,1));
     const x=limit((e.clientX-rect.left)/rect.width),y=limit((e.clientY-rect.top)/rect.height);
     card.style.setProperty("--tx",`${(0.5-y)*13}deg`);card.style.setProperty("--ty",`${(x-0.5)*17}deg`);
-    card.style.setProperty("--gx",`${x*100}%`);card.style.setProperty("--gy",`${y*100}%`);
+    card.style.setProperty("--gx",`${(1-x)*100}%`);card.style.setProperty("--gy",`${(1-y)*100}%`);
+    card.dataset.glare="";clearTimeout(idle);idle=setTimeout(glareOff,450);
   };
-  const untilt=()=>["--tx","--ty","--gx","--gy"].forEach(key=>card.style.removeProperty(key));
+  const untilt=()=>{glareOff();start=null;["--tx","--ty","--gx","--gy"].forEach(key=>card.style.removeProperty(key));};
   card.addEventListener("pointermove",tilt);
-  card.addEventListener("pointerdown",e=>{if(e.pointerType==="touch")tilt(e);});
-  card.addEventListener("pointerup",e=>{if(e.pointerType==="touch")untilt();});
+  card.addEventListener("pointerdown",e=>{if(!e.isPrimary)return;start={x:e.clientX,y:e.clientY};dragged=false;});
+  card.addEventListener("pointerup",e=>{if(e.pointerType!=="mouse")untilt();else start=null;});
   card.addEventListener("pointerleave",untilt);
   card.addEventListener("pointercancel",untilt);
+  card.addEventListener("click",e=>{if(dragged){dragged=false;e.preventDefault();e.stopPropagation();}},true);
 }
 function ticketDrawEditor(){
   if(!ticketDraft)return;

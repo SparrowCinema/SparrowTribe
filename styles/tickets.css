@@ -33,10 +33,13 @@
 .ticket-face{backface-visibility:hidden;-webkit-backface-visibility:hidden}
 .ticket-front{transform:translateZ(1px)}
 .ticket-back{transform:rotateY(180deg) translateZ(1px)}
-.ticket-face::after{content:"";position:absolute;inset:2% 3%;pointer-events:none;mix-blend-mode:screen;background:radial-gradient(ellipse at var(--gx,42%) var(--gy,35%),var(--metal-highlight,#ffe1ac8c),transparent 48%);opacity:.25}
-.ticket-flip[data-shine=soft] .ticket-face::after{opacity:.06}
+.ticket-face::after{content:"";position:absolute;inset:2% 3%;pointer-events:none;mix-blend-mode:screen;background:radial-gradient(ellipse at var(--gx,42%) var(--gy,35%),var(--metal-highlight,#ffe1ac8c),transparent 46%);opacity:.14;transition:opacity .12s ease-out}
+.ticket-flip[data-shine=soft] .ticket-face::after{opacity:.04}
 .ticket-flip[data-shine=spectrum] .ticket-front::after{inset:10.7% 5.2% 50.9%;background:none;border:1px solid transparent;border-image:radial-gradient(ellipse at var(--gx,42%) var(--gy,35%),var(--metal-highlight),#a5d7db78 27%,transparent 60%) 1;opacity:.95}
 .ticket-flip[data-shine=spectrum] .ticket-back::after{inset:15.5% 14% auto;aspect-ratio:1;mask-image:radial-gradient(circle closest-side,transparent 67%,#000 76%,#000 87%,transparent 100%);opacity:.62}
+/* 2026-11-21 高光只在指针 / 手指移动时出现（data-glare），静止或松手淡出；手指在票根上滑动只倾斜票根，页面不滚动 */
+.ticket-flip:not([data-glare]) .ticket-face::after{opacity:0;transition-duration:.35s}
+.ticket-stage .ticket-flip,.te-stage .ticket-flip{touch-action:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
 .ticket-blind-box{margin:0;padding:0;border:0;min-width:0;display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
 .ticket-blind-box legend{padding:0;margin:0 auto 8px;color:#f4ead4;font-size:.82rem;font-weight:700}
 .ticket-edit-head{margin:0 0 12px}

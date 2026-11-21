@@ -9,10 +9,11 @@ const wxml=fs.readFileSync(path.join(dir,'ticket-edit.wxml'),'utf8');
 const tixWxml=fs.readFileSync(path.join(__dirname,'../miniprogram/packages/collect/tickets/tickets.wxml'),'utf8');
 const app=JSON.parse(fs.readFileSync(path.join(__dirname,'../miniprogram/app.json'),'utf8'));
 
-// 独立页面：注册在 app.json；不用 page-container（它会锁住页面滚动）；票根上用 bindtouchmove（不拦截页面滚动）
+// 独立页面：注册在 app.json；不用 page-container（它会锁住整页滚动）；2026-11-21 起票根上用 catchtouchmove：手指在票根上滑动只倾斜票根、页面不跟着滚，票根以外照常滚动
 assert((app.subPackages||[]).some(p=>p.root==='packages/collect'&&p.pages.includes('ticket-edit/ticket-edit')),'ticket editor lives in the collect subpackage');
 assert(!/page-container/.test(wxml)&&!/page-container/.test(tixWxml),'no page-container scroll lock');
-assert(!/catchtouchmove/.test(wxml),'ticket card must not block page scrolling');
+assert.match(wxml,/id="te-card"[^>]*catchtouchmove="touchMove"/,'swiping on the ticket tilts it without scrolling the page');
+assert.match(wxml,/class="te-glow \{\{glowOn\?'on':''\}\}"/,'glare layer is hidden unless the finger is moving');
 assert.match(wxml,/<image[^>]*class="te-face"/);
 assert.match(wxml,/<picker[^>]*range="{{artStyleLabels}}"[^>]*bindchange="pickArtStyle"/,'ticket details offer hand-drawn styles');
 assert.match(tixWxml,/bindchange="pickArtStyle"/,'the album keeps its own entry to the same styles');
@@ -72,9 +73,12 @@ const flush=async()=>{for(let n=0;n<20;n++){await new Promise(r=>setImmediate(r)
   page.flip();assert.equal(page.data.ry,90);assert(page.data.turning);
   await flush();assert.equal(page.data.front,false);assert.equal(page.data.turning,false);assert.equal(page.data.snap,false);
   // 倾斜与高光跟手
-  page.touchStart({touches:[{clientX:180,clientY:40}]});
-  assert(page.data.ry>5&&page.data.rx>3,'tilt follows the finger');assert.match(page.data.glowBg,/circle at 90% 10%/);
-  page.touchEnd();assert.equal(page.data.ry,-4);
+  // 高光与手指镜像、只在滑动时出现，松手就隐藏（不再常驻在海报上把图案冲白）
+  assert.equal(page.data.glowOn,false,'no glare while idle');
+  page.touchStart({touches:[{clientX:100,clientY:100}]});
+  page.touchMove({touches:[{clientX:180,clientY:40}]});
+  assert(page.data.ry>5&&page.data.rx>3,'tilt follows the finger');assert.match(page.data.glowBg,/circle at 10% 90%/);assert.equal(page.data.glowOn,true);
+  page.touchEnd();assert.equal(page.data.ry,-4);assert.equal(page.data.glowOn,false,'glare fades on release');
   // 只为这部影片保存手绘风格，单独重画配图，翻到正面。
   const originalFront=page.data.frontImg,originalBack=page.data.backImg,crop=page.data.draft.crop;
   const choose=(id)=>page.pickArtStyle({detail:{value:String(Art.filmStyleOptions.findIndex(style=>style.id===id))}});
