@@ -78,7 +78,10 @@ async function fromSite(ms, prev) {
       if (seen.has(f.id)) return; seen.add(f.id);
       const o = Object.assign({}, f, { prog: f.prog || p.id });
       delete o.ticket;
-      if (!has('posters', f.id + '.jpg') && f.poster && !o.posterUrl) o.posterUrl = SITE + f.poster;
+      // 海报地址只认站内：资料里手写的 posterUrl 只有指向本站（如加 ?v= 刷新缓存）才用，其余一律按 poster 推出。
+    // 部署时 tools/localize-posters.py 会把外链 poster 和同值的字段一起改成相对路径 posters/x-<id>.jpg，不能原样交给小程序（相对路径会被当成安装包内文件）
+    if (!(typeof o.posterUrl === 'string' && o.posterUrl.startsWith(SITE))) delete o.posterUrl;
+    if (!has('posters', f.id + '.jpg') && f.poster && !o.posterUrl) o.posterUrl = /^https?:\/\//.test(f.poster) ? f.poster : SITE + f.poster.replace(/^\//, '');
       if (has('tickets', f.id + '.jpg')) o.ticketUrl = '/images/tickets/' + f.id + '.jpg';
       else if (f.ticket) o.ticketUrl = SITE + f.ticket;
       films.push(o);
