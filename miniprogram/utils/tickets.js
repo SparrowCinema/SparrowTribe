@@ -28,21 +28,29 @@ const finishes = {
   matte:   {label:"哑光压纹", kind:"soft", stops:["#9d8969","#c1ae8d","#a69273"], width:1.08}
 };
 
+// 纸张（2026-11-21 重做）：只用柔和的高光与暖灰阴影，不再撒黑点、黑纤维。键名保留旧的 14 个（已保存的款式不失效），另加 6 种。
+// layers 里每一层是一种纸面工艺；strength 是整体浓淡；tint/warmth 是正面的纸色。
 const papers = {
-  cotton:     {label:"细颗粒棉纸", kind:"grain", count:4200, inking:.07},
-  silk:       {label:"日本绢纸", kind:"lines", step:4, angle:-.23, inking:.11},
-  linen:      {label:"交织亚麻", kind:"grid", step:5, inking:.17},
-  satin:      {label:"丝绒细砂", kind:"grain", count:7700, inking:.13},
-  washi:      {label:"长纤维和纸", kind:"fiber", count:370, length:10, inking:.17},
-  kraft:      {label:"复古牛皮卡", kind:"fiber", count:550, length:5, inking:.19, tint:"#b28452", warmth:.16},
-  parchment:  {label:"暖调羊皮纸", kind:"cloud", count:34, inking:.24, tint:"#d3ac6c", warmth:.14},
-  deckle:     {label:"版画粗棉纸", kind:"grain", count:3100, dot:2.1, inking:.15},
-  leather:    {label:"荔枝压纹纸", kind:"cells", step:9, inking:.14},
-  crosshatch: {label:"双斜纹纸", kind:"cross", step:6, inking:.12},
-  ribbed:     {label:"拉丝竖纹纸", kind:"lines", step:6, angle:Math.PI/2, inking:.15},
-  fleck:      {label:"再生星点纸", kind:"fiber", count:910, length:2.2, inking:.23},
-  laid:       {label:"帘纹书纸", kind:"laid", step:5, inking:.14},
-  frost:      {label:"霜面珠光卡", kind:"cloud", count:73, inking:.14, tint:"#e1eaf1", warmth:.22}
+  cotton:     {label:"冷压水彩纸", strength:1, layers:[["mottle",{count:22,min:22,max:52,light:.55,hi:.08,sh:.035}],["tooth",{count:700,hi:.16}]]},
+  silk:       {label:"丝光绢纸", strength:1, layers:[["sheen",{hi:.10}],["lines",{dir:"d2",step:4,hi:.07,sh:.018}]]},
+  linen:      {label:"亚麻纹艺术纸", strength:1, layers:[["weave",{step:4,hi:.13,sh:.05}],["mottle",{count:10,min:30,max:60,light:.5,hi:.05,sh:.025}]]},
+  satin:      {label:"缎光珠光纸", strength:1, layers:[["sheen",{hi:.09,bands:2}],["tooth",{count:300,hi:.10}]]},
+  washi:      {label:"楮皮和纸", strength:1, layers:[["mottle",{count:12,min:26,max:56,light:.6,hi:.08,sh:.025}],["fibers",{count:46,len:46,hi:.22,sh:.03,width:.55,curl:.5}]]},
+  kraft:      {label:"精制牛皮卡", strength:1, tint:"#b28452", warmth:.16, layers:[["mottle",{count:16,min:20,max:44,light:.45,hi:.07,sh:.05}],["fibers",{count:70,len:12,hi:.16,sh:.035,width:.5,curl:.2}]]},
+  parchment:  {label:"小羊皮纸", strength:1, tint:"#d3ac6c", warmth:.12, layers:[["mottle",{count:26,min:18,max:60,light:.5,hi:.06,sh:.04}]]},
+  deckle:     {label:"手抄棉浆纸", strength:1, layers:[["mottle",{count:30,min:14,max:40,light:.55,hi:.08,sh:.04}],["fibers",{count:24,len:20,hi:.16,sh:0,width:.5,curl:.6}],["tooth",{count:500,hi:.14}]]},
+  leather:    {label:"荔枝压纹纸", strength:1, layers:[["cells",{step:10,size:4.4,hi:.20,sh:.07}]]},
+  crosshatch: {label:"斜纹布面纸", strength:1, layers:[["lines",{dir:"d1",step:5,hi:.12,sh:.04}],["lines",{dir:"d2",step:5,hi:.07,sh:.025}]]},
+  ribbed:     {label:"罗纹压线纸", strength:1, layers:[["ribs",{step:5,hi:.20,sh:.06}]]},
+  fleck:      {label:"洒金宣纸", strength:1, tint:"#efe2c4", warmth:.12, layers:[["fibers",{count:26,len:40,hi:.14,sh:0,width:.45,curl:.4}],["flakes",{count:16,size:2.6,colors:["#f3d58b","#d8a64a","#fff1c2"],alpha:.85}]]},
+  laid:       {label:"帘纹书纸", strength:1, layers:[["laid",{step:4,chain:40,hi:.14,sh:.035}],["mottle",{count:8,min:30,max:60,light:.5,hi:.05,sh:.02}]]},
+  frost:      {label:"霜面珠光卡", strength:1, tint:"#e1eaf1", warmth:.2, layers:[["sheen",{hi:.08,bands:1}],["tooth",{count:900,hi:.12}]]},
+  mica:       {label:"云母银箔纸", strength:1, layers:[["mottle",{count:12,min:24,max:50,light:.6,hi:.07,sh:.02}],["flakes",{count:30,size:1.8,colors:["#ffffff","#e7eef4","#d6dde4"],alpha:.8}]]},
+  xuan:       {label:"生宣", strength:1, tint:"#f3ead6", warmth:.14, layers:[["mottle",{count:14,min:28,max:64,light:.65,hi:.09,sh:.02}],["fibers",{count:30,len:60,hi:.12,sh:.02,width:.4,curl:.7}]]},
+  moire:      {label:"水印波纹纸", strength:1, layers:[["moire",{gap:8,hi:.10,sh:.03}]]},
+  velvet:     {label:"丝绒雾面纸", strength:1, layers:[["tooth",{count:2600,hi:.09,size:.7}],["mottle",{count:8,min:40,max:70,light:.5,hi:.04,sh:.02}]]},
+  felt:       {label:"毛毡纹水彩纸", strength:1, layers:[["felt",{count:150,hi:.13,sh:.05}],["mottle",{count:10,min:30,max:60,light:.5,hi:.05,sh:.02}]]},
+  vellum:     {label:"半透描图纸", strength:1, tint:"#e8eef0", warmth:.18, layers:[["sheen",{hi:.08,bands:1}],["mottle",{count:8,min:40,max:70,light:.7,hi:.06,sh:.015}]]}
 };
 
 // Label, back shadow/midtone/edge/ink, front paper/stub/ink.
@@ -79,11 +87,11 @@ const motifs = {
 };
 
 const families = {
-  festival: {palette:["burgundy","honey","ember","rust","peach","crimson"], finish:["holo","gold","copper","solar"], texture:["cotton","laid","parchment","deckle"], motif:["rosette","rays","arches"]},
-  region: {palette:["jade","navy","cyan","teal","fern","cobalt"], finish:["silver","aurora","opal","pearl"], texture:["silk","washi","frost","linen"], motif:["waves","orbit","contour"]},
-  theme: {palette:["violet","indigo","rose","iris","plum","cobalt"], finish:["prism","opal","cobalt","varnish"], texture:["linen","crosshatch","satin","leather"], motif:["facets","rays","orbit"]},
-  venue: {palette:["moss","clay","olive","peach","sepia","rust"], finish:["copper","gold","varnish","matte"], texture:["kraft","washi","cotton","fleck"], motif:["arches","contour","frames"]},
-  cinema: {palette:["ink","graphite","navy","lemon","sepia","indigo"], finish:["silver","matte","cobalt","pearl"], texture:["ribbed","frost","satin","fleck"], motif:["frames","rays","facets"]}
+  festival: {palette:["burgundy","honey","ember","rust","peach","crimson"], finish:["holo","gold","copper","solar"], texture:["cotton","laid","parchment","deckle","fleck","felt"], motif:["rosette","rays","arches"]},
+  region: {palette:["jade","navy","cyan","teal","fern","cobalt"], finish:["silver","aurora","opal","pearl"], texture:["silk","washi","frost","xuan","moire","vellum"], motif:["waves","orbit","contour"]},
+  theme: {palette:["violet","indigo","rose","iris","plum","cobalt"], finish:["prism","opal","cobalt","varnish"], texture:["linen","crosshatch","satin","leather","velvet","mica"], motif:["facets","rays","orbit"]},
+  venue: {palette:["moss","clay","olive","peach","sepia","rust"], finish:["copper","gold","varnish","matte"], texture:["kraft","washi","cotton","felt","xuan","laid"], motif:["arches","contour","frames"]},
+  cinema: {palette:["ink","graphite","navy","lemon","sepia","indigo"], finish:["silver","matte","cobalt","pearl"], texture:["ribbed","frost","satin","velvet","vellum","mica"], motif:["frames","rays","facets"]}
 };
 
 const programmeLooks = {
@@ -476,52 +484,102 @@ function cropCover(surface,image,position,frame=SOURCE) {
   surface.drawImage(image,(iw-sw)*position/100,(ih-sh)*position/100,sw,sh,x,y,w,h);
 }
 
-// A small repeat tile keeps the pattern sharp without drawing thousands of dots per card.
+// 纸面贴片：TEXTURE_SIZE 见方、四边无缝衔接，画好后平铺。只用暖白高光与暖灰阴影（不用近黑色），浓淡由各层透明度决定。
 const textureCaches=new WeakMap();
-const TEXTURE_SIZE=120;
+const TEXTURE_SIZE=160;
+const HI=a=>`rgba(255,252,244,${a})`, SH=a=>`rgba(96,76,56,${a})`;
 function paintTexture(ctx,material) {
+  const S=TEXTURE_SIZE;
   let seed=74323;
   const rng=()=>{seed=(Math.imul(1664525,seed)+1013904223)>>>0;return seed/4294967296;};
-  const kind=material.kind;
-  if (kind==="grain" || kind==="fiber" || kind==="cloud") {
-    const count=material.count;
-    for (let i=0;i<count;i++) {
-      const x=rng()*120,y=rng()*120,color=i%3 ? "#40322b" : "#fff1dd";
-      if (kind==="fiber") {
-        ctx.strokeStyle=color;ctx.lineWidth=.65;
-        ctx.beginPath();ctx.moveTo(x,y);
-        ctx.lineTo(x+(rng()-.5)*material.length,y+(rng()-.5)*material.length);ctx.stroke();
-      } else if (kind==="cloud") {
-        const r=5+rng()*10;
-        const gradient=ctx.createRadialGradient(x,y,0,x,y,r);
-        gradient.addColorStop(0,i%2 ? "#6c4a3955" : "#fff5dc75");gradient.addColorStop(1,"#a8978000");
-        ctx.fillStyle=gradient;ctx.fillRect(x-r,y-r,r*2,r*2);
-      } else {
-        ctx.fillStyle=color;
-        const width=material.dot || (count>5000 ? .8 : 1.2);
-        ctx.fillRect(x,y,width,width*.82);
+  // 靠近边缘的元素在对边再画一份，平铺时看不出接缝
+  const wrap=(x,y,r,draw)=>{for (const dx of [-S,0,S]) for (const dy of [-S,0,S]) {const X=x+dx,Y=y+dy;if (X+r<0||X-r>S||Y+r<0||Y-r>S) continue;draw(X,Y);}};
+  const line=(x1,y1,x2,y2,color,width)=>{ctx.strokeStyle=color;ctx.lineWidth=width;ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();};
+  const layers={
+    mottle(o){ // 冷压水彩纸 / 羊皮纸那种柔和的明暗起伏
+      for (let i=0;i<o.count;i++) {
+        const x=rng()*S,y=rng()*S,r=o.min+rng()*(o.max-o.min),light=rng()<o.light,a=(light?o.hi:o.sh)*(.55+rng()*.45);
+        wrap(x,y,r,(X,Y)=>{const g=ctx.createRadialGradient(X,Y,0,X,Y,r);g.addColorStop(0,light?HI(a):SH(a));g.addColorStop(1,light?HI(0):SH(0));ctx.fillStyle=g;ctx.fillRect(X-r,Y-r,r*2,r*2);});
       }
-    }
-  } else if (kind==="cells") {
-    for (let y=1;y<120;y+=material.step) for (let x=1;x<120;x+=material.step) {
-      ctx.strokeStyle="#dbc3a9";ctx.lineWidth=.7;
-      ctx.beginPath();ctx.ellipse(x+rng()*3,y+rng()*3,4,2.8,rng(),0,Math.PI*2);ctx.stroke();
-    }
-  } else {
-    const angles={grid:[0,Math.PI/2],lines:[material.angle],cross:[Math.PI/4,-Math.PI/4],laid:[0]};
-    for (const angle of angles[kind]) {
-      ctx.save();ctx.translate(60,60);ctx.rotate(angle);
-      for (let y=-120;y<=120;y+=material.step) {
-        ctx.fillStyle="#fff2de";ctx.fillRect(-120,y,240,.9);
-        ctx.fillStyle="#3c302b";ctx.fillRect(-120,y+1,240,.7);
+    },
+    tooth(o){ // 极细的纸面颗粒，只用高光
+      const size=o.size||.9;ctx.fillStyle=HI(o.hi);
+      for (let i=0;i<o.count;i++) ctx.fillRect(rng()*S,rng()*S,size,size);
+    },
+    fibers(o){ // 长纤维：浅色、微弯
+      ctx.lineCap="round";
+      for (let i=0;i<o.count;i++) {
+        const x=rng()*S,y=rng()*S,a=rng()*Math.PI,len=o.len*(.5+rng()*.5),bend=(rng()-.5)*o.curl*len;
+        const ex=x+Math.cos(a)*len,ey=y+Math.sin(a)*len,cx=(x+ex)/2-Math.sin(a)*bend,cy=(y+ey)/2+Math.cos(a)*bend;
+        const shade=o.sh&&rng()<.25;
+        wrap(x,y,len+Math.abs(bend),(X,Y)=>{const dx=X-x,dy=Y-y;ctx.strokeStyle=shade?SH(o.sh):HI(o.hi*(.6+rng()*.4));ctx.lineWidth=o.width;ctx.beginPath();ctx.moveTo(X,Y);ctx.quadraticCurveTo(cx+dx,cy+dy,ex+dx,ey+dy);ctx.stroke();});
       }
-      ctx.restore();
+    },
+    lines(o){ // 平行细纹：一条高光、旁边一条很淡的阴影。dir：h 横 / v 竖 / d1、d2 两个方向的 45° 斜线（间距须能整除贴片边长）
+      const st=o.step;
+      for (let c=0;c<S*2;c+=st) {
+        if (o.dir==="h") {if (c>=S) break;line(0,c+.5,S,c+.5,HI(o.hi),.7);if (o.sh) line(0,c+1.4,S,c+1.4,SH(o.sh),.6);}
+        else if (o.dir==="v") {if (c>=S) break;line(c+.5,0,c+.5,S,HI(o.hi),.7);if (o.sh) line(c+1.4,0,c+1.4,S,SH(o.sh),.6);}
+        else {const flip=o.dir==="d2";const a=(x,y)=>flip?[S-x,y]:[x,y];
+          const p1=a(c,0),p2=a(c-S,S);line(p1[0],p1[1],p2[0],p2[1],HI(o.hi),.7);
+          if (o.sh) {const q1=a(c+1.2,0),q2=a(c+1.2-S,S);line(q1[0],q1[1],q2[0],q2[1],SH(o.sh),.6);}}
+      }
+    },
+    weave(o){ // 亚麻布纹：经纬线交替起伏
+      for (let y=0;y<S;y+=o.step) for (let x=0;x<S;x+=o.step) {
+        const over=((x+y)/o.step)%2===0;
+        if (over) {line(x,y+.6,x+o.step,y+.6,HI(o.hi),.8);line(x,y+o.step-.4,x+o.step,y+o.step-.4,SH(o.sh),.6);}
+        else {line(x+.6,y,x+.6,y+o.step,HI(o.hi*.8),.8);line(x+o.step-.4,y,x+o.step-.4,y+o.step,SH(o.sh),.6);}
+      }
+    },
+    ribs(o){ // 罗纹压线：竖向凸起，左亮右暗
+      for (let x=0;x<S;x+=o.step) {line(x+.5,0,x+.5,S,HI(o.hi),1);line(x+2,0,x+2,S,SH(o.sh),.8);}
+    },
+    laid(o){ // 帘纹：细密横纹 + 稀疏竖向链线
+      for (let y=0;y<S;y+=o.step) line(0,y+.5,S,y+.5,HI(o.hi),.6);
+      for (let x=o.chain/2;x<S;x+=o.chain) {line(x,0,x,S,SH(o.sh),.7);line(x+1,0,x+1,S,HI(o.hi*.8),.6);}
+    },
+    cells(o){ // 荔枝纹压花：每个小凸起左上高光、右下阴影
+      for (let y=o.step/2;y<S;y+=o.step) for (let x=o.step/2;x<S;x+=o.step) {
+        const cx=x+(rng()-.5)*o.step*.5,cy=y+(rng()-.5)*o.step*.5,r=o.size*(.75+rng()*.5);
+        wrap(cx,cy,r+1,(X,Y)=>{
+          ctx.lineWidth=.9;
+          ctx.strokeStyle=HI(o.hi);ctx.beginPath();ctx.arc(X,Y,r,Math.PI*.9,Math.PI*1.8);ctx.stroke();
+          ctx.strokeStyle=SH(o.sh);ctx.beginPath();ctx.arc(X,Y,r,Math.PI*-.1,Math.PI*.8);ctx.stroke();
+        });
+      }
+    },
+    felt(o){ // 毛毡纹：不规则的小圆凸起
+      for (let i=0;i<o.count;i++) {
+        const x=rng()*S,y=rng()*S,r=1.5+rng()*3.5;
+        wrap(x,y,r+1,(X,Y)=>{const g=ctx.createRadialGradient(X-r*.35,Y-r*.35,0,X,Y,r);g.addColorStop(0,HI(o.hi));g.addColorStop(.7,HI(0));g.addColorStop(1,SH(o.sh));ctx.fillStyle=g;ctx.beginPath();ctx.arc(X,Y,r,0,Math.PI*2);ctx.fill();});
+      }
+    },
+    flakes(o){ // 洒金 / 云母：稀疏的小片金属箔
+      for (let i=0;i<o.count;i++) {
+        const x=rng()*S,y=rng()*S,size=o.size*(.5+rng()),rot=rng()*Math.PI,color=o.colors[i%o.colors.length];
+        wrap(x,y,size*2,(X,Y)=>{
+          ctx.save();ctx.translate(X,Y);ctx.rotate(rot);ctx.globalAlpha*=o.alpha*(.5+rng()*.5);ctx.fillStyle=color;
+          ctx.beginPath();ctx.moveTo(-size,-size*.4);ctx.lineTo(size*.6,-size*.8);ctx.lineTo(size,size*.3);ctx.lineTo(-size*.3,size*.7);ctx.closePath();ctx.fill();
+          ctx.restore();
+        });
+      }
+    },
+    moire(o){ // 水印波纹：很淡的同心波浪线
+      for (let k=-S;k<S*2;k+=o.gap) {
+        ctx.beginPath();
+        for (let x=0;x<=S;x+=4) {const y=k+Math.sin(x/S*Math.PI*2)*6+Math.sin(x/S*Math.PI*4+k/S*Math.PI*2)*2.5;if (x) ctx.lineTo(x,y);else ctx.moveTo(x,y);}
+        ctx.strokeStyle=HI(o.hi);ctx.lineWidth=.8;ctx.stroke();
+        ctx.save();ctx.translate(0,1.2);ctx.strokeStyle=SH(o.sh);ctx.lineWidth=.6;ctx.stroke();ctx.restore();
+      }
+    },
+    sheen(o){ // 缎面光泽：沿对角线起伏的柔光（周期与贴片对齐，平铺无缝）
+      const bands=o.bands||1,g=ctx.createLinearGradient(0,0,S,S);
+      for (let i=0;i<=8*bands;i++) {const t=i/(8*bands),v=(Math.cos(t*Math.PI*4*bands)+1)/2;g.addColorStop(Math.min(1,t),HI(o.hi*v));}
+      ctx.fillStyle=g;ctx.fillRect(0,0,S,S);
     }
-    if (kind==="laid") {
-      ctx.fillStyle="#3c302b";
-      for (let x=8;x<120;x+=24) ctx.fillRect(x,0,.8,120);
-    }
-  }
+  };
+  for (const [kind,options] of material.layers) {ctx.save();layers[kind](options);ctx.restore();}
 }
 
 function textureTile(createCanvas,key) {
@@ -564,7 +622,7 @@ function paper(surface,key,side,createCanvas) {
   if (material.tint && side==="front") {
     surface.globalAlpha=material.warmth;surface.fillStyle=material.tint;surface.fillRect(0,0,W,H);
   }
-  surface.globalAlpha=material.inking;
+  surface.globalAlpha=material.strength ?? 1;
   paintPaper(surface,key,createCanvas);
   surface.restore();
 }
