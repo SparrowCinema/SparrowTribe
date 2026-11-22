@@ -68,8 +68,6 @@
 .te-l1,.te-r1{top:.9%;height:78.6%}
 .te-l2,.te-r2{top:82.1%;height:17%}
 .te-l1,.te-l2{left:0}
-.te-craft{font-size:calc(19 * var(--fr));line-height:1.5;color:var(--muted);text-align:center;padding:0 calc(16 * var(--r));transition:color .3s}
-.te-craft.on{color:var(--accent);font-weight:700}
 /* 拆盲盒：翻到正面时工艺层整片流过一遍光（动画优先于 turn.wxs 写入的行内透明度） */
 @keyframes teReveal{0%{opacity:0;background-position:0% 0%}40%{opacity:.85}100%{opacity:0;background-position:100% 100%}}
 .te-reveal .te-fx{animation:teReveal 1.7s ease-out .3s both}

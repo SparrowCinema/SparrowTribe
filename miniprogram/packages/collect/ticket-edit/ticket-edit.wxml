@@ -39,7 +39,6 @@
         <view class="te-style" hover-class="te-hv" role="button">{{L.t(i,'手绘风格')}}<text class="te-style-chevron" aria-hidden="true">⌄</text></view>
       </picker>
     </view>
-    <view wx:if="{{craft}}" class="te-craft {{revealing?'on':''}}">{{L.t(i,revealing?'本次开出':'工艺')}}：{{craft}}</view>
     <text wx:if="{{custom}}" class="te-reset" bindtap="reset" role="button">{{L.t(i,'恢复盲盒款')}}</text>
   </view>
 

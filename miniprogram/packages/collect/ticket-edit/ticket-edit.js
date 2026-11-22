@@ -40,7 +40,7 @@ function image(node,src){
 }
 
 Page({
-  data:{i:{},ps:'',ok:false,draft:{},front:true,frontImg:'',backImg:'',turnReq:{side:'front',n:0},edge:'',shine:'metal',fx:'none',layersF:[],layersB:[],craft:'',custom:false,revealing:false,
+  data:{i:{},ps:'',ok:false,draft:{},front:true,frontImg:'',backImg:'',turnReq:{side:'front',n:0},edge:'',shine:'metal',fx:'none',layersF:[],layersB:[],custom:false,revealing:false,
     arts:[],artIndex:0,artStyleLabels:[],artStyleIndex:0,shows:[],showIdx:-1,existing:false,linked:false,loading:false,busy:true,artDirty:false},
   onLoad(q){
     this._albumArtStyle=Art.normalize();
@@ -164,7 +164,7 @@ Page({
     const layersF=await this.fxLayers(node,'front',turn),layersB=await this.fxLayers(node,'back',turn);
     if(turn!==this._turn||!this._ready)return;
     const custom=R.lookSig(this._draft.look)!==R.lookSig(R.sanitize({...this._draft,look:null}).look);
-    const patch={busy:false,shine:kind,fx,layersF,layersB,custom,craft:R.craftLabel(this._draft.look,I.tr),edge:R.edgeOf(this._draft),turnReq:{...this.data.turnReq,kind,fx}};
+    const patch={busy:false,shine:kind,fx,layersF,layersB,custom,edge:R.edgeOf(this._draft),turnReq:{...this.data.turnReq,kind,fx}};
     if(this._reveal==='pending'){
       this._reveal='running';this._turnN=(this._turnN||0)+1;patch.turnReq={side:'back',n:this._turnN,kind,fx,snap:1};patch.front=false;
       const key=this._draft.key;
