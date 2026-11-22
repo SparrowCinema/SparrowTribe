@@ -226,7 +226,7 @@ assert(new Set(Array.from({length:200*150},(_,i)=>mem[i*4]+','+mem[i*4+1]+','+me
  const cd=Sketch.stylize(grad,40,30,200,150,'ccd');
  assert(!Array.from({length:200*150},(_,i)=>i).some(i=>cd[i*4]>240&&cd[i*4+1]>110&&cd[i*4+1]<170&&cd[i*4+2]<90&&i%200>150&&i/200>130),'CCD no longer prints a date stamp');
  const fm=Sketch.stylize(grad,40,30,200,150,'film70'),fp=(x,y)=>fm.slice((y*200+x)*4,(y*200+x)*4+3);
- assert(Array.from({length:150},(_,y)=>fp(8,y)[0]).some(v=>v>200)&&Array.from({length:150},(_,y)=>fp(8,y)[0]).some(v=>v<40),'70mm film has lit sprocket holes on dark film base');
+ assert(Array.from({length:150},(_,y)=>fp(10,y)[0]).some(v=>v>200)&&Array.from({length:150},(_,y)=>fp(10,y)[0]).some(v=>v<40)&&Array.from({length:150},(_,y)=>fp(3,y)).every(([r,g,b])=>r>b+20),'70mm film has lit KS perforations on dark base and a brown magnetic stripe at the edge');
  const nw=Sketch.stylize(grad,40,30,200,150,'news-dots');assert(px(nw,([r,g,b])=>Math.max(r,g,b)-Math.min(r,g,b)>40)===0,'newsprint is a single neutral ink');}
 function sat0(){const a=new Uint8ClampedArray(40*30*4);for(let i=0;i<a.length;i+=4){const p=i/4,x=p%40,y=Math.floor(p/40);a.set(x<14?[30,30,40,255]:x<27?[220,90,70,255]:y<15?[250,240,220,255]:[70,160,200,255],i);}return a;}
 const sat=new Uint8ClampedArray(40*30*4);for(let i=0;i<sat.length;i+=4)sat.set(i%160<80?[200,40,40,255]:[40,90,200,255],i);

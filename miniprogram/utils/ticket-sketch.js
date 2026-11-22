@@ -620,10 +620,14 @@
   const FONT5={"0":"01110100011001110101110011000101110","1":"00100011000010000100001000010001110","2":"01110100010000100110010001000011111","3":"11110000010000101110000010000111110","4":"00010001100101010010111110001000010","5":"11111100001111000001000011000101110","6":"00110010001000011110100011000101110","7":"11111000010001000100010000100001000","8":"01110100011000101110100011000101110","9":"01110100011000101111000010001001100","M":"10001110111010110001100011000110001","F":"11111100001000011110100001000010000","S":"01111100001000001110000010000111110","A":"01110100011000111111100011000110001","E":"11111100001000011110100001000011111","T":"11111001000010000100001000010000100","Y":"10001100010101000100001000010000100","I":"01110001000010000100001000010001110","L":"10000100001000010000100001000011111",">":"10000010000010000010001000100010000"};
   function drawFilm70(pixels,w,h,width,height){
     const at=bilinear(pixels,w,h),unit=width/200,out=new Uint8ClampedArray(width*height*4);
-    const edge=Math.round(width*.11),ix0=edge,ix1=width-edge,iy0=Math.round(unit*3),iy1=height-Math.round(unit*3),iw=ix1-ix0,ih=iy1-iy0;
-    const base=[18,14,12],light=[244,240,228];
-    const ph=unit*4.4,pw=unit*4.2,pr=unit*1,px0=Math.round(edge*.42-pw/2); // 齿孔：高 ph、宽 pw、圆角 pr，间距 1.8 倍高
-    const hole=(x,y)=>{const lx=x<width/2?x-px0:x-(width-px0-pw);if(lx<0||lx>pw)return 0;const k=((y+ph*.4)%(ph*1.8)),ly=k;if(ly>ph)return 0;
+    // 按 70mm 放映拷贝的片边比例（以片宽 W 计）：KS 齿孔宽 4%、高 2.8%、孔距 6.8%、圆角很小，
+    // 齿孔外侧和内侧各有一条褐色磁性声带，画面约占片宽 73%（参考 70mm / IMAX 15/70 拷贝的片边模板）
+    const W=width,edge=Math.round(W*.135),ix0=edge,ix1=width-edge,iy0=Math.round(unit*3),iy1=height-Math.round(unit*3),iw=ix1-ix0,ih=iy1-iy0;
+    const base=[18,14,12],light=[244,240,228],mag=[78,52,30];
+    const pw=W*.04,ph=W*.028,pitch=W*.068,pr=Math.max(.8,W*.006),px0=W*.034;
+    const stripes=[[W*.008,W*.026],[px0+pw+W*.009,px0+pw+W*.021]];
+    const inStripe=x=>{const lx=x<width/2?x:width-1-x;return stripes.some(([a,b])=>lx>=a&&lx<b);};
+    const hole=(x,y)=>{const lx=x<width/2?x-px0:(width-1-x)-px0;if(lx<0||lx>pw)return 0;const ly=(y+pitch*.3)%pitch;if(ly>ph)return 0;
       const dx=Math.max(0,Math.max(pr-lx,lx-(pw-pr))),dy=Math.max(0,Math.max(pr-ly,ly-(ph-pr)));return clamp(1-(Math.hypot(dx,dy)-pr+.5),0,1);};
     // 先算画面（含红色光晕）
     for(let y=0;y<height;y++) for(let x=0;x<width;x++){
@@ -644,7 +648,7 @@
         col=[r+gr,g+gr,b+gr].map((v,c)=>mix(base[c],clamp(v,0,1)*255,inside));
       } else {
         // 片基：近黑偏棕，轻微不均匀
-        const n=(valueNoise(x*.08,y*.05)-.5)*8;col=base.map(v=>v+n);
+        const n=(valueNoise(x*.08,y*.05)-.5)*8;col=(inStripe(x)?mag:base).map(v=>v+n);
         const t=hole(x,y);if(t>0)col=col.map((v,c)=>mix(v,light[c]-(hash(x,y)*10),t));
       }
       for(let c=0;c<3;c++)out[o+c]=clamp(col[c],0,255);
@@ -652,7 +656,7 @@
     }
     // 片边字：沿齿孔外侧竖排，暖黄色的小点阵字
     const put=(px,py)=>{px=Math.round(px);py=Math.round(py);if(px<0||py<0||px>=width||py>=height)return;const o=(py*width+px)*4;out[o]=mix(out[o],232,.85);out[o+1]=mix(out[o+1],196,.85);out[o+2]=mix(out[o+2],120,.85);};
-    const dot=Math.max(1,Math.round(unit*.55)),colX=Math.min(width-1,px0+pw+Math.round(unit*1.6));
+    const dot=Math.max(1,Math.round(unit*.5)),colX=Math.round(stripes[1][1]+(edge-stripes[1][1]-dot*7)/2); // 片边字放在内侧声带和画面之间
     const vtext=(txt,x,y0)=>{let y=y0;for(const ch of txt){if(ch===" "){y+=dot*4;continue;}const g=FONT5[ch];if(!g){y+=dot*6;continue;}
       for(let r=0;r<7;r++)for(let c=0;c<5;c++)if(g[r*5+c]==="1"){ // 竖排：字顺时针转 90°
         for(let a=0;a<dot;a++)for(let b=0;b<dot;b++)put(x+(6-r)*dot+a,y+c*dot+b);}
