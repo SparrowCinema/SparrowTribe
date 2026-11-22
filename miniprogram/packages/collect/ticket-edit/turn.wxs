@@ -28,22 +28,22 @@ function glow(rx, ry, kind) {
 function pct(v) { return Math.round(v) + '%'; }
 function fxStyle(fx, a, b, lit) {
   var o = lit ? Math.min(1, Math.abs(a) * 3 + Math.abs(b) * 2) : 0, pos = '50% 50%', peak = 0;
-  if (fx === 'holo') { pos = pct(50 + a * 60) + ' ' + pct(50 + b * 60); peak = .6; }
-  else if (fx === 'cast') { pos = pct(50 - a * 45) + ' ' + pct(50 - b * 45) + ', ' + pct(50 + a * 60) + ' ' + pct(50 + b * 60); peak = .75; }
-  else if (fx === 'crystal') { pos = pct(50 + a * 70) + ' ' + pct(50 + b * 50) + ', ' + pct(50 - a * 60) + ' 0%'; peak = .75; }
-  else if (fx === 'sweep') { pos = pct(50 - a * 60) + ' 0%'; peak = .9; }
-  else if (fx === 'glitter') { pos = pct(50 - a * 60) + ' 0%, ' + pct(50 + a * 50) + ' 0%'; peak = .95; }
-  else if (fx === 'gloss') { pos = pct(50 - a * 90) + ' ' + pct(50 + b * 90); peak = .75; }
-  else if (fx === 'sense') { pos = pct(50 - a * 90) + ' ' + pct(50 + b * 90) + ', ' + pct(50 - a * 60) + ' 0%'; peak = .9; }
+  if (fx === 'holo') { pos = pct(50 + a * 60) + ' ' + pct(50 + b * 60); peak = 0.6; }
+  else if (fx === 'cast') { pos = pct(50 - a * 45) + ' ' + pct(50 - b * 45) + ', ' + pct(50 + a * 60) + ' ' + pct(50 + b * 60); peak = 0.75; }
+  else if (fx === 'crystal') { pos = pct(50 + a * 70) + ' ' + pct(50 + b * 50) + ', ' + pct(50 - a * 60) + ' 0%'; peak = 0.75; }
+  else if (fx === 'sweep') { pos = pct(50 - a * 60) + ' 0%'; peak = 0.9; }
+  else if (fx === 'glitter') { pos = pct(50 - a * 60) + ' 0%, ' + pct(50 + a * 50) + ' 0%'; peak = 0.95; }
+  else if (fx === 'gloss') { pos = pct(50 - a * 90) + ' ' + pct(50 + b * 90); peak = 0.75; }
+  else if (fx === 'sense') { pos = pct(50 - a * 90) + ' ' + pct(50 + b * 90) + ', ' + pct(50 - a * 60) + ' 0%'; peak = 0.9; }
   // 海报 / 背面的隐形工艺：静止时完全看不见，转动时浮现；2026-11-22 再调强并改用 hard-light（亮处、暗处都看得出）
-  else if (fx === 'a-gloss') { pos = pct(50 - a * 90) + ' ' + pct(50 + b * 90); peak = .78; }
-  else if (fx === 'a-rim') { pos = pct(50 - a * 90) + ' ' + pct(50 + b * 90); peak = .85; }
-  else if (fx === 'a-holo') { pos = pct(50 + a * 60) + ' ' + pct(50 + b * 60); peak = .62; }
-  else if (fx === 'a-pearl') { pos = pct(50 + a * 70) + ' ' + pct(50 + b * 70); peak = .7; }
-  else if (fx === 'a-guilloche') { pos = pct(50 - a * 60) + ' 0%'; peak = .8; }
-  else if (fx === 'a-rainbow') { pos = pct(50 + a * 80) + ' ' + pct(50 + b * 80); peak = .55; }
-  else if (fx === 'a-cateye') { pos = pct(50 - a * 110) + ' 0%'; peak = .85; }
-  else if (fx === 'a-matte') { pos = pct(50 - a * 90) + ' ' + pct(50 + b * 90); peak = .72; }
+  else if (fx === 'a-gloss') { pos = pct(50 - a * 90) + ' ' + pct(50 + b * 90); peak = 0.78; }
+  else if (fx === 'a-rim') { pos = pct(50 - a * 90) + ' ' + pct(50 + b * 90); peak = 0.85; }
+  else if (fx === 'a-holo') { pos = pct(50 + a * 60) + ' ' + pct(50 + b * 60); peak = 0.62; }
+  else if (fx === 'a-pearl') { pos = pct(50 + a * 70) + ' ' + pct(50 + b * 70); peak = 0.7; }
+  else if (fx === 'a-guilloche') { pos = pct(50 - a * 60) + ' 0%'; peak = 0.8; }
+  else if (fx === 'a-rainbow') { pos = pct(50 + a * 80) + ' ' + pct(50 + b * 80); peak = 0.55; }
+  else if (fx === 'a-cateye') { pos = pct(50 - a * 110) + ' 0%'; peak = 0.85; }
+  else if (fx === 'a-matte') { pos = pct(50 - a * 90) + ' ' + pct(50 + b * 90); peak = 0.72; }
   return { pos: pos, o: Math.round(o * peak * 1000) / 1000 };
 }
 
@@ -57,7 +57,7 @@ function paint(owner, s, ms, lit) {
   var style = {
     background: glow(s.rx, s.ry, s.kind),
     opacity: lit ? 1 : 0,
-    transition: lit ? 'opacity .12s' : 'opacity ' + (ms || 350) + 'ms ease-out'
+    transition: lit ? 'opacity 0.12s' : 'opacity ' + (ms || 350) + 'ms ease-out'
   };
   var glows = owner.selectAllComponents('.te-glow');
   for (var i = 0; i < glows.length; i++) glows[i].setStyle(style);
@@ -68,7 +68,7 @@ function paint(owner, s, ms, lit) {
     var ds = layers[j].getDataset(), fx = fxStyle(ds.fx || s.fx, Math.sin(rel), Math.sin(tilt), lit);
     layers[j].setStyle({
       'background-position': fx.pos, opacity: Math.round(fx.o * (ds.k ? +ds.k : 1) * 1000) / 1000,
-      transition: lit ? 'opacity .12s' : 'opacity ' + Math.max(ms || 0, 350) + 'ms ease-out'
+      transition: lit ? 'opacity 0.12s' : 'opacity ' + Math.max(ms || 0, 350) + 'ms ease-out'
     });
   }
 }

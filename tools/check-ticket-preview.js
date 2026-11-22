@@ -19,6 +19,13 @@ assert.match(wxml,/id="te-card"[^>]*bindtouchstart="\{\{T\.start\}\}" catchtouch
 assert(!/bindtap="flip"/.test(wxml),'taps are handled by turn.wxs so a drag never also flips');
 assert.equal((wxml.match(/class="te-glow"/g)||[]).length,2,'each face carries its own glare');
 assert.equal((wxml.match(/class="te-edge /g)||[]).length,4,'paper edges on both long sides, split at the tear notch');
+// WXS 编译器不认 .6 这种省略 0 的小数（2026-11-22 曾导致小程序无法预览）：字符串之外一律写 0.6
+{
+  const code=fs.readFileSync(path.join(dir,'turn.wxs'),'utf8').replace(/\/\/.*$/gm,'').replace(/'(?:[^'\\]|\\.)*'|"(?:[^"\\]|\\.)*"/g,"''");
+  assert(!/(^|[^\w.])\.\d/m.test(code),'turn.wxs: write 0.6, not .6 (WXS rejects leading-dot numbers)');
+}
+// 主包里不能放只有分包用的 JS（上传会被拦）
+assert(!fs.existsSync(path.join(__dirname,'../miniprogram/utils/ticket-font.js')),'ticket-font.js lives in the collect subpackage');
 // turn.wxs：左右随便转，上下最多 65°，松手按速度转回最近的一面，轻点翻面，页面请求转到指定一面
 {
   let clock=1000;

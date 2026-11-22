@@ -3,7 +3,7 @@
 // 用 <image> 显示，倾斜、翻面用 CSS 3D 变换完成，高光是一层随手指移动的渐变——不再逐帧在画布上重画。
 // 参数：key=票根键（已收藏或待制作），film=影片id（没有观影记录时新建手工票根）。
 const R=require('../../../utils/tickets.js');
-const TitleFont=require('../../../utils/ticket-font.js');
+const TitleFont=require('../utils/ticket-font.js');
 const REVEALED='sk-ticket-revealed';
 const revealedSet=()=>{try{return wx.getStorageSync(REVEALED)||{};}catch(e){return {};}};
 function markRevealed(key){
