@@ -178,14 +178,14 @@ const renders=Sketch.styles.map(({id})=>{
   assert.deepStrictEqual(painted,Sketch.stylize(patch,12,8,48,32,id));
   return Buffer.from(painted).toString('base64');
 });
-assert.equal(Sketch.normalize('unknown'),'news-dots');
+assert.equal(Sketch.normalize('unknown'),'crt');
 assert.equal(new Set(renders).size,Sketch.styles.length,'each style has distinct pixels');
 const doodle=Sketch.stylize(patch,12,8,48,32,'doodle');
 const hasInk=doodle.some((value,i)=>i%4===0&&value<40&&doodle[i+1]<40&&doodle[i+2]<40);
 assert(hasInk,'comic panel outlines strongly contrasting colors');
-assert.deepStrictEqual(Sketch.styles.map(x=>x.id),['news-dots','crayon','kid-crayon','doodle','watercolor','pop-dots','memphis','cmyk-dots','crt','ccd','projector','film70']);
+assert.deepStrictEqual(Sketch.styles.map(x=>x.id),['crt','projector','film70','news-dots','crayon','kid-crayon','doodle','watercolor','pop-dots','memphis','cmyk-dots','ccd']);
 // 已删除的风格换成相近的一款
-assert.deepStrictEqual(['woodcut','blue-ink','cartoon','nope'].map(Sketch.normalize),['crayon','watercolor','pop-dots','news-dots']);
+assert.deepStrictEqual(['woodcut','blue-ink','cartoon','nope'].map(Sketch.normalize),['crayon','watercolor','pop-dots','crt']);
 assert.equal(Sketch.readFilmStyles(()=>JSON.stringify({'old-film':'cartoon'})).get('old-film'),'pop-dots');
 // 影片的覆盖值与收藏册默认分开，清除覆盖后重新使用默认值。
 const artStorage=new Map([[Sketch.storageKey,'watercolor']]);

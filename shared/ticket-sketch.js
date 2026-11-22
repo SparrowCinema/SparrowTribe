@@ -8,8 +8,11 @@
   const PAPER=[249,241,224];
   const INK=[45,36,34];
   // 2026-11-21：去掉木刻版画、蓝墨速写、卡通漫画；新增波普网点、孟菲斯涂鸦。旧的选择会换成相近的一款（ALIAS）。
-  // 2026-11-22：报纸网点设为默认，放在最前（没选过风格的票根都用它）
+  // 2026-11-22：默认改为老电视，其后是胶片放映、70mm 胶片（没选过风格的票根用第一款）
   const styles=[
+    {id:"crt",label:"老电视"},
+    {id:"projector",label:"胶片放映"},
+    {id:"film70",label:"70mm 胶片"},
     {id:"news-dots",label:"报纸网点"},
     {id:"crayon",label:"蜡笔乱涂"},
     {id:"kid-crayon",label:"童趣蜡笔"},
@@ -18,10 +21,7 @@
     {id:"pop-dots",label:"波普网点"},
     {id:"memphis",label:"孟菲斯涂鸦"},
     {id:"cmyk-dots",label:"四色网点"},
-    {id:"crt",label:"老电视"},
-    {id:"ccd",label:"CCD 复古"},
-    {id:"projector",label:"胶片放映"},
-    {id:"film70",label:"70mm 胶片"}
+    {id:"ccd",label:"CCD 复古"}
   ];
   const ALIAS={woodcut:"crayon","blue-ink":"watercolor",cartoon:"pop-dots",riso:"cmyk-dots",lenticular:"crt"}; // 2026-11-22 去掉孔版双色，换成四色网点
   const storageKey="sparrow-ticket-art-style";
