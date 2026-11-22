@@ -155,7 +155,7 @@ function ppPageHTML(list,pg,n){const R=window.SparrowRecap,C=ppCur(),st=passport
     '<div class="fp-sign"><span>签名 / SIGNATURE</span><b>See you at the cinema.</b></div>'+
     '<div class="fp-mrz" aria-hidden="true">P&lt;SPARROW&lt;FILM&lt;PASSPORT&lt;&lt;'+(hn&&!CJK.test(hn)?esc(hn.toUpperCase().replace(/[^A-Z]/g,'&lt;')).slice(0,14):'CINEPHILE')+'&lt;&lt;&lt;<br>FILMS&lt;'+String(st.n).padStart(3,'0')+'&lt;&lt;PROGS&lt;'+pad2(st.progs)+'&lt;&lt;AVG&lt;'+(st.avg?Math.round(st.avg*10):'00')+'&lt;&lt;'+(last?last.rec.d.replace(/-/g,''):'00000000')+'</div></section>';}
   const start=(pg-1)*PP_PER,items=list.slice(start,start+PP_PER);
-  const cells=items.map((e,i)=>'<button class="fp-stamp" data-film="'+e.id+'" style="--tilt:'+stampPose(e.id,i).tilt+'deg;--dx:calc(var(--u)*'+stampPose(e.id,i).dx+');--dy:calc(var(--u)*'+stampPose(e.id,i).dy+');--i:'+i+'">'+stampSVG(e)+'</button>').join('')+
+  const cells=items.map((e,i)=>{const {tilt,dx,dy}=stampPose(e.id,i);return '<button class="fp-stamp" data-film="'+e.id+'" style="--tilt:'+tilt+'deg;--dx:calc(var(--u)*'+dx+');--dy:calc(var(--u)*'+dy+')">'+stampSVG(e)+'</button>';}).join('')+
     Array.from({length:Math.min(1,PP_PER-items.length)},(x,i)=>'<span class="fp-slot'+(i?' dim':'')+'">'+(i===0&&!list.length?'<b>第一枚印章</b><small>在影片页点「看过」</small>':'<small>NEXT STAMP</small>')+'</span>').join('');
   return '<section class="fp-page fp-visa" aria-label="观影印章页"><div class="fp-ph"><span>VISAS / 观影印章'+(C.nv>1?' · VOL. '+pad2(C.vol):'')+'</span><span>'+no+'</span></div><h4>'+(list.length?'一部电影，一枚印章。':'这本护照还没有印章')+'</h4><p class="fp-sub">'+(list.length?'点印章回到影片 · 评分印在章上':'在影片页点「看过」，就会在这里盖章。')+'</p><div class="fp-grid">'+cells+'</div><div class="fp-pf"><span><span>印章</span> '+pg+' / '+(n-1)+'</span><span>SPARROW FILM PASSPORT</span></div></section>';}
 // 平板横屏 / 折叠屏展开（≥840px）：像翻开真护照一样左右两页（1·2、3·4、5·6…）
@@ -214,10 +214,10 @@ function passportHTML(){const C=ppCur(),list=C.list,pages=passportPages(list),n=
       :'<div class="fp-collection"><div class="fp-cover-stage">'+cover+'<p class="fp-cap">'+(C.nv>1?ppV('第 '+C.vol+' 册 · 共 '+C.nv+' 册 · ','Vol. '+C.vol+' of '+C.nv+' · '):'')+'轻触封面，翻开你的银幕旅程 ↗</p></div><div class="fp-collection-copy"><span class="fp-archive-label">A PERSONAL FILM ARCHIVE</span><h3>每一场，<br>都值得留下。</h3><p>看过、评分、盖章。<br>让喜欢的电影，成为你的独家收藏。</p>'+tallies+'<button class="fp-explore" data-library-mine="watched">查看我的已看影片 <span>↗</span></button>'+(C.nv>1?'<button class="fp-explore" data-pp="shelf">'+ppV('护照书架 · 共 '+C.nv+' 册','Passport shelf · '+C.nv+' volumes')+' <span>↗</span></button>':'')+'</div></div>')+
     '<button class="fp-recap" data-pp="recap"><span class="recap-emblem" aria-hidden="true">'+PP_EMBLEM+'</span><span class="recap-copy"><small>我的银幕足迹</small><b>生成我的影院观影结算</b><span>按年份与专题，收藏印章与评分。</span></span><i aria-hidden="true">↗</i></button>'+
     '<svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="pp-ink" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="4" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="1.1" result="d"/><feTurbulence type="fractalNoise" baseFrequency=".05" numOctaves="3" seed="11" result="b"/><feColorMatrix in="b" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -2.2 2.05" result="m"/><feComposite in="d" in2="m" operator="in"/></filter></svg></section>';}
-function sizeBook(){const b=document.querySelector('.fp-book,.fp-cover');if(!b)return;const set=el=>el.style.setProperty('--u',(el.clientWidth/(el.classList.contains('fp-spread')?200:100))+'px');document.querySelectorAll('.fp-book,.fp-cover').forEach(set);}
+function sizeBook(){document.querySelectorAll('#fp .fp-book,#fp .fp-cover').forEach(el=>{const w=el.clientWidth;if(w)el.style.setProperty('--u',(w/(el.classList.contains('fp-spread')?200:100))+'px');});}
 let ppWasSpread=ppSpread();
 window.addEventListener('resize',()=>{if(PP.open&&ppSpread()!==ppWasSpread&&document.getElementById('fp'))renderPassport();ppWasSpread=ppSpread();sizeBook();});
-function renderPassport(){const el=document.getElementById('fp');if(!el)return;el.outerHTML=passportHTML();sizeBook();}
+function renderPassport(){const el=document.getElementById('fp');if(!el)return;ppCancelMotion();el.outerHTML=passportHTML();sizeBook();}
 
 // 影片页「已盖章」：跳到「我的」，展开护照并翻到这部电影印章所在的那一页，印章闪一下
 function ppJump(id){const all=watchEntries(),k=all.findIndex(e=>e.id===id);if(k<0){go('my');return;}
@@ -230,42 +230,43 @@ function ppJump(id){const all=watchEntries(),k=all.findIndex(e=>e.id===id);if(k<
       if(st){st.classList.remove('fp-hit');void st.offsetWidth;st.classList.add('fp-hit');}});};
   if(activeRoute==='my')find();else{go('my');requestAnimationFrame(find);}}
 document.addEventListener('click',e=>{const j=e.target.closest('[data-pp-jump]');if(j){e.preventDefault();ppJump(j.dataset.ppJump);}});
-function turnPassport(action){if(action==='next'||action==='prev'){ppCurlAuto(action==='next'?1:-1);return;}if(PP.busy)return;const root=document.getElementById('fp');if(!root)return;
-  const list=ppCur().list,n=passportPages(list).length,sp=ppSpread(),oldPages=[...root.querySelectorAll('.fp-book>.fp-page')],oldPage=oldPages[0],oldCover=root.querySelector('.fp-cover');
-  if(action==='open'){PP.open=true;PP.page=0;}else if(action==='close'){PP.open=false;PP.vol=0;}
-  else{const base=sp?PP.page-PP.page%2:PP.page,next=base+(action==='next'?(sp?2:1):-(sp?2:1));if(next<0||next>n-1)return;PP.page=next;}
-  const oldClones=oldPages.map(x=>x.cloneNode(true)),coverClone=oldCover&&oldCover.cloneNode(true);
-  const front=(action==='open'?oldCover:action==='next'?oldPage:null);const frontClone=front&&front.cloneNode(true);
-  renderPassport();if(action==='close')return;
-  const book=document.querySelector('#fp .fp-book');if(!book||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+function turnPassport(action){if(action==='next'||action==='prev'){ppCurlAuto(action==='next'?1:-1);return;}
+  if(action==='close'){PP.open=false;PP.vol=0;renderPassport();return;}
+  const cover=document.querySelector('#fp .fp-cover');if(!cover||action!=='open')return;
+  const front=cover.cloneNode(true);PP.open=true;PP.page=0;renderPassport();
+  const book=document.querySelector('#fp .fp-book');if(!book||ppReduce()||!book.animate)return;
   const leaf=document.createElement('div');leaf.className='fp-leaf';leaf.setAttribute('aria-hidden','true');leaf.inert=true;
   const f=document.createElement('div'),b=document.createElement('div');f.className='fp-leaf-f';b.className='fp-leaf-b';
-  const rev=action==='prev';
-  if(book.classList.contains('fp-spread')){ // 双页：右页整页翻向左侧（向后翻）或左页翻回右侧（向前翻）
-    const L=book.querySelector('.fp-left'),Rg=book.querySelector('.fp-right'),ghost=[];
-    if(action==='open'){if(coverClone){coverClone.style.setProperty('--u',book.style.getPropertyValue('--u'));f.append(coverClone);}if(L)L.animate([{opacity:0},{opacity:0,offset:.5},{opacity:1}],{duration:620});b.append(L.cloneNode(true));}
-    else if(rev){f.append(Rg.cloneNode(true));if(oldClones[0])b.append(oldClones[0]);if(oldClones[1]){oldClones[1].classList.add('fp-ghost');ghost.push(oldClones[1]);}}
-    else{if(oldClones[1])f.append(oldClones[1]);b.append(L.cloneNode(true));if(oldClones[0]){oldClones[0].classList.add('fp-ghost');ghost.push(oldClones[0]);}}
-    b.classList.add('pg');leaf.append(f,b);ghost.forEach(g=>book.append(g));book.append(leaf);PP.busy=true;
-    const an=leaf.animate([{transform:'rotateY('+(rev?-180:0)+'deg)'},{transform:'rotateY('+(rev?0:-180)+'deg)'}],{duration:640,easing:'cubic-bezier(.22,.7,.25,1)',fill:'forwards'});
-    const done=()=>{leaf.remove();ghost.forEach(g=>g.remove());PP.busy=false;};an.finished.then(done,done);return;}
-  if(action==='prev'){f.append(book.querySelector('.fp-page').cloneNode(true));}else if(frontClone){f.append(frontClone);}
-  b.innerHTML='<span>SPARROW FILM PASSPORT</span>';leaf.append(f,b);book.append(leaf);PP.busy=true;
-  const an=leaf.animate([{transform:'rotateY('+(rev?-180:0)+'deg)'},{transform:'rotateY('+(rev?0:-180)+'deg)'}],{duration:620,easing:'cubic-bezier(.22,.7,.25,1)',fill:'forwards'});
-  const done=()=>{leaf.remove();PP.busy=false;};an.finished.then(done,done);}
+  const left=book.querySelector('.fp-left');
+  if(left){left.animate([{opacity:0},{opacity:0,offset:.5},{opacity:1}],{duration:620});b.classList.add('pg');b.append(left.cloneNode(true));}
+  else b.innerHTML='<span>SPARROW FILM PASSPORT</span>';
+  front.style.setProperty('--u',book.style.getPropertyValue('--u'));
+  f.append(front);leaf.append(f,b);book.append(leaf);PP.busy=true;
+  const animation=leaf.animate([{transform:'rotateY(0deg)'},{transform:'rotateY(-180deg)'}],{duration:left?640:620,easing:'cubic-bezier(.22,.7,.25,1)',fill:'forwards'});
+  const motion={animation,leaf};PC.cover=motion;
+  const done=()=>{if(PC.cover===motion){PC.cover=null;leaf.remove();PP.busy=false;}};animation.finished.then(done,done);}
 let ppGesture=null,ppSuppress=0;
 document.addEventListener('touchstart',e=>{ppGesture=null;if(e.touches.length!==1||!e.target.closest('#fp .fp-cover')||e.target.closest('#fp .fp-book'))return;ppGesture={x:e.touches[0].clientX,y:e.touches[0].clientY};},{passive:true});
 document.addEventListener('touchend',e=>{if(!ppGesture)return;const dx=e.changedTouches[0].clientX-ppGesture.x,dy=e.changedTouches[0].clientY-ppGesture.y;ppGesture=null;if(Math.abs(dx)<40||Math.abs(dx)<Math.abs(dy)*1.3)return;ppSuppress=performance.now()+400;turnPassport(PP.open?(dx<0?'next':'prev'):'open');},{passive:true});
 // —— 翻页卷曲（2026-11-18）：跟手拖动或点按钮，纸页沿折痕卷起；只在护照书页范围内显示 ——
 // 单页：当前页卷起，背面是纸（透出一点正面），下面是下一页；向前翻是上一页从左边卷回来。
 // 双页：右页翻向左边，背面就是下一跨页的左页（真实印章）；向前翻是左页从左外角卷向右边，背面是上一跨页的右页。
-const PC={t:null,anim:0,drag:null};
+const PC={t:null,anim:0,drag:null,cover:null};
 const ppReduce=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
+function ppCancelMotion(){cancelAnimationFrame(PC.anim);PC.anim=0;PC.drag=null;if(PC.t)PC.t.ov.remove();PC.t=null;
+  if(PC.cover){const {animation,leaf}=PC.cover;PC.cover=null;animation.cancel();leaf.remove();}PP.busy=false;}
+window.addEventListener('hashchange',ppCancelMotion);
+// 同一枚圆章在实页和卷页上同时存在时，各自引用自己的文字弧线。
+let ppCloneId=0;
+function ppClonePage(page){const clone=page.cloneNode(true),prefix='pp-curl-'+(++ppCloneId)+'-';
+  clone.querySelectorAll('.fp-stamp svg path[id]').forEach(path=>{path.id=prefix+path.id;});
+  clone.querySelectorAll('.fp-stamp textPath[href]').forEach(path=>{path.setAttribute('href','#'+prefix+path.getAttribute('href').slice(1));});
+  return clone;}
 function ppCurlStart(dir,cy0){const root=document.getElementById('fp'),book=root&&root.querySelector('.fp-book');if(!book||PP.busy||PC.t||!window.SparrowCurl)return null;
   const list=ppCur().list,n=passportPages(list).length,sp=book.classList.contains('fp-spread'),base=sp?PP.page-PP.page%2:PP.page,next=base+dir*(sp?2:1);if(next<0||next>n-1)return null;
   const BW=book.clientWidth,H=book.clientHeight,W=sp?BW/2:BW;if(!W||!H)return null;
   const keep=PP.page;PP.page=next;const tmp=document.createElement('div');tmp.innerHTML=bookHTML(list,n);PP.page=keep;const nb=tmp.querySelector('.fp-book');
-  const q=(b,c)=>b.querySelector(c),clone=el=>el.cloneNode(true);let cur,under,back,mirror=false,x0=0;
+  const q=(b,c)=>b.querySelector(c),clone=ppClonePage;let cur,under,back,mirror=false,x0=0;
   const paper=src=>{const d=document.createElement('div');d.className='fc-paper';const g=clone(src);g.classList.add('fc-ghost');d.append(g);return d;}; // 纸背透出一点正面（左右相反）
   const flip=el=>{const d=document.createElement('div');d.className='fc-in';d.append(el);return d;}; // 背面内容先左右翻转，镜像后才是正的
   if(sp){if(dir>0){x0=W;cur=clone(q(book,'.fp-right'));under=q(nb,'.fp-right');back=flip(q(nb,'.fp-left'));}
@@ -289,13 +290,14 @@ function ppCurlRender(){const t=PC.t;if(!t)return;const r=SparrowCurl.fold({W:t.
   clip(r.cl.x,r.cl.y,r.cl.a);t.cur.style.clipPath=r.front;t.flap.style.display='block';t.flap.style.transform=r.flapT;
   put(t.fsh,r.fshade);put(t.csh,r.cshade);put(t.ush,r.ushade);}
 function ppCurlTo(target,commit,lift){const t=PC.t;if(!t)return;cancelAnimationFrame(PC.anim);
-  const end=()=>{cancelAnimationFrame(PC.anim);PC.t=null;PP.busy=false;if(commit){PP.page=t.next;renderPassport();const nb=document.querySelector('#fp .fp-book');if(nb)nb.classList.add('fp-still');}else t.ov.remove();}; // 翻页时已经看到整页印章，翻完不再重放盖章动画
+  const end=()=>{const apply=commit&&t.book.isConnected&&t.book.clientWidth;ppCancelMotion();if(apply){PP.page=t.next;renderPassport();}};
   if(ppReduce())return end();
   const from=t.Pc||t.P,t0=performance.now(),dur=520*(lift?1.15:1);
   const step=now=>{const k=Math.min(1,(now-t0)/dur);t.P=SparrowCurl.path(k,from.x,from.y,target.x,target.y,t.H,lift);ppCurlRender();if(k<1)PC.anim=requestAnimationFrame(step);else end();};
   PC.anim=requestAnimationFrame(step);}
-function ppCurlAuto(dir){if(ppReduce()){const book=document.querySelector('#fp .fp-book');if(!book)return;const list=ppCur().list,n=passportPages(list).length,sp=book.classList.contains('fp-spread'),base=sp?PP.page-PP.page%2:PP.page,next=base+dir*(sp?2:1);if(next<0||next>n-1)return;PP.page=next;renderPassport();return;}
-  const book=document.querySelector('#fp .fp-book');if(!book)return;const t=ppCurlStart(dir,book.clientHeight*.92);if(!t)return;
+function ppCurlAuto(dir){const book=document.querySelector('#fp .fp-book');if(!book?.clientWidth||PP.busy)return;
+  if(ppReduce()||!window.SparrowCurl){const list=ppCur().list,n=passportPages(list).length,sp=book.classList.contains('fp-spread'),base=sp?PP.page-PP.page%2:PP.page,next=base+dir*(sp?2:1);if(next<0||next>n-1)return;PP.page=next;renderPassport();return;}
+  const t=ppCurlStart(dir,book.clientHeight*.92);if(!t)return;
   // 按钮：页角沿一条略抬起的弧线翻过去
   ppCurlTo(t.rev?{x:t.W,y:t.cy}:{x:-t.W,y:t.cy},true,t.cy>0?.16:-.16);}
 // 拖动：横向移动超过 6px 才开始翻页，竖向滑动照常滚动页面（.fp-book 设了 touch-action:pan-y），轻点不翻页（留给印章）
@@ -303,6 +305,7 @@ function ppCurlLocal(e){const t=PC.t,r=t.book.getBoundingClientRect();let x=e.cl
 document.addEventListener('pointerdown',e=>{if(!e.isPrimary||e.button>0||PC.t||PP.busy)return;const book=e.target.closest('#fp .fp-book');if(!book)return;
   PC.drag={id:e.pointerId,sx:e.clientX,sy:e.clientY,moved:false,book};});
 document.addEventListener('pointermove',e=>{const d=PC.drag;if(!d||e.pointerId!==d.id)return;
+  if(!d.book.isConnected){ppCancelMotion();return;}
   if(!d.moved){const dx=e.clientX-d.sx,dy=e.clientY-d.sy;if(Math.abs(dx)<7||Math.abs(dx)<Math.abs(dy)*1.2){if(Math.abs(dy)>12)PC.drag=null;return;}
     const r=d.book.getBoundingClientRect(),t=ppCurlStart(dx<0?1:-1,d.sy-r.top);if(!t){PC.drag=null;return;}
     d.moved=true;try{d.book.setPointerCapture(e.pointerId);}catch(_){}
@@ -312,7 +315,7 @@ document.addEventListener('pointermove',e=>{const d=PC.drag;if(!d||e.pointerId!=
   t.P=t.rev?{x:p.x,y:p.y+(t.cy-d.y0)*.6}:{x:p.x+(t.W-d.x0),y:p.y+(t.cy-d.y0)*.6};
   d.vx=p.x-d.lx;d.lx=p.x;cancelAnimationFrame(PC.anim);PC.anim=requestAnimationFrame(ppCurlRender);});
 const ppCurlUp=e=>{const d=PC.drag;if(!d||e.pointerId!==d.id)return;PC.drag=null;if(!d.moved||!PC.t)return;ppSuppress=performance.now()+400;
-  const t=PC.t,P=t.Pc||t.P,cancel=e.type==='pointercancel';
+  ppCurlRender();const t=PC.t,P=t.Pc||t.P,cancel=e.type==='pointercancel';
   if(!t.rev){const go=!cancel&&(P.x<t.W*.55||d.vx<-6);ppCurlTo(go?{x:-t.W,y:t.cy}:{x:t.W,y:t.cy},go);}
   else{const go=!cancel&&(P.x>t.W*.45||d.vx>6);ppCurlTo(go?{x:t.W,y:t.cy}:{x:-t.W,y:t.cy},go);}};
 document.addEventListener('pointerup',ppCurlUp);document.addEventListener('pointercancel',ppCurlUp);

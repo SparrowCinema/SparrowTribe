@@ -101,7 +101,7 @@ document.addEventListener("click",e=>{const b=e.target.closest("[data-theme-set]
 function menuRowHTML(icon,title,sub,attr){return `<button class="my-entry" ${attr}>${menuIcon(icon)}<span class="menu-copy"><b>${title}</b><small>${sub}</small></span><span class="me-go" aria-hidden="true">›</span></button>`;}
 // 护照卡片的展开 / 收起记在内存里：同步或排片更新后重绘「我的」页时保持用户刚才的选择
 let myPassportOpen=true;
-document.addEventListener('toggle',e=>{if(e.target.matches&&e.target.matches('details.passport-collection'))myPassportOpen=e.target.open;},true);
+document.addEventListener('toggle',e=>{if(e.target.matches?.('details.passport-collection')&&e.target.isConnected){myPassportOpen=e.target.open;if(myPassportOpen)sizeBook();else ppCancelMotion();}},true);
 function passportCollectionHTML(){return `<details class="menu-disclosure passport-collection"${myPassportOpen?' open':''}><summary class="my-entry">${menuIcon('passport')}<span class="menu-copy"><b>我的观影护照</b><small>${tr(watchEntries().length+' 部影片')} · ${tr('展开封面与电影印章')}</small></span><span class="me-go" aria-hidden="true">›</span></summary><div class="menu-body">${passportHTML()}</div></details>`;}
 function myPage(){const list=selectedRows(),st=planStats(list),next=list.find(s=>!isPast(s));
  const sync=`<details class="menu-disclosure sync-disclosure"><summary class="my-entry">${menuIcon('sync')}<span class="menu-copy"><b>个人档案云端同步</b><small>同步、备份与档案保管</small></span><span class="me-go" aria-hidden="true">›</span></summary><section class="menu-body sync-card" id="sync-card">${syncCardHTML()}${profileCareHTML()}</section></details>`;

@@ -23,17 +23,22 @@ Page({
   data: {collectionOpen:true,cuCfg:null,cuCmd:null,friendOpen:false,friends:[{u:'https://sparrowcinema.github.io/michelin-guide/',img:'/images/brand/friend-michelin.png',n:'全球米其林餐厅名录',g:'去全球看电影，别忘了顺路吃点美食。',d:'收录全球米其林餐厅，可标记想去、记录去过，让每座城市的电影与美味同行。'}],collectionOpen:false,todayExpanded:false,careOpen:false,todayRows:[], i: {}, pp: {}, ppOpen: false, ppPage: 0, ppVol: 0, ppShelf: false, ppTab: 'stamps', lvAll: false, gt: 'level', cAll: false, gOpen: null, mcat: '', gr: {}, wide: false, ppSp: 0, ppK: 1, ppH: 0, ppCH: 0, ppCK: 1, spreads: [], ppLabel: '', rc: {}, rcOpen: false, rcY: [], rcM: [], rcP: [], rcSections: R.SECTIONS.map(x=>x[0]), guideOpen: false, fbOpen: false, guide: [{ k: '四个页面', s: '底栏四个入口：「排片」看每天每家影院的场次，「专题」按影展、单元浏览，「片目」查全部影片，「我的」放你的日程、护照和设置。' }, { k: '排片 · 看场次', s: '排片页把每天每家影院的场次排成时间表，一个色块就是一场放映；点色块看影片详情与购票、报名信息，可按日期、影院、专题多选筛选。' }, { k: '排片 · 加入我的日程', s: '点色块右上角的 + 把场次加入个人排片；「我的」里会按天列出日程并自动检查时间冲突，排片页也能只看我的排片。' }, { k: '专题 · 影展与单元', s: '专题页把影片按影展、单元归档，点进去看简介和片单，也能看到自己在这个专题里看过几部、完成度多少。' }, { k: '片目 · 找电影', s: '片目页收录全部影片，可以搜片名、导演、演员，并按专题、城市、放映版本筛选；点进影片页看简介、主创、获奖和放映场次。' }, { k: '影片页 · 看过与重刷', s: '在影片页点「看过」盖下印章，可以打分、选放映版本；再看一次就点「再看一次」，每次观影的日期、评分和版本都会单独记录。' }, { k: '放映版本', s: '可以记录你是在普通影厅、胶片、IMAX、杜比、巨幕、LED 还是沉浸厅看的，之后会计入「银幕与版本」类纪念章。' }, { k: '成长 · 等级与纪念章', s: '护照里的「成长」按看过的不同影片数升级（最高 20 级），并按奖项、口味、习惯、银幕、重温、足迹、彩蛋七类点亮纪念章；每枚章展开后都写着点亮规则。' }, { k: '成长 · 全球足迹', s: '放映所在的城市、国家和大洲会自动在「足迹」里点亮，每座城市还会显示各专题的观看进度。' }] },
   switchLang() { app.switchLang(); },
   setTheme(e) { CFG.setTheme(e.currentTarget.dataset.p); },
-  onLoad() { try{const v=wx.getStorageSync('sk-recap-sections-v1');if(Array.isArray(v))this.setData({rcSections:R.SECTIONS.map(x=>x[0]).filter(k=>v.includes(k))});}catch(e){} this.setData({ i: I.dict(), en: I.isEn() }); this.measure(); this._rz = () => { this.measure(); this.buildSpreads(); }; wx.onWindowResize && wx.onWindowResize(this._rz); this.off1 = plan.onChange(() => this.build()); this.off2 = app.onData(() => { this.build(); this.buildPassport(); }); this.off3 = W.onChange(() => this.buildPassport()); },
+  onLoad() { try{const v=wx.getStorageSync('sk-recap-sections-v1');if(Array.isArray(v))this.setData({rcSections:R.SECTIONS.map(x=>x[0]).filter(k=>v.includes(k))});}catch(e){} this.setData({ i: I.dict(), en: I.isEn() }); this.measure(); this._rz = () => { this.cuReset(); this.measure(); this.buildSpreads(); }; wx.onWindowResize && wx.onWindowResize(this._rz); this.off1 = plan.onChange(() => this.build()); this.off2 = app.onData(() => { this.build(); this.buildPassport(); }); this.off3 = W.onChange(() => this.buildPassport()); },
   onUnload() { this.offC&&this.offC();this._rz && wx.offWindowResize && wx.offWindowResize(this._rz); this.off1 && this.off1(); this.off2 && this.off2(); this.off3 && this.off3(); },
   onShow() { Stats.stat('pv', 'my'); wx.setNavigationBarTitle({ title: t('我的观影护照') }); this.openPassportFromFilm(); this.build(); this.buildPassport(); this.ppJump(); this.buildSync();C.flush(); if (!this.offS) this.offS = SY.onStatus(() => this.buildSync()); if (SY.stale()) SY.quiet(); },
-  onHide() { this.offS && this.offS(); this.offS = null; },
-  toggleCollection(){this.setData({collectionOpen:!this.data.collectionOpen});},
+  onHide() { this.cuReset(); this.offS && this.offS(); this.offS = null; },
+  toggleCollection() {
+    this.cuReset();
+    this.setData({ collectionOpen: !this.data.collectionOpen, cuCfg: this.cuCfg(), cuCmd: null }, () => this.cuMeasure());
+    this.ensureSvg();
+  },
   openPassportFromFilm(){const o=app.globalData.openPassport;if(o){app.globalData.openPassport=0;this._jump=typeof o==='string'?o:'';this.setData({collectionOpen:true});}},
   // 从影片页「已盖章」进入：翻到这部电影印章所在的册与页，印章轻轻「盖」一下（与网站 ppJump 同规则）
   ppJump(){const id=this._jump;this._jump='';if(!id)return;const ids=this._ppIds||[],k=ids.indexOf(id);if(k<0)return;
     const vol=Math.floor(k/285)+1,page=1+Math.floor((k%285)/15);
     if(vol!==this.data.pp.vol){this.setData({ppVol:vol});this.buildPassport();}
-    this.setData({ppShelf:false,ppOpen:true,ppTab:'stamps',ppPage:page,ppSp:Math.floor(page/2),'pp.hit':id});this.setData({cuCfg:this.cuCfg(page,Math.floor(page/2))});this.spLabel();this.ensureSvg();setTimeout(()=>this.cuMeasure(),400);
+    const sp=Math.floor(page/2);this.cuReset();
+    this.setData({ppShelf:false,ppOpen:true,ppTab:'stamps',ppPage:page,ppSp:sp,'pp.hit':id,cuCfg:this.cuCfg(page,sp),cuCmd:null},()=>this.cuMeasure());this.spLabel();this.ensureSvg();
     setTimeout(()=>wx.pageScrollTo({selector:'.fp',offsetTop:-8,duration:300}),120);
     clearTimeout(this._hitT);this._hitT=setTimeout(()=>this.setData({'pp.hit':''}),2400);},
   toggleToday(){this.setData({todayExpanded:!this.data.todayExpanded});},
@@ -100,7 +105,13 @@ Page({
         ? { id: gr.id, set: true, open: op.includes(gr.id), earned: gr.earned + '/' + gr.total, dots: gr.items.filter(x => x.earned).slice(0, 8).map(() => 'on').concat(gr.items.some(x => !x.earned) ? [''] : []), name: nm(gr), rule: en ? gr.rule[1] : gr.rule[0], medals: gr.items.map(x => ({ n: x.ic, name: nm(x), st: x.earned ? 'on' : 'far' })) }
         : { id: gr.id, open: op.includes(gr.id), earned: gr.earned + '/' + gr.total, dots: gr.tiers.map(x => x.earned ? 'on' : x.next ? 'nx' : ''), name: nm(gr), rule: en ? gr.rule[1] : gr.rule[0], val: gr.value + (gr.id === 'collect' ? '' : ' ') + (en ? gr.unit[1] : gr.unit[0]), medals: gr.tiers.map(x => ({ n: K(x.n) + (gr.id === 'collect' ? '%' : ''), name: nm(x), st: x.earned ? 'on' : x.next ? 'next' : 'far', pct: x.pct })) }) }; }).filter(c => c.groups.length) } });
   },
-  ppTabSw(e) { this.setData({ ppTab: e.currentTarget.dataset.t === 'growth' ? 'growth' : 'stamps' }); },
+  ppTabSw(e) {
+    const tab = e.currentTarget.dataset.t === 'growth' ? 'growth' : 'stamps';
+    if (tab === this.data.ppTab) return;
+    this.cuReset();
+    this.setData({ ppTab: tab, cuCfg: this.cuCfg(), cuCmd: null }, () => this.cuMeasure());
+    this.ensureSvg();
+  },
   grSub(e) { this.setData({ gt: e.currentTarget.dataset.t }); },
   cToggle() { this.setData({ cAll: !this.data.cAll }); this.buildPassport(); },
   mcSw(e) { this.setData({ mcat: e.currentTarget.dataset.c }); this.buildPassport(); },
@@ -185,38 +196,63 @@ Page({
     for (let j = 0; j < c; j++) spreads.push({ k: j, l: 2 * j, r: 2 * j + 1, rno: String(2 * j + 2).padStart(2, '0') });
     const sp = Math.min(this.data.ppSp, c - 1);
     const pg = Math.min(this.data.ppPage, n - 1);
-    this.setData({ spreads, ppSp: sp, ppPage: pg, cuCfg: this.cuCfg(pg, sp) }); this.spLabel(); this.ensureSvg(); setTimeout(() => this.cuMeasure(), 60);
+    this.setData({ spreads, ppSp: sp, ppPage: pg, cuCfg: this.cuCfg(pg, sp) }, () => this.cuMeasure());
+    this.spLabel(); this.ensureSvg();
   },
   spLabel() { const n = this.data.pp.n, l = this.data.ppSp * 2 + 1; this.setData({ ppLabel: l + 1 <= n ? l + '–' + (l + 1) + ' / ' + n : l + ' / ' + n }); },
-  ppOpen() { this.setData({ ppOpen: true, ppPage: 0, ppSp: 0 }); this.setData({ cuCfg: this.cuCfg(0, 0) }); this.spLabel(); this.ensureSvg(); setTimeout(() => this.cuMeasure(), 60); },
-  ppClose() { this.setData({ ppOpen: false, ppVol: 0 }); this.buildPassport(); },
-  ppShelfOpen() { this.setData({ ppOpen: false, ppShelf: true }); },
+  ppOpen() {
+    this.cuReset();
+    this.setData({ ppOpen: true, ppPage: 0, ppSp: 0, cuCfg: this.cuCfg(0, 0), cuCmd: null }, () => this.cuMeasure());
+    this.spLabel(); this.ensureSvg();
+  },
+  ppClose() { this.cuReset(); this.setData({ ppOpen: false, ppVol: 0, cuCmd: null }); this.buildPassport(); },
+  ppShelfOpen() { this.cuReset(); this.setData({ ppOpen: false, ppShelf: true, cuCmd: null }); },
   ppShelfClose() { this.setData({ ppShelf: false, ppVol: 0 }); this.buildPassport(); },
-  ppPickVol(e) { this.setData({ ppVol: +e.currentTarget.dataset.v || 0, ppShelf: false, ppOpen: true, ppPage: 0, ppSp: 0 }); this.buildPassport(); this.spLabel(); },
+  ppPickVol(e) { this.cuReset(); this.setData({ ppVol: +e.currentTarget.dataset.v || 0, ppShelf: false, ppOpen: true, ppPage: 0, ppSp: 0, cuCmd: null }); this.buildPassport(); },
   // 印章图片：只生成当前页与前后几页（单页 ±1，双页前后两跨页），翻页后补上新露出的页；已生成的按内容键沿用
   _svgKeep(pages) { const old = (this.data.pp && this.data.pp.svg) || {}, keep = {}; (pages || []).forEach(pg => (pg.items || []).forEach(s => { if (old[s.sk]) keep[s.sk] = old[s.sk]; })); return keep; },
-  // 万一某台设备的图片组件不显示 SVG：改用简单的文字印章兜底（本次打开内有效）
-  stErr() { if (!this.data.stFail) this.setData({ stFail: true }); },
+  // 每枚章独立处理 SVG 加载，图片完成前、或单张加载失败时保留文字印章。
+  stLoad(e) {
+    const key = e.currentTarget.dataset.key, s = this.data.pp.svg?.[key];
+    if (s && s.src && !s.ready) this.setData({ ['pp.svg.' + key + '.ready']: true });
+  },
+  stErr(e) {
+    const key = e.currentTarget.dataset.key, s = this.data.pp.svg?.[key];
+    if (s && s.src) this.setData({ ['pp.svg.' + key]: { src: '', ready: false } });
+  },
   ensureSvg(page, sp) {
-    const pp = this.data.pp; if (!pp || !pp.pages || !this._stSrc) return;
+    const pp = this.data.pp; if (!this.cuVisible() || !pp.pages || !this._stSrc) return;
     const wide = this.data.wide, c = wide ? (sp === undefined ? this.data.ppSp : sp) * 2 : (page === undefined ? this.data.ppPage : page), lo = wide ? c - 2 : c - 1, hi = wide ? c + 3 : c + 1, have = pp.svg || {}, d = {};
     for (let k = Math.max(1, lo); k <= hi && k < pp.n; k++) {
       const pg = pp.pages[k - 1]; if (!pg) continue;
-      pg.items.forEach(s => { if (!have[s.sk] && !d['pp.svg.' + s.sk] && this._stSrc[s.id]) d['pp.svg.' + s.sk] = SV.svgUri(R.stampSVG(this._stSrc[s.id], { inline: true, ink: false, badge: false })); });
+      pg.items.forEach(s => {
+        const key = 'pp.svg.' + s.sk;
+        if (!have[s.sk] && !d[key] && this._stSrc[s.id]) d[key] = { src: SV.svgUri(R.stampSVG(this._stSrc[s.id], { inline: true, ink: false, badge: false })), ready: false };
+      });
     }
     const ks = Object.keys(d); for (let i = 0; i < ks.length; i += 15) { const part = {}; ks.slice(i, i + 15).forEach(k => { part[k] = d[k]; }); this.setData(part); } // 分批，避免单次 setData 过大
   },
   // 按钮翻页：交给 curl-ctl.wxs 做卷曲动画，翻完回调 cuDone 换页
-  ppPrev() { this.setData({ cuCmd: { dir: -1, n: (this._cmdN = (this._cmdN || 0) + 1) } }); },
-  ppNext() { this.setData({ cuCmd: { dir: 1, n: (this._cmdN = (this._cmdN || 0) + 1) } }); },
+  ppPrev() { this.cuTurn(-1); },
+  ppNext() { this.cuTurn(1); },
+  cuTurn(dir) {
+    const cfg = this.data.cuCfg;
+    if (!this.cuVisible() || !cfg || !(dir > 0 ? cfg.cf : cfg.cb)) return;
+    this._cuCmd = (this._cuCmd || 0) + 1;
+    this.setData({ cuCmd: { ...cfg, dir, serial: this._cuCmd } });
+  },
+  cuVisible() { const d = this.data; return d.collectionOpen && d.ppOpen && !d.ppShelf && d.ppTab === 'stamps'; },
+  cuReset() { this._cuEpoch = (this._cuEpoch || 0) + 1; this._cuG = null; },
   // 翻页卷曲的参数：书页尺寸（未缩放的 px）、在页面里的位置、当前页、能否前后翻
-  cuCfg(page, sp) {
+  cuCfg(page = this.data.ppPage, sp = this.data.ppSp) {
     const g = this._cuG || {}, wide = this.data.wide, n = (this.data.pp && this.data.pp.n) || 1, cur = wide ? sp : page, last = wide ? Math.ceil(n / 2) - 1 : n - 1;
-    return { W: g.W || 0, H: g.H || 0, k: g.k || 1, left: g.left || 0, top: g.top || 0, sp: wide, page: cur, cf: cur < last, cb: cur > 0 };
+    return { W: g.W || 0, H: g.H || 0, k: g.k || 1, left: g.left || 0, top: g.top || 0, sp: wide, page: cur, cf: cur < last, cb: cur > 0, n, vol: this.data.pp.vol || 0, epoch: this._cuEpoch || 0 };
   },
   cuMeasure() {
+    if (!this.cuVisible()) return;
+    const epoch = this._cuEpoch;
     wx.createSelectorQuery().in(this).select('.cu-book').boundingClientRect().selectViewport().scrollOffset().exec(r => {
-      const b = r && r[0], v = r && r[1]; if (!b || !b.width) return;
+      const b = r && r[0], v = r && r[1]; if (!b || !b.width || epoch !== this._cuEpoch || !this.cuVisible()) return;
       const wide = this.data.wide, k = wide ? this.data.ppK : 1, o = this._cuG || {};
       const g = { W: Math.round(b.width / k / (wide ? 2 : 1) * 10) / 10, H: Math.round(b.height / k * 10) / 10, k, left: b.left + (v ? v.scrollLeft : 0), top: b.top + (v ? v.scrollTop : 0) };
       if (o.W === g.W && o.H === g.H && o.k === g.k && Math.abs(o.left - g.left) < 1 && Math.abs(o.top - g.top) < 1) return;
@@ -225,9 +261,10 @@ Page({
   },
   // 卷曲翻完：页码和卷曲参数同一次 setData，渲染层在新页码到达时复位各层，避免闪一下
   cuDone(o) {
-    const d = o && o.dir; if (!d) return;
-    if (this.data.wide) { const sp = this.data.ppSp + d; if (sp < 0 || sp >= this.data.spreads.length) return; this.setData({ ppSp: sp, cuCfg: this.cuCfg(this.data.ppPage, sp) }); this.spLabel(); this.ensureSvg(); }
-    else { const p = this.data.ppPage + d; if (p < 0 || p >= this.data.pp.n) return; this.setData({ ppPage: p, cuCfg: this.cuCfg(p, this.data.ppSp) }); this.ensureSvg(); }
+    const c = this.data.cuCfg, d = o && o.dir;
+    if (!this.cuVisible() || !c || (d !== -1 && d !== 1) || o.epoch !== (this._cuEpoch || 0) || o.vol !== c.vol || o.n !== c.n || o.sp !== c.sp || o.page !== c.page) return;
+    if (this.data.wide) { const sp = this.data.ppSp + d; if (sp < 0 || sp >= this.data.spreads.length) return; this.setData({ ppSp: sp, cuCfg: this.cuCfg(this.data.ppPage, sp), cuCmd: null }); this.spLabel(); this.ensureSvg(); }
+    else { const p = this.data.ppPage + d; if (p < 0 || p >= this.data.pp.n) return; this.setData({ ppPage: p, cuCfg: this.cuCfg(p, this.data.ppSp), cuCmd: null }); this.ensureSvg(); }
   },
   openStamp(e) { wx.navigateTo({ url: '/pages/film/film?id=' + e.currentTarget.dataset.id }); },
   pickPhoto() {
