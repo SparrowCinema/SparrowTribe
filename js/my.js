@@ -101,6 +101,11 @@ document.addEventListener("click",e=>{const b=e.target.closest("[data-theme-set]
 function menuRowHTML(icon,title,sub,attr){return `<button class="my-entry" ${attr}>${menuIcon(icon)}<span class="menu-copy"><b>${title}</b><small>${sub}</small></span><span class="me-go" aria-hidden="true">›</span></button>`;}
 // 护照卡片的展开 / 收起记在内存里：同步或排片更新后重绘「我的」页时保持用户刚才的选择
 let myPassportOpen=true;
+// 手机上快速连点「我的观影护照」时，两下可能被当成一次双击缩放、或在页面忙时排队成「开 + 关」相互抵消，看起来要按好几下：
+// 自己处理这一行的点击，立即切换，350ms 内的重复点击忽略（配合 CSS touch-action:manipulation 去掉双击缩放）
+let myPassportTapAt=0;
+document.addEventListener('click',e=>{const s=e.target.closest('details.passport-collection>summary');if(!s)return;e.preventDefault();
+  const now=performance.now();if(now-myPassportTapAt<350)return;myPassportTapAt=now;const d=s.parentElement;d.open=!d.open;});
 document.addEventListener('toggle',e=>{if(e.target.matches?.('details.passport-collection')&&e.target.isConnected){myPassportOpen=e.target.open;if(myPassportOpen)sizeBook();else ppCancelMotion();}},true);
 function passportCollectionHTML(){return `<details class="menu-disclosure passport-collection"${myPassportOpen?' open':''}><summary class="my-entry">${menuIcon('passport')}<span class="menu-copy"><b>我的观影护照</b><small>${tr(watchEntries().length+' 部影片')} · ${tr('展开封面与电影印章')}</small></span><span class="me-go" aria-hidden="true">›</span></summary><div class="menu-body">${passportHTML()}</div></details>`;}
 function myPage(){const list=selectedRows(),st=planStats(list),next=list.find(s=>!isPast(s));

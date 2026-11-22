@@ -1300,3 +1300,5 @@ input:not([type=checkbox]):not([type=radio]),select,textarea{font-size:16px!impo
 .fc-ci{position:absolute;left:0;top:0;transform-origin:0 0;will-change:transform}
 .fc-flap{will-change:transform}
 .fc-ci>.fc-l{width:var(--fcw);height:var(--fch);inset:auto;left:0;top:0}
+/* 点按元素去掉双击缩放：手机上快速连点不再被吞掉（2026-11-22） */
+button,summary,a,label,select,[role=button],[data-pp],.my-entry{touch-action:manipulation}
