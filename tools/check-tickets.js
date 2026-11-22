@@ -183,7 +183,7 @@ assert.equal(new Set(renders).size,Sketch.styles.length,'each style has distinct
 const doodle=Sketch.stylize(patch,12,8,48,32,'doodle');
 const hasInk=doodle.some((value,i)=>i%4===0&&value<40&&doodle[i+1]<40&&doodle[i+2]<40);
 assert(hasInk,'comic panel outlines strongly contrasting colors');
-assert.deepStrictEqual(Sketch.styles.map(x=>x.id),['crayon','kid-crayon','doodle','watercolor','pop-dots','memphis']);
+assert.deepStrictEqual(Sketch.styles.map(x=>x.id),['crayon','kid-crayon','doodle','watercolor','pop-dots','memphis','cmyk-dots','riso','news-dots']);
 // 已删除的风格换成相近的一款
 assert.deepStrictEqual(['woodcut','blue-ink','cartoon','nope'].map(Sketch.normalize),['crayon','watercolor','pop-dots','crayon']);
 assert.equal(Sketch.readFilmStyles(()=>JSON.stringify({'old-film':'cartoon'})).get('old-film'),'pop-dots');
@@ -209,6 +209,14 @@ const mem=Sketch.stylize(sat0(),40,30,200,150,'memphis');
 const blackShare=mem.filter((v,i)=>i%4===0&&v<40&&mem[i+1]<40&&mem[i+2]<40).length/(200*150);
 assert(blackShare<.3,'memphis keeps black to outlines and patterns: '+blackShare);
 assert(new Set(Array.from({length:200*150},(_,i)=>mem[i*4]+','+mem[i*4+1]+','+mem[i*4+2])).size>=4,'memphis mixes several candy colours');
+// 印刷网点三款：四色网点有青、品、黄三种油墨的点并留出纸白；孔版双色只用粉、蓝两色；报纸网点只有黑墨，纸是泛黄的新闻纸
+{const grad=new Uint8ClampedArray(40*30*4);for(let i=0;i<grad.length;i+=4){const p=i/4,x=p%40,y=Math.floor(p/40);grad.set([200-x*4,80+y*4,60+x*3,255],i);}
+ const px=(a,f)=>Array.from({length:a.length/4},(_,i)=>[a[i*4],a[i*4+1],a[i*4+2]]).filter(f).length;
+ const cm=Sketch.stylize(grad,40,30,200,150,'cmyk-dots');
+ assert(px(cm,([r,g,b])=>r>245&&g>240&&b>230)>800,'cmyk halftone leaves paper white between dots');
+ assert(px(cm,([r,g,b])=>b>150&&r<90)>100&&px(cm,([r,g,b])=>r>180&&g<90)>100,'cmyk prints cyan and magenta dots');
+ const ri=Sketch.stylize(grad,40,30,200,150,'riso');assert(px(ri,([r,g,b])=>g>r+30&&g>b+30)===0&&px(ri,([r,g,b])=>b>150&&r<90)>100,'riso uses only pink and blue inks');
+ const nw=Sketch.stylize(grad,40,30,200,150,'news-dots');assert(px(nw,([r,g,b])=>Math.max(r,g,b)-Math.min(r,g,b)>40)===0,'newsprint is a single neutral ink');}
 function sat0(){const a=new Uint8ClampedArray(40*30*4);for(let i=0;i<a.length;i+=4){const p=i/4,x=p%40,y=Math.floor(p/40);a.set(x<14?[30,30,40,255]:x<27?[220,90,70,255]:y<15?[250,240,220,255]:[70,160,200,255],i);}return a;}
 const sat=new Uint8ClampedArray(40*30*4);for(let i=0;i<sat.length;i+=4)sat.set(i%160<80?[200,40,40,255]:[40,90,200,255],i);
 const kid=Sketch.stylize(sat,40,30,200,150,'kid-crayon'),flat=Sketch.stylize(sat,40,30,200,150,'doodle');
