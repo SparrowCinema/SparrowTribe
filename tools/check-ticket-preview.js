@@ -214,8 +214,12 @@ const flush=async()=>{for(let n=0;n<20;n++){await new Promise(r=>setImmediate(r)
   assert.equal(store['sk-tickets-v2'][saved[0]].c,83,'crop persisted');
   const page3={...options,data:JSON.parse(JSON.stringify(options.data)),setData:page.setData};
   page3.onLoad({key:encodeURIComponent(saved[0])});await flush();assert.equal(page3.data.draft.crop,83);
-  await page2.exportSingle();await flush();
+  await page2.exportAs('front');await flush();
   assert(exporter.ctx.labels.includes('纪念票根'));
+  // 正反面合成（默认）：同一块导出画布画成 4:5 的片名海报，两面都在
+  exporter.ctx.labels.length=0;await page2.exportAs('both');await flush();
+  assert(exporter.ctx.labels.includes('纪念票根')&&exporter.ctx.labels.includes('收藏票根'),'showcase has both faces');
+  assert(exporter.ctx.labels.includes('SPARROW · FILM PASSPORT')||exporter.ctx.labels.some(t=>/SPARROW/.test(t)),'showcase header');
   page2.pickArtStyle({detail:{value:'0'}});await flush();
   assert.equal(page2._artStyle,'memphis');
   assert.equal(Art.readFilmStyles(wx.getStorageSync).has(film.id),false);

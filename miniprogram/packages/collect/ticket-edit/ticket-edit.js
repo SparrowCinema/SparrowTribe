@@ -257,18 +257,29 @@ Page({
     }});
   },
   // ——— 导出这张 ———
-  async exportSingle(){
+  // 正反面合成（默认，片名海报底图，1440 × 1800）/ 只导正面 / 只导背面；导出时烘焙一道固定角度的烫印反光（shared/tickets.js 的 bakeSheen）
+  exportSingle(){
     if(this.data.loading)return;
-    const side=this.data.front?'front':'back',row={...this._draft,look:{...this._draft.look},artStyle:this._artStyle};
+    wx.showActionSheet({itemList:[I.tr('正反面合成（推荐）'),I.tr('只导正面'),I.tr('只导背面')],success:c=>this.exportAs(['both','front','back'][c.tapIndex])});
+  },
+  async exportAs(mode){
+    if(this.data.loading)return;
+    const both=mode==='both',side=both?'front':mode;
     this.setData({loading:true});wx.showLoading({title:I.tr('正在生成图片'),mask:true});
     try{
+      // 背面和合成图带发行序号：还没领到号的已收藏票根，先领一次再导出
+      if(mode!=='front'&&this._original&&!this._draft.issue){
+        try{await Tix.issueNow();}catch(e){}
+        const e=Tix.all()[this._original];if(e&&e.q)this._draft.issue=e.q;
+      }
+      const row={...this._draft,look:{...this._draft.look},artStyle:this._artStyle};
       const node=await canvas(this,'te-export');if(!node)throw Error('canvas');
-      const [art]=await Promise.all([side==='front'?image(node,row.art):null,TitleFont.ready()]);
-      node.width=R.W*3;node.height=R.H*3;
-      R.draw(node.getContext('2d'),row,side,art,{x:0,y:0,w:node.width,h:node.height},stock);
-      const file=await new Promise((resolve,reject)=>wx.canvasToTempFilePath({canvas:node,fileType:'png',success:r=>resolve(r.tempFilePath),fail:reject},this));
+      const [art]=await Promise.all([side==='front'||both?image(node,row.art):null,TitleFont.ready()]);
+      if(both){node.width=1440;node.height=Math.round(1440*R.SHOW_H/R.SHOW_W);R.drawShowcase(node.getContext('2d'),row,art,stock,{width:1440});}
+      else{node.width=R.W*3;node.height=R.H*3;const rect={x:0,y:0,w:node.width,h:node.height},ctx=node.getContext('2d');R.draw(ctx,row,side,art,rect,stock);R.bakeSheen(ctx,row,side,rect,stock,side==='front'&&!!art);}
+      const file=await new Promise((resolve,reject)=>wx.canvasToTempFilePath({canvas:node,fileType:both?'jpg':'png',quality:.92,success:r=>resolve(r.tempFilePath),fail:reject},this));
       wx.hideLoading();this.setData({loading:false});
-      if(side==='front'&&row.art&&!art)say('海报读取失败，已用片名代替');
+      if((side==='front'||both)&&row.art&&!art)say('海报读取失败，已用片名代替');
       wx.showActionSheet({itemList:[I.tr('保存到相册'),I.tr('预览并发给朋友')],success:c=>{
         if(c.tapIndex===0)wx.saveImageToPhotosAlbum({filePath:file,success:()=>say('已保存到相册'),fail:()=>wx.previewImage({urls:[file]})});
         else wx.previewImage({urls:[file]});

@@ -83,4 +83,4 @@ function freeKey(filmId, date, idx, except) {
   for (let n = 1; n < 10; n++) { const key = T.ticketKey(filmId, date, n); if (key === except || (!linked.has(key) && (!store[key] || store[key].del))) return key; }
   return '';
 }
-module.exports = { issueSoon, all, put, set, snapshot, replaceAll, onChange, nudge, build, baseFor, viewings, freeKey, rev: () => rev };
+module.exports = { issueSoon, issueNow: () => issueRun(), all, put, set, snapshot, replaceAll, onChange, nudge, build, baseFor, viewings, freeKey, rev: () => rev };
