@@ -66,7 +66,7 @@ function ticketBase(filmId,view,date){
 }
 function ticketAll(){
   if(ticketData&&ticketDataRev===ticketRev+"|"+watchedSig())return ticketData;
-  // 不对应观影记录的票根先挪回所属影片（一部电影一张，和观影护照对齐）
+  // 不对应观影记录的票根先挪到所属影片还没有票根的观影上（每次观影一张）
   const list=ticketViewings(),moves=TE.reconcile(list,ticketStore());
   if(moves)ticketStorePut({...ticketStore(),...moves},true);
   ticketData=TE.build(list,ticketStore(),ticketBase);ticketDataRev=ticketRev+"|"+watchedSig();
@@ -380,7 +380,7 @@ function ticketPendingHTML(){
     return `<li><button type="button" class="ticket-pend" data-ticket-pending="${esc(item.key)}">${pst(item.filmId)?pimg(item.filmId,360,'loading="lazy" alt=""'):"<i></i>"}
       <b>${esc(f?.cn||item.filmId)}</b><span>${esc([item.view.d.replace(/-/g,"."),b.time,b.venue].filter(Boolean).join(" · "))}</span><em>${ticketDict("制作")} ›</em></button></li>`;};
   return ticketHeading(false)+`<div class="ticket-pending"><h3>${ticketDict("待制作")} ${pending.length} ${ticketDict("部")}</h3>
-    <p>${ticketDict("和观影护照一样，一部电影一张票根。一键生成使用专题默认款式，之后仍可逐张换款。")}</p>
+    <p>${ticketDict("每一次观影一张票根，重看同一部电影会多开一个盲盒。一键生成会把待制作的观影全部开成盲盒票根。")}</p>
     ${pending.length?`<button type="button" class="primary-button" data-ticket-action="make-all">${ticketDict("一键生成全部")} ${pending.length} ${ticketDict("张票根")}</button>`:`<p>${ticketDict("所有观影都已经做成票根了。")}</p>`}
     <ul>${rows.map(line).join("")}</ul>
     ${pending.length>rows.length?`<button type="button" class="ticket-alt" data-ticket-action="pending-more">${ticketDict("显示更多")}（${pending.length-rows.length}）</button>`:""}</div>`;
@@ -405,29 +405,26 @@ function ticketSearch(query){
     ${pst(f.id)?pimg(f.id,360,'loading="lazy" alt=""'):""}<span>${esc(f.cn)}</span></button>`).join(""):
     `<p>${ticketDict(terms.length?"没有匹配的影片":"输入电影片名开始搜索。")}</p>`;
 }
-// 打开某次观影的票根：已收藏就编辑，没做过就新建（随机盲盒款式）
+// 打开某次观影的票根：已收藏就编辑，没做过就新建（盲盒款式由票根键决定，按搭配规则抽，见 shared/tickets.js）
 function ticketOpenViewing(item){
   const existing=ticketAll().tickets.find(row=>row.key===item.key);
   if(existing){ticketOpen(existing);return;}
   const row=TE.build([item],{[item.key]:{t:Date.now()}},ticketBase).tickets[0];if(!row)return;
-  row.look=TE.randomLook(row);
-  ticketDraft={row,original:"",side:"front",view:item.view};ticketRender();window.scrollTo(0,0);
+  ticketDraft={row,original:"",side:"front",view:item.view};ticketPrepareReveal();ticketRender();window.scrollTo(0,0);
 }
 function ticketBegin(id){
   const f=F[id];if(!f)return;
   const mine=ticketViewings().filter(item=>item.filmId===id).sort((a,b)=>b.view.d.localeCompare(a.view.d));
-  const made=new Set(ticketAll().tickets.map(row=>row.key));
-  // 一部电影一张：已有票根就打开它，否则用最近一次观影新建
-  const item=mine.find(x=>made.has(x.key))||mine[0];
+  // 每次观影一张：打开最近一次观影的票根（没做过就新建）
+  const item=mine[0];
   if(item){ticketOpenViewing(item);return;}
   // 没有观影记录：先找这部电影以前做过、现在没对上观影记录的票根（比如移出过护照），接着编辑它
   const store=ticketStore(),old=Object.keys(store).filter(k=>k.startsWith(id+"|")&&!store[k].del&&TE.parseKey(k)).sort((x,y)=>(store[y].t||0)-(store[x].t||0))[0];
-  if(old){const row=TE.draft(old,store[old],ticketBase);if(row){ticketDraft={row,original:old,side:"front",view:null};ticketRender();window.scrollTo(0,0);return;}}
+  if(old){const row=TE.draft(old,store[old],ticketBase);if(row){ticketDraft={row,original:old,side:"front",view:null};ticketPrepareReveal();ticketRender();window.scrollTo(0,0);return;}}
   // 都没有：手工票根，日期默认今天，可改；保存时同时盖章
   const date=isoOf(new Date(now())),key=ticketFreeKey(id,date);
   const row=TE.draft(key,{t:Date.now()},ticketBase);if(!row)return;
-  row.look=TE.randomLook(row);
-  ticketDraft={row,original:"",side:"front",view:null};ticketRender();window.scrollTo(0,0);
+  ticketDraft={row,original:"",side:"front",view:null};ticketPrepareReveal();ticketRender();window.scrollTo(0,0);
 }
 function ticketFreeKey(filmId,date,except){
   const store=ticketStore(),linked=new Set(ticketViewings().map(item=>item.key));
@@ -436,7 +433,36 @@ function ticketFreeKey(filmId,date,except){
 }
 function ticketOpen(row){
   const item=row.linked?ticketViewings().find(x=>x.key===row.key):null;
-  ticketDraft={row:{...row,look:{...row.look}},original:row.key,side:ticketSide,view:item?.view||null};ticketRender();window.scrollTo(0,0);
+  ticketDraft={row:{...row,look:{...row.look}},original:row.key,side:ticketSide,view:item?.view||null};ticketPrepareReveal();ticketRender();window.scrollTo(0,0);
+}
+// ——— 拆盲盒（2026-11-22）———
+// 每张票根第一次在本机打开时：先亮背面，停一下再自动翻到正面，工艺层整片流过一遍光，下方显示「本次开出：…」。
+// 已拆过的票根键记在本机（不同步，换设备会再拆一次），最多记 6000 张。
+const TICKET_REVEALED="sparrow-ticket-revealed";
+function ticketRevealedSet(){try{return JSON.parse(localStorage.getItem(TICKET_REVEALED)||"{}")||{};}catch{return {};}}
+function ticketPrepareReveal(){
+  const key=ticketDraft?.row?.key;if(!key||ticketRevealedSet()[key])return;
+  ticketDraft.reveal="pending";ticketDraft.side="back";
+}
+function ticketMarkRevealed(key){
+  const set=ticketRevealedSet();set[key]=1;const keys=Object.keys(set);
+  if(keys.length>6000)keys.slice(0,keys.length-6000).forEach(k=>delete set[k]);
+  try{localStorage.setItem(TICKET_REVEALED,JSON.stringify(set));}catch{}
+}
+function ticketRunReveal(card){
+  if(ticketDraft?.reveal!=="pending")return;
+  const draft=ticketDraft;draft.reveal="running";
+  setTimeout(()=>{
+    if(ticketDraft!==draft)return;
+    card.classList.add("reveal");ticketFlipTo("front");ticketCraftCaption();
+    setTimeout(()=>{if(ticketDraft===draft){draft.reveal="done";card.classList.remove("reveal");ticketCraftCaption();}ticketMarkRevealed(draft.row.key);},2000);
+  },750);
+}
+function ticketCraftCaption(){
+  const el=main.querySelector(".te-craft");if(!el||!ticketDraft)return;
+  const running=ticketDraft.reveal==="running";
+  el.classList.toggle("reveal",running);
+  el.textContent=tr(running?"本次开出":"工艺")+"："+TE.craftLabel(ticketDraft.row.look,tr);
 }
 // 票面（裁切 / 配图）改动后，可以就地保存，不用离开详情页
 const ticketArtSig=row=>[row.crop,row.art].join("|");
@@ -463,10 +489,9 @@ function ticketEditor(row){
         <button type="button" class="te-art-save" data-ticket-action="save-here" ${ticketArtDirty()?"":"disabled"}>${ticketDict("保存")}</button></div>`:""}
       <div class="te-tools"><div class="te-seg" role="tablist" aria-label="${ticketDict("票根面")}">
         <button type="button" role="tab" data-ticket-side="front" aria-selected="${front}">${ticketDict("正面")}</button><button type="button" role="tab" data-ticket-side="back" aria-selected="${!front}">${ticketDict("背面")}</button></div>
-        <button type="button" class="te-dice" data-ticket-action="shuffle">${ticketDict("随机换一款")}</button>
         <button type="button" class="te-style" data-ticket-filter="art-style" aria-haspopup="dialog">${ticketDict("手绘风格")}${filterChevron}</button></div>
       <p class="te-craft" aria-live="polite"></p>
-      <button type="button" class="te-reset" data-ticket-action="reset">${ticketDict("恢复专题默认款式")}</button></div>
+      <button type="button" class="te-reset" data-ticket-action="reset" hidden>${ticketDict("恢复盲盒款")}</button></div>
     <div class="te-body">
       <div class="te-heading">
         <div class="te-title"><h3>${esc(row.title)}</h3>${row.programme?`<small>${esc(row.programme)}</small>`:""}</div>
@@ -484,6 +509,7 @@ function ticketEditorMount(){
   ticketDrawEditor();
   const card=main.querySelector(".ticket-flip");if(!card)return;
   card.ticketTurn=ticketTurner(card);
+  ticketRunReveal(card);
 }
 // 360° 转动（与小程序 packages/collect/ticket-edit/turn.wxs 同一套规则，改这里记得同步那边）：
 // 左右随便转；上下最多倾斜 65°；松手按甩动速度带一点惯性，再慢慢转回最近的正面或背面；轻点翻面（走原来的 flip 动作）。
@@ -507,7 +533,8 @@ function ticketFxStyle(fx,s,t,lit){
     "a-pearl":[`${p(50+s*70)} ${p(50+t*70)}`,.7],
     "a-guilloche":[`${p(50-s*60)} 0%`,.8],
     "a-matte":[`${p(50-s*90)} ${p(50+t*90)}`,.72],
-    "a-rainbow":[`${p(50+s*80)} ${p(50+t*80)}`,.55]
+    "a-rainbow":[`${p(50+s*80)} ${p(50+t*80)}`,.55],
+    "a-cateye":[`${p(50-s*110)} 0%`,.85]
   };
   const [pos,peak]=table[fx]||["50% 50%",0];
   return {pos,o:+(o*peak).toFixed(3)};
@@ -568,7 +595,8 @@ function ticketDrawEditor(){
   const card=main.querySelector(".ticket-flip");if(!card)return;
   const shine=TE.shineOf(ticketDraft.row.look.finish);
   card.dataset.shine=shine.kind;card.style.setProperty("--metal-highlight",shine.highlight+"af");card.style.setProperty("--edge",TE.edgeOf(ticketDraft.row));
-  const craft=main.querySelector(".te-craft");if(craft)craft.textContent=tr("工艺")+"："+TE.craftLabel(ticketDraft.row.look,tr);
+  ticketCraftCaption();
+  const reset=main.querySelector(".te-reset");if(reset)reset.hidden=TE.lookSig(ticketDraft.row.look)===TE.lookSig(TE.sanitize({...ticketDraft.row,look:null}).look);
   for(const side of ["front","back"])ticketRenderCard(main.querySelector("#ticket-preview-"+side),ticketDraft.row,side);
 }
 async function ticketRenderCard(canvas,row,side){
@@ -605,7 +633,7 @@ function ticketSave(stay){
   const d=ticketDraft,row=TE.sanitize({...d.row});
   if(!row.date){toast(tr("请填写放映日期"));return;}
   let key=d.row.key,stamped=false;
-  // 一部电影一张票根、和护照同步：给还没盖章的电影做票根，同时在护照里盖章（观影日期＝票根日期）
+  // 和护照同步：给还没盖章的电影做票根，同时在护照里盖章（观影日期＝票根日期）
   const rec=watched[row.filmId];
   if(!d.row.linked&&(!rec||rec.del)){
     watched[row.filmId]={d:row.date,r:0,k:"",t:Math.max(Date.now(),(rec?.t||0)+1)};saveWatched();stamped=true;
@@ -733,8 +761,7 @@ function ticketClick(e){
     case "pick-export":ticketExportOpen={kind:"pick"};ticketExport(b,false).finally(()=>{ticketExportOpen=false;});break;
     case "pick-cancel":ticketPick=null;ticketPaintList();break;
     case "flip":ticketFlipTo(ticketDraft.side==="front"?"back":"front");break;
-    case "shuffle":ticketDraft.row.look=TE.randomLook(ticketDraft.row);ticketDrawEditor();break;
-    case "reset":ticketDraft.row.look=TE.defaults(TE.sanitize({...ticketDraft.row,look:null}));ticketDrawEditor();break;
+    case "reset":ticketDraft.row.look=TE.sanitize({...ticketDraft.row,look:null}).look;ticketDrawEditor();break;
     case "save":ticketSave();break;
     case "save-here":ticketSave(true);break;
     case "remove":

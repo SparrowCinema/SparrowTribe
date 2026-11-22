@@ -76,7 +76,7 @@
   </block>
 
   <block wx:elif="{{mode==='pending'}}">
-    <text class="wall-hint al-block">{{L.t(i,'和观影护照一样，一部电影一张票根。一键生成使用专题默认款式，之后仍可逐张换款。')}}</text>
+    <text class="wall-hint al-block">{{L.t(i,'每一次观影一张票根，重看同一部电影会多开一个盲盒。一键生成会把待制作的观影全部开成盲盒票根。')}}</text>
     <button wx:if="{{sum.pending}}" class="wall-export tk-make-all" bindtap="makeAll">{{L.t(i,'一键生成全部')}} {{sum.pending}} {{L.t(i,'张票根')}}</button>
     <text wx:else class="al-muted al-block">{{L.t(i,'所有观影都已经做成票根了。')}}</text>
     <view class="al-plist"><view wx:for="{{pending}}" wx:key="k" class="al-pend" data-k="{{item.k}}" bindtap="openPendingItem" aria-role="button">

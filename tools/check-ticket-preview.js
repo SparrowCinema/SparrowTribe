@@ -49,10 +49,12 @@ assert.equal((wxml.match(/class="te-edge /g)||[]).length,4,'paper edges on both 
   T.request({side:'front',n:1},null,owner,inst);assert.deepEqual(rot(),[-2,716]);
   T.request({side:'back',n:2},null,owner,inst);assert.deepEqual(rot(),[-2,896]);assert.deepEqual(calls.pop(),['turned',{front:false}]);
   assert.equal(T.sideOf(-184),'back');assert.equal(T.sideOf(-364),'front');
+  // 拆盲盒：snap 请求无动画地停到背面
+  T.request({side:'back',n:3,snap:1},null,owner,inst);assert.deepEqual(rot(),[-2,176]);assert.equal(styles['.te-rot'].transition,'none');assert.deepEqual(calls.pop(),['turned',{front:false}]);
   // 工艺反光：小程序 turn.wxs 与网页 ticketFxStyle 同一张表
   const web=fs.readFileSync(path.join(__dirname,'../js/tickets.js'),'utf8'),a=web.indexOf('function ticketFxStyle('),b=web.indexOf('\nfunction ticketTurner(',a);
   const webFx=vm.runInNewContext(web.slice(a,b)+';ticketFxStyle',{Math});
-  for(const fx of ['holo','cast','crystal','sweep','glitter','gloss','sense','a-gloss','a-rim','a-holo','a-pearl','a-guilloche','a-matte','a-rainbow','none'])for(const [x,y,lit] of [[.3,-.2,true],[-.8,.5,true],[.5,.1,false]]){
+  for(const fx of ['holo','cast','crystal','sweep','glitter','gloss','sense','a-gloss','a-rim','a-holo','a-pearl','a-guilloche','a-matte','a-rainbow','a-cateye','none'])for(const [x,y,lit] of [[.3,-.2,true],[-.8,.5,true],[.5,.1,false]]){
     assert.equal(JSON.stringify(T.fxStyle(fx,x,y,lit)),JSON.stringify(webFx(fx,x,y,lit)),'foil effect table matches the website: '+fx);
   }
   assert.equal(webFx('none',.5,.5,true).o,0,'matte has no foil effect');
@@ -114,10 +116,14 @@ const flush=async()=>{for(let n=0;n<20;n++){await new Promise(r=>setImmediate(r)
   assert(page.data.ok&&!page.data.existing&&!page.data.linked);
   assert(files.get(page.data.frontImg).includes('纪念票根'),'front face rendered to an image');
   assert(files.get(page.data.backImg).includes('收藏票根'),'back face rendered to an image');
-  // 换款：重新画，图片换成新的
-  const before=page.data.frontImg;let changed=false;
-  for(let i=0;i<5&&!changed;i++){page.shuffle();await flush();changed=page.data.frontImg!==before;}
-  assert(changed,'shuffle produces a new preview image');
+  // 盲盒（2026-11-22）：没有「随机换一款」；第一次打开先停在背面再翻到正面揭晓，揭晓后记进本机，下次打开不再播
+  assert.equal(typeof page.shuffle,'undefined','no shuffle button in blind-box mode');
+  assert(!/bindtap="shuffle"/.test(wxml),'shuffle button removed from the page');
+  assert.equal(page.data.front,true,'reveal ends on the front');
+  assert.equal(page.data.revealing,false);
+  assert(store['sk-ticket-revealed']&&store['sk-ticket-revealed'][page._draft.key]===1,'revealed tickets are remembered on this device');
+  assert.equal(page.data.custom,false,'blind-box look needs no restore button');
+  assert(page.data.craft&&/\+/.test(page.data.craft),'craft line lists the unboxed finishes');
   // 翻面：页面发转动请求（序号递增），视图层转完回报正反面
   const n0=page.data.turnReq.n;page.flip();assert.equal(page.data.turnReq.side,'back');assert.equal(page.data.turnReq.n,n0+1);
   await flush();assert.equal(page.data.front,false);assert.match(page.data.edge,/^#[0-9a-f]{6}$/,'paper edge colour comes from the palette');
@@ -216,5 +222,5 @@ const flush=async()=>{for(let n=0;n<20;n++){await new Promise(r=>setImmediate(r)
   album2.onShow();
   assert.deepEqual(album2.painted2,[false,96],'returning keeps the tickets already loaded');
   assert.deepEqual(scrolls,[1234],'returning restores the scroll position');
-  console.log('PASS: ticket editor page — native scrolling/back, image preview with 360° turning (turn.wxs), shuffle redraw, show picker, per-film artwork styles and album fallback, crop flips to front, crop save-in-place, save, export, remove; album keeps its place after saving.');
+  console.log('PASS: ticket editor page — native scrolling/back, image preview with 360° turning (turn.wxs), blind-box reveal (no shuffle), show picker, per-film artwork styles and album fallback, crop flips to front, crop save-in-place, save, export, remove; album keeps its place after saving.');
 })().catch(e=>{console.error(e);process.exitCode=1;});

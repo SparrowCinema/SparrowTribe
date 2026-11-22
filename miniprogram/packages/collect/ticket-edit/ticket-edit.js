@@ -4,6 +4,13 @@
 // 参数：key=票根键（已收藏或待制作），film=影片id（没有观影记录时新建手工票根）。
 const R=require('../../../utils/tickets.js');
 const TitleFont=require('../../../utils/ticket-font.js');
+const REVEALED='sk-ticket-revealed';
+const revealedSet=()=>{try{return wx.getStorageSync(REVEALED)||{};}catch(e){return {};}};
+function markRevealed(key){
+  if(!key)return;const set=revealedSet();set[key]=1;const keys=Object.keys(set);
+  if(keys.length>6000)keys.slice(0,keys.length-6000).forEach(k=>delete set[k]);
+  try{wx.setStorageSync(REVEALED,set);}catch(e){}
+}
 const Art=require('../../../utils/ticket-sketch.js');
 const readArtPreference=key=>wx.getStorageSync(key);
 const Tix=require('../../../utils/ticketstore.js');
@@ -33,7 +40,7 @@ function image(node,src){
 }
 
 Page({
-  data:{i:{},ps:'',ok:false,draft:{},front:true,frontImg:'',backImg:'',turnReq:{side:'front',n:0},edge:'',shine:'metal',fx:'none',layersF:[],layersB:[],craft:'',
+  data:{i:{},ps:'',ok:false,draft:{},front:true,frontImg:'',backImg:'',turnReq:{side:'front',n:0},edge:'',shine:'metal',fx:'none',layersF:[],layersB:[],craft:'',custom:false,revealing:false,
     arts:[],artIndex:0,artStyleLabels:[],artStyleIndex:0,shows:[],showIdx:-1,existing:false,linked:false,loading:false,busy:true,artDirty:false},
   onLoad(q){
     this._albumArtStyle=Art.normalize();
@@ -44,24 +51,24 @@ Page({
     const key=q.key?decodeURIComponent(q.key):'',film=q.film?decodeURIComponent(q.film):'';
     const built=Tix.build(this.data_,this.idx),views=Tix.viewings(this.idx);
     let row=null,original='';
-    const fresh=item=>{const r=R.build([item],{[item.key]:{t:Date.now()}},this.base).tickets[0];if(r)r.look=R.randomLook(r);return r;};
+    const fresh=item=>{const r=R.build([item],{[item.key]:{t:Date.now()}},this.base).tickets[0];return r;};
     if(key){
       const have=built.tickets.find(r=>r.key===key);
       if(have){row={...have,look:{...have.look}};original=key;}
       else{const item=views.find(x=>x.key===key);if(item)row=fresh(item);}
     }else if(film&&this.idx.F[film]){
       const mine=views.filter(x=>x.filmId===film).sort((a,b)=>b.view.d.localeCompare(a.view.d));
-      const made=new Set(built.tickets.map(r=>r.key));
-      // 一部电影一张：已有票根就打开它，否则用最近一次观影新建
-      const item=mine.find(x=>made.has(x.key))||mine[0];
-      if(item&&made.has(item.key)){const have=built.tickets.find(r=>r.key===item.key);row={...have,look:{...have.look}};original=item.key;}
+      // 每次观影一张：打开最近一次观影的票根（没做过就新建）
+      const item=mine[0];
+      const have=item&&built.tickets.find(r=>r.key===item.key);
+      if(have){row={...have,look:{...have.look}};original=item.key;}
       else if(item)row=fresh(item);
       else{
         // 先找这部电影以前做过、现在没对上观影记录的票根（比如移出过护照），接着编辑它
         const st=Tix.all(),old=Object.keys(st).filter(k=>k.startsWith(film+'|')&&!st[k].del&&R.parseKey(k)).sort((x,y)=>(st[y].t||0)-(st[x].t||0))[0];
         const prev=old&&R.draft(old,st[old],this.base);
         if(prev){row=prev;original=old;}
-        else{const k=Tix.freeKey(film,iso(new Date()),this.idx);const r=k&&R.draft(k,{t:Date.now()},this.base);if(r){r.look=R.randomLook(r);row=r;}}}
+        else{const k=Tix.freeKey(film,iso(new Date()),this.idx);const r=k&&R.draft(k,{t:Date.now()},this.base);if(r){row=r;}}}
     }
     if(!row){say('找不到这张票根');setTimeout(()=>wx.navigateBack({fail:()=>wx.redirectTo({url:'/packages/collect/tickets/tickets'})}),600);return;}
     const item=row.linked?views.find(x=>x.key===row.key):null;
@@ -74,6 +81,8 @@ Page({
   setup(row){
     if(row.art)row.art=artworkUrl(row.art);
     this._draft=row;
+    // 拆盲盒（2026-11-22）：本机第一次打开这张票根时先亮背面，再自动翻到正面揭晓（已拆过的键存在本机 sk-ticket-revealed）
+    this._reveal=revealedSet()[row.key]?'':'pending';
     const style=Art.readFilmStyles(readArtPreference).get(row.filmId)||'';
     this._artStyle=style||this._albumArtStyle;
     this._artSaved=this._original?artSig(row):'';
@@ -154,7 +163,18 @@ Page({
     const {kind,fx}=R.shineOf(this._draft.look.finish);
     const layersF=await this.fxLayers(node,'front',turn),layersB=await this.fxLayers(node,'back',turn);
     if(turn!==this._turn||!this._ready)return;
-    this.setData({busy:false,shine:kind,fx,layersF,layersB,craft:R.craftLabel(this._draft.look,I.tr),edge:R.edgeOf(this._draft),turnReq:{...this.data.turnReq,kind,fx}});
+    const custom=R.lookSig(this._draft.look)!==R.lookSig(R.sanitize({...this._draft,look:null}).look);
+    const patch={busy:false,shine:kind,fx,layersF,layersB,custom,craft:R.craftLabel(this._draft.look,I.tr),edge:R.edgeOf(this._draft),turnReq:{...this.data.turnReq,kind,fx}};
+    if(this._reveal==='pending'){
+      this._reveal='running';this._turnN=(this._turnN||0)+1;patch.turnReq={side:'back',n:this._turnN,kind,fx,snap:1};patch.front=false;
+      const key=this._draft.key;
+      setTimeout(()=>{
+        if(!this._ready)return;
+        this.setData({revealing:true});this.turnTo('front');
+        setTimeout(()=>{if(this._ready){this._reveal='done';this.setData({revealing:false});}markRevealed(key);},2000);
+      },750);
+    }
+    this.setData(patch);
   },
   // 拖动裁切时实时预览（与网页一致）：只重画正面，上一张还没画完就只记下「还要再画」，画完立刻按最新位置再画一张，
   // 不会排队堆积，也不用等手指停下；松手（bindchange）后再按原来的流程画清晰的正反面
@@ -178,8 +198,7 @@ Page({
   turned(e){const front=!!(e&&e.front);if(front!==this.data.front)this.setData({front});},
   setSide(e){if((e.currentTarget.dataset.side==='front')!==this.data.front)this.turnTo(e.currentTarget.dataset.side);},
   // ——— 编辑 ———
-  shuffle(){this._draft.look=R.randomLook(this._draft);this.renderFaces();},
-  reset(){this._draft.look=R.defaults(R.sanitize({...this._draft,look:null}));this.renderFaces();},
+  reset(){this._draft.look=R.sanitize({...this._draft,look:null}).look;this.renderFaces();},
   changeField(e){
     const name=e.currentTarget.dataset.field,d=this._draft;
     d[name]=name==='crop'?Number(e.detail.value):e.detail.value;

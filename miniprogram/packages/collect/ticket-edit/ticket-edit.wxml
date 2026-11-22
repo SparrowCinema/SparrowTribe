@@ -4,7 +4,7 @@
 <view wx:if="{{ok}}" class="wrap te-page">
   <view class="te-stage">
     <!-- 360° 转动：左右随便转、上下最多 65°，松手转回最近的正面或背面，轻点翻面（turn.wxs 在视图层跟手） -->
-    <view id="te-card" class="te-card3d" data-shine="{{shine}}" data-fx="{{fx}}" turn="{{turnReq}}" change:turn="{{T.request}}"
+    <view id="te-card" class="te-card3d {{revealing?'te-reveal':''}}" data-shine="{{shine}}" data-fx="{{fx}}" turn="{{turnReq}}" change:turn="{{T.request}}"
       bindtouchstart="{{T.start}}" catchtouchmove="{{T.move}}" bindtouchend="{{T.end}}" bindtouchcancel="{{T.end}}"
       aria-role="button" aria-label="{{L.t(i,'翻面')}}">
       <view class="te-rot" style="--edge:{{edge}}">
@@ -35,13 +35,12 @@
         <view class="{{front?'on':''}}" data-side="front" bindtap="setSide" role="tab" aria-selected="{{front}}">{{L.t(i,'正面')}}</view>
         <view class="{{front?'':'on'}}" data-side="back" bindtap="setSide" role="tab" aria-selected="{{!front}}">{{L.t(i,'背面')}}</view>
       </view>
-      <view class="te-dice {{busy?'te-off':''}}" hover-class="te-hv" bindtap="shuffle" role="button">{{L.t(i,'随机换一款')}}</view>
       <picker mode="selector" range="{{artStyleLabels}}" value="{{artStyleIndex}}" bindchange="pickArtStyle">
         <view class="te-style" hover-class="te-hv" role="button">{{L.t(i,'手绘风格')}}<text class="te-style-chevron" aria-hidden="true">⌄</text></view>
       </picker>
     </view>
-    <view wx:if="{{craft}}" class="te-craft">{{L.t(i,'工艺')}}：{{craft}}</view>
-    <text class="te-reset" bindtap="reset" role="button">{{L.t(i,'恢复专题默认款式')}}</text>
+    <view wx:if="{{craft}}" class="te-craft {{revealing?'on':''}}">{{L.t(i,revealing?'本次开出':'工艺')}}：{{craft}}</view>
+    <text wx:if="{{custom}}" class="te-reset" bindtap="reset" role="button">{{L.t(i,'恢复盲盒款')}}</text>
   </view>
 
   <view class="te-heading">
