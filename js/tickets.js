@@ -343,24 +343,11 @@ function ticketOpenExport(){
   ticketDialog("export",ticketDict("导出票根墙"),ticketExportBody(),ticketExportFoot());
 }
 function ticketExportRefresh(d){d.querySelector(".selector-results").outerHTML=ticketExportBody();d.querySelector(".selector-foot").innerHTML=ticketExportFoot();}
-// 导出这张（2026-11-22）：正反面合成（默认，片名海报底图）/ 只导正面 / 只导背面
-let ticketSingleMode="both";
-function ticketSingleBody(){
-  const opt=(v,name,sub)=>`<div class="ticket-ex-opt">${ticketOptionRow("data-ticket-single",v,name,sub,ticketSingleMode===v)}</div>`;
-  return `<div class="selector-results" role="listbox">${opt("both",tr("正反面合成"),tr("推荐 · 带典藏编号与发行序号"))}${opt("front",tr("只导正面"),"")}${opt("back",tr("只导背面"),"")}</div>`;
-}
-function ticketOpenSingle(){
-  if(!ticketDraft)return;
-  ticketDialog("single",ticketDict("导出这张票根"),ticketSingleBody(),`<span></span><button type="button" class="selector-done" data-ticket-dlg="go1">${ticketDict("生成图片")}</button>`);
-}
 function ticketDialogClick(e,d){
   const kind=d.dataset.kind,t=e.target;
   const act=t.closest("[data-ticket-dlg]")?.dataset.ticketDlg;
   if(act==="close"){d.close();return;}
   if(act==="clear"){TE.FACETS.forEach(k=>{ticketQ[k]=[];});ticketQ.text="";const q=d.querySelector("#ticket-q");if(q)q.value="";ticketPaintList();ticketFilterRefresh(d);return;}
-  if(act==="go1"){const b=t.closest("button");ticketExport(b,true,ticketSingleMode).finally(()=>{if(d.open)d.close();});return;}
-  const single=t.closest("[data-ticket-single]");
-  if(single&&kind==="single"){ticketSingleMode=single.dataset.ticketSingle;d.querySelector(".selector-results").outerHTML=ticketSingleBody();return;}
   if(act==="go"){
     if(ticketExportOpen?.kind==="pick"){ticketPick=new Set();d.close();ticketExportOpen=false;ticketPaintList();toast(tr("点票根挑选，最多")+" "+TICKET_PICK_MAX+" "+tr("张票根"));return;}
     const b=t.closest("button");ticketExport(b,false).finally(()=>{if(d.open)d.close();});return;
@@ -738,7 +725,9 @@ async function ticketExport(button,single,mode){
     const safe=(single?shown[0].title:title).replace(/[\\/:*?"<>|]/g,"-");
     if(location.hash!=="#ticket-wall")return;
     if((side==="front"||both)&&images.some((image,i)=>!image&&shown[i].art))toast(tr("海报读取失败，已用片名代替"));
-    showImageSheet(blob,{file:`${safe}-${both?"正反面":side==="front"?"正面":"背面"}${parts>1?"-"+(part+1):""}.${jpeg?"jpg":"png"}`,head:tr("票根图片已生成"),alt:tr("票根图片")});
+    showImageSheet(blob,{file:`${safe}-${both?"正反面":side==="front"?"正面":"背面"}${parts>1?"-"+(part+1):""}.${jpeg?"jpg":"png"}`,head:tr("票根图片已生成"),alt:tr("票根图片"),
+      // 一键导出合成图；需要单面的在保存菜单里顺手再导（2026-11-22）
+      extra:both?[{label:tr("也导出正面"),run:()=>ticketExport(button,true,"front")},{label:tr("也导出背面"),run:()=>ticketExport(button,true,"back")}]:null});
   }catch{toast(tr("图片生成失败，请稍后再试"));}
   finally{if(button.isConnected){button.disabled=false;button.textContent=label;}}
 }
@@ -809,7 +798,7 @@ function ticketClick(e){
         ticketBackToAlbum();
       }break;
     case "export":ticketExport(b,false);break;
-    case "single":ticketOpenSingle();break;
+    case "single":ticketExport(b,true,"both");break;
   }
 }
 function ticketFlipTo(side){
