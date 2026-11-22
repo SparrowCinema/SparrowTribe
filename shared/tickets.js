@@ -362,6 +362,7 @@ function sanitize(input) {
   record.sketch=input.sketch===true;
   record.crop=Number.isFinite(input.crop) ? Math.max(0,Math.min(100,input.crop)) : 50;
   record.savedAt=Number.isFinite(input.savedAt) ? input.savedAt : 0;
+  record.serial=serialValid(input.serial) ? input.serial : "";
   const fallback=defaults(record);
   record.look=Object.fromEntries(Object.entries(options).map(([key,registry])=>
     [key,Object.prototype.hasOwnProperty.call(registry,input.look?.[key]) ? input.look[key] : fallback[key]]));
@@ -391,6 +392,28 @@ function read(raw) {
     return Array.from(new Map(value.map(sanitize).filter(Boolean).map(record=>[record.id,record])).values());
   } catch (_) { return []; }
 }
+
+// ——— 典藏编号（2026-11-22）———
+// 每张典藏票根一串编号，例如 No. SP26-7KQ4M-9XDQ3：SP + 观影年份后两位，后面 10 位＝9 位编码（45 位）+ 1 位校验。
+// 编码由票根键 + 第一次保存的时间（毫秒）算出：同一张票根在网站、小程序、换手机后都一样；两个人同一天看同一部片也不一样。
+// 第一次保存（或编辑、挪动）时写进票根的 n 字段，之后修改时间变了也不再变；没存过 n 的旧票根按当前保存时间推出，编辑时冻结下来。
+const SERIAL_ABC="ABCDEFGHJKLMNPQRSTUVWXYZ23456789", SERIAL_RE=/^[A-HJ-NP-Z2-9]{10}$/;
+function serialCheck(body) {let s=0;for (let i=0;i<9;i++) s+=SERIAL_ABC.indexOf(body[i])*(i+1);return SERIAL_ABC[s%31];}
+function serialOf(key,t) {
+  const str=String(key||"")+"#"+(Number(t)||0);
+  let a=0x811c9dc5, b=0x9747b28c;
+  for (let i=0;i<str.length;i++) {const c=str.charCodeAt(i);a=Math.imul(a^c,16777619)>>>0;b=Math.imul(b^c,0x5bd1e995)>>>0;b=(b^(b>>>15))>>>0;}
+  const fin=h=>{h=Math.imul(h^(h>>>16),0x85ebca6b)>>>0;h=Math.imul(h^(h>>>13),0xc2b2ae35)>>>0;return (h^(h>>>16))>>>0;};
+  a=fin(a^b);b=fin(b+a);
+  let body="";
+  for (let i=0;i<6;i++) body+=SERIAL_ABC[(a>>>(i*5))&31];
+  for (let i=0;i<3;i++) body+=SERIAL_ABC[(b>>>(i*5))&31];
+  return body+serialCheck(body);
+}
+const serialValid=code=>SERIAL_RE.test(code||"") && serialCheck(code)===code[9];
+// 显示格式：No. SP26-7KQ4M-9XDQ3（没有日期时省掉年份）
+const formatSerial=row=>row && serialValid(row.serial) ? "SP"+(/^\d{4}/.test(row.date||"") ? row.date.slice(2,4) : "")+"-"+row.serial.slice(0,5)+"-"+row.serial.slice(5) : "";
+const entrySerial=(key,entry)=>entry && serialValid(entry.n) ? entry.n : serialOf(key,entry && entry.t);
 
 function sorted(records,programme,year) {
   return records.filter(row=>(!programme || row.programme===programme) && (!year || row.date.slice(0,4)===year)).sort((a,b)=>
@@ -439,7 +462,7 @@ function record(key,filmId,view,entry,base,date) {
   const pick=(field,value)=>value===undefined ? b[field] : value;
   const row=sanitize({...b,id:key,time:pick("time",entry.tm),venue:pick("venue",entry.vn),hall:pick("hall",entry.hl),
     city:pick("city",entry.cy),format:pick("format",entry.fm),seat:entry.st||"",art:pickArt(b.arts,entry.a) || b.art,
-    crop:entry.c===undefined ? 50 : entry.c,sketch:entry.sk===1,savedAt:entry.t,look:{...unpackLook(entry.l),craft:entry.x}});
+    crop:entry.c===undefined ? 50 : entry.c,sketch:entry.sk===1,savedAt:entry.t,serial:entrySerial(key,entry),look:{...unpackLook(entry.l),craft:entry.x}});
   row.key=key; row.linked=!!view; row.arts=b.arts||[]; row.director=b.director||"";
   return row;
 }
@@ -487,7 +510,7 @@ function reconcile(list,store,now) {
     const at=slots.findIndex(item=>{const gone=store[item.key];return !(gone && gone.del && (gone.t||0)>=(store[key].t||0));});
     if (at<0) continue;
     const target=slots.splice(at,1)[0],t=Math.max(now||Date.now(),(store[key].t||0)+1);
-    changes[target.key]={...store[key],t};changes[key]={del:1,t};n++;
+    changes[target.key]={...store[key],n:entrySerial(key,store[key]),t};changes[key]={del:1,t};n++;
   }
   return n ? changes : null;
 }
@@ -500,6 +523,7 @@ function entryFrom(row,base,t) {
   if (row.art && normArt(row.art)!==normArt(base.art)) entry.a=normArt(row.art);
   if (row.crop!==50) entry.c=row.crop;
   if (row.sketch) entry.sk=1;
+  if (serialValid(row.serial)) entry.n=row.serial;
   const look=packLook(row.look);
   if (look!==packLook(defaults({...base,id:row.id}))) entry.l=look;
   if (row.look?.craft && row.look.craft!==craftFor({...base,id:row.id},row.look.finish)) entry.x=row.look.craft;
@@ -528,7 +552,7 @@ function filterTickets(rows,q={}) {
   const terms=String(q.text||"").trim().toLowerCase().split(/\s+/).filter(Boolean);
   return rows.filter(row=>(!q.year || row.date.slice(0,4)===q.year) &&
     FACETS.every(field=>!q[field]?.length || q[field].includes(row[field])) &&
-    terms.every(term=>[row.title,row.subtitle,row.venue,row.programme,row.city,row.director,row.hall,row.format].join(" ").toLowerCase().includes(term)));
+    terms.every(term=>[row.title,row.subtitle,row.venue,row.programme,row.city,row.director,row.hall,row.format,formatSerial(row),row.serial].join(" ").toLowerCase().includes(term)));
 }
 // 每个分面的计数只受其他筛选条件影响（选了 2024 年，专题后面就显示 2024 年里的张数）
 function facetCounts(rows,q={}) {
@@ -872,6 +896,9 @@ function draw(surface,record,side,image,rect,createCanvas,light) {
     const year=record.programme.match(/^\d{4}/)?.[0] || record.date.slice(0,4);
     const centre={align:"center",ink:bright};
     drawEmblem(surface,record,finish,year);
+    // 典藏编号：纪念章与专题名之间，烫印（在工艺遮罩里，转动时跟着反光）
+    const serial=formatSerial(record);
+    if (serial) text(surface,"No. "+serial,W/2,459,{...centre,size:11,weight:600,font:MONO,spacing:1.2,max:300,ink:foilGradient(surface,120,449,300,463,finish)});
     const heading=(year && record.programme.startsWith(year) ? record.programme.slice(4).trim() : record.programme) || "我的观影收藏";
     text(surface,heading,W/2,511,{...centre,size:38,weight:900,font:SERIF,max:347,relief:edge,light:bright+"a0"});
     if (record.section) text(surface,record.section,W/2,552,{...centre,size:17,max:326});
@@ -1423,6 +1450,6 @@ function drawWall(surface,records,side,images,caption,createCanvas,title,maxWidt
 }
 
 const shineOf=key=>{const f=finishes[key]||finishes.matte;return {kind:f.kind,fx:fxOf(key),highlight:f.stops[f.stops.length-2]};};
-return {W,H,TITLE_FAMILY,edgeOf,foilMask,fxOf,artMask,backMask,parseCraft,craftLabel,lookSig,foilLayers,WALL_PAGE,MOSAIC_MAX,FACETS,options:labelOptions(),sanitize,read,sorted,defaults,randomLook,shineOf,draw,wallLayout,drawWall,
+return {serialOf,serialValid,formatSerial,entrySerial,W,H,TITLE_FAMILY,edgeOf,foilMask,fxOf,artMask,backMask,parseCraft,craftLabel,lookSig,foilLayers,WALL_PAGE,MOSAIC_MAX,FACETS,options:labelOptions(),sanitize,read,sorted,defaults,randomLook,shineOf,draw,wallLayout,drawWall,
   ticketKey,parseKey,cleanStore,mergeStore,packLook,unpackLook,normArt,viewings,build,reconcile,draft,entryFrom,migrateV1,filterTickets,facetCounts,groupByMonth,swatch};
 });

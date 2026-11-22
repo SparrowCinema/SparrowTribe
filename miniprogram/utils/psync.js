@@ -17,7 +17,7 @@
     return raw.length === 24 && /^[A-Z2-9]+$/.test(raw) ? 'SP-' + raw.match(/.{4}/g).join('-') : '';
   }
   var num = function (x) { return Number.isFinite(+x) ? +x : 0; };
-  // 票根收藏册（2026-11-21）：票根是某一次观影的「皮肤」，只存用户改过的字段（款式 l、座位 st、裁切 c、票面图 a、手绘 sk、开场 tm、影院 vn、影厅 hl、城市 cy、版本 fm）。
+  // 票根收藏册（2026-11-21）：票根是某一次观影的「皮肤」，只存用户改过的字段（款式 l、座位 st、裁切 c、票面图 a、手绘 sk、开场 tm、影院 vn、影厅 hl、城市 cy、版本 fm）和典藏编号 n。
   // 键 = 影片id|观影日期，同一天看第二次加 |2；没有观影记录的手工票根也用同样的键。shared/tickets.js 复用这里的清洗规则。
   var TIX_KEY = /^[\w-]{1,80}\|\d{4}-\d{2}-\d{2}(\|[2-9])?$/, TIX_LOOK = /^[a-z]{2,12}(\.[a-z]{2,12}){3}$/;
   var TIX_FIELDS = { tm: 5, vn: 160, hl: 80, cy: 60, st: 36, fm: 60, a: 400 };
@@ -30,6 +30,8 @@
     if (out.a && !/^(https:\/\/|posters\/|images\/|\/images\/)/i.test(out.a)) delete out.a;
     if (typeof e.c === 'number' && isFinite(e.c)) { var c = Math.max(0, Math.min(100, Math.round(e.c))); if (c !== 50) out.c = c; }
     if (e.sk === 1) out.sk = 1;
+    // 典藏编号（2026-11-22）：10 位，字母表同同步码（没有 I O 0 1），校验由 shared/tickets.js 负责
+    if (typeof e.n === 'string' && /^[A-HJ-NP-Z2-9]{10}$/.test(e.n)) out.n = e.n;
     if (typeof e.l === 'string' && TIX_LOOK.test(e.l)) out.l = e.l;
     // 工艺组合（2026-11-22）：烫印增效-海报隐形工艺[背面隐形工艺][盲文][可变数据烫印]，见 shared/tickets.js 的 CRAFT_RE；只在改过时才存
     if (typeof e.x === 'string' && /^[sgch]{0,2}-[0urokbdwpqmlinacefghjstxyz][urokbdwpqmlinacefghjstxyz]?[Bv]{0,2}$/.test(e.x)) out.x = e.x;

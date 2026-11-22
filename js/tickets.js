@@ -288,7 +288,7 @@ function ticketOpenFilter(kind){
   }
   const {tickets,all}=ticketShown();
   if(kind==="filter"){
-    const d=ticketDialog("filter",ticketDict("筛选票根"),`<label class="selector-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg><input type="search" id="ticket-q" autocomplete="off" value="${esc(ticketQ.text)}" placeholder="${ticketDict("搜片名、导演、影院、专题")}" aria-label="${ticketDict("搜索票根")}"></label><div class="selector-results ticket-facet-box"></div>`,
+    const d=ticketDialog("filter",ticketDict("筛选票根"),`<label class="selector-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg><input type="search" id="ticket-q" autocomplete="off" value="${esc(ticketQ.text)}" placeholder="${ticketDict("搜片名、导演、影院、专题、编号")}" aria-label="${ticketDict("搜索票根")}"></label><div class="selector-results ticket-facet-box"></div>`,
       `<button type="button" class="text-button" data-ticket-dlg="clear">${ticketDict("清除筛选")}</button><button type="button" class="selector-done" data-ticket-dlg="close"></button>`);
     ticketFilterRefresh(d);return;
   }
@@ -650,7 +650,7 @@ function ticketSave(stay){
     if(!key){toast(tr("这一天的票根已经太多了"));return;}
   }
   const base=ticketBase(row.filmId,d.view,row.date);
-  const entry=base?TE.entryFrom({...row,id:key},{...base,id:key}):{t:Date.now()};
+  const entry=base?TE.entryFrom({...row,id:key},{...base,id:key}):{t:Date.now(),...(TE.serialValid(row.serial)?{n:row.serial}:{})};
   const changes={[key]:entry};
   if(d.original&&d.original!==key)changes[d.original]={del:1,t:Date.now()};
   if(!ticketSet(changes))return;

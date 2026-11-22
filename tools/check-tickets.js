@@ -38,7 +38,8 @@ assert.deepStrictEqual(T.build(list,S.cleanTix(store),base).tickets.map(r=>T.pac
 // 编辑：只存和推导值不同的字段
 const edited={...second,seat:'5排8座',hall:'1号厅',venue:'麻雀部落电影文化空间',look:T.randomLook(second),crop:30,art:'https://sparrowcinema.github.io/SparrowTribe/posters/a.jpg'};
 const entry=T.entryFrom(edited,{...base('a',list.find(x=>x.key==='a|2026-11-08').view,'2026-11-08'),id:'a|2026-11-08'},9);
-assert.deepStrictEqual(Object.keys(entry).filter(k=>k!=='x').sort(),['c','l','st','t','vn']);
+// 编辑保存时同时冻结典藏编号 n（2026-11-22）
+assert.deepStrictEqual(Object.keys(entry).filter(k=>k!=='x').sort(),['c','l','n','st','t','vn']);
 // 工艺组合（2026-11-22）：随机换款连工艺组合一起换，和默认不同时存在 x；默认组合按票根键固定、不存
 assert(!('x' in entry) || /^[sgch]{0,2}-[0urokbdwpqmlinacefghjstxyz][urokbdwpqmlinacefghjstxyz]?[Bv]{0,2}$/.test(entry.x),'craft code is stored in a valid form');
 assert.equal(entry.x===undefined,edited.look.craft===T.build(list,{},base).tickets.find(r=>r.key===edited.key)?.look.craft);
@@ -303,6 +304,32 @@ assert(bytes<320*1024,'store too big: '+bytes);
 // 都换过款式、填了座位也远低于 1MB
 big.forEach(x=>{bigStore[x.key]={t:1700000000000,l:'burgundy.holo.cotton.rosette',st:'12排18座'};});
 const fullBytes=Buffer.byteLength(JSON.stringify(bigStore));assert(fullBytes<600*1024,'customised store too big: '+fullBytes);
+// 典藏编号：每张一串、互不重复、稳定、校验位有效；编辑 / 挪动 / 同步后不变；可按编号搜索
+{
+  const rows=bigBuilt.tickets,codes=new Set(rows.map(r=>r.serial));
+  assert(rows.every(r=>T.serialValid(r.serial)),'serial valid');
+  assert.equal(codes.size,rows.length,'serial unique per ticket');
+  assert.equal(T.build(big,S.cleanTix(bigStore),bigBase).tickets[0].serial,T.build(big,S.cleanTix(bigStore),bigBase).tickets[0].serial,'serial stable');
+  // 同一张票根、不同的人（第一次保存时间不同）编号不同
+  assert.notEqual(T.serialOf('f1|2026-11-01',1700000000001),T.serialOf('f1|2026-11-01',1700000000002),'serial differs across people');
+  // 校验位：改一位、相邻两位对调都能发现
+  const c=rows[0].serial,alt=c[0]==='A'?'B'+c.slice(1):'A'+c.slice(1),sw=c[1]+c[0]+c.slice(2);
+  assert(!T.serialValid(alt),'check digit catches substitution');if(c[0]!==c[1])assert(!T.serialValid(sw),'check digit catches swap');
+  // 编辑保存时冻结（修改时间变了也不变）
+  const one=big[0],r0=T.build([one],{[one.key]:{t:1700000000000}},bigBase).tickets[0];
+  const saved=T.entryFrom({...r0,seat:'5排1座'},{...bigBase(one.filmId,one.view,one.view.d),id:one.key},1800000000000);
+  assert.equal(saved.n,r0.serial,'entryFrom stores serial');
+  assert.equal(S.cleanTixEntry(saved).n,r0.serial,'psync keeps serial');
+  assert.equal(T.build([one],{[one.key]:S.cleanTixEntry(saved)},bigBase).tickets[0].serial,r0.serial,'serial survives later edits');
+  // 挪到另一次观影（reconcile）编号跟着走
+  const orphan='zz-film|2026-01-01',later={key:'zz-film|2026-02-02',filmId:'zz-film',view:{d:'2026-02-02',r:0,k:''}};
+  const moved=T.reconcile([later],{[orphan]:{t:1700000000000}},1700000009999);
+  assert.equal(moved[later.key].n,T.serialOf(orphan,1700000000000),'reconcile keeps serial');
+  // 显示格式与搜索
+  const shown=T.formatSerial(r0);assert(/^SP\d{2}-[A-Z2-9]{5}-[A-Z2-9]{5}$/.test(shown),'format '+shown);
+  assert(T.filterTickets(rows,{text:shown.toLowerCase()}).some(r=>r.key===r0.key),'search by serial');
+  assert(T.filterTickets(rows,{text:r0.serial}).some(r=>r.key===r0.key),'search by bare serial');
+}
 // 大票根墙 / 密排拼图的画布尺寸不超过 iOS 约 1670 万像素上限
 for(const n of [1,4,12,13,48,96,180]){const l=T.wallLayout(n);assert(l.width*l.height<16.7e6,'canvas '+n);assert.equal(l.rects.length,n);}
 assert(T.wallLayout(180,1440).width<=1440);
