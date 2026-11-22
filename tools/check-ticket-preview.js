@@ -103,7 +103,7 @@ const wx={
   getAppBaseInfo:()=>({theme:'light',language:'zh_CN'}),getSystemSetting:()=>({}),getWindowInfo:()=>({}),onThemeChange(){}
 };
 global.wx=wx;
-const data=require('../miniprogram/data/data.js');
+const data=require('./full-data.js');
 const films=data.films.filter(f=>!f.ev&&data.shows.some(s=>s.id===f.id));
 const film=films[0];
 let options;
