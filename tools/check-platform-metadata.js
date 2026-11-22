@@ -2,7 +2,7 @@
 const fs=require('fs'),path=require('path'),assert=require('assert');
 const root=path.resolve(__dirname,'..'),read=p=>JSON.parse(fs.readFileSync(path.join(root,p),'utf8'));
 const gr=read('data/programmes/golden-rooster-2026.json'),gh=read('data/programmes/golden-horse-2026.json'),cat=read('data/catalog.json');
-const audit=read('docs/golden-rooster-platform-audit-2026-11-03.json'),data=require('../miniprogram/data/data.js');
+const audit=read('docs/golden-rooster-platform-audit-2026-11-03.json'),data=require('./full-data.js');
 assert.equal(gr.films.length,83);assert.equal(gr.shows.length,173);
 for(const f of gr.films){
   const a=audit.films.find(a=>a.id===f.id);assert(a,f.id);

@@ -11,7 +11,7 @@ assert(L.inProgramme(films[3],'cinema-2026',{...ctx,programmeIds:f=>f.id==='d'?[
 assert(!L.inProgramme(films[3],'festival',{...ctx,programmeIds:()=>['other','cinema-2026']}));
 assert.equal(fs.readFileSync(path.join(root,'miniprogram/utils/library.js'),'utf8'),fs.readFileSync(path.join(root,'shared/library.js'),'utf8'));
 // Exercise the mini-program page with real catalogue/utility data and reversible in-memory records.
-const data=require('../miniprogram/data/data.js'),U=require('../miniprogram/utils/util.js');let page;
+const data=require('./full-data.js'),U=require('../miniprogram/utils/util.js');let page;
 const picked=new Set(),watched={},app={globalData:{data},onData:()=>()=>{}};
 const sandbox={Page:p=>page=p,getApp:()=>app,require:n=>n.endsWith('/remind.js')?{ask(){},cancel(){},has(){return false},hasWant(){return false},refresh(){},syncTmpl(){},tmpl(){return ''}}:n.endsWith('/stats.js')?{stat(){},flush(){}}:n.endsWith('/want.js')?{all:()=>({}),isOn:()=>false,newCount:()=>0,markSeen(){},onChange:()=>()=>{}}:n.endsWith('/library.js')?L:n.endsWith('/util.js')?U:n.endsWith('/plan.js')?{get:()=>picked,onChange:()=>()=>{}}:n.endsWith('/watched.js')?{all:()=>watched,onChange:()=>()=>{}}:{tr:x=>x,dict:()=>({}),isEn:()=>false},wx:{setNavigationBarTitle(){}}};
 vm.runInNewContext(fs.readFileSync(path.join(root,'miniprogram/pages/films/films.js'),'utf8'),sandbox);page.data=JSON.parse(JSON.stringify(page.data));page.setData=x=>Object.assign(page.data,x);page.onLoad();

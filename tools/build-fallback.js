@@ -3,70 +3,18 @@
 // 发布小程序新版本前运行一次：node tools/build-fallback.js
 const fs = require('fs'), path = require('path');
 require('./prepare-premieres.js');
-const root = path.join(__dirname, '..');
-const Screenings = require('../shared/screenings.js');
-const SITE = 'https://sparrowcinema.github.io/SparrowTribe/';
-const BUNDLED = require(path.join(root, 'cloudfunctions/getData/bundled.json'));
-const OUT = path.join(root, 'miniprogram/data/data.js');
-
-// 片区颜色沿用现有兜底数据里的 reg（网站上的 REG 用的是 CSS 变量，小程序需要具体色值）
-const prev = require(OUT);
-if (!prev.reg) throw new Error('现有 data.js 缺少 reg，无法沿用片区颜色');
-
+const { build, OUT, root } = require('./fallback-data.js');
 const readJSON = p => JSON.parse(fs.readFileSync(path.join(root, p), 'utf8'));
-const cat = readJSON('data/catalog.json');
-const progs = cat.programmes || [];
-const has = (dir, name) => (BUNDLED[dir] || []).includes(name);
 
-const films = [], shows = [], seen = new Set();
-progs.forEach(p => {
-  if (!p.file) return;
-  const pk = readJSON(p.file);
-  (pk.films || []).forEach(f => {
-    if (seen.has(f.id)) return; seen.add(f.id);
-    const o = Object.assign({}, f, { prog: f.prog || p.id });
-    delete o.ticket;
-    // 海报地址只认站内：资料里手写的 posterUrl 只有指向本站才用；外链 poster 部署时会存成站内 posters/x-<id>.jpg（tools/localize-posters.py），兜底数据直接指向那里
-    if (!(typeof o.posterUrl === 'string' && o.posterUrl.startsWith(SITE))) delete o.posterUrl;
-    if (!has('posters', f.id + '.jpg') && f.poster && !o.posterUrl) o.posterUrl = SITE + (/^https?:\/\//.test(f.poster) ? 'posters/x-' + f.id + '.jpg' : f.poster.replace(/^\//, ''));
-    if (has('tickets', f.id + '.jpg')) o.ticketUrl = '/images/tickets/' + f.id + '.jpg';
-    else if (f.ticket) o.ticketUrl = SITE + f.ticket;
-    films.push(o);
-  });
-  (pk.shows || []).forEach(r => {
-    const [d, t, id, v = 'premiere', h = 'luxe', sid] = Array.isArray(r) ? r : [r.d, r.t, r.id, r.v, r.h, r.sid];
-    shows.push(Object.assign({ d, t, id, v, h, p: p.id }, sid ? { sid } : {}, !Array.isArray(r) && r.year ? { year: r.year, archive: r.archive === true } : {})); // p：场次所属专题（跨影展合并影片按此区分）
-  });
-});
-const programmes = progs.map(p => {
-  const o = Object.assign({}, p); delete o.file;
-  o.cover = has('brand', 'prog-' + p.id + '.jpg') ? '/images/brand/prog-' + p.id + '.jpg' : (p.cover ? SITE + p.cover : '');
-  o.cardCover = p.cardCover ? SITE + p.cardCover : '';
-  return o;
-});
-if (!films.length || !shows.length) throw new Error('网站数据为空，未生成');
-
-// 只保留进行中和即将开始的专题（常设专题一直保留）：已结束专题的影片和场次联网后由 getData 补回，
-// 小程序也会把上次联网取到的数据存在本机（utils/datacache.js），所以只影响「第一次打开且没有网络」。
-// 判断日期默认取北京时间的今天，可用环境变量 FALLBACK_TODAY=YYYY-MM-DD 指定（测试用）。
-const TODAY = process.env.FALLBACK_TODAY || new Date(Date.now() + 8 * 3600e3).toISOString().slice(0, 10);
-const keepProg = new Set(progs.filter(p => p.ongoing || !p.end || p.end >= TODAY).map(p => p.id));
-const dropped = progs.filter(p => !keepProg.has(p.id)).map(p => p.id);
-for (let i = shows.length - 1; i >= 0; i--) if (!keepProg.has(shows[i].p)) shows.splice(i, 1);
-const usedFilm = new Set(shows.map(s => s.id));
-for (let i = films.length - 1; i >= 0; i--) if (!keepProg.has(films[i].prog) && !usedFilm.has(films[i].id)) films.splice(i, 1);
-for (let i = programmes.length - 1; i >= 0; i--) if (!keepProg.has(programmes[i].id)) programmes.splice(i, 1);
-console.log('fallback date', TODAY, dropped.length ? 'dropped ended: ' + dropped.join(', ') : 'no ended programmes');
-
-// 离线兜底只保留列表/排片/护照所需字段：长文字段（简介、荣誉、内容提示等）联网后由 getData / 网站数据补全。
-// 原因：小程序主包上限 2MB，完整数据会让源码包超限。
-const LEAN_DROP = ['syn', 'bio', 'st', 'honors', 'parts', 'contentReview', 'contentNote', 'editorial', 'highlights', 'links'];
-films.forEach(f => LEAN_DROP.forEach(k => { delete f[k]; }));
-const data = { builtAt: Date.now(), fallbackDate: TODAY, films, shows, venues: cat.venues || [], programmes, aliases: cat.aliases || {}, reg: Object.assign({}, prev.reg, cat.reg || {}) };
-Screenings.apply(data);
+// 最小兜底（2026-11-22 起）：只含常设专题，规则见 tools/fallback-data.js。
+// 检查脚本要用完整片库时 require('./full-data.js')，不要读 miniprogram/data/data.js。
+const TODAY = process.env.FALLBACK_TODAY || undefined;
+const { data, kept, dropped, allFilmIds } = build({ minimal: true, today: TODAY });
+const { films, programmes } = data;
+console.log('fallback date', data.fallbackDate, 'kept (ongoing only):', kept.join(', ') || '(none)', '· dropped', dropped.length, 'programmes');
 fs.copyFileSync(path.join(root,'shared/screenings.js'),path.join(root,'miniprogram/utils/screenings.js'));
-fs.writeFileSync(OUT, '/* 本地内置数据：云数据库为空或网络不可用时使用。由 tools/build-fallback.js 从网站 data/ 生成，规则与 getData 云函数一致。 */\nmodule.exports = ' + JSON.stringify(data) + ';\n');
-console.log('films', films.length, 'shows', shows.length, 'venues', data.venues.length, 'programmes', programmes.length);
+fs.writeFileSync(OUT, '/* 本地内置数据（最小兜底，只含常设专题）：云函数和本机缓存都没有时使用。由 tools/build-fallback.js 从网站 data/ 生成。 */\nmodule.exports = ' + JSON.stringify(data) + ';\n');
+console.log('films', films.length, 'shows', data.shows.length, 'venues', data.venues.length, 'programmes', programmes.length);
 
 // 英文层：data/i18n/en.json → miniprogram/data/en.js（小程序离线兜底；联网时 getData 会带回网站最新的英文层）
 const en = readJSON('data/i18n/en.json'); delete en._readme;
@@ -121,7 +69,7 @@ for(const dir of ['plan','psync'])fs.copyFileSync(path.join(root,'shared/taste.j
 
 fs.writeFileSync(path.join(root,'cloudfunctions/plan/psync.js'),head+psync);
 
-const tasteIds=[...new Set(films.filter(f=>!f.ev).map(f=>f.id))].sort();
+const tasteIds=[...new Set(allFilmIds)].sort(); // 趣味评分登记全部影片，不受兜底精简影响
 fs.writeFileSync(path.join(root,'backend/taste-films.sql'),"-- Allow only real catalogue films. Re-run after adding films.\ninsert into sparrow_taste.films(id) values\n"+tasteIds.map(id=>"('"+id.replace(/'/g,"''")+"')").join(',\n')+"\non conflict do nothing;\n");
 
 // 定位：城市中心坐标 data/cities.json 复制给小程序（utils/cities.js），由 utils/locate.js 使用

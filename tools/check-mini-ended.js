@@ -1,6 +1,6 @@
 // Exercise real mini-program render models, including the flag passed into WXML.
 const fs=require('fs'),path=require('path'),vm=require('vm'),assert=require('assert');
-const root=path.join(__dirname,'..'),base=require('../miniprogram/data/data.js'),U=require('../miniprogram/utils/util.js'),L=require('../shared/library.js'),P=require('../shared/premiere.js');
+const root=path.join(__dirname,'..'),base=require('./full-data.js'),U=require('../miniprogram/utils/util.js'),L=require('../shared/library.js'),P=require('../shared/premiere.js');
 const ids=JSON.parse(fs.readFileSync(path.join(root,'docs/world-premiere-2026-11-10-enrichment.json'))).reviewedFilms;
 const data=JSON.parse(JSON.stringify(base)),app={globalData:{data},onData:()=>()=>{}},picked=new Set();
 function load(name){let definition;vm.runInNewContext(fs.readFileSync(path.join(root,'miniprogram/pages',name,name+'.js'),'utf8'),{
