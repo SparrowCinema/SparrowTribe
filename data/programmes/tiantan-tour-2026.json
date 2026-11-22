@@ -67,6 +67,7 @@
     3.63
    ],
    "poster": "posters/dragonfly.jpg",
+   "ticket": "tickets/dragonfly-wx.png",
    "contentReview": {
     "status": "official-advisory",
     "checked": "2026-11-11",
@@ -144,6 +145,7 @@
     3.73
    ],
    "poster": "posters/three-goodbyes.jpg",
+   "ticket": "tickets/three-goodbyes-wx.png",
    "contentReview": {
     "status": "synopsis-reviewed",
     "checked": "2026-11-11",
@@ -290,6 +292,7 @@
     null
    ],
    "poster": "posters/two-people-one-life-and-a-dog.jpg",
+   "ticket": "tickets/two-people-one-life-and-a-dog-wx.png",
    "contentReview": {
     "status": "synopsis-reviewed",
     "checked": "2026-11-11",
@@ -371,7 +374,7 @@
     3.74
    ],
    "poster": "posters/ky-nam-inn.jpg",
-   "ticket": "tickets/ky-nam-inn.png",
+   "ticket": "tickets/ky-nam-inn-wx.png",
    "contentReview": {
     "status": "synopsis-reviewed",
     "checked": "2026-11-11",
@@ -457,6 +460,7 @@
     3.46
    ],
    "poster": "posters/our-girls.jpg",
+   "ticket": "tickets/our-girls-wx.png",
    "contentReview": {
     "status": "synopsis-reviewed",
     "checked": "2026-11-11",
@@ -615,6 +619,7 @@
     3.42
    ],
    "poster": "posters/the-summer-book.jpg",
+   "ticket": "tickets/the-summer-book-wx.png",
    "contentReview": {
     "status": "synopsis-reviewed",
     "checked": "2026-11-11",
