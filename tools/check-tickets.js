@@ -357,6 +357,20 @@ const fullBytes=Buffer.byteLength(JSON.stringify(bigStore));assert(fullBytes<600
   // 每次最多 50 张
   const many={};for(let i=0;i<120;i++)many['b'+i+'|2026-11-01']={t:i+1};assert.equal(T.pendingIssue(many).length,T.ISSUE_BATCH);
 }
+// 正反面合成图（2026-11-22）：用记录调用的假画布跑一遍 drawShowcase / bakeSheen，不报错、画了两张票根和序号
+{
+  const calls=[];
+  const fake=(w,h)=>{const ctx=new Proxy({},{get:(o,k)=>k in o?o[k]:(k==='canvas'?{width:w,height:h}:k==='measureText'?(t=>({width:String(t).length*10})):k==='createLinearGradient'||k==='createRadialGradient'||k==='createPattern'?(()=>({addColorStop(){}})):k==='getImageData'?(()=>({data:new Uint8ClampedArray(4*w*h)})):(...a)=>{calls.push([k,a]);}),set:(o,k,v)=>{o[k]=v;return true;}});return {width:w,height:h,getContext:()=>ctx};};
+  const vb2=(id,view,date)=>({filmId:id,title:'所有愿望都会实现的那一天',subtitle:'All Wishes Come True',programmeId:'p',programme:'2026金马影展',date,time:'19:30',venue:'影院',hall:'1号厅',city:'台北',format:'4K',art:'',arts:[]});
+  const k2='w1|2026-11-22',r2=T.build([{key:k2,filmId:'w1',view:{d:'2026-11-22',r:0,k:''}}],{[k2]:{t:1,q:7}},vb2).tickets[0];
+  const out=fake(1440,1800);T.drawShowcase(out.getContext(),r2,null,fake,{width:1440});
+  const texts=calls.filter(c=>c[0]==='fillText').map(c=>String(c[1][0]));
+  assert(texts.includes('№0007'),'showcase draws edition number');assert(texts.some(t=>t.startsWith('No. SP26-')),'showcase draws serial');
+  assert(texts.includes('本片第 7 张典藏'));
+  const pending=T.build([{key:k2,filmId:'w1',view:{d:'2026-11-22',r:0,k:''}}],{[k2]:{t:1}},vb2).tickets[0];calls.length=0;
+  T.drawShowcase(fake(2160,2700).getContext(),pending,null,fake);assert(calls.some(c=>c[0]==='fillText'&&c[1][0]==='发行序号待发放'),'pending text');
+  assert.equal(T.SHOW_W*1800,T.SHOW_H*1440,'4:5');
+}
 // 大票根墙 / 密排拼图的画布尺寸不超过 iOS 约 1670 万像素上限
 for(const n of [1,4,12,13,48,96,180]){const l=T.wallLayout(n);assert(l.width*l.height<16.7e6,'canvas '+n);assert.equal(l.rects.length,n);}
 assert(T.wallLayout(180,1440).width<=1440);

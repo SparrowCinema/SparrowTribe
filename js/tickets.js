@@ -343,11 +343,24 @@ function ticketOpenExport(){
   ticketDialog("export",ticketDict("导出票根墙"),ticketExportBody(),ticketExportFoot());
 }
 function ticketExportRefresh(d){d.querySelector(".selector-results").outerHTML=ticketExportBody();d.querySelector(".selector-foot").innerHTML=ticketExportFoot();}
+// 导出这张（2026-11-22）：正反面合成（默认，片名海报底图）/ 只导正面 / 只导背面
+let ticketSingleMode="both";
+function ticketSingleBody(){
+  const opt=(v,name,sub)=>`<div class="ticket-ex-opt">${ticketOptionRow("data-ticket-single",v,name,sub,ticketSingleMode===v)}</div>`;
+  return `<div class="selector-results" role="listbox">${opt("both",tr("正反面合成"),tr("推荐 · 带典藏编号与发行序号"))}${opt("front",tr("只导正面"),"")}${opt("back",tr("只导背面"),"")}</div>`;
+}
+function ticketOpenSingle(){
+  if(!ticketDraft)return;
+  ticketDialog("single",ticketDict("导出这张票根"),ticketSingleBody(),`<span></span><button type="button" class="selector-done" data-ticket-dlg="go1">${ticketDict("生成图片")}</button>`);
+}
 function ticketDialogClick(e,d){
   const kind=d.dataset.kind,t=e.target;
   const act=t.closest("[data-ticket-dlg]")?.dataset.ticketDlg;
   if(act==="close"){d.close();return;}
   if(act==="clear"){TE.FACETS.forEach(k=>{ticketQ[k]=[];});ticketQ.text="";const q=d.querySelector("#ticket-q");if(q)q.value="";ticketPaintList();ticketFilterRefresh(d);return;}
+  if(act==="go1"){const b=t.closest("button");ticketExport(b,true,ticketSingleMode).finally(()=>{if(d.open)d.close();});return;}
+  const single=t.closest("[data-ticket-single]");
+  if(single&&kind==="single"){ticketSingleMode=single.dataset.ticketSingle;d.querySelector(".selector-results").outerHTML=ticketSingleBody();return;}
   if(act==="go"){
     if(ticketExportOpen?.kind==="pick"){ticketPick=new Set();d.close();ticketExportOpen=false;ticketPaintList();toast(tr("点票根挑选，最多")+" "+TICKET_PICK_MAX+" "+tr("张票根"));return;}
     const b=t.closest("button");ticketExport(b,false).finally(()=>{if(d.open)d.close();});return;
@@ -693,8 +706,13 @@ function ticketExportTitle(){
   if(o.kind==="pick")return tr("精选票根墙");
   return tr("我的典藏票根册");
 }
-async function ticketExport(button,single){
-  const side=single?ticketDraft.side:ticketSide;
+async function ticketExport(button,single,mode){
+  const both=single&&mode==="both",side=single?(mode==="front"||mode==="back"?mode:ticketDraft.side):ticketSide;
+  // 背面和合成图带发行序号：还没领到号的已收藏票根，先领一次再导出
+  if(single&&mode!=="front"&&ticketDraft.original&&!ticketDraft.row.issue){
+    try{await ticketIssueRun();}catch{}
+    const q=ticketStore()[ticketDraft.original]?.q;if(q)ticketDraft.row.issue=q;
+  }
   let shown,title=tr("我的典藏票根册"),caption="",part=0,parts=1;
   if(single)shown=[{...ticketDraft.row,look:{...ticketDraft.row.look}}];
   else{
@@ -707,19 +725,20 @@ async function ticketExport(button,single){
   button.disabled=true;const label=button.textContent;button.textContent=tr("正在生成图片");
   try{
     const small=shown.length>12;
-    const [images]=await Promise.all([Promise.all(shown.map(row=>side==="front"?ticketPoster(row,small):null)),ticketFonts(shown)]);
-    const layout=single?{width:TE.W*3,height:TE.H*3}:TE.wallLayout(shown.length);
+    const [images]=await Promise.all([Promise.all(shown.map(row=>side==="front"||both?ticketPoster(row,small):null)),ticketFonts(shown)]);
+    const layout=both?{width:TE.SHOW_W,height:TE.SHOW_H}:single?{width:TE.W*3,height:TE.H*3}:TE.wallLayout(shown.length);
     const canvas=ticketCanvas(layout.width,layout.height),ctx=canvas.getContext("2d");
-    if(single)TE.draw(ctx,shown[0],side,images[0],{x:0,y:0,w:layout.width,h:layout.height},ticketCanvas);
+    if(both)TE.drawShowcase(ctx,shown[0],images[0],ticketCanvas);
+    else if(single){const rect={x:0,y:0,w:layout.width,h:layout.height};TE.draw(ctx,shown[0],side,images[0],rect,ticketCanvas);TE.bakeSheen(ctx,shown[0],side,rect,ticketCanvas,side==="front"&&!!images[0]);}
     else TE.drawWall(ctx,shown,side,images,caption,ticketCanvas,title);
     // 密排拼图像素多，用 JPEG（底色不透明，几 MB 以内，方便发微信）；单张和 12 张以内保持 PNG
-    const jpeg=!single&&shown.length>12;
+    const jpeg=both||(!single&&shown.length>12);
     const blob=await new Promise(resolve=>canvas.toBlob(resolve,jpeg?"image/jpeg":"image/png",.9));
     if(!blob)throw Error("image");
     const safe=(single?shown[0].title:title).replace(/[\\/:*?"<>|]/g,"-");
     if(location.hash!=="#ticket-wall")return;
-    if(side==="front"&&images.some((image,i)=>!image&&shown[i].art))toast(tr("海报读取失败，已用片名代替"));
-    showImageSheet(blob,{file:`${safe}-${side==="front"?"正面":"背面"}${parts>1?"-"+(part+1):""}.${jpeg?"jpg":"png"}`,head:tr("票根图片已生成"),alt:tr("票根图片")});
+    if((side==="front"||both)&&images.some((image,i)=>!image&&shown[i].art))toast(tr("海报读取失败，已用片名代替"));
+    showImageSheet(blob,{file:`${safe}-${both?"正反面":side==="front"?"正面":"背面"}${parts>1?"-"+(part+1):""}.${jpeg?"jpg":"png"}`,head:tr("票根图片已生成"),alt:tr("票根图片")});
   }catch{toast(tr("图片生成失败，请稍后再试"));}
   finally{if(button.isConnected){button.disabled=false;button.textContent=label;}}
 }
@@ -790,7 +809,7 @@ function ticketClick(e){
         ticketBackToAlbum();
       }break;
     case "export":ticketExport(b,false);break;
-    case "single":ticketExport(b,true);break;
+    case "single":ticketOpenSingle();break;
   }
 }
 function ticketFlipTo(side){

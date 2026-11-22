@@ -1453,6 +1453,127 @@ function drawEmblem(surface,record,finish,year) {
   surface.restore();
 }
 
+// ——— 导出：烘焙金属反光（2026-11-22）———
+// 静止图片看不出转动时的闪光，导出时固定一个角度，把反光烘焙进烫印范围（工艺遮罩）：
+// 烫金 / 烫银 / 烫铜是一道斜向亮带，镭射类是一道彩虹光，闪粉 / 亮釉 / 立体光油是柔和的白光，哑光不加。海报和纸面不受影响。
+const SHEEN_RAINBOW=["#ff8fd8","#ffe27a","#9dffb0","#8ff0ff","#b9a2ff","#ff8fd8"];
+function bakeSheen(surface,record,side,rect,createCanvas,hasArt,angle=-.62) {
+  const fx=fxOf(record.look?.finish);
+  if (fx==="none" || !createCanvas || rect.w<CRAFT_MIN) return;
+  const w=Math.max(1,Math.round(Math.min(rect.w,1100))),h=Math.max(1,Math.round(w*H/W));
+  let mask,layer;
+  try {mask=createCanvas(w,h);layer=createCanvas(w,h);} catch (error) {return;}
+  if (!foilMask(mask.getContext("2d"),record,side,{x:0,y:0,w,h},createCanvas,hasArt)) return;
+  const ctx=layer.getContext("2d"),len=Math.hypot(w,h),cx=w*(side==="front"?.36:.62),cy=h*(side==="front"?.42:.38);
+  const dx=Math.cos(angle)*len/2,dy=Math.sin(angle)*len/2;
+  const g=ctx.createLinearGradient(cx-dx,cy-dy,cx+dx,cy+dy);
+  if (fx==="holo" || fx==="cast" || fx==="crystal") {
+    g.addColorStop(0,"rgba(255,255,255,0)");
+    SHEEN_RAINBOW.forEach((c,i)=>g.addColorStop(.3+i*.08,c));
+    g.addColorStop(.82,"rgba(255,255,255,0)");g.addColorStop(1,"rgba(255,255,255,0)");
+  } else {
+    const soft=fx!=="sweep";
+    g.addColorStop(0,"rgba(255,255,255,0)");g.addColorStop(.38,"rgba(255,255,255,0)");
+    g.addColorStop(.47,`rgba(255,255,255,${soft?.35:.75})`);g.addColorStop(.5,`rgba(255,255,255,${soft?.5:1})`);g.addColorStop(.54,`rgba(255,255,255,${soft?.3:.6})`);
+    g.addColorStop(.66,"rgba(255,255,255,0)");g.addColorStop(1,"rgba(255,255,255,0)");
+  }
+  ctx.fillStyle=g;ctx.fillRect(0,0,w,h);
+  // 亮带外还留一层很淡的底光，整片烫印都带一点金属的亮
+  ctx.fillStyle="rgba(255,255,255,.12)";ctx.fillRect(0,0,w,h);
+  ctx.globalCompositeOperation="destination-in";ctx.drawImage(mask,0,0);
+  surface.save();surface.globalCompositeOperation="screen";surface.globalAlpha=fx==="sweep"?.85:fx==="holo"||fx==="cast"||fx==="crystal"?.6:.5;
+  surface.drawImage(layer,rect.x,rect.y,rect.w,rect.h);surface.restore();
+}
+
+// ——— 导出：正反面合成图「片名海报」（2026-11-22）———
+// 2160 × 2700（4:5，小红书 / 朋友圈），小程序传 width 1440。底色取票根配色，铺一层很淡的模糊海报和一个大号片名水印，
+// 正反两面并排居中（直接画在大画布上，不经过离屏画布中转），下方左边片名、右边「№ 0042 / 本片第 42 张典藏 / 典藏编号」。
+// 票根两侧撕线缺口要透出底图：画完票根后把底图在缺口处重画一遍，不让阴影在缺口里积成黑点。
+const SHOW_W=2160,SHOW_H=2700;
+function fitFont(surface,text,weight,size,font,max) {
+  surface.font=`${weight} ${size}px ${font}`;const w=surface.measureText(text).width;
+  if (w>max) {size=Math.max(size*.12,size*max/w);surface.font=`${weight} ${size}px ${font}`;}
+  return size;
+}
+function spaced(surface,text,x,y,sp,align) {
+  const chars=[...text],ws=chars.map(c=>surface.measureText(c).width),total=ws.reduce((a,b)=>a+b,0)+sp*(chars.length-1);
+  let cx=align==="center"?x-total/2:align==="right"?x-total:x;surface.textAlign="left";
+  chars.forEach((c,i)=>{surface.fillText(c,cx,y);cx+=ws[i]+sp;});
+}
+function showcaseBackdrop(g,record,art,createCanvas) {
+  const s=swatch(record),dark=HEX.test(s.dark)?s.dark:"#1d1a17",mid=HEX.test(s.mid)?s.mid:"#3a332c";
+  const top=mixHex("#0e0d0c",mid,.55),bottom=mixHex("#070707",dark,.6);
+  const lg=g.createLinearGradient(0,0,SHOW_W,SHOW_H);lg.addColorStop(0,top);lg.addColorStop(1,bottom);
+  g.fillStyle=lg;g.fillRect(0,0,SHOW_W,SHOW_H);
+  // 很淡的模糊海报：缩成小图再放大，天然就是模糊的（不用 filter，小程序和 Safari 都画得出来）
+  if (art && createCanvas) {
+    try {
+      const sw=36,sh=Math.max(1,Math.round(sw*(art.height||3)/(art.width||2))),small=createCanvas(sw,sh);
+      small.getContext("2d").drawImage(art,0,0,sw,sh);
+      g.save();g.globalAlpha=.2;g.imageSmoothingEnabled=true;
+      const bw=SHOW_W+600,bh=bw*sh/sw;g.drawImage(small,-300,-200,bw,bh);g.restore();
+    } catch (error) {}
+  }
+  const r=g.createRadialGradient(SHOW_W/2,SHOW_H*.4,60,SHOW_W/2,SHOW_H*.42,SHOW_W*.9);
+  r.addColorStop(0,"rgba(255,244,226,.10)");r.addColorStop(1,"rgba(0,0,0,.32)");g.fillStyle=r;g.fillRect(0,0,SHOW_W,SHOW_H);
+  // 胶片颗粒（按票根键固定，导出几次都一样）
+  const rand=seeded(hashAppearance("grain|"+(record.id||"")));
+  for (let i=0;i<26000;i++) {g.fillStyle=rand()<.5?`rgba(255,255,255,${.05*rand()})`:`rgba(0,0,0,${.07*rand()})`;g.fillRect(rand()*SHOW_W,rand()*SHOW_H,1.6,1.6);}
+  // 大号片名水印：按宽度缩放，长片名也放得下
+  const mark=record.title||"";
+  if (mark) {
+    const n=[...mark].length;g.save();g.globalAlpha=n<=2?.06:.045;g.fillStyle="#fff";g.textAlign="center";
+    const size=fitFont(g,mark,900,n<=2?1250:900,TITLE,SHOW_W*.9);
+    g.fillText(mark,SHOW_W/2,SHOW_H*.66+size*.3);g.restore();
+  }
+}
+function drawShowcase(surface,record,art,createCanvas,opts={}) {
+  const out=opts.width||SHOW_W,k=out/SHOW_W;
+  surface.save();surface.scale(k,k);
+  showcaseBackdrop(surface,record,art,createCanvas);
+  const th=1500,tw=th*W/H,gap=70,top=300,rects=[{x:SHOW_W/2-tw-gap/2,y:top,w:tw,h:th,side:"front"},{x:SHOW_W/2+gap/2,y:top,w:tw,h:th,side:"back"}];
+  for (const r of rects) {
+    // 阴影：先画一块同形状的纸，阴影落在底图上
+    surface.save();surface.translate(r.x,r.y);surface.scale(r.w/W,r.h/H);
+    surface.shadowColor="rgba(0,0,0,.5)";surface.shadowBlur=60/(r.w/W);surface.shadowOffsetY=30/(r.h/H);
+    frame(surface);surface.fillStyle="#000";surface.fillRect(0,0,W,H);surface.restore();
+    const hasArt=r.side==="front" && !!art;
+    draw(surface,record,r.side,r.side==="front"?art:null,{x:r.x,y:r.y,w:r.w,h:r.h},createCanvas);
+    bakeSheen(surface,record,r.side,{x:r.x,y:r.y,w:r.w,h:r.h},createCanvas,hasArt);
+  }
+  // 撕线缺口处重画底图（缺口在票根坐标 (0,TEAR) 与 (W,TEAR)，半径 NOTCH）
+  surface.save();surface.beginPath();
+  for (const r of rects) for (const nx of [0,W]) {const sc=r.w/W;surface.moveTo(r.x+nx*sc+NOTCH*sc,r.y+TEAR*sc);surface.arc(r.x+nx*sc,r.y+TEAR*sc,NOTCH*sc,0,Math.PI*2);}
+  surface.clip();showcaseBackdrop(surface,record,art,createCanvas);surface.restore();
+  // 文字
+  const L=150,R=SHOW_W-150,y0=1960,white=a=>`rgba(255,255,255,${a})`;
+  surface.fillStyle=white(.85);surface.font=`500 28px ${MONO}`;spaced(surface,"SPARROW · FILM PASSPORT",L,190,8,"left");
+  surface.textAlign="right";surface.font=`500 28px ${SANS}`;surface.fillText("典藏票根",R,190);
+  surface.textAlign="left";surface.fillStyle="#fff";
+  const tsize=fitFont(surface,record.title||"",900,110,TITLE,980);surface.fillText(record.title||"",L,y0+110);
+  let ty=y0+110;
+  if (record.subtitle && record.subtitle.toLowerCase()!==(record.title||"").toLowerCase()) {
+    surface.fillStyle=white(.65);surface.font=`500 34px ${LATIN}`;fitFont(surface,record.subtitle.toUpperCase(),500,34,LATIN,980);
+    spaced(surface,record.subtitle.toUpperCase(),L,ty+=Math.max(60,tsize*.6),6,"left");
+  }
+  surface.fillStyle=white(.7);surface.textAlign="left";
+  const meta=[record.programme,[record.date.replace(/-/g,"."),record.time].filter(Boolean).join(" "),[record.city,record.venue].filter(Boolean).join(" · ")].filter(Boolean);
+  fitFont(surface,meta.join("  ·  "),500,30,SANS,1000);surface.fillText(meta.join("  ·  "),L,ty+75);
+  surface.textAlign="right";
+  const serial=formatSerial(record);
+  if (record.issue) {
+    surface.fillStyle="#fff";surface.font=`600 120px ${MONO}`;surface.fillText("№"+String(record.issue).padStart(4,"0"),R,y0+110);
+    surface.fillStyle=white(.75);surface.font=`500 32px ${SANS}`;surface.fillText("本片第 "+record.issue+" 张典藏",R,y0+175);
+  } else {
+    surface.fillStyle=white(.4);surface.font=`600 120px ${MONO}`;surface.fillText("№----",R,y0+110);
+    surface.fillStyle=white(.55);surface.font=`500 32px ${SANS}`;surface.fillText("发行序号待发放",R,y0+175);
+  }
+  if (serial) {surface.fillStyle=white(.5);surface.font=`500 26px ${MONO}`;surface.fillText("No. "+serial,R,y0+250);}
+  surface.fillStyle=white(.18);surface.fillRect(L,SHOW_H-210,R-L,1.5);
+  surface.fillStyle=white(.6);surface.textAlign="left";surface.font=`500 24px ${SANS}`;surface.fillText("麻雀观影护照 · 麻雀映画 × 麻雀部落",L,SHOW_H-150);
+  surface.restore();
+}
+
 // 12 张以内是大票根墙；更多时是密排拼图（年度 / 专题票根墙），每张图最多 MOSAIC_MAX 张，超出由调用方分成多张图。
 const MOSAIC_MAX=180;
 function wallLayout(count,maxWidth=2160) {
@@ -1494,6 +1615,6 @@ function drawWall(surface,records,side,images,caption,createCanvas,title,maxWidt
 }
 
 const shineOf=key=>{const f=finishes[key]||finishes.matte;return {kind:f.kind,fx:fxOf(key),highlight:f.stops[f.stops.length-2]};};
-return {serialOf,serialValid,formatSerial,entrySerial,pendingIssue,applyIssue,issueText,ISSUE_BATCH,W,H,TITLE_FAMILY,edgeOf,foilMask,fxOf,artMask,backMask,parseCraft,craftLabel,lookSig,foilLayers,WALL_PAGE,MOSAIC_MAX,FACETS,options:labelOptions(),sanitize,read,sorted,defaults,randomLook,shineOf,draw,wallLayout,drawWall,
+return {drawShowcase,bakeSheen,SHOW_W,SHOW_H,serialOf,serialValid,formatSerial,entrySerial,pendingIssue,applyIssue,issueText,ISSUE_BATCH,W,H,TITLE_FAMILY,edgeOf,foilMask,fxOf,artMask,backMask,parseCraft,craftLabel,lookSig,foilLayers,WALL_PAGE,MOSAIC_MAX,FACETS,options:labelOptions(),sanitize,read,sorted,defaults,randomLook,shineOf,draw,wallLayout,drawWall,
   ticketKey,parseKey,cleanStore,mergeStore,packLook,unpackLook,normArt,viewings,build,reconcile,draft,entryFrom,migrateV1,filterTickets,facetCounts,groupByMonth,swatch};
 });
