@@ -1037,12 +1037,13 @@ function craftTexture(ctx,fx,rand,box={x:0,y:0,w:W,h:H},cx=W*.5,cy=H*.36) {
 const ART_FX={uv:"a-gloss",rim:"a-rim",holo:"a-holo",sparkle:"a-pearl",band:"a-guilloche",dust:"a-matte",rainbow:"a-rainbow",pixel:"a-holo",ripple:"a-holo",moire:"a-holo",lenticular:"a-rainbow",glint:"a-gloss",cateye:"a-cateye",argyle:"a-guilloche",cloud:"a-holo",meander:"a-rim",perf:"a-guilloche",firework:"a-holo",honeycomb:"a-holo",caustic:"a-pearl",beam:"a-cateye",diag:"a-rainbow",contour:"a-pearl",postmark:"a-rim",frames:"a-guilloche"};
 // 新增的 12 种隐形纹样（2026-11-22）：海报和背面共用，画在 (0,0,w,h) 里，白色＝反光范围
 const PATTERNS=["argyle","cloud","meander","perf","firework","honeycomb","caustic","beam","diag","contour","postmark","frames"];
-function paintPattern(m,kind,w,h,rand,u) {
+function paintPattern(m,kind,w,h,rand,u,gap=1) { // gap：间距倍数，背面用更疏的排布（背面还有文字，太密显得乱）
+  const sparse=gap>1;
   m.fillStyle="#fff";m.strokeStyle="#fff";m.lineCap="round";m.lineJoin="round";
   const line=(x1,y1,x2,y2)=>{m.beginPath();m.moveTo(x1,y1);m.lineTo(x2,y2);m.stroke();};
   if (kind==="argyle") {
     // 菱格纹：两组斜线交出菱形格
-    m.lineWidth=u*.35;const step=u*6,span=w+h;
+    m.lineWidth=u*.35;const step=u*6*gap,span=w+h;
     for (let x=-span;x<span;x+=step) {line(x,0,x+h*.6,h);line(x,h,x+h*.6,0);}
   } else if (kind==="cloud") {
     // 祥云纹：几朵三瓣卷云
@@ -1056,7 +1057,7 @@ function paintPattern(m,kind,w,h,rand,u) {
   } else if (kind==="meander") {
     // 回纹：一行行连续的方折回纹
     m.lineWidth=u*.4;const s=u*3.2;
-    for (let y=s*1.5;y<h;y+=s*5) {m.beginPath();for (let x=-s;x<w+s*4;x+=s*4) {m.moveTo(x,y+s*2);m.lineTo(x,y);m.lineTo(x+s*3,y);m.lineTo(x+s*3,y+s*2);m.lineTo(x+s,y+s*2);m.lineTo(x+s,y+s);m.lineTo(x+s*2,y+s);}m.stroke();}
+    for (let y=s*1.5;y<h;y+=s*5*gap) {m.beginPath();for (let x=-s;x<w+s*4;x+=s*4) {m.moveTo(x,y+s*2);m.lineTo(x,y);m.lineTo(x+s*3,y);m.lineTo(x+s*3,y+s*2);m.lineTo(x+s,y+s*2);m.lineTo(x+s,y+s);m.lineTo(x+s*2,y+s);}m.stroke();}
   } else if (kind==="perf") {
     // 胶片齿孔：上下（或左右）两排圆角齿孔
     const hw=u*1.6,hh=u*2.2,gap=u*3.4,vertical=h>w;
@@ -1066,27 +1067,27 @@ function paintPattern(m,kind,w,h,rand,u) {
   } else if (kind==="firework") {
     // 烟花：几簇放射短线
     m.lineWidth=u*.3;
-    for (let i=0,n=Math.max(5,Math.round(h/w*5));i<n;i++) {const cx=rand()*w,cy=rand()*h,r=Math.min(w,h)*(.09+rand()*.1),n=18+Math.floor(rand()*10);for (let j=0;j<n;j++) {const a=j/n*Math.PI*2;line(cx+Math.cos(a)*r*.35,cy+Math.sin(a)*r*.35,cx+Math.cos(a)*r,cy+Math.sin(a)*r);}}
+    for (let i=0,n=Math.max(sparse?3:5,Math.round(h/w*(sparse?3:5)));i<n;i++) {const cx=rand()*w,cy=rand()*h,r=Math.min(w,h)*(.09+rand()*.1),n=18+Math.floor(rand()*10);for (let j=0;j<n;j++) {const a=j/n*Math.PI*2;line(cx+Math.cos(a)*r*.35,cy+Math.sin(a)*r*.35,cx+Math.cos(a)*r,cy+Math.sin(a)*r);}}
   } else if (kind==="honeycomb") {
-    m.lineWidth=u*.3;const r=u*3,dx=r*Math.sqrt(3),dy=r*1.5;
+    m.lineWidth=u*.3;const r=u*3*gap,dx=r*Math.sqrt(3),dy=r*1.5;
     for (let row=0,y=0;y<h+r;y+=dy,row++) for (let x=(row%2)*dx/2;x<w+r;x+=dx) {m.beginPath();for (let k=0;k<6;k++) {const a=Math.PI/6+k*Math.PI/3;m.lineTo(x+Math.cos(a)*r,y+Math.sin(a)*r);}m.closePath();m.stroke();}
   } else if (kind==="caustic") {
     // 水波光：几组交错的正弦波线，像池底的光纹
     m.lineWidth=u*.35;
-    for (let k=0;k<3;k++) {const a=rand()*Math.PI,f=(2+rand()*2)/w*Math.PI*2,amp=u*(1.5+rand()*2);
-      for (let o=-h;o<h*2;o+=u*3.2) {m.beginPath();for (let x=-w*.2;x<=w*1.2;x+=u) {const y=o+Math.sin(x*f+k)*amp;m.lineTo(w/2+(x-w/2)*Math.cos(a)-(y-h/2)*Math.sin(a),h/2+(x-w/2)*Math.sin(a)+(y-h/2)*Math.cos(a));}m.stroke();}}
+    for (let k=0;k<(sparse?1:3);k++) {const a=rand()*Math.PI,f=(2+rand()*2)/w*Math.PI*2,amp=u*(1.5+rand()*2);
+      for (let o=-h*1.5;o<h*2.5;o+=u*3.2*gap) {m.beginPath();for (let x=-h;x<=w+h;x+=u) {const y=o+Math.sin(x*f+k)*amp;m.lineTo(w/2+(x-w/2)*Math.cos(a)-(y-h/2)*Math.sin(a),h/2+(x-w/2)*Math.sin(a)+(y-h/2)*Math.cos(a));}m.stroke();}}
   } else if (kind==="beam") {
     // 放映光束：从上方一点散开的光锥 + 几道细光线
     const cx=w*(.3+rand()*.4),g=m.createLinearGradient(0,0,0,h);g.addColorStop(0,"#fff");g.addColorStop(1,"rgba(255,255,255,.25)");
     m.fillStyle=g;m.beginPath();m.moveTo(cx-u,0);m.lineTo(cx+u,0);m.lineTo(cx+w*.42,h);m.lineTo(cx-w*.42,h);m.closePath();m.fill();
     m.lineWidth=u*.25;for (let i=0;i<9;i++) {const t=(i/8-.5)*.8;line(cx,0,cx+t*w,h);}
   } else if (kind==="diag") {
-    m.lineWidth=u*.35;const step=u*1.6;for (let x=-h;x<w+h;x+=step) line(x,0,x+h,h);
+    m.lineWidth=u*.35;const step=u*1.6*gap*(sparse?1.3:1);for (let x=-h;x<w+h;x+=step) line(x,0,x+h,h);
   } else if (kind==="contour") {
     // 等高线：围着两三处起伏的不规则闭合线
     m.lineWidth=u*.3;
-    for (let c=0;c<3;c++) {const cx=rand()*w,cy=rand()*h,ph=[rand()*6,rand()*6,rand()*6];
-      for (let r=u*2;r<Math.max(w,h)*.5;r+=u*2.4) {m.beginPath();for (let i=0;i<=96;i++) {const t=i/96*Math.PI*2,q=r*(1+.16*Math.sin(3*t+ph[0])+.1*Math.sin(5*t+ph[1])+.06*Math.sin(7*t+ph[2]));m.lineTo(cx+Math.cos(t)*q,cy+Math.sin(t)*q);}m.stroke();}}
+    for (let c=0;c<(sparse?1:3);c++) {const cx=sparse?w*(.3+rand()*.4):rand()*w,cy=sparse?h*(.3+rand()*.4):rand()*h,ph=[rand()*6,rand()*6,rand()*6];
+      for (let r=u*2;r<Math.max(w,h)*(sparse?.75:.5);r+=u*2.4*gap*(sparse?1.4:1)) {m.beginPath();for (let i=0;i<=96;i++) {const t=i/96*Math.PI*2,q=r*(1+.16*Math.sin(3*t+ph[0])+.1*Math.sin(5*t+ph[1])+.06*Math.sin(7*t+ph[2]));m.lineTo(cx+Math.cos(t)*q,cy+Math.sin(t)*q);}m.stroke();}}
   } else if (kind==="postmark") {
     // 邮戳：一圈双环 + 环内字 + 波浪注销线
     const cx=w*(.3+rand()*.4),cy=h*(.3+rand()*.4),r=Math.min(w,h)*.22;
@@ -1095,8 +1096,8 @@ function paintPattern(m,kind,w,h,rand,u) {
     m.lineWidth=u*.4;for (let k=0;k<6;k++) {m.beginPath();for (let x=cx+r*1.1;x<w+u;x+=u*.8) m.lineTo(x,cy-r*.6+k*r*.24+Math.sin(x/u*.6)*u*.8);m.stroke();}
   } else if (kind==="frames") {
     // 胶片帧：一格格圆角画框，像印样
-    m.lineWidth=u*.35;const fw=u*9,fh=u*6.5;
-    for (let y=u;y<h;y+=fh+u*1.6) for (let x=u;x<w;x+=fw+u*1.6) {m.beginPath();(m.roundRect?m.roundRect(x,y,fw,fh,u*.9):m.rect(x,y,fw,fh));m.stroke();}
+    m.lineWidth=u*.35;const fw=u*9*gap,fh=u*6.5*gap,gx=u*1.6*gap;
+    for (let y=u;y<h;y+=fh+gx) for (let x=u;x<w;x+=fw+gx) {m.beginPath();(m.roundRect?m.roundRect(x,y,fw,fh,u*.9):m.rect(x,y,fw,fh));m.stroke();}
   }
 }
 function artMaskCanvas(record,image,kind,createCanvas,mw) {
@@ -1243,8 +1244,8 @@ function backMask(record,createCanvas,w) {
   } else if (kind==="rim" || kind==="band") {
     const ring=kind==="rim",ox=ring?cx:W*(.3+rand()*.4),oy=ring?cy:H*(.35+rand()*.3),petals=6+Math.floor(rand()*6),R=ring?150:Math.hypot(W,H)*.5;
     m.lineWidth=.7;
-    for (let j=0;j<(ring?16:30);j++) {
-      const base=ring?82+j*5.2:R*(.08+j*.032),amp=ring?9:R*.05,phase=j*.23;
+    for (let j=0;j<(ring?16:14);j++) { // 扭索底纹：背面只留十几圈，疏朗一些
+      const base=ring?82+j*5.2:R*(.1+j*.065),amp=ring?9:R*.035,phase=j*.23;
       m.beginPath();
       for (let i=0;i<=360;i++) {const t=i/360*Math.PI*2,r=base+amp*Math.sin(petals*t+phase)+amp*.4*Math.sin((petals*2+1)*t-phase);m.lineTo(ox+Math.cos(t)*r,oy+Math.sin(t)*r);}
       m.stroke();
@@ -1254,17 +1255,17 @@ function backMask(record,createCanvas,w) {
     m.save();m.translate(cx,H/2);m.rotate(-Math.PI*.13);
     m.font=`700 ${size}px ${SERIF}`;m.textAlign="center";m.textBaseline="middle";
     const gap=m.measureText(word).width+size*1.8,span=Math.hypot(W,H);
-    for (let y=-span/2,row=0;y<span/2;y+=size*2.3,row++) for (let x=-span/2+(row%2)*gap/2;x<span/2;x+=gap) m.fillText(word,x,y);
+    for (let y=-span/2,row=0;y<span/2;y+=size*3.6,row++) for (let x=-span/2+(row%2)*gap/2;x<span/2;x+=gap) m.fillText(word,x,y);
     m.restore();
   } else if (PATTERNS.includes(kind)) {
-    m.save();m.translate(20,18);paintPattern(m,kind,W-40,H-36,rand,2.6);m.restore();
+    m.save();m.translate(20,18);paintPattern(m,kind,W-40,H-36,rand,2.6,1.8);m.restore();
   } else if (kind==="rainbow" || kind==="cateye") {
     m.fillRect(0,0,W,H);
   } else if (kind==="moire") {
     m.lineWidth=1.6;const a0=rand()*Math.PI,span=Math.hypot(W,H);
-    for (const a of [a0,a0+.07]) {m.save();m.translate(W/2,H/2);m.rotate(a);for (let x=-span/2;x<span/2;x+=3.8) {m.beginPath();m.moveTo(x,-span/2);m.lineTo(x,span/2);m.stroke();}m.restore();}
+    for (const a of [a0,a0+.07]) {m.save();m.translate(W/2,H/2);m.rotate(a);for (let x=-span/2;x<span/2;x+=6.4) {m.beginPath();m.moveTo(x,-span/2);m.lineTo(x,span/2);m.stroke();}m.restore();}
   } else if (kind==="lenticular") {
-    for (let x=20,i=0;x<W-20;x+=4.4,i++) {m.globalAlpha=i%2?.55:1;m.fillRect(x,18,2.2,H-36);}
+    for (let x=20,i=0;x<W-20;x+=7,i++) {m.globalAlpha=i%2?.55:1;m.fillRect(x,18,2.4,H-36);}
     m.globalAlpha=1;
   } else if (kind==="glint") {
     for (let i=0;i<16;i++) {
@@ -1274,10 +1275,11 @@ function backMask(record,createCanvas,w) {
       m.restore();
     }
   } else if (kind==="pixel") {
-    for (let y=18;y<H-18;y+=7) for (let x=20;x<W-20;x+=7) if (rand()<.6) {m.globalAlpha=.5+rand()*.5;m.fillRect(x+1,y+1,5,5);}
+    const fx=rand()<.5?0:W,fy=rand()<.5?0:H,far=Math.hypot(W,H); // 像素镭射：整齐的方格，从一角向对角渐隐
+    for (let y=18;y<H-18;y+=10) for (let x=20;x<W-20;x+=10) {const t=1-Math.hypot(x-fx,y-fy)/far;if (t<.25) continue;m.globalAlpha=Math.min(1,t*1.2);const s=2+t*5;m.fillRect(x+5-s/2,y+5-s/2,s,s);}
     m.globalAlpha=1;
   } else if (kind==="ripple") {
-    m.lineWidth=2.4;for (let r=82;r<900;r+=6.5) {m.beginPath();m.arc(cx,cy,r,0,Math.PI*2);m.stroke();}
+    m.lineWidth=2.4;for (let r=82;r<900;r+=10) {m.beginPath();m.arc(cx,cy,r,0,Math.PI*2);m.stroke();}
   } else if (kind==="sparkle") {
     for (let i=0;i<520;i++) {
       const x=20+rand()*(W-40),y=18+rand()*(H-36),r=.5+rand()*1.3;
@@ -1286,7 +1288,7 @@ function backMask(record,createCanvas,w) {
     }
     m.globalAlpha=1;
   } else {
-    const step=5.2,r=1.5;m.save();m.translate(cx,H/2);m.rotate(Math.PI/4);const span=Math.hypot(W,H);
+    const step=8.5,r=1.7;m.save();m.translate(cx,H/2);m.rotate(Math.PI/4);const span=Math.hypot(W,H);
     for (let y=-span/2;y<span/2;y+=step) for (let x=-span/2;x<span/2;x+=step) {m.beginPath();m.arc(x,y,r,0,Math.PI*2);m.fill();}
     m.restore();
   }

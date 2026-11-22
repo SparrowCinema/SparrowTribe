@@ -14,7 +14,10 @@
     {id:"doodle",label:"彩色涂鸦"},
     {id:"watercolor",label:"淡彩水彩"},
     {id:"pop-dots",label:"波普网点"},
-    {id:"memphis",label:"孟菲斯涂鸦"}
+    {id:"memphis",label:"孟菲斯涂鸦"},
+    {id:"cmyk-dots",label:"四色网点"},
+    {id:"riso",label:"孔版双色"},
+    {id:"news-dots",label:"报纸网点"}
   ];
   const ALIAS={woodcut:"crayon","blue-ink":"watercolor",cartoon:"pop-dots"};
   const storageKey="sparrow-ticket-art-style";
@@ -142,6 +145,7 @@
     if(style==="kid-crayon")return drawKidCrayon(pixels,w,h,width,height);
     if(style==="pop-dots")return drawPopDots(pixels,w,h,width,height);
     if(style==="memphis")return drawMemphis(pixels,w,h,width,height);
+    if(style==="cmyk-dots"||style==="riso"||style==="news-dots")return drawHalftone(pixels,w,h,width,height,style);
     const crayon=style==="crayon",wash=style==="watercolor",wood=false;
     const paper=PAPER,ink=INK;
     const {labels,palette:source}=reduceColors(pixels,w,h);
@@ -467,6 +471,64 @@
   }
 
   const imageCache=new WeakMap();
+  // 印刷网点（2026-11-22）：把海报当成一张放大看的印刷品。
+  // 四色网点：青、品红、黄、黑四块版各自按 15° / 75° / 0° / 45° 排网点，叠印在白纸上，版与版之间错开一点（套印不准）；
+  // 孔版双色：荧光粉 + 蓝两块版，暗部给蓝、暖色和中间调给粉，错版更明显，带一点油墨颗粒；
+  // 报纸网点：一块黑版 45° 网点印在泛黄的新闻纸上，网点略有扩张。
+  const HT_PAPER=[252,250,244],RISO_PAPER=[246,240,226],NEWS_PAPER=[236,229,212];
+  const HT_INK={c:[0,158,224],m:[232,18,122],y:[255,226,0],k:[28,28,34],pink:[255,72,140],blue:[0,94,184],news:[34,31,30]};
+  function drawHalftone(pixels,w,h,width,height,style){
+    const at=(x,y,c)=>{ // 双线性取样，网点大小随画面平滑变化
+      const fx=clamp(x*w/width-.5,0,w-1),fy=clamp(y*h/height-.5,0,h-1),x0=Math.floor(fx),y0=Math.floor(fy),x1=Math.min(w-1,x0+1),y1=Math.min(h-1,y0+1),tx=fx-x0,ty=fy-y0;
+      const p=(xx,yy)=>pixels[(yy*w+xx)*4+c];
+      return mix(mix(p(x0,y0),p(x1,y0),tx),mix(p(x0,y1),p(x1,y1),tx),ty);
+    };
+    const rgb=(x,y)=>[at(x,y,0),at(x,y,1),at(x,y,2)];
+    const unit=width/200,news=style==="news-dots",riso=style==="riso";
+    const step=unit*(news?3.2:riso?4:5);
+    // 每块版：油墨颜色、网角、错版偏移、取这一版浓度的函数
+    const plates=style==="cmyk-dots"?[
+      {ink:HT_INK.y,a:0,dx:0,dy:0,f:c=>c.y},
+      {ink:HT_INK.c,a:15,dx:-.7,dy:.4,f:c=>c.c},
+      {ink:HT_INK.m,a:75,dx:.6,dy:-.5,f:c=>c.m},
+      {ink:HT_INK.k,a:45,dx:0,dy:.2,f:c=>c.k}
+    ]:riso?[
+      {ink:HT_INK.pink,a:15,dx:1.1,dy:-.6,f:c=>c.pink},
+      {ink:HT_INK.blue,a:45,dx:-.9,dy:.7,f:c=>c.blue}
+    ]:[{ink:HT_INK.news,a:45,dx:0,dy:0,f:c=>c.k}];
+    plates.forEach(pl=>{const r=pl.a*Math.PI/180;pl.cos=Math.cos(r);pl.sin=Math.sin(r);pl.ox=pl.dx*unit;pl.oy=pl.dy*unit;});
+    const paper=news?NEWS_PAPER:riso?RISO_PAPER:HT_PAPER;
+    const sep=([r,g,b])=>{ // RGB → 各版浓度（0…1）
+      r/=255;g/=255;b/=255;
+      if(!news){const lift=riso?.82:.72;r=Math.pow(r,lift);g=Math.pow(g,lift);b=Math.pow(b,lift);} // 先提亮：网点画面要透气，暗部不至于糊成一片
+      if(news){const l=.24*r+.58*g+.18*b;return {k:clamp(Math.pow(1-l,1.1)*1.08-.03,0,1)};}
+      if(riso){const l=.24*r+.58*g+.18*b,warm=clamp((r-b)*1.2+(r-g)*.4,0,1);
+        return {blue:clamp(Math.pow(1-l,1.4)*1.05-.06,0,.86),pink:clamp((1-l)*.5+warm*.85-.06,0,.86)};}
+      const k=1-Math.max(r,g,b),d=1-k||1;
+      // 黑版只压最暗处，颜色交给青、品、黄三版的彩色网点；单版浓度封顶，网点不连成一片
+      return {c:Math.min(.7,(1-r-k*.5)/d*.9),m:Math.min(.7,(1-g-k*.5)/d*.9),y:Math.min(.75,(1-b-k*.5)/d*.9),k:clamp(k*1.3-.5,0,.72)};
+    };
+    const out=new Uint8ClampedArray(width*height*4);
+    for(let y=0;y<height;y++) for(let x=0;x<width;x++){
+      const o=(y*width+x)*4;let col=paper.slice();
+      for(const pl of plates){
+        const px=x-pl.ox,py=y-pl.oy;
+        // 转到这一版的网格坐标，找最近的网点中心，在中心取样决定点的大小
+        const u=(px*pl.cos+py*pl.sin)/step,v=(-px*pl.sin+py*pl.cos)/step,cu=Math.round(u),cv=Math.round(v);
+        const cx=(cu*pl.cos-cv*pl.sin)*step+pl.ox,cy=(cu*pl.sin+cv*pl.cos)*step+pl.oy;
+        const cover=clamp(pl.f(sep(rgb(cx,cy))),0,1);if(cover<.03)continue;
+        const du=u-cu,dv=v-cv,dist=Math.sqrt(du*du+dv*dv),rad=.56*Math.sqrt(cover)*(news?1.08:1);
+        let t=clamp((rad-dist)*step/1.2+.5,0,1);
+        if(riso)t*=.86+.14*valueNoise(x*.9,y*.9); // 孔版的油墨颗粒
+        if(t<=0)continue;
+        for(let c=0;c<3;c++)col[c]*=1-t*(1-pl.ink[c]/255); // 油墨叠印（正片叠底）
+      }
+      if(news||riso){const g=(valueNoise(x*.55+11,y*.55)-.5)*(news?10:7);for(let c=0;c<3;c++)col[c]+=g;}
+      for(let c=0;c<3;c++)out[o+c]=col[c];
+      out[o+3]=255;
+    }
+    return out;
+  }
   function paint(surface,image,crop,frame,createCanvas,cropCover,ticketScale=1,styleId){
     if(!createCanvas)return false;
     try{
@@ -479,7 +541,7 @@
       let drawing=cache.get(key);
       if(!drawing){
         // 童趣蜡笔、卡通要保留人物轮廓，取样更细（其余风格保持原来的粗取样）
-        const sw=style==="pop-dots"||style==="memphis"?Math.min(120,Math.max(40,Math.round(width*.4))):style==="kid-crayon"?Math.min(160,Math.max(48,Math.round(width*.5))):Math.min(92,Math.max(32,Math.round(width*.4)));
+        const sw=style==="cmyk-dots"||style==="riso"||style==="news-dots"?Math.min(140,Math.max(48,Math.round(width*.45))):style==="pop-dots"||style==="memphis"?Math.min(120,Math.max(40,Math.round(width*.4))):style==="kid-crayon"?Math.min(160,Math.max(48,Math.round(width*.5))):Math.min(92,Math.max(32,Math.round(width*.4)));
         const sh=Math.max(1,Math.round(sw*h/w));
         const sample=createCanvas(sw,sh).getContext("2d");
         cropCover(sample,image,crop,{x:0,y:0,w:sw,h:sh});
