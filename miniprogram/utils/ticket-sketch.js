@@ -8,11 +8,10 @@
   const PAPER=[249,241,224];
   const INK=[45,36,34];
   // 2026-11-21：去掉木刻版画、蓝墨速写、卡通漫画；新增波普网点、孟菲斯涂鸦。旧的选择会换成相近的一款（ALIAS）。
-  // 2026-11-22：默认改为老电视，其后是胶片放映、70mm 胶片（没选过风格的票根用第一款）
+  // 2026-11-22：默认改为老电视，其后是胶片放映、VHS 录像带（没选过风格的票根用第一款）
   const styles=[
     {id:"crt",label:"老电视"},
     {id:"projector",label:"胶片放映"},
-    {id:"film70",label:"70mm 胶片"},
     {id:"vhs",label:"VHS 录像带"},
     {id:"news-dots",label:"报纸网点"},
     {id:"crayon",label:"蜡笔乱涂"},
@@ -24,7 +23,7 @@
     {id:"cmyk-dots",label:"四色网点"},
     {id:"ccd",label:"CCD 复古"}
   ];
-  const ALIAS={woodcut:"crayon","blue-ink":"watercolor",cartoon:"pop-dots",riso:"cmyk-dots",lenticular:"crt"}; // 2026-11-22 去掉孔版双色，换成四色网点
+  const ALIAS={woodcut:"crayon","blue-ink":"watercolor",cartoon:"pop-dots",riso:"cmyk-dots",lenticular:"crt",film70:"projector"}; // 2026-11-22 去掉 70mm 胶片，换成胶片放映 // 2026-11-22 去掉孔版双色，换成四色网点
   const storageKey="sparrow-ticket-art-style";
   const normalize=value=>styles.some(style=>style.id===value)?value:ALIAS[value]||styles[0].id;
   const filmStyleOptions=[{id:"",label:"跟随收藏册"},...styles];
@@ -154,7 +153,6 @@
     if(style==="crt")return drawCRT(pixels,w,h,width,height);
     if(style==="ccd")return drawCCD(pixels,w,h,width,height);
     if(style==="projector")return drawProjector(pixels,w,h,width,height);
-    if(style==="film70")return drawFilm70(pixels,w,h,width,height);
     if(style==="vhs")return drawVHS(pixels,w,h,width,height);
     const crayon=style==="crayon",wash=style==="watercolor",wood=false;
     const paper=PAPER,ink=INK;
@@ -617,58 +615,9 @@
     }
     return out;
   }
-  // 70mm 胶片（2026-11-22）：像在灯箱上扫描的一格 70mm 正片——两侧黑色片基上一排排圆角齿孔透出灯箱的白光，
-  // 片边印着「70MM SAFETY FILM」和帧号；画面色彩浓郁、对比稍强、细颗粒，高光边缘有一圈红色光晕（halation）
+  // 屏显用的 5×7 点阵字
   const FONT5={"0":"01110100011001110101110011000101110","1":"00100011000010000100001000010001110","2":"01110100010000100110010001000011111","3":"11110000010000101110000010000111110","4":"00010001100101010010111110001000010","5":"11111100001111000001000011000101110","6":"00110010001000011110100011000101110","7":"11111000010001000100010000100001000","8":"01110100011000101110100011000101110","9":"01110100011000101111000010001001100","M":"10001110111010110001100011000110001","F":"11111100001000011110100001000010000","S":"01111100001000001110000010000111110","A":"01110100011000111111100011000110001","E":"11111100001000011110100001000011111","T":"11111001000010000100001000010000100","Y":"10001100010101000100001000010000100","I":"01110001000010000100001000010001110","L":"10000100001000010000100001000011111",">":"10000010000010000010001000100010000","P":"11110100011000111110100001000010000"};
-  function drawFilm70(pixels,w,h,width,height){
-    const at=bilinear(pixels,w,h),unit=width/200,out=new Uint8ClampedArray(width*height*4);
-    // 按 70mm 放映拷贝的片边比例（以片宽 W 计）：KS 齿孔宽 4%、高 2.8%、孔距 6.8%、圆角很小，
-    // 齿孔外侧和内侧各有一条褐色磁性声带，画面约占片宽 73%（参考 70mm / IMAX 15/70 拷贝的片边模板）
-    const W=width,edge=Math.round(W*.135),ix0=edge,ix1=width-edge,iy0=Math.round(unit*3),iy1=height-Math.round(unit*3),iw=ix1-ix0,ih=iy1-iy0;
-    const base=[18,14,12],light=[244,240,228],mag=[78,52,30];
-    const pw=W*.04,ph=W*.028,pitch=W*.068,pr=Math.max(.8,W*.006),px0=W*.034;
-    const stripes=[[W*.008,W*.026],[px0+pw+W*.009,px0+pw+W*.021]];
-    const inStripe=x=>{const lx=x<width/2?x:width-1-x;return stripes.some(([a,b])=>lx>=a&&lx<b);};
-    const hole=(x,y)=>{const lx=x<width/2?x-px0:(width-1-x)-px0;if(lx<0||lx>pw)return 0;const ly=(y+pitch*.3)%pitch;if(ly>ph)return 0;
-      const dx=Math.max(0,Math.max(pr-lx,lx-(pw-pr))),dy=Math.max(0,Math.max(pr-ly,ly-(ph-pr)));return clamp(1-(Math.hypot(dx,dy)-pr+.5),0,1);};
-    // 先算画面（含红色光晕）
-    for(let y=0;y<height;y++) for(let x=0;x<width;x++){
-      const o=(y*width+x)*4;let col;
-      if(x>=ix0&&x<ix1&&y>=iy0&&y<iy1){
-        const sx=(x-ix0)/iw*w-.5,sy=(y-iy0)/ih*h-.5;
-        let r=at(sx,sy,0)/255,g=at(sx,sy,1)/255,b=at(sx,sy,2)/255;
-        // 胶片色：S 形对比、饱和度提高、暗部微微偏青、亮部偏暖
-        const S=v=>v*v*(3-2*v)*.4+v*.6;r=S(r);g=S(g);b=S(b);
-        const m=(r+g+b)/3;r=m+(r-m)*1.1;g=m+(g-m)*1.1;b=m+(b-m)*1.08;
-        const l=.3*r+.59*g+.11*b;r+=.04*l-.01;b+=.03*(1-l)-.02;
-        // halation：周围高光在这里渗出的红晕（取样附近几个点的亮部）
-        let hal=0;for(const [ox,oy] of [[2.2,0],[-2.2,0],[0,2.2],[0,-2.2]]){const q=(at(sx+ox,sy+oy,0)+at(sx+ox,sy+oy,1))/510;hal+=Math.max(0,q-.78);}
-        r+=hal*.5;g+=hal*.08;
-        const gr=(hash(x*1.9,y*2.3)-.5)*.07;
-        // 画框四角轻微圆角
-        const cx=Math.max(0,Math.max(ix0+unit*1.5-x,x-(ix1-1-unit*1.5))),cy=Math.max(0,Math.max(iy0+unit*1.5-y,y-(iy1-1-unit*1.5))),inside=clamp(unit*1.5-Math.hypot(cx,cy)+.5,0,1);
-        col=[r+gr,g+gr,b+gr].map((v,c)=>mix(base[c],clamp(v,0,1)*255,inside));
-      } else {
-        // 片基：近黑偏棕，轻微不均匀
-        const n=(valueNoise(x*.08,y*.05)-.5)*8;col=(inStripe(x)?mag:base).map(v=>v+n);
-        const t=hole(x,y);if(t>0)col=col.map((v,c)=>mix(v,light[c]-(hash(x,y)*10),t));
-      }
-      for(let c=0;c<3;c++)out[o+c]=clamp(col[c],0,255);
-      out[o+3]=255;
-    }
-    // 片边字：沿齿孔外侧竖排，暖黄色的小点阵字
-    const put=(px,py)=>{px=Math.round(px);py=Math.round(py);if(px<0||py<0||px>=width||py>=height)return;const o=(py*width+px)*4;out[o]=mix(out[o],232,.85);out[o+1]=mix(out[o+1],196,.85);out[o+2]=mix(out[o+2],120,.85);};
-    const dot=Math.max(1,Math.round(unit*.5)),colX=Math.round(stripes[1][1]+(edge-stripes[1][1]-dot*7)/2); // 片边字放在内侧声带和画面之间
-    const vtext=(txt,x,y0)=>{let y=y0;for(const ch of txt){if(ch===" "){y+=dot*4;continue;}const g=FONT5[ch];if(!g){y+=dot*6;continue;}
-      for(let r=0;r<7;r++)for(let c=0;c<5;c++)if(g[r*5+c]==="1"){ // 竖排：字顺时针转 90°
-        for(let a=0;a<dot;a++)for(let b=0;b<dot;b++)put(x+(6-r)*dot+a,y+c*dot+b);}
-      y+=dot*6;}};
-    const frame=String(10+Math.floor(hash(w,h)*80));
-    vtext("70MM SAFETY FILM",colX,Math.round(height*.12));
-    vtext(">"+frame,colX,Math.round(height*.68));
-    vtext(frame+"A",width-colX-dot*7,Math.round(height*.3));
-    return out;
-  }
+
   // VHS 录像带（2026-11-22）：电视台老录像带翻录的画面——色度糊开并向右错位、亮度边缘有锐化白边，
   // 每行轻微左右抖动，底部一条跟踪不良的扭曲噪声带，隔行扫描纹，偏洋红的褪色，左上角屏显「PLAY ▶」、右下角「SP」
   function drawVHS(pixels,w,h,width,height){
@@ -719,7 +668,7 @@
       let drawing=cache.get(key);
       if(!drawing){
         // 童趣蜡笔、卡通要保留人物轮廓，取样更细（其余风格保持原来的粗取样）
-        const sw=style==="vhs"?Math.min(150,Math.max(52,Math.round(width*.45))):style==="film70"?Math.min(170,Math.max(60,Math.round(width*.5))):style==="projector"?Math.min(150,Math.max(52,Math.round(width*.45))):style==="crt"?Math.min(170,Math.max(60,Math.round(width*.55))):style==="ccd"?Math.min(120,Math.max(44,Math.round(width*.38))):style==="cmyk-dots"||style==="news-dots"?Math.min(140,Math.max(48,Math.round(width*.45))):style==="pop-dots"||style==="memphis"?Math.min(120,Math.max(40,Math.round(width*.4))):style==="kid-crayon"?Math.min(160,Math.max(48,Math.round(width*.5))):Math.min(92,Math.max(32,Math.round(width*.4)));
+        const sw=style==="vhs"?Math.min(150,Math.max(52,Math.round(width*.45))):style==="projector"?Math.min(150,Math.max(52,Math.round(width*.45))):style==="crt"?Math.min(170,Math.max(60,Math.round(width*.55))):style==="ccd"?Math.min(120,Math.max(44,Math.round(width*.38))):style==="cmyk-dots"||style==="news-dots"?Math.min(140,Math.max(48,Math.round(width*.45))):style==="pop-dots"||style==="memphis"?Math.min(120,Math.max(40,Math.round(width*.4))):style==="kid-crayon"?Math.min(160,Math.max(48,Math.round(width*.5))):Math.min(92,Math.max(32,Math.round(width*.4)));
         const sh=Math.max(1,Math.round(sw*h/w));
         const sample=createCanvas(sw,sh).getContext("2d");
         cropCover(sample,image,crop,{x:0,y:0,w:sw,h:sh});
