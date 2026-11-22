@@ -227,7 +227,7 @@ const flush=async()=>{for(let n=0;n<20;n++){await new Promise(r=>setImmediate(r)
     _q:{text:'',year:'',programme:[],city:[],venue:[],format:[]},_limit:96,_scrollTop:1234,_rev:-1,_opened:'',
     paint(append,done){this.painted2=[append,this._limit];done&&done();}};
   album2.onShow();
-  assert.deepEqual(album2.painted2,[false,96],'returning keeps the tickets already loaded');
+  assert.deepEqual(album2.painted2,['keep',96],'returning keeps the tickets already loaded');
   assert.deepEqual(scrolls,[1234],'returning restores the scroll position');
   console.log('PASS: ticket editor page — native scrolling/back, image preview with 360° turning (turn.wxs), blind-box reveal (no shuffle), show picker, per-film artwork styles and album fallback, crop flips to front, crop save-in-place, save, export, remove; album keeps its place after saving.');
 })().catch(e=>{console.error(e);process.exitCode=1;});
