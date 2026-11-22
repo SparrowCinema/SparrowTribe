@@ -357,6 +357,28 @@ const fullBytes=Buffer.byteLength(JSON.stringify(bigStore));assert(fullBytes<600
   // 每次最多 50 张
   const many={};for(let i=0;i<120;i++)many['b'+i+'|2026-11-01']={t:i+1};assert.equal(T.pendingIssue(many).length,T.ISSUE_BATCH);
 }
+// 2026-11-22 线上出现的情况：领号后旧版代码把 n / q 清掉（保留修改时间），新设备按丢了编号的票根重新推算编号、又领了一个号。
+// 现在：① 领号不改修改时间，清掉后推算出的还是同一个编号，再领还是同一个号；② 同步合并时缺 n / q 的一份从另一份补回来。
+{
+  const counters={},issued={};
+  const server=items=>items.map(({s,f})=>{if(!(s in issued)){counters[f]=(counters[f]||0)+1;issued[s]=counters[f];}return {s,no:issued[s]};});
+  const key='rp|2026-11-03',t0=1795336000000;
+  let web={[key]:{t:t0,c:0}};
+  const it=T.pendingIssue(web);web={...web,...T.applyIssue(web,it,server(it.map(x=>({s:x.s,f:x.f}))),t0+999)};
+  assert.equal(web[key].q,1);assert.equal(web[key].t,t0,'issuing keeps the save time');
+  // 旧版清洗：只剩旧字段
+  const stripped={[key]:{t:web[key].t,c:0}};
+  assert.equal(T.entrySerial(key,stripped[key]),web[key].n,'stripped ticket still derives the same serial');
+  const again=T.pendingIssue(stripped);assert.equal(server(again.map(x=>({s:x.s,f:x.f})))[0].no,1,'re-issuing returns the same number');
+  // 同步合并补回 n / q（两个方向都行），较新的一份缺字段时也补
+  assert.deepEqual(S.mergeTix(stripped,web)[key],web[key],'merge keeps n/q (stale local)');
+  assert.deepEqual(S.mergeTix(web,stripped)[key],web[key],'merge keeps n/q (stale cloud)');
+  const editedOld={[key]:{t:t0+5000,c:30}};
+  const m=S.mergeTix(editedOld,web)[key];assert.equal(m.c,30);assert.equal(m.n,web[key].n);assert.equal(m.q,1,'newer edit from old client keeps n/q');
+  // 删除标记不补；编号不一致时不补序号
+  assert.deepEqual(S.mergeTix({[key]:{del:1,t:t0+9000}},web)[key],{del:1,t:t0+9000});
+  const other={[key]:{t:t0+9000,n:T.serialOf(key,t0+9000)}};assert.equal(S.mergeTix(other,web)[key].q,undefined,'no q across different serials');
+}
 // 正反面合成图（2026-11-22）：用记录调用的假画布跑一遍 drawShowcase / bakeSheen，不报错、画了两张票根和序号
 {
   const calls=[];

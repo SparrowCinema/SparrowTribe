@@ -63,7 +63,27 @@
     Object.keys(a.f).concat(Object.keys(b.f)).forEach(function (id) { var x = a.f[id], y = b.f[id]; out.f[id] = !x ? y : !y ? x : (y.t > x.t ? y : x); });
     return out;
   }
-  function mergeTix(a, b) { var out = {}; Object.keys(a).concat(Object.keys(b)).forEach(function (k) { var x = a[k], y = b[k]; out[k] = !x ? y : !y ? x : (y.t > x.t ? y : x); }); return out; }
+  // 同一张票根取较新的一份；典藏编号 n、发行序号 q 一旦有了就不能被丢掉（2026-11-22）：
+  // 旧版代码不认识这两个字段，会把它们清掉但保留修改时间，新代码按丢了编号的票根重新推算出另一个编号、再领一个号（「本片第 2 张」）。
+  // 所以较新的那份缺 n / q、另一份（都不是删除标记）有时，从另一份补回来；q 只在两份的编号一致时补。
+  function mergeTix(a, b) {
+    var out = {};
+    Object.keys(a).concat(Object.keys(b)).forEach(function (k) {
+      var x = a[k], y = b[k], r = !x ? y : !y ? x : (y.t > x.t ? y : x);
+      if (x && y && r && !r.del) {
+        var o = r === x ? y : x;
+        if (o && !o.del && ((!r.n && o.n) || (!r.q && o.q))) {
+          var add = {};
+          if (!r.n && o.n) add.n = o.n;
+          var n = r.n || add.n;
+          if (!r.q && o.q && n && n === o.n) add.q = o.q;
+          if (add.n || add.q) r = Object.assign({}, r, add);
+        }
+      }
+      out[k] = r;
+    });
+    return out;
+  }
   function clean(d) {
     var out = { v: 1, watched: {}, holder: { n: '', t: 0 }, photo: { d: '', t: 0 }, picks: { k: [], t: 0 }, want: {}, tix: {}, art: cleanArt(null) };
     if (!d || typeof d !== 'object') return out;

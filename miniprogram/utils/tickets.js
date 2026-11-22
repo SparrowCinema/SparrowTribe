@@ -438,14 +438,16 @@ function pendingIssue(store) {
   }
   return out;
 }
-// 把领到的号写回票根：同时冻结典藏编号 n（修改时间要变，不冻结编号就会跟着变），返回要写入的改动，没有就返回 null
+// 把领到的号写回票根，同时冻结典藏编号 n；返回要写入的改动，没有就返回 null
 function applyIssue(store,items,results,now) {
   const got=new Map((Array.isArray(results)?results:[]).filter(r=>r && serialValid(r.s) && Number.isInteger(r.no) && r.no>0).map(r=>[r.s,r.no]));
   const changes={};
   for (const it of items||[]) {
     const e=store[it.key], no=got.get(it.s);
     if (!no || !e || e.del || e.q || entrySerial(it.key,e)!==it.s) continue;
-    changes[it.key]={...e,n:it.s,q:no,t:Math.max(now||Date.now(),(e.t||0)+1)};
+    // 不改修改时间：编号是按「票根键 + 保存时间」推算的，时间不变，就算旧版代码把 n / q 清掉，推算出来的还是同一个编号、领到的还是同一个号；
+    // 序号靠同步合并时补齐缺失字段传到别的设备（shared/psync.js 的 mergeTix）
+    changes[it.key]={...e,n:it.s,q:no};
   }
   return Object.keys(changes).length ? changes : null;
 }
