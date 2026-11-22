@@ -130,7 +130,7 @@ const flush=async()=>{for(let n=0;n<20;n++){await new Promise(r=>setImmediate(r)
   assert.equal(page.data.revealing,false);
   assert(store['sk-ticket-revealed']&&store['sk-ticket-revealed'][page._draft.key]===1,'revealed tickets are remembered on this device');
   assert.equal(page.data.custom,false,'blind-box look needs no restore button');
-  assert(page.data.craft&&/\+/.test(page.data.craft),'craft line lists the unboxed finishes');
+  assert(!('craft' in page.data),'no craft text line on the ticket page (removed 2026-11-22)');
   // 翻面：页面发转动请求（序号递增），视图层转完回报正反面
   const n0=page.data.turnReq.n;page.flip();assert.equal(page.data.turnReq.side,'back');assert.equal(page.data.turnReq.n,n0+1);
   await flush();assert.equal(page.data.front,false);assert.match(page.data.edge,/^#[0-9a-f]{6}$/,'paper edge colour comes from the palette');

@@ -34,12 +34,14 @@ function ticketStore(){
   if(raw!==null){ticketStoreCache=TE.cleanStore(raw);return ticketStoreCache;}
   // 第一次打开新版：把旧版整条记录迁移过来（旧键保留不删，以防万一）
   let old=[];try{old=TE.read(localStorage.getItem(TICKET_KEY));}catch{}
-  ticketStoreCache=old.length?TE.migrateV1(old,ticketViewings(),ticketBase):{};
-  if(old.length)ticketStorePut(ticketStoreCache,true);
+  const migrated=old.length?TE.migrateV1(old,ticketViewings(),ticketBase):{};
+  if(!old.length||!ticketStorePut(migrated,true))ticketStoreCache=TE.cleanStore(migrated);
   return ticketStoreCache;
 }
 function ticketStorePut(store,quiet){
   const clean=TE.cleanStore(store);
+  // 内容没变就不算一次修改（不增加版本号，不触发同步）
+  if(ticketStoreCache&&JSON.stringify(clean)===JSON.stringify(ticketStoreCache))return true;
   try{localStorage.setItem(TICKET_STORE_KEY,JSON.stringify(clean));}
   catch{if(!quiet)toast(tr("票根保存失败，请检查本机存储"));return false;}
   ticketStoreCache=clean;ticketRev++;return true;
@@ -436,7 +438,7 @@ function ticketOpen(row){
   ticketDraft={row:{...row,look:{...row.look}},original:row.key,side:ticketSide,view:item?.view||null};ticketPrepareReveal();ticketRender();window.scrollTo(0,0);
 }
 // ——— 拆盲盒（2026-11-22）———
-// 每张票根第一次在本机打开时：先亮背面，停一下再自动翻到正面，工艺层整片流过一遍光，下方显示「本次开出：…」。
+// 每张票根第一次在本机打开时：先亮背面，停一下再自动翻到正面，工艺层整片流过一遍光（不再显示工艺文字）。
 // 已拆过的票根键记在本机（不同步，换设备会再拆一次），最多记 6000 张。
 const TICKET_REVEALED="sparrow-ticket-revealed";
 function ticketRevealedSet(){try{return JSON.parse(localStorage.getItem(TICKET_REVEALED)||"{}")||{};}catch{return {};}}
@@ -454,15 +456,9 @@ function ticketRunReveal(card){
   const draft=ticketDraft;draft.reveal="running";
   setTimeout(()=>{
     if(ticketDraft!==draft)return;
-    card.classList.add("reveal");ticketFlipTo("front");ticketCraftCaption();
-    setTimeout(()=>{if(ticketDraft===draft){draft.reveal="done";card.classList.remove("reveal");ticketCraftCaption();}ticketMarkRevealed(draft.row.key);},2000);
+    card.classList.add("reveal");ticketFlipTo("front");
+    setTimeout(()=>{if(ticketDraft===draft){draft.reveal="done";card.classList.remove("reveal");}ticketMarkRevealed(draft.row.key);},2000);
   },750);
-}
-function ticketCraftCaption(){
-  const el=main.querySelector(".te-craft");if(!el||!ticketDraft)return;
-  const running=ticketDraft.reveal==="running";
-  el.classList.toggle("reveal",running);
-  el.textContent=tr(running?"本次开出":"工艺")+"："+TE.craftLabel(ticketDraft.row.look,tr);
 }
 // 票面（裁切 / 配图）改动后，可以就地保存，不用离开详情页
 const ticketArtSig=row=>[row.crop,row.art].join("|");
@@ -489,8 +485,7 @@ function ticketEditor(row){
         <button type="button" class="te-art-save" data-ticket-action="save-here" ${ticketArtDirty()?"":"disabled"}>${ticketDict("保存")}</button></div>`:""}
       <div class="te-tools"><div class="te-seg" role="tablist" aria-label="${ticketDict("票根面")}">
         <button type="button" role="tab" data-ticket-side="front" aria-selected="${front}">${ticketDict("正面")}</button><button type="button" role="tab" data-ticket-side="back" aria-selected="${!front}">${ticketDict("背面")}</button></div>
-        <button type="button" class="te-style" data-ticket-filter="art-style" aria-haspopup="dialog">${ticketDict("手绘风格")}${filterChevron}</button></div>
-      <p class="te-craft" aria-live="polite"></p>
+        <button type="button" class="te-style" data-ticket-filter="art-style" aria-haspopup="dialog"><svg class="te-brush" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13.5 2.5 7 9"/><path d="M7 9c-1.6-.4-3 .6-3.2 2.2-.1 1-.6 1.7-1.3 2.1 2.6.6 5.4-.4 5.4-3"/></svg>${ticketDict("手绘风格")}${filterChevron}</button></div>
       <button type="button" class="te-reset" data-ticket-action="reset" hidden>${ticketDict("恢复盲盒款")}</button></div>
     <div class="te-body">
       <div class="te-heading">
@@ -595,7 +590,6 @@ function ticketDrawEditor(){
   const card=main.querySelector(".ticket-flip");if(!card)return;
   const shine=TE.shineOf(ticketDraft.row.look.finish);
   card.dataset.shine=shine.kind;card.style.setProperty("--metal-highlight",shine.highlight+"af");card.style.setProperty("--edge",TE.edgeOf(ticketDraft.row));
-  ticketCraftCaption();
   const reset=main.querySelector(".te-reset");if(reset)reset.hidden=TE.lookSig(ticketDraft.row.look)===TE.lookSig(TE.sanitize({...ticketDraft.row,look:null}).look);
   for(const side of ["front","back"])ticketRenderCard(main.querySelector("#ticket-preview-"+side),ticketDraft.row,side);
 }

@@ -50,8 +50,6 @@
 .ticket-edge.te-l2,.ticket-edge.te-r2{top:82.1%;height:17%}
 .ticket-edge.te-l1,.ticket-edge.te-l2{left:0}
 .ticket-edge.te-r1,.ticket-edge.te-r2{left:100%}
-.te-craft{margin:2px 0 0;font-size:.74rem;line-height:1.5;color:var(--muted);text-align:center;max-width:340px;transition:color .3s}
-.te-craft.reveal{color:var(--accent);font-weight:700}
 /* 拆盲盒：翻到正面时工艺层整片流过一遍光（动画优先于转动时写入的行内透明度） */
 @keyframes ticketReveal{0%{opacity:0;background-position:0% 0%}40%{opacity:.85}100%{opacity:0;background-position:100% 100%}}
 .ticket-flip.reveal .ticket-fx:not([hidden]){animation:ticketReveal 1.7s ease-out .3s both}
@@ -159,13 +157,17 @@ html.ticket-style-dialog-open{overflow:hidden;overscroll-behavior:none;scrollbar
 .te-stage .ticket-flip{width:min(62%,260px);padding:0;background:none;border:0;cursor:pointer}
 .te-stage .ticket-flip canvas{display:block;width:100%;height:auto;filter:drop-shadow(0 8px 14px #2b211747)}
 .te-tools{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:center;min-width:0;max-width:100%}
-.te-seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;background:var(--surface);overflow:hidden}
-.te-seg button{border:0;background:none;color:var(--muted);padding:7px 16px;font:inherit;font-size:.82rem;cursor:pointer}
-.te-seg button[aria-selected=true]{background:var(--fg);color:var(--bg);font-weight:650}
-.te-dice{border:0;border-radius:999px;background:#a66e3d;color:#fff;padding:7px 16px;font:inherit;font-size:.82rem;font-weight:700;cursor:pointer}
-.te-style{display:inline-flex;align-items:center;justify-content:center;gap:4px;border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--fg);padding:7px 12px;font:inherit;font-size:.82rem;font-weight:650;cursor:pointer}
-.te-style svg{width:12px;height:12px;flex:none;color:var(--muted)}
-@media(max-width:430px){.te-tools{gap:6px}.te-seg button,.te-dice,.te-style{padding-inline:9px}}
+/* 正面 / 背面：和护照「签章 / 成长」同一套凹槽滑块；手绘风格：同高的浮起胶囊，前面一支画笔 */
+.te-seg{display:inline-flex;gap:2px;padding:3px;border-radius:999px;background:color-mix(in srgb,var(--line) 55%,var(--surface));border:1px solid var(--line-soft,var(--line))}
+.te-seg button{min-width:72px;border:0;background:none;border-radius:999px;color:var(--muted);padding:7px 18px;font:600 .82rem var(--f-body,inherit);letter-spacing:.12em;cursor:pointer;transition:background .2s,color .2s,box-shadow .2s}
+.te-seg button:hover{color:var(--fg)}
+.te-seg button[aria-selected=true]{background:var(--surface);color:var(--fg);box-shadow:0 2px 8px -3px rgba(60,40,20,.35)}
+.te-style{display:inline-flex;align-items:center;justify-content:center;gap:6px;height:39px;box-sizing:border-box;border:1px solid var(--line-soft,var(--line));border-radius:999px;background:var(--surface);color:var(--fg);padding:0 14px 0 12px;font:600 .82rem var(--f-body,inherit);letter-spacing:.06em;cursor:pointer;box-shadow:0 2px 8px -4px rgba(60,40,20,.3);transition:box-shadow .2s,border-color .2s}
+.te-style:hover{border-color:var(--line);box-shadow:0 4px 12px -5px rgba(60,40,20,.38)}
+.te-style:focus-visible,.te-seg button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.te-style .te-brush{width:15px;height:15px;flex:none;color:#a66e3d}
+.te-style svg:last-child{width:12px;height:12px;flex:none;color:var(--muted)}
+@media(max-width:430px){.te-tools{gap:8px}.te-seg button{min-width:60px;padding-inline:13px}.te-style{padding-inline:10px}}
 .te-reset{border:0;background:none;color:var(--muted);font:inherit;font-size:.76rem;cursor:pointer;padding:2px}
 .te-reset[hidden]{display:none}
 .te-heading{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px 14px;margin:4px 2px 0}

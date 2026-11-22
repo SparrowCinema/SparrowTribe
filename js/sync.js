@@ -2,7 +2,7 @@
    网站脚本按功能拆成 js/*.js，按 index.html 里的顺序加载；部署时 tools/build-assets.js 按同样顺序合并成一个 app.js。 */
 // —— 个人档案云端同步：同步码 + Supabase（与米其林全球名录共用同一个后端，不用注册）——
 const SYNC_KEY='sparrow-sync',SB_API='https://dclxhxxjktegyiwafmsv.supabase.co/rest/v1/rpc/',SB_KEY='sb_publishable_2K9O3h8nn2I_I-cIAdks8A_QZ98xwZ2';
-let profileClearing=false,syncSt=null,syncBusy=null,syncStatus={state:'idle',msg:'',at:0},syncReveal=false,syncMode='',syncPrint='',syncTimer=0;
+let profileClearing=false,syncSt=null,syncBusy=null,syncStatus={state:'idle',msg:'',at:0},syncReveal=false,syncMode='',syncPrint='',syncTimer=0,syncApplied=[];
 try{syncSt=JSON.parse(localStorage.getItem(SYNC_KEY)||'null');}catch{}
 function syncSave(){try{syncSt?localStorage.setItem(SYNC_KEY,JSON.stringify(syncSt)):localStorage.removeItem(SYNC_KEY);}catch{}}
 async function sbRpc(fn,body,signal){const r=await fetch(SB_API+fn,{method:'POST',headers:{apikey:SB_KEY,Authorization:'Bearer '+SB_KEY,'Content-Type':'application/json'},body:JSON.stringify(body),signal});
@@ -25,7 +25,13 @@ async function syncRun(){
   const saved=merged.watched;
   merged={...merged,watched:S.merge({watched:watched},{watched:saved}).watched};
   const lateRatings=!S.same({watched:saved},{watched:merged.watched});
-  const changed=!S.same(merged,profileSnap());if(changed){profileApply(merged);if(location.hash.replace('#','').split('/')[0]==='my'||!location.hash){const y=window.scrollY;route();window.scrollTo(0,y);}}
+  const before=profileSnap(),changed=!S.same(merged,before);
+  if(changed){profileApply(merged);
+    // 只有页面上看得见的档案（看过、想看、持有人、照片、排片）真的变了才重绘「我的」页；票根 / 手绘风格的变化不重绘，
+    // 连续多次「同步后又变了」说明两边在来回改，停止重绘，避免印章反复刷新、护照收不起来
+    const vis=d=>{const c=S.clean(d);return JSON.stringify([c.watched,c.want,c.holder,c.photo,c.picks]);};
+    const now=Date.now();syncApplied=syncApplied.filter(t=>now-t<60000);syncApplied.push(now);
+    if(vis(before)!==vis(profileSnap())&&syncApplied.length<=3&&(location.hash.replace('#','').split('/')[0]==='my'||!location.hash)){const y=window.scrollY;route();window.scrollTo(0,y);}}
   syncSt={...syncSt,rev,at:Date.now()};syncSave();syncPrint=lateRatings?'':profilePrint();syncStatus={state:'ok',msg:'',at:Date.now()};syncPaint();tasteChanged();TC.flush();return {changed};}
 function syncNow(){if(profileClearing)return Promise.resolve();if(syncBusy)return syncBusy;syncBusy=syncRun().catch(e=>{syncStatus={state:'error',msg:(e&&e.message)||String(e),at:syncStatus.at};syncPaint();throw e;}).finally(()=>{syncBusy=null;});return syncBusy;}
 const syncQuiet=()=>syncNow().catch(()=>{});
