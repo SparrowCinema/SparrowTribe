@@ -183,7 +183,7 @@ assert.equal(new Set(renders).size,Sketch.styles.length,'each style has distinct
 const doodle=Sketch.stylize(patch,12,8,48,32,'doodle');
 const hasInk=doodle.some((value,i)=>i%4===0&&value<40&&doodle[i+1]<40&&doodle[i+2]<40);
 assert(hasInk,'comic panel outlines strongly contrasting colors');
-assert.deepStrictEqual(Sketch.styles.map(x=>x.id),['news-dots','crayon','kid-crayon','doodle','watercolor','pop-dots','memphis','cmyk-dots','crt','ccd']);
+assert.deepStrictEqual(Sketch.styles.map(x=>x.id),['news-dots','crayon','kid-crayon','doodle','watercolor','pop-dots','memphis','cmyk-dots','crt','ccd','projector']);
 // 已删除的风格换成相近的一款
 assert.deepStrictEqual(['woodcut','blue-ink','cartoon','nope'].map(Sketch.normalize),['crayon','watercolor','pop-dots','news-dots']);
 assert.equal(Sketch.readFilmStyles(()=>JSON.stringify({'old-film':'cartoon'})).get('old-film'),'pop-dots');
@@ -220,6 +220,9 @@ assert(new Set(Array.from({length:200*150},(_,i)=>mem[i*4]+','+mem[i*4+1]+','+me
  const tv=Sketch.stylize(grad,40,30,200,150,'crt'),row=y=>Array.from({length:200},(_,x)=>tv[(y*150*0+y*200+x)*4+1]).reduce((a,b)=>a+b,0);
  assert(tv[0]<20&&tv[1]<20,'old TV has a dark rounded bezel corner');
  assert(Math.max(...[60,61,62,63].map(row))-Math.min(...[60,61,62,63].map(row))>300,'old TV shows scanlines');
+ const pj=Sketch.stylize(grad,40,30,200,150,'projector'),lum=i=>pj[i*4]+pj[i*4+1]+pj[i*4+2];
+ assert(lum(75*200+100)>lum(3*200+3)*3,'projector has a bright centre and dark gate corners');
+ assert(Sketch.stylize(grad,40,30,200,150,'projector').every((v,i)=>v===pj[i]),'projector scratches are stable for the same poster');
  const cd=Sketch.stylize(grad,40,30,200,150,'ccd');
  assert(Array.from({length:200*150},(_,i)=>i).some(i=>cd[i*4]>240&&cd[i*4+1]>110&&cd[i*4+1]<170&&cd[i*4+2]<90),'CCD prints an orange date stamp');
  const nw=Sketch.stylize(grad,40,30,200,150,'news-dots');assert(px(nw,([r,g,b])=>Math.max(r,g,b)-Math.min(r,g,b)>40)===0,'newsprint is a single neutral ink');}

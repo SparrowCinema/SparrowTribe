@@ -19,7 +19,8 @@
     {id:"memphis",label:"孟菲斯涂鸦"},
     {id:"cmyk-dots",label:"四色网点"},
     {id:"crt",label:"老电视"},
-    {id:"ccd",label:"CCD 复古"}
+    {id:"ccd",label:"CCD 复古"},
+    {id:"projector",label:"胶片放映"}
   ];
   const ALIAS={woodcut:"crayon","blue-ink":"watercolor",cartoon:"pop-dots",riso:"cmyk-dots",lenticular:"crt"}; // 2026-11-22 去掉孔版双色，换成四色网点
   const storageKey="sparrow-ticket-art-style";
@@ -150,6 +151,7 @@
     if(style==="cmyk-dots"||style==="news-dots")return drawHalftone(pixels,w,h,width,height,style);
     if(style==="crt")return drawCRT(pixels,w,h,width,height);
     if(style==="ccd")return drawCCD(pixels,w,h,width,height);
+    if(style==="projector")return drawProjector(pixels,w,h,width,height);
     const crayon=style==="crayon",wash=style==="watercolor",wood=false;
     const paper=PAPER,ink=INK;
     const {labels,palette:source}=reduceColors(pixels,w,h);
@@ -589,6 +591,43 @@
     }
     return out;
   }
+  // 胶片放映（2026-11-22）：像老放映机投在幕布上的一帧——中间亮、四周暗的光斑，褪色偏暖的胶片色，
+  // 粗颗粒，几道竖向划痕和灰尘白点 / 黑点，画面轻微晃动错位，帧窗圆角暗边，边上一点漏光
+  function drawProjector(pixels,w,h,width,height){
+    const at=bilinear(pixels,w,h),unit=width/200,out=new Uint8ClampedArray(width*height*4);
+    const seed=(w*31+h*17+pixels[(Math.floor(h/2)*w+Math.floor(w/2))*4])%997; // 同一张海报的划痕、灰尘固定
+    const rnd=k=>hash(seed*.37+k*1.7,k*.91+seed*.13);
+    const scratches=Array.from({length:3+Math.floor(rnd(1)*3)},(_,i)=>({x:rnd(10+i)*width,wob:rnd(20+i)*unit*2,len:.4+rnd(30+i)*.6,y0:rnd(40+i)*.5,dark:rnd(50+i)<.35}));
+    const dust=Array.from({length:14},(_,i)=>({x:rnd(60+i)*width,y:rnd(80+i)*height,r:unit*(.5+rnd(100+i)*1.4),dark:rnd(120+i)<.5}));
+    const weave=unit*.8*(rnd(7)-.5),flick=.94+rnd(8)*.1,leak=rnd(9)<.5?0:1;
+    for(let y=0;y<height;y++) for(let x=0;x<width;x++){
+      const o=(y*width+x)*4,nx=x/width*2-1,ny=y/height*2-1;
+      const band=Math.sin(y/height*Math.PI*3+seed)*unit*.35; // 片门晃动：画面有一点横向抖
+      const sx=(x+weave+band)*w/width-.5,sy=y*h/height-.5;
+      let r=at(sx,sy,0)/255,g=at(sx,sy,1)/255,b=at(sx,sy,2)/255;
+      const l=.3*r+.59*g+.11*b;
+      // 褪色：饱和度降低、黑位抬起、整体偏琥珀
+      r=mix(l,r,.62);g=mix(l,g,.62);b=mix(l,b,.62);
+      r=.07+r*.9;g=.055+g*.86;b=.04+b*.72;
+      r+=.05*l;g+=.02*l;
+      // 放映光斑：中心亮、边角暗
+      const d2=nx*nx*.9+ny*ny*.7,spot=(1.12-.55*Math.pow(d2,1.15))*flick;
+      // 颗粒（中间调最明显）
+      const gr=(hash(x*1.3+seed,y*1.7)-.5)*.16*(1-Math.abs(l-.5));
+      let col=[r,g,b].map(v=>(v*spot+gr));
+      // 漏光：一侧边缘的暖橙光晕
+      if(leak){const lk=Math.exp(-Math.pow((nx+1)*2.4,2))*.35*(.6+.4*Math.sin(ny*3+seed));col=[col[0]+lk,col[1]+lk*.45,col[2]+lk*.1];}
+      // 划痕
+      for(const sc of scratches){const yy=y/height;if(yy<sc.y0||yy>sc.y0+sc.len)continue;const cx=sc.x+Math.sin(yy*9+sc.x)*sc.wob,dd=Math.abs(x-cx);if(dd<unit*.6){const a=(1-dd/(unit*.6))*.55;col=col.map(v=>sc.dark?v*(1-a):v+(1-v)*a);}}
+      // 灰尘
+      for(const p of dust){const dd=Math.hypot(x-p.x,(y-p.y)*.8);if(dd<p.r){const a=(1-dd/p.r)*.8;col=col.map(v=>p.dark?v*(1-a):v+(1-v)*a);}}
+      // 帧窗：圆角暗边
+      const ex=Math.max(0,Math.abs(nx)-.9)/.1,ey=Math.max(0,Math.abs(ny)-.93)/.07,gate=clamp(1-Math.hypot(ex,ey),0,1);
+      for(let c=0;c<3;c++)out[o+c]=clamp(col[c]*255*(.08+.92*gate),0,255);
+      out[o+3]=255;
+    }
+    return out;
+  }
   function paint(surface,image,crop,frame,createCanvas,cropCover,ticketScale=1,styleId){
     if(!createCanvas)return false;
     try{
@@ -601,7 +640,7 @@
       let drawing=cache.get(key);
       if(!drawing){
         // 童趣蜡笔、卡通要保留人物轮廓，取样更细（其余风格保持原来的粗取样）
-        const sw=style==="crt"?Math.min(170,Math.max(60,Math.round(width*.55))):style==="ccd"?Math.min(120,Math.max(44,Math.round(width*.38))):style==="cmyk-dots"||style==="news-dots"?Math.min(140,Math.max(48,Math.round(width*.45))):style==="pop-dots"||style==="memphis"?Math.min(120,Math.max(40,Math.round(width*.4))):style==="kid-crayon"?Math.min(160,Math.max(48,Math.round(width*.5))):Math.min(92,Math.max(32,Math.round(width*.4)));
+        const sw=style==="projector"?Math.min(150,Math.max(52,Math.round(width*.45))):style==="crt"?Math.min(170,Math.max(60,Math.round(width*.55))):style==="ccd"?Math.min(120,Math.max(44,Math.round(width*.38))):style==="cmyk-dots"||style==="news-dots"?Math.min(140,Math.max(48,Math.round(width*.45))):style==="pop-dots"||style==="memphis"?Math.min(120,Math.max(40,Math.round(width*.4))):style==="kid-crayon"?Math.min(160,Math.max(48,Math.round(width*.5))):Math.min(92,Math.max(32,Math.round(width*.4)));
         const sh=Math.max(1,Math.round(sw*h/w));
         const sample=createCanvas(sw,sh).getContext("2d");
         cropCover(sample,image,crop,{x:0,y:0,w:sw,h:sh});
