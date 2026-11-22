@@ -898,8 +898,71 @@ async function verifyPage(raw){
   const mine=Object.entries(ticketStore()).find(([k,e])=>e&&!e.del&&TE.entrySerial(k,e)===code);
   const rows=[[tr("影片"),f?esc(f.cn):esc(r.f)],[tr("发行序号"),esc(ed.no+ed.total)],["",esc(ed.line1)]];
   if(s)rows.push([tr("场次"),esc([s.d.replace("/","月")+"日",s.t,v?.city,v?.name,hall?.name].filter(Boolean).join(" · "))],["",esc(ed.line2||"")]);
+  if(r.ci){const c=new Date(r.ci);if(!isNaN(c))rows.push([tr("现场认证"),esc("✓ "+c.getFullYear()+"."+String(c.getMonth()+1).padStart(2,"0")+"."+String(c.getDate()).padStart(2,"0")+" "+String(c.getHours()).padStart(2,"0")+":"+String(c.getMinutes()).padStart(2,"0")+" "+tr("在放映现场签到"))]);}
   rows.push([tr("典藏编号"),'<span class="vf-mono">'+esc(pretty)+'</span>'],[tr("发行时间"),esc(when)]);
   box("vf-ok",'<div class="vf-top">'+(f?pimg(f.id,360,'class="vf-poster" alt=""'):'')+'<div><span class="vf-seal">✓ '+tr("已验证 · 真实发行")+'</span><h3>'+(f?esc(f.cn):esc(r.f))+'</h3><p>'+tr("这张典藏票根由麻雀观影护照统一发行，编号与发行记录一致。")+'</p></div></div>'+
     '<dl class="vf-dl">'+rows.filter(x=>x[1]).map(([k,v])=>'<dt>'+k+'</dt><dd>'+v+'</dd>').join("")+'</dl>'+
     (mine?'<button class="primary-button vf-go" data-tab="ticket-wall">'+tr("这是你的典藏票根 · 打开票根册")+'</button>':f?'<button class="secondary-button vf-go" data-film="'+esc(f.id)+'">'+tr("查看影片")+'</button>':''));
+}
+
+// ——— 现场认证（2026-11-22）———
+// 观众：扫放映现场的签到码打开 #checkin=影片~场次~时间窗~签到码 → 一键盖章、做票根、发号并记下现场认证。
+// 主办方：隐藏页 #checkin-host，输入主办密钥、选场次，全屏显示每分钟刷新的签到码（签名在服务器，backend/tickets-checkin-v1.sql）。
+function checkinShowLine(s){const v=VN[s.v],h=v?.halls?.find(x=>x.id===s.h);return [isoOf(showDate(s)).slice(5).replace("-","/")+" "+s.t,v?vShort(v):"",h?.name||""].filter(Boolean).join(" · ");}
+function checkinHead(){return '<section class="view gut vf-view">'+subBackHTML()+'<div class="page-heading"><div><small>CHECK-IN · ON SITE</small><h2 class="sec">'+tr("现场认证")+'</h2></div></div>';}
+async function checkinPage(raw){
+  const c=TE.checkinParse("#checkin="+raw),hash=location.hash;
+  const box=(cls,html)=>{if(location.hash!==hash)return;main.innerHTML=checkinHead()+'<div class="vf-card '+cls+'">'+html+'</div></section>';};
+  if(!c){box("vf-bad",'<b>'+tr("签到码无效")+'</b><p>'+tr("请扫描放映现场屏幕上的签到码。")+'</p>');return;}
+  const f=F[c.f],s=SH.find(x=>x.id===c.f&&(x.sid===c.h||keyOf(x)===c.h));
+  if(!f||!s){box("vf-bad",'<b>'+tr("找不到这场放映")+'</b><p>'+tr("排片可能刚更新，请稍后刷新再试。")+'</p>');return;}
+  const date=isoOf(showDate(s)),plan=TE.checkinPlan(watched[f.id],window.SparrowGrowth,f.id,date,keyOf(s));
+  const done=ticketStore()[plan.key]?.ci;
+  const top='<div class="vf-top">'+pimg(f.id,360,'class="vf-poster" alt=""')+'<div>'+(done?'<span class="vf-seal">✓ '+tr("已现场认证")+'</span>':'')+'<h3>'+esc(f.cn)+'</h3><p>'+esc(checkinShowLine(s))+'</p></div></div>';
+  if(done){checkinDone(box,top,plan.key);return;}
+  box("vf-ok",top+'<p>'+tr("在放映现场签到：观影护照盖章，同时领取这一场的典藏票根，票根上烫印「现场认证」。")+'</p><button class="primary-button vf-go" id="ci-go">'+tr("签到 · 盖章 · 领取典藏票根")+'</button>');
+  document.getElementById("ci-go")?.addEventListener("click",async e=>{
+    const b=e.currentTarget;b.disabled=true;b.textContent=tr("正在签到…");
+    // 先记观影与票根（离线也不丢），再向服务器认证
+    if(plan.rec){watched[f.id]=plan.rec;saveWatched();}
+    const store=ticketStore(),entry=TE.applyCheckin(store[plan.key],plan.key,null);
+    ticketStorePut({...store,[plan.key]:entry});
+    let r=null;
+    try{r=await sbRpc("tk_checkin",{item:{s:entry.n,f:f.id,h:s.sid||keyOf(s),w:c.w,k:c.k}});}catch(err){r=null;}
+    if(!r||!r.ok){
+      box("vf-bad",top+'<b>'+(r&&r.reason==="expired"?tr("签到码已过期"):r?tr("签到码无效"):tr("暂时无法认证"))+'</b><p>'+(r&&r.reason==="expired"?tr("请扫描现场屏幕上最新的签到码。"):r?tr("请扫描放映现场屏幕上的签到码。"):tr("网络或服务暂时不可用，请稍后再扫一次。"))+'</p><p>'+tr("观影护照已盖章，票根也已放进典藏票根册。")+'</p>');
+      return;
+    }
+    const cur=ticketStore();ticketStorePut({...cur,[plan.key]:TE.applyCheckin(cur[plan.key],plan.key,r)});
+    checkinDone(box,top.replace('<h3>','<span class="vf-seal">✓ '+tr("已现场认证")+'</span><h3>'),plan.key);
+  });
+}
+function checkinDone(box,top,key){
+  const row=ticketAll().tickets.find(x=>x.key===key),ed=row?TE.editionLines(row):null;
+  box("vf-ok",top+(ed?'<dl class="vf-dl"><dt>'+tr("发行序号")+'</dt><dd>'+esc(ed.no+ed.total)+'</dd><dt></dt><dd>'+esc(ed.line1)+'</dd>'+(ed.line2?'<dt></dt><dd>'+esc(ed.line2)+'</dd>':'')+'</dl>':'')+
+    '<button class="primary-button vf-go" id="ci-open">'+tr("查看我的典藏票根")+'</button>');
+  document.getElementById("ci-open")?.addEventListener("click",()=>{location.hash="#ticket-wall";setTimeout(()=>{const r=ticketAll().tickets.find(x=>x.key===key);if(r)ticketOpen(r);},450);});
+}
+// 主办方页面
+let ciHostTimer=0;
+function checkinHostPage(){
+  clearInterval(ciHostTimer);
+  let pin="";try{pin=sessionStorage.getItem("sparrow-host-key")||"";}catch(e){}
+  const t=now(),shows=SH.filter(s=>{const st=showDate(s).getTime();return st>t-4*36e5&&st<t+14*36e5;}).sort((a,b)=>showDate(a)-showDate(b));
+  main.innerHTML=checkinHead()+'<div class="vf-card ci-host">'+
+    '<label class="ci-row"><span>'+tr("主办密钥")+'</span><input id="ci-pin" type="password" autocomplete="off" value="'+esc(pin)+'"></label>'+
+    '<label class="ci-row"><span>'+tr("场次")+'</span><select id="ci-show"><option value="">'+tr("选择一场放映")+'</option>'+shows.map((s,i)=>'<option value="'+i+'">'+esc(checkinShowLine(s)+" · "+(F[s.id]?.cn||s.id))+'</option>').join("")+'</select></label>'+
+    (shows.length?'':'<p>'+tr("前后 14 小时内没有场次。")+'</p>')+
+    '<div id="ci-qr" class="ci-qr"></div></div></section>';
+  const qr=document.getElementById("ci-qr"),sel=document.getElementById("ci-show"),pinEl=document.getElementById("ci-pin");
+  async function tick(){
+    const s=shows[+sel.value];if(!s||!pinEl.value){qr.innerHTML="";return;}
+    try{sessionStorage.setItem("sparrow-host-key",pinEl.value);}catch(e){}
+    let r=null;try{r=await sbRpc("tk_checkin_code",{pin:pinEl.value,f:s.id,h:s.sid||keyOf(s)});}catch(e){}
+    if(location.hash!=="#checkin-host"){clearInterval(ciHostTimer);return;}
+    if(!r||!r.k){qr.innerHTML='<p class="ci-err">'+tr("主办密钥不对，或网络不可用")+'</p>';return;}
+    qr.innerHTML='<div class="ci-code">'+qrSVG(TE.checkinURL(s.id,s.sid||keyOf(s),r.w,r.k))+'</div><h3>'+esc(F[s.id]?.cn||"")+'</h3><p>'+esc(checkinShowLine(s))+'</p><p class="ci-n">'+tr("已签到")+' <b>'+r.n+'</b> '+tr("人")+' · '+tr("签到码每分钟更新")+'</p>';
+  }
+  sel.addEventListener("change",tick);pinEl.addEventListener("change",tick);
+  ciHostTimer=setInterval(tick,60000);
 }

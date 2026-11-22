@@ -140,4 +140,21 @@ function freeKey(filmId, date, idx, except) {
   for (let n = 1; n < 10; n++) { const key = T.ticketKey(filmId, date, n); if (key === except || (!linked.has(key) && (!store[key] || store[key].del))) return key; }
   return '';
 }
-module.exports = { issueSoon, issueNow: () => issueRun(), all, put, set, snapshot, replaceAll, onChange, nudge, build, baseFor, viewings, freeKey, rev: () => rev };
+// 现场认证（2026-11-22）：扫放映现场的签到码 → 盖章（观影记录加这一场）+ 典藏票根 + 发号 + 记下签到时间。
+// c = T.checkinParse(扫到的文字)；返回 {ok, reason, key, film}。先在本机记好观影与票根，再经 psync 云函数的 checkin 动作向服务器认证。
+async function checkin(c) {
+  const data = getApp().globalData.data || {};
+  const s = (data.shows || []).find(x => x.id === c.f && (x.sid === c.h || U.keyOf(x) === c.h));
+  if (!s) return { ok: false, reason: 'noshow' };
+  const date = iso(U.showDate(s)), plan = T.checkinPlan(W.get(c.f), G, c.f, date, U.keyOf(s));
+  if (plan.rec) W.set(c.f, plan.rec);
+  const entry = T.applyCheckin(all()[plan.key], plan.key, null);
+  put(Object.assign({}, all(), { [plan.key]: entry }));
+  if (entry.ci) return { ok: true, key: plan.key, film: c.f, again: true };
+  let r = null;
+  try { const res = await wx.cloud.callFunction({ name: 'psync', data: { action: 'checkin', item: { s: entry.n, f: c.f, h: s.sid || U.keyOf(s), w: c.w, k: c.k } } }); r = res && res.result; } catch (e) { r = null; }
+  if (!r || !r.ok) return { ok: false, reason: (r && r.reason) || 'offline', key: plan.key, film: c.f };
+  put(Object.assign({}, all(), { [plan.key]: T.applyCheckin(all()[plan.key], plan.key, r) }));
+  return { ok: true, key: plan.key, film: c.f };
+}
+module.exports = { issueSoon, issueNow: () => issueRun(), checkin, all, put, set, snapshot, replaceAll, onChange, nudge, build, baseFor, viewings, freeKey, rev: () => rev };

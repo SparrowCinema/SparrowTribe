@@ -19,6 +19,7 @@ require('./check-recap.js');
 require('./check-tickets.js');
 require('./check-ticket-collect.js');
 require('./check-sync-quiet.js');
+require('./check-checkin.js');
 require('./check-wxss.js');
 
 require('./check-film-details.js');

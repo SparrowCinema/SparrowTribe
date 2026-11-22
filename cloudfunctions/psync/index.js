@@ -1,7 +1,7 @@
 // 个人档案同步码同步：小程序通过本云函数读写 Supabase（与网站、米其林全球名录共用同一个后端）。
 // 合并规则见 psync.js（由 tools/build-fallback.js 从 shared/psync.js 复制，请勿直接改）。
 // action: 'new' → 生成同步码；'sync' { code, state } → 与云端合并并返回合并结果；
-//         'issue' { items } → 典藏票根发行序号（tk_issue）；'edition' { items } → 封版总数（tk_edition）；
+//         'issue' { items } → 典藏票根发行序号（tk_issue）；'edition' { items } → 封版总数（tk_edition）；'checkin' { item } → 现场认证（tk_checkin）；
 //         'wx' → 用微信登录身份（openid）取得/创建该用户绑定的同步码；'bind' { code } → 把该微信绑定到指定同步码（与网站已有档案合并用）。
 const cloud = require('wx-server-sdk');
 const https = require('https');
@@ -58,6 +58,14 @@ exports.main = async (event) => {
     if (!items.length) return { ok: false, msg: 'bad items' };
     try { const r = await rpc('tk_issue', { items }); return { ok: true, items: Array.isArray(r) ? r : [] }; }
     catch (e) { return { ok: false, msg: String((e && e.message) || e) }; }
+  }
+  // 'checkin' { item:{s,f,h,w,k} }：现场认证，转发给 tk_checkin（backend/tickets-checkin-v1.sql）；签到码由服务器校验，不带 openid
+  if (event.action === 'checkin') {
+    const it = event.item || {};
+    if (!/^[A-HJ-NP-Z2-9]{15}$/.test(String(it.s || '')) || !/^[\w-]{1,80}$/.test(String(it.f || '')) || !/^[\w:\/.-]{1,120}$/.test(String(it.h || ''))
+      || !/^\d{1,12}$/.test(String(it.w || '')) || !/^[0-9a-f]{12}$/i.test(String(it.k || ''))) return { ok: false, reason: 'bad' };
+    try { const r = await rpc('tk_checkin', { item: { s: String(it.s), f: String(it.f), h: String(it.h), w: Number(it.w), k: String(it.k).toLowerCase() } }); return r && typeof r === 'object' ? r : { ok: false, reason: 'offline' }; }
+    catch (e) { return { ok: false, reason: 'offline', msg: String((e && e.message) || e) }; }
   }
   // 'edition' { items:[{f,c}] }：已封版影片的发行总数，转发给 tk_edition（backend/tickets-collect-v1.sql）；不带 openid
   if (event.action === 'edition') {

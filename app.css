@@ -1317,3 +1317,14 @@ button,summary,a,label,select,[role=button],[data-pp],.my-entry{touch-action:man
 .vf-dl dd{margin:0}
 .vf-mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace;letter-spacing:.04em}
 .vf-go{margin-top:18px;width:100%}
+
+/* 现场认证（2026-11-22） */
+.ci-row{display:flex;align-items:center;gap:12px;margin:0 0 12px}
+.ci-row span{flex:none;width:68px;color:var(--muted);font-size:14px}
+.ci-row input,.ci-row select{flex:1;min-width:0;padding:9px 10px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--fg)}
+.ci-qr{text-align:center;margin-top:8px}
+.ci-code{width:min(78vw,420px);margin:6px auto 10px;background:#fff;border-radius:14px;padding:10px}
+.ci-code svg{display:block;width:100%;height:auto}
+.ci-n{font-size:15px}
+.ci-err{color:var(--bad-fg)}
+.ci-host{max-width:640px}
