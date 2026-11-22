@@ -18,9 +18,10 @@
     {id:"pop-dots",label:"波普网点"},
     {id:"memphis",label:"孟菲斯涂鸦"},
     {id:"cmyk-dots",label:"四色网点"},
-    {id:"lenticular",label:"3D 光栅"}
+    {id:"crt",label:"老电视"},
+    {id:"ccd",label:"CCD 复古"}
   ];
-  const ALIAS={woodcut:"crayon","blue-ink":"watercolor",cartoon:"pop-dots",riso:"cmyk-dots"}; // 2026-11-22 去掉孔版双色，换成四色网点
+  const ALIAS={woodcut:"crayon","blue-ink":"watercolor",cartoon:"pop-dots",riso:"cmyk-dots",lenticular:"crt"}; // 2026-11-22 去掉孔版双色，换成四色网点
   const storageKey="sparrow-ticket-art-style";
   const normalize=value=>styles.some(style=>style.id===value)?value:ALIAS[value]||styles[0].id;
   const filmStyleOptions=[{id:"",label:"跟随收藏册"},...styles];
@@ -147,7 +148,8 @@
     if(style==="pop-dots")return drawPopDots(pixels,w,h,width,height);
     if(style==="memphis")return drawMemphis(pixels,w,h,width,height);
     if(style==="cmyk-dots"||style==="news-dots")return drawHalftone(pixels,w,h,width,height,style);
-    if(style==="lenticular")return drawLenticular(pixels,w,h,width,height);
+    if(style==="crt")return drawCRT(pixels,w,h,width,height);
+    if(style==="ccd")return drawCCD(pixels,w,h,width,height);
     const crayon=style==="crayon",wash=style==="watercolor",wood=false;
     const paper=PAPER,ink=INK;
     const {labels,palette:source}=reduceColors(pixels,w,h);
@@ -524,26 +526,66 @@
     }
     return out;
   }
-  // 3D 光栅（2026-11-22）：像光栅立体卡——整面竖条柱镜，每条中间一道高光、两侧渐暗；
-  // 亮的部分当作「前景」，在柱镜里左右错开取样，边缘出现红 / 青双影，看起来有前后层次；底色带一点镭射彩虹。
-  function drawLenticular(pixels,w,h,width,height){
-    const at=(x,y,c)=>{const fx=clamp(x*w/width-.5,0,w-1),fy=clamp(y*h/height-.5,0,h-1),x0=Math.floor(fx),y0=Math.floor(fy),x1=Math.min(w-1,x0+1),y1=Math.min(h-1,y0+1),tx=fx-x0,ty=fy-y0;
-      const p=(xx,yy)=>pixels[(yy*w+xx)*4+c];return mix(mix(p(x0,y0),p(x1,y0),tx),mix(p(x0,y1),p(x1,y1),tx),ty);};
-    const unit=width/200,lens=Math.max(3,unit*2.6),shift=unit*4.6;
-    const out=new Uint8ClampedArray(width*height*4);
+  // 老电视 / CCD 复古（2026-11-22，替换 3D 光栅）
+  function bilinear(pixels,w,h){
+    return (fx,fy,c)=>{fx=clamp(fx,0,w-1);fy=clamp(fy,0,h-1);const x0=Math.floor(fx),y0=Math.floor(fy),x1=Math.min(w-1,x0+1),y1=Math.min(h-1,y0+1),tx=fx-x0,ty=fy-y0,p=(xx,yy)=>pixels[(yy*w+xx)*4+c];
+      return mix(mix(p(x0,y0),p(x1,y0),tx),mix(p(x0,y1),p(x1,y1),tx),ty);};
+  }
+  // 老电视：显像管弧面（桶形变形 + 圆角暗边），红蓝错位，水平扫描线，RGB 荧光条，高光发散，一道滚动亮带和轻微雪花
+  function drawCRT(pixels,w,h,width,height){
+    const at=bilinear(pixels,w,h),unit=width/200,line=Math.max(2,unit*1.5),out=new Uint8ClampedArray(width*height*4);
+    const band=.25+((w*7+h*13)%50)/100; // 滚动亮带的位置（随画面固定）
     for(let y=0;y<height;y++) for(let x=0;x<width;x++){
-      const o=(y*width+x)*4,ph=(x%lens)/lens,off=(ph-.5)*2; // 在这条柱镜里的位置：-1（左缘）…1（右缘）
-      const l=luma(at(x,y,0),at(x,y,1),at(x,y,2))/255,depth=clamp((l-.35)*1.6,0,1); // 越亮越「靠前」
-      const dx=off*shift*depth;
-      let r=at(x-dx-unit*1.9*depth,y,0),g=at(x-dx,y,1),b=at(x-dx+unit*1.9*depth,y,2); // 红左青右的双影
-      // 柱镜明暗：中线偏左一道高光，两边压暗
-      const lensShade=.82+.28*Math.cos((ph-.42)*Math.PI*2),glint=Math.pow(Math.max(0,Math.cos((ph-.38)*Math.PI*2)),18)*60;
-      // 斜向的淡彩虹，随纵向位置变化，像转动时的光栅色
-      const hue=(y/height*1.4+x/width*.6)%1,rb=[Math.sin(hue*6.283)*.5+.5,Math.sin(hue*6.283+2.09)*.5+.5,Math.sin(hue*6.283+4.19)*.5+.5];
-      const tint=.14*(1-depth*.6);
-      const col=[r,g,b].map((v,c)=>clamp(v*(1-tint)+rb[c]*255*tint,0,255)*lensShade+glint);
-      for(let c=0;c<3;c++)out[o+c]=col[c];
+      const o=(y*width+x)*4,nx=x/width*2-1,ny=y/height*2-1,r2=nx*nx+ny*ny,k=1+.07*r2; // 桶形变形
+      const ux=nx*k,uy=ny*k;
+      const edge=Math.max(Math.abs(ux),Math.abs(uy));
+      if(edge>1){out[o]=out[o+1]=out[o+2]=10;out[o+3]=255;continue;}
+      const sx=(ux+1)/2*w-.5,sy=(uy+1)/2*h-.5,ca=(.6+r2*1.4)*w/width*unit; // 越靠边红蓝分得越开
+      let col=[at(sx-ca,sy,0),at(sx,sy,1),at(sx+ca,sy,2)];
+      // 偏冷、对比稍强，亮部微微溢出
+      col=col.map((v,c)=>{v=v/255;v=clamp((v-.5)*1.18+.52,0,1);return Math.pow(v,.92)*255*(c===2?1.04:c===0?.97:1);});
+      const scan=.72+.28*Math.pow(Math.sin(y/line*Math.PI),2); // 扫描线
+      const tri=Math.floor(x/Math.max(1,unit*.8))%3,mask=[tri===0?1.06:.9,tri===1?1.06:.9,tri===2?1.06:.9]; // 荧光条
+      const glow=Math.exp(-Math.pow((y/height-band)*9,2))*.12;
+      const vig=clamp(1-Math.pow(r2*.55,1.6),0,1)*clamp((1-edge)*28,0,1); // 四角暗、边缘圆角
+      const snow=(hash(x*.7,y*1.3)-.5)*14;
+      for(let c=0;c<3;c++)out[o+c]=clamp((col[c]*scan*mask[c]*(1+glow)+snow)*vig,0,255);
       out[o+3]=255;
+    }
+    return out;
+  }
+  // CCD 复古：早年小卡片机 / 初代手机的直出——画面偏软，高光过曝发白，暗部发灰偏青、亮部偏暖，
+  // 颗粒和彩色噪点明显，四角轻微暗角，右下角一枚橙色日期戳
+  function drawCCD(pixels,w,h,width,height){
+    const at=bilinear(pixels,w,h),unit=width/200,out=new Uint8ClampedArray(width*height*4);
+    for(let y=0;y<height;y++) for(let x=0;x<width;x++){
+      const o=(y*width+x)*4,sx=x*w/width-.5,sy=y*h/height-.5;
+      let r=at(sx,sy,0)/255,g=at(sx,sy,1)/255,b=at(sx,sy,2)/255;
+      const l=.3*r+.59*g+.11*b;
+      // 曝光偏高、高光削顶；黑位抬起
+      const expo=v=>{v=v*1.18+.035;return v>.82?.82+(v-.82)*.35:v;};
+      r=expo(r);g=expo(g);b=expo(b);
+      // 分离色调：暗部青绿，亮部暖黄；饱和度略高
+      const sh=1-l,hi=l;r+= -.03*sh+.05*hi;g+=.02*sh+.02*hi;b+=.04*sh-.06*hi;
+      const m=(r+g+b)/3;r=m+(r-m)*1.15;g=m+(g-m)*1.15;b=m+(b-m)*1.15;
+      const nx=x/width*2-1,ny=y/height*2-1,vig=1-.22*Math.pow(nx*nx*.8+ny*ny*.6,1.3);
+      const grain=(hash(x*1.1,y*.9)-.5)*.09*(1.2-l),cn=(hash(x*.5+3,y*.5+7)-.5)*.05; // 亮度颗粒 + 彩色噪点
+      out[o]=clamp((r+grain+cn)*vig*255,0,255);out[o+1]=clamp((g+grain)*vig*255,0,255);out[o+2]=clamp((b+grain-cn)*vig*255,0,255);out[o+3]=255;
+    }
+    // 日期戳：七段数码管样式的「'26 11 22」，橙色带一点光晕
+    const seg={0:"abcdef",1:"bc",2:"abged",3:"abgcd",4:"fgbc",5:"afgcd",6:"afgedc",7:"abc",8:"abcdefg",9:"abcdfg"};
+    const txt="'26 11 22",dh=Math.max(7,Math.round(height*.032)),dw=Math.round(dh*.55),th=Math.max(1,Math.round(dh*.16)),gap=Math.round(dw*.45);
+    let cx=width-Math.round(width*.06)-txt.length*(dw+gap),cy=height-Math.round(height*.05)-dh;
+    const dot=(px,py,a)=>{if(px<0||py<0||px>=width||py>=height)return;const o=(py*width+px)*4;out[o]=mix(out[o],255,a);out[o+1]=mix(out[o+1],138,a);out[o+2]=mix(out[o+2],40,a);};
+    const bar=(x0,y0,x1,y1)=>{for(let yy=y0-1;yy<=y1+1;yy++)for(let xx=x0-1;xx<=x1+1;xx++)dot(xx,yy,(xx<x0||xx>x1||yy<y0||yy>y1)?.35:.95);};
+    for(const ch of txt){
+      if(ch==="'"){bar(cx,cy,cx+th-1,cy+Math.round(dh*.3));cx+=th+gap;continue;}
+      if(ch===" "){cx+=Math.round(dw*.6);continue;}
+      const S=seg[ch]||"",hh=Math.round(dh/2);
+      if(S.includes("a"))bar(cx,cy,cx+dw,cy+th-1);if(S.includes("g"))bar(cx,cy+hh-th/2|0,cx+dw,(cy+hh+th/2|0)-1);if(S.includes("d"))bar(cx,cy+dh-th,cx+dw,cy+dh-1);
+      if(S.includes("f"))bar(cx,cy,cx+th-1,cy+hh);if(S.includes("b"))bar(cx+dw-th+1,cy,cx+dw,cy+hh);
+      if(S.includes("e"))bar(cx,cy+hh,cx+th-1,cy+dh-1);if(S.includes("c"))bar(cx+dw-th+1,cy+hh,cx+dw,cy+dh-1);
+      cx+=dw+gap;
     }
     return out;
   }
@@ -559,7 +601,7 @@
       let drawing=cache.get(key);
       if(!drawing){
         // 童趣蜡笔、卡通要保留人物轮廓，取样更细（其余风格保持原来的粗取样）
-        const sw=style==="lenticular"?Math.min(160,Math.max(56,Math.round(width*.5))):style==="cmyk-dots"||style==="news-dots"?Math.min(140,Math.max(48,Math.round(width*.45))):style==="pop-dots"||style==="memphis"?Math.min(120,Math.max(40,Math.round(width*.4))):style==="kid-crayon"?Math.min(160,Math.max(48,Math.round(width*.5))):Math.min(92,Math.max(32,Math.round(width*.4)));
+        const sw=style==="crt"?Math.min(170,Math.max(60,Math.round(width*.55))):style==="ccd"?Math.min(120,Math.max(44,Math.round(width*.38))):style==="cmyk-dots"||style==="news-dots"?Math.min(140,Math.max(48,Math.round(width*.45))):style==="pop-dots"||style==="memphis"?Math.min(120,Math.max(40,Math.round(width*.4))):style==="kid-crayon"?Math.min(160,Math.max(48,Math.round(width*.5))):Math.min(92,Math.max(32,Math.round(width*.4)));
         const sh=Math.max(1,Math.round(sw*h/w));
         const sample=createCanvas(sw,sh).getContext("2d");
         cropCover(sample,image,crop,{x:0,y:0,w:sw,h:sh});
