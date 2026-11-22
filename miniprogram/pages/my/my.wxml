@@ -248,7 +248,11 @@ ONE STAMP</text><text class="fp-open-icon">↗</text></view>
   <view class="fp-grid">
     <view wx:for="{{pg.items}}" wx:for-item="s" wx:key="id" class="fp-cell {{pp.hit === s.id ? 'hit' : ''}}">
   <!-- 印章：与网站护照同一份 SVG（shared/recap.js stampSVG，油墨纹理 + 片名排版），大小、姿态同网站 -->
-  <view class="st" style="transform:translate(calc({{s.dx}} * var(--r)),calc({{s.dy}} * var(--r))) rotate({{s.tilt}}deg)" data-id="{{s.id}}" bindtap="openStamp"><view wx:if="{{stFail}}" class="st-fb" style="color:{{s.ink}};border-color:{{s.ink}}">{{s.title}}</view><image wx:elif="{{pp.svg[s.sk]}}" class="st-img" src="{{pp.svg[s.sk]}}" mode="aspectFit" binderror="stErr" /><text wx:if="{{s.x}}" class="st-x mono">{{s.x}}</text></view>
+  <view class="st" style="transform:translate(calc({{s.dx}} * var(--r)),calc({{s.dy}} * var(--r))) rotate({{s.tilt}}deg)" data-id="{{s.id}}" bindtap="openStamp">
+    <view wx:if="{{!pp.svg[s.sk].ready}}" class="st-fb" style="color:{{s.ink}};border-color:{{s.ink}}">{{s.title}}</view>
+    <image wx:if="{{pp.svg[s.sk].src}}" class="st-img {{pp.svg[s.sk].ready ? '' : 'st-pending'}}" src="{{pp.svg[s.sk].src}}" mode="aspectFit" data-key="{{s.sk}}" bindload="stLoad" binderror="stErr" />
+    <text wx:if="{{s.x}}" class="st-x mono">{{s.x}}</text>
+  </view>
     </view>
     <view wx:for="{{pg.slots}}" wx:key="*this" class="fp-cell"><view class="fp-slot {{index ? 'dim' : ''}}"><text wx:if="{{pp.empty && index === 0}}" class="b">{{L.t(i,'第一枚印章')}}</text><text class="mono">NEXT STAMP</text></view></view>
   </view>

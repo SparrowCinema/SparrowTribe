@@ -40,4 +40,39 @@ assert(near(a.x, W) && near(b.x, -W) && near(b.y, H) && mid.y < H);
 const src = require('fs').readFileSync(require('path').join(__dirname, '../shared/curl.js'), 'utf8').replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/[^\n]*/g, '');
 const body = src.slice(0, src.indexOf("if (typeof module"));
 assert(!/=>|\blet\b|\bconst\b|`|Math\.hypot/.test(body), 'curl.js must stay ES5 for WXS');
+
+// 展开、旋转时不能重放上一轮翻页指令，或让旧的动画回调推进新书页。
+const wxs = { exports: {} };
+let clock = 0;
+require('vm').runInNewContext(require('fs').readFileSync(require('path').join(__dirname, '../miniprogram/pages/my/curl-ctl.wxs'), 'utf8'), {
+  module: wxs, require: () => C, getDate: () => new Date(clock),
+});
+const ctl = wxs.exports;
+const state = {}, frames = [], calls = [];
+const ins = {
+  getState: () => state,
+  selectComponent: () => ({ setStyle() {} }),
+  callMethod: (name, args) => { if (name === 'cuDone') calls.push(args); },
+  requestAnimationFrame: fn => frames.push(fn),
+};
+const finishFrames = () => { while (frames.length) { clock += 700; frames.shift()(); } };
+const start = { W, H, k: 1, left: 0, top: 0, sp: false, page: 0, cf: true, cb: false, epoch: 1, vol: 1, n: 5 };
+const turn = { ...start, serial: 1, dir: 1 };
+ctl.cfg(start, null, ins);
+ctl.cmd(turn, null, ins);
+assert.equal(frames.length, 1, 'next starts an animation');
+const reopened = { ...start, epoch: 2 };
+ctl.cfg(reopened, start, ins);
+ctl.cmd(turn, null, ins);
+finishFrames();
+assert.equal(calls.length, 0, 'reopen cancels running frames and rejects a replayed command');
+ctl.cmd({ ...reopened, serial: 2, dir: 1 }, null, ins);
+finishFrames();
+assert.equal(calls.length, 1);
+assert.equal(calls[0].page, 0);
+assert.equal(calls[0].epoch, 2);
+const next = { ...reopened, page: 1, W: 0, cb: true };
+ctl.cfg(next, reopened, ins);
+ctl.cmd({ ...next, serial: 3, dir: -1 }, null, ins);
+assert.equal(calls[1].dir, -1, 'buttons also work before page measurement');
 console.log('check-curl: ok');
