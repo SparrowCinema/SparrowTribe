@@ -154,17 +154,25 @@ async function loadData(){
  {let ch=null;try{ch=await get("data/changes.json");}catch(e){}MOVES=(ch&&ch.moves)||{};} /* 场次变更记录：没有（本地预览）时为空，照旧按本机记录识别 */
  FILMS=films.filter(f=>!f.ev);F=filmMap;SH=shows;days=[...new Set(SH.map(s=>s.d))];validKeys=new Set(SH.map(keyOf));planTrack();picked=readSelection();watched=readWatched();want=readWant();wantSeen=readWantSeen();migrateAliases(cat.aliases);dataSignature=signature;return true;
 }
+// 用户正在点、拖、翻页时，后台触发的整页重绘（排片更新、云端同步）往后推：
+// 否则手指按下的按钮在松开前被换掉，表现为「点了没反应」，翻页动画也会被打断
+let uiTouchAt=0;["pointerdown","touchstart","keydown"].forEach(t=>document.addEventListener(t,()=>{uiTouchAt=performance.now();},{capture:true,passive:true}));
+function uiBusy(){return performance.now()-uiTouchAt<1500||(typeof PC!=="undefined"&&!!(PC.t||PC.cover||PC.drag));}
+const idleQ=new Map();let idleT=0;
+function idleRerender(fn,key=fn.toString()){idleQ.set(key,fn);clearTimeout(idleT);
+  const run=()=>{if(uiBusy()){idleT=setTimeout(run,700);return;}if(typeof ppCancelMotion==="function")ppCancelMotion();const fs=[...idleQ.values()];idleQ.clear();fs.forEach(f=>f());};run();}
 async function refreshProgrammeData(){
  if(!READY||dataRefreshBusy||document.visibilityState==="hidden"||Date.now()-lastDataCheck<15000)return;
  if(document.querySelector("dialog[open],.img-sheet")||document.activeElement?.matches("input,textarea,select"))return;
  dataRefreshBusy=true;lastDataCheck=Date.now();
  try{const changed=await loadData();if(changed){
   const h=location.hash.slice(1)||"schedule";if(h==="export"||h.startsWith("share="))return;
+  idleRerender(()=>{if((location.hash.slice(1)||"schedule")!==h)return;
   rememberView(h);const expanded=[...document.querySelectorAll("details[open]")].map(el=>el.className);
   const synopsisExpanded=!!document.querySelector(".fd-syn:not(.clamp)");
   route();restoreView(h);document.querySelectorAll("details").forEach(el=>{if(expanded.includes(el.className))el.open=true;});
   if(synopsisExpanded){document.querySelector(".fd-syn")?.classList.remove("clamp");const b=document.querySelector("[data-expand]");if(b)b.textContent="收起全文";}
-  toast("排片已自动更新");
+  toast("排片已自动更新");},"data");
  }}catch(e){console.warn("自动同步暂不可用，保留当前排片",e);}finally{dataRefreshBusy=false;}
 }
 setInterval(refreshProgrammeData,60000);

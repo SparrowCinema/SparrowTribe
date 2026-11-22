@@ -244,7 +244,7 @@ function turnPassport(action){if(action==='next'||action==='prev'){ppCurlAuto(ac
   f.append(front);leaf.append(f,b);book.append(leaf);PP.busy=true;
   const animation=leaf.animate([{transform:'rotateY(0deg)'},{transform:'rotateY(-180deg)'}],{duration:left?640:620,easing:'cubic-bezier(.22,.7,.25,1)',fill:'forwards'});
   const motion={animation,leaf};PC.cover=motion;
-  const done=()=>{if(PC.cover===motion){PC.cover=null;leaf.remove();PP.busy=false;}};animation.finished.then(done,done);}
+  const done=()=>{if(PC.cover===motion){PC.cover=null;leaf.remove();PP.busy=false;}};animation.finished.then(done,done);setTimeout(done,900);} // 书页被替换后动画可能不再结束：兜底解锁
 let ppGesture=null,ppSuppress=0;
 document.addEventListener('touchstart',e=>{ppGesture=null;if(e.touches.length!==1||!e.target.closest('#fp .fp-cover')||e.target.closest('#fp .fp-book'))return;ppGesture={x:e.touches[0].clientX,y:e.touches[0].clientY};},{passive:true});
 document.addEventListener('touchend',e=>{if(!ppGesture)return;const dx=e.changedTouches[0].clientX-ppGesture.x,dy=e.changedTouches[0].clientY-ppGesture.y;ppGesture=null;if(Math.abs(dx)<40||Math.abs(dx)<Math.abs(dy)*1.3)return;ppSuppress=performance.now()+400;turnPassport(PP.open?(dx<0?'next':'prev'):'open');},{passive:true});
@@ -290,7 +290,7 @@ function ppCurlRender(){const t=PC.t;if(!t)return;const r=SparrowCurl.fold({W:t.
   clip(r.cl.x,r.cl.y,r.cl.a);t.cur.style.clipPath=r.front;t.flap.style.display='block';t.flap.style.transform=r.flapT;
   put(t.fsh,r.fshade);put(t.csh,r.cshade);put(t.ush,r.ushade);}
 function ppCurlTo(target,commit,lift){const t=PC.t;if(!t)return;cancelAnimationFrame(PC.anim);
-  const end=()=>{const apply=commit&&t.book.isConnected&&t.book.clientWidth;ppCancelMotion();if(apply){PP.page=t.next;renderPassport();}};
+  const end=()=>{ppCancelMotion();if(commit){PP.page=t.next;renderPassport();}}; // 书页中途被重绘也照样翻到下一页，不丢这次操作
   if(ppReduce())return end();
   const from=t.Pc||t.P,t0=performance.now(),dur=520*(lift?1.15:1);
   const step=now=>{const k=Math.min(1,(now-t0)/dur);t.P=SparrowCurl.path(k,from.x,from.y,target.x,target.y,t.H,lift);ppCurlRender();if(k<1)PC.anim=requestAnimationFrame(step);else end();};
