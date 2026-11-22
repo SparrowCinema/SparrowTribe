@@ -183,7 +183,7 @@ assert.equal(new Set(renders).size,Sketch.styles.length,'each style has distinct
 const doodle=Sketch.stylize(patch,12,8,48,32,'doodle');
 const hasInk=doodle.some((value,i)=>i%4===0&&value<40&&doodle[i+1]<40&&doodle[i+2]<40);
 assert(hasInk,'comic panel outlines strongly contrasting colors');
-assert.deepStrictEqual(Sketch.styles.map(x=>x.id),['crt','projector','film70','news-dots','crayon','kid-crayon','doodle','watercolor','pop-dots','memphis','cmyk-dots','ccd']);
+assert.deepStrictEqual(Sketch.styles.map(x=>x.id),['crt','projector','vhs','news-dots','crayon','kid-crayon','doodle','watercolor','pop-dots','memphis','cmyk-dots','ccd']);
 // 已删除的风格换成相近的一款
 assert.deepStrictEqual(['woodcut','blue-ink','cartoon','nope'].map(Sketch.normalize),['crayon','watercolor','pop-dots','crt']);
 assert.equal(Sketch.readFilmStyles(()=>JSON.stringify({'old-film':'cartoon'})).get('old-film'),'pop-dots');
@@ -209,7 +209,7 @@ const mem=Sketch.stylize(sat0(),40,30,200,150,'memphis');
 const blackShare=mem.filter((v,i)=>i%4===0&&v<40&&mem[i+1]<40&&mem[i+2]<40).length/(200*150);
 assert(blackShare<.3,'memphis keeps black to outlines and patterns: '+blackShare);
 assert(new Set(Array.from({length:200*150},(_,i)=>mem[i*4]+','+mem[i*4+1]+','+mem[i*4+2])).size>=4,'memphis mixes several candy colours');
-// 印刷网点三款：四色网点有青、品、黄三种油墨的点并留出纸白；老电视有扫描线和暗边、70mm 胶片两侧有齿孔；报纸网点只有黑墨，纸是泛黄的新闻纸
+// 印刷网点三款：四色网点有青、品、黄三种油墨的点并留出纸白；老电视有扫描线和暗边；报纸网点只有黑墨，纸是泛黄的新闻纸
 {const grad=new Uint8ClampedArray(40*30*4);for(let i=0;i<grad.length;i+=4){const p=i/4,x=p%40,y=Math.floor(p/40);grad.set([200-x*4,80+y*4,60+x*3,255],i);}
  const px=(a,f)=>Array.from({length:a.length/4},(_,i)=>[a[i*4],a[i*4+1],a[i*4+2]]).filter(f).length;
  const cm=Sketch.stylize(grad,40,30,200,150,'cmyk-dots');
@@ -223,10 +223,11 @@ assert(new Set(Array.from({length:200*150},(_,i)=>mem[i*4]+','+mem[i*4+1]+','+me
  const pj=Sketch.stylize(grad,40,30,200,150,'projector'),lum=i=>pj[i*4]+pj[i*4+1]+pj[i*4+2];
  assert(lum(75*200+100)>lum(3*200+3)*3,'projector has a bright centre and dark gate corners');
  assert(Sketch.stylize(grad,40,30,200,150,'projector').every((v,i)=>v===pj[i]),'projector scratches are stable for the same poster');
+ const vh=Sketch.stylize(grad,40,30,200,150,'vhs');
+ assert(Array.from({length:200*150},(_,i)=>i).filter(i=>vh[i*4]>225&&vh[i*4+1]>225&&vh[i*4+2]>225).length>40,'VHS shows white on-screen text / tracking noise');
  const cd=Sketch.stylize(grad,40,30,200,150,'ccd');
  assert(!Array.from({length:200*150},(_,i)=>i).some(i=>cd[i*4]>240&&cd[i*4+1]>110&&cd[i*4+1]<170&&cd[i*4+2]<90&&i%200>150&&i/200>130),'CCD no longer prints a date stamp');
- const fm=Sketch.stylize(grad,40,30,200,150,'film70'),fp=(x,y)=>fm.slice((y*200+x)*4,(y*200+x)*4+3);
- assert(Array.from({length:150},(_,y)=>fp(8,y)[0]).some(v=>v>200)&&Array.from({length:150},(_,y)=>fp(8,y)[0]).some(v=>v<40),'70mm film has lit sprocket holes on dark film base');
+ assert.equal(Sketch.normalize('film70'),'projector','removed 70mm film falls back to projector');
  const nw=Sketch.stylize(grad,40,30,200,150,'news-dots');assert(px(nw,([r,g,b])=>Math.max(r,g,b)-Math.min(r,g,b)>40)===0,'newsprint is a single neutral ink');}
 function sat0(){const a=new Uint8ClampedArray(40*30*4);for(let i=0;i<a.length;i+=4){const p=i/4,x=p%40,y=Math.floor(p/40);a.set(x<14?[30,30,40,255]:x<27?[220,90,70,255]:y<15?[250,240,220,255]:[70,160,200,255],i);}return a;}
 const sat=new Uint8ClampedArray(40*30*4);for(let i=0;i<sat.length;i+=4)sat.set(i%160<80?[200,40,40,255]:[40,90,200,255],i);
