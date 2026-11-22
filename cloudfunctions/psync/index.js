@@ -1,6 +1,7 @@
 // 个人档案同步码同步：小程序通过本云函数读写 Supabase（与网站、米其林全球名录共用同一个后端）。
 // 合并规则见 psync.js（由 tools/build-fallback.js 从 shared/psync.js 复制，请勿直接改）。
 // action: 'new' → 生成同步码；'sync' { code, state } → 与云端合并并返回合并结果；
+//         'issue' { items } → 典藏票根发行序号（tk_issue）；
 //         'wx' → 用微信登录身份（openid）取得/创建该用户绑定的同步码；'bind' { code } → 把该微信绑定到指定同步码（与网站已有档案合并用）。
 const cloud = require('wx-server-sdk');
 const https = require('https');
@@ -47,6 +48,15 @@ exports.main = async (event) => {
       if (!code) { code = S.newCode(n => Array.from(crypto.randomBytes(n))); await setBind(OPENID, code); }
       return { ok: true, code };
     } catch (e) { return { ok: false, msg: String((e && e.message) || e) }; }
+  }
+  // 'issue' { items:[{s,f}] }：典藏票根发行序号，转发给 Supabase 的 tk_issue（backend/tickets-issue-v1.sql）；不带 openid
+  if (event.action === 'issue') {
+    const items = (Array.isArray(event.items) ? event.items : []).slice(0, 50)
+      .filter(x => x && /^[A-HJ-NP-Z2-9]{15}$/.test(String(x.s || '')) && /^[\w-]{1,80}$/.test(String(x.f || '')))
+      .map(x => ({ s: String(x.s), f: String(x.f) }));
+    if (!items.length) return { ok: false, msg: 'bad items' };
+    try { const r = await rpc('tk_issue', { items }); return { ok: true, items: Array.isArray(r) ? r : [] }; }
+    catch (e) { return { ok: false, msg: String((e && e.message) || e) }; }
   }
   // 'stat' { vid, evs }：匿名使用统计，转发给 Supabase 的 ss_hit（backend/stats-v1.sql）；不带 openid
   if (event.action === 'stat') {

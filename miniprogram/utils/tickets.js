@@ -362,6 +362,8 @@ function sanitize(input) {
   record.sketch=input.sketch===true;
   record.crop=Number.isFinite(input.crop) ? Math.max(0,Math.min(100,input.crop)) : 50;
   record.savedAt=Number.isFinite(input.savedAt) ? input.savedAt : 0;
+  record.serial=serialValid(input.serial) ? input.serial : "";
+  record.issue=Number.isInteger(input.issue) && input.issue>0 ? input.issue : 0;
   const fallback=defaults(record);
   record.look=Object.fromEntries(Object.entries(options).map(([key,registry])=>
     [key,Object.prototype.hasOwnProperty.call(registry,input.look?.[key]) ? input.look[key] : fallback[key]]));
@@ -390,6 +392,62 @@ function read(raw) {
     if (!Array.isArray(value)) return [];
     return Array.from(new Map(value.map(sanitize).filter(Boolean).map(record=>[record.id,record])).values());
   } catch (_) { return []; }
+}
+
+// ——— 典藏编号（2026-11-22）———
+// 每张典藏票根一串编号，例如 No. SP26-7KQ4M-9XDQ3-AB2CD：SP + 观影年份后两位，后面 15 位＝14 位编码（70 位）+ 1 位校验。
+// 编码由票根键 + 第一次保存的时间（毫秒）算出：同一张票根在网站、小程序、换手机后都一样；两个人同一天看同一部片也不一样。
+// 70 位约 10²¹ 种：十万人各一千张（一亿张）全站出现任何一对重号的概率约百万分之四，不需要服务器发号。
+// 第一次保存（或编辑、挪动）时写进票根的 n 字段，之后修改时间变了也不再变；没存过 n 的旧票根按当前保存时间推出，编辑时冻结下来。
+const SERIAL_ABC="ABCDEFGHJKLMNPQRSTUVWXYZ23456789", SERIAL_LEN=14, SERIAL_RE=/^[A-HJ-NP-Z2-9]{15}$/;
+function serialCheck(body) {let s=0;for (let i=0;i<SERIAL_LEN;i++) s+=SERIAL_ABC.indexOf(body[i])*(i+1);return SERIAL_ABC[s%31];}
+// MurmurHash3（32 位），三个不同种子各取一份，拼成 96 位，用其中 70 位
+function murmur32(str,seed) {
+  let h=seed>>>0;
+  for (let i=0;i<str.length;i++) {
+    let k=Math.imul(str.charCodeAt(i),0xcc9e2d51);k=(k<<15)|(k>>>17);k=Math.imul(k,0x1b873593);
+    h^=k;h=(h<<13)|(h>>>19);h=(Math.imul(h,5)+0xe6546b64)>>>0;
+  }
+  h^=str.length;h=Math.imul(h^(h>>>16),0x85ebca6b);h=Math.imul(h^(h>>>13),0xc2b2ae35);return (h^(h>>>16))>>>0;
+}
+function serialOf(key,t) {
+  const str=String(key||"")+"#"+(Number(t)||0);
+  const hs=[murmur32(str,0x9747b28c),murmur32(str,0x5bd1e995),murmur32(str,0x1b873593)];
+  let body="";
+  for (let i=0;i<SERIAL_LEN;i++) {const bit=i*5,w=hs[bit>>5]>>>0,off=bit&31;
+    const v=off<=27 ? (w>>>off)&31 : ((w>>>off)|(hs[(bit>>5)+1]<<(32-off)))&31;body+=SERIAL_ABC[v];}
+  return body+serialCheck(body);
+}
+const serialValid=code=>SERIAL_RE.test(code||"") && serialCheck(code)===code[SERIAL_LEN];
+// 显示格式：No. SP26-7KQ4M-9XDQ3-AB2CD（没有日期时省掉年份）
+const formatSerial=row=>row && serialValid(row.serial) ? "SP"+(/^\d{4}/.test(row.date||"") ? row.date.slice(2,4) : "")+"-"+row.serial.match(/.{5}/g).join("-") : "";
+const entrySerial=(key,entry)=>entry && serialValid(entry.n) ? entry.n : serialOf(key,entry && entry.t);
+// ——— 发行序号（2026-11-22）———
+// 「本片第几张典藏」：由 Supabase 的 tk_issue 按影片统一发号（backend/tickets-issue-v1.sql），同一个典藏编号永远拿到同一个号。
+// 存在票根的 q 字段；还没领到号的票根显示「待发号」，联网后由网站 js/tickets.js / 小程序 utils/ticketstore.js 自动去领。
+const ISSUE_BATCH=50;
+const issueText=no=>"№ "+String(no).padStart(4,"0");
+// 还没领号的票根（每次最多 ISSUE_BATCH 张）：[{key, s:典藏编号, f:影片id}]
+function pendingIssue(store) {
+  const out=[];
+  for (const key of Object.keys(store||{})) {
+    const e=store[key], p=parseKey(key);
+    if (!p || !e || e.del || e.q) continue;
+    out.push({key,s:entrySerial(key,e),f:p.filmId});
+    if (out.length>=ISSUE_BATCH) break;
+  }
+  return out;
+}
+// 把领到的号写回票根：同时冻结典藏编号 n（修改时间要变，不冻结编号就会跟着变），返回要写入的改动，没有就返回 null
+function applyIssue(store,items,results,now) {
+  const got=new Map((Array.isArray(results)?results:[]).filter(r=>r && serialValid(r.s) && Number.isInteger(r.no) && r.no>0).map(r=>[r.s,r.no]));
+  const changes={};
+  for (const it of items||[]) {
+    const e=store[it.key], no=got.get(it.s);
+    if (!no || !e || e.del || e.q || entrySerial(it.key,e)!==it.s) continue;
+    changes[it.key]={...e,n:it.s,q:no,t:Math.max(now||Date.now(),(e.t||0)+1)};
+  }
+  return Object.keys(changes).length ? changes : null;
 }
 
 function sorted(records,programme,year) {
@@ -439,7 +497,7 @@ function record(key,filmId,view,entry,base,date) {
   const pick=(field,value)=>value===undefined ? b[field] : value;
   const row=sanitize({...b,id:key,time:pick("time",entry.tm),venue:pick("venue",entry.vn),hall:pick("hall",entry.hl),
     city:pick("city",entry.cy),format:pick("format",entry.fm),seat:entry.st||"",art:pickArt(b.arts,entry.a) || b.art,
-    crop:entry.c===undefined ? 50 : entry.c,sketch:entry.sk===1,savedAt:entry.t,look:{...unpackLook(entry.l),craft:entry.x}});
+    crop:entry.c===undefined ? 50 : entry.c,sketch:entry.sk===1,savedAt:entry.t,serial:entrySerial(key,entry),issue:entry.q||0,look:{...unpackLook(entry.l),craft:entry.x}});
   row.key=key; row.linked=!!view; row.arts=b.arts||[]; row.director=b.director||"";
   return row;
 }
@@ -487,7 +545,7 @@ function reconcile(list,store,now) {
     const at=slots.findIndex(item=>{const gone=store[item.key];return !(gone && gone.del && (gone.t||0)>=(store[key].t||0));});
     if (at<0) continue;
     const target=slots.splice(at,1)[0],t=Math.max(now||Date.now(),(store[key].t||0)+1);
-    changes[target.key]={...store[key],t};changes[key]={del:1,t};n++;
+    changes[target.key]={...store[key],n:entrySerial(key,store[key]),t};changes[key]={del:1,t};n++;
   }
   return n ? changes : null;
 }
@@ -500,6 +558,8 @@ function entryFrom(row,base,t) {
   if (row.art && normArt(row.art)!==normArt(base.art)) entry.a=normArt(row.art);
   if (row.crop!==50) entry.c=row.crop;
   if (row.sketch) entry.sk=1;
+  if (serialValid(row.serial)) entry.n=row.serial;
+  if (row.issue) entry.q=row.issue;
   const look=packLook(row.look);
   if (look!==packLook(defaults({...base,id:row.id}))) entry.l=look;
   if (row.look?.craft && row.look.craft!==craftFor({...base,id:row.id},row.look.finish)) entry.x=row.look.craft;
@@ -528,7 +588,7 @@ function filterTickets(rows,q={}) {
   const terms=String(q.text||"").trim().toLowerCase().split(/\s+/).filter(Boolean);
   return rows.filter(row=>(!q.year || row.date.slice(0,4)===q.year) &&
     FACETS.every(field=>!q[field]?.length || q[field].includes(row[field])) &&
-    terms.every(term=>[row.title,row.subtitle,row.venue,row.programme,row.city,row.director,row.hall,row.format].join(" ").toLowerCase().includes(term)));
+    terms.every(term=>[row.title,row.subtitle,row.venue,row.programme,row.city,row.director,row.hall,row.format,formatSerial(row),row.serial].join(" ").toLowerCase().includes(term)));
 }
 // 每个分面的计数只受其他筛选条件影响（选了 2024 年，专题后面就显示 2024 年里的张数）
 function facetCounts(rows,q={}) {
@@ -872,15 +932,26 @@ function draw(surface,record,side,image,rect,createCanvas,light) {
     const year=record.programme.match(/^\d{4}/)?.[0] || record.date.slice(0,4);
     const centre={align:"center",ink:bright};
     drawEmblem(surface,record,finish,year);
+    // 典藏编号：纪念章与专题名之间，烫印（在工艺遮罩里，转动时跟着反光）
+    const serial=formatSerial(record);
+    if (serial) text(surface,"No. "+serial,W/2,459,{...centre,size:11,weight:600,font:MONO,spacing:1.2,max:300,ink:foilGradient(surface,120,449,300,463,finish)});
     const heading=(year && record.programme.startsWith(year) ? record.programme.slice(4).trim() : record.programme) || "我的观影收藏";
     text(surface,heading,W/2,511,{...centre,size:38,weight:900,font:SERIF,max:347,relief:edge,light:bright+"a0"});
     if (record.section) text(surface,record.section,W/2,552,{...centre,size:17,max:326});
     rule(surface,601,bright+"75",59,W-59);
     text(surface,record.title,W/2,652,{...centre,size:21,weight:650,max:331});
     rule(surface,TEAR,bright+"6b",24,W-24,true);
-    text(surface,[record.date.replace(/-/g,"."),record.city].filter(Boolean).join(" · "),W/2,756,{...centre,size:14,font:MONO,ink:craft.vde?foilGradient(surface,110,740,310,760,finish):bright});
-    if (craft.braille) drawBraille(surface,"SPARROW",W/2,782);
-    text(surface,"SPARROW CINEMA",W/2,807,{...centre,size:11,font:MONO});
+    // 发行序号（本片第几张典藏）：撕线下方大号烫印；还没领到号时是灰色「待发号」
+    if (record.issue) {
+      text(surface,issueText(record.issue),W/2,744,{...centre,size:24,weight:600,font:MONO,max:300,ink:foilGradient(surface,130,724,290,748,finish)});
+      text(surface,"本片第 "+record.issue+" 张典藏",W/2,764,{...centre,size:10.5,max:300});
+    } else {
+      text(surface,"№ ----",W/2,744,{...centre,size:24,weight:600,font:MONO,ink:bright+"66"});
+      text(surface,"待发号 · 联网后自动烫印",W/2,764,{...centre,size:10.5,ink:bright+"88"});
+    }
+    text(surface,[record.date.replace(/-/g,"."),record.city].filter(Boolean).join(" · "),W/2,789,{...centre,size:13,font:MONO,ink:craft.vde?foilGradient(surface,110,775,310,793,finish):bright});
+    if (craft.braille) drawBraille(surface,"SPARROW",W/2,805);
+    text(surface,"SPARROW CINEMA",W/2,824,{...centre,size:10,font:MONO});
   } else {
     surface.fillStyle=stock;surface.fillRect(0,0,W,H);
     surface.fillStyle=stub;surface.fillRect(0,TEAR,W,H-TEAR);
@@ -1423,6 +1494,6 @@ function drawWall(surface,records,side,images,caption,createCanvas,title,maxWidt
 }
 
 const shineOf=key=>{const f=finishes[key]||finishes.matte;return {kind:f.kind,fx:fxOf(key),highlight:f.stops[f.stops.length-2]};};
-return {W,H,TITLE_FAMILY,edgeOf,foilMask,fxOf,artMask,backMask,parseCraft,craftLabel,lookSig,foilLayers,WALL_PAGE,MOSAIC_MAX,FACETS,options:labelOptions(),sanitize,read,sorted,defaults,randomLook,shineOf,draw,wallLayout,drawWall,
+return {serialOf,serialValid,formatSerial,entrySerial,pendingIssue,applyIssue,issueText,ISSUE_BATCH,W,H,TITLE_FAMILY,edgeOf,foilMask,fxOf,artMask,backMask,parseCraft,craftLabel,lookSig,foilLayers,WALL_PAGE,MOSAIC_MAX,FACETS,options:labelOptions(),sanitize,read,sorted,defaults,randomLook,shineOf,draw,wallLayout,drawWall,
   ticketKey,parseKey,cleanStore,mergeStore,packLook,unpackLook,normArt,viewings,build,reconcile,draft,entryFrom,migrateV1,filterTickets,facetCounts,groupByMonth,swatch};
 });

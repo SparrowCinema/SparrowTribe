@@ -55,7 +55,7 @@
 
     <view wx:if="{{facetsOpen}}" class="selector-mask" catchtap="toggleFacets" catchtouchmove="stopMove"><view class="selector-panel" catchtap="stopMove">
       <view class="selector-head"><text>{{L.t(i,'筛选票根')}}</text><view class="selector-close" bindtap="toggleFacets" role="button" aria-label="{{L.t(i,'关闭筛选')}}">×</view></view>
-      <input class="selector-search" placeholder="{{L.t(i,'搜片名、导演、影院、专题')}}" value="{{text}}" bindinput="inputQuery" />
+      <input class="selector-search" placeholder="{{L.t(i,'搜片名、导演、影院、专题、编号')}}" value="{{text}}" bindinput="inputQuery" />
       <scroll-view scroll-y class="selector-results">
         <view wx:for="{{facets}}" wx:for-item="fc" wx:key="k" class="tk-facet"><text class="tk-fh">{{fc.label}}</text>
           <view class="tk-fwrap"><view wx:for="{{fc.items}}" wx:key="v" class="tk-chip {{item.on?'on':''}}" data-k="{{fc.k}}" data-v="{{item.v}}" bindtap="toggleFacet">{{item.v}} <text class="tk-n">{{item.c}}</text></view></view></view>

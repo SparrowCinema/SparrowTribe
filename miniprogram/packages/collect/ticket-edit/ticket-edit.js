@@ -244,7 +244,7 @@ Page({
     }
     if(!d.linked){const p=R.parseKey(key);if(!p||p.date!==row.date)key=Tix.freeKey(row.filmId,row.date,this.idx,this._original);if(!key){say('这一天的票根已经太多了');return;}}
     const base=this.base(row.filmId,d.linked?this._view:null,row.date);
-    const changes={[key]:base?R.entryFrom({...row,id:key},{...base,id:key}):{t:Date.now()}};
+    const changes={[key]:base?R.entryFrom({...row,id:key},{...base,id:key}):{t:Date.now(),...(R.serialValid(row.serial)?{n:row.serial}:{})}};
     if(this._original&&this._original!==key)changes[this._original]={del:1,t:Date.now()};
     if(!Tix.set(changes,this.data_,this.idx))return;
     if(stay===true){this._original=key;this._draft.key=key;this._artSaved=artSig(this._draft);this.setData({existing:true,artDirty:false});say(stamped?'已同时盖章 · 加入观影护照':'已保存');return;}

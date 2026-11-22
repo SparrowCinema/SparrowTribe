@@ -44,9 +44,26 @@ function ticketStorePut(store,quiet){
   if(ticketStoreCache&&JSON.stringify(clean)===JSON.stringify(ticketStoreCache))return true;
   try{localStorage.setItem(TICKET_STORE_KEY,JSON.stringify(clean));}
   catch{if(!quiet)toast(tr("票根保存失败，请检查本机存储"));return false;}
-  ticketStoreCache=clean;ticketRev++;return true;
+  ticketStoreCache=clean;ticketRev++;ticketIssueSoon();return true;
 }
 function ticketSet(changes){const next={...ticketStore(),...changes};return ticketStorePut(next);}
+// 发行序号（2026-11-22）：还没领号的票根联网后自动向 Supabase tk_issue 领「本片第几张典藏」，每次最多 50 张，一轮最多 20 次。
+// 后端还没执行 backend/tickets-issue-v1.sql（404）或离线时本次打开内不再重试，票根照常显示「待发号」。
+let ticketIssueTimer=0,ticketIssueBusy=false,ticketIssueOff=false;
+function ticketIssueSoon(ms){if(ticketIssueOff||ticketIssueBusy)return;clearTimeout(ticketIssueTimer);ticketIssueTimer=setTimeout(ticketIssueRun,ms||2000);}
+async function ticketIssueRun(){
+  if(ticketIssueOff||ticketIssueBusy||typeof sbRpc!=="function"||(typeof navigator!=="undefined"&&navigator.onLine===false))return;
+  ticketIssueBusy=true;
+  try{
+    for(let round=0;round<20;round++){
+      const items=TE.pendingIssue(ticketStore());if(!items.length)break;
+      const got=await sbRpc("tk_issue",{items:items.map(x=>({s:x.s,f:x.f}))});
+      const changes=TE.applyIssue(ticketStore(),items,got);if(!changes)break;
+      ticketStorePut({...ticketStore(),...changes},true);
+    }
+  }catch(e){ticketIssueOff=true;}
+  finally{ticketIssueBusy=false;}
+}
 
 // ——— 由观影记录与片库推出票面字段 ———
 function ticketArtwork(f){
@@ -288,7 +305,7 @@ function ticketOpenFilter(kind){
   }
   const {tickets,all}=ticketShown();
   if(kind==="filter"){
-    const d=ticketDialog("filter",ticketDict("筛选票根"),`<label class="selector-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg><input type="search" id="ticket-q" autocomplete="off" value="${esc(ticketQ.text)}" placeholder="${ticketDict("搜片名、导演、影院、专题")}" aria-label="${ticketDict("搜索票根")}"></label><div class="selector-results ticket-facet-box"></div>`,
+    const d=ticketDialog("filter",ticketDict("筛选票根"),`<label class="selector-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg><input type="search" id="ticket-q" autocomplete="off" value="${esc(ticketQ.text)}" placeholder="${ticketDict("搜片名、导演、影院、专题、编号")}" aria-label="${ticketDict("搜索票根")}"></label><div class="selector-results ticket-facet-box"></div>`,
       `<button type="button" class="text-button" data-ticket-dlg="clear">${ticketDict("清除筛选")}</button><button type="button" class="selector-done" data-ticket-dlg="close"></button>`);
     ticketFilterRefresh(d);return;
   }
@@ -650,7 +667,7 @@ function ticketSave(stay){
     if(!key){toast(tr("这一天的票根已经太多了"));return;}
   }
   const base=ticketBase(row.filmId,d.view,row.date);
-  const entry=base?TE.entryFrom({...row,id:key},{...base,id:key}):{t:Date.now()};
+  const entry=base?TE.entryFrom({...row,id:key},{...base,id:key}):{t:Date.now(),...(TE.serialValid(row.serial)?{n:row.serial}:{})};
   const changes={[key]:entry};
   if(d.original&&d.original!==key)changes[d.original]={del:1,t:Date.now()};
   if(!ticketSet(changes))return;
