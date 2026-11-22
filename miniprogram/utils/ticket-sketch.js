@@ -8,7 +8,9 @@
   const PAPER=[249,241,224];
   const INK=[45,36,34];
   // 2026-11-21：去掉木刻版画、蓝墨速写、卡通漫画；新增波普网点、孟菲斯涂鸦。旧的选择会换成相近的一款（ALIAS）。
+  // 2026-11-22：报纸网点设为默认，放在最前（没选过风格的票根都用它）
   const styles=[
+    {id:"news-dots",label:"报纸网点"},
     {id:"crayon",label:"蜡笔乱涂"},
     {id:"kid-crayon",label:"童趣蜡笔"},
     {id:"doodle",label:"彩色涂鸦"},
@@ -16,7 +18,6 @@
     {id:"pop-dots",label:"波普网点"},
     {id:"memphis",label:"孟菲斯涂鸦"},
     {id:"cmyk-dots",label:"四色网点"},
-    {id:"news-dots",label:"报纸网点"},
     {id:"lenticular",label:"3D 光栅"}
   ];
   const ALIAS={woodcut:"crayon","blue-ink":"watercolor",cartoon:"pop-dots",riso:"cmyk-dots"}; // 2026-11-22 去掉孔版双色，换成四色网点
