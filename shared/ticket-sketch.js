@@ -8,8 +8,11 @@
   const PAPER=[249,241,224];
   const INK=[45,36,34];
   // 2026-11-21：去掉木刻版画、蓝墨速写、卡通漫画；新增波普网点、孟菲斯涂鸦。旧的选择会换成相近的一款（ALIAS）。
-  // 2026-11-22：报纸网点设为默认，放在最前（没选过风格的票根都用它）
+  // 2026-11-22：默认改为老电视，其后是胶片放映、70mm 胶片（没选过风格的票根用第一款）
   const styles=[
+    {id:"crt",label:"老电视"},
+    {id:"projector",label:"胶片放映"},
+    {id:"film70",label:"70mm 胶片"},
     {id:"news-dots",label:"报纸网点"},
     {id:"crayon",label:"蜡笔乱涂"},
     {id:"kid-crayon",label:"童趣蜡笔"},
@@ -18,9 +21,7 @@
     {id:"pop-dots",label:"波普网点"},
     {id:"memphis",label:"孟菲斯涂鸦"},
     {id:"cmyk-dots",label:"四色网点"},
-    {id:"crt",label:"老电视"},
-    {id:"ccd",label:"CCD 复古"},
-    {id:"projector",label:"胶片放映"}
+    {id:"ccd",label:"CCD 复古"}
   ];
   const ALIAS={woodcut:"crayon","blue-ink":"watercolor",cartoon:"pop-dots",riso:"cmyk-dots",lenticular:"crt"}; // 2026-11-22 去掉孔版双色，换成四色网点
   const storageKey="sparrow-ticket-art-style";
@@ -152,6 +153,7 @@
     if(style==="crt")return drawCRT(pixels,w,h,width,height);
     if(style==="ccd")return drawCCD(pixels,w,h,width,height);
     if(style==="projector")return drawProjector(pixels,w,h,width,height);
+    if(style==="film70")return drawFilm70(pixels,w,h,width,height);
     const crayon=style==="crayon",wash=style==="watercolor",wood=false;
     const paper=PAPER,ink=INK;
     const {labels,palette:source}=reduceColors(pixels,w,h);
@@ -557,7 +559,7 @@
     return out;
   }
   // CCD 复古：早年小卡片机 / 初代手机的直出——画面偏软，高光过曝发白，暗部发灰偏青、亮部偏暖，
-  // 颗粒和彩色噪点明显，四角轻微暗角，右下角一枚橙色日期戳
+  // 颗粒和彩色噪点明显，四角轻微暗角（2026-11-22 去掉了日期戳）
   function drawCCD(pixels,w,h,width,height){
     const at=bilinear(pixels,w,h),unit=width/200,out=new Uint8ClampedArray(width*height*4);
     for(let y=0;y<height;y++) for(let x=0;x<width;x++){
@@ -573,21 +575,6 @@
       const nx=x/width*2-1,ny=y/height*2-1,vig=1-.22*Math.pow(nx*nx*.8+ny*ny*.6,1.3);
       const grain=(hash(x*1.1,y*.9)-.5)*.09*(1.2-l),cn=(hash(x*.5+3,y*.5+7)-.5)*.05; // 亮度颗粒 + 彩色噪点
       out[o]=clamp((r+grain+cn)*vig*255,0,255);out[o+1]=clamp((g+grain)*vig*255,0,255);out[o+2]=clamp((b+grain-cn)*vig*255,0,255);out[o+3]=255;
-    }
-    // 日期戳：七段数码管样式的「'26 11 22」，橙色带一点光晕
-    const seg={0:"abcdef",1:"bc",2:"abged",3:"abgcd",4:"fgbc",5:"afgcd",6:"afgedc",7:"abc",8:"abcdefg",9:"abcdfg"};
-    const txt="'26 11 22",dh=Math.max(7,Math.round(height*.032)),dw=Math.round(dh*.55),th=Math.max(1,Math.round(dh*.16)),gap=Math.round(dw*.45);
-    let cx=width-Math.round(width*.06)-txt.length*(dw+gap),cy=height-Math.round(height*.05)-dh;
-    const dot=(px,py,a)=>{if(px<0||py<0||px>=width||py>=height)return;const o=(py*width+px)*4;out[o]=mix(out[o],255,a);out[o+1]=mix(out[o+1],138,a);out[o+2]=mix(out[o+2],40,a);};
-    const bar=(x0,y0,x1,y1)=>{for(let yy=y0-1;yy<=y1+1;yy++)for(let xx=x0-1;xx<=x1+1;xx++)dot(xx,yy,(xx<x0||xx>x1||yy<y0||yy>y1)?.35:.95);};
-    for(const ch of txt){
-      if(ch==="'"){bar(cx,cy,cx+th-1,cy+Math.round(dh*.3));cx+=th+gap;continue;}
-      if(ch===" "){cx+=Math.round(dw*.6);continue;}
-      const S=seg[ch]||"",hh=Math.round(dh/2);
-      if(S.includes("a"))bar(cx,cy,cx+dw,cy+th-1);if(S.includes("g"))bar(cx,cy+hh-th/2|0,cx+dw,(cy+hh+th/2|0)-1);if(S.includes("d"))bar(cx,cy+dh-th,cx+dw,cy+dh-1);
-      if(S.includes("f"))bar(cx,cy,cx+th-1,cy+hh);if(S.includes("b"))bar(cx+dw-th+1,cy,cx+dw,cy+hh);
-      if(S.includes("e"))bar(cx,cy+hh,cx+th-1,cy+dh-1);if(S.includes("c"))bar(cx+dw-th+1,cy+hh,cx+dw,cy+dh-1);
-      cx+=dw+gap;
     }
     return out;
   }
@@ -628,6 +615,54 @@
     }
     return out;
   }
+  // 70mm 胶片（2026-11-22）：像在灯箱上扫描的一格 70mm 正片——两侧黑色片基上一排排圆角齿孔透出灯箱的白光，
+  // 片边印着「70MM SAFETY FILM」和帧号；画面色彩浓郁、对比稍强、细颗粒，高光边缘有一圈红色光晕（halation）
+  const FONT5={"0":"01110100011001110101110011000101110","1":"00100011000010000100001000010001110","2":"01110100010000100110010001000011111","3":"11110000010000101110000010000111110","4":"00010001100101010010111110001000010","5":"11111100001111000001000011000101110","6":"00110010001000011110100011000101110","7":"11111000010001000100010000100001000","8":"01110100011000101110100011000101110","9":"01110100011000101111000010001001100","M":"10001110111010110001100011000110001","F":"11111100001000011110100001000010000","S":"01111100001000001110000010000111110","A":"01110100011000111111100011000110001","E":"11111100001000011110100001000011111","T":"11111001000010000100001000010000100","Y":"10001100010101000100001000010000100","I":"01110001000010000100001000010001110","L":"10000100001000010000100001000011111",">":"10000010000010000010001000100010000"};
+  function drawFilm70(pixels,w,h,width,height){
+    const at=bilinear(pixels,w,h),unit=width/200,out=new Uint8ClampedArray(width*height*4);
+    const edge=Math.round(width*.11),ix0=edge,ix1=width-edge,iy0=Math.round(unit*3),iy1=height-Math.round(unit*3),iw=ix1-ix0,ih=iy1-iy0;
+    const base=[18,14,12],light=[244,240,228];
+    const ph=unit*4.4,pw=unit*4.2,pr=unit*1,px0=Math.round(edge*.42-pw/2); // 齿孔：高 ph、宽 pw、圆角 pr，间距 1.8 倍高
+    const hole=(x,y)=>{const lx=x<width/2?x-px0:x-(width-px0-pw);if(lx<0||lx>pw)return 0;const k=((y+ph*.4)%(ph*1.8)),ly=k;if(ly>ph)return 0;
+      const dx=Math.max(0,Math.max(pr-lx,lx-(pw-pr))),dy=Math.max(0,Math.max(pr-ly,ly-(ph-pr)));return clamp(1-(Math.hypot(dx,dy)-pr+.5),0,1);};
+    // 先算画面（含红色光晕）
+    for(let y=0;y<height;y++) for(let x=0;x<width;x++){
+      const o=(y*width+x)*4;let col;
+      if(x>=ix0&&x<ix1&&y>=iy0&&y<iy1){
+        const sx=(x-ix0)/iw*w-.5,sy=(y-iy0)/ih*h-.5;
+        let r=at(sx,sy,0)/255,g=at(sx,sy,1)/255,b=at(sx,sy,2)/255;
+        // 胶片色：S 形对比、饱和度提高、暗部微微偏青、亮部偏暖
+        const S=v=>v*v*(3-2*v)*.4+v*.6;r=S(r);g=S(g);b=S(b);
+        const m=(r+g+b)/3;r=m+(r-m)*1.1;g=m+(g-m)*1.1;b=m+(b-m)*1.08;
+        const l=.3*r+.59*g+.11*b;r+=.04*l-.01;b+=.03*(1-l)-.02;
+        // halation：周围高光在这里渗出的红晕（取样附近几个点的亮部）
+        let hal=0;for(const [ox,oy] of [[2.2,0],[-2.2,0],[0,2.2],[0,-2.2]]){const q=(at(sx+ox,sy+oy,0)+at(sx+ox,sy+oy,1))/510;hal+=Math.max(0,q-.78);}
+        r+=hal*.5;g+=hal*.08;
+        const gr=(hash(x*1.9,y*2.3)-.5)*.07;
+        // 画框四角轻微圆角
+        const cx=Math.max(0,Math.max(ix0+unit*1.5-x,x-(ix1-1-unit*1.5))),cy=Math.max(0,Math.max(iy0+unit*1.5-y,y-(iy1-1-unit*1.5))),inside=clamp(unit*1.5-Math.hypot(cx,cy)+.5,0,1);
+        col=[r+gr,g+gr,b+gr].map((v,c)=>mix(base[c],clamp(v,0,1)*255,inside));
+      } else {
+        // 片基：近黑偏棕，轻微不均匀
+        const n=(valueNoise(x*.08,y*.05)-.5)*8;col=base.map(v=>v+n);
+        const t=hole(x,y);if(t>0)col=col.map((v,c)=>mix(v,light[c]-(hash(x,y)*10),t));
+      }
+      for(let c=0;c<3;c++)out[o+c]=clamp(col[c],0,255);
+      out[o+3]=255;
+    }
+    // 片边字：沿齿孔外侧竖排，暖黄色的小点阵字
+    const put=(px,py)=>{px=Math.round(px);py=Math.round(py);if(px<0||py<0||px>=width||py>=height)return;const o=(py*width+px)*4;out[o]=mix(out[o],232,.85);out[o+1]=mix(out[o+1],196,.85);out[o+2]=mix(out[o+2],120,.85);};
+    const dot=Math.max(1,Math.round(unit*.55)),colX=Math.min(width-1,px0+pw+Math.round(unit*1.6));
+    const vtext=(txt,x,y0)=>{let y=y0;for(const ch of txt){if(ch===" "){y+=dot*4;continue;}const g=FONT5[ch];if(!g){y+=dot*6;continue;}
+      for(let r=0;r<7;r++)for(let c=0;c<5;c++)if(g[r*5+c]==="1"){ // 竖排：字顺时针转 90°
+        for(let a=0;a<dot;a++)for(let b=0;b<dot;b++)put(x+(6-r)*dot+a,y+c*dot+b);}
+      y+=dot*6;}};
+    const frame=String(10+Math.floor(hash(w,h)*80));
+    vtext("70MM SAFETY FILM",colX,Math.round(height*.12));
+    vtext(">"+frame,colX,Math.round(height*.68));
+    vtext(frame+"A",width-colX-dot*7,Math.round(height*.3));
+    return out;
+  }
   function paint(surface,image,crop,frame,createCanvas,cropCover,ticketScale=1,styleId){
     if(!createCanvas)return false;
     try{
@@ -640,7 +675,7 @@
       let drawing=cache.get(key);
       if(!drawing){
         // 童趣蜡笔、卡通要保留人物轮廓，取样更细（其余风格保持原来的粗取样）
-        const sw=style==="projector"?Math.min(150,Math.max(52,Math.round(width*.45))):style==="crt"?Math.min(170,Math.max(60,Math.round(width*.55))):style==="ccd"?Math.min(120,Math.max(44,Math.round(width*.38))):style==="cmyk-dots"||style==="news-dots"?Math.min(140,Math.max(48,Math.round(width*.45))):style==="pop-dots"||style==="memphis"?Math.min(120,Math.max(40,Math.round(width*.4))):style==="kid-crayon"?Math.min(160,Math.max(48,Math.round(width*.5))):Math.min(92,Math.max(32,Math.round(width*.4)));
+        const sw=style==="film70"?Math.min(170,Math.max(60,Math.round(width*.5))):style==="projector"?Math.min(150,Math.max(52,Math.round(width*.45))):style==="crt"?Math.min(170,Math.max(60,Math.round(width*.55))):style==="ccd"?Math.min(120,Math.max(44,Math.round(width*.38))):style==="cmyk-dots"||style==="news-dots"?Math.min(140,Math.max(48,Math.round(width*.45))):style==="pop-dots"||style==="memphis"?Math.min(120,Math.max(40,Math.round(width*.4))):style==="kid-crayon"?Math.min(160,Math.max(48,Math.round(width*.5))):Math.min(92,Math.max(32,Math.round(width*.4)));
         const sh=Math.max(1,Math.round(sw*h/w));
         const sample=createCanvas(sw,sh).getContext("2d");
         cropCover(sample,image,crop,{x:0,y:0,w:sw,h:sh});
