@@ -21,10 +21,11 @@ async function syncRun(){
     if(remote.data&&S.same(merged,remote.data)){rev=remote.rev;break;}
     const r=await sbRpc('mg_push',{code:syncSt.code,data:merged,base_rev:remote.rev||0});if(r.ok){rev=r.rev;break;}}
   if(rev===undefined)throw new Error(tr('云端有其他设备正在同步，请稍后再试'));
-  // A rating made while the cloud request was in flight is newer than its snapshot.
-  const saved=merged.watched;
-  merged={...merged,watched:S.merge({watched:watched},{watched:saved}).watched};
-  const lateRatings=!S.same({watched:saved},{watched:merged.watched});
+  // 请求在路上时本机又改了（评分、刚移出的排片、想看、票根）：这些比发出时的快照新，再和「现在的本机」合并一次，
+  // 同一项取较新者，免得刚移出的场次被这一轮同步放回来（2026-11-22）；本机更新的部分留给下一轮推上云端。
+  const saved=merged;
+  merged=S.merge(profileSnap(),saved);
+  const lateRatings=!S.same(saved,merged);
   const before=profileSnap(),changed=!S.same(merged,before);
   if(changed){profileApply(merged);
     // 只有页面上看得见的档案（看过、想看、持有人、照片、排片）真的变了才重绘「我的」页；票根 / 手绘风格的变化不重绘，

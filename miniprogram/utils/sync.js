@@ -9,7 +9,7 @@ const Tix = require('./ticketstore.js');
 const Art = require('./ticket-sketch.js');
 const artRead = k => wx.getStorageSync(k), artWrite = (k, v) => wx.setStorageSync(k, v);
 const KEY = 'sk-sync';
-let busy = null, applying = false, clearing = false, timer = 0;
+let busy = null, applying = false, clearing = false, timer = 0, dirty = false;
 const status = { state: 'idle', msg: '', at: 0 };
 const listeners = [];
 
@@ -60,20 +60,23 @@ function friendly(m) {
 }
 function run() {
   const st = state(); if (!st || !st.code) return Promise.resolve();
-  status.state = 'busy'; emit();
+  status.state = 'busy'; emit(); dirty = false;
   return call({ action: 'sync', code: st.code, state: snapshot() }).then(r => {
     if (!r.ok) throw new Error(r.msg || 'fail');
-    if (r.changed) {
-      const merged = S.clean(r.merged);
-      const watched = S.merge({ watched: W.all() }, { watched: merged.watched }).watched;
-      if (!S.same({ watched }, { watched: merged.watched })) { clearTimeout(timer); timer = setTimeout(quiet, 3000); }
-      apply({ ...merged, watched });
+    // 请求在路上时本机可能又改了（比如刚移出一场排片）：云端返回的是按「发出时的旧快照」合并的结果，
+    // 直接覆盖会把刚移出的场次又放回来。所以先和「现在的本机」再合并一次（同一项取较新者），本机新改的保留，
+    // 只有真的有变化才写回；本机比云端新时再补同步一次把新改动推上去。
+    if (r.changed || dirty) {
+      const cloud = S.clean(r.merged), local = snapshot(), next = S.merge(local, cloud);
+      if (!S.same(next, local)) apply(next);
+      if (!S.same(next, cloud)) dirty = true;
     }
     setState(Object.assign({}, st, { rev: r.rev, at: Date.now() }));
     status.state = 'ok'; status.msg = ''; status.at = Date.now(); emit(); return r;
   }).catch(e => { status.state = 'error'; status.msg = friendly((e && (e.message || e.errMsg)) || String(e)); emit(); throw e; });
 }
-function sync() { if(clearing)return Promise.resolve();if (busy) return busy; busy = run().finally(() => { busy = null; }); return busy; }
+// 同步进行中本机又有改动（dirty）：这一轮结束后再同步一次，避免改动被正在进行的这一轮吞掉
+function sync() { if(clearing)return Promise.resolve();if (busy) return busy; busy = run().finally(() => { busy = null; if (dirty && !clearing) { dirty = false; clearTimeout(timer); timer = setTimeout(quiet, 1500); } }); return busy; }
 const quiet = () => sync().catch(() => { });
 async function syncBeforeVote() { if (busy) await busy; return sync(); }
 const OFF = 'sk-sync-off';
@@ -96,7 +99,7 @@ function join(input) {
 function fromScan(text) { const m = /SP-[A-Za-z0-9-]+/i.exec(String(text || '')); return m ? (S.normalize(m[0]) || '') : ''; }
 function stop() { setOff(true); setState(null); status.state = 'idle'; status.msg = ''; status.at = 0; emit(); }
 // 本机有改动时 3 秒后自动同步；应用从后台回来或进入「我的」页时拉取一次
-function changed() { if (applying||clearing) return; const st = state(); if (!st || !st.code) return; clearTimeout(timer); timer = setTimeout(quiet, 3000); }
+function changed() { if (applying||clearing) return; const st = state(); if (!st || !st.code) return; if (busy) dirty = true; clearTimeout(timer); timer = setTimeout(quiet, 3000); }
 function init() { W.onChange(changed); plan.onChange(changed); Want.onChange(changed); Tix.onChange(changed); const st = state(); if (st && st.code) quiet(); else if (!isOff() && !clearing) wxLogin().catch(() => { }); }
 function stale() { const st = state(); return !!(st && st.code && Date.now() - (st.at || 0) > 30000); }
 
