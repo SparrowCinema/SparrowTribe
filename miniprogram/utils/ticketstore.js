@@ -23,10 +23,48 @@ function baseFor(data, idx) {
       filmId, title: f.cn, subtitle: f.o || f.en || '', showId: s ? (s.sid || U.keyOf(s)) : '',
       programmeId: (p && p.id) || '', programme: (p && p.name) || '', section: (p && p.sections && p.sections[f.id]) || (p && p.id === f.prog ? f.section : '') || '',
       date: s ? iso(U.showDate(s)) : date, time: (s && s.t) || '', city: (v && v.city) || '', venue: (v && v.name) || '', hall: s ? idx.hallName(s) : '',
-      format: fmt ? fmt.zh : (f.version || ''), art: artOf(f)[0] || '', arts: artOf(f), director: f.dir || ''
+      format: fmt ? fmt.zh : (f.version || ''), art: artOf(f)[0] || '', arts: artOf(f), director: f.dir || '',
+      progKind: (p && p.kind) || '', progStart: (p && p.start) || '', progEnd: (p && p.end) || '', showTag: showTag(f, s, p, data, idx)
     };
   };
 }
+// 场次标签（与网站 js/tickets.js 的 ticketShowTag 一致）：映后场 / 产业放映场 / 本展首映场
+function showTag(f, s, p, data, idx) {
+  if (!s) return '';
+  const note = (f.screeningNotes || {})[U.keyOf(s)] || '';
+  if (/映后/.test(note)) return '映后场';
+  if (/产业放映/.test(note)) return '产业放映场';
+  if (p && p.kind === '影展专题') {
+    const first = (data.shows || []).filter(x => x.id === f.id && U.progForShow(x, idx).id === p.id).sort((a, b) => U.showDate(a) - U.showDate(b))[0];
+    if (first && U.keyOf(first) === U.keyOf(s)) return '本展首映场';
+  }
+  return '';
+}
+// 典藏玩法（2026-11-22）：只有片库完整时（往期专题补齐后，app.globalData.full）才判断封版与满贯，避免按不完整的片库算错
+const fullData = () => { try { const g = getApp().globalData; return !!(g && g.full); } catch (e) { return false; } };
+function closeOf(data, idx) {
+  return filmId => {
+    const f = idx.F[filmId]; if (!f || !fullData()) return 0;
+    const ends = (data.shows || []).filter(s => s.id === filmId).map(s => U.showDate(s).getTime() + U.durationOf(s, idx) * 60000);
+    const progs = idx.progsOf(f).map(({ p }) => ({ open: !!p.ongoing, end: p.end ? new Date(p.end.replace(/-/g, '/')).getTime() + 864e5 : 0 }));
+    return T.editionClose(ends, progs);
+  };
+}
+function setsOf(data, idx) {
+  if (!fullData()) return null;
+  const sets = {};
+  Object.values(idx.F).forEach(f => {
+    if (f.ev) return;
+    idx.progsOf(f).forEach(({ p, sec }) => {
+      if (!p || p.ongoing || p.kind !== '影展专题') return;
+      const set = sets[p.id] || (sets[p.id] = { films: [], sections: {} });
+      if (set.films.indexOf(f.id) < 0) set.films.push(f.id);
+      if (sec) { const list = set.sections[sec] || (set.sections[sec] = []); if (list.indexOf(f.id) < 0) list.push(f.id); }
+    });
+  });
+  return sets;
+}
+let ctx = null; // 最近一次 build 用的片库，领号时用来找场次编号与封版时间
 const viewings = idx => T.viewings(W.all(), G.views, id => !!idx.F[id] && !idx.F[id].ev);
 
 function all(data, idx) {
@@ -55,8 +93,8 @@ async function issueRun() {
   issueBusy = true;
   try {
     for (let round = 0; round < 20; round++) {
-      const items = T.pendingIssue(all()); if (!items.length) break;
-      const r = await wx.cloud.callFunction({ name: 'psync', data: { action: 'issue', items: items.map(x => ({ s: x.s, f: x.f })) } });
+      const items = T.pendingIssue(all(), showOf); if (!items.length) break;
+      const r = await wx.cloud.callFunction({ name: 'psync', data: { action: 'issue', items: items.map(x => x.h ? { s: x.s, f: x.f, h: x.h } : { s: x.s, f: x.f }) } });
       const res = (r && r.result) || {};
       if (!res.ok) { issueOff = true; break; }
       const changes = T.applyIssue(all(), items, res.items); if (!changes) break;
@@ -64,6 +102,22 @@ async function issueRun() {
     }
   } catch (e) { issueOff = true; }
   finally { issueBusy = false; }
+  editionRun();
+}
+function showOf(key) { const row = ctx && ctx.byKey && ctx.byKey.get(key); return (row && row.showId) || ''; }
+// 封版总数：已封版影片的票根经 psync 云函数的 edition 动作向 tk_edition 取「共发行 N 张」；云函数或后端还没升级时本次启动内不再请求
+let editionOff = false, editionBusy = false;
+async function editionRun() {
+  if (editionOff || editionBusy || !wx.cloud || !ctx) return;
+  const items = T.pendingEdition(all(), closeOf(ctx.data, ctx.idx), Date.now()); if (!items.length) return;
+  editionBusy = true;
+  try {
+    const r = await wx.cloud.callFunction({ name: 'psync', data: { action: 'edition', items } });
+    const res = (r && r.result) || {};
+    if (!res.ok) editionOff = true;
+    else { const changes = T.applyEdition(all(), res.items); if (changes) put(Object.assign({}, all(), changes), true); }
+  } catch (e) { editionOff = true; }
+  finally { editionBusy = false; }
 }
 // 同步：快照与应用（没有片库时只读写已有存储，不做迁移）
 function snapshot() { return JSON.parse(JSON.stringify(all())); }
@@ -75,8 +129,11 @@ function onChange(fn) { listeners.push(fn); return () => { const i = listeners.i
 function build(data, idx) {
   const list = viewings(idx), moves = T.reconcile(list, all(data, idx));
   if (moves) put(Object.assign({}, all(), moves), true);
+  const built = T.build(list, all(), baseFor(data, idx));
+  T.decorate(built.tickets, setsOf(data, idx));
+  ctx = { data, idx, byKey: new Map(built.tickets.map(r => [r.key, r])) };
   issueSoon(800);
-  return T.build(list, all(), baseFor(data, idx));
+  return built;
 }
 function freeKey(filmId, date, idx, except) {
   const store = all(), linked = new Set(viewings(idx).map(x => x.key));

@@ -5,7 +5,8 @@ const sortShows = list => list.sort((a, b) => showSortKey(a) - showSortKey(b));
 const DataCache = require('./utils/datacache.js');
 // 启动数据：安装包里的兜底数据（只含进行中 / 即将开始的专题）；本机有更新的缓存（上次联网取到的完整片目）时优先用缓存
 const BUNDLED = require('./data/data.js');
-const LOCAL = Screenings.apply((() => { const c = DataCache.load(BUNDLED); return c ? Object.assign({}, BUNDLED, c, { reg: BUNDLED.reg }) : BUNDLED; })());
+let CACHED = false;
+const LOCAL = Screenings.apply((() => { const c = DataCache.load(BUNDLED); CACHED = !!c; return c ? Object.assign({}, BUNDLED, c, { reg: BUNDLED.reg }) : BUNDLED; })());
 sortShows(LOCAL.shows); // 安装包兜底数据按专题文件顺序排列，启动时与联网数据一样按日期时间排序（影片页场次依赖此顺序）
 const plan = require('./utils/plan.js');
 const watched = require('./utils/watched.js');
@@ -27,7 +28,8 @@ try { Page = function (o) {
 App({
   onShow() { try { require('./utils/remind.js').syncTmpl(); } catch (e) { } },
   onHide() { try { require('./utils/stats.js').flush(); } catch (e) { } },
-  globalData: { data: LOCAL, source: 'local', raw: LOCAL },
+  // full：片库是否完整（本机缓存是往期专题补齐后才写的；往期专题补齐后置为 true）。典藏票根的封版与满贯只在完整时判断
+  globalData: { data: LOCAL, source: 'local', raw: LOCAL, full: CACHED },
   _waiters: [],
 
   onLaunch() {
@@ -62,6 +64,7 @@ App({
         this.globalData.raw = Screenings.apply(Object.assign({}, LOCAL, r, { reg: LOCAL.reg }));
         this.globalData.data = I.localize(this.globalData.raw);
         this.globalData.source = 'cloud';
+        this.globalData.full = true;
         DataCache.save(r);
         try { require('./utils/planchange.js').track(this.globalData.data); } catch (e) { }
         try { watched.migrate(this.globalData.raw.aliases); } catch (e) { }
@@ -97,7 +100,7 @@ App({
   },
   // 往期专题：每次取一个专题（单个专题远小于云函数返回上限），两个一组并行
   loadPast(ids, lang) {
-    if (!ids.length) return Promise.resolve();
+    if (!ids.length) { this.globalData.full = true; return Promise.resolve(); }
     const raw = this.globalData.raw;
     const one = id => wx.cloud.callFunction({ name: 'getData', data: { v: 2, prog: id, lang } }).then(res => {
       const r = res.result || {}; if (!r.ok || !r.films) return;
@@ -111,6 +114,7 @@ App({
       for (let i = 0; i < ids.length; i += 2) await Promise.all([one(ids[i]), ids[i + 1] ? one(ids[i + 1]) : null]);
       if (this._en) I.setEN(this._en);
       this.globalData.data = I.localize(raw);
+      this.globalData.full = true;
       try { require('./utils/planchange.js').track(this.globalData.data); } catch (e) { } // 往期专题换成最新数据后再核对一次场次变更
       this._waiters.forEach(fn => fn(this.globalData.data));
     })();

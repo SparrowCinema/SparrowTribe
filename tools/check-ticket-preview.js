@@ -121,8 +121,8 @@ const flush=async()=>{for(let n=0;n<20;n++){await new Promise(r=>setImmediate(r)
   page.onLoad({film:film.id});await flush();
   assert.equal(page._artStyle,'watercolor');
   assert(page.data.ok&&!page.data.existing&&!page.data.linked);
-  assert(files.get(page.data.frontImg).includes('纪念票根'),'front face rendered to an image');
-  assert(files.get(page.data.backImg).includes('收藏票根'),'back face rendered to an image');
+  assert(/纪念票根|影展限定|隐藏款|满贯典藏/.test(files.get(page.data.frontImg)),'front face rendered to an image'); // 表头随典藏玩法变化（2026-11-22）
+  assert(/收藏票根|影展限定|隐藏款|满贯典藏/.test(files.get(page.data.backImg)),'back face rendered to an image');
   // 盲盒（2026-11-22）：没有「随机换一款」；第一次打开先停在背面再翻到正面揭晓，揭晓后记进本机，下次打开不再播
   assert.equal(typeof page.shuffle,'undefined','no shuffle button in blind-box mode');
   assert(!/bindtap="shuffle"/.test(wxml),'shuffle button removed from the page');
@@ -215,10 +215,11 @@ const flush=async()=>{for(let n=0;n<20;n++){await new Promise(r=>setImmediate(r)
   const page3={...options,data:JSON.parse(JSON.stringify(options.data)),setData:page.setData};
   page3.onLoad({key:encodeURIComponent(saved[0])});await flush();assert.equal(page3.data.draft.crop,83);
   await page2.exportAs('front');await flush();
-  assert(exporter.ctx.labels.includes('纪念票根'));
+  const HEAD=/^(纪念票根|收藏票根|影展限定|隐藏款 · 1\/1|满贯典藏)$/;
+  assert(exporter.ctx.labels.some(t=>HEAD.test(t)),'front header');
   // 正反面合成（默认）：同一块导出画布画成 4:5 的片名海报，两面都在
   exporter.ctx.labels.length=0;await page2.exportAs('both');await flush();
-  assert(exporter.ctx.labels.includes('纪念票根')&&exporter.ctx.labels.includes('收藏票根'),'showcase has both faces');
+  assert(exporter.ctx.labels.filter(t=>HEAD.test(t)).length>=2,'showcase has both faces');
   assert(exporter.ctx.labels.includes('SPARROW · FILM PASSPORT')||exporter.ctx.labels.some(t=>/SPARROW/.test(t)),'showcase header');
   page2.pickArtStyle({detail:{value:'0'}});await flush();
   assert.equal(page2._artStyle,'memphis');

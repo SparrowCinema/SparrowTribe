@@ -1302,3 +1302,18 @@ input:not([type=checkbox]):not([type=radio]),select,textarea{font-size:16px!impo
 .fc-ci>.fc-l{width:var(--fcw);height:var(--fch);inset:auto;left:0;top:0}
 /* 点按元素去掉双击缩放：手机上快速连点不再被吞掉（2026-11-22） */
 button,summary,a,label,select,[role=button],[data-pp],.my-entry{touch-action:manipulation}
+
+/* 典藏验真页（2026-11-22） */
+.vf-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px;margin:6px 0 30px;max-width:560px}
+.vf-card p{color:var(--muted);font-size:14px;line-height:1.6;margin:6px 0 0}
+.vf-bad b{font-size:17px}
+.vf-top{display:flex;gap:16px;align-items:flex-start}
+.vf-poster{width:88px;aspect-ratio:2/3;object-fit:cover;border-radius:8px;flex:none;background:var(--line)}
+.vf-top h3{font-size:20px;margin:8px 0 0;line-height:1.3}
+.vf-seal{display:inline-block;font-size:12px;font-weight:700;color:#2f6b45;background:#e3f2e7;border-radius:99px;padding:3px 10px}
+[data-theme="dark"] .vf-seal{color:#9be0b2;background:#1f3b2a}
+.vf-dl{display:grid;grid-template-columns:auto 1fr;gap:8px 14px;margin:18px 0 0;font-size:14px}
+.vf-dl dt{color:var(--muted)}
+.vf-dl dd{margin:0}
+.vf-mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace;letter-spacing:.04em}
+.vf-go{margin-top:18px;width:100%}
