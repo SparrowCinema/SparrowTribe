@@ -618,6 +618,7 @@
     3.42
    ],
    "poster": "posters/the-summer-book.jpg",
+   "ticket": "tickets/the-summer-book-wx.png",
    "contentReview": {
     "status": "synopsis-reviewed",
     "checked": "2026-11-11",
