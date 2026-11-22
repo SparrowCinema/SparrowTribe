@@ -394,25 +394,32 @@ function read(raw) {
 }
 
 // ——— 典藏编号（2026-11-22）———
-// 每张典藏票根一串编号，例如 No. SP26-7KQ4M-9XDQ3：SP + 观影年份后两位，后面 10 位＝9 位编码（45 位）+ 1 位校验。
+// 每张典藏票根一串编号，例如 No. SP26-7KQ4M-9XDQ3-AB2CD：SP + 观影年份后两位，后面 15 位＝14 位编码（70 位）+ 1 位校验。
 // 编码由票根键 + 第一次保存的时间（毫秒）算出：同一张票根在网站、小程序、换手机后都一样；两个人同一天看同一部片也不一样。
+// 70 位约 10²¹ 种：十万人各一千张（一亿张）全站出现任何一对重号的概率约百万分之四，不需要服务器发号。
 // 第一次保存（或编辑、挪动）时写进票根的 n 字段，之后修改时间变了也不再变；没存过 n 的旧票根按当前保存时间推出，编辑时冻结下来。
-const SERIAL_ABC="ABCDEFGHJKLMNPQRSTUVWXYZ23456789", SERIAL_RE=/^[A-HJ-NP-Z2-9]{10}$/;
-function serialCheck(body) {let s=0;for (let i=0;i<9;i++) s+=SERIAL_ABC.indexOf(body[i])*(i+1);return SERIAL_ABC[s%31];}
+const SERIAL_ABC="ABCDEFGHJKLMNPQRSTUVWXYZ23456789", SERIAL_LEN=14, SERIAL_RE=/^[A-HJ-NP-Z2-9]{15}$/;
+function serialCheck(body) {let s=0;for (let i=0;i<SERIAL_LEN;i++) s+=SERIAL_ABC.indexOf(body[i])*(i+1);return SERIAL_ABC[s%31];}
+// MurmurHash3（32 位），三个不同种子各取一份，拼成 96 位，用其中 70 位
+function murmur32(str,seed) {
+  let h=seed>>>0;
+  for (let i=0;i<str.length;i++) {
+    let k=Math.imul(str.charCodeAt(i),0xcc9e2d51);k=(k<<15)|(k>>>17);k=Math.imul(k,0x1b873593);
+    h^=k;h=(h<<13)|(h>>>19);h=(Math.imul(h,5)+0xe6546b64)>>>0;
+  }
+  h^=str.length;h=Math.imul(h^(h>>>16),0x85ebca6b);h=Math.imul(h^(h>>>13),0xc2b2ae35);return (h^(h>>>16))>>>0;
+}
 function serialOf(key,t) {
   const str=String(key||"")+"#"+(Number(t)||0);
-  let a=0x811c9dc5, b=0x9747b28c;
-  for (let i=0;i<str.length;i++) {const c=str.charCodeAt(i);a=Math.imul(a^c,16777619)>>>0;b=Math.imul(b^c,0x5bd1e995)>>>0;b=(b^(b>>>15))>>>0;}
-  const fin=h=>{h=Math.imul(h^(h>>>16),0x85ebca6b)>>>0;h=Math.imul(h^(h>>>13),0xc2b2ae35)>>>0;return (h^(h>>>16))>>>0;};
-  a=fin(a^b);b=fin(b+a);
+  const hs=[murmur32(str,0x9747b28c),murmur32(str,0x5bd1e995),murmur32(str,0x1b873593)];
   let body="";
-  for (let i=0;i<6;i++) body+=SERIAL_ABC[(a>>>(i*5))&31];
-  for (let i=0;i<3;i++) body+=SERIAL_ABC[(b>>>(i*5))&31];
+  for (let i=0;i<SERIAL_LEN;i++) {const bit=i*5,w=hs[bit>>5]>>>0,off=bit&31;
+    const v=off<=27 ? (w>>>off)&31 : ((w>>>off)|(hs[(bit>>5)+1]<<(32-off)))&31;body+=SERIAL_ABC[v];}
   return body+serialCheck(body);
 }
-const serialValid=code=>SERIAL_RE.test(code||"") && serialCheck(code)===code[9];
-// 显示格式：No. SP26-7KQ4M-9XDQ3（没有日期时省掉年份）
-const formatSerial=row=>row && serialValid(row.serial) ? "SP"+(/^\d{4}/.test(row.date||"") ? row.date.slice(2,4) : "")+"-"+row.serial.slice(0,5)+"-"+row.serial.slice(5) : "";
+const serialValid=code=>SERIAL_RE.test(code||"") && serialCheck(code)===code[SERIAL_LEN];
+// 显示格式：No. SP26-7KQ4M-9XDQ3-AB2CD（没有日期时省掉年份）
+const formatSerial=row=>row && serialValid(row.serial) ? "SP"+(/^\d{4}/.test(row.date||"") ? row.date.slice(2,4) : "")+"-"+row.serial.match(/.{5}/g).join("-") : "";
 const entrySerial=(key,entry)=>entry && serialValid(entry.n) ? entry.n : serialOf(key,entry && entry.t);
 
 function sorted(records,programme,year) {

@@ -326,7 +326,7 @@ const fullBytes=Buffer.byteLength(JSON.stringify(bigStore));assert(fullBytes<600
   const moved=T.reconcile([later],{[orphan]:{t:1700000000000}},1700000009999);
   assert.equal(moved[later.key].n,T.serialOf(orphan,1700000000000),'reconcile keeps serial');
   // 显示格式与搜索
-  const shown=T.formatSerial(r0);assert(/^SP\d{2}-[A-Z2-9]{5}-[A-Z2-9]{5}$/.test(shown),'format '+shown);
+  const shown=T.formatSerial(r0);assert(/^SP\d{2}-[A-Z2-9]{5}-[A-Z2-9]{5}-[A-Z2-9]{5}$/.test(shown),'format '+shown);
   assert(T.filterTickets(rows,{text:shown.toLowerCase()}).some(r=>r.key===r0.key),'search by serial');
   assert(T.filterTickets(rows,{text:r0.serial}).some(r=>r.key===r0.key),'search by bare serial');
 }
