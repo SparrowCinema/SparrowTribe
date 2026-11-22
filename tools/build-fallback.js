@@ -44,6 +44,16 @@ console.log('share-poster.js copied');
 // 趣味图谱长图：shared/taste-report.js 复制给小程序
 fs.writeFileSync(path.join(root, 'miniprogram/packages/collect/utils/taste-report.js'), '/* 由 tools/build-fallback.js 从 shared/taste-report.js 复制，请改 shared/taste-report.js 后重新运行。 */\n' + fs.readFileSync(path.join(root, 'shared/taste-report.js'), 'utf8'));
 console.log('taste-report.js copied');
+// 典藏票根验真二维码（2026-11-22）：vendor/qrcode.js 改成小程序模块放进分包，导出 matrix(text) → 二维布尔数组
+{
+  const src = fs.readFileSync(path.join(root, 'vendor/qrcode.js'), 'utf8');
+  const tail = 'window.QRCodeLib={QRCode:R("index"),ECL:R("QRErrorCorrectLevel")};})();';
+  if (!src.includes(tail)) throw new Error('vendor/qrcode.js 结尾变了，请同步修改 build-fallback.js 的二维码复制');
+  const body = src.replace(tail, 'var QRCode=R("index"),ECL=R("QRErrorCorrectLevel");\n' +
+    'module.exports={matrix:function(text){var q=new QRCode(-1,ECL.L);q.addData(text);q.make();var n=q.getModuleCount(),m=[];for(var r=0;r<n;r++){var row=[];for(var c=0;c<n;c++)row.push(q.isDark(r,c));m.push(row);}return m;}};})();');
+  fs.writeFileSync(path.join(root, 'miniprogram/packages/collect/utils/qrcode.js'), '/* 由 tools/build-fallback.js 从 vendor/qrcode.js 生成，请勿直接修改。 */\n' + body);
+  console.log('qrcode.js generated');
+}
 
 // 个人档案同步：合并规则 shared/psync.js 同时复制给小程序和 psync 云函数
 const psync = fs.readFileSync(path.join(root, 'shared/psync.js'), 'utf8');

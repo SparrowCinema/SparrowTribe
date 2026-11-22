@@ -56,13 +56,52 @@ async function ticketIssueRun(){
   ticketIssueBusy=true;
   try{
     for(let round=0;round<20;round++){
-      const items=TE.pendingIssue(ticketStore());if(!items.length)break;
-      const got=await sbRpc("tk_issue",{items:items.map(x=>({s:x.s,f:x.f}))});
+      const items=TE.pendingIssue(ticketStore(),ticketShowOf);if(!items.length)break;
+      const got=await sbRpc("tk_issue",{items:items.map(x=>x.h?{s:x.s,f:x.f,h:x.h}:{s:x.s,f:x.f})});
       const changes=TE.applyIssue(ticketStore(),items,got);if(!changes)break;
       ticketStorePut({...ticketStore(),...changes},true);
     }
   }catch(e){ticketIssueOff=true;}
   finally{ticketIssueBusy=false;}
+  ticketEditionRun();
+}
+// 封版总数（2026-11-22）：已封版影片的票根向 tk_edition 取「共发行 N 张」，写进票根 o；后端还没升级（404）时本次打开内不再请求
+let ticketEditionOff=false,ticketEditionBusy=false;
+async function ticketEditionRun(){
+  if(ticketEditionOff||ticketEditionBusy||typeof sbRpc!=="function"||(typeof navigator!=="undefined"&&navigator.onLine===false))return;
+  const items=TE.pendingEdition(ticketStore(),ticketCloseOf,now());if(!items.length)return;
+  ticketEditionBusy=true;
+  try{const got=await sbRpc("tk_edition",{items});const changes=TE.applyEdition(ticketStore(),got);if(changes)ticketStorePut({...ticketStore(),...changes},true);}
+  catch(e){ticketEditionOff=true;}
+  finally{ticketEditionBusy=false;}
+}
+// 票根关联的场次编号（场次限定「本场第几张」用）
+function ticketShowOf(key){ticketAll();return ticketByKey?.get(key)?.showId||"";}
+// 封版时间：这部影片全部场次散场、所属专题全部结束后 14 天（shared/tickets.js 的 editionClose）
+function ticketCloseOf(filmId){
+  const f=F[filmId];if(!f)return 0;
+  const ends=SH.filter(s=>s.id===filmId).map(showEnd);
+  const progs=filmProgsOf(f).map(({p})=>({open:!!p.ongoing,end:p.end?ymd(p.end)+864e5:0}));
+  return TE.editionClose(ends,progs);
+}
+// 全收集金章的影片集合：影展类专题（院线、常设不参加），按专题与单元列出影片
+let ticketSetsCache=null,ticketSetsSig="";
+function ticketSets(){
+  const sig=FILMS.length+"|"+PROGRAMMES.length;if(ticketSetsCache&&ticketSetsSig===sig)return ticketSetsCache;
+  const sets={};
+  for(const f of FILMS){if(f.ev)continue;for(const {p,sec} of filmProgsOf(f)){if(!p||p.ongoing||p.kind!=="影展专题")continue;
+    const set=sets[p.id]||(sets[p.id]={films:[],sections:{}});if(!set.films.includes(f.id))set.films.push(f.id);
+    if(sec){const list=set.sections[sec]||(set.sections[sec]=[]);if(!list.includes(f.id))list.push(f.id);}}}
+  ticketSetsCache=sets;ticketSetsSig=sig;return sets;
+}
+// 场次标签：映后场 / 产业放映场 / 本展首映场（影展里本片最早的一场）
+function ticketShowTag(f,s,p){
+  if(!s)return "";
+  const note=f.screeningNotes?.[keyOf(s)]||"";
+  if(/映后/.test(note))return "映后场";
+  if(/产业放映/.test(note))return "产业放映场";
+  if(p?.kind==="影展专题"){const first=SH.filter(x=>x.id===f.id&&x.p===s.p).sort((a,b)=>showDate(a)-showDate(b))[0];if(first&&keyOf(first)===keyOf(s))return "本展首映场";}
+  return "";
 }
 
 // ——— 由观影记录与片库推出票面字段 ———
@@ -74,7 +113,8 @@ function ticketFromFilm(f,s,date){
   const p=PG[s?.p]||PG[f.prog],v=VN[s?.v],h=v?.halls?.find(item=>item.id===s?.h);
   return {filmId:f.id,title:f.cn,subtitle:f.o||f.en,showId:s?.sid||(s?keyOf(s):""),
     programmeId:p?.id||"",programme:p?.name||"",section:p?.sections?.[f.id]||(p?.id===f.prog?f.section:"")||"",
-    date:s?isoOf(showDate(s)):date,time:s?.t||"",city:v?.city||"",venue:v?.name||"",hall:h?.name||s?.h||"",format:f.version||"",art:ticketArtwork(f)[0]||""};
+    date:s?isoOf(showDate(s)):date,time:s?.t||"",city:v?.city||"",venue:v?.name||"",hall:h?.name||s?.h||"",format:f.version||"",art:ticketArtwork(f)[0]||"",
+    progKind:p?.kind||"",progStart:p?.start||"",progEnd:p?.end||"",showTag:ticketShowTag(f,s,p)};
 }
 function ticketBase(filmId,view,date){
   const f=F[filmId];if(!f)return null;
@@ -83,12 +123,14 @@ function ticketBase(filmId,view,date){
   b.date=date;b.arts=ticketArtwork(f);b.director=f.dir||"";
   return b;
 }
+let ticketQRReady=false;
 function ticketAll(){
   if(ticketData&&ticketDataRev===ticketRev+"|"+watchedSig())return ticketData;
   // 不对应观影记录的票根先挪到所属影片还没有票根的观影上（每次观影一张）
   const list=ticketViewings(),moves=TE.reconcile(list,ticketStore());
   if(moves)ticketStorePut({...ticketStore(),...moves},true);
-  ticketData=TE.build(list,ticketStore(),ticketBase);ticketDataRev=ticketRev+"|"+watchedSig();
+  if(!ticketQRReady&&typeof qrMatrix==="function"){TE.setQR(qrMatrix);ticketQRReady=true;}
+  ticketData=TE.build(list,ticketStore(),ticketBase);TE.decorate(ticketData.tickets,ticketSets());ticketDataRev=ticketRev+"|"+watchedSig();
   ticketByKey=new Map(ticketData.tickets.map(row=>[row.key,row]));
   return ticketData;
 }
@@ -484,6 +526,7 @@ function ticketRunReveal(card){
   setTimeout(()=>{
     if(ticketDraft!==draft)return;
     card.classList.add("reveal");ticketFlipTo("front");
+    if(draft.row.hidden)setTimeout(()=>{if(ticketDraft===draft)toast(tr("开出隐藏款 · 1/1 孤品"));},900);
     setTimeout(()=>{if(ticketDraft===draft){draft.reveal="done";card.classList.remove("reveal");}ticketMarkRevealed(draft.row.key);},2000);
   },750);
 }
@@ -828,4 +871,35 @@ function ticketPickShow(i){
   if(!row.linked)row.date=x.date;
   Object.assign(row,{time:x.time,venue:x.venue,hall:x.hall,city:x.city});
   ticketRender();
+}
+
+// ——— 典藏验真页（2026-11-22）：票根背面二维码打开 #verify=典藏编号 ———
+// 向 tk_verify 查发行记录（影片、序号、场次、发行时间）；不需要登录，不显示任何个人信息。
+function verifyCode(raw){
+  let c=String(raw||"").toUpperCase().replace(/[^A-Z0-9]/g,"");
+  if(c.length>15&&/^SP\d{2}/.test(c))c=c.slice(4);
+  return c;
+}
+async function verifyPage(raw){
+  const code=verifyCode(decodeURIComponent(raw||"")),head='<section class="view gut vf-view">'+subBackHTML()+'<div class="page-heading"><div><small>CERTIFICATE · VERIFY</small><h2 class="sec">'+tr("典藏验真")+'</h2></div></div>';
+  const box=(cls,html)=>{if(location.hash.slice(1)!=="verify="+raw)return;main.innerHTML=head+'<div class="vf-card '+cls+'">'+html+'</div></section>';};
+  if(!TE.serialValid(code)){box("vf-bad",'<b>'+tr("编号格式不正确")+'</b><p>'+tr("典藏编号是 SP 加年份后的 15 位字母与数字，请核对票根背面的编号。")+'</p>');return;}
+  box("vf-wait",'<p>'+tr("正在查询发行记录…")+'</p>');
+  let r=null;
+  try{r=await sbRpc("tk_verify",{s:code});}catch(e){box("vf-bad",'<b>'+tr("暂时无法验证")+'</b><p>'+tr("网络或服务暂时不可用，请稍后再试。")+'</p>');return;}
+  const pretty=code.match(/.{5}/g).join("-");
+  if(!r||!r.no){box("vf-bad",'<b>'+tr("没有查到这串编号")+'</b><p>'+esc(pretty)+'</p><p>'+tr("可能是票根还没联网领取发行序号，或编号有误。")+'</p>');return;}
+  const f=F[r.f],s=r.h?SH.find(x=>x.sid===r.h||keyOf(x)===r.h):null,v=s&&VN[s.v],hall=s&&v?.halls?.find(h=>h.id===s.h);
+  // 已封版时补上总数
+  let total=-1;const close=ticketCloseOf(r.f);
+  if(close&&close<=now()){try{const t=await sbRpc("tk_edition",{items:[{f:r.f,c:new Date(close).toISOString()}]});if(Array.isArray(t)&&t[0]&&Number.isInteger(t[0].total))total=t[0].total;}catch(e){}}
+  const ed=TE.editionLines({issue:r.no,edition:total,showNo:s?r.sno:0,showTag:""});
+  const at=new Date(r.at),when=isNaN(at)?"":at.getFullYear()+"."+String(at.getMonth()+1).padStart(2,"0")+"."+String(at.getDate()).padStart(2,"0");
+  const mine=Object.entries(ticketStore()).find(([k,e])=>e&&!e.del&&TE.entrySerial(k,e)===code);
+  const rows=[[tr("影片"),f?esc(f.cn):esc(r.f)],[tr("发行序号"),esc(ed.no+ed.total)],["",esc(ed.line1)]];
+  if(s)rows.push([tr("场次"),esc([s.d.replace("/","月")+"日",s.t,v?.city,v?.name,hall?.name].filter(Boolean).join(" · "))],["",esc(ed.line2||"")]);
+  rows.push([tr("典藏编号"),'<span class="vf-mono">'+esc(pretty)+'</span>'],[tr("发行时间"),esc(when)]);
+  box("vf-ok",'<div class="vf-top">'+(f?pimg(f.id,360,'class="vf-poster" alt=""'):'')+'<div><span class="vf-seal">✓ '+tr("已验证 · 真实发行")+'</span><h3>'+(f?esc(f.cn):esc(r.f))+'</h3><p>'+tr("这张典藏票根由麻雀观影护照统一发行，编号与发行记录一致。")+'</p></div></div>'+
+    '<dl class="vf-dl">'+rows.filter(x=>x[1]).map(([k,v])=>'<dt>'+k+'</dt><dd>'+v+'</dd>').join("")+'</dl>'+
+    (mine?'<button class="primary-button vf-go" data-tab="ticket-wall">'+tr("这是你的典藏票根 · 打开票根册")+'</button>':f?'<button class="secondary-button vf-go" data-film="'+esc(f.id)+'">'+tr("查看影片")+'</button>':''));
 }

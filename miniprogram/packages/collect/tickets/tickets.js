@@ -2,6 +2,8 @@
 // 票根 = 某一次观影的皮肤（utils/ticketstore.js）；按年 → 月连续滚动，先给 48 张、触底再补；
 // 票面由页面里一块隐藏画布逐张画成图片（只画已加载的部分），缓存在本次打开期间；书脊模式不画图。
 const R=require('../../../utils/tickets.js');
+// 票根背面验真二维码（2026-11-22）
+try{R.setQR(require('../utils/qrcode.js').matrix);}catch(e){}
 const TitleFont=require('../utils/ticket-font.js');
 const Art=require('../../../utils/ticket-sketch.js');
 const readArtPreference=key=>wx.getStorageSync(key);
