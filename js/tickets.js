@@ -412,7 +412,7 @@ function ticketOpenViewing(item){
   const existing=ticketAll().tickets.find(row=>row.key===item.key);
   if(existing){ticketOpen(existing);return;}
   const row=TE.build([item],{[item.key]:{t:Date.now()}},ticketBase).tickets[0];if(!row)return;
-  ticketDraft={row,original:"",side:"front",view:item.view};ticketPrepareReveal();ticketRender();window.scrollTo(0,0);
+  ticketDraft={row,original:"",side:"front",view:item.view};ticketShowDraft();
 }
 function ticketBegin(id){
   const f=F[id];if(!f)return;
@@ -422,11 +422,11 @@ function ticketBegin(id){
   if(item){ticketOpenViewing(item);return;}
   // 没有观影记录：先找这部电影以前做过、现在没对上观影记录的票根（比如移出过护照），接着编辑它
   const store=ticketStore(),old=Object.keys(store).filter(k=>k.startsWith(id+"|")&&!store[k].del&&TE.parseKey(k)).sort((x,y)=>(store[y].t||0)-(store[x].t||0))[0];
-  if(old){const row=TE.draft(old,store[old],ticketBase);if(row){ticketDraft={row,original:old,side:"front",view:null};ticketPrepareReveal();ticketRender();window.scrollTo(0,0);return;}}
+  if(old){const row=TE.draft(old,store[old],ticketBase);if(row){ticketDraft={row,original:old,side:"front",view:null};ticketShowDraft();return;}}
   // 都没有：手工票根，日期默认今天，可改；保存时同时盖章
   const date=isoOf(new Date(now())),key=ticketFreeKey(id,date);
   const row=TE.draft(key,{t:Date.now()},ticketBase);if(!row)return;
-  ticketDraft={row,original:"",side:"front",view:null};ticketPrepareReveal();ticketRender();window.scrollTo(0,0);
+  ticketDraft={row,original:"",side:"front",view:null};ticketShowDraft();
 }
 function ticketFreeKey(filmId,date,except){
   const store=ticketStore(),linked=new Set(ticketViewings().map(item=>item.key));
@@ -435,7 +435,17 @@ function ticketFreeKey(filmId,date,except){
 }
 function ticketOpen(row){
   const item=row.linked?ticketViewings().find(x=>x.key===row.key):null;
-  ticketDraft={row:{...row,look:{...row.look}},original:row.key,side:ticketSide,view:item?.view||null};ticketPrepareReveal();ticketRender();window.scrollTo(0,0);
+  ticketDraft={row:{...row,look:{...row.look}},original:row.key,side:ticketSide,view:item?.view||null};ticketShowDraft();
+}
+// 从收藏册打开单张票根前记下滚动位置，保存 / 取消 / 移出后回到原来的位置（不再回到顶部）
+let ticketAlbumY=0;
+function ticketShowDraft(){
+  if(!document.querySelector(".te-body"))ticketAlbumY=ticketMode==="album"?window.scrollY:0;
+  ticketPrepareReveal();ticketRender();window.scrollTo(0,0);
+}
+function ticketBackToAlbum(){
+  ticketDraft=null;ticketMode="album";ticketRender();
+  const y=ticketAlbumY;window.scrollTo(0,y);requestAnimationFrame(()=>window.scrollTo(0,y)); // 第二次等布局（图片占位）稳定后再校正
 }
 // ——— 拆盲盒（2026-11-22）———
 // 每张票根第一次在本机打开时：先亮背面，停一下再自动翻到正面，工艺层整片流过一遍光（不再显示工艺文字）。
@@ -648,7 +658,7 @@ function ticketSave(stay){
     d.original=key;d.row.key=key;d.artSig=ticketArtSig(d.row);
     const y=window.scrollY;ticketRender();window.scrollTo(0,y);toast(tr(stamped?"已同时盖章 · 加入观影护照":"已保存"));return;
   }
-  ticketDraft=null;ticketMode="album";ticketRender();toast(tr(stamped?"已同时盖章 · 加入观影护照":"已收进典藏票根册"));
+  ticketBackToAlbum();toast(tr(stamped?"已同时盖章 · 加入观影护照":"已收进典藏票根册"));
 }
 
 // ——— 导出 ———
@@ -748,7 +758,7 @@ function ticketClick(e){
     case "pending":ticketDraft=null;ticketMode="pending";ticketPendingShown=TICKET_PENDING_STEP;ticketRender();window.scrollTo(0,0);break;
     case "pending-more":ticketPendingShown+=TICKET_PENDING_STEP;ticketRender();break;
     case "make-all":ticketMakeAll();break;
-    case "cancel":ticketDraft=null;ticketMode="album";ticketRender();break;
+    case "cancel":ticketBackToAlbum();break;
     case "clear":TE.FACETS.forEach(k=>{ticketQ[k]=[];});ticketPaintList();break;
     case "clear-all":TE.FACETS.forEach(k=>{ticketQ[k]=[];});ticketQ.text="";ticketQ.year="";ticketPaintList();break;
     case "export-open":ticketOpenExport();break;
@@ -760,7 +770,7 @@ function ticketClick(e){
     case "save-here":ticketSave(true);break;
     case "remove":
       if(confirm(tr(ticketDraft.row.linked?"将这张票根移出收藏册？这次观影会回到「待制作」。":"将这张票根移出收藏册？"))&&ticketSet({[ticketDraft.original]:{del:1,t:Date.now()}})){
-        ticketDraft=null;ticketMode="album";ticketRender();
+        ticketBackToAlbum();
       }break;
     case "export":ticketExport(b,false);break;
     case "single":ticketExport(b,true);break;
