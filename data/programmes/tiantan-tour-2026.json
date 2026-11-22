@@ -144,6 +144,7 @@
     3.73
    ],
    "poster": "posters/three-goodbyes.jpg",
+   "ticket": "tickets/three-goodbyes-wx.png",
    "contentReview": {
     "status": "synopsis-reviewed",
     "checked": "2026-11-11",
@@ -457,6 +458,7 @@
     3.46
    ],
    "poster": "posters/our-girls.jpg",
+   "ticket": "tickets/our-girls-wx.png",
    "contentReview": {
     "status": "synopsis-reviewed",
     "checked": "2026-11-11",
