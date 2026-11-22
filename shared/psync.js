@@ -31,6 +31,8 @@
     if (e.sk === 1) out.sk = 1;
     // 典藏编号（2026-11-22）：15 位，字母表同同步码（没有 I O 0 1），校验由 shared/tickets.js 负责
     if (typeof e.n === 'string' && /^[A-HJ-NP-Z2-9]{15}$/.test(e.n)) out.n = e.n;
+    // 发行序号（2026-11-22）：本片第几张典藏，由 Supabase tk_issue 统一发号
+    if (Number.isInteger(e.q) && e.q > 0 && e.q < 1e8) out.q = e.q;
     if (typeof e.l === 'string' && TIX_LOOK.test(e.l)) out.l = e.l;
     // 工艺组合（2026-11-22）：烫印增效-海报隐形工艺[背面隐形工艺][盲文][可变数据烫印]，见 shared/tickets.js 的 CRAFT_RE；只在改过时才存
     if (typeof e.x === 'string' && /^[sgch]{0,2}-[0urokbdwpqmlinacefghjstxyz][urokbdwpqmlinacefghjstxyz]?[Bv]{0,2}$/.test(e.x)) out.x = e.x;

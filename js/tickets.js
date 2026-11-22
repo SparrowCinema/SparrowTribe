@@ -44,9 +44,26 @@ function ticketStorePut(store,quiet){
   if(ticketStoreCache&&JSON.stringify(clean)===JSON.stringify(ticketStoreCache))return true;
   try{localStorage.setItem(TICKET_STORE_KEY,JSON.stringify(clean));}
   catch{if(!quiet)toast(tr("票根保存失败，请检查本机存储"));return false;}
-  ticketStoreCache=clean;ticketRev++;return true;
+  ticketStoreCache=clean;ticketRev++;ticketIssueSoon();return true;
 }
 function ticketSet(changes){const next={...ticketStore(),...changes};return ticketStorePut(next);}
+// 发行序号（2026-11-22）：还没领号的票根联网后自动向 Supabase tk_issue 领「本片第几张典藏」，每次最多 50 张，一轮最多 20 次。
+// 后端还没执行 backend/tickets-issue-v1.sql（404）或离线时本次打开内不再重试，票根照常显示「待发号」。
+let ticketIssueTimer=0,ticketIssueBusy=false,ticketIssueOff=false;
+function ticketIssueSoon(ms){if(ticketIssueOff||ticketIssueBusy)return;clearTimeout(ticketIssueTimer);ticketIssueTimer=setTimeout(ticketIssueRun,ms||2000);}
+async function ticketIssueRun(){
+  if(ticketIssueOff||ticketIssueBusy||typeof sbRpc!=="function"||(typeof navigator!=="undefined"&&navigator.onLine===false))return;
+  ticketIssueBusy=true;
+  try{
+    for(let round=0;round<20;round++){
+      const items=TE.pendingIssue(ticketStore());if(!items.length)break;
+      const got=await sbRpc("tk_issue",{items:items.map(x=>({s:x.s,f:x.f}))});
+      const changes=TE.applyIssue(ticketStore(),items,got);if(!changes)break;
+      ticketStorePut({...ticketStore(),...changes},true);
+    }
+  }catch(e){ticketIssueOff=true;}
+  finally{ticketIssueBusy=false;}
+}
 
 // ——— 由观影记录与片库推出票面字段 ———
 function ticketArtwork(f){

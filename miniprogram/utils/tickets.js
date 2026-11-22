@@ -363,6 +363,7 @@ function sanitize(input) {
   record.crop=Number.isFinite(input.crop) ? Math.max(0,Math.min(100,input.crop)) : 50;
   record.savedAt=Number.isFinite(input.savedAt) ? input.savedAt : 0;
   record.serial=serialValid(input.serial) ? input.serial : "";
+  record.issue=Number.isInteger(input.issue) && input.issue>0 ? input.issue : 0;
   const fallback=defaults(record);
   record.look=Object.fromEntries(Object.entries(options).map(([key,registry])=>
     [key,Object.prototype.hasOwnProperty.call(registry,input.look?.[key]) ? input.look[key] : fallback[key]]));
@@ -421,6 +422,33 @@ const serialValid=code=>SERIAL_RE.test(code||"") && serialCheck(code)===code[SER
 // 显示格式：No. SP26-7KQ4M-9XDQ3-AB2CD（没有日期时省掉年份）
 const formatSerial=row=>row && serialValid(row.serial) ? "SP"+(/^\d{4}/.test(row.date||"") ? row.date.slice(2,4) : "")+"-"+row.serial.match(/.{5}/g).join("-") : "";
 const entrySerial=(key,entry)=>entry && serialValid(entry.n) ? entry.n : serialOf(key,entry && entry.t);
+// ——— 发行序号（2026-11-22）———
+// 「本片第几张典藏」：由 Supabase 的 tk_issue 按影片统一发号（backend/tickets-issue-v1.sql），同一个典藏编号永远拿到同一个号。
+// 存在票根的 q 字段；还没领到号的票根显示「待发号」，联网后由网站 js/tickets.js / 小程序 utils/ticketstore.js 自动去领。
+const ISSUE_BATCH=50;
+const issueText=no=>"№ "+String(no).padStart(4,"0");
+// 还没领号的票根（每次最多 ISSUE_BATCH 张）：[{key, s:典藏编号, f:影片id}]
+function pendingIssue(store) {
+  const out=[];
+  for (const key of Object.keys(store||{})) {
+    const e=store[key], p=parseKey(key);
+    if (!p || !e || e.del || e.q) continue;
+    out.push({key,s:entrySerial(key,e),f:p.filmId});
+    if (out.length>=ISSUE_BATCH) break;
+  }
+  return out;
+}
+// 把领到的号写回票根：同时冻结典藏编号 n（修改时间要变，不冻结编号就会跟着变），返回要写入的改动，没有就返回 null
+function applyIssue(store,items,results,now) {
+  const got=new Map((Array.isArray(results)?results:[]).filter(r=>r && serialValid(r.s) && Number.isInteger(r.no) && r.no>0).map(r=>[r.s,r.no]));
+  const changes={};
+  for (const it of items||[]) {
+    const e=store[it.key], no=got.get(it.s);
+    if (!no || !e || e.del || e.q || entrySerial(it.key,e)!==it.s) continue;
+    changes[it.key]={...e,n:it.s,q:no,t:Math.max(now||Date.now(),(e.t||0)+1)};
+  }
+  return Object.keys(changes).length ? changes : null;
+}
 
 function sorted(records,programme,year) {
   return records.filter(row=>(!programme || row.programme===programme) && (!year || row.date.slice(0,4)===year)).sort((a,b)=>
@@ -469,7 +497,7 @@ function record(key,filmId,view,entry,base,date) {
   const pick=(field,value)=>value===undefined ? b[field] : value;
   const row=sanitize({...b,id:key,time:pick("time",entry.tm),venue:pick("venue",entry.vn),hall:pick("hall",entry.hl),
     city:pick("city",entry.cy),format:pick("format",entry.fm),seat:entry.st||"",art:pickArt(b.arts,entry.a) || b.art,
-    crop:entry.c===undefined ? 50 : entry.c,sketch:entry.sk===1,savedAt:entry.t,serial:entrySerial(key,entry),look:{...unpackLook(entry.l),craft:entry.x}});
+    crop:entry.c===undefined ? 50 : entry.c,sketch:entry.sk===1,savedAt:entry.t,serial:entrySerial(key,entry),issue:entry.q||0,look:{...unpackLook(entry.l),craft:entry.x}});
   row.key=key; row.linked=!!view; row.arts=b.arts||[]; row.director=b.director||"";
   return row;
 }
@@ -531,6 +559,7 @@ function entryFrom(row,base,t) {
   if (row.crop!==50) entry.c=row.crop;
   if (row.sketch) entry.sk=1;
   if (serialValid(row.serial)) entry.n=row.serial;
+  if (row.issue) entry.q=row.issue;
   const look=packLook(row.look);
   if (look!==packLook(defaults({...base,id:row.id}))) entry.l=look;
   if (row.look?.craft && row.look.craft!==craftFor({...base,id:row.id},row.look.finish)) entry.x=row.look.craft;
@@ -912,9 +941,17 @@ function draw(surface,record,side,image,rect,createCanvas,light) {
     rule(surface,601,bright+"75",59,W-59);
     text(surface,record.title,W/2,652,{...centre,size:21,weight:650,max:331});
     rule(surface,TEAR,bright+"6b",24,W-24,true);
-    text(surface,[record.date.replace(/-/g,"."),record.city].filter(Boolean).join(" · "),W/2,756,{...centre,size:14,font:MONO,ink:craft.vde?foilGradient(surface,110,740,310,760,finish):bright});
-    if (craft.braille) drawBraille(surface,"SPARROW",W/2,782);
-    text(surface,"SPARROW CINEMA",W/2,807,{...centre,size:11,font:MONO});
+    // 发行序号（本片第几张典藏）：撕线下方大号烫印；还没领到号时是灰色「待发号」
+    if (record.issue) {
+      text(surface,issueText(record.issue),W/2,744,{...centre,size:24,weight:600,font:MONO,max:300,ink:foilGradient(surface,130,724,290,748,finish)});
+      text(surface,"本片第 "+record.issue+" 张典藏",W/2,764,{...centre,size:10.5,max:300});
+    } else {
+      text(surface,"№ ----",W/2,744,{...centre,size:24,weight:600,font:MONO,ink:bright+"66"});
+      text(surface,"待发号 · 联网后自动烫印",W/2,764,{...centre,size:10.5,ink:bright+"88"});
+    }
+    text(surface,[record.date.replace(/-/g,"."),record.city].filter(Boolean).join(" · "),W/2,789,{...centre,size:13,font:MONO,ink:craft.vde?foilGradient(surface,110,775,310,793,finish):bright});
+    if (craft.braille) drawBraille(surface,"SPARROW",W/2,805);
+    text(surface,"SPARROW CINEMA",W/2,824,{...centre,size:10,font:MONO});
   } else {
     surface.fillStyle=stock;surface.fillRect(0,0,W,H);
     surface.fillStyle=stub;surface.fillRect(0,TEAR,W,H-TEAR);
@@ -1457,6 +1494,6 @@ function drawWall(surface,records,side,images,caption,createCanvas,title,maxWidt
 }
 
 const shineOf=key=>{const f=finishes[key]||finishes.matte;return {kind:f.kind,fx:fxOf(key),highlight:f.stops[f.stops.length-2]};};
-return {serialOf,serialValid,formatSerial,entrySerial,W,H,TITLE_FAMILY,edgeOf,foilMask,fxOf,artMask,backMask,parseCraft,craftLabel,lookSig,foilLayers,WALL_PAGE,MOSAIC_MAX,FACETS,options:labelOptions(),sanitize,read,sorted,defaults,randomLook,shineOf,draw,wallLayout,drawWall,
+return {serialOf,serialValid,formatSerial,entrySerial,pendingIssue,applyIssue,issueText,ISSUE_BATCH,W,H,TITLE_FAMILY,edgeOf,foilMask,fxOf,artMask,backMask,parseCraft,craftLabel,lookSig,foilLayers,WALL_PAGE,MOSAIC_MAX,FACETS,options:labelOptions(),sanitize,read,sorted,defaults,randomLook,shineOf,draw,wallLayout,drawWall,
   ticketKey,parseKey,cleanStore,mergeStore,packLook,unpackLook,normArt,viewings,build,reconcile,draft,entryFrom,migrateV1,filterTickets,facetCounts,groupByMonth,swatch};
 });

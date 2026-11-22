@@ -470,3 +470,12 @@ Claude 与 GPT 可能使用同一 GitHub 身份，审批人数可先设为0；�
 - 票根册搜索可以搜编号（带不带 `SP26-`、横线都行）。
 - `shared/psync.js` 的 `cleanTixEntry` 保留 `n`：**`psync` 与 `plan` 云函数需要重新部署**，否则小程序同步时云端会丢掉 `n`，编辑过的票根在其他设备上编号可能不一致。
 - 测试在 `tools/check-tickets.js`：5000 张互不重复、稳定、校验位、编辑 / 同步 / 挪动后不变、按编号搜索。
+
+## 发行序号（2026-11-22）
+
+- 每张典藏票根除了典藏编号，还有一个「本片第几张典藏」的发行序号：背面撕线下方大号烫印 `№ 0042`，下面一行「本片第 42 张典藏」。还没领到号时显示灰色「№ ---- / 待发号 · 联网后自动烫印」。只显示本片第几张，不显示全站总数。
+- 发号在 Supabase（同一个项目）：`backend/tickets-issue-v1.sql` 建 `sparrow_issue` 架构（`counters` 按影片计数、`issued` 记「典藏编号 → 影片 → 序号 → 时间」，表不对外开放）和函数 `public.tk_issue(items)`：一次最多 50 张，校验编号格式和校验位，同一个典藏编号永远返回同一个号，并发时后到的号作废、返回先到的号；票根移出后号作废不回收。不保存同步码、微信身份或任何个人档案内容。**上线前须在 Supabase SQL 编辑器执行一次 `backend/tickets-issue-v1.sql`**（可重复执行）；没执行时客户端拿到 404，本次打开内不再重试，票根照常显示「待发号」。
+- 客户端：`shared/tickets.js` 的 `pendingIssue`（还没领号的票根，每次 50 张）/ `applyIssue`（写回 `q`，同时冻结典藏编号 `n`，修改时间 +1 以便同步传开）。网站 `js/tickets.js` 的 `ticketIssueSoon` / `ticketIssueRun` 直接调 `sbRpc('tk_issue')`；小程序 `utils/ticketstore.js` 的 `issueSoon` / `issueRun` 经 `psync` 云函数的 `issue` 动作转发。票根存储写入后 2 秒、打开票根册时自动领号，一轮最多 20 次（1000 张）。
+- 序号存在票根的 `q` 字段，随个人档案同步（`shared/psync.js` 的 `cleanTixEntry` 保留 `q`）。别的设备如果在领号前编辑过这张票根，`q` 丢了也没关系：典藏编号不变，再领一次还是同一个号。
+- **`psync` 云函数需要重新部署**（新增 `issue` 动作，并带上保留 `n` / `q` 的 `psync.js`），`plan` 云函数里的 `psync.js` 也要重新部署。
+- 测试：`tools/check-tickets.js`（模拟发号：按影片从 1 开始、重复领号同一个号、领号后编号不变、同步与编辑保留 `q`、每次最多 50 张）。SQL 在本地 Postgres 16 上执行过两遍，并用 anon 角色调用验证了发号、幂等、坏编号跳过、表不可直接读取。

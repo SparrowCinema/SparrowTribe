@@ -43,9 +43,28 @@ function all(data, idx) {
 function put(store, quiet) {
   const clean = T.cleanStore(store);
   try { wx.setStorageSync(KEY, clean); } catch (e) { if (!quiet) wx.showToast({ title: '票根保存失败，请检查本机存储', icon: 'none' }); return false; }
-  cache = clean; rev++; listeners.forEach(fn => fn()); return true;
+  cache = clean; rev++; listeners.forEach(fn => fn()); issueSoon(); return true;
 }
 const set = (changes, data, idx) => put(Object.assign({}, all(data, idx), changes));
+// 发行序号（2026-11-22）：还没领号的票根经 psync 云函数的 issue 动作向 Supabase tk_issue 领「本片第几张典藏」，每次最多 50 张，一轮最多 20 次。
+// 云函数还没重新部署、后端还没执行 backend/tickets-issue-v1.sql 或离线时，本次启动内不再重试，票根照常显示「待发号」。
+let issueTimer = 0, issueBusy = false, issueOff = false;
+function issueSoon(ms) { if (issueOff || issueBusy || !wx.cloud) return; clearTimeout(issueTimer); issueTimer = setTimeout(issueRun, ms || 2000); }
+async function issueRun() {
+  if (issueOff || issueBusy || !wx.cloud) return;
+  issueBusy = true;
+  try {
+    for (let round = 0; round < 20; round++) {
+      const items = T.pendingIssue(all()); if (!items.length) break;
+      const r = await wx.cloud.callFunction({ name: 'psync', data: { action: 'issue', items: items.map(x => ({ s: x.s, f: x.f })) } });
+      const res = (r && r.result) || {};
+      if (!res.ok) { issueOff = true; break; }
+      const changes = T.applyIssue(all(), items, res.items); if (!changes) break;
+      put(Object.assign({}, all(), changes), true);
+    }
+  } catch (e) { issueOff = true; }
+  finally { issueBusy = false; }
+}
 // 同步：快照与应用（没有片库时只读写已有存储，不做迁移）
 function snapshot() { return JSON.parse(JSON.stringify(all())); }
 function replaceAll(store) { const before = rev; put(store, true); return rev !== before; }
@@ -56,6 +75,7 @@ function onChange(fn) { listeners.push(fn); return () => { const i = listeners.i
 function build(data, idx) {
   const list = viewings(idx), moves = T.reconcile(list, all(data, idx));
   if (moves) put(Object.assign({}, all(), moves), true);
+  issueSoon(800);
   return T.build(list, all(), baseFor(data, idx));
 }
 function freeKey(filmId, date, idx, except) {
@@ -63,4 +83,4 @@ function freeKey(filmId, date, idx, except) {
   for (let n = 1; n < 10; n++) { const key = T.ticketKey(filmId, date, n); if (key === except || (!linked.has(key) && (!store[key] || store[key].del))) return key; }
   return '';
 }
-module.exports = { all, put, set, snapshot, replaceAll, onChange, nudge, build, baseFor, viewings, freeKey, rev: () => rev };
+module.exports = { issueSoon, all, put, set, snapshot, replaceAll, onChange, nudge, build, baseFor, viewings, freeKey, rev: () => rev };

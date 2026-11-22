@@ -330,6 +330,33 @@ const fullBytes=Buffer.byteLength(JSON.stringify(bigStore));assert(fullBytes<600
   assert(T.filterTickets(rows,{text:shown.toLowerCase()}).some(r=>r.key===r0.key),'search by serial');
   assert(T.filterTickets(rows,{text:r0.serial}).some(r=>r.key===r0.key),'search by bare serial');
 }
+// 发行序号：模拟 tk_issue（按影片从 1 发号、同一编号永远同一个号），领号后写入 q、冻结 n，编号不变；同步与编辑保留 q
+{
+  const counters={},issued={};
+  const server=items=>items.map(({s,f})=>{if(!(s in issued)){counters[f]=(counters[f]||0)+1;issued[s]=counters[f];}return {s,no:issued[s]};});
+  const keys=['m1|2026-11-01','m1|2026-11-02','m2|2026-11-01','m1|2026-11-03'];
+  let store={};keys.forEach((k,i)=>{store[k]={t:1700000000000+i};});store['m1|2026-10-01']={del:1,t:5};
+  const before=Object.fromEntries(keys.map(k=>[k,T.entrySerial(k,store[k])]));
+  const items=T.pendingIssue(store);assert.equal(items.length,4,'deleted tickets are not issued');
+  const changes=T.applyIssue(store,items,server(items.map(x=>({s:x.s,f:x.f}))),1800000000000);
+  store={...store,...changes};
+  assert.deepEqual(keys.map(k=>store[k].q),[1,2,1,3],'numbered per film in order');
+  keys.forEach(k=>{assert.equal(store[k].n,before[k],'serial frozen when issued');assert.equal(T.entrySerial(k,store[k]),before[k]);});
+  assert.equal(T.pendingIssue(store).length,0,'nothing left to issue');
+  // 重复来领同一张返回同一个号；伪造的结果（编号不对应）不写入
+  assert.equal(server([{s:before[keys[0]],f:'m1'}])[0].no,1,'idempotent');
+  const fresh={'m3|2026-11-01':{t:1}},it=T.pendingIssue(fresh);
+  assert.equal(T.applyIssue(fresh,it,[{s:T.serialOf('x|2026-01-01',9),no:7}]),null,'ignore mismatched results');
+  // psync 保留 q，票面推导带出 issue，编辑保存仍保留
+  assert.equal(S.cleanTixEntry(store[keys[1]]).q,2,'psync keeps q');
+  const vb=(id,view,date)=>({filmId:id,title:'片'+id,programmeId:'p',programme:'专题',date,time:'',venue:'',hall:'',city:'',format:'',art:'',arts:[]});
+  const one={key:keys[1],filmId:'m1',view:{d:'2026-11-02',r:0,k:''}};
+  const row=T.build([one],{[one.key]:store[one.key]},vb).tickets[0];
+  assert.equal(row.issue,2);assert.equal(row.serial,before[keys[1]]);assert.equal(T.issueText(row.issue),'№ 0002');
+  assert.equal(T.entryFrom({...row,seat:'1排1座'},{...vb('m1',one.view,'2026-11-02'),id:one.key},1900000000000).q,2,'edit keeps q');
+  // 每次最多 50 张
+  const many={};for(let i=0;i<120;i++)many['b'+i+'|2026-11-01']={t:i+1};assert.equal(T.pendingIssue(many).length,T.ISSUE_BATCH);
+}
 // 大票根墙 / 密排拼图的画布尺寸不超过 iOS 约 1670 万像素上限
 for(const n of [1,4,12,13,48,96,180]){const l=T.wallLayout(n);assert(l.width*l.height<16.7e6,'canvas '+n);assert.equal(l.rects.length,n);}
 assert(T.wallLayout(180,1440).width<=1440);
