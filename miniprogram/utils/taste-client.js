@@ -7,8 +7,11 @@
   const emit=()=>subs.forEach(f=>f()),persist=()=>{o.save(pending);emit();};
   const key=j=>j.code+'|'+j.film;
   function enqueue(code,film,rec){if(!code||!/^[\w-]{1,80}$/.test(film))return;const j={code,film,fun:rec?.tastePublic===true&&!rec.del?rec.fun:null,bore:rec?.tastePublic===true&&!rec.del?rec.bore:null,revision:(!rec?.del&&Math.max(0,...['fun','bore','tastePublic'].map(k=>Number.isSafeInteger(rec?.tasteAt?.[k])?rec.tasteAt[k]:0)))||Math.max(0,Number(rec?.t)||0)};['fun','bore'].forEach(k=>{{const v=j[k];if(!(typeof v==='number'&&v>=0&&v<=5&&Number.isInteger(v*2)))j[k]=null;}});pending[key(j)]=j;persist();return flush();}
-  async function flush(){if(busy)return busy;if(!Object.keys(pending).length)return;busy=(async()=>{status='busy';emit();try{for(const k of Object.keys(pending)){const j=pending[k];
-    if(o.beforeVote&&(j.fun!==null||j.bore!==null)){
+  async function flush(){if(busy)return busy;if(!Object.keys(pending).length)return;busy=(async()=>{status='busy';emit();const synced=new Set();try{for(const k of Object.keys(pending)){const j=pending[k];
+    // 投票前先同步一次档案（社区按云端档案核对公开意愿）。一批投票只同步一次，不再每张票同步一次：
+    // 以前 N 部公开评分 = 连续 N 次档案同步，小程序每次启动都会「一直在同步」（2026-11-22）
+    if(o.beforeVote&&(j.fun!==null||j.bore!==null)&&!synced.has(j.code)){
+      synced.add(j.code);
       await o.beforeVote(j);
       if(pending[k]!==j)continue;
     }

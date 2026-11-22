@@ -1050,19 +1050,20 @@ function draw(surface,record,side,image,rect,createCanvas,light) {
     rule(surface,601,bright+"75",59,W-59);
     text(surface,record.title,W/2,652,{...centre,size:21,weight:650,max:331});
     rule(surface,TEAR,bright+"6b",24,W-24,true);
-    // 撕线下方（2026-11-22 改版）：左边发行序号（封版后带总数）与本场序号，右边验真二维码，底部日期城市、盲文、SPARROW CINEMA
+    // 撕线下方（2026-11-22 改版）：左边发行序号（封版后带总数）与本场序号，右边验真二维码，底部日期城市、盲文、SPARROW CINEMA。
+    // 内框线在 y=836 / 842，最后一行要在 828 以上，不能压到框线
     const ed=editionLines(record),qr=record.issue ? qrFor(record.serial) : null,lx=36,maxw=qr?262:W-72;
     if (record.issue) {
-      text(surface,ed.no,lx,744,{size:24,weight:600,font:MONO,max:maxw,ink:foilGradient(surface,lx,724,lx+150,748,finish)});
+      text(surface,ed.no,lx,738,{size:24,weight:600,font:MONO,max:maxw,ink:foilGradient(surface,lx,718,lx+150,742,finish)});
       if (ed.total) {surface.font=`600 24px ${MONO}`;const nw=Math.min(maxw,surface.measureText(ed.no).width);
-        text(surface,ed.total,lx+nw+6,744,{size:13,weight:600,font:MONO,ink:foilGradient(surface,lx+nw,734,lx+nw+70,746,finish)});}
-    } else text(surface,ed.no,lx,744,{size:24,weight:600,font:MONO,ink:bright+"66"});
-    text(surface,ed.line1,lx,763,{size:10.5,max:maxw,ink:record.issue?bright:bright+"88"});
-    if (ed.line2) text(surface,ed.line2,lx,779,{size:10.5,max:maxw,ink:foilGradient(surface,lx,770,lx+160,782,finish)});
-    if (qr) {drawQR(surface,qr,W-34-60,712,60,dark,stock);text(surface,"扫码验真",W-34-30,784,{size:8,align:"center",ink:bright+"cc"});}
-    text(surface,[record.date.replace(/-/g,"."),record.city].filter(Boolean).join(" · "),W/2,805,{...centre,size:12,font:MONO,ink:craft.vde?foilGradient(surface,110,792,310,808,finish):bright});
-    if (craft.braille) drawBraille(surface,"SPARROW",W/2,820);
-    text(surface,"SPARROW CINEMA",W/2,838,{...centre,size:10,font:MONO});
+        text(surface,ed.total,lx+nw+6,738,{size:13,weight:600,font:MONO,ink:foilGradient(surface,lx+nw,728,lx+nw+70,740,finish)});}
+    } else text(surface,ed.no,lx,738,{size:24,weight:600,font:MONO,ink:bright+"66"});
+    text(surface,ed.line1,lx,757,{size:10.5,max:maxw,ink:record.issue?bright:bright+"88"});
+    if (ed.line2) text(surface,ed.line2,lx,772,{size:10.5,max:maxw,ink:foilGradient(surface,lx,763,lx+160,775,finish)});
+    if (qr) {drawQR(surface,qr,W-34-58,708,58,dark,stock);text(surface,"扫码验真",W-34-29,777,{size:8,align:"center",ink:bright+"cc"});}
+    text(surface,[record.date.replace(/-/g,"."),record.city].filter(Boolean).join(" · "),W/2,795,{...centre,size:12,font:MONO,ink:craft.vde?foilGradient(surface,110,783,310,798,finish):bright});
+    if (craft.braille) drawBraille(surface,"SPARROW",W/2,808);
+    text(surface,"SPARROW CINEMA",W/2,craft.braille?825:820,{...centre,size:10,font:MONO});
   } else {
     surface.fillStyle=stock;surface.fillRect(0,0,W,H);
     surface.fillStyle=stub;surface.fillRect(0,TEAR,W,H-TEAR);

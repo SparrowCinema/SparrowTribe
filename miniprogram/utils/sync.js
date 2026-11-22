@@ -10,6 +10,11 @@ const Art = require('./ticket-sketch.js');
 const artRead = k => wx.getStorageSync(k), artWrite = (k, v) => wx.setStorageSync(k, v);
 const KEY = 'sk-sync';
 let busy = null, applying = false, clearing = false, timer = 0, dirty = false;
+// 连续「云端合并结果和本机不一致」而自动补同步的次数（2026-11-22）：
+// 旧版 psync 云函数不认识新字段（如典藏票根的场次序号、封版总数），会把它们清掉再返回，云端永远和本机不一样，
+// 以前每次都 1.5 秒后再同步，一直转圈。现在最多补 2 次就停，等本机真的有新改动（changed）再同步。
+let echo = 0;
+const ECHO_MAX = 2;
 const status = { state: 'idle', msg: '', at: 0 };
 const listeners = [];
 
@@ -69,7 +74,10 @@ function run() {
     if (r.changed || dirty) {
       const cloud = S.clean(r.merged), local = snapshot(), next = S.merge(local, cloud);
       if (!S.same(next, local)) apply(next);
-      if (!S.same(next, cloud)) dirty = true;
+      if (!S.same(next, cloud)) {
+        if (++echo <= ECHO_MAX) dirty = true;
+        else { try { console.warn('[sync] 云端返回的档案缺少本机的部分字段（psync 云函数可能需要重新部署），暂停自动补同步'); } catch (e) { } }
+      } else echo = 0;
     }
     setState(Object.assign({}, st, { rev: r.rev, at: Date.now() }));
     status.state = 'ok'; status.msg = ''; status.at = Date.now(); emit(); return r;
@@ -99,7 +107,7 @@ function join(input) {
 function fromScan(text) { const m = /SP-[A-Za-z0-9-]+/i.exec(String(text || '')); return m ? (S.normalize(m[0]) || '') : ''; }
 function stop() { setOff(true); setState(null); status.state = 'idle'; status.msg = ''; status.at = 0; emit(); }
 // 本机有改动时 3 秒后自动同步；应用从后台回来或进入「我的」页时拉取一次
-function changed() { if (applying||clearing) return; const st = state(); if (!st || !st.code) return; if (busy) dirty = true; clearTimeout(timer); timer = setTimeout(quiet, 3000); }
+function changed() { if (applying||clearing) return; echo = 0; const st = state(); if (!st || !st.code) return; if (busy) dirty = true; clearTimeout(timer); timer = setTimeout(quiet, 3000); }
 function init() { W.onChange(changed); plan.onChange(changed); Want.onChange(changed); Tix.onChange(changed); const st = state(); if (st && st.code) quiet(); else if (!isOff() && !clearing) wxLogin().catch(() => { }); }
 function stale() { const st = state(); return !!(st && st.code && Date.now() - (st.at || 0) > 30000); }
 
