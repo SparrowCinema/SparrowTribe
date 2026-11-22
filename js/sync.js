@@ -31,7 +31,7 @@ async function syncRun(){
     // 连续多次「同步后又变了」说明两边在来回改，停止重绘，避免印章反复刷新、护照收不起来
     const vis=d=>{const c=S.clean(d);return JSON.stringify([c.watched,c.want,c.holder,c.photo,c.picks]);};
     const now=Date.now();syncApplied=syncApplied.filter(t=>now-t<60000);syncApplied.push(now);
-    if(vis(before)!==vis(profileSnap())&&syncApplied.length<=3&&(location.hash.replace('#','').split('/')[0]==='my'||!location.hash)){const y=window.scrollY;route();window.scrollTo(0,y);}}
+    if(vis(before)!==vis(profileSnap())&&syncApplied.length<=3&&(location.hash.replace('#','').split('/')[0]==='my'||!location.hash))idleRerender(()=>{if(!['my',''].includes(location.hash.replace('#','').split('/')[0]))return;const y=window.scrollY;route();window.scrollTo(0,y);},'sync');}
   syncSt={...syncSt,rev,at:Date.now()};syncSave();syncPrint=lateRatings?'':profilePrint();syncStatus={state:'ok',msg:'',at:Date.now()};syncPaint();tasteChanged();TC.flush();return {changed};}
 function syncNow(){if(profileClearing)return Promise.resolve();if(syncBusy)return syncBusy;syncBusy=syncRun().catch(e=>{syncStatus={state:'error',msg:(e&&e.message)||String(e),at:syncStatus.at};syncPaint();throw e;}).finally(()=>{syncBusy=null;});return syncBusy;}
 const syncQuiet=()=>syncNow().catch(()=>{});
