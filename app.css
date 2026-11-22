@@ -366,7 +366,7 @@ html.sheet-open,html.sheet-open body{overflow:hidden}
 .is-img{overflow:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;border-radius:10px;border:1px solid var(--line);background:var(--bg);min-height:0;flex:1}
 .is-img img{display:block;width:100%;height:auto}
 .is-tip{font-size:10.6px;color:var(--muted);text-align:center;margin:10px 0;flex:none}
-.is-actions{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:8px;flex:none}
+.is-actions{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:8px;flex:none}.is-more{display:flex;justify-content:center;gap:18px;margin-top:6px}.is-more .text-button{font-size:14px}
 @media (min-width:700px){.img-sheet{align-items:center;padding:24px}.is-panel{border-radius:18px;height:auto;max-height:calc(100vh - 48px);padding-top:4px}.is-grab{display:none}}
 @media print{
   .shared-banner,.share-panel,.export-grid,.export-view .blockh,.img-sheet{display:none!important}

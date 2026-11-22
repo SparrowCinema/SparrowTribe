@@ -257,11 +257,9 @@ Page({
     }});
   },
   // ——— 导出这张 ———
-  // 正反面合成（默认，片名海报底图，1440 × 1800）/ 只导正面 / 只导背面；导出时烘焙一道固定角度的烫印反光（shared/tickets.js 的 bakeSheen）
-  exportSingle(){
-    if(this.data.loading)return;
-    wx.showActionSheet({itemList:[I.tr('正反面合成（推荐）'),I.tr('只导正面'),I.tr('只导背面')],success:c=>this.exportAs(['both','front','back'][c.tapIndex])});
-  },
+  // 正反面合成（片名海报底图，1440 × 1800）/ 正面 / 背面；导出时烘焙一道固定角度的烫印反光（shared/tickets.js 的 bakeSheen）
+  // 一键导出正反面合成图；需要单面的在保存菜单里顺手再导（2026-11-22）
+  exportSingle(){this.exportAs('both');},
   async exportAs(mode){
     if(this.data.loading)return;
     const both=mode==='both',side=both?'front':mode;
@@ -280,9 +278,11 @@ Page({
       const file=await new Promise((resolve,reject)=>wx.canvasToTempFilePath({canvas:node,fileType:both?'jpg':'png',quality:.92,success:r=>resolve(r.tempFilePath),fail:reject},this));
       wx.hideLoading();this.setData({loading:false});
       if((side==='front'||both)&&row.art&&!art)say('海报读取失败，已用片名代替');
-      wx.showActionSheet({itemList:[I.tr('保存到相册'),I.tr('预览并发给朋友')],success:c=>{
+      const items=[I.tr('保存到相册'),I.tr('预览并发给朋友')].concat(both?[I.tr('也导出正面'),I.tr('也导出背面')]:[]);
+      wx.showActionSheet({itemList:items,success:c=>{
         if(c.tapIndex===0)wx.saveImageToPhotosAlbum({filePath:file,success:()=>say('已保存到相册'),fail:()=>wx.previewImage({urls:[file]})});
-        else wx.previewImage({urls:[file]});
+        else if(c.tapIndex===1)wx.previewImage({urls:[file]});
+        else this.exportAs(c.tapIndex===2?'front':'back');
       }});
     }catch(e){wx.hideLoading();this.setData({loading:false});say('图片生成失败，请稍后再试');}
   }
