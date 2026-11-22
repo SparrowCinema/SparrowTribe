@@ -95,7 +95,9 @@ Page({
     const {tickets,pending}=this._built;
     if(opened){const at=R.filterTickets(tickets,this._q).findIndex(r=>r.key===opened);if(at>=this._limit)this._limit=Math.ceil((at+1)/STEP)*STEP;}
     this.setData({sum:{n:tickets.length,pending:pending.length}});
-    this.paint(false,()=>{if(top)wx.pageScrollTo({scrollTop:top,duration:0});});
+    // 列表结构不变时只局部更新；变了（改了日期换了月份、删掉一张）才整列重建，并分几次校正滚动位置，等图片占位撑开页面
+    const back=()=>{if(top)wx.pageScrollTo({scrollTop:top,duration:0});};
+    this.paint('keep',()=>{back();setTimeout(back,120);setTimeout(back,450);});
   },
   paint(append,done){
     const {tickets}=this._built,q=this._q,all=R.facetCounts(tickets);
@@ -109,13 +111,18 @@ Page({
     const patch={shown:shownRows.length,total:rows.length,all:tickets.length,more:rows.length>shownRows.length};
     // 触底加载：前面的票根不变，只把新增的写进 setData，避免越滚越慢
     const sig=JSON.stringify([q,this.data.density,this.data.front,this.data.artStyle,this._rev]),prev=this.data.groups;
-    if(append==='more'&&sig===this._sig&&prev.length){
+    // 保存回来（append==='keep'）：分组和张数都没变时，只更新改过的那几张，不整列重建——整列重建时图片重新加载、页面变矮，滚动位置会被压回去
+    const same=append==='keep'&&prev.length===groups.length&&groups.every((g,gi)=>prev[gi].id===g.id&&prev[gi].items.length===g.items.length&&g.items.every((it,ii)=>prev[gi].items[ii].k===it.k));
+    if(same){
+      groups.forEach((g,gi)=>g.items.forEach((it,ii)=>{const old=prev[gi].items[ii];if(JSON.stringify(old)!==JSON.stringify(it))patch[`groups[${gi}].items[${ii}]`]=it;}));
+      groups.forEach((g,gi)=>{if(prev[gi].n!==g.n)patch[`groups[${gi}].n`]=g.n;});
+    }else if(append==='more'&&sig===this._sig&&prev.length){
       groups.forEach((g,gi)=>{const old=prev[gi];
         if(!old||old.id!==g.id){patch[`groups[${gi}]`]=g;return;}
         for(let ii=old.items.length;ii<g.items.length;ii++)patch[`groups[${gi}].items[${ii}]`]=g.items[ii];});
     }else patch.groups=groups;
     this._sig=sig;
-    if(!append){
+    if(!append||append==='keep'){
       const activeN=R.FACETS.reduce((n,k)=>n+q[k].length,0);
       this._years=all.year.map(y=>y.value);
       Object.assign(patch,{yearLabels:[I.tr('全部年份'),...all.year.map(y=>`${y.value}（${yearN[y.value]||0}）`)],yearIndex:q.year?this._years.indexOf(q.year)+1:0,text:q.text,
