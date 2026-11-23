@@ -18,7 +18,7 @@ function progFilmGroups(pid,films){
 }
 function progFilmsHTML(pid,films){
   const {up,gone}=progFilmGroups(pid,films.filter(f=>!sectionFilter||PG[pid].sections?.[f.id]===sectionFilter));
-  const grid=(list,ended)=>`<div class="pg-grid">${list.map(f=>progFilmCard(f,pid,ended)).join("")}</div>`;
+  const grid=(list,ended)=>`<div class="pg-grid${ended?" pg-gone":""}">${list.map(f=>progFilmCard(f,pid,ended)).join("")}</div>`;
   const upHTML=up.length?`<h3 class="blockh pg-grp" id="pg-up">即将放映 <small>UPCOMING · ${up.length} 部</small></h3>${grid(up)}`:`<h3 class="blockh pg-grp" id="pg-up">即将放映 <small>UPCOMING · 0 部</small></h3><div class="fd-noshow"><b>暂无待映场次</b><span>新场次公布后会更新到这里。</span></div>`;
   const goneHTML=gone.length?`<details class="pg-ended" id="pg-gone"${up.length?"":" open"}><summary class="blockh pg-grp">已结束 <small>ENDED · ${gone.length} 部</small></summary>${grid(gone,true)}</details>`:"";
   return upHTML+goneHTML;

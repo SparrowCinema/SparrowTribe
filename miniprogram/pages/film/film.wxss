@@ -276,4 +276,6 @@
 
 /* 我的海报（2026-11-23）：资料里有 2 张以上的图时，大海报可点，下方小标「可换 N」 */
 .pst-wrap { position: relative; align-self: flex-start; flex: none; }
+/* 海报在外层里按块元素排：行内图片下方会多出几像素，外层就比海报高，fitHero 每部片都会判定「文字区太高」，把片名一路缩到 55% */
+.pst-wrap .pst { display: block; }
 .pp-badge { position: absolute; left: 50%; bottom: calc(14 * var(--r)); transform: translateX(-50%); white-space: nowrap; padding: calc(4 * var(--r)) calc(14 * var(--r)); border-radius: 999px; background: rgba(20,14,10,.72); color: #fff; font-size: calc(18 * var(--fr)); }
