@@ -1,5 +1,5 @@
 @import "../../styles/selector.wxss";
-.wrap { padding: calc(32 * var(--r)); }
+.wrap { padding: calc(32 * var(--r)) calc(32 * var(--r)) calc(150 * var(--r)); }
 .h1 { font-size: calc(29.4 * var(--fr)); font-weight: 900; }
 .sub { font-size: calc(18.7 * var(--fr)); color: var(--muted); margin: calc(8 * var(--r)) 0 calc(20 * var(--r)); }
 .tabs { white-space: nowrap; margin-bottom: calc(12 * var(--r)); }

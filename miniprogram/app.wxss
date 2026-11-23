@@ -12,7 +12,7 @@ page {
   font-family: -apple-system, "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
   font-size: calc(19.3 * var(--fr)); line-height: 1.6;
 }
-.wrap { padding: 0 calc(32 * var(--r)) calc(48 * var(--r)); }
+.wrap { padding: 0 calc(32 * var(--r)) calc(150 * var(--r)); } /* 底部留出「回到顶部」按钮的高度，最后一行不被挡住 */
 .mono { font-family: Menlo, "SF Mono", "Courier New", monospace; font-variant-numeric: tabular-nums; }
 .h2 { font-size: calc(24.9 * var(--fr)); font-weight: 900; margin: calc(32 * var(--r)) 0 calc(4 * var(--r)); }
 .sub { font-size: calc(17.6 * var(--fr)); color: var(--muted); margin-bottom: calc(24 * var(--r)); }
