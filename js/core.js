@@ -55,6 +55,9 @@ function progRange(p){ const sh=progShows(p.id); const a=p.start?ymd(p.start):(s
 /* 提前结束：结束日前 2 天内（含结束日当天），已公布的场次全部散场，就算已结束——不必等到结束日 24:00（如 2026德国电影展最后一场 11/22，结束日写 11/23）。院线专题不录全部场次，不提前结束。 */
 const PROG_EARLY=2*864e5;
 function progDone(p,t){ if(p.ongoing||!p.end||p.kind==="院线") return false; const sh=progShows(p.id); return sh.length>0&&t>=ymd(p.end)-PROG_EARLY&&sh.every(isPast); }
+/* 院线片自动下映：院线专题（kind 院线）的影片，上映日期（release 里的「YYYY年M月D日」）已过 RUN_DAYS 天、又没有待映场次，视为已下映（等同手写 ended:true），专题页、片目归入已结束。没写具体上映日的不处理；之后补了新场次会自动回到即将放映。 */
+const RUN_DAYS=30;
+function autoEnded(f,shows,t){ if(f.ended||f.ev||(PG[f.prog]||{}).kind!=="院线") return false; const m=String(f.release||"").match(/(\d{4})年(\d{1,2})月(\d{1,2})日/); if(!m||t<new Date(+m[1],m[2]-1,+m[3]).getTime()+RUN_DAYS*864e5) return false; return !shows.some(s=>s.id===f.id&&!isPast(s)); }
 function progStatus(p){ const [a,b]=progRange(p), t=now(); if(a!=null&&t<a) return "soon"; if(!p.ongoing&&b!=null&&t>=b) return "ended"; if(progDone(p,t)) return "ended"; return "live"; }
 function progOrdered(){ const rank={live:0,soon:1,ended:2}; return PROGRAMMES.slice().sort((x,y)=>{const sx=progStatus(x),sy=progStatus(y),lx=localProg(x),ly=localProg(y);if(lx!==ly)return lx?-1:1;if(sx!==sy)return rank[sx]-rank[sy];const ux=progShows(x.id).some(s=>!isPast(s)),uy=progShows(y.id).some(s=>!isPast(s));if(ux!==uy)return ux?-1:1;const [ax,bx]=progRange(x),[ay,by]=progRange(y);return sx==="ended"?(by||0)-(bx||0):(ax||0)-(ay||0);}); }
 function defaultProg(){ const open=progOrdered().filter(p=>progStatus(p)!=="ended"); const pick=open.find(p=>progShows(p.id).some(s=>!isPast(s)))||open.find(p=>progShows(p.id).length)||open[0]; return pick?pick.id:"all"; }

@@ -156,7 +156,7 @@ async function loadData(){
  VENUES=venues;VN=vn;PROGRAMMES=programmes;PG=Object.fromEntries(programmes.map(p=>[p.id,p]));
  Object.entries(cat.aliases||{}).forEach(([o,n])=>{if(filmMap[n]&&!filmMap[o])filmMap[o]=filmMap[n];});
  {let ch=null;try{ch=await get("data/changes.json");}catch(e){}MOVES=(ch&&ch.moves)||{};} /* 场次变更记录：没有（本地预览）时为空，照旧按本机记录识别 */
- FILMS=films.filter(f=>!f.ev);F=filmMap;SH=shows;days=[...new Set(SH.map(s=>s.d))];validKeys=new Set(SH.map(keyOf));planTrack();picked=readSelection();watched=readWatched();want=readWant();wantSeen=readWantSeen();migrateAliases(cat.aliases);dataSignature=signature;return true;
+ F=filmMap;SH=shows;{const t=now();films.forEach(f=>{if(autoEnded(f,shows,t)){f.ended=true;f.endedAuto=1;}});}FILMS=films.filter(f=>!f.ev);days=[...new Set(SH.map(s=>s.d))];validKeys=new Set(SH.map(keyOf));planTrack();picked=readSelection();watched=readWatched();want=readWant();wantSeen=readWantSeen();migrateAliases(cat.aliases);dataSignature=signature;return true;
 }
 // 用户正在点、拖、翻页时，后台触发的整页重绘（排片更新、云端同步）往后推：
 // 否则手指按下的按钮在松开前被换掉，表现为「点了没反应」，翻页动画也会被打断
