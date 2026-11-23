@@ -27,14 +27,14 @@
     <view wx:if="{{arts.length}}" class="te-art">
       <text class="te-art-k">{{L.t(i,'裁切')}}</text>
       <slider class="te-slider" min="0" max="100" value="{{draft.crop}}" block-size="18" activeColor="#8e2a22" backgroundColor="#e6dcc7" bindchanging="changeField" bindchange="changeField" data-field="crop" />
-      <picker wx:if="{{arts.length>1}}" mode="selector" range="{{arts}}" value="{{artIndex}}" bindchange="chooseArt"><view class="te-art-pick">{{arts[artIndex]}} ›</view></picker>
       <view class="te-art-save {{artDirty?'':'off'}}" hover-class="{{artDirty?'te-hv':'none'}}" bindtap="saveHere" role="button" aria-disabled="{{!artDirty}}">{{L.t(i,'保存')}}</view>
     </view>
     <view class="te-tools">
-      <view class="te-seg" role="tablist">
-        <view class="{{front?'on':''}}" data-side="front" bindtap="setSide" role="tab" aria-selected="{{front}}">{{L.t(i,'正面')}}</view>
-        <view class="{{front?'':'on'}}" data-side="back" bindtap="setSide" role="tab" aria-selected="{{!front}}">{{L.t(i,'背面')}}</view>
-      </view>
+      <!-- 正面 / 背面：轻点票根翻面、拖动 360° 转动已经够用，这里换成票面图像（2026-11-23） -->
+      <picker wx:if="{{arts.length>1}}" mode="selector" range="{{arts}}" value="{{artIndex}}" bindchange="chooseArt">
+        <view class="te-style" hover-class="te-hv" role="button">{{L.t(i,'票面图像')}}<text class="te-style-chevron" aria-hidden="true">⌄</text></view>
+      </picker>
+      <view wx:elif="{{arts.length}}" class="te-style" hover-class="te-hv" role="button" bindtap="artOnly">{{L.t(i,'票面图像')}}<text class="te-style-chevron" aria-hidden="true">⌄</text></view>
       <picker mode="selector" range="{{artStyleLabels}}" value="{{artStyleIndex}}" bindchange="pickArtStyle">
         <view class="te-style" hover-class="te-hv" role="button">{{L.t(i,'手绘风格')}}<text class="te-style-chevron" aria-hidden="true">⌄</text></view>
       </picker>
