@@ -10,11 +10,9 @@ let cache = null, rev = 0;
 const listeners = [];
 const iso = d => [d.getFullYear(), String(d.getMonth() + 1).padStart(2, '0'), String(d.getDate()).padStart(2, '0')].join('-');
 
-const SITE = 'https://sparrowcinema.github.io/SparrowTribe/';
-const absolute = src => /^(posters|images)\//i.test(src) ? SITE + src : src;
-// posterUrl 常是本站同一张海报的绝对地址（带 ?v= 让微信刷新缓存），按站内路径去重，不算第二张图
-const artKey = u => u.replace(/^https:\/\/sparrowcinema\.github\.io\/SparrowTribe\//i, '').replace(/[?#].*$/, '');
-function artOf(f) { const seen = new Set(); return [f.poster, U.poster(f), ...(Array.isArray(f.stills) ? f.stills.map(s => typeof s === 'string' ? s : s && s.url) : [])].filter(s => typeof s === 'string' && s).map(absolute).filter(u => { const k = artKey(u); if (seen.has(k)) return false; seen.add(k); return true; }); }
+// 可选票面图与去重规则在 utils/myposter.js（与网站 filmArtwork 一致）
+const MyP = require('./myposter.js');
+const artOf = MyP.artOf;
 // 票面基础字段：有场次时取场次的影院、影厅、专题，否则只用影片资料
 function baseFor(data, idx) {
   return (filmId, view, date) => {
@@ -25,7 +23,7 @@ function baseFor(data, idx) {
       filmId, title: f.cn, subtitle: f.o || f.en || '', showId: s ? (s.sid || U.keyOf(s)) : '',
       programmeId: (p && p.id) || '', programme: (p && p.name) || '', section: (p && p.sections && p.sections[f.id]) || (p && p.id === f.prog ? f.section : '') || '',
       date: s ? iso(U.showDate(s)) : date, time: (s && s.t) || '', city: (v && v.city) || '', venue: (v && v.name) || '', hall: s ? idx.hallName(s) : '',
-      format: fmt ? fmt.zh : (f.version || ''), art: artOf(f)[0] || '', arts: artOf(f), director: f.dir || '',
+      format: fmt ? fmt.zh : (f.version || ''), art: MyP.pick(f) || artOf(f)[0] || '', /* 没单独选过票面图的票根跟着「我的海报」 */ arts: artOf(f), director: f.dir || '',
       progKind: (p && p.kind) || '', progStart: (p && p.start) || '', progEnd: (p && p.end) || '', showTag: showTag(f, s, p, data, idx)
     };
   };

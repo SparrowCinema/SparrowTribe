@@ -8,7 +8,7 @@
     <view class="hin">
       <view class="progrow" wx:for="{{f.progs}}" wx:key="id"><view class="prog" data-id="{{item.id}}" bindtap="openProg">{{item.kind}} · {{item.name}} ›</view><view wx:if="{{item.section}}" class="unit"><text class="ud">◆</text>{{item.section}}</view></view>
       <view class="hrow">
-      <image wx:if="{{f.poster}}" id="hero-pst" class="pst" src="{{f.poster}}" mode="aspectFill" />
+      <view wx:if="{{f.poster}}" class="pst-wrap" bindtap="ppOpen" aria-role="{{f.ppN>1?'button':''}}" aria-label="{{f.ppN>1?L.t(i,'我的海报'):''}}"><image id="hero-pst" class="pst" src="{{f.poster}}" mode="aspectFill" /><text wx:if="{{f.ppN>1}}" class="pp-badge">{{L.t(i,'可换')}} {{f.ppN}}</text></view>
       <view class="tt" id="hero-tt">
         <view class="eyebrow mono"><text class="reg">{{f.reg}}</text><text class="eyc">{{f.y}} · {{f.c}}</text></view>
         <view class="h1" style="font-size:calc({{29.7*fs}} * var(--fr))">{{f.cn}}</view>

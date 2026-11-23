@@ -83,7 +83,10 @@
     "裁切": "Crop",
     "场次": "Screening",
     "自填": "Manual",
-    "首映": "Gala"
+    "首映": "Gala",
+    "我的海报": "My poster",
+    "官方海报": "Official poster",
+    "可换": "Switch"
   },
   "_readme": "English layer for the site. films/programmes/venues overlay data fields when ?lang=en; ui is the zh→en dictionary used by tr(). Missing entries fall back to the Chinese text.",
   "films": {
@@ -13313,6 +13316,10 @@
     "新票根": "New ticket",
     "选择场次": "Choose a screening",
     "自填 / 选择场次": "Enter manually / choose",
-    "这部影片暂时只有这一张图像，补充备用海报或剧照后可以在这里更换": "Only one image is available for this film for now. Once alternate posters or stills are added, you can switch them here."
+    "这部影片暂时只有这一张图像，补充备用海报或剧照后可以在这里更换": "Only one image is available for this film for now. Once alternate posters or stills are added, you can switch them here.",
+    "已换成你选的海报": "Switched to your chosen poster",
+    "已恢复官方海报": "Official poster restored",
+    "只改你自己看到的：影片页、海报墙、观影结算长图和典藏票根默认票面图。片目、排片和分享海报仍用官方海报。": "Only changes what you see: the film page, your poster wall, your cinema recap and the default artwork on your collectible tickets. The library, schedule and share posters keep the official poster.",
+    "只改你自己看到的：影片页、海报墙、观影结算长图和典藏票根默认票面图": "Only changes what you see: the film page, your poster wall, your cinema recap and the default artwork on your collectible tickets"
   }
 }

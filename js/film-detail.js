@@ -73,7 +73,7 @@ function detail(id){
   <header class="fd-hero">${P?pimg(id,360,'class="fd-bg" alt=""'):""}<div class="fd-shade"></div>
     <div class="fd-hin gut">
 <div class="fd-progrow">${window.SparrowLibrary.featuredProgrammes(filmProgsOf(f),p=>{const [a,b]=progRange(p);return {status:progStatus(p),a,b};}).map(x=>`<button class="fd-prog" data-prog="${x.p.id}">${esc(x.p.kind)} · ${esc(x.p.name)} ›</button>${x.sec?`<span class="fd-unit"><i aria-hidden="true">◆</i><span class="sr-only">展映单元：</span>${esc(x.sec)}</span>`:""}`).join("")}</div>
-      ${P?pimg(id,720,`class="fd-poster" alt="${esc(f.cn)} 海报"`):`<div class="fd-poster fd-ph"><b>${esc(f.cn[0])}</b></div>`}
+      ${P?(filmArtwork(f).length>1?`<button type="button" class="fd-pp-btn" data-my-poster="${esc(id)}" aria-haspopup="dialog" aria-label="${esc(tr("我的海报"))}">${pimgMine(id,720,`class="fd-poster" alt="${esc(f.cn)} 海报"`)}<span class="fd-pp-badge">${tr("可换")} ${filmArtwork(f).length}</span></button>`:pimg(id,720,`class="fd-poster" alt="${esc(f.cn)} 海报"`)):`<div class="fd-poster fd-ph"><b>${esc(f.cn[0])}</b></div>`}
       <div class="fd-title">
         <div class="fd-eyebrow"><span class="fd-reg">${REG[f.reg].n}</span><span title="${esc([f.y,f.c].filter(Boolean).join(" · "))}">${[f.y,f.c].filter(Boolean).map(esc).join(" · ")}</span></div>
         <h1>${esc(f.cn)}</h1>
@@ -122,3 +122,18 @@ document.addEventListener("click",e=>{
   const s=e.target.closest("[data-scroll]");if(s){e.preventDefault();const t=document.getElementById(s.dataset.scroll);if(t){const top=t.getBoundingClientRect().top+window.scrollY-(document.getElementById("topbar").offsetHeight+12);window.scrollTo({top,behavior:matchMedia("(prefers-reduced-motion:reduce)").matches?"auto":"smooth"});}return;}
   const x=e.target.closest("[data-expand]");if(x){const b=x.previousElementSibling;b.classList.toggle("clamp");x.textContent=b.classList.contains("clamp")?"展开全文":"收起";}
 });
+
+/* 我的海报（2026-11-23）：影片页点大海报（这部片资料里有 2 张以上的图时）选一张，只改本人的影片页、海报墙、观影结算长图和典藏票根默认票面图。 */
+function openMyPoster(id){ const f=F[id];if(!f)return; const arts=filmArtwork(f),cur=myPosterOf(f);
+  document.getElementById("pp-sheet")?.remove();
+  const d=document.createElement("dialog");d.id="pp-sheet";d.className="schedule-selector ticket-selector";d.setAttribute("aria-labelledby","pp-title");
+  d.innerHTML=`<header class="selector-head"><h2 id="pp-title">${tr("我的海报")}</h2><button type="button" class="selector-close" data-pp="close" aria-label="${tr("关闭")}">×</button></header>
+    <p class="pp-note">${tr("只改你自己看到的：影片页、海报墙、观影结算长图和典藏票根默认票面图。片目、排片和分享海报仍用官方海报。")}</p>
+    <div class="selector-results" role="listbox">${arts.map((a,i)=>`<button type="button" class="selector-option te-art-opt" role="option" aria-selected="${a===cur}" data-pp-pick="${esc(a)}"><img src="${esc(i===0?(pthumb(id,360)||a):a)}" alt="" loading="lazy"><span><b>${tr(i===0?"官方海报":"备用图像")}${i?" "+i:""}</b></span><span class="selector-check" aria-hidden="true">${a===cur?"✓":""}</span></button>`).join("")}</div>`;
+  document.body.appendChild(d);
+  d.addEventListener("click",e=>{ if(e.target===d||e.target.closest('[data-pp="close"]')){d.close();return;}
+    const b=e.target.closest("[data-pp-pick]");if(!b)return; const u=b.dataset.ppPick;d.close();if(u===cur)return;
+    setMyPoster(id,u);route();toast(u===arts[0]?tr("已恢复官方海报"):tr("已换成你选的海报")); });
+  d.addEventListener("close",()=>{d.remove();document.querySelector(`[data-my-poster="${CSS.escape(id)}"]`)?.focus({preventScroll:true});});
+  d.showModal(); }
+document.addEventListener("click",e=>{const b=e.target.closest("[data-my-poster]");if(b)openMyPoster(b.dataset.myPoster);});

@@ -123,17 +123,12 @@ function ticketShowTag(f,s,p){
 }
 
 // ——— 由观影记录与片库推出票面字段 ———
-function ticketArtwork(f){
-  const assets=[f.poster,f.posterUrl,...(Array.isArray(f.stills)?f.stills.map(item=>typeof item==="string"?item:item?.url):[])];
-  // posterUrl 常是本站同一张海报的绝对地址（带 ?v= 让微信刷新缓存），按站内路径去重，不算第二张图
-  const same=url=>url.replace(/^https:\/\/sparrowcinema\.github\.io\/SparrowTribe\//i,"").replace(/[?#].*$/,""),seen=new Set();
-  return assets.filter(url=>typeof url==="string"&&/^(https:\/\/|posters\/|images\/)/i.test(url)).filter(url=>{const k=same(url);if(seen.has(k))return false;seen.add(k);return true;});
-}
+function ticketArtwork(f){return filmArtwork(f);} /* 去重规则见 js/core.js 的 filmArtwork */
 function ticketFromFilm(f,s,date){
   const p=PG[s?.p]||PG[f.prog],v=VN[s?.v],h=v?.halls?.find(item=>item.id===s?.h);
   return {filmId:f.id,title:f.cn,subtitle:f.o||f.en,showId:s?.sid||(s?keyOf(s):""),
     programmeId:p?.id||"",programme:p?.name||"",section:p?.sections?.[f.id]||(p?.id===f.prog?f.section:"")||"",
-    date:s?isoOf(showDate(s)):date,time:s?.t||"",city:v?.city||"",venue:v?.name||"",hall:h?.name||s?.h||"",format:f.version||"",art:ticketArtwork(f)[0]||"",
+    date:s?isoOf(showDate(s)):date,time:s?.t||"",city:v?.city||"",venue:v?.name||"",hall:h?.name||s?.h||"",format:f.version||"",art:myPosterOf(f)||"", /* 没单独选过票面图的票根跟着「我的海报」 */
     progKind:p?.kind||"",progStart:p?.start||"",progEnd:p?.end||"",showTag:ticketShowTag(f,s,p)};
 }
 function ticketBase(filmId,view,date){

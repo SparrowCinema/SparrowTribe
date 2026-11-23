@@ -1,6 +1,7 @@
 const Taste=require('../../utils/taste.js'),C=require('../../utils/community.js');
 const T = require('../../utils/totop.js');
 const U = require('../../utils/util.js');
+const MyP = require('../../utils/myposter.js');
 const plan = require('../../utils/plan.js');
 const PC = require('../../utils/planchange.js');
 const poster = require('../../utils/poster.js');
@@ -346,7 +347,7 @@ Page({
       try {
         const canvas = res && res[0] && res[0].node; if (!canvas) return fail();
         const load = src => new Promise(r => { if (!src) return r(null); const im = canvas.createImage(); im.onload = () => r(im); im.onerror = () => r(null); im.src = src; });
-        const imgs = {}; await Promise.all((sections.includes('favorite')||sections.includes('list')?list:[]).map(async e => { imgs[e.id] = await load(U.poster(e.f)); }));
+        const imgs = {}; await Promise.all((sections.includes('favorite')||sections.includes('list')?list:[]).map(async e => { imgs[e.id] = await load(MyP.pick(e.f) || U.poster(e.f)); }));
         const marks = await Promise.all(['/images/brand/sparrow-movies-sq.png', '/images/brand/sparrow-tribe-sq.png'].map(load));
         const qrImg = await load('/images/brand/miniprogram-code.jpg');
         const items = list.map(e => { const lk = R.look(e.id), p = idx.progOf(e.f); return { id: e.id, title: e.f.cn, en: e.f.en || e.f.o || '', date: e.rec.d, dstamp: R.dstamp(e.rec.d), venue: I.isEn() ? e.venue : e.venueFull, vs: e.venue, score: e.rec.r || 0, color: lk.ink, shape: lk.shape, tilt: lk.tilt, top: (p && p.en) || 'SPARROW FILM PASSPORT', prog: p ? p.name : '', img: imgs[e.id] }; });

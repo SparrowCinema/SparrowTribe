@@ -97,9 +97,26 @@
     });
     return out;
   }
+  // 我的海报（2026-11-23）：{影片id:{u:图片地址,t}|{del:1,t}}，每部影片只记选了哪张（地址），逐项取较新者；
+  // 只在本人的影片页、海报墙、观影结算、典藏票根默认图里生效，地址须是该片资料里已有的图（客户端再核对一次）
+  function cleanPP(d) {
+    var out = {}; if (!d || typeof d !== 'object' || Array.isArray(d)) return out;
+    Object.keys(d).slice(0, 5000).forEach(function (id) {
+      var r = d[id]; if (!/^[\w-]{1,80}$/.test(id) || !r || typeof r !== 'object') return;
+      if (r.del) { out[id] = { del: 1, t: num(r.t) }; return; }
+      if (typeof r.u === 'string' && r.u.length <= 400 && /^(posters\/|images\/|https:\/\/)/i.test(r.u)) out[id] = { u: r.u, t: num(r.t) };
+    });
+    return out;
+  }
+  function mergePP(a, b) {
+    a = cleanPP(a); b = cleanPP(b); var out = {};
+    Object.keys(a).concat(Object.keys(b)).forEach(function (id) { var x = a[id], y = b[id]; out[id] = !x ? y : !y ? x : (y.t > x.t ? y : x); });
+    return out;
+  }
   function clean(d) {
-    var out = { v: 1, watched: {}, holder: { n: '', t: 0 }, photo: { d: '', t: 0 }, picks: { k: [], t: 0 }, want: {}, tix: {}, art: cleanArt(null) };
+    var out = { v: 1, watched: {}, holder: { n: '', t: 0 }, photo: { d: '', t: 0 }, picks: { k: [], t: 0 }, want: {}, tix: {}, art: cleanArt(null), pp: {} };
     if (!d || typeof d !== 'object') return out;
+    out.pp = cleanPP(d.pp);
     out.tix = cleanTix(d.tix);
     out.art = cleanArt(d.art);
     var w = d.watched && typeof d.watched === 'object' ? d.watched : {};
@@ -135,7 +152,7 @@
   }
   function merge(a, b) {            // a = 本机，b = 云端；同一项取较新者，时间相同取本机
     a = clean(a); b = clean(b);
-    var out = { v: 1, watched: {}, holder: null, photo: null, picks: null, want: {}, tix: mergeTix(a.tix, b.tix), art: mergeArt(a.art, b.art) };
+    var out = { v: 1, watched: {}, holder: null, photo: null, picks: null, want: {}, tix: mergeTix(a.tix, b.tix), art: mergeArt(a.art, b.art), pp: mergePP(a.pp, b.pp) };
     Object.keys(a.watched).concat(Object.keys(b.watched)).forEach(function (id) {
       var x = a.watched[id], y = b.watched[id]; out.watched[id] = !x ? y : !y ? x : Taste.mergeFields(x,y,y.t>x.t?y:x);
     });
@@ -146,6 +163,6 @@
     return out;
   }
   var same = function (a, b) { return JSON.stringify(clean(a)) === JSON.stringify(clean(b)); };
-  var api = { newCode: newCode, normalize: normalize, clean: clean, merge: merge, same: same, cleanTix: cleanTix, cleanTixEntry: cleanTixEntry, mergeTix: mergeTix, TIX_KEY: TIX_KEY, cleanArt: cleanArt, mergeArt: mergeArt };
+  var api = { newCode: newCode, normalize: normalize, clean: clean, merge: merge, same: same, cleanTix: cleanTix, cleanTixEntry: cleanTixEntry, mergeTix: mergeTix, TIX_KEY: TIX_KEY, cleanArt: cleanArt, mergeArt: mergeArt, cleanPP: cleanPP, mergePP: mergePP };
   if (typeof module !== 'undefined' && module.exports) module.exports = api; else root.SparrowSync = api;
 })(typeof window !== 'undefined' ? window : this);
