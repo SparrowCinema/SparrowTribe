@@ -27,3 +27,7 @@
 @media (min-width: 1100px) { .pgrid { grid-template-columns: 1fr 1fr 1fr; } }
 
 .sub-cal { display: inline-flex; align-items: center; gap: calc(8 * var(--r)); margin: calc(4 * var(--r)) 0 calc(8 * var(--r)); padding: calc(10 * var(--r)) calc(22 * var(--r)); border: calc(2 * var(--r)) solid var(--line); border-radius: 999px; background: var(--surface); color: var(--accent); font-size: calc(23.2 * var(--fr)); font-weight: 600; }
+
+/* 已结束的专题与网站一致（app.css 的 .prog-card.pc-ended）：整张卡淡一些，头图去掉大部分颜色 */
+.prog.pc-ended { opacity: .72; }
+.prog.pc-ended .cover { filter: grayscale(.7); }

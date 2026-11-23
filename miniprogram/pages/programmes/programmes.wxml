@@ -9,7 +9,7 @@
   <view class="tag"><text>{{L.t(i,'观影')}}\n{{L.t(i,'护照')}}</text></view>
 </view>
 <template name="pc">
-  <view class="prog card" data-id="{{id}}" bindtap="open">
+  <view class="prog card pc-{{status}}" data-id="{{id}}" bindtap="open">
     <image wx:if="{{cover}}" class="cover" src="{{cardCover || cover}}" mode="aspectFill" />
     <view class="pbody">
       <text class="pk mono"><text class="pst pst-{{status}}">{{statusText}}</text>{{kt}} · {{pt}}</text>
