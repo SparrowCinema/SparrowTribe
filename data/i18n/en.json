@@ -38,6 +38,237 @@
   },
   "_readme": "English layer for the site. films/programmes/venues overlay data fields when ?lang=en; ui is the zh→en dictionary used by tr(). Missing entries fall back to the Chinese text.",
   "films": {
+    "bleda-y-rosa-a-place-an-image": {
+      "title": "Bleda y Rosa. A Place, an Image",
+      "o": "Bleda y Rosa. Un lloc, una imatge",
+      "dir": "Xavier Crespo",
+      "c": "Spain",
+      "writers": [
+        "Xavier Crespo",
+        "Silvia Blasco",
+        "Eloy Enciso"
+      ],
+      "cast": [
+        "María Bleda",
+        "José María Rosa"
+      ],
+      "genre": [
+        "Documentary",
+        "Experimental"
+      ],
+      "language": "Spanish",
+      "syn": "María Bleda and José María Rosa carry measuring tape, stakes, maps and a tripod into a forest. The two photographers return to the same patch of ground, testing where an object belongs until a new image can be made. The film follows the work from the woods to the gallery and gives the eventual photograph a past you can see and hear.",
+      "bio": "Spanish filmmaker and producer Xavier Crespo developed the project with originator Carles Candela and writer Silvia Blasco. The subjects, María Bleda and José María Rosa, met at art school in Valencia and received Spain's National Photography Prize in 2008. Their series Football Fields, Battlefields and Origin use landscapes to recall events that have left few visible traces.",
+      "st": "The project grew out of conversations between Crespo and Candela in 2007 while they were filming sites associated with the end of the Spanish Civil War. They eventually followed the creation of Res Communis. Split screen grew out of synchronised dual-camera material that Eloy Enciso retained in his first edit. The team shot additional material with this relationship in mind, and Amadeo Moscardó designed sound for the two images sharing a space.",
+      "editorial": "Watch this alongside Otium for two answers to what it takes to make a photograph of a place. Hanna works to a platform's specifications. Bleda and Rosa can spend hours rethinking where to stand. The time missing from both types of photograph becomes the subject here.",
+      "highlights": [
+        "Watch how measuring, staking and walking precede the camera's final position.",
+        "Listen for the way one view's sounds influence what you notice in the other.",
+        "Compare what the finished photo holds with what you remember from the forest."
+      ],
+      "honors": [
+        "入选｜2026 FIDMarseille · Other Gems (non-competitive, world premiere)",
+        "入选｜2026 8th Hainan Island International Film Festival · A Possibility (Asian premiere)"
+      ],
+      "warnings": [],
+      "contentNote": "Public story and programme information reviewed. Detailed depiction and audiovisual intensity await verification."
+    },
+    "foreign-travel-2026": {
+      "title": "Foreign Travel",
+      "o": "Auslandsreise",
+      "dir": "Ted Fendt",
+      "c": "Germany",
+      "writers": [
+        "Ted Fendt",
+        "Leonie Rodrian"
+      ],
+      "cast": [
+        "Leonie Rodrian",
+        "Florian Model",
+        "Alejo Franzetti",
+        "Hanna Döring",
+        "Mia Sellmann",
+        "Sigrid Vagt"
+      ],
+      "genre": [
+        "Drama",
+        "Experimental"
+      ],
+      "language": "German / Italian / French",
+      "syn": "Over a year in Berlin, Leonie and a small group of friends read Italian writer Anna Maria Ortese. Their conversations move through courtyards and cafés as people look for flats, settle in a new country and prepare for a child. A visit to Ortese's German translator, Sigrid Vagt, gives Leonie another way to think about the stories taking shape around her.",
+      "bio": "Ted Fendt is a filmmaker, translator and projectionist from Philadelphia. He funded early films in the Philadelphia and South Jersey area through his projection work in New York. Short Stay and Classical Period both played the Berlinale Forum. He continued to work as a projectionist and translator after moving to Berlin.",
+      "st": "Giovanna Giuliani introduced Fendt to Ortese's writing in Paris. Fendt and Leonie Rodrian developed the film scene by scene, with the other performers free to revise their lines. They filmed one or two days each month on a tight supply of 16mm stock. Jenny Lou Ziegel photographed a single Berlin neighbourhood as its seasons changed.",
+      "editorial": "Fans of a good post-screening conversation may recognise the pleasure here. Pay attention to how long Fendt lets a conversation breathe, then how easily he passes over the weeks before the next one. Vagt's account of translation offers a way into those choices.",
+      "highlights": [
+        "Follow shifts in light around the same Berlin streets.",
+        "Listen to how Sigrid Vagt explains a translation choice.",
+        "Watch the everyday news friends bring to each meeting."
+      ],
+      "honors": [
+        "入选｜2026 Berlin International Film Festival · Forum (world premiere)",
+        "入选｜2026 FIDMarseille · International Competition",
+        "入选｜2026 New York Film Festival",
+        "入选｜2026 8th Hainan Island International Film Festival · A Possibility (Asian premiere)"
+      ],
+      "warnings": [],
+      "contentNote": "Public story and programme information reviewed. Detailed depiction and audiovisual intensity await verification."
+    },
+    "otium-2026": {
+      "title": "Otium",
+      "o": "Otium",
+      "dir": "Christopher Beaulieu",
+      "c": "Canada",
+      "writers": [
+        "Christopher Beaulieu"
+      ],
+      "cast": [
+        "Eliza Martin",
+        "Claire Shenstone-Harris"
+      ],
+      "genre": [
+        "Drama",
+        "Experimental"
+      ],
+      "language": "English",
+      "syn": "Hanna travels between Mississauga and Toronto, making ends meet through online tutoring and real-estate photography. The luxury apartments she photographs are often vacant. Back at her parents' house, she tries to hold on to time for her own work. Older family footage puts the life she can afford beside the prosperity previous generations could expect.",
+      "bio": "Toronto-based Canadian filmmaker Christopher Beaulieu made his feature debut with Otium. He worked with Eliza Martin on a student film years before writing the role of Hanna with her in mind. His own years of gig work in Toronto underpin the film's attention to commuting, awkward friendships and the minutes available for art.",
+      "st": "Beaulieu had done every job he gives Hanna. He conceived the indifferent circular pan before writing the story and expanded a planned short during the pandemic. He rehearsed broadly framed scenes with the actors and shot on 16mm with Liam Guay. Footage shot in his childhood home meets family recordings of the same place and 8mm material from his grandparents.",
+      "editorial": "Watch how long the film leaves you in a condo after you have understood what it looks like. The Latin title refers to time available for thought or making things. Hanna's paid labour tells you exactly what it costs her to find that time.",
+      "highlights": [
+        "Notice when the camera keeps moving after Hanna leaves the frame.",
+        "Compare the digitally crisp real-estate pictures with the film's 16mm grain.",
+        "Listen for the repeated musical movement and see how it meets the family footage."
+      ],
+      "honors": [
+        "入选｜2026 Montreal Critics’ Week (world premiere)",
+        "入选｜2026 FIDMarseille · First Film Competition",
+        "入选｜2026 Toronto Festival of Narrative Arts (Toronto premiere)",
+        "入选｜2026 8th Hainan Island International Film Festival · A Possibility (Asian premiere)"
+      ],
+      "warnings": [
+        "Financial hardship and employment insecurity",
+        "Isolation and low mood"
+      ],
+      "contentNote": "Public story information includes financial hardship, employment insecurity and isolation. Detailed depiction and audiovisual intensity await verification."
+    },
+    "september-afternoon-2026": {
+      "title": "September Afternoon",
+      "o": "September Afternoon",
+      "dir": "Nicolaas Schmidt",
+      "c": "Germany",
+      "writers": [
+        "Nicolaas Schmidt"
+      ],
+      "cast": [
+        "Amin Motallebzadeh",
+        "Katharina Grossmann-Hensel",
+        "Hedi Grossmann",
+        "Ada Kurzhöfer"
+      ],
+      "genre": [
+        "Drama",
+        "Experimental"
+      ],
+      "language": "No dialogue",
+      "syn": "A couple heads to the coast with a child after the weather has turned. The wind defeats their attempts at shelter, the tide threatens a small dam, and sand gets into the ice cream. They are determined to make the afternoon live up to their idea of summer. A series of minor frustrations grows into something closer to a cosmic catastrophe.",
+      "bio": "Born in Leipzig in 1979, Nicolaas Schmidt works across film, video and conceptual art in Hamburg. Final Stage won a special jury prize at the 2017 Berlinale, and First Time received a Pardi di Domani special mention at Locarno in 2021. September Afternoon is his first feature.",
+      "st": "Schmidt wrote, directed and edited the film, photographed by Thomas Oswald. An ice cream commercial from the 1980s opens the film with a promise of effortless fun. On the actual beach, repetitive music and prolonged physical tasks stretch that promise to breaking point. The film goes without spoken dialogue.",
+      "editorial": "Keep the advertisement in mind as the film returns to the seaside rituals it sells. An umbrella that will not go up first plays as physical comedy. The length of the struggle gives it room to become something stranger.",
+      "highlights": [
+        "Compare the commercial's beach with the actual beach.",
+        "Listen to how repeated music changes the tone.",
+        "Notice when the repeated action turns from funny to unnerving."
+      ],
+      "honors": [
+        "入选｜2026 Locarno Film Festival · Cineasti del Presente Competition (world premiere)",
+        "入选｜2026 8th Hainan Island International Film Festival · A Possibility (China premiere)"
+      ],
+      "warnings": [
+        "Disaster and apocalyptic imagery"
+      ],
+      "contentNote": "Public story information includes disaster and apocalyptic imagery. Detailed depiction and audiovisual intensity await verification."
+    },
+    "the-birds-tell-me-all-there-is-to-know": {
+      "title": "The Birds Tell Me All There Is To Know",
+      "o": "The Birds Tell Me All There Is To Know",
+      "dir": "Aidan Cronin",
+      "c": "USA",
+      "writers": [
+        "Aidan Cronin"
+      ],
+      "cast": [
+        "Doug Jamieson",
+        "Ruby Harvey",
+        "Simon Rabatin",
+        "Leslie Cronin"
+      ],
+      "genre": [
+        "Drama",
+        "Experimental"
+      ],
+      "language": "English",
+      "syn": "As summer ends in upstate New York, a retired painter with dementia tends the birds in his backyard, repeatedly losing hold of the news of his wife's death. Across town, Sam grieves for her father, cares for her mother and faces the imminent departure of a friend. A birdhouse briefly brings their separate routines into contact.",
+      "bio": "Brooklyn-based Aidan Cronin is a filmmaker, cinematographer and programmer who co-founded the Ithaca Experimental Film Festival. He works with older cameras and lenses. This first feature brings that interest into his writing, photography and editing.",
+      "st": "Cronin wrote, directed, photographed and edited the film and was one of its producers. He shot it on Video8, an analogue consumer format that preceded Hi8. The Spectacle screening notes draw attention to the way birds, frogs and water compete with lawn equipment. The filmmaker and Spectacle list the film at 123 minutes. The Green Mountain premiere schedule lists a 153-minute slot.",
+      "editorial": "Give the two characters time to tend to their own lives before expecting the encounter to do anything for them. Listen for the small sounds that come back as the machines quieten. That is one place the film makes room for grief.",
+      "highlights": [
+        "Listen for the shifts between wildlife and lawn machinery.",
+        "Follow the birdhouse as it passes between the two stories.",
+        "Notice how Video8 handles the small distances in a backyard."
+      ],
+      "honors": [
+        "入选｜2026 Green Mountain Film Festival (world premiere)",
+        "入选｜2026 Rio de Janeiro Independent Film Festival (Lumen)",
+        "入选｜2026 8th Hainan Island International Film Festival · A Possibility (Asian premiere)"
+      ],
+      "warnings": [
+        "Dementia and memory loss",
+        "Bereavement",
+        "Alcohol misuse"
+      ],
+      "contentNote": "Public story information includes dementia, bereavement and alcohol misuse. Detailed depiction and audiovisual intensity await verification."
+    },
+    "the-mirage-bingham-bryant-2026": {
+      "title": "The Mirage",
+      "o": "El espejismo",
+      "dir": "Bingham Bryant",
+      "c": "Portugal / Spain",
+      "writers": [
+        "Bingham Bryant",
+        "Francisca Alarcão",
+        "Maria Novo"
+      ],
+      "cast": [
+        "Francisca Alarcão",
+        "Maria Novo",
+        "Constance Rousseau",
+        "Rita Azevedo Gomes"
+      ],
+      "genre": [
+        "Drama",
+        "Fantasy",
+        "Experimental"
+      ],
+      "language": "Portuguese / Spanish / French",
+      "syn": "A young French visitor searches for coastal mirages in San Sebastián. On a boat she meets a Portuguese woman who tells her about two sisters who once lived there. The story enters their walks, encounters and obsessions. A figure in an old image seems to move again, and a pair of binoculars used backwards puts other images just within reach.",
+      "bio": "Bingham Bryant is an American filmmaker and producer based in Lisbon and New York. He co-directed For the Plasma with Kyle Molzan and went on to make shorts including Foreign Powers. His solo feature debut returns to optical devices and conflicting points of view.",
+      "st": "Bryant adapted Edogawa Rampo's 1929 story The Traveller with the Pasted Rag Picture. An early version set the story in New York. Moving to San Sebastián led him to use the city's slopes, lifts and sightlines, and to recast the original brothers as sisters. He rehearsed blocking with the actors before cinematographer Christopher Messina joined with the camera. The production lists both HD and 16mm.",
+      "editorial": "Follow the long shots as if you had taken a wrong turn in a city you barely know. Pay attention to the moments when the camera changes perspective without a cut and to how easily a story someone is telling becomes something you appear to have seen yourself.",
+      "highlights": [
+        "Watch how windows, staircases and reflections form frames inside the shot.",
+        "Follow the changes in who can see whom as the characters climb or descend.",
+        "Recall who first described an image when it reappears."
+      ],
+      "honors": [
+        "入选｜2026 FIDMarseille · International and First Film Competitions (world premiere)",
+        "入选｜2026 Doclisboa · New Visions (Portuguese premiere)",
+        "入选｜2026 8th Hainan Island International Film Festival · A Possibility (Asian premiere)"
+      ],
+      "warnings": [
+        "Following and obsessive behaviour"
+      ],
+      "contentNote": "Public story information includes following and obsessive behaviour. Detailed depiction and audiovisual intensity await verification."
+    },
     "wild-strawberries": {
       "title": "Wild Strawberries",
       "dir": "Ingmar Bergman",
@@ -10878,7 +11109,7 @@
       "kind": "Film festival",
       "period": "Dec 6–12, 2026",
       "city": "Sanya",
-      "blurb": "Dec 6–12 in Sanya, themed “Many Wonders of the Sea, Cinema Leading the Future”. Co-hosted by China Media Group and the Hainan Provincial Government, with 11 sections including the Golden Coconut competition and screenings. Jury president: Ruben Östlund; festival ambassador: Audrey Tautou. Plans 100–120 films in 250–295 screenings, with Egypt, Greece, Serbia, Thailand, ASEAN and Hong Kong, China spotlights and a retrospective of the jury president. Weekend extension screenings in Sanya and Haikou follow the closing. The Spotlight section traces Ruben Östlund’s filmography through 8 features and shorts; the Gala has 10 films. Programme additions and screening times will be updated as announced."
+      "blurb": "Dec 6–12 in Sanya, themed “Many Wonders of the Sea, Cinema Leading the Future”. Co-hosted by China Media Group and the Hainan Provincial Government, with 11 sections including the Golden Coconut competition and screenings. Jury president: Ruben Östlund; festival ambassador: Audrey Tautou. Plans 100–120 films in 250–295 screenings, with Egypt, Greece, Serbia, Thailand, ASEAN and Hong Kong, China spotlights and a retrospective of the jury president. Weekend extension screenings in Sanya and Haikou follow the closing. The Spotlight section traces Ruben Östlund’s filmography through 8 features and shorts; the Gala has 10 films. A Possibility brings together six films about looking, reading, working, remembering, making photographs and holding on to summer. Programme additions and screening times will be updated as announced."
     },
     "tiantan-tour-2026": {
       "name": "2026 BJIFF Tour",
@@ -11377,6 +11608,7 @@
     }
   },
   "ui": {
+    "采珠拾贝": "A Possibility",
     "映后嘉宾签名": "Guest autographs",
     "只有在这一场现场认证过的典藏票根才会出现嘉宾签名。每场最多 4 位。": "Only collector's tickets checked in at this screening receive the autographs. Up to 4 guests per screening.",
     "已满 4 位嘉宾。": "4 guests already.",
