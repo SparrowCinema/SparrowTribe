@@ -5,7 +5,7 @@
 // 本地预览：node tools/build-extras.js
 const fs = require('fs'), path = require('path');
 const root = path.join(__dirname, '..');
-const SITE = 'https://sparrowcinema.github.io/SparrowTribe/';
+const SITE = 'https://sparrowcinema.org/';
 const J = p => JSON.parse(fs.readFileSync(path.join(root, p), 'utf8'));
 const cat = J('data/catalog.json'), EN = J('data/i18n/en.json');
 const esc = s => String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');

@@ -21,7 +21,7 @@ const U=require('../../../utils/util.js');
 const I=require('../../../utils/i18n.js');
 const CFG=require('../../../utils/cfg.js');
 const app=getApp();
-const SITE='https://sparrowcinema.github.io/SparrowTribe/';
+const SITE='https://sparrowcinema.org/';
 const FACE_W=600,FAST_W=360,FACE_H=Math.round(FACE_W*R.H/R.W);
 const say=phrase=>wx.showToast({title:I.tr(phrase),icon:'none'});
 const stock=(w,h)=>wx.createOffscreenCanvas({type:'2d',width:w,height:h});

@@ -88,7 +88,7 @@ Page({
     const nav = (f.ev ? [null, null] : [all[i - 1], all[i + 1]]).map(x => x ? { id: x.id, cn: x.cn, poster: U.thumb(x) } : null);
     const para = s => String(s || '').split(/\n{2,}/).filter(Boolean);
     // 购票码：影片自带 + 所属各专题的购票码（跨影展影片可有多张，按专题标注）
-    const SITE = 'https://sparrowcinema.github.io/SparrowTribe/', tks = [], seenTk = {};
+    const SITE = 'https://sparrowcinema.org/', tks = [], seenTk = {};
     const hintOf = (pl, lb, h) => t([pl ? pl + '扫码' + (lb || '购票') : '', (h || '').replace(/^淘票票扫码购票\s*[·・]?\s*/, '')].filter(Boolean).join(' · '));
     const addTk = (url, pl, lb, h, p) => { if (!url || seenTk[url]) return; seenTk[url] = 1; tks.push({ url, hint: hintOf(pl, lb, h), label: t(lb || '购票'), prog: p ? p.name : '' }); };
     // 专题已结束 / 影片已下映 / 全部场次已放映后，不再显示购票码（待排片的保留）

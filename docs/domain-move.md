@@ -23,6 +23,8 @@
 
 ## 第二阶段：上线步骤
 
+进度（2026-11-24）：1–4 已完成（搬家页仓库已建并部署、getData 已重新部署、小程序后台没有配置任何服务器域名所以不用改、域名已在 GitHub 账户验证、DNS 已指向 GitHub Pages）；5 为第二阶段 PR；6 由用户在仓库设置里填写域名。
+
 1. **建搬家页仓库**（用户）：在 GitHub 组织 SparrowCinema 下新建公开仓库 `sparrowcinema.github.io`，Settings → Pages 选 main 分支根目录。把 `move/` 下四个文件放进去（Claude 可代为提交）。打开 `https://sparrowcinema.github.io/move-check.js` 确认能访问。**这个仓库永远不要绑定自定义域名。**
 2. **重新部署 getData 云函数**（用户，微信开发者工具）。
 3. **小程序后台**（用户）：开发管理 → 服务器域名里如果配置了 `sparrowcinema.github.io`，告诉 Claude，再决定如何处理（新域名可能需要备案才能加入）。

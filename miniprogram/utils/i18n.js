@@ -1,7 +1,7 @@
 // 中文 / English：与网站同一套词典（data/i18n/en.json → miniprogram/data/en.js，由 tools/build-fallback.js 生成）。
 // 页面里的 JS 文字用 tr()；WXML 里的固定文字用 utils/l.wxs 的 L.t(i, '中文') / L.n(i, 数量, 单位)，i 来自 dict()。
 // 词典里没有的文字保持中文，不会报错。
-const SITE = 'https://sparrowcinema.github.io/SparrowTribe/';
+const SITE = 'https://sparrowcinema.org/';
 let EN = require('../data/en.js');
 let LANG = 'zh', KEYS = [];
 const MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];

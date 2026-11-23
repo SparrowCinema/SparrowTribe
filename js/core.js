@@ -98,7 +98,7 @@ function filmArtwork(f){ if(!f) return [];
   const seen=new Set();
   return assets.filter(url=>typeof url==="string"&&/^(https:\/\/|posters\/|images\/)/i.test(url)).filter(url=>{const k=artKey(url);if(seen.has(k))return false;seen.add(k);return true;}); }
 /* 同一张图的比对键：本站地址去掉站点前缀和 ?v=，站内相对路径去掉 ?v=；外站地址原样（小程序 utils/myposter.js 同一规则） */
-function artKey(u){ u=String(u||""); if(/^https:\/\/sparrowcinema\.github\.io\/SparrowTribe\//i.test(u)) u=u.replace(/^https:\/\/sparrowcinema\.github\.io\/SparrowTribe\//i,""); return /^(posters|images)\//i.test(u)?u.replace(/[?#].*$/,""):u; }
+function artKey(u){ u=String(u||"").replace(/^https:\/\/(?:www\.)?sparrowcinema\.org\//i,"").replace(/^https:\/\/sparrowcinema\.github\.io\/SparrowTribe\//i,""); /* 新旧站点地址都去掉前缀（换域名前保存的也认） */ return /^(posters|images)\//i.test(u)?u.replace(/[?#].*$/,""):u; }
 const myPosterOf = f => { const arts=filmArtwork(f), r=f&&posterPicks[f.id], k=r&&!r.del?artKey(r.u):null, hit=k?arts.find(a=>artKey(a)===k):null; return hit||arts[0]||""; };
 const myPoster = id => myPosterOf(F[id])||pst(id);
 const myPosterPicked = id => { const f=F[id]; return !!f&&myPosterOf(f)!==(filmArtwork(f)[0]||""); };

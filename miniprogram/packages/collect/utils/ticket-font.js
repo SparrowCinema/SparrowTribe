@@ -1,7 +1,7 @@
 // 票根片名字体：润植家康熙字典美化体（免费可商用）按片名取字的子集，部署时由 tools/build-title-font.py 生成在网站上。
 // 在线加载，不进小程序包；scopes 含 native 才能给 Canvas 2D 用。最多等 2.5 秒，载不到就退回系统宋体（下次进页面再试）。
 // 地址按天加参数，片名库更新后最晚隔天换新字。
-const SITE = 'https://sparrowcinema.github.io/SparrowTribe/';
+const SITE = 'https://sparrowcinema.org/';
 const FAMILY = 'SparrowKangxi';
 let loading = null, ok = false;
 function ready() {

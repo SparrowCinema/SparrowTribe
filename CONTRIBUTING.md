@@ -14,7 +14,7 @@
 
 ## 项目结构与现状
 
-- 网站：https://sparrowcinema.github.io/SparrowTribe/（仓库 SparrowCinema/SparrowTribe，原名 style-kaleidoscope；GitHub Pages 不会自动跳转旧网址）
+- 网站：https://sparrowcinema.org/（2026-11-24 起；仓库 SparrowCinema/SparrowTribe，原名 style-kaleidoscope。旧网址 https://sparrowcinema.github.io/SparrowTribe/ 由 GitHub 整站跳转到新域名，见 docs/domain-move.md）
 - 内部标识沿用 style-kaleidoscope：localStorage 键、风格万相专题 id、ICS 事件 UID 后缀，修改会导致已保存排片或日历重复，不要改。
 - 单页静态应用：index.html 是页面骨架，样式在 app.css、路由与交互脚本按功能拆在 js/*.js（部署时合并为 app.js，见文末「网站代码文件」一节）；数据在 data/（线上启动时读部署生成的精简数据，影片详情按需补全，见文末「精简启动数据」一节）：
   - data/catalog.json：专题（id、名称、类型、period、start/end ISO 日期、city、cover、file）与影院影厅。
@@ -34,7 +34,8 @@
 
 ## 换域名（sparrowcinema.org，2026-11-24 起）
 
-- 正在从 `sparrowcinema.github.io/SparrowTribe` 迁到 `https://sparrowcinema.org`，方案与上线步骤见 docs/domain-move.md。
+- 已从 `sparrowcinema.github.io/SparrowTribe` 迁到 `https://sparrowcinema.org`，方案与上线步骤见 docs/domain-move.md。代码里的站点地址统一写 `https://sparrowcinema.org/`；比对、去前缀的地方（`artKey`、`myposter.js` 的 `key`、`shared/tickets.js` 的 `normArt`、getData / fallback 的 `posterUrl`）同时认旧地址，因为用户本机和云端还存着旧地址。
+- 根目录 `move-ready.json` 表示新域名已生效（旧网址上缓存的页面据此转到新网址），不要删除。
 - `index.html` 最前面的搬家加载器（`shared/domain-move.js`）必须在其他脚本之前；`boot()` 先等 `window.SP_MOVE`。新增本机存储键请沿用 `sparrow` / `sk-` 前缀，搬家才会带上。
 - 改了 `shared/domain-move.js` 要运行 `node tools/build-bridge.js`，并把 `move/` 同步到 `SparrowCinema/sparrowcinema.github.io` 仓库。
 
@@ -459,7 +460,7 @@ Claude 与 GPT 可能使用同一 GitHub 身份，审批人数可先设为0；�
 ## 外链海报写在 `poster`，不要写 `posterUrl`（2026-11-21）
 
 - 外站海报地址只填 `poster`。部署时 `tools/localize-posters.py` 会把整份专题文件里这串地址全部替换成相对路径 `posters/x-<id>.jpg`；如果同时手写了同值的 `posterUrl`，它也会变成相对路径，小程序会把它当成安装包里的文件，海报全部空白（海南岛国际电影节首映单元就是这样）。
-- `posterUrl` 只用于指向本站的地址（例如 `https://sparrowcinema.github.io/SparrowTribe/posters/<名>.jpg?v=37` 让微信刷新缓存）。`check-content.js` 会拦下其他写法；getData 与 `build-fallback.js` 也会忽略非本站的 `posterUrl`，按 `poster` 推出站内地址（兜底数据里的外链海报直接指向 `posters/x-<id>.jpg`）。
+- `posterUrl` 只用于指向本站的地址（例如 `https://sparrowcinema.org/posters/<名>.jpg?v=37` 让微信刷新缓存；旧地址 `https://sparrowcinema.github.io/SparrowTribe/…` 仍被接受，getData 会换成新域名）。`check-content.js` 会拦下其他写法；getData 与 `build-fallback.js` 也会忽略非本站的 `posterUrl`，按 `poster` 推出站内地址（兜底数据里的外链海报直接指向 `posters/x-<id>.jpg`）。
 
 ## 票根盲盒（2026-11-22）
 

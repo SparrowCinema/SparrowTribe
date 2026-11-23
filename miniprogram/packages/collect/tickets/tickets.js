@@ -18,7 +18,7 @@ const say=phrase=>wx.showToast({title:I.tr(phrase),icon:'none'});
 const stock=(w,h)=>wx.createOffscreenCanvas({type:'2d',width:w,height:h});
 const iso=d=>[d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-');
 const thumbOf=u=>/^https?:\/\/[^?#]+\/posters\/[^/?#]+\.(jpe?g|png)$/i.test(u||'')?u.replace(/\/posters\/([^/?#]+)\.(jpe?g|png)$/i,'/posters/w360/$1.jpg'):u;
-const SITE='https://sparrowcinema.github.io/SparrowTribe/';
+const SITE='https://sparrowcinema.org/';
 const artworkUrl=src=>/^(posters|images)\//i.test(src||'')?SITE+src:src;
 const FACET_LABEL={programme:'专题',city:'城市',venue:'影院',format:'放映版本'};
 const paths=new Map(); // 票面图片缓存：签名 → 临时文件
