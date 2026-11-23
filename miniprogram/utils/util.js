@@ -19,7 +19,7 @@ const hsl2hex = (h, s, l) => { s /= 100; l /= 100; const k = n => (n + h / 30) %
 // 色块色用 CSS 变量取饱和度/明度（app.wxss 里是浅色默认值，暗色时由 cfg.js 的 page-style 覆盖），所以切换外观不用重算数据；变量取不到时回落到浅色值
 const filmTone = i => { const h = Math.round((i < 0 ? 0 : i) * 137.508 % 360); return { bg: 'hsl(' + h + ' var(--barS,36%) var(--barL,85%))', line: 'hsl(' + h + ' var(--barS,36%) var(--lineL,68%))', ink: 'hsl(' + h + ' 38% var(--inkL,22%))', bar: hsl2hex(h, 40, 62) }; };
 // 上映日期：优先解析 release 中的「YYYY年M月D日」，否则用年份
-const relTime = f => { const m = String(f.release || '').match(/(\d{4})年(\d{1,2})月(\d{1,2})日/); if (m) return new Date(+m[1], m[2] - 1, +m[3]).getTime(); return f.y ? new Date(+f.y, 0, 1).getTime() : 0; };
+const relTime = f => { const m = String(f.releaseZh || f.release || '').match(/(\d{4})年(\d{1,2})月(\d{1,2})日/); if (m) return new Date(+m[1], m[2] - 1, +m[3]).getTime(); return f.y ? new Date(+f.y, 0, 1).getTime() : 0; };
 // 某部影片的下一场（未开映）
 const nextShowOf = (f, shows) => shows.filter(s => s.id === f.id && showDate(s).getTime() > Date.now()).sort((a, b) => showDate(a) - showDate(b))[0] || null;
 // 片单排序：有待放映场次的在前，按下一场放映时间先后；无场次的按上映日期从新到旧
@@ -75,18 +75,22 @@ function progInfo(p, data, idx, now = Date.now()) {
   return { shows, a, b, status, up: shows.filter(s => !ended(s, idx)).length };
 }
 
-// 院线片自动下映（与网站 autoEnded 一致）：院线专题的影片，上映日期已过 30 天、又没有待映场次，视为已下映（等同 ended:true）。
-// 没写具体上映日的不处理；在 app.js 每次换数据时调用，复制影片对象后标记，不改原始数据。
+// 院线片自动下映（与网站 autoEnded 一致）：出现在院线专题里（本籍或 members / sections 挂进来）的影片，上映日期已过、又没有待映场次时视为已下映（等同 ended:true）：
+// 录入过的场次已全部放完 → 马上算；一场都没录过 → 上映满 30 天才算。没写具体上映日的不处理；在 app.js 每次换数据时调用，复制影片对象后标记，不改原始数据。
 const RUN_DAYS = 30;
 function markAutoEnded(data, now = Date.now()) {
   if (!data || !data.films || !data.programmes) return data;
-  const kind = {}; data.programmes.forEach(p => { kind[p.id] = p.kind; });
-  const idx = index(data), up = new Set(data.shows.filter(s => idx.F[s.id] && !ended(s, idx)).map(s => s.id));
+  const cin = data.programmes.filter(p => p.kind === '院线');
+  if (!cin.length) return data;
+  const inCinema = f => cin.some(p => f.prog === p.id || (p.members || []).includes(f.id) || (p.sections || {})[f.id]);
+  const idx = index(data), up = new Set(), seen = new Set();
+  data.shows.forEach(s => { if (!idx.F[s.id]) return; seen.add(s.id); if (!ended(s, idx)) up.add(s.id); });
   let hit = false;
   const films = data.films.map(f => {
-    if (f.ended || f.ev || kind[f.prog] !== '院线' || up.has(f.id)) return f;
-    const m = String(f.release || '').match(/(\d{4})年(\d{1,2})月(\d{1,2})日/);
-    if (!m || now < new Date(+m[1], m[2] - 1, +m[3]).getTime() + RUN_DAYS * 864e5) return f;
+    if (f.ended || f.ev || up.has(f.id) || !inCinema(f)) return f;
+    const m = String(f.releaseZh || f.release || '').match(/(\d{4})年(\d{1,2})月(\d{1,2})日/); if (!m) return f;
+    const rel = new Date(+m[1], m[2] - 1, +m[3]).getTime();
+    if (now < rel || (!seen.has(f.id) && now < rel + RUN_DAYS * 864e5)) return f;
     hit = true; return Object.assign({}, f, { ended: true, endedAuto: 1 });
   });
   return hit ? Object.assign({}, data, { films }) : data;

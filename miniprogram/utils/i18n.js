@@ -70,7 +70,7 @@ function localize(data) {
   if (LANG !== 'en' || !data) return data;
   const films = data.films.map(f => {
     const o = (EN.films || {})[f.id]; if (!o) return f;
-    const { title, ...rest } = o; return Object.assign({}, f, { cnZh: f.cn }, title ? { cn: title } : {}, rest);
+    const { title, ...rest } = o; return Object.assign({}, f, { cnZh: f.cn }, (o.release && f.release) ? { releaseZh: f.release } : {}, title ? { cn: title } : {}, rest);
   });
   const programmes = data.programmes.map(p => {
     const o = (EN.programmes || {})[p.id]; if (!o) return p;

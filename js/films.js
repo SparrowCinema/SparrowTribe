@@ -25,7 +25,7 @@ function libraryBadges(f){const x=window.SparrowLibrary.status(f,libraryContext(
 function filmMatches(f,q){return window.SparrowLibrary.matches(f,q);}
 const nextShow = f => SH.find(s=>s.id===f.id&&!isPast(s));
 // 上映日期：优先解析 release 中的「YYYY年M月D日」，否则用年份
-const relTime = f => { const m=String(f.release||"").match(/(\d{4})年(\d{1,2})月(\d{1,2})日/); if(m) return new Date(+m[1],m[2]-1,+m[3]).getTime(); return f.y?new Date(+f.y,0,1).getTime():0; };
+const relTime = f => { const m=String(f.releaseZh||f.release||"").match(/(\d{4})年(\d{1,2})月(\d{1,2})日/); if(m) return new Date(+m[1],m[2]-1,+m[3]).getTime(); return f.y?new Date(+f.y,0,1).getTime():0; };
 // 片单排序：有待放映场次的在前；同组内上映日期新的在前
 // 片单排序：有待放映场次的在前，按下一场放映时间先后；无场次的按上映日期从新到旧
 const filmOrder = (a,b) => { const na=nextShow(a), nb=nextShow(b); if(!!na!==!!nb) return na?-1:1; if(na&&nb) return showDate(na)-showDate(nb)||a.cn.localeCompare(b.cn,"zh"); return relTime(b)-relTime(a)||a.cn.localeCompare(b.cn,"zh"); };
