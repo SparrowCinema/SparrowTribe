@@ -556,3 +556,11 @@ Claude 与 GPT 可能使用同一 GitHub 身份，审批人数可先设为0；�
 - **典藏筛选**：筛选弹层最下面一组「典藏」：现场认证、嘉宾签名、已封版、隐藏款、影展限定、满贯。规则在 `shared/tickets.js` 的 `BADGES` / `badgeKeys`（一张票根可以有几项），`filterTickets` 的 `q.badge`（组内为「或」、与其他分面为「且」），`facetCounts` 返回 `badge: [{value, label, count}]`，按固定顺序、只列有票根的项。嘉宾签名每台设备凭编号自取，刚换设备时要等签名取回后才算得进去。
 - **从影片页直达**：点「已盖章」弹出的菜单多一项「查看典藏票根」（网站 `data-st="tickets"` → `ticketOpenFilm`，小程序 film `stampMenu` → `/packages/collect/tickets/tickets?film=<id>`），打开票根册只看这部电影（`q.film`），每次观影一张，标签显示「《片名》 ×」；此时「待制作」和「一键生成」也只算这部。网站从「我的」菜单再进票根册时自动去掉只看这部（`ticketFilmJump`）。
 - 测试 `tools/check-ticket-find.js`（筛选规则）和 `tools/check-ticket-find-mp.js`（小程序票根册页面，单独进程运行，避免往票根存储里写的数据影响后面的测试），都随 check-companion 运行。
+
+## 我的海报（2026-11-23）
+
+- 影片资料里有 2 张以上的图（`poster` / `posterUrl` / `stills`；本站同一张图的两种地址只算一张）时，影片页大海报角上显示「可换 N」，点开选一张（网站 `openMyPoster`，小程序 film `ppOpen`）。只改本人看到的：影片页大海报、海报墙、观影结算长图、典藏票根默认票面图（票根单独选过票面图的保持原样）。片目、排片表、专题页、分享海报仍用官方海报。
+- 存储：网站 `sparrow-poster-pick-v1`（`js/core.js` 的 `filmArtwork` / `artKey` / `myPosterOf` / `setMyPoster` / `pimgMine`），小程序 `sk-poster-pick-v1`（`utils/myposter.js`），格式 `{影片id:{u,t}|{del:1,t}}`，选回官方海报写删除标记。两端用同一个比对键（本站地址去掉站点前缀和 `?v=`），所以网站选的在小程序也认。
+- 同步：个人档案 `pp` 字段（`shared/psync.js` 的 `cleanPP` / `mergePP`，逐项取较新；备份恢复与清空云端一并处理）。客户端应用云端档案时合并而不是覆盖。**`psync` 与 `plan` 云函数需要重新部署**，否则小程序同步时会丢掉这一项。
+- 真正能换图需要给影片补备用海报或剧照（`stills` 数组，元素为图片地址或 `{url}`）。
+

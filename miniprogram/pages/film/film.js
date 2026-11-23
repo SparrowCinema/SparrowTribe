@@ -1,6 +1,7 @@
 const Taste=require('../../utils/taste.js'),C=require('../../utils/community.js');
 const T = require('../../utils/totop.js');
 const U = require('../../utils/util.js');
+const MyP = require('../../utils/myposter.js');
 const Premiere = require('../../utils/premiere.js');
 const Library = require('../../utils/library.js');
 const plan = require('../../utils/plan.js');
@@ -31,6 +32,17 @@ Page({
   onLoad(q) { this.setData({ i: I.dict() }); HT.show(this); this.id = SM.fromScene(q, ((app.globalData.data || {}).films || []).map(x => x.id)); this.off1 = app.onData(() => this.build()); this.off2 = plan.onChange(() => this.build()); this.off3 = W.onChange(() => this.buildMine()); this.offC=C.subscribe(()=>this.setData({community:C.model(this.id,I.isEn()),tsRow:this.tsRowModel()}));this.build();this.loadCommunity(); },
   loadCommunity(){C.read([this.id]).then(()=>this.setData({community:C.model(this.id,I.isEn()),tsRow:this.tsRowModel(),communityError:false})).catch(()=>this.setData({communityError:true}));},
   withdrawCommunity(){C.withdraw(this.id);},
+  // 我的海报（2026-11-23）：资料里有 2 张以上的图时点大海报选一张，只改本人的影片页、海报墙、观影结算长图和典藏票根默认票面图
+  ppOpen() {
+    const f = app.globalData.data && U.index(app.globalData.data).F[this.id]; if (!f) return;
+    const arts = MyP.artOf(f); if (arts.length < 2) return;
+    const cur = MyP.pick(f) || arts[0], labels = arts.map((a, i) => (a === cur ? '✓ ' : '') + (i ? I.tr('备用图像') + ' ' + i : I.tr('官方海报'))).slice(0, 6);
+    wx.showActionSheet({ alertText: I.tr('只改你自己看到的：影片页、海报墙、观影结算长图和典藏票根默认票面图'), itemList: labels, success: r => {
+      const u = arts[r.tapIndex]; if (!u || u === cur) return;
+      MyP.set(f, u); this.setData({ 'f.poster': MyP.pick(f) || U.poster(f) });
+      wx.showToast({ title: I.tr(r.tapIndex ? '已换成你选的海报' : '已恢复官方海报'), icon: 'none' });
+    } });
+  },
   toggleGone() { this.setData({ goneOpen: !this.data.goneOpen }); },
   homeTipGo() { HT.home(); },
   homeTipClose() { HT.close(this); },
@@ -93,7 +105,7 @@ Page({
       f: {
         id: f.id, ev: !!f.ev, ended: !!f.ended, cn: f.cn, cnDb: (!I.isEn() && f.cnDb && f.cnDb !== f.cn) ? f.cnDb : '',warnings:f.warnings||[],contentNote:f.contentNote||t('具体内容尚待核实，不代表没有敏感内容或适合所有年龄。'),sensory:f.contentReview?.sensory==='flashing', en: f.en || f.o, minText: t(f.min ? f.min + ' 分钟' : '片长待定'), release: t(f.release || ''), o: f.o !== f.cn && f.o !== (f.en || f.o) ? f.o : '', y: f.y, c: t(f.c), min: f.min, lang: t(f.language),
         version: t(f.version || ''), genre: (f.genre || []).map(t), dir: f.dir, dirO: f.dirO, dirLife: f.dirLife,
-        color: (data.reg[f.reg] || {}).c, reg: t((data.reg[f.reg] || {}).n || ''), poster: U.poster(f), ticket: U.ticket(f), ticketHint: t([f.ticketPlatform ? f.ticketPlatform + "扫码" + (f.ticketLabel || "购票") : "", (f.ticketHint || "").replace(/^淘票票扫码购票\s*[·・]?\s*/, "")].filter(Boolean).join(" · ")), section: t(f.section || ""), ticketLabel: t(f.ticketLabel || '购票'),
+        color: (data.reg[f.reg] || {}).c, reg: t((data.reg[f.reg] || {}).n || ''), poster: MyP.pick(f) || U.poster(f), ppN: MyP.artOf(f).length, ticket: U.ticket(f), ticketHint: t([f.ticketPlatform ? f.ticketPlatform + "扫码" + (f.ticketLabel || "购票") : "", (f.ticketHint || "").replace(/^淘票票扫码购票\s*[·・]?\s*/, "")].filter(Boolean).join(" · ")), section: t(f.section || ""), ticketLabel: t(f.ticketLabel || '购票'),
         prog: { id: p.id, name: p.name, kind: t(p.kind) }, progs: Library.featuredProgrammes(idx.progsOf(f),p=>U.progInfo(p,data,idx)).map(x => ({ id: x.p.id, name: x.p.name, kind: t(x.p.kind), section: t(x.sec || '') })), multi: idx.progsOf(f).length > 1, section: t(f.section || ''),
         syn: para(f.syn), bio: para(f.bio), st: para(f.st), long: String(f.syn || '').length > 220,
         ini: (f.dir || '').charAt(0), highlights: [f.editorial,...(f.highlights || [])].filter(Boolean).map((x, k) => ({ n: String(k + 1).padStart(2, '0'), x })),

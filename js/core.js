@@ -87,6 +87,24 @@ const pst = id => (F[id]&&F[id].poster)||null;
 let THUMBS=false;
 const pthumb = (id,w=360) => { const p=pst(id); if(!p||!THUMBS) return p; const m=/^posters\/([^/?#]+)\.(jpe?g|png)$/i.exec(p); return m?'posters/w'+w+'/'+m[1]+'.webp':p; };
 const pimg = (id,w,attrs) => '<img src="'+esc(pthumb(id,w))+'" data-full="'+esc(pst(id))+'" '+attrs+'>';
+/* 我的海报（2026-11-23）：影片资料里已有的图（poster / posterUrl / stills，本站同一张图的两种地址只算一张）中，本人选的那张。
+   本机 sparrow-poster-pick-v1 = {影片id:{u,t}|{del:1,t}}，随个人档案同步（shared/psync.js 的 pp）。
+   只用在影片页大海报、海报墙、观影结算长图、典藏票根默认票面图；片目、排片、专题页、分享海报仍用官方海报。 */
+const PP_KEY='sparrow-poster-pick-v1';
+let posterPicks=(()=>{try{const o=JSON.parse(localStorage.getItem(PP_KEY)||'{}');return o&&typeof o==='object'&&!Array.isArray(o)?o:{};}catch{return {};}})();
+function filmArtwork(f){ if(!f) return [];
+  const assets=[f.poster,f.posterUrl,...(Array.isArray(f.stills)?f.stills.map(item=>typeof item==="string"?item:item?.url):[])];
+  // posterUrl 常是本站同一张海报的绝对地址（带 ?v= 让微信刷新缓存），按站内路径去重，不算第二张图
+  const seen=new Set();
+  return assets.filter(url=>typeof url==="string"&&/^(https:\/\/|posters\/|images\/)/i.test(url)).filter(url=>{const k=artKey(url);if(seen.has(k))return false;seen.add(k);return true;}); }
+/* 同一张图的比对键：本站地址去掉站点前缀和 ?v=，站内相对路径去掉 ?v=；外站地址原样（小程序 utils/myposter.js 同一规则） */
+function artKey(u){ u=String(u||""); if(/^https:\/\/sparrowcinema\.github\.io\/SparrowTribe\//i.test(u)) u=u.replace(/^https:\/\/sparrowcinema\.github\.io\/SparrowTribe\//i,""); return /^(posters|images)\//i.test(u)?u.replace(/[?#].*$/,""):u; }
+const myPosterOf = f => { const arts=filmArtwork(f), r=f&&posterPicks[f.id], k=r&&!r.del?artKey(r.u):null, hit=k?arts.find(a=>artKey(a)===k):null; return hit||arts[0]||""; };
+const myPoster = id => myPosterOf(F[id])||pst(id);
+const myPosterPicked = id => { const f=F[id]; return !!f&&myPosterOf(f)!==(filmArtwork(f)[0]||""); };
+function setMyPoster(id,u){ const f=F[id];if(!f)return; const def=filmArtwork(f)[0]||""; posterPicks[id]=!u||artKey(u)===artKey(def)?{del:1,t:Date.now()}:{u:artKey(u),t:Date.now()};
+  try{localStorage.setItem(PP_KEY,JSON.stringify(posterPicks));}catch{toast('当前浏览器无法保存，离开页面后可能丢失');} }
+const pimgMine = (id,w,attrs) => { const u=myPoster(id); return !myPosterPicked(id)?pimg(id,w,attrs):'<img src="'+esc(u)+'" data-full="'+esc(u)+'" '+attrs+'>'; };
 document.addEventListener('error',e=>{const t=e.target;if(t&&t.tagName==='IMG'&&t.dataset&&t.dataset.full&&!t.src.endsWith(t.dataset.full)){t.src=t.dataset.full;}},true);
 const minText = f => f.minTbd ? "片长待定" : f.min+" 分钟";
 const slateHTML = f => pst(f.id) ? `<span class="slate has" style="background:${REG[f.reg].c}">${pimg(f.id,360,`alt="${esc(f.cn)} 海报" loading="lazy"`)}</span>` : `<span class="slate" style="background:${REG[f.reg].c}"><b>${esc(f.cn[0])}</b><span>${f.y}</span></span>`;

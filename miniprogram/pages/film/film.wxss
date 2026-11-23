@@ -273,3 +273,7 @@
 .mr-acts .mr-seen-full { flex: 1.35; margin-top: 0; }
 .mr-want { flex: 1; height: calc(68 * var(--r)); display: flex; align-items: center; justify-content: center; border-radius: calc(16 * var(--r)); border: calc(3 * var(--r)) solid var(--line); color: var(--fg); font-size: calc(22 * var(--fr)); font-weight: 700; white-space: nowrap; box-sizing: border-box; }
 .mr-want.on { border-color: #c79a3a; color: #8a6516; background: rgba(232, 217, 170, 0.19); }
+
+/* 我的海报（2026-11-23）：资料里有 2 张以上的图时，大海报可点，下方小标「可换 N」 */
+.pst-wrap { position: relative; align-self: flex-start; flex: none; }
+.pp-badge { position: absolute; left: 50%; bottom: calc(14 * var(--r)); transform: translateX(-50%); white-space: nowrap; padding: calc(4 * var(--r)) calc(14 * var(--r)); border-radius: 999px; background: rgba(20,14,10,.72); color: #fff; font-size: calc(18 * var(--fr)); }
