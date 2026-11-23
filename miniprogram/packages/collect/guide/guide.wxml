@@ -1,0 +1,9 @@
+<page-meta page-style="{{ps}}" />
+<view class="wrap gd-page">
+ <view class="gd-head">{{i.__en?'Passport guide':'观影护照使用指南'}}</view>
+ <view class="gd-nav"><view wx:for="{{chapters}}" wx:key="id" class="gd-chip" hover-class="hv" data-id="{{item.id}}" bindtap="jump">{{item.t}}</view></view>
+ <view wx:for="{{chapters}}" wx:for-item="c" wx:key="id" class="gd-ch" id="gd-{{c.id}}">
+  <view class="gd-h">{{c.t}}</view>
+  <view wx:for="{{c.items}}" wx:key="n" class="gd-li"><text class="gd-n">{{item.n}}</text><view class="gd-tx"><text class="gd-k">{{item.k}}</text><text class="gd-s">{{item.s}}</text></view></view>
+ </view>
+</view>

@@ -18,7 +18,8 @@
         "tickets/tickets",
         "ticket-edit/ticket-edit",
         "poster-wall/poster-wall",
-        "taste-map/taste-map"
+        "taste-map/taste-map",
+        "guide/guide"
       ]
     }
   ],

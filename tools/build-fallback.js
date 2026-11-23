@@ -44,6 +44,8 @@ console.log('share-poster.js copied');
 // 趣味图谱长图：shared/taste-report.js 复制给小程序
 fs.writeFileSync(path.join(root, 'miniprogram/packages/collect/utils/taste-report.js'), '/* 由 tools/build-fallback.js 从 shared/taste-report.js 复制，请改 shared/taste-report.js 后重新运行。 */\n' + fs.readFileSync(path.join(root, 'shared/taste-report.js'), 'utf8'));
 console.log('taste-report.js copied');
+// 使用指南：shared/guide.js 复制给小程序分包
+fs.writeFileSync(path.join(root, 'miniprogram/packages/collect/utils/guide.js'), '/* 由 tools/build-fallback.js 从 shared/guide.js 复制，请改 shared/guide.js 后重新运行。 */\n' + fs.readFileSync(path.join(root, 'shared/guide.js'), 'utf8'));
 // 典藏票根验真二维码（2026-11-22）：vendor/qrcode.js 改成小程序模块放进分包，导出 matrix(text) → 二维布尔数组
 {
   const src = fs.readFileSync(path.join(root, 'vendor/qrcode.js'), 'utf8');

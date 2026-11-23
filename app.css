@@ -1346,3 +1346,15 @@ button,summary,a,label,select,[role=button],[data-pp],.my-entry{touch-action:man
 .ci-pad-acts{display:flex;gap:10px}
 .ci-pad-acts button{flex:1}
 .vf-ag{margin-top:16px}.vf-ag small{color:var(--muted);font-size:13px}
+
+/* 使用指南页 #guide（2026-11-23） */
+.guide-page{max-width:860px}
+.gd-nav{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 8px}
+.gd-nav button{border:1px solid var(--line);border-radius:999px;padding:7px 13px;font-size:11px;background:var(--surface);color:var(--fg)}
+.gd-ch{scroll-margin-top:80px;padding-top:14px}
+.gd-ch h3{font:900 17px var(--f-display);margin:14px 0 4px;color:var(--accent)}
+.gd-ch ol{list-style:none;margin:0;padding:0}
+.gd-ch li{display:grid;grid-template-columns:28px 1fr;gap:2px 8px;padding:11px 0;border-top:1px solid var(--line)}
+.gd-n{grid-row:1/3;font:600 13px var(--f-mono);color:var(--accent);padding-top:1px}
+.gd-ch li b{font-size:12.4px}
+.gd-ch li p{margin:0;color:var(--muted);font-size:11px;line-height:1.75}
