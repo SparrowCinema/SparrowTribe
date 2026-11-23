@@ -80,3 +80,6 @@
 .wrap > .blockh { font-size: calc(24.4 * var(--fr)); }
 
 .share-canvas{position:fixed;left:-9999px;top:0;width:1080px;height:1080px}
+
+/* 已结束的影片海报去色（与网站 .pg-gone 一致） */
+.gone .gf .pw image, .gone .gf .ph { filter: grayscale(.7); }

@@ -65,3 +65,6 @@
 
 /* 想看（2026-11-16） */
 .film-statuses .want{color:#8a6516;border-color:#d9c08a}.film-statuses .new{color:#fffaf0;background:var(--accent);border-color:var(--accent)}
+
+/* 本专题已放映、往期专题里的影片海报去色变淡（与网站 .fgone / .fold-prog 一致） */
+.gone-list .row .pst, .pc-b .row .pst { filter: grayscale(.7); opacity: .72; }
