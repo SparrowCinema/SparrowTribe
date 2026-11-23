@@ -12,7 +12,9 @@ const iso = d => [d.getFullYear(), String(d.getMonth() + 1).padStart(2, '0'), St
 
 const SITE = 'https://sparrowcinema.github.io/SparrowTribe/';
 const absolute = src => /^(posters|images)\//i.test(src) ? SITE + src : src;
-function artOf(f) { return [...new Set([f.poster, U.poster(f), ...(Array.isArray(f.stills) ? f.stills.map(s => typeof s === 'string' ? s : s && s.url) : [])].filter(s => typeof s === 'string' && s).map(absolute))]; }
+// posterUrl 常是本站同一张海报的绝对地址（带 ?v= 让微信刷新缓存），按站内路径去重，不算第二张图
+const artKey = u => u.replace(/^https:\/\/sparrowcinema\.github\.io\/SparrowTribe\//i, '').replace(/[?#].*$/, '');
+function artOf(f) { const seen = new Set(); return [f.poster, U.poster(f), ...(Array.isArray(f.stills) ? f.stills.map(s => typeof s === 'string' ? s : s && s.url) : [])].filter(s => typeof s === 'string' && s).map(absolute).filter(u => { const k = artKey(u); if (seen.has(k)) return false; seen.add(k); return true; }); }
 // 票面基础字段：有场次时取场次的影院、影厅、专题，否则只用影片资料
 function baseFor(data, idx) {
   return (filmId, view, date) => {

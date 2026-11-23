@@ -231,7 +231,8 @@ Page({
     if(!this.data.front)this.turnTo('front');
     this.renderFaces('front');
   },
-  chooseArt(e){this._draft.art=this._art[Number(e.detail.value)];this._draft.crop=50;this.setData({artIndex:Number(e.detail.value),'draft.crop':50});this.artState();this.renderFaces();},
+  chooseArt(e){const k=Number(e.detail.value);if(this._art[k]===this._draft.art)return;this._draft.art=this._art[k];this._draft.crop=50;this.setData({artIndex:k,'draft.crop':50});this.artState();if(!this.data.front)this.turnTo('front');this.renderFaces();},
+  artOnly(){wx.showModal({title:I.tr('票面图像'),content:I.tr('这部影片暂时只有这一张图像，补充备用海报或剧照后可以在这里更换'),showCancel:false,confirmText:I.tr('知道了')});},
   artState(){const dirty=!this._original||artSig(this._draft)!==this._artSaved;if(dirty!==this.data.artDirty)this.setData({artDirty:dirty});},
   saveHere(){if(this.data.artDirty)this.store(true);},
   store(stay){

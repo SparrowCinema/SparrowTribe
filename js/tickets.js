@@ -125,7 +125,9 @@ function ticketShowTag(f,s,p){
 // ——— 由观影记录与片库推出票面字段 ———
 function ticketArtwork(f){
   const assets=[f.poster,f.posterUrl,...(Array.isArray(f.stills)?f.stills.map(item=>typeof item==="string"?item:item?.url):[])];
-  return [...new Set(assets.filter(url=>typeof url==="string"&&/^(https:\/\/|posters\/|images\/)/i.test(url)))];
+  // posterUrl 常是本站同一张海报的绝对地址（带 ?v= 让微信刷新缓存），按站内路径去重，不算第二张图
+  const same=url=>url.replace(/^https:\/\/sparrowcinema\.github\.io\/SparrowTribe\//i,"").replace(/[?#].*$/,""),seen=new Set();
+  return assets.filter(url=>typeof url==="string"&&/^(https:\/\/|posters\/|images\/)/i.test(url)).filter(url=>{const k=same(url);if(seen.has(k))return false;seen.add(k);return true;});
 }
 function ticketFromFilm(f,s,date){
   const p=PG[s?.p]||PG[f.prog],v=VN[s?.v],h=v?.halls?.find(item=>item.id===s?.h);
@@ -368,6 +370,12 @@ function ticketFilterRefresh(d){
   d.querySelector(".selector-done").textContent=tr("显示")+" "+ticketShown().shown.length+" "+tr("张票根");
 }
 function ticketOpenFilter(kind){
+  if(kind==="art-pick"&&ticketDraft){
+    const row=ticketDraft.row,assets=[...(row.arts||[])];
+    const rows=assets.map((a,i)=>`<button type="button" class="selector-option te-art-opt" role="option" aria-selected="${a===row.art}" data-ticket-art-pick="${esc(a)}"><img src="${esc(i===0?ticketThumb({art:a,filmId:row.filmId}):a)}" alt="" loading="lazy"><span><b>${ticketDict(i===0?"海报":"备用图像")} ${i+1}</b></span><span class="selector-check" aria-hidden="true">${a===row.art?"✓":""}</span></button>`).join("");
+    ticketDialog("art-pick",ticketDict("票面图像"),`<div class="selector-results" role="listbox">${rows}</div>${assets.length<2?`<p class="selector-empty te-art-note">${ticketDict("这部影片暂时只有这一张图像，补充备用海报或剧照后可以在这里更换")}</p>`:""}`);
+    return;
+  }
   if(kind==="art-style"){
     const options=ticketDraft?TicketArt.filmStyleOptions:TicketArt.styles;
     const selected=ticketDraft?ticketFilmStyles.get(ticketDraft.row.filmId)||"":ticketArtStyle;
@@ -429,6 +437,13 @@ function ticketDialogClick(e,d){
   if(year){ticketQ.year=year.dataset.ticketYear;d.close();ticketPaintList();return;}
   const dens=t.closest("[data-ticket-density]");
   if(dens){ticketDensity=dens.dataset.ticketDensity;try{localStorage.setItem(TICKET_DENSITY_KEY,ticketDensity);}catch{}d.close();ticketPaintList();return;}
+  const pick=t.closest("[data-ticket-art-pick]");
+  if(pick&&kind==="art-pick"&&ticketDraft){
+    const row=ticketDraft.row,v=pick.dataset.ticketArtPick;d.close();
+    if(v===row.art)return;
+    row.art=v;row.crop=50;const c=main.querySelector('.te-range[name="crop"]');if(c)c.value=50;
+    ticketFlipTo("front");ticketDrawEditor();ticketArtSaveState();return;
+  }
   const art=t.closest("[data-ticket-art-style]");
   if(art&&kind==="art-style"){
     const choice=art.dataset.ticketArtStyle;
@@ -580,10 +595,9 @@ function ticketEditor(row){
       <span class="ticket-edge te-l1"></span><span class="ticket-edge te-l2"></span><span class="ticket-edge te-r1"></span><span class="ticket-edge te-r2"></span></span></button>
       ${assets.length?`<div class="te-art">
         <label class="te-crop"><span>${ticketDict("裁切")}</span><input class="te-range" type="range" min="0" max="100" name="crop" value="${row.crop}" aria-label="${ticketDict("裁切位置")}"></label>
-        ${assets.length>1?`<select class="te-art-pick" name="art" aria-label="${ticketDict("票面图像")}">${assets.map((a,i)=>ticketOption(a,`${tr(i===0?"海报":"备用图像")} ${i+1}`,row.art)).join("")}</select>`:""}
         <button type="button" class="te-art-save" data-ticket-action="save-here" ${ticketArtDirty()?"":"disabled"}>${ticketDict("保存")}</button></div>`:""}
-      <div class="te-tools"><div class="te-seg" role="tablist" aria-label="${ticketDict("票根面")}">
-        <button type="button" role="tab" data-ticket-side="front" aria-selected="${front}">${ticketDict("正面")}</button><button type="button" role="tab" data-ticket-side="back" aria-selected="${!front}">${ticketDict("背面")}</button></div>
+      <div class="te-tools">${/* 正面 / 背面：轻点票根翻面、拖动 360° 转动已经够用，这里换成票面图像（2026-11-23） */""}
+        ${assets.length?`<button type="button" class="te-style" data-ticket-filter="art-pick" aria-haspopup="dialog"><svg class="te-brush" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2.5" width="12" height="11" rx="1.6"/><circle cx="6" cy="6.4" r="1.3"/><path d="m2.6 12.4 3.6-3.6 2.6 2.4 1.8-1.6 2.9 2.7"/></svg>${ticketDict("票面图像")}<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 4.5 3 3 3-3"/></svg></button>`:""}
         <button type="button" class="te-style" data-ticket-filter="art-style" aria-haspopup="dialog"><svg class="te-brush" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13.5 2.5 7 9"/><path d="M7 9c-1.6-.4-3 .6-3.2 2.2-.1 1-.6 1.7-1.3 2.1 2.6.6 5.4-.4 5.4-3"/></svg>${ticketDict("手绘风格")}${filterChevron}</button></div>
       <button type="button" class="te-reset" data-ticket-action="reset" hidden>${ticketDict("恢复盲盒款")}</button></div>
     <div class="te-body">
