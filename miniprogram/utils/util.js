@@ -75,6 +75,23 @@ function progInfo(p, data, idx, now = Date.now()) {
   return { shows, a, b, status, up: shows.filter(s => !ended(s, idx)).length };
 }
 
+// 院线片自动下映（与网站 autoEnded 一致）：院线专题的影片，上映日期已过 30 天、又没有待映场次，视为已下映（等同 ended:true）。
+// 没写具体上映日的不处理；在 app.js 每次换数据时调用，复制影片对象后标记，不改原始数据。
+const RUN_DAYS = 30;
+function markAutoEnded(data, now = Date.now()) {
+  if (!data || !data.films || !data.programmes) return data;
+  const kind = {}; data.programmes.forEach(p => { kind[p.id] = p.kind; });
+  const idx = index(data), up = new Set(data.shows.filter(s => idx.F[s.id] && !ended(s, idx)).map(s => s.id));
+  let hit = false;
+  const films = data.films.map(f => {
+    if (f.ended || f.ev || kind[f.prog] !== '院线' || up.has(f.id)) return f;
+    const m = String(f.release || '').match(/(\d{4})年(\d{1,2})月(\d{1,2})日/);
+    if (!m || now < new Date(+m[1], m[2] - 1, +m[3]).getTime() + RUN_DAYS * 864e5) return f;
+    hit = true; return Object.assign({}, f, { ended: true, endedAuto: 1 });
+  });
+  return hit ? Object.assign({}, data, { films }) : data;
+}
+
 // 一场放映的展示用对象
 function showView(s, idx, data, picked) {
   const f = idx.F[s.id]; const st = toMin(s.t);
@@ -134,4 +151,4 @@ const SITE_URL = 'https://sparrowcinema.github.io/SparrowTribe/';
 const webTip = (hash, lines, t, title) => {
   wx.setClipboardData({ data: SITE_URL + (hash || ''), success: () => wx.showModal({ title: t(title || '网页版地址已复制'), content: lines.map(x => t(x)).join('\n'), showCancel: false, confirmText: t('知道了') }) });
 };
-module.exports = { thumb, localFirst, homeCity, ymd: showYmd, geoCity, localProg, webTip, calSub, geoOf, distKm, transfer, openMap, progForShow, durationOf, progInfo, qaOf, ended, isFest, keepPast, relTime, nextShowOf, filmOrder, filmTone, langSub, WK, year, wk, toMin, fmt, keyOf, showDate, poster, ticket, durText, index, showView };
+module.exports = { markAutoEnded, thumb, localFirst, homeCity, ymd: showYmd, geoCity, localProg, webTip, calSub, geoOf, distKm, transfer, openMap, progForShow, durationOf, progInfo, qaOf, ended, isFest, keepPast, relTime, nextShowOf, filmOrder, filmTone, langSub, WK, year, wk, toMin, fmt, keyOf, showDate, poster, ticket, durText, index, showView };

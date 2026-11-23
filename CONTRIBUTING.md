@@ -269,6 +269,7 @@ Claude 与 GPT 可能使用同一 GitHub 身份，审批人数可先设为0；�
 
 ## 已下映影片（`ended`）
 
+- **院线片自动下映（2026-11-23）**：院线专题（`kind: "院线"`）的影片，`release` 里的上映日期已过 30 天、又没有待映场次，自动按 `ended: true` 处理（另带 `endedAuto: 1`），不用再手写；没写「YYYY年M月D日」的不处理，之后补了新场次会自动回到即将放映。网站 `js/core.js` 的 `autoEnded`（`loadData` 里标记），小程序 `utils/util.js` 的 `markAutoEnded`（`app.js` 每次换数据时调用，复制影片对象后标记）；天数常量 `RUN_DAYS`，两端一致。
 - 影片对象可加 `"ended": true`：表示本片院线放映已结束，但网站没有录入具体场次。专题页放入「已结束」，片目放入「已放映」，影片页显示「已下映」，不编造场次。`release` 须写成「YYYY年M月D日 …」以便排序。网站 `progFilmGroups` / `isLiveIn` 与小程序 `pages/programme`、`pages/films`、`pages/film` 同步实现。
 
 ## 首页默认城市、影片页顺序与「我的」分组（2026-11-16）

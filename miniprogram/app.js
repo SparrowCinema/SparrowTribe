@@ -11,6 +11,8 @@ sortShows(LOCAL.shows); // 安装包兜底数据按专题文件顺序排列，�
 const plan = require('./utils/plan.js');
 const watched = require('./utils/watched.js');
 const I = require('./utils/i18n.js');
+// 院线片上映满 30 天且没有待映场次时自动按已下映处理（utils/util.js 的 markAutoEnded）
+const withEnded = d => require('./utils/util.js').markAutoEnded(d);
 const community=require('./utils/community.js');
 const sync = require('./utils/sync.js');
 const CFG = require('./utils/cfg.js');
@@ -33,7 +35,7 @@ App({
   _waiters: [],
 
   onLaunch() {
-    I.init(); this.globalData.data = I.localize(LOCAL); this.chrome();
+    I.init(); this.globalData.data = withEnded(I.localize(LOCAL)); this.chrome();
     // 场次变更：个人排片一变就记下各场次的影片与时间（utils/planchange.js），之后数据里找不到时才能提示
     try { const PC = require('./utils/planchange.js'), P = require('./utils/plan.js'); P.onChange(() => PC.track(this.globalData.data)); PC.track(this.globalData.data); } catch (e) { } try { watched.migrate(LOCAL.aliases); } catch (e) { }
     if (wx.cloud) {
@@ -62,7 +64,7 @@ App({
       if (r.films && r.films.length && r.shows && r.shows.length) {
         if (r.en) I.setEN(r.en);
         this.globalData.raw = Screenings.apply(Object.assign({}, LOCAL, r, { reg: LOCAL.reg }));
-        this.globalData.data = I.localize(this.globalData.raw);
+        this.globalData.data = withEnded(I.localize(this.globalData.raw));
         this.globalData.source = 'cloud';
         this.globalData.full = true;
         DataCache.save(r);
@@ -88,7 +90,7 @@ App({
     this._enLang = r.en ? 'en' : (this._enLang || '');
     const base = Object.assign({}, LOCAL, r); delete base.en;
     this.globalData.raw = Screenings.apply(Object.assign(base, { films: [...byId.values()], shows, reg: LOCAL.reg }));
-    this.globalData.data = I.localize(this.globalData.raw);
+    this.globalData.data = withEnded(I.localize(this.globalData.raw));
     this.globalData.source = 'cloud';
     try { require('./utils/planchange.js').track(this.globalData.data); } catch (e) { }
     try { watched.migrate(this.globalData.raw.aliases); } catch (e) { }
@@ -113,7 +115,7 @@ App({
     return (async () => {
       for (let i = 0; i < ids.length; i += 2) await Promise.all([one(ids[i]), ids[i + 1] ? one(ids[i + 1]) : null]);
       if (this._en) I.setEN(this._en);
-      this.globalData.data = I.localize(raw);
+      this.globalData.data = withEnded(I.localize(raw));
       this.globalData.full = true;
       try { require('./utils/planchange.js').track(this.globalData.data); } catch (e) { } // 往期专题换成最新数据后再核对一次场次变更
       this._waiters.forEach(fn => fn(this.globalData.data));
@@ -128,7 +130,7 @@ App({
       Object.keys(r.d || {}).forEach(id => { if (byId[id]) Object.assign(byId[id], r.d[id]); });
       const ef = en && en.films; if (ef) Object.keys(r.e || {}).forEach(id => { ef[id] = Object.assign(ef[id] || {}, r.e[id]); });
     };
-    const refresh = () => { if (en) I.setEN(en); this.globalData.data = I.localize(raw); this._waiters.forEach(fn => fn(this.globalData.data)); };
+    const refresh = () => { if (en) I.setEN(en); this.globalData.data = withEnded(I.localize(raw)); this._waiters.forEach(fn => fn(this.globalData.data)); };
     const one = i => wx.cloud.callFunction({ name: 'getData', data: lang ? { v: 2, part: i, lang } : { part: i } }).then(res => { const r = res.result || {}; if (r.ok) { merge(r); if (++done % 2 === 0) refresh(); } }).catch(() => {});
     (async () => { for (let i = 0; i < n; i += 2) await Promise.all([one(i), i + 1 < n ? one(i + 1) : null]); refresh(); })();
   },
@@ -138,7 +140,7 @@ App({
     ['排片', '专题', '片目', '我的'].forEach((t, i) => { try { wx.setTabBarItem({ index: i, text: I.tr(t) }); } catch (e) { } });
   },
   // 切换中英文：记住选择，重新进入首页，所有页面按新语言重建
-  switchLang() { I.set(I.isEn() ? 'zh' : 'en'); if (I.isEn() && this.globalData.source === 'cloud' && this._enLang !== 'en') this.loadRemote(); /* 中文首屏没带英文层：切到英文时取一次，期间用安装包里的英文 */ this.globalData.data = I.localize(this.globalData.raw); this.chrome(); const ps = getCurrentPages(), r = ps.length === 1 && ps[0].route; wx.reLaunch({ url: '/' + (/^pages\/(schedule|programmes|films|my)\//.test(r || '') ? r : 'pages/schedule/schedule') }); },
+  switchLang() { I.set(I.isEn() ? 'zh' : 'en'); if (I.isEn() && this.globalData.source === 'cloud' && this._enLang !== 'en') this.loadRemote(); /* 中文首屏没带英文层：切到英文时取一次，期间用安装包里的英文 */ this.globalData.data = withEnded(I.localize(this.globalData.raw)); this.chrome(); const ps = getCurrentPages(), r = ps.length === 1 && ps[0].route; wx.reLaunch({ url: '/' + (/^pages\/(schedule|programmes|films|my)\//.test(r || '') ? r : 'pages/schedule/schedule') }); },
 
   // 页面订阅数据更新
   onData(fn) { this._waiters.push(fn); return () => { this._waiters = this._waiters.filter(f => f !== fn); }; }
