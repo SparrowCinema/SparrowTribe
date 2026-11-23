@@ -44,7 +44,9 @@ Page({
   data:{i:{},ps:'',mode:'album',sum:{n:0,pending:0},query:'',text:'',years:[],year:'',facetsOpen:false,facets:[],chips:[],activeN:0,
     density:'m',densLabels:[],densIndex:1,artStyle:Art.normalize(),artStyleLabels:[],artStyleIndex:0,yearLabels:[],yearIndex:0,filterLabel:'',front:true,groups:[],shown:0,total:0,all:0,more:false,pick:false,pickN:0,exportOpen:false,ex:{},pending:[],pendingMore:0,results:[],loading:false},
   onLoad(params){
-    this._ready=true;this._render=0;this._draft=null;this._original='';this._q={text:'',year:'',programme:[],city:[],venue:[],format:[]};
+    this._ready=true;this._render=0;this._draft=null;this._original='';this._q={text:'',year:'',film:'',programme:[],city:[],venue:[],format:[],badge:[]};
+    // 从影片页「已盖章 › 查看典藏票根」进来：只看这部电影
+    if(params.film)this._q.film=decodeURIComponent(params.film);
     this._pick=null;this._queue=[];this._busy=false;this._imgPatch={};this._limit=STEP;
     this._filmStyles=Art.readFilmStyles(readArtPreference);
     let density='m',artStyle=Art.normalize();
@@ -86,7 +88,7 @@ Page({
   album(){
     if(this._rev!==Tix.rev())this.load();
     this._draft=null;++this._render;this._limit=STEP;
-    const {tickets,pending}=this._built;
+    const {tickets}=this._built,pending=this.pendingNow();
     this.setData({mode:'album',sum:{n:tickets.length,pending:pending.length}});
     this.paint(false);
   },
@@ -94,7 +96,7 @@ Page({
   refreshAlbum(){
     const top=this._scrollTop||0,limit=Math.max(this._limit||STEP,this.data.shown||0,STEP),opened=this._opened;
     this.load();this._draft=null;this._limit=limit;
-    const {tickets,pending}=this._built;
+    const {tickets}=this._built,pending=this.pendingNow();
     if(opened){const at=R.filterTickets(tickets,this._q).findIndex(r=>r.key===opened);if(at>=this._limit)this._limit=Math.ceil((at+1)/STEP)*STEP;}
     this.setData({sum:{n:tickets.length,pending:pending.length}});
     // 列表结构不变时只局部更新；变了（改了日期换了月份、删掉一张）才整列重建，并分几次校正滚动位置，等图片占位撑开页面
@@ -105,6 +107,7 @@ Page({
     const {tickets}=this._built,q=this._q,all=R.facetCounts(tickets);
     if(q.year&&!all.year.some(y=>y.value===q.year))q.year='';
     R.FACETS.forEach(k=>{q[k]=q[k].filter(v=>all[k].some(x=>x.value===v));});
+    q.badge=q.badge.filter(v=>all.badge.some(x=>x.value===v));
     const counts=R.facetCounts(tickets,q),yearN={};counts.year.forEach(y=>{yearN[y.value]=y.count;});
     const rows=R.filterTickets(tickets,q);this._rows=rows;
     const shownRows=rows.slice(0,this._limit),en=I.lang&&I.lang()==='en',monthN={};
@@ -125,13 +128,14 @@ Page({
     }else patch.groups=groups;
     this._sig=sig;
     if(!append||append==='keep'){
-      const activeN=R.FACETS.reduce((n,k)=>n+q[k].length,0);
+      const activeN=R.FACETS.reduce((n,k)=>n+q[k].length,0)+q.badge.length+(q.film?1:0),film=q.film&&(this.data_.films||[]).find(f=>f.id===q.film);
       this._years=all.year.map(y=>y.value);
       Object.assign(patch,{yearLabels:[I.tr('全部年份'),...all.year.map(y=>`${y.value}（${yearN[y.value]||0}）`)],yearIndex:q.year?this._years.indexOf(q.year)+1:0,text:q.text,
-        filterLabel:activeN?(I.isEn()?activeN+' selected':`已选 ${activeN} 项`):q.text?`“${q.text}”`:I.tr('全部'),
+        filterLabel:activeN?(I.isEn()?activeN+' selected':`已选 ${activeN} 项`):I.tr('全部'),
         years:all.year.length>1?all.year.map(y=>({v:y.value,c:yearN[y.value]||0})):[],year:q.year,
-        facets:R.FACETS.filter(k=>all[k].length>1||q[k].length).map(k=>({k,label:I.tr(FACET_LABEL[k]),items:counts[k].slice(0,k==='programme'?80:40).map(x=>({v:x.value,c:x.count,on:q[k].includes(x.value)}))})),
-        chips:R.FACETS.flatMap(k=>q[k].map(v=>({k,v}))),activeN:R.FACETS.reduce((n,k)=>n+q[k].length,0)});
+        facets:R.FACETS.filter(k=>all[k].length>1||q[k].length).map(k=>({k,label:I.tr(FACET_LABEL[k]),items:counts[k].slice(0,k==='programme'?80:40).map(x=>({v:x.value,t:x.value,c:x.count,on:q[k].includes(x.value)}))}))
+          .concat(counts.badge.length?[{k:'badge',label:I.tr('典藏'),items:counts.badge.map(x=>({v:x.value,t:I.tr(x.label),c:x.count,on:q.badge.includes(x.value)}))}]:[]),
+        chips:(q.film?[{k:'film',v:q.film,t:'《'+(film?(I.isEn()&&film.en?film.en:film.cn):q.film)+'》'}]:[]).concat(R.FACETS.flatMap(k=>q[k].map(v=>({k,v,t:v}))),q.badge.map(v=>({k:'badge',v,t:I.tr((R.BADGES.find(b=>b[0]===v)||[v,v])[1])}))),activeN});
     }
     const turn=++this._render;this._queue=[];
     this.setData(patch,()=>{done&&done();if(turn===this._render&&this.data.density!=='spine')this.queueAll(turn);});
@@ -189,9 +193,9 @@ Page({
   stopMove(){},
   pickYearIdx(e){const n=Number(e.detail.value);this._q.year=n?this._years[n-1]:'';this._limit=STEP;this.paint(false);},
   pickDens(e){const d=DENS_OPT[Number(e.detail.value)][0];try{wx.setStorageSync(DENS,d);}catch(_){}this.setData({density:d,densIndex:Number(e.detail.value)});this.paint(false);},
-  clearAll(){R.FACETS.forEach(k=>{this._q[k]=[];});this._q.text='';this._q.year='';this._limit=STEP;this.paint(false);},
-  toggleFacet(e){const {k,v}=e.currentTarget.dataset,l=this._q[k];this._q[k]=l.includes(v)?l.filter(x=>x!==v):[...l,v];this._limit=STEP;this.paint(false);},
-  clearFacets(){R.FACETS.forEach(k=>{this._q[k]=[];});this._limit=STEP;this.paint(false);},
+  clearAll(){R.FACETS.forEach(k=>{this._q[k]=[];});this._q.badge=[];this._q.film='';this._q.text='';this._q.year='';this._limit=STEP;this.paint(false);},
+  toggleFacet(e){const {k,v}=e.currentTarget.dataset;if(k==='film'){this._q.film='';this.album();return;}const l=this._q[k];this._q[k]=l.includes(v)?l.filter(x=>x!==v):[...l,v];this._limit=STEP;this.paint(false);},
+  clearFacets(){R.FACETS.forEach(k=>{this._q[k]=[];});this._q.badge=[];const film=this._q.film;this._q.film='';if(film){this._limit=STEP;this.album();return;}this._limit=STEP;this.paint(false);},
   setDensity(e){const d=e.currentTarget.dataset.v;try{wx.setStorageSync(DENS,d);}catch(_){}this.setData({density:d});this.paint(false);},
   flipWall(){this.setData({front:!this.data.front});this.paint(false);},
   // 现场认证（2026-11-22）：扫放映现场屏幕上的签到码
@@ -227,8 +231,10 @@ Page({
       pending:shown.map(x=>{const f=this.idx.F[x.filmId],b=base(x.filmId,x.view,x.view.d)||{};return {k:x.key,t:(f&&f.cn)||x.filmId,poster:f?U.thumb(f):'',m:[x.view.d.replace(/-/g,'.'),b.time,b.venue].filter(Boolean).join(' · ')};})});
   },
   morePending(){this._pendShown=(this._pendShown||PEND_STEP)+PEND_STEP;this.pendingView();},
+  // 只看某部电影时，待制作和一键生成也只算这部
+  pendingNow(){const p=this._built.pending;return this._q.film?p.filter(x=>x.filmId===this._q.film):p;},
   makeAll(){
-    const {pending}=this._built;if(!pending.length)return;
+    const pending=this.pendingNow();if(!pending.length)return;
     const t=Date.now(),changes={};pending.forEach(x=>{changes[x.key]={t};});
     if(!Tix.set(changes,this.data_,this.idx))return;
     this.load();this.album();wx.showToast({title:I.tr('已生成')+' '+pending.length+' '+I.tr('张票根'),icon:'none'});

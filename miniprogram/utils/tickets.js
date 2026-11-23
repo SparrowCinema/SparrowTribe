@@ -800,12 +800,25 @@ function migrateV1(rows,list,base) {
   }
   return store;
 }
-// 搜索 + 分面筛选：q = {text, year, programme:[], city:[], venue:[], format:[]}，同一分面内为「或」，不同分面为「且」
+// 搜索 + 分面筛选：q = {text, year, film, programme:[], city:[], venue:[], format:[], badge:[]}，同一分面内为「或」，不同分面为「且」
 const FACETS=["programme","city","venue","format"];
+// 典藏玩法筛选（2026-11-23）：一张票根可以同时有几项；需先 decorate / attachAutographs，否则满贯、签名都不算
+const BADGES=[["checkin","现场认证"],["autograph","嘉宾签名"],["sealed","已封版"],["hidden","隐藏款"],["limited","影展限定"],["slam","满贯"]];
+function badgeKeys(row) {
+  const out=[];
+  if (row.checkedIn) out.push("checkin");
+  if (row.autographs && row.autographs.length) out.push("autograph");
+  if (row.edition>=0) out.push("sealed");
+  if (row.hidden) out.push("hidden");
+  if (row.limited) out.push("limited");
+  if (row.slam) out.push("slam");
+  return out;
+}
 function filterTickets(rows,q={}) {
   const terms=String(q.text||"").trim().toLowerCase().split(/\s+/).filter(Boolean);
-  return rows.filter(row=>(!q.year || row.date.slice(0,4)===q.year) &&
+  return rows.filter(row=>(!q.year || row.date.slice(0,4)===q.year) && (!q.film || row.filmId===q.film) &&
     FACETS.every(field=>!q[field]?.length || q[field].includes(row[field])) &&
+    (!q.badge?.length || badgeKeys(row).some(k=>q.badge.includes(k))) &&
     terms.every(term=>[row.title,row.subtitle,row.venue,row.programme,row.city,row.director,row.hall,row.format,formatSerial(row),row.serial].join(" ").toLowerCase().includes(term)));
 }
 // 每个分面的计数只受其他筛选条件影响（选了 2024 年，专题后面就显示 2024 年里的张数）
@@ -820,6 +833,9 @@ function facetCounts(rows,q={}) {
     (q[field]||[]).forEach(value=>{if(!counted.some(x=>x.value===value)) counted.push({value,count:0});});
     out[field]=counted;
   });
+  // 典藏：按固定顺序，只列出有票根的项（已选的保留，方便取消）
+  const bt={};for(const row of filterTickets(rows,{...q,badge:[]}))for(const k of badgeKeys(row))bt[k]=(bt[k]||0)+1;
+  out.badge=BADGES.filter(([k])=>bt[k]||(q.badge||[]).includes(k)).map(([value,label])=>({value,label,count:bt[value]||0}));
   return out;
 }
 // 按年 → 月分组（已按日期从新到旧排好）
@@ -1948,6 +1964,6 @@ function drawWall(surface,records,side,images,caption,createCanvas,title,maxWidt
 }
 
 const shineOf=key=>{const f=finishes[key]||finishes.matte;return {kind:f.kind,fx:fxOf(key),highlight:f.stops[f.stops.length-2]};};
-return {autographKey,pendingAutograph,applyAutograph,attachAutographs,collectSig,guestLine,drawAutographs,checkinURL,checkinParse,checkinPlan,applyCheckin,isHidden,HIDDEN_RATE,editionClose,EDITION_GRACE,pendingEdition,applyEdition,decorate,setQR,verifyURL,editionLines,badgesOf,drawShowcase,bakeSheen,SHOW_W,SHOW_H,serialOf,serialValid,formatSerial,entrySerial,pendingIssue,applyIssue,issueText,ISSUE_BATCH,W,H,TITLE_FAMILY,edgeOf,foilMask,fxOf,artMask,backMask,parseCraft,craftLabel,lookSig,foilLayers,WALL_PAGE,MOSAIC_MAX,FACETS,options:labelOptions(),sanitize,read,sorted,defaults,randomLook,shineOf,draw,wallLayout,drawWall,
+return {autographKey,pendingAutograph,applyAutograph,attachAutographs,collectSig,guestLine,drawAutographs,checkinURL,checkinParse,checkinPlan,applyCheckin,isHidden,HIDDEN_RATE,editionClose,EDITION_GRACE,pendingEdition,applyEdition,decorate,setQR,verifyURL,editionLines,badgesOf,drawShowcase,bakeSheen,SHOW_W,SHOW_H,serialOf,serialValid,formatSerial,entrySerial,pendingIssue,applyIssue,issueText,ISSUE_BATCH,W,H,TITLE_FAMILY,edgeOf,foilMask,fxOf,artMask,backMask,parseCraft,craftLabel,lookSig,foilLayers,WALL_PAGE,MOSAIC_MAX,FACETS,BADGES,badgeKeys,options:labelOptions(),sanitize,read,sorted,defaults,randomLook,shineOf,draw,wallLayout,drawWall,
   ticketKey,parseKey,cleanStore,mergeStore,packLook,unpackLook,normArt,viewings,build,reconcile,draft,entryFrom,migrateV1,filterTickets,facetCounts,groupByMonth,swatch};
 });

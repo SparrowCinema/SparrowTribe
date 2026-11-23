@@ -9,8 +9,9 @@
 
   <block wx:if="{{mode==='album'}}">
     <block wx:if="{{all}}">
+      <view class="library-search tk-find"><text>⌕</text><input type="text" confirm-type="search" placeholder="{{L.t(i,'搜片名、导演、影院、专题、编号')}}" value="{{text}}" bindinput="inputQuery" /></view>
       <view class="wall-filters" aria-label="{{L.t(i,'票根筛选')}}">
-        <view class="wall-filter {{activeN||text?'active':''}}" bindtap="toggleFacets" role="button"><view class="wall-filter-copy"><text class="wall-label">{{L.t(i,'筛选')}}</text><text class="wall-value">{{filterLabel}}</text></view><text class="wall-chevron">⌄</text></view>
+        <view class="wall-filter {{activeN?'active':''}}" bindtap="toggleFacets" role="button"><view class="wall-filter-copy"><text class="wall-label">{{L.t(i,'筛选')}}</text><text class="wall-value">{{filterLabel}}</text></view><text class="wall-chevron">⌄</text></view>
         <picker class="wall-picker" range="{{yearLabels}}" value="{{yearIndex}}" bindchange="pickYearIdx"><view class="wall-filter {{yearIndex?'active':''}}"><view class="wall-filter-copy"><text class="wall-label">{{L.t(i,'年份')}}</text><text class="wall-value">{{yearLabels[yearIndex]}}</text></view><text class="wall-chevron">⌄</text></view></picker>
         <picker class="wall-picker" range="{{densLabels}}" value="{{densIndex}}" bindchange="pickDens"><view class="wall-filter"><view class="wall-filter-copy"><text class="wall-label">{{L.t(i,'显示')}}</text><text class="wall-value">{{densLabels[densIndex]}}</text></view><text class="wall-chevron">⌄</text></view></picker>
         <picker class="wall-picker" range="{{artStyleLabels}}" value="{{artStyleIndex}}" bindchange="pickArtStyle"><view class="wall-filter"><view class="wall-filter-copy"><text class="wall-label">{{L.t(i,'手绘风格')}}</text><text class="wall-value">{{artStyleLabels[artStyleIndex]}}</text></view><text class="wall-chevron">⌄</text></view></picker>
@@ -25,7 +26,7 @@
       <text><text class="tk-b">{{sum.pending}}</text> {{L.t(i,'部电影还没做成票根')}}</text>
       <view class="tk-todo-a"><text class="tk-link" bindtap="makeAll" role="button">{{L.t(i,'一键生成')}}</text><text class="tk-dot">·</text><text class="tk-link" bindtap="openPending" role="button">{{L.t(i,'逐张挑选')}} ›</text></view>
     </view>
-    <view wx:if="{{chips.length}}" class="tk-chips"><view wx:for="{{chips}}" wx:key="v" class="tk-chip" data-k="{{item.k}}" data-v="{{item.v}}" bindtap="toggleFacet">{{item.v}} ×</view><text class="tk-link" bindtap="clearFacets">{{L.t(i,'清除筛选')}}</text></view>
+    <view wx:if="{{chips.length}}" class="tk-chips"><view wx:for="{{chips}}" wx:key="v" class="tk-chip" data-k="{{item.k}}" data-v="{{item.v}}" bindtap="toggleFacet">{{item.t}} ×</view><text class="tk-link" bindtap="clearFacets">{{L.t(i,'清除筛选')}}</text></view>
 
     <view wx:if="{{!all}}" class="wall-empty"><text class="tk-heading">{{L.t(i,'还没有收藏票根')}}</text><text>{{L.t(i,'在影片页点「看过」盖章后，每部电影都可以做成一张票根；也可以直接搜索影片制作（会同时盖章）。')}}</text><view class="btn" bindtap="{{sum.pending?'makeAll':'start'}}">{{L.t(i,sum.pending?'一键生成':'制作票根')}}</view></view>
     <view wx:elif="{{!groups.length}}" class="wall-empty"><text>{{L.t(i,'所选条件下暂无票根')}}</text><view class="btn ghost" bindtap="clearAll">{{L.t(i,'清除筛选')}}</view></view>
@@ -55,10 +56,9 @@
 
     <view wx:if="{{facetsOpen}}" class="selector-mask" catchtap="toggleFacets" catchtouchmove="stopMove"><view class="selector-panel" catchtap="stopMove">
       <view class="selector-head"><text>{{L.t(i,'筛选票根')}}</text><view class="selector-close" bindtap="toggleFacets" role="button" aria-label="{{L.t(i,'关闭筛选')}}">×</view></view>
-      <input class="selector-search" placeholder="{{L.t(i,'搜片名、导演、影院、专题、编号')}}" value="{{text}}" bindinput="inputQuery" />
       <scroll-view scroll-y class="selector-results">
         <view wx:for="{{facets}}" wx:for-item="fc" wx:key="k" class="tk-facet"><text class="tk-fh">{{fc.label}}</text>
-          <view class="tk-fwrap"><view wx:for="{{fc.items}}" wx:key="v" class="tk-chip {{item.on?'on':''}}" data-k="{{fc.k}}" data-v="{{item.v}}" bindtap="toggleFacet">{{item.v}} <text class="tk-n">{{item.c}}</text></view></view></view>
+          <view class="tk-fwrap"><view wx:for="{{fc.items}}" wx:key="v" class="tk-chip {{item.on?'on':''}}" data-k="{{fc.k}}" data-v="{{item.v}}" bindtap="toggleFacet">{{item.t}} <text class="tk-n">{{item.c}}</text></view></view></view>
         <view wx:if="{{!facets.length}}" class="selector-empty">{{L.t(i,'票根还不多，暂时没有可筛选的项目')}}</view>
       </scroll-view>
       <view class="selector-foot"><text bindtap="clearFacets">{{L.t(i,'清除筛选')}}</text><view class="selector-done" bindtap="toggleFacets">{{L.t(i,'显示')}} {{total}} {{L.t(i,'张票根')}}</view></view>

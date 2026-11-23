@@ -193,3 +193,8 @@
 
 /* 现场签到入口（2026-11-22） */
 .tk-acts{display:flex;align-items:center;gap:calc(10 * var(--r));flex:none}
+
+/* 票根册首页搜索框（2026-11-23），与片目 .library-search 同款 */
+.library-search{display:flex;align-items:center;gap:calc(16 * var(--r));border:calc(1 * var(--r)) solid var(--line);border-radius:calc(20 * var(--r));background:var(--surface);padding:calc(18 * var(--r)) calc(24 * var(--r));margin:calc(8 * var(--r)) 0 calc(16 * var(--r))}
+.library-search>text{font-size:calc(24 * var(--fr));color:var(--muted)}
+.library-search input{flex:1;min-width:0;font-size:calc(20 * var(--fr))}
