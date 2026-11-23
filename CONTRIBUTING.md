@@ -32,6 +32,12 @@
 - 分享链接编码场次键；场次键由日期、时间、影院、影厅构成。修改这些字段时必须考虑已有收藏和链接兼容性。
 - 导出包含 PNG、ICS 日历及打印保存 PDF；影院和影厅应保持完整显示。
 
+## 换域名（sparrowcinema.org，2026-11-24 起）
+
+- 正在从 `sparrowcinema.github.io/SparrowTribe` 迁到 `https://sparrowcinema.org`，方案与上线步骤见 docs/domain-move.md。
+- `index.html` 最前面的搬家加载器（`shared/domain-move.js`）必须在其他脚本之前；`boot()` 先等 `window.SP_MOVE`。新增本机存储键请沿用 `sparrow` / `sk-` 前缀，搬家才会带上。
+- 改了 `shared/domain-move.js` 要运行 `node tools/build-bridge.js`，并把 `move/` 同步到 `SparrowCinema/sparrowcinema.github.io` 仓库。
+
 ## 已确认的用户要求
 
 - 保留用户提供的完整剧情简介、演职员、时长与版本，不能用通用资料擅自替换。

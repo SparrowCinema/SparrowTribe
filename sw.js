@@ -1,5 +1,5 @@
 /* 麻雀观影护照 service worker：页面和 data/ 排片数据走“网络优先”（保证排片总是最新），海报、图标等静态资源走“缓存优先”，离线时也能打开上次看过的内容。 */
-const CACHE = "sk-v320";
+const CACHE = "sk-v321";
 const CORE = ["./", "./index.html", "./app.css", "./app.js","./manifest.webmanifest", "./vendor/qrcode.js", "./shared/recap.js","./shared/share-poster.js","./shared/taste-report.js","./shared/psync.js?v=20261127pp", "./shared/taste.js?v=2", "./shared/taste-client.js?v=2", "./shared/library.js?v=20261121", "./shared/premiere.js", "./shared/screenings.js", "./shared/growth.js", "./shared/overlap.js", "./shared/curl.js", "./shared/profile-backup.js?v=20261123pp", "./shared/ticket-sketch.js?v=17", "./shared/tickets.js?v=22", "./styles/tickets.css?v=20", "./styles/companion.css", "./brand/passport-aperture.svg", "./data/catalog.json", "./icons/icon-192.png", "./icons/apple-touch-icon.png", "./brand/sparrow-movies-sq.png", "./brand/sparrow-tribe-sq.png", "./brand/sparrow-movies-sq-dark.png", "./brand/sparrow-tribe-sq-dark.png"];
 
 self.addEventListener("install", e => {
@@ -28,7 +28,7 @@ self.addEventListener("fetch", e => {
   const isPage = isApp || req.mode === "navigate" || url.pathname.endsWith("/") || url.pathname.endsWith(".html") || (url.pathname.includes("/data/") && url.pathname.endsWith(".json"));
   if (isPage) {
     e.respondWith(
-      fetch(req, {cache:"no-store"}).then(res => { if (!res.ok) throw new Error("Page unavailable"); const copy = res.clone(); caches.open(CACHE).then(c => c.put(req, copy)); return res; })
+      fetch(req, {cache:"no-store"}).then(res => { if (res.type === "opaqueredirect") return res; /* 换域名后旧网址整站 301：把跳转交给浏览器，不要退回缓存里的旧页面 */ if (!res.ok) throw new Error("Page unavailable"); const copy = res.clone(); caches.open(CACHE).then(c => c.put(req, copy)); return res; })
         .catch(() => caches.match(req, {ignoreSearch:true}).then(r => r || (req.mode === "navigate" ? caches.match("./index.html") : Response.error())))
     );
     return;
