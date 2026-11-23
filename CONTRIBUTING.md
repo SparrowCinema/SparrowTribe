@@ -535,3 +535,9 @@ Claude 与 GPT 可能使用同一 GitHub 身份，审批人数可先设为0；�
 - **观众**：网站 `ticketAutographRun`（发号、封版之后）/ 小程序 `ticketstore.js` 的 `autographRun`（经 `psync` 云函数的 `autograph` 动作）。缓存按「影片|场次」存在本机（网站 `sparrow-autograph-v1`，小程序 `sk-autograph-v1`），**不随档案同步**，每台设备凭典藏编号自取。规则在 `shared/tickets.js`：`pendingAutograph`（没取过；空的 6 小时后、签到 30 天内再取，主办方可能事后补传；有签名的 3 天复查）/ `applyAutograph` / `attachAutographs`；票面 `drawAutographs` / `guestLine`。**`psync` 云函数需要重新部署**。
 - 收藏册与详情页的缩略图缓存键加上 `collectSig`（发号、封版、本场序号、现场认证、满贯、隐藏款、限定、签名），这些变化后缩略图会重画（之前不会）。
 - 测试 `tools/check-autograph.js`（随 check-companion 运行）。
+
+## 上传签名照片（2026-11-23）
+
+- 主办页 `#checkin-host` 的「映后嘉宾签名」里，签名板下方有「上传签名照片」：嘉宾在纸上签好后拍照或选图，网页在本机把签名描成和手签同样格式的笔画（0–1000 × 0–500，最多 80 笔、4000 点），显示在签名板上预览；「深浅」滑块调识别阈值（往左只留深色笔画，往右连浅色也收进来），也可以再在板上补几笔，最后照常「保存签名」（`tk_autograph_put`）。**照片本身不上传**，只保存描出的笔画；后端、小程序都没有改动。
+- 描摹代码 `shared/autograph-trace.js`（`window.SparrowTrace.trace(imageData, shift)`）：灰度 → 大津法阈值（深底浅字自动反转、明暗差太小判为没有墨迹）→ 去小噪点 → 按墨迹范围采样到约 480 格 → Zhang-Suen 细化 → 沿骨架走成折线（去掉贴着长笔画的毛刺）→ 简化 + 等距重采样（票面按段长决定粗细，等距才均匀）。图片先缩到最长边 1400px。测试 `tools/check-autograph-trace.js`（随 check-companion 运行）。
+- 页面提示：只上传嘉宾本人为这一场签的签名，并事先告知会用于观众的电子票根。白纸、深色笔、光线均匀时效果最好。

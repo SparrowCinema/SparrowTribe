@@ -1017,6 +1017,9 @@ async function ciAgRender(s,pin,force){
     '<label class="ci-row"><span>'+tr("嘉宾姓名")+'</span><input id="ag-name" maxlength="24" autocomplete="off"></label>'+
     '<label class="ci-row"><span>'+tr("身份")+'</span><input id="ag-role" maxlength="12" placeholder="'+tr("如：导演")+'" autocomplete="off"></label>'+
     '<div class="ci-pad"><canvas id="ag-pad"></canvas><span class="ci-pad-hint">'+tr("请嘉宾在这里签名")+'</span></div>'+
+    '<div class="ci-up"><label class="secondary-button ci-up-btn">'+tr("上传签名照片")+'<input type="file" id="ag-file" accept="image/*" hidden></label>'+
+    '<label class="ci-up-shade" id="ag-shade-row" hidden><span>'+tr("深浅")+'</span><input type="range" id="ag-shade" min="-60" max="60" step="5" value="0"></label>'+
+    '<p class="ci-up-note">'+tr("请只上传嘉宾本人为这一场签的签名，并事先告知会用于观众的电子票根。照片只在本机识别，不会上传，只保存描出的笔画。")+'</p></div>'+
     '<div class="ci-pad-acts"><button class="secondary-button" id="ag-clear">'+tr("清除")+'</button><button class="primary-button" id="ag-save">'+tr("保存签名")+'</button></div>')+'</div>';
   box.querySelectorAll("canvas[data-ag]").forEach(c=>{const g=list.find(x=>String(x.i)===c.dataset.ag);if(g)agDraw(c.getContext("2d"),g.st,300,150);});
   box.querySelectorAll("[data-ag-del]").forEach(b=>b.addEventListener("click",async()=>{
@@ -1033,7 +1036,19 @@ async function ciAgRender(s,pin,force){
   pad.addEventListener("pointermove",e=>{if(!cur)return;const [x,y]=pt(e),lx=cur[cur.length-2],ly=cur[cur.length-1];if(Math.hypot(x-lx,y-ly)<4||points>=4000)return;cur.push(x,y);points++;redraw();});
   const end=()=>{if(cur){strokes.push(cur);cur=null;redraw();}};
   pad.addEventListener("pointerup",end);pad.addEventListener("pointercancel",end);
-  document.getElementById("ag-clear").addEventListener("click",()=>{strokes=[];cur=null;points=0;redraw();});
+  // 上传签名照片：在本机描成笔画，替换签名板上的内容；可拖「深浅」重新识别，也可以再在板上补几笔
+  let photo=null;const shadeRow=document.getElementById("ag-shade-row"),shade=document.getElementById("ag-shade");
+  const retrace=()=>{if(!photo||!window.SparrowTrace)return;const r=SparrowTrace.trace(photo,+shade.value);
+    if(!r.strokes.length){strokes=[];points=0;redraw();toast(tr(r.reason==="toolarge"?"签名太复杂，请换一张只有签名的照片":"没有识别到签名，请拖动「深浅」或换一张白纸黑字的照片"));return;}
+    strokes=r.strokes;points=r.points;cur=null;redraw();};
+  document.getElementById("ag-file").addEventListener("change",e=>{const file=e.target.files&&e.target.files[0];e.target.value="";if(!file)return;
+    const url=URL.createObjectURL(file),img=new Image();
+    img.onload=()=>{const k=Math.min(1,1400/Math.max(img.naturalWidth,img.naturalHeight)),w=Math.max(1,Math.round(img.naturalWidth*k)),h=Math.max(1,Math.round(img.naturalHeight*k));
+      const c=document.createElement("canvas");c.width=w;c.height=h;const x=c.getContext("2d");x.fillStyle="#fff";x.fillRect(0,0,w,h);x.drawImage(img,0,0,w,h);
+      URL.revokeObjectURL(url);photo=x.getImageData(0,0,w,h);shade.value="0";shadeRow.hidden=false;retrace();};
+    img.onerror=()=>{URL.revokeObjectURL(url);toast(tr("无法读取这张图片"));};img.src=url;});
+  shade.addEventListener("input",()=>{clearTimeout(shade._t);shade._t=setTimeout(retrace,120);});
+  document.getElementById("ag-clear").addEventListener("click",()=>{strokes=[];cur=null;points=0;photo=null;shadeRow.hidden=true;redraw();});
   document.getElementById("ag-save").addEventListener("click",async e=>{
     const nm=document.getElementById("ag-name").value.trim(),rl=document.getElementById("ag-role").value.trim();
     if(!nm){toast(tr("请填写嘉宾姓名"));return;}if(!strokes.length){toast(tr("还没有签名"));return;}

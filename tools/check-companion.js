@@ -21,6 +21,7 @@ require('./check-ticket-collect.js');
 require('./check-sync-quiet.js');
 require('./check-checkin.js');
 require('./check-autograph.js');
+require('./check-autograph-trace.js');
 require('./check-wxss.js');
 
 require('./check-film-details.js');
