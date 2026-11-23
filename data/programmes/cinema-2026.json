@@ -3259,6 +3259,9 @@
    ],
    "version": "完整版",
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/24-flavors-1127.jpg",
+   "stills": [
+    "posters/24-flavors.jpg"
+   ],
    "poster": "posters/24-flavors-1127.jpg",
    "links": {
     "douban": "33412900",
