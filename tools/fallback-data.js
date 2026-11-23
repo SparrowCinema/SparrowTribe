@@ -4,7 +4,8 @@
 const fs = require('fs'), path = require('path');
 const root = path.join(__dirname, '..');
 const Screenings = require('../shared/screenings.js');
-const SITE = 'https://sparrowcinema.github.io/SparrowTribe/';
+const OLD_SITE = 'https://sparrowcinema.github.io/SparrowTribe/';
+const SITE = 'https://sparrowcinema.org/';
 const OUT = path.join(root, 'miniprogram/data/data.js');
 
 // 离线兜底只保留列表/排片/护照所需字段：长文字段（简介、荣誉、内容提示等）联网后由 getData / 网站数据补全。
@@ -31,6 +32,7 @@ function build(opt) {
       const o = Object.assign({}, f, { prog: f.prog || p.id });
       delete o.ticket;
       // 海报地址只认站内：资料里手写的 posterUrl 只有指向本站才用；外链 poster 部署时会存成站内 posters/x-<id>.jpg（tools/localize-posters.py），兜底数据直接指向那里
+      if (typeof o.posterUrl === 'string') o.posterUrl = o.posterUrl.replace(OLD_SITE, SITE); // 换域名前写的站内地址
       if (!(typeof o.posterUrl === 'string' && o.posterUrl.startsWith(SITE))) delete o.posterUrl;
       if (!has('posters', f.id + '.jpg') && f.poster && !o.posterUrl) o.posterUrl = SITE + (/^https?:\/\//.test(f.poster) ? 'posters/x-' + f.id + '.jpg' : f.poster.replace(/^\//, ''));
       if (has('tickets', f.id + '.jpg')) o.ticketUrl = '/images/tickets/' + f.id + '.jpg';

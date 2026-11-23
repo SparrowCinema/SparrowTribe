@@ -3,12 +3,13 @@
 // 本机 storage「sk-poster-pick-v1」：{影片id:{u,t}|{del:1,t}}，随个人档案同步（shared/psync.js 的 pp，逐项取较新者）。
 // 只用在影片页大海报、海报墙、观影结算长图、典藏票根默认票面图；片目、排片、专题页、分享海报仍用官方海报。
 const KEY = 'sk-poster-pick-v1';
-const SITE = 'https://sparrowcinema.github.io/SparrowTribe/';
+const SITE = 'https://sparrowcinema.org/';
 let cache = null;
 const listeners = [];
 const obj = v => (v && typeof v === 'object' && !Array.isArray(v) ? v : {});
 // 同一张图的比对键：本站地址去掉站点前缀和 ?v=，站内相对路径去掉 ?v=；外站地址原样（网站同一规则）
-const key = u => { u = String(u || ''); if (u.toLowerCase().indexOf(SITE.toLowerCase()) === 0) u = u.slice(SITE.length); return /^(posters|images)\//i.test(u) ? u.replace(/[?#].*$/, '') : u; };
+const OLD_SITE = 'https://sparrowcinema.github.io/SparrowTribe/'; // 换域名前的站点地址，旧数据里的海报地址也要认
+const key = u => { u = String(u || ''); for (const s of [SITE, OLD_SITE]) if (u.toLowerCase().indexOf(s.toLowerCase()) === 0) { u = u.slice(s.length); break; } return /^(posters|images)\//i.test(u) ? u.replace(/[?#].*$/, '') : u; };
 const absolute = src => /^(posters|images)\//i.test(src) ? SITE + src : src;
 // 可选的图（绝对地址，第一张是官方海报）
 function artOf(f) {

@@ -1,12 +1,13 @@
 // 读取排片数据。
-// 1. 优先读取网站 https://sparrowcinema.github.io/SparrowTribe/data/ 的最新数据（网站更新后小程序自动同步，无需重新审核）。
+// 1. 优先读取网站 https://sparrowcinema.org/data/ 的最新数据（网站更新后小程序自动同步，无需重新审核）。
 // 2. 定时触发器每 10 分钟读一次网站并写入云数据库 cache 集合；小程序打开时直接返回缓存，不用等网站。
 // 3. 都没有时，读取 films / shows / venues / programmes 四个集合；仍为空时小程序使用安装包内置数据。
 const cloud = require('wx-server-sdk');
 const https = require('https');
 cloud.init({ env: cloud.DYNAMIC_CURRENT_ENV });
 const db = cloud.database();
-const SITE = process.env.SITE_BASE || 'https://sparrowcinema.github.io/SparrowTribe/';
+const OLD_SITE = 'https://sparrowcinema.github.io/SparrowTribe/';
+const SITE = process.env.SITE_BASE || 'https://sparrowcinema.org/';
 const BUNDLED = require('./bundled.json');
 
 // 读取网站 JSON：声明接受 gzip（压缩后体积约为原来的 1/5，云函数到 GitHub Pages 的链路慢，这是最有效的提速），失败自动重试一次
@@ -87,6 +88,7 @@ async function fromSite(ms, prev) {
       delete o.ticket;
       // 海报地址只认站内：资料里手写的 posterUrl 只有指向本站（如加 ?v= 刷新缓存）才用，其余一律按 poster 推出。
     // 部署时 tools/localize-posters.py 会把外链 poster 和同值的字段一起改成相对路径 posters/x-<id>.jpg，不能原样交给小程序（相对路径会被当成安装包内文件）
+    if (typeof o.posterUrl === 'string') o.posterUrl = o.posterUrl.replace(OLD_SITE, SITE); // 换域名前写的站内地址
     if (!(typeof o.posterUrl === 'string' && o.posterUrl.startsWith(SITE))) delete o.posterUrl;
     if (!has('posters', f.id + '.jpg') && f.poster && !o.posterUrl) o.posterUrl = /^https?:\/\//.test(f.poster) ? f.poster : SITE + f.poster.replace(/^\//, '');
       if (has('tickets', f.id + '.jpg')) o.ticketUrl = '/images/tickets/' + f.id + '.jpg';

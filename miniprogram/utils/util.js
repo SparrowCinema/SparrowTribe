@@ -141,7 +141,7 @@ const EV_RE = /^(映后活动|Post-screening event)\s*·\s*/;
 const SUB_SEG = /^(字幕机|Subtitle display)$/; // 场次备注里单独成段的「字幕机」显示成标签（与网站 noteHTML 一致）
 // 日历订阅：小程序不能直接打开 webcal。推荐去网页版一键订阅（复制网页地址到手机浏览器打开）；也可复制订阅链接手动添加
 const calSub = (id, en, t) => {
-  const SITE = 'https://sparrowcinema.github.io/SparrowTribe/';
+  const SITE = 'https://sparrowcinema.org/';
   const sub = SITE + 'cal/' + (en ? 'en/' : '') + id + '.ics', page = SITE + (id === 'all' ? '#programmes' : '#prog-' + id);
   const manual = () => wx.showModal({ title: t('手动添加订阅'), content: t('复制链接后，在手机日历里添加「订阅日历」并粘贴：iPhone 在 设置 › 日历 › 账户 › 添加账户 › 其他 › 添加已订阅的日历；安卓在日历 App 的「添加日历 / 订阅」。订阅后场次有调整会自动同步。'), confirmText: t('复制链接'), cancelText: t('取消'),
     success: r => { if (r.confirm) wx.setClipboardData({ data: sub, success: () => wx.showToast({ title: t('订阅链接已复制'), icon: 'none' }) }); } });
@@ -151,7 +151,7 @@ const calSub = (id, en, t) => {
   } });
 };
 // 网页版引导：复制网页地址，并说明用 iPhone 自带 Safari 打开、添加到手机桌面后像 App 一样用（一键导入个人排片 / 一键订阅专题日历）
-const SITE_URL = 'https://sparrowcinema.github.io/SparrowTribe/';
+const SITE_URL = 'https://sparrowcinema.org/';
 const webTip = (hash, lines, t, title) => {
   wx.setClipboardData({ data: SITE_URL + (hash || ''), success: () => wx.showModal({ title: t(title || '网页版地址已复制'), content: lines.map(x => t(x)).join('\n'), showCancel: false, confirmText: t('知道了') }) });
 };

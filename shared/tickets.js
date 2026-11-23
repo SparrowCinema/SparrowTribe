@@ -522,7 +522,7 @@ function decorate(rows,sets) {
   return rows;
 }
 // 验真：票根背面的二维码打开网站验真页（#verify=典藏编号）。二维码矩阵由各端提供（网站 vendor/qrcode.js，小程序分包 utils/qrcode.js）。
-const VERIFY_BASE="https://sparrowcinema.github.io/SparrowTribe/#verify=";
+const VERIFY_BASE="https://sparrowcinema.org/#verify=";
 const verifyURL=serial=>serialValid(serial) ? VERIFY_BASE+serial : "";
 let qrMaker=null;const qrCache=new Map();
 function setQR(fn) {qrMaker=typeof fn==="function" ? fn : null;qrCache.clear();}
@@ -533,7 +533,7 @@ function qrFor(serial) {
 }
 // ——— 现场认证（2026-11-22）：放映现场扫签到码 → 盖章 + 典藏票根 + 发号 + 记下签到时间 ———
 // 签到码内容：网站地址 #checkin=影片id~场次编号~时间窗~签到码（12 位十六进制，由服务器密钥签名，backend/tickets-checkin-v1.sql）
-const CHECKIN_BASE="https://sparrowcinema.github.io/SparrowTribe/#checkin=";
+const CHECKIN_BASE="https://sparrowcinema.org/#checkin=";
 const checkinURL=(f,h,w,k)=>CHECKIN_BASE+[f,h,w,k].map(x=>encodeURIComponent(String(x))).join("~");
 function checkinParse(text) {
   const m=String(text||"").match(/#checkin=([^\s]+)$/) || String(text||"").match(/^checkin=([^\s]+)$/);
@@ -659,7 +659,7 @@ function sorted(records,programme,year) {
 }
 
 // ——— 存储：票根 = 观影记录的皮肤 ———
-const SITE=/^https:\/\/sparrowcinema\.github\.io\/SparrowTribe\//i;
+const SITE=/^https:\/\/(?:(?:www\.)?sparrowcinema\.org|sparrowcinema\.github\.io\/SparrowTribe)\//i; // 新域名与换域名前的旧地址都去掉前缀
 const ticketKey=(filmId,date,n)=>filmId+"|"+date+(n>1?"|"+n:"");
 function parseKey(key) {
   if (typeof key!=="string" || !Sync.TIX_KEY.test(key)) return null;

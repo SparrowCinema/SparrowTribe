@@ -4,7 +4,7 @@ const I = require('../../utils/i18n.js');
 const Stats = require('../../utils/stats.js');
 const t = I.tr;
 const app = getApp();
-const SITE = 'https://sparrowcinema.github.io/SparrowTribe/';
+const SITE = 'https://sparrowcinema.org/';
 // 封面地址：云函数旧版本或英文层可能给出相对路径，统一补成网站绝对地址（本地 / 开头的包内图不动）
 const abs = u => !u || /^(https?:|\/)/.test(u) ? u : SITE + u;
 

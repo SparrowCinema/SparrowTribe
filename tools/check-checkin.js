@@ -4,7 +4,7 @@ const assert=require('assert'),T=require('../shared/tickets.js'),S=require('../s
 
 // ——— 签到码 ———
 const url=T.checkinURL('gh63-f1','s15aaok04',14801234,'0123456789ab');
-assert.equal(url,'https://sparrowcinema.github.io/SparrowTribe/#checkin=gh63-f1~s15aaok04~14801234~0123456789ab');
+assert.equal(url,'https://sparrowcinema.org/#checkin=gh63-f1~s15aaok04~14801234~0123456789ab');
 assert.deepStrictEqual(T.checkinParse(url),{f:'gh63-f1',h:'s15aaok04',w:14801234,k:'0123456789ab'});
 assert.deepStrictEqual(T.checkinParse('checkin=gh63-f1~s15aaok04~14801234~0123456789AB').k,'0123456789ab');
 const keyShow=T.checkinURL('f1','11/08-19:30-v1-h1',1,'aaaaaaaaaaaa');

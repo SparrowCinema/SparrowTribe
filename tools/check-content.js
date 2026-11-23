@@ -14,7 +14,7 @@ for(const p of cat.programmes){if(!p.file)continue;for(const f of read(p.file).f
  assert(!f.warnings.some(w=>/^(同性恋|同性恋情|跨性别|残障|移民|宗教|女性)$/.test(w)),label+' identity itself must not be a warning');
  if(f.mpa){assert(['G','PG','PG-13','R','NC-17'].includes(f.mpa.rating),label+' invalid MPA classification');assert(f.mpa.checked&&f.mpa.edition,label+' rating needs edition/date');}
  // posterUrl 只用于指向本站的地址（如加 ?v= 刷新缓存）；外链海报写在 poster 里，部署时自动存成站内文件。外链 posterUrl 会让小程序海报丢失
- if(f.posterUrl!==undefined)assert(typeof f.posterUrl==='string'&&f.posterUrl.startsWith('https://sparrowcinema.github.io/SparrowTribe/'),label+' posterUrl must point to this site; put external poster URLs in poster');
+ if(f.posterUrl!==undefined)assert(typeof f.posterUrl==='string'&&(f.posterUrl.startsWith('https://sparrowcinema.org/')||f.posterUrl.startsWith('https://sparrowcinema.github.io/SparrowTribe/')),label+' posterUrl must point to this site; put external poster URLs in poster');
  if(films.has(f.id)){const prev=films.get(f.id);for(const k of ['warnings','contentReview','contentNote','editorial','mpa','worldPremiere'])assert.deepStrictEqual(f[k],prev[k],label+' guidance differs between programmes');}
  films.set(f.id,f);
 }}

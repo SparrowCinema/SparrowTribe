@@ -36,7 +36,7 @@ assert.equal(built.tickets[0].date,'2026-11-08');                       // 新 �
 assert.deepStrictEqual(T.build(list,S.cleanTix(store),base).tickets.map(r=>T.packLook(r.look)),built.tickets.map(r=>T.packLook(r.look)));
 
 // 编辑：只存和推导值不同的字段
-const edited={...second,seat:'5排8座',hall:'1号厅',venue:'麻雀部落电影文化空间',look:T.randomLook(second),crop:30,art:'https://sparrowcinema.github.io/SparrowTribe/posters/a.jpg'};
+const edited={...second,seat:'5排8座',hall:'1号厅',venue:'麻雀部落电影文化空间',look:T.randomLook(second),crop:30,art:'https://sparrowcinema.org/posters/a.jpg'};
 const entry=T.entryFrom(edited,{...base('a',list.find(x=>x.key==='a|2026-11-08').view,'2026-11-08'),id:'a|2026-11-08'},9);
 // 编辑保存时同时冻结典藏编号 n（2026-11-22）
 assert.deepStrictEqual(Object.keys(entry).filter(k=>k!=='x').sort(),['c','l','n','st','t','vn']);

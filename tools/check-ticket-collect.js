@@ -89,7 +89,7 @@ const one=T.build(list.slice(0,1),store,base);T.decorate(one.tickets,sets);asser
 assert(T.badgesOf(built.tickets[0]).some(b=>b.startsWith('全满贯')));
 
 // ——— 验真二维码与票面绘制（假画布，检查文字与二维码都画上了） ———
-assert.equal(T.verifyURL(ra.serial),'https://sparrowcinema.github.io/SparrowTribe/#verify='+ra.serial);assert.equal(T.verifyURL('bad'),'');
+assert.equal(T.verifyURL(ra.serial),'https://sparrowcinema.org/#verify='+ra.serial);assert.equal(T.verifyURL('bad'),'');
 const calls=[];
 const fake=(w,h)=>{const ctx=new Proxy({},{get:(o,key)=>key in o?o[key]:(key==='canvas'?{width:w,height:h}:key==='measureText'?(t=>({width:String(t).length*10})):key==='createLinearGradient'||key==='createRadialGradient'||key==='createPattern'?(()=>({addColorStop(){}})):key==='getImageData'?(()=>({data:new Uint8ClampedArray(4*w*h)})):(...a)=>{calls.push([key,a]);}),set:(o,key,v)=>{o[key]=v;return true;}});return {width:w,height:h,getContext:()=>ctx};};
 let qrAsked='';T.setQR(text=>{qrAsked=text;return Array.from({length:25},(_,r)=>Array.from({length:25},(_,c)=>(r*c)%3===0));});
