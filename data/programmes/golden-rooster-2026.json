@@ -967,9 +967,6 @@
     "checked": "2026-11-07"
    },
    "dirLife": "新加坡",
-   "stills": [
-    "posters/hainan26-asian-gr26-011-festival.jpg"
-   ],
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/hainan26-asian-gr26-011-poster.jpg"
   },
   {
@@ -1134,10 +1131,7 @@
     "kind": "festival",
     "checked": "2026-11-07"
    },
-   "dirLife": "中国",
-   "stills": [
-    "posters/hainan26-asian-gr26-013.jpg"
-   ]
+   "dirLife": "中国"
   },
   {
    "id": "gr26-014",
