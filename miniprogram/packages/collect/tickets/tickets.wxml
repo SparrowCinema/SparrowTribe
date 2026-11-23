@@ -3,7 +3,7 @@
 <view class="wrap album tk-page">
   <view class="tk-head">
     <text class="tk-heading">{{L.t(i,mode==='pending'?'待制作的票根':mode==='search'?'制作票根':'我的典藏票根册')}}</text>
-    <text wx:if="{{mode==='album'}}" class="tk-link" bindtap="start" role="button">＋ {{L.t(i,'制作票根')}}</text>
+    <view wx:if="{{mode==='album'}}" class="tk-acts"><text class="tk-link" bindtap="scanCheckin" role="button">{{L.t(i,'现场签到')}}</text><text class="tk-dot">·</text><text class="tk-link" bindtap="start" role="button">＋ {{L.t(i,'制作票根')}}</text></view>
     <text wx:else class="tk-link" bindtap="backAlbum" role="button">‹ {{L.t(i,'返回收藏册')}}</text>
   </view>
 

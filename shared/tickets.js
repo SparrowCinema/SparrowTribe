@@ -531,15 +531,56 @@ function qrFor(serial) {
   if (!qrCache.has(serial)) {let m=null;try {m=qrMaker(verifyURL(serial));} catch (e) {}if (qrCache.size>400) qrCache.clear();qrCache.set(serial,Array.isArray(m) && m.length ? m : null);}
   return qrCache.get(serial);
 }
+// ——— 现场认证（2026-11-22）：放映现场扫签到码 → 盖章 + 典藏票根 + 发号 + 记下签到时间 ———
+// 签到码内容：网站地址 #checkin=影片id~场次编号~时间窗~签到码（12 位十六进制，由服务器密钥签名，backend/tickets-checkin-v1.sql）
+const CHECKIN_BASE="https://sparrowcinema.github.io/SparrowTribe/#checkin=";
+const checkinURL=(f,h,w,k)=>CHECKIN_BASE+[f,h,w,k].map(x=>encodeURIComponent(String(x))).join("~");
+function checkinParse(text) {
+  const m=String(text||"").match(/#checkin=([^\s]+)$/) || String(text||"").match(/^checkin=([^\s]+)$/);
+  if (!m) return null;
+  const parts=m[1].split("~").map(x=>{try {return decodeURIComponent(x);} catch (e) {return "";}});
+  if (parts.length!==4) return null;
+  const [f,h,w,k]=parts;
+  if (!/^[\w-]{1,80}$/.test(f) || !/^[\w:\/.-]{1,120}$/.test(h) || !/^\d{1,12}$/.test(w) || !/^[0-9a-f]{12}$/i.test(k)) return null;
+  return {f,h,w:Number(w),k:k.toLowerCase()};
+}
+// 把这次现场观影记进观影记录：同一天同一场已经记过就用那一次，没有场次的同日记录补上场次，否则新增一次观影。
+// G＝shared/growth.js；返回 {rec: 更新后的记录（没变化为 null）, key: 这次观影的票根键}
+function checkinPlan(rec,G,filmId,date,showKey,now) {
+  const t=now||Date.now();
+  const live=rec && !rec.del && rec.d ? rec : null;
+  let next=null,vs=live ? G.views(live) : [];
+  let i=vs.findIndex(v=>v.d===date && (v.k||"")===showKey);
+  if (i<0) {
+    const j=vs.findIndex(v=>v.d===date && !v.k);
+    if (j>=0) {vs[j]={...vs[j],k:showKey};next={...G.setViews(live,vs),t:Math.max(t,(live.t||0)+1)};}
+    else if (live) {const res=G.putView(live,-1,{d:date,r:0,k:showKey});next={...res.rec,t:Math.max(t,(live.t||0)+1)};}
+    else next={d:date,r:0,k:showKey,t:Math.max(t,(rec && rec.t||0)+1)};
+    vs=G.views(next);i=vs.findIndex(v=>v.d===date && (v.k||"")===showKey);
+  }
+  let n=0;for (let x=0;x<=i;x++) if (vs[x].d===date) n++;
+  return {rec:next,key:ticketKey(filmId,date,Math.max(1,n))};
+}
+// 签到结果写回票根：{ok, no, h, sno, ci}。新票根以签到时间作保存时间（决定典藏编号）。返回新的票根记录。
+function applyCheckin(entry,key,result) {
+  const e={...(entry && !entry.del ? entry : {t:Date.now()})};
+  if (!serialValid(e.n)) e.n=entrySerial(key,e);
+  if (!result || !result.ok) return e;
+  if (Number.isInteger(result.no) && result.no>0 && !e.q) e.q=result.no;
+  if (typeof result.h==="string" && result.h && (!e.sh || e.sh==="-")) {e.sh=result.h;if (Number.isInteger(result.sno) && result.sno>0) e.sq=result.sno;}
+  const ci=Date.parse(result.ci||"");if (ci>0 && !e.ci) e.ci=ci;
+  return e;
+}
+
 // 票面上的发行信息文字（背面撕线下方与合成图共用）
 function editionLines(record) {
   if (!record.issue) return {no:"№ ----",total:"",line1:"待发号 · 联网后自动烫印",line2:""};
   const closed=record.edition>=0, inEdition=closed && record.issue<=record.edition;
   const line1=!closed ? "本片第 "+record.issue+" 张典藏" : inEdition ? "本片第 "+record.issue+" 张 · 共 "+record.edition+" 张 · 已封版" : "本片第 "+record.issue+" 张 · 封版后典藏";
-  const line2=[record.showNo ? "本场第 "+record.showNo+" 张" : "",record.showTag].filter(Boolean).join(" · ");
+  const line2=[record.checkedIn ? "现场认证" : "",record.showNo ? "本场第 "+record.showNo+" 张" : "",record.showTag].filter(Boolean).join(" · ");
   return {no:issueText(record.issue),total:inEdition ? " / "+String(record.edition).padStart(4,"0") : "",line1,line2};
 }
-const badgesOf=record=>[record.hidden ? "隐藏款 · 1/1 孤品" : "",record.limited ? record.limitedName+"限定" : "",record.slam==="programme" ? "全满贯 · 集齐 "+record.slamN+" 部" : record.slam==="section" ? "单元满贯 · 集齐 "+record.slamN+" 部" : ""].filter(Boolean);
+const badgesOf=record=>[record.checkedIn ? "现场认证" : "",record.hidden ? "隐藏款 · 1/1 孤品" : "",record.limited ? record.limitedName+"限定" : "",record.slam==="programme" ? "全满贯 · 集齐 "+record.slamN+" 部" : record.slam==="section" ? "单元满贯 · 集齐 "+record.slamN+" 部" : ""].filter(Boolean);
 
 function sorted(records,programme,year) {
   return records.filter(row=>(!programme || row.programme===programme) && (!year || row.date.slice(0,4)===year)).sort((a,b)=>
@@ -589,7 +630,7 @@ function record(key,filmId,view,entry,base,date) {
   const row=sanitize({...b,id:key,time:pick("time",entry.tm),venue:pick("venue",entry.vn),hall:pick("hall",entry.hl),
     city:pick("city",entry.cy),format:pick("format",entry.fm),seat:entry.st||"",art:pickArt(b.arts,entry.a) || b.art,
     crop:entry.c===undefined ? 50 : entry.c,sketch:entry.sk===1,savedAt:entry.t,serial:entrySerial(key,entry),issue:entry.q||0,look:{...unpackLook(entry.l),craft:entry.x}});
-  row._entry={sh:entry.sh,sq:entry.sq,o:entry.o};
+  row._entry={sh:entry.sh,sq:entry.sq,o:entry.o,ci:entry.ci};
   row.key=key; row.linked=!!view; row.arts=b.arts||[]; row.director=b.director||"";
   // 典藏玩法（2026-11-22）
   row.showNo=entry.sh && entry.sh!=="-" && entry.sh===row.showId && entry.sq ? entry.sq : 0;
@@ -600,6 +641,7 @@ function record(key,filmId,view,entry,base,date) {
   row.limited=b.progKind==="影展专题" && !!inRange;
   row.limitedName=row.limited ? ((row.programme||"").replace(/^\d{4}\s*/,"").replace(/第\s*\d+\s*届/,"").replace(/\s+/g,"").slice(0,10)||"影展") : "";
   row.slam="";row.slamN=0;
+  row.checkedIn=Number.isInteger(entry.ci) && entry.ci>0 ? entry.ci : 0;
   return row;
 }
 // 每一次观影一张票根（2026-11-22 起；之前是一部电影一张）：重看同一部电影会多一张，盲盒款式也不同。
@@ -662,7 +704,7 @@ function entryFrom(row,base,t) {
   if (serialValid(row.serial)) entry.n=row.serial;
   if (row.issue) entry.q=row.issue;
   const old=row._entry||{};
-  if (old.sh) entry.sh=old.sh;if (old.sq) entry.sq=old.sq;if (Number.isInteger(old.o)) entry.o=old.o;
+  if (old.sh) entry.sh=old.sh;if (old.sq) entry.sq=old.sq;if (Number.isInteger(old.o)) entry.o=old.o;if (old.ci) entry.ci=old.ci;
   // 隐藏款的「孤品流光箔」是显示时套上的，不存进款式
   const lk=row.look && row.look.finish==="unique" ? {...row.look,finish:row._finish||defaults({...base,id:row.id}).finish} : row.look;
   const look=packLook(lk);
@@ -1484,7 +1526,7 @@ function backMask(record,createCanvas,w) {
 }
 
 // ——— 典藏玩法的票面标记（2026-11-22）———
-const headTag=record=>record.hidden ? "隐藏款 · 1/1" : record.limited ? "影展限定" : record.slam ? "满贯典藏" : "";
+const headTag=record=>record.hidden ? "隐藏款 · 1/1" : record.checkedIn ? "现场认证" : record.limited ? "影展限定" : record.slam ? "满贯典藏" : "";
 // 验真二维码：浅色底 + 深色码点（不是烫印，不进工艺遮罩），留 3 格静区
 function drawQR(surface,m,x,y,size,dark,light) {
   const n=m.length,q=2,cell=size/(n+q*2);
@@ -1831,6 +1873,6 @@ function drawWall(surface,records,side,images,caption,createCanvas,title,maxWidt
 }
 
 const shineOf=key=>{const f=finishes[key]||finishes.matte;return {kind:f.kind,fx:fxOf(key),highlight:f.stops[f.stops.length-2]};};
-return {isHidden,HIDDEN_RATE,editionClose,EDITION_GRACE,pendingEdition,applyEdition,decorate,setQR,verifyURL,editionLines,badgesOf,drawShowcase,bakeSheen,SHOW_W,SHOW_H,serialOf,serialValid,formatSerial,entrySerial,pendingIssue,applyIssue,issueText,ISSUE_BATCH,W,H,TITLE_FAMILY,edgeOf,foilMask,fxOf,artMask,backMask,parseCraft,craftLabel,lookSig,foilLayers,WALL_PAGE,MOSAIC_MAX,FACETS,options:labelOptions(),sanitize,read,sorted,defaults,randomLook,shineOf,draw,wallLayout,drawWall,
+return {checkinURL,checkinParse,checkinPlan,applyCheckin,isHidden,HIDDEN_RATE,editionClose,EDITION_GRACE,pendingEdition,applyEdition,decorate,setQR,verifyURL,editionLines,badgesOf,drawShowcase,bakeSheen,SHOW_W,SHOW_H,serialOf,serialValid,formatSerial,entrySerial,pendingIssue,applyIssue,issueText,ISSUE_BATCH,W,H,TITLE_FAMILY,edgeOf,foilMask,fxOf,artMask,backMask,parseCraft,craftLabel,lookSig,foilLayers,WALL_PAGE,MOSAIC_MAX,FACETS,options:labelOptions(),sanitize,read,sorted,defaults,randomLook,shineOf,draw,wallLayout,drawWall,
   ticketKey,parseKey,cleanStore,mergeStore,packLook,unpackLook,normArt,viewings,build,reconcile,draft,entryFrom,migrateV1,filterTickets,facetCounts,groupByMonth,swatch};
 });

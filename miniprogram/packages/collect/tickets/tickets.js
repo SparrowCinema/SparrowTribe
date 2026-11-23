@@ -194,6 +194,21 @@ Page({
   clearFacets(){R.FACETS.forEach(k=>{this._q[k]=[];});this._limit=STEP;this.paint(false);},
   setDensity(e){const d=e.currentTarget.dataset.v;try{wx.setStorageSync(DENS,d);}catch(_){}this.setData({density:d});this.paint(false);},
   flipWall(){this.setData({front:!this.data.front});this.paint(false);},
+  // 现场认证（2026-11-22）：扫放映现场屏幕上的签到码
+  scanCheckin(){
+    wx.scanCode({onlyFromCamera:true,scanType:['qrCode'],success:async res=>{
+      const c=R.checkinParse(res.result||'');
+      if(!c){wx.showToast({title:I.tr('这不是现场签到码'),icon:'none'});return;}
+      wx.showLoading({title:I.tr('正在签到…'),mask:true});
+      const r=await Tix.checkin(c);wx.hideLoading();
+      if(r.reason==='noshow'){wx.showToast({title:I.tr('找不到这场放映，请稍后再试'),icon:'none'});return;}
+      this.refreshAlbum&&this.refreshAlbum();
+      const open=()=>r.key&&wx.navigateTo({url:'/packages/collect/ticket-edit/ticket-edit?key='+encodeURIComponent(r.key)});
+      if(r.ok){wx.showModal({title:I.tr(r.again?'已现场认证':'现场认证成功'),content:I.tr('观影护照已盖章，这一场的典藏票根烫印「现场认证」。'),confirmText:I.tr('查看票根'),cancelText:I.tr('好的'),success:m=>{if(m.confirm)open();}});return;}
+      wx.showModal({title:I.tr(r.reason==='expired'?'签到码已过期':r.reason==='bad'?'签到码无效':'暂时无法认证'),
+        content:I.tr(r.reason==='expired'?'请扫描现场屏幕上最新的签到码。':r.reason==='bad'?'请扫描放映现场屏幕上的签到码。':'网络或服务暂时不可用，请稍后再扫一次。')+' '+I.tr('观影护照已盖章，票根也已放进典藏票根册。'),showCancel:false});
+    }});
+  },
   tapTicket(e){
     const k=e.currentTarget.dataset.k,row=this._byKey.get(k);if(!row)return;
     if(this._pick){

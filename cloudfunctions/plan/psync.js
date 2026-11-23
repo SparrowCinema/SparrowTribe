@@ -38,6 +38,8 @@
     if (typeof e.sh === 'string' && /^(-|[A-Za-z0-9_:\/.-]{1,120})$/.test(e.sh)) out.sh = e.sh;
     if (Number.isInteger(e.sq) && e.sq > 0 && e.sq < 1e8) out.sq = e.sq;
     if (Number.isInteger(e.o) && e.o >= 0 && e.o < 1e8) out.o = e.o;
+    // 现场认证时间（毫秒，服务器记录）
+    if (Number.isInteger(e.ci) && e.ci > 1e12 && e.ci < 1e14) out.ci = e.ci;
     if (typeof e.l === 'string' && TIX_LOOK.test(e.l)) out.l = e.l;
     // 工艺组合（2026-11-22）：烫印增效-海报隐形工艺[背面隐形工艺][盲文][可变数据烫印]，见 shared/tickets.js 的 CRAFT_RE；只在改过时才存
     if (typeof e.x === 'string' && /^[sgch]{0,2}-[0urokbdwpqmlinacefghjstxyz][urokbdwpqmlinacefghjstxyz]?[Bv]{0,2}$/.test(e.x)) out.x = e.x;
@@ -77,7 +79,7 @@
       var x = a[k], y = b[k], r = !x ? y : !y ? x : (y.t > x.t ? y : x);
       if (x && y && r && !r.del) {
         var o = r === x ? y : x;
-        if (o && !o.del && ((!r.n && o.n) || (!r.q && o.q) || ((!r.sh || r.sh === '-') && o.sh && o.sh !== '-') || (!r.sq && o.sq) || (r.o === undefined && o.o !== undefined))) {
+        if (o && !o.del && ((!r.n && o.n) || (!r.q && o.q) || ((!r.sh || r.sh === '-') && o.sh && o.sh !== '-') || (!r.sq && o.sq) || (r.o === undefined && o.o !== undefined) || (!r.ci && o.ci))) {
           var add = {};
           if (!r.n && o.n) add.n = o.n;
           var n = r.n || add.n;
@@ -87,6 +89,7 @@
             if ((!r.sh || r.sh === '-') && o.sh && o.sh !== '-') { add.sh = o.sh; if (o.sq) add.sq = o.sq; }
             else if (!r.sq && o.sq && r.sh === o.sh) add.sq = o.sq;
             if (r.o === undefined && o.o !== undefined) add.o = o.o;
+            if (!r.ci && o.ci) add.ci = o.ci;
           }
           if (Object.keys(add).length) r = Object.assign({}, r, add);
         }

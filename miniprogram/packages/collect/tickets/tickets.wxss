@@ -190,3 +190,6 @@
 .tk-make-all{display:inline-block;margin:calc(4 * var(--r)) 0 calc(20 * var(--r))!important}
 @media(min-width:700px){.tk-grid{grid-template-columns:repeat(5,minmax(0,1fr))}.tk-d-l .tk-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.tk-d-s .tk-grid{grid-template-columns:repeat(8,minmax(0,1fr))}}
 
+
+/* 现场签到入口（2026-11-22） */
+.tk-acts{display:flex;align-items:center;gap:calc(10 * var(--r));flex:none}
