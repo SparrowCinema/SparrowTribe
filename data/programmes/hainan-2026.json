@@ -1987,7 +1987,9 @@
    "contentNote": "公开剧情涉及家庭分歧、就业压力。具体画面及声光强度待核实。",
    "editorial": "可以记住几次练车路线与导游词的重合。一个人来学掉头，一个人来练习怎样讲故乡，两件小事都需要重复，等人们偏离预定路线时，故事才开始松动。最适合想看小城日常如何长出一点奇意的观众。",
    "links": {
-    "lb": "another-green-world"
+    "lb": "another-green-world",
+    "douban": "36714349",
+    "imdb": "tt42366413"
    },
    "metadataChecked": "2026-11-24",
    "ratingChecked": "2026-11-24",
@@ -1999,7 +2001,11 @@
     "kind": "festival",
     "checked": "2026-11-24"
    },
-   "poster": "posters/hainan26-asian-another-green-world-2026.jpg"
+   "poster": "posters/hainan26-another-green-world-douban-p2931409115.jpg",
+   "posterDb": "p2931409115",
+   "stills": [
+    "posters/hainan26-another-green-world-douban-p2911749189.jpg"
+   ]
   },
   {
    "id": "cassowary-2026",
@@ -2431,7 +2437,10 @@
     "kind": "festival",
     "checked": "2026-11-24"
    },
-   "poster": "posters/hainan26-asian-water-of-the-sea-2026.jpg"
+   "poster": "posters/hainan26-asian-water-of-the-sea-2026.jpg",
+   "links": {
+    "douban": "38589642"
+   }
   },
   {
    "id": "whispers-in-may-2026",
