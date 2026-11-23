@@ -1,0 +1,165 @@
+{
+ "checked": "2026-11-24",
+ "scope": "第八届海南岛国际电影节「海上明月」片目、评分、海报与首映核查",
+ "verifiedRecords": {
+  "another-green-world-2026": {
+   "cn": "小洞天",
+   "date": "2026-04",
+   "festival": "北京国际电影节",
+   "festivalEn": "Beijing International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://bjiff.com/ttj_17829/zmwl/zmwlrwypjj/antlyb_20096/index_1190.html",
+    "https://www.lafonte.org.cn/newsinfo/918754.html",
+    "https://www.siff.com/content?aid=101260531192234830850318139920389669",
+    "https://tidenews.com.cn/news.html?id=3426948&source=1",
+    "https://mulanfestival.com/2026/announcing-2026-fountainhead-official-selection-feature-films/",
+    "https://mostra.org/en/programacao?data=25%2F10",
+    "https://www.hiiff.net/screenings/units/haishang-mingyue/"
+   ]
+  },
+  "cassowary-2026": {
+   "cn": "吉光",
+   "date": "2026-06",
+   "festival": "上海国际电影节",
+   "festivalEn": "Shanghai International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.siff.com/content?aid=101260530160203830437469399814149170",
+    "https://m.thepaper.cn/newsDetail_forward_33632950",
+    "https://www.imdb.com/title/tt41142184/",
+    "https://www.hiiff.net/screenings/units/haishang-mingyue/",
+    "https://m.thepaper.cn/newsDetail_forward_33288351"
+   ]
+  },
+  "four-seasons-in-java-2026": {
+   "cn": "爪哇四季",
+   "date": "2026-09",
+   "festival": "多伦多国际电影节",
+   "festivalEn": "Toronto International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.lemmingfilm.nl/productions/four-seasons-in-java",
+    "https://rri.co.id/en/art-and-culture/2640133/kamila-andinis-four-seasons-in-java-selected-for-tiff-2026",
+    "https://www.imdb.com/title/tt36459577/",
+    "https://eventguide.id/2025/12/01/film-empat-musim-pertiwi-umumkan-kolaborator-di-jaff-market-2025-ada-riri-riza-hingga-ernest-prakasa/",
+    "https://www.hiiff.net/screenings/units/haishang-mingyue/"
+   ]
+  },
+  "head-to-head-2026": {
+   "cn": "头对头",
+   "date": "2026-09-15",
+   "festival": "多伦多国际电影节",
+   "festivalEn": "Toronto International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.dreamlabfilms.com/head-to-head/",
+    "https://www.dreamlabfilms.com/ghasideh-golmakani/",
+    "https://www.ioncinema.com/news/foreign-film-news/ghasideh-golmakani-head-to-head-2026",
+    "https://biff.kr/eng/html/program/prog_view.asp?QueryStep=2&c_idx=432&idx=91102",
+    "https://www.hiiff.net/screenings/units/haishang-mingyue/"
+   ]
+  },
+  "master-rezwan-shahriar-sumit-2026": {
+   "cn": "掌权者",
+   "date": "2026",
+   "festival": "鹿特丹国际电影节",
+   "festivalEn": "International Film Festival Rotterdam",
+   "kind": "festival",
+   "sources": [
+    "https://iffr.com/en/iffr/2026/films/master",
+    "https://iffr.com/en/person/rezwan-shahriar-sumit",
+    "https://www.imdb.com/title/tt39205488/",
+    "https://www.sff.org.au/program/event/master/",
+    "https://www.hiiff.net/screenings/units/haishang-mingyue/"
+   ]
+  },
+  "the-remotes-2026": {
+   "cn": "遥控人",
+   "date": "2026-09-11",
+   "festival": "多伦多国际电影节",
+   "festivalEn": "Toronto International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://diversion-th.com/the-remotes/",
+    "https://www.filmlinc.org/nyff2026/films/the-remotes/",
+    "https://www.screendaily.com/news/john-torres-toronto-bound-the-remotes-boarded-by-diversion/5220242.article",
+    "https://www.imdb.com/title/tt29512170/",
+    "https://www.hiiff.net/screenings/units/haishang-mingyue/",
+    "https://www.firstshowing.net/2026/official-us-trailer-for-the-remotes-sci-fi-neo-noir-from-philippines/"
+   ]
+  },
+  "water-of-the-sea-2026": {
+   "cn": "水流千遭归大海",
+   "date": "2026-12",
+   "festival": "海南岛国际电影节",
+   "festivalEn": "Hainan Island International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.chinafilm.gov.cn/dybalxgs/202304/t20230411_712371.html",
+    "https://kandian.sina.cn/article_7861736656_1d49894d004001ob9n.html?from=ent",
+    "https://www.hiiff.net/screenings/units/haishang-mingyue/"
+   ]
+  },
+  "whispers-in-may-2026": {
+   "cn": "春日幻游",
+   "date": "2026-03",
+   "festival": "哥本哈根国际纪录片电影节",
+   "festivalEn": "CPH:DOX",
+   "kind": "festival",
+   "sources": [
+    "https://cphdox.dk/cphdox-2026-unveils-its-competition-programme/",
+    "https://cphdox.dk/here-are-all-the-award-winners-of-cphdox-2026/",
+    "https://www.visionsdureel.ch/en/film/2026/whispers-in-may/",
+    "https://festival.idfa.nl/en/film/3208b6a0-5f33-4ebe-af1c-299f19fae213/whispers-in-may/",
+    "https://www.indoxfilms.com/coming-soon/whispers-in-may",
+    "https://www.imdb.com/title/tt39793111/",
+    "https://www.eeas.europa.eu/delegations/turkiye/whispers-may_en",
+    "https://www.thepaper.cn/newsDetail_forward_34158204",
+    "https://www.hiiff.net/screenings/units/haishang-mingyue/"
+   ]
+  },
+  "9-temples-to-heaven-2026": {
+   "cn": "九庙上天堂",
+   "date": "2026-05-19",
+   "festival": "戛纳电影节",
+   "festivalEn": "Cannes Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.quinzaine-cineastes.fr/en/film/9-temples-to-heaven",
+    "https://www.filmlinc.org/nyff2026/films/9-temples-to-heaven/",
+    "https://www.siff.com/content?aid=101260530160203830437469399814149170",
+    "https://www.imdb.com/title/tt37740247/",
+    "https://www.rottentomatoes.com/m/9_temples_to_heaven",
+    "https://whatson.bfi.org.uk/lff/online/default.asp?BOparam%3A%3AWScontent%3A%3AloadArticle%3A%3Apermalink=9-temples-to-heaven-lff26",
+    "https://www.hiiff.net/screenings/units/haishang-mingyue/",
+    "https://www.impawards.com/intl/thailand/2026/nine_temples_to_heaven.html",
+    "https://www.impawards.com/intl/thailand/2026/nine_temples_to_heaven_ver2.html"
+   ]
+  },
+  "gr26-011": {
+   "cn": "泡泡糖女孩",
+   "date": "2026",
+   "festival": "鹿特丹国际电影节",
+   "festivalEn": "International Film Festival Rotterdam",
+   "kind": "festival",
+   "sources": [
+    "https://iffr.com/en/iffr/2026/films/ah-girl",
+    "https://www.imdb.com/title/tt35683770/",
+    "https://www.rottentomatoes.com/m/ah_girl"
+   ]
+  },
+  "gr26-013": {
+   "cn": "发现之旅",
+   "date": "2026-09",
+   "festival": "威尼斯国际电影节",
+   "festivalEn": "Venice International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://bydongjie.com/work/zoom-in-zoom-out/",
+    "https://m-appeal.net/catalogue/zoom-in-zoom-out",
+    "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/fa-xian-zhi-l%C3%BC-zoom-in-zoom-out-2026-09-05-19-30"
+   ]
+  }
+ }
+}
