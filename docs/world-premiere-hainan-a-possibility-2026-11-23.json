@@ -1,0 +1,104 @@
+{
+ "checked": "2026-11-23",
+ "scope": "第八届海南岛国际电影节「采珠拾贝」六部影片全球首映及片目资料核对",
+ "verifiedRecords": {
+  "bleda-y-rosa-a-place-an-image": {
+   "cn": "布莱达与罗莎：一个地方，一张图像",
+   "date": "2026-07-08",
+   "festival": "马赛国际电影节",
+   "festivalEn": "FIDMarseille",
+   "kind": "festival",
+   "sources": [
+    "https://www.hiiff.net/films/198/",
+    "https://fidmarseille.org/en/festivals/festival-37/films/bleda-y-rosa-un-lloc-una-imatge",
+    "https://dacsaproduccions.com/bleda-y-rosa-un-lloc-una-imatge-tendra-su-premiere-mundial-en-el-37o-fid-marseille/",
+    "https://www.fundacionmapfre.org/en/art-and-culture/collections/bleda-y-rosa/",
+    "https://dacsaproduccions.com/video/bleda-i-rosa-pensar-una-imatge-2024/",
+    "https://www.film-documentaire.fr/4DACTION/w_fiche_film/80565_0"
+   ]
+  },
+  "foreign-travel-2026": {
+   "cn": "出国旅行",
+   "date": "2026-02-15",
+   "festival": "柏林国际电影节",
+   "festivalEn": "Berlin International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.hiiff.net/films/199/",
+    "https://www.berlinale.de/en/2026/programme/202602774.html",
+    "https://fidmarseille.org/en/festivals/festival-37/films/auslandsreise",
+    "https://www.filmlinc.org/nyff2026/films/foreign-travel/",
+    "https://funscreen.tfai.org.tw/article/39044",
+    "https://www.imdb.com/title/tt39382948/",
+    "https://letterboxd.com/film/foreign-travel/"
+   ]
+  },
+  "otium-2026": {
+   "cn": "灵活就业",
+   "date": "2026-01-17",
+   "festival": "蒙特利尔影评人周",
+   "festivalEn": "Montreal Critics' Week",
+   "kind": "festival",
+   "sources": [
+    "https://www.hiiff.net/films/200/",
+    "https://www.semainedelacritique.ca/11/at-the-citys-gates",
+    "https://ctvm.info/lav-diaz-caroline-golum-et-robert-morin-parmi-les-invite%C2%B7e%C2%B7s-a-la-semaine-de-la-critique-de-montreal/",
+    "https://fidmarseille.org/en/festivals/festival-37/films/otium",
+    "https://www.fofs.ca/2026-official-selections",
+    "https://www.imdb.com/title/tt39372926/",
+    "https://letterboxd.com/film/otium/"
+   ]
+  },
+  "september-afternoon-2026": {
+   "cn": "九月午后",
+   "date": "2026-08-10",
+   "festival": "洛迦诺电影节",
+   "festivalEn": "Locarno Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.hiiff.net/films/201/",
+    "https://marijanaharder.com/september-afternoon/",
+    "https://www.filmportal.de/en/movie/september-afternoon_4cf31fb111df474e88f4772ba935e94e",
+    "https://letterboxd.com/filmfestlocarno/film/september-afternoon/",
+    "https://www.imdb.com/title/tt43666052/",
+    "https://letterboxd.com/film/september-afternoon/"
+   ]
+  },
+  "the-birds-tell-me-all-there-is-to-know": {
+   "cn": "鸟儿知道我所想的一切",
+   "date": "2026-03-14",
+   "festival": "绿山电影节",
+   "festivalEn": "Green Mountain Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.hiiff.net/films/202/",
+    "https://aidanjcronin.com/the-birds-tell-me-all-there-is-to-know-%5B2026%5D",
+    "https://aidanjcronin.com/about",
+    "https://tickets.gmffestival.org/2026/schedule/",
+    "https://www.ratmag.org/features/ssacttochyb6araqdw9fa5gnsdn41f",
+    "https://www.spectacletheater.com/the-birds-tell-me-all-there-is-to-know/",
+    "https://letterboxd.com/lumenfestival/list/lumen-rio-de-janeiro-independent-film-festival/detail/",
+    "https://www.imdb.com/title/tt32524290/",
+    "https://letterboxd.com/film/the-birds-tell-me-all-there-is-to-know/"
+   ]
+  },
+  "the-mirage-bingham-bryant-2026": {
+   "cn": "海市流影",
+   "date": "2026-07-08",
+   "festival": "马赛国际电影节",
+   "festivalEn": "FIDMarseille",
+   "kind": "festival",
+   "sources": [
+    "https://www.hiiff.net/films/203/",
+    "https://fidmarseille.org/en/festivals/festival-37/films/el-espejismo",
+    "https://doclisboa.org/en/filmes/the-mirage/",
+    "https://terratreme.pt/film/mirage/",
+    "https://thefilmstage.com/exclusive-poster-for-bingham-bryants-fid-marseille-debut-el-espejismo/",
+    "https://www.festival-entrevues.com/en/films/2026/el-espejismo",
+    "https://www.imdb.com/title/tt43630246/",
+    "https://letterboxd.com/film/mirage-2026-4/",
+    "https://doclisboa.org/en/awards/"
+   ]
+  }
+ }
+}
