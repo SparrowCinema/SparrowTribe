@@ -1925,9 +1925,6 @@
     "checked": "2026-11-07"
    },
    "dirLife": "新加坡",
-   "stills": [
-    "posters/hainan26-asian-gr26-011-festival.jpg"
-   ],
    "posterUrl": "https://sparrowcinema.github.io/SparrowTribe/posters/hainan26-asian-gr26-011-poster.jpg"
   },
   {
@@ -2077,9 +2074,6 @@
    "cast": [
     "黄米依",
     "魏如光"
-   ],
-   "stills": [
-    "posters/hainan26-asian-cassowary-2026.jpg"
    ]
   },
   {
@@ -2154,10 +2148,7 @@
     "kind": "festival",
     "checked": "2026-11-24"
    },
-   "poster": "posters/hainan26-asian-four-seasons-in-java-2026-poster.jpg",
-   "stills": [
-    "posters/hainan26-asian-four-seasons-in-java-2026.jpg"
-   ]
+   "poster": "posters/hainan26-asian-four-seasons-in-java-2026-poster.jpg"
   },
   {
    "id": "head-to-head-2026",
@@ -2229,10 +2220,7 @@
     "kind": "festival",
     "checked": "2026-11-24"
    },
-   "poster": "posters/hainan26-asian-head-to-head-2026-poster.jpg",
-   "stills": [
-    "posters/hainan26-asian-head-to-head-2026.jpg"
-   ]
+   "poster": "posters/hainan26-asian-head-to-head-2026-poster.jpg"
   },
   {
    "id": "master-rezwan-shahriar-sumit-2026",
@@ -2304,10 +2292,7 @@
     "kind": "festival",
     "checked": "2026-11-24"
    },
-   "poster": "posters/hainan26-asian-master-rezwan-shahriar-sumit-2026-poster.jpg",
-   "stills": [
-    "posters/hainan26-asian-master-rezwan-shahriar-sumit-2026.jpg"
-   ]
+   "poster": "posters/hainan26-asian-master-rezwan-shahriar-sumit-2026-poster.jpg"
   },
   {
    "id": "the-remotes-2026",
@@ -2373,10 +2358,7 @@
     "kind": "festival",
     "checked": "2026-11-24"
    },
-   "poster": "posters/hainan26-asian-the-remotes-2026-poster.jpg",
-   "stills": [
-    "posters/hainan26-asian-the-remotes-2026.jpg"
-   ]
+   "poster": "posters/hainan26-asian-the-remotes-2026-poster.jpg"
   },
   {
    "id": "water-of-the-sea-2026",
@@ -2437,7 +2419,6 @@
     "kind": "festival",
     "checked": "2026-11-24"
    },
-   "poster": "posters/hainan26-asian-water-of-the-sea-2026.jpg",
    "links": {
     "douban": "38589642"
    }
@@ -2507,10 +2488,7 @@
     "kind": "festival",
     "checked": "2026-11-24"
    },
-   "poster": "posters/hainan26-asian-whispers-in-may-2026-poster.jpg",
-   "stills": [
-    "posters/hainan26-asian-whispers-in-may-2026.jpg"
-   ]
+   "poster": "posters/hainan26-asian-whispers-in-may-2026-poster.jpg"
   },
   {
    "id": "gr26-013",
@@ -2586,10 +2564,7 @@
     "kind": "festival",
     "checked": "2026-11-07"
    },
-   "dirLife": "中国",
-   "stills": [
-    "posters/hainan26-asian-gr26-013.jpg"
-   ]
+   "dirLife": "中国"
   },
   {
    "id": "9-temples-to-heaven-2026",
