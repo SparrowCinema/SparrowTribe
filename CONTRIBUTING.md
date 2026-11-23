@@ -548,3 +548,10 @@ Claude 与 GPT 可能使用同一 GitHub 身份，审批人数可先设为0；�
 - 内容只写在 `shared/guide.js` 一处，两端共用：每条 `[标题, 说明, 只在哪端显示]`，第三项 `'web'` / `'mp'` 表示只在网站 / 小程序显示（如「添加到手机」只在网站，「转场时间」「微信自动同步」只在小程序）。小程序副本 `miniprogram/packages/collect/utils/guide.js` 由 `node tools/build-fallback.js` 复制，不要直接改。
 - 英文：整句说明放 `data/i18n/en.json` 的 `ui`，短标题（≤12 字）放 `exact`（只整句匹配，避免「筛选」「评分」这类短词替换掉别处文字的一部分）。**改了指南中文，要同步改英文键**，否则英文版会显示中文。
 - 新增功能时顺手在指南里补一条；说明只写确实存在的功能，两端不一致的用第三项区分。
+
+## 票根册查找：首页搜索、典藏筛选、从影片页直达（2026-11-23）
+
+- **首页搜索框**：票根册标题下、筛选条上方，与片目同款（网站 `#ticket-find`，沿用 `.fsearch`；小程序 `.library-search.tk-find`）。可搜片名、导演、影院、专题、编号。筛选弹层里不再有搜索框，「筛选」格子也不再显示搜索词，只显示「已选 N 项」。网站搜索框放在 `#ticket-list` 外面，重画列表时不丢输入焦点。
+- **典藏筛选**：筛选弹层最下面一组「典藏」：现场认证、嘉宾签名、已封版、隐藏款、影展限定、满贯。规则在 `shared/tickets.js` 的 `BADGES` / `badgeKeys`（一张票根可以有几项），`filterTickets` 的 `q.badge`（组内为「或」、与其他分面为「且」），`facetCounts` 返回 `badge: [{value, label, count}]`，按固定顺序、只列有票根的项。嘉宾签名每台设备凭编号自取，刚换设备时要等签名取回后才算得进去。
+- **从影片页直达**：点「已盖章」弹出的菜单多一项「查看典藏票根」（网站 `data-st="tickets"` → `ticketOpenFilm`，小程序 film `stampMenu` → `/packages/collect/tickets/tickets?film=<id>`），打开票根册只看这部电影（`q.film`），每次观影一张，标签显示「《片名》 ×」；此时「待制作」和「一键生成」也只算这部。网站从「我的」菜单再进票根册时自动去掉只看这部（`ticketFilmJump`）。
+- 测试 `tools/check-ticket-find.js`（筛选规则）和 `tools/check-ticket-find-mp.js`（小程序票根册页面，单独进程运行，避免往票根存储里写的数据影响后面的测试），都随 check-companion 运行。
