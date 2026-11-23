@@ -118,6 +118,29 @@ async function editionRun() {
     else { const changes = T.applyEdition(all(), res.items); if (changes) put(Object.assign({}, all(), changes), true); }
   } catch (e) { editionOff = true; }
   finally { editionBusy = false; }
+  autographRun();
+}
+// 映后嘉宾签名（2026-11-23）：现场认证过的票根经 psync 云函数的 autograph 动作向 tk_autograph 取这一场的嘉宾签名，
+// 缓存在本机 sk-autograph-v1（不随档案同步）。取到新签名只增加版本号（页面下次显示时刷新），不触发档案同步。
+const AG_KEY = 'sk-autograph-v1';
+let agStore = null, agOff = false, agBusy = false;
+function agCache() { if (!agStore) { try { agStore = wx.getStorageSync(AG_KEY) || {}; } catch (e) { agStore = {}; } } return agStore; }
+async function autographRun() {
+  if (agOff || agBusy || !wx.cloud || !ctx) return;
+  const rows = Array.from(ctx.byKey.values()), items = T.pendingAutograph(rows, agCache(), Date.now());
+  if (!items.length) return;
+  agBusy = true;
+  try {
+    const r = await wx.cloud.callFunction({ name: 'psync', data: { action: 'autograph', items } });
+    const res = (r && r.result) || {};
+    if (!res.ok) { agOff = true; return; }
+    const sig = c => JSON.stringify(Object.keys(c).map(k => [k, c[k].g]));
+    const before = sig(agCache());
+    agStore = T.applyAutograph(agCache(), rows, items, res.items, Date.now());
+    try { wx.setStorageSync(AG_KEY, agStore); } catch (e) { }
+    if (sig(agStore) !== before) rev++;
+  } catch (e) { agOff = true; }
+  finally { agBusy = false; }
 }
 // 同步：快照与应用（没有片库时只读写已有存储，不做迁移）
 function snapshot() { return JSON.parse(JSON.stringify(all())); }
@@ -131,6 +154,7 @@ function build(data, idx) {
   if (moves) put(Object.assign({}, all(), moves), true);
   const built = T.build(list, all(), baseFor(data, idx));
   T.decorate(built.tickets, setsOf(data, idx));
+  T.attachAutographs(built.tickets, agCache());
   ctx = { data, idx, byKey: new Map(built.tickets.map(r => [r.key, r])) };
   issueSoon(800);
   return built;

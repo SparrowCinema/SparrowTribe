@@ -572,6 +572,77 @@ function applyCheckin(entry,key,result) {
   return e;
 }
 
+// ——— 映后嘉宾签名（2026-11-23）：只有在这一场现场认证过的票根，服务器才给签名（backend/tickets-autograph-v1.sql）———
+// 签名笔画：[[x,y,x,y,…], …]，坐标 0–1000 × 0–500（签名板 2:1）。缓存按「影片|场次」存在本机，不随档案同步，每台设备凭典藏编号自取。
+const autographKey=row=>row && row.checkedIn && row.showId ? row.filmId+"|"+row.showId : "";
+// 需要向服务器取签名的票根（最多 50 张）：没取过；取过但还没有签名、6 小时前取的、签到在 30 天内（主办方可能事后补传）；已有签名的 3 天复查一次（主办方可能改）
+function pendingAutograph(rows,cache,now) {
+  const t=now||Date.now(),out=[],seen=new Set();
+  for (const row of rows||[]) {
+    const key=autographKey(row);
+    if (!key || !serialValid(row.serial) || seen.has(key)) continue;
+    const c=cache && cache[key];
+    const due=!c || (c.g && c.g.length ? t-c.at>3*864e5 : t-c.at>6*36e5 && t-row.checkedIn<30*864e5);
+    if (due) {seen.add(key);out.push(row.serial);}
+    if (out.length>=50) break;
+  }
+  return out;
+}
+const cleanGuests=g=>(Array.isArray(g)?g:[]).filter(x=>x && typeof x.name==="string" && Array.isArray(x.st)).slice(0,4).map(x=>({name:x.name.slice(0,24),role:String(x.role||"").slice(0,12),st:x.st.filter(Array.isArray).slice(0,80)}));
+// 服务器结果 [{s, g}] 写进缓存；没返回的（没签到记录）也记一笔空的，免得反复请求
+function applyAutograph(cache,rows,serials,results,now) {
+  const t=now||Date.now(),got=new Map((Array.isArray(results)?results:[]).filter(r=>r && serialValid(r.s)).map(r=>[r.s,cleanGuests(r.g)]));
+  const next={...(cache||{})};
+  for (const row of rows||[]) {
+    if (!serials.includes(row.serial)) continue;
+    const key=autographKey(row);if (key) next[key]={g:got.get(row.serial)||[],at:t};
+  }
+  return next;
+}
+function attachAutographs(rows,cache) {
+  for (const row of rows||[]) {const c=cache && cache[autographKey(row)];row.autographs=c && c.g ? c.g : [];}
+  return rows;
+}
+// 收藏册缩略图缓存要跟着这些字段变（发号、封版、本场序号、现场认证、满贯、隐藏款、限定、签名）
+const collectSig=row=>[row.issue||0,row.edition,row.showNo||0,row.checkedIn?1:0,row.slam||"",row.hidden?1:0,row.limited?1:0,
+  (row.autographs||[]).map(g=>g.name+":"+g.st.reduce((n,s)=>n+s.length,0)).join(",")].join("·");
+// 签名的位置：海报下半部分偏左（右下角留给影展限定章），1 位一块，2 位左右并排，3–4 位两行
+function autographBoxes(n,x,y,w,h) {
+  if (!n) return [];
+  if (n===1) return [{x:x+w*.05,y:y+h*.58,w:w*.62,h:w*.31}];
+  if (n===2) return [{x:x+w*.03,y:y+h*.64,w:w*.44,h:w*.22},{x:x+w*.38,y:y+h*.74,w:w*.44,h:w*.22}];
+  const bw=w*.4,bh=bw/2;
+  return [0,1,2,3].slice(0,n).map(i=>({x:x+w*.04+(i%2)*w*.36,y:y+h*.5+Math.floor(i/2)*bh*1.05+(i%2)*bh*.25,w:bw,h:bh}));
+}
+// 一笔一笔描出签名：中点二次曲线平滑；笔速慢的地方粗、快的地方细（像油漆笔）。三层：暗影 → 暖金底色 → 烫印高光（转动时反光）
+function drawAutographs(surface,record,x,y,w,h) {
+  const list=record.autographs||[];if (!list.length) return;
+  const boxes=autographBoxes(list.length,x,y,w,h);
+  surface.save();surface.lineCap="round";surface.lineJoin="round";
+  list.forEach((g,gi)=>{
+    const b=boxes[gi],sx=b.w/1000,sy=b.h/500,lw=Math.max(1.4,b.w/78);
+    const P=(st,i)=>[b.x+st[i]*sx,b.y+st[i+1]*sy];
+    // 每一笔拆成若干段：段的起止是相邻两点的中点，控制点是原始点；线宽按这一段的长度（笔速）变化
+    const segs=[];
+    for (const st of g.st) {
+      if (st.length<4) {const [px,py]=P(st,0);segs.push({a:[px,py],c:[px,py],e:[px+.1,py],k:1.2});continue;}
+      let prev=P(st,0);
+      for (let i=2;i<st.length;i+=2) {
+        const cur=P(st,i),last=i>=st.length-2,end=last ? cur : [(cur[0]+P(st,i+2)[0])/2,(cur[1]+P(st,i+2)[1])/2];
+        const len=Math.hypot(end[0]-prev[0],end[1]-prev[1])/sx;
+        segs.push({a:prev,c:cur,e:end,k:Math.max(.55,Math.min(1.3,1.35-len/70))});
+        prev=end;
+      }
+    }
+    const pass=(style,mul,dx,dy)=>{surface.strokeStyle=style;for (const sg of segs) {surface.lineWidth=lw*sg.k*mul;surface.beginPath();surface.moveTo(sg.a[0]+dx,sg.a[1]+dy);surface.quadraticCurveTo(sg.c[0]+dx,sg.c[1]+dy,sg.e[0]+dx,sg.e[1]+dy);surface.stroke();}};
+    pass("rgba(20,14,8,.45)",1.35,.8,1);
+    pass("#c9a04e",1,0,0);
+    pass(foilGradient(surface,b.x,b.y,b.x+b.w,b.y+b.h,"gold"),.62,-.25,-.3);
+  });
+  surface.restore();
+}
+const guestLine=record=>(record.autographs||[]).length ? "映后签名 · "+record.autographs.map(g=>g.role ? g.role+" "+g.name : g.name).join("、") : "";
+
 // 票面上的发行信息文字（背面撕线下方与合成图共用）
 function editionLines(record) {
   if (!record.issue) return {no:"№ ----",total:"",line1:"待发号 · 联网后自动烫印",line2:""};
@@ -580,7 +651,7 @@ function editionLines(record) {
   const line2=[record.checkedIn ? "现场认证" : "",record.showNo ? "本场第 "+record.showNo+" 张" : "",record.showTag].filter(Boolean).join(" · ");
   return {no:issueText(record.issue),total:inEdition ? " / "+String(record.edition).padStart(4,"0") : "",line1,line2};
 }
-const badgesOf=record=>[record.checkedIn ? "现场认证" : "",record.hidden ? "隐藏款 · 1/1 孤品" : "",record.limited ? record.limitedName+"限定" : "",record.slam==="programme" ? "全满贯 · 集齐 "+record.slamN+" 部" : record.slam==="section" ? "单元满贯 · 集齐 "+record.slamN+" 部" : ""].filter(Boolean);
+const badgesOf=record=>[record.checkedIn ? "现场认证" : "",guestLine(record).replace("映后签名 · ","嘉宾签名 · "),record.hidden ? "隐藏款 · 1/1 孤品" : "",record.limited ? record.limitedName+"限定" : "",record.slam==="programme" ? "全满贯 · 集齐 "+record.slamN+" 部" : record.slam==="section" ? "单元满贯 · 集齐 "+record.slamN+" 部" : ""].filter(Boolean);
 
 function sorted(records,programme,year) {
   return records.filter(row=>(!programme || row.programme===programme) && (!year || row.date.slice(0,4)===year)).sort((a,b)=>
@@ -1089,6 +1160,9 @@ function draw(surface,record,side,image,rect,createCanvas,light) {
     const heading=(year && record.programme.startsWith(year) ? record.programme.slice(4).trim() : record.programme) || "我的观影收藏";
     text(surface,heading,W/2,511,{...centre,size:38,weight:900,font:SERIF,max:347,relief:edge,light:bright+"a0"});
     if (record.section) text(surface,record.section,W/2,552,{...centre,size:17,max:326});
+    // 映后嘉宾签名：单元名与分隔线之间写嘉宾姓名（签名本身画在正面海报上）
+    const guests=guestLine(record);
+    if (guests) text(surface,guests,W/2,record.section?580:566,{...centre,size:10.5,weight:600,max:320,ink:foilGradient(surface,90,570,330,584,"gold")});
     rule(surface,601,bright+"75",59,W-59);
     text(surface,record.title,W/2,652,{...centre,size:21,weight:650,max:331});
     rule(surface,TEAR,bright+"6b",24,W-24,true);
@@ -1128,6 +1202,7 @@ function draw(surface,record,side,image,rect,createCanvas,light) {
     surface.strokeStyle=foilGradient(surface,x,y+h,x+w,y,finish);
     surface.lineWidth=metal.width;surface.strokeRect(x-.8,y-.8,w+1.6,h+1.6);
     surface.lineWidth=.48;surface.strokeRect(x-3,y-3,w+6,h+6);
+    drawAutographs(surface,record,x,y,w,h);
     if (record.limited) drawLimitedSeal(surface,record,x+w-46,y+h-46,dark);
     if (record.hidden) drawHiddenTag(surface,x+12,y+12,dark);
     embossTitle(surface,record.title,W/2,506,{accent,dark,finish,scale:rect.w/W,createCanvas});
@@ -1873,6 +1948,6 @@ function drawWall(surface,records,side,images,caption,createCanvas,title,maxWidt
 }
 
 const shineOf=key=>{const f=finishes[key]||finishes.matte;return {kind:f.kind,fx:fxOf(key),highlight:f.stops[f.stops.length-2]};};
-return {checkinURL,checkinParse,checkinPlan,applyCheckin,isHidden,HIDDEN_RATE,editionClose,EDITION_GRACE,pendingEdition,applyEdition,decorate,setQR,verifyURL,editionLines,badgesOf,drawShowcase,bakeSheen,SHOW_W,SHOW_H,serialOf,serialValid,formatSerial,entrySerial,pendingIssue,applyIssue,issueText,ISSUE_BATCH,W,H,TITLE_FAMILY,edgeOf,foilMask,fxOf,artMask,backMask,parseCraft,craftLabel,lookSig,foilLayers,WALL_PAGE,MOSAIC_MAX,FACETS,options:labelOptions(),sanitize,read,sorted,defaults,randomLook,shineOf,draw,wallLayout,drawWall,
+return {autographKey,pendingAutograph,applyAutograph,attachAutographs,collectSig,guestLine,drawAutographs,checkinURL,checkinParse,checkinPlan,applyCheckin,isHidden,HIDDEN_RATE,editionClose,EDITION_GRACE,pendingEdition,applyEdition,decorate,setQR,verifyURL,editionLines,badgesOf,drawShowcase,bakeSheen,SHOW_W,SHOW_H,serialOf,serialValid,formatSerial,entrySerial,pendingIssue,applyIssue,issueText,ISSUE_BATCH,W,H,TITLE_FAMILY,edgeOf,foilMask,fxOf,artMask,backMask,parseCraft,craftLabel,lookSig,foilLayers,WALL_PAGE,MOSAIC_MAX,FACETS,options:labelOptions(),sanitize,read,sorted,defaults,randomLook,shineOf,draw,wallLayout,drawWall,
   ticketKey,parseKey,cleanStore,mergeStore,packLook,unpackLook,normArt,viewings,build,reconcile,draft,entryFrom,migrateV1,filterTickets,facetCounts,groupByMonth,swatch};
 });

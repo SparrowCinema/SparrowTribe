@@ -1,7 +1,7 @@
 // 个人档案同步码同步：小程序通过本云函数读写 Supabase（与网站、米其林全球名录共用同一个后端）。
 // 合并规则见 psync.js（由 tools/build-fallback.js 从 shared/psync.js 复制，请勿直接改）。
 // action: 'new' → 生成同步码；'sync' { code, state } → 与云端合并并返回合并结果；
-//         'issue' { items } → 典藏票根发行序号（tk_issue）；'edition' { items } → 封版总数（tk_edition）；'checkin' { item } → 现场认证（tk_checkin）；
+//         'issue' { items } → 典藏票根发行序号（tk_issue）；'edition' { items } → 封版总数（tk_edition）；'checkin' { item } → 现场认证（tk_checkin）；'autograph' { items } → 映后嘉宾签名（tk_autograph）；
 //         'wx' → 用微信登录身份（openid）取得/创建该用户绑定的同步码；'bind' { code } → 把该微信绑定到指定同步码（与网站已有档案合并用）。
 const cloud = require('wx-server-sdk');
 const https = require('https');
@@ -57,6 +57,13 @@ exports.main = async (event) => {
       .map(x => /^[\w:\/.-]{1,120}$/.test(String(x.h || '')) ? { s: String(x.s), f: String(x.f), h: String(x.h) } : { s: String(x.s), f: String(x.f) });
     if (!items.length) return { ok: false, msg: 'bad items' };
     try { const r = await rpc('tk_issue', { items }); return { ok: true, items: Array.isArray(r) ? r : [] }; }
+    catch (e) { return { ok: false, msg: String((e && e.message) || e) }; }
+  }
+  // 'autograph' { items:[典藏编号] }：映后嘉宾签名，转发给 tk_autograph（只返回现场认证过的票根，backend/tickets-autograph-v1.sql）
+  if (event.action === 'autograph') {
+    const items = (Array.isArray(event.items) ? event.items : []).slice(0, 50).map(String).filter(x => /^[A-HJ-NP-Z2-9]{15}$/.test(x));
+    if (!items.length) return { ok: false, msg: 'bad items' };
+    try { const r = await rpc('tk_autograph', { items }); return { ok: true, items: Array.isArray(r) ? r : [] }; }
     catch (e) { return { ok: false, msg: String((e && e.message) || e) }; }
   }
   // 'checkin' { item:{s,f,h,w,k} }：现场认证，转发给 tk_checkin（backend/tickets-checkin-v1.sql）；签到码由服务器校验，不带 openid

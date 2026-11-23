@@ -37,7 +37,7 @@ async function poster(node,row,small){
   return (await image(node,t))||(t!==row.art?await image(node,row.art):null);
 }
 function canvas(page,id){return new Promise(resolve=>wx.createSelectorQuery().in(page).select('#'+id).fields({node:true}).exec(result=>resolve(result?.[0]?.node||null)));}
-const sigOf=(row,side,w,style)=>[row.key,side,w,side==='front'?style:'',R.lookSig(row.look),row.crop,row.art,row.time,row.venue,row.hall,row.seat,row.format,row.title,row.programme].join('¦');
+const sigOf=(row,side,w,style)=>[row.key,side,w,side==='front'?style:'',R.lookSig(row.look),row.crop,row.art,row.time,row.venue,row.hall,row.seat,row.format,row.title,row.programme,R.collectSig(row)].join('¦');
 const monthTitle=(g,en)=>g.id==='undated'?I.tr('日期待定'):en?`${['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][g.month-1]} ${g.year}`:`${g.year}年${g.month}月`;
 
 Page({

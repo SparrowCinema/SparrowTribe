@@ -1328,3 +1328,16 @@ button,summary,a,label,select,[role=button],[data-pp],.my-entry{touch-action:man
 .ci-n{font-size:15px}
 .ci-err{color:var(--bad-fg)}
 .ci-host{max-width:640px}
+
+/* 映后嘉宾签名（2026-11-23） */
+.ci-agh{margin:0 0 4px;font-size:18px}
+.ci-ag-list{display:flex;flex-wrap:wrap;gap:12px;margin:12px 0}
+.ci-ag-item{display:flex;flex-direction:column;align-items:center;gap:4px;width:150px;font-size:13px}
+.ci-ag-item canvas{width:150px;height:75px;background:#fff;border-radius:8px;border:1px solid var(--line)}
+.ci-pad{position:relative;margin:6px 0 10px;background:#fff;border-radius:12px;border:1px dashed var(--line);overflow:hidden}
+.ci-pad canvas{display:block;width:100%;touch-action:none;cursor:crosshair}
+.ci-pad-hint{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);color:#b4a99a;font-size:15px;pointer-events:none}
+.ci-pad.on .ci-pad-hint{display:none}
+.ci-pad-acts{display:flex;gap:10px}
+.ci-pad-acts button{flex:1}
+.vf-ag{margin-top:16px}.vf-ag small{color:var(--muted);font-size:13px}
