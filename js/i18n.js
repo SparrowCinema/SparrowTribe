@@ -78,6 +78,6 @@ function applyEN(cat,packs){
   if(LANG!=="en") return;
   (cat.programmes||[]).forEach(p=>{ const o=EN.programmes[p.id]; if(o) Object.assign(p,o); });
   (cat.venues||[]).forEach(v=>{ const o=EN.venues[v.id]; if(!o) return; const {halls,...rest}=o; Object.assign(v,rest); if(halls) (v.halls||[]).forEach(h=>{ if(halls[h.id]) Object.assign(h,halls[h.id]); }); });
-  packs.forEach(pk=>pk&&(pk.films||[]).forEach(f=>{ const o=EN.films[f.id]; if(!o) return; f.cnZh=f.cn; const {title,...rest}=o; if(title) f.cn=title; Object.assign(f,rest); }));
+  packs.forEach(pk=>pk&&(pk.films||[]).forEach(f=>{ const o=EN.films[f.id]; if(!o) return; f.cnZh=f.cn; if(o.release&&f.release) f.releaseZh=f.release; /* 英文版也按中文上映日期排序、判断自动下映 */ const {title,...rest}=o; if(title) f.cn=title; Object.assign(f,rest); }));
 }
 document.addEventListener("click",e=>{ const b=e.target.closest("[data-lang-toggle]"); if(!b) return; const u=new URL(location.href); u.searchParams.set("lang",LANG==="en"?"zh":"en"); location.href=u.toString(); });
