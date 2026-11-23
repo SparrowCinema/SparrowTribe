@@ -52,7 +52,10 @@ const isPast = s => showEnd(s) < now();
 const STATUS = {live:"进行中", soon:"即将开始", ended:"已结束"};
 function progRange(p){ const sh=progShows(p.id); const a=p.start?ymd(p.start):(sh.length?showDate(sh[0]).getTime():null); const b=p.end?ymd(p.end)+864e5:(sh.length?Math.max(...sh.map(showEnd)):null); return [a,b]; }
 /* 常设专题（catalog 中 ongoing:true，如麻雀部落电影空间）：开始后一直算进行中，不进入往期 */
-function progStatus(p){ const [a,b]=progRange(p), t=now(); if(a!=null&&t<a) return "soon"; if(!p.ongoing&&b!=null&&t>=b) return "ended"; return "live"; }
+/* 提前结束：结束日前 2 天内（含结束日当天），已公布的场次全部散场，就算已结束——不必等到结束日 24:00（如 2026德国电影展最后一场 11/22，结束日写 11/23）。院线专题不录全部场次，不提前结束。 */
+const PROG_EARLY=2*864e5;
+function progDone(p,t){ if(p.ongoing||!p.end||p.kind==="院线") return false; const sh=progShows(p.id); return sh.length>0&&t>=ymd(p.end)-PROG_EARLY&&sh.every(isPast); }
+function progStatus(p){ const [a,b]=progRange(p), t=now(); if(a!=null&&t<a) return "soon"; if(!p.ongoing&&b!=null&&t>=b) return "ended"; if(progDone(p,t)) return "ended"; return "live"; }
 function progOrdered(){ const rank={live:0,soon:1,ended:2}; return PROGRAMMES.slice().sort((x,y)=>{const sx=progStatus(x),sy=progStatus(y),lx=localProg(x),ly=localProg(y);if(lx!==ly)return lx?-1:1;if(sx!==sy)return rank[sx]-rank[sy];const ux=progShows(x.id).some(s=>!isPast(s)),uy=progShows(y.id).some(s=>!isPast(s));if(ux!==uy)return ux?-1:1;const [ax,bx]=progRange(x),[ay,by]=progRange(y);return sx==="ended"?(by||0)-(bx||0):(ax||0)-(ay||0);}); }
 function defaultProg(){ const open=progOrdered().filter(p=>progStatus(p)!=="ended"); const pick=open.find(p=>progShows(p.id).some(s=>!isPast(s)))||open.find(p=>progShows(p.id).length)||open[0]; return pick?pick.id:"all"; }
 const statusTag = p => { const st=progStatus(p); return `<i class="pst pst-${st}">${p.ongoing&&st==="live"?"常设":STATUS[st]}</i>`; };

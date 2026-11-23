@@ -69,7 +69,9 @@ function progInfo(p, data, idx, now = Date.now()) {
   const a = p.start ? ymd(p.start) : (ts.length ? Math.min(...ts) : null);
   const b = p.end ? ymd(p.end) + 864e5 : (te.length ? Math.max(...te) : null);
   // 常设专题（ongoing，如麻雀部落电影空间）：开始后一直算进行中，不进入往期
-  const status = a != null && now < a ? 'soon' : (!p.ongoing && b != null && now >= b ? 'ended' : 'live');
+  // 提前结束（与网站 progDone 一致）：结束日前 2 天内，已公布的场次全部散场即算已结束；院线专题不录全部场次，不提前结束
+  const done = !p.ongoing && p.end && p.kind !== '院线' && shows.length > 0 && now >= ymd(p.end) - 2 * 864e5 && te.every(e => e < now);
+  const status = a != null && now < a ? 'soon' : (!p.ongoing && b != null && now >= b ? 'ended' : (done ? 'ended' : 'live'));
   return { shows, a, b, status, up: shows.filter(s => !ended(s, idx)).length };
 }
 
