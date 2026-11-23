@@ -1338,6 +1338,11 @@ button,summary,a,label,select,[role=button],[data-pp],.my-entry{touch-action:man
 .ci-pad canvas{display:block;width:100%;touch-action:none;cursor:crosshair}
 .ci-pad-hint{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);color:#b4a99a;font-size:15px;pointer-events:none}
 .ci-pad.on .ci-pad-hint{display:none}
+.ci-up{margin:0 0 10px}
+.ci-up-btn{display:inline-flex;align-items:center;justify-content:center;cursor:pointer}
+.ci-up-shade{display:flex;align-items:center;gap:10px;margin:8px 0 0;font-size:14px;color:var(--muted)}
+.ci-up-shade input{flex:1;accent-color:var(--accent)}
+.ci-up-note{margin:6px 0 0;font-size:12px;line-height:1.5;color:var(--muted)}
 .ci-pad-acts{display:flex;gap:10px}
 .ci-pad-acts button{flex:1}
 .vf-ag{margin-top:16px}.vf-ag small{color:var(--muted);font-size:13px}
