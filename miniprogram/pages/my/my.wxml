@@ -162,10 +162,7 @@ ONE STAMP</text><text class="fp-open-icon">↗</text></view>
   </view>
   <view class="me-row" bindtap="toggleAppearance" hover-class="hv"><image class="me-ic" src="/images/menu/theme.svg" mode="aspectFit" /><view class="me-copy"><text class="me-t">{{L.t(i,'外观')}}</text><text class="me-s">{{tpref==='light'?L.t(i,'浅色'):tpref==='dark'?L.t(i,'暗色'):L.t(i,'跟随系统')}}</text></view><text class="me-go">{{appearanceOpen?'⌄':'›'}}</text></view>
   <view wx:if="{{appearanceOpen}}" class="appearance-body"><text class="me-s">{{L.t(i,'自动跟随手机或电脑，也可固定浅色、暗色')}}</text><view class="th-seg"><view class="th-o {{tpref==='auto'?'on':''}}" data-p="auto" bindtap="setTheme">{{L.t(i,'跟随系统')}}</view><view class="th-o {{tpref==='light'?'on':''}}" data-p="light" bindtap="setTheme">{{L.t(i,'浅色')}}</view><view class="th-o {{tpref==='dark'?'on':''}}" data-p="dark" bindtap="setTheme">{{L.t(i,'暗色')}}</view></view></view>
-  <view class="me-row" hover-class="hv" bindtap="toggleGuide"><image class="me-ic" src="/images/menu/guide.svg" mode="aspectFit" /><view class="me-copy"><text class="me-t">{{L.t(i,'观影护照使用指南')}}</text><text class="me-s">{{L.t(i,'排片、专题、片目与我的护照怎么用')}}</text></view><text class="me-go {{guideOpen?'on':''}}">›</text></view>
-  <view wx:if="{{guideOpen}}" class="me-body guide">
-      <view class="gi" wx:for="{{guide}}" wx:key="k"><text class="gk">{{index + 1}}</text><view><text class="gb">{{L.t(i,item.k)}}</text><text class="gs">{{L.t(i,item.s)}}</text></view></view>
-  </view>
+  <view class="me-row" hover-class="hv" bindtap="openGuide"><image class="me-ic" src="/images/menu/guide.svg" mode="aspectFit" /><view class="me-copy"><text class="me-t">{{L.t(i,'观影护照使用指南')}}</text><text class="me-s">{{L.t(i,'排片、护照、典藏票根、同步，一页看懂')}}</text></view><text class="me-go">›</text></view>
   <view class="me-row" hover-class="hv" bindtap="toggleFb"><image class="me-ic" src="/images/menu/feedback.svg" mode="aspectFit" /><view class="me-copy"><text class="me-t">{{L.t(i,'影展合作&反馈与纠错')}}</text><text class="me-s">{{L.t(i,'影展合作 · 排片问题与使用建议')}}</text></view><text class="me-go {{fbOpen?'on':''}}">›</text></view>
   <view wx:if="{{fbOpen}}" class="me-body fb">
     <view class="fb-p">{{L.t(i,'影展、放映合作，或排片、片名、人名、功能有问题？欢迎告诉我们，附上截图和页面名称会更快处理。')}}</view>
