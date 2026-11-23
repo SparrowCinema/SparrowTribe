@@ -198,12 +198,26 @@ function programmeFilmSlots(f,pid,compact){
 document.addEventListener("click",e=>{const b=e.target.closest("[data-pgpast]");if(!b)return;e.preventDefault();e.stopPropagation();const w=b.parentElement,o=w.classList.toggle("open");b.setAttribute("aria-expanded",o);},true);
 document.addEventListener("keydown",e=>{if((e.key==="Enter"||e.key===" ")&&e.target.matches&&e.target.matches("[data-pgpast]")){e.preventDefault();e.stopPropagation();e.target.click();}},true);
 async function boot(){
+  let mv=null; try{ mv=await (window.SP_MOVE||null); }catch(e){}
+  if(mv==='leave') return; // 正在换域名搬家，页面马上会被替换
   await startI18n();
   topEl.innerHTML=brandBar();
   main.innerHTML='<section class="view gut boot"><p class="sub">正在载入排片…</p></section>';
   try{ await loadData(); }
   catch(e){ console.error(e); main.innerHTML='<section class="view gut boot"><h2 class="sec">排片数据加载失败</h2><p class="sub">请检查网络后重新打开。</p><button class="primary-button" data-reload>重新加载</button></section>'; return; }
   pfilt="all"; READY=true; route(); syncStart(); tasteChanged(); TC.flush(); geoBoot();  // 首页（含扫分享二维码进入）默认显示全部专题
+  moveNotice(mv);
+}
+// 换域名搬家的提示：刚从旧网址搬来记录时轻提示一次；在旧网址的主屏幕 App 里时，常驻提示新网址（App 模式不自动跳转）
+function moveNotice(mv){
+  let n=0; try{ n=+sessionStorage.getItem('sp-mig-done')||0; sessionStorage.removeItem('sp-mig-done'); }catch(e){}
+  if(n) toast(tr('已把旧网址上的本机记录搬到新网址'));
+  if(mv!=='banner'||document.getElementById('move-banner')) return;
+  const to=(window.SparrowMove&&SparrowMove.MOVE.to)||'https://sparrowcinema.org';
+  const b=document.createElement('div'); b.id='move-banner'; b.setAttribute('role','status');
+  b.style.cssText='position:sticky;top:0;z-index:60;padding:10px 16px;background:var(--accent);color:#fff;font-size:13px;line-height:1.6;text-align:center';
+  b.innerHTML=esc(tr('观影护照已搬到新网址'))+' <a href="'+esc(to)+'/" style="color:#fff;font-weight:700;text-decoration:underline">'+esc(to.replace(/^https:\/\//,''))+'</a><br><small>'+esc(tr('请先在「我的 › 个人档案云端同步」生成同步码，在新网址输入即可带走全部记录，再从新网址重新添加到主屏幕。'))+'</small>';
+  document.body.insertBefore(b,document.body.firstChild);
 }
 document.addEventListener("click",e=>{ if(e.target.closest("[data-reload]")) location.reload(); });
 let rz; let lastW=window.innerWidth; window.addEventListener("resize",()=>{clearTimeout(rz);rz=setTimeout(()=>{if(Math.abs(window.innerWidth-lastW)<40)return;lastW=window.innerWidth;const h=location.hash.slice(1)||"schedule";if(h==="schedule"||h==="gantt")schedule();},200)});

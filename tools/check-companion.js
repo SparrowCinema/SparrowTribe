@@ -35,5 +35,6 @@ require('./check-overlap.js');
 require('./check-curl.js');
 require('./check-ticket-preview.js');
 require('./check-getdata.js');
+require('./check-domain-move.js'); // 换域名搬家（docs/domain-move.md）
 // 场次编号：每场都有、不重复（tools/assign-sids.js）
 require('child_process').execFileSync(process.execPath, [require('path').join(__dirname, 'assign-sids.js'), '--check'], { stdio: 'inherit' });

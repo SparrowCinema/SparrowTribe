@@ -11,10 +11,17 @@ const BUNDLED = require('./bundled.json');
 
 // 读取网站 JSON：声明接受 gzip（压缩后体积约为原来的 1/5，云函数到 GitHub Pages 的链路慢，这是最有效的提速），失败自动重试一次
 const zlib = require('zlib');
-function getOnce(url, ms) {
+// 换域名（docs/domain-move.md）：旧网址会整站 301 到新域名，这里跟随最多 3 次跳转（只跟 https），SITE 还没改过来时也读得到
+function getOnce(url, ms, hops = 0) {
   return new Promise((resolve, reject) => {
     const t0 = Date.now();
-    const req = https.get(url + (url.includes('?') ? '&' : '?') + 't=' + Date.now(), { headers: { 'Cache-Control': 'no-cache', 'Accept-Encoding': 'gzip' } }, res => {
+    const req = https.get(hops ? url : url + (url.includes('?') ? '&' : '?') + 't=' + Date.now(), { headers: { 'Cache-Control': 'no-cache', 'Accept-Encoding': 'gzip' } }, res => {
+      if ([301, 302, 307, 308].includes(res.statusCode) && res.headers.location && hops < 3) {
+        res.resume();
+        let next; try { next = new URL(res.headers.location, url).href; } catch (e) { return reject(new Error(url + ' bad redirect')); }
+        if (!next.startsWith('https://')) return reject(new Error(url + ' redirect to non-https'));
+        return getOnce(next, ms, hops + 1).then(resolve, reject);
+      }
       if (res.statusCode !== 200) { res.resume(); return reject(new Error(url + ' ' + res.statusCode)); }
       const chunks = [];
       res.on('data', c => chunks.push(c));
