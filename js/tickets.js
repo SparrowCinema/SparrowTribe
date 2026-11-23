@@ -74,6 +74,24 @@ async function ticketEditionRun(){
   try{const got=await sbRpc("tk_edition",{items});const changes=TE.applyEdition(ticketStore(),got);if(changes)ticketStorePut({...ticketStore(),...changes},true);}
   catch(e){ticketEditionOff=true;}
   finally{ticketEditionBusy=false;}
+  ticketAutographRun();
+}
+// 映后嘉宾签名（2026-11-23）：现场认证过的票根向 tk_autograph 取这一场的嘉宾签名，缓存在本机 sparrow-autograph-v1（不随档案同步）
+const TICKET_AG_KEY="sparrow-autograph-v1";let ticketAgStore=null,ticketAgOff=false,ticketAgBusy=false;
+function ticketAgCache(){if(!ticketAgStore){try{ticketAgStore=JSON.parse(localStorage.getItem(TICKET_AG_KEY)||"{}")||{};}catch{ticketAgStore={};}}return ticketAgStore;}
+async function ticketAutographRun(){
+  if(ticketAgOff||ticketAgBusy||typeof sbRpc!=="function"||(typeof navigator!=="undefined"&&navigator.onLine===false))return;
+  const rows=ticketAll().tickets,items=TE.pendingAutograph(rows,ticketAgCache(),now());if(!items.length)return;
+  ticketAgBusy=true;
+  try{
+    const got=await sbRpc("tk_autograph",{items});
+    const before=JSON.stringify(Object.fromEntries(Object.entries(ticketAgCache()).map(([k,v])=>[k,v.g])));
+    ticketAgStore=TE.applyAutograph(ticketAgCache(),rows,items,got,now());
+    try{localStorage.setItem(TICKET_AG_KEY,JSON.stringify(ticketAgStore));}catch{}
+    const after=JSON.stringify(Object.fromEntries(Object.entries(ticketAgStore).map(([k,v])=>[k,v.g])));
+    if(before!==after){ticketRev++;if(location.hash==="#ticket-wall"&&!ticketDraft)ticketWallPage();}
+  }catch(e){ticketAgOff=true;}
+  finally{ticketAgBusy=false;}
 }
 // 票根关联的场次编号（场次限定「本场第几张」用）
 function ticketShowOf(key){ticketAll();return ticketByKey?.get(key)?.showId||"";}
@@ -130,7 +148,7 @@ function ticketAll(){
   const list=ticketViewings(),moves=TE.reconcile(list,ticketStore());
   if(moves)ticketStorePut({...ticketStore(),...moves},true);
   if(!ticketQRReady&&typeof qrMatrix==="function"){TE.setQR(qrMatrix);ticketQRReady=true;}
-  ticketData=TE.build(list,ticketStore(),ticketBase);TE.decorate(ticketData.tickets,ticketSets());ticketDataRev=ticketRev+"|"+watchedSig();
+  ticketData=TE.build(list,ticketStore(),ticketBase);TE.decorate(ticketData.tickets,ticketSets());TE.attachAutographs(ticketData.tickets,ticketAgCache());ticketDataRev=ticketRev+"|"+watchedSig();
   ticketByKey=new Map(ticketData.tickets.map(row=>[row.key,row]));
   return ticketData;
 }
@@ -181,7 +199,7 @@ async function ticketFonts(rows){
   jobs.push(title);
   await Promise.race([Promise.all(jobs).catch(()=>{}),new Promise(r=>setTimeout(r,2500))]);
 }
-const ticketSig=(row,side,w,style)=>[row.key,side,w,side==="front"?style:"",TE.lookSig(row.look),row.crop,row.art,row.time,row.venue,row.hall,row.seat,row.format,row.title,row.programme,row.city].join("¦");
+const ticketSig=(row,side,w,style)=>[row.key,side,w,side==="front"?style:"",TE.lookSig(row.look),row.crop,row.art,row.time,row.venue,row.hall,row.seat,row.format,row.title,row.programme,row.city,TE.collectSig(row)].join("¦");
 async function ticketTileURL(row,side,w){
   const artStyle=ticketStyleFor(row),sig=ticketSig(row,side,w,artStyle);
   if(ticketURLs.has(sig)){const url=ticketURLs.get(sig);ticketURLs.delete(sig);ticketURLs.set(sig,url);return url;}
@@ -896,13 +914,17 @@ async function verifyPage(raw){
   const ed=TE.editionLines({issue:r.no,edition:total,showNo:s?r.sno:0,showTag:""});
   const at=new Date(r.at),when=isNaN(at)?"":at.getFullYear()+"."+String(at.getMonth()+1).padStart(2,"0")+"."+String(at.getDate()).padStart(2,"0");
   const mine=Object.entries(ticketStore()).find(([k,e])=>e&&!e.del&&TE.entrySerial(k,e)===code);
+  // 现场认证过的票根：带上这一场的映后嘉宾签名
+  let guests=[];if(r.ci){try{const a=await sbRpc("tk_autograph",{items:[code]});guests=(Array.isArray(a)&&a[0]&&Array.isArray(a[0].g))?a[0].g:[];}catch(e){}}
   const rows=[[tr("影片"),f?esc(f.cn):esc(r.f)],[tr("发行序号"),esc(ed.no+ed.total)],["",esc(ed.line1)]];
   if(s)rows.push([tr("场次"),esc([s.d.replace("/","月")+"日",s.t,v?.city,v?.name,hall?.name].filter(Boolean).join(" · "))],["",esc(ed.line2||"")]);
   if(r.ci){const c=new Date(r.ci);if(!isNaN(c))rows.push([tr("现场认证"),esc("✓ "+c.getFullYear()+"."+String(c.getMonth()+1).padStart(2,"0")+"."+String(c.getDate()).padStart(2,"0")+" "+String(c.getHours()).padStart(2,"0")+":"+String(c.getMinutes()).padStart(2,"0")+" "+tr("在放映现场签到"))]);}
   rows.push([tr("典藏编号"),'<span class="vf-mono">'+esc(pretty)+'</span>'],[tr("发行时间"),esc(when)]);
   box("vf-ok",'<div class="vf-top">'+(f?pimg(f.id,360,'class="vf-poster" alt=""'):'')+'<div><span class="vf-seal">✓ '+tr("已验证 · 真实发行")+'</span><h3>'+(f?esc(f.cn):esc(r.f))+'</h3><p>'+tr("这张典藏票根由麻雀观影护照统一发行，编号与发行记录一致。")+'</p></div></div>'+
     '<dl class="vf-dl">'+rows.filter(x=>x[1]).map(([k,v])=>'<dt>'+k+'</dt><dd>'+v+'</dd>').join("")+'</dl>'+
+    (guests.length?'<div class="vf-ag"><small>'+tr("映后嘉宾签名")+'</small><div class="ci-ag-list">'+guests.map((g,i)=>'<div class="ci-ag-item"><canvas width="300" height="150" data-vf-ag="'+i+'"></canvas><span>'+esc((g.role?g.role+" ":"")+g.name)+'</span></div>').join("")+'</div></div>':'')+
     (mine?'<button class="primary-button vf-go" data-tab="ticket-wall">'+tr("这是你的典藏票根 · 打开票根册")+'</button>':f?'<button class="secondary-button vf-go" data-film="'+esc(f.id)+'">'+tr("查看影片")+'</button>':''));
+  document.querySelectorAll("canvas[data-vf-ag]").forEach(c=>{const g=guests[+c.dataset.vfAg];if(g)agDraw(c.getContext("2d"),g.st,300,150);});
 }
 
 // ——— 现场认证（2026-11-22）———
@@ -953,7 +975,7 @@ function checkinHostPage(){
     '<label class="ci-row"><span>'+tr("主办密钥")+'</span><input id="ci-pin" type="password" autocomplete="off" value="'+esc(pin)+'"></label>'+
     '<label class="ci-row"><span>'+tr("场次")+'</span><select id="ci-show"><option value="">'+tr("选择一场放映")+'</option>'+shows.map((s,i)=>'<option value="'+i+'">'+esc(checkinShowLine(s)+" · "+(F[s.id]?.cn||s.id))+'</option>').join("")+'</select></label>'+
     (shows.length?'':'<p>'+tr("前后 14 小时内没有场次。")+'</p>')+
-    '<div id="ci-qr" class="ci-qr"></div></div></section>';
+    '<div id="ci-qr" class="ci-qr"></div></div><div id="ci-ag"></div></section>';
   const qr=document.getElementById("ci-qr"),sel=document.getElementById("ci-show"),pinEl=document.getElementById("ci-pin");
   async function tick(){
     const s=shows[+sel.value];if(!s||!pinEl.value){qr.innerHTML="";return;}
@@ -963,6 +985,61 @@ function checkinHostPage(){
     if(!r||!r.k){qr.innerHTML='<p class="ci-err">'+tr("主办密钥不对，或网络不可用")+'</p>';return;}
     qr.innerHTML='<div class="ci-code">'+qrSVG(TE.checkinURL(s.id,s.sid||keyOf(s),r.w,r.k))+'</div><h3>'+esc(F[s.id]?.cn||"")+'</h3><p>'+esc(checkinShowLine(s))+'</p><p class="ci-n">'+tr("已签到")+' <b>'+r.n+'</b> '+tr("人")+' · '+tr("签到码每分钟更新")+'</p>';
   }
-  sel.addEventListener("change",tick);pinEl.addEventListener("change",tick);
+  const agTick=()=>{const s=shows[+sel.value];ciAgRender(s&&pinEl.value?s:null,pinEl.value);};
+  sel.addEventListener("change",()=>{tick();agTick();});pinEl.addEventListener("change",()=>{tick();agTick();});
   ciHostTimer=setInterval(tick,60000);
+}
+
+// ——— 映后嘉宾签名（2026-11-23）：主办方页面的签名板 ———
+// 嘉宾在主办方的手机 / 平板上手写，笔画存成 0–1000 × 0–500 的整数坐标（tk_autograph_put）；每场最多 4 位嘉宾。
+function agDraw(ctx,strokes,w,h,ink){
+  ctx.clearRect(0,0,w,h);ctx.lineCap="round";ctx.lineJoin="round";ctx.strokeStyle=ink||"#1d1712";ctx.lineWidth=Math.max(1.5,w/150);
+  for(const st of strokes){ctx.beginPath();ctx.moveTo(st[0]*w/1000,st[1]*h/500);
+    if(st.length<4)ctx.lineTo(st[0]*w/1000+.1,st[1]*h/500);
+    for(let i=2;i<st.length-2;i+=2){const mx=(st[i]+st[i+2])/2,my=(st[i+1]+st[i+3])/2;ctx.quadraticCurveTo(st[i]*w/1000,st[i+1]*h/500,mx*w/1000,my*h/500);}
+    if(st.length>=4)ctx.lineTo(st[st.length-2]*w/1000,st[st.length-1]*h/500);ctx.stroke();}
+}
+let ciAgShown="",ciAgSeq=0;
+async function ciAgRender(s,pin,force){
+  const box=document.getElementById("ci-ag");if(!box)return;
+  if(!s){box.innerHTML="";ciAgShown="";return;}
+  // 同一场、同一密钥已经显示着就不重画（选场次和离开密钥框都会触发，重画会清掉正在填的姓名）；只用最后一次请求的结果
+  const key=pin+"|"+s.id+"|"+(s.sid||keyOf(s));if(!force&&key===ciAgShown&&box.firstChild)return;
+  const seq=++ciAgSeq;
+  let list=null;try{list=await sbRpc("tk_autograph_list",{pin,f:s.id,h:s.sid||keyOf(s)});}catch(e){}
+  if(seq!==ciAgSeq)return;
+  if(!Array.isArray(list)){box.innerHTML="";ciAgShown="";return;}
+  ciAgShown=key;
+  const used=new Set(list.map(g=>g.i)),free=[0,1,2,3].find(i=>!used.has(i));
+  box.innerHTML='<div class="vf-card ci-host"><h3 class="ci-agh">'+tr("映后嘉宾签名")+'</h3><p>'+tr("只有在这一场现场认证过的典藏票根才会出现嘉宾签名。每场最多 4 位。")+'</p>'+
+    (list.length?'<div class="ci-ag-list">'+list.map(g=>'<div class="ci-ag-item"><canvas width="300" height="150" data-ag="'+g.i+'"></canvas><span>'+esc((g.role?g.role+" ":"")+g.name)+'</span><button class="text-button" data-ag-del="'+g.i+'">'+tr("删除")+'</button></div>').join("")+'</div>':'')+
+    (free===undefined?'<p>'+tr("已满 4 位嘉宾。")+'</p>':
+    '<label class="ci-row"><span>'+tr("嘉宾姓名")+'</span><input id="ag-name" maxlength="24" autocomplete="off"></label>'+
+    '<label class="ci-row"><span>'+tr("身份")+'</span><input id="ag-role" maxlength="12" placeholder="'+tr("如：导演")+'" autocomplete="off"></label>'+
+    '<div class="ci-pad"><canvas id="ag-pad"></canvas><span class="ci-pad-hint">'+tr("请嘉宾在这里签名")+'</span></div>'+
+    '<div class="ci-pad-acts"><button class="secondary-button" id="ag-clear">'+tr("清除")+'</button><button class="primary-button" id="ag-save">'+tr("保存签名")+'</button></div>')+'</div>';
+  box.querySelectorAll("canvas[data-ag]").forEach(c=>{const g=list.find(x=>String(x.i)===c.dataset.ag);if(g)agDraw(c.getContext("2d"),g.st,300,150);});
+  box.querySelectorAll("[data-ag-del]").forEach(b=>b.addEventListener("click",async()=>{
+    if(!confirm(tr("删除这位嘉宾的签名？")))return;
+    try{await sbRpc("tk_autograph_put",{pin,f:s.id,h:s.sid||keyOf(s),i:+b.dataset.agDel,nm:null,rl:null,st:null});}catch(e){}
+    ciAgRender(s,pin,true);}));
+  const pad=document.getElementById("ag-pad");if(!pad)return;
+  const dpr=Math.min(3,window.devicePixelRatio||1),W=pad.parentElement.clientWidth,H=Math.round(W/2);
+  pad.width=W*dpr;pad.height=H*dpr;pad.style.height=H+"px";const ctx=pad.getContext("2d");ctx.scale(dpr,dpr);
+  let strokes=[],cur=null,points=0;
+  const pt=e=>{const r=pad.getBoundingClientRect();return [Math.max(0,Math.min(1000,Math.round((e.clientX-r.left)/r.width*1000))),Math.max(0,Math.min(500,Math.round((e.clientY-r.top)/r.height*500)))];};
+  const redraw=()=>{agDraw(ctx,cur?strokes.concat([cur]):strokes,W,H);pad.parentElement.classList.toggle("on",strokes.length>0||!!cur);};
+  pad.addEventListener("pointerdown",e=>{if(strokes.length>=80||points>=4000)return;pad.setPointerCapture(e.pointerId);cur=pt(e);points++;redraw();});
+  pad.addEventListener("pointermove",e=>{if(!cur)return;const [x,y]=pt(e),lx=cur[cur.length-2],ly=cur[cur.length-1];if(Math.hypot(x-lx,y-ly)<4||points>=4000)return;cur.push(x,y);points++;redraw();});
+  const end=()=>{if(cur){strokes.push(cur);cur=null;redraw();}};
+  pad.addEventListener("pointerup",end);pad.addEventListener("pointercancel",end);
+  document.getElementById("ag-clear").addEventListener("click",()=>{strokes=[];cur=null;points=0;redraw();});
+  document.getElementById("ag-save").addEventListener("click",async e=>{
+    const nm=document.getElementById("ag-name").value.trim(),rl=document.getElementById("ag-role").value.trim();
+    if(!nm){toast(tr("请填写嘉宾姓名"));return;}if(!strokes.length){toast(tr("还没有签名"));return;}
+    e.currentTarget.disabled=true;
+    let r=null;try{r=await sbRpc("tk_autograph_put",{pin,f:s.id,h:s.sid||keyOf(s),i:free,nm,rl,st:strokes});}catch(err){}
+    if(!Array.isArray(r)){toast(tr("保存失败，请检查主办密钥或网络"));e.currentTarget.disabled=false;return;}
+    toast(tr("签名已保存"));ciAgRender(s,pin,true);
+  });
 }

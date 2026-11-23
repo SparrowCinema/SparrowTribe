@@ -20,6 +20,7 @@ require('./check-tickets.js');
 require('./check-ticket-collect.js');
 require('./check-sync-quiet.js');
 require('./check-checkin.js');
+require('./check-autograph.js');
 require('./check-wxss.js');
 
 require('./check-film-details.js');

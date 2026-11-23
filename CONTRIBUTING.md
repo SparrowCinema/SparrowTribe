@@ -525,3 +525,13 @@ Claude 与 GPT 可能使用同一 GitHub 身份，审批人数可先设为0；�
 - **观众（网站）**：用手机相机或微信扫码打开 `#checkin=影片~场次~时间窗~签到码`（`checkinPage`），点「签到 · 盖章 · 领取典藏票根」。先在本机记好观影与票根（离线也不丢），再向服务器认证；过期 / 无效时提示扫最新的码。
 - **观众（小程序）**：典藏票根册右上「现场签到」（`tickets.js` 的 `scanCheckin`，`wx.scanCode`）→ `utils/ticketstore.js` 的 `checkin` → `psync` 云函数的 `checkin` 动作 → `tk_checkin`。**`psync` 云函数需要重新部署。**微信「扫一扫」直接扫码打开的是网站页面。
 - **共用逻辑**：`shared/tickets.js` 的 `checkinURL` / `checkinParse` / `checkinPlan`（同一天同一场已记过就沿用，同日无场次的补场次，否则新增一次观影；同日第二场票根键带 `|2`）/ `applyCheckin`。票根字段 `ci`（签到时间毫秒），`shared/psync.js` 保留并在合并时补回。测试 `tools/check-checkin.js`（随 check-companion 运行）。
+
+## 映后嘉宾签名（2026-11-23）
+
+映后活动结束后，嘉宾在主办方的手机 / 平板上手写签名；只有在这一场**现场认证**过的典藏票根才有：正面海报下半部分出现金色油漆笔签名（暗影 + 暖金底色 + 烫印高光，按笔速粗细变化，转动时反光；右下角留给影展限定章），背面单元名下写「映后签名 · 导演 某某」，合成图徽记与验真页也显示。
+
+- **后端**：`backend/tickets-autograph-v1.sql`（在 issue / collect / checkin 三个文件之上执行，可重复执行）。表 `sparrow_issue.autographs`（影片、场次、第几位 0–3、姓名、身份、笔画），笔画 `[[x,y,…],…]` 为 0–1000 × 0–500 的整数，最多 80 笔、4000 点（`strokes_ok` 校验）。`tk_autograph_put(pin,f,h,i,nm,rl,st)`（st 为 null 即删除）/ `tk_autograph_list(pin,f,h)` 需要主办密钥；`tk_autograph(items)` 按典藏编号查签到记录，只给现场认证过的票根返回 `[{s, g:[{name,role,st}]}]`。只保存嘉宾姓名、身份和笔画。
+- **主办方**：`#checkin-host` 选好场次后，下方「映后嘉宾签名」：填姓名、身份，嘉宾在签名板上签（2:1，`touch-action:none`），保存；已有签名可预览、删除，每场最多 4 位。同一场同一密钥不重复重画（`ciAgShown`），避免清掉正在填的姓名。
+- **观众**：网站 `ticketAutographRun`（发号、封版之后）/ 小程序 `ticketstore.js` 的 `autographRun`（经 `psync` 云函数的 `autograph` 动作）。缓存按「影片|场次」存在本机（网站 `sparrow-autograph-v1`，小程序 `sk-autograph-v1`），**不随档案同步**，每台设备凭典藏编号自取。规则在 `shared/tickets.js`：`pendingAutograph`（没取过；空的 6 小时后、签到 30 天内再取，主办方可能事后补传；有签名的 3 天复查）/ `applyAutograph` / `attachAutographs`；票面 `drawAutographs` / `guestLine`。**`psync` 云函数需要重新部署**。
+- 收藏册与详情页的缩略图缓存键加上 `collectSig`（发号、封版、本场序号、现场认证、满贯、隐藏款、限定、签名），这些变化后缩略图会重画（之前不会）。
+- 测试 `tools/check-autograph.js`（随 check-companion 运行）。
