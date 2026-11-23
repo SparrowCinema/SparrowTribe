@@ -111,13 +111,13 @@
 .fp-tally > view { padding: calc(14 * var(--r)) 0 calc(14 * var(--r)) calc(14 * var(--r)); }
 .fp-tally > view:first-child { padding-left: 0; }
 .fp-tally > view + view { border-left: calc(2 * var(--r)) dashed var(--rule); }
-.fp-tally .n { font-size: calc(34.2 * var(--r)); font-weight: 700; color: #8e2a22; }
+.fp-tally .n { font-size: calc(34.2 * var(--r)); font-weight: 700; color: #8e2a22; line-height: 1.15; }
 .fp-dl { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: calc(8 * var(--r)); }
 .fp-dl .dt { font-size: calc(15 * var(--r)); letter-spacing: calc(2 * var(--r)); color: var(--pink); }
-.fp-dl .dd { font-size: calc(21 * var(--r)); font-weight: 700; }
+.fp-dl .dd { font-size: calc(21 * var(--r)); font-weight: 700; line-height: 1.4; }
 .fp-sign { display: flex; justify-content: space-between; align-items: baseline; margin-top: auto; padding-bottom: calc(14 * var(--r)); border-bottom: calc(2 * var(--r)) solid var(--rule); font-size: calc(15 * var(--r)); color: var(--pink); }
-.fp-sign .sig { font-family: "Snell Roundhand", Georgia, serif; font-style: italic; font-size: calc(27 * var(--r)); color: #2f4f7a; transform: rotate(-3deg); }
-.fp-mrz { display: flex; flex-direction: column; margin-top: calc(16 * var(--r)); font-size: calc(16 * var(--r)); letter-spacing: calc(2 * var(--r)); color: #4a4036; white-space: nowrap; overflow: hidden; }
+.fp-sign .sig { font-family: "Snell Roundhand", Georgia, serif; font-style: italic; font-size: calc(27 * var(--r)); color: #2f4f7a; transform: rotate(-3deg); line-height: 1.2; }
+.fp-mrz { display: flex; flex-direction: column; margin-top: calc(16 * var(--r)); font-size: calc(16 * var(--r)); letter-spacing: calc(2 * var(--r)); color: #4a4036; white-space: nowrap; overflow: hidden; line-height: 1.45; flex-shrink: 0; }
 .fp-vh { font-size: calc(28.8 * var(--r)); font-weight: 900; font-family: "Songti SC", "Noto Serif SC", serif; }
 .fp-sub { font-size: calc(18 * var(--r)); color: var(--pink); margin: calc(6 * var(--r)) 0 calc(16 * var(--r)); }
 .fp-grid { flex: 1; display: flex; flex-wrap: wrap; align-content: space-around; }
