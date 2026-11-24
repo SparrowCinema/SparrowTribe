@@ -79,26 +79,116 @@ function planProgChips(all){if(!all.length)return '';const n=scopedRows().length
 }
 function scopedRows(){const all=selectedRows();if(planFilt==="all")return all;return all.filter(s=>selHas(planFilt,s.p));}
 function selectedRows(keys=picked){const set=new Set(keys);return SH.filter(s=>set.has(keyOf(s))).sort((a,b)=>showDate(a)-showDate(b));}
-function showDate(s){const md=s.d.split('/').map(Number),tm=s.t.split(':').map(Number);return new Date(year(s.d,s.year),md[0]-1,md[1],tm[0],tm[1]);}
+function showDate(s){return new Date(SparrowTZ.showMs(s,VN,PG));}
+function plannerCtx(){return {F,VN,PG,keyOf,durationOf,showMs:s=>SparrowTZ.showMs(s,VN,PG),isPast,nowMs:now(),preferredCity:typeof homeCity==='function'?homeCity():''};}
 function planToggleHTML(s){const k=keyOf(s),yes=picked.has(k);return '<button class="plan-toggle '+(yes?'selected':'')+'" data-plan="'+esc(k)+'" aria-pressed="'+yes+'" aria-label="'+(yes?'移出排片 ':'加入排片 ')+esc(F[s.id].cn)+' '+esc(s.d)+' '+s.t+'">'+(yes?'✓ 已加入':'+ 加入排片')+'</button>';}
-function showChoiceHTML(s){return '<div class="show-choice"><button class="show" data-jump="'+keyOf(s)+'"><span class="dt">'+s.d+' '+s.t+'</span><span class="x">'+wk(s.d)+' · '+placeHTML(s)+' · 散场 '+fmt(toMin(s.t)+durationOf(s))+'</span><span class="go">查看排片 ›</span></button>'+planToggleHTML(s)+'</div>';}
-function conflicts(list){let out=[];for(let i=0;i<list.length;i++)for(let j=i+1;j<list.length;j++){const a=list[i],b=list[j];if(a.d===b.d&&toMin(a.t)<toMin(b.t)+F[b.id].min-2&&toMin(b.t)<toMin(a.t)+F[a.id].min-2)out.push([a,b]);}return out;}
+function showChoiceHTML(s){return '<div class="show-choice"><button class="show" data-jump="'+keyOf(s)+'"><span class="dt">'+s.d+' '+s.t+'</span><span class="x">'+wk(s.d,s.year)+' · '+placeHTML(s)+' · 散场 '+fmt(toMin(s.t)+durationOf(s))+'</span><span class="go">查看排片 ›</span></button>'+planToggleHTML(s)+'</div>';}
+function conflicts(list){return SparrowPlanner.findConflicts(list,plannerCtx());}
 const regColor = f => ({cn:"#8e2a22",eu:"#2f6f6c",us:"#b26a1f",as:"#5d6b2e"})[f.reg]||"#8e2a22";
 const endMin = s => toMin(s.t)+durationOf(s);
 const durText = m => m<60 ? m+" 分钟" : Math.floor(m/60)+" 小时"+(m%60?" "+m%60+" 分":"");
 function planStats(list){const minutes=list.reduce((n,s)=>n+F[s.id].min,0);return {n:list.length,days:new Set(list.map(s=>s.d)).size,minutes,hm:Math.floor(minutes/60)+"h"+String(minutes%60).padStart(2,"0"),clash:conflicts(list).length};}
 function byDay(list){const m=new Map();list.forEach(s=>{if(!m.has(s.d))m.set(s.d,[]);m.get(s.d).push(s);});return [...m.entries()];}
-function gapOf(a,b){const g=toMin(b.t)-endMin(a);if(g<0)return {cls:"clash",txt:"与上一场重叠 "+(-g)+" 分钟"};if(g<20)return {cls:"tight",txt:"间隔仅 "+g+" 分钟，留意入场时间"};return {cls:"ok",txt:"间隔 "+durText(g)};}
+function gapOf(a,b,opt){
+  const trn=SparrowPlanner.transfer(a,b,plannerCtx());
+  const vb=VN[b.v];
+  const g=SparrowPlanner.formatGap(trn,{en:LANG==='en',toVenue:vb?vShort(vb):'',durText:m=>tr(durText(m)),warnPrefix:opt&&opt.warnPrefix});
+  return {cls:g.cls,txt:g.txt,tr:trn,mapUrl:vb?SparrowPlanner.mapURL(vb):''};
+}
 function thumbHTML(f){return pst(f.id)?pimg(f.id,360,'class="pthumb" alt="" loading="lazy"'):'<span class="pthumb pslate" style="background:'+REG[f.reg].c+'">'+esc(f.cn[0])+'</span>';}
 function planRowsHTML(list,editable){
   return byDay(list).map(([d,items])=>{
     const first=items[0],last=items[items.length-1];
     let body='';
     items.forEach((s,i)=>{const f=F[s.id];
-      if(i){const g=gapOf(items[i-1],s);body+='<li class="pgap '+g.cls+'"><span>'+g.txt+'</span></li>';}
-      body+='<li class="pitem" style="--c:'+REG[f.reg].c+'"><div class="ptime"><b>'+s.t+'</b><small>'+fmt(endMin(s))+'</small></div><div class="pcard">'+thumbHTML(f)+'<div class="pinfo"><button class="ptitle" data-film="'+s.id+'"><b>'+esc(f.cn)+'</b>'+(f.version?'<span class="ped">'+esc(f.version)+'</span>':'')+'</button><small>'+(f.dir?esc(f.dir)+' · ':'')+minText(f)+'</small><span class="pvenue">'+placeHTML(s)+'</span></div>'+(editable?'<button class="premove" data-plan="'+esc(keyOf(s))+'" aria-label="移出排片 '+esc(f.cn)+' '+s.d+' '+s.t+'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6 6 18"/></svg></button>':'')+'</div></li>';
+      if(i){const g=gapOf(items[i-1],s);body+='<li class="pgap '+g.cls+'"><span>'+esc(g.txt)+'</span>'+(editable&&g.mapUrl&&g.tr&&g.tr.kind==='cross'?'<a class="pgap-map" href="'+esc(g.mapUrl)+'" target="_blank" rel="noopener noreferrer">'+tr('地图')+' ›</a>':'')+'</li>';}
+      const vMap=editable?SparrowPlanner.mapURL(VN[s.v]):'';
+      body+='<li class="pitem" style="--c:'+REG[f.reg].c+'"><div class="ptime"><b>'+s.t+'</b><small>'+fmt(endMin(s))+'</small></div><div class="pcard">'+thumbHTML(f)+'<div class="pinfo"><button class="ptitle" data-film="'+s.id+'"><b>'+esc(f.cn)+'</b>'+(f.version?'<span class="ped">'+esc(f.version)+'</span>':'')+'</button><small>'+(f.dir?esc(f.dir)+' · ':'')+minText(f)+'</small><span class="pvenue">'+placeHTML(s)+(vMap?' <a class="pvenue-map" href="'+esc(vMap)+'" target="_blank" rel="noopener noreferrer">📍 '+tr('地图')+'</a>':'')+'</span></div>'+(editable?'<button class="premove" data-plan="'+esc(keyOf(s))+'" aria-label="移出排片 '+esc(f.cn)+' '+s.d+' '+s.t+'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6 6 18"/></svg></button>':'')+'</div></li>';
     });
-    return '<section class="pday"><header class="pday-h"><b>'+d+'</b><span>'+wk(d)+'</span><small>'+items.length+' 场 · '+first.t+' – '+fmt(endMin(last))+'</small></header><ol class="ptl">'+body+'</ol></section>';
+    return '<section class="pday"><header class="pday-h"><b>'+d+'</b><span>'+wk(d,first.year)+'</span><small>'+items.length+' 场 · '+first.t+' – '+fmt(endMin(last))+'</small></header><ol class="ptl">'+body+'</ol></section>';
   }).join('');
 }
 function statsHTML(st){return '<div class="pstats"><div><b>'+st.n+'</b><small>场放映</small></div><div><b>'+st.days+'</b><small>天行程</small></div><div><b>'+st.hm+'</b><small>银幕时长</small></div><div class="'+(st.clash?'bad':'good')+'"><b>'+st.clash+'</b><small>时间冲突</small></div></div>';}
+
+/* ===== 冲突一键换场 & 基于「想看」清单的智能排片建议（2026-11-24）===== */
+function conflictSwapsHTML(list){
+  const swaps=SparrowPlanner.conflictSwaps(list,SH,plannerCtx());
+  if(!swaps.length)return '';
+  const tagOf=a=>{const ts=[];if(a.sameVenue)ts.push(tr('同影院'));else if(a.sameCity)ts.push(tr('同城'));if(a.sameDay)ts.push(tr('同日'));if(a.sameVenueAdj)ts.push(tr('顺路'));if(a.tight)ts.push(tr('转场偏紧'));return ts.length?'<em>'+ts.join(' · ')+'</em>':'';};
+  return '<div class="plan-swaps"><span class="ps-label">'+tr('可一键换成无冲突场次')+'</span>'+swaps.map(sw=>{
+    const f=F[sw.from.id];
+    return '<div class="ps-item"><div class="ps-head"><strong>'+esc(f?f.cn:sw.from.id)+'</strong><small>'+tr('当前')+' '+esc(sw.from.d+' '+tr(wk(sw.from.d,sw.from.year))+' '+sw.from.t)+'</small></div>'+
+      sw.alts.map(a=>'<button type="button" class="pg-alt ps-btn" data-conflict-swap="'+esc(sw.fromKey)+'" data-to="'+esc(a.key)+'"><span>'+tr('换成')+' '+esc(a.show.d+' '+tr(wk(a.show.d,a.show.year))+' '+a.show.t)+' · '+placeHTML(a.show)+tagOf(a)+'</span><b>⇄</b></button>').join('')+'</div>';
+  }).join('')+'</div>';
+}
+function wantFilmIds(){return typeof isWant==='function'?FILMS.filter(f=>isWant(f.id)).map(f=>f.id):[];}
+function wantUnplannedCount(){
+  const ids=wantFilmIds();if(!ids.length)return 0;
+  const planned=new Set(selectedRows().map(s=>s.id));
+  return ids.filter(id=>!planned.has(id)&&SH.some(s=>s.id===id&&!isPast(s))).length;
+}
+function smartPlanButtonHTML(cls){
+  const ids=wantFilmIds(),n=wantUnplannedCount();
+  const lab=n?tr('想看一键排片')+' ('+n+')':tr('想看一键排片');
+  return '<button type="button" class="'+(cls||'secondary-button')+'" data-smart-plan'+(ids.length?'':' data-empty="1"')+'>✦ '+esc(lab)+'</button>';
+}
+function openSmartPlanDialog(){
+  const wantIds=wantFilmIds();
+  document.getElementById('smart-plan-dialog')?.remove();
+  const d=document.createElement('dialog');
+  d.id='smart-plan-dialog';
+  d.className='schedule-selector multi smart-plan-dialog';
+  d.setAttribute('aria-labelledby','sp-title');
+  if(!wantIds.length){
+    d.innerHTML='<header class="selector-head"><h2 id="sp-title">'+tr('想看一键排片')+'</h2><button type="button" class="selector-close" data-sp="close" aria-label="'+tr('关闭')+'">×</button></header>'+
+      '<div class="sp-empty"><p>'+tr('你的「想看」清单还是空的。在影片页点「☆ 想看」收藏几部想看的电影，这里就能自动为你避开冲突、排出一份行程建议。')+'</p><button type="button" class="primary-button" data-sp="films">'+tr('去片目挑电影')+'</button></div>';
+    document.body.appendChild(d);
+    d.addEventListener('click',e=>{if(e.target===d||e.target.closest('[data-sp="close"]')){d.close();return;}if(e.target.closest('[data-sp="films"]')){d.close();go('films');}});
+    d.addEventListener('close',()=>d.remove());
+    d.showModal();
+    return;
+  }
+  const existing=selectedRows();
+  const res=SparrowPlanner.suggestPlan(wantIds,existing,SH,plannerCtx());
+  const chosen=new Set(res.picks.map(p=>p.key));
+  const reasonText=r=>r==='no_upcoming'?tr('暂无待映场次'):r==='all_conflict'?tr('与你已有排片全部冲突'):tr('与其他推荐场次时间冲突');
+  const renderBody=()=>{
+    const picksHTML=res.picks.length?res.picks.map(p=>{
+      const f=F[p.filmId],s=p.show,on=chosen.has(p.key);
+      const tags=p.tags.map(tg=>'<i class="sp-tag'+(tg.includes('偏紧')?' warn':'')+'">'+esc(tr(tg))+'</i>').join('');
+      return '<button type="button" class="selector-option sp-opt" role="option" aria-selected="'+on+'" data-sp-key="'+esc(p.key)+'"><span><b>'+esc(f.cn)+(f.version?' <em class="ped">'+esc(f.version)+'</em>':'')+'</b><small>'+esc(s.d+' '+tr(wk(s.d,s.year))+' '+s.t+' – '+fmt(endMin(s)))+' · '+placeHTML(s)+'</small>'+(tags?'<span class="sp-tags">'+tags+'</span>':'')+'</span><span class="selector-check" aria-hidden="true">'+(on?'✓':'')+'</span></button>';
+    }).join(''):'<p class="selector-empty">'+tr('想看清单里的影片暂时没有可无冲突排入的新场次。')+'</p>';
+    const unschedHTML=res.unscheduled.length?'<div class="sp-unsched"><h4>'+tr('未能排入（'+res.unscheduled.length+' 部）')+'</h4><ul>'+res.unscheduled.map(u=>'<li><b>'+esc(F[u.filmId]?.cn||u.filmId)+'</b><span>'+esc(reasonText(u.reason))+'</span></li>').join('')+'</ul></div>':'';
+    const summary=res.picks.length
+      ? tr('从 '+res.stats.wantTotal+' 部想看影片中，为你排入 '+res.picks.length+' 场无冲突放映')+(res.stats.alreadyCount?'（'+tr('另有 '+res.stats.alreadyCount+' 部已在排片中')+'）':'')
+      : (res.stats.alreadyCount?tr('你想看的 '+res.stats.alreadyCount+' 部影片都已经在个人排片里了。'):tr('目前没有能避开冲突排入的新场次。'));
+    d.innerHTML='<header class="selector-head"><h2 id="sp-title">'+tr('想看一键排片建议')+'</h2><button type="button" class="selector-close" data-sp="close" aria-label="'+tr('关闭')+'">×</button></header>'+
+      '<p class="sp-summary">'+esc(summary)+'<small>'+tr('已选排片保持不变，可取消勾选不需要的场次。')+'</small></p>'+
+      '<div class="selector-results" role="listbox" aria-multiselectable="true">'+picksHTML+unschedHTML+'</div>'+
+      '<footer class="selector-foot"><small>'+tr('已选 '+chosen.size+' 场')+'</small><button type="button" class="selector-done" data-sp="apply"'+(chosen.size?'':' disabled')+'>'+tr(chosen.size?'加入所选 '+chosen.size+' 场':'关闭')+'</button></footer>';
+  };
+  renderBody();
+  document.body.appendChild(d);
+  d.addEventListener('click',e=>{
+    if(e.target===d||e.target.closest('[data-sp="close"]')){d.close();return;}
+    const opt=e.target.closest('[data-sp-key]');
+    if(opt){const k=opt.dataset.spKey;if(chosen.has(k))chosen.delete(k);else chosen.add(k);const sc=d.querySelector('.selector-results')?.scrollTop||0;renderBody();const r2=d.querySelector('.selector-results');if(r2)r2.scrollTop=sc;return;}
+    if(e.target.closest('[data-sp="apply"]')){
+      let added=0;chosen.forEach(k=>{if(validKeys.has(k)&&!picked.has(k)){picked.add(k);added++;}});
+      d.close();
+      if(added){saveSelection();stat('plan_add','smart_suggest');toast(tr('已加入 '+added+' 场到个人排片'));if(location.hash==='#plan')planPage();else route();}
+    }
+  });
+  d.addEventListener('close',()=>d.remove());
+  addEventListener('hashchange',()=>{if(d.open)d.close();},{once:true});
+  d.showModal();
+}
+document.addEventListener('click',e=>{
+  const cs=e.target.closest('[data-conflict-swap]');
+  if(cs){
+    const from=cs.dataset.conflictSwap,to=cs.dataset.to;
+    if(validKeys.has(to)){picked.delete(from);picked.add(to);saveSelection();toast(tr('已换成无冲突场次'));if(location.hash==='#plan')planPage();else route();}
+    return;
+  }
+  if(e.target.closest('[data-smart-plan]'))openSmartPlanDialog();
+});

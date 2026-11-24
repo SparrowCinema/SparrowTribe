@@ -73,9 +73,9 @@ Page({
     const showsAllN = shows.length;
     if (sf.show) shows.splice(0, shows.length, ...shows.filter(x => (!sfSt.d.length || sfSt.d.includes(x.sd)) && (!sfSt.v.length || sfSt.v.includes(x.vid))));
     // 影展内已放映的场次：窄条保留（黑白、无操作按钮）；院线片不显示
-    const goneShows = allShows.filter(s => U.ended(s, idx) && U.keepPast(U.progForShow(s, idx))).sort((a, b) => U.showDate(a) - U.showDate(b)).map(s => {
+    const goneShows = allShows.filter(s => U.ended(s, idx) && U.keepPast(U.progForShow(s, idx))).sort((a, b) => U.showDate(a, idx) - U.showDate(b, idx)).map(s => {
       const v = idx.VN[s.v] || {}, h = (v.halls || []).find(x => x.id === s.h), nm = (v.short || v.brand || v.name || '').replace(new RegExp('^' + (v.city || '@@') + '\\s*[·・]?\\s*'), '');
-      return { key: U.keyOf(s), d: U.showDate(s).getFullYear()+'.'+s.d.split('/').map(n=>n.padStart(2,'0')).join('.'), t: s.t, place: [v.city, nm, h && (h.short || h.name), U.progForShow(s,idx).name].filter(Boolean).join(' · ') };
+      return { key: U.keyOf(s), d: U.year(s.d, s.year)+'.'+s.d.split('/').map(n=>n.padStart(2,'0')).join('.'), t: s.t, place: [v.city, nm, h && (h.short || h.name), U.progForShow(s,idx).name].filter(Boolean).join(' · ') };
     });
     const ratings = (f.r || []).map((v, i) => ({
       l: t(RT[i][0]), na: v == null,
@@ -162,9 +162,9 @@ Page({
   // 多次观影：保存时让顶层字段与各次观影一致（规则在 shared/growth.js setViews）
   saveViews(vs) { const rec = W.get(this.id); if (!rec) return; const o = G.setViews(rec, vs); if (o) W.set(this.id, o); },
   // —— 观影日记：点一行或「再看一次」打开底部编辑弹层（与网页 lgOpen 同规则）——
-  lgPast() { const data = app.globalData.data, idx = U.index(data); return data.shows.filter(x => x.id === this.id && U.ended(x, idx)).sort((a, b) => U.showDate(b) - U.showDate(a)); },
-  lgLabel(s) { const d = U.showDate(s), idx = U.index(app.globalData.data); return (d.getMonth() + 1) + '.' + String(d.getDate()).padStart(2, '0') + ' ' + s.t + ' · ' + W.vShort(idx.VN[s.v]); },
-  lgLink(d, k) { const past = this._past || []; if (k) { const s = past.find(x => U.keyOf(x) === k); if (s && W.iso(U.showDate(s)) === d) return k; } const s = past.find(x => W.iso(U.showDate(x)) === d); return s ? U.keyOf(s) : ''; },
+  lgPast() { const data = app.globalData.data, idx = U.index(data); return data.shows.filter(x => x.id === this.id && U.ended(x, idx)).sort((a, b) => U.showDate(b, idx) - U.showDate(a, idx)); },
+  lgLabel(s) { const md = s.d.split('/'), idx = U.index(app.globalData.data); return (+md[0]) + '.' + String(md[1]).padStart(2, '0') + ' ' + s.t + ' · ' + W.vShort(idx.VN[s.v]); },
+  lgLink(d, k) { const past = this._past || []; if (k) { const s = past.find(x => U.keyOf(x) === k); if (s && U.showIso(s) === d) return k; } const s = past.find(x => U.showIso(x) === d); return s ? U.keyOf(s) : ''; },
   lgOpen(e) {
     try { this.lgOpen0(e); } catch (err) { console.error('lgOpen', err); wx.showToast({ title: I.isEn() ? 'Could not open' : '暂时无法打开，请重试', icon: 'none' }); }
   },
@@ -185,7 +185,7 @@ Page({
     const d = { lg }; if (show) { d.lgShow = true; d.tsShow = false; } this.setData(d);
   },
   lgDate(e) { const o = this._lg, d = e.detail.value; if (!o || !/^\d{4}-\d{2}-\d{2}$/.test(d)) return; o.d = d; o.k = this.lgLink(d, o.k); this.lgPaint(); },
-  lgPick(e) { const o = this._lg; if (!o) return; const k = +e.detail.value, s = k > 0 ? (this._past || [])[k - 1] : null; o.k = s ? U.keyOf(s) : ''; if (s) o.d = W.iso(U.showDate(s)); this.lgPaint(); },
+  lgPick(e) { const o = this._lg; if (!o) return; const k = +e.detail.value, s = k > 0 ? (this._past || [])[k - 1] : null; o.k = s ? U.keyOf(s) : ''; if (s) o.d = U.showIso(s); this.lgPaint(); },
   lgRate(e) { const o = this._lg; if (!o) return; const v = +e.currentTarget.dataset.v; o.r = o.r === v ? 0 : v; this.lgPaint(); },
   lgClose() { this._lg = null; if (this.data.lgShow) this.setData({ lgShow: false }); },
   lgSave() {
@@ -244,7 +244,7 @@ Page({
   calendar(e) {
     Stats.stat('remind', this.id);
     const data = app.globalData.data, s = data.shows.find(x => U.keyOf(x) === e.currentTarget.dataset.key), idx = U.index(data), f = idx.F[s.id];
-    const start = Math.floor(U.showDate(s).getTime() / 1000);
+    const start = Math.floor(U.showDate(s, idx).getTime() / 1000);
     wx.addPhoneCalendar({
       title: I.isEn() ? f.cn + (f.version ? ' · ' + t(f.version) : '') : `《${f.cn}》${f.version ? ' · ' + f.version : ''}`, startTime: start, endTime: start + U.durationOf(s, idx) * 60,
       location: idx.venueName(s) + ' · ' + idx.hallName(s), description: t('麻雀观影护照'), alarm: true, alarmOffset: 3600,
@@ -270,7 +270,7 @@ Page({
   sfStop() {},
   sharePoster() {
     const data = app.globalData.data, idx = U.index(data), f = idx.F[this.id]; if (!f) return;
-    const p = idx.progOf(f), up = data.shows.filter(s => s.id === f.id && !U.ended(s, idx)).sort((a, b) => U.showDate(a) - U.showDate(b)).slice(0, 3);
+    const p = idx.progOf(f), up = data.shows.filter(s => s.id === f.id && !U.ended(s, idx)).sort((a, b) => U.showDate(a, idx) - U.showDate(b, idx)).slice(0, 3);
     SM.make(this, { page: 'pages/film/film', scene: f.id.slice(0, 32), build: async load => ({
       kind: 'film', kicker: 'SPARROW FILM PASSPORT · ' + String(p.en || 'FILM').toUpperCase(), title: f.cn, tag: t(f.version || ''), en: f.en || f.o || '',
       meta: [f.dir ? t('导演') + ' ' + f.dir : '', [f.y, t(f.c || ''), f.min && !f.minTbd ? t(f.min + ' 分钟') : ''].filter(Boolean).join(' · '), p.name].filter(Boolean),

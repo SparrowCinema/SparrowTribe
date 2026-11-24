@@ -45,11 +45,17 @@ const vShort = v => (v.city?v.city+" · ":"")+stripCity(v.short || v.brand || v.
 const hShort = h => h.short || h.name;
 const pad2 = n => String(n).padStart(2,"0");
 let sday = null;
-function todayKey(){ const t=new Date(); return (t.getMonth()+1)+"/"+t.getDate(); }
-function pickDay(ds){
+function scheduleTzOf(list){
+  const tzs=[...new Set((list||[]).map(tzOfShow))];
+  if(tzs.length===1) return tzs[0];
+  if(selList(pfilt).length===1&&PG[pfilt]) return progTzOf(PG[pfilt]);
+  return SparrowTZ.DEFAULT_TZ;
+}
+function todayKey(tz){ return SparrowTZ.nowParts(now(), tz || SparrowTZ.DEFAULT_TZ).dayKey; }
+function pickDay(ds, tz){
   if(sday && ds.includes(sday)) return sday;
-  const t=new Date(now()); t.setHours(0,0,0,0);
-  const up = ds.find(d=>{const [m,dd]=d.split("/").map(Number);return new Date(year(d),m-1,dd)>=t;});
+  const todayIso = SparrowTZ.nowParts(now(), tz || SparrowTZ.DEFAULT_TZ).iso;
+  const up = ds.find(d=>{const [m,dd]=d.split("/").map(Number);return `${year(d)}-${pad2(m)}-${pad2(dd)}`>=todayIso;});
   return up || ds[0] || null;
 }
 function dayStripHTML(ds, list){
@@ -64,13 +70,14 @@ function dayStripHTML(ds, list){
 // 单日时刻表：纵轴为时间，横向每列一个影厅
 const POST_MIN=30;
 const TT_PAD=10; // 时刻表顶部留白：第一个整点刻度也能居中压在格线上 // 映后活动：甘特图在影片结束后预留 30 分钟
-function timetableHTML(day, list){
+function timetableHTML(day, list, tz){
   const ds = list.filter(x=>x.d===day);
   if(!ds.length) return "";
+  tz = tz || scheduleTzOf(ds);
   const cols=[]; VENUES.forEach(v=>v.halls.forEach(h=>{ if(ds.some(x=>x.v===v.id&&x.h===h.id)) cols.push({v,h}); }));
   let S=Math.min(...ds.map(x=>toMin(x.t))), E=Math.max(...ds.map(x=>Math.max(toMin(x.t)+durationOf(x)+(evOf(x,F[x.id])?POST_MIN:0),qaForShow(x,F[x.id])?.end||0)));
-  // The current-time marker is shown only inside the screening window.
-  const nowD=new Date(now()), isToday=(nowD.getMonth()+1)+"/"+nowD.getDate()===day;
+  // The current-time marker is shown only inside the screening window (in the festival's local timezone).
+  const np=SparrowTZ.nowParts(now(), tz), isToday=np.dayKey===day;
   // Add a bounded lead-in, independent of the current time.
   S=Math.max(0,Math.floor((S-15)/60)*60); // 从整点开始，刻度与粗线都落在整点（至少留 15 分钟）
   E=Math.ceil(E/60)*60; if(E-S<180) E=S+180;
@@ -85,16 +92,16 @@ function timetableHTML(day, list){
   }).join("");
   const nowLine=isToday?`<div class="tt-now" aria-hidden="true" hidden><i></i></div>`:"";
   const nowLab=isToday?`<b class="tt-nowlab" aria-hidden="true" hidden></b>`:"";
-  return `<div class="tt" id="gantt" data-ttday="${day}" data-s="${S}" data-e="${E}" data-k="${K}"><div class="tt-grid" style="--n:${cols.length};--hh:${60*K}px;--hlf:${30*K}px;--tp:${P}px">${nowLine}
+  return `<div class="tt" id="gantt" data-ttday="${day}" data-tz="${esc(tz)}" data-s="${S}" data-e="${E}" data-k="${K}"><div class="tt-grid" style="--n:${cols.length};--hh:${60*K}px;--hlf:${30*K}px;--tp:${P}px">${nowLine}
     <div class="tt-axis"><div class="tt-h tt-corner">时间</div><div class="tt-ticks" style="height:${H+P+14}px">${axis}${nowLab}</div></div>${colHTML}</div></div>`;
 }
 const d2 = x => `${x.d} ${wk(x.d)} ${x.t}`;
-// 当前时间线：像 iPhone 日历一样，在今天的时刻表上画一条红线，并每 30 秒移动一次
+// 当前时间线：像 iPhone 日历一样，在今天的时刻表上画一条红线，并每 30 秒移动一次（按排片当地时区计算）
 function updateNowLine(){
   const g=document.getElementById("gantt"); if(!g||!g.dataset.k) return;
   const line=g.querySelector(".tt-now"), lab=g.querySelector(".tt-nowlab"); if(!line||!lab) return;
-  const t=new Date(now()), m=t.getHours()*60+t.getMinutes(), S=+g.dataset.s, E=+g.dataset.e, K=+g.dataset.k;
-  const same=(t.getMonth()+1)+"/"+t.getDate()===g.dataset.ttday, show=same&&m>=S&&m<=E;
+  const tz=g.dataset.tz||SparrowTZ.DEFAULT_TZ, t=SparrowTZ.nowParts(now(), tz), m=t.min, S=+g.dataset.s, E=+g.dataset.e, K=+g.dataset.k;
+  const same=t.dayKey===g.dataset.ttday, show=same&&m>=S&&m<=E;
   line.hidden=lab.hidden=!show; if(!show) return;
   const y=TT_PAD+Math.round((m-S)*K); line.style.top="calc(46px + "+y+"px)"; lab.style.top=y+"px"; lab.textContent=fmt(m);
 }
@@ -168,12 +175,13 @@ window.addEventListener('hashchange',()=>{const d=document.getElementById('sched
 function myTodayHTML(){
   // 今天还有没散场的就显示今天；今天都散场后顺延到之后最近一个有排片的日子（到了当天自动变回「今日」）
   const upc=selectedRows().filter(x=>!isPast(x)); if(!upc.length) return location.hash==="#my"?`<section class="my-today today-empty"><div><h3>下一场，去哪里？</h3><p>加入场次后，这里会显示你的今日行程。</p></div><button class="secondary-button" data-tab="schedule">去选电影</button></section>`:"";
-  const key=upc[0].d, t0=new Date(now()); t0.setHours(0,0,0,0); const d0=showDate(upc[0]); d0.setHours(0,0,0,0);
+  const key=upc[0].d, tz=tzOfShow(upc[0]), np=SparrowTZ.nowParts(now(), tz);
+  const t0=Date.UTC(np.y,np.m-1,np.d), d0p=showIso(upc[0]).split("-").map(Number), d0=Date.UTC(d0p[0],d0p[1]-1,d0p[2]);
   const off=Math.round((d0-t0)/864e5), list=upc.filter(x=>x.d===key);
   const head=off<=0?"今日我的排片":off===1?"明日我的排片":"近期我的排片", cnt=off<=0?`接下来 ${list.length} 场`:off===1?`${list.length} 场`:`${off} 天后 · ${list.length} 场`;
   const more=list.length>1;
   const chev='<i class="tt-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></i>';
-  return `<section class="my-today${more?" foldable":""}${more&&todayOpen?" open":""}"><h3 class="blockh">${head} <small>${key.replace("/","月")}日 ${wk(key)} · ${cnt}</small></h3>${planRowsHTML(list,false)}${more?`<button class="today-toggle" data-today-toggle aria-expanded="${todayOpen}"><span class="tt-txt">${todayOpen?"收起":`还有 ${list.length-1} 场 · 展开全部`}</span>${chev}</button>`:""}</section>`;
+  return `<section class="my-today${more?" foldable":""}${more&&todayOpen?" open":""}"><h3 class="blockh">${head} <small>${key.replace("/","月")}日 ${wk(key,upc[0].year)} · ${cnt}</small></h3>${planRowsHTML(list,false)}${more?`<button class="today-toggle" data-today-toggle aria-expanded="${todayOpen}"><span class="tt-txt">${todayOpen?"收起":`还有 ${list.length-1} 场 · 展开全部`}</span>${chev}</button>`:""}</section>`;
 }
 let todayOpen=false;
 let scheduleView='gantt';try{scheduleView=localStorage.getItem('sparrow-schedule-view')||'gantt';}catch{}
@@ -191,19 +199,23 @@ function schedule(){
   cityDefault();
   const list = SH.filter(x=>selHas(vfilt,x.v)&&selHas(cityFilt,VN[x.v]?.city)&&inProg(x)&&!isPast(x)&&(!onlyMine||picked.has(keyOf(x))));
   const ds = days.filter(d=>list.some(x=>x.d===d));
-  sday = pickDay(ds);
+  const listTz = scheduleTzOf(list);
+  sday = pickDay(ds, listTz);
   const pl = SH.filter(x=>inProg(x)&&!isPast(x)), cur = selList(pfilt).length===1?PG[pfilt]:null;
   const vlist = VENUES.filter(v=>pl.some(x=>x.v===v.id)||selList(vfilt).includes(v.id));
   const dayList = list.filter(x=>x.d===sday).sort((a,b)=>toMin(a.t)-toMin(b.t));
+  const dayTz = scheduleTzOf(dayList.length?dayList:list);
+  const vTz = SparrowTZ.viewerTz();
+  const tzNote = (vTz && !SparrowTZ.sameOffset(vTz, dayTz, now())) ? ` · ${tr("当地时间")} ${SparrowTZ.tzShort(dayTz, now())}` : "";
   main.innerHTML = `<section class="view gut">
     ${myTodayHTML()}
     <h2 class="sec">排片表</h2><p class="sub">${cur?`${esc(cur.name)}${cur.city?` · ${esc(cur.city)}`:""} · `:""}${list.length?`${dateSpan(list)} · ${list.length} 场 · `:""}按日期查看，点击色块看影片</p>
     ${scheduleFiltersHTML()}
     ${scheduleViewsHTML()}
     ${ds.length?dayStripHTML(ds,list):""}
-    ${sday?`<div class="tt-cap"><b>${sday.replace("/","月")}日 ${wk(sday)}</b><span>${dayList.length} 场 · ${new Set(dayList.map(x=>x.v+x.h)).size} 个影厅</span></div>
+    ${sday?`<div class="tt-cap"><b>${sday.replace("/","月")}日 ${wk(sday)}</b><span>${dayList.length} 场 · ${new Set(dayList.map(x=>x.v+x.h)).size} 个影厅${tzNote}</span></div>
     ${scheduleView==="gantt"?'<div class="legend"><span>每部影片一种颜色 · 色块标注版本、对白语言与字幕</span></div>':''}
-    ${scheduleView==="gantt"?timetableHTML(sday,list):compactScheduleHTML(dayList)}`:onlyMine?`<div class="g-empty"><b>当前筛选下还没有你加入的场次</b><span>关掉「只看我的排片」，在排片表点色块右上角的 + 加入</span></div>`:`<div class="g-empty"><b>${vfilt!=="all"&&VN[vfilt]?esc(VN[vfilt].name):"当前筛选"}暂无排片</b><span>排片公布后会更新到这里</span></div>`}
+    ${scheduleView==="gantt"?timetableHTML(sday,list,dayTz):compactScheduleHTML(dayList)}`:onlyMine?`<div class="g-empty"><b>当前筛选下还没有你加入的场次</b><span>关掉「只看我的排片」，在排片表点色块右上角的 + 加入</span></div>`:`<div class="g-empty"><b>${vfilt!=="all"&&VN[vfilt]?esc(VN[vfilt].name):"当前筛选"}暂无排片</b><span>排片公布后会更新到这里</span></div>`}
     ${presentersHTML()}</section>`;
   const strip=document.querySelector(".dstrip [aria-selected=true]"); if(strip){ const p=strip.parentElement; p.scrollLeft=Math.max(0,strip.offsetLeft-p.clientWidth/2+strip.clientWidth/2); }
   flashIn(document.getElementById("gantt"));

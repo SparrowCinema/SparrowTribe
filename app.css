@@ -1368,3 +1368,36 @@ button,summary,a,label,select,[role=button],[data-pp],.my-entry{touch-action:man
 
 /* 专题里已结束的影片（2026-11-23）：海报去色、变淡，片名照常（专题页「已结束」、片目「本专题已放映」与往期专题；小程序同步） */
 .pg-gone .pg-film img,.pg-gone .pg-ph,.fgone .fcard .slate,.fold-prog .flist .fcard .slate{filter:grayscale(.7);opacity:.72}
+
+/* 转场地图导航、冲突一键换场与想看一键排片建议（2026-11-24） */
+.fd-place{display:flex;align-items:center;flex-wrap:wrap;gap:4px 10px}
+.fd-map,.pvenue-map,.pgap-map{display:inline-flex;align-items:center;gap:2px;color:var(--accent);font-weight:600;text-decoration:none;white-space:nowrap}
+.fd-map{font-size:10.6px;padding:1px 7px;border:1px solid color-mix(in srgb,var(--accent) 35%,transparent);border-radius:99px;background:color-mix(in srgb,var(--accent) 6%,transparent)}
+.fd-map:hover,.pvenue-map:hover,.pgap-map:hover{text-decoration:underline}
+.pgap-map{margin-left:8px}
+.pvenue-map{margin-left:6px;font-size:10.4px}
+.empty-plan-acts{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:8px}
+.plan-swaps{margin-top:12px;padding-top:10px;border-top:1px dashed color-mix(in srgb,var(--bad-fg) 35%,transparent);display:flex;flex-direction:column;gap:10px}
+.ps-label{font-size:11.2px;font-weight:700;color:var(--fg)}
+.ps-item{display:flex;flex-direction:column;gap:4px}
+.ps-head{display:flex;align-items:baseline;flex-wrap:wrap;gap:6px;font-size:12px;color:var(--fg)}
+.ps-head small{color:var(--muted);font-size:10.8px}
+.ps-btn{background:var(--surface);border-color:color-mix(in srgb,var(--accent) 65%,var(--line))}
+.ps-btn em{display:inline-block;margin-left:6px;font-style:normal;font-size:10px;padding:1px 6px;border-radius:99px;background:color-mix(in srgb,var(--teal) 12%,transparent);color:var(--teal)}
+.smart-plan-dialog .sp-summary{margin:0 20px 10px;font-size:12px;line-height:1.55;color:var(--fg)}
+.smart-plan-dialog .sp-summary small{display:block;margin-top:3px;font-size:11px;color:var(--muted)}
+.smart-plan-dialog .sp-empty{padding:8px 20px 22px;display:flex;flex-direction:column;gap:14px}
+.smart-plan-dialog .sp-empty p{margin:0;font-size:12.5px;line-height:1.7;color:var(--muted)}
+.sp-opt .ped{font-style:normal;font-size:10px;color:var(--accent);margin-left:4px;font-weight:600}
+.sp-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:5px}
+.sp-tag{font-style:normal;font-size:10px;line-height:1.4;padding:1px 7px;border-radius:99px;background:color-mix(in srgb,var(--teal) 12%,transparent);color:var(--teal);font-weight:600}
+.sp-tag.warn{background:color-mix(in srgb,var(--ochre) 14%,transparent);color:var(--ochre)}
+.sp-unsched{margin:10px 8px 6px;padding:10px 12px;border-top:1px dashed var(--line)}
+.sp-unsched h4{margin:0 0 6px;font-size:11.2px;color:var(--muted);font-weight:600}
+.sp-unsched ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:5px}
+.sp-unsched li{display:flex;justify-content:space-between;align-items:baseline;gap:8px;font-size:11.2px}
+.sp-unsched li b{font-weight:600;color:var(--fg)}
+.sp-unsched li span{color:var(--muted);font-size:10.5px;flex-shrink:0}
+.smart-plan-dialog .selector-done:disabled{opacity:.45;cursor:not-allowed}
+@media print{.fd-map,.pvenue-map,.pgap-map,.plan-swaps{display:none!important}}
+
