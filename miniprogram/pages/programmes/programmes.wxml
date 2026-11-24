@@ -33,13 +33,41 @@
     <view class="blockh">{{L.t(i,'即将开始')}} <text class="en">{{soon.length}} · COMING UP</text></view>
     <view class="pgrid"><block wx:for="{{soon}}" wx:key="id"><template is="pc" data="{{...item}}" /></block></view>
   </block>
-  <block wx:if="{{past.length}}">
-    <view class="past-h" hover-class="hv" bindtap="togglePast">
-      <text class="past-t">{{L.t(i,'往期专题')}}</text><text class="past-n">{{pastN}}</text>
-      <view class="past-go"><text>{{pastOpen ? L.t(i,'收起') : L.t(i,'展开')}}</text><view class="past-ar {{pastOpen ? 'open' : ''}}" /></view>
+  <view wx:if="{{past.length}}" class="past-drawer {{pastOpen ? 'open' : ''}}">
+    <view class="past-drawer-h" hover-class="hv" bindtap="togglePast">
+      <view class="pd-copy"><text class="past-t">{{L.t(i,'往期专题')}}</text><text class="past-n">{{pastN}}</text></view>
+      <view class="fp-minis"><view wx:for="{{pastMinis}}" wx:key="id" class="fp-mi" style="background:{{item.bg}}" /></view>
+      <view class="past-go"><view class="past-ar {{pastOpen ? 'open' : ''}}" /></view>
     </view>
-    <view wx:if="{{pastOpen}}" class="pgrid"><block wx:for="{{past}}" wx:key="id"><template is="pc" data="{{...item}}" /></block></view>
-  </block>
+    <view wx:if="{{pastOpen}}" class="past-drawer-b">
+      <scroll-view wx:if="{{pastYearPills.length}}" scroll-x enable-flex class="past-ybar">
+        <view class="past-ypill {{!pastYearFilt ? 'on' : ''}}" data-year="" bindtap="setPastYear"><text>{{L.t(i,'全部年份')}}</text></view>
+        <view wx:for="{{pastYearPills}}" wx:key="year" class="past-ypill {{pastYearFilt === item.year ? 'on' : ''}}" data-year="{{item.year}}" bindtap="setPastYear"><text>{{item.label}}</text><text class="yp-n mono">{{item.cnt}}</text></view>
+      </scroll-view>
+      <view wx:for="{{pastYears}}" wx:for-item="yg" wx:key="year" class="pyear {{yg.open ? 'open' : ''}}">
+        <view wx:if="{{pastByYear}}" class="pyear-h" data-year="{{yg.year}}" bindtap="togglePastYear">
+          <text class="pyear-t">{{yg.label}}</text>
+          <text class="pyear-m mono">{{yg.meta}}</text>
+          <text class="pyear-ar">{{yg.open ? '⌄' : '›'}}</text>
+        </view>
+        <scroll-view wx:if="{{yg.open}}" scroll-x enable-flex class="pshelf">
+          <view wx:for="{{yg.items}}" wx:for-item="sp" wx:key="id" class="pspine" style="background:{{sp.bg}};color:{{sp.ink}}" data-id="{{sp.id}}" bindtap="open">
+            <view class="ps-top"><text class="ps-date mono">{{sp.meta}}</text><text class="ps-cnt mono">({{sp.subCnt}})</text></view>
+            <view class="ps-mid"><text class="ps-title {{en ? 'en' : ''}}">{{sp.spineName}}</text></view>
+            <view class="ps-art">
+              <view class="ps-fade" style="background:linear-gradient(to bottom,{{sp.bg}},transparent)" />
+              <image wx:if="{{sp.art}}" class="ps-img" src="{{sp.art}}" mode="aspectFill" lazy-load />
+              <view wx:else class="ps-ph"><text>{{sp.ch}}</text></view>
+            </view>
+          </view>
+          <view wx:if="{{yg.rest}}" class="pspine pspine-more" data-year="{{yg.year}}" bindtap="morePastYear">
+            <text class="pm-t">{{L.t(i,'展开其余')}}</text>
+            <text class="pm-n mono">+{{yg.rest}}</text>
+          </view>
+        </scroll-view>
+      </view>
+    </view>
+  </view>
   <view wx:if="{{!total}}" class="empty card"><text class="eb">{{L.t(i,'专题整理中')}}</text><text class="es">{{L.t(i,'新的影展与放映专题会陆续上线。')}}</text></view>
 </view>
 <view class="to-top {{topOn ? 'show' : ''}}" hover-class="to-top-hv" bindtap="toTop"><view class="tt-arr" /></view>

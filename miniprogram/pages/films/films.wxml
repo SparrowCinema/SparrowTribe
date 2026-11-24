@@ -72,32 +72,71 @@
     </block>
   </view>
 
-  <block wx:if="{{past.length}}">
-    <view class="pasth"><text class="pt">{{L.t(i,'往期专题')}}</text><text class="ps">{{L.n(i,pastN,'f')}}</text></view>
-    <view wx:for="{{past}}" wx:for-item="g" wx:key="id" class="pcard">
-      <view class="pc-h" data-id="{{g.id}}" bindtap="togglePast">
-        <view class="ghm"><text class="gh-kind">{{g.kind}}</text><text class="pc-name">{{g.name}}</text><text class="gh-meta mono">{{L.n(i,g.n,'f')}}{{g.period ? ' · ' + g.period : ''}}</text></view>
-        <view class="stk"><block wx:for="{{g.stack}}" wx:for-item="s" wx:key="id"><image wx:if="{{s.poster}}" class="sp" src="{{s.poster}}" mode="aspectFill" lazy-load /><view wx:else class="sp sph" style="background:{{s.color}}">{{s.ch}}</view></block></view>
-        <view class="fold {{g.open ? '' : 'shut'}}"><text class="chev">⌄</text></view>
-      </view>
-      <view wx:if="{{g.open}}" class="pc-b">
-        <block wx:for="{{g.rows}}" wx:key="id">
-    <view class="row" data-id="{{item.id}}" bindtap="open">
-      <image wx:if="{{item.poster}}" class="pst" src="{{item.poster}}" mode="aspectFill" lazy-load />
-      <view wx:else class="pst ph" style="background:{{item.color}}">{{item.cn[0]}}</view>
-      <view class="info">
-        <view class="t">{{item.cn}}<text wx:if="{{item.version}}" class="ed">{{item.version}}</text></view>
-        <text class="o">{{item.en}}</text>
-        <text class="d">{{item.dir}} · {{item.c}} · {{item.y}}</text>
-        <text wx:if="{{item.next}}" class="f mono">{{L.t(i,'下一场')}} {{item.next}}</text>
-        <text wx:elif="{{item.release}}" class="f">{{item.release}}</text>
-        <view class="film-statuses"><text wx:if="{{item.fresh}}" class="new">{{L.t(i,'新场次')}}</text><text wx:if="{{item.wanted}}" class="want">{{L.t(i,'想看')}}</text><text wx:if="{{item.planned}}">{{L.t(i,'已排片')}}</text><text wx:if="{{item.watched}}">{{L.t(i,'已看过')}}</text><text wx:if="{{item.event}}" class="event">{{L.t(i,'主创映后')}}</text></view>
-      </view>
-      <view class="sc"><text class="n mono">{{item.db}}</text><text class="l">{{L.t(i,'豆瓣')}}</text></view>
+  <view wx:if="{{pastCount}}" class="past-drawer {{pastDrawerOpen ? 'open' : ''}}">
+    <view class="past-drawer-h" bindtap="togglePastDrawer">
+      <view class="pd-copy"><text class="pd-t">{{L.t(i,'往期专题')}}</text><text class="pd-s">{{pastSummary}}</text></view>
+      <view class="fp-minis"><view wx:for="{{pastMinis}}" wx:key="id" class="fp-mi" style="background:{{item.bg}}" /></view>
+      <view class="fold {{pastDrawerOpen ? '' : 'shut'}}"><text class="chev">⌄</text></view>
     </view>
+    <view wx:if="{{pastDrawerOpen}}" class="past-drawer-b">
+      <scroll-view wx:if="{{pastShowTools}}" scroll-x enable-flex class="past-ybar">
+        <block wx:if="{{pastYearPills.length}}">
+          <view class="past-ypill {{!pastYearFilt ? 'on' : ''}}" data-year="" bindtap="setPastYear"><text>{{L.t(i,'全部年份')}}</text></view>
+          <view wx:for="{{pastYearPills}}" wx:key="year" class="past-ypill {{pastYearFilt === item.year ? 'on' : ''}}" data-year="{{item.year}}" bindtap="setPastYear"><text>{{item.label}}</text><text class="yp-n mono">{{item.cnt}}</text></view>
+        </block>
+        <view wx:if="{{pastAnyWatched}}" class="past-ypill past-wbtn {{pastWatchedOnly ? 'on' : ''}}" bindtap="togglePastWatched"><text>{{L.t(i,'我看过的')}}</text></view>
+      </scroll-view>
+      <view wx:if="{{!pastYears.length}}" class="past-empty"><text>{{L.t(i,'暂无匹配的往期专题')}}</text></view>
+      <view wx:for="{{pastYears}}" wx:for-item="yg" wx:key="year" class="pyear {{yg.open ? 'open' : ''}}">
+        <view wx:if="{{pastByYear}}" class="pyear-h" data-year="{{yg.year}}" bindtap="togglePastYear">
+          <text class="pyear-t">{{yg.label}}</text>
+          <text class="pyear-m mono">{{yg.meta}}</text>
+          <text class="pyear-ar">{{yg.open ? '⌄' : '›'}}</text>
+        </view>
+        <block wx:if="{{yg.open}}">
+          <scroll-view scroll-x enable-flex class="pshelf">
+            <view wx:for="{{yg.items}}" wx:for-item="sp" wx:key="id" class="pspine {{sp.on ? 'on' : ''}}" style="background:{{sp.bg}};color:{{sp.ink}}" data-id="{{sp.id}}" bindtap="togglePast">
+              <view class="ps-top"><text class="ps-date mono">{{sp.meta}}</text><text class="ps-cnt mono">({{sp.sub}})</text></view>
+              <view class="ps-mid"><text class="ps-title {{en ? 'en' : ''}}">{{sp.spineName}}</text></view>
+              <view class="ps-art">
+                <view class="ps-fade" style="background:linear-gradient(to bottom,{{sp.bg}},transparent)" />
+                <image wx:if="{{sp.art}}" class="ps-img" src="{{sp.art}}" mode="aspectFill" lazy-load />
+                <view wx:else class="ps-ph"><text>{{sp.ch}}</text></view>
+              </view>
+            </view>
+            <view wx:if="{{yg.rest}}" class="pspine pspine-more" data-year="{{yg.year}}" bindtap="morePastYear">
+              <text class="pm-t">{{L.t(i,'展开其余')}}</text>
+              <text class="pm-n mono">+{{yg.rest}}</text>
+            </view>
+          </scroll-view>
+          <view wx:if="{{yg.panel}}" class="pshelf-panel">
+            <view class="psp-h">
+              <view class="psp-t"><text class="gh-kind">{{yg.panel.kind}}</text><text class="psp-name">{{yg.panel.name}}</text><text class="psp-m mono">{{yg.panel.meta}}</text></view>
+              <view class="psp-go" data-id="{{yg.panel.id}}" bindtap="openProg"><text>{{L.t(i,'专题页')}} ›</text></view>
+              <view class="psp-x" bindtap="closePastPanel"><text>×</text></view>
+            </view>
+            <view class="pc-b">
+              <block wx:for="{{yg.panel.rows}}" wx:key="id">
+                <view class="row" data-id="{{item.id}}" bindtap="open">
+                  <image wx:if="{{item.poster}}" class="pst" src="{{item.poster}}" mode="aspectFill" lazy-load />
+                  <view wx:else class="pst ph" style="background:{{item.color}}">{{item.cn[0]}}</view>
+                  <view class="info">
+                    <view class="t">{{item.cn}}<text wx:if="{{item.version}}" class="ed">{{item.version}}</text></view>
+                    <text class="o">{{item.en}}</text>
+                    <text class="d">{{item.dir}} · {{item.c}} · {{item.y}}</text>
+                    <text wx:if="{{item.next}}" class="f mono">{{L.t(i,'下一场')}} {{item.next}}</text>
+                    <text wx:elif="{{item.release}}" class="f">{{item.release}}</text>
+                    <view class="film-statuses"><text wx:if="{{item.fresh}}" class="new">{{L.t(i,'新场次')}}</text><text wx:if="{{item.wanted}}" class="want">{{L.t(i,'想看')}}</text><text wx:if="{{item.planned}}">{{L.t(i,'已排片')}}</text><text wx:if="{{item.watched}}">{{L.t(i,'已看过')}}</text><text wx:if="{{item.event}}" class="event">{{L.t(i,'主创映后')}}</text></view>
+                  </view>
+                  <view class="sc"><text class="n mono">{{item.db}}</text><text class="l">{{L.t(i,'豆瓣')}}</text></view>
+                </view>
+              </block>
+            </view>
+          </view>
         </block>
       </view>
+      <view wx:if="{{!pastPick && pastYears.length}}" class="pshelf-hint"><text>{{L.t(i,'横向滑动选择书脊，点击展开该专题片单')}}</text></view>
     </view>
-  </block>
+  </view>
 </view>
 <view class="to-top {{topOn ? 'show' : ''}}" hover-class="to-top-hv" bindtap="toTop"><view class="tt-arr" /></view>

@@ -13832,6 +13832,14 @@
     "缩小": "Zoom out",
     "重置视角": "Reset view",
     "在地图上定位": "Center on map",
-    "可拖拽平移或缩放 · 点击编号定位对应影院 · 导航按实际路况打开地图": "Drag to pan or zoom · Tap a pin to jump to the venue · Navigation opens live directions"
+    "可拖拽平移或缩放 · 点击编号定位对应影院 · 导航按实际路况打开地图": "Drag to pan or zoom · Tap a pin to jump to the venue · Navigation opens live directions",
+    "按书脊横向浏览": "Swipe spines horizontally",
+    "展开其余": "Show more",
+    "横向滑动选择书脊，点击展开该专题片单": "Swipe spines and tap one to open its film list",
+    "按年份筛选往期专题": "Filter past programmes by year",
+    "我看过的": "Watched",
+    "暂无匹配的往期专题": "No matching past programmes",
+    "专题页": "Programme",
+    "往期": "Past"
   }
 }
