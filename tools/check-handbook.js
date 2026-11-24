@@ -72,6 +72,9 @@ assert.strictEqual(typeof lctx.overlaps, 'function', 'libraryContext().overlaps 
 assert.strictEqual(lctx.overlaps(filmsCtx.SH[0], filmsCtx.SH[1]), true, '14:00 (120m) and 15:00 should overlap');
 vm.runInContext('films()', filmsCtx);
 assert(filmsCtx.main.innerHTML.includes('id="flist-wrap"'), 'films() must render cleanly without ReferenceError');
+assert(!filmsCtx.main.innerHTML.includes('class="trait-strip"'), 'films() should not render a separate trait-strip row below the filter bar');
+const personalOpts = vm.runInContext('filmSelectorOptions("personal")', filmsCtx);
+assert(personalOpts.includes('data-filter-value="qa"') && personalOpts.includes('data-filter-value="sub"') && personalOpts.includes('data-filter-value="last"') && personalOpts.includes('data-filter-value="wp"') && personalOpts.includes('data-filter-value="fit"'), 'personal selector should contain all merged screening filters');
 
 const progSrc = fs.readFileSync(path.join(root, 'js/programmes.js'), 'utf8');
 const progCtx = vm.createContext({
@@ -80,9 +83,11 @@ const progCtx = vm.createContext({
   SparrowPlanner: Planner, esc: String, tr: x => x, stripCity: x => x
 });
 vm.runInContext(progSrc, progCtx);
-const cnTile = vm.runInContext('vmTileUrl(14, 13660, 6732, false)', progCtx);
-const twTile = vm.runInContext('vmTileUrl(14, 13726, 7031, true)', progCtx);
+const cnTile = vm.runInContext('vmTileUrl(14, 13660, 6732, false, "street")', progCtx);
+const twStreet = vm.runInContext('vmTileUrl(14, 13726, 7031, true, "street")', progCtx);
+const twSketch = vm.runInContext('vmTileUrl(14, 13726, 7031, true, "sketch")', progCtx);
 assert(cnTile.includes('autonavi.com'), 'Mainland venues should use AMap GCJ-02 tiles');
-assert(twTile.includes('cartocdn.com'), 'Overseas/TW venues should use CARTO WGS-84 tiles');
+assert(twStreet.includes('arcgisonline.com') && twStreet.includes('World_Street_Map'), 'Overseas/TW street venues should use ArcGIS World_Street_Map WGS-84 tiles');
+assert(twSketch.includes('arcgisonline.com') && twSketch.includes('World_Topo_Map'), 'Overseas/TW illustrated map should use ArcGIS World_Topo_Map real tiles');
 
-console.log('PASS: festival handbook — audience classification, accessibility inheritance, films() smoke test, and warm-paper venue map tiles.');
+console.log('PASS: festival handbook — audience classification, accessibility inheritance, merged films filters, and global street + illustrated venue maps.');
