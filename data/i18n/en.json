@@ -13681,7 +13681,7 @@
     "只改你自己看到的：影片页、海报墙、观影结算长图和典藏票根默认票面图。片目、排片和分享海报仍用主海报。": "Only changes what you see: the film page, your poster wall, your cinema recap and the default artwork on your collectible tickets. The library, schedule and share posters keep the main poster.",
     "当地时间": "Local time",
     "在地图中打开": "Open in Maps",
-    "想看一键排片": "Auto-plan from Want List",
+    "想看一键排片": "Auto-plan",
     "想看一键排片建议": "Suggested Plan from Want List",
     "可一键换成无冲突场次": "One-tap swap to a conflict-free screening",
     "同影院": "Same cinema",
@@ -13712,6 +13712,7 @@
     "转场时间与地图": "Travel time & maps",
     "个人排片里相邻两场之间会估算转场时间：同影院约 10 分钟，跨影院按距离估算，含映后活动的场次还会把约 30 分钟映后纳入提醒，来不及会标橙色。有坐标的影院可点「地图」直接导航。": "Your plan estimates transfer time between screenings (about 10 min in the same cinema, by distance across cinemas, plus ~30 min for Q&A events), marked orange if tight. Tap Map to navigate to venues with coordinates.",
     "智能排片与一键换场": "Smart auto-plan & conflict swaps",
-    "在个人排片页点「想看一键排片」，可基于「想看」清单自动避开冲突、生成可勾选的排片建议；遇到时间重叠时，冲突提示框里会列出同片无冲突场次，支持一键换场。": "In My Plan, tap Auto-plan from Want List to generate a conflict-free schedule from your starred films. When screenings clash, one-tap swap suggestions appear in the conflict banner."
+    "在个人排片页点「想看一键排片」，可基于「想看」清单自动避开冲突、生成可勾选的排片建议；遇到时间重叠时，冲突提示框里会列出同片无冲突场次，支持一键换场。": "In My Plan, tap Auto-plan from Want List to generate a conflict-free schedule from your starred films. When screenings clash, one-tap swap suggestions appear in the conflict banner.",
+    "批量导入日历": "Add to calendar"
   }
 }
