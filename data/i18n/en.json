@@ -11317,12 +11317,25 @@
       "language": "Chinese (Mandarin / Cantonese) / Italian",
       "syn": "A woman travels from southern China to Turin, Italy, to see her husband. But an unexpected departure leaves her to find herself again – and to find cinema.",
       "honors": [
-        "Official Selection | 2026 79th Cannes Film Festival (World Premiere)",
-        "Official Selection | 2026 10th Pingyao International Film Festival · Special Presentations (Asian Premiere)"
+        "Official Selection | 2026 79th Cannes Film Festival · Cannes Classics (World Premiere)",
+        "Official Selection | 2026 10th Pingyao International Film Festival · Fenjiu Mid-Autumn Night Special Presentation (Asian Premiere)"
       ],
       "warnings": [],
       "contentNote": "Public synopsis describes a 32-minute short about a woman from southern China visiting Turin and rediscovering herself and cinema; no sensitive triggers noted. Screened at the Sept 25 Fenjiu Mid-Autumn Night event with Wutiaoren.",
-      "editorial": "Jia Zhangke’s 32-minute short starring Zhao Tao alongside Wutiaoren’s Ren Ke and Mao Tao, having its Asian premiere at Pingyao’s Sept 25 open-air Mid-Autumn Night."
+      "editorial": "Jia Zhangke’s 32-minute short starring Zhao Tao alongside Wutiaoren’s Ren Ke and Mao Tao, having its Asian premiere at Pingyao’s Sept 25 open-air Mid-Autumn Night.",
+      "writers": [
+        "Jia Zhang-Ke",
+        "Wan Jiahuan"
+      ],
+      "cast": [
+        "Zhao Tao",
+        "Mao Tao",
+        "Ren Ke",
+        "Lu Xi"
+      ],
+      "screeningNotes": {
+        "9/25|19:00|py-palace|platform": "Fenjiu Mid-Autumn Night Special Presentation (Asian Premiere) · Post-screening Q&A with Jia Zhang-Ke, Zhao Tao, Mao Tao, Ren Ke & Carlo Chatrian, followed by Wutiaoren live concert (19:00–21:30)"
+      }
     },
     "py26-017": {
       "title": "Start from Pingyao Corner: Geng Zihan — The Ray of Sunshine × A Song Sung Blue",
@@ -11551,27 +11564,6 @@
       ],
       "contentNote": "Double bill pairing short On the Border with crime drama Only the River Flows, involving murder investigation and psychological unravelling; audiovisual intensity awaits verification.",
       "editorial": "A Pingyao 10 Years double bill pairing Wei Shujun’s 2018 short On the Border with his Yu Hua adaptation Only the River Flows."
-    },
-    "py26-ev-midautumn": {
-      "title": "Fenjiu Night: Torino Shadow Screening & Wutiaoren Live Concert",
-      "o": "Fenjiu Night: Torino Shadow Screening & Wutiaoren Live Concert",
-      "dir": "Jia Zhang-Ke / Wutiaoren",
-      "c": "Pingyao",
-      "genre": [
-        "Special Event",
-        "Short Screening",
-        "Live Music"
-      ],
-      "language": "Chinese (Mandarin, Cantonese) / Italian",
-      "syn": "TORINO SHADOW A woman travels from southern China to Turin, Italy, to see her husband. But an unexpected departure leaves her to find herself again – and to find cinema. ROOTS·CITIES·TALES Both Ren Ke and Mao Tao from Wutiaoren are starred in the short film Torino Shadow. After the screening, they are going to present a live music show as a Pingyao Special of their 2026 Tour, to celebrate the Chinese tradition Mid-Autumn Festival with the audience.",
-      "honors": [
-        "Official Selection | 2026 10th Pingyao International Film Festival · Fenjiu Mid-Autumn Night Special"
-      ],
-      "warnings": [
-        "Outdoor live concert volume"
-      ],
-      "contentNote": "Outdoor open-air special event combining Jia Zhangke’s 32-minute short screening with Wutiaoren’s live concert; expect concert sound levels and cool autumn night air.",
-      "editorial": "Pingyao’s 10th-anniversary Mid-Autumn open-air night: the Asian premiere of Jia Zhangke’s 32-minute Torino Shadow followed immediately by Wutiaoren’s live tour special."
     },
     "py26-028": {
       "title": "Yesterday the Eye Didn't Sleep",
@@ -12273,7 +12265,7 @@
       "kind": "Film festival",
       "period": "Sep 24 – 30, 2026",
       "city": "Pingyao",
-      "blurb": "September 24–30 at Pingyao Film Palace, Shanxi. Under the 10th-edition theme “Keep Walking,” PYIFF presents five official sections—Hidden Dragons, Crouching Tigers, Galas, Special Presentations, and Pingyao 10 Years—plus Fenjiu Mid-Autumn Night, totalling 48 programmes and 86 screenings across six halls. Opened with Fei Mu’s Spring in a Small Town (4K Restoration) and closed with Good Trip."
+      "blurb": "September 24–30 at Pingyao Film Palace, Shanxi. Under the 10th-edition theme “Keep Walking,” PYIFF presents five official sections—Hidden Dragons, Crouching Tigers, Galas, Special Presentations, and Pingyao 10 Years—totalling 47 official films and 86 screenings across six halls. Opened with Fei Mu’s Spring in a Small Town (4K Restoration) on Sep 24, closed with Good Trip, and featured the Asian premiere of Jia Zhang-Ke’s short Torino Shadow (world premiered at Cannes 2026) during Fenjiu Mid-Autumn Night on Sep 25."
     }
   },
   "venues": {
