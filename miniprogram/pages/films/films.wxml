@@ -46,7 +46,7 @@
         <text class="d">{{item.dir}} · {{item.c}} · {{item.y}}</text>
         <text wx:if="{{item.next}}" class="f mono">{{L.t(i,'下一场')}} {{item.next}}</text>
         <text wx:elif="{{item.release}}" class="f">{{item.release}}</text>
-        <view class="film-statuses"><text wx:if="{{item.fresh}}" class="new">{{L.t(i,'新场次')}}</text><text wx:if="{{item.wanted}}" class="want">{{L.t(i,'想看')}}</text><text wx:if="{{item.planned}}">{{L.t(i,'已排片')}}</text><text wx:if="{{item.watched}}">{{L.t(i,'已看过')}}</text><text wx:if="{{item.event}}" class="event">{{L.t(i,'主创映后')}}</text><text wx:if="{{item.lastChance}}" class="last">{{L.t(i,'最后一场')}}</text></view>
+        <view class="film-statuses"><text wx:if="{{item.fresh}}" class="new">{{L.t(i,'新场次')}}</text><text wx:if="{{item.wanted}}" class="want t{{item.wTier}}">{{item.wantTag}}</text><text wx:if="{{item.planned}}">{{L.t(i,'已排片')}}</text><text wx:if="{{item.watched}}">{{L.t(i,'已看过')}}</text><text wx:if="{{item.event}}" class="event">{{L.t(i,'主创映后')}}</text><text wx:if="{{item.lastChance}}" class="last">{{L.t(i,'最后一场')}}</text></view>
       </view>
       <view class="sc"><text class="n mono">{{item.db}}</text><text class="l">{{L.t(i,'豆瓣')}}</text></view>
     </view>
@@ -63,7 +63,7 @@
         <text class="d">{{item.dir}} · {{item.c}} · {{item.y}}</text>
         <text wx:if="{{item.next}}" class="f mono">{{L.t(i,'下一场')}} {{item.next}}</text>
         <text wx:elif="{{item.release}}" class="f">{{item.release}}</text>
-        <view class="film-statuses"><text wx:if="{{item.fresh}}" class="new">{{L.t(i,'新场次')}}</text><text wx:if="{{item.wanted}}" class="want">{{L.t(i,'想看')}}</text><text wx:if="{{item.planned}}">{{L.t(i,'已排片')}}</text><text wx:if="{{item.watched}}">{{L.t(i,'已看过')}}</text><text wx:if="{{item.event}}" class="event">{{L.t(i,'主创映后')}}</text></view>
+        <view class="film-statuses"><text wx:if="{{item.fresh}}" class="new">{{L.t(i,'新场次')}}</text><text wx:if="{{item.wanted}}" class="want t{{item.wTier}}">{{item.wantTag}}</text><text wx:if="{{item.planned}}">{{L.t(i,'已排片')}}</text><text wx:if="{{item.watched}}">{{L.t(i,'已看过')}}</text><text wx:if="{{item.event}}" class="event">{{L.t(i,'主创映后')}}</text></view>
       </view>
       <view class="sc"><text class="n mono">{{item.db}}</text><text class="l">{{L.t(i,'豆瓣')}}</text></view>
     </view>
@@ -91,7 +91,7 @@
               <text class="d">{{item.dir}} · {{item.c}} · {{item.y}}</text>
               <text wx:if="{{item.next}}" class="f mono">{{L.t(i,'下一场')}} {{item.next}}</text>
               <text wx:elif="{{item.release}}" class="f">{{item.release}}</text>
-              <view class="film-statuses"><text wx:if="{{item.fresh}}" class="new">{{L.t(i,'新场次')}}</text><text wx:if="{{item.wanted}}" class="want">{{L.t(i,'想看')}}</text><text wx:if="{{item.planned}}">{{L.t(i,'已排片')}}</text><text wx:if="{{item.watched}}">{{L.t(i,'已看过')}}</text><text wx:if="{{item.event}}" class="event">{{L.t(i,'主创映后')}}</text></view>
+              <view class="film-statuses"><text wx:if="{{item.fresh}}" class="new">{{L.t(i,'新场次')}}</text><text wx:if="{{item.wanted}}" class="want t{{item.wTier}}">{{item.wantTag}}</text><text wx:if="{{item.planned}}">{{L.t(i,'已排片')}}</text><text wx:if="{{item.watched}}">{{L.t(i,'已看过')}}</text><text wx:if="{{item.event}}" class="event">{{L.t(i,'主创映后')}}</text></view>
             </view>
             <view class="sc"><text class="n mono">{{item.db}}</text><text class="l">{{L.t(i,'豆瓣')}}</text></view>
           </view>
@@ -154,7 +154,7 @@
                     <text class="d">{{item.dir}} · {{item.c}} · {{item.y}}</text>
                     <text wx:if="{{item.next}}" class="f mono">{{L.t(i,'下一场')}} {{item.next}}</text>
                     <text wx:elif="{{item.release}}" class="f">{{item.release}}</text>
-                    <view class="film-statuses"><text wx:if="{{item.fresh}}" class="new">{{L.t(i,'新场次')}}</text><text wx:if="{{item.wanted}}" class="want">{{L.t(i,'想看')}}</text><text wx:if="{{item.planned}}">{{L.t(i,'已排片')}}</text><text wx:if="{{item.watched}}">{{L.t(i,'已看过')}}</text><text wx:if="{{item.event}}" class="event">{{L.t(i,'主创映后')}}</text></view>
+                    <view class="film-statuses"><text wx:if="{{item.fresh}}" class="new">{{L.t(i,'新场次')}}</text><text wx:if="{{item.wanted}}" class="want t{{item.wTier}}">{{item.wantTag}}</text><text wx:if="{{item.planned}}">{{L.t(i,'已排片')}}</text><text wx:if="{{item.watched}}">{{L.t(i,'已看过')}}</text><text wx:if="{{item.event}}" class="event">{{L.t(i,'主创映后')}}</text></view>
                   </view>
                   <view class="sc"><text class="n mono">{{item.db}}</text><text class="l">{{L.t(i,'豆瓣')}}</text></view>
                 </view>

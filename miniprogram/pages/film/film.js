@@ -137,6 +137,7 @@ Page({
   // 想看：切换后按当前待映场次记下「已见过」，之后新增的场次在片目标「新场次」
   wantKeys() { const data = app.globalData.data, idx = U.index(data); return data.shows.filter(s => s.id === this.id && !U.ended(s, idx)).map(U.keyOf); },
   toggleWant() { const on = !Want.isOn(this.id); Want.set(this.id, on, this.wantKeys()); if (on) Stats.stat('want', this.id); wx.showToast({ title: on ? t('已加入想看') : t('已移出想看'), icon: 'none' }); if (on) Remind.ask({ kind: 'want', film: this.id }, true); else Remind.cancel({ kind: 'want', film: this.id }); this.buildMine(); },
+  setWantTier(e) { const p = +e.currentTarget.dataset.p; Want.setTier(this.id, p, this.wantKeys()); wx.showToast({ title: (I.isEn() ? 'Set to ' : '已设为 ') + Want.tierLabel(p, I.isEn()), icon: 'none' }); this.buildMine(); },
   recWant(e) {
     const id = e.currentTarget.dataset.id; if (!id) return;
     const data = app.globalData.data, idx = U.index(data);
@@ -176,8 +177,10 @@ Page({
     const noteRow = !note ? { text: '', locked: false, badge: '' }
       : note.locked ? { text: '', locked: true, badge: en ? 'Encrypted' : '已加密' }
       : { text: note.text.replace(/\s+/g, ' '), locked: false, badge: note.tb || note.rc ? [note.tb ? (en ? 'Ticket' : '票根') : '', note.rc ? (en ? 'Recap' : '总结') : ''].filter(Boolean).join('·') : (note.encrypted ? (en ? 'E2E' : '加密同步') : (en ? 'Local' : '仅本机')) };
+    const wantOn = Want.isOn(this.id), wTier = Want.tierOf(this.id);
     this.setData({ community:C.model(this.id,I.isEn()), tsRow:this.tsRowModel(), noteRow, taste, mine: { seen: !!rec, n, r, diary: shown, dyFold: fold, dyOpen: open, dyMoreTxt: open ? (en ? 'Show fewer' : '收起较早的观影') : (en ? 'Show ' + hid + ' earlier' : '展开其余 ' + hid + ' 次'), nTxt: en ? '×' + n : n + ' 次', stars: [1, 2, 3, 4, 5].map(i => Math.max(0, Math.min(2, r - (i - 1) * 2)) * 50),
-      want: Want.isOn(this.id), wantTxt: Want.isOn(this.id) ? (en ? '★ On my list' : '★ 已想看') : (en ? '☆ Want to see' : '☆ 想看'),
+      want: wantOn, wantTier: wTier, wantTiers: [1, 2, 3].map(p => ({ p, label: Want.tierLabel(p, en), on: wTier === p })),
+      wantTxt: wantOn ? (en ? '★ On my list' : '★ 已想看') : (en ? '☆ Want to see' : '☆ 想看'),
       seenTxt: I.isEn() ? '+ Watched · stamp' : '＋ 看过 · 盖章', scoreTxt: r ? r + '/10' : t('点星打分') } });
     this.buildRecs();
   },

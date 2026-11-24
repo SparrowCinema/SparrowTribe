@@ -35,30 +35,66 @@ Page({
     const data = app.globalData.data, idx = U.index(data), en = I.isEn();
     const wantIds = data.films.filter(f => Want.isOn(f.id)).map(f => f.id);
     if (!wantIds.length) {
-      this.setData({ smartOpen: true, smartEmpty: true, smartPicks: [], smartUnsched: [], smartSelCount: 0, smartSummary: '' });
+      this.setData({ smartOpen: true, smartEmpty: true, smartPicks: [], smartUnsched: [], smartTradeoffs: [], smartTiers: [], smartSelCount: 0, smartSummary: '' });
       return;
     }
     const picked = plan.get();
     const existing = data.shows.filter(s => idx.F[s.id] && picked.has(U.keyOf(s))).sort((a, b) => U.showDate(a, idx) - U.showDate(b, idx));
-    const ctx = U.plannerCtx(idx, { preferredCity: U.homeCity(data) });
+    const ctx = U.plannerCtx(idx, { preferredCity: U.homeCity(data), tierOf: id => Want.tierOf(id) });
     const res = U.Planner.suggestPlan(wantIds, existing, data.shows.filter(s => idx.F[s.id]), ctx);
+    this._tradeoffs = res.tradeoffs || [];
     const reasonText = r => r === 'no_upcoming' ? t('暂无待映场次') : r === 'all_conflict' ? t('与你已有排片全部冲突') : t('与其他推荐场次时间冲突');
+    const bt = (res.stats && res.stats.byTier) || {};
+    const smartTiers = [1, 2, 3].filter(tp => bt[tp] && bt[tp].want > 0).map(tp => ({
+      t: tp, label: Want.tierLabel(tp, en), stat: (bt[tp].added + bt[tp].already) + '/' + bt[tp].want
+    }));
     const picks = res.picks.map(p => {
       const f = idx.F[p.filmId], s = p.show, st = U.toMin(s.t);
       return {
-        key: p.key, filmId: p.filmId, title: f ? f.cn : p.filmId, ver: f ? t(f.version || '') : '',
+        key: p.key, filmId: p.filmId, tier: p.tier, tierLabel: Want.tierLabel(p.tier, en),
+        title: f ? f.cn : p.filmId, ver: f ? t(f.version || '') : '',
         when: s.d + ' ' + U.wk(s.d, s.year) + ' ' + s.t + ' – ' + U.fmt(st + U.durationOf(s, idx)),
         place: idx.venueName(s) + ' · ' + idx.hallName(s),
         tags: p.tags.map(tg => ({ txt: t(tg), warn: tg.indexOf('偏紧') >= 0 })),
         selected: true
       };
     });
-    const unsched = res.unscheduled.map(u => ({ filmId: u.filmId, title: (idx.F[u.filmId] || {}).cn || u.filmId, reason: reasonText(u.reason) }));
+    const tradeoffs = (res.tradeoffs || []).map((tf, i) => {
+      const f = idx.F[tf.filmId], s = tf.show, st = U.toMin(s.t);
+      const dropTxt = tf.drop.map(x => {
+        const df = idx.F[x.filmId];
+        const tl = x.tier ? Want.tierLabel(x.tier, en) + ' ' : (en ? 'Picked ' : '已选 ');
+        return tl + '《' + (df ? df.cn : x.filmId) + '》' + x.show.d + ' ' + x.show.t;
+      }).join('、');
+      return {
+        idx: i, key: tf.key, filmId: tf.filmId, title: f ? f.cn : tf.filmId,
+        when: s.d + ' ' + U.wk(s.d, s.year) + ' ' + s.t + ' – ' + U.fmt(st + U.durationOf(s, idx)),
+        place: idx.venueName(s) + ' · ' + idx.hallName(s),
+        dropTxt: (en ? 'Drop: ' : '让出：') + dropTxt
+      };
+    });
+    const unsched = res.unscheduled.map(u => ({
+      filmId: u.filmId, tier: u.tier, tierLabel: Want.tierLabel(u.tier, en),
+      title: (idx.F[u.filmId] || {}).cn || u.filmId, reason: reasonText(u.reason)
+    }));
     const summary = picks.length
       ? (en ? 'Suggested ' + picks.length + ' conflict-free screenings from ' + res.stats.wantTotal + ' wanted films' : '从 ' + res.stats.wantTotal + ' 部想看影片中，为你排入 ' + picks.length + ' 场无冲突放映')
         + (res.stats.alreadyCount ? (en ? ' (' + res.stats.alreadyCount + ' already planned)' : '（另有 ' + res.stats.alreadyCount + ' 部已在排片中）') : '')
       : (res.stats.alreadyCount ? (en ? 'All ' + res.stats.alreadyCount + ' wanted films are already in your plan.' : '你想看的 ' + res.stats.alreadyCount + ' 部影片都已经在个人排片里了。') : t('目前没有能避开冲突排入的新场次。'));
-    this.setData({ smartOpen: true, smartEmpty: false, smartSummary: summary, smartPicks: picks, smartUnsched: unsched, smartSelCount: picks.length });
+    this.setData({ smartOpen: true, smartEmpty: false, smartSummary: summary, smartTiers, smartPicks: picks, smartTradeoffs: tradeoffs, smartUnsched: unsched, smartSelCount: picks.length });
+  },
+  applyTradeoff(e) {
+    const i = +e.currentTarget.dataset.idx;
+    const tf = this._tradeoffs && this._tradeoffs[i];
+    if (!tf) return;
+    const picked = plan.get();
+    tf.drop.forEach(x => { if (picked.has(x.key)) plan.remove(x.key); });
+    plan.addMany([tf.key]);
+    Stats.stat('plan_add', 'smart_tradeoff');
+    const idx = U.index(app.globalData.data);
+    wx.showToast({ title: (I.isEn() ? 'Swapped in ' : '已换入必看 ') + ((idx.F[tf.filmId] || {}).cn || tf.filmId), icon: 'none' });
+    this.build();
+    this.openSmartPlan();
   },
   closeSmartPlan() { this.setData({ smartOpen: false }); },
   smartToggle(e) {
@@ -68,13 +104,13 @@ Page({
   },
   smartApply() {
     const chosen = this.data.smartPicks.filter(p => p.selected);
-    let added = 0;
     const picked = plan.get();
-    chosen.forEach(p => { if (!picked.has(p.key)) { plan.add(p.key); added++; } });
+    const toAdd = chosen.map(p => p.key).filter(k => !picked.has(k));
     this.setData({ smartOpen: false });
-    if (added) {
+    if (toAdd.length) {
+      plan.addMany(toAdd);
       Stats.stat('plan_add', 'smart_suggest');
-      wx.showToast({ title: I.isEn() ? 'Added ' + added + ' screenings' : '已加入 ' + added + ' 场到个人排片', icon: 'none' });
+      wx.showToast({ title: I.isEn() ? 'Added ' + toAdd.length + ' screenings' : '已加入 ' + toAdd.length + ' 场到个人排片', icon: 'none' });
       this.build();
     }
   },

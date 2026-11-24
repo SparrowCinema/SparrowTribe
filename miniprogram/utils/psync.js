@@ -171,10 +171,11 @@
     if (d.photo && typeof d.photo.d === 'string' && (d.photo.d === '' || (/^data:image\/jpeg;base64,/.test(d.photo.d) && d.photo.d.length < 400000))) out.photo = { d: d.photo.d, t: num(d.photo.t) };
     if (d.picks && Array.isArray(d.picks.k)) out.picks = { k: d.picks.k.filter(function (k) { return typeof k === 'string' && k.length <= 80; }).slice(0, 2000), t: num(d.picks.t) };
     // 想看（2026-11-16）：{影片id:{t}|{del:1,t}}，和看过一样逐项取较新者；旧版本没有这个字段时为空，不会删掉别处的记录
+    // 想看分级（2026-11-24）：p 1 必看 / 3 随缘；可看是默认档，不写 p（旧版本读到也不受影响）。改档位时更新 t，随整项取较新者
     var wt = d.want && typeof d.want === 'object' ? d.want : {};
     Object.keys(wt).slice(0, 5000).forEach(function (id) {
       var r = wt[id]; if (!/^[\w-]{1,80}$/.test(id) || !r || typeof r !== 'object') return;
-      out.want[id] = r.del ? { del: 1, t: num(r.t) } : { t: num(r.t) };
+      out.want[id] = r.del ? { del: 1, t: num(r.t) } : (r.p === 1 || r.p === 3 ? { t: num(r.t), p: r.p } : { t: num(r.t) });
     });
     return out;
   }

@@ -21,8 +21,12 @@ function markSeen(id, upKeys) {
   m[id] = ks; try { wx.setStorageSync(SEEN, m); } catch (e) { }
 }
 function set(id, on, upKeys) { all()[id] = on ? { t: Date.now() } : { del: 1, t: Date.now() }; save(); if (on) markSeen(id, upKeys); }
+// 想看分级（2026-11-24）：1 必看 / 2 可看（默认，不写 p）/ 3 随缘
+function tierOf(id) { const r = all()[id]; return r && !r.del && (r.p === 1 || r.p === 3) ? r.p : 2; }
+function setTier(id, p, upKeys) { p = +p; const r = { t: Date.now() }; if (p === 1 || p === 3) r.p = p; all()[id] = r; save(); markSeen(id, upKeys); }
+function tierLabel(p, en) { return p === 1 ? (en ? 'Must' : '必看') : p === 3 ? (en ? 'If free' : '随缘') : (en ? 'Maybe' : '可看'); }
 // 同步合并后整体替换（不触发同步回调，避免来回推送）
 function replaceAll(m) { cache = obj(m); save(true); }
 function onChange(fn) { listeners.push(fn); return () => { const i = listeners.indexOf(fn); if (i >= 0) listeners.splice(i, 1); }; }
 
-module.exports = { all, isOn, set, newCount, markSeen, replaceAll, onChange };
+module.exports = { all, isOn, set, tierOf, setTier, tierLabel, newCount, markSeen, replaceAll, onChange };

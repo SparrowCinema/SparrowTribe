@@ -337,19 +337,31 @@
     return out;
   }
 
-  // 基于「想看」清单做智能排片建议（保留用户已选场次不动，最大化无冲突排入影片数，按转场舒适度与顺路度择优）
+  /* 想看分级（2026-11-24）：1 必看 / 2 可看（默认）/ 3 随缘。
+     排片目标按档位逐级比较：先让排入的「必看」最多，再看「可看」，最后「随缘」；同档数量相同时比转场舒适度与顺路度。
+     「随缘」只填空档：不会挤掉任何必看、可看，也不接受转场偏紧或跨城的场次。 */
+  const TIERS = [1, 2, 3];
+  const TIER_LABEL = { 1: '必看', 2: '可看', 3: '随缘' };
+  const TIER_W = { 1: 1e6, 2: 1e3, 3: 1 };
+  function normTier(p) { p = +p; return p === 1 || p === 3 ? p : 2; }
+  function tierOfCtx(id, ctx) { return normTier(ctx && ctx.tierOf ? ctx.tierOf(id) : 2); }
+
+  // 基于「想看」清单做智能排片建议（保留用户已选场次不动，按分级逐级最大化无冲突排入影片数，按转场舒适度与顺路度择优）
   function suggestPlan(wantIds, pickedList, allShows, ctx) {
     const nowMs = (ctx && ctx.nowMs !== undefined) ? ctx.nowMs : Date.now();
     const isPast = ctx && ctx.isPast ? ctx.isPast : (s => getStartMs(s, ctx) + getDur(s, ctx) * 60000 < nowMs);
     const preferredCity = ctx && ctx.preferredCity || '';
     const uniqueWants = [...new Set(wantIds || [])].filter(id => !(ctx && ctx.F) || !!ctx.F[id]);
+    const tierOf = id => tierOfCtx(id, ctx);
     const pickedFilmIds = new Set(pickedList.map(s => s.id));
     const pickedCities = new Set(pickedList.map(s => ctx && ctx.VN && ctx.VN[s.v] && ctx.VN[s.v].city).filter(Boolean));
     const alreadyPlanned = [];
     const unscheduled = [];
     const groups = [];
+    const upcomingOf = {};
 
     uniqueWants.forEach(filmId => {
+      const tier = tierOf(filmId);
       if (pickedFilmIds.has(filmId)) {
         alreadyPlanned.push(filmId);
         return;
@@ -357,13 +369,16 @@
       const upcoming = allShows
         .filter(s => s.id === filmId && !isPast(s))
         .sort((a, b) => getStartMs(a, ctx) - getStartMs(b, ctx));
+      upcomingOf[filmId] = upcoming;
       if (!upcoming.length) {
-        unscheduled.push({ filmId, reason: 'no_upcoming', upcomingCount: 0 });
+        unscheduled.push({ filmId, tier, reason: 'no_upcoming', upcomingCount: 0 });
         return;
       }
-      const viable = upcoming.filter(s => !pickedList.some(p => pairConflict(s, p, ctx)));
+      let viable = upcoming.filter(s => !pickedList.some(p => pairConflict(s, p, ctx)));
+      // 随缘只填空档：与已有排片之间转场偏紧的场次不考虑
+      if (tier === 3) viable = viable.filter(s => !scorePlacement(s, pickedList, ctx).tight);
       if (!viable.length) {
-        unscheduled.push({ filmId, reason: 'all_conflict', upcomingCount: upcoming.length });
+        unscheduled.push({ filmId, tier, reason: 'all_conflict', upcomingCount: upcoming.length });
         return;
       }
       // 给每个候选场次先按静态质量排序，并限制单部电影最多取前 8 个候选以保证搜索瞬时完成
@@ -374,27 +389,29 @@
         const cityBonus = (preferredCity && city === preferredCity ? 16 : 0) + (pickedCities.has(city) ? 10 : 0);
         return { s, base: pl.score + cityBonus, start: getStartMs(s, ctx) };
       }).sort((a, b) => b.base - a.base || a.start - b.start);
-      groups.push({ filmId, totalUpcoming: upcoming.length, cands: scored.slice(0, 8) });
+      groups.push({ filmId, tier, w: TIER_W[tier], totalUpcoming: upcoming.length, cands: scored.slice(0, 8) });
     });
 
-    // 稀缺度优先：候选场次最少的影片排在前面（唯一场次最优先）
-    groups.sort((a, b) => a.cands.length - b.cands.length || a.cands[0].start - b.cands[0].start);
+    // 档位优先（必看 → 可看 → 随缘），同档内稀缺度优先：候选场次最少的影片排在前面（唯一场次最优先）
+    groups.sort((a, b) => a.tier - b.tier || a.cands.length - b.cands.length || a.cands[0].start - b.cands[0].start);
+    // 剩余可得分上界（后缀和），用于剪枝
+    const suffix = new Array(groups.length + 1).fill(0);
+    for (let i = groups.length - 1; i >= 0; i--) suffix[i] = suffix[i + 1] + groups[i].w;
 
     let bestPick = [];
-    let bestCount = 0;
+    let bestVal = 0;
     let bestScore = -Infinity;
     let nodes = 0;
-    const MAX_NODES = 4000;
+    const MAX_NODES = 6000;
     const cur = [];
     const anchor = pickedList.slice();
 
-    function dfs(idx, curScore) {
+    function dfs(idx, curVal, curScore) {
       if (nodes++ >= MAX_NODES) return;
-      const rem = groups.length - idx;
-      if (cur.length + rem < bestCount) return;
+      if (curVal + suffix[idx] < bestVal) return;
       if (idx === groups.length) {
-        if (cur.length > bestCount || (cur.length === bestCount && curScore > bestScore)) {
-          bestCount = cur.length;
+        if (curVal > bestVal || (curVal === bestVal && curScore > bestScore)) {
+          bestVal = curVal;
           bestScore = curScore;
           bestPick = cur.slice();
         }
@@ -405,30 +422,32 @@
       for (let i = 0; i < g.cands.length; i++) {
         const cand = g.cands[i];
         if (cur.some(x => pairConflict(cand.s, x.s, ctx))) continue;
-        tried = true;
         const pl = scorePlacement(cand.s, anchor.concat(cur.map(x => x.s)), ctx);
+        if (g.tier === 3 && pl.tight) continue;
+        tried = true;
         const v = ctx && ctx.VN && ctx.VN[cand.s.v];
         const city = v && v.city || '';
         const cityBonus = (preferredCity && city === preferredCity ? 14 : 0) + (pickedCities.has(city) ? 8 : 0);
-        cur.push({ filmId: g.filmId, s: cand.s, scarce: g.totalUpcoming === 1, candsCount: g.cands.length });
-        dfs(idx + 1, curScore + pl.score + cityBonus);
+        cur.push({ filmId: g.filmId, tier: g.tier, s: cand.s, scarce: g.totalUpcoming === 1, candsCount: g.cands.length });
+        dfs(idx + 1, curVal + g.w, curScore + pl.score + cityBonus);
         cur.pop();
         if (nodes >= MAX_NODES) return;
       }
-      // 也允许跳过当前影片，以探索能排入更多其他影片的组合（仅当有可能超过或追平当前最优时）
-      if (!tried || cur.length + rem - 1 >= bestCount) {
-        dfs(idx + 1, curScore);
+      // 也允许跳过当前影片，以探索能排入更多（更高档）影片的组合（仅当有可能超过或追平当前最优时）
+      if (!tried || curVal + suffix[idx + 1] >= bestVal) {
+        dfs(idx + 1, curVal, curScore);
       }
     }
 
-    if (groups.length) dfs(0, 0);
+    if (groups.length) dfs(0, 0, 0);
 
     const chosenFilms = new Set(bestPick.map(x => x.filmId));
     groups.forEach(g => {
       if (!chosenFilms.has(g.filmId)) {
-        unscheduled.push({ filmId: g.filmId, reason: 'conflict_with_suggested', upcomingCount: g.totalUpcoming });
+        unscheduled.push({ filmId: g.filmId, tier: g.tier, reason: 'conflict_with_suggested', upcomingCount: g.totalUpcoming });
       }
     });
+    unscheduled.sort((a, b) => a.tier - b.tier);
 
     const combined = pickedList.concat(bestPick.map(x => x.s));
     const picks = bestPick
@@ -446,6 +465,7 @@
         else if (pl.postTight) tags.push('留步映后偏紧');
         return {
           filmId: item.filmId,
+          tier: item.tier,
           show: item.s,
           key: getKey(item.s, ctx),
           scarce: item.scarce,
@@ -457,15 +477,56 @@
         };
       });
 
+    /* 必看取舍：排不进的必看，逐场找出挡路的场次（已有排片或本次建议），
+       只有挡路的全部是较低档（可看 / 随缘 / 未加入想看的已选场次）时才给出方案，挑「代价」最小的一场。
+       已有排片里用户手动选的场次代价略高，同为必看的不会被替换。 */
+    const tradeoffs = [];
+    const suggestedKeys = new Set(picks.map(p => p.key));
+    const wantSet = new Set(uniqueWants);
+    unscheduled.forEach(u => {
+      if (u.tier !== 1 || u.reason === 'no_upcoming') return;
+      let best = null;
+      (upcomingOf[u.filmId] || []).forEach(s => {
+        const blockers = combined.filter(x => x.id !== u.filmId && pairConflict(s, x, ctx));
+        if (!blockers.length) return;
+        let cost = 0, ok = true;
+        const drop = blockers.map(x => {
+          const k = getKey(x, ctx), existing = !suggestedKeys.has(k);
+          const t = wantSet.has(x.id) ? tierOf(x.id) : (existing ? 2 : 3);
+          if (t === 1) ok = false;
+          cost += (t === 2 ? 10 : 3) + (existing ? 2 : 0);
+          return { key: k, filmId: x.id, tier: wantSet.has(x.id) ? t : 0, existing, show: x };
+        });
+        if (!ok) return;
+        cost += scorePlacement(s, combined.filter(x => !blockers.includes(x)), ctx).tight ? 4 : 0;
+        if (!best || cost < best.cost || (cost === best.cost && getStartMs(s, ctx) < getStartMs(best.show, ctx))) {
+          best = { filmId: u.filmId, show: s, key: getKey(s, ctx), drop, cost };
+        }
+      });
+      if (best) tradeoffs.push(best);
+    });
+
+    const byTier = {};
+    TIERS.forEach(t => {
+      byTier[t] = {
+        want: uniqueWants.filter(id => tierOf(id) === t).length,
+        added: picks.filter(p => p.tier === t).length,
+        already: alreadyPlanned.filter(id => tierOf(id) === t).length,
+        missed: unscheduled.filter(x => x.tier === t).length
+      };
+    });
+
     return {
       picks,
       unscheduled,
       alreadyPlanned,
+      tradeoffs,
       stats: {
         wantTotal: uniqueWants.length,
         addedCount: picks.length,
         alreadyCount: alreadyPlanned.length,
-        unscheduledCount: unscheduled.length
+        unscheduledCount: unscheduled.length,
+        byTier
       }
     };
   }
@@ -473,6 +534,7 @@
   return {
     POST_MIN, EV_RE, toMin, geoOf, distKm, isOverseasGeo, mapURL,
     qaOf, evOf, postMinOf, transfer, formatGap,
-    pairConflict, findConflicts, conflictSwaps, suggestPlan
+    pairConflict, findConflicts, conflictSwaps, suggestPlan,
+    TIERS, TIER_LABEL, normTier
   };
 });

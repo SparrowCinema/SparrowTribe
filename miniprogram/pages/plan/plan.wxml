@@ -10,20 +10,35 @@
        <view class="btn sp-go" bindtap="toFilms">{{L.t(i,'去片目挑电影')}}</view>
      </view>
      <block wx:else>
-       <view class="sp-summary"><text>{{smartSummary}}</text><text class="small">{{L.t(i,'已选排片保持不变，可取消勾选不需要的场次。')}}</text></view>
+       <view class="sp-summary">
+         <text>{{smartSummary}}</text>
+         <view wx:if="{{smartTiers.length}}" class="sp-tbar"><text wx:for="{{smartTiers}}" wx:key="t" class="sp-tstat t{{item.t}}">{{item.label}} {{item.stat}}</text></view>
+         <text class="small">{{L.t(i,'优先保证必看，其次可看，随缘只填空档；已选排片保持不变，可取消勾选。')}}</text>
+       </view>
        <scroll-view scroll-y class="selector-results">
          <view wx:for="{{smartPicks}}" wx:key="key" data-key="{{item.key}}" bindtap="smartToggle" class="selector-option sp-opt">
            <view class="sp-info">
              <text class="b">{{item.title}}<text wx:if="{{item.ver}}" class="pg-ver"> {{item.ver}}</text></text>
              <text class="small">{{item.when}} · {{item.place}}</text>
-             <view wx:if="{{item.tags.length}}" class="sp-tags"><text wx:for="{{item.tags}}" wx:for-item="tg" wx:key="txt" class="sp-tag {{tg.warn?'warn':''}}">{{tg.txt}}</text></view>
+             <view class="sp-tags"><text class="sp-tier t{{item.tier}}">{{item.tierLabel}}</text><text wx:for="{{item.tags}}" wx:for-item="tg" wx:key="txt" class="sp-tag {{tg.warn?'warn':''}}">{{tg.txt}}</text></view>
            </view>
            <text class="selector-check box {{item.selected?'on':''}}">{{item.selected?'✓':''}}</text>
          </view>
          <view wx:if="{{!smartPicks.length}}" class="small sp-none">{{L.t(i,'想看清单里的影片暂时没有可无冲突排入的新场次。')}}</view>
+         <view wx:if="{{smartTradeoffs.length}}" class="sp-tradeoffs">
+           <text class="sp-tf-h">{{L.t(i,'必看取舍建议')}}</text>
+           <view wx:for="{{smartTradeoffs}}" wx:key="key" class="sp-tf">
+             <view class="sp-tf-info">
+               <text class="b"><text class="sp-tier t1">{{L.t(i,'必看')}}</text> {{item.title}}</text>
+               <text class="small">{{item.when}} · {{item.place}}</text>
+               <text class="sp-tf-drop">{{item.dropTxt}}</text>
+             </view>
+             <view class="sp-tf-btn" data-idx="{{item.idx}}" bindtap="applyTradeoff">{{L.t(i,'换入必看')}}</view>
+           </view>
+         </view>
          <view wx:if="{{smartUnsched.length}}" class="sp-unsched">
            <text class="sp-uh">{{L.t(i,'未能排入')}} ({{smartUnsched.length}})</text>
-           <view wx:for="{{smartUnsched}}" wx:key="filmId" class="sp-urow"><text class="sp-ut">{{item.title}}</text><text class="small">{{item.reason}}</text></view>
+           <view wx:for="{{smartUnsched}}" wx:key="filmId" class="sp-urow {{item.tier===1?'must-miss':''}}"><text class="sp-ut"><text class="sp-tier t{{item.tier}}">{{item.tierLabel}}</text> {{item.title}}</text><text class="small">{{item.reason}}</text></view>
          </view>
        </scroll-view>
        <view class="selector-foot">

@@ -28,6 +28,12 @@ const wantUpcoming=id=>SH.filter(s=>s.id===id&&!isPast(s)).map(keyOf);
 function wantNew(id){if(!isWant(id))return 0;const seen=new Set(wantSeen[id]||[]);return wantUpcoming(id).filter(k=>!seen.has(k)).length;}
 function wantMarkSeen(id){if(!isWant(id))return;const ks=wantUpcoming(id).slice(0,200);if(JSON.stringify(wantSeen[id]||[])===JSON.stringify(ks))return;wantSeen[id]=ks;try{localStorage.setItem(WANT_SEEN_KEY,JSON.stringify(wantSeen));}catch{}}
 function setWant(id,on){want[id]=on?{t:Date.now()}:{del:1,t:Date.now()};saveWant();if(on)wantMarkSeen(id);}
+/* 想看分级（2026-11-24）：want[id].p 1 必看 / 2 可看（默认，不写）/ 3 随缘；「想看一键排片」按档位逐级排（shared/planner.js） */
+const WANT_TIERS=[[1,'必看','Must'],[2,'可看','Maybe'],[3,'随缘','If free']];
+function wantTier(id){const r=want[id];return r&&!r.del&&(r.p===1||r.p===3)?r.p:2;}
+function setWantTier(id,p){p=+p;const r={t:Date.now()};if(p===1||p===3)r.p=p;want[id]=r;saveWant();wantMarkSeen(id);}
+function wantTierLabel(p){const x=WANT_TIERS.find(y=>y[0]===p)||WANT_TIERS[1];return LANG==='en'?x[2]:x[1];}
+function wantTierHTML(id){const cur=wantTier(id);return '<div class="mr-tier" role="radiogroup" aria-label="'+ppV('想看分级','Priority')+'"><span class="mr-tier-k">'+ppV('分级','Priority')+'</span>'+WANT_TIERS.map(([p])=>'<button type="button" role="radio" class="mr-tier-b t'+p+(cur===p?' on':'')+'" data-want-tier="'+esc(id)+'" data-p="'+p+'" aria-checked="'+(cur===p)+'">'+wantTierLabel(p)+'</button>').join('')+'<small>'+ppV('一键排片先保证必看，随缘只填空档','Auto-plan secures Must first; If free only fills gaps')+'</small></div>';}
 function wantStats(){const ids=FILMS.filter(f=>isWant(f.id)).map(f=>f.id);return {n:ids.length,live:ids.filter(id=>wantUpcoming(id).length).length,fresh:ids.filter(id=>wantNew(id)).length};}
 function holderPhoto(){try{return localStorage.getItem(PHOTO_KEY)||'';}catch{return '';}}
 function holderName(){try{return localStorage.getItem(HOLDER_KEY)||'';}catch{return '';}}
@@ -52,6 +58,7 @@ function myRateHTML(f){const rec=watched[f.id],on=!!(rec&&rec.d),r=on?(rec.r||0)
   const wOn=isWant(f.id);
   if(!on)return '<section class="fd-block my-rate" id="my-rate">'+head+
     '<div class="mr-acts"><button class="mr-want'+(wOn?' on':'')+'" data-want="'+f.id+'" aria-pressed="'+wOn+'"><span>'+(wOn?ppV('★ 已想看','★ On my list'):ppV('☆ 想看','☆ Want to see'))+'</span></button><button class="mr-seen" data-seen="'+f.id+'" aria-pressed="false"><span>＋ 看过 · 盖章</span></button></div>'+
+    (wOn?wantTierHTML(f.id):'')+
     '<div class="mrc">'+rate+tasteRowHTML(f)+noteRowHTML(f)+'</div><p class="mr-tip">看过后会在「我的 → 观影护照」盖下这部电影的印章；评分为五星十分制，可打半颗星。</p></section>';
   return '<section class="fd-block my-rate on" id="my-rate"><div class="mr-top">'+head+
     '<button type="button" class="mr-stamp" data-st-open="'+f.id+'" aria-haspopup="dialog" aria-label="'+ppV('已盖章，查看或取消印章','Stamped · view or remove this stamp')+'">'+STAMP_IC+'<span>'+ppV('已盖章','Stamped')+'</span>'+(n>1?'<b>'+ppV(n+' 次','×'+n)+'</b>':'')+'<em aria-hidden="true">›</em></button></div>'+
@@ -368,7 +375,9 @@ document.addEventListener('click',e=>{if(performance.now()<ppSuppress&&e.target.
 // —— 看过 / 打分 / 护照按钮 ——
 document.addEventListener('click',e=>{
   const wb=e.target.closest('[data-want]');
-  if(wb){const id=wb.dataset.want,on=!isWant(id);setWant(id,on);if(on)stat('want',id);toast(on?tr('已加入想看 · 有新场次时会在片目标出'):tr('已移出想看'));refreshMyRate(id);return;}
+  if(wb){const id=wb.dataset.want,on=!isWant(id);setWant(id,on);if(on)stat('want',id);toast(on?tr('已加入想看 · 可选「必看 / 可看 / 随缘」分级'):tr('已移出想看'));refreshMyRate(id);return;}
+  const wt=e.target.closest('[data-want-tier]');
+  if(wt){const id=wt.dataset.wantTier,p=+wt.dataset.p;setWantTier(id,p);toast(tr('已设为')+' '+wantTierLabel(p));refreshMyRate(id);return;}
   const wl=e.target.closest('[data-want-list]');
   if(wl){fmine='want';ffilt=fcity=fyear=freg=flen=ftrait='all';fq='';if(location.hash==='#films')films();else location.hash='films';return;}
   const sv=e.target.closest('[data-seen]');

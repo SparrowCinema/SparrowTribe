@@ -80,7 +80,7 @@ function planProgChips(all){if(!all.length)return '';const n=scopedRows().length
 function scopedRows(){const all=selectedRows();if(planFilt==="all")return all;return all.filter(s=>selHas(planFilt,s.p));}
 function selectedRows(keys=picked){const set=new Set(keys);return SH.filter(s=>set.has(keyOf(s))).sort((a,b)=>showDate(a)-showDate(b));}
 function showDate(s){return new Date(SparrowTZ.showMs(s,VN,PG));}
-function plannerCtx(){return {F,VN,PG,keyOf,durationOf,showMs:s=>SparrowTZ.showMs(s,VN,PG),isPast,nowMs:now(),preferredCity:typeof homeCity==='function'?homeCity():''};}
+function plannerCtx(){return {F,VN,PG,keyOf,durationOf,showMs:s=>SparrowTZ.showMs(s,VN,PG),isPast,nowMs:now(),preferredCity:typeof homeCity==='function'?homeCity():'',tierOf:id=>typeof wantTier==='function'?wantTier(id):2};}
 function planToggleHTML(s){const k=keyOf(s),yes=picked.has(k);return '<button class="plan-toggle '+(yes?'selected':'')+'" data-plan="'+esc(k)+'" aria-pressed="'+yes+'" aria-label="'+(yes?'移出排片 ':'加入排片 ')+esc(F[s.id].cn)+' '+esc(s.d)+' '+s.t+'">'+(yes?'✓ 已加入':'+ 加入排片')+'</button>';}
 function showChoiceHTML(s){return '<div class="show-choice"><button class="show" data-jump="'+keyOf(s)+'"><span class="dt">'+s.d+' '+s.t+'</span><span class="x">'+wk(s.d,s.year)+' · '+placeHTML(s)+' · 散场 '+fmt(toMin(s.t)+durationOf(s))+'</span><span class="go">查看排片 ›</span></button>'+planToggleHTML(s)+'</div>';}
 function conflicts(list){return SparrowPlanner.findConflicts(list,plannerCtx());}
@@ -148,29 +148,59 @@ function openSmartPlanDialog(){
     d.showModal();
     return;
   }
-  const existing=selectedRows();
-  const res=SparrowPlanner.suggestPlan(wantIds,existing,SH,plannerCtx());
-  const chosen=new Set(res.picks.map(p=>p.key));
+  const tierTag=t=>'<i class="sp-tier t'+t+'">'+esc(typeof wantTierLabel==='function'?wantTierLabel(t):tr(SparrowPlanner.TIER_LABEL[t]||'可看'))+'</i>';
   const reasonText=r=>r==='no_upcoming'?tr('暂无待映场次'):r==='all_conflict'?tr('与你已有排片全部冲突'):tr('与其他推荐场次时间冲突');
+  let res,chosen;
+  const recalc=()=>{
+    const existing=selectedRows();
+    res=SparrowPlanner.suggestPlan(wantIds,existing,SH,plannerCtx());
+    chosen=new Set(res.picks.map(p=>p.key));
+  };
+  recalc();
   const renderBody=()=>{
+    const bt=res.stats.byTier||{};
+    const tierBar=[1,2,3].filter(t=>bt[t]&&bt[t].want>0).map(t=>{
+      const x=bt[t],ok=x.added+x.already;
+      return '<span class="sp-tstat t'+t+'"><b>'+esc(typeof wantTierLabel==='function'?wantTierLabel(t):tr(SparrowPlanner.TIER_LABEL[t]))+'</b> '+ok+'/'+x.want+'</span>';
+    }).join('');
     const picksHTML=res.picks.length?res.picks.map(p=>{
       const f=F[p.filmId],s=p.show,on=chosen.has(p.key);
-      const tags=p.tags.map(tg=>'<i class="sp-tag'+(tg.includes('偏紧')?' warn':'')+'">'+esc(tr(tg))+'</i>').join('');
-      return '<button type="button" class="selector-option sp-opt" role="option" aria-selected="'+on+'" data-sp-key="'+esc(p.key)+'"><span><b>'+esc(f.cn)+(f.version?' <em class="ped">'+esc(f.version)+'</em>':'')+'</b><small>'+esc(s.d+' '+tr(wk(s.d,s.year))+' '+s.t+' – '+fmt(endMin(s)))+' · '+placeHTML(s)+'</small>'+(tags?'<span class="sp-tags">'+tags+'</span>':'')+'</span><span class="selector-check" aria-hidden="true">'+(on?'✓':'')+'</span></button>';
+      const tags=tierTag(p.tier)+p.tags.map(tg=>'<i class="sp-tag'+(tg.includes('偏紧')?' warn':'')+'">'+esc(tr(tg))+'</i>').join('');
+      return '<button type="button" class="selector-option sp-opt" role="option" aria-selected="'+on+'" data-sp-key="'+esc(p.key)+'"><span><b>'+esc(f.cn)+(f.version?' <em class="ped">'+esc(f.version)+'</em>':'')+'</b><small>'+esc(s.d+' '+tr(wk(s.d,s.year))+' '+s.t+' – '+fmt(endMin(s)))+' · '+placeHTML(s)+'</small><span class="sp-tags">'+tags+'</span></span><span class="selector-check" aria-hidden="true">'+(on?'✓':'')+'</span></button>';
     }).join(''):'<p class="selector-empty">'+tr('想看清单里的影片暂时没有可无冲突排入的新场次。')+'</p>';
-    const unschedHTML=res.unscheduled.length?'<div class="sp-unsched"><h4>'+tr('未能排入（'+res.unscheduled.length+' 部）')+'</h4><ul>'+res.unscheduled.map(u=>'<li><b>'+esc(F[u.filmId]?.cn||u.filmId)+'</b><span>'+esc(reasonText(u.reason))+'</span></li>').join('')+'</ul></div>':'';
+    const tradeHTML=res.tradeoffs&&res.tradeoffs.length?'<div class="sp-tradeoffs"><h4>'+tr('必看取舍建议')+'</h4>'+res.tradeoffs.map((tf,idx)=>{
+      const f=F[tf.filmId],s=tf.show;
+      const drops=tf.drop.map(x=>{const df=F[x.filmId];const tl=x.tier?((typeof wantTierLabel==='function'?wantTierLabel(x.tier):tr(SparrowPlanner.TIER_LABEL[x.tier]))+' '):(tr('已选')+' ');return tl+(LANG==='en'?(df?df.cn:x.filmId)+' ':'《'+(df?df.cn:x.filmId)+'》')+x.show.d+' '+x.show.t;}).join(LANG==='en'?', ':'、');
+      return '<div class="sp-tf"><div class="sp-tf-info"><b>'+tierTag(1)+' '+esc(f?f.cn:tf.filmId)+'</b><small>'+esc(s.d+' '+tr(wk(s.d,s.year))+' '+s.t+' – '+fmt(endMin(s)))+' · '+placeHTML(s)+'</small><span class="sp-tf-drop">'+esc(tr('让出：')+drops)+'</span></div><button type="button" class="secondary-button sp-tf-btn" data-sp-tf="'+idx+'">'+tr('换入必看')+'</button></div>';
+    }).join('')+'</div>':'';
+    const unschedHTML=res.unscheduled.length?'<div class="sp-unsched"><h4>'+(LANG==='en'?'Could not schedule ('+res.unscheduled.length+')':'未能排入（'+res.unscheduled.length+' 部）')+'</h4><ul>'+res.unscheduled.map(u=>'<li'+(u.tier===1?' class="must-miss"':'')+'><b>'+tierTag(u.tier)+' '+esc(F[u.filmId]?.cn||u.filmId)+'</b><span>'+esc(reasonText(u.reason))+'</span></li>').join('')+'</ul></div>':'';
     const summary=res.picks.length
-      ? tr('从 '+res.stats.wantTotal+' 部想看影片中，为你排入 '+res.picks.length+' 场无冲突放映')+(res.stats.alreadyCount?'（'+tr('另有 '+res.stats.alreadyCount+' 部已在排片中')+'）':'')
-      : (res.stats.alreadyCount?tr('你想看的 '+res.stats.alreadyCount+' 部影片都已经在个人排片里了。'):tr('目前没有能避开冲突排入的新场次。'));
+      ? (LANG==='en'?'Suggested '+res.picks.length+' conflict-free screening'+(res.picks.length>1?'s':'')+' from '+res.stats.wantTotal+' wanted film'+(res.stats.wantTotal>1?'s':''):'从 '+res.stats.wantTotal+' 部想看影片中，为你排入 '+res.picks.length+' 场无冲突放映')+(res.stats.alreadyCount?(LANG==='en'?' ('+res.stats.alreadyCount+' already planned)':'（另有 '+res.stats.alreadyCount+' 部已在排片中）'):'')
+      : (res.stats.alreadyCount?(LANG==='en'?'All '+res.stats.alreadyCount+' wanted films are already in your plan.':'你想看的 '+res.stats.alreadyCount+' 部影片都已经在个人排片里了。'):tr('目前没有能避开冲突排入的新场次。'));
     d.innerHTML='<header class="selector-head"><h2 id="sp-title">'+tr('想看一键排片建议')+'</h2><button type="button" class="selector-close" data-sp="close" aria-label="'+tr('关闭')+'">×</button></header>'+
-      '<p class="sp-summary">'+esc(summary)+'<small>'+tr('已选排片保持不变，可取消勾选不需要的场次。')+'</small></p>'+
-      '<div class="selector-results" role="listbox" aria-multiselectable="true">'+picksHTML+unschedHTML+'</div>'+
+      '<p class="sp-summary">'+esc(summary)+(tierBar?'<span class="sp-tbar">'+tierBar+'</span>':'')+'<small>'+tr('优先保证必看，其次可看，随缘只填空档；已选排片保持不变，可取消勾选。')+'</small></p>'+
+      '<div class="selector-results" role="listbox" aria-multiselectable="true">'+picksHTML+tradeHTML+unschedHTML+'</div>'+
       '<footer class="selector-foot"><small>'+tr('已选 '+chosen.size+' 场')+'</small><button type="button" class="selector-done" data-sp="apply"'+(chosen.size?'':' disabled')+'>'+tr(chosen.size?'加入所选 '+chosen.size+' 场':'关闭')+'</button></footer>';
   };
   renderBody();
   document.body.appendChild(d);
   d.addEventListener('click',e=>{
     if(e.target===d||e.target.closest('[data-sp="close"]')){d.close();return;}
+    const tfb=e.target.closest('[data-sp-tf]');
+    if(tfb){
+      const tf=res.tradeoffs&&res.tradeoffs[+tfb.dataset.spTf];
+      if(tf&&validKeys.has(tf.key)){
+        tf.drop.forEach(x=>{if(picked.has(x.key))picked.delete(x.key);});
+        picked.add(tf.key);
+        saveSelection();
+        stat('plan_add','smart_tradeoff');
+        toast(tr('已换入必看')+'《'+(F[tf.filmId]?.cn||tf.filmId)+'》');
+        recalc();
+        renderBody();
+        if(location.hash==='#plan')planPage();
+      }
+      return;
+    }
     const opt=e.target.closest('[data-sp-key]');
     if(opt){const k=opt.dataset.spKey;if(chosen.has(k))chosen.delete(k);else chosen.add(k);const sc=d.querySelector('.selector-results')?.scrollTop||0;renderBody();const r2=d.querySelector('.selector-results');if(r2)r2.scrollTop=sc;return;}
     if(e.target.closest('[data-sp="apply"]')){
