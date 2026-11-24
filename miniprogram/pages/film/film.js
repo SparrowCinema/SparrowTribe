@@ -91,7 +91,9 @@ Page({
     // 购票码：影片自带 + 所属各专题的购票码（跨影展影片可有多张，按专题标注）
     const SITE = 'https://sparrowcinema.org/', tks = [], seenTk = {};
     const hintOf = (pl, lb, h) => t([pl ? pl + '扫码' + (lb || '购票') : '', (h || '').replace(/^淘票票扫码购票\s*[·・]?\s*/, '')].filter(Boolean).join(' · '));
-    const addTk = (url, pl, lb, h, p) => { if (!url || seenTk[url]) return; seenTk[url] = 1; tks.push({ url, hint: hintOf(pl, lb, h), label: t(lb || '购票'), prog: p ? p.name : '' }); };
+    // 去重只看文件路径（2026-11-24）：影片自带的码由 getData 拼地址、专题的码在这里拼，换域名期间两边站点前缀可能不同（旧 github.io / 新 sparrowcinema.org），同一张码会显示两次
+    const tkKey = u => String(u).replace(/^https?:\/\/[^/]+\/(SparrowTribe\/)?/i, '').replace(/[?#].*$/, '');
+    const addTk = (url, pl, lb, h, p) => { if (!url || seenTk[tkKey(url)]) return; seenTk[tkKey(url)] = 1; tks.push({ url, hint: hintOf(pl, lb, h), label: t(lb || '购票'), prog: p ? p.name : '' }); };
     // 专题已结束 / 影片已下映 / 全部场次已放映后，不再显示购票码（待排片的保留）
     const progEnded = p => !!p && U.progInfo(p, data, idx).status === 'ended';
     // 按专题分开算（与网站 ticketLive 相同）：影展专题里本片在该专题还有未散场场次、或场次未公布时显示，全部放完隐藏，加场后自动恢复；院线专题看本片全部场次
