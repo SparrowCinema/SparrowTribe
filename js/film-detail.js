@@ -66,13 +66,15 @@ function recommendHTML(f){
     tasteGet:typeof TC!=="undefined"&&TC&&typeof TC.get==="function"?id=>TC.get(id):null
   },4);
   if(!items.length)return "";
-  const seen=!!(watched[f.id]&&!watched[f.id].del&&watched[f.id].d);
-  const lead=seen?"看过这部之后，顺着线索继续下一场银幕相遇":"同导演、同单元或相近趣味的延伸片单";
-  return `<section class="fd-sec fd-rec" id="fd-rec"><h2 class="fd-st"><span>看完再看</span><small>NEXT UP</small></h2><p class="fd-rec-lead">${esc(tr(lead))}</p><div class="rec-grid">${items.map(it=>{
+  return `<section class="fd-sec fd-rec" id="fd-rec"><h2 class="fd-st"><span>看完再看</span><small>NEXT UP</small></h2><div class="rec-list">${items.map(it=>{
     const x=it.film,on=typeof isWant==="function"?isWant(x.id):it.wanted;
-    const why=it.reasons.map(tr).join(" · ");
+    const why=it.reasons.slice(0,2).map(tr).join(" · ");
     const slot=it.nextShow?`${it.nextShow.d} ${it.nextShow.t}`:"";
-    return `<article class="rec-card"><button type="button" class="rec-go" data-film="${esc(x.id)}"><span class="rec-art">${pst(x.id)?pimg(x.id,360,`alt="${esc(x.cn)} 海报" loading="lazy"`):`<span class="rec-ph" style="background:${REG[x.reg].c}"><b>${esc(x.cn[0])}</b></span>`}${it.lastChance?`<em class="rec-last">${esc(tr("最后一场"))}</em>`:""}</span><span class="rec-meta"><b class="rec-title">${esc(x.cn)}</b>${why?`<small class="rec-why">${esc(why)}</small>`:""}${slot?`<small class="rec-slot mono">${esc(slot)}${it.fitsPlan?` · ${esc(tr("零冲突"))}`:""}</small>`:""}</span></button>${it.seen?`<span class="rec-seen">${esc(tr("已看过"))}</span>`:`<button type="button" class="rec-want${on?" on":""}" data-rec-want="${esc(x.id)}" aria-pressed="${on}">${on?"★ "+esc(tr("已想看")):"☆ "+esc(tr("想看"))}</button>`}</article>`;
+    const subParts=[why,slot?`<span class="rec-slot mono">${esc(slot)}${it.fitsPlan?" ✓":""}</span>`:""].filter(Boolean).join(`<span class="rec-sep">·</span>`);
+    const act=it.seen
+      ? `<span class="rec-seen">${esc(tr("已看"))}</span>`
+      : `<button type="button" class="rec-star${on?" on":""}" data-rec-want="${esc(x.id)}" aria-pressed="${on}" aria-label="${esc(on?tr("已想看"):tr("想看"))}" title="${esc(on?tr("已想看"):tr("想看"))}">${on?"★":"☆"}</button>`;
+    return `<div class="rec-row"><button type="button" class="rec-go" data-film="${esc(x.id)}"><span class="rec-thumb">${pst(x.id)?pimg(x.id,360,`alt="" loading="lazy"`):`<span class="rec-ph" style="background:${REG[x.reg].c}">${esc(x.cn[0])}</span>`}</span><span class="rec-copy"><span class="rec-head"><b class="rec-title">${esc(x.cn)}</b>${it.lastChance?`<em class="rec-last">${esc(tr("最后一场"))}</em>`:""}</span>${subParts?`<span class="rec-sub">${subParts}</span>`:""}</span></button>${act}</div>`;
   }).join("")}</div></section>`;
 }
 function detail(id){
@@ -138,7 +140,7 @@ function fitHero(){
 window.addEventListener('resize',()=>{clearTimeout(fitHero.t);fitHero.t=setTimeout(fitHero,150);});
 document.addEventListener("click",e=>{
   const rw=e.target.closest("[data-rec-want]");
-  if(rw){const rid=rw.dataset.recWant,on=!isWant(rid);setWant(rid,on);if(on)stat('want',rid);rw.classList.toggle("on",on);rw.setAttribute("aria-pressed",String(on));rw.textContent=on?"★ "+tr("已想看"):"☆ "+tr("想看");toast(on?tr("已加入想看 · 有新场次时会在片目标出"):tr("已移出想看"));return;}
+  if(rw){const rid=rw.dataset.recWant,on=!isWant(rid);setWant(rid,on);if(on)stat('want',rid);rw.classList.toggle("on",on);rw.setAttribute("aria-pressed",String(on));const lb=on?tr("已想看"):tr("想看");rw.setAttribute("aria-label",lb);rw.title=lb;rw.textContent=on?"★":"☆";toast(on?tr("已加入想看 · 有新场次时会在片目标出"):tr("已移出想看"));return;}
   const s=e.target.closest("[data-scroll]");if(s){e.preventDefault();const t=document.getElementById(s.dataset.scroll);if(t){const top=t.getBoundingClientRect().top+window.scrollY-(document.getElementById("topbar").offsetHeight+12);window.scrollTo({top,behavior:matchMedia("(prefers-reduced-motion:reduce)").matches?"auto":"smooth"});}return;}
   const x=e.target.closest("[data-expand]");if(x){const b=x.previousElementSibling;b.classList.toggle("clamp");x.textContent=b.classList.contains("clamp")?"展开全文":"收起";}
 });
