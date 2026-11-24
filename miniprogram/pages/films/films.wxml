@@ -21,9 +21,6 @@
     <view class="library-filter {{len!=='all'?'active':''}}" data-type="length" bindtap="openSelector"><text class="filter-label">{{L.t(i,'片长')}}</text><view class="filter-value"><text>{{lenName}}</text><text class="filter-arrow">⌄</text></view></view>
     <view class="library-filter {{mine!=='all'?'active':''}}" data-type="personal" bindtap="openSelector"><text class="filter-label">{{L.t(i,'我的')}}</text><view class="filter-value"><text>{{mineName}}</text><text>⌄</text></view></view>
   </view>
-  <scroll-view wx:if="{{traitChips.length}}" scroll-x enable-flex class="trait-strip">
-    <view wx:for="{{traitChips}}" wx:key="id" class="trait-chip {{item.on?'on':''}}" data-id="{{item.id}}" bindtap="toggleTrait"><text>{{item.name}}</text><text class="trait-cnt mono">{{item.cnt}}</text></view>
-  </scroll-view>
   <view wx:if="{{active}}" class="library-reset" bindtap="resetFilters">{{L.t(i,'重置筛选')}} ↺</view>
   <view wx:if="{{selectorType}}" class="selector-mask" catchtap="closeSelector" catchtouchmove="stopMove">
     <view class="selector-panel" catchtap="stopMove"><view class="selector-head"><text>{{selectorTitle}}</text><view class="selector-close" bindtap="closeSelector">×</view></view>

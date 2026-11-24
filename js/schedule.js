@@ -144,9 +144,9 @@ d.addEventListener('click',e=>{if(e.target!==d)return;const r=d.getBoundingClien
 document.addEventListener("input",e=>{if(e.target.id!=="schedule-filter-search")return;const d=e.target.closest('dialog');d.querySelector('#selector-results').innerHTML=selectorContent(d.dataset.type,d.dataset.scope,e.target.value);});
 document.addEventListener("click",e=>{
  const posterTrigger=e.target.closest('[data-poster-filter]');if(posterTrigger){openScheduleSelector(posterTrigger.dataset.posterFilter,'poster');return;}
- const mineLink=e.target.closest('[data-library-mine]');if(mineLink){fmine=mineLink.dataset.libraryMine;ffilt=fcity=fyear=freg=flen=ftrait='all';fq='';go('films');return;}
+ const mineLink=e.target.closest('[data-library-mine]');if(mineLink){fmine=mineLink.dataset.libraryMine;ffilt=fcity=fyear=freg=flen='all';fq='';go('films');return;}
  const filmTrigger=e.target.closest('[data-film-filter]');if(filmTrigger){openScheduleSelector(filmTrigger.dataset.filmFilter,'films');return;}
- const filmReset=e.target.closest('[data-reset-library]');if(filmReset){ffilt=fmine=fcity=fyear=freg=flen=ftrait='all';fq='';films();return;}
+ const filmReset=e.target.closest('[data-reset-library]');if(filmReset){ffilt=fmine=fcity=fyear=freg=flen='all';fq='';films();return;}
  const secTrigger=e.target.closest('[data-section-sel]');if(secTrigger){openScheduleSelector('section','section');return;}
  const evTrigger=e.target.closest('[data-evkind-sel]');if(evTrigger){openScheduleSelector('evkind','evkind');return;}
  const tyT=e.target.closest('[data-tyear]');if(tyT){openScheduleSelector('year','tyear');return;}
