@@ -569,5 +569,6 @@ Claude 与 GPT 可能使用同一 GitHub 身份，审批人数可先设为0；�
 - 影片资料里有 2 张以上的图（`poster` / `posterUrl` / `stills`；本站同一张图的两种地址只算一张）时，影片页大海报角上显示「可换 N」，点开选一张（网站 `openMyPoster`，小程序 film `ppOpen`）。只改本人看到的：影片页大海报、海报墙、观影结算长图、典藏票根默认票面图（票根单独选过票面图的保持原样）。片目、排片表、专题页、分享海报仍用官方海报。
 - 存储：网站 `sparrow-poster-pick-v1`（`js/core.js` 的 `filmArtwork` / `artKey` / `myPosterOf` / `setMyPoster` / `pimgMine`），小程序 `sk-poster-pick-v1`（`utils/myposter.js`），格式 `{影片id:{u,t}|{del:1,t}}`，选回官方海报写删除标记。两端用同一个比对键（本站地址去掉站点前缀和 `?v=`），所以网站选的在小程序也认。
 - 同步：个人档案 `pp` 字段（`shared/psync.js` 的 `cleanPP` / `mergePP`，逐项取较新；备份恢复与清空云端一并处理）。客户端应用云端档案时合并而不是覆盖。**`psync` 与 `plan` 云函数需要重新部署**，否则小程序同步时会丢掉这一项。
-- 真正能换图需要给影片补备用海报或剧照（`stills` 数组，元素为图片地址或 `{url}`）。
+- 换图需要给影片补其他海报（`stills` 数组，元素为图片地址或 `{url, label}`）。
+- **海报名称（2026-11-24）**：都是官方海报，不用「备用」之类的词，按海报上的字标注：带 IMAX 的写「IMAX海报」，带 Dolby 的写「杜比海报」，此外如「插画海报」「人物海报」「重映海报」「英文海报」。主海报的名称写在影片 `posterLabel`（不写显示「主海报」），其他写在 `stills` 每项的 `label`（不写显示「海报 N」）。新名称请在 `data/i18n/en.json` 的 `exact` 补英文。网站 `filmArtItems` / `filmArtLabel`，小程序 `utils/myposter.js` 的 `items` / `label`。
 

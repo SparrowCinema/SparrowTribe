@@ -2001,7 +2001,7 @@
    "poster": "posters/hainan26-another-green-world-douban-p2931409115.jpg",
    "posterDb": "p2931409115",
    "stills": [
-    "posters/hainan26-another-green-world-douban-p2911749189.jpg"
+    {"url": "posters/hainan26-another-green-world-douban-p2911749189.jpg", "label": "APM海报"}
    ]
   },
   {
@@ -2643,7 +2643,7 @@
    },
    "poster": "posters/hainan26-asian-9-temples-to-heaven-2026-poster.jpg",
    "stills": [
-    "posters/hainan26-asian-9-temples-to-heaven-2026-english-poster.jpg"
+    {"url": "posters/hainan26-asian-9-temples-to-heaven-2026-english-poster.jpg", "label": "英文海报"}
    ]
   }
  ],

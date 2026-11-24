@@ -19,6 +19,16 @@ function artOf(f) {
     .filter(s => typeof s === 'string' && /^(https:\/\/|posters\/|images\/)/i.test(s))
     .filter(u => { const k = key(u); if (seen.has(k)) return false; seen.add(k); return true; }).map(absolute);
 }
+// 每张图带一个名字（2026-11-24，与网站 filmArtItems 一致）：都是官方海报，按海报上的字标注——
+// 影片 posterLabel（缺省「主海报」），stills 写 {url,label}（缺省「海报 N」）
+function items(f) {
+  if (!f) return [];
+  const raw = [[f.poster, f.posterLabel || '主海报'], [f.posterUrl, f.posterLabel || '主海报'], ...(Array.isArray(f.stills) ? f.stills.map(s => typeof s === 'string' ? [s, ''] : [s && s.url, (s && s.label) || '']) : [])];
+  const seen = new Set(), out = [];
+  raw.forEach(([u, label]) => { if (typeof u !== 'string' || !/^(https:\/\/|posters\/|images\/)/i.test(u)) return; const k = key(u); if (seen.has(k)) return; seen.add(k); out.push({ u: absolute(u), label: label || '海报 ' + (out.length + 1) }); });
+  return out;
+}
+function label(f, u) { const k = key(u), hit = items(f).find(x => key(x.u) === k); return hit ? hit.label : ''; }
 function all() { if (!cache) { try { cache = obj(wx.getStorageSync(KEY)); } catch (e) { cache = {}; } } return cache; }
 function save(silent) { try { wx.setStorageSync(KEY, cache); } catch (e) { } if (!silent) listeners.forEach(fn => { try { fn(); } catch (e) { } }); }
 // 本人选的、且不是官方海报的那张（绝对地址）；没选或选的已不在资料里时返回 ''，调用方照旧用官方海报
@@ -35,4 +45,4 @@ function set(f, u) {
 // 同步合并后整体替换（不触发同步回调）
 function replaceAll(m) { cache = obj(m); save(true); }
 function onChange(fn) { listeners.push(fn); return () => { const i = listeners.indexOf(fn); if (i >= 0) listeners.splice(i, 1); }; }
-module.exports = { artOf, key, pick, set, all, replaceAll, onChange };
+module.exports = { artOf, items, label, key, pick, set, all, replaceAll, onChange };

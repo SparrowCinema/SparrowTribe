@@ -85,8 +85,15 @@
     "自填": "Manual",
     "首映": "Gala",
     "我的海报": "My poster",
-    "官方海报": "Official poster",
-    "可换": "Switch"
+    "可换": "Switch",
+    "主海报": "Main poster",
+    "IMAX海报": "IMAX poster",
+    "杜比海报": "Dolby poster",
+    "插画海报": "Illustrated poster",
+    "重映海报": "Re-release poster",
+    "人物海报": "Character poster",
+    "英文海报": "English poster",
+    "APM海报": "APM poster"
   },
   "_readme": "English layer for the site. films/programmes/venues overlay data fields when ?lang=en; ui is the zh→en dictionary used by tr(). Missing entries fall back to the Chinese text.",
   "films": {
@@ -13661,13 +13668,13 @@
     "自填 / 选择场次": "Enter manually / choose",
     "这部影片暂时只有这一张图像，补充备用海报或剧照后可以在这里更换": "Only one image is available for this film for now. Once alternate posters or stills are added, you can switch them here.",
     "已换成你选的海报": "Switched to your chosen poster",
-    "已恢复官方海报": "Official poster restored",
-    "只改你自己看到的：影片页、海报墙、观影结算长图和典藏票根默认票面图。片目、排片和分享海报仍用官方海报。": "Only changes what you see: the film page, your poster wall, your cinema recap and the default artwork on your collectible tickets. The library, schedule and share posters keep the official poster.",
     "只改你自己看到的：影片页、海报墙、观影结算长图和典藏票根默认票面图": "Only changes what you see: the film page, your poster wall, your cinema recap and the default artwork on your collectible tickets",
     "海上明月": "Asian Horizon",
     "获评": "Received",
     "已把旧网址上的本机记录搬到新网址": "Your saved records were moved from the old address",
     "观影护照已搬到新网址": "Sparrow Film Passport has moved to a new address",
-    "请先在「我的 › 个人档案云端同步」生成同步码，在新网址输入即可带走全部记录，再从新网址重新添加到主屏幕。": "First create a sync code in Me › Cloud Sync, enter it on the new address to bring all your records, then add the new address to your Home Screen again."
+    "请先在「我的 › 个人档案云端同步」生成同步码，在新网址输入即可带走全部记录，再从新网址重新添加到主屏幕。": "First create a sync code in Me › Cloud Sync, enter it on the new address to bring all your records, then add the new address to your Home Screen again.",
+    "已恢复主海报": "Main poster restored",
+    "只改你自己看到的：影片页、海报墙、观影结算长图和典藏票根默认票面图。片目、排片和分享海报仍用主海报。": "Only changes what you see: the film page, your poster wall, your cinema recap and the default artwork on your collectible tickets. The library, schedule and share posters keep the main poster."
   }
 }

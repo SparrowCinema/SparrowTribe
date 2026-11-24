@@ -92,6 +92,14 @@ const pimg = (id,w,attrs) => '<img src="'+esc(pthumb(id,w))+'" data-full="'+esc(
    只用在影片页大海报、海报墙、观影结算长图、典藏票根默认票面图；片目、排片、专题页、分享海报仍用官方海报。 */
 const PP_KEY='sparrow-poster-pick-v1';
 let posterPicks=(()=>{try{const o=JSON.parse(localStorage.getItem(PP_KEY)||'{}');return o&&typeof o==='object'&&!Array.isArray(o)?o:{};}catch{return {};}})();
+/* 每张图带一个名字（2026-11-24）：都是官方海报，按海报上的字标注——影片 posterLabel（缺省「主海报」），stills 写 {url,label}（缺省「海报 N」）；小程序 utils/myposter.js 同一规则 */
+function filmArtItems(f){ if(!f) return [];
+  const raw=[[f.poster,f.posterLabel||"主海报"],[f.posterUrl,f.posterLabel||"主海报"],...(Array.isArray(f.stills)?f.stills.map(item=>typeof item==="string"?[item,""]:[item?.url,item?.label||""]):[])];
+  const seen=new Set(),out=[];
+  raw.forEach(([u,label])=>{ if(typeof u!=="string"||!/^(https:\/\/|posters\/|images\/)/i.test(u)) return; const k=artKey(u); if(seen.has(k)) return; seen.add(k); out.push({u,label:label||"海报 "+(out.length+1)}); });
+  return out; }
+const filmArtLabel = (f,u) => { const k=artKey(u), hit=filmArtItems(f).find(x=>artKey(x.u)===k); return hit?hit.label:""; };
+const artLabelText = s => /^海报 \d+$/.test(s)?tr("海报")+" "+s.slice(3):tr(s);
 function filmArtwork(f){ if(!f) return [];
   const assets=[f.poster,f.posterUrl,...(Array.isArray(f.stills)?f.stills.map(item=>typeof item==="string"?item:item?.url):[])];
   // posterUrl 常是本站同一张海报的绝对地址（带 ?v= 让微信刷新缓存），按站内路径去重，不算第二张图
