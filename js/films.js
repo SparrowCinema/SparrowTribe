@@ -8,7 +8,8 @@ const LEN_BINS=[["s","60 分钟以内",0,60],["m","60–90 分钟",61,90],["l","
 const lenOk=(f,k=flen)=>{const a=selList(k);if(!a.length)return true;return a.some(x=>{const b=LEN_BINS.find(y=>y[0]===x);return !!(b&&f.min&&!f.minTbd&&f.min>=b[2]&&f.min<=b[3]);});};
 const regOk=(f,k=freg)=>selHas(k,f.reg);
 const LIBRARY_MODES=[['all','全部影片','浏览完整片目'],['want','想看','标记了想看的影片 · 有新场次会标出'],['planned','已加入排片','已保存在个人排片中的影片'],['watched','已看过','收进观影护照的影片'],['unwatched','还没看过','继续探索新的银幕相遇'],['qa','主创映后场','有主创映后活动的影片']];
-function libraryContext(){return {shows:SH,programmes:PROGRAMMES,picked,watched,want,keyOf,isPast,overlaps,city:fcity,cityOfShow:s=>VN[s.v]?.city,programme:ffilt,programmeOf:f=>f.prog,programmeIds:f=>filmProgsOf(f).map(x=>x.p.id),showProgramme:s=>s.p||F[s.id]?.prog};}
+function showsOverlap(a,b){if(!a||!b)return false;const sa=showDate(a),sb=showDate(b),da=typeof durationOf==="function"?durationOf(a):(F[a.id]?.min||120),db=typeof durationOf==="function"?durationOf(b):(F[b.id]?.min||120);return sa<sb+db*60000-120000&&sb<sa+da*60000-120000;}
+function libraryContext(){return {shows:SH,programmes:PROGRAMMES,picked,watched,want,keyOf,isPast,overlaps:showsOverlap,city:fcity,cityOfShow:s=>VN[s.v]?.city,programme:ffilt,programmeOf:f=>f.prog,programmeIds:f=>filmProgsOf(f).map(x=>x.p.id),showProgramme:s=>s.p||F[s.id]?.prog};}
 function filmSelectorOptions(type,query=''){
  const ctx=libraryContext(),q=query.trim().toLocaleLowerCase();let rows;
  if(type==='programme')rows=[{id:'all',name:tr('全部专题'),sub:tr('浏览完整片目'),selected:!selList(ffilt).length},...progGroupOrder().map(p=>({id:p.id,name:p.name,sub:[tr(FILMS.filter(f=>window.SparrowLibrary.inProgramme(f,p.id,ctx)).length+' 部影片'),p.city].filter(Boolean).join(' · '),selected:selList(ffilt).includes(p.id)}))];

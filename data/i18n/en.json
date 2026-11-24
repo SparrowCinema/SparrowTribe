@@ -12883,7 +12883,7 @@
     "查看": "View ",
     "保存": "Save ",
     "已保存": "Saved",
-    "放大": "Enlarge ",
+    "放大": "Zoom in",
     "购票码": "ticket code",
     "报名码": "sign-up code",
     "小程序码": " mini program code",
@@ -13819,6 +13819,14 @@
     "印在典藏票根背面": "Print on ticket back",
     "收进年度观影总结": "Include in yearly recap",
     "确认": "Confirm",
-    "已看": "Seen"
+    "已看": "Seen",
+    "街道地图": "Street Map",
+    "手绘底图": "Atlas Sketch",
+    "展映影院地图": "Screening Venues Map",
+    "地图风格": "Map style",
+    "缩小": "Zoom out",
+    "重置视角": "Reset view",
+    "在地图上定位": "Center on map",
+    "可拖拽平移或缩放 · 点击编号定位对应影院 · 导航按实际路况打开地图": "Drag to pan or zoom · Tap a pin to jump to the venue · Navigation opens live directions"
   }
 }

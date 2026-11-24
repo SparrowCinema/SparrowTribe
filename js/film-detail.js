@@ -62,7 +62,7 @@ function recommendHTML(f){
   if(!f||f.ev||typeof SparrowRecommend==="undefined"||typeof FILMS==="undefined")return "";
   const items=SparrowRecommend.forFilm(f,{
     films:FILMS,shows:SH,programmes:PROGRAMMES,watched,want,picked,keyOf,isPast,showDate,
-    overlaps:typeof overlaps==="function"?overlaps:null,
+    overlaps:typeof showsOverlap==="function"?showsOverlap:null,
     tasteGet:typeof TC!=="undefined"&&TC&&typeof TC.get==="function"?id=>TC.get(id):null
   },4);
   if(!items.length)return "";
