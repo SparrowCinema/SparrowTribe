@@ -160,7 +160,7 @@ let trBusy=false;async function makeTasteReport(){if(trBusy)return;trBusy=true;t
   showImageSheet(blob,{file:'麻雀观影护照_'+(tasteProg?PG[tasteProg].name+'_':tasteYear?tasteYear+'_':'')+'电影趣味图谱.png',head:'趣味图谱已生成',alt:'趣味图谱长图'});}
  catch(err){console.error(err);toast('图片生成失败，请稍后再试');}finally{trBusy=false;}}
 // A read-only collection: the grid fits the viewport, with vertical page scrolling.
-function sizePosterWall(){const grid=document.querySelector('.pw-grid');if(grid)grid.style.setProperty('--cols',window.SparrowLibrary.posterColumns(innerWidth,innerHeight));}
+function sizePosterWall(){const grid=document.querySelector('.pw-grid');if(grid)grid.style.setProperty('--cols',window.SparrowLibrary.posterColumns(innerWidth,innerHeight));if(typeof PWR!=='undefined'&&PWR&&PWR.el.isConnected){pwrLayout();pwrApply();}}
 window.addEventListener('resize',sizePosterWall);
 let posterMode='year',posterSelection='',posterProgramme='all';
 const POSTER_MODES=[['year','年度海报墙'],['quarter','季度海报墙'],['month','月度海报墙']];
@@ -172,13 +172,97 @@ function posterSelectorRows(type){const all=posterArchive(),lib=window.SparrowLi
 }
 function pwScores(){try{return localStorage.getItem('sparrow-pw-score')!=='0';}catch(e){return true;}} /* 海报墙导出是否画评分（本机记住，默认显示） */
 function wallTitle(){const pid=selList(posterProgramme)[0];return window.SparrowLibrary.posterTitle({en:typeof LANG!=='undefined'&&LANG==='en',holder:typeof holderName==='function'?holderName():'',period:posterSelection,programmeName:pid?(PG[pid]?.name||pid):''});} /* 海报墙导出标题：专题或年/季/月二选一（shared/library.js posterTitle） */
-function posterWallPage(){const all=posterArchive(),lib=window.SparrowLibrary,periods=lib.posterPeriods(all,posterMode);if(!periods.includes(posterSelection))posterSelection=periods[0]||'';const list=lib.posterEntries(all,posterMode,posterSelection,posterProgramme,libraryContext()),cols=lib.posterColumns(innerWidth,innerHeight),title=POSTER_MODES.find(x=>x[0]===posterMode)[1],programmeLabel=selLabel(posterProgramme,'全部专题',id=>PG[id]?.name||id,'个专题'),sub=[posterSelection,posterProgramme!=='all'?selList(posterProgramme).map(id=>PG[id]?.name||id).join('、'):''].filter(Boolean).join(' · ');
+function posterWallPage(){pwrStop();const all=posterArchive(),lib=window.SparrowLibrary,periods=lib.posterPeriods(all,posterMode);if(!periods.includes(posterSelection))posterSelection=periods[0]||'';const list=lib.posterEntries(all,posterMode,posterSelection,posterProgramme,libraryContext()),cols=lib.posterColumns(innerWidth,innerHeight),title=POSTER_MODES.find(x=>x[0]===posterMode)[1],programmeLabel=selLabel(posterProgramme,'全部专题',id=>PG[id]?.name||id,'个专题'),sub=[posterSelection,posterProgramme!=='all'?selList(posterProgramme).map(id=>PG[id]?.name||id).join('、'):''].filter(Boolean).join(' · ');
  const fields=[['programme','专题',programmeLabel,false],['mode','海报墙',tr(title),false],['period','观影时间',posterSelection?lib.posterPeriodLabel(posterSelection,typeof LANG!=='undefined'&&LANG==='en'):'—',!periods.length]];
  main.innerHTML='<section class="view gut poster-wall-page">'+subBackHTML()+'<div class="page-heading"><div><small>MY CINEMA POSTER WALL</small><h2 class="sec">我的影院观影海报墙</h2></div></div>'+
  '<div class="schedule-filterbar poster-wall-filterbar" aria-label="'+tr('海报墙筛选')+'">'+fields.map(([key,label,value,disabled])=>'<button type="button" class="schedule-filter'+(key==='programme'&&posterProgramme!=='all'?' active':'')+'" data-poster-filter="'+key+'" aria-haspopup="dialog" aria-label="'+esc(tr(label)+'：'+tr(value))+'" '+(disabled?'disabled':'')+'><span><small>'+tr(label)+'</small><b>'+esc(tr(value))+'</b></span>'+filterChevron+'</button>').join('')+'</div><div class="pw-actions"><p class="pw-hint pw-count">'+tr(list.length+' 部影片')+((typeof LANG!=='undefined'&&LANG==='en')?', ':'，')+tr('按最近观影排列')+'</p><label class="pw-score-toggle"><input type="checkbox" id="pw-score" '+(pwScores()?'checked':'')+'>'+tr('导出时显示评分')+'</label><button id="pw-export" class="secondary-button" '+(list.length?'':'disabled')+'>'+tr('导出海报墙')+'</button></div>'+
- (list.length?'<p class="pw-hint">'+tr('点击海报查看影片，向下浏览更多。')+'</p><div class="pw-grid" style="--cols:'+cols+'">'+list.map(e=>{const score=e.rec.r?e.rec.r+'/10':tr('未评分');return '<a class="pw-card" href="#film-'+esc(e.id)+'" aria-label="'+esc(e.f.cn+' · '+tr('我的评分')+' '+score)+'"><div class="pw-poster"><span class="pw-placeholder">'+esc(e.f.cn)+'</span>'+(pst(e.id)?pimgMine(e.id,360,'loading="lazy" class="pw-image" alt="'+esc(e.f.cn)+'"'):'')+'</div><span class="pw-stars" role="img" aria-label="'+esc(score)+'">'+[0,1,2,3,4].map(k=>'<u>★<b style="width:'+(Math.max(0,Math.min(2,(e.rec.r||0)-2*k))*50)+'%">★</b></u>').join('')+'</span></a>';}).join('')+'</div>':
+ (list.length?pwViewBarHTML()+(posterView==='ring'?pwRingHTML():'<p class="pw-hint">'+tr('点击海报查看影片，向下浏览更多。')+'</p><div class="pw-grid" style="--cols:'+cols+'">'+list.map(e=>{const score=e.rec.r?e.rec.r+'/10':tr('未评分');return '<a class="pw-card" href="#film-'+esc(e.id)+'" aria-label="'+esc(e.f.cn+' · '+tr('我的评分')+' '+score)+'"><div class="pw-poster"><span class="pw-placeholder">'+esc(e.f.cn)+'</span>'+(pst(e.id)?pimgMine(e.id,360,'loading="lazy" class="pw-image" alt="'+esc(e.f.cn)+'"'):'')+'</div><span class="pw-stars" role="img" aria-label="'+esc(score)+'">'+[0,1,2,3,4].map(k=>'<u>★<b style="width:'+(Math.max(0,Math.min(2,(e.rec.r||0)-2*k))*50)+'%">★</b></u>').join('')+'</span></a>';}).join('')+'</div>'):
  '<div class="empty-plan"><h3>'+tr(posterProgramme==='all'?'海报墙还没有影片':'所选条件下暂无影片')+'</h3><p>'+tr(posterProgramme==='all'?'在影片页标记看过，海报和评分就会收进这里。':'试试其他专题或观影时间。')+'</p><button class="primary-button" data-tab="films">'+tr('去选电影')+'</button></div>')+'</section>';
  const pwBox=main.querySelector('#pw-score');if(pwBox)pwBox.onchange=e=>{try{localStorage.setItem('sparrow-pw-score',e.target.checked?'1':'0');}catch(_){}};
  main.querySelector('#pw-export').onclick=()=>makeRecap({list,...wallTitle(),cols:window.SparrowLibrary.posterColumns(innerWidth,innerHeight),scores:pwBox?pwBox.checked:pwScores()});
  main.querySelectorAll('.pw-image').forEach(img=>img.addEventListener('error',()=>{img.hidden=true;}));
+ main.querySelectorAll('[data-pw-view]').forEach(b=>b.onclick=()=>{if(b.dataset.pwView!==posterView)pwSetView(b.dataset.pwView);});
+ if(list.length&&posterView==='ring')pwrMount(main.querySelector('#pw-ring'),list);
 }
+/* 海报墙「放映」视图（2026-11-25）：同一个 3D 圆环，用两种距离看。
+   近看＝档案：正面一张最大，两侧沿弧线后转，左右拖动转圈，松手吸附到最近一张；旁边资料栏显示片名、导演 / 年份 / 地区和我的评分、观影记录。
+   拉远＝放映环：镜头后退上抬，整圈可见，随手转；点任意一张推近回到档案。
+   圈上最多 PW_RING_MAX 个位置：影片更多时，转到背后的位置换成后面的影片，可以一直转下去。只用 CSS 3D，每帧只改圆环与各面的 transform / opacity。 */
+const PW_RING_MAX=36;
+let posterView=(()=>{try{return localStorage.getItem('sparrow-pw-view')==='ring'?'ring':'grid';}catch(e){return 'grid';}})(),PWR=null;
+function pwSetView(v){posterView=v;try{localStorage.setItem('sparrow-pw-view',v);}catch(e){}posterWallPage();}
+function pwViewBarHTML(){return '<div class="pw-viewbar"><div class="pw-view-seg" role="radiogroup" aria-label="'+esc(tr('海报墙视图'))+'">'+[['grid','网格'],['ring','放映']].map(([v,l])=>'<button type="button" role="radio" data-pw-view="'+v+'" class="'+(posterView===v?'on':'')+'" aria-checked="'+(posterView===v)+'">'+tr(l)+'</button>').join('')+'</div></div>';}
+function pwRingHTML(){return '<div class="pw-ring" id="pw-ring" tabindex="0" role="region" aria-roledescription="carousel" aria-label="'+esc(tr('放映环'))+'"><div class="pw-ring-info" aria-live="polite"></div><div class="pw-ring-stage"><div class="pw-ring-world"></div></div><div class="pw-ring-ctrl"><button type="button" class="pwr-btn" data-pwr="prev" aria-label="'+esc(tr('上一部'))+'">‹</button><span class="pwr-pos mono"></span><button type="button" class="pwr-btn" data-pwr="next" aria-label="'+esc(tr('下一部'))+'">›</button><button type="button" class="pwr-zoom" data-pwr="zoom"></button></div><p class="pw-hint pwr-tip"></p></div>';}
+function pwrStop(){if(PWR&&PWR.raf)cancelAnimationFrame(PWR.raf);PWR=null;}
+const pwrMod=(a,n)=>((a%n)+n)%n, pwrNorm=a=>pwrMod(a+180,360)-180;
+function pwrMount(el,list){if(!el)return;pwrStop();const L=list.length,M=Math.min(L,PW_RING_MAX);
+ const S=PWR={el,stage:el.querySelector('.pw-ring-stage'),world:el.querySelector('.pw-ring-world'),info:el.querySelector('.pw-ring-info'),list,L,M,step:360/M,rot:0,vel:0,target:null,t:0,tT:0,slots:[],front:-1,raf:0,last:0,drag:null,reduce:matchMedia('(prefers-reduced-motion: reduce)').matches};
+ S.world.innerHTML=Array.from({length:M},(_,j)=>'<div class="pwr-face pwr-front" data-slot="'+j+'"></div><div class="pwr-face pwr-back" aria-hidden="true"></div>').join('');
+ const faces=S.world.children;for(let j=0;j<M;j++)S.slots.push({f:faces[2*j],b:faces[2*j+1],idx:-1});
+ el.addEventListener('error',e=>{const img=e.target;if(img&&img.tagName==='IMG'&&!img.dataset.full)img.hidden=true;},true);
+ pwrLayout();pwrBind();pwrApply();pwrInfo(true);}
+function pwrLayout(){const S=PWR;if(!S)return;const w=S.stage.clientWidth||360,h=S.stage.clientHeight||480,narrow=w<600;
+ let W=Math.max(130,Math.min(narrow?w*.52:w*.27,260));W=Math.min(W,h*.7/1.48);const H=W*1.48;
+ S.W=W;S.H=H;S.w=w;S.h=h;S.R=Math.max(W*1.12*S.M/(2*Math.PI),W*.9);S.P=Math.max(900,Math.min(1500,w*1.2));
+ S.gap=W*.96;S.dep=W*.55;S.Dn=S.R;
+ const tilt=18*Math.PI/180;let Df=Math.max(S.R*1.8,2*S.R*S.P/(w*.9)-S.P);
+ for(let k=0;k<20;k++){const sf=S.P/(S.P+Df-S.R),bottom=(S.R*Math.sin(tilt)+H/2*Math.cos(tilt))*sf;if(bottom<=h*.44)break;Df*=1.12;}
+ S.Df=Df;S.stage.style.setProperty('--pwr-w',W+'px');S.stage.style.setProperty('--pwr-h',H+'px');S.stage.style.perspective=S.P+'px';
+ S.slots.forEach((x,j)=>{x.a=j*S.step;});}
+function pwrItemAt(j){const S=PWR,p=S.rot/S.step;return pwrMod(j+S.M*Math.round((p-j)/S.M),S.L);}
+function pwrFace(e,back){const sc=e.rec.r?e.rec.r+'/10':tr('未评分');return '<span class="pwr-ph">'+esc(e.f.cn)+'</span>'+(pst(e.id)?pimgMine(e.id,360,'class="pwr-img" alt="'+(back?'':esc(e.f.cn+' · '+tr('我的评分')+' '+sc))+'" draggable="false" decoding="async"'):'')+'<span class="pwr-shade"></span>';}
+/* 每个位置的位置与朝向在两种布局间插值：近看是弧形排开（两侧往后退、转开角度、彼此叠压），拉远是真正的圆环。 */
+function pwrApply(){const S=PWR;if(!S)return;const t=S.t,D=S.Dn+(S.Df-S.Dn)*t,tilt=-5-13*t,RAD=Math.PI/180;
+ const pv=S.R*(1-t);S.world.style.transform='translateZ('+(pv-D)+'px) rotateX('+tilt+'deg) translateZ('+(-pv)+'px)';
+ for(let j=0;j<S.M;j++){const x=S.slots[j],idx=pwrItemAt(j);
+  if(idx!==x.idx){x.idx=idx;x.f.innerHTML=pwrFace(S.list[idx]);x.f.dataset.idx=idx;x.b.innerHTML=pwrFace(S.list[idx],true);x.sf=x.f.querySelector('.pwr-shade');x.sb=x.b.querySelector('.pwr-shade');}
+  const d=pwrNorm(x.a-S.rot),sN=d/S.step,as=Math.min(Math.abs(sN),6),sg=sN<0?-1:1;
+  const nx=sg*(as<1?as*S.gap:S.gap+(as-1)*S.W*.62),nz=S.R-as*S.dep-(as>1?(as-1)*S.dep*.4:0),ny=sg*Math.min(as*32,55);
+  const rx=S.R*Math.sin(d*RAD),rz=S.R*Math.cos(d*RAD),X=nx+(rx-nx)*t,Z=nz+(rz-nz)*t,Y=ny+(d-ny)*t;
+  const tf='translate3d('+X.toFixed(1)+'px,0,'+Z.toFixed(1)+'px) rotateY('+Y.toFixed(2)+'deg)';
+  x.f.style.transform=tf;x.b.style.transform=tf+' translateZ(-1px) rotateY(180deg)';
+  const vis=Math.max(0,Math.min(1,(4.6-Math.abs(sN))/1.2)),op=vis+(1-vis)*t;
+  x.f.style.opacity=x.b.style.opacity=op.toFixed(3);x.f.style.pointerEvents=op>.3?'':'none';
+  const shade=t<.5?Math.min(.55,as*.16):Math.min(.6,(1-Math.cos(d*RAD))*.32);if(x.sf)x.sf.style.opacity=shade.toFixed(3);if(x.sb)x.sb.style.opacity=(.35+shade*.5).toFixed(3);}
+ pwrInfo(false);}
+function pwrFrontIdx(){const S=PWR;return pwrMod(Math.round(S.rot/S.step),S.L);}
+function pwrInfo(force){const S=PWR;const i=pwrFrontIdx(),far=S.tT>.5;if(!force&&i===S.front&&far===S.far)return;S.front=i;S.far=far;const e=S.list[i],f=e.f,en=typeof LANG!=='undefined'&&LANG==='en';
+ const G=window.SparrowGrowth,n=G?G.views(e.rec).length:1,r=e.rec.r||0;
+ const stars='<span class="pw-stars pwi-stars" role="img" aria-label="'+esc(r?r+'/10':tr('未评分'))+'">'+[0,1,2,3,4].map(k=>'<u>★<b style="width:'+(Math.max(0,Math.min(2,r-2*k))*50)+'%">★</b></u>').join('')+'</span>';
+ const rows=[['导演',f.dir],['年份',f.y],['地区',f.c&&tr(f.c)]].filter(x=>x[1]);
+ const seen=[e.rec.d,e.venue,n>1?(en?'Seen '+n+' times':'看过 '+n+' 次'):''].filter(Boolean).join(' · ');
+ S.info.innerHTML='<div class="pwi-k mono">'+(en?'MY FILM ARCHIVE':'MY FILM ARCHIVE · 观影档案')+'</div><h3 class="pwi-t">'+esc(f.cn)+(f.version?' <small>'+esc(f.version)+'</small>':'')+'</h3>'+(f.en&&f.en!==f.cn?'<div class="pwi-o">'+esc(f.en)+'</div>':'')+
+  '<dl class="pwi-dl">'+rows.map(([k,v])=>'<div><dt>'+tr(k)+'</dt><dd>'+esc(String(v))+'</dd></div>').join('')+'</dl><div class="pwi-me">'+stars+(r?'<b class="mono">'+r+'</b><small>/10</small>':'<small>'+tr('未评分')+'</small>')+'</div><div class="pwi-seen">'+esc(seen)+'</div>';
+ S.el.querySelector('.pwr-pos').textContent=(i+1)+' / '+S.L;
+ S.el.querySelector('.pwr-zoom').textContent=tr(far?'近看':'全景');
+ S.el.querySelector('.pwr-tip').textContent=tr(far?'点任意一张拉近查看':'左右拖动转动，点正面的海报查看影片');
+ S.el.classList.toggle('far',far);}
+function pwrFrame(now){const S=PWR;if(!S||!S.el.isConnected){PWR=null;return;}const dt=Math.min(3,(now-(S.last||now))/16.67)||1;S.last=now;
+ if(!S.drag){if(S.target!=null){const d=S.target-S.rot;S.rot+=d*(1-Math.pow(.84,dt));if(Math.abs(d)<.03){S.rot=S.target;S.target=null;}}
+  else if(S.vel){S.rot+=S.vel*dt;S.vel*=Math.pow(.95,dt);if(Math.abs(S.vel)<.04)S.vel=0;}}
+ const dT=S.tT-S.t;S.t+=dT*(1-Math.pow(.88,dt));if(Math.abs(dT)<.002)S.t=S.tT;
+ pwrApply();S.raf=(S.drag||S.target!=null||S.vel||S.t!==S.tT)?requestAnimationFrame(pwrFrame):0;if(!S.raf)S.last=0;}
+function pwrKick(){const S=PWR;if(!S)return;if(S.reduce){if(S.target!=null){S.rot=S.target;S.target=null;}S.vel=0;S.t=S.tT;pwrApply();return;}if(!S.raf)S.raf=requestAnimationFrame(pwrFrame);}
+function pwrGo(deg){const S=PWR;S.vel=0;S.target=deg;pwrKick();}
+function pwrStepBy(d){const S=PWR;const base=S.target!=null?S.target:S.rot;pwrGo((Math.round(base/S.step)+d)*S.step);}
+function pwrZoom(far){const S=PWR;S.tT=far?1:0;if(!far)S.target=Math.round((S.target!=null?S.target:S.rot+S.vel*20)/S.step)*S.step,S.vel=0;pwrInfo(true);pwrKick();}
+function pwrOpen(i){location.hash='#film-'+PWR.list[i].id;}
+function pwrBind(){const S=PWR,st=S.stage,pts=new Map();
+ st.addEventListener('pointerdown',e=>{if(e.button>0)return;pts.set(e.pointerId,{x:e.clientX,y:e.clientY});
+  if(pts.size===2){const [a,b]=[...pts.values()];S.pinch=Math.hypot(a.x-b.x,a.y-b.y);S.drag=null;return;}
+  S.drag={id:e.pointerId,x:e.clientX,y:e.clientY,rot:S.rot,moved:false,slot:e.target.closest('[data-slot]'),hist:[[performance.now(),S.rot]]};S.target=null;S.vel=0;});
+ st.addEventListener('pointermove',e=>{if(!pts.has(e.pointerId))return;pts.set(e.pointerId,{x:e.clientX,y:e.clientY});
+  if(pts.size===2&&S.pinch){const [a,b]=[...pts.values()],d=Math.hypot(a.x-b.x,a.y-b.y);if(d<S.pinch*.82){S.pinch=0;pwrZoom(true);}else if(d>S.pinch*1.2){S.pinch=0;pwrZoom(false);}return;}
+  const g=S.drag;if(!g||g.id!==e.pointerId)return;const dx=e.clientX-g.x,dy=e.clientY-g.y;
+  if(!g.moved){if(Math.abs(dx)<7)return;if(Math.abs(dy)>Math.abs(dx)){S.drag=null;return;}g.moved=true;st.classList.add('drag');try{st.setPointerCapture(e.pointerId);}catch(_){}}
+  e.preventDefault();const k=S.t>.5?360/(S.w*1.4):S.step/S.gap;S.rot=g.rot-dx*k;const now=performance.now();g.hist.push([now,S.rot]);while(g.hist.length>2&&now-g.hist[0][0]>100)g.hist.shift();pwrApply();});
+ const end=e=>{pts.delete(e.pointerId);if(pts.size<2)S.pinch=0;const g=S.drag;if(!g||g.id!==e.pointerId)return;S.drag=null;st.classList.remove('drag');
+  if(!g.moved){if(e.type==='pointercancel'||!g.slot)return;const j=+g.slot.dataset.slot,x=S.slots[j];
+   if(S.t>.5||S.tT>.5){S.tT=0;pwrGo(S.rot+pwrNorm(x.a-S.rot));pwrInfo(true);return;}
+   if(x.idx===pwrFrontIdx()&&Math.abs(pwrNorm(x.a-S.rot))<S.step/2)pwrOpen(x.idx);else pwrGo(S.rot+pwrNorm(x.a-S.rot));return;}
+  const h=g.hist,a=h[0],b=h[h.length-1],v=b[0]>a[0]?(b[1]-a[1])/(b[0]-a[0])*16.67:0,cap=S.t>.5?12:S.step*1.6,vel=Math.max(-cap,Math.min(cap,v));
+  if(S.tT>.5){S.vel=S.reduce?0:vel;pwrKick();}else pwrGo(Math.round((S.rot+vel*(S.reduce?0:18))/S.step)*S.step);};
+ st.addEventListener('pointerup',end);st.addEventListener('pointercancel',end);
+ st.addEventListener('click',e=>{if(e.target.closest('a'))e.preventDefault();});
+ S.el.addEventListener('click',e=>{const b=e.target.closest('[data-pwr]');if(!b)return;const a=b.dataset.pwr;if(a==='prev')pwrStepBy(-1);else if(a==='next')pwrStepBy(1);else pwrZoom(S.tT<.5);});
+ S.el.addEventListener('keydown',e=>{if(e.target.closest('button')&&e.key==='Enter')return;if(e.key==='ArrowLeft'){e.preventDefault();pwrStepBy(-1);}else if(e.key==='ArrowRight'){e.preventDefault();pwrStepBy(1);}else if(e.key==='Enter'&&e.target===S.el){pwrOpen(pwrFrontIdx());}});}
