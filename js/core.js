@@ -46,21 +46,24 @@ const inProg = x => selHas(pfilt,x.p);
 /* 时间：?now=2026-11-07T15:00 可模拟当前时间，便于检查“已放映 / 已结束”的显示 */
 const NOW_OVERRIDE = (()=>{try{const q=new URLSearchParams(location.search).get("now");const t=q?Date.parse(q):NaN;return isNaN(t)?null:t;}catch{return null;}})();
 const now = () => NOW_OVERRIDE ?? Date.now();
-const ymd = v => { const [y,m,d]=String(v).split("-").map(Number); return new Date(y,(m||1)-1,d||1).getTime(); };
+const tzOfShow = s => SparrowTZ.tzOf(s, VN, PG);
+const progTzOf = p => SparrowTZ.progTz(p, VN, progShows(p.id));
+const showIso = s => SparrowTZ.showIso(s);
+const ymd = (v, tz) => SparrowTZ.ymdMs(v, tz || SparrowTZ.DEFAULT_TZ);
 const showEnd = s => showDate(s).getTime()+durationOf(s)*60000;
 const isPast = s => showEnd(s) < now();
 const STATUS = {live:"进行中", soon:"即将开始", ended:"已结束"};
-function progRange(p){ const sh=progShows(p.id); const a=p.start?ymd(p.start):(sh.length?showDate(sh[0]).getTime():null); const b=p.end?ymd(p.end)+864e5:(sh.length?Math.max(...sh.map(showEnd)):null); return [a,b]; }
+function progRange(p){ const sh=progShows(p.id), tz=progTzOf(p); const a=p.start?ymd(p.start,tz):(sh.length?showDate(sh[0]).getTime():null); const b=p.end?ymd(p.end,tz)+864e5:(sh.length?Math.max(...sh.map(showEnd)):null); return [a,b]; }
 /* 常设专题（catalog 中 ongoing:true，如麻雀部落电影空间）：开始后一直算进行中，不进入往期 */
 /* 提前结束：结束日前 2 天内（含结束日当天），已公布的场次全部散场，就算已结束——不必等到结束日 24:00（如 2026德国电影展最后一场 11/22，结束日写 11/23）。院线专题不录全部场次，不提前结束。 */
 const PROG_EARLY=2*864e5;
-function progDone(p,t){ if(p.ongoing||!p.end||p.kind==="院线") return false; const sh=progShows(p.id); return sh.length>0&&t>=ymd(p.end)-PROG_EARLY&&sh.every(isPast); }
+function progDone(p,t){ if(p.ongoing||!p.end||p.kind==="院线") return false; const sh=progShows(p.id); return sh.length>0&&t>=ymd(p.end,progTzOf(p))-PROG_EARLY&&sh.every(isPast); }
 /* 院线片自动下映：出现在院线专题（kind 院线，本籍或 members / sections 挂进来的都算）里的影片，release 里的上映日期（「YYYY年M月D日」）已过、又没有待映场次时，视为已下映（等同手写 ended:true），专题页、片目归入已结束：
    录入过的场次已全部放完 → 马上算；一场都没录过 → 上映满 RUN_DAYS 天才算。没写具体上映日的不处理；之后补了新场次会自动回到即将放映。 */
 const RUN_DAYS=30;
 function autoEnded(f,shows,t){ if(f.ended||f.ev) return false;
   if(!PROGRAMMES.some(p=>p.kind==="院线"&&(f.prog===p.id||p.members?.includes(f.id)||p.sections?.[f.id]))) return false;
-  const m=String(f.releaseZh||f.release||"").match(/(\d{4})年(\d{1,2})月(\d{1,2})日/); if(!m) return false; const rel=new Date(+m[1],m[2]-1,+m[3]).getTime(); if(t<rel) return false;
+  const m=String(f.releaseZh||f.release||"").match(/(\d{4})年(\d{1,2})月(\d{1,2})日/); if(!m) return false; const rel=SparrowTZ.zonedMs(+m[1],+m[2],+m[3],0,0,SparrowTZ.DEFAULT_TZ); if(t<rel) return false;
   const mine=shows.filter(s=>s.id===f.id); if(mine.some(s=>!isPast(s))) return false;
   return mine.length>0||t>=rel+RUN_DAYS*864e5; }
 function progStatus(p){ const [a,b]=progRange(p), t=now(); if(a!=null&&t<a) return "soon"; if(!p.ongoing&&b!=null&&t>=b) return "ended"; if(progDone(p,t)) return "ended"; return "live"; }
@@ -117,8 +120,8 @@ document.addEventListener('error',e=>{const t=e.target;if(t&&t.tagName==='IMG'&&
 const minText = f => f.minTbd ? "片长待定" : f.min+" 分钟";
 const slateHTML = f => pst(f.id) ? `<span class="slate has" style="background:${REG[f.reg].c}">${pimg(f.id,360,`alt="${esc(f.cn)} 海报" loading="lazy"`)}</span>` : `<span class="slate" style="background:${REG[f.reg].c}"><b>${esc(f.cn[0])}</b><span>${f.y}</span></span>`;
 const WK = ["周日","周一","周二","周三","周四","周五","周六"];
-const year = (d, explicit) => Number.isInteger(+explicit) && +explicit >= 1888 && +explicit <= 2200 ? +explicit : (+d.split("/")[0] >= 10 ? 2026 : 2027);
-const wk = d => { const [m,dd]=d.split("/").map(Number); return WK[new Date(year(d),m-1,dd).getDay()]; };
+const year = (d, explicit) => SparrowTZ.yearOf(d, explicit);
+const wk = (d, explicit) => WK[SparrowTZ.weekday(d, explicit)];
 const toMin = t => { const [h,m]=t.split(":").map(Number); return h*60+m; };
 const fmt = m => String(Math.floor(m/60)).padStart(2,"0")+":"+String(m%60).padStart(2,"0");
 const esc = s => String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]));

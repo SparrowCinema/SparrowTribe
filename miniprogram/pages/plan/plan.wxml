@@ -2,6 +2,37 @@
 <wxs src="../../utils/l.wxs" module="L" />
 <view class="wrap">
  <view wx:if="{{planSelectorOpen}}" class="selector-mask" catchtouchmove="noop" catchtap="closePlanSelector"><view class="selector-panel" catchtap="noop"><view class="selector-head"><text>{{L.t(i,'选择专题')}}</text><text bindtap="closePlanSelector">×</text></view><input class="selector-search" placeholder="{{L.t(i,'搜索专题')}}" value="{{planQuery}}" bindinput="searchPlanSelector"/><scroll-view scroll-y class="selector-results"><view wx:for="{{planOptions}}" wx:key="id" data-id="{{item.id}}" bindtap="choosePlanScope" class="selector-option"><view><text class="b">{{item.n}}</text><text class="small">{{item.lab}}</text></view><text class="selector-check box {{item.selected?'on':''}}">{{item.selected?'✓':''}}</text></view><view wx:if="{{!planOptions.length}}" class="small">{{L.t(i,'没有匹配的专题')}}</view></scroll-view><view class="selector-foot"><text>{{L.t(i,'可多选')}}</text><view class="selector-done" bindtap="closePlanSelector">{{L.t(i,'完成')}}</view></view></view></view>
+ <view wx:if="{{smartOpen}}" class="selector-mask" catchtouchmove="noop" catchtap="closeSmartPlan">
+   <view class="selector-panel smart-panel" catchtap="noop">
+     <view class="selector-head"><text>{{L.t(i,'想看一键排片建议')}}</text><text bindtap="closeSmartPlan">×</text></view>
+     <view wx:if="{{smartEmpty}}" class="sp-empty">
+       <text class="small">{{L.t(i,'你的「想看」清单还是空的。在影片页点「☆ 想看」收藏几部想看的电影，这里就能自动为你避开冲突、排出一份行程建议。')}}</text>
+       <view class="btn sp-go" bindtap="toFilms">{{L.t(i,'去片目挑电影')}}</view>
+     </view>
+     <block wx:else>
+       <view class="sp-summary"><text>{{smartSummary}}</text><text class="small">{{L.t(i,'已选排片保持不变，可取消勾选不需要的场次。')}}</text></view>
+       <scroll-view scroll-y class="selector-results">
+         <view wx:for="{{smartPicks}}" wx:key="key" data-key="{{item.key}}" bindtap="smartToggle" class="selector-option sp-opt">
+           <view class="sp-info">
+             <text class="b">{{item.title}}<text wx:if="{{item.ver}}" class="pg-ver"> {{item.ver}}</text></text>
+             <text class="small">{{item.when}} · {{item.place}}</text>
+             <view wx:if="{{item.tags.length}}" class="sp-tags"><text wx:for="{{item.tags}}" wx:for-item="tg" wx:key="txt" class="sp-tag {{tg.warn?'warn':''}}">{{tg.txt}}</text></view>
+           </view>
+           <text class="selector-check box {{item.selected?'on':''}}">{{item.selected?'✓':''}}</text>
+         </view>
+         <view wx:if="{{!smartPicks.length}}" class="small sp-none">{{L.t(i,'想看清单里的影片暂时没有可无冲突排入的新场次。')}}</view>
+         <view wx:if="{{smartUnsched.length}}" class="sp-unsched">
+           <text class="sp-uh">{{L.t(i,'未能排入')}} ({{smartUnsched.length}})</text>
+           <view wx:for="{{smartUnsched}}" wx:key="filmId" class="sp-urow"><text class="sp-ut">{{item.title}}</text><text class="small">{{item.reason}}</text></view>
+         </view>
+       </scroll-view>
+       <view class="selector-foot">
+         <text>{{L.t(i,'已选')}} {{smartSelCount}} {{L.t(i,'场')}}</text>
+         <view class="selector-done {{smartSelCount?'':'off'}}" bindtap="smartApply">{{smartSelCount ? L.t(i,'加入所选') : L.t(i,'关闭')}}</view>
+       </view>
+     </block>
+   </view>
+ </view>
 
   <view id="plan" class="blockh">{{L.t(i,'个人排片')}} <text class="en">MY PLAN</text></view>
   <view wx:if="{{moved.length}}" class="plan-gone plan-moved">
@@ -37,6 +68,7 @@
     <text class="et">{{L.t(i,'还没有加入场次')}}</text>
     <text class="es">{{L.t(i,'在排片表或影片页点「加入排片」')}}</text>
     <view class="btn" bindtap="toSchedule">{{L.t(i,'去选电影')}}</view>
+    <view wx:if="{{wantN}}" class="btn ghost sp-empty-btn" bindtap="openSmartPlan">✦ {{smartBtnTxt}}</view>
   </view>
 
   <block wx:else>
@@ -48,12 +80,25 @@
     <view id="plan-tools" class="tools">
       <view class="btn" hover-class="hv" bindtap="makeImage">{{L.t(i,'生成长图')}}</view>
       <view class="btn ghost" hover-class="hv" bindtap="addAllCalendar">{{L.t(i,'排片表批量导入日历')}}</view>
+      <view class="btn ghost sp-tool" hover-class="hv" bindtap="openSmartPlan">✦ {{smartBtnTxt}}</view>
       <button class="btn ghost" open-type="share">{{L.t(i,'分享给朋友')}}</button>
       <view class="btn ghost" bindtap="toSchedule">{{L.t(i,'继续选片')}}</view>
       <view class="clear" bindtap="clear">{{L.t(i,'清空')}}</view>
     </view>
     <view wx:if="{{pfEmpty}}" class="pf-empty card"><text class="b">{{L.t(i,'这个专题还没有加入场次')}}</text><text class="muted small">{{L.t(i,'切换到「全部专题」，或去排片表挑选。')}}</text></view>
-    <view wx:if="{{clash}}" class="conflict"><text class="b">{{clashTxt}}</text>{{L.t(i,'，已在日程中标红，移出其中一场即可。')}}</view>
+    <view wx:if="{{clash}}" class="conflict">
+      <text class="b">{{clashTxt}}</text>{{L.t(i,'，已在日程中标红，可一键换场或移出其中一场。')}}
+      <view wx:if="{{swaps.length}}" class="ps-wrap">
+        <text class="ps-lab">{{L.t(i,'可一键换成无冲突场次')}}</text>
+        <view wx:for="{{swaps}}" wx:key="fromKey" class="ps-item">
+          <text class="ps-h">{{item.title}} <text class="small">{{L.t(i,'当前')}} {{item.cur}}</text></text>
+          <view wx:for="{{item.alts}}" wx:for-item="a" wx:key="to" class="pg-alt ps-alt" hover-class="hv" bindtap="conflictSwap" data-from="{{item.fromKey}}" data-to="{{a.to}}">
+            <view class="ps-at"><text>{{a.txt}}</text><text wx:if="{{a.tag}}" class="ps-tag">{{a.tag}}</text></view>
+            <text class="pg-plus">⇄</text>
+          </view>
+        </view>
+      </view>
+    </view>
     <view wx:for="{{days}}" wx:for-item="day" wx:key="d" class="day">
       <view class="dh"><text class="dd mono">{{day.y}}/{{day.d}}</text><text class="dw">{{day.wk}}</text><text class="dr">{{day.cnt}} · {{day.range}}</text></view>
       <block wx:for="{{day.items}}" wx:key="key">
@@ -74,7 +119,7 @@
       </block>
     </view>
     <canvas type="2d" id="poster" class="poster-cv" />
-    <view class="note">{{L.t(i,'散场时间按片长计算，不含映前广告与映后交流。跨影院观影请另留交通时间。')}}</view>
+    <view class="note">{{L.t(i,'散场时间按片长计算；含映后活动的场次已按约 30 分钟纳入转场提醒，跨影院用时按距离估算。')}}</view>
   </block>
 
   <view class="makers">

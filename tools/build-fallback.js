@@ -13,6 +13,9 @@ const { data, kept, dropped, allFilmIds } = build({ minimal: true, today: TODAY 
 const { films, programmes } = data;
 console.log('fallback date', data.fallbackDate, 'kept (ongoing only):', kept.join(', ') || '(none)', '· dropped', dropped.length, 'programmes');
 fs.copyFileSync(path.join(root,'shared/screenings.js'),path.join(root,'miniprogram/utils/screenings.js'));
+fs.copyFileSync(path.join(root,'shared/tz.js'),path.join(root,'miniprogram/utils/tz.js'));
+fs.copyFileSync(path.join(root,'shared/tz.js'),path.join(root,'cloudfunctions/remind/tz.js'));
+fs.copyFileSync(path.join(root,'shared/planner.js'),path.join(root,'miniprogram/utils/planner.js'));
 fs.writeFileSync(OUT, '/* 本地内置数据（最小兜底，只含常设专题）：云函数和本机缓存都没有时使用。由 tools/build-fallback.js 从网站 data/ 生成。 */\nmodule.exports = ' + JSON.stringify(data) + ';\n');
 console.log('films', films.length, 'shows', data.shows.length, 'venues', data.venues.length, 'programmes', programmes.length);
 

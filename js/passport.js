@@ -10,8 +10,8 @@ function migrateAliases(al){let ch=false;Object.entries(al||{}).forEach(([o,n])=
 function saveWatched(){try{localStorage.setItem(WATCH_KEY,JSON.stringify(watched));if(typeof tasteChanged==='function')tasteChanged();}catch{toast('当前浏览器无法保存，离开页面后可能丢失');}}
 const isoOf=d=>d.getFullYear()+'-'+pad2(d.getMonth()+1)+'-'+pad2(d.getDate());
 // 默认观影日期：优先已放映的「个人排片」场次，其次本片最近一场已放映场次，否则今天
-function watchGuess(id){const past=SH.filter(s=>s.id===id&&isPast(s)),mine=past.filter(s=>picked.has(keyOf(s))),s=(mine.length?mine:past).slice(-1)[0];return s?{d:isoOf(showDate(s)),k:keyOf(s)}:{d:isoOf(new Date(now())),k:''};}
-function watchShow(rec){const k=rec&&rec.k&&resolveKey(rec.k),s=k&&SH.find(x=>keyOf(x)===k);return s&&isoOf(showDate(s))===rec.d?s:null;}
+function watchGuess(id){const past=SH.filter(s=>s.id===id&&isPast(s)),mine=past.filter(s=>picked.has(keyOf(s))),s=(mine.length?mine:past).slice(-1)[0];return s?{d:showIso(s),k:keyOf(s)}:{d:isoOf(new Date(now())),k:''};}
+function watchShow(rec){const k=rec&&rec.k&&resolveKey(rec.k),s=k&&SH.find(x=>keyOf(x)===k);return s&&showIso(s)===rec.d?s:null;}
 function watchEntries(){return Object.keys(watched).filter(id=>F[id]&&watched[id]&&!watched[id].del&&watched[id].d).map(id=>{const rec=watched[id],s=watchShow(rec);return {id,f:F[id],rec,s,venue:s?vShort(VN[s.v]):''};})
   .sort((a,b)=>a.rec.d.localeCompare(b.rec.d)||(a.s&&b.s?showDate(a.s)-showDate(b.s):0)||a.id.localeCompare(b.id));}
 /* ===== 想看（2026-11-16）=====
@@ -61,7 +61,7 @@ function fmtOptionsHTML(cur){const G=window.SparrowGrowth;if(!G)return '';const 
   return '<option value="">'+ppV('未填写','Not set')+'</option>'+(pl=>G.FORMAT_GROUPS.map(g=>pl.some(x=>x.group===g.id)?'<optgroup label="'+(en?g.en:g.zh)+'">'+pl.filter(x=>x.group===g.id).map(x=>'<option value="'+x.id+'"'+(x.id===cur?' selected':'')+'>'+(en?x.en:x.zh)+'</option>').join('')+'</optgroup>':'').join(''))(G.pickList(cur));}
 const MR_DD='<svg class="mr-dd" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
 // —— 观影日记：每次观影一行（新→旧），点一行或「再看一次」打开底部编辑弹层 ——
-function lgShowLabel(s){return esc(showDate(s).getMonth()+1+'.'+pad2(showDate(s).getDate()))+' '+s.t+' · '+esc(vShort(VN[s.v]));}
+function lgShowLabel(s){const md=s.d.split('/');return esc(+md[0]+'.'+pad2(md[1]))+' '+s.t+' · '+esc(vShort(VN[s.v]));}
 const DY_SHOW=3,DY_OPEN={}; // 观影日记折叠：默认只显示最近 3 次，展开状态仅保存在本次页面内存
 function lgRowsHTML(f,rec){const G=window.SparrowGrowth,vs=G.views(rec),n=vs.length,id=f.id;
   const rowsAll=vs.map((v,i)=>({v,i})).reverse().map(({v,i})=>{const s=v.k&&SH.find(x=>keyOf(x)===v.k),fv=v.f&&fmtName(v.f),
@@ -75,7 +75,7 @@ function lgRowsHTML(f,rec){const G=window.SparrowGrowth,vs=G.views(rec),n=vs.len
     '<button type="button" class="dy-add" data-lg="new" data-id="'+id+'">＋ '+ppV('再看一次','Log another viewing')+'</button>';}
 let LG=null; // 弹层草稿 {id,i,isNew,d,k,f,r}
 function lgPast(id){return SH.filter(x=>x.id===id&&isPast(x)).sort((a,b)=>showDate(b)-showDate(a));}
-function lgLink(id,d,k){const past=lgPast(id);if(k){const s=past.find(x=>keyOf(x)===k);if(s&&isoOf(showDate(s))===d)return k;}const s=past.find(x=>isoOf(showDate(x))===d);return s?keyOf(s):'';}
+function lgLink(id,d,k){const past=lgPast(id);if(k){const s=past.find(x=>keyOf(x)===k);if(s&&showIso(s)===d)return k;}const s=past.find(x=>showIso(x)===d);return s?keyOf(s):'';}
 function lgBodyHTML(){const G=window.SparrowGrowth,o=LG,past=lgPast(o.id),dl=ppV('观影日期','Date seen'),sl=ppV('放映场次','Screening'),fl=ppV('放映版本','Format'),
   s=o.k&&SH.find(x=>keyOf(x)===o.k),fv=o.f&&fmtName(o.f);
   return '<div class="mr-list dy-form">'+
@@ -122,7 +122,7 @@ document.addEventListener('click',e=>{
 });
 document.addEventListener('change',e=>{const c=e.target.closest('[data-lg-f]');if(!c||!LG)return;const k=c.dataset.lgF;
   if(k==='d'){if(!/^\d{4}-\d{2}-\d{2}$/.test(c.value))return;LG.d=c.value;LG.k=lgLink(LG.id,LG.d,LG.k);}
-  else if(k==='k'){LG.k=c.value;const s=c.value&&SH.find(x=>keyOf(x)===c.value);if(s)LG.d=isoOf(showDate(s));}
+  else if(k==='k'){LG.k=c.value;const s=c.value&&SH.find(x=>keyOf(x)===c.value);if(s)LG.d=showIso(s);}
   else if(k==='f'){const G=window.SparrowGrowth;LG.f=c.value&&G&&G.FMT[c.value]?c.value:'';}
   lgPaint();});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&LG)lgClose();});

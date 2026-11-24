@@ -5,6 +5,7 @@ const plan = require('../../utils/plan.js');
 const PC = require('../../utils/planchange.js');
 const poster = require('../../utils/poster.js');
 const W = require('../../utils/watched.js');
+const Want = require('../../utils/want.js');
 const I = require('../../utils/i18n.js');
 const Lib = require('../../utils/library.js');
 const Stats = require('../../utils/stats.js');
@@ -17,12 +18,67 @@ const app = getApp();
 Page({
   onPageScroll(e) { T.scroll(this, e); },
   toTop() { T.go(); },
-  data: { i: {}, planSelectorOpen: false, planQuery: '', planOptions: [], stats: {}, days: [], clash: 0, empty: true, pf: 'all', progs: [], moved: [], gone: [] },
-  onLoad(q) { this.to = q && q.to; this.setData({ i: I.dict() }); this.off1 = plan.onChange(() => this.build()); this.off2 = app.onData(() => this.build()); },
-  onUnload() { this.off1 && this.off1(); this.off2 && this.off2(); },
+  data: { i: {}, planSelectorOpen: false, planQuery: '', planOptions: [], stats: {}, days: [], clash: 0, swaps: [], wantN: 0, wantReady: 0, smartOpen: false, smartEmpty: false, smartSummary: '', smartPicks: [], smartUnsched: [], smartSelCount: 0, empty: true, pf: 'all', progs: [], moved: [], gone: [] },
+  onLoad(q) { this.to = q && q.to; this.setData({ i: I.dict() }); this.off1 = plan.onChange(() => this.build()); this.off2 = app.onData(() => this.build()); this.off3 = Want.onChange(() => this.build()); },
+  onUnload() { this.off1 && this.off1(); this.off2 && this.off2(); this.off3 && this.off3(); },
   goneSwap(e) { const d = e.currentTarget.dataset; PC.swap(d.k, d.to); wx.showToast({ title: t('已换成新场次'), icon: 'none' }); this.build(); },
   goneOk(e) { PC.dismiss(e.currentTarget.dataset.k); this.build(); },
   movedOk(e) { PC.movedOk(e.currentTarget.dataset.k); this.build(); },
+  conflictSwap(e) {
+    const d = e.currentTarget.dataset;
+    if (!d.from || !d.to) return;
+    plan.remove(d.from); plan.add(d.to);
+    wx.showToast({ title: t('已换成无冲突场次'), icon: 'none' });
+    this.build();
+  },
+  openSmartPlan() {
+    const data = app.globalData.data, idx = U.index(data), en = I.isEn();
+    const wantIds = data.films.filter(f => Want.isOn(f.id)).map(f => f.id);
+    if (!wantIds.length) {
+      this.setData({ smartOpen: true, smartEmpty: true, smartPicks: [], smartUnsched: [], smartSelCount: 0, smartSummary: '' });
+      return;
+    }
+    const picked = plan.get();
+    const existing = data.shows.filter(s => idx.F[s.id] && picked.has(U.keyOf(s))).sort((a, b) => U.showDate(a, idx) - U.showDate(b, idx));
+    const ctx = U.plannerCtx(idx, { preferredCity: U.homeCity(data) });
+    const res = U.Planner.suggestPlan(wantIds, existing, data.shows.filter(s => idx.F[s.id]), ctx);
+    const reasonText = r => r === 'no_upcoming' ? t('暂无待映场次') : r === 'all_conflict' ? t('与你已有排片全部冲突') : t('与其他推荐场次时间冲突');
+    const picks = res.picks.map(p => {
+      const f = idx.F[p.filmId], s = p.show, st = U.toMin(s.t);
+      return {
+        key: p.key, filmId: p.filmId, title: f ? f.cn : p.filmId, ver: f ? t(f.version || '') : '',
+        when: s.d + ' ' + U.wk(s.d, s.year) + ' ' + s.t + ' – ' + U.fmt(st + U.durationOf(s, idx)),
+        place: idx.venueName(s) + ' · ' + idx.hallName(s),
+        tags: p.tags.map(tg => ({ txt: t(tg), warn: tg.indexOf('偏紧') >= 0 })),
+        selected: true
+      };
+    });
+    const unsched = res.unscheduled.map(u => ({ filmId: u.filmId, title: (idx.F[u.filmId] || {}).cn || u.filmId, reason: reasonText(u.reason) }));
+    const summary = picks.length
+      ? (en ? 'Suggested ' + picks.length + ' conflict-free screenings from ' + res.stats.wantTotal + ' wanted films' : '从 ' + res.stats.wantTotal + ' 部想看影片中，为你排入 ' + picks.length + ' 场无冲突放映')
+        + (res.stats.alreadyCount ? (en ? ' (' + res.stats.alreadyCount + ' already planned)' : '（另有 ' + res.stats.alreadyCount + ' 部已在排片中）') : '')
+      : (res.stats.alreadyCount ? (en ? 'All ' + res.stats.alreadyCount + ' wanted films are already in your plan.' : '你想看的 ' + res.stats.alreadyCount + ' 部影片都已经在个人排片里了。') : t('目前没有能避开冲突排入的新场次。'));
+    this.setData({ smartOpen: true, smartEmpty: false, smartSummary: summary, smartPicks: picks, smartUnsched: unsched, smartSelCount: picks.length });
+  },
+  closeSmartPlan() { this.setData({ smartOpen: false }); },
+  smartToggle(e) {
+    const k = e.currentTarget.dataset.key;
+    const picks = this.data.smartPicks.map(p => p.key === k ? Object.assign({}, p, { selected: !p.selected }) : p);
+    this.setData({ smartPicks: picks, smartSelCount: picks.filter(p => p.selected).length });
+  },
+  smartApply() {
+    const chosen = this.data.smartPicks.filter(p => p.selected);
+    let added = 0;
+    const picked = plan.get();
+    chosen.forEach(p => { if (!picked.has(p.key)) { plan.add(p.key); added++; } });
+    this.setData({ smartOpen: false });
+    if (added) {
+      Stats.stat('plan_add', 'smart_suggest');
+      wx.showToast({ title: I.isEn() ? 'Added ' + added + ' screenings' : '已加入 ' + added + ' 场到个人排片', icon: 'none' });
+      this.build();
+    }
+  },
+  toFilms() { this.setData({ smartOpen: false }); wx.switchTab({ url: '/pages/films/films' }); },
   onShow() { Stats.stat('pv', 'plan'); wx.setNavigationBarTitle({ title: t('个人排片') }); this.build(); Remind.refresh(() => this.build()); },
   // 开场提醒（微信订阅消息）：未开启时请求订阅；已开启时可关闭
   remindTap(e) {
@@ -39,19 +95,21 @@ Page({
   openMap(e) { const v = app.globalData.data.venues.find(x => x.id === e.currentTarget.dataset.v); if (v) U.openMap(v); },
 
   build() {
-    const data = app.globalData.data, idx = U.index(data), picked = plan.get();
+    const data = app.globalData.data, idx = U.index(data), picked = plan.get(), en = I.isEn();
     { // 场次变更：已选但最新排片里找不到的场次（规则见 utils/planchange.js）
-      const en = I.isEn(), place = (v, h) => { const vn = idx.VN[v], hl = vn && vn.halls.find(x => x.id === h); return vn ? W.vShort(vn) + (hl ? ' ' + hl.name : '') : ''; };
+      const place = (v, h) => { const vn = idx.VN[v], hl = vn && vn.halls.find(x => x.id === h); return vn ? W.vShort(vn) + (hl ? ' ' + hl.name : '') : ''; };
       PC.track(data);
       this.setData({ gone: PC.list(data).map(g => { const f = idx.F[g.f]; return { k: g.k, title: f ? f.cn : t('原场次'), ver: f ? t(f.version || '') : '', cancel: !!g.cancel, was: g.d + ' ' + t(U.wk(g.d)) + ' ' + g.t + ' · ' + place(g.v, g.h),
-        alts: g.alts.map(s => ({ to: U.keyOf(s), txt: t('换成') + ' ' + s.d + ' ' + t(U.wk(s.d)) + ' ' + s.t + ' · ' + place(s.v, s.h) })) }; }),
+        alts: g.alts.map(s => ({ to: U.keyOf(s), txt: t('换成') + ' ' + s.d + ' ' + t(U.wk(s.d, s.year)) + ' ' + s.t + ' · ' + place(s.v, s.h) })) }; }),
         goneHead: (n => en ? n + (n === 1 ? ' screening in your plan changed' : ' screenings in your plan changed') : n + ' 场排片有变动')(PC.list(data).length) });
       const mv = PC.moved(data);
-      this.setData({ moved: mv.map(g => ({ k: g.k, title: (idx.F[g.f] || {}).cn || '', ver: t((idx.F[g.f] || {}).version || ''), was: g.d + ' ' + t(U.wk(g.d)) + ' ' + g.t + ' · ' + place(g.v, g.h), now: g.s.d + ' ' + t(U.wk(g.s.d)) + ' ' + g.s.t + ' · ' + place(g.s.v, g.s.h) })),
+      this.setData({ moved: mv.map(g => ({ k: g.k, title: (idx.F[g.f] || {}).cn || '', ver: t((idx.F[g.f] || {}).version || ''), was: g.d + ' ' + t(U.wk(g.d)) + ' ' + g.t + ' · ' + place(g.v, g.h), now: g.s.d + ' ' + t(U.wk(g.s.d, g.s.year)) + ' ' + g.s.t + ' · ' + place(g.s.v, g.s.h) })),
         movedHead: en ? mv.length + (mv.length === 1 ? ' screening in your plan was updated to the new schedule' : ' screenings in your plan were updated to the new schedule') : mv.length + ' 场排片已按最新排片更新' });
     }
-    const all = data.shows.filter(s => idx.F[s.id] && picked.has(U.keyOf(s))).sort((a, b) => U.showDate(a) - U.showDate(b));
-    // 专题筛选：只列出个人排片里有场次的专题；选中的专题已无场次时回到「全部」
+    const all = data.shows.filter(s => idx.F[s.id] && picked.has(U.keyOf(s))).sort((a, b) => U.showDate(a, idx) - U.showDate(b, idx));
+    const plannedFilmIds = new Set(all.map(s => s.id));
+    const wantIds = data.films.filter(f => Want.isOn(f.id)).map(f => f.id);
+    const wantReady = wantIds.filter(id => !plannedFilmIds.has(id) && data.shows.some(s => s.id === id && !U.ended(s, idx))).length;
     // 专题筛选：只要个人排片不为空就显示；列出所有有放映场次的专题（未加入的显示「未加入」），与网站一致
     const pids = data.programmes.map(p => p.id).filter(id => data.shows.some(s => idx.F[s.id] && U.progForShow(s, idx).id === id));
     const progs = all.length ? [{ id: 'all', n: t('全部专题'), c: all.length, lab: t('合并 ' + all.length + ' 场') }].concat(pids.map(id => { const c = all.filter(s => U.progForShow(s, idx).id === id).length; return { id, n: idx.PG[id].name, c, lab: c ? t(c + ' 场') : t('未加入') }; })) : [];
@@ -60,38 +118,46 @@ Page({
     this._list = list;
     progs.forEach(p => { p.selected = p.id === 'all' ? !sl(pf).length : sl(pf).includes(p.id); });
     const minutes = list.reduce((n, s) => n + idx.F[s.id].min, 0);
-    let clash = 0;
+    const pCtx = U.plannerCtx(idx, { preferredCity: U.homeCity(data) });
+    const clash = U.Planner.findConflicts(list, pCtx).length;
+    const swaps = clash ? U.Planner.conflictSwaps(list, data.shows.filter(s => idx.F[s.id]), pCtx).map(sw => {
+      const f = idx.F[sw.from.id];
+      return {
+        fromKey: sw.fromKey,
+        title: f ? f.cn : sw.from.id,
+        cur: sw.from.d + ' ' + U.wk(sw.from.d, sw.from.year) + ' ' + sw.from.t,
+        alts: sw.alts.map(a => {
+          const ts = [];
+          if (a.sameVenue) ts.push(t('同影院')); else if (a.sameCity) ts.push(t('同城'));
+          if (a.sameDay) ts.push(t('同日'));
+          if (a.sameVenueAdj) ts.push(t('顺路'));
+          if (a.tight) ts.push(t('转场偏紧'));
+          return {
+            to: a.key,
+            txt: t('换成') + ' ' + a.show.d + ' ' + U.wk(a.show.d, a.show.year) + ' ' + a.show.t + ' · ' + W.vShort(idx.VN[a.show.v]) + ' ' + idx.hallName(a.show),
+            tag: ts.join(' · ')
+          };
+        })
+      };
+    }) : [];
     const byDay = [];
-    list.forEach(s => { let g = byDay.find(x => x.d === s.d); if (!g) { g = { y: U.year(s.d, s.year), d: s.d, wk: U.wk(s.d), items: [] }; byDay.push(g); } g.items.push(s); });
+    list.forEach(s => { let g = byDay.find(x => x.d === s.d); if (!g) { g = { y: U.year(s.d, s.year), d: s.d, wk: U.wk(s.d, s.year), items: [] }; byDay.push(g); } g.items.push(s); });
     const days = byDay.map(g => {
       const items = g.items.map((s, i) => {
         const v = U.showView(s, idx, data, picked);
         if (i) {
-          const prev = g.items[i - 1], tr = U.transfer(prev, s, idx), gap = tr.gap, en = I.isEn(), vb = idx.VN[s.v];
-          const gapTxt = (en ? 'gap ' : '间隔 ') + U.durText(Math.max(gap, 0));
-          let cls = 'ok', txt;
-          if (gap < -2) { cls = 'clash'; txt = t('⚠ 与上一场重叠 ' + (-gap) + ' 分钟'); }
-          else if (tr.kind === 'same') {
-            cls = gap < tr.need ? 'tight' : 'ok';
-            txt = en ? 'Same cinema · ~' + tr.need + ' min to change halls · ' + gapTxt + (gap < tr.need ? ' — tight' : '') : '同影院 · 换厅约 ' + tr.need + ' 分钟 · ' + gapTxt + (gap < tr.need ? '，时间偏紧' : '');
-          } else if (tr.kind === 'city') {
-            cls = 'clash'; txt = en ? '⚠ Different city — cannot connect' : '⚠ 跨城市，无法衔接';
-          } else {
-            cls = gap < tr.need ? 'tight' : 'ok';
-            const how = tr.taxi ? (en ? 'metro ~' + tr.metro + ' min · taxi ~' + tr.taxi + ' min (estimate)' : '地铁约 ' + tr.metro + ' 分钟 · 打车约 ' + tr.taxi + ' 分钟（估算）') : (en ? 'usually 30–45 min' : '通常需 30–45 分钟');
-            txt = (gap < tr.need ? (en ? '⚠ Transfer may be too tight · ' : '⚠ 转场可能来不及 · ') : '') + (en ? 'To ' : '转场 → ') + W.vShort(vb) + ' · ' + how + ' · ' + gapTxt;
-          }
-          v.gap = { cls, txt, mapName: U.geoOf(vb) ? vb.id : '' };
-          if (gap < -2) clash++;
+          const prev = g.items[i - 1], tr = U.transfer(prev, s, idx), vb = idx.VN[s.v];
+          const fg = U.Planner.formatGap(tr, { en, toVenue: vb ? W.vShort(vb) : '', durText: U.durText, warnPrefix: true });
+          v.gap = { cls: fg.cls, txt: fg.txt, mapName: U.geoOf(vb) && tr.kind === 'cross' ? vb.id : '' };
         }
-        v.canRm = U.showDate(s).getTime() - Date.now() > 15 * 60e3; v.rm = v.canRm && Remind.has(v.key);
+        v.canRm = U.showDate(s, idx).getTime() - Date.now() > 15 * 60e3; v.rm = v.canRm && Remind.has(v.key);
         return v;
       });
       return { d: g.d, wk: g.wk, cnt: t(items.length + ' 场'), items, range: g.items[0].t + ' – ' + items[items.length - 1].end };
     });
     this.keys = list.map(U.keyOf);
     this.pgs = [...new Set(list.map(x => U.progForShow(x, idx).name))];
-    this.setData({planScopeName: !sl(pf).length ? t('全部专题') : sl(pf).length === 1 ? ((progs.find(p => p.id === pf) || {}).n || t('全部专题')) : t(sl(pf).length + ' 个专题'), clashTxt: t('有 ' + clash + ' 组场次时间重叠'), progs, pf, days, clash, empty: !all.length, pfEmpty: !!all.length && !list.length, stats: { n: list.length, d: byDay.length, hm: Math.floor(minutes / 60) + 'h' + String(minutes % 60).padStart(2, '0') } });
+    this.setData({planScopeName: !sl(pf).length ? t('全部专题') : sl(pf).length === 1 ? ((progs.find(p => p.id === pf) || {}).n || t('全部专题')) : t(sl(pf).length + ' 个专题'), clashTxt: t('有 ' + clash + ' 组场次时间重叠'), swaps, wantN: wantIds.length, wantReady, smartBtnTxt: wantReady ? t('想看一键排片') + ' (' + wantReady + ')' : t('想看一键排片'), progs, pf, days, clash, empty: !all.length, pfEmpty: !!all.length && !list.length, stats: { n: list.length, d: byDay.length, hm: Math.floor(minutes / 60) + 'h' + String(minutes % 60).padStart(2, '0') } });
   },
   // 排片长图：与网站同版式，只含当前所选专题；保存到相册，或预览后发给朋友
   // 一键把当前所选排片里还没放映的场次加入手机日历（逐场写入；已加过的记住，重复点不会重复添加）
@@ -105,18 +171,18 @@ Page({
   webImportTip() {
     U.webTip('#export', CFG.tip('export', ['① iPhone 请用自带的 Safari 打开这个网址（谷歌等浏览器无法一键导入日历）；安卓用谷歌浏览器或自带浏览器都可以。', '② 进入「导出与分享」，点「导入日历」：iPhone 直接导入；安卓会下载日历文件，点开用「日历」打开，全部排片一次导入。', '首次使用，请先在网页「我的」里用同步码连接：在小程序「我的 → 个人档案云端同步」复制同步码。']), t);
   },
-  // 生成 .ics 日历文件，通过微信「发送文件」交给聊天（文件传输助手/自己），点开后用系统日历一次导入全部
+  // 生成 .ics 日历文件，通过微信「发送文件」交给聊天（文件传输助手/自己），点开后用系统日历一次导入全部（按影院/专题时区输出 VTIMEZONE）
   shareIcs() {
     const data = app.globalData.data, idx = U.index(data), en = I.isEn();
     let list = this._list || []; const up = list.filter(s => !U.ended(s, idx)); if (up.length) list = up;
     if (!list.length) { wx.showToast({ title: t('这个专题还没有加入场次'), icon: 'none' }); return; }
     const esc = x => String(x == null ? '' : x).replace(/\\/g, '\\\\').replace(/\n/g, '\\n').replace(/,/g, '\\,').replace(/;/g, '\\;');
-    const z = n => ('0' + n).slice(-2), st = d => d.getFullYear() + z(d.getMonth() + 1) + z(d.getDate()) + 'T' + z(d.getHours()) + z(d.getMinutes()) + '00';
     const stamp = new Date().toISOString().replace(/[-:]/g, '').replace(/\.\d+Z/, 'Z');
-    const L = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//SparrowCinema//Sparrow Film Passport//ZH', 'CALSCALE:GREGORIAN', 'X-WR-CALNAME:' + t('麻雀观影护照'), 'X-WR-TIMEZONE:Asia/Shanghai', 'BEGIN:VTIMEZONE', 'TZID:Asia/Shanghai', 'BEGIN:STANDARD', 'DTSTART:19700101T000000', 'TZOFFSETFROM:+0800', 'TZOFFSETTO:+0800', 'TZNAME:CST', 'END:STANDARD', 'END:VTIMEZONE'];
+    const tzs = list.map(s => U.tzOf(s, idx)), primaryTz = tzs[0] || U.TZ.DEFAULT_TZ;
+    const L = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//SparrowCinema//Sparrow Film Passport//ZH', 'CALSCALE:GREGORIAN', 'X-WR-CALNAME:' + t('麻雀观影护照'), 'X-WR-TIMEZONE:' + primaryTz, ...U.TZ.icsTimezones(tzs)];
     list.forEach(s => {
-      const f = idx.F[s.id], a = U.showDate(s), b = new Date(a.getTime() + U.durationOf(s, idx) * 60000), pg = U.progForShow(s, idx);
-      L.push('BEGIN:VEVENT', 'UID:' + encodeURIComponent(U.keyOf(s)) + '@style-kaleidoscope', 'DTSTAMP:' + stamp, 'DTSTART;TZID=Asia/Shanghai:' + st(a), 'DTEND;TZID=Asia/Shanghai:' + st(b),
+      const f = idx.F[s.id], ev = U.TZ.icsEventDates(s, U.durationOf(s, idx), idx.VN, idx.PG), pg = U.progForShow(s, idx);
+      L.push('BEGIN:VEVENT', 'UID:' + encodeURIComponent(U.keyOf(s)) + '@style-kaleidoscope', 'DTSTAMP:' + stamp, ev.dtstart, ev.dtend,
         'SUMMARY:' + esc(en ? f.cn + (f.version ? ' · ' + t(f.version) : '') : `《${f.cn}》${f.version ? ' · ' + f.version : ''}`), 'LOCATION:' + esc(idx.venueName(s) + ' · ' + idx.hallName(s)),
         'DESCRIPTION:' + esc((pg && pg.name ? pg.name : '') + '\n' + t('麻雀观影护照')), 'BEGIN:VALARM', 'ACTION:DISPLAY', 'DESCRIPTION:' + esc(f.cn), 'TRIGGER:-PT1H', 'END:VALARM', 'END:VEVENT');
     });
@@ -136,7 +202,7 @@ Page({
       if (!r.confirm) return;
       this.calBusy = true; let ok = 0, stop = false;
       for (const s of todo) {
-        const f = idx.F[s.id], start = Math.floor(U.showDate(s).getTime() / 1000);
+        const f = idx.F[s.id], start = Math.floor(U.showDate(s, idx).getTime() / 1000);
         const res = await new Promise(rs => wx.addPhoneCalendar({
           title: I.isEn() ? f.cn + (f.version ? ' · ' + t(f.version) : '') : `《${f.cn}》${f.version ? ' · ' + f.version : ''}`, startTime: start, endTime: start + U.durationOf(s, idx) * 60,
           location: idx.venueName(s) + ' · ' + idx.hallName(s), description: t('麻雀观影护照'), alarm: true, alarmOffset: 3600,

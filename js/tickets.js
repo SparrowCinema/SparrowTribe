@@ -896,7 +896,7 @@ function ticketSideTabs(side){
 
 // 场次选择：自建票根列出本片全部场次（选中后连日期一起填）；来自观影记录的票根日期固定，只列当天场次
 function ticketShows(row){
-  return SH.filter(s=>s.id===row.filmId).map(s=>{const v=VN[s.v],h=v?.halls?.find(x=>x.id===s.h);return {s,date:isoOf(showDate(s)),time:s.t,venue:v?.name||"",hall:h?.name||s.h||"",city:v?.city||""};})
+  return SH.filter(s=>s.id===row.filmId).map(s=>{const v=VN[s.v],h=v?.halls?.find(x=>x.id===s.h);return {s,date:showIso(s),time:s.t,venue:v?.name||"",hall:h?.name||s.h||"",city:v?.city||""};})
     .filter(x=>!row.linked||x.date===row.date).sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time));
 }
 function ticketShowRow(row){
@@ -951,7 +951,7 @@ async function verifyPage(raw){
 // ——— 现场认证（2026-11-22）———
 // 观众：扫放映现场的签到码打开 #checkin=影片~场次~时间窗~签到码 → 一键盖章、做票根、发号并记下现场认证。
 // 主办方：隐藏页 #checkin-host，输入主办密钥、选场次，全屏显示每分钟刷新的签到码（签名在服务器，backend/tickets-checkin-v1.sql）。
-function checkinShowLine(s){const v=VN[s.v],h=v?.halls?.find(x=>x.id===s.h);return [isoOf(showDate(s)).slice(5).replace("-","/")+" "+s.t,v?vShort(v):"",h?.name||""].filter(Boolean).join(" · ");}
+function checkinShowLine(s){const v=VN[s.v],h=v?.halls?.find(x=>x.id===s.h);return [showIso(s).slice(5).replace("-","/")+" "+s.t,v?vShort(v):"",h?.name||""].filter(Boolean).join(" · ");}
 function checkinHead(){return '<section class="view gut vf-view">'+subBackHTML()+'<div class="page-heading"><div><small>CHECK-IN · ON SITE</small><h2 class="sec">'+tr("现场认证")+'</h2></div></div>';}
 async function checkinPage(raw){
   const c=TE.checkinParse("#checkin="+raw),hash=location.hash;
@@ -959,7 +959,7 @@ async function checkinPage(raw){
   if(!c){box("vf-bad",'<b>'+tr("签到码无效")+'</b><p>'+tr("请扫描放映现场屏幕上的签到码。")+'</p>');return;}
   const f=F[c.f],s=SH.find(x=>x.id===c.f&&(x.sid===c.h||keyOf(x)===c.h));
   if(!f||!s){box("vf-bad",'<b>'+tr("找不到这场放映")+'</b><p>'+tr("排片可能刚更新，请稍后刷新再试。")+'</p>');return;}
-  const date=isoOf(showDate(s)),plan=TE.checkinPlan(watched[f.id],window.SparrowGrowth,f.id,date,keyOf(s));
+  const date=showIso(s),plan=TE.checkinPlan(watched[f.id],window.SparrowGrowth,f.id,date,keyOf(s));
   const done=ticketStore()[plan.key]?.ci;
   const top='<div class="vf-top">'+pimg(f.id,360,'class="vf-poster" alt=""')+'<div>'+(done?'<span class="vf-seal">✓ '+tr("已现场认证")+'</span>':'')+'<h3>'+esc(f.cn)+'</h3><p>'+esc(checkinShowLine(s))+'</p></div></div>';
   if(done){checkinDone(box,top,plan.key);return;}

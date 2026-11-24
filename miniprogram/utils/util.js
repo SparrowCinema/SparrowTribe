@@ -1,13 +1,18 @@
 const CFG = require('./cfg.js');
 const I = require('./i18n.js');
+const TZ = require('./tz.js');
+const Planner = require('./planner.js');
 const WK = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
-const year = (d, explicit) => Number.isInteger(+explicit) && +explicit >= 1888 && +explicit <= 2200 ? +explicit : (+d.split('/')[0] >= 10 ? 2026 : 2027);
+const year = (d, explicit) => TZ.yearOf(d, explicit);
 const showYmd = s => year(s.d, s.year) + '/' + s.d; // 带年份的日期，如 2026/11/11
-const wk = d => { const [m, dd] = d.split('/').map(Number); return I.tr(WK[new Date(year(d), m - 1, dd).getDay()]); };
+const showIso = s => TZ.showIso(s);
+const wk = (d, explicit) => I.tr(WK[TZ.weekday(d, explicit)]);
 const toMin = t => { const [h, m] = t.split(':').map(Number); return h * 60 + m; };
 const fmt = m => String(Math.floor(m / 60)).padStart(2, '0') + ':' + String(m % 60).padStart(2, '0');
 const keyOf = require('./screenings.js').keyOf;
-const showDate = s => { const [m, d] = s.d.split('/').map(Number); const [h, mi] = s.t.split(':').map(Number); return new Date(year(s.d, s.year), m - 1, d, h, mi); };
+const tzOf = (s, idx) => TZ.tzOf(s, idx && idx.VN, idx && idx.PG);
+const progTz = (p, idx, shows) => TZ.progTz(p, idx && idx.VN, shows);
+const showDate = (s, idx) => new Date(TZ.showMs(s, idx && idx.VN, idx && idx.PG));
 const poster = f => f.posterUrl || ''; // 海报全部读网站，换图自动同步
 // 列表用的缩略图：网站部署时生成 posters/w360/<名>.jpg（tools/build-thumbs.py），安装包里的海报本来就是 300px，不换
 const thumb = f => { const u = poster(f); return /^https?:\/\/[^?#]+\/posters\/[^/?#]+\.(jpe?g|png)$/i.test(u) ? u.replace(/\/posters\/([^/?#]+)\.(jpe?g|png)$/i, '/posters/w360/$1.jpg') : u; };
@@ -19,18 +24,18 @@ const hsl2hex = (h, s, l) => { s /= 100; l /= 100; const k = n => (n + h / 30) %
 // 色块色用 CSS 变量取饱和度/明度（app.wxss 里是浅色默认值，暗色时由 cfg.js 的 page-style 覆盖），所以切换外观不用重算数据；变量取不到时回落到浅色值
 const filmTone = i => { const h = Math.round((i < 0 ? 0 : i) * 137.508 % 360); return { bg: 'hsl(' + h + ' var(--barS,36%) var(--barL,85%))', line: 'hsl(' + h + ' var(--barS,36%) var(--lineL,68%))', ink: 'hsl(' + h + ' 38% var(--inkL,22%))', bar: hsl2hex(h, 40, 62) }; };
 // 上映日期：优先解析 release 中的「YYYY年M月D日」，否则用年份
-const relTime = f => { const m = String(f.releaseZh || f.release || '').match(/(\d{4})年(\d{1,2})月(\d{1,2})日/); if (m) return new Date(+m[1], m[2] - 1, +m[3]).getTime(); return f.y ? new Date(+f.y, 0, 1).getTime() : 0; };
+const relTime = f => { const m = String(f.releaseZh || f.release || '').match(/(\d{4})年(\d{1,2})月(\d{1,2})日/); if (m) return TZ.zonedMs(+m[1], +m[2], +m[3], 0, 0, TZ.DEFAULT_TZ); const y = parseInt(f.y, 10); return Number.isFinite(y) ? TZ.zonedMs(y, 1, 1, 0, 0, TZ.DEFAULT_TZ) : 0; };
 // 某部影片的下一场（未开映）
-const nextShowOf = (f, shows) => shows.filter(s => s.id === f.id && showDate(s).getTime() > Date.now()).sort((a, b) => showDate(a) - showDate(b))[0] || null;
+const nextShowOf = (f, shows, idx) => shows.filter(s => s.id === f.id && showDate(s, idx).getTime() > Date.now()).sort((a, b) => showDate(a, idx) - showDate(b, idx))[0] || null;
 // 片单排序：有待放映场次的在前，按下一场放映时间先后；无场次的按上映日期从新到旧
-const filmOrder = shows => (a, b) => { const na = nextShowOf(a, shows), nb = nextShowOf(b, shows); if (!!na !== !!nb) return na ? -1 : 1; if (na && nb) return showDate(na) - showDate(nb); return relTime(b) - relTime(a); };
+const filmOrder = (shows, idx) => (a, b) => { const na = nextShowOf(a, shows, idx), nb = nextShowOf(b, shows, idx); if (!!na !== !!nb) return na ? -1 : 1; if (na && nb) return showDate(na, idx) - showDate(nb, idx); return relTime(b) - relTime(a); };
 // 专题是否为影展类（影展在前，院线在后）
 const keepPast = p => !!p && /影展|festival|艺术电影空间/i.test(p.kind || '');
 const isFest = p => !!p && /影展|festival/i.test(p.kind || '');
 // 定位城市（本机 sk-geo-city，1 天内有效；由首页定位写入，未授权时为空）——与网站 geoActiveCity / localProg 规则一致
 const geoCity = () => { try { const o = wx.getStorageSync('sk-geo-city'); return o && o.c && Date.now() - o.t < 864e5 ? o.c : ''; } catch (e) { return ''; } };
 // 首页优先城市：定位城市在 4 小时前之后仍有场次则用它，否则杭州（网站 homeCity）
-const homeCity = data => { const c = geoCity(); if (c && c !== '杭州') { const ids = new Set(data.venues.filter(v => v.city === c).map(v => v.id)), t = Date.now() - 4 * 36e5; if (data.shows.some(s => ids.has(s.v) && showDate(s).getTime() > t)) return c; } return '杭州'; };
+const homeCity = data => { const c = geoCity(); if (c && c !== '杭州') { const vn = {}; (data.venues || []).forEach(v => { vn[v.id] = v; }); const pg = {}; (data.programmes || []).forEach(p => { pg[p.id] = p; }); const ids = new Set(data.venues.filter(v => v.city === c).map(v => v.id)), t = Date.now() - 4 * 36e5; if (data.shows.some(s => ids.has(s.v) && TZ.showMs(s, vn, pg) > t)) return c; } return '杭州'; };
 // 下一场优先取定位城市的场次（list 已按时间升序），没有再取最早的一场（与网站 localFirst 一致）
 const localFirst = (list, idx) => { const c = geoCity(); return (c && list.find(s => (idx.VN[s.v] || {}).city === c)) || list[0]; };
 const localProg = (p, data, idx, status) => { const c = geoCity(); if (!c || status === 'ended') return false; return p.city === c || data.shows.some(s => progForShow(s, idx).id === p.id && (idx.VN[s.v] || {}).city === c && !ended(s, idx)); };
@@ -59,18 +64,19 @@ const qaOf = f => (f && f.qaStart && f.qaEnd && f.qaGuest && toMin(f.qaEnd) > to
 // 一场放映是否已散场（片长结束后即视为已放映，首页与详情页不再显示）
 const durationOf = (s, idx) => { const f=idx.F[s.id]||{}, e=(f.screeningEnds||{})[keyOf(s)]; return e ? toMin(e)-toMin(s.t) : (f.min||0); };
 const progForShow = (s, idx) => { const f=idx.F[s.id]||{}; return idx.PG[s.p] || Object.values(idx.PG).find(p => (p.sections||{})[s.id] && (f.screeningEnds||{})[keyOf(s)]) || idx.progOf(f); };
-const ended = (s, idx) => showDate(s).getTime() + durationOf(s, idx) * 60000 < Date.now();
+const ended = (s, idx) => showDate(s, idx).getTime() + durationOf(s, idx) * 60000 < Date.now();
 
 // 专题状态：有起止日期按日期，否则按场次范围（与网站 progStatus 一致）：soon 即将开始 / live 进行中 / ended 已结束
-const ymd = v => { const [y, m, d] = String(v).split('-').map(Number); return new Date(y, (m || 1) - 1, d || 1).getTime(); };
+const ymd = (v, tz) => TZ.ymdMs(v, tz || TZ.DEFAULT_TZ);
 function progInfo(p, data, idx, now = Date.now()) {
   const shows = data.shows.filter(s => idx.F[s.id] && progForShow(s, idx).id === p.id);
-  const ts = shows.map(s => showDate(s).getTime()), te = shows.map(s => showDate(s).getTime() + durationOf(s, idx) * 60000);
-  const a = p.start ? ymd(p.start) : (ts.length ? Math.min(...ts) : null);
-  const b = p.end ? ymd(p.end) + 864e5 : (te.length ? Math.max(...te) : null);
+  const tz = progTz(p, idx, shows);
+  const ts = shows.map(s => showDate(s, idx).getTime()), te = shows.map(s => showDate(s, idx).getTime() + durationOf(s, idx) * 60000);
+  const a = p.start ? ymd(p.start, tz) : (ts.length ? Math.min(...ts) : null);
+  const b = p.end ? ymd(p.end, tz) + 864e5 : (te.length ? Math.max(...te) : null);
   // 常设专题（ongoing，如麻雀部落电影空间）：开始后一直算进行中，不进入往期
   // 提前结束（与网站 progDone 一致）：结束日前 2 天内，已公布的场次全部散场即算已结束；院线专题不录全部场次，不提前结束
-  const done = !p.ongoing && p.end && p.kind !== '院线' && shows.length > 0 && now >= ymd(p.end) - 2 * 864e5 && te.every(e => e < now);
+  const done = !p.ongoing && p.end && p.kind !== '院线' && shows.length > 0 && now >= ymd(p.end, tz) - 2 * 864e5 && te.every(e => e < now);
   const status = a != null && now < a ? 'soon' : (!p.ongoing && b != null && now >= b ? 'ended' : (done ? 'ended' : 'live'));
   return { shows, a, b, status, up: shows.filter(s => !ended(s, idx)).length };
 }
@@ -89,7 +95,7 @@ function markAutoEnded(data, now = Date.now()) {
   const films = data.films.map(f => {
     if (f.ended || f.ev || up.has(f.id) || !inCinema(f)) return f;
     const m = String(f.releaseZh || f.release || '').match(/(\d{4})年(\d{1,2})月(\d{1,2})日/); if (!m) return f;
-    const rel = new Date(+m[1], m[2] - 1, +m[3]).getTime();
+    const rel = TZ.zonedMs(+m[1], +m[2], +m[3], 0, 0, TZ.DEFAULT_TZ);
     if (now < rel || (!seen.has(f.id) && now < rel + RUN_DAYS * 864e5)) return f;
     hit = true; return Object.assign({}, f, { ended: true, endedAuto: 1 });
   });
@@ -100,37 +106,30 @@ function markAutoEnded(data, now = Date.now()) {
 function showView(s, idx, data, picked) {
   const f = idx.F[s.id]; const st = toMin(s.t);
   return {
-    key: keyOf(s), y: year(s.d, s.year), d: s.d, t: s.t, end: fmt(st + durationOf(s, idx)), wk: wk(s.d), id: s.id,
+    key: keyOf(s), y: year(s.d, s.year), d: s.d, t: s.t, end: fmt(st + durationOf(s, idx)), wk: wk(s.d, s.year), id: s.id,
     cn: f.cn, version: I.tr(f.version || ''), dir: f.dir, min: f.min, minTxt: I.tr(f.min ? f.min + ' 分钟' : '片长待定'),
     venue: idx.venueName(s), hall: idx.hallName(s),
     color: (data.reg[f.reg] || {}).c || '#8e2a22',
     tone: filmTone(idx.ORD ? idx.ORD[s.id] : 0), langSub: langSub(f),
     note: I.tr((f.screeningNotes||{})[keyOf(s)]||""), ev: EV_RE.test(I.tr((f.screeningNotes||{})[keyOf(s)]||"")), noteRest: I.tr((f.screeningNotes||{})[keyOf(s)]||"").replace(EV_RE, '').split(/\s*·\s*/).filter(x => !SUB_SEG.test(x)).join(' · '), sub: I.tr((f.screeningNotes||{})[keyOf(s)]||"").replace(EV_RE, '').split(/\s*·\s*/).some(x => SUB_SEG.test(x)), poster: thumb(f), picked: picked ? picked.has(keyOf(s)) : false,
-    past: showDate(s).getTime() + durationOf(s, idx) * 60000 < Date.now()
+    past: showDate(s, idx).getTime() + durationOf(s, idx) * 60000 < Date.now()
   };
 }
 
-// ===== 影院位置与转场估算 =====
-// 影院坐标写在 data/catalog.json 的 venues[].geo = [纬度, 经度]（GCJ-02，腾讯地图/高德坐标），addr 为地址。
-// 有坐标：小程序显示「地图」按钮；相邻两场都有坐标时按直线距离估算地铁 / 打车用时；没有坐标时按通用经验值提示。
-const geoOf = v => (v && Array.isArray(v.geo) && v.geo.length === 2 && isFinite(+v.geo[0]) && isFinite(+v.geo[1])) ? { lat: +v.geo[0], lng: +v.geo[1] } : null;
-function distKm(a, b) {
-  const R = 6371, r = x => x * Math.PI / 180, dLa = r(b.lat - a.lat), dLo = r(b.lng - a.lng);
-  const h = Math.sin(dLa / 2) ** 2 + Math.cos(r(a.lat)) * Math.cos(r(b.lat)) * Math.sin(dLo / 2) ** 2;
-  return 2 * R * Math.asin(Math.sqrt(h));
+// ===== 影院位置与转场估算（与网站共用 shared/planner.js，含映后 30 分钟提醒）=====
+const geoOf = Planner.geoOf;
+const distKm = Planner.distKm;
+function plannerCtx(idx, extra) {
+  return Object.assign({
+    F: idx.F, VN: idx.VN, PG: idx.PG,
+    keyOf,
+    durationOf: s => durationOf(s, idx),
+    showMs: s => TZ.showMs(s, idx.VN, idx.PG),
+    isPast: s => ended(s, idx)
+  }, extra || {});
 }
-// 相邻两场（同一天）的转场：同影院约 10 分钟（取票、找厅）；跨影院 = 估算出行时间 + 10 分钟；跨城市无法衔接
 function transfer(a, b, idx) {
-  const gap = toMin(b.t) - (toMin(a.t) + durationOf(a, idx));
-  if (a.v === b.v) return { kind: 'same', gap, need: 10 };
-  const va = idx.VN[a.v], vb = idx.VN[b.v];
-  if (va && vb && va.city && vb.city && va.city !== vb.city) return { kind: 'city', gap, need: 9999 };
-  const ga = geoOf(va), gb = geoOf(vb);
-  if (ga && gb) {
-    const road = distKm(ga, gb) * 1.35, taxi = Math.max(8, Math.round(6 + road / 25 * 60)), metro = Math.max(15, Math.round(12 + road / 32 * 60));
-    return { kind: 'cross', gap, need: Math.min(taxi, metro) + 10, km: Math.round(road * 10) / 10, taxi, metro };
-  }
-  return { kind: 'cross', gap, need: 45 };
+  return Planner.transfer(a, b, plannerCtx(idx));
 }
 function openMap(v) {
   const g = geoOf(v); if (!g) return false;
@@ -155,4 +154,4 @@ const SITE_URL = 'https://sparrowcinema.org/';
 const webTip = (hash, lines, t, title) => {
   wx.setClipboardData({ data: SITE_URL + (hash || ''), success: () => wx.showModal({ title: t(title || '网页版地址已复制'), content: lines.map(x => t(x)).join('\n'), showCancel: false, confirmText: t('知道了') }) });
 };
-module.exports = { markAutoEnded, thumb, localFirst, homeCity, ymd: showYmd, geoCity, localProg, webTip, calSub, geoOf, distKm, transfer, openMap, progForShow, durationOf, progInfo, qaOf, ended, isFest, keepPast, relTime, nextShowOf, filmOrder, filmTone, langSub, WK, year, wk, toMin, fmt, keyOf, showDate, poster, ticket, durText, index, showView };
+module.exports = { TZ, Planner, plannerCtx, tzOf, progTz, showIso, markAutoEnded, thumb, localFirst, homeCity, ymd: showYmd, geoCity, localProg, webTip, calSub, geoOf, distKm, transfer, openMap, progForShow, durationOf, progInfo, qaOf, ended, isFest, keepPast, relTime, nextShowOf, filmOrder, filmTone, langSub, WK, year, wk, toMin, fmt, keyOf, showDate, poster, ticket, durText, index, showView };

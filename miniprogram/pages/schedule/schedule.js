@@ -37,13 +37,13 @@ Page({
   stopTick() { if (this.timer) { clearInterval(this.timer); this.timer = null; } },
   tick() {
     const c = this.ttCtx; if (!c) return;
-    const t = new Date(), key = (t.getMonth() + 1) + '/' + t.getDate();
-    if (key !== c.today) { this.build(); return; }
+    const p = U.TZ.nowParts(Date.now(), c.tz || U.TZ.DEFAULT_TZ);
+    if (p.dayKey !== c.today) { this.build(); return; }
     this.setData({ nowLine: this.nowLineOf(c) });
   },
   nowLineOf(c) {
     if (!c.isToday) return null;
-    const t = new Date(), m = t.getHours() * 60 + t.getMinutes();
+    const p = U.TZ.nowParts(Date.now(), c.tz || U.TZ.DEFAULT_TZ), m = p.min;
     return m >= c.S && m <= c.E ? { top: PAD + Math.round((m - c.S) * K), label: U.fmt(m) } : null;
   },
   onShow() { Stats.stat('pv', 'schedule'); wx.setNavigationBarTitle({ title: t('麻雀观影护照') }); app.chrome(); try { require('../../utils/locate.js').locate(app.globalData.data, () => this.build()); } catch (e) { } this.startTick(); const j = app.globalData.jumpDay, jp = app.globalData.jumpProg; if (j) { app.globalData.jumpDay = ''; this.cityManual(); this.setData({ pf: 'all', vf: 'all', city: 'all', venueQuery: '', day: j }); } if (jp) { app.globalData.jumpProg = ''; this.cityManual(); this.setData({ pf: jp, vf: 'all', city: 'all', venueQuery: '', day: '' }); } this.build(); },
@@ -71,12 +71,16 @@ Page({
     this.cityDefault(data, idx);
     const { pf, vf, city, venueQuery } = this.data;
     const list = data.shows.filter(s => idx.F[s.id] && !U.ended(s, idx) && sh(pf, U.progForShow(s, idx).id) && sh(vf, s.v) && sh(city, idx.VN[s.v].city) && (!this.data.onlyMine || picked.has(U.keyOf(s))));
+    const tzForList = xs => { const tzs = [...new Set(xs.map(s => U.tzOf(s, idx)))]; if (tzs.length === 1) return tzs[0]; if (sl(pf).length === 1 && idx.PG[sl(pf)[0]]) return U.progTz(idx.PG[sl(pf)[0]], idx, xs); return U.TZ.DEFAULT_TZ; };
+    const listTz = tzForList(list);
     // 首页顶部：今天我的排片中尚未散场的场次，按时间线排列
-    const tk = new Date(), tkey = (tk.getMonth() + 1) + '/' + tk.getDate();
-    // 今天还有没散场的就显示今天；今天都散场后顺延到之后最近一个有排片的日子（到了当天自动变回「今日」）
-    const upc = data.shows.filter(s => idx.F[s.id] && picked.has(U.keyOf(s)) && !U.ended(s, idx)).sort((a, b) => U.showDate(a) - U.showDate(b));
-    const nkey = upc.length ? upc[0].d : tkey, t0 = new Date(tk.getFullYear(), tk.getMonth(), tk.getDate()), d1 = upc.length ? U.showDate(upc[0]) : t0;
-    const off = Math.round((new Date(d1.getFullYear(), d1.getMonth(), d1.getDate()) - t0) / 864e5);
+    const upc = data.shows.filter(s => idx.F[s.id] && picked.has(U.keyOf(s)) && !U.ended(s, idx)).sort((a, b) => U.showDate(a, idx) - U.showDate(b, idx));
+    const upTz = upc.length ? U.tzOf(upc[0], idx) : listTz;
+    const npUp = U.TZ.nowParts(Date.now(), upTz);
+    const nkey = upc.length ? upc[0].d : npUp.dayKey;
+    const t0 = Date.UTC(npUp.y, npUp.m - 1, npUp.d);
+    const d1p = upc.length ? U.showIso(upc[0]).split('-').map(Number) : [npUp.y, npUp.m, npUp.d];
+    const off = Math.round((Date.UTC(d1p[0], d1p[1] - 1, d1p[2]) - t0) / 864e5);
     const myToday = upc.filter(s => s.d === nkey)
       .sort((a, b) => U.toMin(a.t) - U.toMin(b.t))
       .map(s => { const vw = U.showView(s, idx, data, picked); return { key: vw.key, id: s.id, t: vw.t, end: vw.end, endTxt: I.isEn() ? 'ends ' + vw.end : vw.end + ' 散场', cn: vw.cn, venue: vw.venue, hall: vw.hall, tone: vw.tone, color: vw.color, poster: vw.poster, dir: vw.dir, minTxt: vw.minTxt, version: vw.version }; });
@@ -84,8 +88,8 @@ Page({
     const ds = allDays.filter(d => list.some(s => s.d === d));
     let day = this.data.day;
     if (!ds.includes(day)) {
-      const t = new Date(); t.setHours(0, 0, 0, 0);
-      day = ds.find(d => { const [m, dd] = d.split('/').map(Number); return new Date(U.year(d), m - 1, dd) >= t; }) || ds[0] || '';
+      const todayIso = U.TZ.nowParts(Date.now(), listTz).iso;
+      day = ds.find(d => { const [m, dd] = d.split('/').map(Number); return U.year(d) + '-' + String(m).padStart(2, '0') + '-' + String(dd).padStart(2, '0') >= todayIso; }) || ds[0] || '';
     }
     let lastM = '';
     const days = ds.map(d => {
@@ -99,12 +103,12 @@ Page({
     this.ttCtx = null;
     if (dl.length) {
       let S = Math.min(...dl.map(s => U.toMin(s.t))), E = Math.max(...dl.map(s => Math.max(U.toMin(s.t) + U.durationOf(s, idx) + (U.showView(s, idx, data, picked).ev ? 30 : 0), (U.qaOf(idx.F[s.id]) || {}).end || 0)));
-      // Only show the current-time marker inside the screening window.
-      const tn = new Date(), todayKey = (tn.getMonth() + 1) + '/' + tn.getDate(), isToday = todayKey === day;
+      // Only show the current-time marker inside the screening window (in the festival's local timezone).
+      const dayTz = tzForList(dl), todayKey = U.TZ.nowParts(Date.now(), dayTz).dayKey, isToday = todayKey === day;
       // Leave 30–59 minutes before the first screening.
       S = Math.max(0, Math.floor((S - 15) / 60) * 60); // 从整点开始，刻度与粗线都落在整点（与网站一致）
       E = Math.ceil(E / 60) * 60; if (E - S < 180) E = S + 180;
-      this.ttCtx = { day, S, E, isToday, today: todayKey };
+      this.ttCtx = { day, S, E, isToday, today: todayKey, tz: dayTz };
       nowLine = this.nowLineOf(this.ttCtx);
       H = PAD + Math.round((E - S) * K) + 30;
       for (let m = S; m <= E; m += 60) ticks.push({ y: PAD + Math.round((m - S) * K), t: U.fmt(m) });

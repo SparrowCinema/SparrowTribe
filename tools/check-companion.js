@@ -13,6 +13,9 @@ for(const dir of ['shared','miniprogram/pages/film','miniprogram/pages/films','m
 assert.equal(fs.readFileSync(path.join(root,'shared/profile-backup.js'),'utf8'),fs.readFileSync(path.join(root,'miniprogram/utils/profile-backup.js'),'utf8'));
 assert.equal(fs.readFileSync(path.join(root,'shared/tickets.js'),'utf8'),fs.readFileSync(path.join(root,'miniprogram/utils/tickets.js'),'utf8'));
 assert.equal(fs.readFileSync(path.join(root,'shared/ticket-sketch.js'),'utf8'),fs.readFileSync(path.join(root,'miniprogram/utils/ticket-sketch.js'),'utf8'));
+assert.equal(fs.readFileSync(path.join(root,'shared/tz.js'),'utf8'),fs.readFileSync(path.join(root,'miniprogram/utils/tz.js'),'utf8'));
+assert.equal(fs.readFileSync(path.join(root,'shared/tz.js'),'utf8'),fs.readFileSync(path.join(root,'cloudfunctions/remind/tz.js'),'utf8'));
+assert.equal(fs.readFileSync(path.join(root,'shared/planner.js'),'utf8'),fs.readFileSync(path.join(root,'miniprogram/utils/planner.js'),'utf8'));
 console.log('PASS: backup round trip, no credentials, merge semantics, deletions, malformed imports, city-scoped selection and JavaScript parsing.');
 
 require('./check-recap.js');
@@ -32,6 +35,7 @@ require('./check-mini-ended.js');
 require('./check-taste-report.js');
 require('./check-remind.js');
 require('./check-overlap.js');
+require('./check-planner-tz.js');
 require('./check-curl.js');
 require('./check-ticket-preview.js');
 require('./check-getdata.js');

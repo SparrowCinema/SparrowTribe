@@ -49,9 +49,9 @@ async function add(OPENID, ev) {
   if (kind === 'show') {
     const s = idx.shows.find(x => R.keyOf(x) === ev.key && x.id === film);
     if (!s) return { ok: false, msg: 'unknown show' };
-    const start = R.startOf(s);
+    const start = R.startOf(s, idx);
     if (start - now < 15 * 60e3) return { ok: false, msg: 'too late' };
-    Object.assign(doc, { key: ev.key, start, show: { d: s.d, t: s.t, v: s.v, h: s.h } });
+    Object.assign(doc, { key: ev.key, start, show: { d: s.d, t: s.t, v: s.v, h: s.h, p: s.p } });
     where = { openid: OPENID, kind, key: ev.key };
   } else {
     doc.known = R.upcoming(idx, film, now).map(R.keyOf);
