@@ -58,6 +58,23 @@ function ticketCardHTML(t,cn,key,tag){TK[key]=Object.assign({cn},t);const w=t.ti
 function ticketHTML(f){const ts=ticketsOf(f),multi=ts.length>1||(typeof filmProgsOf==="function"&&filmProgsOf(f).length>1);return ts.map((t,i)=>ticketCardHTML(t,f.cn,f.id+"#"+i,multi&&t.p?t.p.name:"")).join("");} // 跨影展影片只剩一张购票码时也标出是哪个影展
 document.addEventListener('click',e=>{const b=e.target.closest('[data-ticket]');if(!b)return;const f=TK[b.dataset.ticket],src=f&&f.ticket;if(!f||!src)return;const w=f.ticketLabel||'购票';document.getElementById('ticket-modal')?.remove();const d=document.createElement('dialog');d.id='ticket-modal';d.className='ticket-modal';d.setAttribute('aria-label',f.cn+w);d.innerHTML=`<header><h2>${esc(f.cn)} · ${w}</h2><button class="ticket-close" aria-label="关闭${w}码">×</button></header><img src="${src}" alt="${esc(f.cn)}${w}码"><p>${esc(f.ticketHint||"微信内可长按图片识别。其他浏览器请先保存图片，再用微信「扫一扫」从相册选择。")}</p><a class="primary-button ticket-save" href="${src}" download="${esc(f.cn)}-${w}码.${src.endsWith(".jpg")?"jpg":"png"}">保存${w}码</a>`;document.body.append(d);d.querySelector('.ticket-close').onclick=()=>d.close();d.onclick=ev=>{if(ev.target===d){const r=d.getBoundingClientRect();if(ev.clientX<r.left||ev.clientX>r.right||ev.clientY<r.top||ev.clientY>r.bottom)d.close();}};d.addEventListener('close',()=>{d.remove();if(b.isConnected)b.focus({preventScroll:true});});d.showModal();});
 
+function recommendHTML(f){
+  if(!f||f.ev||typeof SparrowRecommend==="undefined"||typeof FILMS==="undefined")return "";
+  const items=SparrowRecommend.forFilm(f,{
+    films:FILMS,shows:SH,programmes:PROGRAMMES,watched,want,picked,keyOf,isPast,showDate,
+    overlaps:typeof overlaps==="function"?overlaps:null,
+    tasteGet:typeof TC!=="undefined"&&TC&&typeof TC.get==="function"?id=>TC.get(id):null
+  },4);
+  if(!items.length)return "";
+  const seen=!!(watched[f.id]&&!watched[f.id].del&&watched[f.id].d);
+  const lead=seen?"看过这部之后，顺着线索继续下一场银幕相遇":"同导演、同单元或相近趣味的延伸片单";
+  return `<section class="fd-sec fd-rec" id="fd-rec"><h2 class="fd-st"><span>看完再看</span><small>NEXT UP</small></h2><p class="fd-rec-lead">${esc(tr(lead))}</p><div class="rec-grid">${items.map(it=>{
+    const x=it.film,on=typeof isWant==="function"?isWant(x.id):it.wanted;
+    const why=it.reasons.map(tr).join(" · ");
+    const slot=it.nextShow?`${it.nextShow.d} ${it.nextShow.t}`:"";
+    return `<article class="rec-card"><button type="button" class="rec-go" data-film="${esc(x.id)}"><span class="rec-art">${pst(x.id)?pimg(x.id,360,`alt="${esc(x.cn)} 海报" loading="lazy"`):`<span class="rec-ph" style="background:${REG[x.reg].c}"><b>${esc(x.cn[0])}</b></span>`}${it.lastChance?`<em class="rec-last">${esc(tr("最后一场"))}</em>`:""}</span><span class="rec-meta"><b class="rec-title">${esc(x.cn)}</b>${why?`<small class="rec-why">${esc(why)}</small>`:""}${slot?`<small class="rec-slot mono">${esc(slot)}${it.fitsPlan?` · ${esc(tr("零冲突"))}`:""}</small>`:""}</span></button>${it.seen?`<span class="rec-seen">${esc(tr("已看过"))}</span>`:`<button type="button" class="rec-want${on?" on":""}" data-rec-want="${esc(x.id)}" aria-pressed="${on}">${on?"★ "+esc(tr("已想看")):"☆ "+esc(tr("想看"))}</button>`}</article>`;
+  }).join("")}</div></section>`;
+}
 function detail(id){
   const f=F[id]; if(!f){ go("films"); return; }
   id=f.id;
@@ -103,6 +120,7 @@ function detail(id){
       ${f.honors.length?`<section class="fd-sec" id="fd-hon"><h2 class="fd-st"><span>影展与荣誉</span><small>FESTIVALS & AWARDS</small></h2><ul class="fd-honors">${f.honors.map(honorHTML).join("")}</ul></section>`:""}
       ${!has.dir?"":`<section class="fd-sec" id="fd-dir"><h2 class="fd-st"><span>导演介绍</span><small>DIRECTOR</small></h2><div class="fd-dcard"><div class="fd-dhead"><span class="fd-av">${esc(f.dir[0])}</span><span><b>${esc(f.dir)}</b>${f.dirO&&f.dirO!==f.dir?`<small>${esc(f.dirO)}</small>`:""}${f.dirLife?`<small>${esc(f.dirLife)}</small>`:""}</span></div>${paragraphsHTML(f.bio)}</div></section>`}
       ${!has.ctx?"":`<section class="fd-sec" id="fd-ctx"><h2 class="fd-st"><span>创作背景</span><small>CONTEXT</small></h2><blockquote class="fd-ctx">${paragraphsHTML(f.st)}</blockquote></section>`}
+      ${typeof recommendHTML==="function"?recommendHTML(f):""}
       ${f.ev?"":`<nav class="fd-nav">${navBtn(prev,"上一部")}${navBtn(next,"下一部")}</nav>`}
     </div>
   </div>
@@ -119,6 +137,8 @@ function fitHero(){
 }
 window.addEventListener('resize',()=>{clearTimeout(fitHero.t);fitHero.t=setTimeout(fitHero,150);});
 document.addEventListener("click",e=>{
+  const rw=e.target.closest("[data-rec-want]");
+  if(rw){const rid=rw.dataset.recWant,on=!isWant(rid);setWant(rid,on);if(on)stat('want',rid);rw.classList.toggle("on",on);rw.setAttribute("aria-pressed",String(on));rw.textContent=on?"★ "+tr("已想看"):"☆ "+tr("想看");toast(on?tr("已加入想看 · 有新场次时会在片目标出"):tr("已移出想看"));return;}
   const s=e.target.closest("[data-scroll]");if(s){e.preventDefault();const t=document.getElementById(s.dataset.scroll);if(t){const top=t.getBoundingClientRect().top+window.scrollY-(document.getElementById("topbar").offsetHeight+12);window.scrollTo({top,behavior:matchMedia("(prefers-reduced-motion:reduce)").matches?"auto":"smooth"});}return;}
   const x=e.target.closest("[data-expand]");if(x){const b=x.previousElementSibling;b.classList.toggle("clamp");x.textContent=b.classList.contains("clamp")?"展开全文":"收起";}
 });

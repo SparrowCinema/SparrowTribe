@@ -77,7 +77,7 @@ document.addEventListener("click",e=>{
   else if(t.dataset.prog) go("prog-"+t.dataset.prog);
   else if(t.dataset.progSched){ pfilt=t.dataset.progSched; vfilt="all"; cityFilt="all"; cityManual(); venueQuery=""; sday=null; go("schedule"); }
   else if(t.dataset.progJump){ const el=document.getElementById(t.dataset.progJump==="gone"?"pg-gone":"pg-up"); if(el){ if(el.tagName==="DETAILS") el.open=true; el.scrollIntoView({behavior:"smooth",block:"start"}); } else toast("暂无已结束的影片"); }
-  else if(t.dataset.progFilms){ ffilt=t.dataset.progFilms; fcity="all"; fyear="all"; freg="all"; flen="all"; fmine="all"; fq=""; go("films"); }
+  else if(t.dataset.progFilms){ ffilt=t.dataset.progFilms; fcity="all"; fyear="all"; freg="all"; flen="all"; fmine="all"; ftrait="all"; fq=""; go("films"); }
   else if(t.hasAttribute("data-back")){if(activeRoute.startsWith("film-"))exitFilm();else if(activeRoute.startsWith("events-"))goBack("prog-"+activeRoute.slice(7));else goBack(lastList);}
   else if(t.dataset.jump){ const js=SH.find(x=>keyOf(x)===t.dataset.jump); pfilt=js?js.p:"all"; vfilt="all"; cityFilt="all"; cityManual(); venueQuery=""; scheduleView="gantt";pendingFlash=t.dataset.jump; sday=t.dataset.jump.split("-")[0]; if(location.hash==="#schedule"||location.hash===""){schedule();}else go("schedule"); }
   else if(t.dataset.ppf){ planFilt=t.dataset.ppf; const y=window.scrollY; route(); window.scrollTo(0,y); }

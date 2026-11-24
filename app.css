@@ -1399,5 +1399,39 @@ button,summary,a,label,select,[role=button],[data-pp],.my-entry{touch-action:man
 .sp-unsched li b{font-weight:600;color:var(--fg)}
 .sp-unsched li span{color:var(--muted);font-size:10.5px;flex-shrink:0}
 .smart-plan-dialog .selector-done:disabled{opacity:.45;cursor:not-allowed}
-@media print{.fd-map,.pvenue-map,.pgap-map,.plan-swaps{display:none!important}}
+@media print{.fd-map,.pvenue-map,.pgap-map,.plan-swaps,.fd-rec{display:none!important}}
+
+/* 选片决策硬筛胶囊条（2026-11-24）：与现有纸面细线美学统一，单行横滑、选中态为墨色高对比胶囊 */
+.trait-strip{display:flex;align-items:center;gap:7px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;margin:-8px 0 16px;padding:2px 0 4px}
+.trait-strip::-webkit-scrollbar{display:none}
+.trait-chip{flex:none;display:inline-flex;align-items:center;gap:6px;min-height:32px;padding:0 12px;border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--fg);font:500 11px/1 var(--f-body);letter-spacing:.01em;cursor:pointer;transition:background .16s ease,color .16s ease,border-color .16s ease,transform .12s ease}
+.trait-chip em{font-style:normal;font:500 10px/1 var(--f-mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.trait-chip:hover{border-color:color-mix(in srgb,var(--fg) 42%,var(--line));background:var(--chip)}
+.trait-chip:active{transform:scale(.97)}
+.trait-chip.on{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.trait-chip.on em{color:color-mix(in srgb,var(--bg) 72%,transparent)}
+.trait-chip:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.film-statuses i.last{color:var(--accent);border-color:color-mix(in srgb,var(--accent) 45%,var(--line));background:color-mix(in srgb,var(--accent) 7%,transparent)}
+
+/* 看完再看 · 影片页延伸推荐（2026-11-24）：节展手册画册式 2×2 / 4 列海报卡 */
+.fd-rec-lead{margin:-4px 0 16px;font-size:11.5px;line-height:1.6;color:var(--muted)}
+.rec-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 12px}
+@media(min-width:640px){.rec-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:20px 14px}}
+.rec-card{display:flex;flex-direction:column;gap:8px;min-width:0}
+.rec-go{display:flex;flex-direction:column;gap:8px;padding:0;border:0;background:none;text-align:left;color:var(--fg);cursor:pointer;min-width:0}
+.rec-art{position:relative;display:block;width:100%;aspect-ratio:2/3;border-radius:7px;overflow:hidden;background:var(--chip);box-shadow:0 3px 12px rgba(24,16,8,.1);transition:transform .2s cubic-bezier(.2,.7,.3,1),box-shadow .2s ease}
+.rec-art img{display:block;width:100%;height:100%;object-fit:cover}
+.rec-ph{display:grid;place-items:center;width:100%;height:100%;color:#fffaf0;font:900 28px var(--f-display)}
+.rec-last{position:absolute;top:6px;left:6px;font-style:normal;font:600 9.5px/1.4 var(--f-body);letter-spacing:.03em;padding:2px 6px;border-radius:4px;background:color-mix(in srgb,var(--accent) 92%,#000);color:#fffaf0;backdrop-filter:blur(4px)}
+.rec-meta{display:flex;flex-direction:column;gap:3px;min-width:0}
+.rec-title{font:700 12.5px/1.38 var(--f-display);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;transition:color .15s}
+.rec-why{font-size:10.5px;line-height:1.4;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rec-slot{font-size:10.5px;line-height:1.4;color:var(--teal);font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rec-want{margin-top:auto;width:100%;min-height:30px;padding:5px 8px;border:1px solid var(--line);border-radius:7px;background:var(--surface);color:var(--fg);font:500 10.5px/1.2 var(--f-body);cursor:pointer;transition:border-color .15s,background .15s,color .15s}
+.rec-want:hover{border-color:var(--accent);color:var(--accent)}
+.rec-want.on{border-color:#c79a3a;color:#8a6516;background:color-mix(in srgb,#e8d9aa 26%,var(--surface))}
+.rec-seen{margin-top:auto;display:block;text-align:center;padding:5px 8px;border-radius:7px;background:var(--chip);color:var(--muted);font:500 10px/1.4 var(--f-body)}
+@media(hover:hover){.rec-go:hover .rec-art{transform:translateY(-3px);box-shadow:0 8px 20px rgba(24,16,8,.16)}.rec-go:hover .rec-title{color:var(--accent)}}
+@media(prefers-reduced-motion:reduce){.rec-art,.trait-chip{transition:none}.rec-go:hover .rec-art{transform:none}}
+
 

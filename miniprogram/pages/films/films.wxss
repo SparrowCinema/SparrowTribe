@@ -68,3 +68,9 @@
 
 /* 本专题已放映、往期专题里的影片海报去色变淡（与网站 .fgone / .fold-prog 一致） */
 .gone-list .row .pst, .pc-b .row .pst { filter: grayscale(.7); opacity: .72; }
+.film-statuses>.last{color:var(--accent);border-color:var(--accent);background:rgba(181,56,42,.06)}
+.trait-strip{display:flex;align-items:center;white-space:nowrap;height:calc(68 * var(--r));margin:calc(-14 * var(--r)) 0 calc(20 * var(--r))}
+.trait-chip{flex:none;display:inline-flex;align-items:center;gap:calc(10 * var(--r));height:calc(56 * var(--r));padding:0 calc(22 * var(--r));margin-right:calc(12 * var(--r));border:calc(2 * var(--r)) solid var(--line);border-radius:calc(99 * var(--r));background:var(--surface);color:var(--fg);font-size:calc(20.6 * var(--fr));font-weight:500;box-sizing:border-box}
+.trait-chip .trait-cnt{font-size:calc(18.5 * var(--fr));color:var(--muted)}
+.trait-chip.on{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.trait-chip.on .trait-cnt{color:var(--bg);opacity:.72}
