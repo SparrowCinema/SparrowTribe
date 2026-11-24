@@ -103,7 +103,171 @@ const scriptMatch = wbHtml.match(/<script>([\s\S]*?)<\/script>/);
 assert(scriptMatch, 'curator-workbench.html must include inline script');
 new vm.Script(scriptMatch[1], { filename: 'tools/curator-workbench.html' });
 
-// 7. Verify staging directory output via temp dir
+// 7. Official festival scraper adapters (jsonld, eventive, html auto-table & selector config, goldenhorse)
+// 7a. Schema.org JSON-LD (@graph + ScreeningEvent + Movie + ISO duration + IMDb)
+const fixtureJsonLdHtml = `<!doctype html><html><head>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Movie",
+      "@id": "#m1",
+      "name": "La Chimera",
+      "alternateName": "盗墓奇美拉",
+      "director": { "@type": "Person", "name": "Alice Rohrwacher" },
+      "countryOfOrigin": { "@type": "Country", "name": "Italy" },
+      "dateCreated": "2023",
+      "duration": "PT2H10M",
+      "sameAs": "https://www.imdb.com/title/tt14561712/",
+      "description": "An archaeologist returns to Tuscany."
+    },
+    {
+      "@type": "ScreeningEvent",
+      "name": "La Chimera — Gala",
+      "startDate": "2026-05-18T19:30:00+02:00",
+      "videoFormat": "35mm",
+      "workPresented": { "@id": "#m1" },
+      "location": {
+        "@type": "Place",
+        "name": "Salle Debussy",
+        "containedInPlace": { "@type": "Place", "name": "Palais des Festivals" }
+      }
+    }
+  ]
+}</script></head><body></body></html>`;
+const jldRes = Importer.ingest({
+  inputText: fixtureJsonLdHtml,
+  adapter: 'auto',
+  id: 'cannes-sample-2026',
+  name: '戛纳示例',
+  city: '戛纳',
+  tz: 'Europe/Paris',
+  year: 2026
+});
+assert.strictEqual(jldRes.adapter, 'jsonld');
+assert.strictEqual(jldRes.programmeJson.films.length, 1);
+assert.strictEqual(jldRes.programmeJson.films[0].min, 130);
+assert.strictEqual(jldRes.programmeJson.films[0].dir, 'Alice Rohrwacher');
+assert.strictEqual(jldRes.programmeJson.films[0].links.imdb, 'tt14561712');
+assert.strictEqual(jldRes.programmeJson.shows[0][0], '5/18');
+assert.strictEqual(jldRes.programmeJson.shows[0][1], '19:30');
+assert.strictEqual(jldRes.catalogPatch.newVenues[0].name, 'Palais des Festivals');
+assert.strictEqual(jldRes.catalogPatch.newVenues[0].halls[0].name, 'Salle Debussy');
+
+// 7b. Eventive Public API (events + films JSON + timezone conversion + Q&A tag)
+const fixtureEventive = JSON.stringify({
+  films: [{
+    id: 'ef1',
+    name: 'Past Lives',
+    details: { director: 'Celine Song', year: '2023', country: 'USA', runtime: '106', imdb_id: 'tt13238346', format: 'DCP' },
+    short_description: '<p>Two childhood sweethearts reunite.</p>'
+  }],
+  events: [{
+    id: 'ev1',
+    name: 'Past Lives',
+    start_time: '2026-01-22T02:00:00Z', // 19:00 MST (America/Denver) on Jan 21
+    timezone: 'America/Denver',
+    venue: { name: 'Eccles Theatre - Main Hall' },
+    tags: ['US Dramatic', 'Q&A'],
+    films: ['ef1']
+  }]
+});
+const evRes = Importer.ingest({
+  inputText: fixtureEventive,
+  adapter: 'auto',
+  id: 'sundance-sample-2026',
+  name: '圣丹斯示例',
+  city: '帕克城',
+  tz: 'America/Denver',
+  year: 2026
+});
+assert.strictEqual(evRes.adapter, 'eventive');
+assert.strictEqual(evRes.programmeJson.films.length, 1);
+assert.strictEqual(evRes.programmeJson.films[0].dir, 'Celine Song');
+assert.strictEqual(evRes.programmeJson.films[0].min, 106);
+assert.strictEqual(evRes.programmeJson.films[0].qaGuest, 'Q&A');
+assert.strictEqual(evRes.programmeJson.shows[0][0], '1/21');
+assert.strictEqual(evRes.programmeJson.shows[0][1], '19:00');
+assert.strictEqual(evRes.catalogPatch.newVenues[0].name, 'Eccles Theatre');
+assert.strictEqual(evRes.catalogPatch.newVenues[0].halls[0].name, 'Main Hall');
+
+// 7c. Generic HTML table (auto) + selector config JSON (--config)
+const fixtureHtmlTable = `<html><body><table>
+  <thead><tr><th>片名</th><th>导演</th><th>片长</th><th>日期</th><th>时间</th><th>影院</th><th>影厅</th></tr></thead>
+  <tbody><tr><td>冬日旅行</td><td>陈明</td><td>98分</td><td>12/03</td><td>18:30</td><td>杭州百美汇影城</td><td>LUXE厅</td></tr></tbody>
+</table></body></html>`;
+const htmlTblRes = Importer.ingest({
+  inputText: fixtureHtmlTable,
+  format: 'html',
+  id: 'html-tbl-2026',
+  name: 'HTML表格示例',
+  year: 2026
+});
+assert.strictEqual(htmlTblRes.adapter, 'html');
+assert.strictEqual(htmlTblRes.programmeJson.films.length, 1);
+assert.strictEqual(htmlTblRes.programmeJson.shows[0][3], 'premiere');
+
+const sampleCfg = JSON.parse(fs.readFileSync(path.join(ROOT, 'tools/adapters/configs/sample-festival.json'), 'utf8'));
+const fixtureHtmlCards = `<html><body><ul>
+  <li class="screening-card">
+    <h3 class="film-title">海边灯塔</h3>
+    <span class="film-en">The Coastal Lighthouse</span>
+    <span class="film-director">导演：林静</span>
+    <span class="film-meta">2026 · 112 min</span>
+    <span class="film-section">亚洲视野</span>
+    <span class="film-format">4K修复</span>
+    <time data-date="2026-12-08" class="show-time">20:15</time>
+    <span class="show-venue">海滨电影院</span>
+    <span class="show-hall">2号厅</span>
+    <span class="show-qa">导演映后</span>
+    <p class="film-synopsis">一段关于潮汐的故事。</p>
+  </li>
+</ul></body></html>`;
+const htmlCfgRes = Importer.ingest({
+  inputText: fixtureHtmlCards,
+  adapter: 'html',
+  config: sampleCfg,
+  id: 'html-cfg-2026',
+  name: 'HTML配置示例',
+  year: 2026
+});
+assert.strictEqual(htmlCfgRes.programmeJson.films.length, 1);
+assert.strictEqual(htmlCfgRes.programmeJson.films[0].dir, '林静');
+assert.strictEqual(htmlCfgRes.programmeJson.films[0].min, 112);
+assert.strictEqual(htmlCfgRes.programmeJson.films[0].version, '4K修复');
+assert.strictEqual(htmlCfgRes.programmeJson.shows[0][0], '12/8');
+assert.strictEqual(htmlCfgRes.programmeJson.shows[0][1], '20:15');
+
+// 7d. Golden Horse (goldenhorse.org.tw) dedicated adapter — Taipei venue reuse & Q&A ★
+const fixtureGhHtml = `<html><body>
+  <div class="gh-film">
+    <h3 class="title-zh">大濛</h3>
+    <span class="title-en">A Foggy Tale</span>
+    <span class="section">金馬獎入圍</span>
+    <span class="director">導演：陳玉勳</span>
+    <span class="meta">2026 · 124 min</span>
+    <ul>
+      <li class="show-item">11/06 (四) 19:00 ★ <span class="venue">信義威秀10廳</span></li>
+      <li class="show-item">11/08 (六) 14:30 <span class="venue">MUVIE TITAN</span></li>
+    </ul>
+  </div>
+</body></html>`;
+const ghRes = Importer.ingest({
+  inputText: fixtureGhHtml,
+  adapter: 'goldenhorse',
+  id: 'gh-sample-2026',
+  name: '金马测试',
+  year: 2026
+});
+assert.strictEqual(ghRes.adapter, 'goldenhorse');
+assert.strictEqual(ghRes.catalogPatch.programme.tz, 'Asia/Taipei', 'Golden Horse defaults to Asia/Taipei');
+assert.strictEqual(ghRes.catalogPatch.programme.city, '台北', 'Golden Horse defaults to 台北');
+assert.strictEqual(ghRes.programmeJson.shows.length, 2);
+assert.strictEqual(ghRes.programmeJson.shows[0][3], 'tp-vieshow-xinyi', '信義威秀10廳 reuses catalog tp-vieshow-xinyi');
+assert.strictEqual(ghRes.programmeJson.shows[1][3], 'tp-muvie-titan', 'MUVIE TITAN reuses catalog tp-muvie-titan');
+assert.ok(ghRes.programmeJson.films[0].qaGuest, '★ marker detected as Q&A');
+
+// 8. Verify staging directory output via temp dir (CSV + adapter CLI)
 const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'sparrow-import-'));
 try {
   const csvPath = path.join(tmpDir, 'sample.csv');
@@ -116,8 +280,21 @@ try {
   assert(fs.existsSync(path.join(outDir, 'cli-test-2026.json')));
   assert(fs.existsSync(path.join(outDir, 'cli-test-2026.catalog-patch.json')));
   assert(fs.existsSync(path.join(outDir, 'cli-test-2026.en-scaffold.json')));
+
+  const ghPath = path.join(tmpDir, 'gh.html');
+  fs.writeFileSync(ghPath, fixtureGhHtml, 'utf8');
+  const outDir2 = path.join(tmpDir, 'out-gh');
+  require('child_process').execFileSync(process.execPath, [
+    path.join(__dirname, 'import-festival.js'),
+    '--input', ghPath, '--adapter', 'goldenhorse', '--id', 'cli-gh-2026', '--name', '金马CLI测试', '--out-dir', outDir2
+  ], { stdio: 'pipe' });
+  assert(fs.existsSync(path.join(outDir2, 'cli-gh-2026.json')));
+  const listOut = require('child_process').execFileSync(process.execPath, [
+    path.join(__dirname, 'import-festival.js'), '--list-adapters'
+  ], { encoding: 'utf8' });
+  assert(listOut.includes('jsonld') && listOut.includes('eventive') && listOut.includes('html') && listOut.includes('goldenhorse'));
 } finally {
   fs.rmSync(tmpDir, { recursive: true, force: true });
 }
 
-console.log(`PASS: festival ingestion pipeline — schema gate (${schemaRes.stats.shows} shows), coverage audit (${cov.films.total} films), CSV/ICS importer, metadata queue, issue templates & curator workbench.`);
+console.log(`PASS: festival ingestion pipeline — schema gate (${schemaRes.stats.shows} shows), coverage audit (${cov.films.total} films), CSV/ICS importer, 4 official adapters (jsonld/eventive/html/goldenhorse), metadata queue, issue templates & curator workbench.`);
