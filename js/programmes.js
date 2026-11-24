@@ -98,24 +98,39 @@ function venuesEntryHTML(p){
 let vmState=null, vmMode="street";
 function vmMercX(lon,z){return ((lon+180)/360)*256*Math.pow(2,z);}
 function vmMercY(lat,z){const r=lat*Math.PI/180;return (1-Math.log(Math.tan(r)+1/Math.cos(r))/Math.PI)/2*256*Math.pow(2,z);}
-function vmTileUrl(z,x,y,overseas){
+function vmUseOverseas(pts,lat,lon,z){
+  if(typeof SparrowPlanner==="undefined"||!pts||!pts.length)return false;
+  const flags=pts.map(p=>SparrowPlanner.isOverseasGeo(p.v));
+  if(flags.every(Boolean))return true;
+  if(flags.every(x=>!x))return false;
+  if(z<=10)return true;
+  let best=pts[0], bestD=Infinity;
+  pts.forEach(p=>{const d=Math.hypot(p.geo[0]-lat,p.geo[1]-lon);if(d<bestD){bestD=d;best=p;}});
+  return SparrowPlanner.isOverseasGeo(best.v);
+}
+function vmTileUrl(z,x,y,overseas,mode="street"){
   const n=Math.pow(2,z), wx=((x%n)+n)%n;
   if(y<0||y>=n)return "";
-  if(overseas){const s=["a","b","c","d"][(wx+y)&3];return `https://${s}.basemaps.cartocdn.com/rastertiles/voyager/${z}/${wx}/${y}@2x.png`;}
+  if(overseas){
+    const svc=mode==="sketch"?"World_Topo_Map":"World_Street_Map";
+    return `https://server.arcgisonline.com/ArcGIS/rest/services/${svc}/MapServer/tile/${z}/${y}/${wx}`;
+  }
   const s=(wx+y)%4+1;
   return `https://webrd0${s}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=2&style=8&x=${wx}&y=${y}&z=${z}`;
 }
-function vmContoursSVG(W,H){
-  // Hand-drawn museum-atlas topographic contours + delicate coordinate frame (visible immediately & in 手绘底图 mode)
-  const curves=[
-    `M-20,${(H*0.22).toFixed(0)} Q${(W*0.24).toFixed(0)},${(H*0.10).toFixed(0)} ${(W*0.52).toFixed(0)},${(H*0.26).toFixed(0)} T${W+20},${(H*0.18).toFixed(0)}`,
-    `M-20,${(H*0.36).toFixed(0)} Q${(W*0.28).toFixed(0)},${(H*0.24).toFixed(0)} ${(W*0.56).toFixed(0)},${(H*0.40).toFixed(0)} T${W+20},${(H*0.33).toFixed(0)}`,
-    `M-20,${(H*0.64).toFixed(0)} Q${(W*0.30).toFixed(0)},${(H*0.78).toFixed(0)} ${(W*0.62).toFixed(0)},${(H*0.62).toFixed(0)} T${W+20},${(H*0.72).toFixed(0)}`,
-    `M-20,${(H*0.80).toFixed(0)} Q${(W*0.34).toFixed(0)},${(H*0.92).toFixed(0)} ${(W*0.68).toFixed(0)},${(H*0.78).toFixed(0)} T${W+20},${(H*0.88).toFixed(0)}`
-  ];
-  const river=`M-20,${(H*0.52).toFixed(0)} C${(W*0.22).toFixed(0)},${(H*0.42).toFixed(0)} ${(W*0.46).toFixed(0)},${(H*0.68).toFixed(0)} ${(W*0.72).toFixed(0)},${(H*0.48).toFixed(0)} S${(W*0.92).toFixed(0)},${(H*0.56).toFixed(0)} ${W+20},${(H*0.46).toFixed(0)}`;
-  const grid=[0.2,0.4,0.6,0.8].map(f=>`<line x1="${(W*f).toFixed(1)}" y1="12" x2="${(W*f).toFixed(1)}" y2="${H-12}"/><line x1="12" y1="${(H*f).toFixed(1)}" x2="${W-12}" y2="${(H*f).toFixed(1)}"/>`).join("");
-  return `<g class="vm-atlas"><path class="vm-river" d="${river}"/>${curves.map(d=>`<path class="vm-contour" d="${d}"/>`).join("")}<g class="vm-grid">${grid}</g></g>`;
+function vmTileFallbackUrl(z,x,y,overseas,mode="street"){
+  const n=Math.pow(2,z), wx=((x%n)+n)%n;
+  if(y<0||y>=n)return "";
+  if(overseas){
+    const svc=mode==="sketch"?"World_Street_Map":"World_Topo_Map";
+    return `https://server.arcgisonline.com/ArcGIS/rest/services/${svc}/MapServer/tile/${z}/${y}/${wx}`;
+  }
+  return `https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/${z}/${y}/${wx}`;
+}
+function vmFrameSVG(W,H){
+  // Subtle engraved atlas border & hand-drawn ink displacement filter (applied to real map tiles in 手绘地图 mode)
+  const ticks=[0.2,0.4,0.6,0.8].map(f=>`<line x1="${(W*f).toFixed(1)}" y1="6" x2="${(W*f).toFixed(1)}" y2="12"/><line x1="${(W*f).toFixed(1)}" y1="${H-12}" x2="${(W*f).toFixed(1)}" y2="${H-6}"/><line x1="6" y1="${(H*f).toFixed(1)}" x2="12" y2="${(H*f).toFixed(1)}"/><line x1="${W-12}" y1="${(H*f).toFixed(1)}" x2="${W-6}" y2="${(H*f).toFixed(1)}"/>`).join("");
+  return `<defs><filter id="vm-sketch-fx" x="-2%" y="-2%" width="104%" height="104%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.032" numOctaves="2" seed="11" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.3" xChannelSelector="R" yChannelSelector="G"/></filter></defs><g class="vm-frame" aria-hidden="true"><rect x="6" y="6" width="${Math.max(0,W-12)}" height="${Math.max(0,H-12)}" rx="8"/><rect x="10" y="10" width="${Math.max(0,W-20)}" height="${Math.max(0,H-20)}" rx="5" class="vm-frame-in"/>${ticks}</g>`;
 }
 function venueMapFit(pts,W,H){
   const lats=pts.map(p=>p.geo[0]), lons=pts.map(p=>p.geo[1]);
@@ -131,32 +146,42 @@ function venueMapFit(pts,W,H){
 function renderVenueMap(){
   const stage=document.getElementById("vm-stage"); if(!stage||!vmState)return;
   const W=stage.clientWidth||640, H=stage.clientHeight||340;
-  const {pts,z,lat,lon,overseas,activeId}=vmState;
+  const {pts,z,lat,lon,activeId}=vmState;
+  const overseas=vmUseOverseas(pts,lat,lon,z);
   const cx=vmMercX(lon,z), cy=vmMercY(lat,z);
   const toXY=g=>[W/2+(vmMercX(g[1],z)-cx), H/2+(vmMercY(g[0],z)-cy)];
 
-  // 1. Real cartographic tiles (when in street mode)
+  // 1. Real cartographic tiles in BOTH street & sketch (illustrated) modes
   const tilesEl=stage.querySelector(".vm-tiles");
   if(tilesEl){
-    if(vmMode==="street"){
-      const tx0=Math.floor((cx-W/2)/256), tx1=Math.floor((cx+W/2)/256);
-      const ty0=Math.floor((cy-H/2)/256), ty1=Math.floor((cy+H/2)/256);
-      let html="";
-      for(let tx=tx0;tx<=tx1;tx++)for(let ty=ty0;ty<=ty1;ty++){
-        const u=vmTileUrl(z,tx,ty,overseas); if(!u)continue;
-        const left=Math.round(W/2+(tx*256-cx)), top=Math.round(H/2+(ty*256-cy));
-        html+=`<img class="vm-tile" src="${esc(u)}" alt="" draggable="false" loading="eager" style="left:${left}px;top:${top}px" onerror="this.style.opacity='0'">`;
-      }
-      tilesEl.innerHTML=html; tilesEl.style.opacity="1";
-    } else {
-      tilesEl.innerHTML=""; tilesEl.style.opacity="0";
+    const tx0=Math.floor((cx-W/2)/256), tx1=Math.floor((cx+W/2)/256);
+    const ty0=Math.floor((cy-H/2)/256), ty1=Math.floor((cy+H/2)/256);
+    let html="";
+    for(let tx=tx0;tx<=tx1;tx++)for(let ty=ty0;ty<=ty1;ty++){
+      const u=vmTileUrl(z,tx,ty,overseas,vmMode); if(!u)continue;
+      const fb=vmTileFallbackUrl(z,tx,ty,overseas,vmMode);
+      const left=Math.round(W/2+(tx*256-cx)), top=Math.round(H/2+(ty*256-cy));
+      html+=`<img class="vm-tile" src="${esc(u)}" data-fb="${esc(fb)}" alt="" draggable="false" loading="eager" style="left:${left}px;top:${top}px" onerror="if(this.dataset.fb&&this.src!==this.dataset.fb){this.src=this.dataset.fb;this.dataset.fb='';}else{this.style.opacity='0';}">`;
     }
+    tilesEl.innerHTML=html; tilesEl.style.opacity="1";
   }
 
-  // 2. Vector overlay: hand-drawn atlas backdrop + transfer arcs + numbered pins + compass + scale
+  // 2. Vector overlay: atlas frame + transfer arcs + non-colliding numbered pins + compass + scale
   const svg=stage.querySelector(".vm-svg"); if(!svg)return;
   svg.setAttribute("viewBox",`0 0 ${W} ${H}`);
-  const coords=pts.map(p=>({...p,xy:toXY(p.geo)}));
+  const coords=pts.map(p=>{const xy=toXY(p.geo);return {...p,xy,px:xy[0],py:xy[1],labPos:"bottom"};});
+  // Gently separate closely clustered pins (e.g. Xinyi Vie Show & MUVIE TITAN ~120m apart) so badges & labels never overlap
+  for(let i=0;i<coords.length;i++)for(let j=i+1;j<coords.length;j++){
+    const a=coords[i], b=coords[j], dx=b.px-a.px, dy=b.py-a.py, dist=Math.hypot(dx,dy);
+    if(dist<28){
+      const ang=dist>0.1?Math.atan2(dy,dx):-Math.PI/4, push=(28-dist)/2;
+      a.px-=Math.cos(ang)*push; a.py-=Math.sin(ang)*push;
+      b.px+=Math.cos(ang)*push; b.py+=Math.sin(ang)*push;
+    }
+    if(Math.abs(b.px-a.px)<84&&Math.abs(b.py-a.py)<34){
+      if(a.py<=b.py){a.labPos="top";b.labPos="bottom";}else{b.labPos="top";a.labPos="bottom";}
+    }
+  }
   let arcs="";
   if(coords.length>=2&&coords.length<=7){
     for(let i=0;i<coords.length-1;i++){
@@ -167,8 +192,10 @@ function renderVenueMap(){
     }
   }
   const pins=coords.map(p=>{
-    const [x,y]=p.xy, label=stripCity(p.v.short||p.v.name,p.v), num=String(p.i).padStart(2,"0"), hi=activeId===p.v.id?" hi":"";
-    return `<g class="vm-pin${hi}" data-vpin="${esc(p.v.id)}" tabindex="0" role="button" aria-label="${esc(p.v.name)}"><circle class="vm-halo" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${hi?20:15}"/><circle class="vm-dot" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="11.5"/><text class="vm-num" x="${x.toFixed(1)}" y="${(y+3.5).toFixed(1)}" text-anchor="middle">${num}</text><text class="vm-lab" x="${x.toFixed(1)}" y="${(y+25).toFixed(1)}" text-anchor="middle">${esc(label.slice(0,12))}</text></g>`;
+    const x=p.px, y=p.py, label=stripCity(p.v.short||p.v.name,p.v), num=String(p.i).padStart(2,"0"), hi=activeId===p.v.id?" hi":"";
+    const ly=p.labPos==="top"?y-17:y+25;
+    const leader=Math.hypot(x-p.xy[0],y-p.xy[1])>2?`<line class="vm-lead" x1="${p.xy[0].toFixed(1)}" y1="${p.xy[1].toFixed(1)}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}"/><circle class="vm-anchor" cx="${p.xy[0].toFixed(1)}" cy="${p.xy[1].toFixed(1)}" r="2.5"/>`:"";
+    return `<g class="vm-pin${hi}" data-vpin="${esc(p.v.id)}" tabindex="0" role="button" aria-label="${esc(p.v.name)}">${leader}<circle class="vm-halo" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${hi?20:15}"/><circle class="vm-dot" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="11.5"/><text class="vm-num" x="${x.toFixed(1)}" y="${(y+3.5).toFixed(1)}" text-anchor="middle">${num}</text><text class="vm-lab" x="${x.toFixed(1)}" y="${ly.toFixed(1)}" text-anchor="middle">${esc(label.slice(0,16))}</text></g>`;
   }).join("");
   const mPerPx=156543.03392*Math.cos(lat*Math.PI/180)/Math.pow(2,z);
   const targetM=mPerPx*76;
@@ -177,17 +204,16 @@ function renderVenueMap(){
   const barTxt=nice>=1000?(nice/1000)+" km":nice+" m";
   const compass=`<g class="vm-compass" transform="translate(${W-32},34)" aria-hidden="true"><circle cx="0" cy="0" r="14"/><path d="M0,-10 L3,0 L0,-2 L-3,0 Z" class="vm-cn"/><path d="M0,10 L2.5,0 L0,2 L-2.5,0 Z" class="vm-cs"/><text x="0" y="-16" text-anchor="middle">N</text></g>`;
   const scale=`<g class="vm-scale" transform="translate(16,${H-16})"><rect x="-6" y="-12" width="${(barPx+52).toFixed(0)}" height="20" rx="5"/><line x1="0" y1="0" x2="${barPx.toFixed(1)}" y2="0"/><line x1="0" y1="-4" x2="0" y2="4"/><line x1="${barPx.toFixed(1)}" y1="-4" x2="${barPx.toFixed(1)}" y2="4"/><text x="${(barPx+7).toFixed(1)}" y="3.5">${barTxt}</text></g>`;
-  svg.innerHTML=`${vmContoursSVG(W,H)}<g class="vm-arcs">${arcs}</g>${pins}${compass}${scale}`;
+  svg.innerHTML=`${vmFrameSVG(W,H)}<g class="vm-arcs">${arcs}</g>${pins}${compass}${scale}`;
   stage.classList.toggle("sketch",vmMode==="sketch");
   stage.querySelectorAll("[data-vm-mode]").forEach(b=>b.classList.toggle("on",b.dataset.vmMode===vmMode));
 }
 function venueMapHTML(rows){
   const pts=rows.map((r,i)=>({i:i+1,v:r.v,geo:Array.isArray(r.v.geo)&&r.v.geo.length===2?r.v.geo:null})).filter(x=>x.geo);
   if(!pts.length)return "";
-  const overseas=typeof SparrowPlanner!=="undefined"&&pts.every(p=>SparrowPlanner.isOverseasGeo(p.v));
   const fit=venueMapFit(pts,640,340);
-  vmState={pts,overseas,fit,z:fit.z,lat:fit.lat,lon:fit.lon,activeId:""};
-  return `<figure class="vm-wrap"><div class="vm-stage" id="vm-stage" aria-label="${esc(tr("展映影院地图"))}"><div class="vm-tiles" aria-hidden="true"></div><svg class="vm-svg" role="img" aria-label="${esc(tr("展映影院地图"))}"></svg><div class="vm-ctrls"><div class="vm-seg" role="group" aria-label="${esc(tr("地图风格"))}"><button type="button" data-vm-mode="street" class="${vmMode==="street"?"on":""}">${esc(tr("街道地图"))}</button><button type="button" data-vm-mode="sketch" class="${vmMode==="sketch"?"on":""}">${esc(tr("手绘底图"))}</button></div><div class="vm-zbtns"><button type="button" data-vm-act="in" aria-label="${esc(tr("放大"))}">＋</button><button type="button" data-vm-act="out" aria-label="${esc(tr("缩小"))}">－</button><button type="button" data-vm-act="fit" aria-label="${esc(tr("重置视角"))}">⌖</button></div></div></div><figcaption>${esc(tr("可拖拽平移或缩放 · 点击编号定位对应影院 · 导航按实际路况打开地图"))}</figcaption></figure>`;
+  vmState={pts,fit,z:fit.z,lat:fit.lat,lon:fit.lon,activeId:""};
+  return `<figure class="vm-wrap"><div class="vm-stage" id="vm-stage" aria-label="${esc(tr("展映影院地图"))}"><div class="vm-tiles" aria-hidden="true"></div><div class="vm-paper" aria-hidden="true"></div><svg class="vm-svg" role="img" aria-label="${esc(tr("展映影院地图"))}"></svg><div class="vm-ctrls"><div class="vm-seg" role="group" aria-label="${esc(tr("地图风格"))}"><button type="button" data-vm-mode="street" class="${vmMode==="street"?"on":""}">${esc(tr("街道地图"))}</button><button type="button" data-vm-mode="sketch" class="${vmMode==="sketch"?"on":""}">${esc(tr("手绘地图"))}</button></div><div class="vm-zbtns"><button type="button" data-vm-act="in" aria-label="${esc(tr("放大"))}">＋</button><button type="button" data-vm-act="out" aria-label="${esc(tr("缩小"))}">－</button><button type="button" data-vm-act="fit" aria-label="${esc(tr("重置视角"))}">⌖</button></div></div></div><figcaption>${esc(tr("可拖拽平移或缩放 · 点击编号定位对应影院 · 导航按实际路况打开地图"))}</figcaption></figure>`;
 }
 function bindVenueMapDrag(){
   const stage=document.getElementById("vm-stage"); if(!stage||stage._vmBound)return;

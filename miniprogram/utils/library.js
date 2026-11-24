@@ -93,7 +93,7 @@
   const upCount=ctx.isPast?shows.filter(s=>!ctx.isPast(s)).length:0;
   return {planned:shows.some(s=>ctx.picked.has(ctx.keyOf(s))),watched:seen,wanted:!seen&&!!(w&&!w.del),event:hasQaShow(f,shows,ctx),lastChance:ctx.isPast?upCount===1:false};
  }
- function category(f,mode,ctx){const m=list(mode);if(!m.length)return true;const s=status(f,ctx);return m.some(k=>k==='planned'?s.planned:k==='want'?s.wanted:k==='watched'?s.watched:k==='unwatched'?!s.watched:k==='qa'?s.event:false);}
+ function category(f,mode,ctx){const m=list(mode);if(!m.length)return true;const s=status(f,ctx);let ts=null;const getTs=()=>ts||(ts=traitStatus(f,ctx));return m.some(k=>k==='planned'?s.planned:k==='want'?s.wanted:k==='watched'?s.watched:k==='unwatched'?!s.watched:k==='qa'?s.event:k==='sub'?getTs().sub:k==='last'?getTs().last:k==='wp'?getTs().wp:k==='fit'?getTs().fit:false);}
  // Film-hero labels only: retain full programme membership everywhere else.
  function featuredProgrammes(entries,info){
   const seen=new Set();
