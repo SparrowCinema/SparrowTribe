@@ -167,5 +167,54 @@ assert.ok(sug.picks[1].tags.includes('同影院顺路'));
 assert.strictEqual(sug.unscheduled.length, 1);
 assert.strictEqual(sug.unscheduled[0].filmId, 'e');
 assert.strictEqual(sug.unscheduled[0].reason, 'no_upcoming');
+assert.strictEqual(sug.unscheduled[0].tier, 2, 'default tier is 可看');
+assert.strictEqual(sug.stats.byTier[2].want, 4);
 
-console.log('PASS: planner & tz — ' + geoVenues.length + ' venues with geo, multi-TZ/DST, Q&A 30-min transfer, conflict swaps, smart want-list suggestion.');
+// 4f. 想看分级：必看优先于可看，即使可看能多排一部
+// M（必看）唯一场与 X、Y（可看）都冲突；X、Y 互不冲突 → 不分级时会选 X+Y，分级后必须排 M
+const F2 = Object.assign({}, F, { m: { id: 'm', cn: '必看M', min: 180 }, x: { id: 'x', cn: '可看X', min: 80 }, y: { id: 'y', cn: '可看Y', min: 80 }, z: { id: 'z', cn: '随缘Z', min: 90 } });
+const ctx2 = Object.assign({}, ctx, { F: F2, durationOf: s => F2[s.id].min });
+const sM = { d: '11/22', t: '13:00', id: 'm', v: 'v1', h: 'h1' };   // 13:00-16:00
+const sX = { d: '11/22', t: '13:30', id: 'x', v: 'v1', h: 'h2' };   // 13:30-14:50
+const sY = { d: '11/22', t: '15:00', id: 'y', v: 'v1', h: 'h2' };   // 15:00-16:20
+const flat = P.suggestPlan(['m', 'x', 'y'], [], [sM, sX, sY], ctx2);
+assert.deepStrictEqual(flat.picks.map(p => p.filmId).sort(), ['x', 'y'], 'without tiers, maximise count');
+const tiers = { m: 1, x: 2, y: 2, z: 3 };
+const ctxT = Object.assign({}, ctx2, { tierOf: id => tiers[id] });
+const tiered = P.suggestPlan(['m', 'x', 'y'], [], [sM, sX, sY], ctxT);
+assert.deepStrictEqual(tiered.picks.map(p => p.filmId), ['m'], 'must-see wins over two maybes');
+assert.strictEqual(tiered.picks[0].tier, 1);
+assert.strictEqual(tiered.stats.byTier[1].added, 1);
+assert.strictEqual(tiered.stats.byTier[2].missed, 2);
+assert.strictEqual(tiered.tradeoffs.length, 0);
+
+// 4g. 随缘只填空档：与已选场次转场偏紧时不排
+const sZTight = { d: '11/23', t: '15:45', id: 'z', v: 'v2', h: 'h1' }; // 已选 B 14:00-15:50 @v1，跨影院
+const sBPicked = { d: '11/23', t: '14:00', id: 'b', v: 'v1', h: 'h1' };
+const zr = P.suggestPlan(['z'], [sBPicked], [sBPicked, Object.assign({}, sZTight, { t: '16:00' })], ctxT);
+assert.strictEqual(zr.picks.length, 0, 'whatever-tier should not take a tight transfer');
+const zr2 = P.suggestPlan(['z'], [sBPicked], [sBPicked, { d: '11/23', t: '19:00', id: 'z', v: 'v2', h: 'h1' }], ctxT);
+assert.strictEqual(zr2.picks.length, 1);
+
+// 4h. 必看取舍：必看唯一场被已选的可看场次挡住 → 给出「放弃可看」方案；被必看挡住则不给
+const xr = P.suggestPlan(['m', 'x'], [sX], [sM, sX], ctxT);
+assert.strictEqual(xr.picks.length, 0);
+assert.strictEqual(xr.unscheduled[0].filmId, 'm');
+assert.strictEqual(xr.unscheduled[0].reason, 'all_conflict');
+assert.strictEqual(xr.tradeoffs.length, 1);
+assert.strictEqual(xr.tradeoffs[0].key, ctx.keyOf(sM));
+assert.deepStrictEqual(xr.tradeoffs[0].drop.map(d => [d.filmId, d.tier, d.existing]), [['x', 2, true]]);
+const tiers2 = { m: 1, x: 1 };
+const xr2 = P.suggestPlan(['m', 'x'], [sX], [sM, sX], Object.assign({}, ctx2, { tierOf: id => tiers2[id] }));
+assert.strictEqual(xr2.tradeoffs.length, 0, 'never drop another must-see');
+assert.strictEqual(P.normTier(undefined), 2);
+assert.strictEqual(P.normTier('1'), 1);
+
+// 4i. psync 同步保留想看分级 p=1/3，默认档 2 不写 p，合并取较新者
+const PS = require('../shared/psync.js');
+const cl = PS.clean({ v: 1, want: { a: { t: 100, p: 1 }, b: { t: 100, p: 2 }, c: { t: 100, p: 3 }, d: { t: 100, p: 99 } } });
+assert.deepStrictEqual(cl.want, { a: { t: 100, p: 1 }, b: { t: 100 }, c: { t: 100, p: 3 }, d: { t: 100 } });
+const mg = PS.merge({ v: 1, want: { a: { t: 100, p: 1 }, c: { t: 200, p: 3 } } }, { v: 1, want: { a: { t: 200 }, c: { t: 100, p: 1 } } });
+assert.deepStrictEqual(mg.want, { a: { t: 200 }, c: { t: 200, p: 3 } });
+
+console.log('PASS: planner & tz — ' + geoVenues.length + ' venues with geo, multi-TZ/DST, Q&A 30-min transfer, conflict swaps, smart want-list suggestion, must/maybe/whatever tiers & trade-offs.');

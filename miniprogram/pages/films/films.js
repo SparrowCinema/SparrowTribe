@@ -43,7 +43,8 @@ Page({
   row(f, data, idx, withNext, pid) {
     const nx = withNext ? data.shows.filter(s=>s.id===f.id&&!U.ended(s,idx)&&(pid?U.progForShow(s,idx).id===pid:sh(this.data.pf,U.progForShow(s,idx).id))&&sh(this.data.city,idx.VN[s.v]?.city)).sort((a,b)=>U.showDate(a)-U.showDate(b)) : null, nxl = nx && U.localFirst(nx, idx), status=Library.status(f,this.context());
     const wanted=status.wanted,fresh=wanted&&Want.newCount(f.id,data.shows.filter(s=>s.id===f.id&&!U.ended(s,idx)).map(U.keyOf))>0;
-    return {wanted,fresh,planned:status.planned,watched:status.watched,event:status.event,lastChance:status.lastChance,id:f.id, cn: f.cn, en: f.en || f.o, dir: f.dir, c: t(f.c), y: f.y, version: t(f.version || ''), db: f.r && f.r[0] != null ? f.r[0] : '—',
+    const wTier=wanted?Want.tierOf(f.id):2,wantTag=wTier===1?t('必看'):wTier===3?t('随缘'):t('想看');
+    return {wanted,wTier,wantTag,fresh,planned:status.planned,watched:status.watched,event:status.event,lastChance:status.lastChance,id:f.id, cn: f.cn, en: f.en || f.o, dir: f.dir, c: t(f.c), y: f.y, version: t(f.version || ''), db: f.r && f.r[0] != null ? f.r[0] : '—',
       release: f.ended ? t('已下映') : t(f.release || ''), poster: U.thumb(f), color: (data.reg[f.reg] || {}).c, next: nxl ? U.ymd(nxl) + ' ' + nxl.t : '' };
   },
   build() {

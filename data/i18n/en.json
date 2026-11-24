@@ -56,7 +56,7 @@
     "同场": "Same screening",
     "书脊": "Spines",
     "制作": "Make",
-    "已选": "Selected",
+    "已选": "Picked",
     "筛选": "Filter",
     "已收藏": "Collected",
     "已生成": "Created",
@@ -136,7 +136,12 @@
     "换一张我的海报": "Choose your poster",
     "换一张海报": "Choose a poster",
     "最近更新": "What's new",
-    "新": "New"
+    "新": "New",
+    "必看": "Must",
+    "可看": "Maybe",
+    "随缘": "If free",
+    "分级": "Priority",
+    "想看分级与必看优先排片": "Watchlist priority tiers"
   },
   "_readme": "English layer for the site. films/programmes/venues overlay data fields when ?lang=en; ui is the zh→en dictionary used by tr(). Missing entries fall back to the Chinese text.",
   "films": {
@@ -13854,6 +13859,18 @@
     "已结束的专题收在片目和「专题」页底部的「往期专题」里，展开后是一排书脊，横向滑动，点一本看这个专题的片单；往期专题多了会按年份分组。搜索或用「我的」筛选时，命中的往期影片直接全部列出。": "Finished programmes live under Past programmes at the bottom of Films and Programmes. Open it to see a row of book spines: swipe across and tap one for its film list; with many past programmes they are grouped by year. When you search or use the My filter, matching past films are listed in full.",
     "影片有多张官方海报时，影片页大海报角上显示「可换 N」，选一张后只改你自己看到的：影片页、海报墙、观影结算和典藏票根默认票面。": "When a film has several official posters, the film page shows \"N to choose\" on the poster. Your pick only changes what you see: the film page, poster wall, recap and the default artwork of your collectible tickets.",
     "使用指南加载中…": "Loading the guide…",
-    "使用指南加载失败，请检查网络后重试": "Couldn't load the guide. Check your connection and try again."
+    "使用指南加载失败，请检查网络后重试": "Couldn't load the guide. Check your connection and try again.",
+    "已设为": "Set to",
+    "已加入想看 · 可选「必看 / 可看 / 随缘」分级": "Added to watchlist · pick Must / Maybe / If free",
+    "一键排片先保证必看，随缘只填空档": "Auto-plan secures Must first; If free only fills gaps",
+    "优先保证必看，其次可看，随缘只填空档；已选排片保持不变，可取消勾选。": "Secures Must first, then Maybe, using If free to fill gaps. Existing picks stay untouched; uncheck any suggestion.",
+    "必看取舍建议": "Must-see trade-off suggestions",
+    "让出：": "Drop: ",
+    "换入必看": "Swap in Must",
+    "已换入必看": "Swapped in Must",
+    "想看分级与必看优先排片": "Watchlist priority tiers",
+    "影片页标记「想看」后，可按「必看 / 可看 / 随缘」三档分级（默认可看），分级随同步码在多设备间同步。个人排片里点「想看一键排片」会先保必看、再排可看、随缘只填空档；必看被低档场次挡住时还会给出取舍方案。": "After marking a film Want to see, set its priority to Must, Maybe (default), or If free. Tiers sync across devices. Auto-plan secures Must films first, then Maybe, and uses If free only to fill gaps — offering swap trade-offs if a Must film is blocked by lower-priority picks.",
+    "在个人排片页点「想看一键排片」，会按想看分级优先保证「必看」、其次「可看」、「随缘」只填空档，避开冲突生成排片建议；必看排不进时给出换掉低档场次的取舍方案。遇到时间重叠时，冲突提示框里也会列出同片其他待映场次，点一下直接替换。": "Tap Auto-plan in My Schedule to build a conflict-free itinerary from your watchlist: Must films are secured first, then Maybe, and If free only fills comfortable gaps. If a Must film is blocked by lower-priority picks, trade-off swaps are suggested. For overlapping picks, the conflict banner offers one-tap alternative screenings.",
+    "影片页点「☆ 想看」加入想看清单，可设为「必看 / 可看 / 随缘」三档（默认可看），片目卡片会标出「必看」或「随缘」；想看的影片出现新场次时，片目卡片会标「新场次」，「我的 › 想看清单」也会提示。": "Tap ☆ Want to see on any film page to add it to your watchlist and pick Must, Maybe (default), or If free. Must and If free badges appear on film cards, and new screenings are highlighted as New."
   }
 }

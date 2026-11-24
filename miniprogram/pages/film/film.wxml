@@ -66,6 +66,11 @@
       <view class="mr-top"><view class="mr-h"><text class="mr-t">{{L.t(i,'我的观影')}}</text><text class="mr-en mono">MY FILM PASSPORT</text></view>
         <view wx:if="{{mine.seen}}" class="mr-stamp" hover-class="hv" bindtap="stampMenu"><text>{{i.__en?'Stamped':'已盖章'}}</text><text wx:if="{{mine.n > 1}}" class="mr-stamp-n mono">{{mine.nTxt}}</text><text class="mr-stamp-go">›</text></view></view>
       <view wx:if="{{!mine.seen}}" class="mr-acts"><view class="mr-want {{mine.want ? 'on' : ''}}" hover-class="hv" bindtap="toggleWant">{{mine.wantTxt}}</view><view class="mr-seen mr-seen-full" hover-class="hv" bindtap="toggleSeen">{{mine.seenTxt}}</view></view>
+      <view wx:if="{{!mine.seen && mine.want}}" class="mr-tier">
+        <text class="mr-tier-k">{{L.t(i,'分级')}}</text>
+        <view wx:for="{{mine.wantTiers}}" wx:key="p" class="mr-tier-b t{{item.p}} {{item.on?'on':''}}" data-p="{{item.p}}" bindtap="setWantTier">{{item.label}}</view>
+        <text class="mr-tier-tip">{{L.t(i,'一键排片先保证必看，随缘只填空档')}}</text>
+      </view>
       <view class="mrc">
         <view class="mrc-rate"><view class="mrc-k"><text>{{i.__en?'My rating':'我的评分'}}</text><text wx:if="{{mine.n > 1}}" class="mrc-ks">{{i.__en?'latest':'最近一次'}}</text></view>
           <view class="mr-stars"><view wx:for="{{mine.stars}}" wx:key="index" class="mr-star"><text class="s0">★</text><view class="s1" style="width:{{item}}%"><text>★</text></view><view class="hz l" data-v="{{index * 2 + 1}}" bindtap="rate" /><view class="hz r" data-v="{{index * 2 + 2}}" bindtap="rate" /></view></view>
