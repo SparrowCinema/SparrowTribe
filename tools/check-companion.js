@@ -39,6 +39,7 @@ require('./check-planner-tz.js');
 require('./check-recommend.js');
 require('./check-handbook.js');
 require('./check-notes-eco.js');
+require('./check-pipeline.js');
 require('./check-curl.js');
 require('./check-ticket-preview.js');
 require('./check-getdata.js');
