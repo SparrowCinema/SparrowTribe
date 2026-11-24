@@ -2967,6 +2967,9 @@
    "y": 2026,
    "c": "美国",
    "min": 109,
+   "screeningNotes": {
+    "11/28-16:35-hz-cgv-olympic-4dx": "4DX海报场"
+   },
    "reg": "us",
    "release": "2026年11月27日 内地上映",
    "dir": "詹姆斯·瓦特金斯",
@@ -3625,6 +3628,14 @@
    "hz-xgjy-raffles",
    "hall-4",
    "svlqg4051"
+  ],
+  [
+   "11/28",
+   "16:35",
+   "clayface",
+   "hz-cgv-olympic",
+   "4dx",
+   "s8em7u9du"
   ]
  ]
 }
