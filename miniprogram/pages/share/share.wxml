@@ -6,6 +6,72 @@
     <text class="muted">{{L.t(i,'其中的场次可能已经更新。')}}</text>
     <view class="btn" bindtap="home">{{L.t(i,'进入首页看排片')}}</view>
   </view>
+  <block wx:elif="{{mode === 'group' && grp}}">
+    <view class="grp-members">
+      <text class="grp-mlab">{{L.t(i,'已加入接龙')}} ({{grp.n}}/{{grp.max}})</text>
+      <view class="grp-chips">
+        <view wx:for="{{grp.members}}" wx:key="idx" class="grp-chip">
+          <text class="grp-cn">{{item.n}}</text>
+          <text class="grp-cs mono">{{item.sub}}</text>
+          <text wx:if="{{grp.n > 1}}" class="grp-rm" data-idx="{{item.idx}}" bindtap="removeMember">×</text>
+        </view>
+      </view>
+    </view>
+    <view class="card grp-join">
+      <view class="grp-jrow">
+        <input class="grp-inp" maxlength="16" value="{{nick}}" placeholder="{{L.t(i,'输入你的昵称（如：阿明）')}}" bindinput="nickInput" />
+        <view class="btn light grp-jbtn" bindtap="joinGroup">{{grp.alreadyIn ? L.t(i,'更新我的排片') : L.t(i,'加入接龙')}}</view>
+      </view>
+      <view class="grp-chk" bindtap="toggleWithWant">
+        <text class="grp-box {{withWant ? 'on' : ''}}">{{withWant ? '✓' : ''}}</text>
+        <text class="grp-cl">{{L.t(i,'同时带上我的想看清单（推荐共同想看的无冲突场次）')}}</text>
+      </view>
+      <view class="grp-share-row">
+        <button class="btn light grp-sh" open-type="share">{{L.t(i,'转发接龙给下一位朋友')}}</button>
+        <view class="btn ghost grp-cp" bindtap="copyWebRelay">{{L.t(i,'复制网页链接')}}</view>
+      </view>
+    </view>
+    <view wx:if="{{grp.n < 2}}" class="ov card">
+      <text class="ov-k mono">GROUP RELAY</text>
+      <text class="ov-none">{{L.t(i,'把接龙转发给朋友，凑齐 2–8 人自动合并排片')}}</text>
+      <text class="ov-p">{{L.t(i,'朋友点开后填昵称点「加入接龙」再转发给下一位，自动列出全员同场、一起看建议与共同想看。')}}</text>
+    </view>
+    <view wx:else class="ov card">
+      <text class="ov-k mono">GROUP PLAN MATCH</text>
+      <view class="grp-kpis">
+        <view><text class="kn mono">{{grp.n}}</text><text class="kl">{{L.t(i,'位朋友')}}</text></view>
+        <view><text class="kn mono">{{grp.stats.allTogetherCount}}</text><text class="kl">{{L.t(i,'全员同场')}}</text></view>
+        <view><text class="kn mono">{{grp.stats.suggestCount}}</text><text class="kl">{{L.t(i,'一起看建议')}}</text></view>
+        <view><text class="kn mono">{{grp.stats.sharedWantCount}}</text><text class="kl">{{L.t(i,'共同想看')}}</text></view>
+      </view>
+      <view wx:for="{{grp.secs}}" wx:for-item="sec" wx:key="k" class="ov-sec">
+        <text class="ov-h">{{sec.title}}</text>
+        <view wx:for="{{sec.rows}}" wx:key="key" class="ov-row">
+          <view class="ov-t mono"><text class="ov-d">{{item.d}}</text><text class="ov-tm">{{item.t}}</text></view>
+          <view class="ov-i" data-id="{{item.id}}" bindtap="open">
+            <text class="ov-f">{{item.cn}}<text wx:if="{{item.version}}" class="ed">{{item.version}}</text></text>
+            <text class="ov-pl">{{item.place}}</text>
+            <view class="grp-tags"><text wx:for="{{item.tags}}" wx:for-item="tg" wx:key="tx" class="grp-tag {{tg.c}}">{{tg.tx}}</text></view>
+          </view>
+          <view wx:if="{{item.add}}" class="ov-add {{item.on ? 'on' : ''}}" data-key="{{item.key}}" catchtap="addOne">{{item.on ? '✓' : '+'}}</view>
+        </view>
+      </view>
+      <view wx:if="{{grp.wantRows.length}}" class="ov-sec">
+        <text class="ov-h">{{L.t(i,'共同想看片单')}}</text>
+        <view wx:for="{{grp.wantRows}}" wx:key="id" class="ov-row">
+          <view class="ov-i" data-id="{{item.id}}" bindtap="open">
+            <text class="ov-f">{{item.cn}}<text wx:if="{{item.version}}" class="ed">{{item.version}}</text></text>
+            <view class="grp-tags">
+              <text class="grp-tag want">{{item.who}}</text>
+              <text class="grp-tag {{item.allFree ? 'all' : 'free'}}">{{item.slotTxt}}</text>
+            </view>
+          </view>
+          <view wx:if="{{item.bestKey}}" class="ov-add {{item.on ? 'on' : ''}}" data-key="{{item.bestKey}}" catchtap="addOne">{{item.on ? '✓' : '+'}}</view>
+        </view>
+      </view>
+      <text wx:if="{{!grp.secs.length && !grp.wantRows.length}}" class="ov-p">{{L.t(i,'大家暂时没有重叠或可凑场的待映场次，可以先在片目里多标几部「想看」再更新接龙。')}}</text>
+    </view>
+  </block>
   <block wx:else>
     <view class="banner">
       <text class="bt">{{cnt}}</text>
@@ -38,6 +104,7 @@
             <view wx:if="{{sec.add}}" class="ov-add {{item.on ? 'on' : ''}}" data-key="{{item.key}}" catchtap="addOne">{{item.on ? '✓' : '+'}}</view>
           </view>
         </view>
+        <text class="ov-link" bindtap="upgradeGroup">{{L.t(i,'拉更多人一起凑场 ›')}}</text>
       </block>
       <text wx:if="{{ov.miss}}" class="ov-p">{{ov.miss}}</text>
     </view>
