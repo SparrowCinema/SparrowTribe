@@ -97,7 +97,9 @@ function validate(rootDir) {
         err(`${tag}: sectionNotes must be an object`);
       } else {
         Object.entries(p.sectionNotes).forEach(([k, val]) => {
-          if (typeof val !== 'string' || !val.trim()) err(`${tag}.sectionNotes["${k}"]: must be a non-empty string`);
+          const okStr = typeof val === 'string' && val.trim();
+          const okObj = val && typeof val === 'object' && !Array.isArray(val) && typeof val.intro === 'string' && val.intro.trim();
+          if (!okStr && !okObj) err(`${tag}.sectionNotes["${k}"]: must be a non-empty string or { intro } object`);
         });
       }
     }

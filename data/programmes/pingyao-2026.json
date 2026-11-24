@@ -1,0 +1,2089 @@
+{
+  "programme": "pingyao-2026",
+  "films": [
+    {
+      "id": "py26-001",
+      "cn": "费穆",
+      "o": "Echoes of Fei Mu",
+      "en": "Echoes of Fei Mu",
+      "y": 2026,
+      "min": 89,
+      "c": "中国",
+      "reg": "cn",
+      "dir": "潘奕霖",
+      "dirO": "PAN Yilin",
+      "language": "中文（普通话）",
+      "poster": "posters/pingyao-py26-001.jpg",
+      "syn": "聚焦上世纪三、四十年代在中国享誉盛名的导演费穆的艺术创作与人生经历，透过一众导演、学者、亲友的视野，带领观众走进诗人导演费穆的精神世界。",
+      "genre": [
+        "纪录片"
+      ],
+      "honors": [
+        "入选｜2026 第10届平遥国际电影展 · 平遥十年·回顾致敬"
+      ],
+      "warnings": [],
+      "contentReview": {
+        "status": "synopsis-reviewed",
+        "checked": "2026-11-24",
+        "sensory": "unverified"
+      },
+      "contentNote": "公开简介为导演费穆生平与创作的纪录片访谈，未提及显著刺激内容；具体画面与声光强度待核实。",
+      "editorial": "平遥十周年与《小城之春》4K修复开幕遥相呼应的致敬纪录片，借导演、学者与亲友的追忆走近诗人导演费穆的精神世界。",
+      "worldPremiere": {
+        "status": "pending",
+        "kind": "unknown",
+        "date": null,
+        "festival": null,
+        "festivalEn": null
+      }
+    },
+    {
+      "id": "py26-002",
+      "cn": "罗维雷将军",
+      "o": "General della Rovere",
+      "en": "General della Rovere",
+      "y": 1959,
+      "min": 132,
+      "c": "意大利 / 法国",
+      "reg": "eu",
+      "dir": "罗伯特·罗西里尼",
+      "dirO": "Roberto ROSSELLINI",
+      "language": "意大利语 / 德语",
+      "poster": "posters/pingyao-py26-002.jpg",
+      "syn": "在纳粹胁迫之下，他被迫假扮意大利抵抗运动领袖罗维雷将军，混入关押抵抗运动囚犯的群体当中。生平第一次，他在良知的反复挣扎里，一步步迷失在自己所扮演的身份之中。",
+      "genre": [
+        "剧情",
+        "战争"
+      ],
+      "honors": [
+        "获奖｜1959 第20届威尼斯国际电影节 · 金狮奖",
+        "入选｜2026 第10届平遥国际电影展 · 平遥十年·回顾致敬"
+      ],
+      "warnings": [
+        "战争与监禁",
+        "纳粹占领与处决威胁"
+      ],
+      "contentReview": {
+        "status": "synopsis-reviewed",
+        "checked": "2026-11-24",
+        "sensory": "unverified"
+      },
+      "contentNote": "公开简介涉及二战纳粹占领、战俘监禁与良知抉择；具体暴力与声光强度待核实。",
+      "editorial": "平遥「罗伯托·罗西里尼荣誉」十周年回顾致敬放映，看小骗子在狱中逐渐与所假扮的抵抗运动领袖合二为一。",
+      "worldPremiere": {
+        "status": "pending",
+        "kind": "unknown",
+        "date": null,
+        "festival": null,
+        "festivalEn": null
+      }
+    },
+    {
+      "id": "py26-003",
+      "cn": "爱情笑话",
+      "o": "A Joke",
+      "en": "A Joke",
+      "y": 2026,
+      "min": 96,
+      "c": "中国",
+      "reg": "cn",
+      "dir": "王晓振",
+      "dirO": "WANG Xiaozhen",
+      "language": "中文（普通话）",
+      "poster": "posters/pingyao-py26-003.jpg",
+      "syn": "小美与小帅，婚床变道场，两个狠角儿倾尽所学，在爱情里博弈，情感拉扯输赢分晓，也让他们更见“自我”。",
+      "genre": [
+        "剧情",
+        "爱情"
+      ],
+      "honors": [
+        "获奖｜2026 第10届平遥国际电影展 · 费穆荣誉最佳女演员（孙怡）",
+        "入围｜2026 第10届平遥国际电影展 · 藏龙单元"
+      ],
+      "warnings": [
+        "亲密关系冲突与博弈"
+      ],
+      "contentReview": {
+        "status": "synopsis-reviewed",
+        "checked": "2026-11-24",
+        "sensory": "unverified"
+      },
+      "contentNote": "公开简介聚焦婚姻与亲密关系中的情感博弈和拉扯；具体尺度与声光强度待核实。",
+      "editorial": "第十届平遥费穆荣誉最佳女演员获奖作，把婚床化作试探与角力的道场，在针锋相对里照见两人的自我。",
+      "worldPremiere": {
+        "status": "pending",
+        "kind": "unknown",
+        "date": null,
+        "festival": null,
+        "festivalEn": null
+      }
+    },
+    {
+      "id": "py26-004",
+      "cn": "宝石劫",
+      "o": "Gemstones",
+      "en": "Gemstones",
+      "y": 2026,
+      "min": 70,
+      "c": "哥伦比亚 / 葡萄牙",
+      "reg": "la",
+      "dir": "西蒙·贝莱斯",
+      "dirO": "Simón VÉLEZ",
+      "language": "西班牙语 / 法语",
+      "poster": "posters/pingyao-py26-004.jpg",
+      "syn": "生活在法国的哥伦比亚人马查多受雇返回故乡麦德林，盗取一颗祖母绿。在执行这项危险任务的过程中，他卷入一连串意外事件，也开始重新思考这次行动最终的目的。",
+      "genre": [
+        "剧情",
+        "犯罪"
+      ],
+      "honors": [
+        "入围｜2026 第10届平遥国际电影展 · 卧虎单元"
+      ],
+      "warnings": [
+        "盗窃与犯罪行动风险"
+      ],
+      "contentReview": {
+        "status": "synopsis-reviewed",
+        "checked": "2026-11-24",
+        "sensory": "unverified"
+      },
+      "contentNote": "公开简介涉及返乡盗取祖母绿的危险行动与突发变故；具体暴力与声光强度待核实。",
+      "editorial": "70分钟轻盈而暗流涌动的麦德林盗宝记，归乡任务在意外连环中偏离初衷，折射身份与归属的游移。",
+      "worldPremiere": {
+        "status": "pending",
+        "kind": "unknown",
+        "date": null,
+        "festival": null,
+        "festivalEn": null
+      }
+    },
+    {
+      "id": "py26-005",
+      "cn": "罗西里尼",
+      "o": "The Rossellinis",
+      "en": "The Rossellinis",
+      "y": 2020,
+      "min": 99,
+      "c": "意大利 / 拉脱维亚",
+      "reg": "eu",
+      "dir": "亚历桑德罗·罗西里尼",
+      "dirO": "Alessandro ROSSELLINI",
+      "language": "英语 / 意大利语",
+      "poster": "posters/pingyao-py26-005.jpg",
+      "syn": "一场由亚历桑德罗·罗西里尼亲自展开的家族之旅：他以孙辈视角重新审视祖父罗伯托·罗西里尼留下的庞大家族与电影遗产。",
+      "genre": [
+        "纪录片"
+      ],
+      "honors": [
+        "入选｜2026 第10届平遥国际电影展 · 平遥十年·回顾致敬"
+      ],
+      "warnings": [
+        "家庭矛盾与代际心结"
+      ],
+      "contentReview": {
+        "status": "synopsis-reviewed",
+        "checked": "2026-11-24",
+        "sensory": "unverified"
+      },
+      "contentNote": "公开简介为导演以孙辈视角探访罗西里尼家族关系的纪录片，涉及复杂亲情与名声重负；声光强度待核实。",
+      "editorial": "长孙亚历桑德罗·罗西里尼亲自掌镜的家族自省纪录片，与《罗维雷将军》构成平遥十年致敬罗西里尼的银幕对读。",
+      "worldPremiere": {
+        "status": "pending",
+        "kind": "unknown",
+        "date": null,
+        "festival": null,
+        "festivalEn": null
+      }
+    },
+    {
+      "id": "py26-006",
+      "cn": "创口",
+      "o": "Bo Bo",
+      "en": "Bo Bo",
+      "y": 2026,
+      "min": 97,
+      "c": "俄罗斯",
+      "reg": "eu",
+      "dir": "阿纳斯塔西娅·库齐娜",
+      "dirO": "Anastasia KUZINA",
+      "language": "俄语",
+      "poster": "posters/pingyao-py26-006.jpg",
+      "syn": "这是一个关于组建真正家庭的艰难旅程的故事，而命运也慷慨地赐予了他们一个“特别的孩子”。",
+      "genre": [
+        "剧情",
+        "家庭"
+      ],
+      "honors": [
+        "入围｜2026 第10届平遥国际电影展 · 卧虎单元"
+      ],
+      "warnings": [
+        "家庭照护与育儿困境"
+      ],
+      "contentReview": {
+        "status": "synopsis-reviewed",
+        "checked": "2026-11-24",
+        "sensory": "unverified"
+      },
+      "contentNote": "公开简介讲述组建家庭与抚养“特别的孩子”的艰难历程；具体情绪冲击与声光强度待核实。",
+      "editorial": "入围第十届平遥「卧虎」单元的俄罗斯新导演作品，以克制凝视面对组建家庭过程中的裂痕与温柔。",
+      "worldPremiere": {
+        "status": "pending",
+        "kind": "unknown",
+        "date": null,
+        "festival": null,
+        "festivalEn": null
+      }
+    },
+    {
+      "id": "py26-007",
+      "cn": "假凤虚凰",
+      "o": "Phony Phoenixes",
+      "en": "Phony Phoenixes",
+      "y": 1947,
+      "min": 93,
+      "c": "中国",
+      "reg": "cn",
+      "dir": "黄佐临",
+      "dirO": "HUANG Zuolin",
+      "language": "中文（普通话）",
+      "poster": "posters/pingyao-py26-007.jpg",
+      "syn": "年轻貌美的寡妇范如华假冒富翁女儿的身份征婚，却遇到了同样冒名顶替商人求偶的理发师杨小毛。互不知对方真实身份的两人，为了自身利益各自推进婚姻的进行，闹出不少笑话。",
+      "genre": [
+        "喜剧",
+        "爱情"
+      ],
+      "honors": [
+        "入选｜2026 第10届平遥国际电影展 · 平遥十年·纪念放映"
+      ],
+      "warnings": [
+        "婚姻骗局与身份伪装"
+      ],
+      "contentReview": {
+        "status": "synopsis-reviewed",
+        "checked": "2026-11-24",
+        "sensory": "unverified"
+      },
+      "contentNote": "公开简介为1947年文华经典讽刺喜剧，围绕双方冒名征婚的闹剧展开，整体基调轻快；声光强度待核实。",
+      "editorial": "黄佐临1947年文华喜剧代表作2017年4K修复版，两个各自冒牌的求偶者将计就计，笑闹间尽显战后上海世态人情。",
+      "version": "4K修复",
+      "worldPremiere": {
+        "status": "pending",
+        "kind": "unknown",
+        "date": null,
+        "festival": null,
+        "festivalEn": null
+      }
+    },
+    {
+      "id": "py26-008",
+      "cn": "复制恋人",
+      "o": "Replica",
+      "en": "Replica",
+      "y": 2026,
+      "min": 85,
+      "c": "澳大利亚 / 法国",
+      "reg": "cn",
+      "dir": "梁丑娃",
+      "dirO": "Chouwa LIANG",
+      "language": "中文（普通话） / 英语",
+      "poster": "posters/pingyao-py26-008.jpg",
+      "syn": "在当代中国，三位女性与AI伴侣相爱，并在虚拟情感中重新思考爱的真实与缺失。",
+      "genre": [
+        "纪录片"
+      ],
+      "honors": [
+        "入围｜2026 第10届平遥国际电影展 · 藏龙单元"
+      ],
+      "warnings": [
+        "情感孤独与虚拟依恋"
+      ],
+      "contentReview": {
+        "status": "synopsis-reviewed",
+        "checked": "2026-11-24",
+        "sensory": "unverified"
+      },
+      "contentNote": "公开简介聚焦当代中国三位女性与AI伴侣之间的亲密关系与情感缺失；具体呈现与声光强度待核实。",
+      "editorial": "入围第十届平遥「藏龙」单元，将镜头对准与AI伴侣相爱的三位女性，借虚拟亲密反照现实里的渴望与空缺。",
+      "worldPremiere": {
+        "status": "pending",
+        "kind": "unknown",
+        "date": null,
+        "festival": null,
+        "festivalEn": null
+      }
+    },
+    {
+      "id": "py26-009",
+      "cn": "记忆",
+      "o": "Memoria",
+      "en": "Memoria",
+      "y": 2021,
+      "min": 136,
+      "c": "哥伦比亚 / 泰国",
+      "reg": "as",
+      "dir": "阿彼察邦·韦拉斯哈古",
+      "dirO": "Apichatpong WEERASETHAKUL",
+      "language": "西班牙语 / 英语",
+      "poster": "posters/pingyao-py26-009.jpg",
+      "syn": "泰国导演、金棕榈奖 得主阿彼察邦与奥斯卡奖得主蒂尔达·斯文顿首度合作，讲述一个女人在拂晓听到一声神秘巨响后，开始经历一系列异常感知的魔幻故事。",
+      "genre": [
+        "剧情",
+        "奇幻"
+      ],
+      "honors": [
+        "获奖｜2021 第74届戛纳国际电影节 · 评审团奖",
+        "入选｜2026 第10届平遥国际电影展 · 平遥十年·纪念放映"
+      ],
+      "warnings": [
+        "突发巨响声效"
+      ],
+      "contentReview": {
+        "status": "synopsis-reviewed",
+        "checked": "2026-11-24",
+        "sensory": "unverified"
+      },
+      "contentNote": "公开简介围绕主角拂晓听到神秘巨响后的异常感知展开，片中声音设计包含突发低频撞击声；声光敏感观众请留意。",
+      "editorial": "平遥十年纪念放映阿彼察邦与蒂尔达·斯文顿合作名作，声响、失眠与哥伦比亚丛林记忆在大银幕影厅声场里最见魔力。",
+      "worldPremiere": {
+        "status": "pending",
+        "kind": "unknown",
+        "date": null,
+        "festival": null,
+        "festivalEn": null
+      }
+    },
+    {
+      "id": "py26-010",
+      "cn": "反自然",
+      "o": "Against Nature",
+      "en": "Against Nature",
+      "y": 2026,
+      "min": 87,
+      "c": "墨西哥",
+      "reg": "la",
+      "dir": "阿克塞尔·贝尔塔",
+      "dirO": "Axel BERTHA",
+      "language": "西班牙语",
+      "poster": "posters/pingyao-py26-010.jpg",
+      "syn": "离乡多年后，乔纳斯回到故乡，成为一名石匠。在那里，一股无形的力量渗透于风景、身体乃至时间本身，引领他走向一个由自然与人性共同塑造的命运。",
+      "genre": [
+        "剧情"
+      ],
+      "honors": [
+        "入围｜2026 第10届平遥国际电影展 · 卧虎单元"
+      ],
+      "warnings": [],
+      "contentReview": {
+        "status": "synopsis-reviewed",
+        "checked": "2026-11-24",
+        "sensory": "unverified"
+      },
+      "contentNote": "公开简介讲述离乡男子返乡担任石匠并感知自然与命运之力的故事，未提及明确暴力或创伤事件；具体画面与声光强度待核实。",
+      "editorial": "墨西哥青年导演阿克塞尔·贝尔塔入围「卧虎」之作，以石匠劳作与乡野风物承载时间、身体与无形宿命的重量。",
+      "worldPremiere": {
+        "status": "pending",
+        "kind": "unknown",
+        "date": null,
+        "festival": null,
+        "festivalEn": null
+      }
+    },
+    {
+      "id": "py26-011",
+      "cn": "苍蝇",
+      "o": "Flies",
+      "en": "Flies",
+      "y": 2026,
+      "min": 102,
+      "c": "墨西哥 / 西班牙",
+      "reg": "la",
+      "dir": "费南多·伊姆贝克",
+      "dirO": "Fernando EIMBCKE",
+      "language": "西班牙语",
+      "poster": "posters/pingyao-py26-011.jpg",
+      "syn": "迫于经济压力，奥尔加不得不将家中的一间房租给一名男子，却因此与他九岁的儿子建立起一段意想不到的关系。三个原本毫无关联的人，就这样渐渐走进彼此的生活。",
+      "genre": [
+        "剧情"
+      ],
+      "honors": [
+        "入选｜2026 第10届平遥国际电影展 · 首映单元"
+      ],
+      "warnings": [
+        "经济压力与生活拮据"
+      ],
+      "contentReview": {
+        "status": "synopsis-reviewed",
+        "checked": "2026-11-24",
+        "sensory": "unverified"
+      },
+      "contentNote": "公开简介聚焦租房共居下的经济压力与跨代情感联结，未提及明显暴力情节；具体呈现与声光强度待核实。",
+      "editorial": "《鸭子季节》导演费南多·伊姆贝克新作亮相平遥「首映」单元，以一间出租房织出三个陌生人之间细腻的日常微光。",
+      "worldPremiere": {
+        "status": "pending",
+        "kind": "unknown",
+        "date": null,
+        "festival": null,
+        "festivalEn": null
+      }
+    },
+    {
+      "id": "py26-012",
+      "cn": "最佳拍档",
+      "o": "Aces Go Places",
+      "en": "Aces Go Places",
+      "y": 1982,
+      "min": 93,
+      "c": "中国香港",
+      "reg": "cn",
+      "dir": "曾志伟",
+      "dirO": "Eric TSANG",
+      "language": "中文（粤语）",
+      "poster": "posters/pingyao-py26-012.jpg",
+      "syn": "大盗金刚劫去黑帮一批钻石并交给好友保管。可惜，他把钻石藏在隐秘的地方后不久便被仇家狂人捉去，生死未卜。黑帮派出“白手袜”追查钻石下落，警方则从美国请来光头神探与何 警司联手侦查。",
+      "genre": [
+        "喜剧",
+        "动作"
+      ],
+      "honors": [
+        "入选｜2026 第10届平遥国际电影展 · 平遥十年·纪念放映"
+      ],
+      "warnings": [
+        "黑帮追杀与动作打斗"
+      ],
+      "contentReview": {
+        "status": "synopsis-reviewed",
+        "checked": "2026-11-24",
+        "sensory": "unverified"
+      },
+      "contentNote": "公开简介涉及钻石劫案、黑帮追查与警匪动作戏，以港产动作喜剧为主调；具体镜头与声光强度待核实。",
+      "editorial": "1982年新艺城开山卖座港产动作喜剧重登平遥大银幕，金刚与光头神探联手破案，重温八十年代香港类型片的生猛节奏。",
+      "worldPremiere": {
+        "status": "pending",
+        "kind": "unknown",
+        "date": null,
+        "festival": null,
+        "festivalEn": null
+      }
+    },
+    {
+      "id": "py26-013",
+      "cn": "大器晚成",
+      "o": "Late Fame",
+      "en": "Late Fame",
+      "y": 2025,
+      "min": 97,
+      "c": "美国",
+      "reg": "us",
+      "dir": "肯特·琼斯",
+      "dirO": "Kent JONES",
+      "language": "英语",
+      "poster": "posters/pingyao-py26-013.jpg",
+      "syn": "曾经出版过诗集、如今在邮局工作的纽约诗人埃德·萨克斯伯格早已被人遗忘。一天，一群二十多岁的年轻文艺爱好者重新发现了他的作品，将他奉为被埋没的天才。沉浸在久违的关注之中，他也开始重新审视这群新拥趸的真诚。",
+      "genre": [
+        "剧情",
+        "喜剧"
+      ],
+      "honors": [
+        "入选｜2026 第10届平遥国际电影展 · 首映单元"
+      ],
+      "warnings": [
+        "名利落差与人际虚实"
+      ],
+      "contentReview": {
+        "status": "synopsis-reviewed",
+        "checked": "2026-11-24",
+        "sensory": "unverified"
+      },
+      "contentNote": "公开简介讲述失意老诗人被年轻文艺圈重新追捧后的心理起伏，未提及显性暴力内容；声光强度待核实。",
+      "editorial": "肯特·琼斯执导、亮相平遥「首映」单元的纽约文艺轻讽刺剧，冷静打量迟来的赞誉与文艺圈里的真假热忱。",
+      "worldPremiere": {
+        "status": "pending",
+        "kind": "unknown",
+        "date": null,
+        "festival": null,
+        "festivalEn": null
+      }
+    },
+    {
+      "id": "py26-014",
+      "cn": "董劼｜课间休息×发现之旅",
+      "o": "Start from Pingyao Corner: Dong Jie — Break × Zoom In, Zoom Out",
+      "en": "Start from Pingyao Corner: Dong Jie — Break × Zoom In, Zoom Out",
+      "y": 2026,
+      "min": 167,
+      "c": "中国",
+      "reg": "cn",
+      "dir": "董劼",
+      "dirO": "DONG Jie",
+      "language": "中文（普通话）",
+      "poster": "posters/pingyao-py26-014.jpg",
+      "syn": "《课间休息》（短片）：盛老师百无聊赖的生活被一次纪录片拍摄打破，在短短的假期之内，他们能否找到他们试图寻找的？ 《发现之旅》：在一场寻找失联室友死亡真相的旅程中，石子安站在现实与网络世界的重叠处，试图刺破冷漠与虚无，找回行动的希望。",
+      "genre": [
+        "剧情",
+        "合辑"
+      ],
+      "honors": [
+        "入选｜2026 第10届平遥国际电影展 · 平遥十年·从平遥一角出发"
+      ],
+      "warnings": [
+        "友人离世调查与网络冷漠"
+      ],
+      "contentReview": {
+        "status": "synopsis-reviewed",
+        "checked": "2026-11-24",
+        "sensory": "unverified"
+      },
+      "contentNote": "联映包含短片《课间休息》与长片《发现之旅》，后者涉及寻找失联室友死亡真相及情感虚无；具体呈现与声光强度待核实。",
+      "editorial": "「从平遥一角出发」十周年连映场：将董劼2019年学生短片《课间休息》与2026年获奖长片《发现之旅》同台对照，完整呈现创作者七年轨迹。",
+      "parts": [
+        {
+          "cn": "课间休息",
+          "en": "Break",
+          "y": 2019,
+          "c": "中国",
+          "min": 50,
+          "dir": "董劼",
+          "dirO": "DONG Jie",
+          "syn": "盛老师百无聊赖的生活被一次纪录片拍摄打破，在短短的假期之内，他们能否找到他们试图寻找的？",
+          "synEn": "Teacher Sheng's monotonous life is interrupted by the filming of a documentary. Can they find what they are trying to find during the short vacation?"
+        },
+        {
+          "cn": "发现之旅",
+          "en": "Zoom In, Zoom Out",
+          "y": 2026,
+          "c": "中国",
+          "min": 117,
+          "dir": "董劼",
+          "dirO": "DONG Jie",
+          "syn": "在一场寻找失联室友死亡真相的旅程中，石子安站在现实与网络世界的重叠处，试图刺破冷漠与虚无，找回行动的希望。",
+          "synEn": "On a journey to uncover the truth about the death of a roommate he had lost touch with, Shi Zi'an finds himself where the real and online worlds overlap, trying to break through indifference and emptiness."
+        }
+      ],
+      "worldPremiere": {
+        "status": "not-applicable",
+        "kind": "collection",
+        "date": null,
+        "festival": null,
+        "festivalEn": null
+      }
+    },
+    {
+      "id": "py26-015",
+      "cn": "空闲的日子",
+      "o": "The Days Off",
+      "en": "The Days Off",
+      "y": 2026,
+      "min": 85,
+      "c": "阿根廷 / 巴西 / 墨西哥 / 法国",
+      "reg": "la",
+      "dir": "卢西拉·马里亚尼",
+      "dirO": "Lucila MARIANI",
+      "language": "西班牙语 / 葡萄牙语",
+      "poster": "posters/pingyao-py26-015.jpg",
+      "syn": "日食将至，12岁的贝戈努力寻找自己在家庭和同龄人中的位置。一位网友向她介绍了“现实转移”（shifting）：青少年相信可以通过清醒梦进入另一重现实的实践。",
+      "genre": [
+        "剧情",
+        "成长"
+      ],
+      "honors": [
+        "入围｜2026 第10届平遥国际电影展 · 卧虎单元"
+      ],
+      "warnings": [
+        "青春期疏离与现实逃避"
+      ],
+      "contentReview": {
+        "status": "synopsis-reviewed",
+        "checked": "2026-11-24",
+        "sensory": "unverified"
+      },
+      "contentNote": "公开简介聚焦12岁少女面对家庭与同龄人压力、尝试通过“现实转移”清醒梦逃离现实的心理体验；声光强度待核实。",
+      "editorial": "日食将至的南美成长物语，用青少年流行的“现实转移”清醒梦切入12岁女孩寻找归属的隐秘内心。",
+      "worldPremiere": {
+        "status": "pending",
+        "kind": "unknown",
+        "date": null,
+        "festival": null,
+        "festivalEn": null
+      }
+    },
+    {
+      "id": "py26-016",
+      "cn": "都灵之影",
+      "o": "Torino Shadow",
+      "en": "Torino Shadow",
+      "y": 2026,
+      "min": 32,
+      "c": "意大利 / 中国",
+      "reg": "cn",
+      "dir": "贾樟柯",
+      "dirO": "JIA Zhang-Ke",
+      "language": "中文（普通话 / 粤语） / 意大利语",
+      "poster": "posters/pingyao-py26-016.jpg",
+      "syn": "一位女性从中国南方前往意大利北部城市都灵探望自己的丈夫。一次意外的出走让她找回了自己，也发现了电影。",
+      "genre": [
+        "短片",
+        "剧情"
+      ],
+      "honors": [
+        "入选｜2026 第79届戛纳国际电影节（全球首映）",
+        "入选｜2026 第10届平遥国际电影展 · 特别展映（亚洲首映）"
+      ],
+      "warnings": [],
+      "contentReview": {
+        "status": "synopsis-reviewed",
+        "checked": "2026-11-24",
+        "sensory": "unverified"
+      },
+      "contentNote": "公开简介为32分钟剧情短片，讲述中国南方女性赴意大利都灵探望丈夫途中意外出走并重新发现自我与电影；未提及敏感刺激内容，声光强度待核实。本片于9月25日「汾酒中秋之夜」特别场与五条人音乐现场同台放映。",
+      "editorial": "贾樟柯执导、赵涛与五条人仁科茂涛联袂出演的32分钟短片亚洲首映，在都灵的意外出走中回望电影与自我；平遥放映安排于9月25日露天剧场中秋特别夜。",
+      "worldPremiere": {
+        "status": "pending",
+        "kind": "unknown",
+        "date": null,
+        "festival": null,
+        "festivalEn": null
+      }
+    },
+    {
+      "id": "py26-017",
+      "cn": "耿子涵｜明天会更好×小白船",
+      "o": "Start from Pingyao Corner: Geng Zihan — The Ray of Sunshine × A Song Sung Blue",
+      "en": "Start from Pingyao Corner: Geng Zihan — The Ray of Sunshine × A Song Sung Blue",
+      "y": 2023,
+      "min": 117,
+      "c": "中国",
+      "reg": "cn",
+      "dir": "耿子涵",
+      "dirO": "GENG Zihan",
+      "language": "中文（普通话） / 朝鲜语方言",
+      "poster": "posters/pingyao-py26-017.jpg",
+      "syn": "《明天会更好》（短片）：明天将至，我们仍困于此时。 《小白船》: 十五岁的刘娴，在最孤独的夏天里遇到了朝鲜族女孩金明美，她被明美肆意张扬的青春活力带领着，体会成长的滋味。",
+      "genre": [
+        "剧情",
+        "成长",
+        "合辑"
+      ],
+      "honors": [
+        "入选｜2026 第10届平遥国际电影展 · 平遥十年·从平遥一角出发"
+      ],
+      "warnings": [
+        "青春期孤独与家庭变故"
+      ],
+      "contentReview": {
+        "status": "synopsis-reviewed",
+        "checked": "2026-11-24",
+        "sensory": "unverified"
+      },
+      "contentNote": "联映包含短片《明天会更好》与长片《小白船》，涉及青春期孤独感与情感波动；具体画面与声光强度待核实。",
+      "editorial": "「从平遥一角出发」十周年连映：回溯耿子涵2019年短片《明天会更好》与戛纳导演双周长片《小白船》之间的青春质感延续。",
+      "parts": [
+        {
+          "cn": "明天会更好",
+          "en": "The Ray of Sunshine",
+          "y": 2019,
+          "c": "中国",
+          "min": 26,
+          "dir": "耿子涵",
+          "dirO": "GENG Zihan",
+          "syn": "明天将至，我们仍困于此时。",
+          "synEn": "Tomorrow is coming, while we are still stuck at this time."
+        },
+        {
+          "cn": "小白船",
+          "en": "A Song Sung Blue",
+          "y": 2023,
+          "c": "中国",
+          "min": 91,
+          "dir": "耿子涵",
+          "dirO": "GENG Zihan",
+          "syn": "十五岁的刘娴，在最孤独的夏天里遇到了朝鲜族女孩金明美，她被明美肆意张扬的青春活力带领着，体会成长的滋味。",
+          "synEn": "During the loneliest of summers, 15-year-old Liu Xian meets Jin Mingmei, a Korean-Chinese girl whose exuberant youthful vigor leads her into a new world."
+        }
+      ],
+      "worldPremiere": {
+        "status": "not-applicable",
+        "kind": "collection",
+        "date": null,
+        "festival": null,
+        "festivalEn": null
+      }
+    },
+    {
+      "id": "py26-018",
+      "cn": "四分之四",
+      "o": "Suzhou Quartet",
+      "en": "Suzhou Quartet",
+      "y": 2026,
+      "min": 133,
+      "c": "中国",
+      "reg": "cn",
+      "dir": "蔡成杰",
+      "dirO": "Chengjie CAI",
+      "language": "中文（普通话）",
+      "poster": "posters/pingyao-py26-018.jpg",
+      "syn": "梅雨季节，江南古城里的他们各有心事，思绪都困在时间里。一个风雨交加的夜晚，四人偶然相遇在小面馆里，发现彼此是久违的老相识。",
+      "genre": [
+        "剧情"
+      ],
+      "honors": [
+        "获奖｜2026 第10届平遥国际电影展 · 费穆荣誉特别表扬",
+        "入围｜2026 第10届平遥国际电影展 · 藏龙单元"
+      ],
+      "warnings": [
+        "旧事遗憾与情感郁结"
+      ],
+      "contentReview": {
+        "status": "synopsis-reviewed",
+        "checked": "2026-11-24",
+        "sensory": "unverified"
+      },
+      "contentNote": "公开简介讲述梅雨夜江南小面馆中四位旧识重逢、各自困于往事心结的群像故事；具体呈现与声光强度待核实。",
+      "editorial": "蔡成杰执导、获第十届平遥费穆荣誉特别表扬。一场梅雨夜的面馆偶遇，将四段停滞于旧时光的心事缓缓摊开。",
+      "worldPremiere": {
+        "status": "pending",
+        "kind": "unknown",
+        "date": null,
+        "festival": null,
+        "festivalEn": null
+      }
+    },
+    {
+      "id": "py26-019",
+      "cn": "空中花园",
+      "o": "Promised Spaces",
+      "en": "Promised Spaces",
+      "y": 2026,
+      "min": 79,
+      "c": "法国 / 德国 / 塞尔维亚 / 柬埔寨",
+      "reg": "as",
+      "dir": "伊万·马科维奇",
+      "dirO": "Ivan MARKOVIĆ",
+      "language": "高棉语",
+      "poster": "posters/pingyao-py26-019.jpg",
+      "syn": "炎热让索昆彻夜难眠。他离开拥挤的建筑工人宿舍，加入一群住在众多未完工高楼里的工友。其中一栋高楼终于迎来了首位住户塞达，成为她期待已久的豪华新居，但置身于庞大的封闭式住宅区中，她很快便感到孤立无援。",
+      "genre": [
+        "剧情"
+      ],
+      "honors": [
+        "入围｜2026 第10届平遥国际电影展 · 卧虎单元"
+      ],
+      "warnings": [
+        "劳工处境与都市孤立"
+      ],
+      "contentReview": {
+        "status": "synopsis-reviewed",
+        "checked": "2026-11-24",
+        "sensory": "unverified"
+      },
+      "contentNote": "公开简介对照建筑工人简陋居住环境与封闭式高档住宅区住户的孤立感；未提及显性暴力，声光强度待核实。",
+      "editorial": "伊万·马科维奇在金边烂尾与新建高楼间展开空间寓言，建筑工人与首位入住者在同一栋水泥森林里共享失眠与孤绝。",
+      "worldPremiere": {
+        "status": "pending",
+        "kind": "unknown",
+        "date": null,
+        "festival": null,
+        "festivalEn": null
+      }
+    },
+    {
+      "id": "py26-020",
+      "cn": "孔大山｜春天，老师们走了×宇宙探索编辑部",
+      "o": "Start from Pingyao Corner: Kong Dashan — Goodbye, Mr. Kong × Journey to the West",
+      "en": "Start from Pingyao Corner: Kong Dashan — Goodbye, Mr. Kong × Journey to the West",
+      "y": 2021,
+      "min": 134,
+      "c": "中国",
+      "reg": "cn",
+      "dir": "孔大山",
+      "dirO": "KONG Dashan",
+      "language": "中文（普通话）",
+      "poster": "posters/pingyao-py26-020.jpg",
+      "syn": "《春天，老师们走了》（短片）：任教三十年的孔老师因儿子在北京成家生子，准备办理提前退休手续。最后一天，他来到学校，与熟悉的一切告别。 《宇宙探索编辑部》：落魄的科幻杂志主编收到疑似来自宇宙的异常信号，他决定带着一群伙伴踏上寻找外星人，也寻找答案的旅途。",
+      "genre": [
+        "喜剧",
+        "科幻",
+        "合辑"
+      ],
+      "honors": [
+        "入选｜2026 第10届平遥国际电影展 · 平遥十年·从平遥一角出发"
+      ],
+      "warnings": [
+        "生活失意与轻微荒诞情绪"
+      ],
+      "contentReview": {
+        "status": "synopsis-reviewed",
+        "checked": "2026-11-24",
+        "sensory": "unverified"
+      },
+      "contentNote": "联映包含毕业短片《春天，老师们走了》与平遥第五届费穆荣誉最佳影片《宇宙探索编辑部》，整体兼具幽默与温情；声光强度待核实。",
+      "editorial": "从2017年温润告别校园的短片《春天，老师们走了》到2021年平遥爆款《宇宙探索编辑部》，一场见证孔大山创作起点的十周年连映。",
+      "parts": [
+        {
+          "cn": "春天，老师们走了",
+          "en": "Goodbye, Mr. Kong",
+          "y": 2017,
+          "c": "中国",
+          "min": 16,
+          "dir": "孔大山",
+          "dirO": "KONG Dashan",
+          "syn": "任教三十年的孔老师因儿子在北京成家生子，准备办理提前退休手续。最后一天，他来到学校，与熟悉的一切告别。",
+          "synEn": "After teaching for thirty years, Mr. Kong prepares for early retirement after his son starts a family in Beijing, returning to school for one final goodbye."
+        },
+        {
+          "cn": "宇宙探索编辑部",
+          "en": "Journey to the West",
+          "y": 2021,
+          "c": "中国",
+          "min": 118,
+          "dir": "孔大山",
+          "dirO": "KONG Dashan",
+          "syn": "落魄的科幻杂志主编收到疑似来自宇宙的异常信号，他决定带着一群伙伴踏上寻找外星人，也寻找答案的旅途。",
+          "synEn": "A down-and-out science fiction magazine editor receives a mysterious signal that may come from deep space and sets out with companions in search of aliens and an answer."
+        }
+      ],
+      "worldPremiere": {
+        "status": "not-applicable",
+        "kind": "collection",
+        "date": null,
+        "festival": null,
+        "festivalEn": null
+      }
+    },
+    {
+      "id": "py26-021",
+      "cn": "林中密语",
+      "o": "Forest High",
+      "en": "Forest High",
+      "y": 2026,
+      "min": 102,
+      "c": "比利时 / 法国",
+      "reg": "eu",
+      "dir": "玛侬·库比亚",
+      "dirO": "Manon COUBIA",
+      "language": "法语",
+      "poster": "posters/pingyao-py26-021.jpg",
+      "syn": "在阿尔卑斯山北部，安娜、埃莱娜和苏珊娜轮流照看一座山间小屋。四季流转，徒步者来来去去，一个个故事悄然发生又逐渐消散，最终只留下她们各自面对寂静。",
+      "genre": [
+        "剧情"
+      ],
+      "honors": [
+        "入围｜2026 第10届平遥国际电影展 · 卧虎单元"
+      ],
+      "warnings": [
+        "孤独与季节更迭感伤"
+      ],
+      "contentReview": {
+        "status": "synopsis-reviewed",
+        "checked": "2026-11-24",
+        "sensory": "unverified"
+      },
+      "contentNote": "公开简介讲述三位女性轮流照看阿尔卑斯山间小屋、见证四季徒步客来去的故事，未提及明显刺激情节；声光强度待核实。",
+      "editorial": "三位女性守候阿尔卑斯山间木屋的四季轮转，徒步客的片刻交汇如林间微风，留白与寂静本身成为主角。",
+      "worldPremiere": {
+        "status": "pending",
+        "kind": "unknown",
+        "date": null,
+        "festival": null,
+        "festivalEn": null
+      }
+    },
+    {
+      "id": "py26-022",
+      "cn": "希望",
+      "o": "Hope",
+      "en": "Hope",
+      "y": 2026,
+      "min": 156,
+      "c": "韩国",
+      "reg": "as",
+      "dir": "罗泓轸",
+      "dirO": "NA Hong-Jin",
+      "language": "韩语",
+      "poster": "posters/pingyao-py26-022.jpg",
+      "syn": "在靠近非军事区的偏远村庄希望港，派出所所长范锡从村民口中得知老虎出没的惊人消息。随着全村陷入恐慌，范锡被迫面对一个超乎想象的现实。",
+      "genre": [
+        "悬疑",
+        "惊悚",
+        "科幻"
+      ],
+      "honors": [
+        "入选｜2026 第10届平遥国际电影展 · 首映单元"
+      ],
+      "warnings": [
+        "群体恐慌与惊悚悬疑"
+      ],
+      "contentReview": {
+        "status": "synopsis-reviewed",
+        "checked": "2026-11-24",
+        "sensory": "unverified"
+      },
+      "contentNote": "公开简介涉及非军事区偏远村庄突发猛兽传闻、全村恐慌与超乎想象的异变现实，属惊悚类型；具体暴力与声光强度待核实。",
+      "editorial": "罗泓轸时隔多年重磅长片亮相平遥「首映」，156分钟从边境村庄的老虎惊魂层层推向超乎想象的悬疑漩涡。",
+      "worldPremiere": {
+        "status": "pending",
+        "kind": "unknown",
+        "date": null,
+        "festival": null,
+        "festivalEn": null
+      }
+    },
+    {
+      "id": "py26-023",
+      "cn": "杯雪·一战成名",
+      "o": "A Better Jianghu",
+      "en": "A Better Jianghu",
+      "y": 2026,
+      "min": 98,
+      "c": "中国",
+      "reg": "cn",
+      "dir": "刘文普",
+      "dirO": "LIU Wenpu",
+      "language": "中文（普通话）",
+      "poster": "posters/pingyao-py26-023.jpg",
+      "syn": "宋时秦桧设缇骑镇压义军，文官沈放因痛杀金使等四十一人，遭二统领袁寒亭等缇骑精锐追杀，沈放一战成名背后却另有隐情……",
+      "genre": [
+        "武侠",
+        "动作",
+        "剧情"
+      ],
+      "honors": [
+        "入选｜2026 第10届平遥国际电影展 · 特别展映"
+      ],
+      "warnings": [
+        "冷兵器厮杀与追杀暴力"
+      ],
+      "contentReview": {
+        "status": "synopsis-reviewed",
+        "checked": "2026-11-24",
+        "sensory": "unverified"
+      },
+      "contentNote": "公开简介涉及宋代朝堂追杀、痛杀四十一人的血案与缇骑围剿等武侠动作暴力场面；具体血腥与声光强度待核实。",
+      "editorial": "南宋暗潮下的硬派武侠特别展映，以一介文官一夜成名背后的隐情切开朝堂缇骑与江湖恩怨。",
+      "worldPremiere": {
+        "status": "pending",
+        "kind": "unknown",
+        "date": null,
+        "festival": null,
+        "festivalEn": null
+      }
+    },
+    {
+      "id": "py26-024",
+      "cn": "王尔卓｜母亲的乐园×再见，乐园",
+      "o": "Start from Pingyao Corner: Wang Erzhuo — Mother Eden × Farewell, My Hometown",
+      "en": "Start from Pingyao Corner: Wang Erzhuo — Mother Eden × Farewell, My Hometown",
+      "y": 2021,
+      "min": 118,
+      "c": "中国",
+      "reg": "cn",
+      "dir": "王尔卓",
+      "dirO": "WANG Erzhuo",
+      "language": "中文（普通话 / 湖南方言）",
+      "poster": "posters/pingyao-py26-024.jpg",
+      "syn": "《母亲的乐园》（短片）：听一位母亲讲述一代人逝去的青春岁月。 《再见，乐园》：农村老去的外婆，都市漂泊的女儿，县城坚守的母亲；三代女性的私人记忆，讲述一个家庭的精神历程，跨越70年的时代变迁。",
+      "genre": [
+        "剧情",
+        "家庭",
+        "合辑"
+      ],
+      "honors": [
+        "入选｜2026 第10届平遥国际电影展 · 平遥十年·从平遥一角出发"
+      ],
+      "warnings": [
+        "衰老与代际时代变迁"
+      ],
+      "contentReview": {
+        "status": "synopsis-reviewed",
+        "checked": "2026-11-24",
+        "sensory": "unverified"
+      },
+      "contentNote": "联映包含短片《母亲的乐园》与长片《再见，乐园》，围绕三代女性七十年私人记忆与乡村衰老展开；具体呈现与声光强度待核实。",
+      "editorial": "「从平遥一角出发」十周年连映：从《母亲的乐园》一脉相承至《再见，乐园》，以三代女性私人记忆书写七十年城乡迁徙史。",
+      "parts": [
+        {
+          "cn": "母亲的乐园",
+          "en": "Mother Eden",
+          "y": 2018,
+          "c": "中国",
+          "min": 28,
+          "dir": "王尔卓",
+          "dirO": "WANG Erzhuo",
+          "syn": "听一位母亲讲述一代人逝去的青春岁月。",
+          "synEn": "Listen to a mother tell the story of a generation's vanished youth."
+        },
+        {
+          "cn": "再见，乐园",
+          "en": "Farewell, My Hometown",
+          "y": 2021,
+          "c": "中国",
+          "min": 90,
+          "dir": "王尔卓",
+          "dirO": "WANG Erzhuo",
+          "syn": "农村老去的外婆，都市漂泊的女儿，县城坚守的母亲；三代女性的私人记忆，讲述一个家庭的精神历程，跨越70年的时代变迁。",
+          "synEn": "Drawing from the private memories of an aging rural grandmother, a mother holding fast in a county town, and a daughter adrift in the city, the film traces a family across seventy years."
+        }
+      ],
+      "worldPremiere": {
+        "status": "not-applicable",
+        "kind": "collection",
+        "date": null,
+        "festival": null,
+        "festivalEn": null
+      }
+    },
+    {
+      "id": "py26-025",
+      "cn": "美国心",
+      "o": "Just Like Weather",
+      "en": "Just Like Weather",
+      "y": 1986,
+      "min": 95,
+      "c": "中国香港",
+      "reg": "cn",
+      "dir": "方育平",
+      "dirO": "Allen FONG",
+      "language": "中文（粤语） / 英语",
+      "poster": "posters/pingyao-py26-025.jpg",
+      "syn": "阿陈和Christine是一对早婚的年轻夫妻，关系时分时合，也在婚姻与移民美国之间摇摆。两人不仅重演真实生活，也参与虚构剧情，并随方育平远赴美国，镜头捕捉他们一路的真实反应；方育平更亲自出镜访问二人。影片以跳接剪辑和非线性叙事，将拍片与真实、戏剧与人生交叠在一起，营造出暧昧而迷离的气质。影片既是方育平最具实验性的作品之一，也是其创作生涯的高峰和香港电影新浪潮的重要作品。",
+      "genre": [
+        "剧情",
+        "纪录片"
+      ],
+      "honors": [
+        "获奖｜1987 第6届香港电影金像奖 · 最佳导演（方育平）",
+        "入选｜2026 第10届平遥国际电影展 · 特别展映（4K修复版）"
+      ],
+      "warnings": [
+        "婚姻分合与移民焦虑"
+      ],
+      "contentReview": {
+        "status": "synopsis-reviewed",
+        "checked": "2026-11-24",
+        "sensory": "unverified"
+      },
+      "contentNote": "公开简介聚焦早婚夫妻分分合合的婚姻摩擦与移民迷茫，融合纪实访问与虚构表演；声光强度待核实。",
+      "editorial": "方育平1986年香港新浪潮实验高峰之作2026年4K修复亮相平遥，真实夫妻重演与跳接剪辑令纪录与戏剧水乳交融。",
+      "version": "4K修复",
+      "worldPremiere": {
+        "status": "pending",
+        "kind": "unknown",
+        "date": null,
+        "festival": null,
+        "festivalEn": null
+      }
+    },
+    {
+      "id": "py26-026",
+      "cn": "尾款",
+      "o": "Final Payment",
+      "en": "Final Payment",
+      "y": 2025,
+      "min": 86,
+      "c": "中国",
+      "reg": "cn",
+      "dir": "牛牛",
+      "dirO": "NIU Niu",
+      "language": "中文（普通话）",
+      "poster": "posters/pingyao-py26-026.jpg",
+      "syn": "一场实力悬殊的较量中，迟到的善良酿造了最终的遗憾。",
+      "genre": [
+        "剧情"
+      ],
+      "honors": [
+        "获奖｜2026 第10届平遥国际电影展 · 费穆荣誉最佳影片",
+        "获奖｜2026 第10届平遥国际电影展 · 费穆荣誉最佳男演员（牛建荣）",
+        "入围｜2026 第10届平遥国际电影展 · 藏龙单元"
+      ],
+      "warnings": [
+        "冲突对峙与道德遗憾"
+      ],
+      "contentReview": {
+        "status": "synopsis-reviewed",
+        "checked": "2026-11-24",
+        "sensory": "unverified"
+      },
+      "contentNote": "公开简介围绕一场实力悬殊的较量及难以挽回的遗憾展开；具体冲突尺度与声光强度待核实。",
+      "editorial": "第十届平遥最大赢家，包揽费穆荣誉最佳影片与最佳男演员两项大奖，以86分钟紧绷篇幅直刺现实博弈与迟来善意的代价。",
+      "worldPremiere": {
+        "status": "pending",
+        "kind": "unknown",
+        "date": null,
+        "festival": null,
+        "festivalEn": null
+      }
+    },
+    {
+      "id": "py26-027",
+      "cn": "魏书钧｜延边少年×河边的错误",
+      "o": "Start from Pingyao Corner: Wei Shujun — On the Border × Only the River Flows",
+      "en": "Start from Pingyao Corner: Wei Shujun — On the Border × Only the River Flows",
+      "y": 2023,
+      "min": 117,
+      "c": "中国",
+      "reg": "cn",
+      "dir": "魏书钧",
+      "dirO": "WEI Shujun",
+      "language": "中文（普通话）",
+      "poster": "posters/pingyao-py26-027.jpg",
+      "syn": "《延边少年》（短片）：一名朝鲜族少年进城找父亲寻求帮助，他想去韩国。 《河边的错误》：一桩吊诡凶案诱发命运暗流涌动，刑警队长马哲在宿命的不断拨弄下，逐渐陷入荒诞、不安和分不清是真是幻的时刻与记忆中…… 影片改编自余华同名先锋代表作。",
+      "genre": [
+        "剧情",
+        "悬疑",
+        "犯罪",
+        "合辑"
+      ],
+      "honors": [
+        "入选｜2026 第10届平遥国际电影展 · 平遥十年·从平遥一角出发"
+      ],
+      "warnings": [
+        "凶案侦查与心理压抑"
+      ],
+      "contentReview": {
+        "status": "synopsis-reviewed",
+        "checked": "2026-11-24",
+        "sensory": "unverified"
+      },
+      "contentNote": "联映包含戛纳获奖短片《延边少年》与长片《河边的错误》，后者涉及连环凶案侦查与主角精神迷乱；具体暴力与声光强度待核实。",
+      "editorial": "「从平遥一角出发」十周年连映：将魏书钧2018年短片《延边少年》与余华改编胶片力作《河边的错误》并置，回看作者美学演进。",
+      "parts": [
+        {
+          "cn": "延边少年",
+          "en": "On the Border",
+          "y": 2018,
+          "c": "中国",
+          "min": 15,
+          "dir": "魏书钧",
+          "dirO": "WEI Shujun",
+          "syn": "一名朝鲜族少年进城找父亲寻求帮助，他想去韩国。",
+          "synEn": "A young Korean-Chinese boy travels to the city to seek help from his father, hoping to go to South Korea."
+        },
+        {
+          "cn": "河边的错误",
+          "en": "Only the River Flows",
+          "y": 2023,
+          "c": "中国",
+          "min": 102,
+          "dir": "魏书钧",
+          "dirO": "WEI Shujun",
+          "syn": "一桩吊诡凶案诱发命运暗流涌动，刑警队长马哲在宿命的不断拨弄下，逐渐陷入荒诞、不安和分不清是真是幻的时刻与记忆中……影片改编自余华同名先锋代表作。",
+          "synEn": "A bizarre murder case triggers an undercurrent of destiny as police detective Ma Zhe falls into absurdity, unease, and moments where reality and fantasy blur. Adapted from Yu Hua’s novella."
+        }
+      ],
+      "worldPremiere": {
+        "status": "not-applicable",
+        "kind": "collection",
+        "date": null,
+        "festival": null,
+        "festivalEn": null
+      }
+    },
+    {
+      "id": "py26-ev-midautumn",
+      "cn": "《都灵之影》放映暨五条人「县·城·记」音乐现场",
+      "o": "Fenjiu Night: Torino Shadow Screening & Wutiaoren Live Concert",
+      "en": "Fenjiu Night: Torino Shadow Screening & Wutiaoren Live Concert",
+      "y": 2026,
+      "min": 150,
+      "c": "平遥",
+      "reg": "cn",
+      "dir": "贾樟柯 / 五条人",
+      "dirO": "Jia Zhang-Ke / Wutiaoren",
+      "language": "中文（普通话、粤语）、意大利语",
+      "poster": "posters/pingyao-py26-ev-midautumn.jpg",
+      "syn": "《都灵之影》由贾樟柯执导，赵涛主演，茂涛、仁科及小演员卢夕联合主演，讲述一位女性从中国南方前往意大利北部城市都灵探望丈夫，一次意外的出走，让她找回了自己，也发现了电影。影片片长32分钟，此前已在第79届戛纳电影节全球首映。五条人将于《都灵之影》放映后，在“站台”露天剧场带来「县·城·记」音乐现场，与现场观众共度中秋。温馨提示：现场取票时间仅限 9月25日9:00-19:00",
+      "genre": [
+        "特别活动",
+        "短片放映",
+        "音乐现场"
+      ],
+      "honors": [
+        "入选｜2026 第10届平遥国际电影展 · 汾酒中秋之夜特别策划"
+      ],
+      "warnings": [
+        "露天演出音量较大"
+      ],
+      "contentReview": {
+        "status": "synopsis-reviewed",
+        "checked": "2026-11-24",
+        "sensory": "unverified"
+      },
+      "contentNote": "本场为露天剧场短片放映叠加乐队音乐现场活动，并非单一影片常规放映；夜间露天演出音量较大且气温较低。",
+      "editorial": "第十届平遥中秋夜露天剧场特别策划：先看贾樟柯执导、赵涛与五条人主演的32分钟短片《都灵之影》亚洲首映，随即接五条人「县·城·记」音乐现场。",
+      "ev": 1,
+      "evKind": "special"
+    },
+    {
+      "id": "py26-028",
+      "cn": "昨天，那只眼彻夜未眠",
+      "o": "Yesterday the Eye Didn't Sleep",
+      "en": "Yesterday the Eye Didn't Sleep",
+      "y": 2026,
+      "min": 102,
+      "c": "比利时 / 黎巴嫩 / 巴勒斯坦 / 卡塔尔 / 沙特阿拉伯",
+      "reg": "me",
+      "dir": "拉坎·马亚西",
+      "dirO": "Rakan MAYASI",
+      "language": "阿拉伯语",
+      "poster": "posters/pingyao-py26-028.jpg",
+      "syn": "在一个笼罩于雾霭与部族规训之中的山谷里，两姐妹走入夜色。她们不再只是女儿，而成为被献出的牺牲品——血缘、记忆与沉默试图阻止仇恨之火继续蔓延。",
+      "genre": [
+        "剧情"
+      ],
+      "honors": [
+        "获奖｜2026 第10届平遥国际电影展 · 罗伯托·罗西里尼荣誉特别表扬",
+        "获奖｜2026 第10届平遥国际电影展 · 亚太电影促进会奖最佳首作",
+        "入围｜2026 第10届平遥国际电影展 · 卧虎单元"
+      ],
+      "warnings": [
+        "部族仇怨与女性牺牲处境"
+      ],
+      "contentReview": {
+        "status": "synopsis-reviewed",
+        "checked": "2026-11-24",
+        "sensory": "unverified"
+      },
+      "contentNote": "公开简介描绘笼罩在部族规训与仇恨循环中的山谷，两姐妹成为止息仇怨的牺牲品；具体情节与声光强度待核实。",
+      "editorial": "连获第十届平遥罗西里尼荣誉特别表扬与NETPAC最佳首作，在雾霭山谷里以凝重诗意直面血缘规训与沉默代价。",
+      "worldPremiere": {
+        "status": "pending",
+        "kind": "unknown",
+        "date": null,
+        "festival": null,
+        "festivalEn": null
+      }
+    },
+    {
+      "id": "py26-029",
+      "cn": "纸老虎",
+      "o": "Paper Tiger",
+      "en": "Paper Tiger",
+      "y": 2025,
+      "min": 114,
+      "c": "美国",
+      "reg": "us",
+      "dir": "詹姆斯·格雷",
+      "dirO": "James GRAY",
+      "language": "英语",
+      "poster": "posters/pingyao-py26-029.jpg",
+      "syn": "沉醉于致富美梦的兄弟俩被卷入一场骗局，当暴力与威胁接踵而至，牢不可破的兄弟情谊开始崩塌，背叛也近在咫尺。",
+      "genre": [
+        "剧情",
+        "犯罪",
+        "惊悚"
+      ],
+      "honors": [
+        "入选｜2026 第10届平遥国际电影展 · 首映单元"
+      ],
+      "warnings": [
+        "黑帮威胁与暴力背叛"
+      ],
+      "contentReview": {
+        "status": "synopsis-reviewed",
+        "checked": "2026-11-24",
+        "sensory": "unverified"
+      },
+      "contentNote": "公开简介涉及兄弟卷入黑帮骗局、家庭遭受暴力威胁与亲情崩塌；具体暴力镜头与声光强度待核实。",
+      "editorial": "詹姆斯·格雷回归纽约犯罪家族母题新作，亮相平遥「首映」露天剧场，凝视致富梦碎后兄弟情谊的裂解。",
+      "worldPremiere": {
+        "status": "pending",
+        "kind": "unknown",
+        "date": null,
+        "festival": null,
+        "festivalEn": null
+      }
+    },
+    {
+      "id": "py26-030",
+      "cn": "胡越的故事",
+      "o": "The Story of Woo Viet",
+      "en": "The Story of Woo Viet",
+      "y": 1981,
+      "min": 90,
+      "c": "中国香港",
+      "reg": "cn",
+      "dir": "许鞍华",
+      "dirO": "HUI On Wah Ann",
+      "language": "中文（粤语）",
+      "poster": "posters/pingyao-py26-030.jpg",
+      "syn": "越战结束后，越南华裔青年胡越逃亡至香港难民营，与素未谋面的笔友、社工李立君首次相见。李立君十分同情胡越的遭遇，并决定帮他办去美国的护照。办理护照期间，胡越结识了同样命运飘零的沈青，两人相恋并相约在美会合。然而在菲律宾转机时，沈青及其他几个女孩被骗到菲律宾的一家酒吧当舞女。胡越为救她，放弃赴美机会，并在此过程中结识了阿三，两人结为兄弟，却都只是老板钟仁的棋子而已……",
+      "genre": [
+        "剧情",
+        "犯罪"
+      ],
+      "honors": [
+        "入选｜2026 第10届平遥国际电影展 · 特别展映·卧虎藏龙东西方交流之选（4K修复版）"
+      ],
+      "warnings": [
+        "战后难民流亡与人口拐骗暴力"
+      ],
+      "contentReview": {
+        "status": "synopsis-reviewed",
+        "checked": "2026-11-24",
+        "sensory": "unverified"
+      },
+      "contentNote": "公开简介涉及越战后难民营流亡、女性被骗作舞女及黑帮暴力利用等沉重情节；具体暴力镜头与声光强度待核实。",
+      "editorial": "第十届平遥费穆荣誉评审主席许鞍华1981年“越南三部曲”名作2026年4K修复版特别展映，周润发与缪骞人演绎乱世漂泊中的孤勇与宿命。",
+      "version": "4K修复",
+      "worldPremiere": {
+        "status": "pending",
+        "kind": "unknown",
+        "date": null,
+        "festival": null,
+        "festivalEn": null
+      }
+    },
+    {
+      "id": "py26-031",
+      "cn": "邹静｜朵丽×无名女孩",
+      "o": "Start from Pingyao Corner: Zou Jing — Lili Alone × A Girl Unknown",
+      "en": "Start from Pingyao Corner: Zou Jing — Lili Alone × A Girl Unknown",
+      "y": 2026,
+      "min": 150,
+      "c": "中国 / 中国香港 / 新加坡",
+      "reg": "cn",
+      "dir": "邹静",
+      "dirO": "ZOU Jing",
+      "language": "中文（普通话 / 客家话 / 广东话 / 湖南话）",
+      "poster": "posters/pingyao-py26-031.jpg",
+      "syn": "《朵丽》（短片）：年轻母亲丽丽跟赌徒丈夫生活在四川省的偏远山区。孤立无援的丽丽为了赚快钱给父亲治病救命，来到了南方的大城市…… 《无名女孩》：一个女孩跌宕起伏的人生，三个家庭的沉浮，三重身份的探索，最终在爱和自 我救赎中找到了新的开始。",
+      "genre": [
+        "剧情",
+        "合辑"
+      ],
+      "honors": [
+        "入选｜2026 第10届平遥国际电影展 · 平遥十年·从平遥一角出发"
+      ],
+      "warnings": [
+        "贫困困境与重病筹钱压力"
+      ],
+      "contentReview": {
+        "status": "synopsis-reviewed",
+        "checked": "2026-11-24",
+        "sensory": "unverified"
+      },
+      "contentNote": "联映包含戛纳影评人周获奖短片《朵丽》与长片《无名女孩》，涉及贫困、重病救父与女性坎坷身世；具体情节与声光强度待核实。",
+      "editorial": "「从平遥一角出发」十周年连映：串联邹静2021年短片《朵丽》与2026年获平遥全国艺联发行荣誉的长片《无名女孩》。",
+      "parts": [
+        {
+          "cn": "朵丽",
+          "en": "Lili Alone",
+          "y": 2021,
+          "c": "中国 / 中国香港 / 新加坡",
+          "min": 22,
+          "dir": "邹静",
+          "dirO": "ZOU Jing",
+          "syn": "年轻母亲丽丽跟赌徒丈夫生活在四川省的偏远山区。孤立无援的丽丽为了赚快钱给父亲治病救命，来到了南方的大城市……",
+          "synEn": "Lili, a young mother living with her gambler husband in remote Sichuan, heads south to the city to earn money to save her dying father."
+        },
+        {
+          "cn": "无名女孩",
+          "en": "A Girl Unknown",
+          "y": 2026,
+          "c": "中国 / 法国",
+          "min": 128,
+          "dir": "邹静",
+          "dirO": "ZOU Jing",
+          "syn": "一个女孩跌宕起伏的人生，三个家庭的沉浮，三重身份的探索，最终在爱和自我救赎中找到了新的开始。",
+          "synEn": "A girl's turbulent journey unfolds across three families and three identities, leading to a new beginning through love and self-redemption."
+        }
+      ],
+      "worldPremiere": {
+        "status": "not-applicable",
+        "kind": "collection",
+        "date": null,
+        "festival": null,
+        "festivalEn": null
+      }
+    }
+  ],
+  "shows": [
+    [
+      "9/24",
+      "11:30",
+      "gr26-041",
+      "py-palace",
+      "small-town",
+      "s1wszwk1o"
+    ],
+    [
+      "9/24",
+      "13:30",
+      "py26-009",
+      "py-palace",
+      "hall-1",
+      "se65cmg0d"
+    ],
+    [
+      "9/24",
+      "14:30",
+      "py26-019",
+      "py-palace",
+      "small-town",
+      "sd6okonie"
+    ],
+    [
+      "9/24",
+      "19:00",
+      "py26-015",
+      "py-palace",
+      "small-town",
+      "sen6w7d5t"
+    ],
+    [
+      "9/24",
+      "21:00",
+      "spring-in-a-small-town",
+      "py-palace",
+      "small-town",
+      "s1w511il5"
+    ],
+    [
+      "9/25",
+      "11:00",
+      "py26-008",
+      "py-palace",
+      "small-town",
+      "s1wc9qce4"
+    ],
+    [
+      "9/25",
+      "13:30",
+      "py26-010",
+      "py-palace",
+      "small-town",
+      "s18qofcqf"
+    ],
+    [
+      "9/25",
+      "14:00",
+      "py26-024",
+      "py-palace",
+      "hall-1",
+      "s14mg17fz"
+    ],
+    [
+      "9/25",
+      "16:00",
+      "py26-018",
+      "py-palace",
+      "small-town",
+      "s2nw6dv2s"
+    ],
+    [
+      "9/25",
+      "17:00",
+      "gr26-041",
+      "py-palace",
+      "hall-1",
+      "s21w6u91s"
+    ],
+    [
+      "9/25",
+      "19:00",
+      "py26-015",
+      "py-palace",
+      "hall-3",
+      "sdzofylj6"
+    ],
+    [
+      "9/25",
+      "19:00",
+      "py26-ev-midautumn",
+      "py-palace",
+      "platform",
+      "sjgdjluca"
+    ],
+    [
+      "9/25",
+      "19:00",
+      "gr26-069",
+      "py-palace",
+      "small-town",
+      "s13q21to1"
+    ],
+    [
+      "9/25",
+      "21:00",
+      "py26-019",
+      "py-palace",
+      "hall-1",
+      "s22hs2890"
+    ],
+    [
+      "9/25",
+      "21:00",
+      "gr26-021",
+      "py-palace",
+      "small-town",
+      "s1uj932ec"
+    ],
+    [
+      "9/25",
+      "22:30",
+      "py26-013",
+      "py-palace",
+      "platform",
+      "s1kpqax91"
+    ],
+    [
+      "9/26",
+      "10:30",
+      "py26-031",
+      "py-palace",
+      "hall-1",
+      "s1y6ucbaq"
+    ],
+    [
+      "9/26",
+      "11:00",
+      "gr26-069",
+      "py-palace",
+      "hall-3",
+      "s3dj4tn89"
+    ],
+    [
+      "9/26",
+      "11:00",
+      "py26-026",
+      "py-palace",
+      "small-town",
+      "s1ts31npw"
+    ],
+    [
+      "9/26",
+      "11:30",
+      "py26-010",
+      "py-palace",
+      "hall-2",
+      "s15jru4z9"
+    ],
+    [
+      "9/26",
+      "13:30",
+      "py26-004",
+      "py-palace",
+      "small-town",
+      "s1bak7t28"
+    ],
+    [
+      "9/26",
+      "14:00",
+      "py26-017",
+      "py-palace",
+      "hall-1",
+      "s2b5t3rzf"
+    ],
+    [
+      "9/26",
+      "15:30",
+      "spring-in-a-small-town",
+      "py-palace",
+      "small-town",
+      "s1ucpdp4x"
+    ],
+    [
+      "9/26",
+      "16:00",
+      "py26-018",
+      "py-palace",
+      "hall-3",
+      "s2qej93iq"
+    ],
+    [
+      "9/26",
+      "17:00",
+      "py26-008",
+      "py-palace",
+      "hall-1",
+      "s1954izrq"
+    ],
+    [
+      "9/26",
+      "19:00",
+      "py26-024",
+      "py-palace",
+      "hall-3",
+      "s1t0eocpx"
+    ],
+    [
+      "9/26",
+      "19:00",
+      "gh63-050",
+      "py-palace",
+      "platform",
+      "s1pupet3o"
+    ],
+    [
+      "9/26",
+      "19:00",
+      "whispers-in-may-2026",
+      "py-palace",
+      "small-town",
+      "skfal8c2b"
+    ],
+    [
+      "9/26",
+      "19:30",
+      "py26-001",
+      "py-palace",
+      "hall-1",
+      "si6q8idyv"
+    ],
+    [
+      "9/26",
+      "21:30",
+      "gh63-087",
+      "py-palace",
+      "small-town",
+      "s1f0znegk"
+    ],
+    [
+      "9/26",
+      "22:00",
+      "py26-011",
+      "py-palace",
+      "platform",
+      "s22b8m9j3"
+    ],
+    [
+      "9/27",
+      "09:00",
+      "gh63-087",
+      "py-palace",
+      "small-town",
+      "s1jbtw534"
+    ],
+    [
+      "9/27",
+      "10:30",
+      "py26-013",
+      "py-palace",
+      "hall-1",
+      "sxpb63kl9"
+    ],
+    [
+      "9/27",
+      "10:30",
+      "py26-026",
+      "py-palace",
+      "hall-4",
+      "sn3mruq0n"
+    ],
+    [
+      "9/27",
+      "11:00",
+      "gr26-035",
+      "py-palace",
+      "small-town",
+      "s2mb5uhet"
+    ],
+    [
+      "9/27",
+      "13:30",
+      "py26-006",
+      "py-palace",
+      "small-town",
+      "s1jhmuf6c"
+    ],
+    [
+      "9/27",
+      "14:00",
+      "py26-020",
+      "py-palace",
+      "hall-1",
+      "s1vs4leyp"
+    ],
+    [
+      "9/27",
+      "14:30",
+      "py26-004",
+      "py-palace",
+      "hall-3",
+      "ss4w1jzoo"
+    ],
+    [
+      "9/27",
+      "16:00",
+      "gr26-013",
+      "py-palace",
+      "small-town",
+      "styk2u3x6"
+    ],
+    [
+      "9/27",
+      "17:00",
+      "whispers-in-may-2026",
+      "py-palace",
+      "hall-3",
+      "s20lz11gb"
+    ],
+    [
+      "9/27",
+      "17:30",
+      "py26-023",
+      "py-palace",
+      "hall-1",
+      "s1e0a7h3z"
+    ],
+    [
+      "9/27",
+      "19:00",
+      "py26-017",
+      "py-palace",
+      "hall-3",
+      "s1ujzipck"
+    ],
+    [
+      "9/27",
+      "19:00",
+      "py26-029",
+      "py-palace",
+      "platform",
+      "s1fnc27uu"
+    ],
+    [
+      "9/27",
+      "19:00",
+      "gr26-001",
+      "py-palace",
+      "small-town",
+      "s1lawkce6"
+    ],
+    [
+      "9/27",
+      "20:00",
+      "py26-012",
+      "py-palace",
+      "hall-1",
+      "s1rd8mw0k"
+    ],
+    [
+      "9/27",
+      "21:00",
+      "gr26-042",
+      "py-palace",
+      "small-town",
+      "s2eevlrm3"
+    ],
+    [
+      "9/27",
+      "21:30",
+      "gh63-050",
+      "py-palace",
+      "platform",
+      "s2bs7pp0o"
+    ],
+    [
+      "9/28",
+      "09:00",
+      "gr26-035",
+      "py-palace",
+      "hall-1",
+      "s3ruzp7zv"
+    ],
+    [
+      "9/28",
+      "09:00",
+      "py26-029",
+      "py-palace",
+      "small-town",
+      "s1249bzux"
+    ],
+    [
+      "9/28",
+      "11:00",
+      "gr26-001",
+      "py-palace",
+      "hall-1",
+      "s1inewprc"
+    ],
+    [
+      "9/28",
+      "11:15",
+      "gr26-018",
+      "py-palace",
+      "small-town",
+      "s2dkh8x63"
+    ],
+    [
+      "9/28",
+      "11:30",
+      "py26-006",
+      "py-palace",
+      "hall-3",
+      "s16mcx94w"
+    ],
+    [
+      "9/28",
+      "13:30",
+      "py26-023",
+      "py-palace",
+      "hall-2",
+      "s1d12fghk"
+    ],
+    [
+      "9/28",
+      "13:30",
+      "py26-021",
+      "py-palace",
+      "small-town",
+      "s1osdxr59"
+    ],
+    [
+      "9/28",
+      "14:00",
+      "py26-027",
+      "py-palace",
+      "hall-1",
+      "slmzmb450"
+    ],
+    [
+      "9/28",
+      "14:15",
+      "py26-014",
+      "py-palace",
+      "hall-3",
+      "s439n82bs"
+    ],
+    [
+      "9/28",
+      "16:00",
+      "gr26-046",
+      "py-palace",
+      "small-town",
+      "shm2lwj7b"
+    ],
+    [
+      "9/28",
+      "17:00",
+      "py26-005",
+      "py-palace",
+      "hall-1",
+      "s2m3axara"
+    ],
+    [
+      "9/28",
+      "18:30",
+      "gr26-042",
+      "py-palace",
+      "hall-3",
+      "s2mlbkiws"
+    ],
+    [
+      "9/28",
+      "18:30",
+      "py26-028",
+      "py-palace",
+      "small-town",
+      "s7ko96fdm"
+    ],
+    [
+      "9/28",
+      "19:00",
+      "py26-007",
+      "py-palace",
+      "hall-1",
+      "s238h1dgv"
+    ],
+    [
+      "9/28",
+      "19:00",
+      "gh63-061",
+      "py-palace",
+      "platform",
+      "s1ya4c5e2"
+    ],
+    [
+      "9/28",
+      "20:45",
+      "py26-003",
+      "py-palace",
+      "small-town",
+      "s2h30hdlp"
+    ],
+    [
+      "9/28",
+      "21:45",
+      "gh63-055",
+      "py-palace",
+      "platform",
+      "seo8tl5gw"
+    ],
+    [
+      "9/29",
+      "09:30",
+      "py26-011",
+      "py-palace",
+      "hall-1",
+      "s1uyn6fj7"
+    ],
+    [
+      "9/29",
+      "10:00",
+      "py26-007",
+      "py-palace",
+      "hall-3",
+      "s1vuwsebb"
+    ],
+    [
+      "9/29",
+      "11:00",
+      "py26-027",
+      "py-palace",
+      "hall-2",
+      "s28uk9uw7"
+    ],
+    [
+      "9/29",
+      "11:30",
+      "gr26-018",
+      "py-palace",
+      "hall-1",
+      "s2hs4rdqc"
+    ],
+    [
+      "9/29",
+      "13:30",
+      "py26-021",
+      "py-palace",
+      "hall-2",
+      "skyivym25"
+    ],
+    [
+      "9/29",
+      "14:00",
+      "py26-002",
+      "py-palace",
+      "hall-1",
+      "sqxep36uo"
+    ],
+    [
+      "9/29",
+      "14:00",
+      "gr26-029",
+      "py-palace",
+      "small-town",
+      "s31621g8p"
+    ],
+    [
+      "9/29",
+      "16:00",
+      "py26-028",
+      "py-palace",
+      "hall-2",
+      "sm3gizchf"
+    ],
+    [
+      "9/29",
+      "17:00",
+      "gr26-046",
+      "py-palace",
+      "hall-1",
+      "s1ajatobs"
+    ],
+    [
+      "9/29",
+      "19:00",
+      "py26-003",
+      "py-palace",
+      "hall-1",
+      "s2qa8apyd"
+    ],
+    [
+      "9/29",
+      "19:00",
+      "py26-022",
+      "py-palace",
+      "platform",
+      "s2qrx3jld"
+    ],
+    [
+      "9/29",
+      "22:00",
+      "gh63-061",
+      "py-palace",
+      "platform",
+      "s1dqiev8x"
+    ],
+    [
+      "9/30",
+      "09:30",
+      "gh63-055",
+      "py-palace",
+      "hall-1",
+      "sssz5uq4g"
+    ],
+    [
+      "9/30",
+      "10:00",
+      "gh63-061",
+      "py-palace",
+      "small-town",
+      "s12v7838z"
+    ],
+    [
+      "9/30",
+      "13:00",
+      "py26-030",
+      "py-palace",
+      "small-town",
+      "s1bcaw3q4"
+    ],
+    [
+      "9/30",
+      "14:00",
+      "whispers-in-may-2026",
+      "py-palace",
+      "hall-2",
+      "s8s5z7yl8"
+    ],
+    [
+      "9/30",
+      "15:30",
+      "py26-025",
+      "py-palace",
+      "small-town",
+      "s1mrgreo4"
+    ],
+    [
+      "9/30",
+      "16:00",
+      "gr26-018",
+      "py-palace",
+      "hall-1",
+      "s1of1izk4"
+    ],
+    [
+      "9/30",
+      "17:30",
+      "gr26-013",
+      "py-palace",
+      "hall-3",
+      "s2mbx0nm6"
+    ],
+    [
+      "9/30",
+      "17:30",
+      "gh63-087",
+      "py-palace",
+      "small-town",
+      "sgmzhu5jt"
+    ],
+    [
+      "9/30",
+      "19:00",
+      "py26-022",
+      "py-palace",
+      "platform",
+      "suupywa9r"
+    ],
+    [
+      "9/30",
+      "19:30",
+      "py26-026",
+      "py-palace",
+      "small-town",
+      "sivqanitl"
+    ]
+  ]
+}

@@ -4,6 +4,7 @@
  *   - eventive:    Eventive 公开 API（events + films，支持直接传官网或 API 链接）
  *   - html:        通用 HTML 表格或列表 + --config 选择器 JSON 配置
  *   - goldenhorse: 金马影展官网（goldenhorse.org.tw）专用适配器
+ *   - pyiff:       平遥国际电影展官网（pyiffestival.com）公开 API 适配器
  *   - auto:        根据 URL / 扩展名 / 内容自动识别适配器 */
 'use strict';
 
@@ -11,12 +12,14 @@ const JsonLD = require('./jsonld.js');
 const Eventive = require('./eventive.js');
 const HtmlTable = require('./html-table.js');
 const GoldenHorse = require('./goldenhorse.js');
+const Pyiff = require('./pyiff.js');
 
 const ADAPTERS = {
   jsonld: JsonLD,
   eventive: Eventive,
   html: HtmlTable,
-  goldenhorse: GoldenHorse
+  goldenhorse: GoldenHorse,
+  pyiff: Pyiff
 };
 
 async function fetchText(url, timeoutMs) {
@@ -40,6 +43,7 @@ async function fetchText(url, timeoutMs) {
 function detectAdapter(options) {
   const { url = '', inputText = '', config = null } = options || {};
   const u = String(url).toLowerCase();
+  if (u.includes('pyiffestival.com')) return 'pyiff';
   if (u.includes('goldenhorse.org.tw')) return 'goldenhorse';
   if (u.includes('eventive.org')) return 'eventive';
   if (config && config.item) return 'html';
@@ -47,6 +51,7 @@ function detectAdapter(options) {
   if (trimmed.startsWith('{') || trimmed.startsWith('[')) {
     try {
       const obj = JSON.parse(trimmed);
+      if (obj && (Array.isArray(obj.films) && obj.films.some(f => f && f.activityFilmName) || (Array.isArray(obj) && obj.some(f => f && f.activityFilmName)))) return 'pyiff';
       if (obj && (Array.isArray(obj.events) || (obj.data && Array.isArray(obj.data.events)))) return 'eventive';
       if (obj && (obj['@context'] || obj['@graph'] || obj['@type'])) return 'jsonld';
     } catch (e) {}
@@ -60,6 +65,9 @@ function detectAdapter(options) {
 async function fetchAdapterInput(adapterId, url, fetchFn) {
   const fn = fetchFn || fetchText;
   const resolved = adapterId === 'auto' ? detectAdapter({ url }) : adapterId;
+  if (resolved === 'pyiff') {
+    return { adapter: 'pyiff', text: await Pyiff.fetchFromUrl(url) };
+  }
   if (resolved === 'eventive') {
     return { adapter: 'eventive', text: await Eventive.fetchFromUrl(url, fn) };
   }

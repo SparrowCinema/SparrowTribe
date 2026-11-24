@@ -73,6 +73,18 @@
     if (Number.isInteger(y) && y >= 1888 && y <= 2200) return y;
     return +String(d || '').split('/')[0] >= 10 ? 2026 : 2027;
   };
+  const progShowYear = (d, p) => {
+    if (p && p.start && p.end) {
+      const sy = +String(p.start).slice(0, 4), sm = +String(p.start).slice(5, 7);
+      const ey = +String(p.end).slice(0, 4);
+      if (Number.isInteger(sy) && Number.isInteger(ey) && sy >= 1888 && ey >= sy) {
+        if (sy === ey) return sy;
+        const m = +String(d || '').split('/')[0];
+        return m >= sm ? sy : ey;
+      }
+    }
+    return yearOf(d);
+  };
 
   function tzOfCity(city) {
     return (city && CITY_TZ[city]) || '';
@@ -151,7 +163,8 @@
   function showMs(s, vnMap, pgMap) {
     const md = String(s.d || '1/1').split('/').map(Number);
     const tm = String(s.t || '00:00').split(':').map(Number);
-    return zonedMs(yearOf(s.d, s.year), md[0], md[1], tm[0] || 0, tm[1] || 0, tzOf(s, vnMap, pgMap));
+    const y = s.year ? yearOf(s.d, s.year) : progShowYear(s.d, pgMap && pgMap[s.p]);
+    return zonedMs(y, md[0], md[1], tm[0] || 0, tm[1] || 0, tzOf(s, vnMap, pgMap));
   }
 
   function ymdMs(v, tz) {
@@ -273,7 +286,7 @@
 
   return {
     DEFAULT_TZ, CITY_TZ, FIXED_OFFSET,
-    yearOf, tzOfCity, tzOf, progTz,
+    yearOf, progShowYear, tzOfCity, tzOf, progTz,
     offsetMin, zonedMs, showMs, ymdMs, showIso, weekday,
     nowParts, viewerTz, formatOffset, tzShort, sameOffset,
     formatLocalStamp, formatUtcStamp, icsTimezones, icsEventDates

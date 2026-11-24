@@ -98,7 +98,12 @@ async function fromSite(ms, prev) {
     });
     (pk.shows || []).forEach(r => {
       const [d, t, id, v = 'premiere', h = 'luxe', sid] = Array.isArray(r) ? r : [r.d, r.t, r.id, r.v, r.h, r.sid];
-      shows.push(Object.assign({ d, t, id, v, h, p: p.id }, sid ? { sid } : {})); // sid：固定场次编号（见 tools/assign-sids.js） // p：场次所属专题（跨影展合并影片按此区分）
+      let py = (!Array.isArray(r) && r.year) ? r.year : null;
+      if (!py && p && p.start && p.end) {
+        const sy = +String(p.start).slice(0, 4), sm = +String(p.start).slice(5, 7), ey = +String(p.end).slice(0, 4);
+        if (Number.isInteger(sy) && Number.isInteger(ey) && sy >= 1888 && ey >= sy) py = sy === ey ? sy : (+String(d || '').split('/')[0] >= sm ? sy : ey);
+      }
+      shows.push(Object.assign({ d, t, id, v, h, p: p.id }, sid ? { sid } : {}, py ? { year: py } : {})); // sid：固定场次编号（见 tools/assign-sids.js） // p：场次所属专题（跨影展合并影片按此区分）
     });
   });
   const programmes = progs.map(p => {
