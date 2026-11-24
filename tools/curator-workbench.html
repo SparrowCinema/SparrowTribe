@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>策展入库工作台 · Sparrow Curator Workbench</title>
+<style>
+:root {
+  --bg: #f6efe2;
+  --surface: #fbf7ef;
+  --fg: #1d1712;
+  --muted: #6c6154;
+  --line: #d9cebc;
+  --line-soft: #e9e0cf;
+  --accent: #8e2a22;
+  --teal: #2f6f6c;
+  --warn: #b46a18;
+  --serif: "Noto Serif SC", "Songti SC", "STSong", Georgia, serif;
+  --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --sans: -apple-system, BlinkMacSystemFont, "PingFang SC", "Noto Sans SC", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #171411;
+    --surface: #211c17;
+    --fg: #efe7d8;
+    --muted: #a99d8d;
+    --line: #3a3128;
+    --line-soft: #2c251e;
+    --accent: #d46559;
+    --teal: #5cb3ae;
+    --warn: #e09a3e;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 15px/1.65 var(--sans);
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 1120px; margin: 0 auto; padding: 36px 24px 80px; }
+header.mast {
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 22px;
+  margin-bottom: 28px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+}
+.kicker { font: 500 11px/1.2 var(--mono); letter-spacing: .16em; color: var(--teal); text-transform: uppercase; }
+h1 { margin: 8px 0 4px; font: 700 28px/1.25 var(--serif); letter-spacing: .02em; }
+.sub { margin: 0; color: var(--muted); font-size: 14px; }
+.meta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.field { display: flex; flex-direction: column; gap: 5px; }
+.field label { font: 500 11px/1 var(--mono); letter-spacing: .08em; color: var(--muted); text-transform: uppercase; }
+.field input, .field select {
+  height: 40px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--fg);
+  font: 15px/1 var(--sans);
+}
+.dropzone {
+  border: 1.5px dashed var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+  padding: 28px 20px;
+  text-align: center;
+  transition: border-color .15s, background .15s;
+  cursor: pointer;
+}
+.dropzone.over { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 5%, var(--surface)); }
+.dropzone strong { display: block; font: 600 16px/1.4 var(--serif); margin-bottom: 4px; }
+.dropzone p { margin: 0 0 14px; color: var(--muted); font-size: 13px; }
+.btns { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+button {
+  height: 36px;
+  padding: 0 16px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--fg);
+  font: 500 13px/1 var(--sans);
+  cursor: pointer;
+}
+button.primary { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+button.accent { background: var(--accent); color: #fffaf0; border-color: var(--accent); }
+button:disabled { opacity: .4; cursor: not-allowed; }
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 24px 0;
+}
+.stat { background: var(--surface); padding: 14px 16px; }
+.stat b { display: block; font: 600 24px/1.1 var(--mono); }
+.stat span { font-size: 12px; color: var(--muted); }
+.stat.bad b { color: var(--accent); }
+.stat.warn b { color: var(--warn); }
+.stat.ok b { color: var(--teal); }
+section.card {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+  padding: 20px 22px;
+  margin-bottom: 20px;
+}
+section.card h2 {
+  margin: 0 0 14px;
+  font: 700 17px/1.3 var(--serif);
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+section.card h2 small { font: 500 11px/1 var(--mono); color: var(--muted); letter-spacing: .1em; }
+.diag-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.diag-list li {
+  padding: 9px 12px;
+  border-left: 3px solid var(--warn);
+  background: var(--bg);
+  border-radius: 4px;
+  font-size: 13px;
+}
+.diag-list li.err { border-left-color: var(--accent); }
+.gantt { display: flex; flex-direction: column; gap: 12px; overflow-x: auto; }
+.gantt-day { border-top: 1px solid var(--line-soft); padding-top: 10px; }
+.gantt-day h3 { margin: 0 0 8px; font: 600 13px/1 var(--mono); color: var(--teal); }
+.gantt-track { position: relative; height: 30px; background: var(--bg); border: 1px solid var(--line-soft); border-radius: 4px; margin-bottom: 6px; min-width: 640px; }
+.gantt-bar {
+  position: absolute; top: 3px; bottom: 3px;
+  background: var(--fg); color: var(--bg);
+  border-radius: 3px; padding: 0 6px;
+  font: 11px/22px var(--sans);
+  overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+}
+.gantt-bar.col { background: var(--accent); color: #fffaf0; }
+.tbl-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line-soft); white-space: nowrap; }
+th { font: 500 11px/1 var(--mono); color: var(--muted); letter-spacing: .06em; text-transform: uppercase; }
+pre.json-out {
+  margin: 0; padding: 14px; max-height: 320px; overflow: auto;
+  background: var(--bg); border: 1px solid var(--line-soft); border-radius: 6px;
+  font: 12px/1.5 var(--mono);
+}
+.hidden { display: none; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="mast">
+    <div>
+      <div class="kicker">SPARROW CINEMA · CURATOR INGESTION WORKBENCH</div>
+      <h1>影展排片策展入库工作台</h1>
+      <p class="sub">本地离线解析官方 CSV / TSV / ICS 排片表 · 自动检测影厅冲突与缺失字段 · 导出标准 JSON</p>
+    </div>
+    <div class="btns">
+      <button type="button" id="btn-sample">载入示例排片表</button>
+      <button type="button" class="primary" id="btn-dl-prog" disabled>下载 programme.json</button>
+      <button type="button" id="btn-dl-patch" disabled>下载 catalog 补丁</button>
+    </div>
+  </header>
+
+  <div class="meta-grid">
+    <div class="field"><label>Programme ID</label><input id="f-id" value="sample-fest-2026" placeholder="e.g. siff-2026"></div>
+    <div class="field"><label>专题中文名</label><input id="f-name" value="示例影展" placeholder="如：2026 上海国际电影节"></div>
+    <div class="field"><label>英文名</label><input id="f-en" value="SAMPLE FESTIVAL" placeholder="ENGLISH TITLE"></div>
+    <div class="field"><label>举办城市</label><input id="f-city" value="上海" placeholder="城市名"></div>
+    <div class="field"><label>时区 (IANA)</label><input id="f-tz" value="Asia/Shanghai" placeholder="Asia/Shanghai"></div>
+    <div class="field"><label>年份</label><input id="f-year" type="number" value="2026"></div>
+  </div>
+
+  <div class="dropzone" id="dz">
+    <strong>拖拽排片 CSV / TSV / ICS 文件到这里，或点击选择文件</strong>
+    <p>完全在浏览器本地运行，不上传任何服务器。支持中英文表头：片名/Title、英文名、年份、导演、片长、日期、时间、影院、影厅、版本、映后、无障碍。</p>
+    <input type="file" id="file-in" accept=".csv,.tsv,.ics,.txt" class="hidden">
+    <div class="btns"><button type="button" class="accent" id="btn-pick">选择排片文件</button></div>
+  </div>
+
+  <div id="results" class="hidden">
+    <div class="stats" id="stats"></div>
+
+    <section class="card" id="diag-sec">
+      <h2>校验诊断 <small>VALIDATION &amp; CONFLICTS</small></h2>
+      <ul class="diag-list" id="diag-list"></ul>
+    </section>
+
+    <section class="card">
+      <h2>排片时间轴预览 <small>GANTT PREVIEW (09:00 – 24:00)</small></h2>
+      <div class="gantt" id="gantt"></div>
+    </section>
+
+    <section class="card">
+      <h2>解析片目一览 <small id="film-cnt"></small></h2>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>ID</th><th>片名</th><th>年份</th><th>导演</th><th>片长</th><th>单元</th><th>版本</th><th>场次</th></tr></thead>
+          <tbody id="film-tbody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>生成的 data/programmes/&lt;id&gt;.json <small>READY FOR tools/assign-sids.js</small></h2>
+      <pre class="json-out" id="json-out"></pre>
+    </section>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  let lastResult = null;
+  let lastText = '';
+  let lastFormat = 'csv';
+
+  function parseCSV(text) {
+    const s = String(text || '').replace(/^\uFEFF/, '');
+    const rows = []; let row = [], cell = '', q = false;
+    for (let i = 0; i < s.length; i++) {
+      const ch = s[i];
+      if (q) {
+        if (ch === '"' && s[i + 1] === '"') { cell += '"'; i++; }
+        else if (ch === '"') q = false;
+        else cell += ch;
+      } else {
+        if (ch === '"') q = true;
+        else if (ch === ',') { row.push(cell); cell = ''; }
+        else if (ch === '\r') { if (s[i + 1] === '\n') i++; row.push(cell); rows.push(row); row = []; cell = ''; }
+        else if (ch === '\n') { row.push(cell); rows.push(row); row = []; cell = ''; }
+        else cell += ch;
+      }
+    }
+    if (cell.length || row.length) { row.push(cell); rows.push(row); }
+    return rows.filter(r => r.some(c => String(c || '').trim()));
+  }
+
+  function parseICS(text) {
+    const lines = String(text || '').replace(/\r?\n[ \t]/g, '').split(/\r?\n/);
+    const out = []; let cur = null;
+    lines.forEach(line => {
+      if (line === 'BEGIN:VEVENT') { cur = {}; return; }
+      if (line === 'END:VEVENT') { if (cur) out.push(cur); cur = null; return; }
+      if (!cur) return;
+      const i = line.indexOf(':'); if (i < 0) return;
+      cur[line.slice(0, i).split(';')[0].toUpperCase()] = line.slice(i + 1).replace(/\\n/g, '\n').replace(/\\,/g, ',').trim();
+    });
+    return out.map(ev => {
+      const m = String(ev.DTSTART || '').match(/^(\d{4})(\d{2})(\d{2})(?:T(\d{2})(\d{2}))?/);
+      const loc = String(ev.LOCATION || '').split(/[·・\-\/|]/).map(s => s.trim()).filter(Boolean);
+      return {
+        title: ev.SUMMARY || '', date: m ? (+m[2] + '/' + +m[3]) : '', time: m && m[4] ? (m[4] + ':' + m[5]) : '',
+        venue: loc[0] || '', hall: loc[1] || '1号厅', min: 110, synopsis: ev.DESCRIPTION || ''
+      };
+    });
+  }
+
+  function slugify(str, fb) {
+    const a = String(str || '').normalize('NFKD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 64);
+    if (a && /^[a-z0-9]/.test(a)) return a;
+    let h = 2166136261; const s = String(str || fb || 'item');
+    for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); }
+    return (fb || 'item') + '-' + (h >>> 0).toString(36);
+  }
+
+  function parseDateMD(raw) {
+    const s = String(raw || '').trim();
+    let m = s.match(/^(\d{4})[-/.](\d{1,2})[-/.](\d{1,2})/); if (m) return +m[2] + '/' + +m[3];
+    m = s.match(/^(\d{1,2})[-/.](\d{1,2})$/); if (m) return +m[1] + '/' + +m[2];
+    m = s.match(/^(\d{1,2})月(\d{1,2})日?/); if (m) return +m[1] + '/' + +m[2];
+    return '';
+  }
+
+  function parseTimeHM(raw) {
+    const m = String(raw || '').trim().match(/^(\d{1,2}):(\d{2})/);
+    return m ? String(+m[1]).padStart(2, '0') + ':' + m[2] : '';
+  }
+
+  function runParse(text, format) {
+    lastText = text; lastFormat = format;
+    const pid = document.getElementById('f-id').value.trim() || 'sample-fest';
+    const pname = document.getElementById('f-name').value.trim() || '未命名专题';
+    const pen = document.getElementById('f-en').value.trim() || pid.toUpperCase();
+    const city = document.getElementById('f-city').value.trim();
+    const tz = document.getElementById('f-tz').value.trim() || 'Asia/Shanghai';
+    const year = parseInt(document.getElementById('f-year').value, 10) || 2026;
+
+    let recs = [];
+    if (format === 'ics') {
+      recs = parseICS(text);
+    } else {
+      const rows = format === 'tsv' ? text.replace(/^\uFEFF/, '').split(/\r?\n/).filter(Boolean).map(l => l.split('\t')) : parseCSV(text);
+      if (rows.length >= 2) {
+        const head = rows[0].map(h => String(h || '').trim().toLowerCase());
+        const col = ns => { for (const n of ns) { const i = head.indexOf(n.toLowerCase()); if (i >= 0) return i; } return -1; };
+        const iT = col(['片名', '中文片名', 'title', 'cn', 'name']), iEn = col(['英文名', 'en', 'english title']);
+        const iY = col(['年份', 'year', 'y']), iD = col(['导演', 'director', 'dir']), iM = col(['片长', '时长', 'min', 'runtime']);
+        const iSec = col(['单元', 'section']), iVer = col(['版本', 'version', 'format']);
+        const iDt = col(['日期', 'date', 'd']), iTm = col(['时间', 'time', 't']);
+        const iV = col(['影院', 'venue', 'cinema']), iH = col(['影厅', 'hall', 'screen']);
+        const iQA = col(['映后', 'qa']), iAcc = col(['无障碍', 'access']), iAud = col(['场次类型', 'audience']);
+        for (let r = 1; r < rows.length; r++) {
+          const g = i => (i >= 0 && rows[r][i] !== undefined ? String(rows[r][i]).trim() : '');
+          recs.push({
+            title: g(iT), en: g(iEn), year: parseInt(g(iY), 10) || null, dir: g(iD),
+            min: parseInt((g(iM).match(/\d+/) || [])[0], 10) || 0, section: g(iSec), version: g(iVer),
+            date: parseDateMD(g(iDt)), time: parseTimeHM(g(iTm)), venue: g(iV), hall: g(iH) || '1号厅',
+            qa: g(iQA), access: g(iAcc), audience: g(iAud)
+          });
+        }
+      }
+    }
+
+    const films = new Map(), venues = new Map(), shows = [], slotSeen = new Map(), diags = [];
+    const showCount = {};
+    recs.forEach((rec, i) => {
+      if (!rec.title) { diags.push({ err: true, msg: `第 ${i + 2} 行缺少片名，已跳过` }); return; }
+      const fid = slugify(rec.en || rec.title, 'film');
+      if (!films.has(fid)) {
+        const f = {
+          id: fid, cn: rec.title, o: rec.en || rec.title, en: rec.en || '', y: rec.year,
+          c: '', min: rec.min || 0, reg: 'world', dir: rec.dir || '', section: rec.section || '',
+          version: rec.version || '', syn: '', r: [null, null, null, null, null],
+          writers: [], cast: [], genre: [], language: '', highlights: [], honors: [], warnings: [], gifts: []
+        };
+        if (rec.qa) f.qaGuest = rec.qa;
+        if (rec.access) f.access = rec.access.split(/[、,，/|+]/).map(x => x.trim()).filter(Boolean);
+        if (['public', 'industry', 'press', 'free'].includes(String(rec.audience || '').toLowerCase())) f.audience = rec.audience.toLowerCase();
+        films.set(fid, f);
+        const miss = ['dir', 'min', 'y'].filter(k => !f[k]);
+        if (miss.length) diags.push({ err: false, msg: `《${f.cn}》(${fid}) 缺少字段：${miss.join('、')}` });
+      }
+      if (rec.date && rec.time) {
+        const vName = rec.venue || pname + '放映点';
+        const vid = slugify(vName, 'venue');
+        if (!venues.has(vid)) venues.set(vid, { id: vid, short: vName.slice(0, 12), name: vName, city, halls: [] });
+        const v = venues.get(vid);
+        const hid = slugify(rec.hall || '1号厅', 'hall');
+        if (!v.halls.some(h => h.id === hid)) v.halls.push({ id: hid, short: rec.hall || '1号厅', name: rec.hall || '1号厅' });
+        const key = [rec.date, rec.time, vid, hid].join('|');
+        const col = slotSeen.has(key);
+        if (col) diags.push({ err: true, msg: `影厅冲突：${rec.date} ${rec.time} ${vName}·${rec.hall} 同时排了「${slotSeen.get(key)}」与「${rec.title}」` });
+        else slotSeen.set(key, rec.title);
+        shows.push([rec.date, rec.time, fid, vid, hid]);
+        showCount[fid] = (showCount[fid] || 0) + 1;
+      }
+    });
+
+    const progJson = { programme: pid, year, films: Array.from(films.values()), shows };
+    const patchJson = {
+      programme: Object.assign({ id: pid, name: pname, en: pen, kind: '影展专题', city, file: `data/programmes/${pid}.json` }, tz !== 'Asia/Shanghai' ? { tz } : {}),
+      newVenues: Array.from(venues.values())
+    };
+    lastResult = { progJson, patchJson, diags, showCount, films, venues };
+    render();
+  }
+
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
+
+  function render() {
+    if (!lastResult) return;
+    const { progJson, diags, showCount, films, venues } = lastResult;
+    document.getElementById('results').classList.remove('hidden');
+    document.getElementById('btn-dl-prog').disabled = false;
+    document.getElementById('btn-dl-patch').disabled = false;
+
+    const errs = diags.filter(d => d.err).length, warns = diags.filter(d => !d.err).length;
+    document.getElementById('stats').innerHTML =
+      `<div class="stat"><b>${progJson.films.length}</b><span>解析影片</span></div>` +
+      `<div class="stat"><b>${progJson.shows.length}</b><span>有效场次</span></div>` +
+      `<div class="stat"><b>${venues.size}</b><span>涉及影院</span></div>` +
+      `<div class="stat ${errs ? 'bad' : 'ok'}"><b>${errs}</b><span>冲突 / 错误</span></div>` +
+      `<div class="stat ${warns ? 'warn' : 'ok'}"><b>${warns}</b><span>待补字段提示</span></div>`;
+
+    document.getElementById('diag-list').innerHTML = diags.length
+      ? diags.map(d => `<li class="${d.err ? 'err' : ''}">${esc(d.msg)}</li>`).join('')
+      : '<li style="border-left-color:var(--teal)">所有影片基础字段完整，未检测到同影厅排片冲突。</li>';
+
+    // Mini Gantt by date
+    const byDay = {};
+    progJson.shows.forEach(s => { (byDay[s[0]] = byDay[s[0]] || []).push(s); });
+    const days = Object.keys(byDay).sort((a, b) => {
+      const [am, ad] = a.split('/').map(Number), [bm, bd] = b.split('/').map(Number);
+      return am - bm || ad - bd;
+    });
+    document.getElementById('gantt').innerHTML = days.map(d => {
+      const tracks = byDay[d].map(s => {
+        const [hh, mm] = s[1].split(':').map(Number);
+        const startM = hh * 60 + mm, f = films.get(s[2]), dur = (f && f.min) || 110;
+        const left = Math.max(0, Math.min(95, ((startM - 540) / 900) * 100));
+        const width = Math.max(5, Math.min(100 - left, (dur / 900) * 100));
+        const v = venues.get(s[3]);
+        return `<div class="gantt-track"><div class="gantt-bar" style="left:${left.toFixed(1)}%;width:${width.toFixed(1)}%" title="${esc(s[1] + ' ' + (f ? f.cn : s[2]) + ' · ' + (v ? v.short : s[3]))}">${esc(s[1])} ${esc(f ? f.cn : s[2])} · ${esc(v ? v.short : s[3])}</div></div>`;
+      }).join('');
+      return `<div class="gantt-day"><h3>${esc(d)} · ${byDay[d].length} 场</h3>${tracks}</div>`;
+    }).join('') || '<p style="color:var(--muted);margin:0">暂无带日期时间的排片场次。</p>';
+
+    document.getElementById('film-cnt').textContent = progJson.films.length + ' FILMS';
+    document.getElementById('film-tbody').innerHTML = progJson.films.map(f =>
+      `<tr><td style="font-family:var(--mono)">${esc(f.id)}</td><td><b>${esc(f.cn)}</b></td><td style="font-family:var(--mono)">${esc(f.y || '—')}</td><td>${esc(f.dir || '—')}</td><td style="font-family:var(--mono)">${f.min ? f.min + 'm' : '—'}</td><td>${esc(f.section || '—')}</td><td>${esc(f.version || '—')}</td><td style="font-family:var(--mono)">${showCount[f.id] || 0}</td></tr>`
+    ).join('');
+
+    document.getElementById('json-out').textContent = JSON.stringify(progJson, null, 2);
+  }
+
+  function download(name, obj) {
+    const blob = new Blob([JSON.stringify(obj, null, 2) + '\n'], { type: 'application/json;charset=utf-8' });
+    const url = URL.createObjectURL(blob), a = document.createElement('a');
+    a.href = url; a.download = name; a.click();
+    setTimeout(() => URL.revokeObjectURL(url), 10000);
+  }
+
+  function loadFile(file) {
+    if (!file) return;
+    const ext = (file.name.split('.').pop() || 'csv').toLowerCase();
+    const fmt = ext === 'tsv' ? 'tsv' : ext === 'ics' ? 'ics' : 'csv';
+    const r = new FileReader();
+    r.onload = () => runParse(String(r.result || ''), fmt);
+    r.readAsText(file, 'utf-8');
+  }
+
+  const dz = document.getElementById('dz'), fin = document.getElementById('file-in');
+  document.getElementById('btn-pick').onclick = () => fin.click();
+  fin.onchange = () => loadFile(fin.files[0]);
+  dz.ondragover = e => { e.preventDefault(); dz.classList.add('over'); };
+  dz.ondragleave = () => dz.classList.remove('over');
+  dz.ondrop = e => { e.preventDefault(); dz.classList.remove('over'); loadFile(e.dataTransfer.files[0]); };
+  ['f-id', 'f-name', 'f-en', 'f-city', 'f-tz', 'f-year'].forEach(id => {
+    document.getElementById(id).addEventListener('change', () => { if (lastText) runParse(lastText, lastFormat); });
+  });
+  document.getElementById('btn-dl-prog').onclick = () => lastResult && download(lastResult.progJson.programme + '.json', lastResult.progJson);
+  document.getElementById('btn-dl-patch').onclick = () => lastResult && download(lastResult.progJson.programme + '.catalog-patch.json', lastResult.patchJson);
+  document.getElementById('btn-sample').onclick = () => {
+    const sample = '片名,英文名,年份,导演,片长,单元,版本,日期,时间,影院,影厅,映后,无障碍\n' +
+      '小城之春,Spring in a Small Town,1948,费穆,93,经典修复,4K修复,11/15,14:00,上海影城 SHO,1号杜比剧场,,无障碍影厅\n' +
+      '野草莓,Wild Strawberries,1957,英格玛·伯格曼,91,大师回顾,35mm胶片,11/15,18:30,上海影城 SHO,1号杜比剧场,映后导赏,\n' +
+      '秋刀鱼之味,An Autumn Afternoon,1962,小津安二郎,113,经典修复,4K修复,11/16,15:00,天山电影院,虹桥艺术中心旗舰厅,,\n';
+    runParse(sample, 'csv');
+  };
+})();
+</script>
+</body>
+</html>

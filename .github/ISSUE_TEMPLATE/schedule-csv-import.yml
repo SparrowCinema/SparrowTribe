@@ -1,0 +1,51 @@
+name: 排片表 CSV / ICS 导入与纠错 (Schedule Import)
+description: 提交官方排片 CSV/TSV/ICS 文件或单场加场、时间/影厅/版本纠错
+title: "[排片导入/纠错] "
+labels: ["schedule-import"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        推荐使用本地 `tools/curator-workbench.html` 或命令行：
+        ```bash
+        node tools/import-festival.js --input schedule.csv --id <prog-id> --name "<专题名>" --dry-run
+        ```
+        标准 CSV 列头示例：`片名,英文名,年份,导演,片长,单元,版本,日期,时间,影院,影厅,映后,场次类型,无障碍,IMDb,豆瓣`
+
+  - type: input
+    id: programme
+    attributes:
+      label: 所属专题 ID 或名称
+      placeholder: 例：golden-horse-2026 / style-kaleidoscope
+    validations:
+      required: true
+
+  - type: dropdown
+    id: action_type
+    attributes:
+      label: 本次提交类型
+      options:
+        - 新增整套排片表（CSV / TSV / ICS）
+        - 临时加场 / 补录场次
+        - 现有场次纠错（时间 / 影厅 / 放映版本 / 映后嘉宾）
+        - 影院坐标 / 无障碍设施 / 交通补齐
+    validations:
+      required: true
+
+  - type: textarea
+    id: payload
+    attributes:
+      label: 排片数据（可直接粘贴 CSV / 纠错明细，或拖拽附件）
+      placeholder: |
+        片名,英文名,年份,导演,片长,日期,时间,影院,影厅,版本
+        示例影片,Sample Film,2026,张三,118,11/15,19:30,杭州百美汇影城,LUXE厅,4K修复
+    validations:
+      required: true
+
+  - type: input
+    id: source_url
+    attributes:
+      label: 官方核验出处（售票页 / 官方排片公告）
+      placeholder: https://...
+    validations:
+      required: true

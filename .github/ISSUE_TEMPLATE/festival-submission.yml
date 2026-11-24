@@ -1,0 +1,92 @@
+name: 新影展 / 专题策展投稿 (Festival Submission)
+description: 提交新的影展、回顾展或专题片单，进入麻雀观影护照策展入库流水线
+title: "[策展投稿] "
+labels: ["curator-submission", "programme"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢为麻雀观影护照贡献影展与专题资料！
+        请尽量提供**官方出处链接**；如已有排片表 CSV/ICS，可先使用本地 `tools/curator-workbench.html` 校验冲突并生成标准 JSON。
+
+  - type: input
+    id: prog_name
+    attributes:
+      label: 影展 / 专题名称（中英文）
+      placeholder: 例：2026 上海国际电影节 · SIFF 2026
+    validations:
+      required: true
+
+  - type: input
+    id: prog_id
+    attributes:
+      label: 建议专题 ID（小写字母与短横线）
+      placeholder: 例：siff-2026
+    validations:
+      required: true
+
+  - type: dropdown
+    id: prog_kind
+    attributes:
+      label: 专题类型
+      options:
+        - 影展专题
+        - 院线
+        - 固定放映空间
+        - 巡展 / 资料馆回顾
+    validations:
+      required: true
+
+  - type: input
+    id: city_tz
+    attributes:
+      label: 举办城市与时区（IANA）
+      description: 中国大陆 / 港澳台填 Asia/Shanghai；海外影展请注明对应 IANA 时区
+      placeholder: 例：上海 · Asia/Shanghai / 东京 · Asia/Tokyo / 柏林 · Europe/Berlin
+    validations:
+      required: true
+
+  - type: input
+    id: period
+    attributes:
+      label: 展映周期
+      placeholder: 例：2026-06-12 至 2026-06-21
+    validations:
+      required: true
+
+  - type: textarea
+    id: venues
+    attributes:
+      label: 放映影院与交通 / 无障碍信息
+      description: 请注明影院官方全称、地址、影厅名，以及已核实的交通指引或无障碍设施（未核实请留空，切勿编造）
+      placeholder: |
+        - 上海影城 SHO（新华路160号）：杜比剧场、2号厅｜地铁10/11号线交通大学站｜官方标注无障碍影厅
+    validations:
+      required: true
+
+  - type: textarea
+    id: curatorial
+    attributes:
+      label: 单元策展导读 & 评审团名单（可选）
+      description: 仅填写来自官方手册或公告的真实导读与评审团名单
+      placeholder: |
+        【主竞赛评审团】主席：xxx；成员：xxx、xxx
+        【单元导读】……
+
+  - type: textarea
+    id: sources
+    attributes:
+      label: 官方出处链接（必填，不会展示在公开页面，仅用于核验记录）
+      placeholder: 官网排片页 / 官方手册 PDF / 官微推文链接
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: 提交前核对
+      options:
+        - label: 所有片名、片长、放映版本（如 4K修复 / 35mm胶片）、荣誉与首映状态均来自官方公开资料，未编造信息
+          required: true
+        - label: 若附带了 CSV/JSON，已确认无同影厅同时间冲突
+          required: false
