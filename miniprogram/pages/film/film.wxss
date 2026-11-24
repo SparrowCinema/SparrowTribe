@@ -279,3 +279,21 @@
 /* 海报在外层里按块元素排：行内图片下方会多出几像素，外层就比海报高，fitHero 每部片都会判定「文字区太高」，把片名一路缩到 55% */
 .pst-wrap .pst { display: block; }
 .pp-badge { position: absolute; left: 50%; bottom: calc(14 * var(--r)); transform: translateX(-50%); white-space: nowrap; padding: calc(4 * var(--r)) calc(14 * var(--r)); border-radius: 999px; background: rgba(20,14,10,.72); color: #fff; font-size: calc(18 * var(--fr)); }
+
+/* 看完再看 · 延伸推荐（2026-11-24） */
+.rec-lead { display: block; margin: calc(-6 * var(--r)) 0 calc(22 * var(--r)); font-size: calc(18.5 * var(--fr)); color: var(--muted); }
+.rec-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: calc(24 * var(--r)) calc(18 * var(--r)); }
+.rec-card { display: flex; flex-direction: column; gap: calc(10 * var(--r)); min-width: 0; }
+.rec-go { display: flex; flex-direction: column; gap: calc(8 * var(--r)); min-width: 0; }
+.rec-art { position: relative; width: 100%; height: calc(440 * var(--r)); border-radius: calc(12 * var(--r)); overflow: hidden; background: var(--chip, #e5d8bf); box-shadow: 0 calc(4 * var(--r)) calc(14 * var(--r)) rgba(24,16,8,.1); }
+.rec-img { width: 100%; height: 100%; display: block; }
+.rec-ph { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: #fffaf0; font-size: calc(42 * var(--fr)); font-weight: 900; }
+.rec-last { position: absolute; top: calc(10 * var(--r)); left: calc(10 * var(--r)); padding: calc(3 * var(--r)) calc(10 * var(--r)); border-radius: calc(6 * var(--r)); background: var(--accent); color: #fffaf0; font-size: calc(16 * var(--fr)); font-weight: 600; }
+.rec-title { font-size: calc(20.5 * var(--fr)); font-weight: 700; line-height: 1.35; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.rec-why { font-size: calc(17.5 * var(--fr)); color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.rec-slot { font-size: calc(17.5 * var(--fr)); color: var(--teal); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.rec-want { margin-top: auto; height: calc(54 * var(--r)); line-height: calc(50 * var(--r)); text-align: center; border-radius: calc(12 * var(--r)); border: calc(2 * var(--r)) solid var(--line); background: var(--surface); color: var(--fg); font-size: calc(18 * var(--fr)); font-weight: 500; box-sizing: border-box; }
+.rec-want.on { border-color: #c79a3a; color: #8a6516; background: rgba(232,217,170,.22); }
+.rec-seen { margin-top: auto; display: block; text-align: center; padding: calc(8 * var(--r)) 0; border-radius: calc(12 * var(--r)); background: var(--chip, #e5d8bf); color: var(--muted); font-size: calc(17.5 * var(--fr)); }
+@media (min-width: 600px) { .rec-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } .rec-art { height: calc(320 * var(--r)); } }
+

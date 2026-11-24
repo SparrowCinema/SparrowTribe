@@ -36,6 +36,7 @@ require('./check-taste-report.js');
 require('./check-remind.js');
 require('./check-overlap.js');
 require('./check-planner-tz.js');
+require('./check-recommend.js');
 require('./check-curl.js');
 require('./check-ticket-preview.js');
 require('./check-getdata.js');

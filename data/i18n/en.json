@@ -96,7 +96,28 @@
     "APM海报": "APM poster",
     "沙海海报": "Sand sea poster",
     "IMAX海报（岩缝）": "IMAX poster (canyon)",
-    "IMAX海报（沙暴）": "IMAX poster (sandstorm)"
+    "IMAX海报（沙暴）": "IMAX poster (sandstorm)",
+    "年代/年份": "Era / Year",
+    "项年份": "years",
+    "2020年代": "2020s",
+    "2010年代": "2010s",
+    "2000年代": "2000s",
+    "1990年代": "1990s",
+    "1990年前经典": "Pre-1990 Classics",
+    "有映后": "Q&A",
+    "字幕机": "Subtitle display",
+    "仅剩最后一场": "Last chance",
+    "最后一场": "Last show",
+    "全球首映": "World premiere",
+    "可凑空档": "Fits schedule",
+    "零冲突凑空档": "Fits my schedule",
+    "零冲突": "No clash",
+    "看完再看": "Next Up",
+    "同导演": "Same director",
+    "同单元": "Same section",
+    "同专题": "Same programme",
+    "趣味相近": "Similar taste",
+    "同类型": "Shared genre"
   },
   "_readme": "English layer for the site. films/programmes/venues overlay data fields when ?lang=en; ui is the zh→en dictionary used by tr(). Missing entries fall back to the Chinese text.",
   "films": {
@@ -13713,6 +13734,10 @@
     "个人排片里相邻两场之间会估算转场时间：同影院约 10 分钟，跨影院按距离估算，含映后活动的场次还会把约 30 分钟映后纳入提醒，来不及会标橙色。有坐标的影院可点「地图」直接导航。": "Your plan estimates transfer time between screenings (about 10 min in the same cinema, by distance across cinemas, plus ~30 min for Q&A events), marked orange if tight. Tap Map to navigate to venues with coordinates.",
     "智能排片与一键换场": "Smart auto-plan & conflict swaps",
     "在个人排片页点「想看一键排片」，可基于「想看」清单自动避开冲突、生成可勾选的排片建议；遇到时间重叠时，冲突提示框里会列出同片无冲突场次，支持一键换场。": "In My Plan, tap Auto-plan from Want List to generate a conflict-free schedule from your starred films. When screenings clash, one-tap swap suggestions appear in the conflict banner.",
-    "批量导入日历": "Add to calendar"
+    "批量导入日历": "Add to calendar",
+    "选片快捷筛选": "Quick decision filters",
+    "看过这部之后，顺着线索继续下一场银幕相遇": "Continue your screening journey from this film",
+    "同导演、同单元或相近趣味的延伸片单": "Connected by director, section, or film taste",
+    "换个条件，或试试片名、导演、演员。": "Try another filter, or search by title, director, or cast."
   }
 }

@@ -8,12 +8,90 @@
  function matches(f,query){const hay=[f.cn,f.cnZh,f.cnDb,...(f.titleAliases||[]),f.en,f.o,f.dir,f.dirO,f.c,(f.cast||[]).join(' '),f.version].filter(Boolean).join(' ').toLocaleLowerCase();return String(query||'').toLocaleLowerCase().split(/\s+/).filter(Boolean).every(w=>hay.includes(w));}
  function inProgramme(f,id,ctx){const a=list(id);return !a.length||a.some(p=>(f.prog||ctx.programmeOf?.(f))===p||(ctx.programmeIds?.(f)||[]).includes(p)||ctx.shows.some(s=>s.id===f.id&&ctx.showProgramme(s)===p));}
  function inCity(f,city,ctx){const c=list(city);return !c.length||ctx.shows.some(s=>s.id===f.id&&ctx.cityOfShow&&c.includes(ctx.cityOfShow(s))&&has(ctx.programme,ctx.showProgramme(s)));}
+ const DECADES=[
+  ['d:2020','2020年代',2020,2029],
+  ['d:2010','2010年代',2010,2019],
+  ['d:2000','2000年代',2000,2009],
+  ['d:1990','1990年代',1990,1999],
+  ['d:classic','1990年前经典',0,1989]
+ ];
+ const TRAITS=[
+  ['qa','有映后'],
+  ['sub','字幕机'],
+  ['last','仅剩最后一场'],
+  ['wp','全球首映'],
+  ['fit','可凑空档']
+ ];
+ function decadeLabel(k){const d=DECADES.find(x=>x[0]===k);return d?d[1]:String(k);}
+ function yearMatches(f,sel){
+  const a=list(sel);if(!a.length)return true;
+  const yr=parseInt(f&&f.y,10),ys=String(f&&f.y||'');
+  return a.some(k=>{
+   const d=DECADES.find(x=>x[0]===k);
+   if(d)return Number.isFinite(yr)&&yr>=d[2]&&yr<=d[3];
+   return ys===String(k);
+  });
+ }
  const minutes=t=>{const m=/^(\d{1,2}):(\d{2})$/.exec(String(t||''));return m?+m[1]*60+(+m[2]):NaN;};
+ const SUB_RE=/字幕机|Subtitle display/i;
+ const QA_RE=/^\s*(?:映后活动|映后交流|Post-screening event|Q&A)/i;
+ function normFest(s){return String(s||'').replace(/20\d{2}|第?\d+届|中国|国际|电影节|影展|展映|专题|[\s·・\-—()（）]/g,'').toLowerCase();}
+ function isFestivalWorldPremiere(f,ctx){
+  const wp=f&&f.worldPremiere;if(!wp||wp.kind!=='festival')return false;
+  if(wp.atProgramme===true)return true;
+  const dt=String(wp.date||'');if(dt.length<7)return false;
+  const progs=(ctx&&ctx.programmes)||[];
+  const pids=new Set([f.prog,...(ctx&&ctx.programmeIds?ctx.programmeIds(f):[])].filter(Boolean));
+  const fn=normFest(wp.festival),fen=normFest(wp.festivalEn);
+  return progs.some(p=>{
+   if(!p||!pids.has(p.id)||!/影展|festival/i.test(p.kind||''))return false;
+   const pn=normFest(p.name),pen=normFest(p.en);
+   const same=(pn&&fn&&(fn.includes(pn)||pn.includes(fn)))||(pen&&fen&&(fen.includes(pen)||pen.includes(fen)));
+   return same&&p.start&&p.end&&dt>=p.start.slice(0,dt.length)&&dt<=p.end.slice(0,dt.length);
+  });
+ }
+ function scopedShows(f,ctx){
+  return (ctx.shows||[]).filter(s=>s.id===f.id&&has(ctx.programme,ctx.showProgramme(s))&&has(ctx.city,ctx.cityOfShow&&ctx.cityOfShow(s)));
+ }
+ function hasQaShow(f,shows,ctx){
+  return shows.some(s=>QA_RE.test((f.screeningNotes||{})[ctx.keyOf(s)]||'')||!!(f.qaGuest&&minutes(f.qaEnd)>minutes(f.qaStart)));
+ }
+ function hasSubtitleMachine(f,shows,ctx){
+  if(SUB_RE.test(String(f.subtitles||'')))return true;
+  const notes=f.screeningNotes||{};
+  return shows.some(s=>SUB_RE.test(String(notes[ctx.keyOf(s)]||'')));
+ }
+ function showFitsPicked(s,pickedShows,ctx){
+  if(!pickedShows.length)return true;
+  if(ctx.overlaps)return !pickedShows.some(p=>ctx.overlaps(s,p));
+  const s1=ctx.showRange?ctx.showRange(s):null;if(!s1)return true;
+  return !pickedShows.some(p=>{const s2=ctx.showRange?ctx.showRange(p):null;if(!s2)return false;return s1[0]<s2[1]-2&&s2[0]<s1[1]-2;});
+ }
+ function traitStatus(f,ctx){
+  const shows=scopedShows(f,ctx);
+  const up=ctx.isPast?shows.filter(s=>!ctx.isPast(s)):shows;
+  const qa=hasQaShow(f,shows,ctx);
+  const sub=hasSubtitleMachine(f,shows,ctx);
+  const last=ctx.isPast?up.length===1:false;
+  const wp=isFestivalWorldPremiere(f,ctx);
+  let fit=false;
+  if(up.length){
+   const pickedShows=ctx.pickedShows||((ctx.picked&&ctx.picked.size)?(ctx.shows||[]).filter(s=>ctx.picked.has(ctx.keyOf(s))&&(!ctx.isPast||!ctx.isPast(s))):[]);
+   fit=up.some(s=>!ctx.picked?.has(ctx.keyOf(s))&&showFitsPicked(s,pickedShows,ctx));
+  }
+  return {qa,sub,last,wp,fit,upcomingCount:up.length};
+ }
+ function matchesTraits(f,traits,ctx){
+  const a=list(traits);if(!a.length)return true;
+  const ts=traitStatus(f,ctx);
+  return a.every(k=>!!ts[k]);
+ }
  function status(f,ctx){
-  const shows=ctx.shows.filter(s=>s.id===f.id&&has(ctx.programme,ctx.showProgramme(s))&&has(ctx.city,ctx.cityOfShow&&ctx.cityOfShow(s)));
+  const shows=scopedShows(f,ctx);
   const rec=ctx.watched[f.id],seen=!!(rec&&!rec.del&&rec.d);
   const w=ctx.want&&ctx.want[f.id];
-  return {planned:shows.some(s=>ctx.picked.has(ctx.keyOf(s))),watched:seen,wanted:!seen&&!!(w&&!w.del),event:shows.some(s=>/^\s*(?:映后活动|映后交流|Post-screening event|Q&A)/i.test((f.screeningNotes||{})[ctx.keyOf(s)]||'')||!!(f.qaGuest&&minutes(f.qaEnd)>minutes(f.qaStart)))};
+  const upCount=ctx.isPast?shows.filter(s=>!ctx.isPast(s)).length:0;
+  return {planned:shows.some(s=>ctx.picked.has(ctx.keyOf(s))),watched:seen,wanted:!seen&&!!(w&&!w.del),event:hasQaShow(f,shows,ctx),lastChance:ctx.isPast?upCount===1:false};
  }
  function category(f,mode,ctx){const m=list(mode);if(!m.length)return true;const s=status(f,ctx);return m.some(k=>k==='planned'?s.planned:k==='want'?s.wanted:k==='watched'?s.watched:k==='unwatched'?!s.watched:k==='qa'?s.event:false);}
  // Film-hero labels only: retain full programme membership everywhere else.
@@ -35,5 +113,5 @@
  function posterTitle(o){const en=!!o.en,h=String(o.holder||'').trim(),lab=posterPeriodLabel(o.period,en),name=o.programmeName||'';
   if(name)return en?{title:(h?h+"'s ":'My ')+name+' Poster Wall',sub:'Cinema log'+(lab?' · '+lab:'')}:{title:(h||'我')+'的'+name+'海报墙',sub:'影院观影'+(lab?' · '+lab:'')};
   return en?{title:(lab?lab+' ':'')+'Cinema Poster Wall',sub:(h?h+"'s":'My')+' Film Passport'}:{title:lab+'影院观影海报墙',sub:(h||'我')+'的观影护照'};}
- const api={matches,inProgramme,inCity,status,category,list,has,toggle,featuredProgrammes,posterColumns,posterPeriod,posterPeriods,posterEntries,posterPeriodLabel,posterTitle};if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.SparrowLibrary=api;
+ const api={matches,inProgramme,inCity,status,category,list,has,toggle,DECADES,TRAITS,decadeLabel,yearMatches,traitStatus,matchesTraits,isFestivalWorldPremiere,featuredProgrammes,posterColumns,posterPeriod,posterPeriods,posterEntries,posterPeriodLabel,posterTitle};if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.SparrowLibrary=api;
 })(typeof window!=='undefined'?window:this);

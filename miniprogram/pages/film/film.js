@@ -135,6 +135,32 @@ Page({
   // 想看：切换后按当前待映场次记下「已见过」，之后新增的场次在片目标「新场次」
   wantKeys() { const data = app.globalData.data, idx = U.index(data); return data.shows.filter(s => s.id === this.id && !U.ended(s, idx)).map(U.keyOf); },
   toggleWant() { const on = !Want.isOn(this.id); Want.set(this.id, on, this.wantKeys()); if (on) Stats.stat('want', this.id); wx.showToast({ title: on ? t('已加入想看') : t('已移出想看'), icon: 'none' }); if (on) Remind.ask({ kind: 'want', film: this.id }, true); else Remind.cancel({ kind: 'want', film: this.id }); this.buildMine(); },
+  recWant(e) {
+    const id = e.currentTarget.dataset.id; if (!id) return;
+    const data = app.globalData.data, idx = U.index(data);
+    const on = !Want.isOn(id);
+    Want.set(id, on, data.shows.filter(s => s.id === id && !U.ended(s, idx)).map(U.keyOf));
+    if (on) Stats.stat('want', id);
+    wx.showToast({ title: on ? t('已加入想看') : t('已移出想看'), icon: 'none' });
+    this.buildRecs();
+  },
+  buildRecs() {
+    const data = app.globalData.data, idx = U.index(data), f = idx.F[this.id];
+    if (!f || f.ev) { this.setData({ recs: [] }); return; }
+    const overlaps = (a, b) => { const sa = U.showDate(a, idx), sb = U.showDate(b, idx), da = (idx.F[a.id] && idx.F[a.id].min) || 120, db = (idx.F[b.id] && idx.F[b.id].min) || 120; return sa < sb + db * 60000 - 120000 && sb < sa + da * 60000 - 120000; };
+    const items = Recommend.forFilm(f, {
+      films: data.films, shows: data.shows, programmes: data.programmes, watched: W.all(), want: Want.all(), picked: plan.get(),
+      keyOf: U.keyOf, isPast: s => U.ended(s, idx), showDate: s => U.showDate(s, idx), overlaps, tasteGet: id => C.get(id)
+    }, 4);
+    const recs = items.map(it => ({
+      id: it.film.id, cn: it.film.cn, poster: U.thumb(it.film), color: (data.reg[it.film.reg] || {}).c,
+      why: it.reasons.map(t).join(' · '),
+      slot: it.nextShow ? it.nextShow.d + ' ' + it.nextShow.t + (it.fitsPlan ? ' · ' + t('零冲突') : '') : '',
+      lastChance: it.lastChance, seen: it.seen, wanted: Want.isOn(it.film.id)
+    }));
+    const recLead = W.get(this.id) ? t('看过这部之后，顺着线索继续下一场银幕相遇') : t('同导演、同单元或相近趣味的延伸片单');
+    this.setData({ recs, recLead });
+  },
   dyToggle() { this.dyOpen = !this.dyOpen; this.buildMine(); },
   buildMine() {
     const data = app.globalData.data, idx = U.index(data), rec = W.get(this.id), r = rec ? rec.r || 0 : 0, en = I.isEn();
@@ -148,6 +174,7 @@ Page({
     this.setData({ community:C.model(this.id,I.isEn()), tsRow:this.tsRowModel(), taste, mine: { seen: !!rec, n, r, diary: shown, dyFold: fold, dyOpen: open, dyMoreTxt: open ? (en ? 'Show fewer' : '收起较早的观影') : (en ? 'Show ' + hid + ' earlier' : '展开其余 ' + hid + ' 次'), nTxt: en ? '×' + n : n + ' 次', stars: [1, 2, 3, 4, 5].map(i => Math.max(0, Math.min(2, r - (i - 1) * 2)) * 50),
       want: Want.isOn(this.id), wantTxt: Want.isOn(this.id) ? (en ? '★ On my list' : '★ 已想看') : (en ? '☆ Want to see' : '☆ 想看'),
       seenTxt: I.isEn() ? '+ Watched · stamp' : '＋ 看过 · 盖章', scoreTxt: r ? r + '/10' : t('点星打分') } });
+    this.buildRecs();
   },
   // 影片页一行摘要（与网页 tasteRowHTML 同规则）；点开为底部弹层 page-container
   tsRowModel(){const rec=W.get(this.id),en=I.isEn(),a=C.get(this.id),v=k=>rec&&Taste.valid(rec[k])?String(rec[k]):'—',seen=!!rec,mine=seen&&(Taste.valid(rec.fun)||Taste.valid(rec.bore));

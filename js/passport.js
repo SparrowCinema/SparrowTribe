@@ -328,7 +328,7 @@ document.addEventListener('click',e=>{
   const wb=e.target.closest('[data-want]');
   if(wb){const id=wb.dataset.want,on=!isWant(id);setWant(id,on);if(on)stat('want',id);toast(on?tr('已加入想看 · 有新场次时会在片目标出'):tr('已移出想看'));refreshMyRate(id);return;}
   const wl=e.target.closest('[data-want-list]');
-  if(wl){fmine='want';ffilt=fcity=fyear=freg=flen='all';fq='';if(location.hash==='#films')films();else location.hash='films';return;}
+  if(wl){fmine='want';ffilt=fcity=fyear=freg=flen=ftrait='all';fq='';if(location.hash==='#films')films();else location.hash='films';return;}
   const sv=e.target.closest('[data-seen]');
   if(sv){const id=sv.dataset.seen;if(!(watched[id]&&watched[id].d))stat('watched',id);if(watched[id]&&watched[id].d){if(!confirm(tr('移出观影护照？这部电影的印章和评分会一起删除。')))return;unstamp(id);return;}else{watched[id]=Object.assign({r:0,t:Date.now()},watchGuess(id));saveWatched();toast('已盖章 · 加入观影护照');}refreshMyRate(id);return;}
   const taste=e.target.closest('[data-taste]');if(taste){const id=taste.dataset.taste,k=taste.dataset.key,v=+taste.dataset.value,rec=watched[id];if(rec&&rec.d&&['fun','bore'].includes(k)&&window.SparrowTaste.valid(v)){watched[id]=window.SparrowTaste.rateForCommunity(rec,k,v);saveWatched();refreshMyRate(id);}return;}
