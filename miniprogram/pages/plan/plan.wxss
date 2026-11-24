@@ -111,8 +111,7 @@
 .plan-moved .pg-h { color: var(--fg); }
 .pg-now { font-size: calc(19 * var(--fr)); font-weight: 700; margin-top: calc(4 * var(--r)); }
 
-/* 冲突一键换场 & 想看一键排片（2026-11-24） */
-.tools > .sp-tool { grid-column: 1 / -1; }
+/* 冲突一键换场 & 想看一键排片（2026-11-24）：「想看一键排片」与其他按钮一样占半格，和「批量导入日历」并排（整行会让上一格留空） */
 .sp-empty-btn { margin-top: calc(18 * var(--r)); }
 .ps-wrap { margin-top: calc(18 * var(--r)); padding-top: calc(14 * var(--r)); border-top: calc(1 * var(--r)) dashed var(--line); display: flex; flex-direction: column; gap: calc(12 * var(--r)); }
 .ps-lab { font-size: calc(18 * var(--fr)); font-weight: 700; color: var(--fg); }
