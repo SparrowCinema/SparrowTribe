@@ -1,0 +1,1937 @@
+{
+  "checked": "2026-11-25",
+  "scope": "第十届平遥国际电影展片目资料复核。保留原有场次和放映版片长。",
+  "platformOrder": [
+    "豆瓣",
+    "IMDb",
+    "Rotten Tomatoes Tomatometer",
+    "Metacritic Metascore",
+    "Letterboxd"
+  ],
+  "platformNote": "null 表示本轮没有核到可采用的平台聚合分，含页面未收录、未开分、访问受限、同名歧义和数据快照冲突。平台分为查询时能验证的页面快照，不汇总成单一分数。",
+  "verifiedRecords": {
+    "py26-002": {
+      "cn": "罗维雷将军",
+      "date": "1959-08",
+      "festival": "威尼斯国际电影节",
+      "festivalEn": "Venice International Film Festival",
+      "kind": "festival",
+      "sources": [
+        "https://www.minervapicturesinternational.com/catalogue/general-della-rovere/",
+        "https://www.cinemateca.pt/CinematecaSite/media/Documentos/2023-09-30_IL-GENERALE-DELLA-ROVERE.pdf"
+      ],
+      "note": "1959 年威尼斯首映；公开目录对公映日记载不一"
+    },
+    "py26-003": {
+      "cn": "爱情笑话",
+      "date": "2026-09-28",
+      "festival": "平遥国际电影展",
+      "festivalEn": "Pingyao International Film Festival",
+      "kind": "festival",
+      "sources": [
+        "https://weibo.com/2/detail/5346333084352916",
+        "https://www.dianyingjie.com.cn/2026/0923/406129.shtml"
+      ],
+      "note": "藏龙单元"
+    },
+    "py26-004": {
+      "cn": "宝石劫",
+      "date": "2026-02-17",
+      "festival": "柏林国际电影节",
+      "festivalEn": "Berlin International Film Festival",
+      "kind": "festival",
+      "sources": [
+        "https://www.berlinale.de/en/2026/programme/202606145.html"
+      ],
+      "note": "论坛单元"
+    },
+    "py26-005": {
+      "cn": "罗西里尼",
+      "date": "2020-09-12",
+      "festival": "威尼斯国际电影节",
+      "festivalEn": "Venice International Film Festival",
+      "kind": "festival",
+      "sources": [
+        "https://sicvenezia.it/en/films/the-rossellinis/",
+        "https://asac.labiennale.org/attivita/cinema/395632",
+        "https://letterboxd.com/film/the-rossellinis/details/"
+      ],
+      "note": "国际影评人周闭幕"
+    },
+    "py26-007": {
+      "cn": "假凤虚凰",
+      "date": "1947",
+      "festival": null,
+      "festivalEn": null,
+      "kind": "theatrical",
+      "sources": [
+        "https://www.1905.com/mdb/film/2213052/",
+        "https://m.thepaper.cn/newsDetail_forward_33453158"
+      ],
+      "note": "上海原版；本届为4K修复放映"
+    },
+    "py26-008": {
+      "cn": "复制恋人",
+      "date": "2026-03",
+      "festival": "塞萨洛尼基纪录片电影节",
+      "festivalEn": "Thessaloniki International Documentary Festival",
+      "kind": "festival",
+      "sources": [
+        "https://vp.eventival.com/thessaloniki/tidf28/film/1206817",
+        "https://filmfestival.gr/en/newsroom/news/oi-tainies-twn-diagwnistikwn-tmhmatwn-38-megales-premieres-kai-eisithirio-gia-ta-oskar/"
+      ],
+      "note": "新导演竞赛"
+    },
+    "py26-009": {
+      "cn": "记忆",
+      "date": "2021-07-15",
+      "festival": "戛纳国际电影节",
+      "festivalEn": "Cannes Film Festival",
+      "kind": "festival",
+      "sources": [
+        "https://www.festival-cannes.com/en/f/memoria/",
+        "https://www.festival-cannes.com/en/2021/memoria-the-new-sensory-journey-from-apichatpong-weerasethakul/"
+      ],
+      "note": "主竞赛"
+    },
+    "py26-010": {
+      "cn": "反自然",
+      "date": "2026-07-09",
+      "festival": "卡罗维发利国际电影节",
+      "festivalEn": "Karlovy Vary International Film Festival",
+      "kind": "festival",
+      "sources": [
+        "https://www.kviff.com/en/programme/film/84/49592-against-nature",
+        "https://www.kinoafisha.info/en/movies/8388479/"
+      ],
+      "note": "全球首映"
+    },
+    "py26-011": {
+      "cn": "苍蝇",
+      "date": "2026-02-18",
+      "festival": "柏林国际电影节",
+      "festivalEn": "Berlin International Film Festival",
+      "kind": "festival",
+      "sources": [
+        "https://www.berlinale.de/en/2026/programme/202610010.html"
+      ],
+      "note": "主竞赛"
+    },
+    "py26-012": {
+      "cn": "最佳拍档",
+      "date": "1982-01-16",
+      "festival": null,
+      "festivalEn": null,
+      "kind": "theatrical",
+      "sources": [
+        "https://www.1905.com/mdb/film/1989548/",
+        "https://www.filmarchive.gov.hk/sc/web/hkfa/pe-event-2016-9-1-1.html"
+      ],
+      "note": "中国香港公映"
+    },
+    "py26-013": {
+      "cn": "大器晚成",
+      "date": "2025-08-31",
+      "festival": "威尼斯国际电影节",
+      "festivalEn": "Venice International Film Festival",
+      "kind": "festival",
+      "sources": [
+        "https://www.labiennale.org/en/cinema/2025/orizzonti/late-fame",
+        "https://www.labiennale.org/en/cinema/2025/program-cinema-2025-public/late-fame-2025-08-31-14-30"
+      ],
+      "note": "地平线单元"
+    },
+    "py26-015": {
+      "cn": "空闲的日子",
+      "date": "2026-08-07",
+      "festival": "洛迦诺国际电影节",
+      "festivalEn": "Locarno Film Festival",
+      "kind": "festival",
+      "sources": [
+        "https://vp.eventival.com/thessaloniki/tiff67/film/1291949",
+        "https://sgiff.com/film/the-days-off/",
+        "https://embed.letterboxd.com/film/the-days-off/"
+      ],
+      "note": "当代电影人竞赛"
+    },
+    "py26-016": {
+      "cn": "都灵之影",
+      "date": "2026-05",
+      "festival": "戛纳国际电影节",
+      "festivalEn": "Cannes Film Festival",
+      "kind": "festival",
+      "sources": [
+        "https://www.festival-cannes.com/en/f/du-ling-zhi-ying/",
+        "https://www.festival-cannes.com/en/press/press-releases/cannes-classics-2026/",
+        "https://www.festival-cannes.com/en/2026/du-ling-zhi-ying-torino-shadow-goodnight-lamby-and-zamine-bazi-playground-a-screening-for-three-short-films/"
+      ],
+      "note": "第79届戛纳国际电影节「戛纳经典」三部新短片特别展映全球首映（2026年5月，官方报道刊发于2026-05-19，未标具体排片钟点与日期，按月份精度 2026-05 登记）；2026年9月25日于第十届平遥国际电影展「汾酒中秋之夜」在平遥电影宫站台-露天剧场举行亚洲首映。"
+    },
+    "py26-018": {
+      "cn": "四分之四",
+      "date": "2026-09-25",
+      "festival": "平遥国际电影展",
+      "festivalEn": "Pingyao International Film Festival",
+      "kind": "festival",
+      "sources": [
+        "https://finance.sina.com.cn/roll/2026-09-25/doc-iniszvzt4271783.shtml",
+        "https://www.yangtse.com/news/wy/202609/t20260928_397726.html"
+      ],
+      "note": "藏龙单元"
+    },
+    "py26-019": {
+      "cn": "空中花园",
+      "date": "2026-05",
+      "festival": "戛纳 ACID 单元",
+      "festivalEn": "ACID Cannes",
+      "kind": "festival",
+      "sources": [
+        "https://www.lacid.org/fr/films-et-cineastes/films/promised-spaces",
+        "https://www.fcs.rs/en/promised-spaces-by-ivan-markovic-in-the-program-of-the-acid-festival-in-cannes/"
+      ],
+      "note": "戛纳期间的独立平行单元"
+    },
+    "py26-021": {
+      "cn": "林中密语",
+      "date": "2026-02-16",
+      "festival": "柏林国际电影节",
+      "festivalEn": "Berlin International Film Festival",
+      "kind": "festival",
+      "sources": [
+        "https://www.berlinale.de/en/2026/programme/202605344.html"
+      ],
+      "note": "视点单元"
+    },
+    "py26-022": {
+      "cn": "希望",
+      "date": "2026-05-17",
+      "festival": "戛纳国际电影节",
+      "festivalEn": "Cannes Film Festival",
+      "kind": "festival",
+      "sources": [
+        "https://www.festival-cannes.com/en/f/hope/",
+        "https://m.koreanfilm.or.kr/eng/news/news.jsp?blbdComCd=601006&mode=VIEW&seq=6426"
+      ],
+      "note": "主竞赛"
+    },
+    "py26-023": {
+      "cn": "杯雪·一战成名",
+      "date": "2026-09-27",
+      "festival": "平遥国际电影展",
+      "festivalEn": "Pingyao International Film Festival",
+      "kind": "festival",
+      "sources": [
+        "https://m.thepaper.cn/newsDetail_forward_34242703",
+        "https://www.thepaper.cn/newsDetail_forward_34368007"
+      ],
+      "note": "特别展映"
+    },
+    "py26-025": {
+      "cn": "美国心",
+      "date": "1986-10-30",
+      "festival": null,
+      "festivalEn": null,
+      "kind": "theatrical",
+      "sources": [
+        "https://moviecool.asia/film/qGuaIAlfwBkc",
+        "https://www.mplus.org.hk/tc/cinema/mplus-restored-festival-2026/just-like-weather/",
+        "https://www.filmlinc.org/nyff2026/films/just-like-weather/"
+      ],
+      "note": "中国香港原版公映；4K修复版于2026年另行首映"
+    },
+    "py26-028": {
+      "cn": "昨天，那只眼彻夜未眠",
+      "date": "2026-05-20",
+      "festival": "戛纳国际电影节",
+      "festivalEn": "Cannes Film Festival",
+      "kind": "festival",
+      "sources": [
+        "https://www.festival-cannes.com/en/f/yesterday-the-eye-didn-t-sleep/",
+        "https://www.filmfesthamburg.de/en/film-info/yesterday-the-eye-didnt-sleep/",
+        "https://seance.paris/en/movie/yesterday-the-eye-didnt-sleep-2026"
+      ],
+      "note": "一种关注"
+    },
+    "py26-029": {
+      "cn": "纸老虎",
+      "date": "2026-05-16",
+      "festival": "戛纳国际电影节",
+      "festivalEn": "Cannes Film Festival",
+      "kind": "festival",
+      "sources": [
+        "https://www.festival-cannes.com/en/f/paper-tiger/",
+        "https://www.cannes.com/en/cannes-cinema/the-festival-de-cannes/the-red-carpet/festival-de-cannes-2026/saturday-16-may.html"
+      ],
+      "note": "主竞赛"
+    },
+    "py26-030": {
+      "cn": "胡越的故事",
+      "date": "1981-04-24",
+      "festival": null,
+      "festivalEn": null,
+      "kind": "theatrical",
+      "sources": [
+        "https://www.filmarchive.gov.hk/sc/web/hkfa/pe-event-2015-11-1-20.html",
+        "https://moviecool.asia/film/gG_TH_IuwHEj",
+        "https://www.labiennale.org/en/cinema/2026/venice-classics/woo-yuet-dik-goo-si-story-woo-viet"
+      ],
+      "note": "中国香港原版公映；2026年修复版另计"
+    },
+    "gh63-087": {
+      "cn": "菲律宾女孩",
+      "status": "verified",
+      "date": "2026-01-23",
+      "festival": "圣丹斯电影节",
+      "festivalEn": "Sundance Film Festival",
+      "kind": "festival",
+      "checked": "2026-11-25",
+      "sources": [
+        "https://www.sundance.org/blogs/filipinana-sets-the-class-divide-on-a-golf-course-in-the-philippines/"
+      ]
+    }
+  },
+  "films": {
+    "py26-001": {
+      "title": "费穆",
+      "editorialAndCredits": [
+        "https://weibo.com/2/detail/5343787993533749",
+        "https://watch.plex.tv/zh/movie/echoes-of-fei-mu"
+      ],
+      "programmeImage": {
+        "path": "posters/pingyao-py26-001.jpg",
+        "dimensions": [
+          348,
+          467
+        ]
+      },
+      "premiere": {
+        "status": "pending",
+        "date": null,
+        "festival": null,
+        "note": "平遥 9月26日已知展映；全球首映性质待核实"
+      },
+      "platforms": {
+        "urls": {},
+        "scores": null,
+        "notes": "可核实的聚合分入库；其余保留空值。"
+      }
+    },
+    "py26-002": {
+      "title": "罗维雷将军",
+      "editorialAndCredits": [
+        "https://www.gaumont.com/en/movie/il-generale-della-rovere"
+      ],
+      "programmeImage": {
+        "path": "posters/pingyao-py26-002.jpg",
+        "dimensions": [
+          900,
+          1200
+        ]
+      },
+      "premiere": {
+        "status": "partial",
+        "date": "1959-08",
+        "festival": "威尼斯国际电影节",
+        "note": "1959 年威尼斯首映；公开目录对公映日记载不一"
+      },
+      "platforms": {
+        "urls": {
+          "imdb": "https://www.imdb.com/title/tt0053856/",
+          "lb": "https://letterboxd.com/film/general-della-rovere/",
+          "rt": "https://www.rottentomatoes.com/m/general_della_rovere"
+        },
+        "scores": [
+          null,
+          7.7,
+          90,
+          null,
+          null
+        ],
+        "notes": "可核实的聚合分入库；其余保留空值。"
+      }
+    },
+    "py26-003": {
+      "title": "爱情笑话",
+      "editorialAndCredits": [
+        "https://k.sina.cn/article_5787187353_158f178990200291z6.html",
+        "https://m.jiemian.com/article/15152562.html"
+      ],
+      "programmeImage": {
+        "path": "posters/pingyao-py26-003.jpg",
+        "dimensions": [
+          900,
+          1350
+        ]
+      },
+      "premiere": {
+        "status": "verified",
+        "date": "2026-09-28",
+        "festival": "平遥国际电影展",
+        "note": "藏龙单元"
+      },
+      "platforms": {
+        "urls": {},
+        "scores": null,
+        "notes": "可核实的聚合分入库；其余保留空值。"
+      },
+      "creditsPoster": "posters/pingyao-py26-003.jpg"
+    },
+    "py26-004": {
+      "title": "宝石劫",
+      "editorialAndCredits": [
+        "https://www.berlinale.de/en/2026/programme/202606145.html"
+      ],
+      "programmeImage": {
+        "path": "posters/pingyao-py26-004.jpg",
+        "dimensions": [
+          900,
+          1285
+        ]
+      },
+      "premiere": {
+        "status": "verified",
+        "date": "2026-02-17",
+        "festival": "柏林国际电影节",
+        "note": "论坛单元"
+      },
+      "platforms": {
+        "urls": {
+          "imdb": "https://www.imdb.com/title/tt39383558/",
+          "lb": "https://letterboxd.com/film/gemstones-2026/"
+        },
+        "scores": null,
+        "notes": "可核实的聚合分入库；其余保留空值。"
+      }
+    },
+    "py26-005": {
+      "title": "罗西里尼",
+      "editorialAndCredits": [
+        "https://www.bbfilm.tv/en/portfolio-scheda/the-rossellinis/",
+        "https://sicvenezia.it/en/films/the-rossellinis/"
+      ],
+      "programmeImage": {
+        "path": "posters/pingyao-py26-005.jpg",
+        "dimensions": [
+          900,
+          1286
+        ]
+      },
+      "premiere": {
+        "status": "verified",
+        "date": "2020-09-12",
+        "festival": "威尼斯国际电影节",
+        "note": "国际影评人周闭幕"
+      },
+      "platforms": {
+        "urls": {
+          "imdb": "https://www.imdb.com/title/tt12749696/",
+          "lb": "https://letterboxd.com/film/the-rossellinis/",
+          "rt": "https://www.rottentomatoes.com/m/the_rossellinis"
+        },
+        "scores": [
+          null,
+          null,
+          100,
+          null,
+          null
+        ],
+        "notes": "可核实的聚合分入库；其余保留空值。"
+      }
+    },
+    "py26-006": {
+      "title": "创口",
+      "editorialAndCredits": [
+        "https://ugra.world/en/films/bo-bo/",
+        "https://www.iffigoa.org/international-cinema/brics/2026"
+      ],
+      "programmeImage": {
+        "path": "posters/pingyao-py26-006.jpg",
+        "dimensions": [
+          900,
+          1273
+        ]
+      },
+      "premiere": {
+        "status": "pending",
+        "date": null,
+        "festival": null,
+        "note": "火焰之魂为制作中展示；成片全球首映待核实"
+      },
+      "platforms": {
+        "urls": {
+          "imdb": "https://www.imdb.com/title/tt38593241/",
+          "lb": "https://letterboxd.com/film/bo-bo-2026/"
+        },
+        "scores": null,
+        "notes": "可核实的聚合分入库；其余保留空值。"
+      }
+    },
+    "py26-007": {
+      "title": "假凤虚凰",
+      "editorialAndCredits": [
+        "https://www.1905.com/mdb/film/2213052/",
+        "https://m.thepaper.cn/newsDetail_forward_33453158"
+      ],
+      "programmeImage": {
+        "path": "posters/pingyao-py26-007.jpg",
+        "dimensions": [
+          681,
+          908
+        ]
+      },
+      "premiere": {
+        "status": "partial",
+        "date": "1947",
+        "festival": null,
+        "note": "上海原版；本届为4K修复放映"
+      },
+      "platforms": {
+        "urls": {
+          "lb": "https://letterboxd.com/film/phony-phoenixes/"
+        },
+        "scores": null,
+        "notes": "可核实的聚合分入库；其余保留空值。"
+      }
+    },
+    "py26-008": {
+      "title": "复制恋人",
+      "editorialAndCredits": [
+        "https://www.eldaproductions.com/en/film/1160-2/",
+        "https://www.sheffdocfest.com/film/replica"
+      ],
+      "programmeImage": {
+        "path": "posters/pingyao-py26-008.jpg",
+        "dimensions": [
+          841,
+          1191
+        ]
+      },
+      "premiere": {
+        "status": "partial",
+        "date": "2026-03",
+        "festival": "塞萨洛尼基纪录片电影节",
+        "note": "新导演竞赛"
+      },
+      "platforms": {
+        "urls": {
+          "imdb": "https://www.imdb.com/title/tt39949892/"
+        },
+        "scores": [
+          null,
+          6.7,
+          null,
+          null,
+          null
+        ],
+        "notes": "可核实的聚合分入库；其余保留空值。"
+      }
+    },
+    "py26-009": {
+      "title": "记忆",
+      "editorialAndCredits": [
+        "https://www.festival-cannes.com/en/f/memoria/",
+        "https://www.moma.org/calendar/events/7421"
+      ],
+      "programmeImage": {
+        "path": "posters/pingyao-py26-009.jpg",
+        "dimensions": [
+          900,
+          1286
+        ]
+      },
+      "premiere": {
+        "status": "verified",
+        "date": "2021-07-15",
+        "festival": "戛纳国际电影节",
+        "note": "主竞赛"
+      },
+      "platforms": {
+        "urls": {
+          "douban": "https://movie.douban.com/subject/30137576/",
+          "imdb": "https://www.imdb.com/title/tt8399288/",
+          "lb": "https://letterboxd.com/film/memoria-2021/",
+          "rt": "https://www.rottentomatoes.com/m/memoria_2021",
+          "mc": "https://www.metacritic.com/movie/memoria-2020/"
+        },
+        "scores": [
+          null,
+          6.4,
+          90,
+          92,
+          null
+        ],
+        "notes": "可核实的聚合分入库；其余保留空值。"
+      }
+    },
+    "py26-010": {
+      "title": "反自然",
+      "editorialAndCredits": [
+        "https://www.kviff.com/en/programme/film/84/49592-against-nature",
+        "https://carcavacine.mx/en/portafolio/film-en/against-nature/"
+      ],
+      "programmeImage": {
+        "path": "posters/pingyao-py26-010.jpg",
+        "dimensions": [
+          900,
+          1275
+        ]
+      },
+      "premiere": {
+        "status": "verified",
+        "date": "2026-07-09",
+        "festival": "卡罗维发利国际电影节",
+        "note": "全球首映"
+      },
+      "platforms": {
+        "urls": {
+          "imdb": "https://www.imdb.com/title/tt43329730/",
+          "lb": "https://letterboxd.com/film/against-nature-2026/"
+        },
+        "scores": null,
+        "notes": "可核实的聚合分入库；其余保留空值。"
+      }
+    },
+    "py26-011": {
+      "title": "苍蝇",
+      "editorialAndCredits": [
+        "https://www.berlinale.de/en/2026/programme/202610010.html",
+        "https://fest.afi.com/2026/world-cinema-2026/flies-moscas/"
+      ],
+      "programmeImage": {
+        "path": "posters/pingyao-py26-011.jpg",
+        "dimensions": [
+          900,
+          1280
+        ]
+      },
+      "premiere": {
+        "status": "verified",
+        "date": "2026-02-18",
+        "festival": "柏林国际电影节",
+        "note": "主竞赛"
+      },
+      "platforms": {
+        "urls": {
+          "imdb": "https://www.imdb.com/title/tt35854741/",
+          "lb": "https://letterboxd.com/film/flies-2026/",
+          "rt": "https://www.rottentomatoes.com/m/flies_2026"
+        },
+        "scores": [
+          null,
+          7.3,
+          null,
+          null,
+          null
+        ],
+        "notes": "可核实的聚合分入库；其余保留空值。"
+      }
+    },
+    "py26-012": {
+      "title": "最佳拍档",
+      "editorialAndCredits": [
+        "https://www.filmarchive.gov.hk/sc/web/hkfa/pe-event-2016-9-1-1.html",
+        "https://www.goldenhorse.org.tw/film/programme/films/detail/1741"
+      ],
+      "programmeImage": {
+        "path": "posters/pingyao-py26-012.jpg",
+        "dimensions": [
+          900,
+          1356
+        ]
+      },
+      "premiere": {
+        "status": "verified",
+        "date": "1982-01-16",
+        "festival": null,
+        "note": "中国香港公映"
+      },
+      "platforms": {
+        "urls": {
+          "douban": "https://movie.douban.com/subject/1306011/",
+          "imdb": "https://www.imdb.com/title/tt0084955/",
+          "lb": "https://letterboxd.com/film/aces-go-places/",
+          "rt": "https://www.rottentomatoes.com/m/zuijia_paidang"
+        },
+        "scores": [
+          null,
+          6.6,
+          null,
+          null,
+          null
+        ],
+        "notes": "可核实的聚合分入库；其余保留空值。"
+      }
+    },
+    "py26-013": {
+      "title": "大器晚成",
+      "editorialAndCredits": [
+        "https://www.labiennale.org/en/cinema/2025/orizzonti/late-fame",
+        "https://iffr.com/en/iffr/2026/films/late-fame"
+      ],
+      "programmeImage": {
+        "source": "https://www.rottentomatoes.com/m/late_fame",
+        "image": "https://resizing.flixster.com/1ZlyzHWvHHc9v_mKTIFhNPT914w=/ems.cHJkLWVtcy1hc3NldHMvbW92aWVzLzZlZmQ0MjNiLTgxZjEtNDIyYi1iYjM2LWNmNTVlODZjNDM0Yi5qcGc=",
+        "note": "海报用发行竖版；平遥展映图保留为备选。"
+      },
+      "premiere": {
+        "status": "verified",
+        "date": "2025-08-31",
+        "festival": "威尼斯国际电影节",
+        "note": "地平线单元"
+      },
+      "platforms": {
+        "urls": {
+          "imdb": "https://www.imdb.com/title/tt32298494/",
+          "lb": "https://letterboxd.com/film/late-fame/",
+          "rt": "https://www.rottentomatoes.com/m/late_fame",
+          "mc": "https://www.metacritic.com/movie/late-fame/"
+        },
+        "scores": [
+          null,
+          6.6,
+          94,
+          78,
+          null
+        ],
+        "notes": "可核实的聚合分入库；其余保留空值。"
+      }
+    },
+    "py26-014": {
+      "title": "董劼｜课间休息×发现之旅",
+      "editorialAndCredits": [
+        "https://bydongjie.com/work/zoom-in-zoom-out/",
+        "https://chinafilmnews.cn/Html/2026-09-23/21948.html"
+      ],
+      "programmeImage": {
+        "path": "posters/pingyao-py26-014.jpg",
+        "dimensions": [
+          900,
+          1186
+        ]
+      },
+      "premiere": {
+        "status": "not-applicable",
+        "date": null,
+        "festival": null,
+        "note": null
+      },
+      "platforms": {
+        "urls": {},
+        "scores": null,
+        "notes": "联映无独立合计分。"
+      },
+      "parts": [
+        {
+          "title": "课间休息",
+          "history": "2019 第三届平遥国际电影展 · 平遥一角（已知展映）"
+        },
+        {
+          "title": "发现之旅",
+          "history": "2026年9月 · 威尼斯国际影评人周（全球首映）"
+        }
+      ]
+    },
+    "py26-015": {
+      "title": "空闲的日子",
+      "editorialAndCredits": [
+        "https://lucilamariani.com/Los-dias-libres-2026",
+        "https://sgiff.com/film/the-days-off/"
+      ],
+      "programmeImage": {
+        "path": "posters/pingyao-py26-015.jpg",
+        "dimensions": [
+          900,
+          1286
+        ]
+      },
+      "premiere": {
+        "status": "verified",
+        "date": "2026-08-07",
+        "festival": "洛迦诺国际电影节",
+        "note": "当代电影人竞赛"
+      },
+      "platforms": {
+        "urls": {
+          "imdb": "https://www.imdb.com/title/tt40523275/",
+          "lb": "https://letterboxd.com/film/the-days-off/"
+        },
+        "scores": [
+          null,
+          6.2,
+          null,
+          null,
+          null
+        ],
+        "notes": "可核实的聚合分入库；其余保留空值。"
+      }
+    },
+    "py26-016": {
+      "title": "都灵之影",
+      "editorialAndCredits": [
+        "https://www.festival-cannes.com/en/f/du-ling-zhi-ying/",
+        "https://www.filmlinc.org/nyff2026/daily/64th-new-york-film-festival-spotlight-announced/"
+      ],
+      "programmeImage": {
+        "path": "posters/pingyao-py26-016.jpg",
+        "dimensions": [
+          900,
+          1285
+        ]
+      },
+      "premiere": {
+        "status": "partial",
+        "date": "2026-05",
+        "festival": "戛纳国际电影节",
+        "note": null
+      },
+      "platforms": {
+        "urls": {
+          "imdb": "https://www.imdb.com/title/tt42407244/",
+          "lb": "https://letterboxd.com/film/torino-shadow/"
+        },
+        "scores": [
+          null,
+          5.9,
+          null,
+          null,
+          null
+        ],
+        "notes": "可核实的聚合分入库；其余保留空值。"
+      }
+    },
+    "py26-017": {
+      "title": "耿子涵｜明天会更好×小白船",
+      "editorialAndCredits": [
+        "https://www.quinzaine-cineastes.fr/en/film/a-song-sung-blue",
+        "https://weibo.com/2/detail/5343789082215142"
+      ],
+      "programmeImage": {
+        "path": "posters/pingyao-py26-017.jpg",
+        "dimensions": [
+          900,
+          1186
+        ]
+      },
+      "premiere": {
+        "status": "not-applicable",
+        "date": null,
+        "festival": null,
+        "note": null
+      },
+      "platforms": {
+        "urls": {},
+        "scores": null,
+        "notes": "联映无独立合计分。"
+      },
+      "parts": [
+        {
+          "title": "明天会更好",
+          "history": "2019 第十三届FIRST青年电影展及第三届平遥一角（已知展映）"
+        },
+        {
+          "title": "小白船",
+          "history": "2023-05-23 · 戛纳导演双周（全球首映）"
+        }
+      ]
+    },
+    "py26-018": {
+      "title": "四分之四",
+      "editorialAndCredits": [
+        "https://m.thepaper.cn/newsDetail_forward_34109862",
+        "https://www.yangtse.com/news/wy/202609/t20260928_397726.html"
+      ],
+      "programmeImage": {
+        "path": "posters/pingyao-py26-018.jpg",
+        "dimensions": [
+          708,
+          1039
+        ]
+      },
+      "premiere": {
+        "status": "verified",
+        "date": "2026-09-25",
+        "festival": "平遥国际电影展",
+        "note": "藏龙单元"
+      },
+      "platforms": {
+        "urls": {
+          "lb": "https://letterboxd.com/film/suzhou-quartet/"
+        },
+        "scores": null,
+        "notes": "可核实的聚合分入库；其余保留空值。"
+      }
+    },
+    "py26-019": {
+      "title": "空中花园",
+      "editorialAndCredits": [
+        "https://www.lacid.org/fr/films-et-cineastes/films/promised-spaces",
+        "https://www.filmfesthamburg.de/en/film-info/promised-spaces/",
+        "https://www.fcs.rs/en/promised-spaces-by-ivan-markovic-in-the-program-of-the-acid-festival-in-cannes/"
+      ],
+      "programmeImage": {
+        "path": "posters/pingyao-py26-019.jpg",
+        "dimensions": [
+          900,
+          1298
+        ]
+      },
+      "premiere": {
+        "status": "partial",
+        "date": "2026-05",
+        "festival": "戛纳 ACID 单元",
+        "note": "戛纳期间的独立平行单元"
+      },
+      "platforms": {
+        "urls": {
+          "imdb": "https://www.imdb.com/title/tt38461457/",
+          "lb": "https://letterboxd.com/film/promised-spaces/"
+        },
+        "scores": [
+          null,
+          7.2,
+          null,
+          null,
+          null
+        ],
+        "notes": "可核实的聚合分入库；其余保留空值。"
+      }
+    },
+    "py26-020": {
+      "title": "孔大山｜春天，老师们走了×宇宙探索编辑部",
+      "editorialAndCredits": [
+        "https://www.thepaper.cn/newsDetail_forward_15001084",
+        "https://www.scff.sg/project/%E5%AE%87%E5%AE%99%E6%8E%A2%E7%B4%A2%E7%BC%96%E8%BE%91%E9%83%A8-journey-to-the-west/",
+        "https://chinafilmnews.cn/Html/2026-09-23/21948.html"
+      ],
+      "programmeImage": {
+        "path": "posters/pingyao-py26-020.jpg",
+        "dimensions": [
+          900,
+          1186
+        ]
+      },
+      "premiere": {
+        "status": "not-applicable",
+        "date": null,
+        "festival": null,
+        "note": null
+      },
+      "platforms": {
+        "urls": {},
+        "scores": null,
+        "notes": "联映无独立合计分。"
+      },
+      "parts": [
+        {
+          "title": "春天，老师们走了",
+          "history": "2017 首届平遥国际电影展 · 平遥一角（已知展映）"
+        },
+        {
+          "title": "宇宙探索编辑部",
+          "history": "2021年10月 · 第五届平遥国际电影展 · 藏龙"
+        }
+      ]
+    },
+    "py26-021": {
+      "title": "林中密语",
+      "editorialAndCredits": [
+        "https://www.berlinale.de/en/2026/programme/202605344.html",
+        "https://www.filmlinc.org/new-directors-new-films-2026/films/forest-high/"
+      ],
+      "programmeImage": {
+        "path": "posters/pingyao-py26-021.jpg",
+        "dimensions": [
+          900,
+          1298
+        ]
+      },
+      "premiere": {
+        "status": "verified",
+        "date": "2026-02-16",
+        "festival": "柏林国际电影节",
+        "note": "视点单元"
+      },
+      "platforms": {
+        "urls": {
+          "imdb": "https://www.imdb.com/title/tt39381659/",
+          "lb": "https://letterboxd.com/film/forest-high/"
+        },
+        "scores": [
+          null,
+          6.3,
+          null,
+          null,
+          null
+        ],
+        "notes": "可核实的聚合分入库；其余保留空值。"
+      }
+    },
+    "py26-022": {
+      "title": "希望",
+      "editorialAndCredits": [
+        "https://www.festival-cannes.com/en/f/hope/",
+        "https://m.koreanfilm.or.kr/eng/news/news.jsp?blbdComCd=601006&mode=VIEW&seq=6426",
+        "https://m.thepaper.cn/newsDetail_forward_34281371"
+      ],
+      "programmeImage": {
+        "path": "posters/pingyao-py26-022.jpg",
+        "dimensions": [
+          900,
+          1290
+        ]
+      },
+      "premiere": {
+        "status": "verified",
+        "date": "2026-05-17",
+        "festival": "戛纳国际电影节",
+        "note": "主竞赛"
+      },
+      "platforms": {
+        "urls": {
+          "imdb": "https://www.imdb.com/title/tt27369017/",
+          "lb": "https://letterboxd.com/film/hope-2026/",
+          "rt": "https://www.rottentomatoes.com/m/hope_2026",
+          "mc": "https://www.metacritic.com/movie/hope-2026/",
+          "douban": "https://movie.douban.com/chart?t=2"
+        },
+        "scores": [
+          5.5,
+          6.5,
+          80,
+          68,
+          null
+        ],
+        "notes": "可核实的聚合分入库；其余保留空值。"
+      }
+    },
+    "py26-023": {
+      "title": "杯雪·一战成名",
+      "editorialAndCredits": [
+        "https://m.thepaper.cn/newsDetail_forward_34242703",
+        "https://www.thepaper.cn/newsDetail_forward_34368007"
+      ],
+      "programmeImage": {
+        "path": "posters/pingyao-py26-023.jpg",
+        "dimensions": [
+          708,
+          992
+        ]
+      },
+      "premiere": {
+        "status": "verified",
+        "date": "2026-09-27",
+        "festival": "平遥国际电影展",
+        "note": "特别展映"
+      },
+      "platforms": {
+        "urls": {
+          "douban": "https://movie.douban.com/chart?start=1",
+          "imdb": "https://www.imdb.com/title/tt39602636/",
+          "lb": "https://letterboxd.com/film/a-better-jianghu/"
+        },
+        "scores": [
+          7.5,
+          6.7,
+          null,
+          null,
+          null
+        ],
+        "notes": "可核实的聚合分入库；其余保留空值。"
+      }
+    },
+    "py26-024": {
+      "title": "王尔卓｜母亲的乐园×再见，乐园",
+      "editorialAndCredits": [
+        "https://www.firstfilm.org.cn/movies/film-library/muqindeleyuan/",
+        "https://www.firstfilm.org.cn/movies/film-library/%E5%86%8D%E8%A7%81%EF%BC%8C%E4%B9%90%E5%9B%AD/",
+        "https://www.chntheatre.edu.cn/cn/xiao/detail/14731.html"
+      ],
+      "programmeImage": {
+        "path": "posters/pingyao-py26-024.jpg",
+        "dimensions": [
+          900,
+          1186
+        ]
+      },
+      "premiere": {
+        "status": "not-applicable",
+        "date": null,
+        "festival": null,
+        "note": null
+      },
+      "platforms": {
+        "urls": {},
+        "scores": null,
+        "notes": "联映无独立合计分。"
+      },
+      "parts": [
+        {
+          "title": "母亲的乐园",
+          "history": "2018 第十二届FIRST青年电影展竞赛（已知展映）"
+        },
+        {
+          "title": "再见，乐园",
+          "history": "2021年10月 · 釜山国际电影节新浪潮"
+        }
+      ]
+    },
+    "py26-025": {
+      "title": "美国心",
+      "editorialAndCredits": [
+        "https://www.mplus.org.hk/tc/cinema/mplus-restored-festival-2026/just-like-weather/",
+        "https://www.filmlinc.org/nyff2026/films/just-like-weather/"
+      ],
+      "programmeImage": {
+        "path": "posters/pingyao-py26-025.jpg",
+        "dimensions": [
+          900,
+          1333
+        ]
+      },
+      "premiere": {
+        "status": "verified",
+        "date": "1986-10-30",
+        "festival": null,
+        "note": "中国香港原版公映；4K修复版于2026年另行首映"
+      },
+      "platforms": {
+        "urls": {
+          "imdb": "https://www.imdb.com/title/tt0091505/",
+          "lb": "https://letterboxd.com/film/just-like-weather/"
+        },
+        "scores": [
+          null,
+          6.9,
+          null,
+          null,
+          null
+        ],
+        "notes": "可核实的聚合分入库；其余保留空值。"
+      },
+      "creditsPoster": "posters/pingyao-py26-025.jpg"
+    },
+    "py26-026": {
+      "title": "尾款",
+      "editorialAndCredits": [
+        "https://www.thepaper.cn/newsDetail_forward_34194039",
+        "https://m.jiemian.com/article/15152562.html",
+        "https://www.sina.cn/news/detail/5347191272249086.html"
+      ],
+      "programmeImage": {
+        "path": "posters/pingyao-py26-026.jpg",
+        "dimensions": [
+          900,
+          1350
+        ]
+      },
+      "premiere": {
+        "status": "pending",
+        "date": null,
+        "festival": null,
+        "note": "2026年9月26日已知平遥藏龙展映；全球首映性质待核实"
+      },
+      "platforms": {
+        "urls": {
+          "lb": "https://letterboxd.com/film/final-payment/"
+        },
+        "scores": null,
+        "notes": "可核实的聚合分入库；其余保留空值。"
+      },
+      "creditsPoster": "posters/pingyao-py26-026.jpg"
+    },
+    "py26-027": {
+      "title": "魏书钧｜延边少年×河边的错误",
+      "editorialAndCredits": [
+        "https://ent.ifeng.com/c/8Q7wz8WHcsX",
+        "https://www.imdb.com/title/tt27590147/releaseinfo/",
+        "https://www.ctdsb.net/c1742_202305/1761090.html"
+      ],
+      "programmeImage": {
+        "path": "posters/pingyao-py26-027.jpg",
+        "dimensions": [
+          900,
+          1186
+        ]
+      },
+      "premiere": {
+        "status": "not-applicable",
+        "date": null,
+        "festival": null,
+        "note": null
+      },
+      "platforms": {
+        "urls": {},
+        "scores": null,
+        "notes": "联映无独立合计分。"
+      },
+      "parts": [
+        {
+          "title": "延边少年",
+          "history": "2018年5月 · 戛纳短片竞赛（特别提及）"
+        },
+        {
+          "title": "河边的错误",
+          "history": "2023-05-20 · 戛纳一种关注（首映）"
+        }
+      ]
+    },
+    "py26-028": {
+      "title": "昨天，那只眼彻夜未眠",
+      "editorialAndCredits": [
+        "https://www.festival-cannes.com/en/f/yesterday-the-eye-didn-t-sleep/",
+        "https://www.festival-cannes.com/en/2026/yesterday-the-eye-didn-t-sleep-as-seen-by-rakan-mayasi/",
+        "https://www.filmfesthamburg.de/en/film-info/yesterday-the-eye-didnt-sleep/"
+      ],
+      "programmeImage": {
+        "path": "posters/pingyao-py26-028.jpg",
+        "dimensions": [
+          900,
+          1260
+        ]
+      },
+      "premiere": {
+        "status": "verified",
+        "date": "2026-05-20",
+        "festival": "戛纳国际电影节",
+        "note": "一种关注"
+      },
+      "platforms": {
+        "urls": {
+          "imdb": "https://www.imdb.com/title/tt37775830/",
+          "rt": "https://www.rottentomatoes.com/m/yesterday_the_eye_didnt_sleep"
+        },
+        "scores": [
+          null,
+          6.5,
+          null,
+          null,
+          null
+        ],
+        "notes": "可核实的聚合分入库；其余保留空值。"
+      }
+    },
+    "py26-029": {
+      "title": "纸老虎",
+      "editorialAndCredits": [
+        "https://www.festival-cannes.com/en/f/paper-tiger/",
+        "https://www.filmlinc.org/nyff2026/films/paper-tiger/",
+        "https://www.rottentomatoes.com/m/paper_tiger"
+      ],
+      "programmeImage": {
+        "source": "https://www.rottentomatoes.com/m/paper_tiger",
+        "image": "https://resizing.flixster.com/xMeBzCwzdzLqKR9ecFnVZX50HjQ=/ems.cHJkLWVtcy1hc3NldHMvbW92aWVzLzk4MGQyOWU1LTE0MjItNGQxYi1hZDNjLThlMjAzYjRhZmRiOC5qcGc=",
+        "note": "原主图为剧照，换发行竖版海报。"
+      },
+      "premiere": {
+        "status": "verified",
+        "date": "2026-05-16",
+        "festival": "戛纳国际电影节",
+        "note": "主竞赛"
+      },
+      "platforms": {
+        "urls": {
+          "imdb": "https://www.imdb.com/title/tt34385689/",
+          "lb": "https://letterboxd.com/film/paper-tiger-2026/",
+          "rt": "https://www.rottentomatoes.com/m/paper_tiger",
+          "mc": "https://www.imdb.com/title/tt34385689/criticreviews/"
+        },
+        "scores": [
+          null,
+          6.9,
+          87,
+          79,
+          null
+        ],
+        "notes": "可核实的聚合分入库；其余保留空值。"
+      }
+    },
+    "py26-030": {
+      "title": "胡越的故事",
+      "editorialAndCredits": [
+        "https://www.filmarchive.gov.hk/sc/web/hkfa/pe-event-2015-11-1-20.html",
+        "https://www.labiennale.org/en/cinema/2026/venice-classics/woo-yuet-dik-goo-si-story-woo-viet",
+        "https://www.mplus.org.hk/tc/cinema/mplus-restored-festival-2026/the-story-of-woo-viet/"
+      ],
+      "programmeImage": {
+        "path": "posters/pingyao-py26-030.jpg",
+        "dimensions": [
+          550,
+          755
+        ]
+      },
+      "premiere": {
+        "status": "verified",
+        "date": "1981-04-24",
+        "festival": null,
+        "note": "中国香港原版公映；2026年修复版另计"
+      },
+      "platforms": {
+        "urls": {
+          "imdb": "https://www.imdb.com/title/tt0082534/",
+          "lb": "https://letterboxd.com/film/the-story-of-woo-viet/"
+        },
+        "scores": [
+          null,
+          6.6,
+          null,
+          null,
+          null
+        ],
+        "notes": "可核实的聚合分入库；其余保留空值。"
+      }
+    },
+    "py26-031": {
+      "title": "邹静｜朵丽×无名女孩",
+      "editorialAndCredits": [
+        "https://www.memoria-films.com/production/a-girl-unknown",
+        "https://fipresci.org/report/a-girl-unknown-the-fragile-weight-of-identity/",
+        "https://www.siff.com/content?aid=101260415152320814120272666824709956"
+      ],
+      "programmeImage": {
+        "path": "posters/pingyao-py26-031.jpg",
+        "dimensions": [
+          900,
+          1186
+        ]
+      },
+      "premiere": {
+        "status": "not-applicable",
+        "date": null,
+        "festival": null,
+        "note": null
+      },
+      "platforms": {
+        "urls": {},
+        "scores": null,
+        "notes": "联映无独立合计分。"
+      },
+      "parts": [
+        {
+          "title": "朵丽",
+          "history": "2021年7月 · 戛纳影评人周（短片金铁轨奖）"
+        },
+        {
+          "title": "无名女孩",
+          "history": "2026年5月 · 戛纳影评人周（全球首映）"
+        }
+      ]
+    }
+  },
+  "linkedRecords": {
+    "gh63-050": {
+      "title": "完美家庭风暴",
+      "fieldsReviewed": [
+        "syn",
+        "bio",
+        "st",
+        "editorial",
+        "credits",
+        "worldPremiere",
+        "poster",
+        "ratings"
+      ],
+      "premiere": {
+        "status": "partial",
+        "date": "2026-05",
+        "festival": "戛纳国际电影节",
+        "festivalEn": "Cannes Film Festival",
+        "kind": "festival",
+        "checked": "2026-11-07"
+      },
+      "platforms": {
+        "urls": {
+          "imdb": "https://www.imdb.com/title/tt35410859/",
+          "lb": "https://letterboxd.com/film/fjord-2026/",
+          "douban": "https://movie.douban.com/subject/37168181/",
+          "rt": "https://www.rottentomatoes.com/m/fjord",
+          "mc": "https://www.metacritic.com/movie/fjord/"
+        },
+        "scores": [
+          8,
+          7.6,
+          91,
+          80,
+          3.77
+        ],
+        "refreshedIndexes": [
+          2
+        ]
+      },
+      "sources": [
+        "https://www.festival-cannes.com/en/2026/fjord-by-cristian-mungiu-a-matter-of-perspective/"
+      ]
+    },
+    "gh63-055": {
+      "title": "亲密怪物",
+      "fieldsReviewed": [
+        "syn",
+        "bio",
+        "st",
+        "editorial",
+        "credits",
+        "worldPremiere",
+        "poster",
+        "ratings"
+      ],
+      "premiere": {
+        "status": "verified",
+        "date": "2026-05-15",
+        "festival": "戛纳国际电影节",
+        "festivalEn": "Cannes Film Festival",
+        "kind": "festival",
+        "checked": "2026-11-07"
+      },
+      "platforms": {
+        "urls": {
+          "imdb": "https://www.imdb.com/title/tt37020296/",
+          "lb": "https://letterboxd.com/film/gentle-monster/",
+          "douban": "https://movie.douban.com/subject/37269580/",
+          "rt": "https://www.rottentomatoes.com/m/gentle_monster",
+          "mc": "https://www.metacritic.com/movie/gentle-monster/"
+        },
+        "scores": [
+          6.1,
+          6.8,
+          69,
+          67,
+          3.35
+        ],
+        "refreshedIndexes": []
+      },
+      "sources": [
+        "https://www.rottentomatoes.com/m/gentle_monster"
+      ]
+    },
+    "gh63-061": {
+      "title": "爱的对峙",
+      "fieldsReviewed": [
+        "syn",
+        "bio",
+        "st",
+        "editorial",
+        "credits",
+        "worldPremiere",
+        "poster",
+        "ratings"
+      ],
+      "premiere": {
+        "status": "partial",
+        "date": "2026-05",
+        "festival": "戛纳国际电影节",
+        "festivalEn": "Cannes Film Festival",
+        "kind": "festival",
+        "checked": "2026-11-07"
+      },
+      "platforms": {
+        "urls": {
+          "imdb": "https://www.imdb.com/title/tt33451014/",
+          "lb": "https://letterboxd.com/film/the-beloved-2026/",
+          "douban": "https://movie.douban.com/subject/37055925/",
+          "mc": "https://www.metacritic.com/movie/the-beloved/",
+          "rt": "https://www.rottentomatoes.com/m/the_beloved_2026"
+        },
+        "scores": [
+          6.3,
+          7.2,
+          85,
+          75,
+          3.84
+        ],
+        "refreshedIndexes": [
+          2
+        ]
+      },
+      "sources": []
+    },
+    "gh63-087": {
+      "title": "菲律宾女孩",
+      "fieldsReviewed": [
+        "syn",
+        "bio",
+        "st",
+        "editorial",
+        "credits",
+        "worldPremiere",
+        "poster",
+        "ratings"
+      ],
+      "premiere": {
+        "status": "verified",
+        "date": "2026-01-23",
+        "festival": "圣丹斯电影节",
+        "festivalEn": "Sundance Film Festival",
+        "kind": "festival",
+        "checked": "2026-11-25"
+      },
+      "platforms": {
+        "urls": {
+          "imdb": "https://www.imdb.com/title/tt29512008/",
+          "lb": "https://letterboxd.com/film/filipinana-2026/",
+          "douban": "https://movie.douban.com/subject/35745636/",
+          "rt": "https://www.rottentomatoes.com/m/filipinana_2026",
+          "mc": "https://www.metacritic.com/movie/filipinana/"
+        },
+        "scores": [
+          6.2,
+          6.5,
+          90,
+          82,
+          3.48
+        ],
+        "refreshedIndexes": [
+          2
+        ]
+      },
+      "sources": [
+        "https://www.sundance.org/blogs/filipinana-sets-the-class-divide-on-a-golf-course-in-the-philippines/"
+      ]
+    },
+    "gr26-001": {
+      "title": "神之子",
+      "fieldsReviewed": [
+        "syn",
+        "bio",
+        "st",
+        "editorial",
+        "credits",
+        "worldPremiere",
+        "poster",
+        "ratings"
+      ],
+      "premiere": {
+        "status": "partial",
+        "date": "2026-05",
+        "festival": "戛纳国际电影节",
+        "festivalEn": "Cannes Film Festival",
+        "kind": "festival",
+        "checked": "2026-11-07"
+      },
+      "platforms": {
+        "urls": {
+          "imdb": "https://www.imdb.com/title/tt38820979/",
+          "lb": "https://letterboxd.com/film/benimana/",
+          "douban": "https://movie.douban.com/subject/36976760/"
+        },
+        "scores": [
+          7.7,
+          7.4,
+          null,
+          null,
+          3.79
+        ],
+        "refreshedIndexes": []
+      },
+      "sources": []
+    },
+    "gr26-013": {
+      "title": "发现之旅",
+      "fieldsReviewed": [
+        "syn",
+        "bio",
+        "st",
+        "editorial",
+        "credits",
+        "worldPremiere",
+        "poster",
+        "ratings"
+      ],
+      "premiere": {
+        "status": "partial",
+        "date": "2026-09",
+        "festival": "威尼斯国际电影节",
+        "festivalEn": "Venice International Film Festival",
+        "kind": "festival",
+        "checked": "2026-11-07"
+      },
+      "platforms": {
+        "urls": {
+          "douban": "https://movie.douban.com/subject/36146113/",
+          "lb": "https://letterboxd.com/film/zoom-in-zoom-out/",
+          "imdb": "https://www.imdb.com/title/tt43729090/"
+        },
+        "scores": [
+          null,
+          6.7,
+          null,
+          null,
+          3.22
+        ],
+        "refreshedIndexes": []
+      },
+      "sources": []
+    },
+    "gr26-018": {
+      "title": "寒夜灯柱",
+      "fieldsReviewed": [
+        "syn",
+        "bio",
+        "st",
+        "editorial",
+        "credits",
+        "worldPremiere",
+        "poster",
+        "ratings"
+      ],
+      "premiere": {
+        "status": "partial",
+        "date": "2026-02",
+        "festival": "柏林国际电影节",
+        "festivalEn": "Berlin International Film Festival",
+        "kind": "festival",
+        "checked": "2026-11-07"
+      },
+      "platforms": {
+        "urls": {
+          "douban": "https://movie.douban.com/subject/36650614/",
+          "lb": "https://letterboxd.com/film/light-pillar/",
+          "imdb": "https://www.imdb.com/title/tt32409947/",
+          "rt": "https://www.rottentomatoes.com/m/light_pillar"
+        },
+        "scores": [
+          null,
+          6.6,
+          null,
+          null,
+          3.45
+        ],
+        "refreshedIndexes": []
+      },
+      "sources": []
+    },
+    "gr26-021": {
+      "title": "无名女孩",
+      "fieldsReviewed": [
+        "syn",
+        "bio",
+        "st",
+        "editorial",
+        "credits",
+        "worldPremiere",
+        "poster",
+        "ratings"
+      ],
+      "premiere": {
+        "status": "partial",
+        "date": "2026-05",
+        "festival": "戛纳影评人周",
+        "festivalEn": "Cannes Critics’ Week",
+        "kind": "festival",
+        "checked": "2026-11-07"
+      },
+      "platforms": {
+        "urls": {
+          "douban": "https://movie.douban.com/subject/36686123/",
+          "lb": "https://letterboxd.com/film/a-girl-unknown/",
+          "imdb": "https://www.imdb.com/title/tt32459280/",
+          "rt": "https://www.rottentomatoes.com/m/a_girl_unknown"
+        },
+        "scores": [
+          null,
+          6.9,
+          null,
+          null,
+          3.78
+        ],
+        "refreshedIndexes": []
+      },
+      "sources": []
+    },
+    "gr26-029": {
+      "title": "我阿爹想旅行",
+      "fieldsReviewed": [
+        "syn",
+        "bio",
+        "st",
+        "editorial",
+        "credits",
+        "worldPremiere",
+        "poster",
+        "ratings"
+      ],
+      "premiere": {
+        "status": "partial",
+        "date": "2026-09",
+        "festival": "平遥国际电影展",
+        "festivalEn": "Pingyao International Film Festival",
+        "kind": "festival",
+        "checked": "2026-11-07"
+      },
+      "platforms": {
+        "urls": {
+          "douban": "https://movie.douban.com/subject/37663724/",
+          "lb": "https://letterboxd.com/film/good-trip-2026/",
+          "imdb": "https://www.imdb.com/title/tt38489397/",
+          "rt": "https://www.rottentomatoes.com/m/good_trip"
+        },
+        "scores": [
+          7.8,
+          7.5,
+          null,
+          null,
+          3.64
+        ],
+        "refreshedIndexes": []
+      },
+      "sources": []
+    },
+    "gr26-035": {
+      "title": "入学许可",
+      "fieldsReviewed": [
+        "syn",
+        "bio",
+        "st",
+        "editorial",
+        "credits",
+        "worldPremiere",
+        "poster",
+        "ratings"
+      ],
+      "premiere": {
+        "status": "partial",
+        "date": "2025-11",
+        "festival": "塔林黑夜电影节",
+        "festivalEn": "Tallinn Black Nights Film Festival",
+        "kind": "festival",
+        "checked": "2026-11-07"
+      },
+      "platforms": {
+        "urls": {
+          "douban": "https://movie.douban.com/subject/36764640/",
+          "lb": "https://letterboxd.com/film/admission-2025/",
+          "imdb": "https://www.imdb.com/title/tt38854615/"
+        },
+        "scores": [
+          null,
+          7.3,
+          null,
+          null,
+          null
+        ],
+        "refreshedIndexes": []
+      },
+      "sources": [
+        "https://antidote-sales.biz/node/1144"
+      ]
+    },
+    "gr26-041": {
+      "title": "第四幕",
+      "fieldsReviewed": [
+        "syn",
+        "bio",
+        "st",
+        "editorial",
+        "credits",
+        "worldPremiere",
+        "poster",
+        "ratings"
+      ],
+      "premiere": {
+        "status": "verified",
+        "date": "2026-06-13",
+        "festival": "上海国际电影节",
+        "festivalEn": "Shanghai International Film Festival",
+        "kind": "festival",
+        "checked": "2026-11-07"
+      },
+      "platforms": {
+        "urls": {
+          "imdb": "https://www.imdb.com/title/tt38798617/",
+          "lb": "https://letterboxd.com/film/afterpiece/",
+          "douban": "https://movie.douban.com/subject/37817037/",
+          "rt": "https://www.rottentomatoes.com/m/afterpiece"
+        },
+        "scores": [
+          null,
+          7.7,
+          null,
+          null,
+          3.48
+        ],
+        "refreshedIndexes": []
+      },
+      "sources": []
+    },
+    "gr26-042": {
+      "title": "黑潮",
+      "fieldsReviewed": [
+        "syn",
+        "bio",
+        "st",
+        "editorial",
+        "credits",
+        "worldPremiere",
+        "poster",
+        "ratings"
+      ],
+      "premiere": {
+        "status": "partial",
+        "date": "2026-09",
+        "festival": "平遥国际电影展",
+        "festivalEn": "Pingyao International Film Festival",
+        "kind": "festival",
+        "checked": "2026-11-07"
+      },
+      "platforms": {
+        "urls": {
+          "imdb": "https://www.imdb.com/title/tt35486825/",
+          "lb": "https://letterboxd.com/film/dead-tide-2026/",
+          "douban": "https://movie.douban.com/subject/37207215/"
+        },
+        "scores": [
+          5.2,
+          4.8,
+          null,
+          null,
+          null
+        ],
+        "refreshedIndexes": []
+      },
+      "sources": []
+    },
+    "gr26-046": {
+      "title": "善男信女",
+      "fieldsReviewed": [
+        "syn",
+        "bio",
+        "st",
+        "editorial",
+        "credits",
+        "worldPremiere",
+        "poster",
+        "ratings"
+      ],
+      "premiere": {
+        "status": "verified",
+        "date": "2026-09-13",
+        "festival": "多伦多国际电影节",
+        "festivalEn": "Toronto International Film Festival",
+        "kind": "festival",
+        "checked": "2026-11-07"
+      },
+      "platforms": {
+        "urls": {
+          "imdb": "https://www.imdb.com/title/tt36563084/",
+          "lb": "https://letterboxd.com/film/we-are-born-good/",
+          "douban": "https://movie.douban.com/subject/37114070/",
+          "rt": "https://www.rottentomatoes.com/m/we_are_born_good"
+        },
+        "scores": [
+          7.9,
+          7.5,
+          null,
+          null,
+          3.56
+        ],
+        "refreshedIndexes": []
+      },
+      "sources": []
+    },
+    "gr26-069": {
+      "title": "刚果男孩",
+      "fieldsReviewed": [
+        "syn",
+        "bio",
+        "st",
+        "editorial",
+        "credits",
+        "worldPremiere",
+        "poster",
+        "ratings"
+      ],
+      "premiere": {
+        "status": "verified",
+        "date": "2026-05-15",
+        "festival": "戛纳国际电影节",
+        "festivalEn": "Cannes Film Festival",
+        "kind": "festival",
+        "checked": "2026-11-07"
+      },
+      "platforms": {
+        "urls": {
+          "douban": "https://movie.douban.com/subject/36903388/",
+          "lb": "https://letterboxd.com/film/congo-boy/",
+          "imdb": "https://www.imdb.com/title/tt41592086/",
+          "mc": "https://www.metacritic.com/movie/congo-boy/"
+        },
+        "scores": [
+          7,
+          6.9,
+          null,
+          null,
+          3.63
+        ],
+        "refreshedIndexes": []
+      },
+      "sources": []
+    },
+    "whispers-in-may-2026": {
+      "title": "春日幻游",
+      "fieldsReviewed": [
+        "syn",
+        "bio",
+        "st",
+        "editorial",
+        "credits",
+        "worldPremiere",
+        "poster",
+        "ratings"
+      ],
+      "premiere": {
+        "status": "partial",
+        "date": "2026-03",
+        "festival": "哥本哈根国际纪录片电影节",
+        "festivalEn": "CPH:DOX",
+        "kind": "festival",
+        "checked": "2026-11-24"
+      },
+      "platforms": {
+        "urls": {
+          "imdb": "https://www.imdb.com/title/tt39793111/",
+          "lb": "https://letterboxd.com/film/whispers-in-may/"
+        },
+        "scores": [
+          null,
+          7.2,
+          null,
+          null,
+          null
+        ],
+        "refreshedIndexes": []
+      },
+      "sources": []
+    },
+    "spring-in-a-small-town": {
+      "title": "小城之春",
+      "fieldsReviewed": [
+        "syn",
+        "bio",
+        "st",
+        "editorial",
+        "credits",
+        "worldPremiere",
+        "poster",
+        "ratings"
+      ],
+      "premiere": {
+        "status": "verified",
+        "date": "1948-09-25",
+        "festival": null,
+        "festivalEn": null,
+        "kind": "theatrical",
+        "checked": "2026-11-07"
+      },
+      "platforms": {
+        "urls": {},
+        "scores": [
+          8.5,
+          7.6,
+          null,
+          null,
+          4
+        ],
+        "refreshedIndexes": []
+      },
+      "sources": []
+    }
+  }
+}

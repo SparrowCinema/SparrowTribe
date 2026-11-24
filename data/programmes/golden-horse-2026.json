@@ -3762,13 +3762,13 @@
       "r": [
         8,
         7.6,
-        92,
+        91,
         80,
         3.77
       ],
       "posterDb": "p2935830446",
       "poster": "posters/golden-horse-gh63-050.jpg",
-      "ratingChecked": "2026-11-03",
+      "ratingChecked": "2026-11-25",
       "bio": "克里斯汀穆基是罗马尼亚新浪潮的重要导演。《4月3周又2天》《灵欲告白》《毕业风暴》等以人物处境切入社会伦理，也多次获得戛纳奖项。",
       "language": "英语 / 挪威语 / 罗马尼亚语 / 瑞典语",
       "metadataChecked": "2026-11-03",
@@ -3779,7 +3779,11 @@
         "festivalEn": "Cannes Film Festival",
         "kind": "festival",
         "checked": "2026-11-07"
-      }
+      },
+      "highlights": [
+        "观察审视一家人的视角怎样逐渐从邻居、学校转向制度。",
+        "罗马尼亚导演穆基把移民家庭置于挪威社会语境。"
+      ]
     },
     {
       "id": "gh63-051",
@@ -4098,7 +4102,11 @@
         "festivalEn": "Cannes Film Festival",
         "kind": "festival",
         "checked": "2026-11-07"
-      }
+      },
+      "highlights": [
+        "留意公众形象和亲密关系中可以谈论、承认的事情有什么差别。",
+        "戛纳主竞赛的履历与其他地区的后续放映分别看待。"
+      ]
     },
     {
       "id": "gh63-057",
@@ -4305,19 +4313,20 @@
         "imdb": "tt33451014",
         "lb": "the-beloved-2026",
         "douban": "37055925",
-        "mc": "https://www.metacritic.com/movie/the-beloved/"
+        "mc": "https://www.metacritic.com/movie/the-beloved/",
+        "rt": "https://www.rottentomatoes.com/m/the_beloved_2026"
       },
       "cnDb": "所爱之人",
       "r": [
         6.3,
         7.2,
-        null,
+        85,
         75,
         3.84
       ],
       "posterDb": "p2932424335",
       "poster": "posters/golden-horse-gh63-061.jpg",
-      "ratingChecked": "2026-11-03",
+      "ratingChecked": "2026-11-25",
       "bio": "罗德里哥索罗格耶是西班牙编导，短片《Mother》曾获奥斯卡提名，长片《骗局》《野兽们》让他两度获得哥雅导演奖。",
       "language": "西班牙语 / 英语",
       "metadataChecked": "2026-11-03",
@@ -4328,7 +4337,11 @@
         "festivalEn": "Cannes Film Festival",
         "kind": "festival",
         "checked": "2026-11-07"
-      }
+      },
+      "highlights": [
+        "留意拍片现场怎样改变父女之间原有的权力关系。",
+        "把片中创作和事后对创作的解释分开观察。"
+      ]
     },
     {
       "id": "gh63-062",
@@ -6088,30 +6101,34 @@
         "imdb": "tt29512008",
         "lb": "filipinana-2026",
         "douban": "35745636",
-        "rt": "https://www.rottentomatoes.com/m/filipinana",
+        "rt": "https://www.rottentomatoes.com/m/filipinana_2026",
         "mc": "https://www.metacritic.com/movie/filipinana/"
       },
       "r": [
         6.2,
         6.5,
-        null,
+        90,
         82,
         3.48
       ],
       "posterDb": "p2929719783",
       "poster": "posters/golden-horse-gh63-087.jpg",
-      "ratingChecked": "2026-11-03",
+      "ratingChecked": "2026-11-25",
       "bio": "拉斐尔曼纽毕业于伦敦电影学院，同名短片《Filipiñana》获柏林短片银熊奖。他也曾在劳力士艺术资助计划中接受贾樟柯指导。",
       "language": "他加禄语 / 英语 / 汉语普通话",
       "metadataChecked": "2026-11-03",
       "worldPremiere": {
-        "status": "partial",
-        "date": "2026-01",
+        "status": "verified",
+        "date": "2026-01-23",
         "festival": "圣丹斯电影节",
         "festivalEn": "Sundance Film Festival",
         "kind": "festival",
-        "checked": "2026-11-07"
-      }
+        "checked": "2026-11-25"
+      },
+      "highlights": [
+        "高尔夫球场分配了谁必须等待、谁可以闲逛以及谁能发号施令。",
+        "长片源自导演同名短片，评分链接指向2026年长片。"
+      ]
     },
     {
       "id": "gh63-088",
