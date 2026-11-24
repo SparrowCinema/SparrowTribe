@@ -160,21 +160,20 @@
 
     <block wx:if="{{!f.ev && recs.length}}">
       <view class="st"><text class="stt">{{L.t(i,'看完再看')}}</text><text class="ste mono">NEXT UP</text></view>
-      <text class="rec-lead">{{recLead}}</text>
-      <view class="rec-grid">
-        <view wx:for="{{recs}}" wx:key="id" class="rec-card">
-          <view class="rec-go" data-id="{{item.id}}" bindtap="openFilm">
-            <view class="rec-art">
+      <view class="rec-list card">
+        <view wx:for="{{recs}}" wx:key="id" class="rec-row {{index ? 'rec-sep-top' : ''}}">
+          <view class="rec-go" hover-class="hv" data-id="{{item.id}}" bindtap="openFilm">
+            <view class="rec-thumb">
               <image wx:if="{{item.poster}}" class="rec-img" src="{{item.poster}}" mode="aspectFill" lazy-load />
               <view wx:else class="rec-ph" style="background:{{item.color}}">{{item.cn[0]}}</view>
-              <text wx:if="{{item.lastChance}}" class="rec-last">{{L.t(i,'最后一场')}}</text>
             </view>
-            <text class="rec-title">{{item.cn}}</text>
-            <text wx:if="{{item.why}}" class="rec-why">{{item.why}}</text>
-            <text wx:if="{{item.slot}}" class="rec-slot mono">{{item.slot}}</text>
+            <view class="rec-copy">
+              <view class="rec-head"><text class="rec-title">{{item.cn}}</text><text wx:if="{{item.lastChance}}" class="rec-last">{{L.t(i,'最后一场')}}</text></view>
+              <view class="rec-sub"><text wx:if="{{item.why}}" class="rec-why">{{item.why}}</text><text wx:if="{{item.why && item.slot}}" class="rec-dot">·</text><text wx:if="{{item.slot}}" class="rec-slot mono">{{item.slot}}</text></view>
+            </view>
           </view>
-          <text wx:if="{{item.seen}}" class="rec-seen">{{L.t(i,'已看过')}}</text>
-          <view wx:else class="rec-want {{item.wanted?'on':''}}" data-id="{{item.id}}" catchtap="recWant">{{item.wanted ? '★ ' + L.t(i,'已想看') : '☆ ' + L.t(i,'想看')}}</view>
+          <text wx:if="{{item.seen}}" class="rec-seen">{{L.t(i,'已看')}}</text>
+          <view wx:else class="rec-star {{item.wanted?'on':''}}" data-id="{{item.id}}" catchtap="recWant">{{item.wanted ? '★' : '☆'}}</view>
         </view>
       </view>
     </block>

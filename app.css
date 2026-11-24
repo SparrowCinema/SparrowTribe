@@ -1414,25 +1414,28 @@ button,summary,a,label,select,[role=button],[data-pp],.my-entry{touch-action:man
 .film-statuses i.last{color:var(--accent);border-color:color-mix(in srgb,var(--accent) 45%,var(--line));background:color-mix(in srgb,var(--accent) 7%,transparent)}
 
 /* 看完再看 · 影片页延伸推荐（2026-11-24）：节展手册画册式 2×2 / 4 列海报卡 */
-.fd-rec-lead{margin:-4px 0 16px;font-size:11.5px;line-height:1.6;color:var(--muted)}
-.rec-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 12px}
-@media(min-width:640px){.rec-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:20px 14px}}
-.rec-card{display:flex;flex-direction:column;gap:8px;min-width:0}
-.rec-go{display:flex;flex-direction:column;gap:8px;padding:0;border:0;background:none;text-align:left;color:var(--fg);cursor:pointer;min-width:0}
-.rec-art{position:relative;display:block;width:100%;aspect-ratio:2/3;border-radius:7px;overflow:hidden;background:var(--chip);box-shadow:0 3px 12px rgba(24,16,8,.1);transition:transform .2s cubic-bezier(.2,.7,.3,1),box-shadow .2s ease}
-.rec-art img{display:block;width:100%;height:100%;object-fit:cover}
-.rec-ph{display:grid;place-items:center;width:100%;height:100%;color:#fffaf0;font:900 28px var(--f-display)}
-.rec-last{position:absolute;top:6px;left:6px;font-style:normal;font:600 9.5px/1.4 var(--f-body);letter-spacing:.03em;padding:2px 6px;border-radius:4px;background:color-mix(in srgb,var(--accent) 92%,#000);color:#fffaf0;backdrop-filter:blur(4px)}
-.rec-meta{display:flex;flex-direction:column;gap:3px;min-width:0}
-.rec-title{font:700 12.5px/1.38 var(--f-display);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;transition:color .15s}
-.rec-why{font-size:10.5px;line-height:1.4;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.rec-slot{font-size:10.5px;line-height:1.4;color:var(--teal);font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.rec-want{margin-top:auto;width:100%;min-height:30px;padding:5px 8px;border:1px solid var(--line);border-radius:7px;background:var(--surface);color:var(--fg);font:500 10.5px/1.2 var(--f-body);cursor:pointer;transition:border-color .15s,background .15s,color .15s}
-.rec-want:hover{border-color:var(--accent);color:var(--accent)}
-.rec-want.on{border-color:#c79a3a;color:#8a6516;background:color-mix(in srgb,#e8d9aa 26%,var(--surface))}
-.rec-seen{margin-top:auto;display:block;text-align:center;padding:5px 8px;border-radius:7px;background:var(--chip);color:var(--muted);font:500 10px/1.4 var(--f-body)}
-@media(hover:hover){.rec-go:hover .rec-art{transform:translateY(-3px);box-shadow:0 8px 20px rgba(24,16,8,.16)}.rec-go:hover .rec-title{color:var(--accent)}}
-@media(prefers-reduced-motion:reduce){.rec-art,.trait-chip{transition:none}.rec-go:hover .rec-art{transform:none}}
+.rec-list{display:grid;grid-template-columns:1fr;border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}
+@media(min-width:680px){.rec-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.rec-row{display:flex;align-items:center;gap:8px;padding:9px 11px 9px 10px;border-top:1px solid var(--line-soft);min-width:0;transition:background .15s}
+.rec-row:first-child{border-top:0}
+@media(min-width:680px){.rec-row:nth-child(2){border-top:0}.rec-row:nth-child(even){border-left:1px solid var(--line-soft)}}
+.rec-go{flex:1;display:flex;align-items:center;gap:11px;padding:0;border:0;background:none;text-align:left;color:var(--fg);cursor:pointer;min-width:0}
+.rec-thumb{flex:none;width:40px;height:58px;border-radius:4px;overflow:hidden;background:var(--chip);box-shadow:0 1px 4px rgba(24,16,8,.1)}
+.rec-thumb img{display:block;width:100%;height:100%;object-fit:cover}
+.rec-ph{display:grid;place-items:center;width:100%;height:100%;color:#fffaf0;font:900 16px var(--f-display)}
+.rec-copy{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+.rec-head{display:flex;align-items:baseline;gap:6px;min-width:0}
+.rec-title{font:600 12.5px/1.35 var(--f-display);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:color .15s}
+.rec-last{flex:none;font-style:normal;font:600 9.5px/1 var(--f-body);color:var(--accent);letter-spacing:.02em}
+.rec-sub{display:flex;align-items:baseline;gap:5px;font-size:10.8px;line-height:1.4;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rec-sep{opacity:.55}
+.rec-slot{color:var(--teal);font-variant-numeric:tabular-nums}
+.rec-star{flex:none;width:30px;height:30px;display:grid;place-items:center;border:1px solid var(--line);border-radius:50%;background:var(--bg);color:var(--muted);font-size:13px;line-height:1;cursor:pointer;transition:border-color .15s,color .15s,background .15s}
+.rec-star:hover{border-color:var(--accent);color:var(--accent)}
+.rec-star.on{border-color:#c79a3a;color:color-mix(in srgb,#c89228 75%,var(--fg));background:color-mix(in srgb,#e8d9aa 22%,var(--surface))}
+.rec-seen{flex:none;font-size:10px;color:var(--muted);padding:3px 7px;border-radius:999px;background:var(--chip)}
+@media(hover:hover){.rec-row:hover{background:color-mix(in srgb,var(--fg) 2.5%,var(--surface))}.rec-go:hover .rec-title{color:var(--accent)}}
+@media(prefers-reduced-motion:reduce){.rec-row,.rec-star,.trait-chip{transition:none}}
 
 /* 大影展手册模块（2026-11-24）：公众/产业场区分、无障碍标签、单元策展导读、评审团名录、站内影院坐标图与交通 */
 .sched-ctx-strip{margin:4px 0 12px}

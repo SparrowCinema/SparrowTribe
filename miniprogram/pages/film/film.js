@@ -156,12 +156,11 @@ Page({
     }, 4);
     const recs = items.map(it => ({
       id: it.film.id, cn: it.film.cn, poster: U.thumb(it.film), color: (data.reg[it.film.reg] || {}).c,
-      why: it.reasons.map(t).join(' · '),
-      slot: it.nextShow ? it.nextShow.d + ' ' + it.nextShow.t + (it.fitsPlan ? ' · ' + t('零冲突') : '') : '',
+      why: it.reasons.slice(0, 2).map(t).join(' · '),
+      slot: it.nextShow ? it.nextShow.d + ' ' + it.nextShow.t + (it.fitsPlan ? ' ✓' : '') : '',
       lastChance: it.lastChance, seen: it.seen, wanted: Want.isOn(it.film.id)
     }));
-    const recLead = W.get(this.id) ? t('看过这部之后，顺着线索继续下一场银幕相遇') : t('同导演、同单元或相近趣味的延伸片单');
-    this.setData({ recs, recLead });
+    this.setData({ recs });
   },
   dyToggle() { this.dyOpen = !this.dyOpen; this.buildMine(); },
   buildMine() {
