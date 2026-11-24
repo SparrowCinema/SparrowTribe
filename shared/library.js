@@ -113,5 +113,50 @@
  function posterTitle(o){const en=!!o.en,h=String(o.holder||'').trim(),lab=posterPeriodLabel(o.period,en),name=o.programmeName||'';
   if(name)return en?{title:(h?h+"'s ":'My ')+name+' Poster Wall',sub:'Cinema log'+(lab?' · '+lab:'')}:{title:(h||'我')+'的'+name+'海报墙',sub:'影院观影'+(lab?' · '+lab:'')};
   return en?{title:(lab?lab+' ':'')+'Cinema Poster Wall',sub:(h?h+"'s":'My')+' Film Passport'}:{title:lab+'影院观影海报墙',sub:(h||'我')+'的观影护照'};}
- const api={matches,inProgramme,inCity,status,category,list,has,toggle,DECADES,TRAITS,decadeLabel,yearMatches,traitStatus,matchesTraits,isFestivalWorldPremiere,featuredProgrammes,posterColumns,posterPeriod,posterPeriods,posterEntries,posterPeriodLabel,posterTitle};if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.SparrowLibrary=api;
+ // 往期专题书脊档案：按专题 id 固定复古馆藏色系，支持跨年分卷与单年分批展开（应对上百个专题）
+ const SPINE_PALETTES=[
+  {bg:'#9b4752',ink:'#fffaf2'},
+  {bg:'#564882',ink:'#fffaf2'},
+  {bg:'#2d6d88',ink:'#fffaf2'},
+  {bg:'#663c58',ink:'#fffaf2'},
+  {bg:'#3c4a7c',ink:'#fffaf2'},
+  {bg:'#965a34',ink:'#fffaf2'},
+  {bg:'#3e6552',ink:'#fffaf2'},
+  {bg:'#6e523e',ink:'#fffaf2'}
+ ];
+ function spineStyle(id){
+  let h=0,s=String(id||'');
+  for(let i=0;i<s.length;i++)h=((h*31)+s.charCodeAt(i))>>>0;
+  return SPINE_PALETTES[h%SPINE_PALETTES.length];
+ }
+ function spineTitle(name){
+  const s=String(name||'').trim();
+  const stripped=s.replace(/^(?:19|20)\d{2}\s*[年·・\-—]?\s*/,'').trim();
+  return stripped.length>=2?stripped:s;
+ }
+ function progEndYear(p,endMs){
+  const m1=/^(\d{4})/.exec(String(p&&p.end||''));
+  if(m1)return m1[1];
+  if(endMs&&Number.isFinite(endMs)&&endMs>0)return String(new Date(endMs).getUTCFullYear());
+  const ms=String(p&&p.period||'').match(/\d{4}/g);
+  if(ms&&ms.length)return ms[ms.length-1];
+  const m2=/^(\d{4})/.exec(String(p&&p.start||''));
+  return m2?m2[1]:'其他';
+ }
+ const PAST_YEAR_BATCH=12;
+ function groupPastByYear(items,getYear,batchSize=PAST_YEAR_BATCH){
+  const map=new Map();
+  (items||[]).forEach(item=>{
+   const y=String(getYear(item)||'其他');
+   if(!map.has(y))map.set(y,[]);
+   map.get(y).push(item);
+  });
+  const years=[...map.entries()].sort((a,b)=>{
+   if(a[0]==='其他')return 1;if(b[0]==='其他')return -1;
+   return b[0].localeCompare(a[0]);
+  }).map(([year,list])=>({year,items:list}));
+  const byYear=years.length>1||(items&&items.length>6);
+  return {byYear,years,batchSize};
+ }
+ const api={matches,inProgramme,inCity,status,category,list,has,toggle,DECADES,TRAITS,decadeLabel,yearMatches,traitStatus,matchesTraits,isFestivalWorldPremiere,featuredProgrammes,posterColumns,posterPeriod,posterPeriods,posterEntries,posterPeriodLabel,posterTitle,SPINE_PALETTES,spineStyle,spineTitle,progEndYear,PAST_YEAR_BATCH,groupPastByYear};if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.SparrowLibrary=api;
 })(typeof window!=='undefined'?window:this);

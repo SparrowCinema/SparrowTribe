@@ -58,41 +58,86 @@ Page({
     const order = data.programmes.slice().sort((a, b) => loc(a) - loc(b) || fest(a) - fest(b));
     const kind = p => t(U.isFest(p) ? '影展' : p.kind || '专题');
     const stack = rows => rows.slice(0, 4).map(r => ({ id: r.id, poster: r.poster, color: r.color, ch: r.cn[0] }));
-    const secs = [], past = [], autoOpen = !!q || mine !== 'all';
+    const abs = u => !u || /^(https?:|\/)/.test(u) ? u : 'https://sparrowcinema.org/' + u;
+    const secs = [], past = [];
     // 收起的专题、「本专题已放映」「往期专题」不把影片行发给页面（片库变大后 setData 体积只跟展开的部分有关），完整行留在 this._rows，展开时再补
     const full = this._rows = { live: {}, gone: {}, past: {} };
+    const watchedMap = W.all();
     order.forEach(p => {
       if (!sh(pf, p.id)) return;
       const ms = base.filter(f => inP(f, p)); if (!ms.length) return;
       if (info[p.id].status === 'ended') {
         const rows = ms.sort((a, b) => U.relTime(b) - U.relTime(a)).map(f => this.row(f, data, idx, false, p.id));
-        const open = autoOpen || !!this.pastOpen[p.id]; full.past[p.id] = rows;
-        past.push({ id: p.id, kind: kind(p), name: p.name, period: p.period || '', n: rows.length, rows: open ? rows : [], stack: stack(rows), open, end: info[p.id].b || 0 });
+        const end = info[p.id].b || 0;
+        const yr = Library.progEndYear ? Library.progEndYear(p, end) : '其他';
+        const st = Library.spineStyle ? Library.spineStyle(p.id) : { bg: '#663c58', ink: '#fffaf2' };
+        const mDate = /^(\d{4})-(\d{2})/.exec(String(p.end || p.start || ''));
+        const meta = mDate ? (mDate[1] + '.' + mDate[2]) : (yr !== '其他' ? yr : kind(p));
+        const art = abs(p.cardCover || p.cover) || (rows.find(r => r.poster) || {}).poster || '';
+        const hasWatched = rows.some(r => { const w = watchedMap[r.id]; return !!(w && !w.del && w.d); });
+        full.past[p.id] = rows;
+        past.push({ id: p.id, kind: kind(p), name: p.name, spineName: Library.spineTitle ? Library.spineTitle(p.name) : p.name, meta, sub: t(rows.length + ' 部'), period: p.period || '', n: rows.length, rows: [], stack: stack(rows), open: false, end, year: yr, bg: st.bg, ink: st.ink, art, ch: (p.name || '')[0] || '', hasWatched });
       } else {
+        const autoSec = !!q || mine !== 'all';
         const live = ms.filter(f => isLiveIn(f, p)).sort(U.filmOrder(data.shows.filter(s => U.progForShow(s, idx).id === p.id))).map(f => this.row(f, data, idx, true, p.id));
         const gone = ms.filter(f => !isLiveIn(f, p)).sort((a, b) => U.relTime(b) - U.relTime(a)).map(f => this.row(f, data, idx, false, p.id));
         const all = live.concat(gone);
-        const open = autoOpen || this.folds[p.id] !== 0, goneOpen = autoOpen || !!this.goneOpen[p.id]; full.live[p.id] = live; full.gone[p.id] = gone;
+        const open = autoSec || this.folds[p.id] !== 0, goneOpen = autoSec || !!this.goneOpen[p.id]; full.live[p.id] = live; full.gone[p.id] = gone;
         secs.push({ id: p.id, kind: kind(p), name: p.name, meta: all.length, en: p.en || '', live: open ? live : [], gone: open && goneOpen ? gone : [], goneN: gone.length, stack: stack(all), open, goneOpen });
       }
     });
     past.sort((a, b) => b.end - a.end);
+    const autoOpen = !!q || mine !== 'all' || (pf !== 'all' && past.length > 0);
+    const pastDrawerOpen = autoOpen || !!this.pastDrawerOpen;
+    const pastN = past.reduce((n, x) => n + x.n, 0);
+    const pastMinis = past.slice(0, 5).map(x => ({ id: x.id, bg: x.bg }));
+    const pastAnyWatched = past.some(x => x.hasWatched);
+    const pastPool = this.pastWatchedOnly ? past.filter(x => x.hasWatched) : past;
+    const grouped = Library.groupPastByYear ? Library.groupPastByYear(pastPool, x => x.year) : { byYear: false, years: [{ year: 'all', items: pastPool }], batchSize: 12 };
+    const pastYearPills = grouped.years.length >= 2 ? grouped.years.map(g => ({ year: g.year, label: g.year === '其他' ? t('其他') : g.year, cnt: g.items.length })) : [];
+    const curYearFilt = this.pastYearFilt && grouped.years.some(g => g.year === this.pastYearFilt) ? this.pastYearFilt : '';
+    const visYears = curYearFilt ? grouped.years.filter(g => g.year === curYearFilt) : grouped.years;
+    const visItems = visYears.flatMap(g => g.items);
+    let pickId = this.pastPick || '';
+    if (pickId && !visItems.some(x => x.id === pickId)) pickId = '';
+    if (!pickId && autoOpen && !this.pastPickNone && visItems.length) pickId = visItems[0].id;
+    let pastPanel = null;
+    if (pastDrawerOpen && pickId) {
+      const hit = visItems.find(x => x.id === pickId);
+      if (hit) {
+        const hitRows = full.past[hit.id] || [];
+        hit.open = true; hit.rows = hitRows;
+        pastPanel = { id: hit.id, kind: hit.kind, name: hit.name, meta: t(hit.n + ' 部') + (hit.period ? ' · ' + hit.period : ''), rows: hitRows };
+      }
+    }
+    const yrLimits = this.pastYearLimit || {}, yrFolds = this.pastYearFold || {};
+    const pastYears = pastDrawerOpen ? visYears.map((g, i) => {
+      const hasPick = !!(pickId && g.items.some(x => x.id === pickId));
+      const open = !grouped.byYear || autoOpen || !!curYearFilt || hasPick || (yrFolds[g.year] != null ? yrFolds[g.year] === 1 : i === 0);
+      const lim = yrLimits[g.year] || grouped.batchSize;
+      const shown = open ? g.items.slice(0, lim).map(x => Object.assign({}, x, { rows: [], on: x.id === pickId })) : [];
+      const rest = Math.max(0, g.items.length - shown.length);
+      const filmsCount = g.items.reduce((n, x) => n + x.n, 0);
+      return { year: g.year, label: g.year === '其他' ? t('其他') : (I.isEn() ? g.year : g.year + ' 年'), meta: t(g.items.length + ' 个专题') + ' · ' + t(filmsCount + ' 部'), open, items: shown, rest, panel: open && hasPick ? pastPanel : null };
+    }) : [];
     const stat = { total: data.films.filter(f => !f.ev).length, live: data.films.filter(f => !f.ev).filter(f => U.nextShowOf(f, data.shows)).length, progs: data.programmes.filter(p => data.films.some(f => idx.progOf(f).id === p.id || ((p.sections || {})[f.id] || (p.members || []).includes(f.id)))).length };
     const hasPicked = !!(ctx.picked && ctx.picked.size);
-    this.setData({regName:summ(this.data.reg,t('全部地区'),i=>t((data.reg[i]||{}).n||i),'个地区'),lenName:summ(this.data.len,t('全部片长'),i=>t((LEN_BINS.find(x=>x[0]===i)||[0,i])[1]),'档片长'),yearName:summ(this.data.year,t('全部年份'),i=>t(Library.decadeLabel(i)),'项年份'),cityName:summ(this.data.city,t('全部城市'),i=>t(i),'座城市'),programmeName:summ(pf,t('全部专题'),i=>(idx.PG[i]||{}).name||i,'个专题'),mineName:summ(mine,t(MODES[0][1]),i=>modeName(i,hasPicked),'个分类'),active:pf!=='all'||this.data.city!=='all'||this.data.year!=='all'||this.data.reg!=='all'||this.data.len!=='all'||mine!=='all'||!!q,stat, secs, past, pastN: past.reduce((n, x) => n + x.n, 0), n: base.length, regs: Object.keys(data.reg).map(k => ({ k, n: t(data.reg[k].n) })), progs: data.programmes.length > 1 ? data.programmes : [] });
+    this.setData({regName:summ(this.data.reg,t('全部地区'),i=>t((data.reg[i]||{}).n||i),'个地区'),lenName:summ(this.data.len,t('全部片长'),i=>t((LEN_BINS.find(x=>x[0]===i)||[0,i])[1]),'档片长'),yearName:summ(this.data.year,t('全部年份'),i=>t(Library.decadeLabel(i)),'项年份'),cityName:summ(this.data.city,t('全部城市'),i=>t(i),'座城市'),programmeName:summ(pf,t('全部专题'),i=>(idx.PG[i]||{}).name||i,'个专题'),mineName:summ(mine,t(MODES[0][1]),i=>modeName(i,hasPicked),'个分类'),active:pf!=='all'||this.data.city!=='all'||this.data.year!=='all'||this.data.reg!=='all'||this.data.len!=='all'||mine!=='all'||!!q,stat, secs, past, pastN, pastCount: past.length, pastSummary: t(past.length + ' 个专题') + ' · ' + t(pastN + ' 部影片'), pastDrawerOpen, pastMinis, pastByYear: grouped.byYear, pastYears, pastYearPills, pastYearFilt: curYearFilt, pastAnyWatched, pastShowTools: pastYearPills.length > 0 || (past.length >= 6 && pastAnyWatched), pastWatchedOnly: !!this.pastWatchedOnly, pastPick: pickId, n: base.length, regs: Object.keys(data.reg).map(k => ({ k, n: t(data.reg[k].n) })), progs: data.programmes.length > 1 ? data.programmes : [] });
   },
-  search(e) {this.setData({q:e.detail.value});this.build();},
-  resetFilters() {this.setData({mine:'all',pf:'all',city:'all',year:'all',reg:'all',len:'all',q:''});this.build();},
-  filterOptions(type,query) {const data=app.globalData.data,ctx=this.context(),q=(query||'').trim().toLocaleLowerCase(),hasPicked=!!(ctx.picked&&ctx.picked.size);
+  search(e) {this.pastPickNone = false; this.setData({q:e.detail.value});this.build();},
+  resetFilters() {this.pastPickNone = false; this.setData({mine:'all',pf:'all',city:'all',year:'all',reg:'all',len:'all',q:''});this.build();},
+  filterOptions(type,query) {const data=app.globalData.data,ctx=this.context(),idx=U.index(data),q=(query||'').trim().toLocaleLowerCase(),hasPicked=!!(ctx.picked&&ctx.picked.size);
     const yb=data.films.filter(f=>!f.ev&&Library.inProgramme(f,this.data.pf,ctx)),ys=[...new Set(yb.map(f=>f.y).filter(Boolean))].sort((a,b)=>b-a);
     const decades=(Library.DECADES||[]).map(([id,name])=>({id,name:t(name),n:yb.filter(f=>Library.yearMatches(f,id)).length,selected:sl(this.data.year).includes(id)})).filter(x=>x.n).map(x=>({id:x.id,name:x.name,sub:t(x.n+' 部影片'),selected:x.selected}));
-    const rows=type==='region'?[{id:'all',name:t('全部地区'),sub:t(yb.length+' 部影片'),selected:!sl(this.data.reg).length},...Object.keys(data.reg).map(k=>({id:k,name:t(data.reg[k].n),n:yb.filter(f=>f.reg===k).length,selected:sl(this.data.reg).includes(k)})).filter(x=>x.n).map(x=>Object.assign(x,{sub:t(x.n+' 部影片')}))]:type==='length'?[{id:'all',name:t('全部片长'),sub:t(yb.length+' 部影片'),selected:!sl(this.data.len).length},...LEN_BINS.map(([k,n])=>({id:k,name:t(n),sub:t(yb.filter(f=>lenOk(f,k)).length+' 部影片'),selected:sl(this.data.len).includes(k)}))]:type==='year'?[{id:'all',name:t('全部年份'),sub:t(yb.length+' 部影片'),selected:!sl(this.data.year).length},...decades,...ys.map(y=>({id:String(y),name:String(y),sub:t(yb.filter(f=>String(f.y)===String(y)).length+' 部影片'),selected:sl(this.data.year).includes(String(y))}))]:type==='city'?[{id:'all',name:t('全部城市'),sub:t('按已收录场次所在城市筛选'),selected:!sl(this.data.city).length},...[...new Set(data.venues.map(v=>v.city).filter(Boolean))].map(c=>({id:c,name:t(c),sub:t(data.films.filter(f=>!f.ev&&Library.inProgramme(f,this.data.pf,ctx)&&Library.inCity(f,c,ctx)).length+' 部影片'),selected:sl(this.data.city).includes(c)}))]:type==='programme'?[{id:'all',name:t('全部专题'),sub:t('浏览完整片目'),selected:!sl(this.data.pf).length},...data.programmes.map(p=>({id:p.id,name:p.name,sub:t(data.films.filter(f=>!f.ev&&Library.inProgramme(f,p.id,ctx)).length+' 部影片')+' · '+t(p.city||''),selected:sl(this.data.pf).includes(p.id)}))]:MODES.map(([id,,sub])=>({id,name:modeName(id,hasPicked),sub:t(sub)+' · '+t(data.films.filter(f=>!f.ev&&Library.inProgramme(f,this.data.pf,ctx)&&Library.category(f,id,ctx)).length+' 部影片'),selected:id==='all'?!sl(this.data.mine).length:sl(this.data.mine).includes(id)}));
+    const progsOrdered = type === 'programme' ? data.programmes.map(p => ({ p, info: U.progInfo(p, data, idx) })).sort((a, b) => (a.info.status === 'ended' ? 1 : 0) - (b.info.status === 'ended' ? 1 : 0) || (a.info.status === 'ended' ? ((b.info.b || 0) - (a.info.b || 0)) : 0)) : [];
+    const rows=type==='region'?[{id:'all',name:t('全部地区'),sub:t(yb.length+' 部影片'),selected:!sl(this.data.reg).length},...Object.keys(data.reg).map(k=>({id:k,name:t(data.reg[k].n),n:yb.filter(f=>f.reg===k).length,selected:sl(this.data.reg).includes(k)})).filter(x=>x.n).map(x=>Object.assign(x,{sub:t(x.n+' 部影片')}))]:type==='length'?[{id:'all',name:t('全部片长'),sub:t(yb.length+' 部影片'),selected:!sl(this.data.len).length},...LEN_BINS.map(([k,n])=>({id:k,name:t(n),sub:t(yb.filter(f=>lenOk(f,k)).length+' 部影片'),selected:sl(this.data.len).includes(k)}))]:type==='year'?[{id:'all',name:t('全部年份'),sub:t(yb.length+' 部影片'),selected:!sl(this.data.year).length},...decades,...ys.map(y=>({id:String(y),name:String(y),sub:t(yb.filter(f=>String(f.y)===String(y)).length+' 部影片'),selected:sl(this.data.year).includes(String(y))}))]:type==='city'?[{id:'all',name:t('全部城市'),sub:t('按已收录场次所在城市筛选'),selected:!sl(this.data.city).length},...[...new Set(data.venues.map(v=>v.city).filter(Boolean))].map(c=>({id:c,name:t(c),sub:t(data.films.filter(f=>!f.ev&&Library.inProgramme(f,this.data.pf,ctx)&&Library.inCity(f,c,ctx)).length+' 部影片'),selected:sl(this.data.city).includes(c)}))]:type==='programme'?[{id:'all',name:t('全部专题'),sub:t('浏览完整片目'),selected:!sl(this.data.pf).length},...progsOrdered.map(({p,info})=>{const ended=info.status==='ended',yr=ended&&Library.progEndYear?Library.progEndYear(p,info.b):'';return {id:p.id,name:p.name,sub:[ended?t('往期')+(yr&&yr!=='其他'?' · '+yr:''):'',t(data.films.filter(f=>!f.ev&&Library.inProgramme(f,p.id,ctx)).length+' 部影片'),t(p.city||'')].filter(Boolean).join(' · '),selected:sl(this.data.pf).includes(p.id)};})]:MODES.map(([id,,sub])=>({id,name:modeName(id,hasPicked),sub:t(sub)+' · '+t(data.films.filter(f=>!f.ev&&Library.inProgramme(f,this.data.pf,ctx)&&Library.category(f,id,ctx)).length+' 部影片'),selected:id==='all'?!sl(this.data.mine).length:sl(this.data.mine).includes(id)}));
     return rows.filter(x=>!q||(x.name+' '+x.sub).toLocaleLowerCase().includes(q));
   },
   openSelector(e) {const type=e.currentTarget.dataset.type;this.setData({selectorType:type,selectorQuery:'',selectorTitle:t(type==='programme'?'选择专题':type==='region'?'选择地区':type==='length'?'选择片长':type==='year'?'选择年份':type==='city'?'选择城市':'我的影片'),selectorPlaceholder:t(type==='programme'?'搜索专题':type==='region'?'搜索地区':type==='length'?'搜索片长':type==='year'?'搜索年份':type==='city'?'搜索城市':'搜索我的分类'),selectorRows:this.filterOptions(type,'')});},
   searchSelector(e) {this.setData({selectorQuery:e.detail.value,selectorRows:this.filterOptions(this.data.selectorType,e.detail.value)});},
   chooseFilter(e) {
     const ty = this.data.selectorType, v = e.currentTarget.dataset.id, key = ty === 'programme' ? 'pf' : ty === 'region' ? 'reg' : ty === 'length' ? 'len' : ty === 'year' ? 'year' : ty === 'city' ? 'city' : 'mine';
+    this.pastPickNone = false;
     this.setData(Object.assign({ [key]: v === 'all' ? 'all' : Library.toggle(this.data[key], v) }, ty === 'programme' ? { year: 'all' } : {}));
     this.build(); this.setData({ selectorRows: this.filterOptions(ty, this.data.selectorQuery) });
   },
@@ -100,7 +145,14 @@ Page({
   stopMove() {},
   toggleSec(e) { const id = e.currentTarget.dataset.id, i = this.data.secs.findIndex(s => s.id === id); if (i < 0) return; const open = !this.data.secs[i].open; this.folds[id] = open ? 1 : 0; try { wx.setStorageSync(FOLD_KEY, this.folds); } catch (er) { } const R = this._rows || { live: {}, gone: {} }, o = { ['secs[' + i + '].open']: open }; if (open) { o['secs[' + i + '].live'] = R.live[id] || []; if (this.data.secs[i].goneOpen) o['secs[' + i + '].gone'] = R.gone[id] || []; } this.setData(o); },
   toggleGone(e) { const id = e.currentTarget.dataset.id, i = this.data.secs.findIndex(s => s.id === id); if (i < 0) return; const v = !this.data.secs[i].goneOpen; this.goneOpen[id] = v; const o = { ['secs[' + i + '].goneOpen']: v }; if (v) o['secs[' + i + '].gone'] = ((this._rows || {}).gone || {})[id] || []; this.setData(o); },
-  togglePast(e) { const id = e.currentTarget.dataset.id, i = this.data.past.findIndex(s => s.id === id); if (i < 0) return; const v = !this.data.past[i].open; this.pastOpen[id] = v; const o = { ['past[' + i + '].open']: v }; if (v) o['past[' + i + '].rows'] = ((this._rows || {}).past || {})[id] || []; this.setData(o); },
+  togglePastDrawer() { this.pastDrawerOpen = !this.data.pastDrawerOpen; this.build(); },
+  togglePast(e) { const id = e.currentTarget.dataset.id; if (this.pastPick === id) { this.pastPick = ''; this.pastPickNone = true; } else { this.pastPick = id; this.pastPickNone = false; } this.build(); },
+  closePastPanel() { this.pastPick = ''; this.pastPickNone = true; this.build(); },
+  togglePastYear(e) { const yr = e.currentTarget.dataset.year; this.pastYearFold = this.pastYearFold || {}; const g = (this.data.pastYears || []).find(x => x.year === yr); this.pastYearFold[yr] = g && g.open ? 0 : 1; this.build(); },
+  setPastYear(e) { this.pastYearFilt = e.currentTarget.dataset.year || ''; this.build(); },
+  togglePastWatched() { this.pastWatchedOnly = !this.pastWatchedOnly; this.build(); },
+  morePastYear(e) { const yr = e.currentTarget.dataset.year; this.pastYearLimit = this.pastYearLimit || {}; this.pastYearLimit[yr] = (this.pastYearLimit[yr] || Library.PAST_YEAR_BATCH || 12) + 24; this.build(); },
+  openProg(e) { wx.navigateTo({ url: '/pages/programme/programme?id=' + e.currentTarget.dataset.id }); },
   setProg(e) { this.setData({ pf: e.currentTarget.dataset.k }); this.build(); },
   open(e) { wx.navigateTo({ url: '/pages/film/film?id=' + e.currentTarget.dataset.id }); },
   onShareAppMessage() { return { title: t('片目 · 麻雀观影护照'), path: '/pages/films/films' }; }

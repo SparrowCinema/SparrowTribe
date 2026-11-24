@@ -83,18 +83,81 @@ function defaultProg(){ const open=progOrdered().filter(p=>progStatus(p)!=="ende
 const statusTag = p => { const st=progStatus(p); return `<i class="pst pst-${st}">${p.ongoing&&st==="live"?"常设":STATUS[st]}</i>`; };
 const progChips = (cur=pfilt) => { const open=progOrdered().filter(p=>progStatus(p)!=="ended"||p.id===cur); return `<div class="filters prog-chips">${[["all","全部专题"],...open.map(p=>[p.id,p.name])].map(([k,n])=>`<button class="fchip" data-pf="${k}" aria-pressed="${cur===k}">${esc(n)}</button>`).join("")}</div>`; };
 const dateSpan = list => { if(!list.length) return ""; const ds=[...new Set(list.map(x=>x.d))]; return ds[0]+" – "+ds[ds.length-1]; };
+const SPINE_CHEV='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>';
+function progSpineMeta(p){
+  const m=/^(\d{4})-(\d{2})/.exec(String(p.end||p.start||""));
+  if(m)return m[1]+"."+m[2];
+  const yr=window.SparrowLibrary?.progEndYear?window.SparrowLibrary.progEndYear(p,progRange(p)[1]):"";
+  return yr&&yr!=="其他"?yr:(p.kind||"专题");
+}
+function progSpineHTML(p,opts={}){
+  const L=window.SparrowLibrary;
+  const st=L?.spineStyle?L.spineStyle(p.id):{bg:"#663c58",ink:"#fffaf2"};
+  const title=L?.spineTitle?L.spineTitle(p.name):p.name;
+  const meta=opts.meta||progSpineMeta(p);
+  const sub=opts.sub||(opts.count!=null?tr(opts.count+" 部"):"");
+  const art=p.cardCover||p.cover||opts.art||"";
+  const attr=opts.attr||`data-prog="${esc(p.id)}"`;
+  return `<button type="button" class="pspine${opts.active?" on":""}" ${attr} style="--sp-bg:${st.bg};--sp-ink:${st.ink}" aria-label="${esc(p.name+(sub?" · "+sub:""))}"><span class="ps-top"><small class="ps-date mono">${esc(meta)}</small>${sub?`<span class="ps-cnt mono">(${esc(sub)})</span>`:""}</span><span class="ps-mid"><b class="ps-title">${esc(title)}</b></span><span class="ps-art">${art?`<img src="${esc(art)}" alt="" loading="lazy">`:`<i class="ps-art-ph">${esc(String(title||"")[0]||"")}</i>`}</span></button>`;
+}
+function progMiniSpinesHTML(list){
+  const L=window.SparrowLibrary;
+  return '<span class="fp-minis" aria-hidden="true">'+list.slice(0,5).map(p=>{const st=L?.spineStyle?L.spineStyle(p.id):{bg:"#663c58"};return `<i style="background:${st.bg}"></i>`;}).join("")+'</span>';
+}
+let pgPastOpen=false, pgPastYearFold={}, pgPastYearLimit={}, pgPastYearFilt="";
+function pastProgsArchiveHTML(past){
+  if(!past.length)return "";
+  const L=window.SparrowLibrary;
+  const getEnd=p=>progRange(p)[1]||0;
+  const items=past.slice().sort((a,b)=>getEnd(b)-getEnd(a));
+  const grouped=L?.groupPastByYear?L.groupPastByYear(items,p=>L.progEndYear(p,getEnd(p))):{byYear:false,years:[{year:"全部",items}],batchSize:12};
+  const showYearBar=grouped.years.length>=2;
+  const visibleYears=pgPastYearFilt?grouped.years.filter(y=>y.year===pgPastYearFilt):grouped.years;
+  const renderShelf=(list,yr)=>{
+    const lim=pgPastYearLimit[yr]||grouped.batchSize;
+    const shown=list.slice(0,lim), rest=list.length-shown.length;
+    const cards=shown.map(p=>{
+      const fn=FILMS.filter(f=>f.prog===p.id||p.sections?.[f.id]||p.members?.includes(f.id)).length;
+      const f0=FILMS.find(f=>(f.prog===p.id||p.sections?.[f.id]||p.members?.includes(f.id))&&pst(f.id));
+      return progSpineHTML(p,{count:fn,art:f0?pthumb(f0.id,360):""});
+    }).join("");
+    const more=rest>0?`<button type="button" class="pspine pspine-more" data-pg-past-more="${esc(yr)}"><b>${esc(tr("展开其余"))}</b><em class="mono">+${rest}</em></button>`:"";
+    return `<div class="pshelf" role="list">${cards}${more}</div>`;
+  };
+  let inner="";
+  if(pgPastOpen){
+    const yBar=showYearBar?`<div class="past-ybar" role="group" aria-label="${esc(tr("按年份筛选往期专题"))}"><button type="button" class="past-ypill${!pgPastYearFilt?" on":""}" data-pg-past-y="">${esc(tr("全部年份"))}</button>${grouped.years.map(g=>`<button type="button" class="past-ypill${pgPastYearFilt===g.year?" on":""}" data-pg-past-y="${esc(g.year)}">${esc(g.year==="其他"?tr("其他"):g.year)}<em class="mono">${g.items.length}</em></button>`).join("")}</div>`:"";
+    const body=grouped.byYear?visibleYears.map((g,i)=>{
+      const open=!!pgPastYearFilt||(pgPastYearFold[g.year]!=null?pgPastYearFold[g.year]===1:i===0);
+      const yLabel=g.year==="其他"?tr("其他"):(LANG==="en"?g.year:g.year+" 年");
+      return `<section class="pyear${open?" open":""}"><button type="button" class="pyear-h" data-pg-past-yfold="${esc(g.year)}" aria-expanded="${open}"><b>${esc(yLabel)}</b><small class="mono">${esc(tr(g.items.length+" 个专题"))}</small><span class="pyear-ar" aria-hidden="true">${SPINE_CHEV}</span></button>${open?renderShelf(g.items,g.year):""}</section>`;
+    }).join(""):renderShelf(items,"all");
+    inner=`<div class="past-drawer-body">${yBar}${body}</div>`;
+  }
+  return `<section class="past-drawer${pgPastOpen?" open":""}" id="pg-past-drawer"><button type="button" class="past-drawer-h" data-pg-past-toggle aria-expanded="${pgPastOpen}"><span class="pd-copy"><b>${esc(tr("往期专题"))}</b><small>${esc(tr(items.length+" 个已结束"))} · ${esc(tr("按书脊横向浏览"))}</small></span>${progMiniSpinesHTML(items)}<span class="fold-btn" aria-hidden="true">${SPINE_CHEV}</span></button>${inner}</section>`;
+}
+document.addEventListener("click",e=>{
+  const t=e.target.closest("[data-pg-past-toggle]");
+  if(t){pgPastOpen=!pgPastOpen;const y=window.scrollY;const box=document.getElementById("pg-past-drawer");if(box){box.outerHTML=pastProgsArchiveHTML(progOrdered().filter(p=>progStatus(p)==="ended"));}else route();window.scrollTo(0,y);return;}
+  const yf=e.target.closest("[data-pg-past-yfold]");
+  if(yf){const yr=yf.dataset.pgPastYfold,cur=yf.getAttribute("aria-expanded")==="true";pgPastYearFold[yr]=cur?0:1;const y=window.scrollY;const box=document.getElementById("pg-past-drawer");if(box)box.outerHTML=pastProgsArchiveHTML(progOrdered().filter(p=>progStatus(p)==="ended"));window.scrollTo(0,y);return;}
+  const yp=e.target.closest("[data-pg-past-y]");
+  if(yp){pgPastYearFilt=yp.dataset.pgPastY;const y=window.scrollY;const box=document.getElementById("pg-past-drawer");if(box)box.outerHTML=pastProgsArchiveHTML(progOrdered().filter(p=>progStatus(p)==="ended"));window.scrollTo(0,y);return;}
+  const pm=e.target.closest("[data-pg-past-more]");
+  if(pm){const yr=pm.dataset.pgPastMore;pgPastYearLimit[yr]=(pgPastYearLimit[yr]||12)+24;const y=window.scrollY;const box=document.getElementById("pg-past-drawer");if(box)box.outerHTML=pastProgsArchiveHTML(progOrdered().filter(p=>progStatus(p)==="ended"));window.scrollTo(0,y);}
+});
 function progCardHTML(p){ const n=progShows(p.id).length, fn=FILMS.filter(f=>f.prog===p.id||p.sections?.[f.id]||p.members?.includes(f.id)).length; return `<button class="prog-card pc-${progStatus(p)}" data-prog="${p.id}">${p.cover?`<img src="${p.cardCover||p.cover}" alt="" loading="lazy">`:""}<span class="pc-body"><small>${statusTag(p)}${esc(p.kind)} · ${esc(p.period)}${p.city?` · ${esc(p.city)}`:""}</small><b>${esc(p.name)}</b><span>${esc(p.sub)} · ${fn} 部${n?` / ${n} 场`:""}</span>${p.blurb?`<span class="pc-blurb">${esc(tr(p.blurb))}</span>`:""}</span><span class="pc-go">专题 ›</span></button>`; }
 function programmesPage(){
   const all=progOrdered(), live=all.filter(p=>progStatus(p)==="live"), soon=all.filter(p=>progStatus(p)==="soon"), past=all.filter(p=>progStatus(p)==="ended");
   const sec=(t,en,list)=>list.length?`<h3 class="blockh pgl-h">${t} <small>${list.length} · ${en}</small></h3><div class="prog-strip">${list.map(progCardHTML).join("")}</div>`:"";
   main.innerHTML=`<section class="view gut"><h2 class="sec">专题</h2><p class="sub">影展、院线新片与艺术影院 · ${live.length+soon.length} 个进行中或即将开始</p>
     ${sec("进行中","NOW ON",live)}${sec("即将开始","COMING UP",soon)}
-    ${past.length?`<details class="past-progs"><summary>往期专题 <small>${past.length} 个已结束</small></summary><div class="prog-strip">${past.map(progCardHTML).join("")}</div></details>`:""}
+    ${pastProgsArchiveHTML(past)}
     ${all.length?"":`<div class="g-empty"><b>专题整理中</b><span>新的影展与放映专题会陆续上线</span></div>`}
     ${presentersHTML()}</section>`;
 }
 function progCardsHTML(){ const all=progOrdered(), open=all.filter(p=>progStatus(p)!=="ended"), past=all.filter(p=>progStatus(p)==="ended");
-  return `<div class="prog-strip">${open.map(progCardHTML).join("")}</div>${past.length?`<details class="past-progs"><summary>往期专题 <small>${past.length} 个已结束</small></summary><div class="prog-strip">${past.map(progCardHTML).join("")}</div></details>`:""}`; }
+  return `<div class="prog-strip">${open.map(progCardHTML).join("")}</div>${pastProgsArchiveHTML(past)}`; }
 const pst = id => (F[id]&&F[id].poster)||null;
 /* 海报缩略图：部署时 tools/build-thumbs.py 生成 posters/w360、w720（WebP），data/version.json 带 th:1 时启用；
    列表 / 网格 / 海报墙用 w360，影片页大图用 w720，长图与分享海报等画布仍用原图。图片带 data-full，缩略图读不到时自动换回原图。 */

@@ -13,7 +13,13 @@ function showsOverlap(a,b){if(!a||!b)return false;const sa=showDate(a),sb=showDa
 function libraryContext(){return {shows:SH,programmes:PROGRAMMES,picked,watched,want,keyOf,isPast,overlaps:showsOverlap,city:fcity,cityOfShow:s=>VN[s.v]?.city,programme:ffilt,programmeOf:f=>f.prog,programmeIds:f=>filmProgsOf(f).map(x=>x.p.id),showProgramme:s=>s.p||F[s.id]?.prog};}
 function filmSelectorOptions(type,query=''){
  const ctx=libraryContext(),q=query.trim().toLocaleLowerCase();let rows;
- if(type==='programme')rows=[{id:'all',name:tr('全部专题'),sub:tr('浏览完整片目'),selected:!selList(ffilt).length},...progGroupOrder().map(p=>({id:p.id,name:p.name,sub:[tr(FILMS.filter(f=>window.SparrowLibrary.inProgramme(f,p.id,ctx)).length+' 部影片'),p.city].filter(Boolean).join(' · '),selected:selList(ffilt).includes(p.id)}))];
+ if(type==='programme'){
+  const ordered=progGroupOrder().sort((a,b)=>(progStatus(a)==='ended'?1:0)-(progStatus(b)==='ended'?1:0)||(progStatus(a)==='ended'?((progRange(b)[1]||0)-(progRange(a)[1]||0)):0));
+  rows=[{id:'all',name:tr('全部专题'),sub:tr('浏览完整片目'),selected:!selList(ffilt).length},...ordered.map(p=>{
+   const ended=progStatus(p)==='ended', yr=ended&&window.SparrowLibrary?.progEndYear?window.SparrowLibrary.progEndYear(p,progRange(p)[1]):'';
+   return {id:p.id,name:p.name,sub:[ended?tr('往期')+(yr&&yr!=='其他'?' · '+yr:''):'',tr(FILMS.filter(f=>window.SparrowLibrary.inProgramme(f,p.id,ctx)).length+' 部影片'),p.city].filter(Boolean).join(' · '),selected:selList(ffilt).includes(p.id)};
+  })];
+ }
  else if(type==='region'){const base=FILMS.filter(f=>window.SparrowLibrary.inProgramme(f,ffilt,ctx));rows=[{id:'all',name:tr('全部地区'),sub:tr(base.length+' 部影片'),selected:!selList(freg).length},...Object.keys(REG).map(k=>({id:k,name:tr(REG[k].n),sub:tr(base.filter(f=>f.reg===k).length+' 部影片'),selected:selList(freg).includes(k)})).filter(x=>!x.sub.startsWith('0'))];}
  else if(type==='length'){const base=FILMS.filter(f=>window.SparrowLibrary.inProgramme(f,ffilt,ctx));rows=[{id:'all',name:tr('全部片长'),sub:tr(base.length+' 部影片'),selected:!selList(flen).length},...LEN_BINS.map(([k,n])=>({id:k,name:tr(n),sub:tr(base.filter(f=>lenOk(f,k)).length+' 部影片'),selected:selList(flen).includes(k)}))];}
  else if(type==='year'){
@@ -74,8 +80,65 @@ function flGrow(key){ const items=FL[key], list=document.querySelector(`.flist[d
 function flObserve(){ if(!("IntersectionObserver" in window)) return; flIO&&flIO.disconnect();
   flIO=new IntersectionObserver(es=>es.forEach(e=>{ if(!e.isIntersecting) return; const el=e.target, key=el.dataset.flMore; flIO.unobserve(el); if(flGrow(key)&&el.isConnected) requestAnimationFrame(()=>el.isConnected&&flIO.observe(el)); }),{rootMargin:"1200px 0px"});
   document.querySelectorAll(".fl-more").forEach(el=>flIO.observe(el)); }
+let flPastOpen=false, flPastPick="", flPastPickNone=false, flPastYearFold={}, flPastYearLimit={}, flPastYearFilt="", flPastWatchedOnly=false;
+function filmsPastHTML(endedGroups,autoOpen){
+  if(!endedGroups.length)return "";
+  const L=window.SparrowLibrary;
+  const totalFilms=endedGroups.reduce((n,[,r])=>n+r.length,0);
+  const drawerOpen=autoOpen||flPastOpen;
+  const miniHTML=typeof progMiniSpinesHTML==="function"?progMiniSpinesHTML(endedGroups.map(([p])=>p)):"";
+  const header=`<button type="button" class="past-drawer-h" data-fl-past-toggle aria-expanded="${drawerOpen}"><span class="pd-copy"><b>${esc(tr("往期专题"))}</b><small>${esc(tr(endedGroups.length+" 个专题"))} · ${esc(tr(totalFilms+" 部影片"))}</small></span>${miniHTML}<span class="fold-btn" aria-hidden="true">${CHEV}</span></button>`;
+  if(!drawerOpen)return `<section class="past-drawer" id="fl-past-drawer">${header}</section>`;
+
+  const hasWatchedIn=rows=>rows.some(f=>{const r=watched[f.id];return !!(r&&!r.del&&r.d);});
+  const anyWatched=endedGroups.some(([,r])=>hasWatchedIn(r));
+  const pool=flPastWatchedOnly?endedGroups.filter(([,r])=>hasWatchedIn(r)):endedGroups;
+  const grouped=L?.groupPastByYear?L.groupPastByYear(pool,([p])=>L.progEndYear(p,progRange(p)[1])):{byYear:false,years:[{year:"全部",items:pool}],batchSize:12};
+  const showTools=grouped.years.length>=2||(endedGroups.length>=6&&anyWatched);
+  const visibleYears=flPastYearFilt&&grouped.years.some(y=>y.year===flPastYearFilt)?grouped.years.filter(y=>y.year===flPastYearFilt):grouped.years;
+  const allVisibleItems=visibleYears.flatMap(y=>y.items);
+  let activePid=flPastPick;
+  if(activePid&&!allVisibleItems.some(([p])=>p.id===activePid))activePid="";
+  if(!activePid&&autoOpen&&!flPastPickNone&&allVisibleItems.length)activePid=allVisibleItems[0][0].id;
+
+  const panelHTML=(p,rows)=>`<div class="pshelf-panel" data-past-panel="${esc(p.id)}"><header class="psp-h"><div class="psp-t"><span class="fgrp-kind">${isFest(p)?esc(tr("影展")):esc(tr(p.kind||"专题"))}</span><h4>${esc(p.name)}</h4><small class="mono">${esc(tr(rows.length+" 部"))}${p.period?" · "+esc(p.period):""}</small></div><div class="psp-acts"><button type="button" class="psp-go" data-prog="${esc(p.id)}">${esc(tr("专题页"))} ›</button><button type="button" class="psp-x" data-fl-past-close aria-label="${esc(tr("收起"))}">×</button></div></header>${lazyFlist("p:"+p.id,rows.map(f=>[f,null]),true)}</div>`;
+
+  const renderShelf=(items,yr)=>{
+    const lim=flPastYearLimit[yr]||grouped.batchSize;
+    const shown=items.slice(0,lim), rest=items.length-shown.length;
+    const cards=shown.map(([p,rows])=>{
+      const f0=rows.find(f=>pst(f.id));
+      const art=f0?(typeof pthumb==="function"?pthumb(f0.id,360):pst(f0.id)):"";
+      const attr=`data-fl-past-pick="${esc(p.id)}" aria-pressed="${activePid===p.id}"`;
+      if(typeof progSpineHTML==="function")return progSpineHTML(p,{count:rows.length,art,active:activePid===p.id,attr});
+      return `<button type="button" class="pspine${activePid===p.id?" on":""}" ${attr}><b>${esc(p.name)}</b></button>`;
+    }).join("");
+    const more=rest>0?`<button type="button" class="pspine pspine-more" data-fl-past-more="${esc(yr)}"><b>${esc(tr("展开其余"))}</b><em class="mono">+${rest}</em></button>`:"";
+    const pickedEntry=activePid?items.find(([p])=>p.id===activePid):null;
+    return `<div class="pshelf" role="list">${cards}${more}</div>${pickedEntry?panelHTML(pickedEntry[0],pickedEntry[1]):""}`;
+  };
+
+  const toolsBar=showTools?`<div class="past-ybar" role="group" aria-label="${esc(tr("按年份筛选往期专题"))}">${grouped.years.length>=2?`<button type="button" class="past-ypill${!flPastYearFilt?" on":""}" data-fl-past-y="">${esc(tr("全部年份"))}</button>`+grouped.years.map(g=>`<button type="button" class="past-ypill${flPastYearFilt===g.year?" on":""}" data-fl-past-y="${esc(g.year)}">${esc(g.year==="其他"?tr("其他"):g.year)}<em class="mono">${g.items.length}</em></button>`).join(""):""}${anyWatched?`<button type="button" class="past-ypill past-wbtn${flPastWatchedOnly?" on":""}" data-fl-past-watched aria-pressed="${flPastWatchedOnly}">${esc(tr("我看过的"))}</button>`:""}</div>`:"";
+
+  let body="";
+  if(!pool.length){
+    body=`<p class="past-empty">${esc(tr("暂无匹配的往期专题"))}</p>`;
+  } else if(grouped.byYear){
+    body=visibleYears.map((g,i)=>{
+      const hasPick=!!activePid&&g.items.some(([p])=>p.id===activePid);
+      const open=autoOpen||!!flPastYearFilt||hasPick||(flPastYearFold[g.year]!=null?flPastYearFold[g.year]===1:i===0);
+      const yFilms=g.items.reduce((n,[,r])=>n+r.length,0);
+      const yLabel=g.year==="其他"?tr("其他"):(LANG==="en"?g.year:g.year+" 年");
+      return `<section class="pyear${open?" open":""}"><button type="button" class="pyear-h" data-fl-past-yfold="${esc(g.year)}" aria-expanded="${open}"><b>${esc(yLabel)}</b><small class="mono">${esc(tr(g.items.length+" 个专题"))} · ${esc(tr(yFilms+" 部"))}</small><span class="pyear-ar" aria-hidden="true">${CHEV}</span></button>${open?renderShelf(g.items,g.year):""}</section>`;
+    }).join("");
+  } else {
+    body=renderShelf(pool,"all");
+  }
+  const hint=!activePid&&pool.length?`<p class="pshelf-hint">${esc(tr("横向滑动选择书脊，点击展开该专题片单"))}</p>`:"";
+  return `<section class="past-drawer open" id="fl-past-drawer">${header}<div class="past-drawer-body">${toolsBar}${body}${hint}</div></section>`;
+}
 function filmsListHTML(){
-  { const sig=[fq,ffilt,fcity,fyear,freg,flen,fmine].join("|"); if(sig!==flSig){ flSig=sig; flShown={}; } FL={}; requestAnimationFrame(flObserve); }
+  { const sig=[fq,ffilt,fcity,fyear,freg,flen,fmine].join("|"); if(sig!==flSig){ flSig=sig; flShown={}; flPastPickNone=false; } FL={}; requestAnimationFrame(flObserve); }
   // 跨影展影片在每个所属专题里都列出；「下一场」只取该专题的场次
   const ctx=libraryContext();
   const showPid=s=>s.p||F[s.id]?.prog;
@@ -86,17 +149,32 @@ function filmsListHTML(){
   const isLiveIn=(f,p)=>!!nextIn(f,p.id)||(!endedIn(f,p.id)&&!SH.some(s=>s.id===f.id&&showPid(s)===p.id)&&progStatus(p)!=="ended");
   const endedP=p=>progStatus(p)==="ended";
   const groups = progGroupOrder().filter(p=>!endedP(p)).map(p=>{const m=members(p);return [p,m.filter(f=>isLiveIn(f,p)).sort(orderIn(p.id)),m.filter(f=>!isLiveIn(f,p)).sort((a,b)=>relTime(b)-relTime(a))];}).filter(([,r,g])=>r.length||g.length);
-  const autoOpen=!!fq||fmine!=="all";
+  const endedGroups = progGroupOrder().filter(endedP).map(p=>[p,members(p).sort((a,b)=>relTime(b)-relTime(a))]).filter(([,r])=>r.length).sort((x,y)=>(progRange(y[0])[1]||0)-(progRange(x[0])[1]||0));
+  const autoOpen=!!fq||fmine!=="all"||(ffilt!=="all"&&endedGroups.length>0);
   const grpHTML = ([p,rows,old]) => { const key='g:'+p.id, open=autoOpen||folds[key]!==0, all=rows.concat(old);
     return `<section class="fsec${open?"":" closed"}" data-fsec="${key}"><header class="fgrp fgrp2"><div class="fgrp-main"><span class="fgrp-kind">${isFest(p)?"影展":esc(p.kind||"专题")}</span><h3>${esc(p.name)}</h3><small class="fgrp-meta">${all.length} 部 · ${esc(p.en||p.kind||"")}</small></div><div class="fgrp-side">${stackHTML(all)}<button class="fold-btn" data-fold="${key}" aria-expanded="${open}" aria-label="${tr(open?"收起":"展开")} ${esc(p.name)}">${CHEV}</button></div></header>
       <div class="fsec-body">${lazyFlist(key+":live",rows.map(f=>[f,nextIn(f,p.id)]),open)}${old.length?`<details class="fgone"${autoOpen?" open":""}><summary><span>本专题已放映</span><b>${old.length}</b><span>部</span>${CHEV}</summary>${lazyFlist(key+":old",old.map(f=>[f,null]),open&&autoOpen)}</details>`:""}</div></section>`; };
-  const endedGroups = progGroupOrder().filter(endedP).map(p=>[p,members(p).sort((a,b)=>relTime(b)-relTime(a))]).filter(([,r])=>r.length).sort((x,y)=>(progRange(y[0])[1]||0)-(progRange(x[0])[1]||0));
-  const pastHTML = endedGroups.length?`<header class="fpast-h"><h3>往期专题</h3><small>${endedGroups.reduce((n,[,r])=>n+r.length,0)} 部 · 已结束的专题收在这里</small></header>`+endedGroups.map(([p,rows])=>`<details class="fold-prog"${autoOpen?" open":""}><summary><span class="fp-t"><span class="fgrp-kind">${isFest(p)?"影展":esc(p.kind||"专题")}</span><b>${esc(p.name)}</b><small class="fp-n">${rows.length} 部${p.period?" · "+esc(p.period):""}</small></span>${stackHTML(rows)}<span class="fold-btn" aria-hidden="true">${CHEV}</span></summary>${lazyFlist("p:"+p.id,rows.map(f=>[f,null]),autoOpen)}</details>`).join(""):"";
+  const pastHTML = filmsPastHTML(endedGroups,autoOpen);
   const body = groups.map(grpHTML).join("")+pastHTML;
   const activeLabels=selList(fmine).map(mineModeLabel);
   return `<p class="library-result-count" aria-live="polite">${base.length} 部影片${activeLabels.length?" · "+activeLabels.map(tr).join(" · "):""}</p>`+(body || `<div class="g-empty"><b>${fq?`没有找到「${esc(fq)}」`:"当前分类暂无影片"}</b><span>${fmine==="planned"?"在排片表中加入场次，就会出现在这里。":fmine==="watched"?"在影片页点「看过」，开始收集你的电影印章。":"换个条件，或试试片名、导演、演员。"}</span></div>`);
 }
+function rerenderFilmsList(centerPick){const y=window.scrollY,w=document.getElementById("flist-wrap");const prevScroll=[...document.querySelectorAll("#fl-past-drawer .pshelf")].map(el=>el.scrollLeft);if(w){w.innerHTML=filmsListHTML();const shelves=[...document.querySelectorAll("#fl-past-drawer .pshelf")];shelves.forEach((el,i)=>{if(prevScroll[i])el.scrollLeft=prevScroll[i];});if(centerPick){const on=document.querySelector("#fl-past-drawer .pspine.on");if(on&&on.parentElement){const p=on.parentElement;p.scrollLeft=Math.max(0,on.offsetLeft-p.offsetLeft-(p.clientWidth-on.offsetWidth)/2);}}window.scrollTo(0,y);}}
 document.addEventListener("click",e=>{
+  const pt=e.target.closest("[data-fl-past-toggle]");
+  if(pt){flPastOpen=pt.getAttribute("aria-expanded")!=="true";rerenderFilmsList();return;}
+  const pk=e.target.closest("[data-fl-past-pick]");
+  if(pk){const id=pk.dataset.flPastPick;if(flPastPick===id){flPastPick="";flPastPickNone=true;}else{flPastPick=id;flPastPickNone=false;}rerenderFilmsList(!!flPastPick);return;}
+  const pc=e.target.closest("[data-fl-past-close]");
+  if(pc){flPastPick="";flPastPickNone=true;rerenderFilmsList();return;}
+  const yf=e.target.closest("[data-fl-past-yfold]");
+  if(yf){const yr=yf.dataset.flPastYfold,cur=yf.getAttribute("aria-expanded")==="true";flPastYearFold[yr]=cur?0:1;rerenderFilmsList();return;}
+  const yp=e.target.closest("[data-fl-past-y]");
+  if(yp){flPastYearFilt=yp.dataset.flPastY;rerenderFilmsList();return;}
+  const pw=e.target.closest("[data-fl-past-watched]");
+  if(pw){flPastWatchedOnly=!flPastWatchedOnly;rerenderFilmsList();return;}
+  const pm=e.target.closest("[data-fl-past-more]");
+  if(pm){const yr=pm.dataset.flPastMore;flPastYearLimit[yr]=(flPastYearLimit[yr]||12)+24;rerenderFilmsList();return;}
   const b=e.target.closest("[data-fold]");if(!b)return;const sec=b.closest(".fsec"),open=!sec.classList.toggle("closed");folds[b.dataset.fold]=open?1:0;saveFolds();b.setAttribute("aria-expanded",open);b.setAttribute("aria-label",tr(open?"收起":"展开")+" "+sec.querySelector("h3").textContent);
   if(!open){const top=sec.getBoundingClientRect().top;if(top<0)window.scrollTo({top:window.scrollY+top-(document.getElementById("topbar")?.offsetHeight||0)-8,behavior:"instant"});}});
 /* 片目顶部介绍：总片目数随专题增加自动更新；文案按当前规划（按专题分组、可折叠、结束后归往期）*/

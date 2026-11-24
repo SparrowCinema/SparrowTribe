@@ -39,3 +39,39 @@ console.log('PASS: personal membership, deletion tombstones, programme-scoped pl
 for(const [w,h,n] of [[390,844,5],[768,1024,5],[844,390,10],[1024,768,10],[800,800,8],[0,0,5]])assert.equal(L.posterColumns(w,h),n);
 for(let w=320,prev=5;w<=1600;w+=20){const n=L.posterColumns(w,900);assert(n>=5&&n<=10&&n>=prev);prev=n;}
 console.log('PASS: poster grid changes monotonically from 5 portrait columns to 10 landscape columns.');
+
+// Past-programme 3-layer archive folding & horizontal book-spine helpers (scales to 100+ programmes)
+{
+ assert.equal(L.spineTitle('2026金马影展'), '金马影展');
+ assert.equal(L.spineTitle('2026 Golden Horse Film Festival'), 'Golden Horse Film Festival');
+ assert.equal(L.spineTitle('风格万相'), '风格万相');
+ assert.equal(L.spineStyle('golden-horse-2026').bg, L.spineStyle('golden-horse-2026').bg);
+ assert.equal(L.progEndYear({ end: '2025-11-22' }), '2025');
+ assert.equal(L.progEndYear({ period: '2024.10 – 2024.11' }), '2024');
+ const many = Array.from({ length: 120 }, (_, i) => ({ id: 'p-' + i, year: String(2022 + (i % 5)) }));
+ const g120 = L.groupPastByYear(many, x => x.year);
+ assert.equal(g120.byYear, true);
+ assert.deepStrictEqual(g120.years.map(y => y.year), ['2026', '2025', '2024', '2023', '2022']);
+ assert.equal(g120.years[0].items.length, 24);
+ assert.equal(g120.batchSize, 12);
+ const small = [{ id: 'a', year: '2026' }, { id: 'b', year: '2026' }];
+ assert.equal(L.groupPastByYear(small, x => x.year).byYear, false);
+ // Verify mini-program films past drawer defaults collapsed and toggles open/picks spine cleanly
+ if (page.data.pastCount > 0) {
+  assert.equal(page.data.pastDrawerOpen, false, 'past drawer should be collapsed by default');
+  assert.equal(page.data.pastYears.length, 0, 'collapsed past drawer should not send year/film payload');
+  page.togglePastDrawer();
+  assert.equal(page.data.pastDrawerOpen, true);
+  assert(page.data.pastYears.length >= 1);
+  const firstId = page.data.past[0].id;
+  page.togglePast({ currentTarget: { dataset: { id: firstId } } });
+  assert.equal(page.data.pastPick, firstId);
+  assert(page.data.pastYears.some(y => y.panel && y.panel.id === firstId && y.panel.rows.length > 0));
+  page.closePastPanel();
+  assert.equal(page.data.pastPick, '');
+  page.togglePastDrawer();
+  assert.equal(page.data.pastDrawerOpen, false);
+ }
+ console.log('PASS: 3-layer past-programme spine archive folding (120-programme multi-year scale + mini-program drawer/spine toggle).');
+}
+
