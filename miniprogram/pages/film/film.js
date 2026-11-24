@@ -2,6 +2,7 @@ const Taste=require('../../utils/taste.js'),C=require('../../utils/community.js'
 const T = require('../../utils/totop.js');
 const U = require('../../utils/util.js');
 const MyP = require('../../utils/myposter.js');
+const artText = s => /^海报 \d+$/.test(s) ? I.tr('海报') + ' ' + s.slice(3) : I.tr(s);
 const Premiere = require('../../utils/premiere.js');
 const Library = require('../../utils/library.js');
 const plan = require('../../utils/plan.js');
@@ -36,11 +37,11 @@ Page({
   ppOpen() {
     const f = app.globalData.data && U.index(app.globalData.data).F[this.id]; if (!f) return;
     const arts = MyP.artOf(f); if (arts.length < 2) return;
-    const cur = MyP.pick(f) || arts[0], labels = arts.map((a, i) => (a === cur ? '✓ ' : '') + (i ? I.tr('备用图像') + ' ' + i : I.tr('官方海报'))).slice(0, 6);
+    const cur = MyP.pick(f) || arts[0], labels = arts.map((a, i) => (a === cur ? '✓ ' : '') + artText(MyP.label(f, a) || '海报 ' + (i + 1))).slice(0, 6);
     wx.showActionSheet({ alertText: I.tr('只改你自己看到的：影片页、海报墙、观影结算长图和典藏票根默认票面图'), itemList: labels, success: r => {
       const u = arts[r.tapIndex]; if (!u || u === cur) return;
       MyP.set(f, u); this.setData({ 'f.poster': MyP.pick(f) || U.poster(f) });
-      wx.showToast({ title: I.tr(r.tapIndex ? '已换成你选的海报' : '已恢复官方海报'), icon: 'none' });
+      wx.showToast({ title: I.tr(r.tapIndex ? '已换成你选的海报' : '已恢复主海报'), icon: 'none' });
     } });
   },
   toggleGone() { this.setData({ goneOpen: !this.data.goneOpen }); },

@@ -3070,9 +3070,10 @@
     3.9
    ],
    "version": "重映",
+   "posterLabel": "IMAX海报",
    "poster": "posters/dune-2021-imax.jpg",
    "stills": [
-    "posters/dune-2021.jpg"
+    {"url": "posters/dune-2021.jpg", "label": "插画海报"}
    ],
    "links": {
     "douban": "3001114",
@@ -3168,9 +3169,9 @@
    "version": "重映",
    "poster": "posters/dune-part-two-main.jpg",
    "stills": [
-    "posters/dune-part-two-eye.jpg",
-    "posters/dune-part-two-imax.jpg",
-    "posters/dune-part-two.jpg"
+    {"url": "posters/dune-part-two-eye.jpg", "label": "插画海报"},
+    {"url": "posters/dune-part-two-imax.jpg", "label": "IMAX海报"},
+    {"url": "posters/dune-part-two.jpg", "label": "重映海报"}
    ],
    "links": {
     "douban": "35575567",
@@ -3268,7 +3269,7 @@
    "version": "完整版",
    "posterUrl": "https://sparrowcinema.org/posters/24-flavors-1127.jpg",
    "stills": [
-    "posters/24-flavors.jpg"
+    {"url": "posters/24-flavors.jpg", "label": "人物海报"}
    ],
    "poster": "posters/24-flavors-1127.jpg",
    "links": {

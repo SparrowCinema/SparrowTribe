@@ -367,7 +367,7 @@ function ticketFilterRefresh(d){
 function ticketOpenFilter(kind){
   if(kind==="art-pick"&&ticketDraft){
     const row=ticketDraft.row,assets=[...(row.arts||[])];
-    const rows=assets.map((a,i)=>`<button type="button" class="selector-option te-art-opt" role="option" aria-selected="${a===row.art}" data-ticket-art-pick="${esc(a)}"><img src="${esc(i===0?ticketThumb({art:a,filmId:row.filmId}):a)}" alt="" loading="lazy"><span><b>${ticketDict(i===0?"海报":"备用图像")} ${i+1}</b></span><span class="selector-check" aria-hidden="true">${a===row.art?"✓":""}</span></button>`).join("");
+    const rows=assets.map((a,i)=>`<button type="button" class="selector-option te-art-opt" role="option" aria-selected="${a===row.art}" data-ticket-art-pick="${esc(a)}"><img src="${esc(i===0?ticketThumb({art:a,filmId:row.filmId}):a)}" alt="" loading="lazy"><span><b>${esc(artLabelText(filmArtLabel(F[row.filmId],a)||("海报 "+(i+1))))}</b></span><span class="selector-check" aria-hidden="true">${a===row.art?"✓":""}</span></button>`).join("");
     ticketDialog("art-pick",ticketDict("票面图像"),`<div class="selector-results" role="listbox">${rows}</div>${assets.length<2?`<p class="selector-empty te-art-note">${ticketDict("这部影片暂时只有这一张图像，补充备用海报或剧照后可以在这里更换")}</p>`:""}`);
     return;
   }

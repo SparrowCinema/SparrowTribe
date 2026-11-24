@@ -18,6 +18,7 @@ const readArtPreference=key=>wx.getStorageSync(key);
 const Tix=require('../../../utils/ticketstore.js');
 const W=require('../../../utils/watched.js');
 const U=require('../../../utils/util.js');
+const MyP=require('../../../utils/myposter.js');
 const I=require('../../../utils/i18n.js');
 const CFG=require('../../../utils/cfg.js');
 const app=getApp();
@@ -95,7 +96,7 @@ Page({
       .filter(x=>!row.linked||x.date===row.date).sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time));
     this.setData({ok:true,draft:row,existing:!!this._original,artDirty:!this._original,linked:!!row.linked,
       artStyleIndex:Art.filmStyleOptions.findIndex(option=>option.id===style),
-      arts:this._art.map((_,i)=>I.tr(i===0?'海报':'备用图像')+' '+(i+1)),artIndex:Math.max(0,this._art.indexOf(row.art)),
+      arts:this._art.map((a,i)=>{const l=MyP.label(this.idx.F[row.filmId],a)||'海报 '+(i+1);return /^海报 \d+$/.test(l)?I.tr('海报')+' '+l.slice(3):I.tr(l);}),artIndex:Math.max(0,this._art.indexOf(row.art)),
       shows:this._shows.map(x=>`${x.date.slice(5).replace('-','/')} ${x.time} · ${x.venue}${x.hall?' '+x.hall:''}`),showIdx:this.showIndex(),
       shine:R.shineOf(row.look.finish).kind},()=>this.renderFaces());
   },

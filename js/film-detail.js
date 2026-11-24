@@ -128,12 +128,13 @@ function openMyPoster(id){ const f=F[id];if(!f)return; const arts=filmArtwork(f)
   document.getElementById("pp-sheet")?.remove();
   const d=document.createElement("dialog");d.id="pp-sheet";d.className="schedule-selector ticket-selector";d.setAttribute("aria-labelledby","pp-title");
   d.innerHTML=`<header class="selector-head"><h2 id="pp-title">${tr("我的海报")}</h2><button type="button" class="selector-close" data-pp="close" aria-label="${tr("关闭")}">×</button></header>
-    <p class="pp-note">${tr("只改你自己看到的：影片页、海报墙、观影结算长图和典藏票根默认票面图。片目、排片和分享海报仍用官方海报。")}</p>
-    <div class="selector-results" role="listbox">${arts.map((a,i)=>`<button type="button" class="selector-option te-art-opt" role="option" aria-selected="${a===cur}" data-pp-pick="${esc(a)}"><img src="${esc(i===0?(pthumb(id,360)||a):a)}" alt="" loading="lazy"><span><b>${tr(i===0?"官方海报":"备用图像")}${i?" "+i:""}</b></span><span class="selector-check" aria-hidden="true">${a===cur?"✓":""}</span></button>`).join("")}</div>`;
+    <p class="pp-note">${tr("只改你自己看到的：影片页、海报墙、观影结算长图和典藏票根默认票面图。片目、排片和分享海报仍用主海报。")}</p>
+    <div class="selector-results" role="listbox">${arts.map((a,i)=>`<button type="button" class="selector-option te-art-opt" role="option" aria-selected="${a===cur}" data-pp-pick="${esc(a)}"><img src="${esc(i===0?(pthumb(id,360)||a):a)}" alt="" loading="lazy"><span><b>${esc(artLabelText(filmArtLabel(f,a)))}</b></span><span class="selector-check" aria-hidden="true">${a===cur?"✓":""}</span></button>`).join("")}</div>`;
   document.body.appendChild(d);
   d.addEventListener("click",e=>{ if(e.target===d||e.target.closest('[data-pp="close"]')){d.close();return;}
     const b=e.target.closest("[data-pp-pick]");if(!b)return; const u=b.dataset.ppPick;d.close();if(u===cur)return;
-    setMyPoster(id,u);route();toast(u===arts[0]?tr("已恢复官方海报"):tr("已换成你选的海报")); });
+    setMyPoster(id,u);route();toast(u===arts[0]?tr("已恢复主海报"):tr("已换成你选的海报")); });
   d.addEventListener("close",()=>{d.remove();document.querySelector(`[data-my-poster="${CSS.escape(id)}"]`)?.focus({preventScroll:true});});
+  addEventListener("hashchange",()=>{if(d.open)d.close();},{once:true}); /* 弹层开着时换了页面（如按返回）就关掉 */
   d.showModal(); }
 document.addEventListener("click",e=>{const b=e.target.closest("[data-my-poster]");if(b)openMyPoster(b.dataset.myPoster);});
