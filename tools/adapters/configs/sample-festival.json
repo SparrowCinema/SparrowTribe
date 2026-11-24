@@ -1,0 +1,20 @@
+{
+  "_comment": "通用影展官网 HTML 选择器配置示例：node tools/import-festival.js --input schedule.html --adapter html --config tools/adapters/configs/sample-festival.json --id my-fest-2026 --name '示例影展'",
+  "item": "li.screening-card",
+  "fields": {
+    "title": ".film-title",
+    "en": ".film-en",
+    "dir": { "selector": ".film-director", "regex": "(?:导演|Director)[:：]?\\s*(.+)" },
+    "country": ".film-country",
+    "year": { "selector": ".film-meta", "regex": "((?:19|20)\\d{2})" },
+    "min": { "selector": ".film-meta", "regex": "(\\d+)\\s*(?:min|分)" },
+    "section": ".film-section",
+    "version": ".film-format",
+    "date": "[data-date]@data-date",
+    "time": ".show-time",
+    "venue": ".show-venue",
+    "hall": ".show-hall",
+    "qa": ".show-qa",
+    "synopsis": ".film-synopsis"
+  }
+}

@@ -17,6 +17,7 @@ const fs = require('fs');
 const path = require('path');
 const { execFileSync } = require('child_process');
 const Eco = require('../shared/ecosystem.js');
+const Adapters = require('./adapters/index.js');
 
 const ROOT = path.resolve(__dirname, '..');
 
@@ -192,13 +193,16 @@ function loadExistingCatalog(rootDir) {
 function ingest(options) {
   const {
     inputText,
-    format, // 'csv' | 'tsv' | 'ics' | 'json'
+    format, // 'csv' | 'tsv' | 'ics' | 'json' | 'html' | 'jsonld'
+    adapter = '', // '' | 'auto' | 'jsonld' | 'eventive' | 'html' | 'goldenhorse'
+    config = null,
+    url = '',
     id,
     name,
     en = '',
     sub = '',
-    city = '',
-    tz = 'Asia/Shanghai',
+    city: rawCity = '',
+    tz: rawTz = '',
     year = new Date().getFullYear(),
     kind = '影展专题',
     rootDir = ROOT
@@ -207,8 +211,22 @@ function ingest(options) {
   if (!id || !/^[a-z0-9][a-z0-9-]{1,63}$/.test(id)) throw new Error('Invalid programme --id (lowercase letters, digits, hyphens)');
   if (!name) throw new Error('Missing programme --name');
 
+  const resolvedAdapterId = adapter
+    ? (adapter === 'auto' ? Adapters.detectAdapter({ url, inputText, config }) : adapter)
+    : (format === 'html' || format === 'htm' ? (Adapters.detectAdapter({ url, inputText, config }) || 'html')
+      : format === 'jsonld' ? 'jsonld'
+      : '');
+  const adapterMod = resolvedAdapterId ? Adapters.ADAPTERS[resolvedAdapterId] : null;
+  const tz = rawTz || (adapterMod && adapterMod.defaultTz) || 'Asia/Shanghai';
+  const city = rawCity || (adapterMod && adapterMod.defaultCity) || '';
+
   let records = [];
-  if (format === 'json') {
+  if (resolvedAdapterId) {
+    const out = Adapters.parseWithAdapter(resolvedAdapterId, inputText, {
+      tz, url, config, normalizeRowsFromTable
+    });
+    records = out.records;
+  } else if (format === 'json') {
     const raw = JSON.parse(inputText);
     records = Array.isArray(raw) ? raw : (raw.rows || raw.screenings || []);
     records = records.map(r => ({
@@ -400,7 +418,18 @@ function ingest(options) {
     })
   };
 
-  return { programmeJson, catalogPatch, enScaffold, diagnostics };
+  return { programmeJson, catalogPatch, enScaffold, diagnostics, adapter: resolvedAdapterId || format || 'csv' };
+}
+
+async function ingestUrl(options) {
+  const { url, adapter = 'auto', fetchFn } = options || {};
+  if (!url) throw new Error('Missing --url');
+  const fetched = await Adapters.fetchAdapterInput(adapter, url, fetchFn);
+  return ingest(Object.assign({}, options, {
+    inputText: fetched.text,
+    adapter: fetched.adapter,
+    url
+  }));
 }
 
 function parseArgs(argv) {
@@ -411,6 +440,7 @@ function parseArgs(argv) {
     else if (a === '--dry-run') args.dryRun = true;
     else if (a === '--write') args.write = true;
     else if (a === '--json') args.json = true;
+    else if (a === '--list-adapters') args.listAdapters = true;
     else if (a.startsWith('--') && i + 1 < argv.length) {
       args[a.slice(2)] = argv[++i];
     }
@@ -420,12 +450,20 @@ function parseArgs(argv) {
 
 if (require.main === module) {
   const args = parseArgs(process.argv.slice(2));
-  if (args.help || !args.input || !args.id || !args.name) {
-    console.log(`Usage: node tools/import-festival.js --input <file.csv|tsv|ics|json> --id <prog-id> --name "<中文名>" [options]
+  if (args.listAdapters) {
+    console.log('Available official festival adapters:');
+    Object.values(Adapters.ADAPTERS).forEach(a => console.log(`  - ${a.id.padEnd(12)} ${a.name}`));
+    process.exit(0);
+  }
+  if (args.help || (!args.input && !args.url) || !args.id || !args.name) {
+    console.log(`Usage: node tools/import-festival.js (--input <file> | --url <https://...>) --id <prog-id> --name "<中文名>" [options]
 Options:
+  --adapter <name>   Official scraper adapter: auto | jsonld | eventive | html | goldenhorse
+  --config <file>    Selector config JSON for --adapter html (see tools/adapters/configs/)
+  --list-adapters    List built-in official schedule adapters
   --en "<EN>"        English title
   --city "<城市>"     City name
-  --tz "<IANA TZ>"   Timezone (default Asia/Shanghai)
+  --tz "<IANA TZ>"   Timezone (default Asia/Shanghai, or adapter default)
   --year 2026        Festival year
   --kind "影展专题"   Programme kind
   --out-dir <dir>    Write generated artifacts into a staging directory
@@ -435,50 +473,62 @@ Options:
     process.exit(args.help ? 0 : 1);
   }
 
-  const inputPath = path.resolve(args.input);
-  const inputText = fs.readFileSync(inputPath, 'utf8');
-  const ext = path.extname(inputPath).toLowerCase().slice(1);
-  const format = ['tsv', 'ics', 'json'].includes(ext) ? ext : 'csv';
+  (async () => {
+    const config = args.config ? JSON.parse(fs.readFileSync(path.resolve(args.config), 'utf8')) : null;
+    const baseOpts = {
+      id: args.id,
+      name: args.name,
+      en: args.en || '',
+      city: args.city || '',
+      tz: args.tz || '',
+      year: args.year ? Number(args.year) : new Date().getFullYear(),
+      kind: args.kind || '影展专题',
+      adapter: args.adapter || (args.url ? 'auto' : ''),
+      config
+    };
 
-  const res = ingest({
-    inputText,
-    format,
-    id: args.id,
-    name: args.name,
-    en: args.en || '',
-    city: args.city || '',
-    tz: args.tz || 'Asia/Shanghai',
-    year: args.year ? Number(args.year) : new Date().getFullYear(),
-    kind: args.kind || '影展专题'
-  });
-
-  if (args['out-dir']) {
-    const dir = path.resolve(args['out-dir']);
-    fs.mkdirSync(dir, { recursive: true });
-    fs.writeFileSync(path.join(dir, `${args.id}.json`), JSON.stringify(res.programmeJson, null, 2) + '\n', 'utf8');
-    fs.writeFileSync(path.join(dir, `${args.id}.catalog-patch.json`), JSON.stringify(res.catalogPatch, null, 2) + '\n', 'utf8');
-    fs.writeFileSync(path.join(dir, `${args.id}.en-scaffold.json`), JSON.stringify(res.enScaffold, null, 2) + '\n', 'utf8');
-  } else if (args.write && !args.dryRun) {
-    const outPath = path.join(ROOT, 'data/programmes', `${args.id}.json`);
-    fs.writeFileSync(outPath, JSON.stringify(res.programmeJson, null, 2) + '\n', 'utf8');
-    console.log('Wrote:', outPath);
-    try {
-      execFileSync(process.execPath, [path.join(__dirname, 'assign-sids.js')], { stdio: 'inherit' });
-    } catch (e) {
-      console.warn('Note: add programme entry to data/catalog.json before running assign-sids.js');
+    let res;
+    if (args.url) {
+      res = await ingestUrl(Object.assign({}, baseOpts, { url: args.url }));
+    } else {
+      const inputPath = path.resolve(args.input);
+      const inputText = fs.readFileSync(inputPath, 'utf8');
+      const ext = path.extname(inputPath).toLowerCase().slice(1);
+      const format = ['tsv', 'ics', 'json', 'html', 'htm', 'jsonld'].includes(ext) ? ext : 'csv';
+      res = ingest(Object.assign({}, baseOpts, { inputText, format }));
     }
-  }
 
-  if (args.json) {
-    console.log(JSON.stringify(res, null, 2));
-  } else {
-    console.log(`Ingested [${args.id}] "${args.name}":`);
-    console.log(`  Films: ${res.programmeJson.films.length} (reused ${res.diagnostics.reusedFilms}, new ${res.diagnostics.newFilms})`);
-    console.log(`  Shows: ${res.programmeJson.shows.length}`);
-    console.log(`  Venues: reused ${res.diagnostics.reusedVenues}, new ${res.diagnostics.newVenues}`);
-    console.log(`  Hall collisions: ${res.diagnostics.collisions.length}`);
-    console.log(`  Missing-field items: ${res.diagnostics.missingFields.length}`);
-  }
+    if (args['out-dir']) {
+      const dir = path.resolve(args['out-dir']);
+      fs.mkdirSync(dir, { recursive: true });
+      fs.writeFileSync(path.join(dir, `${args.id}.json`), JSON.stringify(res.programmeJson, null, 2) + '\n', 'utf8');
+      fs.writeFileSync(path.join(dir, `${args.id}.catalog-patch.json`), JSON.stringify(res.catalogPatch, null, 2) + '\n', 'utf8');
+      fs.writeFileSync(path.join(dir, `${args.id}.en-scaffold.json`), JSON.stringify(res.enScaffold, null, 2) + '\n', 'utf8');
+    } else if (args.write && !args.dryRun) {
+      const outPath = path.join(ROOT, 'data/programmes', `${args.id}.json`);
+      fs.writeFileSync(outPath, JSON.stringify(res.programmeJson, null, 2) + '\n', 'utf8');
+      console.log('Wrote:', outPath);
+      try {
+        execFileSync(process.execPath, [path.join(__dirname, 'assign-sids.js')], { stdio: 'inherit' });
+      } catch (e) {
+        console.warn('Note: add programme entry to data/catalog.json before running assign-sids.js');
+      }
+    }
+
+    if (args.json) {
+      console.log(JSON.stringify(res, null, 2));
+    } else {
+      console.log(`Ingested [${args.id}] "${args.name}" via ${res.adapter}:`);
+      console.log(`  Films: ${res.programmeJson.films.length} (reused ${res.diagnostics.reusedFilms}, new ${res.diagnostics.newFilms})`);
+      console.log(`  Shows: ${res.programmeJson.shows.length}`);
+      console.log(`  Venues: reused ${res.diagnostics.reusedVenues}, new ${res.diagnostics.newVenues}`);
+      console.log(`  Hall collisions: ${res.diagnostics.collisions.length}`);
+      console.log(`  Missing-field items: ${res.diagnostics.missingFields.length}`);
+    }
+  })().catch(err => {
+    console.error('Import failed:', err && err.message ? err.message : err);
+    process.exit(1);
+  });
 }
 
-module.exports = { ingest, parseICS, slugify, parseDateMD, parseTimeHM };
+module.exports = { ingest, ingestUrl, parseICS, slugify, parseDateMD, parseTimeHM, ADAPTERS: Adapters.ADAPTERS };
