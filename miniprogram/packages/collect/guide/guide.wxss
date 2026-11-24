@@ -9,3 +9,9 @@
 .gd-tx { flex: 1; min-width: 0; display: flex; flex-direction: column; }
 .gd-k { font-size: calc(20 * var(--fr)); font-weight: 700; line-height: 1.6; }
 .gd-s { font-size: calc(18 * var(--fr)); color: var(--muted); line-height: 1.75; }
+
+.gd-news { margin: 0 0 calc(24 * var(--r)); padding: calc(20 * var(--r)) calc(24 * var(--r)) calc(6 * var(--r)); border: calc(2 * var(--r)) solid var(--line); border-radius: calc(24 * var(--r)); background: var(--surface); }
+.gd-nh { font-size: calc(22 * var(--fr)); font-family: "Songti SC", serif; font-weight: 900; color: var(--accent); margin-bottom: calc(6 * var(--r)); }
+.gd-ni { display: flex; gap: calc(14 * var(--r)); padding: calc(16 * var(--r)) 0; border-top: calc(1 * var(--r)) solid var(--line); }
+.gd-ni:first-of-type { border-top: 0; }
+.gd-d { flex: none; width: calc(64 * var(--r)); font: 600 calc(18 * var(--fr)) Menlo, monospace; color: var(--accent); line-height: 1.7; }

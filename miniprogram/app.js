@@ -31,10 +31,14 @@ App({
   onShow() { try { require('./utils/remind.js').syncTmpl(); } catch (e) { } },
   onHide() { try { require('./utils/stats.js').flush(); } catch (e) { } },
   // full：片库是否完整（本机缓存是往期专题补齐后才写的；往期专题补齐后置为 true）。典藏票根的封版与满贯只在完整时判断
-  globalData: { data: LOCAL, source: 'local', raw: LOCAL, full: CACHED },
+  globalData: { data: LOCAL, source: 'local', raw: LOCAL, full: CACHED, guide: null },
+  // 使用手册：getData 返回网站 data/guide.json（改手册不用重新上传小程序），存本机 sk-guide-v1 供下次离线打开；都没有时用分包里的兜底
+  setGuide(g) { if (!g || !Array.isArray(g.chapters) || !g.chapters.length) return; this.globalData.guide = g; try { wx.setStorageSync('sk-guide-v1', g); } catch (e) { } },
+  guideLatest() { const g = this.globalData.guide; return g && Array.isArray(g.news) ? g.news.filter(n => n && n.d && n.only !== 'web').reduce((m, n) => (n.d > m ? n.d : m), '') : ''; },
   _waiters: [],
 
   onLaunch() {
+    try { const g = wx.getStorageSync('sk-guide-v1'); if (g && g.chapters) this.globalData.guide = g; } catch (e) { }
     I.init(); this.globalData.data = withEnded(I.localize(LOCAL)); this.chrome();
     // 场次变更：个人排片一变就记下各场次的影片与时间（utils/planchange.js），之后数据里找不到时才能提示
     try { const PC = require('./utils/planchange.js'), P = require('./utils/plan.js'); P.onChange(() => PC.track(this.globalData.data)); PC.track(this.globalData.data); } catch (e) { } try { watched.migrate(LOCAL.aliases); } catch (e) { }
@@ -57,6 +61,7 @@ App({
     const lang = I.isEn() ? 'en' : 'zh';
     wx.cloud.callFunction({ name: 'getData', data: { v: 2, lang } }).then(res => {
       const r = res.result || {};
+      if (r.guide) this.setGuide(r.guide);
       if (r.v2) { if (r.config) CFG.set(r.config); this.applyV2(r, lang); return; }
       // 云端缓存超过 3 分钟：再单独请求一次强制刷新（失败不影响当前数据）
       if (!noRefresh && r.source === 'cache' && r.cachedAt && Date.now() - r.cachedAt > 180000) setTimeout(() => this.loadRemote(true), 300);

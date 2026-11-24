@@ -28,7 +28,9 @@ Page({
   setTheme(e) { CFG.setTheme(e.currentTarget.dataset.p); },
   onLoad() { try{const v=wx.getStorageSync('sk-recap-sections-v1');if(Array.isArray(v))this.setData({rcSections:R.SECTIONS.map(x=>x[0]).filter(k=>v.includes(k))});}catch(e){} this.setData({ i: I.dict(), en: I.isEn() }); this.measure(); this._rz = () => { this.cuReset(); this.measure(); this.buildSpreads(); }; wx.onWindowResize && wx.onWindowResize(this._rz); this.off1 = plan.onChange(() => this.build()); this.off2 = app.onData(() => { this.build(); this.buildPassport(); }); this.off3 = W.onChange(() => this.buildPassport()); },
   onUnload() { this.offC&&this.offC();this._rz && wx.offWindowResize && wx.offWindowResize(this._rz); this.off1 && this.off1(); this.off2 && this.off2(); this.off3 && this.off3(); },
-  onShow() { Stats.stat('pv', 'my'); wx.setNavigationBarTitle({ title: t('我的观影护照') }); this.openPassportFromFilm(); this.build(); this.buildPassport(); this.ppJump(); this.buildSync();C.flush(); if (!this.offS) this.offS = SY.onStatus(() => this.buildSync()); if (SY.stale()) SY.quiet(); },
+  // 使用手册有没看过的更新（app.guideLatest 来自 getData 带回的 data/guide.json）时，「使用指南」一行显示「新」
+  guideBadge() { let seen = ''; try { seen = wx.getStorageSync('sk-guide-seen') || ''; } catch (e) { } const l = getApp().guideLatest(); this.setData({ guideNew: !!l && l > seen }); },
+  onShow() { this.guideBadge(); Stats.stat('pv', 'my'); wx.setNavigationBarTitle({ title: t('我的观影护照') }); this.openPassportFromFilm(); this.build(); this.buildPassport(); this.ppJump(); this.buildSync();C.flush(); if (!this.offS) this.offS = SY.onStatus(() => this.buildSync()); if (SY.stale()) SY.quiet(); },
   onHide() { this.cuReset(); this.offS && this.offS(); this.offS = null; },
   toggleCollection() {
     this.cuReset();

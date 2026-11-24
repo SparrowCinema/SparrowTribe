@@ -1,6 +1,10 @@
 <page-meta page-style="{{ps}}" />
 <view class="wrap gd-page">
  <view class="gd-head">{{i.__en?'Passport guide':'观影护照使用指南'}}</view>
+ <view wx:if="{{news.length}}" class="gd-news">
+  <view class="gd-nh">{{i.__en?'What\'s new':'最近更新'}}</view>
+  <view wx:for="{{news}}" wx:key="k" class="gd-ni"><text class="gd-d">{{item.d}}</text><view class="gd-tx"><text class="gd-k">{{item.t}}</text><text class="gd-s">{{item.s}}</text></view></view>
+ </view>
  <view class="gd-nav"><view wx:for="{{chapters}}" wx:key="id" class="gd-chip" hover-class="hv" data-id="{{item.id}}" bindtap="jump">{{item.t}}</view></view>
  <view wx:for="{{chapters}}" wx:for-item="c" wx:key="id" class="gd-ch" id="gd-{{c.id}}">
   <view class="gd-h">{{c.t}}</view>
