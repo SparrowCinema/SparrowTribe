@@ -11,6 +11,8 @@ const R = require('../../utils/recap.js');
 const SV = require('../../utils/svguri.js');
 const I = require('../../utils/i18n.js');
 const SY = require('../../utils/sync.js');
+const Notes = require('../../utils/notes.js');
+const Eco = require('../../utils/ecosystem.js');
 const Backup=require('../../utils/profile-backup.js');
 const G = require('../../utils/growth.js');
 const CFG = require('../../utils/cfg.js');
@@ -21,7 +23,7 @@ const app = getApp();
 Page({
   onPageScroll(e) { T.scroll(this, e); },
   toTop() { T.go(); },
-  data: {collectionOpen:true,cuCfg:null,cuCmd:null,friendOpen:false,friends:[{u:'https://sparrowcinema.github.io/michelin-guide/',img:'/images/brand/friend-michelin.png',n:'全球米其林餐厅名录',g:'去全球看电影，别忘了顺路吃点美食。',d:'收录全球米其林餐厅，可标记想去、记录去过，让每座城市的电影与美味同行。'}],collectionOpen:false,todayExpanded:false,careOpen:false,todayRows:[], i: {}, pp: {}, ppOpen: false, ppPage: 0, ppVol: 0, ppShelf: false, ppTab: 'stamps', lvAll: false, gt: 'level', cAll: false, gOpen: null, mcat: '', gr: {}, wide: false, ppSp: 0, ppK: 1, ppH: 0, ppCH: 0, ppCK: 1, spreads: [], ppLabel: '', rc: {}, rcOpen: false, rcY: [], rcM: [], rcP: [], rcSections: R.SECTIONS.map(x=>x[0]), fbOpen: false},
+  data: {collectionOpen:true,cuCfg:null,cuCmd:null,friendOpen:false,friends:[{u:'https://sparrowcinema.github.io/michelin-guide/',img:'/images/brand/friend-michelin.png',n:'全球米其林餐厅名录',g:'去全球看电影，别忘了顺路吃点美食。',d:'收录全球米其林餐厅，可标记想去、记录去过，让每座城市的电影与美味同行。'}],collectionOpen:false,todayExpanded:false,careOpen:false,todayRows:[], i: {}, pp: {}, ppOpen: false, ppPage: 0, ppVol: 0, ppShelf: false, ppTab: 'stamps', lvAll: false, gt: 'level', cAll: false, gOpen: null, mcat: '', gr: {}, wide: false, ppSp: 0, ppK: 1, ppH: 0, ppCH: 0, ppCK: 1, spreads: [], ppLabel: '', rc: {}, rcOpen: false, rcY: [], rcM: [], rcP: [], rcSections: R.SECTIONS.map(x=>x[0]), rcIncludeNotes: false, fbOpen: false},
   switchLang() { app.switchLang(); },
   setTheme(e) { CFG.setTheme(e.currentTarget.dataset.p); },
   onLoad() { try{const v=wx.getStorageSync('sk-recap-sections-v1');if(Array.isArray(v))this.setData({rcSections:R.SECTIONS.map(x=>x[0]).filter(k=>v.includes(k))});}catch(e){} this.setData({ i: I.dict(), en: I.isEn() }); this.measure(); this._rz = () => { this.cuReset(); this.measure(); this.buildSpreads(); }; wx.onWindowResize && wx.onWindowResize(this._rz); this.off1 = plan.onChange(() => this.build()); this.off2 = app.onData(() => { this.build(); this.buildPassport(); }); this.off3 = W.onChange(() => this.buildPassport()); },
@@ -44,8 +46,8 @@ Page({
     clearTimeout(this._hitT);this._hitT=setTimeout(()=>this.setData({'pp.hit':''}),2400);},
   toggleToday(){this.setData({todayExpanded:!this.data.todayExpanded});},
   toggleCare(){this.setData({careOpen:!this.data.careOpen});},
-  backupProfile(){try{const file=wx.env.USER_DATA_PATH+'/sparrow-passport-'+Date.now()+'.json';wx.getFileSystemManager().writeFileSync(file,JSON.stringify(Backup.encode(SY.snapshot()),null,2),'utf8');wx.shareFileMessage({filePath:file,fileName:'sparrow-passport.json',fail:()=>wx.showToast({title:t('请在网页版下载备份'),icon:'none'})});}catch{wx.showToast({title:t('备份失败，请检查存储空间'),icon:'none'});}},
-  restoreProfile(){wx.chooseMessageFile({count:1,type:'file',extension:['json'],success:r=>{try{const f=r.tempFiles[0];if(f.size>2600000)throw 0;const value=JSON.parse(wx.getFileSystemManager().readFileSync(f.path,'utf8'));Backup.decode(value);wx.showModal({title:t('导入备份'),content:t('导入后会合并排片，同一影片以备份中的记录为准；已开启同步时也会同步到其他设备。继续？'),success:async r=>{if(!r.confirm)return;try{await SY.restore(value);this.build();this.buildPassport();wx.showToast({title:t('备份已导入'),icon:'none'});}catch{wx.showToast({title:t('导入失败，请检查文件与存储空间'),icon:'none'});}}});}catch{wx.showToast({title:t('备份格式不正确'),icon:'none'});}}});},
+  backupProfile(){try{const file=wx.env.USER_DATA_PATH+'/sparrow-passport-'+Date.now()+'.json';wx.getFileSystemManager().writeFileSync(file,JSON.stringify(Backup.encode(SY.snapshot(false)),null,2),'utf8');const wn=Object.keys(W.all()).filter(k=>W.all()[k]&&!W.all()[k].del&&W.all()[k].d).length;Notes.markExported(wn);this.buildSync();wx.shareFileMessage({filePath:file,fileName:'sparrow-passport.json',fail:()=>wx.showToast({title:t('请在网页版下载备份'),icon:'none'})});}catch{wx.showToast({title:t('备份失败，请检查存储空间'),icon:'none'});}},
+  restoreProfile(){wx.chooseMessageFile({count:1,type:'file',extension:['json'],success:r=>{try{const f=r.tempFiles[0];if(f.size>2600000)throw 0;const value=JSON.parse(wx.getFileSystemManager().readFileSync(f.path,'utf8'));Backup.decode(value);wx.showModal({title:t('导入备份'),content:t('导入后会合并排片，同一影片以备份中的记录为准；已开启同步时也会同步到其他设备。继续？'),success:async r=>{if(!r.confirm)return;try{await SY.restore(value);this.build();this.buildPassport();this.buildSync();wx.showToast({title:t('备份已导入'),icon:'none'});}catch{wx.showToast({title:t('导入失败，请检查文件与存储空间'),icon:'none'});}}});}catch{wx.showToast({title:t('备份格式不正确'),icon:'none'});}}});},
   clearCloudProfile(){wx.showModal({title:t('清空云端内容并断开同步'),content:t('请先保存完整备份，并在其他设备停止同步。请先在影片页撤回不想保留的社区评分。清空云端内容并断开本设备？本机档案仍会保留。'),success:async r=>{if(!r.confirm)return;try{await SY.clearCloud();this.buildSync();wx.showToast({title:t('云端内容已清空，本机档案保留'),icon:'none'});}catch{wx.showToast({title:t('云端清空未完成，请稍后重试'),icon:'none'});}}});},
   // ===== 观影护照：封面 → 资料页 → 印章页（每页 15 枚），印章外观与网站一致 =====
   buildPassport() {
@@ -126,15 +128,19 @@ Page({
       const ago = st.at ? ((Date.now() - st.at) / 1000 < 60 ? t('刚刚') : Math.round((Date.now() - st.at) / 60000) < 60 ? Math.round((Date.now() - st.at) / 60000) + ' ' + t('分钟前') : new Date(st.at).toLocaleDateString()) : '';
       line = s.state === 'busy' ? t('同步中…') : s.state === 'error' ? t('同步失败：') + s.msg : t('已同步') + (ago ? ' · ' + ago : '');
     }
-    this.setData({ sy: { wx: !!(st && st.wx), on: !!(st && st.code), state: s.state, line, code: st ? st.code : '', shown: st && st.code ? (rev ? st.code : st.code.slice(0, 7) + '-••••-••••-••••-••••-' + st.code.slice(-4)) : '', rev: !!rev } });
+    const wn = Object.keys(W.all()).filter(k => W.all()[k] && !W.all()[k].del && W.all()[k].d).length;
+    const health = Notes.health(st && st.code, wn);
+    const sub = health.codeWarning ? t('同步码尚未确认保存 · 建议复制保管') : health.backupWarning ? (line ? line + ' · ' + t('建议本地备份') : t('建议导出一次本地备份')) : '';
+    this.setData({ sy: { wx: !!(st && st.wx), on: !!(st && st.code), state: s.state, line, sub, health, hasPass: !!Notes.pass(), notesCount: Notes.activeCount(), lockedCount: Notes.lockedCount(), code: st ? st.code : '', shown: st && st.code ? (rev ? st.code : st.code.slice(0, 7) + '-••••-••••-••••-••••-' + st.code.slice(-4)) : '', rev: !!rev } });
   },
   syStart() { wx.showLoading({ title: t('同步中…'), mask: true }); SY.start().then(() => { wx.hideLoading(); this._syShow = true; this.buildSync(); wx.showToast({ title: t('已开启同步，请保存好同步码'), icon: 'none', duration: 2500 }); }).catch(e => { wx.hideLoading(); this.buildSync(); wx.showToast({ title: t('同步失败：') + ((e && e.message) || ''), icon: 'none' }); }); },
   syJoin() {
     wx.showModal({ title: t('输入同步码'), editable: true, placeholderText: 'SP-XXXX-XXXX-XXXX-XXXX-XXXX-XXXX', confirmText: t('连接'), success: r => {
       if (!r.confirm) return;
-      if (!SY.normalize(r.content)) return wx.showToast({ title: t('同步码格式不对，请检查'), icon: 'none' });
+      const norm = SY.normalize(r.content);
+      if (!norm) return wx.showToast({ title: t('同步码格式不对，请检查'), icon: 'none' });
       wx.showLoading({ title: t('同步中…'), mask: true });
-      SY.join(r.content).then(() => { wx.hideLoading(); this.build(); this.buildPassport(); this.buildSync(); wx.showToast({ title: t('已连接，记录已合并'), icon: 'none' }); }).catch(e => { wx.hideLoading(); this.buildSync(); wx.showToast({ title: t('同步失败：') + ((e && e.message) || ''), icon: 'none' }); });
+      SY.join(norm).then(() => { Notes.markCodeSaved(norm); wx.hideLoading(); this.build(); this.buildPassport(); this.buildSync(); wx.showToast({ title: t('已连接，记录已合并'), icon: 'none' }); }).catch(e => { wx.hideLoading(); this.buildSync(); wx.showToast({ title: t('同步失败：') + ((e && e.message) || ''), icon: 'none' }); });
     } });
   },
   // 扫码连接网站：扫网站「个人档案云端同步」里的二维码，改用网站的同步码并合并两边记录（本微信同时绑定到这串码）
@@ -146,14 +152,44 @@ Page({
       wx.showModal({ title: t('连接网站档案'), content: t('小程序和网站的看过记录、评分、照片和个人排片会合并成一份，之后两边自动同步。'), confirmText: t('连接'), success: m => {
         if (!m.confirm) return;
         wx.showLoading({ title: t('同步中…'), mask: true });
-        SY.join(code).then(() => { Stats.stat('sync_link', 'scan'); wx.hideLoading(); this.build(); this.buildPassport(); this.buildSync(); wx.showToast({ title: t('已连接，记录已合并'), icon: 'none' }); }).catch(e => { wx.hideLoading(); this.buildSync(); wx.showToast({ title: t('同步失败：') + ((e && e.message) || ''), icon: 'none' }); });
+        SY.join(code).then(() => { Notes.markCodeSaved(code); Stats.stat('sync_link', 'scan'); wx.hideLoading(); this.build(); this.buildPassport(); this.buildSync(); wx.showToast({ title: t('已连接，记录已合并'), icon: 'none' }); }).catch(e => { wx.hideLoading(); this.buildSync(); wx.showToast({ title: t('同步失败：') + ((e && e.message) || ''), icon: 'none' }); });
       } });
     } });
   },
   syNow() { SY.sync().then(r => { this.build(); this.buildPassport(); this.buildSync(); wx.showToast({ title: r && r.changed ? t('已同步，并合并了其他设备的更改') : t('已同步'), icon: 'none' }); }).catch(e => { this.buildSync(); wx.showToast({ title: t('同步失败：') + ((e && e.message) || ''), icon: 'none' }); }); },
   syReveal() { this._syShow = !this._syShow; this.buildSync(); },
-  syCopy() { const st = SY.state(); if (st && st.code) wx.setClipboardData({ data: st.code, success: () => wx.showToast({ title: t('同步码已复制'), icon: 'none' }) }); },
+  syCopy() { const st = SY.state(); if (st && st.code) wx.setClipboardData({ data: st.code, success: () => { Notes.markCodeSaved(st.code); this.buildSync(); wx.showToast({ title: t('同步码已复制并标记为已保存'), icon: 'none' }); } }); },
+  syMarkSaved() { const st = SY.state(); if (st && st.code) { Notes.markCodeSaved(st.code); this.buildSync(); wx.showToast({ title: t('已标记为妥善保存'), icon: 'none' }); } },
   syStop() { wx.showModal({ title: t('停止同步'), content: t('在这台设备停止同步？本机记录会保留，云端的记录也不会删除；已公开的社区评分仍保留，可在影片页撤回。以后输入同步码可以重新连接。'), success: r => { if (r.confirm) { SY.stop(); this._syShow = false; this.buildSync(); } } }); },
+  noteVaultSet() {
+    wx.showModal({ title: t(Notes.pass() ? '修改笔记加密口令' : '设置笔记加密口令'), editable: true, placeholderText: t('至少 4 位口令（仅留本机，请牢记）'), confirmText: t('确认'), success: r => {
+      if (!r.confirm) return;
+      const res = Notes.setPass(r.content || '');
+      if (!res.ok) { wx.showToast({ title: t(res.msg), icon: 'none' }); return; }
+      this.buildSync();
+      wx.showToast({ title: res.unlocked ? t('已解锁 ' + res.unlocked + ' 条云端笔记') : t('已开启笔记端到端加密同步'), icon: 'none' });
+      const st = SY.state(); if (st && st.code) SY.quiet();
+    } });
+  },
+  noteVaultClear() {
+    wx.showModal({ title: t('清除本机加密口令？'), content: t('本机明文笔记不受影响，但之后修改的笔记将不再同步到云端，直到重新设置口令。'), success: r => {
+      if (!r.confirm) return;
+      Notes.setPass(''); this.buildSync(); wx.showToast({ title: t('已清除本机加密口令'), icon: 'none' });
+    } });
+  },
+  exportLetterboxd() {
+    const data = app.globalData.data, idx = U.index(data), entries = W.entries(data, idx);
+    if (!entries.length) { wx.showToast({ title: t('还没有已看影片可供导出'), icon: 'none' }); return; }
+    const csv = Eco.exportLetterboxdCSV(entries, { includeNotes: false, progNameOf: f => (idx.progOf(f) || {}).name || '' });
+    try {
+      const file = wx.env.USER_DATA_PATH + '/sparrow-letterboxd-' + Date.now() + '.csv';
+      wx.getFileSystemManager().writeFileSync(file, csv, 'utf8');
+      Notes.markExported(entries.length); this.buildSync();
+      wx.shareFileMessage({ filePath: file, fileName: 'sparrow-letterboxd.csv', fail: () => wx.setClipboardData({ data: csv, success: () => wx.showToast({ title: t('已复制 Letterboxd CSV 内容'), icon: 'none' }) }) });
+    } catch (e) {
+      wx.setClipboardData({ data: csv, success: () => wx.showToast({ title: t('已复制 Letterboxd CSV 内容'), icon: 'none' }) });
+    }
+  },
   // 「我的」菜单里个人排片行的副标题；完整排片在 pages/plan/plan
   build() {
     const data = app.globalData.data, idx = U.index(data), picked = plan.get();
@@ -289,6 +325,7 @@ Page({
   toTicketAlbum(){wx.navigateTo({url:'/packages/collect/tickets/tickets'});},
   toPosterWall(){wx.navigateTo({url:'/packages/collect/poster-wall/poster-wall'});},
   setRcSections(e){const values=e.detail.value||[],sections=R.SECTIONS.map(x=>x[0]).filter(k=>values.includes(k));this.setData({rcSections:sections});try{wx.setStorageSync('sk-recap-sections-v1',sections);}catch(err){}this.buildRecap();},
+  setRcIncludeNotes(e){const on=(e.detail.value||[]).includes('1');this.setData({rcIncludeNotes:on});},
   // ===== 影院观影结算：按年份 / 专题 =====
   recapScope() {
     const data = app.globalData.data, idx = U.index(data), Y = this.data.rcY || [], M = this.data.rcM || [], P = this.data.rcP || [];
@@ -304,6 +341,7 @@ Page({
     const m = (this.data.rcM || []).filter(k => all.some(e => e.rec.d.slice(0, 7) === k) && y.includes(k.slice(0, 4)));
     this.setData({ rcY: y, rcP: p, rcM: m });
     const list = this.recapScope(), rated = list.filter(e => e.rec.r), mins = list.reduce((n, e) => n + (e.f.min || 0), 0);
+    const notesInScope = typeof Notes.get === 'function' ? list.filter(e => { const n = Notes.get(e.id); return n && n.rc && n.text; }).length : 0;
     const ys = y;
     const nb = n => n + (I.isEn() ? (n === 1 ? ' film' : ' films') : ' 部');
     // 仅显示所选年份的 6×2 日历；全部年份不展开月份。
@@ -312,7 +350,7 @@ Page({
       return { y: Y, cells: Array.from({ length: 12 }, (_, i) => { const k = Y + '-' + String(i + 1).padStart(2, '0'), c = cnt[k] || 0, on = m.includes(k);
         return { v: k, n: String(i + 1), c, cs: c ? nb(c) : '—', on, bg: c && !on ? 'background:rgba(142,42,34,' + (0.14 + 0.46 * c / max).toFixed(2) + ');border-color:rgba(142,42,34,' + (0.22 + 0.46 * c / max).toFixed(2) + ')' : '' }; }) }; });
     const ycnt = {}; all.forEach(e => { const k = e.rec.d.slice(0, 4); ycnt[k] = (ycnt[k] || 0) + 1; });
-    this.setData({ rc: { sections:R.SECTIONS.map(([id,label])=>({id,label:t(label),on:this.data.rcSections.includes(id)})), sectionCount:this.data.rcSections.length, grids, years: [{ v: 'all', n: t('全部年份'), c: nb(all.length), on: !y.length }].concat(years.map(v => ({ v, n: v, c: nb(ycnt[v]), on: y.includes(v) }))), mSel: m.length ? (I.isEn() ? m.length + ' selected' : '已选 ' + m.length + ' 个月') : '', progSearch:pids.length>4,progLabel:p.length?p.map(v=>idx.PG[v].name).join('、'):t('全部专题'), progs: [{ v: 'all', n: t('全部专题'), on: !p.length }].concat(pids.filter(v=>!this.data.rcProgQuery||idx.PG[v].name.toLocaleLowerCase().includes(this.data.rcProgQuery.toLocaleLowerCase())).map(v => ({ v, n: idx.PG[v].name, on: p.includes(v) }))),
+    this.setData({ rc: { sections:R.SECTIONS.map(([id,label])=>({id,label:t(label),on:this.data.rcSections.includes(id)})), sectionCount:this.data.rcSections.length, notesInScope, grids, years: [{ v: 'all', n: t('全部年份'), c: nb(all.length), on: !y.length }].concat(years.map(v => ({ v, n: v, c: nb(ycnt[v]), on: y.includes(v) }))), mSel: m.length ? (I.isEn() ? m.length + ' selected' : '已选 ' + m.length + ' 个月') : '', progSearch:pids.length>4,progLabel:p.length?p.map(v=>idx.PG[v].name).join('、'):t('全部专题'), progs: [{ v: 'all', n: t('全部专题'), on: !p.length }].concat(pids.filter(v=>!this.data.rcProgQuery||idx.PG[v].name.toLocaleLowerCase().includes(this.data.rcProgQuery.toLocaleLowerCase())).map(v => ({ v, n: idx.PG[v].name, on: p.includes(v) }))),
       n: list.length, hm: Math.floor(mins / 60) + 'h' + String(mins % 60).padStart(2, '0'), avg: rated.length ? (rated.reduce((n, e) => n + e.rec.r, 0) / rated.length).toFixed(1) : '—' } });
   },
   recapSub(list, idx) {
@@ -340,7 +378,7 @@ Page({
   noop() { },
   makeRecap() {
     const list = this.recapScope(); if (!list.length || !this.data.rcSections.length || this.busy) return;
-    const sections=[...this.data.rcSections];this.busy = true; wx.showLoading({ title: t('正在生成观影结算…'), mask: true });
+    const sections=[...this.data.rcSections], includeNotes=!!this.data.rcIncludeNotes;this.busy = true; wx.showLoading({ title: t('正在生成观影结算…'), mask: true });
     const fail = () => { this.busy = false; wx.hideLoading(); wx.showToast({ title: t('图片生成失败，请稍后再试'), icon: 'none' }); };
     const data = app.globalData.data, idx = U.index(data);
     wx.createSelectorQuery().select('#recap').fields({ node: true, size: true }).exec(async res => {
@@ -350,7 +388,7 @@ Page({
         const imgs = {}; await Promise.all((sections.includes('favorite')||sections.includes('list')?list:[]).map(async e => { imgs[e.id] = await load(MyP.pick(e.f) || U.poster(e.f)); }));
         const marks = await Promise.all(['/images/brand/sparrow-movies-sq.png', '/images/brand/sparrow-tribe-sq.png'].map(load));
         const qrImg = await load('/images/brand/miniprogram-code.jpg');
-        const items = list.map(e => { const lk = R.look(e.id), p = idx.progOf(e.f); return { id: e.id, title: e.f.cn, en: e.f.en || e.f.o || '', date: e.rec.d, dstamp: R.dstamp(e.rec.d), venue: I.isEn() ? e.venue : e.venueFull, vs: e.venue, score: e.rec.r || 0, color: lk.ink, shape: lk.shape, tilt: lk.tilt, top: (p && p.en) || 'SPARROW FILM PASSPORT', prog: p ? p.name : '', img: imgs[e.id] }; });
+        const items = list.map(e => { const lk = R.look(e.id), p = idx.progOf(e.f), n = includeNotes && typeof Notes.get === 'function' ? Notes.get(e.id) : null; return { id: e.id, title: e.f.cn, en: e.f.en || e.f.o || '', date: e.rec.d, dstamp: R.dstamp(e.rec.d), venue: I.isEn() ? e.venue : e.venueFull, vs: e.venue, score: e.rec.r || 0, color: lk.ink, shape: lk.shape, tilt: lk.tilt, top: (p && p.en) || 'SPARROW FILM PASSPORT', prog: p ? p.name : '', img: imgs[e.id], note: n && n.rc && n.text ? n.text : '' }; });
         const rated = list.filter(e => e.rec.r), mins = list.reduce((n, e) => n + (e.f.min || 0), 0), months = {};
         list.forEach(e => { const m = +e.rec.d.slice(5, 7); months[m] = (months[m] || 0) + 1; });
         const topM = Object.keys(months).sort((a, b) => months[b] - months[a] || a - b)[0];
@@ -362,7 +400,7 @@ Page({
             [new Set(list.filter(e => e.s).map(e => e.s.v)).size, t('家影院')], [Object.keys(byP).length, t('个专题')], [topM ? t(topM + '月') : '—', t('看得最多的月份')]],
           fav: items.filter(x => x.score).sort((a, b) => b.score - a.score || b.date.localeCompare(a.date))[0] || null,
           progs: Object.keys(byP).map(k => ({ name: byP[k].name, n: byP[k].n, avg: byP[k].k ? byP[k].sum / byP[k].k : 0 })).sort((a, b) => b.n - a.n),
-          sections,items, qr: null, qrImg, marks, T: t, en: I.isEn() };
+          sections, includeNotes, items, qr: null, qrImg, marks, T: t, en: I.isEn() };
         if(!R.heightOf(o)){this.busy=false;wx.hideLoading();wx.showToast({title:t('所选项目暂无内容，请选择其他项目'),icon:'none'});return;}
         const k = 0.6; canvas.width = Math.round(R.W * k); canvas.height = Math.round(R.heightOf(o) * k);
         const c = canvas.getContext('2d'); c.scale(k, k); R.draw(c, o);

@@ -114,10 +114,37 @@
     Object.keys(a).concat(Object.keys(b)).forEach(function (id) { var x = a[id], y = b[id]; out[id] = !x ? y : !y ? x : (y.t > x.t ? y : x); });
     return out;
   }
+  // 纯私密个人笔记（2026-11-24）：{影片id:{t, s?:明文(仅本机/本地备份), enc?:密文(端到端加密同步), tb?:1(印票根背面), rc?:1(进年度总结)}|{del:1,t}}
+  var NOTE_ENC = /^v1\.[A-Za-z0-9+/=]{20,28}\.[A-Za-z0-9+/=]{20,28}\.[A-Za-z0-9+/=]{0,6000}\.[A-Za-z0-9+/=]{40,48}$/;
+  function cleanNotes(raw) {
+    var out = {}; if (!raw || typeof raw !== 'object' || Array.isArray(raw)) return out;
+    Object.keys(raw).slice(0, 5000).forEach(function (id) {
+      var r = raw[id]; if (!/^[\w-]{1,80}$/.test(id) || !r || typeof r !== 'object') return;
+      var t = num(r.t);
+      if (r.del) { out[id] = { del: 1, t: t }; return; }
+      var o = { t: t };
+      if (typeof r.s === 'string' && r.s.trim()) o.s = r.s.trim().slice(0, 1000);
+      if (typeof r.enc === 'string' && NOTE_ENC.test(r.enc)) o.enc = r.enc;
+      if (!o.s && !o.enc) return;
+      if (r.tb === 1) o.tb = 1;
+      if (r.rc === 1) o.rc = 1;
+      out[id] = o;
+    });
+    return out;
+  }
+  function mergeNotes(a, b) {
+    a = cleanNotes(a); b = cleanNotes(b); var out = {};
+    Object.keys(a).concat(Object.keys(b)).forEach(function (id) {
+      var x = a[id], y = b[id];
+      out[id] = !x ? y : !y ? x : (y.t > x.t ? y : x);
+    });
+    return out;
+  }
   function clean(d) {
-    var out = { v: 1, watched: {}, holder: { n: '', t: 0 }, photo: { d: '', t: 0 }, picks: { k: [], t: 0 }, want: {}, tix: {}, art: cleanArt(null), pp: {} };
+    var out = { v: 1, watched: {}, holder: { n: '', t: 0 }, photo: { d: '', t: 0 }, picks: { k: [], t: 0 }, want: {}, tix: {}, art: cleanArt(null), pp: {}, notes: {} };
     if (!d || typeof d !== 'object') return out;
     out.pp = cleanPP(d.pp);
+    out.notes = cleanNotes(d.notes);
     out.tix = cleanTix(d.tix);
     out.art = cleanArt(d.art);
     var w = d.watched && typeof d.watched === 'object' ? d.watched : {};
@@ -153,7 +180,7 @@
   }
   function merge(a, b) {            // a = 本机，b = 云端；同一项取较新者，时间相同取本机
     a = clean(a); b = clean(b);
-    var out = { v: 1, watched: {}, holder: null, photo: null, picks: null, want: {}, tix: mergeTix(a.tix, b.tix), art: mergeArt(a.art, b.art), pp: mergePP(a.pp, b.pp) };
+    var out = { v: 1, watched: {}, holder: null, photo: null, picks: null, want: {}, tix: mergeTix(a.tix, b.tix), art: mergeArt(a.art, b.art), pp: mergePP(a.pp, b.pp), notes: mergeNotes(a.notes, b.notes) };
     Object.keys(a.watched).concat(Object.keys(b.watched)).forEach(function (id) {
       var x = a.watched[id], y = b.watched[id]; out.watched[id] = !x ? y : !y ? x : Taste.mergeFields(x,y,y.t>x.t?y:x);
     });
@@ -164,6 +191,6 @@
     return out;
   }
   var same = function (a, b) { return JSON.stringify(clean(a)) === JSON.stringify(clean(b)); };
-  var api = { newCode: newCode, normalize: normalize, clean: clean, merge: merge, same: same, cleanTix: cleanTix, cleanTixEntry: cleanTixEntry, mergeTix: mergeTix, TIX_KEY: TIX_KEY, cleanArt: cleanArt, mergeArt: mergeArt, cleanPP: cleanPP, mergePP: mergePP };
+  var api = { newCode: newCode, normalize: normalize, clean: clean, merge: merge, same: same, cleanTix: cleanTix, cleanTixEntry: cleanTixEntry, mergeTix: mergeTix, TIX_KEY: TIX_KEY, cleanArt: cleanArt, mergeArt: mergeArt, cleanPP: cleanPP, mergePP: mergePP, cleanNotes: cleanNotes, mergeNotes: mergeNotes };
   if (typeof module !== 'undefined' && module.exports) module.exports = api; else root.SparrowSync = api;
 })(typeof window !== 'undefined' ? window : this);

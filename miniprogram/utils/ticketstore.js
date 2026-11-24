@@ -150,11 +150,16 @@ function nudge() { listeners.forEach(fn => fn()); }
 function onChange(fn) { listeners.push(fn); return () => { const i = listeners.indexOf(fn); if (i >= 0) listeners.splice(i, 1); }; }
 // 一部电影一张票根（和观影护照对齐）：不对应观影记录的票根先挪回所属影片，再推出收藏册
 function build(data, idx) {
+  const Notes = require('./notes.js');
   const list = viewings(idx), moves = T.reconcile(list, all(data, idx));
   if (moves) put(Object.assign({}, all(), moves), true);
   const built = T.build(list, all(), baseFor(data, idx));
   T.decorate(built.tickets, setsOf(data, idx));
   T.attachAutographs(built.tickets, agCache());
+  built.tickets.forEach(r => {
+    const n = Notes.get(r.filmId);
+    if (n && n.tb && n.text) r.note = n.text;
+  });
   ctx = { data, idx, byKey: new Map(built.tickets.map(r => [r.key, r])) };
   issueSoon(800);
   return built;
@@ -181,4 +186,4 @@ async function checkin(c) {
   put(Object.assign({}, all(), { [plan.key]: T.applyCheckin(all()[plan.key], plan.key, r) }));
   return { ok: true, key: plan.key, film: c.f };
 }
-module.exports = { issueSoon, issueNow: () => issueRun(), checkin, all, put, set, snapshot, replaceAll, onChange, nudge, build, baseFor, viewings, freeKey, rev: () => rev };
+module.exports = { issueSoon, issueNow: () => issueRun(), checkin, all, put, set, snapshot, replaceAll, onChange, nudge, build, baseFor, viewings, freeKey, rev: () => rev + require('./notes.js').rev() };

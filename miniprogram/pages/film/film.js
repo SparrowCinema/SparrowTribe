@@ -5,6 +5,8 @@ const MyP = require('../../utils/myposter.js');
 const artText = s => /^海报 \d+$/.test(s) ? I.tr('海报') + ' ' + s.slice(3) : I.tr(s);
 const Premiere = require('../../utils/premiere.js');
 const Library = require('../../utils/library.js');
+const Recommend = require('../../utils/recommend.js');
+const Notes = require('../../utils/notes.js');
 const plan = require('../../utils/plan.js');
 const W = require('../../utils/watched.js');
 const Want = require('../../utils/want.js');
@@ -29,8 +31,8 @@ const Remind = require('../../utils/remind.js');
 Page({
   onPageScroll(e) { T.scroll(this, e); },
   toTop() { T.go(); },
-  data: { i: {}, f: null, open: false, fs: 1, tsShow: false, tsRow: {}, lgShow: false, lg: { shows: [], fmt: { cols: [[], []], val: [0, 0] }, stars: [0, 0, 0, 0, 0] } },
-  onLoad(q) { this.setData({ i: I.dict() }); HT.show(this); this.id = SM.fromScene(q, ((app.globalData.data || {}).films || []).map(x => x.id)); this.off1 = app.onData(() => this.build()); this.off2 = plan.onChange(() => this.build()); this.off3 = W.onChange(() => this.buildMine()); this.offC=C.subscribe(()=>this.setData({community:C.model(this.id,I.isEn()),tsRow:this.tsRowModel()}));this.build();this.loadCommunity(); },
+  data: { i: {}, f: null, open: false, fs: 1, tsShow: false, tsRow: {}, lgShow: false, ntShow: false, nt: { text: '', tb: false, rc: false, has: false, encrypted: false }, noteRow: {}, lg: { shows: [], fmt: { cols: [[], []], val: [0, 0] }, stars: [0, 0, 0, 0, 0] } },
+  onLoad(q) { this.setData({ i: I.dict() }); HT.show(this); this.id = SM.fromScene(q, ((app.globalData.data || {}).films || []).map(x => x.id)); this.off1 = app.onData(() => this.build()); this.off2 = plan.onChange(() => this.build()); this.off3 = W.onChange(() => this.buildMine()); this.off4 = Notes.onChange(() => this.buildMine()); this.offC=C.subscribe(()=>this.setData({community:C.model(this.id,I.isEn()),tsRow:this.tsRowModel()}));this.build();this.loadCommunity(); },
   loadCommunity(){C.read([this.id]).then(()=>this.setData({community:C.model(this.id,I.isEn()),tsRow:this.tsRowModel(),communityError:false})).catch(()=>this.setData({communityError:true}));},
   withdrawCommunity(){C.withdraw(this.id);},
   // 我的海报（2026-11-23）：资料里有 2 张以上的图时点大海报选一张，只改本人的影片页、海报墙、观影结算长图和典藏票根默认票面图
@@ -47,7 +49,7 @@ Page({
   toggleGone() { this.setData({ goneOpen: !this.data.goneOpen }); },
   homeTipGo() { HT.home(); },
   homeTipClose() { HT.close(this); },
-  onUnload() { clearTimeout(this._homeTipT); this.offC&&this.offC();this.off1 && this.off1(); this.off2 && this.off2(); this.off3 && this.off3(); },
+  onUnload() { clearTimeout(this._homeTipT); this.offC&&this.offC();this.off1 && this.off1(); this.off2 && this.off2(); this.off3 && this.off3(); this.off4 && this.off4(); },
   build() {
     const data = app.globalData.data, idx = U.index(data);
     if (this.id && !idx.F[this.id]) { const hit = Object.keys(idx.F).find(k => k.startsWith(this.id)); if (hit) this.id = hit; } // 扫码 scene 只含 id 前 32 字符
@@ -171,7 +173,11 @@ Page({
         tag: n > 1 ? (i === n - 1 ? (en ? 'Latest' : '最近') : i === 0 ? (en ? 'First' : '首刷') : '') : '' }; }).reverse();
     const fold = n > 3, open = !!this.dyOpen, hid = n - 3, shown = fold && !open ? diary.slice(0, 3) : diary;
     const taste = rec ? ['fun','bore'].map(k => ({ key:k, value: Taste.valid(rec[k]) ? rec[k] : null, stars: [1,2,3,4,5].map(n => ({ n, fill: Taste.valid(rec[k]) ? (rec[k] >= n ? 100 : rec[k] >= n - 0.5 ? 50 : 0) : 0 })) })) : ['fun','bore'].map(k => ({ key:k, value:null, stars:[1,2,3,4,5].map(n=>({n,fill:0})) }));
-    this.setData({ community:C.model(this.id,I.isEn()), tsRow:this.tsRowModel(), taste, mine: { seen: !!rec, n, r, diary: shown, dyFold: fold, dyOpen: open, dyMoreTxt: open ? (en ? 'Show fewer' : '收起较早的观影') : (en ? 'Show ' + hid + ' earlier' : '展开其余 ' + hid + ' 次'), nTxt: en ? '×' + n : n + ' 次', stars: [1, 2, 3, 4, 5].map(i => Math.max(0, Math.min(2, r - (i - 1) * 2)) * 50),
+    const note = Notes.get(this.id);
+    const noteRow = !note ? { text: '', locked: false, badge: '' }
+      : note.locked ? { text: '', locked: true, badge: en ? 'Encrypted' : '已加密' }
+      : { text: note.text.replace(/\s+/g, ' '), locked: false, badge: note.tb || note.rc ? [note.tb ? (en ? 'Ticket' : '票根') : '', note.rc ? (en ? 'Recap' : '总结') : ''].filter(Boolean).join('·') : (note.encrypted ? (en ? 'E2E' : '加密同步') : (en ? 'Local' : '仅本机')) };
+    this.setData({ community:C.model(this.id,I.isEn()), tsRow:this.tsRowModel(), noteRow, taste, mine: { seen: !!rec, n, r, diary: shown, dyFold: fold, dyOpen: open, dyMoreTxt: open ? (en ? 'Show fewer' : '收起较早的观影') : (en ? 'Show ' + hid + ' earlier' : '展开其余 ' + hid + ' 次'), nTxt: en ? '×' + n : n + ' 次', stars: [1, 2, 3, 4, 5].map(i => Math.max(0, Math.min(2, r - (i - 1) * 2)) * 50),
       want: Want.isOn(this.id), wantTxt: Want.isOn(this.id) ? (en ? '★ On my list' : '★ 已想看') : (en ? '☆ Want to see' : '☆ 想看'),
       seenTxt: I.isEn() ? '+ Watched · stamp' : '＋ 看过 · 盖章', scoreTxt: r ? r + '/10' : t('点星打分') } });
     this.buildRecs();
@@ -181,8 +187,29 @@ Page({
     const fa=a&&a.funAvg!=null?Number(a.funAvg).toFixed(1):'',ba=a&&a.boreAvg!=null?Number(a.boreAvg).toFixed(1):'',n=a?Math.max(a.funN||0,a.boreN||0):0;
     const comm=!a?'':fa||ba?(en?'Community ':'社区 ')+(fa||'—')+' · '+(ba||'—'):n?(en?n+' ratings':n+' 人评价'):seen?(en?'Be the first to rate':'成为第一个评价的人'):(en?'No ratings yet':'社区暂无评价');
     return {mine,fun:v('fun'),bore:v('bore'),comm};},
-  openTaste(){this.setData({tsShow:true,lgShow:false});if(C.status()==='error')C.flush();this.loadCommunity();},
-  sheetLeave(){this.closeTaste();this.lgClose();},
+  openTaste(){this.setData({tsShow:true,lgShow:false,ntShow:false});if(C.status()==='error')C.flush();this.loadCommunity();},
+  ntOpen(){
+    const n = Notes.get(this.id);
+    if (n && n.locked) {
+      wx.showModal({ title: t('云端加密笔记'), content: t('这条笔记由你的独立口令加密。请先在「我的 → 个人档案云端同步」输入笔记口令解锁。'), confirmText: t('去解锁'), success: r => { if (r.confirm) wx.switchTab({ url: '/pages/my/my' }); } });
+      return;
+    }
+    this.setData({ tsShow: false, lgShow: false, ntShow: true, nt: { text: (n && n.text) || '', tb: !!(n && n.tb), rc: !!(n && n.rc), has: !!(n && n.text), encrypted: !!Notes.pass() } });
+  },
+  ntInput(e){ this.setData({ 'nt.text': e.detail.value }); },
+  ntTogTb(e){ this.setData({ 'nt.tb': !!e.detail.value }); },
+  ntTogRc(e){ this.setData({ 'nt.rc': !!e.detail.value }); },
+  ntSave(){
+    const o = this.data.nt || {};
+    Notes.save(this.id, o.text || '', { tb: !!o.tb, rc: !!o.rc });
+    this.setData({ ntShow: false });
+    wx.showToast({ title: (o.text || '').trim() ? t('私密笔记已保存') : t('已删除这条笔记'), icon: 'none' });
+  },
+  ntDel(){
+    wx.showModal({ title: t('删除这条私密笔记？'), confirmColor: '#8e2a22', success: r => { if (!r.confirm) return; Notes.save(this.id, '', {}); this.setData({ ntShow: false }); wx.showToast({ title: t('已删除这条笔记'), icon: 'none' }); } });
+  },
+  ntClose(){ if (this.data.ntShow) this.setData({ ntShow: false }); },
+  sheetLeave(){this.closeTaste();this.lgClose();this.ntClose();},
   closeTaste(){if(this.data.tsShow)this.setData({tsShow:false});},
   toTasteMap(){this.setData({tsShow:false});wx.navigateTo({url:'/packages/collect/taste-map/taste-map'});},
   tasteRate(e){const rec=W.get(this.id),k=e.currentTarget.dataset.k,n=Number(e.currentTarget.dataset.n);if(rec&&['fun','bore'].includes(k)&&Taste.valid(n))W.set(this.id,Taste.rateForCommunity(rec,k,n));},

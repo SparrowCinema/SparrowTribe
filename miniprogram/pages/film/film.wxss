@@ -297,3 +297,15 @@
 .rec-seen { margin-top: auto; display: block; text-align: center; padding: calc(8 * var(--r)) 0; border-radius: calc(12 * var(--r)); background: var(--chip, #e5d8bf); color: var(--muted); font-size: calc(17.5 * var(--fr)); }
 @media (min-width: 600px) { .rec-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } .rec-art { height: calc(320 * var(--r)); } }
 
+/* 纯私密个人笔记（2026-11-24） */
+.nt-preview { flex: 1; min-width: 0; color: var(--fg); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.nt-badge { flex: none; margin-left: auto; padding: calc(4 * var(--r)) calc(12 * var(--r)); border-radius: 999px; border: calc(1 * var(--r)) solid var(--line); font-size: calc(17 * var(--fr)); color: var(--muted); white-space: nowrap; }
+.nt-tip { display: block; font-size: calc(20 * var(--fr)); line-height: 1.65; color: var(--muted); margin: calc(12 * var(--r)) 0 calc(20 * var(--r)); }
+.nt-ta { width: 100%; min-height: calc(220 * var(--r)); box-sizing: border-box; padding: calc(22 * var(--r)) calc(24 * var(--r)); border: calc(2 * var(--r)) solid var(--line); border-radius: calc(20 * var(--r)); background: var(--surface); color: var(--fg); font-size: calc(24 * var(--fr)); line-height: 1.7; }
+.nt-opts { margin-top: calc(24 * var(--r)); border: calc(2 * var(--r)) solid var(--line); border-radius: calc(20 * var(--r)); background: var(--surface); overflow: hidden; }
+.nt-opt { display: flex; align-items: center; justify-content: space-between; gap: calc(16 * var(--r)); padding: calc(22 * var(--r)) calc(24 * var(--r)); }
+.nt-opt-sep { border-top: calc(1 * var(--r)) solid var(--line-soft); }
+.nt-opt-copy { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: calc(4 * var(--r)); }
+.nt-opt-t { font-size: calc(23 * var(--fr)); font-weight: 600; color: var(--fg); }
+.nt-opt-s { font-size: calc(19 * var(--fr)); color: var(--muted); line-height: 1.45; }
+

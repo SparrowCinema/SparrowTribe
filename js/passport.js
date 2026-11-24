@@ -44,18 +44,60 @@ function tasteHTML(f){const rec=watched[f.id],on=!!(rec&&rec.d);if(!on)return ''
  const row=(key,label,desc)=>{const n=window.SparrowTaste.valid(rec[key])?rec[key]:null;return '<div class="taste-row"><div class="taste-copy"><b>'+label+'</b><small>'+desc+'</small></div><div class="taste-picks"><button type="button" data-taste="'+f.id+'" data-key="'+key+'" data-value="0" class="taste-zero'+(n===0?' selected':'')+'" aria-pressed="'+(n===0)+'" aria-label="'+label+' 0/5">0</button><div class="mr-stars taste-stars" role="group" aria-label="'+label+'">'+[1,2,3,4,5].map(i=>tasteStar(n!==null&&n>=i?100:n!==null&&n>=i-.5?50:0,[i-.5,i].map(x=>'<button type="button" data-taste="'+f.id+'" data-key="'+key+'" data-value="'+x+'" aria-pressed="'+(n===x)+'" aria-label="'+label+' '+x+'/5"></button>').join(''))).join('')+'</div><span class="taste-val">'+(n===null?'<small>'+ppV('未评','Not rated')+'</small>':'<b>'+n+'</b><small>/5</small>')+'</span></div></div>';};
  const sharing=syncSt?.code?ppV('打分后，本片两项评分会自动计入社区汇总。','Rating automatically shares this film’s two scores with the community.'):ppV('打分后，本片评分会在开启云端同步时计入社区汇总。','Your scores for this film will count toward community ratings once cloud sync is enabled.');
  return '<div class="taste-panel"><p>'+sharing+'</p>'+row('fun',ppV('有趣度','Interesting'),ppV('有多让你着迷？','How captivating?'))+row('bore',ppV('无聊度','Boring'),ppV('观看时多经常感到乏味？','How often did you feel bored?'))+'<p>'+ppV('0 = 完全没有，与「未评」不同 · 再点相同分数可取消 · 两项可以同时很高','0 = not at all (different from not rated) · Tap the same score to clear · Both can be high')+'</p></div>';}
+function noteRowHTML(f){
+  if(typeof privateNoteOf!=='function')return '';
+  const n=privateNoteOf(f.id);
+  const val=n?(n.locked?'🔒 '+ppV('已加密 · 请在「我的」输入口令解锁','Encrypted · unlock in My'):esc(n.text.replace(/\s+/g,' ').slice(0,44)+(n.text.length>44?'…':''))):'<span class="nt-nil">'+ppV('写下仅自己可见的观影随想','Write a private film note')+'</span>';
+  const badges=n&&!n.locked?[n.tb?ppV('票根背面','Ticket back'):'',n.rc?ppV('年度总结','Recap'):''].filter(Boolean).map(x=>'<em class="nt-tag">'+esc(x)+'</em>').join(''):'';
+  return '<button type="button" class="ts-row nt-row" data-note-open="'+esc(f.id)+'" aria-haspopup="dialog"><span class="ts-row-k">'+ppV('私密笔记','Private note')+'</span><span class="nt-val">'+val+badges+'</span><span class="ts-go" aria-hidden="true">›</span></button>';
+}
+let noteOpenId='';
+function noteClose(now){const w=document.getElementById('note-sheet');noteOpenId='';if(!document.getElementById('ts-sheet')&&!document.getElementById('lg-sheet')&&!document.getElementById('st-sheet'))document.documentElement.classList.remove('ts-lock');if(!w)return;if(now||matchMedia('(prefers-reduced-motion: reduce)').matches){w.remove();return;}w.classList.add('out');setTimeout(()=>w.remove(),180);}
+function noteOpen(id){
+  const f=F[id]; if(!f||typeof privateNoteOf!=='function')return;
+  const n=privateNoteOf(id);
+  if(n&&n.locked){toast(tr('笔记已加密，请先在「我的 → 云端同步」输入口令解锁'));return;}
+  noteClose(true); noteOpenId=id;
+  const hasPass=typeof notePass==='function'&&!!notePass();
+  const kicker=hasPass?ppV('端到端加密同步 · 云端仅存密文','E2E encrypted sync'):ppV('纯本机私密 · 绝不上传云端','Local-only · never uploaded');
+  document.body.insertAdjacentHTML('beforeend',
+    '<div class="ts-wrap" id="note-sheet"><div class="ts-backdrop" data-note="close"></div><section class="ts-sheet nt-sheet" role="dialog" aria-modal="true" aria-labelledby="nt-title"><span class="ts-grab" aria-hidden="true"></span>'+
+    '<header class="ts-head"><div><small>PRIVATE NOTE · '+esc(f.cn)+'</small><h3 id="nt-title">'+ppV('私密观影笔记','Private Film Note')+'</h3></div><button type="button" class="ts-x" data-note="close" aria-label="'+ppV('关闭','Close')+'">×</button></header>'+
+    '<div class="ts-body nt-body"><p class="nt-scope">'+esc(kicker)+'</p><textarea id="nt-input" class="nt-area" rows="5" maxlength="1000" placeholder="'+esc(ppV('记录那一刻银幕上的光影、情绪、邻座或散场后的路…','Jot down a thought, a scene, or how you felt leaving the theatre…'))+'">'+esc(n?n.text:'')+'</textarea>'+
+    '<div class="nt-opts"><label class="nt-chk"><input type="checkbox" id="nt-tb"'+(n&&n.tb?' checked':'')+'><span><b>'+ppV('印在典藏票根背面','Print on ticket back')+'</b><small>'+ppV('默认关闭；开启后将节选印在本片典藏票根背面','Off by default · prints a short quote on the back of this ticket')+'</small></span></label>'+
+    '<label class="nt-chk"><input type="checkbox" id="nt-rc"'+(n&&n.rc?' checked':'')+'><span><b>'+ppV('收进年度观影总结','Include in annual recap')+'</b><small>'+ppV('默认关闭；开启后可在生成观影结算长图时附带','Off by default · available as an opt-in when generating your recap')+'</small></span></label></div></div>'+
+    '<footer class="ts-foot">'+(n?'<button type="button" class="text-button dy-del" data-note="del">'+ppV('删除笔记','Delete')+'</button>':'<span></span>')+'<button type="button" class="primary-button" data-note="save">'+ppV('保存笔记','Save note')+'</button></footer></section></div>');
+  document.documentElement.classList.add('ts-lock');
+  document.getElementById('nt-input')?.focus({preventScroll:true});
+}
+document.addEventListener('click',e=>{
+  const o=e.target.closest('[data-note-open]'); if(o){noteOpen(o.dataset.noteOpen);return;}
+  const b=e.target.closest('[data-note]'); if(!b||!noteOpenId)return;
+  const a=b.dataset.note, id=noteOpenId;
+  if(a==='close'){noteClose();return;}
+  if(a==='del'){if(!confirm(tr('删除这部电影的私密笔记？')))return;savePrivateNote(id,'',{});noteClose(true);refreshMyRate(id);toast(tr('笔记已删除'));if(syncSt?.code&&notePass())syncQuiet();return;}
+  if(a==='save'){
+    const text=document.getElementById('nt-input')?.value||'';
+    const tb=!!document.getElementById('nt-tb')?.checked, rc=!!document.getElementById('nt-rc')?.checked;
+    savePrivateNote(id,text,{tb,rc}); noteClose(true); refreshMyRate(id);
+    toast(text.trim()?tr('私密笔记已保存'):tr('笔记已清空'));
+    if(syncSt?.code&&notePass())syncQuiet();
+  }
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&noteOpenId)noteClose();});
+window.addEventListener('hashchange',()=>{if(noteOpenId)noteClose(true);});
 function myRateHTML(f){const rec=watched[f.id],on=!!(rec&&rec.d),r=on?(rec.r||0):0,G=window.SparrowGrowth,n=on&&G?G.views(rec).length:0;
   const stars=starInput('data-rate="'+f.id+'"',r,ppV('我的评分（五星十分制）','My rating (5 stars, 10 points)'));
   const head='<h3 class="fd-h">我的观影 <small>MY FILM PASSPORT</small></h3>';
-  // 一张卡片：我的评分 / 趣味 / 每一次观影，左侧统一灰色小标签
+  // 一张卡片：我的评分 / 趣味 / 私密笔记 / 每一次观影，左侧统一灰色小标签
   const rate='<div class="mrc-rate"><span class="mrc-k">'+ppV('我的评分','My rating')+(n>1?'<small>'+ppV('最近一次','latest')+'</small>':'')+'</span>'+stars+'<span class="mr-score">'+(r?'<b>'+r+'</b><small>/10</small>':'<small>'+ppV('点星打分','Tap to rate')+'</small>')+'</span></div>';
   const wOn=isWant(f.id);
   if(!on)return '<section class="fd-block my-rate" id="my-rate">'+head+
     '<div class="mr-acts"><button class="mr-want'+(wOn?' on':'')+'" data-want="'+f.id+'" aria-pressed="'+wOn+'"><span>'+(wOn?ppV('★ 已想看','★ On my list'):ppV('☆ 想看','☆ Want to see'))+'</span></button><button class="mr-seen" data-seen="'+f.id+'" aria-pressed="false"><span>＋ 看过 · 盖章</span></button></div>'+
-    '<div class="mrc">'+rate+tasteRowHTML(f)+'</div><p class="mr-tip">看过后会在「我的 → 观影护照」盖下这部电影的印章；评分为五星十分制，可打半颗星。</p></section>';
+    '<div class="mrc">'+rate+tasteRowHTML(f)+noteRowHTML(f)+'</div><p class="mr-tip">看过后会在「我的 → 观影护照」盖下这部电影的印章；评分为五星十分制，可打半颗星。</p></section>';
   return '<section class="fd-block my-rate on" id="my-rate"><div class="mr-top">'+head+
     '<button type="button" class="mr-stamp" data-st-open="'+f.id+'" aria-haspopup="dialog" aria-label="'+ppV('已盖章，查看或取消印章','Stamped · view or remove this stamp')+'">'+STAMP_IC+'<span>'+ppV('已盖章','Stamped')+'</span>'+(n>1?'<b>'+ppV(n+' 次','×'+n)+'</b>':'')+'<em aria-hidden="true">›</em></button></div>'+
-    '<div class="mrc">'+rate+tasteRowHTML(f)+lgRowsHTML(f,rec)+'</div></section>';}
+    '<div class="mrc">'+rate+tasteRowHTML(f)+noteRowHTML(f)+lgRowsHTML(f,rec)+'</div></section>';}
 // 放映版本（可选）：2K / 4K / 胶片 / IMAX 各版本 / 杜比 / 4DX 等，用于「成长」里的版本收藏与胶片、IMAX 纪念章
 function fmtOptionsHTML(cur){const G=window.SparrowGrowth;if(!G)return '';const en=LANG==='en';
   return '<option value="">'+ppV('未填写','Not set')+'</option>'+(pl=>G.FORMAT_GROUPS.map(g=>pl.some(x=>x.group===g.id)?'<optgroup label="'+(en?g.en:g.zh)+'">'+pl.filter(x=>x.group===g.id).map(x=>'<option value="'+x.id+'"'+(x.id===cur?' selected':'')+'>'+(en?x.en:x.zh)+'</option>').join('')+'</optgroup>':'').join(''))(G.pickList(cur));}

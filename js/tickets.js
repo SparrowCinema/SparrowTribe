@@ -140,12 +140,15 @@ function ticketBase(filmId,view,date){
 }
 let ticketQRReady=false;
 function ticketAll(){
-  if(ticketData&&ticketDataRev===ticketRev+"|"+watchedSig())return ticketData;
+  const nRev=typeof notesRev==="number"?notesRev:0;
+  if(ticketData&&ticketDataRev===ticketRev+"|"+watchedSig()+"|"+nRev)return ticketData;
   // 不对应观影记录的票根先挪到所属影片还没有票根的观影上（每次观影一张）
   const list=ticketViewings(),moves=TE.reconcile(list,ticketStore());
   if(moves)ticketStorePut({...ticketStore(),...moves},true);
   if(!ticketQRReady&&typeof qrMatrix==="function"){TE.setQR(qrMatrix);ticketQRReady=true;}
-  ticketData=TE.build(list,ticketStore(),ticketBase);TE.decorate(ticketData.tickets,ticketSets());TE.attachAutographs(ticketData.tickets,ticketAgCache());ticketDataRev=ticketRev+"|"+watchedSig();
+  ticketData=TE.build(list,ticketStore(),ticketBase);TE.decorate(ticketData.tickets,ticketSets());TE.attachAutographs(ticketData.tickets,ticketAgCache());
+  if(typeof privateNoteOf==="function")ticketData.tickets.forEach(row=>{const n=privateNoteOf(row.filmId);if(n&&n.tb&&n.text&&!n.locked)row.note=n.text;});
+  ticketDataRev=ticketRev+"|"+watchedSig()+"|"+nRev;
   ticketByKey=new Map(ticketData.tickets.map(row=>[row.key,row]));
   return ticketData;
 }

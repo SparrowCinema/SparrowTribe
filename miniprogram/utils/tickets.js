@@ -1180,7 +1180,8 @@ function draw(surface,record,side,image,rect,createCanvas,light) {
     const guests=guestLine(record);
     if (guests) text(surface,guests,W/2,record.section?580:566,{...centre,size:10.5,weight:600,max:320,ink:foilGradient(surface,90,570,330,584,"gold")});
     rule(surface,601,bright+"75",59,W-59);
-    text(surface,record.title,W/2,652,{...centre,size:21,weight:650,max:331});
+    text(surface,record.title,W/2,record.note?644:652,{...centre,size:21,weight:650,max:331});
+    if (record.note) text(surface,"“"+String(record.note).replace(/\s+/g," ").trim()+"”",W/2,676,{...centre,size:11.5,weight:400,font:SERIF,max:336,ink:bright+"c8"});
     rule(surface,TEAR,bright+"6b",24,W-24,true);
     // 撕线下方（2026-11-22 改版）：左边发行序号（封版后带总数）与本场序号，右边验真二维码，底部日期城市、盲文、SPARROW CINEMA。
     // 内框线在 y=836 / 842，最后一行要在 828 以上，不能压到框线

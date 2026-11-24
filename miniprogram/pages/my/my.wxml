@@ -135,7 +135,7 @@ ONE STAMP</text><text class="fp-open-icon">↗</text></view>
  </view>
  <view class="my-group">{{L.t(i,'设置与帮助')}} <text wx:if="{{!i.__en}}" class="mono">SETTINGS</text></view>
  <view class="menu card">
-  <view class="me-row" hover-class="hv" bindtap="toggleSync"><image class="me-ic" src="/images/menu/sync.svg" mode="aspectFit" /><view class="me-copy"><text class="me-t">{{L.t(i,'个人档案云端同步')}}</text><text class="me-s">{{sy.on ? sy.line : L.t(i,'同步、备份与档案保管')}}</text></view><text class="me-go {{syncExpanded?'on':''}}">›</text></view>
+  <view class="me-row" hover-class="hv" bindtap="toggleSync"><image class="me-ic" src="/images/menu/sync.svg" mode="aspectFit" /><view class="me-copy"><text class="me-t">{{L.t(i,'个人档案云端同步')}}</text><text class="me-s">{{sy.sub || (sy.on ? sy.line : L.t(i,'同步、备份与档案保管'))}}</text></view><text class="me-go {{syncExpanded?'on':''}}">›</text></view>
   <view wx:if="{{syncExpanded}}" class="me-body sync-body">
    <block wx:if="{{sy}}">
     <block wx:if="{{!sy.on}}">
@@ -145,17 +145,37 @@ ONE STAMP</text><text class="fp-open-icon">↗</text></view>
     </block>
     <block wx:else>
       <view class="sy-st"><view class="dot {{sy.state}}" /><text>{{sy.wx ? L.t(i,'微信已登录 · ') : ''}}{{sy.line}}</text></view>
+      <view wx:if="{{sy.health && sy.health.codeWarning}}" class="sy-health warn">
+        <view class="sy-hc"><text class="sy-ht">{{L.t(i,'尚未确认保存同步码')}}</text><text class="sy-hs">{{L.t(i,'同步码是跨设备找回档案的唯一钥匙，请先复制妥善保存。')}}</text></view>
+        <view class="btn ghost sy-hb" bindtap="syMarkSaved">{{L.t(i,'我已保存')}}</view>
+      </view>
+      <view wx:else class="sy-saved-ok"><view class="dot ok" /><text>{{L.t(i,'已确认保存同步码')}}</text></view>
       <view class="sy-code"><text class="sy-l">{{L.t(i,'同步码')}}</text><text class="mono sy-c" user-select>{{sy.shown}}</text>
         <view class="sy-ops"><text bindtap="syReveal">{{sy.rev ? L.t(i,'隐藏') : L.t(i,'显示')}}</text><text bindtap="syCopy">{{L.t(i,'复制')}}</text></view></view>
       <view class="sy-row"><view class="btn" hover-class="hv" bindtap="syNow">{{L.t(i,'立即同步')}}</view><view class="btn ghost" hover-class="hv" bindtap="syScan">{{L.t(i,'扫码连接网站')}}</view><text class="sy-stop" bindtap="syStop">{{L.t(i,'停止同步')}}</text></view>
+      <view class="nv-box">
+        <view class="nv-head"><view><text class="nv-k mono">E2E ENCRYPTED NOTES</text><text class="nv-t">{{L.t(i,'私密笔记端到端加密同步')}}</text></view><text class="nv-st {{sy.hasPass?'on':''}}">{{sy.hasPass?L.t(i,'已开启加密'):L.t(i,'仅本机保存')}}</text></view>
+        <text class="nv-d">{{sy.hasPass?L.t(i,'笔记在离开本机前由独立口令 AES-256 加密，云端仅存密文；换设备后输入同一口令即可解密。'):L.t(i,'默认所有个人笔记仅保存在本机、绝不上传云端。设置独立口令后，将以端到端加密形式随同步码跨设备同步。')}}</text>
+        <text wx:if="{{sy.lockedCount}}" class="nv-warn">{{i.__en?sy.lockedCount+' encrypted notes from another device need your passphrase.':sy.lockedCount+' 条来自其他设备的加密笔记待解锁，请输入笔记口令。'}}</text>
+        <view class="sy-row"><view class="btn ghost" bindtap="noteVaultSet">{{sy.hasPass?L.t(i,'修改口令'):sy.lockedCount?L.t(i,'输入口令解锁'):L.t(i,'设置加密口令')}}</view><text wx:if="{{sy.hasPass}}" class="sy-stop" bindtap="noteVaultClear">{{L.t(i,'清除本机口令')}}</text><text wx:if="{{sy.notesCount}}" class="nv-cnt mono">{{sy.notesCount}} {{L.t(i,'条笔记')}}</text></view>
+      </view>
       <view class="sy-note">{{L.t(i,'同一个微信在任何手机上打开小程序都会自动连到这份档案。和网站互通：在网站「我的 → 个人档案云端同步」点「用小程序扫码连接」，再回到这里点「扫码连接网站」；也可以在网站选「我已有同步码」输入这串码。同步码就是钥匙，请自己保存好；知道它的人都能读写这份档案。')}}</view>
     </block>
    </block>
    <view class="care-h">{{L.t(i,'你的档案，由你保管')}}</view>
-
+   <view wx:if="{{sy.health && sy.health.backupWarning}}" class="sy-health info">
+     <view class="sy-hc"><text class="sy-ht">{{L.t(i,'定期备份提醒')}}</text><text class="sy-hs">{{sy.health.backupReason}}</text></view>
+     <view class="btn ghost sy-hb" bindtap="backupProfile">{{L.t(i,'立即备份')}}</view>
+   </view>
  <text class="care-p">{{L.t(i,'小程序记录保存在本机，个人排片与看过记录也会按微信用户同步。启用同步码后，姓名、照片与完整档案会另存入 Supabase，用于网站和多设备同步。')}}</text>
- <text class="care-p">{{L.t(i,'完整备份包含观影记录、评分、照片、姓名和个人排片，不包含同步码。导入会合并已有排片，同一影片以导入记录为准；备份文件请自行妥善保管。')}}</text>
+ <text class="care-p">{{L.t(i,'完整备份包含观影记录、个人笔记、评分、照片、姓名和个人排片，不包含同步码与加密口令。导入会合并已有排片，同一影片以导入记录为准；备份文件请自行妥善保管。')}}</text>
  <view class="sy-row"><view class="btn ghost" bindtap="backupProfile">{{L.t(i,'下载完整备份')}}</view><view class="btn ghost" bindtap="restoreProfile">{{L.t(i,'导入备份')}}</view></view>
+ <view class="nv-box eco-box">
+   <text class="nv-k mono">LETTERBOXD &amp; DOUBAN</text>
+   <text class="nv-t">{{L.t(i,'生态 CSV 导出')}}</text>
+   <text class="nv-d">{{L.t(i,'将已看记录导出为官方 Letterboxd CSV（默认不附带私密笔记）。如需导入 Letterboxd / 豆瓣 CSV，可在网页版「我的 → 同步与备份」预览并一键导入，再同步回小程序。')}}</text>
+   <view class="sy-row"><view class="btn ghost" bindtap="exportLetterboxd">{{L.t(i,'导出 Letterboxd CSV')}}</view></view>
+ </view>
  <text class="care-p">{{L.t(i,'同步码丢失时可在另一台已连接设备查看。没有同步码和已连接设备时，无法凭姓名找回；备份文件仍可恢复本机档案。')}}</text>
  <text class="care-p">{{L.t(i,'停止同步只断开本设备。清空同步码对应的云端内容前，请先在其他设备停止同步；本机副本保留，微信用户下的排片与看过记录不受影响。匿名同步记录和删除标记仍保留；彻底删除请联系维护者。')}}</text>
  <view wx:if="{{sy.on}}" class="care-danger" bindtap="clearCloudProfile">{{L.t(i,'清空云端内容并断开同步')}}</view>
@@ -191,6 +211,7 @@ ONE STAMP</text><text class="fp-open-icon">↗</text></view>
     <view wx:else class="rc-chips"><text wx:for="{{rc.progs}}" wx:key="v" class="chip {{item.on ? 'on' : ''}}" data-v="{{item.v}}" bindtap="setRcP">{{item.n}}</text></view>
     <text class="rc-k">{{L.t(i,'长图展示项目')}} · {{L.t(i,'可多选')}}</text>
     <checkbox-group class="rc-options" bindchange="setRcSections"><label wx:for="{{rc.sections}}" wx:key="id"><checkbox value="{{item.id}}" checked="{{item.on}}" color="#2f6f6c"/><text>{{item.label}}</text></label></checkbox-group>
+    <checkbox-group wx:if="{{rc.notesInScope}}" bindchange="setRcIncludeNotes"><label class="rc-note-opt"><checkbox value="1" checked="{{rcIncludeNotes}}" color="#8e2a22"/><text>{{i.__en?'Include opted-in private notes ('+rc.notesInScope+')':'附带已勾选「收进总结」的个人笔记（'+rc.notesInScope+' 条）'}}</text></label></checkbox-group>
     <text class="rc-note">{{L.t(i,'品牌与二维码固定保留。')}} {{L.t(i,'仅影响生成的长图，不会修改观影记录。')}}</text>
     <view class="rc-sum" wx:if="{{rc.n}}">
       <view><text class="n mono">{{rc.n}}</text><text class="l">{{L.t(i,'部影片')}}</text></view>
