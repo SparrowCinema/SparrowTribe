@@ -33,7 +33,8 @@ const WANT_TIERS=[[1,'必看','Must'],[2,'可看','Maybe'],[3,'随缘','If free'
 function wantTier(id){const r=want[id];return r&&!r.del&&(r.p===1||r.p===3)?r.p:2;}
 function setWantTier(id,p){p=+p;const r={t:Date.now()};if(p===1||p===3)r.p=p;want[id]=r;saveWant();wantMarkSeen(id);}
 function wantTierLabel(p){const x=WANT_TIERS.find(y=>y[0]===p)||WANT_TIERS[1];return LANG==='en'?x[2]:x[1];}
-function wantTierHTML(id){const cur=wantTier(id);return '<div class="mr-tier" role="radiogroup" aria-label="'+ppV('想看分级','Priority')+'"><span class="mr-tier-k">'+ppV('分级','Priority')+'</span>'+WANT_TIERS.map(([p])=>'<button type="button" role="radio" class="mr-tier-b t'+p+(cur===p?' on':'')+'" data-want-tier="'+esc(id)+'" data-p="'+p+'" aria-checked="'+(cur===p)+'">'+wantTierLabel(p)+'</button>').join('')+'<small>'+ppV('一键排片先保证必看，随缘只填空档','Auto-plan secures Must first; If free only fills gaps')+'</small></div>';}
+// 想看程度：紧贴「已想看」按钮下方的附属行——左侧小标签 + 三段式分段按钮，说明单独一行灰色小字
+function wantTierHTML(id){const cur=wantTier(id);return '<div class="mr-tier"><div class="mr-tier-row"><span class="mr-tier-k" id="mr-tier-k">'+ppV('有多想看','Priority')+'</span><div class="mr-tier-seg" role="radiogroup" aria-labelledby="mr-tier-k">'+WANT_TIERS.map(([p])=>'<button type="button" role="radio" class="mr-tier-b t'+p+(cur===p?' on':'')+'" data-want-tier="'+esc(id)+'" data-p="'+p+'" aria-checked="'+(cur===p)+'">'+wantTierLabel(p)+'</button>').join('')+'</div></div><small class="mr-tier-tip">'+ppV('一键排片先保证必看，随缘只填空档','Auto-plan secures Must first; If free only fills gaps')+'</small></div>';}
 function wantStats(){const ids=FILMS.filter(f=>isWant(f.id)).map(f=>f.id);return {n:ids.length,live:ids.filter(id=>wantUpcoming(id).length).length,fresh:ids.filter(id=>wantNew(id)).length};}
 function holderPhoto(){try{return localStorage.getItem(PHOTO_KEY)||'';}catch{return '';}}
 function holderName(){try{return localStorage.getItem(HOLDER_KEY)||'';}catch{return '';}}
