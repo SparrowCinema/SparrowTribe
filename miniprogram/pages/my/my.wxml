@@ -171,7 +171,7 @@ ONE STAMP</text><text class="fp-open-icon">↗</text></view>
  <text class="care-p">{{L.t(i,'完整备份包含观影记录、个人笔记、评分、照片、姓名和个人排片，不包含同步码与加密口令。导入会合并已有排片，同一影片以导入记录为准；备份文件请自行妥善保管。')}}</text>
  <view class="sy-row"><view class="btn ghost" bindtap="backupProfile">{{L.t(i,'下载完整备份')}}</view><view class="btn ghost" bindtap="restoreProfile">{{L.t(i,'导入备份')}}</view></view>
  <view class="nv-box eco-box">
-   <text class="nv-k mono">LETTERBOXD &amp; DOUBAN</text>
+   <text class="nv-k mono">{{'LETTERBOXD & DOUBAN'}}</text>
    <text class="nv-t">{{L.t(i,'生态 CSV 导出')}}</text>
    <text class="nv-d">{{L.t(i,'将已看记录导出为官方 Letterboxd CSV（默认不附带私密笔记）。如需导入 Letterboxd / 豆瓣 CSV，可在网页版「我的 → 同步与备份」预览并一键导入，再同步回小程序。')}}</text>
    <view class="sy-row"><view class="btn ghost" bindtap="exportLetterboxd">{{L.t(i,'导出 Letterboxd CSV')}}</view></view>
