@@ -63,6 +63,17 @@ for (const L of ['zh', 'en']) {
   });
 }
 
+// ---------- 站点地图（搜索引擎用，robots.txt 里登记）----------
+{
+  const day = new Date().toISOString().slice(0, 10), urls = [SITE];
+  for (const L of ['zh', 'en']) {
+    Object.keys(films).forEach(id => { if (!films[id].ev) urls.push(SITE + (lang(L) ? 's/en/' : 's/') + 'f/' + id + '.html'); });
+    progs.forEach(p => urls.push(SITE + (lang(L) ? 's/en/' : 's/') + 'p/' + p.id + '.html'));
+  }
+  out('sitemap.xml', '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + urls.map(u => `  <url><loc>${esc(u)}</loc><lastmod>${day}</lastmod></url>`).join('\n') + '\n</urlset>\n');
+  console.log('sitemap.xml: ' + urls.length + ' URLs');
+}
+
 // ---------- 可订阅日历 ----------
 const esci = s => String(s).replace(/\\/g, '\\\\').replace(/\n/g, '\\n').replace(/,/g, '\\,').replace(/;/g, '\;');
 const fold = line => { const b = Buffer.from(line, 'utf8'); if (b.length <= 74) return line; const parts = []; let cur = ''; for (const ch of line) { if (Buffer.byteLength(cur + ch) > (parts.length ? 73 : 74)) { parts.push(cur); cur = ch; } else cur += ch; } parts.push(cur); return parts.join('\r\n '); };

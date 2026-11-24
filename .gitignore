@@ -16,3 +16,6 @@ programmes/w930/
 
 # 部署时由 tools/build-changes.js 按 git 历史生成的场次变更记录
 data/changes.json
+
+# 部署时由 tools/build-extras.js 生成的站点地图
+/sitemap.xml

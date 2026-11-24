@@ -21,9 +21,21 @@ let navFwd=false,navBack=false;
 document.addEventListener("click",e=>{if(e.target.closest&&e.target.closest('a[href^="#"]'))navFwd=true;},true);
 function goBack(h){navBack=true;go(h);}
 function go(h){navFwd=true;if(activeRoute&&h!==activeRoute){rememberView(activeRoute);capturedRoute=activeRoute;}location.hash=h;}
+// 每个影片页 / 专题页用自己的标题和简介（浏览器标签、书签，以及搜索引擎渲染后收录的页面），其他页面恢复默认
+let BASE_TITLE=null,BASE_DESC=null;
+function routeMeta(h){
+  const md=document.querySelector('meta[name="description"]');
+  if(BASE_TITLE===null){ BASE_TITLE=document.title; BASE_DESC=md?md.content:""; }
+  let t="",d="";
+  if(h.startsWith("film-")){ const f=F[h.slice(5)]; if(f){ t=f.cn+(f.y?" ("+f.y+")":""); d=[f.dir,f.syn?String(f.syn).replace(/\s+/g," ").slice(0,120):""].filter(Boolean).join(" · "); } }
+  else if(h.startsWith("prog-")){ const p=PG[h.slice(5)]; if(p){ t=p.name; d=[p.period,p.blurb||p.sub].filter(Boolean).join(" · "); } }
+  document.title=t?t+" · "+tr("麻雀观影护照"):BASE_TITLE;
+  if(md) md.content=d||BASE_DESC;
+}
 function route(){
   if(!READY) return;
   const h = location.hash.slice(1) || "schedule";
+  try{ routeMeta(h); }catch(e){}
   const changing=activeRoute!==h;
   if(changing){ stat('pv',statRouteKind(h)); if(h.startsWith('film-')) stat('film',h.slice(5)); else if(h.startsWith('prog-')) stat('prog',h.slice(5)); }
   if(changing){if(capturedRoute!==activeRoute)rememberView(activeRoute);capturedRoute="";resetFilmSwipe();if(h.startsWith("film-")&&activeRoute&&!activeRoute.startsWith("film-"))filmReturn=activeRoute;}
