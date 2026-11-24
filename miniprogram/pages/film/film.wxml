@@ -76,6 +76,14 @@
         <text wx:else class="{{mine.seen?'ts-cta':'ts-muted'}}">{{mine.seen?(i.__en?'Rate interesting and boring':'给有趣度、无聊度打分'):(i.__en?'Rate it after watching':'看过后可以评有趣度、无聊度')}}</text>
         <text class="ts-comm">{{tsRow.comm}}</text><text class="ts-go">›</text>
         </view>
+        <view class="ts-row sep nt-row" hover-class="hv" bindtap="ntOpen" role="button" aria-haspopup="dialog">
+          <text class="ts-row-k">{{i.__en?'Note':'私密笔记'}}</text>
+          <text wx:if="{{noteRow.locked}}" class="ts-muted">{{i.__en?'Encrypted · unlock in My → Sync':'云端加密笔记 · 前往「我的 → 同步」输入口令解锁'}}</text>
+          <text wx:elif="{{noteRow.text}}" class="nt-preview">{{noteRow.text}}</text>
+          <text wx:else class="ts-muted">{{i.__en?'Write a private note (local only by default)':'写一段只留给自己的影评或散场记忆'}}</text>
+          <text wx:if="{{noteRow.badge}}" class="nt-badge">{{noteRow.badge}}</text>
+          <text class="ts-go">›</text>
+        </view>
         <block wx:if="{{mine.seen}}">
           <view wx:for="{{mine.diary}}" wx:key="i" class="dy-row sep" hover-class="hv" data-i="{{item.i}}" bindtap="lgOpen">
             <view class="dy-d"><text class="dy-md mono">{{item.md}}</text><text class="dy-y mono">{{item.y}}</text></view>
@@ -186,7 +194,7 @@
 </view>
 <view class="to-top {{topOn ? 'show' : ''}}" hover-class="to-top-hv" bindtap="toTop"><view class="tt-arr" /></view>
 
-<page-container show="{{tsShow || lgShow}}" position="bottom" round="{{true}}" z-index="1200" custom-style="background:transparent" overlay-style="background:rgba(24,16,8,0.45)" bind:afterleave="sheetLeave">
+<page-container show="{{tsShow || lgShow || ntShow}}" position="bottom" round="{{true}}" z-index="1200" custom-style="background:transparent" overlay-style="background:rgba(24,16,8,0.45)" bind:afterleave="sheetLeave">
 <block wx:if="{{tsShow}}">
   <view class="ts-sheet" style="{{ps}}">
     <view class="ts-grab" />
@@ -226,6 +234,21 @@
         <text class="mr-score mono {{lg.r ? 'has' : ''}}">{{lg.scoreTxt}}</text></view>
     </scroll-view>
     <view class="ts-foot"><text wx:if="{{lg.delTxt}}" class="dy-del" bindtap="lgDel">{{lg.delTxt}}</text><text wx:else /><view class="ts-done" hover-class="hv" bindtap="lgSave">{{i.__en?'Save':'保存'}}</view></view>
+  </view>
+</block>
+<block wx:if="{{ntShow}}">
+  <view class="ts-sheet" style="{{ps}}">
+    <view class="ts-grab" />
+    <view class="ts-head"><view><text class="ts-kicker">PRIVATE NOTE · {{f.cn}}</text><text class="ts-title">{{i.__en?'Private Note':'私密个人笔记'}}</text></view><view class="ts-x" bindtap="ntClose" aria-label="{{i.__en?'Close':'关闭'}}" role="button">×</view></view>
+    <scroll-view scroll-y class="ts-body">
+      <text class="nt-tip">{{nt.encrypted?(i.__en?'E2E encrypted with your local passphrase before cloud sync.':'已开启端到端加密：离开本机前由独立口令加密，云端仅存密文。'):(i.__en?'Stored only on this device by default, never uploaded to the cloud.':'默认纯本机保存，绝不上传云端；可在「我的 → 同步」设置口令以端到端加密同步。')}}</text>
+      <textarea class="nt-ta" value="{{nt.text}}" maxlength="1000" auto-height placeholder="{{i.__en?'Write thoughts, quotes, or memories from the screening…':'记下散场瞬间的感受、台词、同场记忆，仅自己可见…'}}" bindinput="ntInput" />
+      <view class="nt-opts">
+        <view class="nt-opt"><view class="nt-opt-copy"><text class="nt-opt-t">{{i.__en?'Print on ticket back':'印在典藏票根背面'}}</text><text class="nt-opt-s">{{i.__en?'Off by default · prints a quiet excerpt on the reverse':'默认关闭 · 开启后票根背面会轻印一句摘录'}}</text></view><switch checked="{{nt.tb}}" color="#8e2a22" bindchange="ntTogTb" /></view>
+        <view class="nt-opt nt-opt-sep"><view class="nt-opt-copy"><text class="nt-opt-t">{{i.__en?'Include in yearly recap':'收进年度观影总结'}}</text><text class="nt-opt-s">{{i.__en?'Off by default · optional when generating recap image':'默认关闭 · 生成结算长图时可勾选附带'}}</text></view><switch checked="{{nt.rc}}" color="#8e2a22" bindchange="ntTogRc" /></view>
+      </view>
+    </scroll-view>
+    <view class="ts-foot"><text wx:if="{{nt.has}}" class="dy-del" bindtap="ntDel">{{i.__en?'Delete note':'删除笔记'}}</text><text wx:else /><view class="ts-done" hover-class="hv" bindtap="ntSave">{{i.__en?'Save':'保存'}}</view></view>
   </view>
 </block>
 </page-container>

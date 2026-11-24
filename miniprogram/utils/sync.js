@@ -8,6 +8,7 @@ const MyP = require('./myposter.js');
 const plan = require('./plan.js');
 const Tix = require('./ticketstore.js');
 const Art = require('./ticket-sketch.js');
+const Notes = require('./notes.js');
 const artRead = k => wx.getStorageSync(k), artWrite = (k, v) => wx.setStorageSync(k, v);
 const KEY = 'sk-sync';
 let busy = null, applying = false, clearing = false, timer = 0, dirty = false;
@@ -29,9 +30,9 @@ function photoB64() {
   const p = W.photo(); if (!p) return '';
   try { return 'data:image/jpeg;base64,' + wx.getFileSystemManager().readFileSync(p, 'base64'); } catch (e) { return ''; }
 }
-function snapshot() {
+function snapshot(forCloud) {
   const m = W.meta();
-  return { v: 1, watched: W.all(), holder: { n: W.holder(), t: m.holder || 0 }, photo: { d: photoB64(), t: m.photo || 0 }, picks: { k: [...plan.get()], t: m.picks || 0 }, want: JSON.parse(JSON.stringify(Want.all())), tix: Tix.snapshot(), art: Art.artSnapshot(artRead), pp: JSON.parse(JSON.stringify(MyP.all())) };
+  return { v: 1, watched: W.all(), holder: { n: W.holder(), t: m.holder || 0 }, photo: { d: photoB64(), t: m.photo || 0 }, picks: { k: [...plan.get()], t: m.picks || 0 }, want: JSON.parse(JSON.stringify(Want.all())), tix: Tix.snapshot(), art: Art.artSnapshot(artRead), pp: JSON.parse(JSON.stringify(MyP.all())), notes: forCloud ? Notes.forCloud() : JSON.parse(JSON.stringify(Notes.all())) };
 }
 function apply(d) {
   applying = true;
@@ -54,6 +55,7 @@ function apply(d) {
     if (d.art) Art.applyArt(artRead, artWrite, d.art);
     // 我的海报：同样合并而不是覆盖（旧版 psync 云函数不认识 pp）
     if (d.pp) MyP.replaceAll(S.mergePP(MyP.all(), d.pp));
+    if (d.notes) Notes.mergeCloud(d.notes);
     W.setMeta({ holder: d.holder.t, photo: d.photo.t, picks: d.picks.t });
   } finally { applying = false; }
 }
@@ -69,13 +71,13 @@ function friendly(m) {
 function run() {
   const st = state(); if (!st || !st.code) return Promise.resolve();
   status.state = 'busy'; emit(); dirty = false;
-  return call({ action: 'sync', code: st.code, state: snapshot() }).then(r => {
+  return call({ action: 'sync', code: st.code, state: snapshot(true) }).then(r => {
     if (!r.ok) throw new Error(r.msg || 'fail');
     // 请求在路上时本机可能又改了（比如刚移出一场排片）：云端返回的是按「发出时的旧快照」合并的结果，
     // 直接覆盖会把刚移出的场次又放回来。所以先和「现在的本机」再合并一次（同一项取较新者），本机新改的保留，
     // 只有真的有变化才写回；本机比云端新时再补同步一次把新改动推上去。
     if (r.changed || dirty) {
-      const cloud = S.clean(r.merged), local = snapshot(), next = S.merge(local, cloud);
+      const cloud = S.clean(r.merged), local = snapshot(true), next = S.merge(local, cloud);
       if (!S.same(next, local)) apply(next);
       if (!S.same(next, cloud)) {
         if (++echo <= ECHO_MAX) dirty = true;
@@ -111,9 +113,9 @@ function fromScan(text) { const m = /SP-[A-Za-z0-9-]+/i.exec(String(text || ''))
 function stop() { setOff(true); setState(null); status.state = 'idle'; status.msg = ''; status.at = 0; emit(); }
 // 本机有改动时 3 秒后自动同步；应用从后台回来或进入「我的」页时拉取一次
 function changed() { if (applying||clearing) return; echo = 0; const st = state(); if (!st || !st.code) return; if (busy) dirty = true; clearTimeout(timer); timer = setTimeout(quiet, 3000); }
-function init() { W.onChange(changed); plan.onChange(changed); Want.onChange(changed); Tix.onChange(changed); MyP.onChange(changed); const st = state(); if (st && st.code) quiet(); else if (!isOff() && !clearing) wxLogin().catch(() => { }); }
+function init() { W.onChange(changed); plan.onChange(changed); Want.onChange(changed); Tix.onChange(changed); MyP.onChange(changed); Notes.onChange(changed); const st = state(); if (st && st.code) quiet(); else if (!isOff() && !clearing) wxLogin().catch(() => { }); }
 function stale() { const st = state(); return !!(st && st.code && Date.now() - (st.at || 0) > 30000); }
 
-async function restore(value){if(busy)await busy;const next=Backup.restore(snapshot(),value);apply(next);changed();}
-async function clearCloud(){if(clearing)return;if(busy)await busy;await sync();clearing=true;clearTimeout(timer);try{const st=state();if(!st?.code)throw new Error('No sync code');const empty=Backup.empty(snapshot()),r=await call({action:'sync',code:st.code,state:empty});if(!r.ok)throw new Error('Cloud clear failed');stop();}finally{clearing=false;}}
+async function restore(value){if(busy)await busy;const next=Backup.restore(snapshot(false),value);apply(next);changed();}
+async function clearCloud(){if(clearing)return;if(busy)await busy;await sync();clearing=true;clearTimeout(timer);try{const st=state();if(!st?.code)throw new Error('No sync code');const empty=Backup.empty(snapshot(true)),r=await call({action:'sync',code:st.code,state:empty});if(!r.ok)throw new Error('Cloud clear failed');stop();}finally{clearing=false;}}
 module.exports = { fromScan, snapshot,restore,clearCloud,state, status, onStatus, sync, quiet, syncBeforeVote, start, join, stop, init, stale, normalize: S.normalize };

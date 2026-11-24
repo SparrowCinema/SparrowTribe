@@ -70,6 +70,8 @@ console.log('psync.js copied');
 // Film-library membership and search rules shared with the website.
 fs.writeFileSync(path.join(root, 'miniprogram/utils/library.js'), fs.readFileSync(path.join(root, 'shared/library.js'), 'utf8'));
 fs.copyFileSync(path.join(root,'shared/recommend.js'),path.join(root,'miniprogram/utils/recommend.js'));
+fs.copyFileSync(path.join(root,'shared/notes-crypto.js'),path.join(root,'miniprogram/utils/notes-crypto.js'));
+fs.copyFileSync(path.join(root,'shared/ecosystem.js'),path.join(root,'miniprogram/utils/ecosystem.js'));
 
 fs.copyFileSync(path.join(root,'shared/profile-backup.js'),path.join(root,'miniprogram/utils/profile-backup.js'));
 fs.copyFileSync(path.join(root,'shared/growth.js'),path.join(root,'miniprogram/utils/growth.js'));

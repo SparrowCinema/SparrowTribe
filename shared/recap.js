@@ -103,7 +103,7 @@
   function posterHeight(o){return Array.isArray(o.sections)&&o.sections.includes('posters')&&(o.items||[]).length?60+Math.ceil(o.items.length/posterLayout(o).cols)*posterLayout(o).row:0;}
   function heightOf(o) {
     const n = (o.items || []).length;
-    return (hasSection(o, 'cover') ? L.HEAD : 0) + (hasSection(o, 'stats') ? L.STATS : 0) + (hasSection(o, 'favorite') && o.fav ? L.FAV : 0) + (hasSection(o, 'programmes') && (o.progs || []).length > 1 ? L.PROGH + o.progs.length * L.PROGROW : 0) + (hasSection(o, 'stamps') && n ? L.WALLH + Math.ceil(n / 3) * L.CELL + 20 : 0) + (hasSection(o, 'list') && n ? L.LISTH + n * L.ROW : 0) + posterHeight(o) + (hasSection(o, 'footer') ? L.FOOT : 0);
+    return (hasSection(o, 'cover') ? L.HEAD : 0) + (hasSection(o, 'stats') ? L.STATS : 0) + (hasSection(o, 'favorite') && o.fav ? L.FAV : 0) + (hasSection(o, 'programmes') && (o.progs || []).length > 1 ? L.PROGH + o.progs.length * L.PROGROW : 0) + (hasSection(o, 'stamps') && n ? L.WALLH + Math.ceil(n / 3) * L.CELL + 20 : 0) + (hasSection(o, 'list') && n ? L.LISTH + n * (L.ROW + (o.includeNotes ? 34 : 0)) : 0) + posterHeight(o) + (hasSection(o, 'footer') ? L.FOOT : 0);
   }
 
   function draw(c, o) {
@@ -182,8 +182,9 @@
       // 清单
     if (hasSection(o, 'list') && items.length) {
       head('观影清单', 'FILMS WATCHED', y); y += L.LISTH;
+      const rowStep = o.includeNotes ? L.ROW + 34 : L.ROW;
       items.forEach((it, i) => {
-        const yy = y + i * L.ROW;
+        const yy = y + i * rowStep;
         if (i) { c.fillStyle = C.line; c.fillRect(P, yy - 14, W - 2 * P, 1.5); }
         c.fillStyle = C.muted; c.font = '600 24px ' + MONO; c.fillText(String(i + 1).padStart(2, '0'), P, yy + 40);
         const px = P + 60; if (it.img) cover(c, it.img, px, yy, 96, 140, 8); else { c.fillStyle = it.color || C.red; rr(c, px, yy, 96, 140, 8); c.fill(); c.fillStyle = '#fffaf0'; c.font = '900 40px ' + SERIF; c.fillText([...String(it.title)][0] || '', px + 28, yy + 84); }
@@ -191,10 +192,14 @@
         c.fillStyle = C.ink; c.font = '700 34px ' + SANS; c.fillText(clip1(c, it.title, tw), tx, yy + 42);
         c.fillStyle = C.muted; c.font = '400 22px ' + SANS; c.fillText(clip1(c, [it.en !== it.title ? it.en : '', it.prog].filter(Boolean).join(' · '), tw), tx, yy + 80);
         c.fillStyle = C.teal; c.font = '500 22px ' + SANS; c.fillText(clip1(c, [it.dstamp, it.venue].filter(Boolean).join(' · '), tw), tx, yy + 116);
+        if (o.includeNotes && it.note) {
+          c.fillStyle = C.muted; c.font = 'italic 400 21px ' + SERIF;
+          c.fillText(clip1(c, '“' + String(it.note).replace(/\s+/g, ' ').trim() + '”', W - P - tx), tx, yy + 150);
+        }
         if (it.score) { stars(c, W - P - 200, yy + 40, 16, it.score, C.red, C.line); c.fillStyle = C.red; c.font = '700 28px ' + MONO; c.textAlign = 'right'; c.fillText(it.score + '/10', W - P, yy + 92); c.textAlign = 'left'; }
         else { c.fillStyle = C.muted; c.font = '400 22px ' + SANS; c.textAlign = 'right'; c.fillText(T('未评分'), W - P, yy + 48); c.textAlign = 'left'; }
       });
-      y += items.length * L.ROW;
+      y += items.length * rowStep;
     }
 
     if(posterHeight(o)){
