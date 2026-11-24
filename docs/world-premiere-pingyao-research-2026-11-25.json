@@ -614,16 +614,21 @@
         "urls": {
           "imdb": "https://www.imdb.com/title/tt35854741/",
           "lb": "https://letterboxd.com/film/flies-2026/",
-          "rt": "https://www.rottentomatoes.com/m/flies_2026"
+          "rt": "https://www.rottentomatoes.com/m/flies_2026",
+          "douban": "https://movie.douban.com/subject/37242752/"
         },
         "scores": [
-          null,
+          6.5,
           7.3,
           null,
           null,
-          null
+          3.9
         ],
-        "notes": "可核实的聚合分入库；其余保留空值。"
+        "notes": "可核实的聚合分入库；其余保留空值。",
+        "snapshotMirrors": {
+          "letterboxd": "https://iff.day/tokyo/39/film/flies-2026",
+          "douban": "https://iff.day/tokyo/39/film/flies-2026"
+        }
       }
     },
     "py26-012": {
@@ -992,16 +997,19 @@
           "lb": "https://letterboxd.com/film/hope-2026/",
           "rt": "https://www.rottentomatoes.com/m/hope_2026",
           "mc": "https://www.metacritic.com/movie/hope-2026/",
-          "douban": "https://movie.douban.com/chart?t=2"
+          "douban": "https://movie.douban.com/subject/36179101/"
         },
         "scores": [
           5.5,
           6.5,
           80,
           68,
-          null
+          3.1
         ],
-        "notes": "可核实的聚合分入库；其余保留空值。"
+        "notes": "可核实的聚合分入库；其余保留空值。",
+        "snapshotMirrors": {
+          "letterboxd": "https://iff.day/film/hope-2026"
+        }
       }
     },
     "py26-023": {
@@ -1233,16 +1241,20 @@
           "imdb": "https://www.imdb.com/title/tt34385689/",
           "lb": "https://letterboxd.com/film/paper-tiger-2026/",
           "rt": "https://www.rottentomatoes.com/m/paper_tiger",
-          "mc": "https://www.imdb.com/title/tt34385689/criticreviews/"
+          "mc": "https://www.imdb.com/title/tt34385689/criticreviews/",
+          "douban": "https://movie.douban.com/subject/37100986/"
         },
         "scores": [
           null,
           6.9,
           87,
           79,
-          null
+          3.4
         ],
-        "notes": "可核实的聚合分入库；其余保留空值。"
+        "notes": "可核实的聚合分入库；其余保留空值。",
+        "snapshotMirrors": {
+          "letterboxd": "https://iff.day/film/paper-tiger-2026"
+        }
       }
     },
     "py26-030": {

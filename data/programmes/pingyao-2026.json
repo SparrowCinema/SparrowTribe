@@ -696,14 +696,15 @@
       "links": {
         "imdb": "tt35854741",
         "lb": "flies-2026",
-        "rt": "https://www.rottentomatoes.com/m/flies_2026"
+        "rt": "https://www.rottentomatoes.com/m/flies_2026",
+        "douban": "37242752"
       },
       "r": [
-        null,
+        6.5,
         7.3,
         null,
         null,
-        null
+        3.9
       ],
       "ratingChecked": "2026-11-25"
     },
@@ -1503,14 +1504,15 @@
         "imdb": "tt27369017",
         "lb": "hope-2026",
         "rt": "https://www.rottentomatoes.com/m/hope_2026",
-        "mc": "https://www.metacritic.com/movie/hope-2026/"
+        "mc": "https://www.metacritic.com/movie/hope-2026/",
+        "douban": "36179101"
       },
       "r": [
         5.5,
         6.5,
         80,
         68,
-        null
+        3.1
       ],
       "ratingChecked": "2026-11-25"
     },
@@ -2006,14 +2008,15 @@
         "imdb": "tt34385689",
         "lb": "paper-tiger-2026",
         "rt": "https://www.rottentomatoes.com/m/paper_tiger",
-        "mc": "https://www.metacritic.com/movie/paper-tiger-2026/"
+        "mc": "https://www.metacritic.com/movie/paper-tiger-2026/",
+        "douban": "37100986"
       },
       "r": [
         null,
         6.9,
         87,
         79,
-        null
+        3.4
       ],
       "ratingChecked": "2026-11-25"
     },
