@@ -47,8 +47,9 @@ console.log('share-poster.js copied');
 // 趣味图谱长图：shared/taste-report.js 复制给小程序
 fs.writeFileSync(path.join(root, 'miniprogram/packages/collect/utils/taste-report.js'), '/* 由 tools/build-fallback.js 从 shared/taste-report.js 复制，请改 shared/taste-report.js 后重新运行。 */\n' + fs.readFileSync(path.join(root, 'shared/taste-report.js'), 'utf8'));
 console.log('taste-report.js copied');
-// 使用指南：shared/guide.js 复制给小程序分包
-fs.writeFileSync(path.join(root, 'miniprogram/packages/collect/utils/guide.js'), '/* 由 tools/build-fallback.js 从 shared/guide.js 复制，请改 shared/guide.js 后重新运行。 */\n' + fs.readFileSync(path.join(root, 'shared/guide.js'), 'utf8'));
+// 使用指南：shared/guide.js 复制给小程序分包，末尾附 data/guide.json 作离线兜底（联网后用 getData 返回的 guide，改手册不用重新上传小程序）
+{ const gd = JSON.parse(fs.readFileSync(path.join(root, 'data/guide.json'), 'utf8')); delete gd.note;
+  fs.writeFileSync(path.join(root, 'miniprogram/packages/collect/utils/guide.js'), '/* 由 tools/build-fallback.js 从 shared/guide.js 复制并附上 data/guide.json，请改那两个文件后重新运行。 */\n' + fs.readFileSync(path.join(root, 'shared/guide.js'), 'utf8') + '\nmodule.exports.DATA = ' + JSON.stringify(gd) + ';\n'); }
 // 典藏票根验真二维码（2026-11-22）：vendor/qrcode.js 改成小程序模块放进分包，导出 matrix(text) → 二维布尔数组
 {
   const src = fs.readFileSync(path.join(root, 'vendor/qrcode.js'), 'utf8');

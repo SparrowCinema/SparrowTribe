@@ -131,7 +131,12 @@
     "停车": "Parking",
     "提示": "Tips",
     "位": "members",
-    "待映": "Upcoming"
+    "待映": "Upcoming",
+    "往期专题书架": "Past programme shelf",
+    "换一张我的海报": "Choose your poster",
+    "换一张海报": "Choose a poster",
+    "最近更新": "What's new",
+    "新": "New"
   },
   "_readme": "English layer for the site. films/programmes/venues overlay data fields when ?lang=en; ui is the zh→en dictionary used by tr(). Missing entries fall back to the Chinese text.",
   "films": {
@@ -13609,7 +13614,7 @@
     "最近 30 天 · 匿名汇总 · 访客为每天的设备数": "Last 30 days · anonymous totals · visitors are devices per day",
     "页面浏览": "Page views",
     "影片页": "Film pages",
-    "专题页": "Programme pages",
+    "专题页": "Programme",
     "标想看": "Want to see",
     "导出": "Exports",
     "连接同步": "Sync links",
@@ -13839,8 +13844,16 @@
     "按年份筛选往期专题": "Filter past programmes by year",
     "我看过的": "Watched",
     "暂无匹配的往期专题": "No matching past programmes",
-    "专题页": "Programme",
     "往期": "Past",
-    "命中的往期影片按专题列出": "Matching past films, listed by programme"
+    "命中的往期影片按专题列出": "Matching past films, listed by programme",
+    "片目和「专题」页底部的「往期专题」改成一排书脊，横向滑动浏览，点一本展开这个专题的片单。搜索或用「我的」筛选时，往期专题里命中的影片会全部列出来。": "Past programmes at the bottom of Films and Programmes are now a row of book spines: swipe across and tap one to open its film list. When you search or use the My filter, every matching past film is listed in full.",
+    "影展专题页的「影院地图与交通」在地图上标出全部影院，列出每家的影厅、场次和交通，点「地图导航」直接打开地图。": "Venues & Transit on a festival page pins every venue on a map and lists its screens, screenings and transport; tap Directions to open a map app.",
+    "影片有多张官方海报时，影片页大海报角上会显示「可换 N」，选一张后，影片页、海报墙、观影结算和典藏票根都用你选的这张。": "When a film has several official posters, the film page shows \"N to choose\" on the poster. Pick one and it is used on the film page, your poster wall, your recap and your collectible tickets.",
+    "在放映现场扫码认证过的典藏票根，映后嘉宾签名后会出现在票根正面，转动票根时会反光。": "On collectible tickets verified at the screening, guest signatures from the post-screening talk appear on the front and catch the light as you turn the ticket.",
+    "影展专题页的「影院地图与交通」在地图上标出全部影院，列出影厅、场次和交通，点「地图导航」打开地图。": "Venues & Transit on a festival page pins every venue on a map and lists screens, screenings and transport; tap Directions to open a map app.",
+    "已结束的专题收在片目和「专题」页底部的「往期专题」里，展开后是一排书脊，横向滑动，点一本看这个专题的片单；往期专题多了会按年份分组。搜索或用「我的」筛选时，命中的往期影片直接全部列出。": "Finished programmes live under Past programmes at the bottom of Films and Programmes. Open it to see a row of book spines: swipe across and tap one for its film list; with many past programmes they are grouped by year. When you search or use the My filter, matching past films are listed in full.",
+    "影片有多张官方海报时，影片页大海报角上显示「可换 N」，选一张后只改你自己看到的：影片页、海报墙、观影结算和典藏票根默认票面。": "When a film has several official posters, the film page shows \"N to choose\" on the poster. Your pick only changes what you see: the film page, poster wall, recap and the default artwork of your collectible tickets.",
+    "使用指南加载中…": "Loading the guide…",
+    "使用指南加载失败，请检查网络后重试": "Couldn't load the guide. Check your connection and try again."
   }
 }

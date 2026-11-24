@@ -564,9 +564,11 @@ Claude 与 GPT 可能使用同一 GitHub 身份，审批人数可先设为0；�
 ## 使用指南单独一页（2026-11-23）
 
 - 「我的 › 观影护照使用指南」不再在菜单里展开，改为打开单独一页：网站 `#guide`（`js/my.js` 的 `guidePage`），小程序分包页 `/packages/collect/guide/guide`。顶部是章节胶囊，点了跳到对应章节；共 9 章（开始使用、排片与日程、专题片目与影片页、观影护照、趣味评分与图谱、典藏票根、分享与导出、数据与同步、帮助与反馈）。
-- 内容只写在 `shared/guide.js` 一处，两端共用：每条 `[标题, 说明, 只在哪端显示]`，第三项 `'web'` / `'mp'` 表示只在网站 / 小程序显示（如「添加到手机」只在网站，「微信自动同步」只在小程序）。小程序副本 `miniprogram/packages/collect/utils/guide.js` 由 `node tools/build-fallback.js` 复制，不要直接改。
+- **内容在 `data/guide.json`（2026-11-24 起）**，网站与小程序共用：`chapters` 每章 `{id, t, items:[[标题, 说明, 只在哪端显示]]}`，第三项 `'web'` / `'mp'` 表示只在网站 / 小程序显示（如「添加到手机」只在网站，「微信自动同步」只在小程序）。规则在 `shared/guide.js`（`chaptersFor` / `newsFor` / `latest`）。
+- **改手册不用重新上传小程序**：网站打开 `#guide` 时读 `data/guide.json`；小程序由 `getData` 云函数随首屏带回 `guide` 字段（`app.setGuide`，存本机 `sk-guide-v1`）。都取不到时用分包 `packages/collect/utils/guide.js` 末尾的兜底（`node tools/build-fallback.js` 从 `data/guide.json` 生成）。首次启用要重新部署一次 `getData` 云函数、上传一次小程序，之后只改网站即可。
+- **最近更新**：`news` 数组 `[{d:'YYYY-MM-DD', t:标题, s:说明, only?:'web'|'mp'}]`，新的写在最前面。使用指南顶部显示 45 天内最多 5 条；「我的 › 观影护照使用指南」在有没看过的更新时显示「新」，打开指南后消失（看过的日期存本机：网站 `sparrow-guide-seen`，小程序 `sk-guide-seen`）。
 - 英文：整句说明放 `data/i18n/en.json` 的 `ui`，短标题（≤12 字）放 `exact`（只整句匹配，避免「筛选」「评分」这类短词替换掉别处文字的一部分）。**改了指南中文，要同步改英文键**，否则英文版会显示中文。
-- 新增功能时顺手在指南里补一条；说明只写确实存在的功能，两端不一致的用第三项区分。
+- **每次上线新功能**：在 `data/guide.json` 的 `news` 最前面加一条（日期、标题、一两句用法），并在对应章节补或改一条说明；在 `en.json` 补英文。说明只写确实存在的功能，两端不一致的用 `only` / 第三项区分。
 
 ## 票根册查找：首页搜索、典藏筛选、从影片页直达（2026-11-23）
 

@@ -83,12 +83,23 @@ function feedbackHTML(){const sub=encodeURIComponent('麻雀观影护照 · 影�
 document.addEventListener('click',async e=>{const b=e.target.closest('[data-copy]');if(!b)return;const v=b.dataset.copy;try{await navigator.clipboard.writeText(v);}catch{const i=document.createElement('textarea');i.value=v;i.style.cssText='position:fixed;opacity:0';document.body.appendChild(i);i.select();try{document.execCommand('copy');}catch{}i.remove();}toast('已复制：'+v);});
 const FRIEND_LINKS=[{img:'brand/friend-michelin.png',m:'M',n:'全球米其林餐厅名录',g:'去全球看电影，别忘了顺路吃点美食。',d:'收录全球米其林餐厅，可标记想去、记录去过，让每座城市的电影与美味同行。',u:'https://sparrowcinema.github.io/michelin-guide/'}];
 function friendHTML(){return `<details class="menu-disclosure guide-card friend-card" id="friend-card"><summary class="my-entry">${menuIcon('link')}<span class="menu-copy"><b>友情链接</b><small>${FRIEND_LINKS.length} 个伙伴站点 · 更多陆续加入</small></span><span class="me-go" aria-hidden="true">›</span></summary><div class="friend-body">`+FRIEND_LINKS.map(x=>'<a class="friend-item" href="'+x.u+'" target="_blank" rel="noopener">'+(x.img?'<img class="fi-mark fi-img" src="'+x.img+'" alt="" width="42" height="42" loading="lazy">':'<span class="fi-mark" aria-hidden="true">'+esc(x.m||x.n.slice(0,1))+'</span>')+'<span class="fi-t"><b>'+esc(x.n)+'</b>'+(x.g?'<em class="fi-g">'+esc(x.g)+'</em>':'')+'<small>'+esc(x.d)+'</small></span><span class="fb-go" aria-hidden="true">↗</span></a>').join('')+'</div></details>';}
-/* 使用指南单独一页（#guide）：内容在 shared/guide.js，网站与小程序共用；顶部章节胶囊跳到对应章节 */
-function guidePage(){const G=window.SparrowGuide;if(!G){main.innerHTML='';return;}const ch=G.forPlatform('web');let n=0;
-  main.innerHTML='<section class="view gut guide-page">'+subBackHTML()+'<div class="page-heading"><div><small>PASSPORT GUIDE</small><h2 class="sec">'+tr('观影护照使用指南')+'</h2></div></div>'+
+/* 使用指南单独一页（#guide）：规则在 shared/guide.js，内容在 data/guide.json（与小程序共用，改手册只改这个文件）。
+   顶部「最近更新」列出 45 天内的新功能；「我的」里使用指南一行在有没看过的更新时显示「新」（看过的日期存本机 sparrow-guide-seen） */
+let GUIDE=null,guideP=null;
+function loadGuide(){if(GUIDE)return Promise.resolve(GUIDE);if(!guideP)guideP=fetch('data/guide.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw 0;return r.json();}).then(d=>(GUIDE=d)).catch(()=>{guideP=null;return null;});return guideP;}
+function guideSeen(){try{return localStorage.getItem('sparrow-guide-seen')||'';}catch(e){return '';}}
+function guideIsNew(){const G=window.SparrowGuide;if(!G||!GUIDE)return false;const l=G.latest(GUIDE,'web');return !!l&&l>guideSeen()&&G.newsFor(GUIDE,'web').length>0;}
+function guideBadge(){/* 「我的」页渲染后补上「新」标记（手册数据是异步读的） */const put=()=>{const b=document.querySelector('[data-tab="guide"] .menu-copy b');if(b&&guideIsNew()&&!b.querySelector('.me-new'))b.insertAdjacentHTML('beforeend','<i class="me-new">'+tr('新')+'</i>');};if(GUIDE)put();else loadGuide().then(put);}
+function guidePage(){const G=window.SparrowGuide;if(!G){main.innerHTML='';return;}
+  const head='<section class="view gut guide-page">'+subBackHTML()+'<div class="page-heading"><div><small>PASSPORT GUIDE</small><h2 class="sec">'+tr('观影护照使用指南')+'</h2></div></div>';
+  if(!GUIDE){main.innerHTML=head+'<p class="gd-wait">'+tr('使用指南加载中…')+'</p></section>';loadGuide().then(d=>{if(location.hash!=='#guide')return;if(d)guidePage();else{const w=main.querySelector('.gd-wait');if(w)w.textContent=tr('使用指南加载失败，请检查网络后重试');}});return;}
+  const ch=G.chaptersFor(GUIDE,'web'),news=G.newsFor(GUIDE,'web');let n=0;
+  const md=d=>{const m=/^\d{4}-(\d{2})-(\d{2})$/.exec(d);return m?(+m[1])+'.'+(+m[2]):d;};
+  main.innerHTML=head+(news.length?'<section class="gd-news" aria-label="'+tr('最近更新')+'"><h3>'+tr('最近更新')+'</h3><ul>'+news.map(x=>'<li><span class="gd-d mono">'+md(x.d)+'</span><div><b>'+esc(tr(x.t))+'</b><p>'+esc(tr(x.s))+'</p></div></li>').join('')+'</ul></section>':'')+
   '<nav class="gd-nav" aria-label="'+tr('章节')+'">'+ch.map(c=>'<button type="button" data-gd="'+c.id+'">'+esc(tr(c.t))+'</button>').join('')+'</nav>'+
   ch.map(c=>'<section class="gd-ch" id="gd-'+c.id+'"><h3>'+esc(tr(c.t))+'</h3><ol>'+c.items.map(x=>'<li><span class="gd-n">'+(++n)+'</span><b>'+esc(tr(x.k))+'</b><p>'+esc(tr(x.s))+'</p></li>').join('')+'</ol></section>').join('')+'</section>';
-  main.querySelectorAll('[data-gd]').forEach(b=>b.addEventListener('click',()=>{const el=document.getElementById('gd-'+b.dataset.gd);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});}));}
+  main.querySelectorAll('[data-gd]').forEach(b=>b.addEventListener('click',()=>{const el=document.getElementById('gd-'+b.dataset.gd);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});}));
+  const l=G.latest(GUIDE,'web');if(l)try{localStorage.setItem('sparrow-guide-seen',l);}catch(e){}}
 let dataUpd=null;
 function dataUpdated(){/* 版权区「数据更新于」：启动时取一次，成功后填入所有已渲染的版权区 */const put=s=>document.querySelectorAll('.data-upd').forEach(el=>{el.textContent=s;el.parentElement.hidden=false;});if(dataUpd)return put(dataUpd);
   fetch('data/catalog.json',{method:'HEAD',cache:'no-cache'}).then(r=>{const lm=r.headers.get('last-modified');const d=lm?new Date(lm):null;if(!d||isNaN(d))throw 0;const p=n=>String(n).padStart(2,'0');dataUpd=d.getFullYear()+'.'+p(d.getMonth()+1)+'.'+p(d.getDate());put(dataUpd);}).catch(()=>{});}
@@ -132,7 +143,7 @@ function myPage(){const list=selectedRows(),st=planStats(list),next=list.find(s=
  menuRowHTML('taste','我的电影趣味图谱',tasteMenuSub(),'data-tab="taste-map"')+
  menuRowHTML('export','导出与分享','带二维码的排片长图 · 分享链接 · 日历 · PDF','data-tab="export"')+
  '</div><h3 class="my-group">'+tr('设置与帮助')+(LANG==='en'?'':' <small>SETTINGS</small>')+'</h3><div class="my-menu">'+sync+themeRowHTML()+
- menuRowHTML('phone','添加到手机',ENV.standalone?'已在 App 模式中打开':'放到桌面像 App 一样看 · 微信里用浮窗','data-tab="install"')+miniHTML()+guide+feedback+friendHTML()+'</div><p class="local-note">排片和护照保存在当前浏览器；开启上面的云端同步，或用分享链接，即可换设备。</p>'+presentersHTML()+'</section>';sizeBook();}
+ menuRowHTML('phone','添加到手机',ENV.standalone?'已在 App 模式中打开':'放到桌面像 App 一样看 · 微信里用浮窗','data-tab="install"')+miniHTML()+guide+feedback+friendHTML()+'</div><p class="local-note">排片和护照保存在当前浏览器；开启上面的云端同步，或用分享链接，即可换设备。</p>'+presentersHTML()+'</section>';sizeBook();guideBadge();}
 function tasteMenuSub(){const n=watchEntries().filter(e=>!e.rec.del&&!e.f.ev&&window.SparrowTaste.valid(e.rec.fun)&&window.SparrowTaste.valid(e.rec.bore)).length;return n?tr(n+' 部影片')+' · '+tr('有趣与无聊四象限'):tr('有趣与无聊四象限');}
 let tasteYear='',tasteProg='';function tasteIn(pid){const ctx=libraryContext();return f=>window.SparrowLibrary.inProgramme(f,pid,ctx);}
 function tasteProgRows(){const TR=window.SparrowTasteReport,all=TR.validRows(watchEntries());return [{id:'',name:tr('全部专题'),sub:tr(all.length+' 部影片'),selected:!tasteProg},...progOrdered().map(p=>{const t=tasteIn(p.id);return {id:p.id,name:p.name,n:all.filter(x=>t(x.f)).length};}).filter(x=>x.n).map(x=>({id:x.id,name:x.name,sub:tr(x.n+' 部影片'),selected:tasteProg===x.id}))];}

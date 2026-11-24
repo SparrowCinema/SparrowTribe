@@ -478,3 +478,5 @@
 .nv-cnt { margin-left: auto; font-size: calc(19 * var(--fr)); color: var(--muted); }
 .rc-note-opt { display: flex; align-items: center; gap: calc(12 * var(--r)); margin-top: calc(14 * var(--r)); font-size: calc(21 * var(--fr)); color: var(--fg); }
 
+
+.me-new{display:inline-block;margin-left:calc(10 * var(--r));padding:0 calc(12 * var(--r));border-radius:calc(99 * var(--r));background:var(--accent);color:var(--bg);font-size:calc(17 * var(--fr));font-weight:700;line-height:1.6;vertical-align:middle}

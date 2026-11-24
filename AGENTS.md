@@ -21,3 +21,4 @@ These instructions apply to GPT/Codex, Claude, and other coding agents across th
 - For personal-plan changes, check persistence, add/remove behavior, conflict detection, share/import links, PNG and ICS export as relevant.
 - Gantt and personal itineraries must display cinema and auditorium. Film titles must display the screening edition; 笑傲江湖2：东方不败 is 4K修复.
 - Do not claim checks ran unless they did. Document-only changes require diff and link review.
+- When a user-facing feature ships, add a `news` entry at the top of data/guide.json and update the matching guide chapter (plus English in data/i18n/en.json). Guide edits go live on the site and mini-program without a mini-program upload.
