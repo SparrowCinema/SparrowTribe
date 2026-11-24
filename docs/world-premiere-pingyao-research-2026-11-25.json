@@ -728,11 +728,49 @@
       "parts": [
         {
           "title": "课间休息",
-          "history": "2019 第三届平遥国际电影展 · 平遥一角（已知展映）"
+          "history": "2019年6月北京电影学院毕业作品汇报展映；同年第三届平遥一角",
+          "credits": "董劼等出演，郭境熙声音指导。",
+          "sources": [
+            "https://bydongjie.com/practice/directing/?archiveView=world&from=archive",
+            "https://www.yedianyang.com/break",
+            "https://www.sohu.com/a/321897821_391339"
+          ],
+          "platforms": {
+            "scores": [
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "urls": {
+              "imdb": "https://www.imdb.com/title/tt11312110/",
+              "lb": "https://letterboxd.com/film/break-2019-1/"
+            }
+          }
         },
         {
           "title": "发现之旅",
-          "history": "2026年9月 · 威尼斯国际影评人周（全球首映）"
+          "history": "2026年9月 · 威尼斯国际影评人周（全球首映）",
+          "credits": "黎忠摄影、秦亚楠剪辑。",
+          "sources": [
+            "https://bydongjie.com/work/zoom-in-zoom-out/",
+            "https://sgiff.com/film/zoom-in-zoom-out/"
+          ],
+          "platforms": {
+            "scores": [
+              null,
+              6.7,
+              null,
+              null,
+              3.22
+            ],
+            "urls": {
+              "douban": "https://movie.douban.com/subject/36146113/",
+              "imdb": "https://www.imdb.com/title/tt43729090/",
+              "lb": "https://letterboxd.com/film/zoom-in-zoom-out/"
+            }
+          }
         }
       ]
     },
@@ -831,11 +869,43 @@
       "parts": [
         {
           "title": "明天会更好",
-          "history": "2019 第十三届FIRST青年电影展及第三届平遥一角（已知展映）"
+          "history": "2019 第十三届FIRST青年电影展及第三届平遥一角（已知展映）",
+          "credits": "耿子涵兼任制片与剪辑，郝嘉越摄影，林宇瀚美术，孙铭君音效。",
+          "sources": [
+            "https://www.firstfilm.org.cn/movies/film-library/%E6%98%8E%E5%A4%A9%E4%BC%9A%E6%9B%B4%E5%A5%BD/"
+          ],
+          "platforms": {
+            "scores": [
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "urls": {}
+          }
         },
         {
           "title": "小白船",
-          "history": "2023-05-23 · 戛纳导演双周（全球首映）"
+          "history": "2023-05-23 · 戛纳导演双周（全球首映）",
+          "credits": "郝嘉越摄影，梁静、梁龙分饰刘娴母亲和父亲。",
+          "sources": [
+            "https://www.quinzaine-cineastes.fr/en/film/a-song-sung-blue"
+          ],
+          "platforms": {
+            "scores": [
+              null,
+              null,
+              60,
+              null,
+              null
+            ],
+            "urls": {
+              "imdb": "https://www.imdb.com/title/tt27540911/",
+              "rt": "https://www.rottentomatoes.com/m/a_song_sung_blue",
+              "lb": "https://letterboxd.com/film/a-song-sung-blue/"
+            }
+          }
         }
       ]
     },
@@ -929,11 +999,45 @@
       "parts": [
         {
           "title": "春天，老师们走了",
-          "history": "2017 首届平遥国际电影展 · 平遥一角（已知展映）"
+          "history": "2017 首届平遥国际电影展 · 平遥一角（已知展映）",
+          "credits": "孔大山编导，孔繁刚主演，孙晓晨摄影。",
+          "sources": [
+            "https://www.sohu.com/a/151171846_758222"
+          ],
+          "platforms": {
+            "scores": [
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "urls": {
+              "lb": "https://letterboxd.com/film/film%3A1009248/details/"
+            }
+          }
         },
         {
           "title": "宇宙探索编辑部",
-          "history": "2021年10月 · 第五届平遥国际电影展 · 藏龙"
+          "history": "2021年10月 · 第五届平遥国际电影展 · 藏龙",
+          "credits": "马蒂厄·德尔沃摄影，蒋奇明、盛晨晨也参与演出。",
+          "sources": [
+            "https://www.midnightblurfilms.com/journey-to-the-west"
+          ],
+          "platforms": {
+            "scores": [
+              8,
+              7.2,
+              null,
+              null,
+              null
+            ],
+            "urls": {
+              "imdb": "https://www.imdb.com/title/tt15072612/",
+              "rt": "https://www.rottentomatoes.com/m/journey_to_the_west_2021",
+              "doubanSnapshot": "https://www.cnfilmrank.com/zh/movies/1334"
+            }
+          }
         }
       ]
     },
@@ -1075,11 +1179,43 @@
       "parts": [
         {
           "title": "母亲的乐园",
-          "history": "2018 第十二届FIRST青年电影展竞赛（已知展映）"
+          "history": "2018 第十二届FIRST青年电影展竞赛（已知展映）",
+          "credits": "王尔卓编导、剪辑，李林翰摄影，姚望喜、王恒明出演。",
+          "sources": [
+            "https://www.firstfilm.org.cn/movies/film-library/muqindeleyuan/",
+            "https://festival.south.org.tw/film/mother-eden"
+          ],
+          "platforms": {
+            "scores": [
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "urls": {}
+          }
         },
         {
           "title": "再见，乐园",
-          "history": "2021年10月 · 釜山国际电影节新浪潮"
+          "history": "2021年10月 · 釜山国际电影节新浪潮",
+          "credits": "在釜山新浪潮获奖后，于第五届平遥藏龙获费穆荣誉特别表扬。",
+          "sources": [
+            "https://www.biff.kr/eng/html/archive/arc_history_view.asp?kind=history&m_idx=56014&pyear=2021",
+            "https://www.firstfilm.org.cn/movies/film-library/%E5%86%8D%E8%A7%81%EF%BC%8C%E4%B9%90%E5%9B%AD/"
+          ],
+          "platforms": {
+            "scores": [
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "urls": {
+              "lb": "https://letterboxd.com/film/farewell-my-hometown/"
+            }
+          }
         }
       ]
     },
@@ -1175,11 +1311,49 @@
       "parts": [
         {
           "title": "延边少年",
-          "history": "2018年5月 · 戛纳短片竞赛（特别提及）"
+          "history": "2018年5月 · 戛纳短片竞赛（特别提及）",
+          "credits": "摄影王阶宏，李振铭、崔瑜娜出演。",
+          "sources": [
+            "https://cinemadedemain.festival-cannes.com/en/f/yan-bian-shao-nian/",
+            "https://www.filmaker.cn/thread-115502-1-1.html"
+          ],
+          "platforms": {
+            "scores": [
+              null,
+              5.8,
+              null,
+              null,
+              null
+            ],
+            "urls": {
+              "imdb": "https://www.imdb.com/title/tt8296620/",
+              "lb": "https://letterboxd.com/film/on-the-border-2018/"
+            }
+          }
         },
         {
           "title": "河边的错误",
-          "history": "2023-05-20 · 戛纳一种关注（首映）"
+          "history": "2023-05-20 · 戛纳一种关注（首映）",
+          "credits": "摄影风格与派出所临时迁至旧电影院的情节相呼应。",
+          "sources": [
+            "https://www.festival-cannes.com/en/f/he-bian-de-cuo-wu/"
+          ],
+          "platforms": {
+            "scores": [
+              7.2,
+              6.6,
+              85,
+              70,
+              null
+            ],
+            "urls": {
+              "imdb": "https://www.imdb.com/title/tt27590147/",
+              "lb": "https://letterboxd.com/film/only-the-river-flows/",
+              "rt": "https://www.rottentomatoes.com/m/only_the_river_flows",
+              "mc": "https://www.metacritic.com/movie/only-the-river-flows/",
+              "doubanSnapshot": "https://www.cnfilmrank.com/zh/movies/1369"
+            }
+          }
         }
       ]
     },
@@ -1320,11 +1494,48 @@
       "parts": [
         {
           "title": "朵丽",
-          "history": "2021年7月 · 戛纳影评人周（短片金铁轨奖）"
+          "history": "2021年7月 · 戛纳影评人周（短片金铁轨奖）",
+          "credits": "邹静编导，梁子摄影，黄丽丽、胡玲、于世学等出演。",
+          "sources": [
+            "https://www.semainedelacritique.com/en/edition/2021/movie/duo-li"
+          ],
+          "platforms": {
+            "scores": [
+              null,
+              6.9,
+              null,
+              null,
+              null
+            ],
+            "urls": {
+              "imdb": "https://www.imdb.com/title/tt14812814/",
+              "lb": "https://letterboxd.com/film/lili-alone/"
+            }
+          }
         },
         {
           "title": "无名女孩",
-          "history": "2026年5月 · 戛纳影评人周（全球首映）"
+          "history": "2026年5月 · 戛纳影评人周（全球首映）",
+          "credits": "长片的发行奖与费比西奖均来自戛纳影评人周。",
+          "sources": [
+            "https://www.semainedelacritique.com/en/edition/2026/movie/a-girl-unknown_1147",
+            "https://www.memoria-films.com/production/a-girl-unknown"
+          ],
+          "platforms": {
+            "scores": [
+              null,
+              6.9,
+              null,
+              null,
+              3.78
+            ],
+            "urls": {
+              "douban": "https://movie.douban.com/subject/36686123/",
+              "imdb": "https://www.imdb.com/title/tt32459280/",
+              "lb": "https://letterboxd.com/film/a-girl-unknown/",
+              "rt": "https://www.rottentomatoes.com/m/a_girl_unknown"
+            }
+          }
         }
       ]
     }
