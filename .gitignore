@@ -19,3 +19,7 @@ data/changes.json
 
 # 部署时由 tools/build-extras.js 生成的站点地图
 /sitemap.xml
+# 部署时由 tools/build-extras.js 生成的独立内容页（搜索引擎收录用）
+/film/
+/programme/
+/en/
