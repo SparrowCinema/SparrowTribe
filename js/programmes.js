@@ -63,6 +63,87 @@ function eventsPage(pid){
 }
 let evProg="";
 document.addEventListener("click",e=>{const b=e.target.closest("[data-evkind]");if(!b)return;evKind=b.dataset.evkind;const y=window.scrollY;route();window.scrollTo(0,y);});
+function sectionNoteHTML(p, sec){
+  if(!sec||!p||!p.sectionNotes)return "";
+  const n=p.sectionNotes[sec]; if(!n)return "";
+  const intro=LANG==="en"&&(n.en||n.introEn)?(n.en||n.introEn):n.intro;
+  if(!intro)return "";
+  const cur=LANG==="en"&&(n.curatorEn||n.curator)?(n.curatorEn||n.curator):n.curator;
+  return `<aside class="sec-note"><small class="mono">CURATORIAL NOTE · ${esc(tr(secLabel(sec)))}</small><p>${esc(intro)}</p>${cur?`<footer>— ${esc(cur)}</footer>`:""}</aside>`;
+}
+function juryHTML(p){
+  if(!p||!Array.isArray(p.jury)||!p.jury.length)return "";
+  const total=p.jury.reduce((n,g)=>n+(Array.isArray(g.members)?g.members.length:0),0);
+  if(!total)return "";
+  return `<details class="jury-box"><summary class="ev-entry jury-sum"><i class="ev-ic" aria-hidden="true">◆</i><span><b>${esc(tr("评审团与竞赛名单"))}</b><small>${esc(p.jury.map(g=>LANG==="en"&&g.unitEn?g.unitEn:g.unit).filter(Boolean).join(" · "))}</small></span><em>${total} ${esc(tr("位"))}</em><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg></summary><div class="jury-body">${p.jury.map(g=>`<section class="jury-unit"><h4>${esc(LANG==="en"&&g.unitEn?g.unitEn:g.unit||"")}</h4><ul class="jury-list">${(g.members||[]).map(m=>{const nm=LANG==="en"&&m.nameEn?m.nameEn:m.name,rl=LANG==="en"&&m.roleEn?m.roleEn:m.role,bio=LANG==="en"&&m.bioEn?m.bioEn:m.bio;return `<li class="jury-mem"><span class="jury-av" aria-hidden="true">${esc(String(nm||"?")[0])}</span><div class="jury-info"><div class="jury-head"><b>${esc(nm||"")}</b>${m.president?`<em class="jury-chair">${esc(tr("评审团主席"))}</em>`:""}${rl?`<small>${esc(rl)}</small>`:""}</div>${bio?`<p>${esc(bio)}</p>`:""}</div></li>`;}).join("")}</ul></section>`).join("")}</div></details>`;
+}
+function progVenuesOf(pid){
+  const shows=progShows(pid);
+  const ids=[...new Set(shows.map(s=>s.v))];
+  return VENUES.filter(v=>ids.includes(v.id)).map(v=>{
+    const vs=shows.filter(s=>s.v===v.id), up=vs.filter(s=>!isPast(s));
+    const hallIds=[...new Set(vs.map(s=>s.h))];
+    const halls=(v.halls||[]).filter(h=>hallIds.includes(h.id));
+    const hasAcc=!!(v.access?.length||halls.some(h=>h.access?.length));
+    return {v, total:vs.length, up:up.length, halls, hasAcc};
+  });
+}
+function venuesEntryHTML(p){
+  const rows=progVenuesOf(p.id);
+  if(!rows.length)return "";
+  const accCount=rows.filter(r=>r.hasAcc).length;
+  const sub=[rows.map(r=>stripCity(r.v.short||r.v.name,r.v)).slice(0,3).join(" · ")+(rows.length>3?"…":""), accCount?tr("含无障碍影厅"):""].filter(Boolean).join(" · ");
+  return `<a class="ev-entry" href="#venues-${esc(p.id)}"><i class="ev-ic" aria-hidden="true">⌖</i><span><b>${esc(tr("影院地图与交通"))}</b><small>${esc(sub)}</small></span><em>${rows.length} ${esc(tr("家"))}</em><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg></a>`;
+}
+function venueMapSVG(rows){
+  const pts=rows.map((r,i)=>({i:i+1,v:r.v,geo:Array.isArray(r.v.geo)&&r.v.geo.length===2?r.v.geo:null})).filter(x=>x.geo);
+  if(!pts.length)return "";
+  const lats=pts.map(p=>p.geo[0]), lons=pts.map(p=>p.geo[1]);
+  const cLat=(Math.min(...lats)+Math.max(...lats))/2, cosLat=Math.cos(cLat*Math.PI/180)||1;
+  const minLat=Math.min(...lats), maxLat=Math.max(...lats), minLon=Math.min(...lons), maxLon=Math.max(...lons);
+  const spanLat=Math.max(maxLat-minLat,0.014), spanLon=Math.max((maxLon-minLon)*cosLat,0.018);
+  const W=640, H=280, padX=62, padY=42;
+  const scale=Math.min((W-padX*2)/spanLon,(H-padY*2)/spanLat);
+  const midLon=(minLon+maxLon)/2, midLat=(minLat+maxLat)/2;
+  const xy=g=>[W/2+(g[1]-midLon)*cosLat*scale, H/2-(g[0]-midLat)*scale];
+  const kmPerDeg=111.32, barKm=spanLon*kmPerDeg>8?2:spanLon*kmPerDeg>2?1:0.5;
+  const barPx=Math.max(36,Math.min(140,(barKm/kmPerDeg)*scale));
+  const grid=[0.2,0.4,0.6,0.8].map(f=>`<line x1="${(W*f).toFixed(1)}" y1="14" x2="${(W*f).toFixed(1)}" y2="${H-14}"/><line x1="14" y1="${(H*f).toFixed(1)}" x2="${W-14}" y2="${(H*f).toFixed(1)}"/>`).join("");
+  const pins=pts.map(p=>{
+    const [x,y]=xy(p.geo), label=stripCity(p.v.short||p.v.name,p.v);
+    const num=String(p.i).padStart(2,"0");
+    return `<g class="vm-pin" data-vpin="${esc(p.v.id)}" tabindex="0" role="button" aria-label="${esc(p.v.name)}"><circle class="vm-halo" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="16"/><circle class="vm-dot" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="11"/><text class="vm-num" x="${x.toFixed(1)}" y="${(y+3.5).toFixed(1)}" text-anchor="middle">${num}</text><text class="vm-lab" x="${x.toFixed(1)}" y="${(y+25).toFixed(1)}" text-anchor="middle">${esc(label.slice(0,12))}</text></g>`;
+  }).join("");
+  return `<figure class="vm-wrap"><svg class="vm-svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(tr("展映影院坐标示意图"))}"><g class="vm-grid">${grid}</g>${pins}<g class="vm-scale" transform="translate(22,${H-18})"><line x1="0" y1="0" x2="${barPx.toFixed(1)}" y2="0"/><line x1="0" y1="-4" x2="0" y2="4"/><line x1="${barPx.toFixed(1)}" y1="-4" x2="${barPx.toFixed(1)}" y2="4"/><text x="${(barPx+8).toFixed(1)}" y="3.5">${barKm} km</text></g></svg><figcaption>${esc(tr("点击编号定位对应影院 · 导航按实际路况打开地图"))}</figcaption></figure>`;
+}
+function venueTransfersHTML(rows){
+  const geoRows=rows.filter(r=>Array.isArray(r.v.geo)&&r.v.geo.length===2);
+  if(geoRows.length<2||geoRows.length>6||typeof SparrowPlanner==="undefined")return "";
+  const pairs=[];
+  for(let i=0;i<geoRows.length;i++)for(let j=i+1;j<geoRows.length;j++){
+    if(geoRows[i].v.city!==geoRows[j].v.city)continue;
+    const t=SparrowPlanner.transfer(geoRows[i].v,geoRows[j].v);
+    if(!t||t.km==null)continue;
+    pairs.push({a:stripCity(geoRows[i].v.short||geoRows[i].v.name,geoRows[i].v),b:stripCity(geoRows[j].v.short||geoRows[j].v.name,geoRows[j].v),km:t.km,min:t.min,max:t.max});
+  }
+  if(!pairs.length)return "";
+  return `<section class="vm-xfer"><h3 class="blockh">${esc(tr("跨影院转场参考"))} <small>TRANSFERS</small></h3><div class="vm-xlist">${pairs.map(p=>`<div class="vm-xrow"><b>${esc(p.a)} ↔ ${esc(p.b)}</b><span class="mono">${p.km.toFixed(1)} km · ${esc(tr("约"))} ${p.min}–${p.max} ${esc(tr("分钟"))}</span></div>`).join("")}</div></section>`;
+}
+function venuesPage(pid){
+  const p=PG[pid]; if(!p){go("programmes");return;}
+  const rows=progVenuesOf(pid);
+  topEl.innerHTML=`<div class="row"><button class="back" data-back><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m15 6-6 6 6 6"/></svg>${esc(tr("返回"))}</button><span class="sp"></span><span class="pill">${esc(p.name)}</span></div>`;
+  const cards=rows.map((r,i)=>{
+    const v=r.v, num=String(i+1).padStart(2,"0"), mapUrl=typeof SparrowPlanner!=="undefined"?SparrowPlanner.mapURL(v):"";
+    const trRows=v.transit?[["地铁",v.transit.metro],["公交",v.transit.bus],["停车",v.transit.parking],["提示",v.transit.note]].filter(x=>x[1]):[];
+    return `<article class="vm-card" id="vc-${esc(v.id)}"><header class="vm-ch"><span class="vm-idx mono">${num}</span><div class="vm-ct"><h3>${esc(v.name)}</h3><small>${esc([v.city?tr(v.city):"",v.addr||""].filter(Boolean).join(" · "))}</small></div>${mapUrl?`<a class="secondary-button vm-nav" href="${esc(mapUrl)}" target="_blank" rel="noopener noreferrer">${esc(tr("地图导航"))} ↗</a>`:""}</header><div class="vm-halls">${r.halls.map(h=>{const acc=[...(v.access||[]),...(h.access||[])];return `<span class="vm-hall">${esc(h.name)}${acc.length?` <em>${esc(tr("无障碍"))}</em>`:""}</span>`;}).join("")}<span class="vm-cnt mono">${tr(r.total+" 场")}${r.up?` · ${tr("待映")} ${r.up}`:""}</span></div>${trRows.length?`<dl class="vm-tr">${trRows.map(([k,val])=>`<dt>${esc(tr(k))}</dt><dd>${esc(val)}</dd>`).join("")}</dl>`:""}</article>`;
+  }).join("");
+  main.innerHTML=`<section class="view gut vm-page"><h2 class="sec">${esc(tr("影院地图与交通"))}</h2><p class="sub">${esc(p.name)} · ${rows.length} ${esc(tr("家影院"))}</p>${venueMapSVG(rows)}<div class="vm-cards">${cards||`<div class="fd-noshow"><b>${esc(tr("暂无影院排片信息"))}</b></div>`}</div>${venueTransfersHTML(rows)}${presentersHTML()}</section>`;
+}
+document.addEventListener("click",e=>{
+  const pin=e.target.closest("[data-vpin]");
+  if(pin){const card=document.getElementById("vc-"+pin.dataset.vpin);if(card){document.querySelectorAll(".vm-card.hi").forEach(x=>x.classList.remove("hi"));card.classList.add("hi");card.scrollIntoView({behavior:"smooth",block:"center"});}}
+});
 function progPage(pid){
   if(sectionProgramme!==pid){sectionFilter="";sectionProgramme=pid;}
   const p=PG[pid]; if(!p){ go("schedule"); return; }
@@ -77,8 +158,11 @@ function progPage(pid){
       ${progActsHTML(p)}
       ${p.ticketUrl&&progStatus(p)!=="ended"?`<p class="pg-ticketlink"><a class="primary-button" href="${esc(p.ticketUrl)}" target="_blank" rel="noopener">${esc(tr(p.ticketLabel||"购票"))}</a></p>`:""}
       ${eventsHTML(p)}
+      ${venuesEntryHTML(p)}
+      ${juryHTML(p)}
       ${p.ticket&&!p.noPageTicket&&progStatus(p)!=="ended"?ticketCardHTML({ticket:p.ticket,ticketPlatform:p.ticketPlatform,ticketHint:p.ticketHint},p.name,"prog:"+p.id,""):""}
       ${p.sections?`<div class="plan-scope sec-scope"><button class="schedule-filter" data-section-sel aria-haspopup="dialog"><span><small>${esc(tr("选择单元"))}</small><b>${esc(tr(secLabel(sectionFilter)))}</b></span><span class="scope-count">${tr(FILMS.filter(f=>!sectionFilter?(p.sections[f.id]||f.prog===pid):p.sections[f.id]===sectionFilter).length+" 部")}</span>${filterChevron}</button></div>`:""}
+      ${sectionNoteHTML(p,sectionFilter)}
       <div class="plan-toolbar"><button class="primary-button" data-prog-jump="up">即将放映</button><button class="secondary-button" data-prog-jump="gone">已结束</button></div>
       <p class="src">场次与排片表自动同步 · 页面打开时每分钟检查更新</p>${films.length?progFilmsHTML(pid,films):`<div class="fd-noshow"><b>片单与场次即将公布</b><span>公布后会第一时间更新到这里。</span></div>`}
     </div></article>`;

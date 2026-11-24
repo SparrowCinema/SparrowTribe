@@ -1971,7 +1971,10 @@
         25.0355,
         121.5671
       ],
-      "tz": "Asia/Taipei"
+      "tz": "Asia/Taipei",
+      "access": [
+        "无障碍影厅"
+      ]
     },
     {
       "id": "tp-muvie-titan",
@@ -1995,7 +1998,10 @@
         25.0364,
         121.5678
       ],
-      "tz": "Asia/Taipei"
+      "tz": "Asia/Taipei",
+      "access": [
+        "无障碍影厅"
+      ]
     },
     {
       "id": "tp-wenchuang",

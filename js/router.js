@@ -42,13 +42,14 @@ function route(){
   const fwd=navFwd,bk=navBack;navFwd=false;navBack=false;
   const returning=changing&&viewPositions.has(h)&&(bk||!fwd||(activeRoute.startsWith("film-")&&h===filmReturn));
   activeRoute=h;
-  main.classList.toggle("prog-scale",h==="programmes"||h.startsWith("prog-")||h.startsWith("events-"));
-  const tab = ["plan","export","about","install","poster-wall","ticket-wall","taste-map","guide"].includes(h)||h.startsWith("share=")||h.startsWith("verify=")||h.startsWith("checkin=")||h==="checkin-host" ? "my" : h==="gantt" ? "schedule" : h.startsWith("prog-")||h.startsWith("events-") ? "programmes" : h.startsWith("film-") ? null : h;
+  main.classList.toggle("prog-scale",h==="programmes"||h.startsWith("prog-")||h.startsWith("events-")||h.startsWith("venues-"));
+  const tab = ["plan","export","about","install","poster-wall","ticket-wall","taste-map","guide"].includes(h)||h.startsWith("share=")||h.startsWith("verify=")||h.startsWith("checkin=")||h==="checkin-host" ? "my" : h==="gantt" ? "schedule" : h.startsWith("prog-")||h.startsWith("events-")||h.startsWith("venues-") ? "programmes" : h.startsWith("film-") ? null : h;
   document.querySelectorAll(".tab").forEach(t=>t.setAttribute("aria-current", t.dataset.tab===(tab||lastList)?"page":"false"));
   if(tab){ lastList = tab; topEl.innerHTML = brandBar(); }
   if(h.startsWith("film-")){ detail(h.slice(5)); wantMarkSeen(h.slice(5)); const lf=F[h.slice(5)]; if(lf&&lf._lite) ensureFull(lf).then(ok=>{ if(!ok) return; const paint=()=>{ if(activeRoute!==h||location.hash.slice(1)!==h) return; if(document.querySelector("dialog[open],.img-sheet,.ts-wrap")){ setTimeout(paint,600); return; } const y=window.scrollY; detail(h.slice(5)); window.scrollTo(0,y); }; paint(); }); }
   else if(h.startsWith("prog-")) progPage(h.slice(5));
   else if(h.startsWith("events-")) eventsPage(h.slice(7));
+  else if(h.startsWith("venues-")) venuesPage(h.slice(7));
   else if(h==="films") films();
   else if(h==="programmes") programmesPage();
   else if(h==="my"||h==="about") myPage();
@@ -78,7 +79,7 @@ document.addEventListener("click",e=>{
   else if(t.dataset.progSched){ pfilt=t.dataset.progSched; vfilt="all"; cityFilt="all"; cityManual(); venueQuery=""; sday=null; go("schedule"); }
   else if(t.dataset.progJump){ const el=document.getElementById(t.dataset.progJump==="gone"?"pg-gone":"pg-up"); if(el){ if(el.tagName==="DETAILS") el.open=true; el.scrollIntoView({behavior:"smooth",block:"start"}); } else toast("暂无已结束的影片"); }
   else if(t.dataset.progFilms){ ffilt=t.dataset.progFilms; fcity="all"; fyear="all"; freg="all"; flen="all"; fmine="all"; ftrait="all"; fq=""; go("films"); }
-  else if(t.hasAttribute("data-back")){if(activeRoute.startsWith("film-"))exitFilm();else if(activeRoute.startsWith("events-"))goBack("prog-"+activeRoute.slice(7));else goBack(lastList);}
+  else if(t.hasAttribute("data-back")){if(activeRoute.startsWith("film-"))exitFilm();else if(activeRoute.startsWith("events-")||activeRoute.startsWith("venues-"))goBack("prog-"+activeRoute.slice(7));else goBack(lastList);}
   else if(t.dataset.jump){ const js=SH.find(x=>keyOf(x)===t.dataset.jump); pfilt=js?js.p:"all"; vfilt="all"; cityFilt="all"; cityManual(); venueQuery=""; scheduleView="gantt";pendingFlash=t.dataset.jump; sday=t.dataset.jump.split("-")[0]; if(location.hash==="#schedule"||location.hash===""){schedule();}else go("schedule"); }
   else if(t.dataset.ppf){ planFilt=t.dataset.ppf; const y=window.scrollY; route(); window.scrollTo(0,y); }
   else if(t.dataset.day){ sday=t.dataset.day; const y=window.scrollY; schedule(); window.scrollTo(0,y); }
