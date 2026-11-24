@@ -625,8 +625,8 @@
         "剧情"
       ],
       "honors": [
-        "入选｜2026 第79届戛纳国际电影节（全球首映）",
-        "入选｜2026 第10届平遥国际电影展 · 特别展映（亚洲首映）"
+        "入选｜2026 第79届戛纳国际电影节 · 戛纳经典单元（全球首映）",
+        "入选｜2026 第10届平遥国际电影展 · 汾酒中秋之夜特别展映（亚洲首映）"
       ],
       "warnings": [],
       "contentReview": {
@@ -637,11 +637,32 @@
       "contentNote": "公开简介为32分钟剧情短片，讲述中国南方女性赴意大利都灵探望丈夫途中意外出走并重新发现自我与电影；未提及敏感刺激内容，声光强度待核实。本片于9月25日「汾酒中秋之夜」特别场与五条人音乐现场同台放映。",
       "editorial": "贾樟柯执导、赵涛与五条人仁科茂涛联袂出演的32分钟短片亚洲首映，在都灵的意外出走中回望电影与自我；平遥放映安排于9月25日露天剧场中秋特别夜。",
       "worldPremiere": {
-        "status": "pending",
-        "kind": "unknown",
-        "date": null,
-        "festival": null,
-        "festivalEn": null
+        "status": "partial",
+        "kind": "festival",
+        "date": "2026-05",
+        "festival": "戛纳国际电影节",
+        "festivalEn": "Cannes Film Festival",
+        "checked": "2026-11-24"
+      },
+      "writers": [
+        "贾樟柯",
+        "万佳欢"
+      ],
+      "cast": [
+        "赵涛",
+        "茂涛",
+        "仁科",
+        "卢夕"
+      ],
+      "posterLabel": "主海报",
+      "stills": [
+        {
+          "url": "posters/pingyao-py26-ev-midautumn.jpg",
+          "label": "汾酒中秋之夜海报"
+        }
+      ],
+      "screeningNotes": {
+        "9/25|19:00|py-palace|platform": "汾酒中秋之夜特别展映（亚洲首映）· 映后交流：贾樟柯、赵涛、茂涛、仁科、卡洛·沙特里安，随后接五条人「县·城·记」音乐现场（19:00–21:30）"
       }
     },
     {
@@ -1178,41 +1199,6 @@
       }
     },
     {
-      "id": "py26-ev-midautumn",
-      "cn": "《都灵之影》放映暨五条人「县·城·记」音乐现场",
-      "o": "Fenjiu Night: Torino Shadow Screening & Wutiaoren Live Concert",
-      "en": "Fenjiu Night: Torino Shadow Screening & Wutiaoren Live Concert",
-      "y": 2026,
-      "min": 150,
-      "c": "平遥",
-      "reg": "cn",
-      "dir": "贾樟柯 / 五条人",
-      "dirO": "Jia Zhang-Ke / Wutiaoren",
-      "language": "中文（普通话、粤语）、意大利语",
-      "poster": "posters/pingyao-py26-ev-midautumn.jpg",
-      "syn": "《都灵之影》由贾樟柯执导，赵涛主演，茂涛、仁科及小演员卢夕联合主演，讲述一位女性从中国南方前往意大利北部城市都灵探望丈夫，一次意外的出走，让她找回了自己，也发现了电影。影片片长32分钟，此前已在第79届戛纳电影节全球首映。五条人将于《都灵之影》放映后，在“站台”露天剧场带来「县·城·记」音乐现场，与现场观众共度中秋。温馨提示：现场取票时间仅限 9月25日9:00-19:00",
-      "genre": [
-        "特别活动",
-        "短片放映",
-        "音乐现场"
-      ],
-      "honors": [
-        "入选｜2026 第10届平遥国际电影展 · 汾酒中秋之夜特别策划"
-      ],
-      "warnings": [
-        "露天演出音量较大"
-      ],
-      "contentReview": {
-        "status": "synopsis-reviewed",
-        "checked": "2026-11-24",
-        "sensory": "unverified"
-      },
-      "contentNote": "本场为露天剧场短片放映叠加乐队音乐现场活动，并非单一影片常规放映；夜间露天演出音量较大且气温较低。",
-      "editorial": "第十届平遥中秋夜露天剧场特别策划：先看贾樟柯执导、赵涛与五条人主演的32分钟短片《都灵之影》亚洲首映，随即接五条人「县·城·记」音乐现场。",
-      "ev": 1,
-      "evKind": "special"
-    },
-    {
       "id": "py26-028",
       "cn": "昨天，那只眼彻夜未眠",
       "o": "Yesterday the Eye Didn't Sleep",
@@ -1488,7 +1474,7 @@
     [
       "9/25",
       "19:00",
-      "py26-ev-midautumn",
+      "py26-016",
       "py-palace",
       "platform",
       "sjgdjluca"
