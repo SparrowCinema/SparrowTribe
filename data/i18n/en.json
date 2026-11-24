@@ -83,7 +83,7 @@
     "裁切": "Crop",
     "场次": "Screening",
     "自填": "Manual",
-    "首映": "Gala",
+    "首映": "Galas",
     "我的海报": "My poster",
     "可换": "Switch",
     "主海报": "Main poster",
@@ -158,7 +158,19 @@
     "多人一起排片（接龙凑场）": "Multi-friend group relay planning",
     "拍照识票": "Scan ticket",
     "识票中…": "Scanning…",
-    "拍照识票自动填票根": "Scan paper or e-tickets via OCR"
+    "拍照识票自动填票根": "Scan paper or e-tickets via OCR",
+    "平遥": "Pingyao",
+    "平遥电影宫": "Pingyao Film Palace",
+    "藏龙": "Hidden Dragons",
+    "卧虎": "Crouching Tigers",
+    "特别展映": "Special Presentations",
+    "平遥十年": "Pingyao 10 Years",
+    "汾酒中秋之夜": "Fenjiu Night",
+    "小城之春厅": "Spring in a Small Town Hall",
+    "站台-露天剧场": "Platform Open-Air Theatre",
+    "露天剧场": "Open-Air Theatre",
+    "平遥国际电影展官网": "PYIFF Official Website",
+    "补录2026平遥国际电影展专题": "Added 2026 Pingyao International Film Festival"
   },
   "_readme": "English layer for the site. films/programmes/venues overlay data fields when ?lang=en; ui is the zh→en dictionary used by tr(). Missing entries fall back to the Chinese text.",
   "films": {
@@ -10985,6 +10997,653 @@
         "Family arguments"
       ],
       "contentNote": "Public story information includes illness and death predictions, family arguments. Detailed depiction and audiovisual intensity await verification."
+    },
+    "py26-001": {
+      "title": "Echoes of Fei Mu",
+      "o": "Echoes of Fei Mu",
+      "dir": "PAN Yilin",
+      "c": "China",
+      "genre": [
+        "Documentary"
+      ],
+      "language": "Chinese (Mandarin)",
+      "syn": "Focusing on the artistic career and life of FEI Mu, one of China's most celebrated directors of the 1930s and 1940s, the documentary brings together the perspectives of filmmakers, scholars, family members and friends to offer an intimate glimpse into the inner world of this poet-director.",
+      "honors": [
+        "Official Selection | 2026 10th Pingyao International Film Festival · Pingyao 10 Years (Tributes)"
+      ],
+      "warnings": [],
+      "contentNote": "Public synopsis describes a documentary portrait of director Fei Mu through interviews, with no prominent sensitive themes noted; audiovisual intensity awaits verification.",
+      "editorial": "A tribute documentary pairing with the 4K opening screening of Spring in a Small Town, approaching Fei Mu’s inner world through filmmakers, scholars, and family."
+    },
+    "py26-002": {
+      "title": "General della Rovere",
+      "o": "General della Rovere",
+      "dir": "Roberto ROSSELLINI",
+      "c": "Italy / France",
+      "genre": [
+        "Drama",
+        "War"
+      ],
+      "language": "Italian / German",
+      "syn": "Forced by the Nazis to impersonate General della Rovere, a dead Italian resistance leader, a small-time swindler is placed among resistance prisoner to gather information. Wrestling with his conscience for the first time, he gradually loses himself in the role he has been forced to play.",
+      "honors": [
+        "Winner | 1959 20th Venice International Film Festival · Golden Lion",
+        "Official Selection | 2026 10th Pingyao International Film Festival · Pingyao 10 Years (Tributes)"
+      ],
+      "warnings": [
+        "War and imprisonment",
+        "Nazi occupation and threat of execution"
+      ],
+      "contentNote": "Public synopsis involves WWII Nazi occupation, prisoner detention, and moral crisis under coercion; visual and audiovisual intensity awaits verification.",
+      "editorial": "Screened in tribute to Roberto Rossellini for Pingyao’s tenth anniversary, tracing how a petty swindler becomes the resistance hero he was forced to impersonate."
+    },
+    "py26-003": {
+      "title": "A Joke",
+      "o": "A Joke",
+      "dir": "WANG Xiaozhen",
+      "c": "China",
+      "genre": [
+        "Drama",
+        "Romance"
+      ],
+      "language": "Chinese（Mandarin）",
+      "syn": "For Xiao Mei and Xiao Shuai, the marriage bed becomes a battleground. Both bring everything they have learned to the game of love, and as the emotional tug-of-war unfolds, they come to understand themselves a little better.",
+      "honors": [
+        "Winner | 2026 10th Pingyao International Film Festival · Fei Mu Award for Best Actress (Sun Yi)",
+        "Competition | 2026 10th Pingyao International Film Festival · Hidden Dragons"
+      ],
+      "warnings": [
+        "Intimate relationship conflict"
+      ],
+      "contentNote": "Public synopsis centers on emotional confrontation and power struggles within a marriage; specific depictions and audiovisual intensity await verification.",
+      "editorial": "Winner of the Fei Mu Award for Best Actress at Pingyao, turning the marriage bed into an arena of sharp emotional sparring and self-reckoning."
+    },
+    "py26-004": {
+      "title": "Gemstones",
+      "o": "Gemstones",
+      "dir": "Simón VÉLEZ",
+      "c": "Colombia / Portugal",
+      "genre": [
+        "Drama",
+        "Crime"
+      ],
+      "language": "Spanish / French",
+      "syn": "Machado, a Colombian living in France, is hired to return to his hometown of Medellín and steal an emerald. During the risky execution of his plan, he becomes entangled in a series of events that lead him to reconsider the ultimate goal of his mission.",
+      "honors": [
+        "Competition | 2026 10th Pingyao International Film Festival · Crouching Tigers"
+      ],
+      "warnings": [
+        "Heist and criminal risk"
+      ],
+      "contentNote": "Public synopsis follows a risky emerald heist in Medellin and unexpected complications; visual intensity awaits verification.",
+      "editorial": "A taut 70-minute Medellin heist in Crouching Tigers where a hired emerald theft unravels into a quiet reckoning with home and purpose."
+    },
+    "py26-005": {
+      "title": "The Rossellinis",
+      "o": "The Rossellinis",
+      "dir": "Alessandro ROSSELLINI",
+      "c": "Italy / Latvia",
+      "genre": [
+        "Documentary"
+      ],
+      "language": "English / Italian",
+      "syn": "From the grandson’s perspective, Alessandro Rossellini explores his legendary grandfather Roberto Rossellini and the extraordinary family legacy shaped by cinema, fame and complicated relationships.",
+      "honors": [
+        "Official Selection | 2026 10th Pingyao International Film Festival · Pingyao 10 Years (Tributes)"
+      ],
+      "warnings": [
+        "Family tensions and generational burdens"
+      ],
+      "contentNote": "Public synopsis describes a personal documentary examining the Rossellini family’s complicated relationships and cinematic legacy; audiovisual intensity awaits verification.",
+      "editorial": "Grandson Alessandro Rossellini turns the camera on his own storied clan, offering an intimate companion piece to General della Rovere."
+    },
+    "py26-006": {
+      "title": "Bo Bo",
+      "o": "Bo Bo",
+      "dir": "Anastasia KUZINA",
+      "c": "Russia",
+      "genre": [
+        "Drama",
+        "Family"
+      ],
+      "language": "Russian",
+      "syn": "This is a story about the challenging journey of building a real family —a journey that fate generously rewarded by giving them a “special child.”",
+      "honors": [
+        "Competition | 2026 10th Pingyao International Film Festival · Crouching Tigers"
+      ],
+      "warnings": [
+        "Family caregiving challenges"
+      ],
+      "contentNote": "Public synopsis centers on the difficult journey of building a family and raising a child with special needs; emotional and audiovisual intensity awaits verification.",
+      "editorial": "A Crouching Tigers debut from Russia looking closely at the fragile, demanding work of becoming a real family."
+    },
+    "py26-007": {
+      "title": "Phony Phoenixes",
+      "o": "Phony Phoenixes",
+      "dir": "HUANG Zuolin",
+      "c": "China",
+      "genre": [
+        "Comedy",
+        "Romance"
+      ],
+      "language": "Chinese (Mandarin)",
+      "syn": "FAN Ruhua, a beautiful young widow, poses as a wealthy man’s daughter to look for a husband. She crosses paths with YANG Xiaomao, a barber who pretends to be a businessman seeking a wife. Unaware of each other’s true identities, the two push forward with their wedding plans out of self‑interest, triggering a string of comic mishaps.",
+      "honors": [
+        "Official Selection | 2026 10th Pingyao International Film Festival · Pingyao 10 Years (Memorial)"
+      ],
+      "warnings": [
+        "Deception in matchmaking"
+      ],
+      "contentNote": "Public synopsis describes a 1947 satirical romantic comedy built around mutual mistaken identities in marriage schemes; audiovisual intensity awaits verification.",
+      "editorial": "Huang Zuolin’s 1947 Wenhua classic in its 2017 4K restoration, where two impostors court each other in a sparkling satire of postwar Shanghai.",
+      "version": "4K Restoration"
+    },
+    "py26-008": {
+      "title": "Replica",
+      "o": "Replica",
+      "dir": "Chouwa LIANG",
+      "c": "Australia / France",
+      "genre": [
+        "Documentary"
+      ],
+      "language": "Chinese (Mandarin) / English",
+      "syn": "In modern China, three women form intimate relationships with AI companions. As these virtual bonds begin to mirror their deepest emotional needs, they are confronted with what love means, and what remains missing.",
+      "honors": [
+        "Competition | 2026 10th Pingyao International Film Festival · Hidden Dragons"
+      ],
+      "warnings": [
+        "Emotional isolation and virtual attachment"
+      ],
+      "contentNote": "Public synopsis follows three women in contemporary China forming intimate bonds with AI companions and confronting emotional absence; audiovisual intensity awaits verification.",
+      "editorial": "A Hidden Dragons selection examining three women’s relationships with AI companions, using virtual intimacy to reflect real-world longing."
+    },
+    "py26-009": {
+      "title": "Memoria",
+      "o": "Memoria",
+      "dir": "Apichatpong WEERASETHAKUL",
+      "c": "Colombia / Thailand",
+      "genre": [
+        "Drama",
+        "Fantasy"
+      ],
+      "language": "Spanish / English",
+      "syn": "From the extraordinary mind of Palme d'Or-winning director Apichatpong WEERASETHAKUL, and starring Academy Award winner Tilda SWINTON, comes a bewildering drama about a Scottish woman, who after hearing a loud 'bang' at daybreak, begins experiencing a mysterious sensory syndrome while traversing the jungles of Colombia.",
+      "honors": [
+        "Winner | 2021 74th Cannes Film Festival · Jury Prize",
+        "Official Selection | 2026 10th Pingyao International Film Festival · Pingyao 10 Years (Memorial)"
+      ],
+      "warnings": [
+        "Sudden loud acoustic bangs"
+      ],
+      "contentNote": "Public synopsis revolves around a woman haunted by a sudden loud bang at daybreak; sound design features abrupt percussive noise. Sound-sensitive viewers should take note.",
+      "editorial": "A Pingyao 10 Years memorial screening of Apichatpong Weerasethakul and Tilda Swinton’s hypnotic collaboration, crafted for theatrical acoustics."
+    },
+    "py26-010": {
+      "title": "Against Nature",
+      "o": "Against Nature",
+      "dir": "Axel BERTHA",
+      "c": "Mexico",
+      "genre": [
+        "Drama"
+      ],
+      "language": "Spanish",
+      "syn": "After years away, Jonás returns to his hometown to work as a stonemason. There, an intangible force that permeates the landscape, bodies, and time itself leads him toward a destiny shaped by nature and the human condition.",
+      "honors": [
+        "Competition | 2026 10th Pingyao International Film Festival · Crouching Tigers"
+      ],
+      "warnings": [],
+      "contentNote": "Public synopsis follows a man returning home to work as a stonemason amid natural and existential forces, with no explicit trauma noted; visual intensity awaits verification.",
+      "editorial": "Axel Bertha’s Crouching Tigers entry from Mexico, meditating on stone, landscape, body, and the unseen pull of fate."
+    },
+    "py26-011": {
+      "title": "Flies",
+      "o": "Flies",
+      "dir": "Fernando EIMBCKE",
+      "c": "Mexico / Spain",
+      "genre": [
+        "Drama"
+      ],
+      "language": "Spanish",
+      "syn": "When Olga has to rent out a room in her apartment to a father, she forms an unlikely bond with his nine-year-old son, and unexpectedly, their lives become intertwined.",
+      "honors": [
+        "Official Selection | 2026 10th Pingyao International Film Festival · Galas"
+      ],
+      "warnings": [
+        "Financial hardship"
+      ],
+      "contentNote": "Public synopsis depicts financial pressure and an unexpected bond formed between a landlady and a tenant’s nine-year-old son; audiovisual intensity awaits verification.",
+      "editorial": "Fernando Eimbcke returns in Pingyao’s Galas section with an understated apartment chamber piece about three strangers slowly entering one another’s lives."
+    },
+    "py26-012": {
+      "title": "Aces Go Places",
+      "o": "Aces Go Places",
+      "dir": "Eric TSANG",
+      "c": "Hong Kong, China",
+      "genre": [
+        "Comedy",
+        "Action"
+      ],
+      "language": "Chinese (Cantonese)",
+      "syn": "Bandit King Kong robs a batch of diamonds from a gang and leaves them with a friend. Shortly after hiding the diamonds in a secret spot, the friend is seized by the villain Madman, never to be heard from again. The gang dispatches White Glove to hunt for the diamonds. The police recruit Detective Baldy from the US to work on the case with Superintendent HO.",
+      "honors": [
+        "Official Selection | 2026 10th Pingyao International Film Festival · Pingyao 10 Years (Memorial)"
+      ],
+      "warnings": [
+        "Gang conflict and action violence"
+      ],
+      "contentNote": "Public synopsis features a diamond heist, gang pursuit, and slapstick police action typical of 1980s Hong Kong comedy; audiovisual intensity awaits verification.",
+      "editorial": "Cinema City’s 1982 Hong Kong action-comedy phenomenon returns for Pingyao 10 Years, pairing thief King Kong with Detective Baldy in breathless set pieces."
+    },
+    "py26-013": {
+      "title": "Late Fame",
+      "o": "Late Fame",
+      "dir": "Kent JONES",
+      "c": "USA",
+      "genre": [
+        "Drama",
+        "Comedy"
+      ],
+      "language": "English",
+      "syn": "Ed Saxberger, a forgotten New York poet who works at the post office, is suddenly rediscovered by a group of twentysomething admirers who hail him as an overlooked genius. Intoxicated by their attention, he gradually begins to question the authenticity of his newfound literary circle.",
+      "honors": [
+        "Official Selection | 2026 10th Pingyao International Film Festival · Galas"
+      ],
+      "warnings": [
+        "Social disillusionment"
+      ],
+      "contentNote": "Public synopsis follows a forgotten New York poet questioning the sincerity of young admirers who rediscover his work; audiovisual intensity awaits verification.",
+      "editorial": "Kent Jones’s dryly observant New York literary comedy in Galas, weighing late-life acclaim against the slippery sincerity of young fandom."
+    },
+    "py26-014": {
+      "title": "Start from Pingyao Corner: Dong Jie — Break × Zoom In, Zoom Out",
+      "o": "Start from Pingyao Corner: Dong Jie — Break × Zoom In, Zoom Out",
+      "dir": "DONG Jie",
+      "c": "China",
+      "genre": [
+        "Drama",
+        "Double Bill"
+      ],
+      "language": "Chinese (Mandarin)",
+      "syn": "\"BREAK\"(SHORT) : Teacher Sheng's monotonous life is interrupted by the filming of a documentary. Can they find what they are trying to find during the short vacation? \"ZOOM IN, ZOOM OUT\": On a journey to uncover the truth about the death of a roommate he had lost touch with, Shi Zi’an finds himself where the real and online worlds overlap, trying to break through the indifference and emptiness, and to recover some of hope of acting at all.",
+      "honors": [
+        "Official Selection | 2026 10th Pingyao International Film Festival · Pingyao 10 Years (Start from Pingyao Corner)"
+      ],
+      "warnings": [
+        "Investigation into a friend’s death and online alienation"
+      ],
+      "contentNote": "Double bill pairing short Break with feature Zoom In, Zoom Out, which involves investigating an estranged roommate’s death and social alienation; audiovisual intensity awaits verification.",
+      "editorial": "A Pingyao 10 Years double bill pairing Dong Jie’s 2019 student short Break with his 2026 award-winning feature Zoom In, Zoom Out."
+    },
+    "py26-015": {
+      "title": "The Days Off",
+      "o": "The Days Off",
+      "dir": "Lucila MARIANI",
+      "c": "Argentina / Brazil / Mexico / France",
+      "genre": [
+        "Drama",
+        "Coming of age"
+      ],
+      "language": "Spanish / Portuguese",
+      "syn": "As a solar eclipse approaches, 12-year-old Bego struggles to find her place within her family and among her peers. An online friend introduces her to \"shifting,\" a practice through which teens believe they can enter other realities through lucid dreaming.",
+      "honors": [
+        "Competition | 2026 10th Pingyao International Film Festival · Crouching Tigers"
+      ],
+      "warnings": [
+        "Adolescent alienation and escapism"
+      ],
+      "contentNote": "Public synopsis centers on a 12-year-old girl navigating family and peer pressure through lucid-dreaming “shifting” practices; audiovisual intensity awaits verification.",
+      "editorial": "Set under an approaching solar eclipse, this Crouching Tigers coming-of-age film uses teen “shifting” lore to map a 12-year-old’s search for belonging."
+    },
+    "py26-016": {
+      "title": "Torino Shadow",
+      "o": "Torino Shadow",
+      "dir": "JIA Zhang-Ke",
+      "c": "Italy / China",
+      "genre": [
+        "Short",
+        "Drama"
+      ],
+      "language": "Chinese (Mandarin / Cantonese) / Italian",
+      "syn": "A woman travels from southern China to Turin, Italy, to see her husband. But an unexpected departure leaves her to find herself again – and to find cinema.",
+      "honors": [
+        "Official Selection | 2026 79th Cannes Film Festival (World Premiere)",
+        "Official Selection | 2026 10th Pingyao International Film Festival · Special Presentations (Asian Premiere)"
+      ],
+      "warnings": [],
+      "contentNote": "Public synopsis describes a 32-minute short about a woman from southern China visiting Turin and rediscovering herself and cinema; no sensitive triggers noted. Screened at the Sept 25 Fenjiu Mid-Autumn Night event with Wutiaoren.",
+      "editorial": "Jia Zhangke’s 32-minute short starring Zhao Tao alongside Wutiaoren’s Ren Ke and Mao Tao, having its Asian premiere at Pingyao’s Sept 25 open-air Mid-Autumn Night."
+    },
+    "py26-017": {
+      "title": "Start from Pingyao Corner: Geng Zihan — The Ray of Sunshine × A Song Sung Blue",
+      "o": "Start from Pingyao Corner: Geng Zihan — The Ray of Sunshine × A Song Sung Blue",
+      "dir": "GENG Zihan",
+      "c": "China",
+      "genre": [
+        "Drama",
+        "Coming of age",
+        "Double Bill"
+      ],
+      "language": "Chinese (Mandarin) / Korean dialect",
+      "syn": "\"THE RAY OF SUNSHINE\"(SHORT) : Tomorrow is coming, while we are still stuck at this time. \"A SONG SUNG BLUE\": During the loneliest of summers, 15 - year - old Liu Xian meets Jin Mingmei, a Korean -Chinese girl. Mingmei’s exuberant youthful vigor leads LIU Xian to experience a new world.",
+      "honors": [
+        "Official Selection | 2026 10th Pingyao International Film Festival · Pingyao 10 Years (Start from Pingyao Corner)"
+      ],
+      "warnings": [
+        "Adolescent loneliness and family strain"
+      ],
+      "contentNote": "Double bill pairing short The Ray of Sunshine with coming-of-age feature A Song Sung Blue, touching on adolescent loneliness and emotional upheaval; audiovisual intensity awaits verification.",
+      "editorial": "A Pingyao 10 Years double bill connecting Geng Zihan’s 2019 short The Ray of Sunshine with her Cannes Directors’ Fortnight feature A Song Sung Blue."
+    },
+    "py26-018": {
+      "title": "Suzhou Quartet",
+      "o": "Suzhou Quartet",
+      "dir": "Chengjie CAI",
+      "c": "China",
+      "genre": [
+        "Drama"
+      ],
+      "language": "Chinese (Mandarin)",
+      "syn": "During the rainy season in an ancient water town south of the Yangtze River, four people each carry unspoken burdens, their minds trapped in the past. One stormy night, they chance upon each other at a small noodle shop — and realise they are old friends who have been apart for years.",
+      "honors": [
+        "Winner | 2026 10th Pingyao International Film Festival · Fei Mu Award Special Mention",
+        "Competition | 2026 10th Pingyao International Film Festival · Hidden Dragons"
+      ],
+      "warnings": [
+        "Lingering past regrets"
+      ],
+      "contentNote": "Public synopsis follows four estranged acquaintances meeting by chance at a rainy-night noodle shop in a Jiangnan water town; audiovisual intensity awaits verification.",
+      "editorial": "Fei Mu Special Mention winner by Cai Chengjie, gathering four burdened old acquaintances inside a small water-town noodle shop on a stormy night."
+    },
+    "py26-019": {
+      "title": "Promised Spaces",
+      "o": "Promised Spaces",
+      "dir": "Ivan MARKOVIĆ",
+      "c": "France / Germany / Serbia / Cambodia",
+      "genre": [
+        "Drama"
+      ],
+      "language": "Khmer",
+      "syn": "Sleepless from the heat, Sokun leaves his crowded construction dormitory and joins a community of fellow workers living in one of many unfinished high-rises. One such tower becomes the long-awaited luxury home for its first tenant, Seda, who soon feels isolated in the vast gated complex.",
+      "honors": [
+        "Competition | 2026 10th Pingyao International Film Festival · Crouching Tigers"
+      ],
+      "warnings": [
+        "Labor precarity and urban isolation"
+      ],
+      "contentNote": "Public synopsis contrasts construction workers living in unfinished high-rises with an isolated first resident of a gated luxury tower; audiovisual intensity awaits verification.",
+      "editorial": "Ivan Markovic turns Phnom Penh’s unfinished high-rises into an architectural study of heat, sleepless labor, and luxury-tower solitude."
+    },
+    "py26-020": {
+      "title": "Start from Pingyao Corner: Kong Dashan — Goodbye, Mr. Kong × Journey to the West",
+      "o": "Start from Pingyao Corner: Kong Dashan — Goodbye, Mr. Kong × Journey to the West",
+      "dir": "KONG Dashan",
+      "c": "China",
+      "genre": [
+        "Comedy",
+        "Sci-Fi",
+        "Double Bill"
+      ],
+      "language": "Chinese (Mandarin)",
+      "syn": "\"GOODBYE, MR. KONG\"(SHORT) : After teaching for thirty years, Mr. Kong plans to retire early after his son starts a family and has a child in Beijing. On his final day, he returns to the school to say goodbye to everything familiar. \"JOURNEY TO THE WEST\": A down-and-out science fiction magazine editor receives a mysterious signal that may have come from deep space. He decides to set out with a group of companions in search of aliens—and of an answer.",
+      "honors": [
+        "Official Selection | 2026 10th Pingyao International Film Festival · Pingyao 10 Years (Start from Pingyao Corner)"
+      ],
+      "warnings": [
+        "Melancholy and absurdism"
+      ],
+      "contentNote": "Double bill pairing short Goodbye, Mr. Kong with sci-fi road comedy Journey to the West, blending dry humor with gentle melancholy; audiovisual intensity awaits verification.",
+      "editorial": "Pairing Kong Dashan’s 2017 farewell-to-school short with his beloved Pingyao breakout Journey to the West for the festival’s tenth anniversary."
+    },
+    "py26-021": {
+      "title": "Forest High",
+      "o": "Forest High",
+      "dir": "Manon COUBIA",
+      "c": "Belgium / France",
+      "genre": [
+        "Drama"
+      ],
+      "language": "French",
+      "syn": "In the northern Alps, Anne, Hélène and Suzanne take turns tending a mountain hut. Through the seasons, hikers come and go. Stories bloom and fade, leaving each of them facing the silence.",
+      "honors": [
+        "Competition | 2026 10th Pingyao International Film Festival · Crouching Tigers"
+      ],
+      "warnings": [
+        "Solitude"
+      ],
+      "contentNote": "Public synopsis follows three women taking turns tending an Alpine mountain hut across changing seasons, with no explicit distressing themes noted; audiovisual intensity awaits verification.",
+      "editorial": "Three women rotate as caretakers of an Alpine refuge across four seasons, letting passing hikers’ fragments fade into mountain quiet."
+    },
+    "py26-022": {
+      "title": "Hope",
+      "o": "Hope",
+      "dir": "NA Hong-Jin",
+      "c": "South Korea",
+      "genre": [
+        "Mystery",
+        "Thriller",
+        "Sci-Fi"
+      ],
+      "language": "Korean",
+      "syn": "In Hope Harbor, a remote village near the Demilitarized Zone, police outpost chief Bum-seok receives alarming news from locals that a tiger has appeared. As the village erupts into panic, Bum-seok is forced to confront a reality beyond belief.",
+      "honors": [
+        "Official Selection | 2026 10th Pingyao International Film Festival · Galas"
+      ],
+      "warnings": [
+        "Mass panic and thriller suspense"
+      ],
+      "contentNote": "Public synopsis describes village-wide panic near the DMZ sparked by sightings of a tiger and an escalating, uncanny threat; specific violent or audiovisual intensity awaits verification.",
+      "editorial": "Na Hong-jin’s long-awaited 156-minute thriller in Pingyao Galas, escalating from rumors of a tiger near the DMZ into something far beyond expectation."
+    },
+    "py26-023": {
+      "title": "A Better Jianghu",
+      "o": "A Better Jianghu",
+      "dir": "LIU Wenpu",
+      "c": "China",
+      "genre": [
+        "Wuxia",
+        "Action",
+        "Drama"
+      ],
+      "language": "Chinese (Mandarin)",
+      "syn": "During the Song dynasty, Qin Hui established the Tiqi (mounted secret guards) to suppress the rebel army. Shen Fang, a civil official, killed forty-one people, including the Jin envoys, in a brutal act of vengeance. As a result, he was hunted down by the elite Tiqi forces led by the second commander, Yuan Hanting. But behind Shen Fang’s sudden rise to fame, there lay a hidden story...",
+      "honors": [
+        "Official Selection | 2026 10th Pingyao International Film Festival · Special Presentations"
+      ],
+      "warnings": [
+        "Swordplay violence and lethal pursuit"
+      ],
+      "contentNote": "Public synopsis depicts Song-dynasty political bloodshed, a revenge killing of forty-one people, and relentless pursuit by secret guards; visual intensity awaits verification.",
+      "editorial": "A Song-dynasty wuxia Special Presentation peeling back the hidden motive behind a civil official’s bloody rise to notoriety."
+    },
+    "py26-024": {
+      "title": "Start from Pingyao Corner: Wang Erzhuo — Mother Eden × Farewell, My Hometown",
+      "o": "Start from Pingyao Corner: Wang Erzhuo — Mother Eden × Farewell, My Hometown",
+      "dir": "WANG Erzhuo",
+      "c": "China",
+      "genre": [
+        "Drama",
+        "Family",
+        "Double Bill"
+      ],
+      "language": "Chinese (Mandarin / Hunan dialect)",
+      "syn": "\"MOTHER EDEN\"(SHORT) : Listen to a mother tell the story of a generation's youth. \"FAREWELL, MY HOMETOWN\": The aging grandmother in the countryside, the wandering girl adrift in the modern city, and the mother holding fast in the county town. Drawing from the private memories of three generations of women, the film traces a family's spiritual journey across seventy years of social change.",
+      "honors": [
+        "Official Selection | 2026 10th Pingyao International Film Festival · Pingyao 10 Years (Start from Pingyao Corner)"
+      ],
+      "warnings": [
+        "Aging and generational displacement"
+      ],
+      "contentNote": "Double bill pairing short Mother Eden with feature Farewell, My Hometown, tracing three generations of women across seventy years of social change; audiovisual intensity awaits verification.",
+      "editorial": "A Pingyao 10 Years double bill following Wang Erzhuo’s intimate family trilogy of rural grandmother, county-town mother, and city-bound daughter."
+    },
+    "py26-025": {
+      "title": "Just Like Weather",
+      "o": "Just Like Weather",
+      "dir": "Allen FONG",
+      "c": "Hong Kong, China",
+      "genre": [
+        "Drama",
+        "Documentary"
+      ],
+      "language": "Chinese (Cantonese) / English",
+      "syn": "Chan and Christine marry young, but their relationship is unstable, marked by breakups and reconciliations, as well as uncertainty over emigration to the United States. They re-enact real-life experiences alongside scripted scenes, travel to America, and are interviewed on camera by Fong himself. With jump-cut editing and a non-linear narrative, the film creates an ambiguous, dreamlike atmosphere. One of Fong's most experimental works, the film marks a creative pinnacle in his career and a landmark of the Hong Kong New Wave.",
+      "honors": [
+        "Winner | 1987 6th Hong Kong Film Awards · Best Director (Allen Fong)",
+        "Official Selection | 2026 10th Pingyao International Film Festival · Special Presentations (4K Restoration)"
+      ],
+      "warnings": [
+        "Marital instability and emigration anxiety"
+      ],
+      "contentNote": "Public synopsis follows a young couple navigating marital ups and downs and uncertainty over emigration, blending documentary interviews with fiction; audiovisual intensity awaits verification.",
+      "editorial": "Allen Fong’s landmark 1986 Hong Kong New Wave hybrid in a 2026 4K restoration, blurring real marriage, interviews, and scripted cinema through jump-cut energy.",
+      "version": "4K Restoration"
+    },
+    "py26-026": {
+      "title": "Final Payment",
+      "o": "Final Payment",
+      "dir": "NIU Niu",
+      "c": "China",
+      "genre": [
+        "Drama"
+      ],
+      "language": "Chinese (Mandarin)",
+      "syn": "In a lopsided confrontation, belated kindness brews an irreversible regret.",
+      "honors": [
+        "Winner | 2026 10th Pingyao International Film Festival · Fei Mu Award for Best Film",
+        "Winner | 2026 10th Pingyao International Film Festival · Fei Mu Award for Best Actor (Niu Jianrong)",
+        "Competition | 2026 10th Pingyao International Film Festival · Hidden Dragons"
+      ],
+      "warnings": [
+        "Confrontation and moral regret"
+      ],
+      "contentNote": "Public synopsis describes a lopsided confrontation in which belated kindness leads to irreversible regret; specific depiction and audiovisual intensity await verification.",
+      "editorial": "Top winner of the 10th Pingyao Festival, taking both Best Film and Best Actor in the Fei Mu Awards with a taut 86-minute drama of unequal confrontation."
+    },
+    "py26-027": {
+      "title": "Start from Pingyao Corner: Wei Shujun — On the Border × Only the River Flows",
+      "o": "Start from Pingyao Corner: Wei Shujun — On the Border × Only the River Flows",
+      "dir": "WEI Shujun",
+      "c": "China",
+      "genre": [
+        "Drama",
+        "Mystery",
+        "Crime",
+        "Double Bill"
+      ],
+      "language": "Chinese (Mandarin)",
+      "syn": "\"ON THE BORDER\"(SHORT) : A young Korean‑Chinese boy travels to the city to seek help from his father, as he hopes to go to South Korea. \"ONLY THE RIVER FLOWS\": A bizarre murder case triggers an undercurrent of destiny. Under the manipulation of fate, police detective MA Zhe gradually falls into absurdity, unease, memories, and moments where reality and fantasy blur. The film is adapted from the pioneering novel by YU Hua.",
+      "honors": [
+        "Official Selection | 2026 10th Pingyao International Film Festival · Pingyao 10 Years (Start from Pingyao Corner)"
+      ],
+      "warnings": [
+        "Murder investigation and psychological distress"
+      ],
+      "contentNote": "Double bill pairing short On the Border with crime drama Only the River Flows, involving murder investigation and psychological unravelling; audiovisual intensity awaits verification.",
+      "editorial": "A Pingyao 10 Years double bill pairing Wei Shujun’s 2018 short On the Border with his Yu Hua adaptation Only the River Flows."
+    },
+    "py26-ev-midautumn": {
+      "title": "Fenjiu Night: Torino Shadow Screening & Wutiaoren Live Concert",
+      "o": "Fenjiu Night: Torino Shadow Screening & Wutiaoren Live Concert",
+      "dir": "Jia Zhang-Ke / Wutiaoren",
+      "c": "Pingyao",
+      "genre": [
+        "Special Event",
+        "Short Screening",
+        "Live Music"
+      ],
+      "language": "Chinese (Mandarin, Cantonese) / Italian",
+      "syn": "TORINO SHADOW A woman travels from southern China to Turin, Italy, to see her husband. But an unexpected departure leaves her to find herself again – and to find cinema. ROOTS·CITIES·TALES Both Ren Ke and Mao Tao from Wutiaoren are starred in the short film Torino Shadow. After the screening, they are going to present a live music show as a Pingyao Special of their 2026 Tour, to celebrate the Chinese tradition Mid-Autumn Festival with the audience.",
+      "honors": [
+        "Official Selection | 2026 10th Pingyao International Film Festival · Fenjiu Mid-Autumn Night Special"
+      ],
+      "warnings": [
+        "Outdoor live concert volume"
+      ],
+      "contentNote": "Outdoor open-air special event combining Jia Zhangke’s 32-minute short screening with Wutiaoren’s live concert; expect concert sound levels and cool autumn night air.",
+      "editorial": "Pingyao’s 10th-anniversary Mid-Autumn open-air night: the Asian premiere of Jia Zhangke’s 32-minute Torino Shadow followed immediately by Wutiaoren’s live tour special."
+    },
+    "py26-028": {
+      "title": "Yesterday the Eye Didn't Sleep",
+      "o": "Yesterday the Eye Didn't Sleep",
+      "dir": "Rakan MAYASI",
+      "c": "Belgium / Lebanon / Palestine / Qatar / Saudi Arabia",
+      "genre": [
+        "Drama"
+      ],
+      "language": "Arabic",
+      "syn": "In a valley veiled by fog and tribal codes, two sisters walk into the night not as daughters, but as offerings — where blood, memory, and silence attempt to keep the fire from spreading.",
+      "honors": [
+        "Winner | 2026 10th Pingyao International Film Festival · Roberto Rossellini Award Special Mention",
+        "Winner | 2026 10th Pingyao International Film Festival · NETPAC Award for Best First Feature",
+        "Competition | 2026 10th Pingyao International Film Festival · Crouching Tigers"
+      ],
+      "warnings": [
+        "Tribal blood feud and sacrifice of daughters"
+      ],
+      "contentNote": "Public synopsis depicts two sisters offered as sacrifices under tribal codes to halt a cycle of vengeance; specific depictions and audiovisual intensity await verification.",
+      "editorial": "Double winner at Pingyao (Rossellini Special Mention and NETPAC Best First Feature), confronting tribal codes and inherited vengeance inside a mist-veiled valley."
+    },
+    "py26-029": {
+      "title": "Paper Tiger",
+      "o": "Paper Tiger",
+      "dir": "James GRAY",
+      "c": "USA",
+      "genre": [
+        "Drama",
+        "Crime",
+        "Thriller"
+      ],
+      "language": "English",
+      "syn": "Two brothers pursue the American Dream but get entangled in a dangerous Russian mafia scheme that terrorizes their family, testing their bond as betrayal becomes possible.",
+      "honors": [
+        "Official Selection | 2026 10th Pingyao International Film Festival · Galas"
+      ],
+      "warnings": [
+        "Mafia threats, violence, and betrayal"
+      ],
+      "contentNote": "Public synopsis follows two brothers entangled in a dangerous mafia scheme that brings violence, threats to their family, and betrayal; audiovisual intensity awaits verification.",
+      "editorial": "James Gray returns to family crime drama in Pingyao’s Galas section, watching brotherhood fracture under mafia intimidation and shattered American Dream hopes."
+    },
+    "py26-030": {
+      "title": "The Story of Woo Viet",
+      "o": "The Story of Woo Viet",
+      "dir": "HUI On Wah Ann",
+      "c": "Hong Kong, China",
+      "genre": [
+        "Drama",
+        "Crime"
+      ],
+      "language": "Chinese (Cantonese)",
+      "syn": "After the Vietnam War, Woo Viet, a young Vietnamese of Chinese descent, escapes to a refugee camp in Hong Kong, where he meets Li Lap Quan for the first time, a social worker with whom he has corresponded but never met. Moved by his plight, Li helps him secure a passport to leave for the United States. While arranging his passport, Woo Viet meets Shum Ching, another refugee adrift in the aftermath of the war. The two fall in love and promise to meet again in America. But during a stopover in the Philippines, Shum Ching and several other young women are tricked into working as dancers at a bar. Woo Viet gives up his passage to America to rescue her. Along the way, he meets Ah Sahm, and the two become sworn brothers, only to find themselves pawns in the hands of their boss, Chung Yan…",
+      "honors": [
+        "Official Selection | 2026 10th Pingyao International Film Festival · Special Presentations / East-West Contribution (4K Restoration)"
+      ],
+      "warnings": [
+        "Postwar refugee displacement, human trafficking, and underworld violence"
+      ],
+      "contentNote": "Public synopsis involves post-Vietnam War refugee camps, deception of young women into bar work, and underworld violence; visual intensity awaits verification.",
+      "editorial": "Presented in a 2026 4K restoration alongside Jury President Ann Hui’s Pingyao visit, following a refugee’s desperate detour from Hong Kong to Manila.",
+      "version": "4K Restoration"
+    },
+    "py26-031": {
+      "title": "Start from Pingyao Corner: Zou Jing — Lili Alone × A Girl Unknown",
+      "o": "Start from Pingyao Corner: Zou Jing — Lili Alone × A Girl Unknown",
+      "dir": "ZOU Jing",
+      "c": "China",
+      "genre": [
+        "Drama",
+        "Double Bill"
+      ],
+      "language": "Chinese (Mandarin / Hakka / Cantonese / Hunanese)",
+      "syn": "\"LILI ALONE\"(SHORT) : Lili, a young mother, lives with her gambler husband in a remote part of Sichuan. Lonely and poor, she heads for the city in a bid to earn enough money to save her dying father. \"A GIRL UNKNOWN\": A girl's turbulent journey unfolds across the changing fortunes of three families and her search for self through three different identities, ultimately leading her to a new beginning through love and self-redemption.",
+      "honors": [
+        "Official Selection | 2026 10th Pingyao International Film Festival · Pingyao 10 Years (Start from Pingyao Corner)"
+      ],
+      "warnings": [
+        "Poverty, family illness, and identity hardship"
+      ],
+      "contentNote": "Double bill pairing Cannes Critics’ Week short Lili Alone with feature A Girl Unknown, dealing with poverty, a dying father, and difficult identity struggles; audiovisual intensity awaits verification.",
+      "editorial": "A Pingyao 10 Years double bill connecting Zou Jing’s 2021 short Lili Alone with her 2026 feature A Girl Unknown."
     }
   },
   "programmes": {
@@ -11596,6 +12255,14 @@
       "period": "2026",
       "city": "Jiaxing · Hangzhou",
       "blurb": "Eight masterworks of French realism in three sections: Masters' Debut, Mirrors of the Era and Cinema Today. They run from Malle's prelude to the New Wave, through the social realism of Kassovitz, the Dardennes and Doillon, to the present-day echoes of Haneke, Ladj Ly, Triet and Farhadi. On screen, yesterday is never far. The films screen in Jiaxing and Hangzhou.\n\nStar Screenings | Four free screenings in Jiaxing: Hideaway: The Dossiers, Never Too Late, 24 Flavors and Red River, each with a post-screening discussion of approximately 30 minutes. Guest and venue details, together with the individual WeChat Mini Program registration code, are on each film page."
+    },
+    "pingyao-2026": {
+      "name": "2026 Pingyao International Film Festival",
+      "sub": "10th Edition · Keep Walking",
+      "kind": "Film festival",
+      "period": "Sep 24 – 30, 2026",
+      "city": "Pingyao",
+      "blurb": "September 24–30 at Pingyao Film Palace, Shanxi. Under the 10th-edition theme “Keep Walking,” PYIFF presents five official sections—Hidden Dragons, Crouching Tigers, Galas, Special Presentations, and Pingyao 10 Years—plus Fenjiu Mid-Autumn Night, totalling 48 programmes and 86 screenings across six halls. Opened with Fei Mu’s Spring in a Small Town (4K Restoration) and closed with Good Trip."
     }
   },
   "venues": {
@@ -12075,6 +12742,12 @@
       "short": "Jiaxing University",
       "brand": "Jiaxing University",
       "store": "TCL Auditorium"
+    },
+    "py-palace": {
+      "name": "Pingyao Film Palace",
+      "short": "Pingyao Film Palace",
+      "brand": "Pingyao Film Palace",
+      "store": "West Street, Pingyao Ancient City"
     }
   },
   "ui": {
@@ -13968,6 +14641,7 @@
     "版本": "Format",
     "拍照识票自动填票根": "Scan paper or e-tickets via OCR",
     "制作或编辑典藏票根时，点放映信息旁的「拍照识票」，拍一张纸质电影票或选一张电子票截图，自动识别日期、时间、影院、影厅、座位和放映版本。网页端在本机离线识别，图片不出手机；小程序走微信识字，识别不了可随时手动修改。": "Tap Scan ticket in the ticket editor to pick a paper stub photo or e-ticket screenshot and auto-fill date, time, cinema, hall, seat, and format. Web runs fully on-device with self-hosted OCR (photos never leave your phone); mini-program uses WeChat OCR with manual fallback.",
-    "编辑票根时点「拍照识票」，选择纸质票照片或电子票截图，会自动识别日期、开场时间、影院、影厅、座位和版本并填入表单（同时尝试匹配片库排片）。网页端使用本站自托管的中英文轻量模型在本机识别，图片不上传服务器；小程序端走微信识字，识别失败时可直接在下方手动填写。": "Tap Scan ticket in the ticket editor to pick a paper ticket photo or e-ticket screenshot and auto-fill date, start time, venue, hall, seat, and format (snapping to matching screenings when found). Web uses our self-hosted on-device OCR model so photos never leave your device; the mini-program uses WeChat OCR with instant manual fallback."
+    "编辑票根时点「拍照识票」，选择纸质票照片或电子票截图，会自动识别日期、开场时间、影院、影厅、座位和版本并填入表单（同时尝试匹配片库排片）。网页端使用本站自托管的中英文轻量模型在本机识别，图片不上传服务器；小程序端走微信识字，识别失败时可直接在下方手动填写。": "Tap Scan ticket in the ticket editor to pick a paper ticket photo or e-ticket screenshot and auto-fill date, start time, venue, hall, seat, and format (snapping to matching screenings when found). Web uses our self-hosted on-device OCR model so photos never leave your device; the mini-program uses WeChat OCR with instant manual fallback.",
+    "第十届平遥国际电影展（9月24日–30日，平遥电影宫）完整专题已补录：涵盖藏龙、卧虎、首映、特别展映、平遥十年及汾酒中秋之夜共 48 项片目、86 场放映记录、双官方荣誉评审团与单元导读，已跨展关联《小城之春》《寒夜灯柱》《刚果男孩》《菲律宾女孩》等 16 部同展影片，并新增平遥官网片单抓取适配器。": "Added the complete 10th Pingyao International Film Festival (Sep 24–30, Pingyao Film Palace): 48 official programmes and events across Hidden Dragons, Crouching Tigers, Galas, Special Presentations, Pingyao 10 Years, and Fenjiu Night, 86 screenings, both official juries, curatorial section notes, cross-festival links for 16 shared titles, and a reusable PYIFF official API importer adapter."
   }
 }
