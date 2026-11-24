@@ -99,7 +99,7 @@ Page({
     // 专题已结束 / 影片已下映 / 全部场次已放映后，不再显示购票码（待排片的保留）
     const progEnded = p => !!p && U.progInfo(p, data, idx).status === 'ended';
     // 按专题分开算（与网站 ticketLive 相同）：影展专题里本片在该专题还有未散场场次、或场次未公布时显示，全部放完隐藏，加场后自动恢复；院线专题看本片全部场次
-    const tkLive = p => { if (f.ended || progEnded(p)) return false; const mine = p && p.kind !== '院线' ? allShows.filter(s => (s.p || f.prog) === p.id) : allShows; return !mine.length || mine.some(s => !U.ended(s, idx)); };
+    const tkLive = p => { if (U.endedIn(f, p) || progEnded(p)) return false; const mine = p && p.kind !== '院线' ? allShows.filter(s => (s.p || f.prog) === p.id) : allShows; return !mine.length || mine.some(s => !U.ended(s, idx)); };
     const filmLive = tkLive(idx.progOf(f));
     if (filmLive) addTk(U.ticket(f), f.ticketPlatform, f.ticketLabel, f.ticketHint, idx.progOf(f));
     (f.tickets || []).forEach(x => { const pp = (idx.progsOf(f).find(y => y.p && y.p.id === x.prog) || {}).p; if (pp && x.ticket && tkLive(pp)) addTk(/^https?:|^\//.test(x.ticket) ? x.ticket : SITE + x.ticket, x.ticketPlatform, x.ticketLabel, x.ticketHint, pp); }); // 同一部影片在其他专题另有报名码（与网站 ticketsOf 一致）

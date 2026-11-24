@@ -66,6 +66,17 @@ function autoEnded(f,shows,t){ if(f.ended||f.ev) return false;
   const m=String(f.releaseZh||f.release||"").match(/(\d{4})年(\d{1,2})月(\d{1,2})日/); if(!m) return false; const rel=SparrowTZ.zonedMs(+m[1],+m[2],+m[3],0,0,SparrowTZ.DEFAULT_TZ); if(t<rel) return false;
   const mine=shows.filter(s=>s.id===f.id); if(mine.some(s=>!isPast(s))) return false;
   return mine.length>0||t>=rel+RUN_DAYS*864e5; }
+/* 院线专题里的「已结束」（只影响院线专题页与片目的院线分组，不改影片页、不改影展专题）：
+   本片出现在院线专题、上映日已过、院线专题里没有待映场次，同时又录过影展等其他专题的场次（不论放完与否）→ 在院线专题算已结束；
+   院线专题以外一场都没录过的仍按上面的 RUN_DAYS 规则（autoEnded）。 */
+function cinemaEnded(f,shows,t){ if(f.ended) return true; if(f.ev) return false;
+  if(!PROGRAMMES.some(p=>p.kind==="院线"&&(f.prog===p.id||p.members?.includes(f.id)||p.sections?.[f.id]))) return false;
+  const m=String(f.releaseZh||f.release||"").match(/(\d{4})年(\d{1,2})月(\d{1,2})日/); if(!m) return false; if(t<SparrowTZ.zonedMs(+m[1],+m[2],+m[3],0,0,SparrowTZ.DEFAULT_TZ)) return false;
+  const mine=shows.filter(s=>s.id===f.id), cin=s=>PG[s.p||f.prog]?.kind==="院线";
+  if(mine.some(s=>cin(s)&&!isPast(s))) return false;
+  return mine.some(s=>!cin(s)); }
+// 影片在某专题里是否按已结束处理：全局已下映，或院线专题里的 cinEnded
+const endedIn=(f,pid)=>!!f.ended||(!!f.cinEnded&&PG[pid]?.kind==="院线");
 function progStatus(p){ const [a,b]=progRange(p), t=now(); if(a!=null&&t<a) return "soon"; if(!p.ongoing&&b!=null&&t>=b) return "ended"; if(progDone(p,t)) return "ended"; return "live"; }
 function progOrdered(){ const rank={live:0,soon:1,ended:2}; return PROGRAMMES.slice().sort((x,y)=>{const sx=progStatus(x),sy=progStatus(y),lx=localProg(x),ly=localProg(y);if(lx!==ly)return lx?-1:1;if(sx!==sy)return rank[sx]-rank[sy];const ux=progShows(x.id).some(s=>!isPast(s)),uy=progShows(y.id).some(s=>!isPast(s));if(ux!==uy)return ux?-1:1;const [ax,bx]=progRange(x),[ay,by]=progRange(y);return sx==="ended"?(by||0)-(bx||0):(ax||0)-(ay||0);}); }
 function defaultProg(){ const open=progOrdered().filter(p=>progStatus(p)!=="ended"); const pick=open.find(p=>progShows(p.id).some(s=>!isPast(s)))||open.find(p=>progShows(p.id).length)||open[0]; return pick?pick.id:"all"; }

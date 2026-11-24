@@ -54,7 +54,7 @@ Page({
       const first = next || last;
       const title = (!I.isEn() && p.filmTitles && p.filmTitles[f.id]) || f.cn;
       return { id: f.id, cn: title, ini: (title || '')[0], version: t(f.version || ''), poster: U.thumb(f), color: (data.reg[f.reg] || {}).c, first: first ? U.ymd(first) + ' ' + first.t : '',
-        at: next ? U.showDate(next).getTime() : Infinity, lastAt: last ? U.showDate(last).getTime() : (f.ended ? U.relTime(f) : 0), gone: (!!mine.length || !!f.ended) && !next };
+        at: next ? U.showDate(next).getTime() : Infinity, lastAt: last ? U.showDate(last).getTime() : (U.endedIn(f, p) ? U.relTime(f) : 0), gone: (!!mine.length || U.endedIn(f, p)) && !next };
     };
     const membership=new Set(Object.keys(p.sections||{}).concat(p.members||[]));
     const all = data.films.filter(f => !f.ev && idx.progOf(f).id === p.id || membership.has(f.id)).filter(f=>!this.data.section||(p.sections||{})[f.id]===this.data.section).map(mk);
