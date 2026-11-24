@@ -21,7 +21,7 @@ function ganttHTML(k, rowH, labW, compact, list){
       const hs = list.filter(x=>x.d===d && x.v===hh.v && x.h===hh.h);
       if(!hs.length) return;
       const lab = `<small class="hl">${esc(VN[hs[0].v].name)}</small><small class="hl">${esc(hallOf(hs[0]).name)}</small>`;
-      rows += `<div class="g-day" style="height:${rowH}px"><b>${d}</b>${`<small>${wk(d)}</small>`}${lab}</div><div class="g-track" style="width:${W}px;height:${rowH}px">`;
+      rows += `<div class="g-day" style="height:${rowH}px"><b>${d}</b>${`<small>${wk(d,hs[0].year)}</small>`}${lab}</div><div class="g-track" style="width:${W}px;height:${rowH}px">`;
       hs.forEach(x=>{
         const f=F[x.id], st=toMin(x.t), en=st+durationOf(x), w=Math.round(durationOf(x)*k);
         const inner = compact
@@ -61,10 +61,10 @@ function pickDay(ds, tz){
 function dayStripHTML(ds, list){
   let lastM="";
   return `<div class="dstrip filters" role="tablist" aria-label="选择日期">${ds.map(d=>{
-    const [m,dd]=d.split("/"); const n=list.filter(x=>x.d===d).length; const mine=SH.some(x=>x.d===d&&picked.has(keyOf(x)));
+    const [m,dd]=d.split("/"); const dayList=list.filter(x=>x.d===d); const n=dayList.length; const mine=SH.some(x=>x.d===d&&picked.has(keyOf(x)));
     const mon = m!==lastM ? `<em>${m}月</em>` : `<em>&nbsp;</em>`; lastM=m;
-    const gone=list.filter(x=>x.d===d).every(isPast);
-    return `<button class="dchip${gone?" past":""}" role="tab" data-day="${d}" aria-selected="${d===sday}">${mon}<b>${dd}</b><small>${wk(d)}</small><span class="dn">${n} 场</span>${mine?'<i class="dme" title="有我的排片"></i>':''}</button>`;
+    const gone=dayList.every(isPast);
+    return `<button class="dchip${gone?" past":""}" role="tab" data-day="${d}" aria-selected="${d===sday}">${mon}<b>${dd}</b><small>${wk(d,dayList[0]&&dayList[0].year)}</small><span class="dn">${n} 场</span>${mine?'<i class="dme" title="有我的排片"></i>':''}</button>`;
   }).join("")}</div>`;
 }
 // 单日时刻表：纵轴为时间，横向每列一个影厅
@@ -229,7 +229,7 @@ function schedule(){
     ${scheduleViewsHTML()}
     ${schedContextBarHTML(restN, accN)}
     ${ds.length?dayStripHTML(ds,list):""}
-    ${sday?`<div class="tt-cap"><b>${sday.replace("/","月")}日 ${wk(sday)}</b><span>${dayList.length} 场 · ${new Set(dayList.map(x=>x.v+x.h)).size} 个影厅${tzNote}</span></div>
+    ${sday?`<div class="tt-cap"><b>${sday.replace("/","月")}日 ${wk(sday,dayList[0]&&dayList[0].year)}</b><span>${dayList.length} 场 · ${new Set(dayList.map(x=>x.v+x.h)).size} 个影厅${tzNote}</span></div>
     ${scheduleView==="gantt"?'<div class="legend"><span>每部影片一种颜色 · 色块标注版本、对白语言与字幕</span></div>':''}
     ${scheduleView==="gantt"?timetableHTML(sday,list,dayTz):compactScheduleHTML(dayList)}`:onlyMine?`<div class="g-empty"><b>当前筛选下还没有你加入的场次</b><span>关掉「只看我的排片」，在排片表点色块右上角的 + 加入</span></div>`:`<div class="g-empty"><b>${vfilt!=="all"&&VN[vfilt]?esc(VN[vfilt].name):"当前筛选"}暂无排片</b><span>排片公布后会更新到这里</span></div>`}
     ${presentersHTML()}</section>`;

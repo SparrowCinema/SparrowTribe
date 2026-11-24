@@ -1234,6 +1234,196 @@
         "gr26-018",
         "gr26-027"
       ]
+    },
+    {
+      "id": "pingyao-2026",
+      "name": "2026平遥国际电影展",
+      "sub": "第十届 · 答案在路上",
+      "en": "10TH PINGYAO INTERNATIONAL FILM FESTIVAL",
+      "kind": "影展专题",
+      "period": "2026.09.24 – 09.30",
+      "start": "2026-09-24",
+      "end": "2026-09-30",
+      "city": "平遥",
+      "tz": "Asia/Shanghai",
+      "cover": "programmes/pingyao-2026.jpg",
+      "file": "data/programmes/pingyao-2026.json",
+      "ticketUrl": "https://www.pyiffestival.com/",
+      "ticketPlatform": "平遥国际电影展官网",
+      "ticketHint": "本届展映已收官，保留全部官方片单、荣誉评审团与 86 场平遥电影宫排片记录",
+      "blurb": "9月24日至30日，山西平遥电影宫。第十届平遥国际电影展以「答案在路上」为主题，设置「藏龙」「卧虎」「首映」「特别展映」「平遥十年」五大展映单元及「汾酒中秋之夜」特别策划，共收录 48 项官方片目与活动、6 座影厅 86 场放映。开幕片为费穆《小城之春》4K修复版，闭幕片为《我阿爹想旅行》。",
+      "jury": [
+        {
+          "unit": "罗伯托·罗西里尼荣誉评审团",
+          "unitEn": "Roberto Rossellini Awards Jury",
+          "members": [
+            {
+              "name": "卡洛·沙特里安",
+              "nameEn": "Carlo Chatrian",
+              "role": "意大利",
+              "roleEn": "Italy",
+              "bio": "记者、作家及策展人， 1971 年出生于都灵。曾长期为多家报刊担任影评人的工作。在 2013 至 2018 年、 2020 至 2024 年期间，他分别担任洛迦诺电影节和柏林国际电影节艺术总监。曾担任圣丹斯、多伦多、东京、莫雷利亚、香港等多个电影节的评委。",
+              "bioEn": "Journalist, author and programmer, Carlo Chatrian was born in Torino in 1971. He has written regularly as a film critic for several newspapers and magazines.",
+              "president": true
+            },
+            {
+              "name": "霍昕",
+              "nameEn": "Huo Xin",
+              "role": "中国大陆",
+              "roleEn": "China",
+              "bio": "编剧、导演， 1992 年毕业于中央戏剧学院戏剧文学系。主要编剧作品包括电影《洗澡》（ 1999 ）、《昨天》（ 2001 ）、《功夫》（ 2004 ）、《好奇害死猫》（ 2006 ）、《无人驾驶》（ 2010 ）、《西游 · 降魔篇》（ 2013 ），以及电视剧《将爱情进行到底》（ 1998 ）、…",
+              "bioEn": "Screenwriter and director. Huo Xin graduated from the Department of Drama Literature at the Central Academy of Drama in 1992 and has been working as a screenwriter for film, television and theatre ever since."
+            },
+            {
+              "name": "李心洁",
+              "nameEn": "Sinje Lee",
+              "role": "马来西亚",
+              "roleEn": "Malaysia",
+              "bio": "马来西亚籍华人演员、歌手、监制、导演及画家。 2001 年凭《爱你爱我》获第 51 届柏林国际电影节最佳新演员奖；其后凭《见鬼》荣膺香港电影金像奖最佳女主角等多个奖项，成为 “ 双金影后 ” 。曾参演《盗贼同盟》《夕雾花园》等亚洲跨国制作，持续活跃于华语及亚洲影视领域。",
+              "bioEn": "Malaysian Chinese actress, singer, producer, director and painter. In 2001, Lee won the New Talent Award (Best Young Actress) at the 51st Berlin International Film Festival for BETELNUT BEAUTY."
+            },
+            {
+              "name": "温煦宇",
+              "nameEn": "Michael J. Werner",
+              "role": "美国",
+              "roleEn": "United States",
+              "bio": "国际电影及媒体行业资深高管、制片人，常驻香港，拥有逾四十年行业经验。作为亚洲电影国际销售与发行领域的先行者之一，他曾任国际销售公司福斯提摩影业的合伙人、首席执行官及 20 世纪福克斯中国及亚洲市场制片厂高管。",
+              "bioEn": "Michael J. Werner is a veteran international film and media executive and producer based in Hong Kong, with more than four decades of wide-ranging industry experience."
+            },
+            {
+              "name": "杨福东",
+              "nameEn": "Yang Fudong",
+              "role": "中国大陆",
+              "roleEn": "China",
+              "bio": "艺术家。 1971 年生于北京，现生活、工作于上海。毕业于中国美术学院油画系。杨福东自 20 世纪 90 年代末开始从事影像创作，其创作横跨摄影、绘画、电影与装置，通过多重文化视角与交错的时空体验，形成独特的视觉语言。",
+              "bioEn": "Artist. Born in Beijing in 1971, Yang Fudong now lives and works in Shanghai. He graduated from the Department of Oil Painting at the China Academy of Art in Hangzhou."
+            }
+          ]
+        },
+        {
+          "unit": "费穆荣誉评审团",
+          "unitEn": "Fei Mu Awards Jury",
+          "members": [
+            {
+              "name": "许鞍华",
+              "nameEn": "Ann Hui",
+              "role": "中国香港",
+              "roleEn": "Hong Kong",
+              "bio": "导演，出生于 1947 年，五岁由辽宁鞍山移居香港。于香港大学获英文及比较文学硕士学位，随后前往英国伦敦电影学校攻读电影。 1975 年开始从事电影工作，曾任胡金铨导演助手，后加入香港电视广播有限公司、香港电台电视部。",
+              "bioEn": "Film director, born 1947 in Anshan, China. Ann moved to Hong Kong at five years old, grew up and educated in Hong Kong.",
+              "president": true
+            },
+            {
+              "name": "洛朗·里古莱",
+              "nameEn": "Laurent Rigoulet",
+              "role": "法国",
+              "roleEn": "France",
+              "bio": "法国记者、作家及文化评论家。 20 世纪 80 年代末于法国日报《解放报》（ Libération ）开启其记者生涯，在此期间对美国流行文化、电影及城市音乐产生了浓厚兴趣。 2000 年加入法国文化周刊《电视全览》（ Télérama ），担任资深记者。",
+              "bioEn": "LAURENT RIGOULET is a French journalist, writer, and cultural critic."
+            },
+            {
+              "name": "王景春",
+              "nameEn": "Wang Jingchun",
+              "role": "中国大陆",
+              "roleEn": "China",
+              "bio": "中国演员，毕业于上海戏剧学院，代表作包括《警察日记》（ 2013 ）、《白日焰火》（ 2014 ）、《地久天长》（ 2019 ）等。 2009 年，凭借电影《疯狂的玫瑰》（ 2009 ）获得第 10 届电视电影百合奖优秀男演员奖。",
+              "bioEn": "WANG JINGCHUN is a Chinese actor and a graduate of the Shanghai Theatre Academy. His notable films include THE POLICE DIARY (2013), BLACK COAL, THIN ICE (2014), and SO LONG, MY SON (2019)."
+            },
+            {
+              "name": "张律",
+              "nameEn": "Zhang Lu",
+              "role": "中国大陆",
+              "roleEn": "China",
+              "bio": "导演、编剧、制片人，以短片《 11 岁》（ 2000 ）开始其职业生涯，该片被邀请参加威尼斯国际电影节。其长片首作《唐诗》（ 2003 ）在洛迦诺国际电影节上首映；第二部长片《芒种》（ 2005 ）在戛纳影评人周获得 ACID 奖，并在釜山国际电影节获得新浪潮奖。",
+              "bioEn": "Chinese film director, screenwriter, and producer. He began his directorial career with the short film ELEVEN (2000), which was selected for the Venice International Film Festival."
+            },
+            {
+              "name": "郑碧雪",
+              "nameEn": "Lorna Tee",
+              "role": "中国澳门",
+              "roleEn": "Macao",
+              "bio": "泛亚洲地区电影制片人、策展人。曾在焦点影业、《综艺》杂志、澳门恋爱 ‧ 电影馆担任管理职务，并在柏林国际电影节、亚洲电影节等电影节担任重要职务。",
+              "bioEn": "LORNA TEE is a pan-Asian film producer and curator. She has held management roles at Focus Films, Variety and Cinematheque ・ Passion in Macao."
+            }
+          ]
+        }
+      ],
+      "sectionNotes": {
+        "藏龙": {
+          "intro": "聚焦全球华语新导演的第一至第三部长片，角逐「费穆荣誉」最佳影片、最佳导演、最佳男女演员与评审荣誉等官方奖项。本届《尾款》获最佳影片与最佳男演员，《寒夜灯柱》获最佳导演，《爱情笑话》获最佳女演员，《发现之旅》获评审荣誉及迷影选择荣誉。",
+          "en": "Dedicated to first, second, and third features by Chinese-language emerging directors competing for the Fei Mu Awards. Final Payment won Best Film and Best Actor, Light Pillar won Best Director, A Joke won Best Actress, and Zoom In, Zoom Out won the Jury Award and Cinephilia Critics Award."
+        },
+        "卧虎": {
+          "intro": "发掘全球新兴及发展中国家青年导演的国际首作与次作，角逐「罗伯托·罗西里尼荣誉」。本届《刚果男孩》摘得最佳影片，《菲律宾女孩》获最佳导演，《神之子》获评审荣誉，《昨天，那只眼彻夜未眠》获特别表扬及NETPAC最佳首作。",
+          "en": "Showcasing debut and second features by international emerging filmmakers competing for the Roberto Rossellini Awards. Congo Boy won Best Film, Filipiñana won Best Director, Ben’imana won the Jury Award, and Yesterday the Eye Didn’t Sleep took both Special Mention and NETPAC Best First Feature."
+        },
+        "首映": {
+          "intro": "汇集年度国际知名导演新作与各大影展瞩目佳作的中国内地首映，涵盖戛纳金棕榈《峡湾》、罗泓轸《希望》、詹姆斯·格雷《纸老虎》、索罗戈延《所爱之人》、玛丽·克鲁泽《温柔的怪物》等。",
+          "en": "China premieres of major international festival highlights and auteur features, including Palme d’Or winner Fjord, Na Hong-jin’s Hope, James Gray’s Paper Tiger, Rodrigo Sorogoyen’s The Beloved, and Marie Kreutzer’s Gentle Monster."
+        },
+        "特别展映": {
+          "intro": "呈现开闭幕影片、4K修复经典重映及影迷嘉年华特别策划，包括开幕片《小城之春》（4K修复版）、闭幕片《我阿爹想旅行》、许鞍华《胡越的故事》（4K修复版）、方育平《美国心》（4K修复版）与贾樟柯短片《都灵之影》。",
+          "en": "Opening and closing selections, 4K restorations, and Cinephile highlights, including Spring in a Small Town (4K), Good Trip, Ann Hui’s The Story of Woo Viet (4K), Allen Fong’s Just Like Weather (4K), and Jia Zhangke’s short Torino Shadow."
+        },
+        "平遥十年": {
+          "intro": "第十届平遥特别策展板块：一方面致敬费穆与罗西里尼及纪念经典（《罗维雷将军》《假凤虚凰》《记忆》《最佳拍档》），另一方面推出六场「从平遥一角出发」导演短片×长片连映，回望董劼、耿子涵、孔大山、王尔卓、魏书钧、邹静从平遥出发的十年足迹。",
+          "en": "A 10th-anniversary special section combining tributes to Fei Mu and Roberto Rossellini, memorial classics (General della Rovere, Phony Phoenixes, Memoria, Aces Go Places), and six “Start from Pingyao Corner” short-and-feature double bills."
+        }
+      },
+      "filmTitles": {
+        "gh63-061": "所爱之人",
+        "gh63-055": "温柔的怪物",
+        "gh63-050": "峡湾"
+      },
+      "sections": {
+        "py26-001": "平遥十年",
+        "py26-002": "平遥十年",
+        "py26-003": "藏龙",
+        "whispers-in-may-2026": "藏龙",
+        "py26-004": "卧虎",
+        "py26-005": "平遥十年",
+        "gr26-013": "藏龙",
+        "py26-006": "卧虎",
+        "py26-007": "平遥十年",
+        "py26-008": "藏龙",
+        "gh63-087": "卧虎",
+        "py26-009": "平遥十年",
+        "spring-in-a-small-town": "特别展映",
+        "gr26-042": "藏龙",
+        "py26-010": "卧虎",
+        "py26-011": "首映",
+        "py26-012": "平遥十年",
+        "gr26-029": "特别展映",
+        "gr26-018": "藏龙",
+        "gr26-069": "卧虎",
+        "py26-013": "首映",
+        "py26-014": "平遥十年",
+        "gr26-035": "藏龙",
+        "py26-015": "卧虎",
+        "gh63-061": "首映",
+        "py26-016": "特别展映",
+        "py26-017": "平遥十年",
+        "py26-018": "藏龙",
+        "py26-019": "卧虎",
+        "gh63-055": "首映",
+        "gr26-041": "特别展映",
+        "py26-020": "平遥十年",
+        "gr26-046": "藏龙",
+        "py26-021": "卧虎",
+        "py26-022": "首映",
+        "py26-023": "特别展映",
+        "py26-024": "平遥十年",
+        "gr26-001": "卧虎",
+        "gh63-050": "首映",
+        "py26-025": "特别展映",
+        "py26-026": "藏龙",
+        "py26-027": "平遥十年",
+        "gr26-021": "藏龙",
+        "py26-028": "卧虎",
+        "py26-029": "首映",
+        "py26-030": "特别展映",
+        "py26-031": "平遥十年"
+      }
     }
   ],
   "venues": [
@@ -2132,6 +2322,60 @@
         120.714537
       ],
       "addr": "嘉兴市南湖区广穹路899号嘉兴大学梁林校区"
+    },
+    {
+      "id": "py-palace",
+      "short": "平遥电影宫",
+      "name": "平遥电影宫",
+      "brand": "平遥电影宫",
+      "store": "平遥古城西大街",
+      "en": "Pingyao Film Palace",
+      "fmt": [
+        "露天剧场"
+      ],
+      "city": "平遥",
+      "tz": "Asia/Shanghai",
+      "geo": [
+        37.2052,
+        112.1788
+      ],
+      "addr": "山西省晋中市平遥县平遥古城西大街（原平遥柴油机厂）",
+      "transit": {
+        "bus": "平遥古城站（高铁）乘108路公交或打车约20分钟至平遥古城西门（凤仪门），进门步行约5分钟即达",
+        "note": "平遥站（普速）步行至古城西门约15分钟；古城内禁止社会车辆通行，步行或乘景区电瓶车前往"
+      },
+      "halls": [
+        {
+          "id": "hall-1",
+          "short": "1号厅",
+          "name": "1号厅"
+        },
+        {
+          "id": "hall-2",
+          "short": "2号厅",
+          "name": "2号厅"
+        },
+        {
+          "id": "hall-3",
+          "short": "3号厅",
+          "name": "3号厅"
+        },
+        {
+          "id": "hall-4",
+          "short": "4号厅",
+          "name": "4号厅"
+        },
+        {
+          "id": "small-town",
+          "short": "小城之春厅",
+          "name": "小城之春厅"
+        },
+        {
+          "id": "platform",
+          "short": "站台-露天剧场",
+          "name": "站台-露天剧场"
+        }
+      ]
     }
   ],
   "reg": {

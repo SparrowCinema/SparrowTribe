@@ -267,6 +267,41 @@ assert.strictEqual(ghRes.programmeJson.shows[0][3], 'tp-vieshow-xinyi', '信義�
 assert.strictEqual(ghRes.programmeJson.shows[1][3], 'tp-muvie-titan', 'MUVIE TITAN reuses catalog tp-muvie-titan');
 assert.ok(ghRes.programmeJson.films[0].qaGuest, '★ marker detected as Q&A');
 
+// 7e. PYIFF (pyiffestival.com) official API JSON adapter
+const fixturePyiff = JSON.stringify({
+  cinema: { activityCinemaName: '平遥电影宫' },
+  films: [{
+    activityFilmCategoryName: '藏龙',
+    activityFilmName: '尾款',
+    activityFilmNameEN: 'FINAL PAYMENT',
+    basicInformation: '导演：牛牛',
+    mainInformation: '中国／2025／86分钟／中文（普通话）',
+    description: '<p>一场实力悬殊的较量中，迟到的善良酿造了最终的遗憾。</p>',
+    activityFilmPlans: [{
+      activityCinemaName: '平遥电影宫',
+      activityCinemaHall: '小城之春厅',
+      startTime: '2026-09-26 11:00:00',
+      endTime: '2026-09-26 12:51:00'
+    }]
+  }]
+});
+const pyiffRes = Importer.ingest({
+  inputText: fixturePyiff,
+  adapter: 'auto',
+  id: 'pyiff-sample-2026',
+  name: '平遥测试',
+  city: '平遥',
+  tz: 'Asia/Shanghai',
+  year: 2026
+});
+assert.strictEqual(pyiffRes.adapter, 'pyiff');
+assert.strictEqual(pyiffRes.programmeJson.films.length, 1);
+assert.strictEqual(pyiffRes.programmeJson.films[0].dir, '牛牛');
+assert.strictEqual(pyiffRes.programmeJson.films[0].min, 86);
+assert.strictEqual(pyiffRes.programmeJson.shows.length, 1);
+assert.strictEqual(pyiffRes.programmeJson.shows[0][0], '9/26');
+assert.strictEqual(pyiffRes.programmeJson.shows[0][1], '11:00');
+
 // 8. Verify staging directory output via temp dir (CSV + adapter CLI)
 const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'sparrow-import-'));
 try {
@@ -292,9 +327,9 @@ try {
   const listOut = require('child_process').execFileSync(process.execPath, [
     path.join(__dirname, 'import-festival.js'), '--list-adapters'
   ], { encoding: 'utf8' });
-  assert(listOut.includes('jsonld') && listOut.includes('eventive') && listOut.includes('html') && listOut.includes('goldenhorse'));
+  assert(listOut.includes('jsonld') && listOut.includes('eventive') && listOut.includes('html') && listOut.includes('goldenhorse') && listOut.includes('pyiff'));
 } finally {
   fs.rmSync(tmpDir, { recursive: true, force: true });
 }
 
-console.log(`PASS: festival ingestion pipeline — schema gate (${schemaRes.stats.shows} shows), coverage audit (${cov.films.total} films), CSV/ICS importer, 4 official adapters (jsonld/eventive/html/goldenhorse), metadata queue, issue templates & curator workbench.`);
+console.log(`PASS: festival ingestion pipeline — schema gate (${schemaRes.stats.shows} shows), coverage audit (${cov.films.total} films), CSV/ICS importer, 5 official adapters (jsonld/eventive/html/goldenhorse/pyiff), metadata queue, issue templates & curator workbench.`);
