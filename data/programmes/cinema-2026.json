@@ -470,7 +470,13 @@
    ],
    "honors": [],
    "version": "",
-   "poster": "posters/dune-part-three.jpg",
+   "poster": "posters/dune-part-three-main.jpg",
+   "stills": [
+    {"url": "posters/dune-part-three-sand.jpg", "label": "沙海海报"},
+    {"url": "posters/dune-part-three-imax-canyon.jpg", "label": "IMAX海报（岩缝）"},
+    {"url": "posters/dune-part-three.jpg", "label": "IMAX海报（沙暴）"},
+    {"url": "posters/dune-part-three-dolby.jpg", "label": "杜比海报"}
+   ],
    "warnings": [
     "战争与宗教权力题材",
     "政治压迫"

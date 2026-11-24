@@ -93,7 +93,10 @@
     "重映海报": "Re-release poster",
     "人物海报": "Character poster",
     "英文海报": "English poster",
-    "APM海报": "APM poster"
+    "APM海报": "APM poster",
+    "沙海海报": "Sand sea poster",
+    "IMAX海报（岩缝）": "IMAX poster (canyon)",
+    "IMAX海报（沙暴）": "IMAX poster (sandstorm)"
   },
   "_readme": "English layer for the site. films/programmes/venues overlay data fields when ?lang=en; ui is the zh→en dictionary used by tr(). Missing entries fall back to the Chinese text.",
   "films": {
