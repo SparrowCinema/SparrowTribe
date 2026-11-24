@@ -273,13 +273,16 @@
 .mr-acts .mr-seen-full { flex: 1.35; margin-top: 0; }
 .mr-want { flex: 1; height: calc(68 * var(--r)); display: flex; align-items: center; justify-content: center; border-radius: calc(16 * var(--r)); border: calc(3 * var(--r)) solid var(--line); color: var(--fg); font-size: calc(22 * var(--fr)); font-weight: 700; white-space: nowrap; box-sizing: border-box; }
 .mr-want.on { border-color: #c79a3a; color: #8a6516; background: rgba(232, 217, 170, 0.19); }
-.mr-tier { display: flex; flex-wrap: wrap; align-items: center; gap: calc(12 * var(--r)); margin-top: calc(14 * var(--r)); padding: calc(14 * var(--r)) calc(18 * var(--r)); border: calc(1 * var(--r)) solid var(--line-soft); border-radius: calc(14 * var(--r)); background: rgba(255, 250, 240, 0.45); }
-.mr-tier-k { font-size: calc(18 * var(--fr)); font-weight: 700; color: var(--muted); margin-right: calc(4 * var(--r)); }
-.mr-tier-b { padding: calc(6 * var(--r)) calc(20 * var(--r)); border-radius: calc(99 * var(--r)); border: calc(1 * var(--r)) solid var(--line); color: var(--muted); font-size: calc(18 * var(--fr)); font-weight: 600; }
-.mr-tier-b.on.t1 { border-color: var(--accent); background: rgba(142, 42, 34, 0.13); color: var(--accent); }
-.mr-tier-b.on.t2 { border-color: #c79a3a; background: rgba(232, 217, 170, 0.28); color: #8a6516; }
-.mr-tier-b.on.t3 { border-color: var(--teal); background: rgba(47, 111, 108, 0.12); color: var(--teal); }
-.mr-tier-tip { width: 100%; font-size: calc(16 * var(--fr)); color: var(--muted); line-height: 1.45; }
+.mr-tier { margin-top: calc(14 * var(--r)); }
+.mr-tier-row { display: flex; align-items: center; gap: calc(16 * var(--r)); }
+.mr-tier-k { flex: none; font-size: calc(19 * var(--fr)); color: var(--muted); white-space: nowrap; }
+.mr-tier-seg { flex: 1; display: flex; gap: calc(5 * var(--r)); padding: calc(5 * var(--r)); border: calc(2 * var(--r)) solid var(--line); border-radius: calc(16 * var(--r)); background: var(--surface); }
+.mr-tier-b { flex: 1; height: calc(54 * var(--r)); display: flex; align-items: center; justify-content: center; border-radius: calc(11 * var(--r)); color: var(--muted); font-size: calc(20 * var(--fr)); font-weight: 600; white-space: nowrap; }
+.mr-tier-b.on { font-weight: 700; color: #fffaf0; }
+.mr-tier-b.on.t1 { background: var(--accent); }
+.mr-tier-b.on.t2 { background: #b8892c; }
+.mr-tier-b.on.t3 { background: var(--teal); }
+.mr-tier-tip { display: block; margin-top: calc(8 * var(--r)); font-size: calc(17 * var(--fr)); color: var(--muted); line-height: 1.5; }
 
 /* 我的海报（2026-11-23）：资料里有 2 张以上的图时，大海报可点，下方小标「可换 N」 */
 .pst-wrap { position: relative; align-self: flex-start; flex: none; }

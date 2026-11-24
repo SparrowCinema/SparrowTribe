@@ -67,8 +67,12 @@
         <view wx:if="{{mine.seen}}" class="mr-stamp" hover-class="hv" bindtap="stampMenu"><text>{{i.__en?'Stamped':'已盖章'}}</text><text wx:if="{{mine.n > 1}}" class="mr-stamp-n mono">{{mine.nTxt}}</text><text class="mr-stamp-go">›</text></view></view>
       <view wx:if="{{!mine.seen}}" class="mr-acts"><view class="mr-want {{mine.want ? 'on' : ''}}" hover-class="hv" bindtap="toggleWant">{{mine.wantTxt}}</view><view class="mr-seen mr-seen-full" hover-class="hv" bindtap="toggleSeen">{{mine.seenTxt}}</view></view>
       <view wx:if="{{!mine.seen && mine.want}}" class="mr-tier">
-        <text class="mr-tier-k">{{L.t(i,'分级')}}</text>
-        <view wx:for="{{mine.wantTiers}}" wx:key="p" class="mr-tier-b t{{item.p}} {{item.on?'on':''}}" data-p="{{item.p}}" bindtap="setWantTier">{{item.label}}</view>
+        <view class="mr-tier-row">
+          <text class="mr-tier-k">{{L.t(i,'有多想看')}}</text>
+          <view class="mr-tier-seg">
+            <view wx:for="{{mine.wantTiers}}" wx:key="p" class="mr-tier-b t{{item.p}} {{item.on?'on':''}}" data-p="{{item.p}}" bindtap="setWantTier">{{item.label}}</view>
+          </view>
+        </view>
         <text class="mr-tier-tip">{{L.t(i,'一键排片先保证必看，随缘只填空档')}}</text>
       </view>
       <view class="mrc">
