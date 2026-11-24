@@ -3166,7 +3166,12 @@
     4.4
    ],
    "version": "重映",
-   "poster": "posters/dune-part-two.jpg",
+   "poster": "posters/dune-part-two-main.jpg",
+   "stills": [
+    "posters/dune-part-two-eye.jpg",
+    "posters/dune-part-two-imax.jpg",
+    "posters/dune-part-two.jpg"
+   ],
    "links": {
     "douban": "35575567",
     "imdb": "tt15239678",
