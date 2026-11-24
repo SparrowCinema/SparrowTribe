@@ -3070,7 +3070,10 @@
     3.9
    ],
    "version": "重映",
-   "poster": "posters/dune-2021.jpg",
+   "poster": "posters/dune-2021-imax.jpg",
+   "stills": [
+    "posters/dune-2021.jpg"
+   ],
    "links": {
     "douban": "3001114",
     "imdb": "tt1160419",
