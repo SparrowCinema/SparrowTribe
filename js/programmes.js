@@ -12,7 +12,7 @@ function progFilmCard(f,pid,ended){ const sub=progFilmSub(f,pid,ended), title=(L
 function progFilmGroups(pid,films){
   const up=[], gone=[];
   films.forEach(f=>{ const mine=SH.filter(s=>s.id===f.id&&s.p===pid).sort((a,b)=>showDate(a)-showDate(b)), next=mine.find(s=>!isPast(s));
-    if(next||(!mine.length&&!f.ended)) up.push({f,at:next?showDate(next):Infinity}); else gone.push({f,at:mine.length?showDate(mine[mine.length-1]):relTime(f)}); }); // f.ended：已下映、本站未收录场次的影片直接归入已结束
+    if(next||(!mine.length&&!endedIn(f,pid))) up.push({f,at:next?showDate(next):Infinity}); else gone.push({f,at:mine.length?showDate(mine[mine.length-1]):relTime(f)}); }); // endedIn：f.ended：已下映、本站未收录场次的影片直接归入已结束
   up.sort((a,b)=>(a.at===b.at?0:a.at<b.at?-1:1)||filmOrder(a.f,b.f)); gone.sort((a,b)=>b.at-a.at||a.f.cn.localeCompare(b.f.cn,"zh"));
   return {up:up.map(x=>x.f), gone:gone.map(x=>x.f)};
 }

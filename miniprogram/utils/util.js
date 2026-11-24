@@ -64,6 +64,8 @@ const qaOf = f => (f && f.qaStart && f.qaEnd && f.qaGuest && toMin(f.qaEnd) > to
 // 一场放映是否已散场（片长结束后即视为已放映，首页与详情页不再显示）
 const durationOf = (s, idx) => { const f=idx.F[s.id]||{}, e=(f.screeningEnds||{})[keyOf(s)]; return e ? toMin(e)-toMin(s.t) : (f.min||0); };
 const progForShow = (s, idx) => { const f=idx.F[s.id]||{}; return idx.PG[s.p] || Object.values(idx.PG).find(p => (p.sections||{})[s.id] && (f.screeningEnds||{})[keyOf(s)]) || idx.progOf(f); };
+// 影片在某专题里是否按已结束处理：全局已下映，或院线专题里的 cinEnded
+const endedIn = (f, p) => !!f.ended || (!!f.cinEnded && !!p && p.kind === '院线');
 const ended = (s, idx) => showDate(s, idx).getTime() + durationOf(s, idx) * 60000 < Date.now();
 
 // 专题状态：有起止日期按日期，否则按场次范围（与网站 progStatus 一致）：soon 即将开始 / live 进行中 / ended 已结束
@@ -91,12 +93,21 @@ function markAutoEnded(data, now = Date.now()) {
   const inCinema = f => cin.some(p => f.prog === p.id || (p.members || []).includes(f.id) || (p.sections || {})[f.id]);
   const idx = index(data), up = new Set(), seen = new Set();
   data.shows.forEach(s => { if (!idx.F[s.id]) return; seen.add(s.id); if (!ended(s, idx)) up.add(s.id); });
+  // 院线专题里的已结束（与网站 cinemaEnded 一致）：院线专题没有待映场次、录过影展等其他专题的场次 → cinEnded，只影响院线专题页与片目院线分组
+  const isCin = s => { const p = progForShow(s, idx); return !!p && p.kind === '院线'; };
+  const cinUp = new Set(), other = new Set();
+  data.shows.forEach(s => { if (!idx.F[s.id]) return; if (isCin(s)) { if (!ended(s, idx)) cinUp.add(s.id); } else other.add(s.id); });
   let hit = false;
-  const films = data.films.map(f => {
-    if (f.ended || f.ev || up.has(f.id) || !inCinema(f)) return f;
+  const films = data.films.map(f0 => {
+    let f = f0; if (f.cinEnded) { hit = true; f = Object.assign({}, f); delete f.cinEnded; } // 每次按最新场次重算，补了院线场次自动回到即将放映
+    if (f.ended || f.ev || !inCinema(f)) return f;
     const m = String(f.releaseZh || f.release || '').match(/(\d{4})年(\d{1,2})月(\d{1,2})日/); if (!m) return f;
     const rel = TZ.zonedMs(+m[1], +m[2], +m[3], 0, 0, TZ.DEFAULT_TZ);
-    if (now < rel || (!seen.has(f.id) && now < rel + RUN_DAYS * 864e5)) return f;
+    if (now < rel) return f;
+    if (up.has(f.id) || (!seen.has(f.id) && now < rel + RUN_DAYS * 864e5)) {
+      if (cinUp.has(f.id) || !other.has(f.id)) return f;
+      hit = true; return Object.assign({}, f, { cinEnded: 1 });
+    }
     hit = true; return Object.assign({}, f, { ended: true, endedAuto: 1 });
   });
   return hit ? Object.assign({}, data, { films }) : data;
@@ -154,4 +165,4 @@ const SITE_URL = 'https://sparrowcinema.org/';
 const webTip = (hash, lines, t, title) => {
   wx.setClipboardData({ data: SITE_URL + (hash || ''), success: () => wx.showModal({ title: t(title || '网页版地址已复制'), content: lines.map(x => t(x)).join('\n'), showCancel: false, confirmText: t('知道了') }) });
 };
-module.exports = { TZ, Planner, plannerCtx, tzOf, progTz, showIso, markAutoEnded, thumb, localFirst, homeCity, ymd: showYmd, geoCity, localProg, webTip, calSub, geoOf, distKm, transfer, openMap, progForShow, durationOf, progInfo, qaOf, ended, isFest, keepPast, relTime, nextShowOf, filmOrder, filmTone, langSub, WK, year, wk, toMin, fmt, keyOf, showDate, poster, ticket, durText, index, showView };
+module.exports = { TZ, Planner, plannerCtx, tzOf, progTz, showIso, markAutoEnded, endedIn, thumb, localFirst, homeCity, ymd: showYmd, geoCity, localProg, webTip, calSub, geoOf, distKm, transfer, openMap, progForShow, durationOf, progInfo, qaOf, ended, isFest, keepPast, relTime, nextShowOf, filmOrder, filmTone, langSub, WK, year, wk, toMin, fmt, keyOf, showDate, poster, ticket, durText, index, showView };

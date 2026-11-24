@@ -83,7 +83,7 @@ function filmsListHTML(){
   const orderIn=pid=>(a,b)=>{const x=nextIn(a,pid),y=nextIn(b,pid);return x&&y?showDate(x)-showDate(y)||a.cn.localeCompare(b.cn,"zh"):x?-1:y?1:filmOrder(a,b);};
   const base = FILMS.filter(f=>window.SparrowLibrary.inProgramme(f,ffilt,ctx)&&window.SparrowLibrary.inCity(f,fcity,ctx)&&yearOk(f)&&regOk(f)&&lenOk(f)&&window.SparrowLibrary.category(f,fmine,ctx)&&filmMatches(f,fq));
   const members=p=>!selHas(ffilt,p.id)?[]:base.filter(f=>filmProgsOf(f).some(x=>x.p.id===p.id)||SH.some(s=>s.id===f.id&&showPid(s)===p.id));
-  const isLiveIn=(f,p)=>!!nextIn(f,p.id)||(!f.ended&&!SH.some(s=>s.id===f.id&&showPid(s)===p.id)&&progStatus(p)!=="ended");
+  const isLiveIn=(f,p)=>!!nextIn(f,p.id)||(!endedIn(f,p.id)&&!SH.some(s=>s.id===f.id&&showPid(s)===p.id)&&progStatus(p)!=="ended");
   const endedP=p=>progStatus(p)==="ended";
   const groups = progGroupOrder().filter(p=>!endedP(p)).map(p=>{const m=members(p);return [p,m.filter(f=>isLiveIn(f,p)).sort(orderIn(p.id)),m.filter(f=>!isLiveIn(f,p)).sort((a,b)=>relTime(b)-relTime(a))];}).filter(([,r,g])=>r.length||g.length);
   const autoOpen=!!fq||fmine!=="all";

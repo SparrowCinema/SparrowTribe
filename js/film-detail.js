@@ -43,6 +43,7 @@ const TK={};
 function ticketLive(f,p){
   p=p||PG[f.prog]; if(p&&progStatus(p)==="ended") return false;
   if(f.ended) return false;
+  if(f.cinEnded&&p&&p.kind==="院线") return false; // 院线专题已结束（只剩影展场次）时不显示院线购票码
   const all=SH.filter(s=>s.id===f.id),mine=p&&p.kind!=="院线"?all.filter(s=>(s.p||f.prog)===p.id):all;
   return !mine.length||mine.some(s=>!isPast(s));
 }
