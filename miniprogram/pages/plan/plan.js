@@ -293,6 +293,17 @@ Page({
   },
   open(e) { wx.navigateTo({ url: '/pages/film/film?id=' + e.currentTarget.dataset.id }); },
   toSchedule() { wx.switchTab({ url: '/pages/schedule/schedule' }); },
+  openGroupPlan() {
+    const data = app.globalData.data, en = I.isEn();
+    const OV = require('../../utils/overlap.js');
+    let nick = '';
+    try { nick = wx.getStorageSync('sk-group-nick') || (W.holder && W.holder()) || ''; } catch (e) { }
+    const keys = (this._list || []).map(U.keyOf);
+    const wants = data.films.filter(f => Want.isOn(f.id)).map(f => f.id);
+    const code = OV.encodeRelay([{ n: nick || (en ? 'Me' : '我'), k: keys, w: wants }]);
+    Stats.stat('share', 'group');
+    wx.navigateTo({ url: '/pages/share/share?g=' + encodeURIComponent(code) });
+  },
   onShareAppMessage(res) {
     if (res.from === 'button' && this.keys && this.keys.length) {
       return { title: t('我的观影日程') + (this.data.pf !== 'all' && this.data.progs.length ? ' · ' + this.data.planScopeName : '') + ' · ' + t(this.keys.length + ' 场电影'), path: '/pages/share/share?k=' + encodeURIComponent(this.keys.join('~')) };

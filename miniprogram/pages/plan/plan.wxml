@@ -98,6 +98,7 @@
       <view class="btn ghost sp-tool" hover-class="hv" bindtap="openSmartPlan">✦ {{smartBtnTxt}}</view>
       <button class="btn ghost" open-type="share">{{L.t(i,'分享给朋友')}}</button>
       <view class="btn ghost" bindtap="toSchedule">{{L.t(i,'继续选片')}}</view>
+      <view class="btn ghost grp-tool" hover-class="hv" bindtap="openGroupPlan">{{L.t(i,'多人凑场接龙')}}</view>
       <view class="clear" bindtap="clear">{{L.t(i,'清空')}}</view>
     </view>
     <view wx:if="{{pfEmpty}}" class="pf-empty card"><text class="b">{{L.t(i,'这个专题还没有加入场次')}}</text><text class="muted small">{{L.t(i,'切换到「全部专题」，或去排片表挑选。')}}</text></view>

@@ -4,12 +4,13 @@
 function subBackHTML(){return '<button class="sub-back" data-tab="my" aria-label="'+esc(tr("返回我的"))+'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m15 5-7 7 7 7"/></svg><span>'+esc(tr("我的"))+'</span></button>';}
 function planPage(){const all=selectedRows(),list=scopedRows(),st=planStats(list);
   main.innerHTML='<section class="view gut">'+subBackHTML()+'<div class="page-heading"><div><small>MY PROGRAMME</small><h2 class="sec">个人排片</h2></div></div>'+planGoneHTML()+
-  (all.length?planProgChips(all)+(!list.length?'<div class="empty-plan"><h3>这个专题还没有加入场次</h3><p>可以切换到「全部专题」，或去排片表挑选。</p><button class="primary-button" data-prog-sched="'+esc(selList(planFilt)[0]||'')+'">去看这个专题的排片</button></div>':statsHTML(st)+'<div class="plan-toolbar"><button class="primary-button" data-tab="export">导出与分享</button>'+smartPlanButtonHTML('secondary-button')+'<button class="secondary-button" data-tab="schedule">继续选片</button><button class="text-button" data-action="clear-plan">清空排片</button></div>'+(st.clash?'<div class="conflict" role="status"><b>有 '+st.clash+' 组场次时间重叠</b><p>重叠处已在日程中标红，可一键换场或移出其中一场。</p>'+conflictSwapsHTML(list)+'</div>':'')+'<div class="plan-days">'+planRowsHTML(list,true)+'</div>')
-  :'<div class="empty-plan"><span>＋</span><h3>还没有加入场次</h3><p>在排片表或影片详情里，点击“加入排片”，或根据想看清单自动排片。</p><div class="empty-plan-acts"><button class="primary-button" data-tab="schedule">去选电影</button>'+(wantFilmIds().length?smartPlanButtonHTML('secondary-button'):'')+'</div></div>')+
+  (all.length?planProgChips(all)+(!list.length?'<div class="empty-plan"><h3>这个专题还没有加入场次</h3><p>可以切换到「全部专题」，或去排片表挑选。</p><button class="primary-button" data-prog-sched="'+esc(selList(planFilt)[0]||'')+'">去看这个专题的排片</button></div>':statsHTML(st)+'<div class="plan-toolbar"><button class="primary-button" data-tab="export">导出与分享</button>'+smartPlanButtonHTML('secondary-button')+'<button class="secondary-button" data-action="group-start">'+tr('多人凑场')+'</button><button class="secondary-button" data-tab="schedule">继续选片</button><button class="text-button" data-action="clear-plan">清空排片</button></div>'+(st.clash?'<div class="conflict" role="status"><b>有 '+st.clash+' 组场次时间重叠</b><p>重叠处已在日程中标红，可一键换场或移出其中一场。</p>'+conflictSwapsHTML(list)+'</div>':'')+'<div class="plan-days">'+planRowsHTML(list,true)+'</div>')
+  :'<div class="empty-plan"><span>＋</span><h3>还没有加入场次</h3><p>在排片表或影片详情里，点击“加入排片”，或根据想看清单自动排片。</p><div class="empty-plan-acts"><button class="primary-button" data-tab="schedule">去选电影</button>'+(wantFilmIds().length?smartPlanButtonHTML('secondary-button'):'')+(wantFilmIds().length?'<button class="secondary-button" data-action="group-start">'+tr('多人凑场')+'</button>':'')+'</div></div>')+
   '<p class="local-note">散场时间以排片表为准，未公布时按影片片长计算。含映后活动的场次已按约 30 分钟纳入转场提醒，跨影院用时按距离估算。</p></section>';}
 function homeURL(){return location.origin+location.pathname;}
 function shareURL(list){return location.origin+location.pathname+'#share='+encodeURIComponent(list.map(keyOf).join('~'));}
 function shareURLShort(list){return location.origin+location.pathname+'#share='+list.map(keyOf).join('~');}
+function groupRelayURL(members){return location.origin+location.pathname+'#group='+SparrowOverlap.encodeRelay(members);}
 function qrMatrix(text){if(!window.QRCodeLib)return null;try{const {QRCode,ECL}=window.QRCodeLib;const q=new QRCode(-1,ECL.L);q.addData(text);q.make();const n=q.getModuleCount(),m=[];for(let r=0;r<n;r++){m.push([]);for(let c=0;c<n;c++)m[r].push(q.isDark(r,c));}return m;}catch(e){return null;}}
 function qrSVG(text){const m=qrMatrix(text);if(!m)return '';const n=m.length,q=4;let d='';for(let r=0;r<n;r++)for(let c=0;c<n;c++)if(m[r][c])d+='M'+(c+q)+' '+(r+q)+'h1v1h-1z';return '<svg viewBox="0 0 '+(n+2*q)+' '+(n+2*q)+'" role="img" aria-label="分享二维码" shape-rendering="crispEdges"><rect width="100%" height="100%" fill="#fff"/><path d="'+d+'" fill="#1d1712"/></svg>';}
 function exportTitleHTML(list){const ids=[...new Set(list.map(x=>x.p))].filter(id=>PG[id]),names=ids.map(id=>PG[id].name);if(!names.length)return '';
@@ -30,7 +31,7 @@ function overlapHTML(list,missing){
     sec('同一部电影，不同场次',c.sameFilm.map(x=>overlapRowHTML(x.their,'<small class="ov-me">你选的是 '+x.mine.map(m=>m.d+' '+m.t).join('、')+'</small>')))+
     sec('可以一起去（和你的排片不冲突）',c.free.map(s=>overlapRowHTML(s)))+
     sec('时间冲突',c.clash.map(x=>overlapRowHTML(x.their,'<small class="ov-clash">与你的《'+esc(F[x.mine.id].cn)+'》'+x.mine.d+' '+x.mine.t+' 冲突</small>')))+
-    note+'<p class="ov-tip">想让 TA 也看到对比？<button class="text-button" data-tab="export">把我的排片发给 TA ›</button></p></div>';
+    note+'<p class="ov-tip">想让 TA 也看到对比？<button class="text-button" data-tab="export">把我的排片发给 TA ›</button> · <button class="text-button" data-action="group-upgrade">'+tr('拉更多人一起凑场 ›')+'</button></p></div>';
 }
 function exportPage(shared){let list;
   let missing=0;
@@ -153,4 +154,158 @@ document.addEventListener('click',e=>{const b=e.target.closest('[data-remind]');
 function keepAnchor(find,ay,gx){let stop=false;const off=()=>{stop=true;};['touchstart','wheel','keydown'].forEach(ev=>window.addEventListener(ev,off,{once:true,passive:true}));
   const fix=()=>{if(stop)return;const n=find();if(n){const d=n.getBoundingClientRect().top-ay;if(Math.abs(d)>.5)window.scrollTo({top:window.scrollY+d,behavior:'instant'});}const g=document.getElementById('gantt');if(g&&gx!=null&&g.scrollLeft!==gx)g.scrollLeft=gx;};
   fix();requestAnimationFrame(fix);[60,150,300,600,1000].forEach(ms=>setTimeout(fix,ms));setTimeout(()=>['touchstart','wheel','keydown'].forEach(ev=>window.removeEventListener(ev,off)),1100);}
-document.addEventListener('click',async e=>{const button=e.target.closest('[data-plan],[data-action]');if(!button)return;if(button.dataset.plan){const k=button.dataset.plan;if(!validKeys.has(k))return;if(picked.has(k))picked.delete(k);else picked.add(k);saveSelection();{const sh=SH.find(x=>keyOf(x)===k);stat(picked.has(k)?'plan_add':'plan_remove',sh&&sh.id);}const scroll=window.scrollY,gx=document.getElementById('gantt')?.scrollLeft,ay=button.getBoundingClientRect().top;route();window.scrollTo(0,scroll);const g2=document.getElementById('gantt');if(g2&&gx!=null)g2.scrollLeft=gx;/* 锚点：以被点的 +/✓ 按钮在屏幕上的位置为准，重绘后页面上方高度变化也不跳动 */const inG=!!button.closest('.tt');keepAnchor(()=>[...document.querySelectorAll('[data-plan]')].find(n=>n.dataset.plan===k&&!!n.closest('.tt')===inG),ay,gx);toast(picked.has(k)?'已加入个人排片':'已移出个人排片');return;}switch(button.dataset.action){case 'clear-plan':if(confirm(tr('清空当前浏览器保存的个人排片？'))){picked.clear();saveSelection();route();}break;case 'png':stat('export','png');exportPNG();break;case 'calendar':stat('export','ics');exportCalendar();break;case 'print':stat('export','pdf');window.print();break;case 'copy-link':{const input=document.getElementById('share-url');if(!input)break;try{await navigator.clipboard.writeText(input.value);toast('分享链接已复制');}catch{input.focus();input.select();toast('请复制已选中的分享链接');}break;}case 'system-share':{try{await navigator.share({title:tr('麻雀观影护照 · 观影日程'),text:tr('我的观影日程（'+currentExport.length+' 场）'),url:shareURL(currentExport)});}catch(err){}break;}case 'import-plan':currentExport.forEach(s=>picked.add(keyOf(s)));saveSelection();go('plan');break;}});
+/* ===== 多人一起排片：零后端接龙链接 #group=...（2026-11-24，规则在 shared/overlap.js）===== */
+const GROUP_NICK_KEY='sparrow-group-nick';
+let currentGroupMembers=[];
+function defaultGroupNick(){try{const s=localStorage.getItem(GROUP_NICK_KEY)||'';if(s)return s;}catch{}const h=typeof holderName==='function'?holderName():'';return h||'';}
+function myGroupEntry(nick,withWant){
+  const n=(nick||'').trim().slice(0,16)||(LANG==='en'?'Me':'我');
+  const k=selectedRows().map(keyOf);
+  const w=withWant&&typeof wantFilmIds==='function'?wantFilmIds():[];
+  return {n,k,w};
+}
+function groupPage(encoded){
+  let members=encoded?SparrowOverlap.decodeRelay(encoded):null;
+  if(encoded&&!members){
+    main.innerHTML='<section class="view gut"><h2 class="sec">'+tr('这个多人接龙链接无法读取')+'</h2><p>'+tr('链接可能不完整，请让朋友重新复制发送。')+'</p><button class="primary-button" data-action="group-start">'+tr('新建我的多人凑场')+'</button></section>';
+    currentGroupMembers=[];return;
+  }
+  if(!members){
+    members=[myGroupEntry(defaultGroupNick(),true)];
+    const code=SparrowOverlap.encodeRelay(members);
+    try{history.replaceState(null,'','#group='+code);}catch{}
+  }
+  currentGroupMembers=members;
+  const relayUrl=groupRelayURL(members);
+  const canShare=!!navigator.share;
+  const nick=defaultGroupNick();
+  const nickLower=nick.trim().toLocaleLowerCase();
+  const alreadyIn=!!nickLower&&members.some(m=>m.n.toLocaleLowerCase()===nickLower);
+  const res=SparrowOverlap.analyzeGroup(members,SH,{
+    key:keyOf,film:s=>s.id,span:s=>[showDate(s).getTime(),showEnd(s)],now:now(),resolve:resolveKey
+  });
+  const N=res.stats.memberCount;
+  const sep=LANG==='en'?', ':'、';
+
+  const memberChips=res.members.map((m,i)=>
+    '<span class="grp-chip"><b>'+esc(m.n)+'</b><small>'+(LANG==='en'?m.picks.length+' shows'+(m.wFilms.size?' · '+m.wFilms.size+' want':''):m.picks.length+' 场'+(m.wFilms.size?' · '+m.wFilms.size+' 想看':''))+'</small>'+
+    (N>1?'<button type="button" class="grp-rm" data-group-rm="'+i+'" aria-label="'+esc(tr('移出 ')+m.n)+'">×</button>':'')+'</span>'
+  ).join('');
+
+  const showRow=(ev,metaHTML,showToggle)=>{
+    const s=ev.show,f=F[s.id],V=VN[s.v]||{};
+    if(!f)return '';
+    return '<li class="ov-row grp-row"><div class="ov-t"><b>'+s.d+' '+wk(s.d,s.year)+'</b><span>'+s.t+'</span></div>'+
+      '<div class="ov-i"><button class="ov-f" data-film="'+esc(f.id)+'">'+esc(f.cn)+(f.version?'<em>'+esc(f.version)+'</em>':'')+'</button>'+
+      '<small>'+esc(venueLabel(V))+' · '+esc((hallOf(s)||{}).name||s.h)+'</small>'+metaHTML+'</div>'+
+      (showToggle?planToggleHTML(s):'')+'</li>';
+  };
+
+  const tagList=arr=>arr.map(([cls,txt])=>'<i class="grp-tag '+cls+'">'+esc(txt)+'</i>').join('');
+  const suggestRows=res.suggestions.map(ev=>{
+    const tags=[];
+    if(ev.canGo===N)tags.push(['all',LANG==='en'?'All '+N+' free':'全员 '+N+'/'+N+' 可去']);
+    else tags.push(['maj',LANG==='en'?ev.canGo+'/'+N+' free':ev.canGo+'/'+N+' 人可去']);
+    if(ev.picked.length)tags.push(['pick',(LANG==='en'?'Picked: ':'已选：')+ev.picked.join(sep)]);
+    if(ev.freeWant.length)tags.push(['want',(LANG==='en'?'Wants: ':'想看：')+ev.freeWant.join(sep)]);
+    const otherFree=ev.free.filter(n=>!ev.freeWant.includes(n));
+    if(otherFree.length)tags.push(['free',(LANG==='en'?'Free: ':'无冲突：')+otherFree.join(sep)]);
+    if(ev.clashed.length)tags.push(['clash',(LANG==='en'?'Clash: ':'冲突：')+ev.clashed.map(x=>x.name).join(sep)]);
+    return showRow(ev,'<div class="grp-tags">'+tagList(tags)+'</div>',true);
+  }).join('');
+
+  const allRows=res.allTogether.map(ev=>showRow(ev,'<div class="grp-tags">'+tagList([['all',LANG==='en'?'All '+N+' picked':'全员 '+N+' 人已选']])+'</div>',false)).join('');
+
+  const mostRows=res.mostPicked.map(ev=>{
+    const tags=[['pick',(LANG==='en'?'Picked ('+ev.picked.length+'): ':'已选（'+ev.picked.length+'人）：')+ev.picked.join(sep)]];
+    if(ev.free.length)tags.push(['free',(LANG==='en'?'Can join: ':'可加入：')+ev.free.join(sep)]);
+    if(ev.clashed.length)tags.push(['clash',(LANG==='en'?'Clash: ':'冲突：')+ev.clashed.map(x=>x.name+'（'+(F[x.show.id]?.cn||x.show.id)+'）').join(sep)]);
+    return showRow(ev,'<div class="grp-tags">'+tagList(tags)+'</div>',true);
+  }).join('');
+
+  const wantRows=res.sharedWants.map(w=>{
+    const f=F[w.filmId];if(!f)return '';
+    const best=w.bestShow;
+    const slotTxt=best?(best.show.d+' '+best.show.t+' · '+(w.allFree?(LANG==='en'?'All '+N+' free':'全员无冲突'):(LANG==='en'?best.canGo+'/'+N+' free':best.canGo+'/'+N+' 人可去'))):(LANG==='en'?'No upcoming show':'暂无待映场次');
+    return '<li class="grp-wrow"><button class="ov-f" data-film="'+esc(f.id)+'">'+esc(f.cn)+(f.version?'<em>'+esc(f.version)+'</em>':'')+'</button>'+
+      '<div class="grp-tags">'+tagList([['want',w.who.join(sep)+'（'+w.count+(LANG==='en'?' ppl':'人')+'）'],[w.allFree?'all':'free',slotTxt]])+'</div>'+
+      (best?planToggleHTML(best.show):'')+'</li>';
+  }).join('');
+
+  const sec=(title,sub,body)=>body?'<div class="ov-sec"><h4>'+esc(title)+(sub?' <small>'+esc(sub)+'</small>':'')+'</h4><ul>'+body+'</ul></div>':'';
+
+  const analysisHTML=N<2
+    ? '<div class="ov-card grp-wait"><small class="ov-k">GROUP RELAY · 多人接龙</small><b>'+tr('把接龙链接发给朋友，凑齐 2–8 人自动合并排片')+'</b><p>'+tr('第一位朋友打开链接后，填上昵称点「加入接龙」，再把新链接转发给下一位；每个人都能看到全员同场、多数人能去的一起看建议，以及共同想看的片单。')+'</p></div>'
+    : '<div class="ov-card"><small class="ov-k">GROUP PLAN MATCH · 多人凑场</small>'+
+      '<div class="pstats grp-stats"><div><b>'+N+'</b><small>'+tr('位朋友')+'</small></div><div><b>'+res.stats.allTogetherCount+'</b><small>'+tr('全员同场')+'</small></div><div><b>'+res.stats.suggestCount+'</b><small>'+tr('一起看建议')+'</small></div><div><b>'+res.stats.sharedWantCount+'</b><small>'+tr('共同想看')+'</small></div></div>'+
+      sec(tr('全员同场'),tr('每个人都已选的场次'),allRows)+
+      sec(tr('一起看凑场建议'),tr('无冲突可同行，按全员可去与共同想看优先'),suggestRows)+
+      sec(tr('多数人已选'),tr('2 人及以上已选，可看谁还能加入或冲突'),mostRows)+
+      sec(tr('共同想看片单'),tr('2 人及以上想看或关注，附最优同去时段'),wantRows)+
+      (!allRows&&!suggestRows&&!mostRows&&!wantRows?'<p class="ov-sub ov-none">'+tr('大家暂时没有重叠或可凑场的待映场次，可以先在片目里多标几部「想看」再更新接龙。')+'</p>':'')+
+      '<details class="grp-members-detail"><summary>'+tr('查看各成员已选场次明细')+'</summary>'+
+      res.members.map(m=>'<div class="grp-md"><b>'+esc(m.n)+'</b> <small>'+(LANG==='en'?m.picks.length+' shows':m.picks.length+' 场')+(m.missing?' · '+(LANG==='en'?m.missing+' ended/updated':m.missing+' 场已结束或更新'):'')+'</small>'+(m.picks.length?'<ul>'+m.picks.map(s=>'<li><span>'+s.d+' '+s.t+'</span> <button class="text-button" data-film="'+esc(s.id)+'">'+esc(F[s.id]?.cn||s.id)+'</button></li>').join('')+'</ul>':'<p>'+tr('暂无待映排片')+'</p>')+'</div>').join('')+
+      '</details></div>';
+
+  main.innerHTML='<section class="view gut export-view group-view">'+
+    '<div class="page-heading"><div><small>GROUP PLAN MATCH</small><h2 class="sec">'+tr('多人一起排片')+'</h2></div><button class="text-button" data-tab="plan">'+tr('我的排片')+'</button></div>'+
+    '<div class="grp-members"><span class="grp-mlab">'+tr('已加入接龙')+' ('+N+'/'+SparrowOverlap.MAX_MEMBERS+')</span><div class="grp-chips">'+memberChips+'</div></div>'+
+    '<div class="grp-join">'+
+      '<div class="grp-jrow"><input id="grp-name" type="text" maxlength="16" value="'+esc(nick)+'" placeholder="'+esc(tr('输入你的昵称（如：阿明）'))+'" aria-label="'+esc(tr('你的昵称'))+'"><button type="button" class="primary-button" data-action="group-join">'+tr(alreadyIn?'更新我的排片':'加入接龙')+'</button></div>'+
+      '<label class="grp-chk"><input id="grp-with-want" type="checkbox" checked><span>'+tr('同时带上我的想看清单（帮助推荐共同想看的无冲突场次）')+'</span></label>'+
+      '<div class="link-row"><input id="group-url" readonly value="'+esc(relayUrl)+'" aria-label="'+esc(tr('多人接龙链接'))+'"><button type="button" class="secondary-button" data-action="group-copy">'+tr('复制接龙链接')+'</button></div>'+
+      (canShare?'<button type="button" class="text-button share-sys" data-action="group-share">'+tr('通过手机转发给下一位朋友…')+'</button>':'')+
+    '</div>'+
+    analysisHTML+
+    '<p class="local-note">'+tr('零账号接龙：每位成员的已选场次与想看片单保存在链接本身，不上传服务器；加入或调整排片后点「更新我的排片」，再把新链接发给朋友即可。')+'</p></section>';
+}
+
+document.addEventListener('click',async e=>{
+  const rm=e.target.closest('[data-group-rm]');
+  if(rm){
+    const next=SparrowOverlap.removeMember(currentGroupMembers,+rm.dataset.groupRm);
+    if(next.length){const code=SparrowOverlap.encodeRelay(next);try{history.replaceState(null,'','#group='+code);}catch{}groupPage(code);toast(tr('已移出该成员并更新链接'));}
+    return;
+  }
+  const button=e.target.closest('[data-plan],[data-action]');if(!button)return;if(button.dataset.plan){const k=button.dataset.plan;if(!validKeys.has(k))return;if(picked.has(k))picked.delete(k);else picked.add(k);saveSelection();{const sh=SH.find(x=>keyOf(x)===k);stat(picked.has(k)?'plan_add':'plan_remove',sh&&sh.id);}const scroll=window.scrollY,gx=document.getElementById('gantt')?.scrollLeft,ay=button.getBoundingClientRect().top;route();window.scrollTo(0,scroll);const g2=document.getElementById('gantt');if(g2&&gx!=null)g2.scrollLeft=gx;/* 锚点：以被点的 +/✓ 按钮在屏幕上的位置为准，重绘后页面上方高度变化也不跳动 */const inG=!!button.closest('.tt');keepAnchor(()=>[...document.querySelectorAll('[data-plan]')].find(n=>n.dataset.plan===k&&!!n.closest('.tt')===inG),ay,gx);toast(picked.has(k)?'已加入个人排片':'已移出个人排片');return;}
+  switch(button.dataset.action){
+    case 'clear-plan':if(confirm(tr('清空当前浏览器保存的个人排片？'))){picked.clear();saveSelection();route();}break;
+    case 'png':stat('export','png');exportPNG();break;
+    case 'calendar':stat('export','ics');exportCalendar();break;
+    case 'print':stat('export','pdf');window.print();break;
+    case 'copy-link':{const input=document.getElementById('share-url');if(!input)break;try{await navigator.clipboard.writeText(input.value);toast('分享链接已复制');}catch{input.focus();input.select();toast('请复制已选中的分享链接');}break;}
+    case 'system-share':{try{await navigator.share({title:tr('麻雀观影护照 · 观影日程'),text:tr('我的观影日程（'+currentExport.length+' 场）'),url:shareURL(currentExport)});}catch(err){}break;}
+    case 'import-plan':currentExport.forEach(s=>picked.add(keyOf(s)));saveSelection();go('plan');break;
+    case 'group-start':{
+      const code=SparrowOverlap.encodeRelay([myGroupEntry(defaultGroupNick(),true)]);
+      stat('share','group');go('group='+code);break;
+    }
+    case 'group-upgrade':{
+      const theirs={n:LANG==='en'?'Friend':'朋友',k:currentExport.map(keyOf),w:[]};
+      const me=myGroupEntry(defaultGroupNick()||(LANG==='en'?'Me':'我'),true);
+      const code=SparrowOverlap.encodeRelay(SparrowOverlap.upsertMember([theirs],me));
+      stat('share','group');go('group='+code);break;
+    }
+    case 'group-join':{
+      const inp=document.getElementById('grp-name'),chk=document.getElementById('grp-with-want');
+      const nick=(inp?inp.value:'').trim()||defaultGroupNick()||(LANG==='en'?'Me':'我');
+      try{localStorage.setItem(GROUP_NICK_KEY,nick.slice(0,16));}catch{}
+      const next=SparrowOverlap.upsertMember(currentGroupMembers,myGroupEntry(nick,!chk||chk.checked));
+      const code=SparrowOverlap.encodeRelay(next);
+      try{history.replaceState(null,'','#group='+code);}catch{}
+      groupPage(code);
+      toast(tr('已加入接龙并更新链接，复制发给下一位朋友吧'));
+      break;
+    }
+    case 'group-copy':{
+      const input=document.getElementById('group-url');if(!input)break;
+      try{await navigator.clipboard.writeText(input.value);toast(tr('接龙链接已复制'));}catch{input.focus();input.select();toast(tr('请复制已选中的接龙链接'));}
+      break;
+    }
+    case 'group-share':{
+      const input=document.getElementById('group-url');if(!input)break;
+      try{await navigator.share({title:tr('麻雀观影护照 · 多人一起排片'),text:tr('点开加入你的排片，一起凑场看电影（已有 '+currentGroupMembers.length+' 人）'),url:input.value});}catch(err){}
+      break;
+    }
+  }
+});
