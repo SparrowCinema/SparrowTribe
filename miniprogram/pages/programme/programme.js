@@ -7,7 +7,7 @@ const SM = require('../../utils/share-make.js');
 const HT = require('../../utils/hometip.js');
 const Stats = require('../../utils/stats.js');
 Page({
-  data: { i: {}, evGroups: [], evN: 0, evOpen: false, p: null, films: [], gone: [], goneOpen: undefined, stats: {}, section: "", sections: [], selOpen: false, selRows: [], selQuery: "", selTitle: "", selPlaceholder: "", sectionName: "", sectionN: 0 },
+  data: { i: {}, evGroups: [], evN: 0, evOpen: false, juryGroups: [], juryN: 0, jurySub: '', juryOpen: false, venueRows: [], venueN: 0, venueSub: '', venueOpen: false, venueMap: null, secNote: null, p: null, films: [], gone: [], goneOpen: undefined, stats: {}, section: "", sections: [], selOpen: false, selRows: [], selQuery: "", selTitle: "", selPlaceholder: "", sectionName: "", sectionN: 0 },
   onLoad(q) { this.setData({ i: I.dict() }); HT.show(this); this.id = SM.fromScene(q, ((app.globalData.data || {}).programmes || []).map(x => x.id)) || 'style-kaleidoscope'; this.off = app.onData(() => this.build()); this.build(); },
   homeTipGo() { HT.home(); },
   homeTipClose() { HT.close(this); },
@@ -20,7 +20,35 @@ Page({
     if (!p) return;
     wx.setNavigationBarTitle({ title: p.name });
     this.buildEvents(p);
+    const en = I.isEn();
     const shows = data.shows.filter(s => idx.F[s.id] && U.progForShow(s, idx).id === p.id);
+    // 评审团与竞赛名单
+    const juryGroups = Array.isArray(p.jury) ? p.jury.map(g => ({
+      unit: (en && g.unitEn) || g.unit || '',
+      members: (g.members || []).map(m => { const nm = (en && m.nameEn) || m.name || ''; return { ini: nm.charAt(0) || '?', name: nm, president: !!m.president, role: (en && m.roleEn) || m.role || '', bio: (en && m.bioEn) || m.bio || '' }; })
+    })).filter(g => g.members.length) : [];
+    const juryN = juryGroups.reduce((n, g) => n + g.members.length, 0);
+    const jurySub = juryGroups.map(g => g.unit).filter(Boolean).join(' · ');
+    // 站内影院与交通
+    const vIds = [...new Set(shows.map(s => s.v))];
+    const venueRows = data.venues.filter(v => vIds.includes(v.id)).map((v, i) => {
+      const vs = shows.filter(s => s.v === v.id), up = vs.filter(s => !U.ended(s, idx));
+      const hIds = [...new Set(vs.map(s => s.h))];
+      const halls = (v.halls || []).filter(h => hIds.includes(h.id)).map(h => ({ name: h.name, acc: !!((v.access && v.access.length) || (h.access && h.access.length)) }));
+      const trs = v.transit ? [['地铁', v.transit.metro], ['公交', v.transit.bus], ['停车', v.transit.parking], ['提示', v.transit.note]].filter(x => x[1]).map(x => ({ k: t(x[0]), v: x[1] })) : [];
+      const geo = U.geoOf(v);
+      return { id: v.id, idx: String(i + 1).padStart(2, '0'), name: v.name, short: v.short || v.name, addr: [v.city ? t(v.city) : '', v.addr || ''].filter(Boolean).join(' · '), halls, hasAcc: halls.some(h => h.acc) || !!(v.access && v.access.length), total: vs.length, up: up.length, trs, geo };
+    });
+    const geoRows = venueRows.filter(r => r.geo);
+    const venueMap = geoRows.length ? {
+      lat: geoRows.reduce((s, r) => s + r.geo[0], 0) / geoRows.length,
+      lng: geoRows.reduce((s, r) => s + r.geo[1], 0) / geoRows.length,
+      markers: geoRows.map((r, i) => ({ id: i + 1, latitude: r.geo[0], longitude: r.geo[1], title: r.short, callout: { content: r.idx + ' ' + r.short, display: 'ALWAYS', padding: 6, borderRadius: 6, fontSize: 11 } }))
+    } : null;
+    const venueSub = [venueRows.map(r => r.short).slice(0, 3).join(' · ') + (venueRows.length > 3 ? '…' : ''), venueRows.some(r => r.hasAcc) ? t('含无障碍影厅') : ''].filter(Boolean).join(' · ');
+    // 单元策展导读
+    const rawNote = this.data.section && p.sectionNotes && p.sectionNotes[this.data.section];
+    const secNote = rawNote ? { title: t(this.data.section), intro: (en && (rawNote.en || rawNote.introEn)) || rawNote.intro || '', curator: (en && (rawNote.curatorEn || rawNote.curator)) || rawNote.curator || '' } : null;
     const mk = f => {
       const mine = shows.filter(s => s.id === f.id).sort((x, y) => U.showDate(x) - U.showDate(y)), next = U.localFirst(mine.filter(s => !U.ended(s, idx)), idx), last = mine[mine.length - 1];
       const first = next || last;
@@ -34,7 +62,15 @@ Page({
     const films = all.filter(f => !f.gone).sort((x, y) => (x.at === y.at ? 0 : x.at < y.at ? -1 : 1) || x.cn.localeCompare(y.cn, I.isEn() ? 'en' : 'zh'));
     const gone = all.filter(f => f.gone).sort((x, y) => y.lastAt - x.lastAt || x.cn.localeCompare(y.cn, I.isEn() ? 'en' : 'zh'));
     const st = U.progInfo(p, data, idx).status;
-    this.setData({ sectionName: this.data.section ? t(this.data.section) : t('全部单元'), sectionN: all.length, sections: [{name:t("全部单元"),value:""},...Array.from(new Set(Object.values(p.sections||{}))).map(n=>({name:t(n),value:n}))], p: Object.assign({}, p, { cover: /^(https?:|\/|$)/.test(p.cover || '') ? p.cover : 'https://sparrowcinema.org/' + p.cover, periodT: t(p.period), status: st, statusText: t(p.ongoing && st === 'live' ? '常设' : { live: '进行中', soon: '即将开始', ended: '已结束' }[st]) }), upN: t(films.length + ' 部'), goneN: t(gone.length + ' 部'), films, gone, goneOpen: this.data.goneOpen === undefined ? !films.length : this.data.goneOpen, stats: { f: data.films.filter(f=>!f.ev&&(idx.progOf(f).id===p.id||membership.has(f.id))).length, s: shows.filter(s=>!idx.F[s.id].ev).length, d: new Set(shows.map(s => s.d)).size, h: new Set(shows.map(s => s.v + s.h)).size } });
+    this.setData({ juryGroups, juryN, jurySub, venueRows, venueN: venueRows.length, venueSub, venueMap, secNote: secNote && secNote.intro ? secNote : null, sectionName: this.data.section ? t(this.data.section) : t('全部单元'), sectionN: all.length, sections: [{name:t("全部单元"),value:""},...Array.from(new Set(Object.values(p.sections||{}))).map(n=>({name:t(n),value:n}))], p: Object.assign({}, p, { cover: /^(https?:|\/|$)/.test(p.cover || '') ? p.cover : 'https://sparrowcinema.org/' + p.cover, periodT: t(p.period), status: st, statusText: t(p.ongoing && st === 'live' ? '常设' : { live: '进行中', soon: '即将开始', ended: '已结束' }[st]) }), upN: t(films.length + ' 部'), goneN: t(gone.length + ' 部'), films, gone, goneOpen: this.data.goneOpen === undefined ? !films.length : this.data.goneOpen, stats: { f: data.films.filter(f=>!f.ev&&(idx.progOf(f).id===p.id||membership.has(f.id))).length, s: shows.filter(s=>!idx.F[s.id].ev).length, d: new Set(shows.map(s => s.d)).size, h: new Set(shows.map(s => s.v + s.h)).size } });
+  },
+  toggleJury() { this.setData({ juryOpen: !this.data.juryOpen }); },
+  openVenues() { this.setData({ venueOpen: true }); },
+  closeVenues() { this.setData({ venueOpen: false }); },
+  openVenueMap(e) {
+    const id = e.currentTarget.dataset.id, data = app.globalData.data, v = data && U.index(data).VN[id];
+    const g = v && U.geoOf(v); if (!g) return;
+    wx.openLocation({ latitude: g[0], longitude: g[1], name: v.name, address: v.addr || '', scale: 16 });
   },
   buildEvents(p) {
     const en = I.isEn(), now = new Date(), today = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0') + '-' + String(now.getDate()).padStart(2, '0');

@@ -188,16 +188,31 @@ let scheduleView='gantt';try{scheduleView=localStorage.getItem('sparrow-schedule
 const VIEW_GRID='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z"/></svg>',VIEW_LIST='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h3v3H3zM9 4h12v3H9zM3 10.5h3v3H3zM9 10.5h12v3H9zM3 17h3v3H3zM9 17h12v3H9z"/></svg>';
 function scheduleViewsHTML(){return `<div class="schedule-tools">${mineOnlyHTML()}<div class="view-switch" role="group" aria-label="排片视图">${[['gantt','时间轴',VIEW_GRID],['list','清单',VIEW_LIST]].map(([id,name,icon])=>`<button data-schedule-view="${id}" aria-label="${name}" title="${name}" aria-pressed="${scheduleView===id}">${icon}</button>`).join('')}</div></div>`;}
 function mpaBadgeHTML(f){const code=f.mpa?.rating,known=['G','PG','PG-13','R','NC-17'].includes(code);if(!known)return '';return `<abbr class="mpa-badge" title="${tr(known?'美国MPA分级，参考美国发行版本':'未查到美国MPA分级，不代表全年龄适宜')}">${known?code:'—'}</abbr>`;}
-function compactScheduleHTML(list){return VENUES.filter(v=>list.some(x=>x.v===v.id)).map(v=>`<section class="cinema-list"><h3>${esc(venueLabel(v))}</h3>${v.halls.filter(h=>list.some(x=>x.v===v.id&&x.h===h.id)).map(h=>`<section class="hall-list"><h4>${esc(h.name)}</h4>${list.filter(x=>x.v===v.id&&x.h===h.id).map(x=>{const f=F[x.id];return `<div class="agenda-choice"><button class="ag-row" data-film="${x.id}"><span class="tm">${x.t}</span><span class="bar fc" style="--h:${fhue(x.id)}"></span><span class="nm"><b>${esc(f.cn)}${editionHTML(f)}</b><small>${f.mpa?.rating?'':esc(f.dir||'')+(f.dir?' · ':'')}${minText(f)}${evOf(x,f)?' · '+tr('主创映后'):''}</small></span>${mpaBadgeHTML(f)}</button>${planToggleHTML(x)}</div>`;}).join('')}</section>`).join('')}</section>`).join('')+(list.some(x=>F[x.id].mpa?.rating)?`<p class="rating-key">${tr('分级参考美国MPA发行版本，实际放映版本可能不同。')}</p>`:'');}
+function compactScheduleHTML(list){return VENUES.filter(v=>list.some(x=>x.v===v.id)).map(v=>`<section class="cinema-list"><h3>${esc(venueLabel(v))}</h3>${v.halls.filter(h=>list.some(x=>x.v===v.id&&x.h===h.id)).map(h=>`<section class="hall-list"><h4>${esc(h.name)}${(h.access?.length||v.access?.length)?` <span class="acc-pill">${esc(tr("无障碍"))}</span>`:""}</h4>${list.filter(x=>x.v===v.id&&x.h===h.id).map(x=>{const f=F[x.id],aud=SparrowScreenings.audienceType(x,f),audLbl=aud==='industry'||aud==='press'?SparrowScreenings.audienceLabel(aud,LANG==="en"):'';return `<div class="agenda-choice"><button class="ag-row" data-film="${x.id}"><span class="tm">${x.t}</span><span class="bar fc" style="--h:${fhue(x.id)}"></span><span class="nm"><b>${esc(f.cn)}${editionHTML(f)}${audLbl?` <em class="aud-tag">${esc(audLbl)}</em>`:""}</b><small>${f.mpa?.rating?'':esc(f.dir||'')+(f.dir?' · ':'')}${minText(f)}${evOf(x,f)?' · '+tr('主创映后'):''}</small></span>${mpaBadgeHTML(f)}</button>${planToggleHTML(x)}</div>`;}).join('')}</section>`).join('')}</section>`).join('')+(list.some(x=>F[x.id].mpa?.rating)?`<p class="rating-key">${tr('分级参考美国MPA发行版本，实际放映版本可能不同。')}</p>`:'');}
 document.addEventListener('click',e=>{const b=e.target.closest('[data-schedule-view]');if(!b)return;scheduleView=b.dataset.scheduleView;try{localStorage.setItem('sparrow-schedule-view',scheduleView);}catch{}const y=window.scrollY;schedule();window.scrollTo(0,y);});
 let onlyMine=false;try{onlyMine=localStorage.getItem('sparrow-only-mine')==='1';}catch{}
+let hideRestricted=false;try{hideRestricted=localStorage.getItem('sparrow-hide-restricted')==='1';}catch{}
+let onlyAccess=false;
 document.addEventListener("click",e=>{const b=e.target.closest("[data-today-toggle]");if(!b)return;todayOpen=!todayOpen;const sec=b.closest(".my-today");if(!sec)return;sec.classList.toggle("open",todayOpen);b.setAttribute("aria-expanded",String(todayOpen));const n=sec.querySelectorAll(".pitem").length;b.querySelector(".tt-txt").textContent=todayOpen?"收起":"还有 "+(n-1)+" 场 · 展开全部";});
 function mineOnlyHTML(){const n=SH.filter(x=>inProg(x)&&!isPast(x)&&picked.has(keyOf(x))).length;
   return `<div class="mine-only"><button type="button" class="mine-chip${onlyMine?" on":""}" data-mine-only aria-pressed="${onlyMine}"><i aria-hidden="true">✓</i>只看我的排片<small>${n}</small></button>${geoChipHTML()}</div>`;}
-document.addEventListener("click",e=>{const b=e.target.closest("[data-mine-only]");if(!b)return;onlyMine=!onlyMine;try{localStorage.setItem('sparrow-only-mine',onlyMine?'1':'0');}catch{}const y=window.scrollY;schedule();window.scrollTo(0,y);});
+function schedContextBarHTML(restN, accN){
+  const chips=[];
+  if(restN>0||hideRestricted)chips.push(`<button type="button" class="trait-chip${hideRestricted?" on":""}" data-sched-flag="restricted" aria-pressed="${hideRestricted}"><span>${esc(tr("仅看公众场"))}</span><em class="mono">${restN}</em></button>`);
+  if(accN>0||onlyAccess)chips.push(`<button type="button" class="trait-chip${onlyAccess?" on":""}" data-sched-flag="access" aria-pressed="${onlyAccess}"><span>${esc(tr("无障碍场次"))}</span><em class="mono">${accN}</em></button>`);
+  return chips.length?`<div class="trait-strip sched-ctx-strip" role="group" aria-label="${esc(tr("场次筛选"))}">${chips.join("")}</div>`:"";
+}
+document.addEventListener("click",e=>{
+  const fl=e.target.closest("[data-sched-flag]");
+  if(fl){const k=fl.dataset.schedFlag;if(k==="restricted"){hideRestricted=!hideRestricted;try{localStorage.setItem("sparrow-hide-restricted",hideRestricted?"1":"0");}catch{}}else if(k==="access")onlyAccess=!onlyAccess;const y=window.scrollY;schedule();window.scrollTo(0,y);return;}
+  const b=e.target.closest("[data-mine-only]");if(!b)return;onlyMine=!onlyMine;try{localStorage.setItem('sparrow-only-mine',onlyMine?'1':'0');}catch{}const y=window.scrollY;schedule();window.scrollTo(0,y);
+});
 function schedule(){
   cityDefault();
-  const list = SH.filter(x=>selHas(vfilt,x.v)&&selHas(cityFilt,VN[x.v]?.city)&&inProg(x)&&!isPast(x)&&(!onlyMine||picked.has(keyOf(x))));
+  const basePool = SH.filter(x=>selHas(vfilt,x.v)&&selHas(cityFilt,VN[x.v]?.city)&&inProg(x)&&!isPast(x)&&(!onlyMine||picked.has(keyOf(x))));
+  const restN = basePool.filter(x=>SparrowScreenings.isRestricted(x,F[x.id])).length;
+  const accN = basePool.filter(x=>SparrowScreenings.hasAccess(x,F[x.id],VN[x.v])).length;
+  const list = basePool.filter(x=>(!hideRestricted||!SparrowScreenings.isRestricted(x,F[x.id]))&&(!onlyAccess||SparrowScreenings.hasAccess(x,F[x.id],VN[x.v])));
   const ds = days.filter(d=>list.some(x=>x.d===d));
   const listTz = scheduleTzOf(list);
   sday = pickDay(ds, listTz);
@@ -212,6 +227,7 @@ function schedule(){
     <h2 class="sec">排片表</h2><p class="sub">${cur?`${esc(cur.name)}${cur.city?` · ${esc(cur.city)}`:""} · `:""}${list.length?`${dateSpan(list)} · ${list.length} 场 · `:""}按日期查看，点击色块看影片</p>
     ${scheduleFiltersHTML()}
     ${scheduleViewsHTML()}
+    ${schedContextBarHTML(restN, accN)}
     ${ds.length?dayStripHTML(ds,list):""}
     ${sday?`<div class="tt-cap"><b>${sday.replace("/","月")}日 ${wk(sday)}</b><span>${dayList.length} 场 · ${new Set(dayList.map(x=>x.v+x.h)).size} 个影厅${tzNote}</span></div>
     ${scheduleView==="gantt"?'<div class="legend"><span>每部影片一种颜色 · 色块标注版本、对白语言与字幕</span></div>':''}

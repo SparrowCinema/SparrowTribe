@@ -16,8 +16,25 @@
     <view wx:if="{{p.blurb}}" class="blurb">{{p.blurb}}</view>
     <view wx:if="{{p.ticketUrl && p.status !== 'ended'}}" class="jumps"><view class="btn" bindtap="copyTicket">{{L.t(i,p.ticketLabel||'购票')}}</view></view>
     <view wx:if="{{evN}}" class="ev-entry" hover-class="hv" bindtap="openEvents"><view class="ev-ic">✦</view><view class="ev-cp"><text class="ev-st">{{L.t(i,'活动与论坛')}}</text><text class="ev-sd">{{L.t(i,'大师讲堂、导演论导演、沙龙、论坛等')}}</text></view><text class="ev-n mono">{{evN}} {{L.t(i,'项')}}</text><text class="ev-go">›</text></view>
+    <view wx:if="{{venueN}}" class="hb-entry" hover-class="hv" bindtap="openVenues"><view class="hb-ic">⌖</view><view class="hb-cp"><text class="hb-st">{{L.t(i,'影院地图与交通')}}</text><text class="hb-sd">{{venueSub}}</text></view><text class="hb-n mono">{{venueN}} {{L.t(i,'家')}}</text><text class="hb-go">›</text></view>
+    <block wx:if="{{juryN}}">
+      <view class="hb-entry" hover-class="hv" bindtap="toggleJury"><view class="hb-ic">◆</view><view class="hb-cp"><text class="hb-st">{{L.t(i,'评审团与竞赛名单')}}</text><text class="hb-sd">{{jurySub}}</text></view><text class="hb-n mono">{{juryN}} {{L.t(i,'位')}}</text><text class="hb-go">{{juryOpen?'⌄':'›'}}</text></view>
+      <view wx:if="{{juryOpen}}" class="jury-body card">
+        <view wx:for="{{juryGroups}}" wx:key="unit" class="jury-unit">
+          <text class="jury-uh">{{item.unit}}</text>
+          <view wx:for="{{item.members}}" wx:for-item="m" wx:key="name" class="jury-mem">
+            <view class="jury-av">{{m.ini}}</view>
+            <view class="jury-info">
+              <view class="jury-head"><text class="jury-nm">{{m.name}}</text><text wx:if="{{m.president}}" class="jury-chair">{{L.t(i,'评审团主席')}}</text><text wx:if="{{m.role}}" class="jury-rl">{{m.role}}</text></view>
+              <text wx:if="{{m.bio}}" class="jury-bio">{{m.bio}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
     <view wx:if="{{p.ticket && !p.noPageTicket && p.status !== 'ended'}}" class="jumps"><view class="btn" bindtap="previewTicket">{{L.t(i,(p.ticketPlatform||'微信')+'扫码购票')}}</view></view>
     <view wx:if="{{sections.length > 1}}" class="scope-btn" hover-class="hv" bindtap="openSec"><view class="scope-copy"><text class="small">{{L.t(i,'选择单元')}}</text><text class="b">{{sectionName}}</text></view><text class="scope-n mono">{{sectionN}} {{L.t(i,'部')}}</text><text class="scope-chev">⌄</text></view>
+    <view wx:if="{{secNote}}" class="sec-note card"><text class="sec-nk mono">CURATORIAL NOTE · {{secNote.title}}</text><text class="sec-np">{{secNote.intro}}</text><text wx:if="{{secNote.curator}}" class="sec-nc">— {{secNote.curator}}</text></view>
     <view class="jumps"><view class="btn ghost" hover-class="hv" bindtap="subCal">{{L.t(i,'订阅日历')}}</view><view class="btn ghost" hover-class="hv" bindtap="sharePoster">{{L.t(i,'分享海报')}}</view></view>
     <view class="jumps"><view class="btn" bindtap="jump" data-to="up">{{L.t(i,'即将放映')}}</view><view class="btn ghost" bindtap="jump" data-to="gone">{{L.t(i,'已结束')}}</view></view>
     <view class="blockh" id="pg-up">{{L.t(i,'即将放映')}} <text class="en">UPCOMING · {{upN}}</text></view>
@@ -49,6 +66,19 @@
       <scroll-view scroll-y class="selector-results"><view wx:for="{{selRows}}" wx:key="id" class="selector-option {{item.selected?'selected':''}}" data-id="{{item.id}}" bindtap="chooseSel"><view class="selector-copy"><text class="b">{{item.name}}</text><text class="small muted">{{item.sub}}</text></view><text class="selector-check">{{item.selected?'✓':''}}</text></view><view wx:if="{{!selRows.length}}" class="selector-empty">{{L.t(i,'没有匹配的结果')}}</view></scroll-view>
     </view>
   </view>
+  <page-container show="{{venueOpen}}" position="bottom" round="{{true}}" z-index="1100" custom-style="background:transparent" overlay-style="background:rgba(24,16,8,0.45)" bind:afterleave="closeVenues">
+    <view wx:if="{{venueOpen}}" class="vn-sheet" style="{{ps}}">
+      <view class="vn-head"><view><text class="vn-k mono">VENUES &amp; TRANSIT</text><text class="vn-t">{{L.t(i,'影院地图与交通')}}</text></view><view class="selector-close" bindtap="closeVenues">×</view></view>
+      <map wx:if="{{venueMap}}" class="vn-map" latitude="{{venueMap.lat}}" longitude="{{venueMap.lng}}" markers="{{venueMap.markers}}" scale="13" show-location />
+      <scroll-view scroll-y class="vn-list">
+        <view wx:for="{{venueRows}}" wx:key="id" class="vn-card">
+          <view class="vn-ch"><text class="vn-idx mono">{{item.idx}}</text><view class="vn-ct"><text class="vn-nm">{{item.name}}</text><text wx:if="{{item.addr}}" class="vn-ad">{{item.addr}}</text></view><view wx:if="{{item.geo}}" class="vn-go" data-id="{{item.id}}" bindtap="openVenueMap">{{L.t(i,'地图导航')}} ↗</view></view>
+          <view class="vn-halls"><text wx:for="{{item.halls}}" wx:for-item="h" wx:key="name" class="vn-hall">{{h.name}}{{h.acc?' · '+L.t(i,'无障碍'):''}}</text><text class="vn-cnt mono">{{item.total}} {{L.t(i,'场')}}</text></view>
+          <view wx:if="{{item.trs.length}}" class="vn-tr"><view wx:for="{{item.trs}}" wx:for-item="tr" wx:key="k" class="vn-trl"><text class="vn-tk">{{tr.k}}</text><text class="vn-tv">{{tr.v}}</text></view></view>
+        </view>
+      </scroll-view>
+    </view>
+  </page-container>
 </view>
 <view class="to-top {{topOn ? 'show' : ''}}" hover-class="to-top-hv" bindtap="toTop"><view class="tt-arr" /></view>
 

@@ -117,7 +117,21 @@
     "同单元": "Same section",
     "同专题": "Same programme",
     "趣味相近": "Similar taste",
-    "同类型": "Shared genre"
+    "同类型": "Shared genre",
+    "仅看公众场": "Public only",
+    "无障碍场次": "Accessible",
+    "产业场": "Industry",
+    "媒体场": "Press",
+    "影院地图与交通": "Venues & Transit",
+    "评审团与竞赛名单": "Jury & Competition",
+    "评审团主席": "Jury President",
+    "地图导航": "Directions",
+    "地铁": "Metro",
+    "公交": "Bus",
+    "停车": "Parking",
+    "提示": "Tips",
+    "位": "members",
+    "待映": "Upcoming"
   },
   "_readme": "English layer for the site. films/programmes/venues overlay data fields when ?lang=en; ui is the zh→en dictionary used by tr(). Missing entries fall back to the Chinese text.",
   "films": {
@@ -13738,6 +13752,11 @@
     "选片快捷筛选": "Quick decision filters",
     "看过这部之后，顺着线索继续下一场银幕相遇": "Continue your screening journey from this film",
     "同导演、同单元或相近趣味的延伸片单": "Connected by director, section, or film taste",
-    "换个条件，或试试片名、导演、演员。": "Try another filter, or search by title, director, or cast."
+    "换个条件，或试试片名、导演、演员。": "Try another filter, or search by title, director, or cast.",
+    "点击编号定位对应影院 · 导航按实际路况打开地图": "Tap a pin to locate the venue · Maps open live turn-by-turn directions",
+    "展映影院坐标示意图": "Festival venues map",
+    "暂无影院排片信息": "No venue screenings scheduled yet",
+    "跨影院转场参考": "Cross-venue transfers",
+    "含无障碍影厅": "Accessible halls available"
   }
 }

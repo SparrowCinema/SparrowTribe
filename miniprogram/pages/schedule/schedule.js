@@ -3,6 +3,7 @@ const U = require('../../utils/util.js');
 const plan = require('../../utils/plan.js');
 const I = require('../../utils/i18n.js');
 const Lib = require('../../utils/library.js');
+const Screenings = require('../../utils/screenings.js');
 const Stats = require('../../utils/stats.js');
 const Remind = require('../../utils/remind.js');
 const t = I.tr;
@@ -20,11 +21,11 @@ Page({
   onPageScroll(e) { T.scroll(this, e); },
   toTop() { T.go(); },
   setView(e){const view=e.currentTarget.dataset.view;this.setData({view});try{wx.setStorageSync('sk-schedule-view',view);}catch{}},
-  data: {view:wx.getStorageSync('sk-schedule-view')||'gantt', onlyMine: false, selectorType: '', selectorQuery: '', selectorRows: [], programmeName: '', cityName: '', city: 'all', cityIndex: 0, cities: [], venueQuery: '', venueName: '', pf: 'all', vf: 'all', day: '', days: [], nowLine: null, todayOpen: false, myToday: [], myTodayTitle: '', progs: [], vchips: [], venues: [], vOpen: false, cols: [], ticks: [], H: 0, dayList: [], legend: [], span: '', count: 0, dayTitle: '', empty: '', scrollInto: '' },
+  data: {view:wx.getStorageSync('sk-schedule-view')||'gantt', onlyMine: false, hideRestricted: false, onlyAccess: false, restN: 0, accN: 0, selectorType: '', selectorQuery: '', selectorRows: [], programmeName: '', cityName: '', city: 'all', cityIndex: 0, cities: [], venueQuery: '', venueName: '', pf: 'all', vf: 'all', day: '', days: [], nowLine: null, todayOpen: false, myToday: [], myTodayTitle: '', progs: [], vchips: [], venues: [], vOpen: false, cols: [], ticks: [], H: 0, dayList: [], legend: [], span: '', count: 0, dayTitle: '', empty: '', scrollInto: '' },
 
   onLoad(q) {
-    let om = false; try { om = !!wx.getStorageSync('sk-only-mine'); } catch (e) { }
-    this.setData({ i: I.dict(), en: I.isEn(), onlyMine: om });
+    let om = false, hr = false; try { om = !!wx.getStorageSync('sk-only-mine'); hr = !!wx.getStorageSync('sk-hide-restricted'); } catch (e) { }
+    this.setData({ i: I.dict(), en: I.isEn(), onlyMine: om, hideRestricted: hr });
     if (q && q.day) this.setData({ day: q.day });
     this.off1 = app.onData(() => this.build());
     this.off2 = plan.onChange(() => this.build());
@@ -69,8 +70,11 @@ Page({
   build() {
     const data = app.globalData.data, idx = U.index(data), picked = plan.get();
     this.cityDefault(data, idx);
-    const { pf, vf, city, venueQuery } = this.data;
-    const list = data.shows.filter(s => idx.F[s.id] && !U.ended(s, idx) && sh(pf, U.progForShow(s, idx).id) && sh(vf, s.v) && sh(city, idx.VN[s.v].city) && (!this.data.onlyMine || picked.has(U.keyOf(s))));
+    const { pf, vf, city, venueQuery, hideRestricted, onlyAccess } = this.data;
+    const basePool = data.shows.filter(s => idx.F[s.id] && !U.ended(s, idx) && sh(pf, U.progForShow(s, idx).id) && sh(vf, s.v) && sh(city, idx.VN[s.v].city) && (!this.data.onlyMine || picked.has(U.keyOf(s))));
+    const restN = basePool.filter(s => Screenings.isRestricted(s, idx.F[s.id])).length;
+    const accN = basePool.filter(s => Screenings.hasAccess(s, idx.F[s.id], idx.VN[s.v])).length;
+    const list = basePool.filter(s => (!hideRestricted || !Screenings.isRestricted(s, idx.F[s.id])) && (!onlyAccess || Screenings.hasAccess(s, idx.F[s.id], idx.VN[s.v])));
     const tzForList = xs => { const tzs = [...new Set(xs.map(s => U.tzOf(s, idx)))]; if (tzs.length === 1) return tzs[0]; if (sl(pf).length === 1 && idx.PG[sl(pf)[0]]) return U.progTz(idx.PG[sl(pf)[0]], idx, xs); return U.TZ.DEFAULT_TZ; };
     const listTz = tzForList(list);
     // 首页顶部：今天我的排片中尚未散场的场次，按时间线排列
