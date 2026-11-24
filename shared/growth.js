@@ -39,6 +39,7 @@
     ['4dx', 'immersive', '4DX', '4DX'], ['screenx', 'immersive', 'ScreenX', 'ScreenX'], ['ultra4dx', 'immersive', 'ULTRA 4DX', 'ULTRA 4DX'], ['dbox', 'immersive', 'D-BOX 动感座椅', 'D-BOX'],
     ['mx4d', 'immersive', 'MX4D', 'MX4D'], ['escape', 'immersive', 'Barco Escape 三面银幕', 'Barco Escape'], ['dome', 'immersive', '球幕 / 穹幕', 'Dome / fulldome'], ['sphere', 'immersive', 'Sphere', 'Sphere'], ['3d', 'immersive', '3D 立体', '3D'],
     ['dtsx', 'sound', 'DTS:X 影厅', 'DTS:X'], ['auro', 'sound', 'Auro 11.1', 'Auro 11.1'],
+    ['outdoor', 'other', '露天放映', 'Outdoor screening'],
     ['other', 'other', '其他版本', 'Other'],
     ['2k', 'std', '2K 数字', '2K Digital', 1], ['4k', 'std', '4K 数字', '4K Digital', 1], ['laser', 'std', '激光放映', 'Laser projection', 1], ['cinity', 'plf', '其他 LED 类银幕', 'Other LED screen', 1], ['imax-film', 'imax', 'IMAX 胶片', 'IMAX film', 1]
   ].map(x => ({ id: x[0], group: x[1], zh: x[2], en: x[3], hide: !!x[4] }));
