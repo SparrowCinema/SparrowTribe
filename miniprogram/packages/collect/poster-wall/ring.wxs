@@ -1,0 +1,134 @@
+// 海报墙「放映」视图（WXS 在视图层跟手、逐帧改样式，拖动时不经过 setData）。
+// 同一个 3D 圆环两种距离：近看＝档案（弧形排开，正面一张最大，松手吸附到最近一张），拉远＝放映环（整圈可见，带惯性随手转）。
+// 规则与网页 js/my.js 的 pwrLayout / pwrApply / pwrBind 一致，改这里记得同步那边。
+// 页面：cfg={w,h,M,L,key} 给尺寸与张数；cmd={n,a:'prev'|'next'|'zoom'} 按钮；回调 ringFront({p}) 正面位置变化、ringFar({far}) 远近切换、ringOpen({p}) 点正面海报。
+var RAD = Math.PI / 180;
+function now() { return getDate().getTime(); }
+function mod(a, n) { return ((a % n) + n) % n; }
+function norm(a) { return mod(a + 180, 360) - 180; }
+function clamp(v, a, b) { return v < a ? a : (v > b ? b : v); }
+function st(ins) {
+  var s = ins.getState();
+  if (s.rot === undefined) { s.rot = 0; s.vel = 0; s.target = null; s.t = 0; s.tT = 0; s.front = 0; s.far = false; s.anim = 0; s.M = 0; }
+  return s;
+}
+function layout(owner, ins, s, c) {
+  var w = c.w, h = c.h, narrow = w < 600;
+  var W = Math.max(110, Math.min(narrow ? w * 0.52 : w * 0.27, 260)); W = Math.min(W, h * 0.7 / 1.48);
+  var H = W * 1.48;
+  if (s.M !== c.M) { s.rot = 0; s.target = null; s.vel = 0; s.front = 0; }
+  s.W = W; s.H = H; s.w = w; s.h = h; s.M = c.M; s.L = c.L; s.step = 360 / c.M;
+  s.R = Math.max(W * 1.12 * s.M / (2 * Math.PI), W * 0.9); s.P = Math.max(800, Math.min(1500, w * 1.6));
+  s.gap = W * 0.96; s.dep = W * 0.55; s.Dn = s.R;
+  var tilt = 18 * RAD, Df = Math.max(s.R * 1.8, 2 * s.R * s.P / (w * 0.9) - s.P);
+  for (var k = 0; k < 20; k++) { var sf = s.P / (s.P + Df - s.R), bottom = (s.R * Math.sin(tilt) + H / 2 * Math.cos(tilt)) * sf; if (bottom <= h * 0.44) break; Df *= 1.12; }
+  s.Df = Df;
+  ins.setStyle({ perspective: s.P + 'px' });
+  var faces = owner.selectAllComponents('.pr-face'), size = 'width:' + W + 'px;height:' + H + 'px;margin:' + (-H / 2) + 'px 0 0 ' + (-W / 2) + 'px;';
+  for (var j = 0; j < faces.length; j++) faces[j].setStyle(size);
+  s.size = size;
+}
+function apply(owner, s) {
+  if (!s.M) return;
+  var t = s.t, D = s.Dn + (s.Df - s.Dn) * t, tilt = -5 - 13 * t, pv = s.R * (1 - t);
+  var world = owner.selectComponent('.pr-world');
+  if (world) world.setStyle({ transform: 'translateZ(' + (pv - D) + 'px) rotateX(' + tilt + 'deg) translateZ(' + (-pv) + 'px)' });
+  var faces = owner.selectAllComponents('.pr-face'), shades = owner.selectAllComponents('.pr-shade');
+  for (var j = 0; j < faces.length && j < s.M; j++) {
+    var d = norm(j * s.step - s.rot), sN = d / s.step, as = Math.min(Math.abs(sN), 6), sg = sN < 0 ? -1 : 1;
+    var nx = sg * (as < 1 ? as * s.gap : s.gap + (as - 1) * s.W * 0.62), nz = s.R - as * s.dep - (as > 1 ? (as - 1) * s.dep * 0.4 : 0), ny = sg * Math.min(as * 32, 55);
+    var X = nx + (s.R * Math.sin(d * RAD) - nx) * t, Z = nz + (s.R * Math.cos(d * RAD) - nz) * t, Y = ny + (d - ny) * t;
+    // 转到背面的海报整张翻过来朝向镜头（单面元素，翻转发生在侧对镜头的那一刻，看不出来）
+    var flip = Math.abs(Y) > 90, vis = clamp((4.6 - Math.abs(sN)) / 1.2, 0, 1), op = vis + (1 - vis) * t;
+    faces[j].setStyle(s.size + 'transform:translate3d(' + X.toFixed(1) + 'px,0,' + Z.toFixed(1) + 'px) rotateY(' + Y.toFixed(2) + 'deg)' + (flip ? ' rotateY(180deg)' : '') + ';opacity:' + op.toFixed(3));
+    var sh = t < 0.5 ? Math.min(0.55, as * 0.16) : Math.min(0.6, (1 - Math.cos(d * RAD)) * 0.32) + (flip ? 0.15 : 0);
+    if (shades[j]) shades[j].setStyle({ opacity: sh.toFixed(3) });
+  }
+  var p = Math.round(s.rot / s.step);
+  if (p !== s.front) { s.front = p; owner.callMethod('ringFront', { p: p }); }
+  var far = s.tT > 0.5;
+  if (far !== s.far) { s.far = far; owner.callMethod('ringFar', { far: far }); }
+}
+function frame(owner, ins, s) {
+  var at = now(), dt = s.last ? Math.min(3, (at - s.last) / 16.67) : 1; s.last = at;
+  if (!s.drag) {
+    if (s.target !== null) { var dd = s.target - s.rot; s.rot += dd * (1 - Math.pow(0.84, dt)); if (Math.abs(dd) < 0.03) { s.rot = s.target; s.target = null; } }
+    else if (s.vel) { s.rot += s.vel * dt; s.vel *= Math.pow(0.95, dt); if (Math.abs(s.vel) < 0.04) s.vel = 0; }
+  }
+  var dT = s.tT - s.t; s.t += dT * (1 - Math.pow(0.88, dt)); if (Math.abs(dT) < 0.002) s.t = s.tT;
+  apply(owner, s);
+  if (s.drag || s.target !== null || s.vel || s.t !== s.tT) ins.requestAnimationFrame(function () { frame(owner, ins, s); });
+  else { s.anim = 0; s.last = 0; }
+}
+function kick(owner, ins, s) { if (s.anim) return; s.anim = 1; s.last = 0; ins.requestAnimationFrame(function () { frame(owner, ins, s); }); }
+function go(owner, ins, s, deg) { s.vel = 0; s.target = deg; kick(owner, ins, s); }
+function stepBy(owner, ins, s, n) { var base = s.target !== null ? s.target : s.rot; go(owner, ins, s, (Math.round(base / s.step) + n) * s.step); }
+function zoom(owner, ins, s, far) {
+  s.tT = far ? 1 : 0;
+  if (!far) { s.target = Math.round((s.target !== null ? s.target : s.rot + s.vel * 20) / s.step) * s.step; s.vel = 0; }
+  kick(owner, ins, s);
+}
+function dist(a, b) { var x = a.clientX - b.clientX, y = a.clientY - b.clientY; return Math.sqrt(x * x + y * y); }
+
+function start(e, owner) {
+  var ins = e.instance, s = st(ins), ts = e.touches || [];
+  if (!s.M) return;
+  if (ts.length >= 2) { s.pinch = dist(ts[0], ts[1]); s.drag = null; return; }
+  var t = ts[0]; if (!t) return;
+  var ds = (e.target && e.target.dataset) || {};
+  s.drag = { x: t.clientX, y: t.clientY, rot: s.rot, moved: false, slot: ds.slot === undefined ? -1 : +ds.slot, hist: [{ t: now(), r: s.rot }] };
+  s.target = null; s.vel = 0;
+}
+function move(e, owner) {
+  var ins = e.instance, s = st(ins), ts = e.touches || [];
+  if (ts.length >= 2 && s.pinch) {
+    var d = dist(ts[0], ts[1]);
+    if (d < s.pinch * 0.82) { s.pinch = 0; zoom(owner, ins, s, true); } else if (d > s.pinch * 1.2) { s.pinch = 0; zoom(owner, ins, s, false); }
+    return false;
+  }
+  var g = s.drag, t = ts[0]; if (!g || !t) return;
+  var dx = t.clientX - g.x, dy = t.clientY - g.y;
+  if (!g.moved) {
+    if (Math.abs(dx) < 7) { if (Math.abs(dy) > 7) s.drag = null; return; }
+    if (Math.abs(dy) > Math.abs(dx)) { s.drag = null; return; }
+    g.moved = true;
+  }
+  var k = s.t > 0.5 ? 360 / (s.w * 1.4) : s.step / s.gap;
+  s.rot = g.rot - dx * k;
+  var at = now(); g.hist.push({ t: at, r: s.rot }); while (g.hist.length > 2 && at - g.hist[0].t > 100) g.hist.shift();
+  apply(owner, s);
+  return false;
+}
+function end(e, owner) {
+  var ins = e.instance, s = st(ins), g = s.drag;
+  if (!(e.touches && e.touches.length >= 2)) s.pinch = 0;
+  if (!g) return;
+  s.drag = null;
+  if (!g.moved) {
+    if (e.type === 'touchcancel' || g.slot < 0) return;
+    var d = norm(g.slot * s.step - s.rot);
+    if (s.t > 0.5 || s.tT > 0.5) { s.tT = 0; go(owner, ins, s, s.rot + d); return; }
+    if (Math.abs(d) < s.step / 2) owner.callMethod('ringOpen', { p: Math.round(s.rot / s.step) });
+    else go(owner, ins, s, s.rot + d);
+    return;
+  }
+  var h = g.hist, a = h[0], b = h[h.length - 1], v = b.t > a.t ? (b.r - a.r) / (b.t - a.t) * 16.67 : 0;
+  var cap = s.t > 0.5 ? 12 : s.step * 1.6; v = clamp(v, -cap, cap);
+  if (s.tT > 0.5) { s.vel = v; kick(owner, ins, s); }
+  else go(owner, ins, s, Math.round((s.rot + v * 18) / s.step) * s.step);
+}
+function cfg(value, old, owner, ins) {
+  if (!value || !value.M) return;
+  var s = st(ins);
+  layout(owner, ins, s, value);
+  apply(owner, s);
+  owner.callMethod('ringFront', { p: s.front });
+}
+function cmd(value, old, owner, ins) {
+  if (!value || !value.n) return;
+  var s = st(ins); if (!s.M) return;
+  if (value.a === 'prev') stepBy(owner, ins, s, -1);
+  else if (value.a === 'next') stepBy(owner, ins, s, 1);
+  else if (value.a === 'zoom') zoom(owner, ins, s, s.tT < 0.5);
+}
+module.exports = { start: start, move: move, end: end, cfg: cfg, cmd: cmd };

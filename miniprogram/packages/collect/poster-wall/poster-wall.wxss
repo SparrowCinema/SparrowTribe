@@ -14,3 +14,37 @@
 .wall-toolbar .wall-export{flex:none;width:auto !important;margin:0 !important;padding:calc(14 * var(--r)) calc(30 * var(--r)) !important;border-radius:999px !important;background:#a66e3d !important;border:calc(2 * var(--r)) solid #a66e3d !important;color:#fff !important;font-size:calc(22 * var(--fr)) !important;font-weight:700;line-height:1.3 !important}
 .wall-toolbar .wall-export::after{border:0}
 .wall-toolbar .wall-export[disabled]{background:var(--surface) !important;border-color:var(--line) !important;color:var(--muted) !important}
+
+/* 「放映」视图（2026-11-25，与网站 app.css 的 .pw-ring 一致）：ring.wxs 逐帧改 .pr-world / .pr-face 的 transform */
+.pw-viewbar{display:flex;justify-content:flex-end;margin-top:calc(20 * var(--r))}
+.pw-view-seg{display:flex;gap:calc(5 * var(--r));padding:calc(5 * var(--r));border:calc(2 * var(--r)) solid var(--line);border-radius:999px;background:var(--surface)}
+.pw-view-b{padding:calc(9 * var(--r)) calc(28 * var(--r));border-radius:999px;font-size:calc(21 * var(--fr));font-weight:600;color:var(--muted)}
+.pw-view-b.on{background:var(--fg);color:var(--bg);font-weight:700}
+.pr{margin-top:calc(10 * var(--r))}
+.pr-info{min-height:calc(270 * var(--r))}
+.pr-k{display:block;font-size:calc(16 * var(--fr));letter-spacing:.16em;color:var(--muted)}
+.pr-t{margin-top:calc(8 * var(--r));font-family:"Songti SC",serif;font-weight:900;font-size:calc(36 * var(--fr));line-height:1.2}
+.pr-ver{margin-left:calc(10 * var(--r));font-family:Menlo,monospace;font-size:calc(17 * var(--fr));font-weight:600;color:var(--muted)}
+.pr-o{display:block;font-size:calc(19 * var(--fr));color:var(--muted);letter-spacing:.04em}
+.pr-dl{margin-top:calc(18 * var(--r));border-top:calc(1 * var(--r)) solid var(--line)}
+.pr-row{display:flex;justify-content:space-between;gap:calc(20 * var(--r));padding:calc(12 * var(--r)) 0;border-bottom:calc(1 * var(--r)) solid var(--line)}
+.pr-dt{font-size:calc(16 * var(--fr));letter-spacing:.12em;color:var(--muted)}
+.pr-dd{font-size:calc(21 * var(--fr));text-align:right}
+.pr-me{display:flex;align-items:baseline;gap:calc(10 * var(--r));margin-top:calc(18 * var(--r))}
+.pr-stars{justify-content:flex-start;margin-top:0}
+.pr-score{font-size:calc(34 * var(--fr));font-weight:700}
+.pr-of{font-size:calc(18 * var(--fr));color:var(--muted)}
+.pr-seen{display:block;margin-top:calc(6 * var(--r));font-size:calc(19 * var(--fr));color:var(--muted)}
+.pr.far .pr-info{opacity:.35}
+.pr-stage{position:relative;height:52vh;min-height:calc(640 * var(--r));overflow:hidden;perspective:1000px}
+.pr-world{position:absolute;left:50%;top:47%;width:0;height:0;transform-style:preserve-3d}
+.pr-face{position:absolute;left:0;top:0;width:200px;height:296px;border-radius:4px;overflow:hidden;background:var(--surface);box-shadow:0 22px 44px -10px rgba(40,25,10,.26),0 2px 6px rgba(40,25,10,.16);backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.pr-ph{position:absolute;left:0;top:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center;padding:calc(20 * var(--r));text-align:center;font-family:"Songti SC",serif;font-weight:700;font-size:calc(24 * var(--fr));color:var(--muted);pointer-events:none}
+.pr-img{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none}
+.pr-shade{position:absolute;left:0;top:0;right:0;bottom:0;background:#120c06;opacity:0;pointer-events:none}
+.pr-ctrl{display:flex;align-items:center;justify-content:center;gap:calc(22 * var(--r));margin-top:calc(8 * var(--r))}
+.pr-btn{width:calc(66 * var(--r));height:calc(66 * var(--r));line-height:calc(62 * var(--r));text-align:center;border-radius:50%;border:calc(2 * var(--r)) solid var(--line);background:var(--surface);color:var(--fg);font-size:calc(34 * var(--r));box-sizing:border-box}
+.pr-pos{min-width:calc(110 * var(--r));text-align:center;font-family:Menlo,monospace;font-size:calc(20 * var(--fr));color:var(--muted)}
+.pr-zoom{margin-left:calc(12 * var(--r));padding:calc(12 * var(--r)) calc(28 * var(--r));border-radius:999px;border:calc(2 * var(--r)) solid var(--fg);color:var(--fg);font-size:calc(21 * var(--fr));font-weight:700}
+.pr.far .pr-zoom{background:var(--fg);color:var(--bg)}
+.pr-tip{text-align:center;margin-top:calc(12 * var(--r))}
