@@ -72,6 +72,34 @@
     </block>
   </view>
 
+  <!-- 搜索或「我的」筛选时：命中的往期影片按专题全部列出，不用书架 -->
+  <block wx:if="{{pastList.length}}">
+    <view class="pasth"><text class="pt">{{L.t(i,'往期专题')}}</text><text class="ps">{{pastListN}}</text></view>
+    <view wx:for="{{pastList}}" wx:for-item="g" wx:key="id" class="pcard">
+      <view class="pc-h">
+        <view class="ghm"><text class="gh-kind">{{g.kind}}</text><text class="pc-name">{{g.name}}</text><text class="gh-meta mono">{{L.n(i,g.n,'f')}}{{g.period ? ' · ' + g.period : ''}}</text></view>
+        <view class="stk"><block wx:for="{{g.stack}}" wx:for-item="s" wx:key="id"><image wx:if="{{s.poster}}" class="sp" src="{{s.poster}}" mode="aspectFill" lazy-load /><view wx:else class="sp sph" style="background:{{s.color}}">{{s.ch}}</view></block></view>
+      </view>
+      <view class="pc-b">
+        <block wx:for="{{g.rows}}" wx:key="id">
+          <view class="row" data-id="{{item.id}}" bindtap="open">
+            <image wx:if="{{item.poster}}" class="pst" src="{{item.poster}}" mode="aspectFill" lazy-load />
+            <view wx:else class="pst ph" style="background:{{item.color}}">{{item.cn[0]}}</view>
+            <view class="info">
+              <view class="t">{{item.cn}}<text wx:if="{{item.version}}" class="ed">{{item.version}}</text></view>
+              <text class="o">{{item.en}}</text>
+              <text class="d">{{item.dir}} · {{item.c}} · {{item.y}}</text>
+              <text wx:if="{{item.next}}" class="f mono">{{L.t(i,'下一场')}} {{item.next}}</text>
+              <text wx:elif="{{item.release}}" class="f">{{item.release}}</text>
+              <view class="film-statuses"><text wx:if="{{item.fresh}}" class="new">{{L.t(i,'新场次')}}</text><text wx:if="{{item.wanted}}" class="want">{{L.t(i,'想看')}}</text><text wx:if="{{item.planned}}">{{L.t(i,'已排片')}}</text><text wx:if="{{item.watched}}">{{L.t(i,'已看过')}}</text><text wx:if="{{item.event}}" class="event">{{L.t(i,'主创映后')}}</text></view>
+            </view>
+            <view class="sc"><text class="n mono">{{item.db}}</text><text class="l">{{L.t(i,'豆瓣')}}</text></view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </block>
+
   <view wx:if="{{pastCount}}" class="past-drawer {{pastDrawerOpen ? 'open' : ''}}">
     <view class="past-drawer-h" bindtap="togglePastDrawer">
       <view class="pd-copy"><text class="pd-t">{{L.t(i,'往期专题')}}</text><text class="pd-s">{{pastSummary}}</text></view>

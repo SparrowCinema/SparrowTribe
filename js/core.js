@@ -83,7 +83,6 @@ function defaultProg(){ const open=progOrdered().filter(p=>progStatus(p)!=="ende
 const statusTag = p => { const st=progStatus(p); return `<i class="pst pst-${st}">${p.ongoing&&st==="live"?"常设":STATUS[st]}</i>`; };
 const progChips = (cur=pfilt) => { const open=progOrdered().filter(p=>progStatus(p)!=="ended"||p.id===cur); return `<div class="filters prog-chips">${[["all","全部专题"],...open.map(p=>[p.id,p.name])].map(([k,n])=>`<button class="fchip" data-pf="${k}" aria-pressed="${cur===k}">${esc(n)}</button>`).join("")}</div>`; };
 const dateSpan = list => { if(!list.length) return ""; const ds=[...new Set(list.map(x=>x.d))]; return ds[0]+" – "+ds[ds.length-1]; };
-const SPINE_CHEV='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>';
 function progSpineMeta(p){
   const m=/^(\d{4})-(\d{2})/.exec(String(p.end||p.start||""));
   if(m)return m[1]+"."+m[2];
@@ -111,8 +110,8 @@ function pastProgsArchiveHTML(past){
   const getEnd=p=>progRange(p)[1]||0;
   const items=past.slice().sort((a,b)=>getEnd(b)-getEnd(a));
   const grouped=L?.groupPastByYear?L.groupPastByYear(items,p=>L.progEndYear(p,getEnd(p))):{byYear:false,years:[{year:"全部",items}],batchSize:12};
-  const showYearBar=grouped.years.length>=2;
-  const visibleYears=pgPastYearFilt?grouped.years.filter(y=>y.year===pgPastYearFilt):grouped.years;
+  const showYearBar=grouped.byYear;
+  const visibleYears=showYearBar&&pgPastYearFilt?grouped.years.filter(y=>y.year===pgPastYearFilt):grouped.years;
   const renderShelf=(list,yr)=>{
     const lim=pgPastYearLimit[yr]||grouped.batchSize;
     const shown=list.slice(0,lim), rest=list.length-shown.length;
@@ -122,19 +121,19 @@ function pastProgsArchiveHTML(past){
       return progSpineHTML(p,{count:fn,art:f0?pthumb(f0.id,360):""});
     }).join("");
     const more=rest>0?`<button type="button" class="pspine pspine-more" data-pg-past-more="${esc(yr)}"><b>${esc(tr("展开其余"))}</b><em class="mono">+${rest}</em></button>`:"";
-    return `<div class="pshelf" role="list">${cards}${more}</div>`;
+    return `<div class="pshelf">${cards}${more}</div>`;
   };
   let inner="";
   if(pgPastOpen){
-    const yBar=showYearBar?`<div class="past-ybar" role="group" aria-label="${esc(tr("按年份筛选往期专题"))}"><button type="button" class="past-ypill${!pgPastYearFilt?" on":""}" data-pg-past-y="">${esc(tr("全部年份"))}</button>${grouped.years.map(g=>`<button type="button" class="past-ypill${pgPastYearFilt===g.year?" on":""}" data-pg-past-y="${esc(g.year)}">${esc(g.year==="其他"?tr("其他"):g.year)}<em class="mono">${g.items.length}</em></button>`).join("")}</div>`:"";
+    const yBar=showYearBar?`<div class="past-ybar" role="group" aria-label="${esc(tr("按年份筛选往期专题"))}"><button type="button" class="past-ypill${!pgPastYearFilt?" on":""}" aria-pressed="${!pgPastYearFilt}" data-pg-past-y="">${esc(tr("全部年份"))}</button>${grouped.years.map(g=>`<button type="button" class="past-ypill${pgPastYearFilt===g.year?" on":""}" aria-pressed="${pgPastYearFilt===g.year}" data-pg-past-y="${esc(g.year)}">${esc(g.year==="其他"?tr("其他"):g.year)}<em class="mono">${g.items.length}</em></button>`).join("")}</div>`:"";
     const body=grouped.byYear?visibleYears.map((g,i)=>{
-      const open=!!pgPastYearFilt||(pgPastYearFold[g.year]!=null?pgPastYearFold[g.year]===1:i===0);
+      const open=!!pgPastYearFilt||(pgPastYearFold[g.year]!=null?pgPastYearFold[g.year]===1:g.defOpen);
       const yLabel=g.year==="其他"?tr("其他"):(LANG==="en"?g.year:g.year+" 年");
-      return `<section class="pyear${open?" open":""}"><button type="button" class="pyear-h" data-pg-past-yfold="${esc(g.year)}" aria-expanded="${open}"><b>${esc(yLabel)}</b><small class="mono">${esc(tr(g.items.length+" 个专题"))}</small><span class="pyear-ar" aria-hidden="true">${SPINE_CHEV}</span></button>${open?renderShelf(g.items,g.year):""}</section>`;
+      return `<section class="pyear${open?" open":""}"><button type="button" class="pyear-h" data-pg-past-yfold="${esc(g.year)}" aria-expanded="${open}"><b>${esc(yLabel)}</b><small class="mono">${esc(tr(g.items.length+" 个专题"))}</small><span class="pyear-ar" aria-hidden="true">${CHEV}</span></button>${open?renderShelf(g.items,g.year):""}</section>`;
     }).join(""):renderShelf(items,"all");
     inner=`<div class="past-drawer-body">${yBar}${body}</div>`;
   }
-  return `<section class="past-drawer${pgPastOpen?" open":""}" id="pg-past-drawer"><button type="button" class="past-drawer-h" data-pg-past-toggle aria-expanded="${pgPastOpen}"><span class="pd-copy"><b>${esc(tr("往期专题"))}</b><small>${esc(tr(items.length+" 个已结束"))} · ${esc(tr("按书脊横向浏览"))}</small></span>${progMiniSpinesHTML(items)}<span class="fold-btn" aria-hidden="true">${SPINE_CHEV}</span></button>${inner}</section>`;
+  return `<section class="past-drawer${pgPastOpen?" open":""}" id="pg-past-drawer"><button type="button" class="past-drawer-h" data-pg-past-toggle aria-expanded="${pgPastOpen}"><span class="pd-copy"><b>${esc(tr("往期专题"))}</b><small>${esc(tr(items.length+" 个已结束"))} · ${esc(tr("按书脊横向浏览"))}</small></span>${progMiniSpinesHTML(items)}<span class="fold-btn" aria-hidden="true">${CHEV}</span></button>${inner}</section>`;
 }
 document.addEventListener("click",e=>{
   const t=e.target.closest("[data-pg-past-toggle]");

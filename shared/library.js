@@ -143,7 +143,7 @@
   const m2=/^(\d{4})/.exec(String(p&&p.start||''));
   return m2?m2[1]:'其他';
  }
- const PAST_YEAR_BATCH=12;
+ const PAST_YEAR_BATCH=12, PAST_OPEN_MIN=6;
  function groupPastByYear(items,getYear,batchSize=PAST_YEAR_BATCH){
   const map=new Map();
   (items||[]).forEach(item=>{
@@ -155,7 +155,12 @@
    if(a[0]==='其他')return 1;if(b[0]==='其他')return -1;
    return b[0].localeCompare(a[0]);
   }).map(([year,list])=>({year,items:list}));
-  const byYear=years.length>1||(items&&items.length>6);
+  // 专题不多（≤ 一批）时不分年份，书脊一排放完，少点一层；分年时默认展开最近一年，
+  // 不足 PAST_OPEN_MIN 个就连下一年一起展开，避免最近一年只有一两个专题、其余全收起
+  const total=(items||[]).length;
+  const byYear=years.length>1&&total>batchSize;
+  let opened=0;
+  years.forEach((g,i)=>{g.defOpen=!byYear||i===0||opened<PAST_OPEN_MIN;opened+=g.defOpen?g.items.length:0;});
   return {byYear,years,batchSize};
  }
  const api={matches,inProgramme,inCity,status,category,list,has,toggle,DECADES,TRAITS,decadeLabel,yearMatches,traitStatus,matchesTraits,isFestivalWorldPremiere,featuredProgrammes,posterColumns,posterPeriod,posterPeriods,posterEntries,posterPeriodLabel,posterTitle,SPINE_PALETTES,spineStyle,spineTitle,progEndYear,PAST_YEAR_BATCH,groupPastByYear};if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.SparrowLibrary=api;

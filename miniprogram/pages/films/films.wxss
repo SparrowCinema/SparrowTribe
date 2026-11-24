@@ -96,7 +96,7 @@
 .ps-date{font-size:calc(17.5 * var(--fr));opacity:.94}
 .ps-cnt{font-size:calc(16.5 * var(--fr));opacity:.78}
 .ps-mid{flex:1;min-height:0;width:100%;display:flex;align-items:center;justify-content:center;padding:calc(6 * var(--r)) calc(6 * var(--r));overflow:hidden;box-sizing:border-box}
-.ps-title{writing-mode:vertical-rl;text-orientation:upright;font-family:var(--f-display);font-size:calc(24 * var(--fr));font-weight:900;letter-spacing:calc(3 * var(--r));line-height:1.15;max-height:100%;overflow:hidden;white-space:nowrap}
+.ps-title{writing-mode:vertical-rl;text-orientation:mixed;font-family:var(--f-display);font-size:calc(24 * var(--fr));font-weight:900;letter-spacing:calc(3 * var(--r));line-height:1.15;max-height:100%;overflow:hidden;white-space:nowrap}
 .ps-title.en{text-orientation:mixed;font-size:calc(20 * var(--fr));font-weight:700;letter-spacing:calc(1 * var(--r))}
 .ps-art{position:relative;width:100%;height:calc(132 * var(--r));flex:none;overflow:hidden}
 .ps-fade{position:absolute;left:0;right:0;top:0;height:calc(44 * var(--r));z-index:1}

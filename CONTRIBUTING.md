@@ -124,7 +124,15 @@ Claude 与 GPT 可能使用同一 GitHub 身份，审批人数可先设为0；�
 ## 片目分组折叠
 
 - 进行中 / 即将开始的专题：标题右侧圆形按钮可收起（状态存本机 `sparrow-fold-v1`，小程序 `sk-fold-v1`；搜索时自动全部展开）。专题里已放映完的影片收在组内底部「本专题已放映」。
-- 专题整体结束（`progStatus` 为 ended）后，整组自动移到最底部「往期专题」，每个专题一张折叠卡片，按结束时间由近到远。常设专题（`ongoing`，如麻雀部落电影空间）永远不会进往期。
+- 专题整体结束（`progStatus` 为 ended）后，整组自动移到最底部「往期专题」，按结束时间由近到远。常设专题（`ongoing`，如麻雀部落电影空间）永远不会进往期。往期的展示方式见下一节「往期专题书架」。
+
+## 往期专题书架（2026-11-24，网站与小程序同步）
+
+- 片目底部与「专题」页的「往期专题」是一个可收起的抽屉（默认收起，标题旁是前 5 个专题的迷你书脊）。展开后每个专题是一本竖排书脊（日期、影片数、专题名、头图，颜色按专题 id 固定，`shared/library.js` 的 `spineStyle` / `spineTitle`），横向滑动浏览。片目里点书脊在下方展开该专题片单（再点或 × 收起，「专题页 ›」进入专题页）；「专题」页点书脊直接进入专题页。
+- 分年（`groupPastByYear`）：往期专题不超过一批（`PAST_YEAR_BATCH` = 12 个）时不分年份，书脊一排放完，也不显示年份胶囊；超过 12 个且跨年时按结束年份分组，带年份胶囊筛选，默认展开最近一年，最近一年不足 `PAST_OPEN_MIN`（6）个时连下一年一起展开（`defOpen`）。每组先显示 12 本，「展开其余」每次再加 24 本。往期 ≥6 个且有看过的影片时，多一个「我看过的」只看有看过影片的专题。
+- **搜索或「我的」筛选（看过、想看、已排片等）时不用书架**：命中的往期影片按专题全部列出，每个专题一张展开的卡片（网站 `filmsPastListHTML`，小程序 `pastList`），避免结果藏在没点开的书脊后面。
+- 选了某个往期专题（专题筛选）时自动展开抽屉并选中它；用户手动开合过就以手动为准，换搜索词或筛选后恢复自动（网站 `flPastOpen` 为 `null` 表示自动，小程序 `this.pastDrawerOpen`）。专题筛选不会强制展开进行中专题的折叠状态（网站 `autoOpen` 只看搜索和「我的」，与小程序 `autoSec` 一致）。
+- 代码：网站 `js/films.js` 的 `filmsPastHTML` / `filmsPastListHTML` / `rerenderFilmsList`，`js/core.js` 的 `progSpineHTML` / `pastProgsArchiveHTML`（专题页）；小程序 `pages/films`（`togglePastDrawer` / `togglePast` 选书脊 / `closePastPanel` / `togglePastYear` / `setPastYear` / `morePastYear` / `togglePastWatched`）与 `pages/programmes`。测试在 `tools/check-library.js`。书脊竖排用 `text-orientation:mixed`，片名里的数字和英文按行文方向排。
 
 ## 院线新片按年份建专题
 
@@ -303,7 +311,7 @@ Claude 与 GPT 可能使用同一 GitHub 身份，审批人数可先设为0；�
 - 网站片目页不再一次画出全部影片卡片：每个列表先画前 12 张（`FL_FIRST`），滚动到附近再每次补 24 张（`FL_STEP`，`IntersectionObserver`，提前 1200px）；收起的专题、「本专题已放映」「往期专题」展开时才画。代码在 `lazyFlist` / `flGrow` / `flObserve`。
 - 每个列表已画到多少张记在 `flShown`，从影片页返回片目时原样恢复，滚动位置不变；搜索词或筛选变化时清零。不支持 `IntersectionObserver` 的浏览器一次画完。
 - 片目里新增列表时用 `lazyFlist(key, [[影片, 下一场或null], …], 是否默认可见)`，不要直接拼 `.flist`。
-- 小程序片目页：收起的专题、「本专题已放映」「往期专题」不再把影片行放进 `setData`，完整行留在 `this._rows`，展开时再补（`toggleSec` / `toggleGone` / `togglePast`）；「本专题已放映」的数量用 `goneN`。展开中的专题仍一次给全。
+- 小程序片目页：收起的专题、「本专题已放映」「往期专题」不再把影片行放进 `setData`，完整行留在 `this._rows`，展开时再补（`toggleSec` / `toggleGone`；往期专题只发选中书脊的片单，搜索或「我的」筛选时才整份列出）；「本专题已放映」的数量用 `goneN`。展开中的专题仍一次给全。
 
 ## 网站代码文件（2026-11-18 起按功能拆分）
 
