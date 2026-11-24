@@ -40,10 +40,17 @@ Page({
       return { id: v.id, idx: String(i + 1).padStart(2, '0'), name: v.name, short: v.short || v.name, addr: [v.city ? t(v.city) : '', v.addr || ''].filter(Boolean).join(' · '), halls, hasAcc: halls.some(h => h.acc) || !!(v.access && v.access.length), total: vs.length, up: up.length, trs, geo };
     });
     const geoRows = venueRows.filter(r => r.geo);
+    // 视野要把全部影院框进来：影院跨城市（如杭州 + 嘉兴）时，平均点落在两城之间的郊外，固定 13 级只看到一片空地、标记全在画面外。
+    // 多个影院用 include-points 自动缩放，并把外框四周各放宽 20%（留出气泡标签的位置）；只有一个影院时居中、15 级。
+    const lats = geoRows.map(r => r.geo.lat), lngs = geoRows.map(r => r.geo.lng);
+    const box = geoRows.length ? { n: Math.max(...lats), s: Math.min(...lats), e: Math.max(...lngs), w: Math.min(...lngs) } : null;
+    const padLat = box ? Math.max((box.n - box.s) * 0.2, 0.004) : 0, padLng = box ? Math.max((box.e - box.w) * 0.2, 0.004) : 0;
     const venueMap = geoRows.length ? {
-      lat: geoRows.reduce((s, r) => s + r.geo[0], 0) / geoRows.length,
-      lng: geoRows.reduce((s, r) => s + r.geo[1], 0) / geoRows.length,
-      markers: geoRows.map((r, i) => ({ id: i + 1, latitude: r.geo[0], longitude: r.geo[1], title: r.short, callout: { content: r.idx + ' ' + r.short, display: 'ALWAYS', padding: 6, borderRadius: 6, fontSize: 11 } }))
+      lat: (box.n + box.s) / 2,
+      lng: (box.e + box.w) / 2,
+      scale: geoRows.length > 1 ? 11 : 15,
+      points: geoRows.length > 1 ? [{ latitude: box.n + padLat, longitude: box.w - padLng }, { latitude: box.s - padLat, longitude: box.e + padLng }] : [],
+      markers: geoRows.map((r, i) => ({ id: i + 1, latitude: r.geo.lat, longitude: r.geo.lng, title: r.short, callout: { content: r.idx + ' ' + r.short, display: 'ALWAYS', padding: 6, borderRadius: 6, fontSize: 11 } }))
     } : null;
     const venueSub = [venueRows.map(r => r.short).slice(0, 3).join(' · ') + (venueRows.length > 3 ? '…' : ''), venueRows.some(r => r.hasAcc) ? t('含无障碍影厅') : ''].filter(Boolean).join(' · ');
     // 单元策展导读
@@ -69,8 +76,8 @@ Page({
   closeVenues() { this.setData({ venueOpen: false }); },
   openVenueMap(e) {
     const id = e.currentTarget.dataset.id, data = app.globalData.data, v = data && U.index(data).VN[id];
-    const g = v && U.geoOf(v); if (!g) return;
-    wx.openLocation({ latitude: g[0], longitude: g[1], name: v.name, address: v.addr || '', scale: 16 });
+    // U.geoOf 返回 {lat, lng}；统一用 U.openMap（与影片页、个人排片的「地图」相同）
+    if (v) U.openMap(v);
   },
   buildEvents(p) {
     const en = I.isEn(), now = new Date(), today = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0') + '-' + String(now.getDate()).padStart(2, '0');
