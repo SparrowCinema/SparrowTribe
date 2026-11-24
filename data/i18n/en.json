@@ -1,5 +1,6 @@
 {
   "exact": {
+    "放映版本新增露天放映": "Outdoor screening format",
     "典藏": "Collectible",
     "嘉宾签名": "Guest autograph",
     "已封版": "Edition closed",
@@ -12754,6 +12755,8 @@
     }
   },
   "ui": {
+    "编辑一条观影记录时，在「放映版本 › 其他」中选择「露天放映」。": "When editing a viewing record, choose Outdoor screening under Screening format › Other.",
+    "可以记录普通影厅、胶片、IMAX、杜比、巨幕、LED、沉浸厅或露天放映，计入「银幕与版本」类纪念章。": "Record standard, film, IMAX, Dolby, giant-screen, LED, immersive or outdoor screenings. These count towards screen-and-format badges.",
     "采珠拾贝": "A Possibility",
     "映后嘉宾签名": "Guest autographs",
     "只有在这一场现场认证过的典藏票根才会出现嘉宾签名。每场最多 4 位。": "Only collector's tickets checked in at this screening receive the autographs. Up to 4 guests per screening.",
@@ -13827,7 +13830,6 @@
     "在影片页点「＋ 看过 · 盖章」，护照里就盖下这部片的印章；每部片的印章形状、角度和墨色各不相同。": "Tap ＋ Watched · Stamp on a film page to stamp it into your passport. Each film's stamp has its own shape, angle and ink colour.",
     "每部片可打 0–10 分（每颗星 2 分，可半颗）；再点同一个分数清除。分数会印在印章上。": "Rate each film 0–10 (2 points per star, half stars allowed); tap the same score again to clear it. The score is printed on the stamp.",
     "再看一次就点「＋ 再看一次」，每次的日期、场次、放映版本和评分单独记录；点任意一行可以修改或删除。点「已盖章」可以去护照看印章、查看这部电影的典藏票根，或取消印章。": "Seen it again? Tap ＋ Watch again. Each viewing keeps its own date, screening, format and rating; tap a row to edit or delete it. Tap the stamped status to view the stamp in your passport, see this film's collector's tickets, or remove the stamp.",
-    "可以记下是在普通影厅、胶片、IMAX、杜比、巨幕、LED 还是沉浸厅看的，会计入「银幕与版本」类纪念章。": "Record whether you saw it in a standard auditorium, on film, IMAX, Dolby, a giant screen, LED or an immersive hall; it counts towards screen-and-format badges.",
     "在「我的」点护照封面翻开，左右拖动页角翻页，像翻纸一样；宽屏、平板横屏和折叠屏展开时左右两页同时显示。": "Tap the passport cover in Me to open it and drag a page corner to turn pages like paper. Wide screens, landscape tablets and unfolded foldables show two pages side by side.",
     "资料页点姓名改成自己的名字，点照片框从相册选一张照片；名字是英文字母时，会印在底部的机读码里。": "On the data page, tap the name to change it and tap the photo box to pick a photo. A name in Latin letters is also printed in the machine-readable lines at the bottom.",
     "资料页汇总看过影片、专题、影院、平均评分、首枚与最近印章和银幕总时长；印章每页最多 15 枚，按观影日期从早到晚排。": "The data page sums up films watched, programmes, cinemas, average rating, first and latest stamps and total screen time. Stamp pages hold up to 15 stamps each, ordered by viewing date.",
