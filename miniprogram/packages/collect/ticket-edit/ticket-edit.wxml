@@ -50,7 +50,11 @@
     </view>
   </view>
 
-  <view class="te-sec">{{L.t(i,'放映信息')}}</view>
+  <view class="te-sec-row">
+    <text class="te-sec">{{L.t(i,'放映信息')}}</text>
+    <view class="te-ocr-btn {{ocrBusy?'busy':''}}" hover-class="te-hv" bindtap="scanTicket" role="button">{{ocrBusy ? L.t(i,'识票中…') : L.t(i,'拍照识票')}}</view>
+  </view>
+  <view wx:if="{{ocrMsg}}" class="te-ocr-status {{ocrTone}}">{{ocrMsg}}</view>
   <view class="te-card">
     <picker wx:if="{{shows.length}}" mode="selector" range="{{shows}}" value="{{showIdx<0?0:showIdx}}" bindchange="chooseShow"><view class="te-row te-first"><text class="te-k">{{L.t(i,'场次')}}</text><view class="te-v"><text class="{{showIdx<0?'te-ph':''}}">{{showIdx<0?L.t(i,'选择场次'):shows[showIdx]}}</text><text class="te-go">›</text></view></view></picker>
     <view wx:if="{{linked}}" class="te-row {{shows.length?'':'te-first'}}"><text class="te-k">{{L.t(i,'观影日期')}}</text><view class="te-v"><text class="te-mono">{{draft.date}}</text><text class="te-note">{{L.t(i,'来自观影记录')}}</text></view></view>

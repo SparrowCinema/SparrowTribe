@@ -220,6 +220,55 @@ Page({
     Object.assign(d,{time:x.time,venue:x.venue,hall:x.hall,city:x.city});
     this.setData({draft:d,showIdx:Number(e.detail.value)});this.renderFaces();
   },
+  // 拍照识票（2026-11-24）：选纸质票拍照或电子票截图 → 调 ticketOcr 云函数 → 解析日期、时间、影院、影厅、座位、版本；失败时提示手动填写
+  scanTicket(){
+    if(this.data.ocrBusy||!this._draft)return;
+    const en=I.isEn();
+    const fail=(msg)=>{this.setData({ocrBusy:false,ocrTone:'warn',ocrMsg:msg||I.tr('未能识别票面文字，请直接在下方手动填写。')});};
+    if(!wx.cloud){fail(I.tr('当前环境暂不支持云端识票，请直接在下方手动填写。'));return;}
+    wx.chooseMedia({
+      count:1,mediaType:['image'],sizeType:['compressed'],sourceType:['camera','album'],
+      success:res=>{
+        const file=res&&res.tempFiles&&res.tempFiles[0];if(!file||!file.tempFilePath)return;
+        this.setData({ocrBusy:true,ocrTone:'',ocrMsg:I.tr('正在识别票面文字…')});
+        wx.getFileSystemManager().readFile({
+          filePath:file.tempFilePath,encoding:'base64',
+          success:rf=>{
+            const ext=(file.tempFilePath.split('.').pop()||'jpg').toLowerCase();
+            const contentType=ext==='png'?'image/png':ext==='webp'?'image/webp':'image/jpeg';
+            wx.cloud.callFunction({name:'ticketOcr',data:{imgBase64:rf.data,contentType}}).then(cr=>{
+              const out=cr&&cr.result;
+              if(!out||!out.ok||!out.text){fail();return;}
+              const TicketOcr=require('../utils/ticket-ocr.js');
+              const d=this._draft,data=app.globalData.data||{};
+              const parsed=TicketOcr.parseTicketText(out.text,{
+                venues:data.venues||[],
+                shows:this._shows||[],
+                defaultYear:Number((d.date||'').slice(0,4))||new Date().getFullYear()
+              });
+              const labels={date:I.tr('日期'),time:I.tr('时间'),venue:I.tr('影院'),hall:I.tr('影厅'),seat:I.tr('座位'),format:I.tr('版本')};
+              const filled=[];
+              ['date','time','venue','hall','seat','format'].forEach(k=>{
+                if(!parsed[k])return;
+                if(k==='date'&&d.linked)return;
+                d[k]=parsed[k];filled.push(labels[k]);
+              });
+              if(parsed.matchedShow&&parsed.matchedShow.city)d.city=parsed.matchedShow.city;
+              if(filled.length){
+                const sep=en?', ':'、';
+                this.setData({draft:d,showIdx:this.showIndex(),ocrBusy:false,ocrTone:'ok',ocrMsg:I.tr('已自动填入：')+filled.join(sep)+I.tr('（可继续核对修改）')});
+                this.renderFaces();
+                say(I.tr('已识别并填入')+' '+filled.join(sep));
+              }else{
+                fail(I.tr('未能从图片中提取到场次或座位信息，请直接在下方手动填写。'));
+              }
+            }).catch(()=>fail());
+          },
+          fail:()=>fail()
+        });
+      }
+    });
+  },
   pickArtStyle(e){
     const artStyleIndex=Number(e.detail.value),style=Art.filmStyleOptions[artStyleIndex];
     if(!style||artStyleIndex===this.data.artStyleIndex)return;

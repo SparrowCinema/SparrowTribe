@@ -606,7 +606,8 @@ function ticketEditor(row){
           ${ticketDraft.original?`<button type="button" class="te-action te-action-remove" data-ticket-action="remove">${ticketDict("移出收藏册")}</button>`:""}
         </div>
       </div>
-      <h4 class="te-sec">${ticketDict("放映信息")}</h4>
+      <div class="te-sec-row"><h4 class="te-sec">${ticketDict("放映信息")}</h4><button type="button" class="te-ocr-btn" data-ticket-action="ocr-scan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h3l2-2h6l2 2h3a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2Z"/><circle cx="12" cy="13" r="3.5"/></svg><span>${ticketDict("拍照识票")}</span></button><input type="file" id="te-ocr-file" accept="image/*" hidden></div>
+      <div id="te-ocr-status" class="te-ocr-status" role="status" hidden></div>
       <div class="te-card">${ticketShowRow(row)}${dateRow}${input("time","开场时间","","time")}${input("venue","影院","影院名称")}${input("hall","影厅","如 1号厅")}${input("seat","座位","选填，如 5排8座")}${input("format","放映版本","如 4K修复")}</div>
       <div class="te-acts"><button type="button" class="te-save" data-ticket-action="save">${ticketDict(ticketDraft.original?"保存修改":"加入收藏册")}</button></div>
     </div></div>`;
@@ -827,6 +828,7 @@ function ticketInput(event){
 }
 function ticketChange(event){
   const t=event.target,{name,value}=t;
+  if(t.id==="te-ocr-file"){const f=t.files&&t.files[0];t.value="";if(f)ticketRunOcr(f);return;}
   if(t.matches("[data-ticket-back]")){ticketSide=t.checked?"back":"front";ticketPaintList();return;}
   if(!ticketDraft)return;
   const row=ticketDraft.row;
@@ -835,6 +837,95 @@ function ticketChange(event){
     row[name]=value;
     if(name==="art")row.crop=50;
     ticketDrawEditor();ticketArtSaveState();
+  }
+}
+/* ===== 拍照识票 OCR（2026-11-24）：自托管 Tesseract.js + 中英文轻量模型，仅在点击时按需加载，图片不出手机 ===== */
+let ticketOcrWorkerP=null,ticketOcrBusy=false;
+function ticketOcrStatus(html,cls){
+  const el=main.querySelector("#te-ocr-status");if(!el)return;
+  el.hidden=!html;el.className="te-ocr-status"+(cls?" "+cls:"");el.innerHTML=html||"";
+}
+function ticketLoadOcrScript(){
+  if(window.Tesseract)return Promise.resolve(window.Tesseract);
+  return new Promise((ok,bad)=>{
+    const s=document.createElement("script");
+    s.src=new URL("vendor/ocr/tesseract.min.js",document.baseURI).href;
+    s.onload=()=>window.Tesseract?ok(window.Tesseract):bad(new Error("no_tesseract"));
+    s.onerror=()=>bad(new Error("script_load_failed"));
+    document.head.appendChild(s);
+  });
+}
+async function ticketGetOcrWorker(onProgress){
+  if(!ticketOcrWorkerP){
+    ticketOcrWorkerP=(async()=>{
+      const T=await ticketLoadOcrScript();
+      const base=new URL("vendor/ocr/",document.baseURI).href;
+      return await T.createWorker("chi_sim+eng",1,{
+        workerPath:base+"worker.min.js",
+        corePath:base+"tesseract-core-lstm.wasm.js",
+        langPath:base+"lang",
+        workerBlobURL:false,
+        logger:m=>{if(onProgress&&m&&m.status==="recognizing text"&&typeof m.progress==="number")onProgress(Math.round(m.progress*100));}
+      });
+    })().catch(err=>{ticketOcrWorkerP=null;throw err;});
+  }
+  return ticketOcrWorkerP;
+}
+async function ticketRunOcr(file){
+  if(!ticketDraft||ticketOcrBusy)return;
+  const OCR=window.SparrowTicketOcr;if(!OCR)return;
+  ticketOcrBusy=true;
+  const btn=main.querySelector('[data-ticket-action="ocr-scan"]');
+  if(btn)btn.disabled=true;
+  ticketOcrStatus(esc(tr("正在本地加载中英文识票模型（约 7MB，首次稍候，图片不出手机）…")));
+  try{
+    const imgUrl=URL.createObjectURL(file);
+    let cv;
+    try{
+      const im=await new Promise((ok,bad)=>{const i=new Image();i.onload=()=>ok(i);i.onerror=bad;i.src=imgUrl;});
+      cv=OCR.preprocessImage(im);
+    }finally{URL.revokeObjectURL(imgUrl);}
+    let lastPct=-1;
+    const worker=await ticketGetOcrWorker(pct=>{
+      if(pct!==lastPct){lastPct=pct;ticketOcrStatus(esc(tr("正在识别票面文字…"))+" "+pct+"%");}
+    });
+    ticketOcrStatus(esc(tr("正在识别票面文字…")));
+    const res=await worker.recognize(cv);
+    const raw=(res&&res.data&&res.data.text)||"";
+    const row=ticketDraft.row;
+    const parsed=OCR.parseTicketText(raw,{
+      venues:Object.values(VN),
+      shows:ticketShows(row),
+      defaultYear:Number((row.date||"").slice(0,4))||new Date().getFullYear()
+    });
+    const labels={date:tr("日期"),time:tr("时间"),venue:tr("影院"),hall:tr("影厅"),seat:tr("座位"),format:tr("版本")};
+    const filled=[];
+    ["date","time","venue","hall","seat","format"].forEach(k=>{
+      if(!parsed[k])return;
+      if(k==="date"&&row.linked)return;
+      row[k]=parsed[k];
+      filled.push(labels[k]);
+      const inp=main.querySelector(`.te-card [name="${k}"]`);
+      if(inp)inp.value=parsed[k];
+    });
+    if(parsed.matchedShow&&parsed.matchedShow.city)row.city=parsed.matchedShow.city;
+    if(filled.length){
+      ticketDrawEditor();
+      ticketArtSaveState();
+      const rawNote=raw.trim()?`<details><summary>${esc(tr("查看识别原文"))}</summary><pre>${esc(raw.trim())}</pre></details>`:"";
+      ticketOcrStatus(esc(tr("已自动填入：")+filled.join(LANG==="en"?", ":"、")+tr("（可继续核对修改）"))+rawNote,"ok");
+      toast(tr("已识别并填入")+" "+filled.join(LANG==="en"?", ":"、"));
+    }else{
+      const rawNote=raw.trim()?`<details><summary>${esc(tr("查看识别原文"))}</summary><pre>${esc(raw.trim())}</pre></details>`:"";
+      ticketOcrStatus(esc(tr("未能从图片中提取到场次或座位信息，请直接在下方手动填写。"))+rawNote,"warn");
+    }
+  }catch(err){
+    console.warn("ticket ocr failed",err);
+    ticketOcrStatus(esc(tr("识票未能完成，请检查网络后重试，或直接在下方手动填写。")),"warn");
+  }finally{
+    ticketOcrBusy=false;
+    const b2=main.querySelector('[data-ticket-action="ocr-scan"]');
+    if(b2)b2.disabled=false;
   }
 }
 function ticketClick(e){
@@ -876,6 +967,7 @@ function ticketClick(e){
     case "pick-cancel":ticketPick=null;ticketPaintList();break;
     case "flip":ticketFlipTo(ticketDraft.side==="front"?"back":"front");break;
     case "reset":ticketDraft.row.look=TE.sanitize({...ticketDraft.row,look:null}).look;ticketDrawEditor();break;
+    case "ocr-scan":{const f=main.querySelector("#te-ocr-file");if(f&&!ticketOcrBusy)f.click();break;}
     case "save":ticketSave();break;
     case "save-here":ticketSave(true);break;
     case "remove":

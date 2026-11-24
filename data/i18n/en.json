@@ -154,7 +154,10 @@
     "位朋友": "Friends",
     "一起看建议": "Suggestions",
     "共同想看": "Shared wants",
-    "多人一起排片（接龙凑场）": "Multi-friend group relay planning"
+    "多人一起排片（接龙凑场）": "Multi-friend group relay planning",
+    "拍照识票": "Scan ticket",
+    "识票中…": "Scanning…",
+    "拍照识票自动填票根": "Scan paper or e-tickets via OCR"
   },
   "_readme": "English layer for the site. films/programmes/venues overlay data fields when ?lang=en; ui is the zh→en dictionary used by tr(). Missing entries fall back to the Chinese text.",
   "films": {
@@ -13931,6 +13934,22 @@
     "麻雀观影护照 · 多人一起排片": "Sparrow Film Passport · Group Plan Match",
     "多人一起排片（接龙凑场）": "Multi-friend group relay planning",
     "个人排片页新增「多人凑场」：不用账号，把接龙链接发给 2–8 位朋友，每人打开点「加入接龙」再转发，自动合并出全员同场、无冲突一起看建议与共同想看片单，网页与小程序接龙互通。": "Start a zero-account Group Match from My Schedule: 2–8 friends relay a single link, each adding their picks & watchlist to reveal unanimous screenings, conflict-free together-watch suggestions, and shared wants across web and mini-program.",
-    "个人排片页点「多人凑场」（小程序为「多人凑场接龙」）生成接龙链接，支持 2–8 位朋友接力加入各自的排片与想看清单。页面自动列出全员同场、多数人无冲突可同行的一起看建议以及共同想看片单，数据保存在链接本身，不上传服务器。": "Tap Group match in My Schedule to generate a relay link for 2–8 friends. Each person joins with their picks and watchlist and forwards the updated link to see unanimous screenings, conflict-free group picks, and shared wants — stored entirely in the link with no account or server."
+    "个人排片页点「多人凑场」（小程序为「多人凑场接龙」）生成接龙链接，支持 2–8 位朋友接力加入各自的排片与想看清单。页面自动列出全员同场、多数人无冲突可同行的一起看建议以及共同想看片单，数据保存在链接本身，不上传服务器。": "Tap Group match in My Schedule to generate a relay link for 2–8 friends. Each person joins with their picks and watchlist and forwards the updated link to see unanimous screenings, conflict-free group picks, and shared wants — stored entirely in the link with no account or server.",
+    "拍照识票": "Scan ticket",
+    "识票中…": "Scanning…",
+    "正在本地加载中英文识票模型（约 7MB，首次稍候，图片不出手机）…": "Loading on-device OCR model (~7 MB, first time only; photo never leaves your device)…",
+    "正在识别票面文字…": "Reading ticket text…",
+    "已自动填入：": "Auto-filled: ",
+    "（可继续核对修改）": " (edit anytime below)",
+    "已识别并填入": "Filled from ticket:",
+    "查看识别原文": "View raw OCR text",
+    "未能从图片中提取到场次或座位信息，请直接在下方手动填写。": "Could not detect screening or seat details — please fill in manually below.",
+    "识票未能完成，请检查网络后重试，或直接在下方手动填写。": "Ticket scan failed — try again or fill in manually below.",
+    "未能识别票面文字，请直接在下方手动填写。": "Could not read ticket text — please fill in manually below.",
+    "当前环境暂不支持云端识票，请直接在下方手动填写。": "Cloud OCR is unavailable here — please fill in manually below.",
+    "版本": "Format",
+    "拍照识票自动填票根": "Scan paper or e-tickets via OCR",
+    "制作或编辑典藏票根时，点放映信息旁的「拍照识票」，拍一张纸质电影票或选一张电子票截图，自动识别日期、时间、影院、影厅、座位和放映版本。网页端在本机离线识别，图片不出手机；小程序走微信识字，识别不了可随时手动修改。": "Tap Scan ticket in the ticket editor to pick a paper stub photo or e-ticket screenshot and auto-fill date, time, cinema, hall, seat, and format. Web runs fully on-device with self-hosted OCR (photos never leave your phone); mini-program uses WeChat OCR with manual fallback.",
+    "编辑票根时点「拍照识票」，选择纸质票照片或电子票截图，会自动识别日期、开场时间、影院、影厅、座位和版本并填入表单（同时尝试匹配片库排片）。网页端使用本站自托管的中英文轻量模型在本机识别，图片不上传服务器；小程序端走微信识字，识别失败时可直接在下方手动填写。": "Tap Scan ticket in the ticket editor to pick a paper ticket photo or e-ticket screenshot and auto-fill date, start time, venue, hall, seat, and format (snapping to matching screenings when found). Web uses our self-hosted on-device OCR model so photos never leave your device; the mini-program uses WeChat OCR with instant manual fallback."
   }
 }

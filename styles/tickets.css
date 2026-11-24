@@ -195,7 +195,17 @@ html.ticket-style-dialog-open{overflow:hidden;overscroll-behavior:none;scrollbar
   background-repeat:no-repeat
 }
 .te-action-remove::before{box-sizing:border-box;width:12px;height:12px;border:1px solid currentColor;border-radius:50%;background:linear-gradient(currentColor,currentColor) center/5px 1px no-repeat}
+.te-sec-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:22px 4px 8px}
+.te-sec-row .te-sec{margin:0}
 .te-sec{margin:22px 4px 8px;font-size:.76rem;font-weight:500;color:var(--muted);letter-spacing:.04em}
+.te-ocr-btn{display:inline-flex;align-items:center;gap:5px;padding:5px 11px;border-radius:999px;border:1px solid color-mix(in srgb,var(--accent) 45%,var(--line));background:color-mix(in srgb,var(--accent) 7%,var(--surface));color:var(--accent);font-size:.75rem;font-weight:600;cursor:pointer;line-height:1.2}
+.te-ocr-btn svg{width:14px;height:14px;flex:none}
+.te-ocr-btn:disabled{opacity:.55;cursor:wait}
+.te-ocr-status{margin:0 2px 10px;padding:8px 12px;border-radius:10px;border:1px solid var(--line);background:var(--surface);font-size:.76rem;line-height:1.5;color:var(--fg)}
+.te-ocr-status.ok{border-color:color-mix(in srgb,var(--teal) 50%,var(--line));color:var(--teal)}
+.te-ocr-status.warn{border-color:color-mix(in srgb,var(--ochre) 50%,var(--line));color:var(--ochre)}
+.te-ocr-status details{margin-top:4px;font-size:.7rem;color:var(--muted)}
+.te-ocr-status pre{margin:4px 0 0;white-space:pre-wrap;word-break:break-word;font-family:var(--f-mono);max-height:110px;overflow:auto}
 .te-card{border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}
 .te-card>*+*{border-top:1px solid var(--line-soft,var(--line))}
 .ticket-page .te-row{display:flex;align-items:center;gap:12px;min-height:52px;padding:0 14px;box-sizing:border-box;color:var(--fg);font-size:.9rem}
