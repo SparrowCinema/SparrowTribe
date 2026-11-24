@@ -23,7 +23,7 @@ Page({
     const data = app.globalData.data, idx = U.index(data), now = Date.now();
     const list = data.programmes.map((p, i) => {
       const { shows, up, a, b, status } = U.progInfo(p, data, idx, now);
-      const pFilms = data.films.filter(f => !f.ev && idx.progOf(f).id === p.id || (p.sections||{})[f.id] || (p.members||[]).includes(f.id));
+      const pFilms = data.films.filter(f => !f.ev && (idx.progOf(f).id === p.id || (p.sections||{})[f.id] || (p.members||[]).includes(f.id)));
       const fn = pFilms.length;
       const st = Library.spineStyle ? Library.spineStyle(p.id) : { bg: '#663c58', ink: '#fffaf2' };
       const yr = Library.progEndYear ? Library.progEndYear(p, b || 0) : '其他';
@@ -40,12 +40,12 @@ Page({
     const past = list.filter(p => p.status === 'ended').sort((x, y) => (y.b - x.b) || x.ord - y.ord);
     const pastMinis = past.slice(0, 5).map(x => ({ id: x.id, bg: x.bg }));
     const grouped = Library.groupPastByYear ? Library.groupPastByYear(past, x => x.year) : { byYear: false, years: [{ year: 'all', items: past }], batchSize: 12 };
-    const pastYearPills = grouped.years.length >= 2 ? grouped.years.map(g => ({ year: g.year, label: g.year === '其他' ? t('其他') : g.year, cnt: g.items.length })) : [];
-    const curYearFilt = this.pastYearFilt && grouped.years.some(g => g.year === this.pastYearFilt) ? this.pastYearFilt : '';
+    const pastYearPills = grouped.byYear ? grouped.years.map(g => ({ year: g.year, label: g.year === '其他' ? t('其他') : g.year, cnt: g.items.length })) : [];
+    const curYearFilt = grouped.byYear && this.pastYearFilt && grouped.years.some(g => g.year === this.pastYearFilt) ? this.pastYearFilt : '';
     const visYears = curYearFilt ? grouped.years.filter(g => g.year === curYearFilt) : grouped.years;
     const yrFolds = this.pastYearFold || {}, yrLimits = this.pastYearLimit || {};
     const pastYears = this.data.pastOpen ? visYears.map((g, i) => {
-      const open = !grouped.byYear || !!curYearFilt || (yrFolds[g.year] != null ? yrFolds[g.year] === 1 : i === 0);
+      const open = !grouped.byYear || !!curYearFilt || (yrFolds[g.year] != null ? yrFolds[g.year] === 1 : g.defOpen);
       const lim = yrLimits[g.year] || grouped.batchSize;
       const items = open ? g.items.slice(0, lim) : [];
       return { year: g.year, label: g.year === '其他' ? t('其他') : (I.isEn() ? g.year : g.year + ' 年'), meta: t(g.items.length + ' 个专题'), open, items, rest: Math.max(0, g.items.length - items.length) };

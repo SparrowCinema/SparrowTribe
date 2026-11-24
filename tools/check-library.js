@@ -15,7 +15,7 @@ const data=require('./full-data.js'),U=require('../miniprogram/utils/util.js');l
 const picked=new Set(),watched={},app={globalData:{data},onData:()=>()=>{}};
 const sandbox={Page:p=>page=p,getApp:()=>app,require:n=>n.endsWith('/remind.js')?{ask(){},cancel(){},has(){return false},hasWant(){return false},refresh(){},syncTmpl(){},tmpl(){return ''}}:n.endsWith('/stats.js')?{stat(){},flush(){}}:n.endsWith('/want.js')?{all:()=>({}),isOn:()=>false,newCount:()=>0,markSeen(){},onChange:()=>()=>{}}:n.endsWith('/library.js')?L:n.endsWith('/util.js')?U:n.endsWith('/plan.js')?{get:()=>picked,onChange:()=>()=>{}}:n.endsWith('/watched.js')?{all:()=>watched,onChange:()=>()=>{}}:{tr:x=>x,dict:()=>({}),isEn:()=>false},wx:{setNavigationBarTitle(){}}};
 vm.runInNewContext(fs.readFileSync(path.join(root,'miniprogram/pages/films/films.js'),'utf8'),sandbox);page.data=JSON.parse(JSON.stringify(page.data));page.setData=x=>Object.assign(page.data,x);page.onLoad();
-const rows=()=>page.data.secs.flatMap(g=>g.live.concat(g.gone)).concat(page.data.past.flatMap(g=>g.rows));assert.equal(page.data.n,data.films.filter(f=>!f.ev).length);
+const rows=()=>page.data.secs.flatMap(g=>g.live.concat(g.gone)).concat(page.data.past.flatMap(g=>g.rows)).concat((page.data.pastList||[]).flatMap(g=>g.rows));assert.equal(page.data.n,data.films.filter(f=>!f.ev).length);
 page.data.pf='cinema-2026';page.build();assert(rows().some(f=>f.id==='gr26-032'),'shared film must remain searchable before cinema sessions are announced');page.resetFilters();
 const sample=data.shows.find(s=>s.p==='golden-rooster-2026')||data.shows.find(s=>U.progForShow(s,U.index(data)).id==='golden-rooster-2026');picked.add(U.keyOf(sample));page.data.mine='planned';page.build();assert.equal(page.data.n,1);assert.equal(rows()[0].id,sample.id);
 page.data.mine='watched';watched[sample.id]={d:'2026-11-01',r:8};page.build();assert.equal(page.data.n,1);watched[sample.id]={del:1,t:1};page.build();assert.equal(page.data.n,0);
@@ -56,6 +56,17 @@ console.log('PASS: poster grid changes monotonically from 5 portrait columns to 
  assert.equal(g120.batchSize, 12);
  const small = [{ id: 'a', year: '2026' }, { id: 'b', year: '2026' }];
  assert.equal(L.groupPastByYear(small, x => x.year).byYear, false);
+ // 专题不多（≤ 一批 12 个）时不分年份，少点一层
+ const eight = Array.from({ length: 8 }, (_, i) => ({ id: 'e-' + i, year: i < 1 ? '2027' : '2026' }));
+ const g8 = L.groupPastByYear(eight, x => x.year);
+ assert.equal(g8.byYear, false, 'eight programmes over two years should not be split by year');
+ assert(g8.years.every(y => y.defOpen));
+ // 分年时最近一年不足 6 个，连下一年一起默认展开
+ const mixed = [].concat(Array.from({ length: 2 }, (_, i) => ({ id: 'a' + i, year: '2027' })), Array.from({ length: 20 }, (_, i) => ({ id: 'b' + i, year: '2026' })), Array.from({ length: 8 }, (_, i) => ({ id: 'c' + i, year: '2025' })));
+ const gm = L.groupPastByYear(mixed, x => x.year);
+ assert.equal(gm.byYear, true);
+ assert.deepStrictEqual(gm.years.map(y => y.defOpen), [true, true, false]);
+ assert.deepStrictEqual(g120.years.map(y => y.defOpen), [true, false, false, false, false]);
  // Verify mini-program films past drawer defaults collapsed and toggles open/picks spine cleanly
  if (page.data.pastCount > 0) {
   assert.equal(page.data.pastDrawerOpen, false, 'past drawer should be collapsed by default');
@@ -71,6 +82,17 @@ console.log('PASS: poster grid changes monotonically from 5 portrait columns to 
   assert.equal(page.data.pastPick, '');
   page.togglePastDrawer();
   assert.equal(page.data.pastDrawerOpen, false);
+  // 搜索时不用书架：每个往期专题里命中的影片全部列出
+  const pastFilm = data.films.find(f => !f.ev && f.cn && page.data.past.some(x => x.id === U.index(data).progOf(f).id));
+  if (pastFilm) {
+   page.search({ detail: { value: pastFilm.cn } });
+   assert.equal(page.data.pastCount, 0, 'search should hide the spine drawer');
+   assert.equal(page.data.pastDrawerOpen, false);
+   assert(page.data.pastList.some(g => g.rows.some(r => r.id === pastFilm.id)), 'search hit in a past programme must be listed');
+   assert.equal(page.data.pastList.reduce((n, g) => n + g.rows.length, 0), page.data.past.reduce((n, g) => n + g.n, 0), 'every past match is listed');
+   page.resetFilters();
+   assert.equal(page.data.pastList.length, 0);
+  }
  }
  console.log('PASS: 3-layer past-programme spine archive folding (120-programme multi-year scale + mini-program drawer/spine toggle).');
 }
