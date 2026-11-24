@@ -3054,6 +3054,43 @@
     "dateNote": "洛杉矶 · 好莱坞军团剧院",
     "dateNoteEn": "Hollywood Legion Theater, Los Angeles"
    },
+   "gifts": [
+    {
+     "items": [
+      "麻雀映画限定纪念票根 No.324",
+      "原版限定A3海报",
+      "限定·绝美收藏透卡",
+      "限定纪念明信片"
+     ]
+    },
+    {
+     "label": "海报二选一",
+     "items": [
+      "官方A3海报",
+      "日版官方双面海报（两款随机发放一款）"
+     ]
+    },
+    {
+     "label": "万象城场次限定 · 周五场需补领",
+     "items": [
+      "【万象独家】官方A3工艺海报"
+     ]
+    },
+    {
+     "label": "限 CGV 4DX 场",
+     "items": [
+      "官方4DX & Screen X A3双面海报"
+     ]
+    },
+    {
+     "label": "映前抽奖 · 限来福士及百美汇场次",
+     "items": [
+      "官方限量A3光栅工艺海报",
+      "官方限量雕塑黄泥",
+      "官方限量小镜子"
+     ]
+    }
+   ],
    "ticket": "tickets/clayface.png",
    "ticketLabel": "报名",
    "ticketPlatform": "微信小程序"
