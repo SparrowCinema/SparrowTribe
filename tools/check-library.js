@@ -12,16 +12,31 @@ assert(!L.inProgramme(films[3],'festival',{...ctx,programmeIds:()=>['other','cin
 assert.equal(fs.readFileSync(path.join(root,'miniprogram/utils/library.js'),'utf8'),fs.readFileSync(path.join(root,'shared/library.js'),'utf8'));
 // Exercise the mini-program page with real catalogue/utility data and reversible in-memory records.
 const data=require('./full-data.js'),U=require('../miniprogram/utils/util.js');let page;
+// Double-bill containers stay eligible for schedule and history lookup, but leave the catalogue.
+const pingyao = data.films.filter(f => f.prog === 'pingyao-2026' && f.screeningParts?.length);
+assert.equal(pingyao.length, 6);
+const splitIds = pingyao.flatMap(f => f.screeningParts);
+assert.equal(new Set(splitIds).size, 12);
+assert.equal(data.shows.filter(s => pingyao.some(f => f.id === s.id)).length, 9);
+for (const group of pingyao) {
+ assert(!L.catalogueFilm(group));
+ for (const [i, id] of group.screeningParts.entries()) {
+  const film = data.films.find(f => f.id === id);
+  assert(film && L.catalogueFilm(film), id + ' must have an independent catalogue entry');
+  assert.equal(film.min, group.parts[i].min);
+  assert.deepStrictEqual(L.screeningGroups(id, [...data.films, group]).map(f => f.id), [group.id]);
+ }
+}
 const picked=new Set(),watched={},app={globalData:{data},onData:()=>()=>{}};
 const sandbox={Page:p=>page=p,getApp:()=>app,require:n=>n.endsWith('/remind.js')?{ask(){},cancel(){},has(){return false},hasWant(){return false},refresh(){},syncTmpl(){},tmpl(){return ''}}:n.endsWith('/stats.js')?{stat(){},flush(){}}:n.endsWith('/want.js')?{all:()=>({}),isOn:()=>false,newCount:()=>0,markSeen(){},onChange:()=>()=>{}}:n.endsWith('/library.js')?L:n.endsWith('/util.js')?U:n.endsWith('/plan.js')?{get:()=>picked,onChange:()=>()=>{}}:n.endsWith('/watched.js')?{all:()=>watched,onChange:()=>()=>{}}:{tr:x=>x,dict:()=>({}),isEn:()=>false},wx:{setNavigationBarTitle(){}}};
 vm.runInNewContext(fs.readFileSync(path.join(root,'miniprogram/pages/films/films.js'),'utf8'),sandbox);page.data=JSON.parse(JSON.stringify(page.data));page.setData=x=>Object.assign(page.data,x);page.onLoad();
-const rows=()=>page.data.secs.flatMap(g=>g.live.concat(g.gone)).concat(page.data.past.flatMap(g=>g.rows)).concat((page.data.pastList||[]).flatMap(g=>g.rows));assert.equal(page.data.n,data.films.filter(f=>!f.ev).length);
+const rows=()=>page.data.secs.flatMap(g=>g.live.concat(g.gone)).concat(page.data.past.flatMap(g=>g.rows)).concat((page.data.pastList||[]).flatMap(g=>g.rows));assert.equal(page.data.n,data.films.filter(L.catalogueFilm).length);
 page.data.pf='cinema-2026';page.build();assert(rows().some(f=>f.id==='gr26-032'),'shared film must remain searchable before cinema sessions are announced');page.resetFilters();
 const sample=data.shows.find(s=>s.p==='golden-rooster-2026')||data.shows.find(s=>U.progForShow(s,U.index(data)).id==='golden-rooster-2026');picked.add(U.keyOf(sample));page.data.mine='planned';page.build();assert.equal(page.data.n,1);assert.equal(rows()[0].id,sample.id);
 page.data.mine='watched';watched[sample.id]={d:'2026-11-01',r:8};page.build();assert.equal(page.data.n,1);watched[sample.id]={del:1,t:1};page.build();assert.equal(page.data.n,0);
 page.data.mine='all';page.openSelector({currentTarget:{dataset:{type:'personal'}}});assert.equal(page.data.selectorRows.length,10);// 全部 · 想看 · 已排片 · 看过 · 没看过 · 映后 · 字幕机 · 仅剩最后一场 · 全球首映 · 可凑空档
 assert(page.data.selectorRows.some(r=>r.id==='sub')&&page.data.selectorRows.some(r=>r.id==='last')&&page.data.selectorRows.some(r=>r.id==='wp')&&page.data.selectorRows.some(r=>r.id==='fit'));
-page.chooseFilter({currentTarget:{dataset:{id:'qa'}}});assert.equal(page.data.selectorType,'personal');page.closeSelector();assert.equal(page.data.selectorType,'');assert(page.data.n>0);assert(rows().every(f=>f.event));page.resetFilters();assert.equal(page.data.n,data.films.filter(f=>!f.ev).length);
+page.chooseFilter({currentTarget:{dataset:{id:'qa'}}});assert.equal(page.data.selectorType,'personal');page.closeSelector();assert.equal(page.data.selectorType,'');assert(page.data.n>0);assert(rows().every(f=>f.event));page.resetFilters();assert.equal(page.data.n,data.films.filter(L.catalogueFilm).length);
 /* 多选：同一筛选内多个值是「或」，再点一次取消，全部取消回到 all */assert.equal(L.toggle('all','a'),'a');assert.equal(L.toggle('a','b'),'a,b');assert.equal(L.toggle('a,b','a'),'b');assert.equal(L.toggle('b','b'),'all');assert(L.has('a,b','b')&&!L.has('a,b','c')&&L.has('all','x')&&L.has('','x'));page.data.mine='all';page.chooseFilter({currentTarget:{dataset:{id:'qa'}}});const qaN=page.data.n;page.chooseFilter({currentTarget:{dataset:{id:'planned'}}});assert.equal(page.data.mine,'qa,planned');assert(page.data.n>=qaN);page.chooseFilter({currentTarget:{dataset:{id:'planned'}}});page.chooseFilter({currentTarget:{dataset:{id:'qa'}}});assert.equal(page.data.mine,'all');page.closeSelector();page.resetFilters();
 const original=data.programmes;data.programmes=Array.from({length:20},(_,i)=>({id:'festival-'+i,name:'Programme '+i}));assert.equal(page.filterOptions('programme','').length,21);assert.equal(page.filterOptions('programme','Programme 19').length,1);data.programmes=original;
 console.log('PASS: personal membership, deletion tombstones, programme-scoped plans/events, compound search, mini-program filters/reset and 20-programme search.');

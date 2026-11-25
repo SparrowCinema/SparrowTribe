@@ -119,7 +119,7 @@ Page({
         gifts: (f.gifts || []).map((g, k) => ({ k, label: t(g.label || ''), items: (g.items || []).map(t) }))
       },
       qa: (q => q ? { label: f.qaStart + ' – ' + f.qaEnd, guest: t(f.qaGuest) } : null)(U.qaOf(f)),
-      sfAll: showsAllN, cnt: !showsAllN && f.ended ? t('已下映') : sf.filtered && shows.length !== showsAllN ? t(shows.length + ' / ' + showsAllN + ' 场') : t(showsAllN + ' 场'), sf,
+      sfAll: showsAllN, cnt: !allShows.length && screeningGroups.length ? t('联映场次') : !showsAllN && f.ended ? t('已下映') : sf.filtered && shows.length !== showsAllN ? t(shows.length + ' / ' + showsAllN + ' 场') : t(showsAllN + ' 场'), sf,
       shows, goneShows, goneN: t(goneShows.length + ' 场'), goneOpen: this.data.goneOpen === undefined ? !showsAllN : this.data.goneOpen, ratings, credits, nav, screeningGroups, splitScreening: !!f.screeningParts?.length, parts: (f.parts || []).map((m, i) => { const en = I.isEn(); return { id: idx.F[f.screeningParts?.[i]]?.id || '', n: en ? m.en : m.cn, sub: [en ? m.cn : m.en, m.y, m.min ? m.min + t('分钟') : '', m.c].filter(Boolean).join(' · '), dir: (en && m.dirO) || m.dir || '', src: (en && m.printSourceEn) || m.printSource || '', syn: (en ? m.synEn : m.syn) || '', bio:(en?m.bioEn:m.bio)||'', honors: (m.honors || []).map(honor) }; }), ended: allShows.length > 0 && !shows.length
     });
     this.buildMine();
