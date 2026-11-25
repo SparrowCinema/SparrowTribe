@@ -18,14 +18,16 @@ assert.equal(pingyao.length, 6);
 const splitIds = pingyao.flatMap(f => f.screeningParts);
 assert.equal(new Set(splitIds).size, 12);
 assert.equal(data.shows.filter(s => pingyao.some(f => f.id === s.id)).length, 9);
+// full-data.js 去掉了 parts 等长文字段，联映收录的单片资料从原始专题文件读
+const rawPY=require('../data/programmes/pingyao-2026.json').films,partsOf=id=>(rawPY.find(f=>f.id===id)||{}).parts||[];
 for (const group of pingyao) {
  assert(!L.catalogueFilm(group));
  for (const [i, id] of group.screeningParts.entries()) {
   const film = data.films.find(f => f.id === id);
   assert(film && L.catalogueFilm(film), id + ' must have an independent catalogue entry');
-  assert.equal(film.cn, group.parts[i].cn);
+  assert.equal(film.cn, partsOf(group.id)[i].cn);
   // Existing records can have programme-specific runtimes (the pair keeps its own runtime).
-  if (film.prog === 'pingyao-2026') assert.equal(film.min, group.parts[i].min);
+  if (film.prog === 'pingyao-2026') assert.equal(film.min, partsOf(group.id)[i].min);
   assert.deepStrictEqual(L.screeningGroups(id, [...data.films, group]).map(f => f.id), [group.id]);
  }
 }
