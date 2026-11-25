@@ -4,7 +4,7 @@
 // - GEMINI_API_KEY 保存在 Supabase Edge Function Secrets，永不暴露给前端
 // - 部署方式见 docs/gemini-ticket-ocr.md
 
-const DEFAULT_MODEL = 'gemini-2.5-flash';
+const DEFAULT_MODEL = 'gemini-3.5-flash-lite';
 const MAX_IMAGE_BYTES = 2 * 1024 * 1024; // 2 MB
 const MAX_BASE64_CHARS = Math.ceil((MAX_IMAGE_BYTES * 4) / 3) + 64;
 const UPSTREAM_TIMEOUT_MS = 18_000;
@@ -181,7 +181,6 @@ Deno.serve(async (req: Request) => {
 
   const model = (Deno.env.get('GEMINI_MODEL') || DEFAULT_MODEL).trim();
   const generationConfig: Record<string, unknown> = {
-    temperature: 0,
     maxOutputTokens: 512,
     responseMimeType: 'application/json',
     responseSchema: {

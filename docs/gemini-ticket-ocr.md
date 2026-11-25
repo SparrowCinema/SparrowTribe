@@ -16,7 +16,7 @@
 1. 访问 [Google AI Studio](https://aistudio.google.com/) 并登录 Google 账号。
 2. 点击右上角或左侧菜单的 **Get API key → Create API key**，生成一把 Gemini API Key。
 3. 建议在对应 Google Cloud 项目中设置**预算提醒 / 每日配额上限**，防止异常流量产生超额费用。
-4. 默认模型为 `gemini-2.5-flash`（支持多模态图文与 JSON Schema 输出，速度快且单次识票成本极低）。
+4. 默认模型为 `gemini-3.5-flash-lite`（支持多模态图文与 JSON Schema 输出，默认极简思考、速度快且单次识票成本极低）。
 
 ---
 
@@ -35,7 +35,7 @@ supabase link --project-ref dclxhxxjktegyiwafmsv
 supabase secrets set GEMINI_API_KEY="你的_GEMINI_API_KEY"
 
 # 可选：自定义模型或限流参数（不设则使用默认值）
-# supabase secrets set GEMINI_MODEL="gemini-2.5-flash"
+# supabase secrets set GEMINI_MODEL="gemini-3.5-flash-lite"
 # supabase secrets set AI_RATE_LIMIT="12"
 # supabase secrets set AI_RATE_WINDOW_MS="600000"
 
@@ -46,7 +46,7 @@ supabase functions deploy ticket-ai --workdir backend --no-verify-jwt
 ### 方式 B：在 Supabase 网页后台直接部署
 
 1. 打开 Supabase 控制台 → 选中项目 `dclxhxxjktegyiwafmsv`。
-2. 进入 **Edge Functions → Secrets**，新增 `GEMINI_API_KEY` 并填入第一步拿到的 Key。
+2. 进入 **Edge Functions → Secrets**，新增 `GEMINI_API_KEY` 并填入第一步拿到的 Key（如需覆写模型可额外配置 `GEMINI_MODEL`）。
 3. 进入 **Edge Functions → Deploy a new function**，函数名填写 `ticket-ai`，把 `backend/supabase/functions/ticket-ai/index.ts` 的内容完整粘贴进去。
 4. 在函数设置中关闭 **Verify JWT**（与现有公开 `publishable` key 调用方式一致），点击 **Deploy**。
 
@@ -81,7 +81,7 @@ curl -X POST "https://dclxhxxjktegyiwafmsv.supabase.co/functions/v1/smooth-proce
     "format": "4K修复"
   },
   "raw": "...",
-  "model": "gemini-2.5-flash"
+  "model": "gemini-3.5-flash-lite"
 }
 ```
 
