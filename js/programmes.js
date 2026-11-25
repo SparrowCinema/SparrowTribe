@@ -108,7 +108,7 @@ function venuesEntryHTML(p){
 /* 影院地图与交通（2026-11-26）：手机与平板上地图吸在顶栏下方，只有影院列表滚动；宽屏（≥900px）左右分栏，列表在左、地图在右。
    点影院卡片、地图上的编号或「看本院影片与排片」，展开这家影院在本专题的影片与排片（规则在 shared/venue-board.js，与小程序 pages/venues 一致）。
    选中的影院、筛选和地图视角按专题记在内存里：加入排片、数据自动更新时只换影院列表，地图不重建。 */
-let vmState=null, vmMode="street", vmPid="", vmSel="", vmPick={film:"",day:undefined};
+let vmState=null, vmMode="street", vmPid="", vmSel="", vmPick={film:"",day:undefined}, vmTapAt=0, vmTapId="";
 function vmUse(pid,rows){ if(vmPid===pid)return; vmPid=pid; vmSel=rows.length===1?rows[0].v.id:""; vmPick={film:"",day:undefined}; vmState=null; }
 function vmMercX(lon,z){return ((lon+180)/360)*256*Math.pow(2,z);}
 function vmMercY(lat,z){const r=lat*Math.PI/180;return (1-Math.log(Math.tan(r)+1/Math.cos(r))/Math.PI)/2*256*Math.pow(2,z);}
@@ -227,14 +227,17 @@ function venueMapHTML(rows){
   if(!pts.length){vmState=null;return "";}
   if(vmState&&vmState.pid===vmPid&&vmState.pts.length===pts.length)vmState.pts=pts; // 同一专题重新进入：保留拖动、缩放后的视角
   else{const fit=venueMapFit(pts,640,340);vmState={pid:vmPid,pts,fit,z:fit.z,lat:fit.lat,lon:fit.lon,activeId:"",fresh:true};}
-  return `<div class="vm-pin"><figure class="vm-wrap"><div class="vm-stage" id="vm-stage" aria-label="${esc(tr("展映影院地图"))}"><div class="vm-tiles" aria-hidden="true"></div><div class="vm-paper" aria-hidden="true"></div><svg class="vm-svg" role="img" aria-label="${esc(tr("展映影院地图"))}"></svg><div class="vm-ctrls"><div class="vm-seg" role="group" aria-label="${esc(tr("地图风格"))}"><button type="button" data-vm-mode="street" class="${vmMode==="street"?"on":""}">${esc(tr("街道地图"))}</button><button type="button" data-vm-mode="sketch" class="${vmMode==="sketch"?"on":""}">${esc(tr("手绘地图"))}</button></div><div class="vm-zbtns"><button type="button" data-vm-act="in" aria-label="${esc(tr("放大"))}">＋</button><button type="button" data-vm-act="out" aria-label="${esc(tr("缩小"))}">－</button><button type="button" data-vm-act="fit" aria-label="${esc(tr("重置视角"))}">⌖</button></div></div></div><figcaption>${esc(tr("拖动或缩放地图 · 点击影院查看影片与排片"))}</figcaption></figure></div>`;
+  return `<div class="vm-dock"><figure class="vm-wrap"><div class="vm-stage" id="vm-stage" aria-label="${esc(tr("展映影院地图"))}"><div class="vm-tiles" aria-hidden="true"></div><div class="vm-paper" aria-hidden="true"></div><svg class="vm-svg" role="img" aria-label="${esc(tr("展映影院地图"))}"></svg><div class="vm-ctrls"><div class="vm-seg" role="group" aria-label="${esc(tr("地图风格"))}"><button type="button" data-vm-mode="street" class="${vmMode==="street"?"on":""}">${esc(tr("街道地图"))}</button><button type="button" data-vm-mode="sketch" class="${vmMode==="sketch"?"on":""}">${esc(tr("手绘地图"))}</button></div><div class="vm-zbtns"><button type="button" data-vm-act="in" aria-label="${esc(tr("放大"))}">＋</button><button type="button" data-vm-act="out" aria-label="${esc(tr("缩小"))}">－</button><button type="button" data-vm-act="fit" aria-label="${esc(tr("重置视角"))}">⌖</button></div></div></div><figcaption>${esc(tr("拖动或缩放地图 · 点击影院查看影片与排片"))}</figcaption></figure></div>`;
 }
 function bindVenueMapDrag(){
   const stage=document.getElementById("vm-stage"); if(!stage||stage._vmBound)return;
   stage._vmBound=true;
   let drag=null;
+  let tap=null; // 点影院标记：手指抬起时就选中（iPhone / 微信内置浏览器点 SVG 有时不触发 click），随后的 click 不再重复处理
   stage.addEventListener("pointerdown",e=>{
-    if(e.target.closest("button,[data-vpin]"))return;
+    const pg=e.target.closest("[data-vpin]");
+    if(pg){tap={id:pg.dataset.vpin,x:e.clientX,y:e.clientY};return;}
+    if(e.target.closest("button"))return;
     if(!vmState)return;
     drag={id:e.pointerId,x:e.clientX,y:e.clientY,cx:vmMercX(vmState.lon,vmState.z),cy:vmMercY(vmState.lat,vmState.z)};
     stage.setPointerCapture?.(e.pointerId);
@@ -247,6 +250,11 @@ function bindVenueMapDrag(){
     const n=Math.PI-2*Math.PI*(ny/scale);
     vmState.lat=Math.max(-85,Math.min(85,(180/Math.PI)*Math.atan(0.5*(Math.exp(n)-Math.exp(-n)))));
     renderVenueMap();
+  });
+  stage.addEventListener("pointerup",e=>{
+    if(!tap)return; const t=tap; tap=null;
+    if(Math.hypot(e.clientX-t.x,e.clientY-t.y)>12)return;
+    vmTapAt=Date.now(); vmTapId=t.id; vmSelect(t.id);
   });
   const end=()=>{drag=null;};
   stage.addEventListener("pointerup",end);
@@ -325,14 +333,14 @@ function venuesPage(pid){
 }
 // 地图吸顶的位置：紧贴顶栏底边（顶栏高度随内容变化，量一下再定）
 function vmPinTop(){
-  const pg=document.querySelector(".vm-page"),pin=document.querySelector(".vm-pin"),tb=document.getElementById("topbar");if(!pg||!tb)return;
+  const pg=document.querySelector(".vm-page"),pin=document.querySelector(".vm-dock"),tb=document.getElementById("topbar");if(!pg||!tb)return;
   const b=tb.getBoundingClientRect().bottom,z=parseFloat(getComputedStyle(main).zoom)||1; // 专题类页面整体缩放（#main.prog-scale{zoom:.9}），吸顶位置要换算回缩放前的长度
   if(pin&&b>0)pin.style.setProperty("--vm-top",(b/z).toFixed(2)+"px");
   pg.style.setProperty("--vm-list",(vmListTop()/z).toFixed(2)+"px"); // 展开的影院标题条吸在地图下沿
 }
 // 影院列表可见区域的上沿：地图吸在列表上方时是地图底边；宽屏左右分栏或矮屏不吸顶时是顶栏底边
 function vmListTop(){
-  const tb=document.getElementById("topbar"),top=tb?Math.max(0,tb.getBoundingClientRect().bottom):0,pin=document.querySelector(".vm-pin"),cards=document.querySelector(".vm-cards");
+  const tb=document.getElementById("topbar"),top=tb?Math.max(0,tb.getBoundingClientRect().bottom):0,pin=document.querySelector(".vm-dock"),cards=document.querySelector(".vm-cards");
   if(!pin||!cards||getComputedStyle(pin).position!=="sticky")return top;
   const pr=pin.getBoundingClientRect(),cr=cards.getBoundingClientRect();
   if(pr.left>=cr.right-1||pr.right<=cr.left+1)return top;
@@ -373,7 +381,7 @@ document.addEventListener("click",e=>{
   const vf=e.target.closest("[data-vfocus]");
   if(vf){vmSelect(vf.dataset.vfocus,true);return;}
   const pin=e.target.closest("[data-vpin]");
-  if(pin){vmSelect(pin.dataset.vpin);return;}
+  if(pin){if(!(vmTapId===pin.dataset.vpin&&Date.now()-vmTapAt<800))vmSelect(pin.dataset.vpin);return;}
   const sel=e.target.closest("[data-vsel]");
   if(sel){vmSelect(vmSel===sel.dataset.vsel?"":sel.dataset.vsel);return;}
   const fb=e.target.closest("[data-vbfilm]");

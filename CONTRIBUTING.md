@@ -121,7 +121,7 @@ Claude 与 GPT 可能使用同一 GitHub 身份，审批人数可先设为0；�
 
 ## 影院地图与交通：地图固定、点影院看排片（2026-11-26，网站与小程序同步）
 
-- 专题的「影院地图与交通」页（网站 `#venues-<专题id>`，小程序 `pages/venues`）：上滑时地图不动，只有影院列表滚动。网站用吸顶（`.vm-pin` 吸在顶栏下沿，`--vm-top` 由 `vmPinTop` 按顶栏实际高度并换算 `#main.prog-scale` 的 `zoom:.9`）；宽屏（≥900px）左右分栏，列表在左、地图在右；矮屏（高 <560px，如横屏手机）地图不吸顶。小程序页面 `disableScroll`，地图在上方，影院列表是 `scroll-view`（回到顶部、滚到某张卡片都用 `scroll-into-view`）。
+- 专题的「影院地图与交通」页（网站 `#venues-<专题id>`，小程序 `pages/venues`）：上滑时地图不动，只有影院列表滚动。网站用吸顶（`.vm-dock` 吸在顶栏下沿（注意 `.vm-pin` 是地图上的影院标记，不要混用），`--vm-top` 由 `vmPinTop` 按顶栏实际高度并换算 `#main.prog-scale` 的 `zoom:.9`）；宽屏（≥900px）左右分栏，列表在左、地图在右；矮屏（高 <560px，如横屏手机）地图不吸顶。小程序页面 `disableScroll`，地图在上方，影院列表是 `scroll-view`（回到顶部、滚到某张卡片都用 `scroll-into-view`）。
 - 点影院卡片、地图上的编号 / 标记或「看本院影片与排片」，展开这家影院在本专题的影片与排片：海报条（点海报只看这部，再点取消）、日期条（待映超过 24 场时默认只看最近一天）、按日期分组的待映场次（每场可加入排片，小程序加入时照常请求开场提醒）。只显示即将放映和正在放映的影片与场次：已散场的场次、在这家影院已放完的影片都不列，卡片上的数字也只数待映的（没有待映时显示「暂无待映场次」）。一次只展开一家；地图同时移到这家影院并高亮。网站展开后影院标题条吸在地图下沿（`--vm-list`）。
 - 规则在 `shared/venue-board.js`（`board()`，小程序副本由 `node tools/build-fallback.js` 复制），测试 `tools/check-venue-board.js`、`tools/check-venues-mp.js`（随 check-companion 运行）。网站代码在 `js/programmes.js`（`venueCardsHTML` / `venueBoardHTML` / `vmSelect`），选中的影院、筛选和地图视角按专题记在内存里；加入排片、数据自动更新时只换影院列表，地图不重建。
 - 小程序页面代码改动需在微信开发者工具上传新版本并提交审核。
