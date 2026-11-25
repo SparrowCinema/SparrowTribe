@@ -63,7 +63,7 @@ function route(){
   else if(h==="stats") statsPage();
   else if(h==="poster-wall") posterWallPage();
   else if(h==="ticket-wall") {if(changing){ticketDraft=null;ticketMode="album";ticketPick=null;ticketExportOpen=false;if(ticketFilmJump)ticketFilmJump=false;else ticketQ.film="";}ticketWallPage();}
-  else if(h==="taste-map") { if(window.SparrowTasteReport) tasteMapPage(); else { main.innerHTML='<p class="muted" style="padding:40px 0;text-align:center">'+tr("加载中…")+'</p>'; loadLib("tasteReport").then(()=>{ if((location.hash.slice(1)||"schedule")==="taste-map") tasteMapPage(); }).catch(()=>{ main.innerHTML='<p class="muted" style="padding:40px 0;text-align:center">'+tr("加载失败，请检查网络后刷新")+'</p>'; }); } }
+  else if(h==="taste-map") { if(window.SparrowTasteReport&&window.SparrowTastePortrait) tasteMapPage(); else { main.innerHTML='<p class="muted" style="padding:40px 0;text-align:center">'+tr("加载中…")+'</p>'; Promise.all([loadLib("tasteReport"),loadLib("tastePortrait")]).then(()=>{ if((location.hash.slice(1)||"schedule")==="taste-map") tasteMapPage(); }).catch(()=>{ main.innerHTML='<p class="muted" style="padding:40px 0;text-align:center">'+tr("加载失败，请检查网络后刷新")+'</p>'; }); } }
   else if(h==="guide") guidePage();
   else if(h==="install") installPage();
   else if(h==="export") exportPage();

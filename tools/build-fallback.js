@@ -48,6 +48,9 @@ console.log('share-poster.js copied');
 // 趣味图谱长图：shared/taste-report.js 复制给小程序
 fs.writeFileSync(path.join(root, 'miniprogram/packages/collect/utils/taste-report.js'), '/* 由 tools/build-fallback.js 从 shared/taste-report.js 复制，请改 shared/taste-report.js 后重新运行。 */\n' + fs.readFileSync(path.join(root, 'shared/taste-report.js'), 'utf8'));
 console.log('taste-report.js copied');
+// AI 观影画像 / 评语：shared/taste-portrait.js 复制给小程序分包
+fs.writeFileSync(path.join(root, 'miniprogram/packages/collect/utils/taste-portrait.js'), '/* 由 tools/build-fallback.js 从 shared/taste-portrait.js 复制，请改 shared/taste-portrait.js 后重新运行。 */\n' + fs.readFileSync(path.join(root, 'shared/taste-portrait.js'), 'utf8'));
+console.log('taste-portrait.js copied');
 // 使用指南：shared/guide.js 复制给小程序分包，末尾附 data/guide.json 作离线兜底（联网后用 getData 返回的 guide，改手册不用重新上传小程序）
 { const gd = JSON.parse(fs.readFileSync(path.join(root, 'data/guide.json'), 'utf8')); delete gd.note;
   fs.writeFileSync(path.join(root, 'miniprogram/packages/collect/utils/guide.js'), '/* 由 tools/build-fallback.js 从 shared/guide.js 复制并附上 data/guide.json，请改那两个文件后重新运行。 */\n' + fs.readFileSync(path.join(root, 'shared/guide.js'), 'utf8') + '\nmodule.exports.DATA = ' + JSON.stringify(gd) + ';\n'); }
