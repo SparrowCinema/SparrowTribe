@@ -9,14 +9,13 @@
                    day 为 undefined（没选过）时按默认规则：待映场次超过 o.allMax（默认 24）场时只看最近一天，否则看全部日期；
                    day 为 '' 表示用户选了「全部日期」；所选影片 / 日期已经不存在时自动回到默认
    返回：
-     films   [{id, n 场次数, up 待映场次数, next 下一场, last 最近放映过的一场}]
-             有待映场次的在前（按下一场先后），只剩已放映的在后（按最近一场由近及远）；活动场次（影片带 ev）不列
-     filmN   影片数（不含活动）；upN / pastN 待映 / 已放映场次数（含活动，不受筛选影响）
+     只显示即将放映和正在放映的影片与场次（2026-11-26 用户要求）：已散场的场次、在这家影院已全部放完的影片都不列
+     films   [{id, n 待映场次数, next 下一场}]，按下一场先后；活动场次（影片带 ev）不列
+     filmN   有待映场次的影片数（不含活动）；upN 待映场次数（含活动，不受筛选影响）；pastN 已散场场次数（只作统计，不显示）
      film / day  实际生效的筛选（'' 为全部）
      days    [{key, n, first}] 待映日期（已按所选影片筛过），first 为当天第一场，用来显示日期与星期
      up      [{key, first, shows:[…]}] 待映场次按日期分组，时间先后；已按影片和日期筛过
-     past    [{key, first, shows:[…]}] 已放映场次按日期分组，日期由近及远、同一天按时间先后；只按影片筛
-     upShown / pastShown  筛选后的待映 / 已放映场次数 */
+     upShown 筛选后的待映场次数 */
 (function (root, factory) { if (typeof module === 'object' && module.exports) module.exports = factory(); else root.SparrowVenueBoard = factory(); })(typeof globalThis !== 'undefined' ? globalThis : this, function () {
   var ALL_MAX = 24;
   function group(list, day) {
@@ -36,20 +35,16 @@
     list.sort(function (a, b) { return a.t - b.t; });
     var up = [], gone = [], byFilm = {}, order = [];
     list.forEach(function (x) {
-      (x.past ? gone : up).push(x.s);
+      if (x.past) { gone.push(x.s); return; }
+      up.push(x.s);
       if (film(x.s.id).ev) return;
       var m = byFilm[x.s.id];
-      if (!m) { m = byFilm[x.s.id] = { id: x.s.id, n: 0, up: 0, next: null, last: null, _n: 0, _l: 0 }; order.push(m); }
+      if (!m) { m = byFilm[x.s.id] = { id: x.s.id, n: 0, next: x.s }; order.push(m); }
       m.n++;
-      if (x.past) { m.last = x.s; m._l = x.t; } else { m.up++; if (!m.next) { m.next = x.s; m._n = x.t; } }
     });
-    var films = order.slice().sort(function (a, b) {
-      if (!!a.up !== !!b.up) return a.up ? -1 : 1;
-      return a.up ? a._n - b._n : b._l - a._l;
-    }).map(function (m) { return { id: m.id, n: m.n, up: m.up, next: m.next, last: m.last }; });
+    var films = order; // 场次已按开场先后排好，影片顺序即下一场先后
     var fsel = pick.film && byFilm[pick.film] ? pick.film : '';
-    var byF = function (s) { return !fsel || s.id === fsel; };
-    var upF = up.filter(byF), goneF = gone.filter(byF);
+    var upF = up.filter(function (s) { return !fsel || s.id === fsel; });
     var days = group(upF, day).map(function (g) { return { key: g.key, n: g.shows.length, first: g.first }; });
     var dsel = '';
     if (pick.day && days.some(function (d) { return d.key === pick.day; })) dsel = pick.day;
@@ -58,8 +53,7 @@
     return {
       films: films, filmN: films.length, upN: up.length, pastN: gone.length,
       film: fsel, day: dsel, days: days,
-      up: group(shown, day), past: group(goneF, day).reverse(),
-      upShown: shown.length, pastShown: goneF.length
+      up: group(shown, day), upShown: shown.length
     };
   }
   return { board: board, ALL_MAX: ALL_MAX };

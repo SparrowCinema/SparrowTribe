@@ -94,7 +94,7 @@ function progVenuesOf(pid){
     const hallIds=[...new Set(vs.map(s=>s.h))];
     const halls=(v.halls||[]).filter(h=>hallIds.includes(h.id));
     const hasAcc=!!(v.access?.length||halls.some(h=>h.access?.length));
-    const filmN=new Set(vs.filter(s=>F[s.id]&&!F[s.id].ev).map(s=>s.id)).size;
+    const filmN=new Set(up.filter(s=>F[s.id]&&!F[s.id].ev).map(s=>s.id)).size; // 只数还有待映场次的影片
     return {v, total:vs.length, up:up.length, halls, hasAcc, filmN};
   });
 }
@@ -108,8 +108,8 @@ function venuesEntryHTML(p){
 /* 影院地图与交通（2026-11-26）：手机与平板上地图吸在顶栏下方，只有影院列表滚动；宽屏（≥900px）左右分栏，列表在左、地图在右。
    点影院卡片、地图上的编号或「看本院影片与排片」，展开这家影院在本专题的影片与排片（规则在 shared/venue-board.js，与小程序 pages/venues 一致）。
    选中的影院、筛选和地图视角按专题记在内存里：加入排片、数据自动更新时只换影院列表，地图不重建。 */
-let vmState=null, vmMode="street", vmPid="", vmSel="", vmPick={film:"",day:undefined}, vmPastOpen=false;
-function vmUse(pid,rows){ if(vmPid===pid)return; vmPid=pid; vmSel=rows.length===1?rows[0].v.id:""; vmPick={film:"",day:undefined}; vmPastOpen=false; vmState=null; }
+let vmState=null, vmMode="street", vmPid="", vmSel="", vmPick={film:"",day:undefined};
+function vmUse(pid,rows){ if(vmPid===pid)return; vmPid=pid; vmSel=rows.length===1?rows[0].v.id:""; vmPick={film:"",day:undefined}; vmState=null; }
 function vmMercX(lon,z){return ((lon+180)/360)*256*Math.pow(2,z);}
 function vmMercY(lat,z){const r=lat*Math.PI/180;return (1-Math.log(Math.tan(r)+1/Math.cos(r))/Math.PI)/2*256*Math.pow(2,z);}
 function vmUseOverseas(pts,lat,lon,z){
@@ -278,23 +278,21 @@ function vbRowHTML(s,pid){
   const tags=(EV_RE.test(note)?`<em class="ev-tag">${esc(tr("映后活动"))}</em>`:"")+(subOf(note)?`<em class="ev-tag sub-tag">${esc(tr("字幕机"))}</em>`:"")+(audLbl?`<em class="aud-tag">${esc(audLbl)}</em>`:"")+(acc.length?`<em class="acc-pill" title="${esc(acc.map(tr).join(" · "))}">${esc(tr("无障碍"))}</em>`:"");
   return `<div class="vb-row${gone?" past":""}"><button type="button" class="vb-go" data-film="${esc(s.id)}"><span class="vb-tm"><b>${s.t}</b>${end?`<small>${end}</small>`:""}</span><span class="vb-bar fc" style="--h:${fhue(s.id)}"></span><span class="vb-nm"><b>${esc(vbTitle(f,pid))}${editionHTML(f)}</b><small><span class="hall-tag">${esc(hall)}</span>${tags}</small></span></button>${gone?"":planToggleHTML(s)}</div>`;
 }
-// 一家影院的影片与排片：海报条（点海报只看这部，再点取消）、日期条、待映场次（按日期分组，可加入排片）、已放映（折叠）
+// 一家影院的影片与排片（只显示即将放映和正在放映的）：海报条（点海报只看这部，再点取消）、日期条、待映场次（按日期分组，可加入排片）
 function venueBoardHTML(pid,vid){
   const b=venueBoardOf(pid,vid),en=LANG==="en";
-  if(!b.upN&&!b.pastN)return `<p class="vb-empty">${esc(tr("暂无排片"))}</p>`;
-  const films=b.films.length?`<div class="vb-films" role="group" aria-label="${esc(tr("本院影片"))}">${b.films.map(x=>{const f=F[x.id],on=b.film===x.id,title=vbTitle(f,pid),when=x.next?x.next.d+" "+x.next.t:tr("已放映");return `<button type="button" class="vb-film${on?" on":""}${x.up?"":" gone"}" data-vbfilm="${esc(x.id)}" aria-pressed="${on}" title="${esc(title)}">${pst(x.id)?pimg(x.id,360,`alt="" loading="lazy"`):`<span class="vb-ph fc" style="--h:${fhue(x.id)}">${esc(title.slice(0,1))}</span>`}<b>${esc(title)}</b><small>${[editionOf(f),when].filter(Boolean).map(esc).join(" · ")}</small></button>`;}).join("")}</div>`:"";
+  if(!b.upN)return `<p class="vb-empty">${esc(tr("暂无待映场次"))}</p>`;
+  const films=b.films.length?`<div class="vb-films" role="group" aria-label="${esc(tr("本院影片"))}">${b.films.map(x=>{const f=F[x.id],on=b.film===x.id,title=vbTitle(f,pid),when=x.next.d+" "+x.next.t;return `<button type="button" class="vb-film${on?" on":""}" data-vbfilm="${esc(x.id)}" aria-pressed="${on}" title="${esc(title)}">${pst(x.id)?pimg(x.id,360,`alt="" loading="lazy"`):`<span class="vb-ph fc" style="--h:${fhue(x.id)}">${esc(title.slice(0,1))}</span>`}<b>${esc(title)}</b><small>${[editionOf(f),when].filter(Boolean).map(esc).join(" · ")}</small></button>`;}).join("")}</div>`:"";
   const ft=b.film?vbTitle(F[b.film],pid):"",filt=b.film?`<div class="vb-filt"><span><i>${esc(tr("只看"))}</i><b>${esc(en?"“"+ft+"”":"《"+ft+"》")}</b></span><button type="button" class="text-button" data-vbfilm="">${esc(tr("看全部影片"))}</button></div>`:"";
   const days=b.days.length>1?`<div class="vb-days" role="group" aria-label="${esc(tr("放映日期"))}"><button type="button" class="vb-day${b.day?"":" on"}" data-vbday="" aria-pressed="${!b.day}"><b>${esc(tr("全部日期"))}</b><small>${esc(tr(b.days.reduce((n,d)=>n+d.n,0)+" 场"))}</small></button>${b.days.map(d=>`<button type="button" class="vb-day${b.day===d.key?" on":""}" data-vbday="${esc(d.key)}" aria-pressed="${b.day===d.key}"><b>${esc(vbDay(d.first))}</b><small>${esc(tr(d.n+" 场"))}</small></button>`).join("")}</div>`:"";
   const groups=gs=>gs.map(g=>`<section class="vb-dg"><h4 class="vb-dh"><b>${esc(vbDay(g.first))}</b><small>${esc(tr(g.shows.length+" 场"))}</small></h4>${g.shows.map(s=>vbRowHTML(s,pid)).join("")}</section>`).join("");
-  const up=b.upShown?groups(b.up):`<p class="vb-empty">${esc(tr(b.film?"这部影片在本院没有待映场次":"本院在本专题的场次已全部放映"))}</p>`;
-  const past=b.pastShown?`<div class="vb-past"><button type="button" class="vb-past-t" data-vbpast aria-expanded="${vmPastOpen}"><span>${esc(tr("已放映 "+b.pastShown+" 场"))}</span>${vbChevron}</button>${vmPastOpen?groups(b.past):""}</div>`:"";
-  return films+filt+days+`<div class="vb-list">${up}</div>`+past;
+  return films+filt+days+`<div class="vb-list">${groups(b.up)}</div>`;
 }
 function venueCardsHTML(pid,rows){
   return rows.map((r,i)=>{
     const v=r.v, num=String(i+1).padStart(2,"0"), mapUrl=typeof SparrowPlanner!=="undefined"?SparrowPlanner.mapURL(v):"", sel=vmSel===v.id, id=esc(v.id);
     const trRows=v.transit?[["地铁",v.transit.metro],["公交",v.transit.bus],["停车",v.transit.parking],["提示",v.transit.note]].filter(x=>x[1]):[];
-    const cnt=[r.filmN?tr(r.filmN+" 部"):"",r.up?tr("待映 "+r.up+" 场"):tr("已放映 "+r.total+" 场")].filter(Boolean).join(" · ");
+    const cnt=r.up?[r.filmN?tr(r.filmN+" 部"):"",tr("待映 "+r.up+" 场")].filter(Boolean).join(" · "):tr("暂无待映场次");
     return `<article class="vm-card${sel?" hi open":""}" id="vc-${id}"><header class="vm-ch" data-vsel="${id}"><button type="button" class="vm-idx mono" data-vfocus="${id}" title="${esc(tr("在地图上定位"))}">${num}</button><div class="vm-ct"><h3><button type="button" class="vm-name" data-vsel="${id}" aria-expanded="${sel}" aria-controls="vb-${id}">${esc(v.name)}</button></h3><small>${esc([v.city?tr(v.city):"",v.addr||""].filter(Boolean).join(" · "))}</small></div>${mapUrl?`<a class="secondary-button vm-nav" href="${esc(mapUrl)}" target="_blank" rel="noopener noreferrer">${esc(tr("地图导航"))} ↗</a>`:""}</header>${r.halls.length?`<div class="vm-halls">${r.halls.map(h=>{const acc=[...(v.access||[]),...(h.access||[])];return `<span class="vm-hall">${esc(h.name)}${acc.length?` <em>${esc(tr("无障碍"))}</em>`:""}</span>`;}).join("")}</div>`:""}${trRows.length?`<dl class="vm-tr">${trRows.map(([k,val])=>`<dt>${esc(tr(k))}</dt><dd>${esc(val)}</dd>`).join("")}</dl>`:""}<button type="button" class="vm-open" data-vsel="${id}" aria-expanded="${sel}" aria-controls="vb-${id}" aria-label="${esc(tr(sel?"收起本院影片与排片":"看本院影片与排片"))}"><span>${sel?`<b>${esc(stripCity(v.short||v.name,v))}</b>`:esc(tr("看本院影片与排片"))}</span><em class="mono">${esc(cnt)}</em>${vbChevron}</button>${sel?`<div class="vm-board" id="vb-${id}">${venueBoardHTML(pid,v.id)}</div>`:""}</article>`;
   }).join("")||`<div class="fd-noshow"><b>${esc(tr("暂无影院排片信息"))}</b></div>`;
 }
@@ -347,7 +345,7 @@ function vmScrollTo(vid){
 }
 // 选中 / 取消一家影院：地图把它移到中间并高亮，卡片展开影片与排片，列表滚到这张卡片
 function vmSelect(id,zoom){
-  vmSel=id||""; vmPick={film:"",day:undefined}; vmPastOpen=false;
+  vmSel=id||""; vmPick={film:"",day:undefined};
   if(vmState){
     const pt=vmSel&&vmState.pts.find(x=>x.v.id===vmSel);
     vmState.activeId=pt?vmSel:"";
@@ -381,8 +379,7 @@ document.addEventListener("click",e=>{
   const fb=e.target.closest("[data-vbfilm]");
   if(fb){vmPick.film=vmPick.film===fb.dataset.vbfilm?"":fb.dataset.vbfilm;vmPick.day=undefined;vmBoardRefresh();return;}
   const db=e.target.closest("[data-vbday]");
-  if(db){vmPick.day=db.dataset.vbday;vmBoardRefresh();return;}
-  if(e.target.closest("[data-vbpast]")){vmPastOpen=!vmPastOpen;vmBoardRefresh();}
+  if(db){vmPick.day=db.dataset.vbday;vmBoardRefresh();}
 });
 function progPage(pid){
   if(sectionProgramme!==pid){sectionFilter="";sectionProgramme=pid;}

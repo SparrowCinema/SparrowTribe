@@ -1581,7 +1581,7 @@ button,summary,a,label,select,[role=button],[data-pp],.my-entry{touch-action:man
 .vm-xrow span{color:var(--teal);font-size:11px;white-space:nowrap}
 @media(max-width:480px){.vm-ch{flex-wrap:wrap}.vm-nav{margin-left:40px}.vm-xrow{flex-direction:column;align-items:flex-start;gap:3px}}
 /* 影院地图与交通（2026-11-26）：地图吸在顶栏下方，只有影院列表滚动（--vm-top 由 vmPinTop 按顶栏实际高度设置）；宽屏左右分栏。
-   点影院展开「本院影片与排片」：海报条、日期条、按日期分组的场次（可加入排片）、已放映（折叠） */
+   点影院展开「本院影片与排片」（只显示即将放映和正在放映的）：海报条、日期条、按日期分组的场次（可加入排片） */
 .vm-pin{position:sticky;top:var(--vm-top,calc(env(safe-area-inset-top,0px) + 61px));z-index:6;margin:10px 0 12px;padding:6px 0 10px;background:var(--bg)}
 .vm-pin::after{content:"";position:absolute;left:0;right:0;top:100%;height:12px;background:linear-gradient(var(--bg),color-mix(in srgb,var(--bg) 0%,transparent));pointer-events:none}
 .vm-pin .vm-wrap{margin:0}
@@ -1618,7 +1618,6 @@ button,summary,a,label,select,[role=button],[data-pp],.my-entry{touch-action:man
 .vb-film small{font:var(--t-xs)/1.3 var(--f-mono);color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .vb-film.on img,.vb-film.on .vb-ph{border-color:var(--accent)!important;box-shadow:0 0 0 2px color-mix(in srgb,var(--accent) 25%,transparent)}
 .vb-film.on b{color:var(--accent)}
-.vb-film.gone img,.vb-film.gone .vb-ph{opacity:.55}
 .vb-filt{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:2px 0 8px;padding:4px 4px 4px 10px;border-radius:var(--r-s);background:color-mix(in srgb,var(--accent) 8%,transparent);font-size:var(--t-s)}
 .vb-filt span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .vb-filt i{font-style:normal;color:var(--muted);margin-right:2px}
@@ -1634,7 +1633,6 @@ button,summary,a,label,select,[role=button],[data-pp],.my-entry{touch-action:man
 .vb-dh b{font:600 var(--t-s) var(--f-mono)}
 .vb-dh small{font-size:var(--t-xs);font-weight:400;color:var(--muted)}
 .vb-row{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:8px;border-bottom:1px solid var(--line-soft)}
-.vb-row.past{opacity:.62}
 .vb-go{display:grid;grid-template-columns:44px 4px minmax(0,1fr);gap:10px;align-items:center;width:100%;min-width:0;padding:10px 0;text-align:left;cursor:pointer}
 .vb-tm{display:flex;flex-direction:column;font-family:var(--f-mono);font-variant-numeric:tabular-nums;line-height:1.35}
 .vb-tm b{font-size:var(--t-m);font-weight:600}
@@ -1648,11 +1646,7 @@ button,summary,a,label,select,[role=button],[data-pp],.my-entry{touch-action:man
 .vb-row .plan-toggle{font-size:var(--t-xs);padding:6px 8px}
 @media(hover:hover){.vb-go:hover .vb-nm b{color:var(--accent)}.vb-film:hover b{color:var(--accent)}}
 .vb-empty{margin:10px 0 4px;padding:12px;border:1px dashed var(--line);border-radius:var(--r-s);text-align:center;font-size:var(--t-s);color:var(--muted)}
-.vb-past{margin-top:12px}
-.vb-past-t{display:flex;align-items:center;justify-content:space-between;width:100%;padding:10px 2px;border-top:1px dashed var(--line);font-size:var(--t-s);color:var(--muted);cursor:pointer}
-.vb-past-t svg{width:14px;height:14px;transition:transform .2s}
-.vb-past-t[aria-expanded="true"] svg{transform:rotate(180deg)}
-@media(prefers-reduced-motion:reduce){.vm-open svg,.vb-past-t svg{transition:none}}
+@media(prefers-reduced-motion:reduce){.vm-open svg{transition:none}}
 
 /* 纯私密个人笔记、端到端加密同步、备份健康状态、Letterboxd/豆瓣 CSV 互通（2026-11-24） */
 .nt-row .nt-val{flex:1;min-width:0;display:flex;align-items:center;flex-wrap:wrap;gap:6px;font-size:var(--t-m);color:var(--fg);overflow:hidden;text-overflow:ellipsis}
