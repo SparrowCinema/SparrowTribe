@@ -63,7 +63,7 @@ function route(){
   else if(h==="stats") statsPage();
   else if(h==="poster-wall") posterWallPage();
   else if(h==="ticket-wall") {if(changing){ticketDraft=null;ticketMode="album";ticketPick=null;ticketExportOpen=false;if(ticketFilmJump)ticketFilmJump=false;else ticketQ.film="";}ticketWallPage();}
-  else if(h==="taste-map") tasteMapPage();
+  else if(h==="taste-map") { if(window.SparrowTasteReport) tasteMapPage(); else { main.innerHTML='<p class="muted" style="padding:40px 0;text-align:center">'+tr("加载中…")+'</p>'; loadLib("tasteReport").then(()=>{ if((location.hash.slice(1)||"schedule")==="taste-map") tasteMapPage(); }).catch(()=>{ main.innerHTML='<p class="muted" style="padding:40px 0;text-align:center">'+tr("加载失败，请检查网络后刷新")+'</p>'; }); } }
   else if(h==="guide") guidePage();
   else if(h==="install") installPage();
   else if(h==="export") exportPage();
@@ -110,7 +110,7 @@ let LITE_DETAIL=["syn","bio","st","parts","contentReview","contentNote","editori
 function ensureFull(f){
  if(!f||!f._lite||!f._file)return Promise.resolve(false);
  const file=f._file,sig=dataSignature;
- fullPacks[file]=fullPacks[file]||fetch(file,{cache:"no-store"}).then(r=>{if(!r.ok)throw Error(file+" "+r.status);return r.json();}).then(pk=>{
+ fullPacks[file]=fullPacks[file]||fetch(file,{cache:"no-cache"}).then(r=>{if(!r.ok)throw Error(file+" "+r.status);return r.json();}).then(pk=>{
   if(sig!==dataSignature)return false; /* 期间数据已整体更新，丢弃这次结果 */
   applyEN({},[pk]);
   (pk.films||[]).forEach(source=>{const t=F[source.id];if(!t||!t._lite||t._file!==file)return;const nf=normalizeFilm({...source},t.prog);LITE_DETAIL.forEach(k=>{if(k in nf)t[k]=nf[k];});delete t._lite;});
@@ -150,7 +150,7 @@ async function geoBoot(){ /* 已授权：静默刷新；从没问过：首次打
 function geoChipHTML(){if(!navigator.geolocation)return"";const H=homeCity();const on=GEO_CITY&&GEO_CITY.c&&GEO_CITY.c===H;return `<button type="button" class="geo-chip${on?" on":""}" data-geo title="${esc(tr("按我所在的城市优先显示"))}"><svg aria-hidden="true" viewBox="0 0 24 24" width="13" height="13"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.3" fill="currentColor"/></svg>${on?esc(tr(H))+" "+tr("优先"):tr("定位")}</button>`;}
 document.addEventListener("click",e=>{if(e.target.closest("[data-geo]"))locateCity(true);});
 async function loadData(){
- const get=u=>fetch(u,{cache:"no-store"}).then(r=>{if(!r.ok)throw Error(u+" "+r.status);return r.json();});
+ const get=u=>fetch(u,{cache:"no-cache"}).then(r=>{if(!r.ok)throw Error(u+" "+r.status);return r.json();});
  /* 精简启动：部署时 tools/build-lite.js 生成 data/version.json（数据版本号）和 data/lite.json（去掉详情页长文字段的全部专题数据）。
     先读版本号，没变就什么都不下载；变了只读 catalog + lite 两个文件。影片详情的长文字段在打开影片页时按需补全（ensureFull）。
     没有这两个文件（本地预览、未构建）或读取失败时，退回原来的整份加载。 */
@@ -226,7 +226,7 @@ async function boot(){
   topEl.innerHTML=brandBar();
   main.innerHTML='<section class="view gut boot"><p class="sub">正在载入排片…</p></section>';
   try{ await loadData(); }
-  catch(e){ console.error(e); main.innerHTML='<section class="view gut boot"><h2 class="sec">排片数据加载失败</h2><p class="sub">请检查网络后重新打开。</p><button class="primary-button" data-reload>重新加载</button></section>'; return; }
+  catch(e){ console.error(e); main.innerHTML='<section class="view gut boot"><h1 class="sec">排片数据加载失败</h1><p class="sub">请检查网络后重新打开。</p><button class="primary-button" data-reload>重新加载</button></section>'; return; }
   pfilt="all"; READY=true; route(); syncStart(); tasteChanged(); TC.flush(); geoBoot();  // 首页（含扫分享二维码进入）默认显示全部专题
   moveNotice(mv);
 }

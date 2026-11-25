@@ -8,7 +8,7 @@
 这一步在 GitHub Actions 里（有外网）逐张下载，校验确实是图片后存成 posters/x-<影片id>.jpg
 （最宽 900px，JPEG），再把部署目录里 data/programmes/*.json 对应的 poster 改成这个站内路径。
 后面的 build-thumbs 会照常生成缩略图，getData 云函数读到的也是站内地址。
-下载失败的保留原地址并打印警告，不影响部署。仓库里已有同名文件时直接用它（可手动提交替换图）。
+外站下载失败时先从线上已部署的网站取回上次存好的同名文件；两处都失败才保留原地址并打印警告，不影响部署。仓库里已有同名文件时直接用它（可手动提交替换图）。
 
 用法：python tools/localize-posters.py
 """
@@ -25,6 +25,7 @@ PROG = ROOT / 'data' / 'programmes'
 OUT = ROOT / 'posters'
 UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36'
 MAX_W = 900
+LIVE = 'https://sparrowcinema.org/'  # 外站下载失败时，从线上已部署的网站取回上次本地化的同名文件
 
 
 def fetch(url):
@@ -63,7 +64,15 @@ def main():
             dest = ROOT / rel
             try:
                 if not dest.exists():
-                    save(fetch(url), dest)
+                    try:
+                        save(fetch(url), dest)
+                    except Exception as first:
+                        # 外站换图、防盗链或下线时，沿用上一次部署在本站的同一张（2026-11-25）
+                        try:
+                            save(fetch(LIVE + rel), dest)
+                            print(f'::warning::外站海报下载失败，沿用线上已部署的 {rel}（{fid}: {first}）', file=sys.stderr)
+                        except Exception:
+                            raise first
                 encoded = json.dumps(url, ensure_ascii=False)
                 if encoded not in text:
                     raise ValueError('在文件里找不到这条地址')

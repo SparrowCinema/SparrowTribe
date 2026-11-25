@@ -3,6 +3,11 @@
 const REG = {cn:{n:"华语",c:"var(--oxblood)"},eu:{n:"欧洲",c:"var(--teal)"},us:{n:"美国",c:"var(--ochre)"},as:{n:"亚洲",c:"var(--olive)"},me:{n:"非洲",c:"#6d4c6f"},la:{n:"拉美",c:"#8a6350"}};
 /* 影片、影院、专题与排片数据在 data/ 目录：data/catalog.json（专题与影院）+ data/programmes/<专题id>.json（片目与排片）。新增影展只需新增一个专题文件并在 catalog 中登记。 */
 let FILMS=[], VENUES=[], PROGRAMMES=[], SH=[], VN={}, F={}, PG={}, days=[];
+/* 只在个别页面用到的共用脚本（趣味图谱、分享海报、识票、签名描摹）不在首屏加载，进入对应功能时再加载（2026-11-25） */
+const LAZY_LIBS={tasteReport:"shared/taste-report.js",sharePoster:"shared/share-poster.js",ticketOcr:"shared/ticket-ocr.js?v=1",trace:"shared/autograph-trace.js?v=1"},lazyLibP={};
+/* 链接里的影片 / 专题已不存在（改名、合并、下架）时给出提示，不再悄悄跳到别的页面 */
+function notFoundPage(kind){const film=kind==="film";main.innerHTML='<section class="view gut nf-view"><h1 class="sec">'+tr(film?"找不到这部影片":"找不到这个专题")+'</h1><p class="sub">'+tr(film?"链接里的影片可能已更名、合并或下架。可以在片目里搜索，或回到排片表。":"链接里的专题可能已更名或下架。可以在专题页查看全部专题。")+'</p><div class="nf-actions"><button type="button" class="primary-button" data-tab="'+(film?"films":"programmes")+'">'+tr(film?"去片目搜索":"查看全部专题")+'</button><button type="button" class="secondary-button" data-tab="schedule">'+tr("回到排片表")+'</button></div></section>';window.scrollTo(0,0);}
+function loadLib(name){const src=LAZY_LIBS[name]||name;return lazyLibP[src]||(lazyLibP[src]=new Promise((ok,no)=>{const s=document.createElement("script");s.src=src;s.onload=()=>ok();s.onerror=()=>{delete lazyLibP[src];no(new Error(src));};document.head.appendChild(s);}));}
 
 const hallOf = s => VN[s.v].halls.find(x=>x.id===s.h);
 const placeOf = s => `${venueLabel(VN[s.v])} ${hallOf(s).name}`;
@@ -149,7 +154,7 @@ function progCardHTML(p){ const n=progShows(p.id).length, fn=FILMS.filter(f=>Spa
 function programmesPage(){
   const all=progOrdered(), live=all.filter(p=>progStatus(p)==="live"), soon=all.filter(p=>progStatus(p)==="soon"), past=all.filter(p=>progStatus(p)==="ended");
   const sec=(t,en,list)=>list.length?`<h3 class="blockh pgl-h">${t} <small>${list.length} · ${en}</small></h3><div class="prog-strip">${list.map(progCardHTML).join("")}</div>`:"";
-  main.innerHTML=`<section class="view gut"><h2 class="sec">专题</h2><p class="sub">影展、院线新片与艺术影院 · ${live.length+soon.length} 个进行中或即将开始</p>
+  main.innerHTML=`<section class="view gut"><h1 class="sec">专题</h1><p class="sub">影展、院线新片与艺术影院 · ${live.length+soon.length} 个进行中或即将开始</p>
     ${sec("进行中","NOW ON",live)}${sec("即将开始","COMING UP",soon)}
     ${pastProgsArchiveHTML(past)}
     ${all.length?"":`<div class="g-empty"><b>专题整理中</b><span>新的影展与放映专题会陆续上线</span></div>`}
@@ -220,7 +225,7 @@ const creditsHTML = f => [
 const chevron = '<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg>';
 const topEl = document.getElementById("topbar"), main = document.getElementById("main");
 
-const logoImg = (base, alt, cls="") => `<img class="lg-l ${cls}" src="brand/${base}.png" alt="${alt}"><img class="lg-d ${cls}" src="brand/${base}-dark.png" alt="${alt}">`;
+const logoImg = (base, alt, cls="") => `<img class="lg-l ${cls}" src="brand/${base}.png" alt="${alt}" loading="lazy" decoding="async"><img class="lg-d ${cls}" src="brand/${base}-dark.png" alt="${alt}" loading="lazy" decoding="async">`;
 const DUO = `<span class="duo" aria-hidden="true"><span class="seal">${logoImg("mark-movies","")}</span><span class="seal">${logoImg("mark-tribe","")}</span></span>`;
 const DUO_PRINT = '<span class="duo" aria-hidden="true"><span class="seal seal-print"><img src="brand/mark-movies.png" alt=""></span><span class="seal seal-print"><img src="brand/mark-tribe.png" alt=""></span></span>';
 const lockup = (k) => { const en = k==="movies" ? "Movies" : "Tribe", cn = k==="movies" ? "麻雀映画" : "麻雀部落"; const txt = `<span class="lk-txt"><span class="lk-en">Sparrow<br>${en}</span><span class="lk-cn">${cn}</span></span>`, mk = `<span class="lk-mark">${logoImg("mark-"+k,"")}</span>`; return `<span class="lk lk-${k}" aria-label="${cn} Sparrow ${en}">${k==="movies"?txt+mk:mk+txt}</span>`; };

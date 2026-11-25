@@ -189,7 +189,7 @@ function filmsIntroHTML(){const total=catalogueFilms().length,live=catalogueFilm
   return '<div class="fi-stats" aria-label="片目概览"><span><b>'+total+'</b>部影片</span><span><b>'+progs+'</b>个专题</span><span><b>'+live+'</b>部待映</span></div>'+
     '<p class="sub fi-sub">按专题分组，每个专题可收起；已放映的收进专题内，专题结束后归入「往期专题」。右侧为豆瓣评分。</p>';}
 function films(){
-  main.innerHTML = `<section class="view gut"><h2 class="sec">片目</h2>${filmsIntroHTML()}
+  main.innerHTML = `<section class="view gut"><h1 class="sec">片目</h1>${filmsIntroHTML()}
     <label class="fsearch"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><input type="search" id="fq" aria-label="搜索片名、导演、演员" placeholder="搜索片名、导演、演员" value="${esc(fq)}" autocomplete="off" enterkeyhint="search"></label>
     <div id="fl-filters">${libraryFiltersHTML()}</div>
     <div id="flist-wrap">${filmsListHTML()}</div>${presentersHTML()}</section>`;

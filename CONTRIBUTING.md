@@ -593,3 +593,13 @@ Claude 与 GPT 可能使用同一 GitHub 身份，审批人数可先设为0；�
 - 换图需要给影片补其他海报（`stills` 数组，元素为图片地址或 `{url, label}`）。
 - **海报名称（2026-11-24）**：都是官方海报，不用「备用」之类的词，按海报上的字标注：带 IMAX 的写「IMAX海报」，带 Dolby 的写「杜比海报」，此外如「插画海报」「人物海报」「重映海报」「英文海报」。主海报的名称写在影片 `posterLabel`（不写显示「主海报」），其他写在 `stills` 每项的 `label`（不写显示「海报 N」）。新名称请在 `data/i18n/en.json` 的 `exact` 补英文。网站 `filmArtItems` / `filmArtLabel`，小程序 `utils/myposter.js` 的 `items` / `label`。
 
+
+## 加载与容错（2026-11-25 网站健检）
+
+- **数据请求可缓存**：`data/` 下的 JSON（catalog、cities、lite、version、专题文件、`data/i18n/en.json`）用 `fetch(…,{cache:"no-cache"})`：每次都向服务器确认，没变时服务器回 304、不重新下载。不要改回 `no-store`（英文词典 1.2MB、lite.json 570KB 会在每次打开时整份重下）。service worker 的网络优先请求同样用 `no-cache`。
+- **网络字体不阻挡首屏**：Google Fonts 样式表用 `media="print" onload="this.media='all'"` 加载；中国大陆连不上时先显示系统字体。
+- **按需加载的共用脚本**：`shared/taste-report.js`（趣味图谱）、`shared/share-poster.js`（分享海报）、`shared/ticket-ocr.js`（识票）、`shared/autograph-trace.js`（签名描摹）不在 `index.html` 里加载，用 `js/core.js` 的 `loadLib(名字)` 在进入功能时加载（名字表 `LAZY_LIBS`）。以后新增只在个别页面用到的大文件，也加进这张表；首屏或同步就会用到的（如 `tickets.js`、`ticket-sketch.js`、`recap.js`、`growth.js`）不要改成按需。
+- **链接失效**：`#film-<id>` / `#prog-<id>` 找不到时显示「找不到这部影片 / 这个专题」（`notFoundPage`），不再悄悄跳到片目或排片。站点根目录 `404.html` 处理 GitHub Pages 找不到的文件（已下架影片的独立页、旧分享页），并给出「在网站里查找这部影片」的链接。
+- **页面标题**：每个页面的主标题用 `<h1 class="sec">`（样式与原来的 `h2.sec` 相同），一页只放一个 `h1`。
+- **外链海报容错**：`tools/localize-posters.py` 从外站下载失败时，先从线上 `https://sparrowcinema.org/posters/x-<id>.jpg` 取回上次部署的同一张。
+- **PR 检查**：`.github/workflows/pr-checks.yml` 在 PR 上运行与部署相同的四个检查脚本和 JS 语法检查，合并前就能看到是否会让部署失败。

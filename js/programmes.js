@@ -66,7 +66,7 @@ function eventsPage(pid){
   if(evProg!==pid){evKind="";evProg=pid;}
   const ks=(p.eventKinds||[]).filter(k=>p.events.some(e=>e.kind===k.id)),kn=k=>(LANG==="en"&&p.kindEn&&p.kindEn[k.id])||k.name;
   topEl.innerHTML=`<div class="row"><button class="back" data-back><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m15 6-6 6 6 6"/></svg>${esc(tr("返回"))}</button><span class="sp"></span><span class="pill">${esc(p.name)}</span></div>`;
-  main.innerHTML=`<section class="view gut ev-page"><h2 class="sec">${esc(tr("活动与论坛"))}</h2><p class="sub">${esc(p.name)} · ${esc(p.period)}</p>
+  main.innerHTML=`<section class="view gut ev-page"><h1 class="sec">${esc(tr("活动与论坛"))}</h1><p class="sub">${esc(p.name)} · ${esc(p.period)}</p>
   <div class="plan-scope sec-scope"><button class="schedule-filter" data-evkind-sel aria-haspopup="dialog"><span><small>${esc(tr("选择板块"))}</small><b>${esc((evKindRows(pid).find(r=>r.id===evKind)||{}).name||tr("全部活动"))}</b></span><span class="scope-count">${tr((evKind?p.events.filter(e=>e.kind===evKind).length:p.events.length)+" 项")}</span>${filterChevron}</button></div>
   ${eventsBodyHTML(p,evKind)}</section>`;
 }
@@ -269,7 +269,7 @@ function venuesPage(pid){
     const trRows=v.transit?[["地铁",v.transit.metro],["公交",v.transit.bus],["停车",v.transit.parking],["提示",v.transit.note]].filter(x=>x[1]):[];
     return `<article class="vm-card" id="vc-${esc(v.id)}"><header class="vm-ch"><button type="button" class="vm-idx mono" data-vfocus="${esc(v.id)}" title="${esc(tr("在地图上定位"))}">${num}</button><div class="vm-ct"><h3>${esc(v.name)}</h3><small>${esc([v.city?tr(v.city):"",v.addr||""].filter(Boolean).join(" · "))}</small></div>${mapUrl?`<a class="secondary-button vm-nav" href="${esc(mapUrl)}" target="_blank" rel="noopener noreferrer">${esc(tr("地图导航"))} ↗</a>`:""}</header><div class="vm-halls">${r.halls.map(h=>{const acc=[...(v.access||[]),...(h.access||[])];return `<span class="vm-hall">${esc(h.name)}${acc.length?` <em>${esc(tr("无障碍"))}</em>`:""}</span>`;}).join("")}<span class="vm-cnt mono">${tr(r.total+" 场")}${r.up?` · ${tr("待映")} ${r.up}`:""}</span></div>${trRows.length?`<dl class="vm-tr">${trRows.map(([k,val])=>`<dt>${esc(tr(k))}</dt><dd>${esc(val)}</dd>`).join("")}</dl>`:""}</article>`;
   }).join("");
-  main.innerHTML=`<section class="view gut vm-page"><h2 class="sec">${esc(tr("影院地图与交通"))}</h2><p class="sub">${esc(p.name)} · ${rows.length} ${esc(tr("家影院"))}</p>${venueMapHTML(rows)}<div class="vm-cards">${cards||`<div class="fd-noshow"><b>${esc(tr("暂无影院排片信息"))}</b></div>`}</div>${venueTransfersHTML(rows)}${presentersHTML()}</section>`;
+  main.innerHTML=`<section class="view gut vm-page"><h1 class="sec">${esc(tr("影院地图与交通"))}</h1><p class="sub">${esc(p.name)} · ${rows.length} ${esc(tr("家影院"))}</p>${venueMapHTML(rows)}<div class="vm-cards">${cards||`<div class="fd-noshow"><b>${esc(tr("暂无影院排片信息"))}</b></div>`}</div>${venueTransfersHTML(rows)}${presentersHTML()}</section>`;
   if(vmState){
     const stage=document.getElementById("vm-stage");
     if(stage){vmState.fit=venueMapFit(vmState.pts,stage.clientWidth||640,stage.clientHeight||340);vmState.z=vmState.fit.z;vmState.lat=vmState.fit.lat;vmState.lon=vmState.fit.lon;renderVenueMap();bindVenueMapDrag();}
@@ -302,7 +302,7 @@ document.addEventListener("click",e=>{
 });
 function progPage(pid){
   if(sectionProgramme!==pid){sectionFilter="";sectionProgramme=pid;}
-  const p=PG[pid]; if(!p){ go("schedule"); return; }
+  const p=PG[pid]; if(!p){ notFoundPage("prog"); return; }
   const shows=progShows(pid), fids=[...new Set(shows.map(x=>x.id))], films=catalogueFilms().filter(f=>f.prog===pid||p.sections?.[f.id]||p.members?.includes(f.id)||fids.includes(f.id)).sort(filmOrder);
   topEl.innerHTML = `<div class="row"><button class="back" data-back><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m15 6-6 6 6 6"/></svg>返回</button><span class="sp"></span><span class="pill">${esc(p.kind)}</span></div>`;
   main.innerHTML = `<article class="pg">
@@ -324,7 +324,7 @@ function progPage(pid){
     </div></article>`;
 }
 function about(){
-  main.innerHTML = `<section class="view gut about"><h2 class="sec">关于影展</h2>
+  main.innerHTML = `<section class="view gut about"><h1 class="sec">关于影展</h1>
     <p class="sub">风格万相 · 中外经典影片展</p>
     <dl class="kv"><dt>展期</dt><dd>2026.10 – 2027.01</dd><dt>影院</dt><dd>${VENUES.map(v=>esc(v.name+(v.halls.length?"（"+v.halls.map(h=>h.name).join("、")+"）":""))).join("<br>")}</dd><dt>本页场次</dt><dd>10.30 – 11.08，共 ${SH.length} 场 / ${FILMS.length} 部</dd></dl>
     <p>从伯格曼的公路回忆到塔可夫斯基的末日祈祷，从费穆的城墙到徐克的江湖，十七部作品横跨 1947 至 2025 年，排在同一块银幕上，恰好是一份关于“风格”的地图。</p>

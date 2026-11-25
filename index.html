@@ -157,7 +157,8 @@ var env={ls:localStorage,ss:sessionStorage,location:location,history:history,pro
 return M.runArrive(env).then(function(v){return v||M.runDepart(env)})["catch"](function(){return null});}catch(e){return null}})();</script>
 <meta name="twitter:card" content="summary"><meta name="twitter:title" content="麻雀观影护照 · Sparrow Film Passport"><meta name="twitter:image" content="https://sparrowcinema.org/brand/og-square.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600;900&family=Noto+Sans+SC:wght@400;500;700;900&family=Barlow:wght@500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<!-- 网络字体不阻挡首屏：中国大陆连不上 fonts.googleapis.com 时页面先用系统字体显示，字体到了再换上 -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600;900&family=Noto+Sans+SC:wght@400;500;700;900&family=Barlow:wght@500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600;900&family=Noto+Sans+SC:wght@400;500;700;900&family=Barlow:wght@500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap"></noscript>
 <link rel="stylesheet" href="app.css">
 <link rel="stylesheet" href="styles/companion.css?v=poster-wall-20261109">
 <link rel="stylesheet" href="styles/tickets.css?v=21">
@@ -178,8 +179,6 @@ return M.runArrive(env).then(function(v){return v||M.runDepart(env)})["catch"](f
 
 <script src="vendor/qrcode.js"></script>
 <script src="shared/recap.js?v=20261124"></script>
-<script src="shared/share-poster.js"></script>
-<script src="shared/taste-report.js"></script>
 <script src="shared/taste.js?v=2"></script>
 <script src="shared/taste-client.js?v=3"></script>
 <script src="shared/psync.js?v=20261128t"></script>
@@ -197,8 +196,6 @@ return M.runArrive(env).then(function(v){return v||M.runDepart(env)})["catch"](f
 <script src="shared/profile-backup.js?v=20261124n"></script>
 <script src="shared/ticket-sketch.js?v=17"></script>
 <script src="shared/tickets.js?v=32"></script>
-<script src="shared/ticket-ocr.js?v=1"></script>
-<script src="shared/autograph-trace.js?v=1"></script>
 <script src="shared/guide.js?v=2"></script>
 <!-- 网站主脚本：按功能拆在 js/ 下，按下面的顺序加载；部署时 tools/build-assets.js 把这一段合并成一个 app.js?v=… -->
 <!-- app-js:start -->
