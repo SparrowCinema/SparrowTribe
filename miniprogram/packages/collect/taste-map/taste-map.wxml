@@ -9,30 +9,38 @@
     </view>
     <view class="tr-note">{{i.__en?'Programme or year: pick one. Choosing one resets the other.':'专题和年份二选一，选一个会自动重置另一个。'}}</view>
     <view class="tr-acts2"><button class="tr-make" disabled="{{reportN<3}}" bindtap="makeReport" hover-class="tr-hv">{{i.__en?'Create my taste map':'生成我的趣味图谱'}}</button><text class="tr-sub">{{reportN>=3?(i.__en?'A long image with your taste persona, quadrants and reading':'长图含趣味人格命名、四象限与分析'):(i.__en?'Rate both scales for at least 3 films to create it':'至少给 3 部电影的有趣度和无聊度都打分后才能生成')}}</text></view>
-    <view class="ai-portrait">
+    <view class="ai-portrait {{aipPortrait && aipFold ? 'folded' : ''}}">
       <view class="aip-head">
         <view class="aip-title-box">
           <text class="aip-title">✦ {{L.t(i,'AI 观影画像')}}</text>
           <text class="aip-meta">{{aipMeta}}</text>
         </view>
-        <text wx:if="{{aipPortrait && aipCached}}" class="aip-badge">{{L.t(i,'本机已缓存')}}</text>
+        <view wx:if="{{aipPortrait}}" class="aip-head-r">
+          <text wx:if="{{aipCached && !aipFold}}" class="aip-badge">{{L.t(i,'本机已缓存')}}</text>
+          <view class="aip-toggle" hover-class="tr-hv" bindtap="toggleAiPortrait" role="button">{{aipFold ? L.t(i,'展开') + ' ▾' : L.t(i,'收起') + ' ▴'}}</view>
+        </view>
       </view>
       <block wx:if="{{aipPortrait}}">
-        <text wx:if="{{aipPortrait.headline}}" class="aip-headline">{{aipPortrait.headline}}</text>
-        <view wx:if="{{aipPortrait.tags.length}}" class="aip-tags">
-          <text wx:for="{{aipPortrait.tags}}" wx:key="index" class="aip-tag">{{item}}</text>
+        <view wx:if="{{aipFold}}" class="aip-fold-bar" hover-class="tr-hv" bindtap="toggleAiPortrait" role="button">
+          <text class="aip-fold-txt">{{aipPortrait.headline}}</text>
         </view>
-        <view class="aip-text">
-          <text wx:for="{{aipPortrait.paragraphs}}" wx:key="index" class="aip-p" user-select="true">{{item}}</text>
-        </view>
-        <view wx:if="{{aipPortrait.nextHint}}" class="aip-next">
-          <text class="aip-next-k">{{L.t(i,'下一步建议')}}</text>
-          <text class="aip-next-v" user-select="true">{{aipPortrait.nextHint}}</text>
-        </view>
-        <view class="aip-foot">
-          <button class="aip-btn aip-btn-ghost" hover-class="tr-hv" bindtap="copyAiPortrait">{{L.t(i,'复制评语')}}</button>
-          <button class="aip-btn aip-btn-ghost" hover-class="tr-hv" disabled="{{aipBusy}}" data-force="1" bindtap="makeAiPortrait">{{aipBusy ? L.t(i,'生成中…') : L.t(i,'重新生成')}}</button>
-        </view>
+        <block wx:else>
+          <text wx:if="{{aipPortrait.headline}}" class="aip-headline">{{aipPortrait.headline}}</text>
+          <view wx:if="{{aipPortrait.tags.length}}" class="aip-tags">
+            <text wx:for="{{aipPortrait.tags}}" wx:key="index" class="aip-tag">{{item}}</text>
+          </view>
+          <view class="aip-text">
+            <text wx:for="{{aipPortrait.paragraphs}}" wx:key="index" class="aip-p" user-select="true">{{item}}</text>
+          </view>
+          <view wx:if="{{aipPortrait.nextHint}}" class="aip-next">
+            <text class="aip-next-k">{{L.t(i,'下一步建议')}}</text>
+            <text class="aip-next-v" user-select="true">{{aipPortrait.nextHint}}</text>
+          </view>
+          <view class="aip-foot">
+            <button class="aip-btn aip-btn-ghost" hover-class="tr-hv" bindtap="copyAiPortrait">{{L.t(i,'复制评语')}}</button>
+            <button class="aip-btn aip-btn-ghost" hover-class="tr-hv" disabled="{{aipBusy}}" data-force="1" bindtap="makeAiPortrait">{{aipBusy ? L.t(i,'生成中…') : L.t(i,'重新生成')}}</button>
+          </view>
+        </block>
       </block>
       <block wx:else>
         <text class="aip-desc">{{L.t(i,'结合当前范围看过的片单、星级评分与趣味四象限摘要，由 AI 生成 200–300 字专属观影评语。结果缓存在本机，观影记录未变动时不重复请求。')}}</text>
