@@ -1,53 +1,104 @@
 <page-meta page-style="{{ps}}" />
 <wxs src="../../utils/l.wxs" module="L" />
 <view wx:if="{{homeTip}}" class="home-tip" catchtap="homeTipGo"><view class="home-tip-arrow" /><text class="home-tip-i">⌂</text><view class="home-tip-copy"><text class="home-tip-t">{{i.__en?'More films & schedules':'更多影片与排片'}}</text><text class="home-tip-s">{{i.__en?'Tap Home at top left':'点左上角「主页」查看'}}</text></view><text class="home-tip-x" catchtap="homeTipClose">×</text></view>
-<view wx:if="{{p}}" class="wrap">
-  <view class="k mono">{{'VENUES & TRANSIT'}}</view>
-  <view class="h1">{{L.t(i,'影院地图与交通')}}</view>
-  <view class="sub">{{p.name}} · {{L.n(i, venueN, 'j')}}</view>
-
-  <view wx:if="{{venueMap}}" class="vn-wrap">
+<!-- 地图固定在上方不动，只有下面的影院列表滚动（页面 disableScroll，列表是 scroll-view） -->
+<view wx:if="{{p}}" class="vn-page">
+  <view wx:if="{{venueMap}}" class="vn-top">
     <map id="vn-map" class="vn-map" latitude="{{venueMap.lat}}" longitude="{{venueMap.lng}}" scale="{{venueMap.scale}}" markers="{{venueMap.markers}}" include-points="{{venueMap.points}}" enable-zoom="{{true}}" enable-scroll="{{true}}" bindmarkertap="onMarkerTap" bindcallouttap="onMarkerTap" />
     <view class="vn-cap">
-      <text class="vn-hint">{{L.t(i,'点击编号定位对应影院 · 导航按实际路况打开地图')}}</text>
+      <text class="vn-hint">{{L.t(i,'拖动或缩放地图 · 点击影院查看影片与排片')}}</text>
       <view wx:if="{{canReset}}" class="vn-reset" hover-class="hv" bindtap="resetMap">⌖ {{L.t(i,'重置视角')}}</view>
     </view>
   </view>
+  <scroll-view class="vn-list" scroll-y="{{true}}" enhanced="{{true}}" show-scrollbar="{{false}}" scroll-into-view="{{intoView}}" scroll-with-animation="{{true}}" bindscroll="onListScroll">
+    <view class="wrap">
+      <view id="vn-head" class="k mono">{{'VENUES & TRANSIT'}}</view>
+      <view class="h1">{{L.t(i,'影院地图与交通')}}</view>
+      <view class="sub">{{p.name}} · {{L.n(i, venueN, 'j')}}</view>
 
-  <view wx:if="{{!venueRows.length}}" class="empty">
-    <text class="eb">{{L.t(i,'暂无影院排片信息')}}</text>
-  </view>
-  <view wx:else class="vn-cards">
-    <view wx:for="{{venueRows}}" wx:key="id" id="vc-{{item.domIdx}}" class="vn-card {{activeId === item.id ? 'hi' : ''}}">
-      <view class="vn-ch">
-        <view class="vn-idx mono {{activeId === item.id ? 'hi' : ''}}" data-id="{{item.id}}" bindtap="focusVenue">{{item.idx}}</view>
-        <view class="vn-ct">
-          <text class="vn-nm">{{item.name}}</text>
-          <text wx:if="{{item.addr}}" class="vn-ad">{{item.addr}}</text>
+      <view wx:if="{{!venueRows.length}}" class="empty">
+        <text class="eb">{{L.t(i,'暂无影院排片信息')}}</text>
+      </view>
+      <view wx:else class="vn-cards">
+        <view wx:for="{{venueRows}}" wx:key="id" id="vc-{{item.domIdx}}" class="vn-card {{activeId === item.id ? 'hi' : ''}}">
+          <view class="vn-ch">
+            <view class="vn-idx mono {{activeId === item.id ? 'hi' : ''}}" data-id="{{item.id}}" catchtap="focusVenue">{{item.idx}}</view>
+            <view class="vn-ct" data-id="{{item.id}}" bindtap="selectVenue">
+              <text class="vn-nm">{{item.name}}</text>
+              <text wx:if="{{item.addr}}" class="vn-ad">{{item.addr}}</text>
+            </view>
+            <view wx:if="{{item.geo}}" class="vn-go" hover-class="hv" data-id="{{item.id}}" catchtap="openVenueMap">{{L.t(i,'地图导航')}} ↗</view>
+          </view>
+          <view wx:if="{{item.halls.length}}" class="vn-halls">
+            <text wx:for="{{item.halls}}" wx:for-item="h" wx:key="name" class="vn-hall">{{h.name}}{{h.acc ? ' · ' + L.t(i,'无障碍') : ''}}</text>
+          </view>
+          <view wx:if="{{item.trs.length}}" class="vn-tr">
+            <view wx:for="{{item.trs}}" wx:for-item="tr" wx:key="k" class="vn-trl">
+              <text class="vn-tk">{{tr.k}}</text>
+              <text class="vn-tv">{{tr.v}}</text>
+            </view>
+          </view>
+          <view class="vn-open {{activeId === item.id ? 'on' : ''}}" hover-class="hv" data-id="{{item.id}}" bindtap="selectVenue">
+            <text class="vo-t">{{activeId === item.id ? item.label : L.t(i,'看本院影片与排片')}}</text>
+            <text class="vo-n mono">{{item.cntText}}</text>
+            <text class="vo-c">{{activeId === item.id ? '▴' : '▾'}}</text>
+          </view>
+          <view wx:if="{{activeId === item.id && panel && panel.id === item.id}}" class="vp">
+            <view wx:if="{{panel.empty}}" class="vp-empty">{{L.t(i,'暂无排片')}}</view>
+            <scroll-view wx:if="{{panel.films.length}}" class="vp-films" scroll-x="{{true}}" enhanced="{{true}}" show-scrollbar="{{false}}">
+              <view wx:for="{{panel.films}}" wx:for-item="f" wx:key="id" class="vp-film {{f.on ? 'on' : ''}} {{f.gone ? 'gone' : ''}}" data-id="{{f.id}}" bindtap="pickFilm">
+                <image wx:if="{{f.poster}}" class="vp-img" src="{{f.poster}}" mode="aspectFill" lazy-load="{{true}}" />
+                <view wx:else class="vp-img vp-ph">{{f.ph}}</view>
+                <text class="vp-ft">{{f.cn}}</text>
+                <text class="vp-fs mono">{{f.sub}}</text>
+              </view>
+            </scroll-view>
+            <view wx:if="{{panel.filmName}}" class="vp-filt">
+              <text class="vp-fl"><text class="vp-fk">{{L.t(i,'只看')}}</text>{{panel.filmName}}</text>
+              <text class="vp-fx" data-id="" bindtap="pickFilm">{{L.t(i,'看全部影片')}}</text>
+            </view>
+            <scroll-view wx:if="{{panel.days.length}}" class="vp-days" scroll-x="{{true}}" enhanced="{{true}}" show-scrollbar="{{false}}">
+              <view wx:for="{{panel.days}}" wx:for-item="d" wx:key="key" class="vp-day {{d.on ? 'on' : ''}}" data-key="{{d.key}}" bindtap="pickDay"><text class="vd-l mono">{{d.label}}</text><text class="vd-n">{{d.n}}</text></view>
+            </scroll-view>
+            <view wx:if="{{panel.upEmpty && !panel.empty}}" class="vp-empty">{{panel.upEmpty}}</view>
+            <view wx:for="{{panel.up}}" wx:for-item="g" wx:key="key" class="vp-dg">
+              <view class="vp-dh"><text class="mono">{{g.label}}</text><text class="vp-dn">{{g.n}}</text></view>
+              <view wx:for="{{g.rows}}" wx:for-item="r" wx:key="key" class="vp-row">
+                <view class="vp-go" data-id="{{r.id}}" bindtap="openFilm">
+                  <view class="vp-tm mono"><text class="vp-st">{{r.t}}</text><text class="vp-et">{{r.end}}</text></view>
+                  <view class="vp-bar" style="background:{{r.tone.bar}}" />
+                  <view class="vp-ti"><text class="vp-b">{{r.cn}}<text wx:if="{{r.version}}" class="vp-ed">{{r.version}}</text></text><view class="vp-tags"><text class="vp-hall">{{r.hall}}</text><text wx:for="{{r.tags}}" wx:for-item="tg" wx:key="*this" class="vp-tag">{{tg}}</text></view></view>
+                </view>
+                <view class="vp-pick {{r.picked ? 'on' : ''}}" data-key="{{r.key}}" catchtap="toggle">{{r.picked ? L.t(i,'✓ 已加入') : L.t(i,'+ 加入排片')}}</view>
+              </view>
+            </view>
+            <block wx:if="{{panel.pastN}}">
+              <view class="vp-past" hover-class="hv" bindtap="togglePast"><text>{{panel.pastLabel}}</text><text>{{pastOpen ? '▴' : '▾'}}</text></view>
+              <view wx:for="{{panel.past}}" wx:for-item="g" wx:key="key" class="vp-dg past">
+                <view class="vp-dh"><text class="mono">{{g.label}}</text><text class="vp-dn">{{g.n}}</text></view>
+                <view wx:for="{{g.rows}}" wx:for-item="r" wx:key="key" class="vp-row">
+                  <view class="vp-go" data-id="{{r.id}}" bindtap="openFilm">
+                    <view class="vp-tm mono"><text class="vp-st">{{r.t}}</text><text class="vp-et">{{r.end}}</text></view>
+                    <view class="vp-bar" style="background:{{r.tone.bar}}" />
+                    <view class="vp-ti"><text class="vp-b">{{r.cn}}<text wx:if="{{r.version}}" class="vp-ed">{{r.version}}</text></text><view class="vp-tags"><text class="vp-hall">{{r.hall}}</text></view></view>
+                  </view>
+                </view>
+              </view>
+            </block>
+          </view>
         </view>
-        <view wx:if="{{item.geo}}" class="vn-go" hover-class="hv" data-id="{{item.id}}" bindtap="openVenueMap">{{L.t(i,'地图导航')}} ↗</view>
       </view>
-      <view class="vn-halls">
-        <text wx:for="{{item.halls}}" wx:for-item="h" wx:key="name" class="vn-hall">{{h.name}}{{h.acc ? ' · ' + L.t(i,'无障碍') : ''}}</text>
-        <text class="vn-cnt mono">{{item.cntText}}</text>
-      </view>
-      <view wx:if="{{item.trs.length}}" class="vn-tr">
-        <view wx:for="{{item.trs}}" wx:for-item="tr" wx:key="k" class="vn-trl">
-          <text class="vn-tk">{{tr.k}}</text>
-          <text class="vn-tv">{{tr.v}}</text>
+
+      <view wx:if="{{transfers.length}}" class="vn-xfer">
+        <view class="blockh">{{L.t(i,'跨影院转场参考')}} <text class="en">TRANSFERS</text></view>
+        <view class="vn-xlist">
+          <view wx:for="{{transfers}}" wx:key="key" class="vn-xrow">
+            <text class="vn-xp">{{item.a}} ↔ {{item.b}}</text>
+            <text class="vn-xt mono">{{item.text}}</text>
+          </view>
         </view>
       </view>
     </view>
-  </view>
-
-  <view wx:if="{{transfers.length}}" class="vn-xfer">
-    <view class="blockh">{{L.t(i,'跨影院转场参考')}} <text class="en">TRANSFERS</text></view>
-    <view class="vn-xlist">
-      <view wx:for="{{transfers}}" wx:key="key" class="vn-xrow">
-        <text class="vn-xp">{{item.a}} ↔ {{item.b}}</text>
-        <text class="vn-xt mono">{{item.text}}</text>
-      </view>
-    </view>
-  </view>
+  </scroll-view>
 </view>
 <view class="to-top {{topOn ? 'show' : ''}}" hover-class="to-top-hv" bindtap="toTop"><view class="tt-arr" /></view>

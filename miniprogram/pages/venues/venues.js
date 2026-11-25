@@ -2,6 +2,9 @@ const T = require('../../utils/totop.js');
 const U = require('../../utils/util.js');
 const I = require('../../utils/i18n.js');
 const HT = require('../../utils/hometip.js');
+const VB = require('../../utils/venue-board.js');
+const plan = require('../../utils/plan.js');
+const Remind = require('../../utils/remind.js');
 const t = I.tr;
 const app = getApp();
 
@@ -14,26 +17,31 @@ Page({
     venueMap: null,
     activeId: '',
     canReset: false,
-    transfers: []
+    transfers: [],
+    panel: null,
+    pastOpen: false,
+    intoView: ''
   },
   onLoad(q) {
     this.setData({ i: I.dict() });
     HT.show(this);
     this.id = (q && q.id) || 'style-kaleidoscope';
+    this.pick = { film: '', day: undefined };
     this.off = app.onData(() => this.build());
+    this.off2 = plan.onChange(() => this.buildPanel());
     this.build();
   },
   onUnload() {
     clearTimeout(this._homeTipT);
     this.off && this.off();
+    this.off2 && this.off2();
   },
   homeTipGo() { HT.home(); },
   homeTipClose() { HT.close(this); },
-  onPageScroll(e) {
-    this.scrollTop = e.scrollTop;
-    T.scroll(this, e);
-  },
-  toTop() { T.go(); },
+  // 地图固定在上方（页面不滚动，venues.json disableScroll），只有下面的影院列表（scroll-view）滚动
+  onListScroll(e) { T.scroll(this, { scrollTop: e.detail.scrollTop }); },
+  scrollInto(id) { this.setData({ intoView: '' }, () => this.setData({ intoView: id })); },
+  toTop() { this.scrollInto('vn-head'); },
   makeMarkers(geoRows, activeId) {
     return geoRows.map((r, i) => {
       const hi = r.id === activeId;
@@ -62,6 +70,7 @@ Page({
     }
     const p = idx.PG[this.id];
     if (!p) return;
+    this._p = p;
     wx.setNavigationBarTitle({ title: t('影院地图与交通') });
 
     const en = I.isEn();
@@ -80,13 +89,15 @@ Page({
           .map(x => ({ k: t(x[0]), v: x[1] }))
         : [];
       const geo = U.geoOf(v);
-      const cntText = t(vs.length + ' 场') + (up.length ? ' · ' + t('待映') + ' ' + up.length : '');
+      const filmN = new Set(vs.filter(x => !idx.F[x.id].ev).map(x => x.id)).size;
+      const cntText = [filmN ? t(filmN + ' 部') : '', up.length ? t('待映 ' + up.length + ' 场') : t('已放映 ' + vs.length + ' 场')].filter(Boolean).join(' · ');
       return {
         id: v.id,
         domIdx: i,
         idx: String(i + 1).padStart(2, '0'),
         name: v.name,
         short: v.short || v.name,
+        label: (v.short || v.name).replace(new RegExp('^(' + [v.city, t(v.city || '')].filter(Boolean).join('|') + ')\\s*[·・]?\\s*'), ''),
         city: v.city || '',
         addr: [v.city ? t(v.city) : '', v.addr || ''].filter(Boolean).join(' · '),
         halls,
@@ -107,7 +118,8 @@ Page({
     const fitPoints = geoRows.length > 1
       ? [{ latitude: box.n + padLat, longitude: box.w - padLng }, { latitude: box.s - padLat, longitude: box.e + padLng }]
       : [];
-    const activeId = geoRows.some(r => r.id === this.data.activeId) ? this.data.activeId : '';
+    if (this._pid !== p.id) { this._pid = p.id; this.pick = { film: '', day: undefined }; this.data.activeId = venueRows.length === 1 ? venueRows[0].id : ''; }
+    const activeId = venueRows.some(r => r.id === this.data.activeId) ? this.data.activeId : '';
     const fit = geoRows.length ? {
       lat: (box.n + box.s) / 2,
       lng: (box.e + box.w) / 2,
@@ -157,56 +169,72 @@ Page({
       canReset: geoRows.length > 1 || !!activeId,
       transfers
     });
+    this._idx = idx; this._shows = shows;
+    this.buildPanel();
   },
+  // 选中 / 取消一家影院：地图移到它并高亮，卡片展开本院影片与排片（规则 utils/venue-board.js，与网站一致），列表滚到这张卡片
+  select(id, o) {
+    o = o || {};
+    const row = (this.data.venueRows || []).find(r => r.id === id);
+    const on = !!row && (o.force || this.data.activeId !== id);
+    this.pick = { film: '', day: undefined };
+    const up = { activeId: on ? id : '', pastOpen: false, canReset: true };
+    if (this._geoRows && this.data.venueMap) up['venueMap.markers'] = this.makeMarkers(this._geoRows, on ? id : '');
+    if (on && row.geo && o.zoom) Object.assign(up, { 'venueMap.lat': row.geo.lat, 'venueMap.lng': row.geo.lng, 'venueMap.scale': 15, 'venueMap.points': [] });
+    this.setData(up, () => {
+      this.buildPanel();
+      if (!on) return;
+      if (row.geo && !o.zoom && wx.createMapContext) { try { wx.createMapContext('vn-map', this).moveToLocation({ latitude: row.geo.lat, longitude: row.geo.lng }); } catch (e) { } }
+      this.scrollInto('vc-' + row.domIdx);
+    });
+  },
+  selectVenue(e) { this.select(e.currentTarget.dataset.id); },
   onMarkerTap(e) {
     const mid = (e.detail && e.detail.markerId) || e.markerId;
     const row = (this._geoRows || [])[mid - 1];
-    if (!row) return;
-    this.setData({
-      activeId: row.id,
-      canReset: true,
-      'venueMap.markers': this.makeMarkers(this._geoRows, row.id)
-    });
-    wx.createSelectorQuery()
-      .select('#vc-' + row.domIdx).boundingClientRect()
-      .selectViewport().scrollOffset()
-      .exec(res => {
-        const rect = res && res[0], vp = res && res[1];
-        if (!rect) return;
-        const base = vp ? vp.scrollTop : (this.scrollTop || 0);
-        wx.pageScrollTo({ scrollTop: Math.max(0, rect.top + base - 16), duration: 260 });
-      });
+    if (row) this.select(row.id, { force: true });
   },
-  focusVenue(e) {
-    const id = e.currentTarget.dataset.id;
-    const row = (this._geoRows || []).find(r => r.id === id);
-    if (!row) return;
-    this.setData({
-      activeId: row.id,
-      canReset: true,
-      venueMap: {
-        lat: row.geo.lat,
-        lng: row.geo.lng,
-        scale: 15,
-        points: [],
-        markers: this.makeMarkers(this._geoRows, row.id)
-      }
-    });
-    wx.pageScrollTo({ scrollTop: 0, duration: 260 });
+  focusVenue(e) { this.select(e.currentTarget.dataset.id, { force: true, zoom: true }); },
+  buildPanel() {
+    const id = this.data.activeId, idx = this._idx;
+    if (!id || !idx) { if (this.data.panel) this.setData({ panel: null }); return; }
+    const data = app.globalData.data, picked = plan.get(), en = I.isEn();
+    const b = VB.board((this._shows || []).filter(s => s.v === id), { film: fid => idx.F[fid], start: s => U.showDate(s, idx).getTime(), past: s => U.ended(s, idx), pick: this.pick });
+    const title = f => (!en && this._p && (this._p.filmTitles || {})[f.id]) || f.cn;
+    const row = s => { const v = U.showView(s, idx, data, picked), f = idx.F[s.id]; v.cn = title(f); v.tags = [v.ev ? t('映后活动') : '', v.sub ? t('字幕机') : ''].filter(Boolean); return v; };
+    const groups = gs => gs.map(g => ({ key: g.key, label: g.first.d + ' ' + U.wk(g.first.d, g.first.year), n: t(g.shows.length + ' 场'), rows: g.shows.map(row) }));
+    const fsel = b.film ? idx.F[b.film] : null;
+    this.setData({ panel: {
+      id, empty: !b.upN && !b.pastN,
+      films: b.films.map(x => { const f = idx.F[x.id]; return { id: x.id, cn: title(f), poster: U.thumb(f), ph: (title(f) || '').slice(0, 1), sub: [t(f.version || ''), x.next ? x.next.d + ' ' + x.next.t : t('已放映')].filter(Boolean).join(' · '), on: b.film === x.id, gone: !x.up }; }),
+      filmName: fsel ? (en ? '“' + title(fsel) + '”' : '《' + title(fsel) + '》') : '',
+      days: b.days.length > 1 ? [{ key: '', label: t('全部日期'), n: t(b.days.reduce((n, d) => n + d.n, 0) + ' 场'), on: !b.day }].concat(b.days.map(d => ({ key: d.key, label: d.first.d + ' ' + U.wk(d.first.d, d.first.year), n: t(d.n + ' 场'), on: b.day === d.key }))) : [],
+      up: groups(b.up), upEmpty: b.upShown ? '' : t(b.film ? '这部影片在本院没有待映场次' : '本院在本专题的场次已全部放映'),
+      pastN: b.pastShown, pastLabel: t('已放映 ' + b.pastShown + ' 场'),
+      past: this.data.pastOpen ? groups(b.past) : []
+    } });
+  },
+  pickFilm(e) { const id = e.currentTarget.dataset.id; this.pick = { film: this.pick.film === id ? '' : id, day: undefined }; this.buildPanel(); },
+  pickDay(e) { this.pick.day = e.currentTarget.dataset.key; this.buildPanel(); },
+  togglePast() { this.setData({ pastOpen: !this.data.pastOpen }, () => this.buildPanel()); },
+  openFilm(e) { wx.navigateTo({ url: '/pages/film/film?id=' + e.currentTarget.dataset.id }); },
+  toggle(e) {
+    const key = e.currentTarget.dataset.key, on = plan.toggle(key);
+    wx.showToast({ title: t(on ? '已加入排片' : '已移出排片'), icon: 'none' });
+    if (on) { const s = (this._shows || []).find(x => U.keyOf(x) === key); if (s) Remind.ask({ kind: 'show', key, film: s.id }, true); }
   },
   resetMap() {
     if (!this._fit || !this._geoRows) return;
     const fit = this._fit;
     const pts = fit.points.map(pt => ({ latitude: pt.latitude, longitude: pt.longitude }));
     this.setData({
-      activeId: '',
-      canReset: this._geoRows.length > 1,
+      canReset: this._geoRows.length > 1 || !!this.data.activeId,
       venueMap: {
         lat: fit.lat,
         lng: fit.lng,
         scale: fit.scale,
         points: pts,
-        markers: this.makeMarkers(this._geoRows, '')
+        markers: this.makeMarkers(this._geoRows, this.data.activeId)
       }
     }, () => {
       if (pts.length && wx.createMapContext) {
