@@ -108,7 +108,7 @@ function venuesEntryHTML(p){
 /* 影院地图与交通（2026-11-26）：手机与平板上地图吸在顶栏下方，只有影院列表滚动；宽屏（≥900px）左右分栏，列表在左、地图在右。
    点影院卡片、地图上的编号或「看本院影片与排片」，展开这家影院在本专题的影片与排片（规则在 shared/venue-board.js，与小程序 pages/venues 一致）。
    选中的影院、筛选和地图视角按专题记在内存里：加入排片、数据自动更新时只换影院列表，地图不重建。 */
-let vmState=null, vmMode="street", vmPid="", vmSel="", vmPick={film:"",day:undefined}, vmTapAt=0, vmTapId="";
+let vmState=null, vmMode="street", vmPid="", vmSel="", vmPick={film:"",day:undefined}, vmTapAt=0, vmTapId="", vmWatch=()=>{};
 function vmUse(pid,rows){ if(vmPid===pid)return; vmPid=pid; vmSel=rows.length===1?rows[0].v.id:""; vmPick={film:"",day:undefined}; vmState=null; }
 function vmMercX(lon,z){return ((lon+180)/360)*256*Math.pow(2,z);}
 function vmMercY(lat,z){const r=lat*Math.PI/180;return (1-Math.log(Math.tan(r)+1/Math.cos(r))/Math.PI)/2*256*Math.pow(2,z);}
@@ -320,7 +320,7 @@ function venuesPage(pid){
   }
   const map=venueMapHTML(rows);
   main.innerHTML=`<section class="view gut vm-page" data-pid="${esc(pid)}" data-sig="${esc(sig)}"><h1 class="sec">${esc(tr("影院地图与交通"))}</h1><p class="sub">${esc(p.name)} · ${rows.length} ${esc(tr("家影院"))}</p><div class="vm-split${map?"":" vm-nomap"}">${map}<div class="vm-cards">${venueCardsHTML(pid,rows)}</div></div>${venueTransfersHTML(rows)}${presentersHTML()}</section>`;
-  vmPinTop();
+  vmPinTop(); vmWatch();
   if(vmState){
     const stage=document.getElementById("vm-stage");
     if(stage){
@@ -336,7 +336,7 @@ function vmPinTop(){
   const pg=document.querySelector(".vm-page"),pin=document.querySelector(".vm-dock"),tb=document.getElementById("topbar");if(!pg||!tb)return;
   const b=tb.getBoundingClientRect().bottom,z=parseFloat(getComputedStyle(main).zoom)||1; // 专题类页面整体缩放（#main.prog-scale{zoom:.9}），吸顶位置要换算回缩放前的长度
   if(pin&&b>0)pin.style.setProperty("--vm-top",(b/z).toFixed(2)+"px");
-  pg.style.setProperty("--vm-list",(vmListTop()/z).toFixed(2)+"px"); // 展开的影院标题条吸在地图下沿
+  const v=(vmListTop()/z).toFixed(2)+"px"; if(pg.style.getPropertyValue("--vm-list")!==v)pg.style.setProperty("--vm-list",v); // 展开的影院标题条吸在地图下沿
 }
 // 影院列表可见区域的上沿：地图吸在列表上方时是地图底边；宽屏左右分栏或矮屏不吸顶时是顶栏底边
 function vmListTop(){
@@ -365,6 +365,11 @@ function vmSelect(id,zoom){
 }
 function vmBoardRefresh(){const box=document.getElementById("vb-"+vmSel);if(box)box.innerHTML=venueBoardHTML(vmPid,vmSel);}
 window.addEventListener("resize",()=>{if(!document.querySelector(".vm-page"))return;vmPinTop();if(document.getElementById("vm-stage")&&vmState)renderVenueMap();});
+/* 手机浏览器工具栏收起 / 展开会改变视口高度（地图高度用 vh），微信内置浏览器等不一定发 resize：
+   滚动时和地图、顶栏尺寸变化时都重新量一次，展开的影院标题条始终贴着地图下沿，不会悬空一条 */
+{let raf=0;const again=()=>{if(raf)return;raf=requestAnimationFrame(()=>{raf=0;if(document.querySelector(".vm-page"))vmPinTop();});};
+ window.addEventListener("scroll",again,{passive:true});
+ if(typeof ResizeObserver!=="undefined"){const ro=new ResizeObserver(again);vmWatch=()=>{ro.disconnect();const d=document.querySelector(".vm-dock"),tb=document.getElementById("topbar");if(d)ro.observe(d);if(tb)ro.observe(tb);};}}
 document.addEventListener("click",e=>{
   if(!e.target.closest||!e.target.closest(".vm-page"))return;
   const md=e.target.closest("[data-vm-mode]");
