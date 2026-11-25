@@ -21,3 +21,9 @@ console.log('PASS: '+renders+' real detail-page renders with past screenings acr
 current=Date.parse('2026-11-07T23:59:00+08:00');main.innerHTML='';sandbox.detail('legend-of-1900');assert(main.innerHTML.includes('class="fd-sf"'),'院线片应有场次筛选');assert(main.innerHTML.includes('data-showf-filter="venue"'));
 const fest=Object.values(F).find(f=>PG[f.prog]&&PG[f.prog].kind!=='院线'&&SH.filter(s=>s.id===f.id&&!isPast(s)).length>1);if(fest){main.innerHTML='';sandbox.detail(fest.id);assert(!main.innerHTML.includes('class="fd-sf"'),'影展片不应有场次筛选');}
 console.log('PASS: cinema film screening filters render only for 院线 films');
+
+// An individually recorded film links back to the original double-bill showtimes.
+current=Date.parse('2026-12-01T00:00:00+08:00');
+main.innerHTML='';sandbox.detail('py26-a-song-sung-blue');
+assert(main.innerHTML.includes('href="#film-py26-017"'));
+assert(!main.innerHTML.includes('上映信息待公布'));
