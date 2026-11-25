@@ -48,7 +48,7 @@ function installPage(){
       '<div class="in-note"><b>想要像 App 一样放在桌面？</b><p>在「···」里选「在浏览器打开」，再按 iPhone 或安卓的步骤添加到主屏幕。</p></div>'+
       '<div class="in-note muted"><b>关于小程序</b><p>网页不能直接加入微信的小程序列表。用「浮窗」是在微信里最接近小程序的打开方式。</p></div>';
   }
-  main.innerHTML='<section class="view gut in-view">'+subBackHTML()+'<div class="page-heading"><div><small>ADD TO HOME SCREEN</small><h2 class="sec">添加到手机</h2></div></div>'+
+  main.innerHTML='<section class="view gut in-view">'+subBackHTML()+'<div class="page-heading"><div><small>ADD TO HOME SCREEN</small><h1 class="sec">添加到手机</h1></div></div>'+
   (ENV.standalone?'<div class="in-done"><b>✓ 已经在 App 模式中打开</b><p>以后从桌面的「观影护照」图标进入即可。</p></div>':
   '<div class="in-hero"><img src="icons/icon-192.png?v=3" alt="" width="64" height="64"><div><b>把「麻雀观影护照」放到手机桌面</b><p>全屏打开，没有地址栏，看排片就像用 App；个人排片也会一直保存在这台手机上。</p></div></div>')+
   '<div class="in-tabs" role="tablist">'+T.map(([k,n])=>'<button role="tab" aria-selected="'+(k===tab)+'" data-itab="'+k+'">'+n+((k==="wechat"&&ENV.wechat)||(k==="ios"&&ENV.ios&&!ENV.wechat)||(k==="android"&&ENV.android&&!ENV.wechat)?'<i>当前</i>':'')+'</button>').join("")+'</div>'+

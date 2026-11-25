@@ -16,7 +16,7 @@ setInterval(statFlush,30000);
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')statFlush();});
 window.addEventListener('pagehide',statFlush);
 const statRouteKind=h=>h.startsWith('film-')?'film':h.startsWith('prog-')?'prog':h.startsWith('events-')?'events':h.startsWith('share=')?'share-in':/^[a-z-]{1,24}$/.test(h)?h:'other';
-async function statsPage(){main.innerHTML='<section class="view gut">'+subBackHTML()+'<div class="page-heading"><div><small>USAGE</small><h2 class="sec">使用统计</h2></div></div><p class="local-note" id="st-body">读取中…</p></section>';
+async function statsPage(){main.innerHTML='<section class="view gut">'+subBackHTML()+'<div class="page-heading"><div><small>USAGE</small><h1 class="sec">使用统计</h1></div></div><p class="local-note" id="st-body">读取中…</p></section>';
   let d;try{d=await sbRpc('ss_summary',{days:30});}catch(e){document.getElementById('st-body').textContent=tr('统计后端还没有启用：请在 Supabase 执行 backend/stats-v1.sql。');return;}
   const el=document.getElementById('st-body');if(!el)return;el.className='';
   const days=[...new Set([...d.visitors.map(x=>x.day),...d.events.map(x=>x.day)])].sort().reverse();
