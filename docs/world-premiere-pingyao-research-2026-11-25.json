@@ -1706,8 +1706,13 @@
         ],
         "urls": {}
       },
-      "individualPoster": null,
-      "posterResearch": "FIRST 冬季巡展 PDF 有独立海报，官网影片页提供剧照；现沿用联映海报。"
+      "individualPoster": {
+        "source": "https://www.firstfilm.org.cn/wp-content/uploads/2019/12/2019%E4%B8%BB%E5%8A%A8%E6%94%BE%E6%98%A0-%E5%86%AC%E5%AD%A3%E7%89%87%E5%8D%95.pdf",
+        "label": "FIRST 青年电影展 · 单片海报",
+        "page": 46,
+        "pixelWidth": 753,
+        "pixelHeight": 1129
+      }
     },
     "py26-a-song-sung-blue": {
       "title": "小白船",
