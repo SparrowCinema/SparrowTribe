@@ -32,6 +32,14 @@
 - 分享链接编码场次键；场次键由日期、时间、影院、影厅构成。修改这些字段时必须考虑已有收藏和链接兼容性。
 - 导出包含 PNG、ICS 日历及打印保存 PDF；影院和影厅应保持完整显示。
 
+## 字号、圆角与颜色变量（2026-11-25，网站）
+
+- 视觉翻新方向 A「放映档案」：保留米色纸张与酒红，细节统一使用 `app.css` 开头 `:root` 的变量。
+- 字号只用五档：`--t-xs` 12px（辅助说明、标签，网站最小字号）、`--t-s` 13px（筛选值、影院、场次信息）、`--t-m` 15px（正文、按钮、片名）、`--t-l` 18px（区块标题）、`--t-xl` 24px（页面标题）。新样式写 `font-size:var(--t-s)`，不要再写 10.6px 之类的值。32px 以上的大标题、`calc(var(--u)*…)` 的护照与印章、`--k` 缩放的组件不在此列。
+- 圆角：`--r-s` 6px、`--r-m` 12px、`--r-l` 18px、`--r-pill` 999px。色块上的文字用 `var(--on-block)`；护照金色用 `var(--gold)`（暗色模式另有色值）。
+- 护照、票根、印章、长图等手工造型（`.fp-*`、`.st-*`、`.pw-*`、`.share-*`、`.plate`、`.seal`、`styles/tickets.css`）保留各自的尺寸与颜色。
+- 小程序字号维持原有较紧凑的尺寸（见「小程序字号」），这次只改网站。
+
 ## 换域名（sparrowcinema.org，2026-11-24 起）
 
 - 已从 `sparrowcinema.github.io/SparrowTribe` 迁到 `https://sparrowcinema.org`，方案与上线步骤见 docs/domain-move.md。代码里的站点地址统一写 `https://sparrowcinema.org/`；比对、去前缀的地方（`artKey`、`myposter.js` 的 `key`、`shared/tickets.js` 的 `normArt`、getData / fallback 的 `posterUrl`）同时认旧地址，因为用户本机和云端还存着旧地址。
