@@ -930,6 +930,10 @@
       ],
       "writers": [
         "董劼"
+      ],
+      "screeningParts": [
+        "py26-break",
+        "gr26-013"
       ]
     },
     {
@@ -1153,6 +1157,10 @@
       ],
       "writers": [
         "刘亦宁（《小白船》）"
+      ],
+      "screeningParts": [
+        "py26-ray-of-sunshine",
+        "py26-a-song-sung-blue"
       ]
     },
     {
@@ -1367,6 +1375,10 @@
       "writers": [
         "孔大山",
         "王一通（《宇宙探索编辑部》）"
+      ],
+      "screeningParts": [
+        "py26-goodbye-mr-kong",
+        "py26-journey-to-the-west"
       ]
     },
     {
@@ -1665,6 +1677,10 @@
       ],
       "writers": [
         "王尔卓"
+      ],
+      "screeningParts": [
+        "py26-mother-eden",
+        "py26-farewell-my-hometown"
       ]
     },
     {
@@ -1873,6 +1889,10 @@
       "writers": [
         "魏书钧",
         "康春雷（《河边的错误》）"
+      ],
+      "screeningParts": [
+        "py26-on-the-border",
+        "py26-only-the-river-flows"
       ]
     },
     {
@@ -2167,7 +2187,551 @@
       ],
       "writers": [
         "邹静"
+      ],
+      "screeningParts": [
+        "py26-lili-alone",
+        "gr26-021"
       ]
+    },
+    {
+      "id": "py26-break",
+      "cn": "课间休息",
+      "o": "Break",
+      "en": "Break",
+      "y": 2019,
+      "min": 50,
+      "c": "中国",
+      "reg": "cn",
+      "dir": "董劼",
+      "dirO": "DONG Jie",
+      "poster": "posters/pingyao-py26-014.jpg",
+      "syn": "盛老师百无聊赖的生活被一次纪录片拍摄打破，在短短的假期之内，他们能否找到他们试图寻找的？",
+      "genre": [
+        "剧情"
+      ],
+      "honors": [
+        "2019年北京电影学院毕业作品展映；第三届平遥国际电影展·平遥一角"
+      ],
+      "warnings": [
+        "人际关系压力"
+      ],
+      "contentReview": {
+        "status": "synopsis-reviewed",
+        "checked": "2026-11-25",
+        "sensory": "unverified"
+      },
+      "contentNote": "公开简介涉及人际关系压力；声光强度待核实。",
+      "editorial": "观察短片如何用校园里的一次停顿写人物之间的距离。",
+      "worldPremiere": {
+        "status": "pending",
+        "kind": "unknown",
+        "date": null,
+        "festival": null,
+        "festivalEn": null
+      },
+      "bio": "董劼毕业于北京电影学院，《课间休息》是其毕业作品。",
+      "st": "董劼亦参与表演，郭境熙担任声音指导。",
+      "cast": [
+        "董劼"
+      ],
+      "links": {
+        "imdb": "tt11312110",
+        "lb": "break-2019-1"
+      },
+      "posterNote": "平遥联映展映海报"
+    },
+    {
+      "id": "py26-ray-of-sunshine",
+      "cn": "明天会更好",
+      "o": "The Ray of Sunshine",
+      "en": "The Ray of Sunshine",
+      "y": 2019,
+      "min": 26,
+      "c": "中国",
+      "reg": "cn",
+      "dir": "耿子涵",
+      "dirO": "GENG Zihan",
+      "poster": "posters/pingyao-py26-017.jpg",
+      "syn": "明天将至，我们仍困于此时。",
+      "genre": [
+        "剧情"
+      ],
+      "honors": [
+        "2019年第十三届FIRST青年电影展；第三届平遥国际电影展·平遥一角"
+      ],
+      "warnings": [
+        "成长与情绪压力"
+      ],
+      "contentReview": {
+        "status": "synopsis-reviewed",
+        "checked": "2026-11-25",
+        "sensory": "unverified"
+      },
+      "contentNote": "公开简介涉及成长与情绪压力；声光强度待核实。",
+      "editorial": "留意片中人物如何在等待中应对眼前的处境。",
+      "worldPremiere": {
+        "status": "pending",
+        "kind": "unknown",
+        "date": null,
+        "festival": null,
+        "festivalEn": null
+      },
+      "bio": "耿子涵毕业于中央戏剧学院，先以《明天会更好》等短片亮相，首部长片《小白船》入选戛纳导演双周。",
+      "st": "耿子涵兼任制片和剪辑，郝嘉越摄影，林宇瀚美术，孙铭君负责音效。",
+      "posterNote": "平遥联映展映海报"
+    },
+    {
+      "id": "py26-a-song-sung-blue",
+      "cn": "小白船",
+      "o": "A Song Sung Blue",
+      "en": "A Song Sung Blue",
+      "y": 2023,
+      "min": 91,
+      "c": "中国",
+      "reg": "cn",
+      "dir": "耿子涵",
+      "dirO": "GENG Zihan",
+      "poster": "posters/pingyao-py26-017.jpg",
+      "syn": "十五岁的刘娴，在最孤独的夏天里遇到了朝鲜族女孩金明美，她被明美肆意张扬的青春活力带领着，体会成长的滋味。",
+      "genre": [
+        "剧情"
+      ],
+      "honors": [
+        "2023年戛纳电影节·导演双周"
+      ],
+      "warnings": [
+        "家庭矛盾与青春期孤独"
+      ],
+      "contentReview": {
+        "status": "synopsis-reviewed",
+        "checked": "2026-11-25",
+        "sensory": "unverified"
+      },
+      "contentNote": "公开简介涉及家庭矛盾与青春期孤独；声光强度待核实。",
+      "editorial": "留意刘娴怎样看明美，以及这道目光怎样改变了一个漫长夏天的节奏。",
+      "worldPremiere": {
+        "status": "verified",
+        "kind": "festival",
+        "date": "2023-05-23",
+        "festival": "戛纳导演双周",
+        "festivalEn": "Cannes Directors’ Fortnight",
+        "checked": "2026-11-25"
+      },
+      "bio": "耿子涵毕业于中央戏剧学院，先以《明天会更好》等短片亮相，首部长片《小白船》入选戛纳导演双周。",
+      "st": "这是耿子涵的长片首作，郝嘉越担任摄影。梁静、梁龙饰演刘娴的母亲和父亲。",
+      "cast": [
+        "周美君",
+        "黄子琪",
+        "梁静",
+        "梁龙"
+      ],
+      "writers": [
+        "刘亦宁"
+      ],
+      "links": {
+        "imdb": "tt27540911",
+        "rt": "https://www.rottentomatoes.com/m/a_song_sung_blue",
+        "lb": "a-song-sung-blue"
+      },
+      "r": [
+        null,
+        null,
+        60,
+        null,
+        null
+      ],
+      "ratingChecked": "2026-11-25",
+      "posterNote": "平遥联映展映海报"
+    },
+    {
+      "id": "py26-goodbye-mr-kong",
+      "cn": "春天，老师们走了",
+      "o": "Goodbye, Mr. Kong",
+      "en": "Goodbye, Mr. Kong",
+      "y": 2017,
+      "min": 16,
+      "c": "中国",
+      "reg": "cn",
+      "dir": "孔大山",
+      "dirO": "KONG Dashan",
+      "poster": "posters/pingyao-py26-020.jpg",
+      "syn": "任教三十年的孔老师因儿子在北京成家生子，准备办理提前退休手续。最后一天，他来到学校，与熟悉的一切告别。",
+      "genre": [
+        "剧情"
+      ],
+      "honors": [
+        "2017年首届平遥国际电影展·平遥一角"
+      ],
+      "warnings": [
+        "离别与人际关系"
+      ],
+      "contentReview": {
+        "status": "synopsis-reviewed",
+        "checked": "2026-11-25",
+        "sensory": "unverified"
+      },
+      "contentNote": "公开简介涉及离别与人际关系；声光强度待核实。",
+      "editorial": "留意孔大山怎样在十几分钟里用告别处理人物的处境。",
+      "worldPremiere": {
+        "status": "pending",
+        "kind": "unknown",
+        "date": null,
+        "festival": null,
+        "festivalEn": null
+      },
+      "bio": "孔大山从短片创作进入长片，《春天，老师们走了》曾入选首届平遥一角，后与王一通合写并执导《宇宙探索编辑部》。",
+      "st": "孔大山编导，孔繁刚主演，孙晓晨摄影。",
+      "cast": [
+        "孔繁刚"
+      ],
+      "writers": [
+        "孔大山"
+      ],
+      "links": {
+        "lb": "film%3A1009248"
+      },
+      "posterNote": "平遥联映展映海报"
+    },
+    {
+      "id": "py26-journey-to-the-west",
+      "cn": "宇宙探索编辑部",
+      "o": "Journey to the West",
+      "en": "Journey to the West",
+      "y": 2021,
+      "min": 118,
+      "c": "中国",
+      "reg": "cn",
+      "dir": "孔大山",
+      "dirO": "KONG Dashan",
+      "poster": "posters/pingyao-py26-020.jpg",
+      "syn": "落魄的科幻杂志主编收到疑似来自宇宙的异常信号，他决定带着一群伙伴踏上寻找外星人，也寻找答案的旅途。",
+      "genre": [
+        "剧情"
+      ],
+      "honors": [
+        "2021年第五届平遥国际电影展·藏龙；获费穆荣誉最佳影片"
+      ],
+      "warnings": [
+        "丧亲与精神困境"
+      ],
+      "contentReview": {
+        "status": "synopsis-reviewed",
+        "checked": "2026-11-25",
+        "sensory": "unverified"
+      },
+      "contentNote": "公开简介涉及丧亲与精神困境；声光强度待核实。",
+      "editorial": "观察伪纪录片镜头怎样一本正经地对待荒诞线索，也给唐志军的孤独留下了空间。",
+      "worldPremiere": {
+        "status": "pending",
+        "kind": "unknown",
+        "date": null,
+        "festival": null,
+        "festivalEn": null
+      },
+      "bio": "孔大山从短片创作进入长片，《春天，老师们走了》曾入选首届平遥一角，后与王一通合写并执导《宇宙探索编辑部》。",
+      "st": "孔大山与王一通共同编剧，马蒂厄·德尔沃摄影。",
+      "cast": [
+        "杨皓宇",
+        "艾丽娅",
+        "王一通",
+        "蒋奇明",
+        "盛晨晨"
+      ],
+      "writers": [
+        "孔大山",
+        "王一通"
+      ],
+      "links": {
+        "imdb": "tt15072612",
+        "rt": "https://www.rottentomatoes.com/m/journey_to_the_west_2021"
+      },
+      "r": [
+        8,
+        7.2,
+        null,
+        null,
+        null
+      ],
+      "ratingChecked": "2026-11-25",
+      "posterNote": "平遥联映展映海报"
+    },
+    {
+      "id": "py26-mother-eden",
+      "cn": "母亲的乐园",
+      "o": "Mother Eden",
+      "en": "Mother Eden",
+      "y": 2018,
+      "min": 28,
+      "c": "中国",
+      "reg": "cn",
+      "dir": "王尔卓",
+      "dirO": "WANG Erzhuo",
+      "poster": "posters/pingyao-py26-024.jpg",
+      "syn": "听一位母亲讲述一代人逝去的青春岁月。",
+      "genre": [
+        "剧情"
+      ],
+      "honors": [
+        "2018年第十二届FIRST青年电影展竞赛；南方影展"
+      ],
+      "warnings": [
+        "家庭关系压力"
+      ],
+      "contentReview": {
+        "status": "synopsis-reviewed",
+        "checked": "2026-11-25",
+        "sensory": "unverified"
+      },
+      "contentNote": "公开简介涉及家庭关系压力；声光强度待核实。",
+      "editorial": "留意母子怎样借屋内的日常动作和停顿回应彼此。",
+      "worldPremiere": {
+        "status": "pending",
+        "kind": "unknown",
+        "date": null,
+        "festival": null,
+        "festivalEn": null
+      },
+      "bio": "王尔卓毕业于中央戏剧学院电影电视系，先做《母亲的乐园》，再以《再见，乐园》把同一创作关切扩展成三代女性的故事。",
+      "st": "王尔卓兼任编剧和剪辑，摄影为李林翰。",
+      "cast": [
+        "姚望喜",
+        "王恒明"
+      ],
+      "writers": [
+        "王尔卓"
+      ],
+      "posterNote": "平遥联映展映海报"
+    },
+    {
+      "id": "py26-farewell-my-hometown",
+      "cn": "再见，乐园",
+      "o": "Farewell, My Hometown",
+      "en": "Farewell, My Hometown",
+      "y": 2021,
+      "min": 90,
+      "c": "中国",
+      "reg": "cn",
+      "dir": "王尔卓",
+      "dirO": "WANG Erzhuo",
+      "poster": "posters/pingyao-py26-024.jpg",
+      "syn": "农村老去的外婆，都市漂泊的女儿，县城坚守的母亲；三代女性的私人记忆，讲述一个家庭的精神历程，跨越70年的时代变迁。",
+      "genre": [
+        "剧情"
+      ],
+      "honors": [
+        "2021年釜山国际电影节·新浪潮获奖；第五届平遥国际电影展·费穆荣誉特别表扬"
+      ],
+      "warnings": [
+        "家庭关系与迁徙"
+      ],
+      "contentReview": {
+        "status": "synopsis-reviewed",
+        "checked": "2026-11-25",
+        "sensory": "unverified"
+      },
+      "contentNote": "公开简介涉及家庭关系与迁徙；声光强度待核实。",
+      "editorial": "把不同年龄的女性放在一起看，留意同一个故乡如何被离开、返回和重新理解。",
+      "worldPremiere": {
+        "status": "pending",
+        "kind": "unknown",
+        "date": null,
+        "festival": null,
+        "festivalEn": null
+      },
+      "bio": "王尔卓毕业于中央戏剧学院电影电视系，先做《母亲的乐园》，再以《再见，乐园》把同一创作关切扩展成三代女性的故事。",
+      "st": "王尔卓从短片延伸到多代女性的故事，这部长片获得釜山新浪潮奖。",
+      "cast": [
+        "曾凤姐",
+        "贺雨禾",
+        "姚望喜"
+      ],
+      "writers": [
+        "王尔卓"
+      ],
+      "links": {
+        "lb": "farewell-my-hometown"
+      },
+      "posterNote": "平遥联映展映海报"
+    },
+    {
+      "id": "py26-on-the-border",
+      "cn": "延边少年",
+      "o": "On the Border",
+      "en": "On the Border",
+      "y": 2018,
+      "min": 15,
+      "c": "中国",
+      "reg": "cn",
+      "dir": "魏书钧",
+      "dirO": "WEI Shujun",
+      "poster": "posters/pingyao-py26-027.jpg",
+      "syn": "一名朝鲜族少年进城找父亲寻求帮助，他想去韩国。",
+      "genre": [
+        "剧情"
+      ],
+      "honors": [
+        "2018年戛纳电影节·短片竞赛特别提及"
+      ],
+      "warnings": [
+        "青少年困境"
+      ],
+      "contentReview": {
+        "status": "synopsis-reviewed",
+        "checked": "2026-11-25",
+        "sensory": "unverified"
+      },
+      "contentNote": "公开简介涉及青少年困境；声光强度待核实。",
+      "editorial": "留意边境空间怎样把少年想要离开的愿望变成一个具体的方向。",
+      "worldPremiere": {
+        "status": "pending",
+        "kind": "unknown",
+        "date": null,
+        "festival": null,
+        "festivalEn": null
+      },
+      "bio": "魏书钧凭短片《延边少年》进入戛纳短片竞赛，随后执导《野马分鬃》《永安镇故事集》等长片。",
+      "st": "魏书钧执导，王阶宏担任摄影。",
+      "cast": [
+        "李振铭",
+        "崔瑜娜"
+      ],
+      "links": {
+        "imdb": "tt8296620",
+        "lb": "on-the-border-2018"
+      },
+      "r": [
+        null,
+        5.8,
+        null,
+        null,
+        null
+      ],
+      "ratingChecked": "2026-11-25",
+      "posterNote": "平遥联映展映海报"
+    },
+    {
+      "id": "py26-only-the-river-flows",
+      "cn": "河边的错误",
+      "o": "Only the River Flows",
+      "en": "Only the River Flows",
+      "y": 2023,
+      "min": 102,
+      "c": "中国",
+      "reg": "cn",
+      "dir": "魏书钧",
+      "dirO": "WEI Shujun",
+      "poster": "posters/pingyao-py26-027.jpg",
+      "syn": "一桩吊诡凶案诱发命运暗流涌动，刑警队长马哲在宿命的不断拨弄下，逐渐陷入荒诞、不安和分不清是真是幻的时刻与记忆中……影片改编自余华同名先锋代表作。",
+      "genre": [
+        "剧情"
+      ],
+      "honors": [
+        "2023年戛纳电影节·一种关注"
+      ],
+      "warnings": [
+        "谋杀调查与暴力主题"
+      ],
+      "contentReview": {
+        "status": "synopsis-reviewed",
+        "checked": "2026-11-25",
+        "sensory": "unverified"
+      },
+      "contentNote": "公开简介涉及谋杀调查与暴力主题；声光强度待核实。",
+      "editorial": "留意被改作办案场所的电影院，以及影片怎样用那里的光线和空间加深马哲的不确定感。",
+      "worldPremiere": {
+        "status": "verified",
+        "kind": "festival",
+        "date": "2023-05-20",
+        "festival": "戛纳电影节",
+        "festivalEn": "Cannes Film Festival",
+        "checked": "2026-11-25"
+      },
+      "bio": "魏书钧凭短片《延边少年》进入戛纳短片竞赛，随后执导《野马分鬃》《永安镇故事集》等长片。",
+      "st": "魏书钧与康春雷将余华的同名小说改编为长片。",
+      "cast": [
+        "朱一龙",
+        "曾美慧孜",
+        "侯天来"
+      ],
+      "writers": [
+        "魏书钧",
+        "康春雷"
+      ],
+      "links": {
+        "imdb": "tt27590147",
+        "lb": "only-the-river-flows",
+        "rt": "https://www.rottentomatoes.com/m/only_the_river_flows",
+        "mc": "https://www.metacritic.com/movie/only-the-river-flows/"
+      },
+      "r": [
+        7.2,
+        6.6,
+        85,
+        70,
+        null
+      ],
+      "ratingChecked": "2026-11-25",
+      "posterNote": "平遥联映展映海报"
+    },
+    {
+      "id": "py26-lili-alone",
+      "cn": "朵丽",
+      "o": "Lili Alone",
+      "en": "Lili Alone",
+      "y": 2021,
+      "min": 22,
+      "c": "中国 / 中国香港 / 新加坡",
+      "reg": "cn",
+      "dir": "邹静",
+      "dirO": "ZOU Jing",
+      "poster": "posters/pingyao-py26-031.jpg",
+      "syn": "年轻母亲丽丽跟赌徒丈夫生活在四川省的偏远山区。孤立无援的丽丽为了赚快钱给父亲治病救命，来到了南方的大城市……",
+      "genre": [
+        "剧情"
+      ],
+      "honors": [
+        "2021年戛纳影评人周·短片金铁轨奖"
+      ],
+      "warnings": [
+        "生育与经济压力"
+      ],
+      "contentReview": {
+        "status": "synopsis-reviewed",
+        "checked": "2026-11-25",
+        "sensory": "unverified"
+      },
+      "contentNote": "公开简介涉及生育与经济压力；声光强度待核实。",
+      "editorial": "留意朵丽如何在城市里处理身体、报酬与家庭责任之间的冲突。",
+      "worldPremiere": {
+        "status": "pending",
+        "kind": "unknown",
+        "date": null,
+        "festival": null,
+        "festivalEn": null
+      },
+      "bio": "邹静以短片《朵丽》参加戛纳影评人周，此后创作首部长片《无名女孩》。",
+      "st": "邹静编剧并执导，梁子担任摄影。",
+      "cast": [
+        "黄丽丽",
+        "胡玲",
+        "于世学"
+      ],
+      "writers": [
+        "邹静"
+      ],
+      "links": {
+        "imdb": "tt14812814",
+        "lb": "lili-alone"
+      },
+      "r": [
+        null,
+        6.9,
+        null,
+        null,
+        null
+      ],
+      "ratingChecked": "2026-11-25",
+      "posterNote": "平遥联映展映海报"
     }
   ],
   "shows": [

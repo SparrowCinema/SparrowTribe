@@ -116,7 +116,7 @@ function pastProgsArchiveHTML(past){
     const lim=pgPastYearLimit[yr]||grouped.batchSize;
     const shown=list.slice(0,lim), rest=list.length-shown.length;
     const cards=shown.map(p=>{
-      const fn=FILMS.filter(f=>f.prog===p.id||p.sections?.[f.id]||p.members?.includes(f.id)).length;
+      const fn=FILMS.filter(f=>SparrowLibrary.catalogueFilm(f)&&(f.prog===p.id||p.sections?.[f.id]||p.members?.includes(f.id))).length;
       const f0=FILMS.find(f=>(f.prog===p.id||p.sections?.[f.id]||p.members?.includes(f.id))&&pst(f.id));
       return progSpineHTML(p,{count:fn,art:f0?pthumb(f0.id,360):""});
     }).join("");
@@ -145,7 +145,7 @@ document.addEventListener("click",e=>{
   const pm=e.target.closest("[data-pg-past-more]");
   if(pm){const yr=pm.dataset.pgPastMore;pgPastYearLimit[yr]=(pgPastYearLimit[yr]||12)+24;const y=window.scrollY;const box=document.getElementById("pg-past-drawer");if(box)box.outerHTML=pastProgsArchiveHTML(progOrdered().filter(p=>progStatus(p)==="ended"));window.scrollTo(0,y);}
 });
-function progCardHTML(p){ const n=progShows(p.id).length, fn=FILMS.filter(f=>f.prog===p.id||p.sections?.[f.id]||p.members?.includes(f.id)).length; return `<button class="prog-card pc-${progStatus(p)}" data-prog="${p.id}">${p.cover?`<img src="${p.cardCover||p.cover}" alt="" loading="lazy">`:""}<span class="pc-body"><small>${statusTag(p)}${esc(p.kind)} · ${esc(p.period)}${p.city?` · ${esc(p.city)}`:""}</small><b>${esc(p.name)}</b><span>${esc(p.sub)} · ${fn} 部${n?` / ${n} 场`:""}</span>${p.blurb?`<span class="pc-blurb">${esc(tr(p.blurb))}</span>`:""}</span><span class="pc-go">专题 ›</span></button>`; }
+function progCardHTML(p){ const n=progShows(p.id).length, fn=FILMS.filter(f=>SparrowLibrary.catalogueFilm(f)&&(f.prog===p.id||p.sections?.[f.id]||p.members?.includes(f.id))).length; return `<button class="prog-card pc-${progStatus(p)}" data-prog="${p.id}">${p.cover?`<img src="${p.cardCover||p.cover}" alt="" loading="lazy">`:""}<span class="pc-body"><small>${statusTag(p)}${esc(p.kind)} · ${esc(p.period)}${p.city?` · ${esc(p.city)}`:""}</small><b>${esc(p.name)}</b><span>${esc(p.sub)} · ${fn} 部${n?` / ${n} 场`:""}</span>${p.blurb?`<span class="pc-blurb">${esc(tr(p.blurb))}</span>`:""}</span><span class="pc-go">专题 ›</span></button>`; }
 function programmesPage(){
   const all=progOrdered(), live=all.filter(p=>progStatus(p)==="live"), soon=all.filter(p=>progStatus(p)==="soon"), past=all.filter(p=>progStatus(p)==="ended");
   const sec=(t,en,list)=>list.length?`<h3 class="blockh pgl-h">${t} <small>${list.length} · ${en}</small></h3><div class="prog-strip">${list.map(progCardHTML).join("")}</div>`:"";

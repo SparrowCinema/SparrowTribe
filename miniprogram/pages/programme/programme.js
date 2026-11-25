@@ -1,6 +1,7 @@
 const T = require('../../utils/totop.js');
 const U = require('../../utils/util.js');
 const I = require('../../utils/i18n.js');
+const Library = require('../../utils/library.js');
 const t = I.tr;
 const app = getApp();
 const SM = require('../../utils/share-make.js');
@@ -56,15 +57,17 @@ Page({
     // 单元策展导读
     const rawNote = this.data.section && p.sectionNotes && p.sectionNotes[this.data.section];
     const secNote = rawNote ? { title: t(this.data.section), intro: (en && (rawNote.en || rawNote.introEn)) || rawNote.intro || '', curator: (en && (rawNote.curatorEn || rawNote.curator)) || rawNote.curator || '' } : null;
+    const groups = f => Library.screeningGroups(f.id, data.films);
     const mk = f => {
-      const mine = shows.filter(s => s.id === f.id).sort((x, y) => U.showDate(x) - U.showDate(y)), next = U.localFirst(mine.filter(s => !U.ended(s, idx)), idx), last = mine[mine.length - 1];
+      const ids = [f.id, ...groups(f).map(x => x.id)];
+      const mine = shows.filter(s => ids.includes(s.id)).sort((x, y) => U.showDate(x) - U.showDate(y)), next = U.localFirst(mine.filter(s => !U.ended(s, idx)), idx), last = mine[mine.length - 1];
       const first = next || last;
       const title = (!I.isEn() && p.filmTitles && p.filmTitles[f.id]) || f.cn;
-      return { id: f.id, cn: title, ini: (title || '')[0], version: t(f.version || ''), poster: U.thumb(f), color: (data.reg[f.reg] || {}).c, first: first ? U.ymd(first) + ' ' + first.t : '',
+      return { id: f.id, cn: title, ini: (title || '')[0], version: t(f.version || ''), poster: U.thumb(f), color: (data.reg[f.reg] || {}).c, first: first ? (first.id === f.id ? U.ymd(first) + ' ' + first.t : t('联映场次')) : '',
         at: next ? U.showDate(next).getTime() : Infinity, lastAt: last ? U.showDate(last).getTime() : (U.endedIn(f, p) ? U.relTime(f) : 0), gone: (!!mine.length || U.endedIn(f, p)) && !next };
     };
     const membership=new Set(Object.keys(p.sections||{}).concat(p.members||[]));
-    const all = data.films.filter(f => !f.ev && idx.progOf(f).id === p.id || membership.has(f.id)).filter(f=>!this.data.section||(p.sections||{})[f.id]===this.data.section).map(mk);
+    const all = data.films.filter(f => Library.catalogueFilm(f) && (idx.progOf(f).id === p.id || membership.has(f.id))).filter(f => !this.data.section || [f, ...groups(f)].some(x => p.sections?.[x.id] === this.data.section)).map(mk);
     // 即将放映（含场次待公布）按下一场先后；已结束按最近一场由近及远（与网站一致）
     const films = all.filter(f => !f.gone).sort((x, y) => (x.at === y.at ? 0 : x.at < y.at ? -1 : 1) || x.cn.localeCompare(y.cn, I.isEn() ? 'en' : 'zh'));
     const gone = all.filter(f => f.gone).sort((x, y) => y.lastAt - x.lastAt || x.cn.localeCompare(y.cn, I.isEn() ? 'en' : 'zh'));

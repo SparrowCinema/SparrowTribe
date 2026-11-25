@@ -3,21 +3,30 @@
 
 // 下一场优先取定位城市的场次（list 已按时间升序），没有再取最早的一场
 function localFirst(list){const c=geoActiveCity();if(c){const v=VENUES.filter(x=>x.city===c).map(x=>x.id),hit=list.find(s=>v.includes(s.v));if(hit)return hit;}return list[0];}
+function programmeFilmShows(f,pid){
+  const ids=[f.id,...SparrowLibrary.screeningGroups(f.id,FILMS).map(x=>x.id)];
+  return SH.filter(s=>s.p===pid&&ids.includes(s.id)).sort((a,b)=>showDate(a)-showDate(b));
+}
+function programmeFilmInSection(f,pid,section){
+  if(!section)return true;
+  const sections=PG[pid].sections;
+  return sections?.[f.id]===section||SparrowLibrary.screeningGroups(f.id,FILMS).some(x=>sections?.[x.id]===section);
+}
 function progFilmSub(f,pid,ended){ // 与小程序一致：版本 · 下一场日期时间，单行
-  const ed=editionOf(f), mine=SH.filter(x=>x.id===f.id&&x.p===pid).sort((x,y)=>showDate(x)-showDate(y)), next=ended?null:localFirst(mine.filter(x=>!isPast(x)));
-  const when=next?next.d+" "+next.t:(!mine.length&&!ended?"场次待公布":"");
+  const ed=editionOf(f), mine=programmeFilmShows(f,pid), next=ended?null:localFirst(mine.filter(x=>!isPast(x)));
+  const when=next?(next.id===f.id?next.d+" "+next.t:tr("联映场次")):(!mine.length&&!ended?"场次待公布":"");
   return [ed,when].filter(Boolean).map(x=>"<span>"+esc(x)+"</span>").join(""); }
 function progFilmCard(f,pid,ended){ const sub=progFilmSub(f,pid,ended), title=(LANG!=="en"&&PG[pid]?.filmTitles?.[f.id])||f.cn; return `<button class="pg-film" data-film="${f.id}">${pst(f.id)?pimg(f.id,360,'alt="" loading="lazy"'):`<span class="pg-ph" style="background:${REG[f.reg].c}">${esc(title[0])}</span>`}<span class="pg-caption"><b class="pg-name">${esc(title)}</b>${sub?`<span class="pg-sub1">${sub}</span>`:""}</span></button>`; }
 // 专题页影片分组：即将放映（含场次待公布）按下一场先后；已结束按最近一场由近及远
 function progFilmGroups(pid,films){
   const up=[], gone=[];
-  films.forEach(f=>{ const mine=SH.filter(s=>s.id===f.id&&s.p===pid).sort((a,b)=>showDate(a)-showDate(b)), next=mine.find(s=>!isPast(s));
+  films.forEach(f=>{ const mine=programmeFilmShows(f,pid), next=mine.find(s=>!isPast(s));
     if(next||(!mine.length&&!endedIn(f,pid))) up.push({f,at:next?showDate(next):Infinity}); else gone.push({f,at:mine.length?showDate(mine[mine.length-1]):relTime(f)}); }); // endedIn：f.ended：已下映、本站未收录场次的影片直接归入已结束
   up.sort((a,b)=>(a.at===b.at?0:a.at<b.at?-1:1)||filmOrder(a.f,b.f)); gone.sort((a,b)=>b.at-a.at||a.f.cn.localeCompare(b.f.cn,"zh"));
   return {up:up.map(x=>x.f), gone:gone.map(x=>x.f)};
 }
 function progFilmsHTML(pid,films){
-  const {up,gone}=progFilmGroups(pid,films.filter(f=>!sectionFilter||PG[pid].sections?.[f.id]===sectionFilter));
+  const {up,gone}=progFilmGroups(pid,films.filter(f=>programmeFilmInSection(f,pid,sectionFilter)));
   const grid=(list,ended)=>`<div class="pg-grid${ended?" pg-gone":""}">${list.map(f=>progFilmCard(f,pid,ended)).join("")}</div>`;
   const upHTML=up.length?`<h3 class="blockh pg-grp" id="pg-up">即将放映 <small>UPCOMING · ${up.length} 部</small></h3>${grid(up)}`:`<h3 class="blockh pg-grp" id="pg-up">即将放映 <small>UPCOMING · 0 部</small></h3><div class="fd-noshow"><b>暂无待映场次</b><span>新场次公布后会更新到这里。</span></div>`;
   const goneHTML=gone.length?`<details class="pg-ended" id="pg-gone"${up.length?"":" open"}><summary class="blockh pg-grp">已结束 <small>ENDED · ${gone.length} 部</small></summary>${grid(gone,true)}</details>`:"";
@@ -48,7 +57,7 @@ function eventsHTML(p){
 function partsHTML(f){
   if(!f.parts||!f.parts.length)return "";
   const en=LANG==="en";
-  return `<section class="fd-block"><h3 class="fd-h">${esc(tr("收录短片"))}</h3>${f.parts.map(m=>`<div class="fd-part"><b>${esc(en?m.en:m.cn)}</b><small>${esc(en?m.cn:m.en)}${m.y?" · "+m.y:""}${m.min?" · "+m.min+(en?" min":"分钟"):""}${m.c?" · "+esc(m.c):""}</small>${m.dir?`<small>${esc(tr("导演"))}：${esc(en&&m.dirO?m.dirO:m.dir)}</small>`:""}${m.printSource?`<small>${esc(tr("影片版权"))}：${esc(en&&m.printSourceEn?m.printSourceEn:m.printSource)}</small>`:""}${(en?m.synEn:m.syn)?`<p>${esc(en?m.synEn:m.syn)}</p>`:""}${(en?m.bioEn:m.bio)?`<p>${esc(tr("导演介绍"))}：${esc(en?m.bioEn:m.bio)}</p>`:""}${(m.honors||[]).length?`<ul class="fd-honors">${m.honors.map(honorHTML).join("")}</ul>`:""}</div>`).join("")}</section>`;
+  return `<section class="fd-block"><h3 class="fd-h">${esc(tr(f.screeningParts?.length?"联映影片":"收录短片"))}</h3>${f.parts.map((m,i)=>`<div class="fd-part"><b>${esc(en?m.en:m.cn)}</b>${f.screeningParts?.[i]&&F[f.screeningParts[i]]?` <a class="text-button" href="#film-${esc(f.screeningParts[i])}">${esc(tr("查看单片详情"))}</a>`:""}<small>${esc(en?m.cn:m.en)}${m.y?" · "+m.y:""}${m.min?" · "+m.min+(en?" min":"分钟"):""}${m.c?" · "+esc(m.c):""}</small>${m.dir?`<small>${esc(tr("导演"))}：${esc(en&&m.dirO?m.dirO:m.dir)}</small>`:""}${m.printSource?`<small>${esc(tr("影片版权"))}：${esc(en&&m.printSourceEn?m.printSourceEn:m.printSource)}</small>`:""}${(en?m.synEn:m.syn)?`<p>${esc(en?m.synEn:m.syn)}</p>`:""}${(en?m.bioEn:m.bio)?`<p>${esc(tr("导演介绍"))}：${esc(en?m.bioEn:m.bio)}</p>`:""}${(m.honors||[]).length?`<ul class="fd-honors">${m.honors.map(honorHTML).join("")}</ul>`:""}</div>`).join("")}</section>`;
 }
 
 let evKind="";
@@ -294,7 +303,7 @@ document.addEventListener("click",e=>{
 function progPage(pid){
   if(sectionProgramme!==pid){sectionFilter="";sectionProgramme=pid;}
   const p=PG[pid]; if(!p){ go("schedule"); return; }
-  const shows=progShows(pid), fids=[...new Set(shows.map(x=>x.id))], films=FILMS.filter(f=>f.prog===pid||p.sections?.[f.id]||p.members?.includes(f.id)||fids.includes(f.id)).sort(filmOrder);
+  const shows=progShows(pid), fids=[...new Set(shows.map(x=>x.id))], films=catalogueFilms().filter(f=>f.prog===pid||p.sections?.[f.id]||p.members?.includes(f.id)||fids.includes(f.id)).sort(filmOrder);
   topEl.innerHTML = `<div class="row"><button class="back" data-back><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m15 6-6 6 6 6"/></svg>返回</button><span class="sp"></span><span class="pill">${esc(p.kind)}</span></div>`;
   main.innerHTML = `<article class="pg">
     ${p.cover?`<div class="pg-cover"><img src="${p.cover}"${p.coverPos?` style="object-position:${p.coverPos}"`:""} alt="${esc(p.name)} 主视觉"></div>`:""}
@@ -308,7 +317,7 @@ function progPage(pid){
       ${venuesEntryHTML(p)}
       ${juryHTML(p)}
       ${p.ticket&&!p.noPageTicket&&progStatus(p)!=="ended"?ticketCardHTML({ticket:p.ticket,ticketPlatform:p.ticketPlatform,ticketHint:p.ticketHint},p.name,"prog:"+p.id,""):""}
-      ${p.sections?`<div class="plan-scope sec-scope"><button class="schedule-filter" data-section-sel aria-haspopup="dialog"><span><small>${esc(tr("选择单元"))}</small><b>${esc(tr(secLabel(sectionFilter)))}</b></span><span class="scope-count">${tr(FILMS.filter(f=>!sectionFilter?(p.sections[f.id]||f.prog===pid):p.sections[f.id]===sectionFilter).length+" 部")}</span>${filterChevron}</button></div>`:""}
+      ${p.sections?`<div class="plan-scope sec-scope"><button class="schedule-filter" data-section-sel aria-haspopup="dialog"><span><small>${esc(tr("选择单元"))}</small><b>${esc(tr(secLabel(sectionFilter)))}</b></span><span class="scope-count">${tr(films.filter(f=>programmeFilmInSection(f,pid,sectionFilter)).length+" 部")}</span>${filterChevron}</button></div>`:""}
       ${sectionNoteHTML(p,sectionFilter)}
       <div class="plan-toolbar"><button class="primary-button" data-prog-jump="up">即将放映</button><button class="secondary-button" data-prog-jump="gone">已结束</button></div>
       <p class="src">场次与排片表自动同步 · 页面打开时每分钟检查更新</p>${films.length?progFilmsHTML(pid,films):`<div class="fd-noshow"><b>片单与场次即将公布</b><span>公布后会第一时间更新到这里。</span></div>`}

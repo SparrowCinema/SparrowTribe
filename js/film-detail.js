@@ -83,6 +83,8 @@ function detail(id){
   id=f.id;
   const col = REG[f.reg].c, P = pst(id);
   const allShows = SH.filter(x=>x.id===id), shows = allShows.filter(x=>!isPast(x));
+  const screeningGroups = window.SparrowLibrary.screeningGroups(f.id,FILMS);
+  const groupLinks = screeningGroups.length ? `<div class="fd-noshow"><b>${esc(tr("联映场次"))}</b><span>${esc(tr("本片的平遥展映为联映。开场时间见联映场次。"))}</span>${screeningGroups.map(group=>`<span><a class="text-button" href="#film-${esc(group.id)}">${esc(group.cn)}</a></span>`).join("")}</div>` : "";
   const sib = FILMS.filter(x=>x.prog===f.prog||PG[f.prog]?.sections?.[x.id]||PG[f.prog]?.members?.includes(x.id)), idx = sib.indexOf(f), prev = sib[idx-1], next = sib[idx+1];
   topEl.innerHTML = `<div class="row"><button class="back" data-back><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m15 6-6 6 6 6"/></svg>返回</button><span class="sp"></span><span class="pill">${f.ev?esc(tr("活动场次")):String(idx+1).padStart(2,"0")+" / "+sib.length}</span></div>`;
   const syn = String(f.syn||""), long = syn.length > 220;
@@ -106,7 +108,7 @@ function detail(id){
   </header>
   <div class="fd-body gut">
     <aside class="fd-side">
-      ${/* 顺序：先看场次、加入排片，再购票、记录观影，最后才是各家评分 */""}<section class="fd-block"><h3 class="fd-h">放映场次 <small id="fd-showcount">${shows.length?showCountText(f,shows):(f.ended&&!allShows.length?"已下映":"排片待公布")}</small></h3>${shows.length?showFilterHTML(f,shows)+`<div id="fd-showlist">${showListHTML(f,shows)}</div>`+pastShowsHTML(allShows,f,true):`<div class="fd-noshow"><b>${allShows.length?"本片场次已全部放映结束":(f.ended?"已下映":f.release?esc(f.release):"上映信息待公布")}</b><span>${allShows.length?(pastShowsHTML(allShows,f,false)?"":"已放映的场次不再显示在这里。"):(f.ended?"本片院线放映已结束，麻雀观影护照未收录具体场次。":"麻雀观影护照收录的场次公布后会更新到这里，也可以先在各影院售票平台查看。")}</span></div>`+pastShowsHTML(allShows,f,false)}</section>
+      ${/* 顺序：先看场次、加入排片，再购票、记录观影，最后才是各家评分 */""}<section class="fd-block"><h3 class="fd-h">放映场次 <small id="fd-showcount">${shows.length?showCountText(f,shows):(screeningGroups.length?tr("联映场次"):f.ended&&!allShows.length?"已下映":"排片待公布")}</small></h3>${shows.length?showFilterHTML(f,shows)+`<div id="fd-showlist">${showListHTML(f,shows)}</div>`+pastShowsHTML(allShows,f,true):(allShows.length||!groupLinks)?`<div class="fd-noshow"><b>${allShows.length?"本片场次已全部放映结束":(f.ended?"已下映":f.release?esc(f.release):"上映信息待公布")}</b><span>${allShows.length?(pastShowsHTML(allShows,f,false)?"":"已放映的场次不再显示在这里。"):(f.ended?"本片院线放映已结束，麻雀观影护照未收录具体场次。":"麻雀观影护照收录的场次公布后会更新到这里，也可以先在各影院售票平台查看。")}</span></div>`+pastShowsHTML(allShows,f,false):""}${groupLinks}</section>
       ${ticketHTML(f)}
       ${f.ev?"":myRateHTML(f)}
       ${f.ev?"":ratingsHTML(f)}

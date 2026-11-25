@@ -85,10 +85,11 @@ Page({
       pct: v == null ? 0 : Math.min(100, v / RT[i][1] * 100)
     }));
     const credits = [...Premiere.rows(f,I.isEn()), ['导演', f.dir], ['联合导演', f.coDirector], [f.writerLabel || '编剧', (f.writers || []).join(' / ')], ['原著', t(f.book || '')],
-      [(f.genre || []).includes('纪录片') ? '出镜' : '主演', (f.cast || []).join(' / ')], ['影片版权', (I.isEn() && f.printSourceEn) || f.printSource], ['类型', (f.genre || []).map(t).join(' / ')], ['原始语言', t(f.language)], ['海报说明', f.posterNote]]
+      [(f.genre || []).includes('纪录片') ? '出镜' : '主演', (f.cast || []).join(' / ')], ['影片版权', (I.isEn() && f.printSourceEn) || f.printSource], ['类型', (f.genre || []).map(t).join(' / ')], ['原始语言', t(f.language)], ['海报说明', t(f.posterNote || '')]]
       .filter(x => x[1]).map(x => ({ k: t(x[0]), v: x[1] }));
     const all = data.films.filter(x => !x.ev), i = all.indexOf(f);
     const nav = (f.ev ? [null, null] : [all[i - 1], all[i + 1]]).map(x => x ? { id: x.id, cn: x.cn, poster: U.thumb(x) } : null);
+    const screeningGroups = Library.screeningGroups(f.id, data.films).map(({id, cn}) => ({id, cn}));
     const para = s => String(s || '').split(/\n{2,}/).filter(Boolean);
     // 购票码：影片自带 + 所属各专题的购票码（跨影展影片可有多张，按专题标注）
     const SITE = 'https://sparrowcinema.org/', tks = [], seenTk = {};
@@ -119,7 +120,7 @@ Page({
       },
       qa: (q => q ? { label: f.qaStart + ' – ' + f.qaEnd, guest: t(f.qaGuest) } : null)(U.qaOf(f)),
       sfAll: showsAllN, cnt: !showsAllN && f.ended ? t('已下映') : sf.filtered && shows.length !== showsAllN ? t(shows.length + ' / ' + showsAllN + ' 场') : t(showsAllN + ' 场'), sf,
-      shows, goneShows, goneN: t(goneShows.length + ' 场'), goneOpen: this.data.goneOpen === undefined ? !showsAllN : this.data.goneOpen, ratings, credits, nav, parts: (f.parts || []).map(m => { const en = I.isEn(); return { n: en ? m.en : m.cn, sub: [en ? m.cn : m.en, m.y, m.min ? m.min + t('分钟') : '', m.c].filter(Boolean).join(' · '), dir: (en && m.dirO) || m.dir || '', src: (en && m.printSourceEn) || m.printSource || '', syn: (en ? m.synEn : m.syn) || '', bio:(en?m.bioEn:m.bio)||'', honors: (m.honors || []).map(honor) }; }), ended: allShows.length > 0 && !shows.length
+      shows, goneShows, goneN: t(goneShows.length + ' 场'), goneOpen: this.data.goneOpen === undefined ? !showsAllN : this.data.goneOpen, ratings, credits, nav, screeningGroups, splitScreening: !!f.screeningParts?.length, parts: (f.parts || []).map((m, i) => { const en = I.isEn(); return { id: idx.F[f.screeningParts?.[i]]?.id || '', n: en ? m.en : m.cn, sub: [en ? m.cn : m.en, m.y, m.min ? m.min + t('分钟') : '', m.c].filter(Boolean).join(' · '), dir: (en && m.dirO) || m.dir || '', src: (en && m.printSourceEn) || m.printSource || '', syn: (en ? m.synEn : m.syn) || '', bio:(en?m.bioEn:m.bio)||'', honors: (m.honors || []).map(honor) }; }), ended: allShows.length > 0 && !shows.length
     });
     this.buildMine();
     Want.markSeen(this.id, this.wantKeys());
