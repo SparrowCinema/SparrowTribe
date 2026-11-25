@@ -197,6 +197,53 @@
   },
   "_readme": "English layer for the site. films/programmes/venues overlay data fields when ?lang=en; ui is the zh→en dictionary used by tr(). Missing entries fall back to the Chinese text.",
   "films": {
+    "love-test": {
+      "title": "Love Test",
+      "c": "Mainland China",
+      "dir": "Hou Xiaoyao",
+      "dirLife": "1987– · Beijing, China",
+      "release": "November 21, 2026 · Mainland China theatrical release",
+      "writers": [
+        "Xu Xiaohu",
+        "Hou Xiaoyao"
+      ],
+      "cast": [
+        "Feng Shaofeng",
+        "Chen Yusi",
+        "Li Meng",
+        "Guo Yue",
+        "Che Xiao",
+        "Zhou Yemang",
+        "Yang Yi"
+      ],
+      "genre": [
+        "Mystery",
+        "Thriller"
+      ],
+      "language": "Mandarin Chinese",
+      "syn": "An empty room, flickering lights, bodies entwined in the dark and a face both strange and familiar. When pianist Ding Boyang’s girlfriend Wan Ying suddenly disappears, he stops sleeping and drinks to forget, soon growing close to a young waitress, Ma Ya, and bringing her home to his secluded villa in the hills.\n\nOnce Ma Ya moves in, uncanny things begin to happen, and a key of unknown origin leads her step by step toward the truth of Wan Ying’s disappearance. The vanishing was meant as a test of love, and from the moment Ma Ya stepped into the house she, too, became a player in this dangerous game. Intimacy or estrangement, devotion or cruelty: all three are trapped in a contest of human nature.",
+      "bio": "Born in Beijing in 1987, Hou Xiaoyao graduated from the Central Academy of Drama and started out in editing and assistant directing, serving as assistant director and editor on Hou Keming’s film Heading North (2012). In November 2020, Hengye Pictures announced a remake of the Spanish-language thriller The Hidden Face with Hou directing; it became Love Test, which started shooting in Shanghai in October 2021.\n\nLove Test is his first theatrical feature, executive-produced by Lu Yang (the Brotherhood of Blades films, A Writer’s Odyssey) and veteran producer Wang Hongwei, and co-written with Xu Xiaohu. Another feature he directed, The Long Night (also known as Sea Without Night, starring Geng Le and Qiu Tian), has yet to be released. Discussing the title, he has said that testing in a relationship is mutual suspicion: on the surface two women test one man, but the man is also testing where each of them stands.",
+      "st": "The film adapts Andrés Baiz’s 2011 Spanish-language thriller The Hidden Face (La cara oculta, promoted in China as a Spanish film), which had also been remade in Korea. The Chinese version moves the story to a secluded villa in the hills. It is produced by Zhijiang Film (Zhejiang) and Tianjin Maoyan Weiying, with Beijing Free Whale Pictures, Yunnan Jincai Shijie and others co-producing. The crew includes cinematographer Yu Lik-wai, gaffer Huang Zhiming, production designer Liu Weixin, editor Li Nanyi, costume and make-up designer Wang Tao, sound supervisor Lin Siyu and composer Ding Ke.\n\nFeng Shaofeng plays Ding Boyang, a pianist who is refined on the surface and obsessive underneath; Chen Yusi plays Ma Ya and Li Meng plays Wan Ying, with Guo Yue, Che Xiao, Zhou Yemang and Yang Yi in supporting roles. The director has shared a behind-the-scenes detail: while Feng and Chen shot their scenes together, Li Meng would sit behind the monitor noting how each line was picked up and where each hand went, then later replay those reactions alone. At a Chengdu screening he also explained that the dog barking Ma Ya hears alone in the house and the later scene of a police dog barking at a mirror were cut from the same scene split across time, planted as a clue.\n\nShooting began on October 25, 2021, with a “playing with fire” poster of three matches. The film then sat on the shelf for years before being presented at the 8th Zhejiang International Youth Film Week’s new-releases showcase in September 2025. Its release date was announced on October 26, 2026, and it opened in Mainland China on November 21, taking about 4.6 million yuan on its first day with roughly 10.6% of screenings. Runtime: 106 minutes.",
+      "highlights": [
+        "The title is the key: watch who is testing whom. The director calls it mutual suspicion, with the male lead testing both women in return.",
+        "The hillside villa is a fourth character. Doors, mirrors and a key keep returning; note which details are later reinterpreted.",
+        "Much of Li Meng’s role is reaction work in which she can only watch. The director says she studied her co-stars’ scenes from behind the monitor before replaying them alone.",
+        "If you have seen The Hidden Face, compare the Chinese version’s localisation and whether its added jump scares change the original’s psychological restraint.",
+        "On November 26 there is a roadshow screening at Zheying Shidai Xiguang in Hangzhou, with director Hou Xiaoyao attending a post-screening Q&A."
+      ],
+      "editorial": "For viewers who like one-house, three-person psychological suspense and stories about control and suspicion in relationships. It adapts the well-regarded The Hidden Face, and its structure and twists are intact, but reception has been poor (4.8 on Douban): many viewers feel the remake leans too heavily on jump-scare sound effects and doesn’t dig deep enough into motives. Fans of the original may miss its restraint; newcomers who just want a twisty thriller may have an easier time. There is a director Q&A roadshow screening in Hangzhou on November 26.",
+      "warnings": [
+        "Partner’s disappearance and emotional manipulation",
+        "Horror and suspense elements",
+        "Sudden jump-scare images and sound",
+        "Sexual innuendo and intimate scenes"
+      ],
+      "contentNote": "Checked against the official synopsis, promotional materials and public post-release reviews: the story centres on a partner’s disappearance and on manipulation and deception in the name of love, with a horror-thriller atmosphere, sudden jump-scare images and sound, and sexual innuendo and intimate scenes. No official rating notes or scene-by-scene review have been obtained; explicitness and sensory items such as flashing lights remain unverified. These topic notes are not an official rating.",
+      "qaGuest": "Director Hou Xiaoyao (post-screening Q&A)",
+      "screeningNotes": {
+        "11/26-19:00-hz-zy-xiguang-hall-1": "Post-screening event · Director: Hou Xiaoyao · Post-screening Q&A 20:50–21:10 (subject to who actually attends)"
+      }
+    },
     "py26-break": {
       "title": "Break",
       "o": "Break",
@@ -13454,6 +13501,10 @@
       "brand": "Zheying Shidai Cinema",
       "store": "Xiguang Laser IMAX",
       "halls": {
+        "hall-1": {
+          "short": "Hall 1",
+          "name": "Hall 1 (1F)"
+        },
         "imax": {
           "short": "Laser IMAX Hall",
           "name": "Laser IMAX Hall"
@@ -13860,6 +13911,10 @@
     }
   },
   "ui": {
+    "伴侣失踪与情感操控": "Partner’s disappearance and emotional manipulation",
+    "恐怖与惊悚元素": "Horror and suspense elements",
+    "突发惊吓画面与音效": "Sudden jump-scare images and sound",
+    "性暗示与亲密场面": "Sexual innuendo and intimate scenes",
     "平遥联映展映海报": "Pingyao double-bill programme poster",
     "联映场次": "Double-bill screenings",
     "联映影片": "Films in this double bill",
