@@ -10038,7 +10038,8 @@
         "Chen Yan’s mother drives the film. She rarely explains herself, yet uses yarn, apples and the old house to lead her son back to life.",
         "Wang Ke plays both Ma Ke and the young Mr. Yi; watch how characters in two timeframes mirror each other. The role won him Best Actor in HKIFF’s Young Cinema Competition.",
         "“Evening Bell at Nanping” recurs throughout; Hangzhou dialect, villages and old songs give an abstract linguistic story a familiar local voice.",
-        "Pair it with A Song River, opening the same day: one fiction, one documentary, both searching Hangzhou for lost sounds and a language between family members. Zhu’s debut Vanishing Days is a good follow-up."
+        "Pair it with A Song River, opening the same day: one fiction, one documentary, both searching Hangzhou for lost sounds and a language between family members. Zhu’s debut Vanishing Days is a good follow-up.",
+        "On November 29 there is a roadshow screening at Woody Wood Cinema in Hangzhou (CINITY LED Giant Screen Hall, 19:00), with director Zhu Xin and cast members attending a post-screening Q&A."
       ],
       "honors": [
         "获奖｜2025 49th Hong Kong International Film Festival · Young Cinema Competition (Chinese-language), Best Actor (Wang Ke)",
@@ -10057,7 +10058,11 @@
         "A missing family member and the search for her",
         "Emotional strain from family secrets and generational conflict"
       ],
-      "contentNote": "Checked against the official synopsis and festival materials: the story involves a professor’s missing daughter, distance between mother and son and family secrets across two generations, with a melancholy tone. No official classification or scene-by-scene review of the mainland release has been obtained, and sensory elements such as flashing images or sudden loud sounds remain unverified. These topic notes are not an official rating."
+      "contentNote": "Checked against the official synopsis and festival materials: the story involves a professor’s missing daughter, distance between mother and son and family secrets across two generations, with a melancholy tone. No official classification or scene-by-scene review of the mainland release has been obtained, and sensory elements such as flashing images or sudden loud sounds remain unverified. These topic notes are not an official rating.",
+      "qaGuest": "Director Zhu Xin and cast members (post-screening Q&A)",
+      "screeningNotes": {
+        "11/29-19:00-hz-woodywood-cinity-led": "Post-screening event · Director: Zhu Xin; Cast: cast members (subject to who actually attends) · Roadshow screening · Check-in 18:30–19:00 · Post-screening Q&A 20:40–21:00"
+      }
     },
     "a-song-river": {
       "title": "A Song River",
@@ -10095,7 +10100,8 @@
         "Hangzhou and Hong Kong mirror each other: Siu Hak’s Cantonese lyrics and the home Su Shi wrote about after leaving it share the same homesickness.",
         "Arguments with his mother and his parents’ wedding videotape bring a documentary about Song poetry back to one family.",
         "West Lake through the seasons, Phoenix Mountain and Lingyin invite viewers who know Hangzhou to compare the city on screen with the one in memory.",
-        "Pair it with All Quiet at Sunrise, opening the same day: the same director uses documentary and fiction to ask how language and love get spoken."
+        "Pair it with All Quiet at Sunrise, opening the same day: the same director uses documentary and fiction to ask how language and love get spoken.",
+        "On November 29 there is a roadshow screening at Woody Wood Cinema in Hangzhou (CINITY LED Giant Screen Hall, 15:30), with director Zhu Xin and cast members attending a post-screening Q&A."
       ],
       "honors": [
         "获奖｜2024 8th Pingyao International Film Festival · Youth Jury Award (New Generation China)",
@@ -10113,7 +10119,11 @@
         "Daily life under travel restrictions during the 2022 pandemic",
         "Family conflict, including arguments between mother and son"
       ],
-      "contentNote": "Checked against the official synopsis and festival materials: the film records daily life during 2022 travel restrictions, the director’s arguments with his mother and anxiety during the creative process. No official classification or scene-by-scene review of the mainland release has been obtained, and sensory elements such as flashing images or sudden loud sounds remain unverified. These topic notes are not an official rating."
+      "contentNote": "Checked against the official synopsis and festival materials: the film records daily life during 2022 travel restrictions, the director’s arguments with his mother and anxiety during the creative process. No official classification or scene-by-scene review of the mainland release has been obtained, and sensory elements such as flashing images or sudden loud sounds remain unverified. These topic notes are not an official rating.",
+      "qaGuest": "Director Zhu Xin and cast members (post-screening Q&A)",
+      "screeningNotes": {
+        "11/29-15:30-hz-woodywood-cinity-led": "Post-screening event · Director: Zhu Xin; Cast: cast members (subject to who actually attends) · Roadshow screening · Check-in 15:00–15:30 · Post-screening Q&A 17:10–17:30"
+      }
     },
     "24-flavors": {
       "title": "24 Flavors",
@@ -13509,6 +13519,18 @@
         "imax": {
           "short": "Laser IMAX Hall",
           "name": "Laser IMAX Hall"
+        }
+      }
+    },
+    "hz-woodywood": {
+      "name": "Woody Wood Cinema",
+      "short": "Woody Wood",
+      "brand": "Woody Wood Cinema",
+      "store": "Chengxi Yintai City",
+      "halls": {
+        "cinity-led": {
+          "short": "CINITY LED Hall",
+          "name": "CINITY LED Giant Screen Hall"
         }
       }
     },

@@ -1644,6 +1644,25 @@
       "addr": "杭州市拱墅区环城北路47号西湖文化广场"
     },
     {
+      "id": "hz-woodywood",
+      "short": "伍迪坞",
+      "name": "伍迪坞影院 WOODY WOOD",
+      "brand": "伍迪坞影院",
+      "store": "城西银泰城店",
+      "fmt": [
+        "CINITY LED"
+      ],
+      "halls": [
+        {
+          "id": "cinity-led",
+          "short": "CINITY LED厅",
+          "name": "CINITY LED 巨屏厅"
+        }
+      ],
+      "city": "杭州",
+      "addr": "浙江省杭州市拱墅区城西银泰城4F"
+    },
+    {
       "id": "sparrow-tribe",
       "short": "麻雀部落",
       "name": "麻雀部落电影空间",
