@@ -1,0 +1,33 @@
+{
+ "checked": "2026-11-25",
+ "scope": "cinema-2026 新增院线新片《试探》（Love Test）及11月26日杭州浙影时代西广店导演映后路演场",
+ "ratingOrder": [
+  "Douban",
+  "IMDb",
+  "Rotten Tomatoes Tomatometer",
+  "Metacritic critic score",
+  "Letterboxd"
+ ],
+ "ratingNotes": "2026-11-25 检索：豆瓣 4.8（1285人评价，条目 35068655）；豆瓣条目未列 IMDb 编号，未找到 IMDb / 烂番茄 / Metacritic / Letterboxd 条目或公开评分，保留 null。",
+ "verifiedRecords": {
+  "love-test": {
+   "cn": "试探",
+   "status": "partial",
+   "date": "2026-11-21",
+   "festival": null,
+   "festivalEn": null,
+   "kind": "theatrical",
+   "checked": "2026-11-25",
+   "sources": [
+    "https://movie.douban.com/subject/35068655/",
+    "https://baike.baidu.com/item/%E8%AF%95%E6%8E%A2/58984509",
+    "https://baike.baidu.com/item/%E4%BE%AF%E9%80%8D%E9%81%A5/55577391",
+    "https://www.1905.com/mdb/star/3157767/",
+    "https://ent.sina.cn/2026-11-21/detail-inizpcvv4753520.d.html",
+    "https://k.sina.com.cn/article_1635270132_m61783df403301r4j0.html",
+    "https://sina.cn/news/detail/5367472526199972.html"
+   ],
+   "note": "无影展首映记录；2026-11-21 内地公映（豆瓣上映日期、百度百科）。上映前有北京首映礼与成都观影活动，具体日期未查实，故记为 partial，以公映日为已核实的最早公开放映。片长 106 分钟（豆瓣、百度百科，与路演排片 19:00–20:46 一致）。编剧徐小虎、侯逍遥；英文名用海报上的 LOVE TEST（豆瓣又名亦列 Love Test，百度百科外文名 The Hidden Face）。原作为 Andrés Baiz 2011 年的 La cara oculta（片方称西班牙悬疑电影）。路演信息来自用户提供的排片表：2026-11-26 19:00–20:46 放映，1楼1号厅，映后见面会 20:50–21:10，嘉宾导演侯逍遥。"
+  }
+ }
+}
