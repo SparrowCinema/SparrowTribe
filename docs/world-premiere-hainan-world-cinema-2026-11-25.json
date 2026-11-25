@@ -1,0 +1,62 @@
+{
+ "checked": "2026-11-25",
+ "scope": "第八届海南岛国际电影节「天涯海角」新增四部影片的首映、评分与资料核查",
+ "verifiedRecords": {
+  "a-good-little-soldier-2026": {
+   "cn": "优秀卒子",
+   "date": "2026-09-09",
+   "festival": "威尼斯国际电影节",
+   "festivalEn": "Venice International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://en.wikipedia.org/wiki/83rd_Venice_International_Film_Festival",
+    "https://www.wikidata.org/wiki/Q140680910",
+    "https://movie.douban.com/subject/37447589/",
+    "https://en.unifrance.org/movie/63041/a-good-little-soldier",
+    "https://www.seminci.com/en/peliculas/a-good-little-soldier/",
+    "https://www.imdb.com/title/tt41802342/"
+   ]
+  },
+  "back-to-buenos-aires-2026": {
+   "cn": "重返布宜诺斯艾利斯",
+   "date": "2026-09-11",
+   "festival": "威尼斯国际电影节",
+   "festivalEn": "Venice International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://en.wikipedia.org/wiki/Back_to_Buenos_Aires",
+    "https://www.wikidata.org/wiki/Q140680798",
+    "https://movie.douban.com/subject/37925580/",
+    "https://trigon-film.org/en/films/back-to-buenos-aires/",
+    "https://www.imdb.com/title/tt39239726/"
+   ]
+  },
+  "one-minute-to-midnight-2026": {
+   "cn": "午夜前不久",
+   "date": "2026-09",
+   "festival": "威尼斯国际电影节",
+   "festivalEn": "Venice International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://en.wikipedia.org/wiki/83rd_Venice_International_Film_Festival",
+    "https://movie.douban.com/subject/37526161/",
+    "https://en.unifrance.org/movie/63690/one-minute-to-midnight",
+    "https://www.imdb.com/title/tt38807757/"
+   ]
+  },
+  "variations-on-a-theme-2026": {
+   "cn": "主题变奏曲",
+   "date": "2026-01",
+   "festival": "鹿特丹国际电影节",
+   "festivalEn": "International Film Festival Rotterdam",
+   "kind": "festival",
+   "sources": [
+    "https://en.wikipedia.org/wiki/55th_International_Film_Festival_Rotterdam",
+    "https://movie.douban.com/subject/37113817/",
+    "https://www.screendaily.com/reviews/variations-on-a-theme-review-rotterdam-tiger-winner-is-intimate-south-african-doc-fiction/5213551.article",
+    "https://www.filmlinc.org/new-directors-new-films-2026/films/variations-on-a-theme/",
+    "https://www.imdb.com/title/tt39131323/"
+   ]
+  }
+ }
+}

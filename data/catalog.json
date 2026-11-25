@@ -1164,7 +1164,28 @@
         "water-of-the-sea-2026": "海上明月",
         "whispers-in-may-2026": "海上明月",
         "gr26-013": "海上明月",
-        "9-temples-to-heaven-2026": "海上明月"
+        "9-temples-to-heaven-2026": "海上明月",
+        "a-good-little-soldier-2026": "天涯海角",
+        "gr26-038": "天涯海角",
+        "gh63-102": "天涯海角",
+        "back-to-buenos-aires-2026": "天涯海角",
+        "gr26-015": "天涯海角",
+        "gr26-045": "天涯海角",
+        "one-minute-to-midnight-2026": "天涯海角",
+        "gr26-006": "天涯海角",
+        "gh63-116": "天涯海角",
+        "variations-on-a-theme-2026": "天涯海角",
+        "gr26-064": "天涯海角"
+      },
+      "sectionNotes": {
+        "天涯海角": {
+          "intro": "当我们试图拼凑一张属于电影艺术的、流动的世界版图，会发现经纬度从来不止于坐标、更是人类命运交错的节点：从南美的旧日幻影，到当代两性关系的午夜回响。这里有边缘人的孤寂，有直面故土的凝视，也有陌生人之间命运的交汇。\n\n「天涯海角」试图在来自不同地理位置与文化的影像中，捕捉这个时代的某种怀旧式的惆怅：人们似乎总是在千帆过尽后，对所致终结的事物念念不忘，这种怀旧往往来自于对时下现状的无能为力、无可奈何，于是只好转过身背对时代、旧事重提。所幸，在这个被距离不断切割着的世界里，我们可以在银幕上拥抱彼此、一同逃离。",
+          "en": "When we try to piece together a fluid world map of cinema, latitude and longitude turn out to be more than coordinates: they are points where human destinies cross, from old phantoms of South America to the midnight echoes of present-day relationships. Here are the loneliness of people on the margins, a steady gaze at the homeland, and strangers whose fates meet.\n\nWorld Cinema looks for a nostalgic melancholy of our time in films from different places and cultures: after everything has passed, people cannot let go of what has ended, often because they feel powerless about the present and turn their backs on it to revisit the past. Fortunately, in a world cut apart by distance, we can still embrace one another on screen and escape together."
+        }
+      },
+      "filmTitles": {
+        "gh63-102": "15/18",
+        "gh63-116": "当地最孤单的男人"
       }
     },
     {
