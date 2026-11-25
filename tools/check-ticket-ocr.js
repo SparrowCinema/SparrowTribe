@@ -87,4 +87,58 @@ assert.strictEqual(t5.format, '4K修复');
 const t6 = OCR.parseTicketText('   ???   ', { venues });
 assert.strictEqual(t6.fields.length, 0);
 
-console.log('PASS: ticket OCR parser (mainland paper, e-ticket, TW Golden Horse, international EN, schedule snap, empty fallback)');
+// 7. AI 结构化结果归一化：影院对齐片库、格式统一、座位标准化、非法日期拦截
+const a1 = OCR.normalizeAiResult({
+  fields: {
+    date: '2026-11-28',
+    time: '7:30 PM',
+    venue: '百美汇影城',
+    hall: '3号杜比全景声厅',
+    seat: '05排08号',
+    format: 'IMAX Laser'
+  },
+  raw: '百美汇影城 19:30'
+}, { venues, defaultYear: 2026 });
+assert.strictEqual(a1.date, '2026-11-28');
+assert.strictEqual(a1.time, '19:30');
+assert.strictEqual(a1.venue, '杭州百美汇影城（嘉里中心店）');
+assert.strictEqual(a1.hall, '3号杜比全景声厅');
+assert.strictEqual(a1.seat, '5排8座');
+assert.strictEqual(a1.format, 'IMAX激光');
+
+// 8. AI 返回海外影展票与自定义版本，并按排片场次补全
+const a2 = OCR.normalizeAiResult({
+  fields: {
+    date: '2026-11-28',
+    time: '19:30',
+    venue: '',
+    hall: '',
+    seat: 'Row G Seat 14',
+    format: '露天放映'
+  },
+  raw: ''
+}, {
+  venues,
+  shows: [{ key: '11/28-19:30-hz-bmh-h1', date: '2026-11-28', time: '19:30', venue: '杭州百美汇影城', hall: 'LUXE巨幕厅', format: '4K修复', city: '杭州' }]
+});
+assert.ok(a2.matchedShow);
+assert.strictEqual(a2.venue, '杭州百美汇影城');
+assert.strictEqual(a2.hall, 'LUXE巨幕厅');
+assert.strictEqual(a2.seat, 'Row G Seat 14');
+assert.strictEqual(a2.format, '露天放映');
+
+// 9. AI 返回非法日期时拒绝并尝试从 raw 回退
+const a3 = OCR.normalizeAiResult({
+  fields: { date: '2026-02-30', time: 'bad', venue: '', hall: '', seat: '', format: '' },
+  raw: '上海影城SHO\n2026-11-29 14:15\n12排14座'
+}, { venues, defaultYear: 2026 });
+assert.strictEqual(a3.date, '2026-11-29');
+assert.strictEqual(a3.time, '14:15');
+assert.strictEqual(a3.venue, '上海影城SHO');
+assert.strictEqual(a3.seat, '12排14座');
+
+// 10. AI 返回空对象安全降级
+const a4 = OCR.normalizeAiResult({}, { venues });
+assert.strictEqual(a4.fields.length, 0);
+
+console.log('PASS: ticket OCR parser & AI normalizer (mainland paper, e-ticket, TW Golden Horse, international EN, schedule snap, AI normalization, invalid date guard, empty fallback)');

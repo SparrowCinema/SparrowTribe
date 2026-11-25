@@ -33,14 +33,17 @@
   background-repeat:no-repeat
 }
 .te-action-remove::before{box-sizing:border-box;width:12px;height:12px;border:1px solid currentColor;border-radius:50%;background:linear-gradient(currentColor,currentColor) center/5px 1px no-repeat}
-.te-sec-row{display:flex;align-items:center;justify-content:space-between;gap:calc(16 * var(--r));margin:calc(32 * var(--r)) calc(6 * var(--r)) calc(12 * var(--r))}
+.te-sec-row{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:calc(12 * var(--r)) calc(16 * var(--r));margin:calc(32 * var(--r)) calc(6 * var(--r)) calc(12 * var(--r))}
 .te-sec-row .te-sec{margin:0}
 .te-sec{margin:calc(32 * var(--r)) calc(6 * var(--r)) calc(12 * var(--r));font-size:calc(20 * var(--fr));color:var(--muted);letter-spacing:calc(1 * var(--r))}
-.te-ocr-btn{padding:calc(8 * var(--r)) calc(20 * var(--r));border-radius:999px;border:calc(2 * var(--r)) solid rgba(142,42,34,.45);background:rgba(142,42,34,.08);color:var(--accent);font-size:calc(18 * var(--fr));font-weight:600}
+.te-ocr-btns{display:flex;align-items:center;flex-wrap:wrap;gap:calc(10 * var(--r))}
+.te-ocr-btn{padding:calc(8 * var(--r)) calc(18 * var(--r));border-radius:999px;border:calc(2 * var(--r)) solid rgba(142,42,34,.45);background:rgba(142,42,34,.08);color:var(--accent);font-size:calc(18 * var(--fr));font-weight:600}
+.te-ocr-btn.te-ocr-ai{border-color:rgba(47,111,108,.48);background:rgba(47,111,108,.09);color:var(--teal)}
 .te-ocr-btn.busy{opacity:.55}
 .te-ocr-status{margin:0 calc(4 * var(--r)) calc(16 * var(--r));padding:calc(14 * var(--r)) calc(20 * var(--r));border-radius:calc(16 * var(--r));border:calc(2 * var(--r)) solid var(--line);background:var(--surface);font-size:calc(18 * var(--fr));line-height:1.5;color:var(--fg)}
 .te-ocr-status.ok{border-color:rgba(47,111,108,.45);color:var(--teal)}
 .te-ocr-status.warn{border-color:rgba(178,106,31,.45);color:var(--ochre)}
+.te-ocr-retry{display:inline-block;margin-left:calc(12 * var(--r));padding:calc(4 * var(--r)) calc(14 * var(--r));border-radius:999px;border:calc(2 * var(--r)) solid rgba(47,111,108,.5);background:rgba(47,111,108,.1);color:var(--teal);font-size:calc(17 * var(--fr));font-weight:600}
 .te-card{border:calc(2 * var(--r)) solid var(--line);border-radius:calc(24 * var(--r));background:var(--surface);overflow:hidden}
 .te-card .te-row{border-top:calc(2 * var(--r)) solid var(--line-soft)}
 .te-card .te-first,.te-card .te-first .te-row{border-top:0}
