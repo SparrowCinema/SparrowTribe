@@ -8,7 +8,7 @@ const SM = require('../../utils/share-make.js');
 const HT = require('../../utils/hometip.js');
 const Stats = require('../../utils/stats.js');
 Page({
-  data: { i: {}, evGroups: [], evN: 0, evOpen: false, juryGroups: [], juryN: 0, jurySub: '', juryOpen: false, venueRows: [], venueN: 0, venueSub: '', venueOpen: false, venueMap: null, secNote: null, p: null, films: [], gone: [], goneOpen: undefined, stats: {}, section: "", sections: [], selOpen: false, selRows: [], selQuery: "", selTitle: "", selPlaceholder: "", sectionName: "", sectionN: 0 },
+  data: { i: {}, evGroups: [], evN: 0, evOpen: false, juryGroups: [], juryN: 0, jurySub: '', juryOpen: false, venueN: 0, venueSub: '', secNote: null, p: null, films: [], gone: [], goneOpen: undefined, stats: {}, section: "", sections: [], selOpen: false, selRows: [], selQuery: "", selTitle: "", selPlaceholder: "", sectionName: "", sectionN: 0 },
   onLoad(q) { this.setData({ i: I.dict() }); HT.show(this); this.id = SM.fromScene(q, ((app.globalData.data || {}).programmes || []).map(x => x.id)) || 'style-kaleidoscope'; this.off = app.onData(() => this.build()); this.build(); },
   homeTipGo() { HT.home(); },
   homeTipClose() { HT.close(this); },
@@ -30,30 +30,14 @@ Page({
     })).filter(g => g.members.length) : [];
     const juryN = juryGroups.reduce((n, g) => n + g.members.length, 0);
     const jurySub = juryGroups.map(g => g.unit).filter(Boolean).join(' · ');
-    // 站内影院与交通
+    // 站内影院与交通入口摘要（完整地图与交通见独立页面 pages/venues/venues）
     const vIds = [...new Set(shows.map(s => s.v))];
-    const venueRows = data.venues.filter(v => vIds.includes(v.id)).map((v, i) => {
-      const vs = shows.filter(s => s.v === v.id), up = vs.filter(s => !U.ended(s, idx));
-      const hIds = [...new Set(vs.map(s => s.h))];
-      const halls = (v.halls || []).filter(h => hIds.includes(h.id)).map(h => ({ name: h.name, acc: !!((v.access && v.access.length) || (h.access && h.access.length)) }));
-      const trs = v.transit ? [['地铁', v.transit.metro], ['公交', v.transit.bus], ['停车', v.transit.parking], ['提示', v.transit.note]].filter(x => x[1]).map(x => ({ k: t(x[0]), v: x[1] })) : [];
-      const geo = U.geoOf(v);
-      return { id: v.id, idx: String(i + 1).padStart(2, '0'), name: v.name, short: v.short || v.name, addr: [v.city ? t(v.city) : '', v.addr || ''].filter(Boolean).join(' · '), halls, hasAcc: halls.some(h => h.acc) || !!(v.access && v.access.length), total: vs.length, up: up.length, trs, geo };
+    const venues = data.venues.filter(v => vIds.includes(v.id));
+    const hasAcc = venues.some(v => {
+      const hIds = new Set(shows.filter(s => s.v === v.id).map(s => s.h));
+      return !!(v.access && v.access.length) || (v.halls || []).some(h => hIds.has(h.id) && h.access && h.access.length);
     });
-    const geoRows = venueRows.filter(r => r.geo);
-    // 视野要把全部影院框进来：影院跨城市（如杭州 + 嘉兴）时，平均点落在两城之间的郊外，固定 13 级只看到一片空地、标记全在画面外。
-    // 多个影院用 include-points 自动缩放，并把外框四周各放宽 20%（留出气泡标签的位置）；只有一个影院时居中、15 级。
-    const lats = geoRows.map(r => r.geo.lat), lngs = geoRows.map(r => r.geo.lng);
-    const box = geoRows.length ? { n: Math.max(...lats), s: Math.min(...lats), e: Math.max(...lngs), w: Math.min(...lngs) } : null;
-    const padLat = box ? Math.max((box.n - box.s) * 0.2, 0.004) : 0, padLng = box ? Math.max((box.e - box.w) * 0.2, 0.004) : 0;
-    const venueMap = geoRows.length ? {
-      lat: (box.n + box.s) / 2,
-      lng: (box.e + box.w) / 2,
-      scale: geoRows.length > 1 ? 11 : 15,
-      points: geoRows.length > 1 ? [{ latitude: box.n + padLat, longitude: box.w - padLng }, { latitude: box.s - padLat, longitude: box.e + padLng }] : [],
-      markers: geoRows.map((r, i) => ({ id: i + 1, latitude: r.geo.lat, longitude: r.geo.lng, title: r.short, callout: { content: r.idx + ' ' + r.short, display: 'ALWAYS', padding: 6, borderRadius: 6, fontSize: 11 } }))
-    } : null;
-    const venueSub = [venueRows.map(r => r.short).slice(0, 3).join(' · ') + (venueRows.length > 3 ? '…' : ''), venueRows.some(r => r.hasAcc) ? t('含无障碍影厅') : ''].filter(Boolean).join(' · ');
+    const venueSub = [venues.map(v => v.short || v.name).slice(0, 3).join(' · ') + (venues.length > 3 ? '…' : ''), hasAcc ? t('含无障碍影厅') : ''].filter(Boolean).join(' · ');
     // 单元策展导读
     const rawNote = this.data.section && p.sectionNotes && p.sectionNotes[this.data.section];
     const secNote = rawNote ? { title: t(this.data.section), intro: (en && (rawNote.en || rawNote.introEn)) || rawNote.intro || '', curator: (en && (rawNote.curatorEn || rawNote.curator)) || rawNote.curator || '' } : null;
@@ -72,16 +56,10 @@ Page({
     const films = all.filter(f => !f.gone).sort((x, y) => (x.at === y.at ? 0 : x.at < y.at ? -1 : 1) || x.cn.localeCompare(y.cn, I.isEn() ? 'en' : 'zh'));
     const gone = all.filter(f => f.gone).sort((x, y) => y.lastAt - x.lastAt || x.cn.localeCompare(y.cn, I.isEn() ? 'en' : 'zh'));
     const st = U.progInfo(p, data, idx).status;
-    this.setData({ juryGroups, juryN, jurySub, venueRows, venueN: venueRows.length, venueSub, venueMap, secNote: secNote && secNote.intro ? secNote : null, sectionName: this.data.section ? t(this.data.section) : t('全部单元'), sectionN: all.length, sections: [{name:t("全部单元"),value:""},...Array.from(new Set(Object.values(p.sections||{}))).map(n=>({name:t(n),value:n}))], p: Object.assign({}, p, { cover: /^(https?:|\/|$)/.test(p.cover || '') ? p.cover : 'https://sparrowcinema.org/' + p.cover, periodT: t(p.period), status: st, statusText: t(p.ongoing && st === 'live' ? '常设' : { live: '进行中', soon: '即将开始', ended: '已结束' }[st]) }), upN: t(films.length + ' 部'), goneN: t(gone.length + ' 部'), films, gone, goneOpen: this.data.goneOpen === undefined ? !films.length : this.data.goneOpen, stats: { f: data.films.filter(f=>!f.ev&&(idx.progOf(f).id===p.id||membership.has(f.id))).length, s: shows.filter(s=>!idx.F[s.id].ev).length, d: new Set(shows.map(s => s.d)).size, h: new Set(shows.map(s => s.v + s.h)).size } });
+    this.setData({ juryGroups, juryN, jurySub, venueN: venues.length, venueSub, secNote: secNote && secNote.intro ? secNote : null, sectionName: this.data.section ? t(this.data.section) : t('全部单元'), sectionN: all.length, sections: [{name:t("全部单元"),value:""},...Array.from(new Set(Object.values(p.sections||{}))).map(n=>({name:t(n),value:n}))], p: Object.assign({}, p, { cover: /^(https?:|\/|$)/.test(p.cover || '') ? p.cover : 'https://sparrowcinema.org/' + p.cover, periodT: t(p.period), status: st, statusText: t(p.ongoing && st === 'live' ? '常设' : { live: '进行中', soon: '即将开始', ended: '已结束' }[st]) }), upN: t(films.length + ' 部'), goneN: t(gone.length + ' 部'), films, gone, goneOpen: this.data.goneOpen === undefined ? !films.length : this.data.goneOpen, stats: { f: data.films.filter(f=>!f.ev&&(idx.progOf(f).id===p.id||membership.has(f.id))).length, s: shows.filter(s=>!idx.F[s.id].ev).length, d: new Set(shows.map(s => s.d)).size, h: new Set(shows.map(s => s.v + s.h)).size } });
   },
   toggleJury() { this.setData({ juryOpen: !this.data.juryOpen }); },
-  openVenues() { this.setData({ venueOpen: true }); },
-  closeVenues() { this.setData({ venueOpen: false }); },
-  openVenueMap(e) {
-    const id = e.currentTarget.dataset.id, data = app.globalData.data, v = data && U.index(data).VN[id];
-    // U.geoOf 返回 {lat, lng}；统一用 U.openMap（与影片页、个人排片的「地图」相同）
-    if (v) U.openMap(v);
-  },
+  openVenues() { wx.navigateTo({ url: '/pages/venues/venues?id=' + this.id }); },
   buildEvents(p) {
     const en = I.isEn(), now = new Date(), today = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0') + '-' + String(now.getDate()).padStart(2, '0');
     const evs = p.events || [];

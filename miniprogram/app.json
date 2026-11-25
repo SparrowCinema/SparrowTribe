@@ -7,6 +7,7 @@
     "pages/film/film",
     "pages/programme/programme",
     "pages/events/events",
+    "pages/venues/venues",
     "pages/share/share",
     "pages/plan/plan"
   ],
