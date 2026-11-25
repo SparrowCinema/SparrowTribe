@@ -179,11 +179,15 @@ Page({
     this.pick = { film: '', day: undefined };
     const up = { activeId: on ? id : '', canReset: true };
     if (this._geoRows && this.data.venueMap) up['venueMap.markers'] = this.makeMarkers(this._geoRows, on ? id : '');
-    if (on && row.geo && o.zoom) Object.assign(up, { 'venueMap.lat': row.geo.lat, 'venueMap.lng': row.geo.lng, 'venueMap.scale': 15, 'venueMap.points': [] });
+    // 地图移到这家影院：只改绑定的中心坐标。不要用 MapContext.moveToLocation——它会检查精确定位权限，弹「需要在 app.json 中声明 scope.userLocation」
+    if (on && row.geo && this.data.venueMap) {
+      const m = this.data.venueMap, same = m.lat === row.geo.lat && m.lng === row.geo.lng;
+      Object.assign(up, { 'venueMap.lat': row.geo.lat + (same ? 1e-7 : 0), 'venueMap.lng': row.geo.lng, 'venueMap.points': [] }); // 坐标没变时微调一点，地图才会重新居中
+      if (o.zoom) up['venueMap.scale'] = 15;
+    }
     this.setData(up, () => {
       this.buildPanel();
       if (!on) return;
-      if (row.geo && !o.zoom && wx.createMapContext) { try { wx.createMapContext('vn-map', this).moveToLocation({ latitude: row.geo.lat, longitude: row.geo.lng }); } catch (e) { } }
       this.scrollInto('vc-' + row.domIdx);
     });
   },
