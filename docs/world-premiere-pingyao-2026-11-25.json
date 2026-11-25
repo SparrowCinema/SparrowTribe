@@ -1,0 +1,122 @@
+{
+  "checked": "2026-11-25",
+  "scope": "2026平遥国际电影展：平遥官网/官方片单全球首映核实（《费穆》《尾款》《黑潮》）、《创口》Koroche电影节首映、以及「从平遥一角出发」单片全球首映补齐",
+  "verifiedRecords": {
+    "py26-001": {
+      "cn": "费穆",
+      "date": "2026-09-26",
+      "festival": "平遥国际电影展",
+      "festivalEn": "Pingyao International Film Festival",
+      "kind": "festival",
+      "sources": [
+        "https://www.163.com/dy/article/L7I8EVS30517VC4C.html",
+        "https://www.chinanews.com.cn/cul/2026/09-26/10704258.shtml"
+      ],
+      "note": "第十届平遥国际电影展特别策划「平遥十年·回顾致敬」官方入围片单标注「全球首映」，平遥电影宫官方首场放映为 2026-09-26 19:30（1号厅）。"
+    },
+    "py26-006": {
+      "cn": "创口",
+      "date": "2026-08",
+      "festival": "俄罗斯加里宁格勒Koroche电影节",
+      "festivalEn": "Koroche Film Festival",
+      "kind": "festival",
+      "sources": [
+        "http://korochekino.ru/competition2026",
+        "https://www.iffigoa.org/international-cinema/bo-bo",
+        "https://www.kinometro.ru/news/show/name/koroche2026_program_07082026",
+        "https://kinotv.ru/read/news/na-festivale-koroche-2026-pobedil-film-zhizn-posle-smerti/"
+      ],
+      "note": "入围第14届俄罗斯加里宁格勒Koroche电影节（2026年8月18日—23日）长片首作竞赛单元，并获评委会特别奖（Special Jury Prize – For Fidelity to the Traditions of Auteur Cinema）；后于平遥举行国际/亚洲展映、于IFFI Goa举行印度首映。具体首映日未见官方时刻表归档，按月份精度 2026-08 登记。"
+    },
+    "py26-026": {
+      "cn": "尾款",
+      "date": "2026-09-26",
+      "festival": "平遥国际电影展",
+      "festivalEn": "Pingyao International Film Festival",
+      "kind": "festival",
+      "sources": [
+        "https://www.163.com/dy/article/L7LI7S890517VC4C.html",
+        "https://www.sina.cn/news/detail/5348794461586000.html"
+      ],
+      "note": "第十届平遥国际电影展「藏龙」单元官方入围片单标注「全球首映 World Premiere」，平遥电影宫官方首场放映为 2026-09-26 11:00（小城之春厅），并获本届费穆荣誉·最佳影片及最佳男演员。"
+    },
+    "gr26-042": {
+      "cn": "黑潮",
+      "date": "2026-09-27",
+      "festival": "平遥国际电影展",
+      "festivalEn": "Pingyao International Film Festival",
+      "kind": "festival",
+      "sources": [
+        "https://www.163.com/dy/article/L7LI7S890517VC4C.html",
+        "https://www.sina.cn/news/detail/5348794461586000.html"
+      ],
+      "note": "第十届平遥国际电影展「藏龙」单元官方入围片单标注「全球首映 World Premiere」，平遥电影宫官方首场放映为 2026-09-27 21:00（小城之春厅），由月份精度 2026-09 补齐至具体首映日 2026-09-27。"
+    },
+    "py26-journey-to-the-west": {
+      "cn": "宇宙探索编辑部",
+      "date": "2021-10-17",
+      "festival": "平遥国际电影展",
+      "festivalEn": "Pingyao International Film Festival",
+      "kind": "festival",
+      "sources": [
+        "https://zh.wikipedia.org/zh-cn/%E5%AE%87%E5%AE%99%E6%8E%A2%E7%B4%A2%E7%BC%96%E8%BE%91%E9%83%A8",
+        "https://www.tkww.hk/epaper/view/newsDetail/mobile/1450518925015126016.html",
+        "https://tidenews.com.cn/news.html?id=2432008"
+      ],
+      "note": "2021年10月17日于第五届平遥国际电影展「藏龙」单元举行全球首映，并获费穆荣誉·最佳影片、青年评审荣誉·最佳影片等荣誉。"
+    },
+    "py26-farewell-my-hometown": {
+      "cn": "再见，乐园",
+      "date": "2021-10",
+      "festival": "釜山国际电影节",
+      "festivalEn": "Busan International Film Festival",
+      "kind": "festival",
+      "sources": [
+        "https://www.biff.kr/eng/html/archive/arc_history_view.asp?pyear=2021&s1=357&page=&m_idx=56014",
+        "https://www.screendaily.com/news/farewell-my-hometown-the-apartment-with-two-women-win-top-prizes-at-busan/5164322.article"
+      ],
+      "note": "第26届釜山国际电影节（2021年10月6日—15日）官方档案明确标注「World Premiere」（新浪潮竞赛单元，获新浪潮大奖）。官方档案未列具体首场日期，按月份精度 2021-10 登记。"
+    },
+    "py26-on-the-border": {
+      "cn": "延边少年",
+      "date": "2018-05",
+      "festival": "戛纳国际电影节",
+      "festivalEn": "Cannes Film Festival",
+      "kind": "festival",
+      "sources": [
+        "https://www.festival-cannes.com/en/f/yan-bian-shao-nian/",
+        "https://www.festival-cannes.com/en/medialibrary/short-films-winners-charles-williams-palme-d-or-all-these-creatures-and-wei-shujun-special-mention-from-the-jury-on-the-border/"
+      ],
+      "note": "第71届戛纳国际电影节（2018年5月8日—19日）官方短片主竞赛单元入围并获评审团特别提及奖。官方影片页未列具体放映日，按月份精度 2018-05 登记。"
+    },
+    "py26-lili-alone": {
+      "cn": "朵丽",
+      "date": "2021-07",
+      "festival": "戛纳国际影评人周",
+      "festivalEn": "La Semaine de la Critique (Cannes)",
+      "kind": "festival",
+      "sources": [
+        "https://www.semainedelacritique.com/uploads/general_files/2021/DP/PressKit_SDLC20201_Film%20Selection.pdf",
+        "https://www.filmfest-muenchen.de/en/program/films/film/?id=8607&f=122"
+      ],
+      "note": "第60届戛纳国际影评人周（2021年7月7日—15日）短片竞赛单元入围并获 Leitz Cine Discovery 最佳短片奖。按月份精度 2021-07 登记。"
+    },
+    "py26-mother-eden": {
+      "cn": "母亲的乐园",
+      "date": "2018-07",
+      "festival": "FIRST青年电影展",
+      "festivalEn": "FIRST International Film Festival",
+      "kind": "festival",
+      "sources": [
+        "https://www.firstfilm.org.cn/movies/film-library/muqindeleyuan/",
+        "https://www.firstfilm.org.cn/movies/film-library/%E5%86%8D%E8%A7%81%EF%BC%8C%E4%B9%90%E5%9B%AD/"
+      ],
+      "note": "第12届FIRST青年电影展（2018年7月）官方影片库明确标注「世界首映」（竞赛单元剧情短片）。按月份精度 2018-07 登记。"
+    }
+  },
+  "pendingNotes": {
+    "py26-break": "北京电影学院学生毕业作品（2019），后入围第3届平遥一角；校内首次放映日期缺乏一级官方档案佐证，保留 pending。",
+    "py26-ray-of-sunshine": "中央戏剧学院学生短片（2018）；第13届FIRST青年电影展官方片库明确标注「非首映」，更早校内影像展首映日待核实，保留 pending。",
+    "py26-goodbye-mr-kong": "北京电影学院研究生短片（2017），入围首届平遥一角；首次公开放映日期缺乏一级档案佐证，保留 pending。"
+  }
+}

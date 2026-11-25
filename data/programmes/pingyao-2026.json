@@ -30,13 +30,12 @@
       "contentNote": "公开简介为导演费穆生平与创作的纪录片访谈，未提及显著刺激内容；具体画面与声光强度待核实。",
       "editorial": "先看《小城之春》再看本片，容易听出电影人和家属在意的细节为何不同。也可留意片中哪些论断来自个人记忆，哪些来自对作品的分析。",
       "worldPremiere": {
-        "status": "pending",
-        "kind": "unknown",
-        "date": null,
-        "festival": null,
-        "festivalEn": null,
-        "dateNote": "平遥 9月26日已知展映；全球首映性质待核实",
-        "dateNoteEn": "Documented Pingyao screening on 26 September; world premiere status unverified"
+        "status": "verified",
+        "kind": "festival",
+        "date": "2026-09-26",
+        "festival": "平遥国际电影展",
+        "festivalEn": "Pingyao International Film Festival",
+        "checked": "2026-11-25"
       },
       "bio": "潘奕霖以费穆及其所处的中国早期电影史为此次创作的核心。影片让导演、研究者和费穆亲友分别讲述他们所认识的费穆，导演自身的完整电影履历在公开资料中仍较少。",
       "st": "这部纪录片与十周年开幕片《小城之春》形成一组。放在一起看，修复版恢复的是可见可听的作品，纪录片补出的则是作品诞生和被讨论的环境。周野芒担任配音。",
@@ -349,13 +348,14 @@
       "contentNote": "公开简介讲述组建家庭与抚养“特别的孩子”的艰难历程；具体情绪冲击与声光强度待核实。",
       "editorial": "看家人每一次决定替女孩做什么，以及她自己何时说出她想要的生活。片中两种愿望的落差，比病情本身更能解释关系里的创口。",
       "worldPremiere": {
-        "status": "pending",
-        "kind": "unknown",
-        "date": null,
-        "festival": null,
-        "festivalEn": null,
-        "dateNote": "火焰之魂为制作中展示；成片全球首映待核实",
-        "dateNoteEn": "Spirit of Fire presented a work in progress; completed film premiere unverified"
+        "status": "partial",
+        "kind": "festival",
+        "date": "2026-08",
+        "festival": "俄罗斯加里宁格勒Koroche电影节",
+        "festivalEn": "Koroche Film Festival",
+        "checked": "2026-11-25",
+        "dateNote": "第14届Koroche电影节长片首作竞赛单元（8月18日至23日）",
+        "dateNoteEn": "14th Koroche Film Festival Debut Features Competition (18–23 August)"
       },
       "bio": "阿纳斯塔西娅·库齐娜曾在圣彼得堡学习非虚构电影，后毕业于全俄国立电影学院导演系。她此前拍摄过《让我们拥抱》和《尤什卡》等短片，《创口》是她的首部长片。",
       "st": "库齐娜兼任编剧，亚历山大·普罗夏诺夫制片，因诺肯季·斯米尔诺夫摄影。影片曾以制作中项目亮相俄罗斯火焰之魂电影节，成片的全球首映时间需要单独核实。",
@@ -1787,13 +1787,12 @@
       "contentNote": "公开简介围绕一场实力悬殊的较量及难以挽回的遗憾展开；具体冲突尺度与声光强度待核实。",
       "editorial": "可以比较每次谈钱的场景由谁开口、谁能拖延、谁要给出保证。电影最紧绷的时候，往往也是双方说的都有一点道理的时候。",
       "worldPremiere": {
-        "status": "pending",
-        "kind": "unknown",
-        "date": null,
-        "festival": null,
-        "festivalEn": null,
-        "dateNote": "2026年9月26日已知平遥藏龙展映；全球首映性质待核实",
-        "dateNoteEn": "Documented Hidden Dragons screening on 26 September 2026; world premiere status unverified"
+        "status": "verified",
+        "kind": "festival",
+        "date": "2026-09-26",
+        "festival": "平遥国际电影展",
+        "festivalEn": "Pingyao International Film Festival",
+        "checked": "2026-11-25"
       },
       "bio": "牛牛是山西导演，前作《军军》获第六届平遥费穆荣誉评审荣誉与青年评审荣誉。《尾款》继续在熟悉的区域与人际关系中寻找小切口，让一笔现实账目承受越来越多的情感压力。",
       "st": "牛牛编导，牛建荣主演。第十届平遥评审团将费穆荣誉最佳影片与最佳男演员授予本片及牛建荣。评审主席许鞍华谈及它用小成本与小切口处理社会关系，影展报道也记录了观众对此眷注点不同。 影片海报还列牛建荣为出品人、梁耀辉为摄影指导、王建新为录音指导、王龙岳为美术指导。",
@@ -2227,7 +2226,9 @@
         "kind": "unknown",
         "date": null,
         "festival": null,
-        "festivalEn": null
+        "festivalEn": null,
+        "dateNote": "北京电影学院学生毕业作品；后入围第3届平遥一角，校内首映日待核实",
+        "dateNoteEn": "BFA graduation short later screened at 3rd PYIFF Pingyao Corner; campus premiere date unverified"
       },
       "bio": "董劼毕业于北京电影学院，《课间休息》是其毕业作品。",
       "st": "董劼亦参与表演，郭境熙担任声音指导。",
@@ -2274,7 +2275,9 @@
         "kind": "unknown",
         "date": null,
         "festival": null,
-        "festivalEn": null
+        "festivalEn": null,
+        "dateNote": "中戏学生短片；第13届FIRST标注非首映，更早校内首映日待核实",
+        "dateNoteEn": "CAD student short marked non-premiere at 13th FIRST; earlier campus premiere date unverified"
       },
       "bio": "耿子涵毕业于中央戏剧学院，先以《明天会更好》等短片亮相，首部长片《小白船》入选戛纳导演双周。",
       "st": "耿子涵兼任制片和剪辑，郝嘉越摄影，林宇瀚美术，孙铭君负责音效。",
@@ -2377,7 +2380,9 @@
         "kind": "unknown",
         "date": null,
         "festival": null,
-        "festivalEn": null
+        "festivalEn": null,
+        "dateNote": "北京电影学院研究生短片；入围首届平遥一角，首次公映日待核实",
+        "dateNoteEn": "BFA student short screened at 1st PYIFF Pingyao Corner; initial premiere date unverified"
       },
       "bio": "孔大山从短片创作进入长片，《春天，老师们走了》曾入选首届平遥一角，后与王一通合写并执导《宇宙探索编辑部》。",
       "st": "孔大山编导，孔繁刚主演，孙晓晨摄影。",
@@ -2422,11 +2427,12 @@
       "contentNote": "公开简介涉及丧亲与精神困境；声光强度待核实。",
       "editorial": "观察伪纪录片镜头怎样一本正经地对待荒诞线索，也给唐志军的孤独留下了空间。",
       "worldPremiere": {
-        "status": "pending",
-        "kind": "unknown",
-        "date": null,
-        "festival": null,
-        "festivalEn": null
+        "status": "verified",
+        "kind": "festival",
+        "date": "2021-10-17",
+        "festival": "平遥国际电影展",
+        "festivalEn": "Pingyao International Film Festival",
+        "checked": "2026-11-25"
       },
       "bio": "孔大山从短片创作进入长片，《春天，老师们走了》曾入选首届平遥一角，后与王一通合写并执导《宇宙探索编辑部》。",
       "st": "孔大山与王一通共同编剧，马蒂厄·德尔沃摄影。",
@@ -2485,11 +2491,14 @@
       "contentNote": "公开简介涉及家庭关系压力；声光强度待核实。",
       "editorial": "留意母子怎样借屋内的日常动作和停顿回应彼此。",
       "worldPremiere": {
-        "status": "pending",
-        "kind": "unknown",
-        "date": null,
-        "festival": null,
-        "festivalEn": null
+        "status": "partial",
+        "kind": "festival",
+        "date": "2018-07",
+        "festival": "FIRST青年电影展",
+        "festivalEn": "FIRST International Film Festival",
+        "checked": "2026-11-25",
+        "dateNote": "第12届FIRST青年电影展竞赛单元世界首映",
+        "dateNoteEn": "12th FIRST International Film Festival Competition World Premiere"
       },
       "bio": "王尔卓毕业于中央戏剧学院电影电视系，先做《母亲的乐园》，再以《再见，乐园》把同一创作关切扩展成三代女性的故事。",
       "st": "王尔卓兼任编剧和剪辑，摄影为李林翰。",
@@ -2532,11 +2541,14 @@
       "contentNote": "公开简介涉及家庭关系与迁徙；声光强度待核实。",
       "editorial": "把不同年龄的女性放在一起看，留意同一个故乡如何被离开、返回和重新理解。",
       "worldPremiere": {
-        "status": "pending",
-        "kind": "unknown",
-        "date": null,
-        "festival": null,
-        "festivalEn": null
+        "status": "partial",
+        "kind": "festival",
+        "date": "2021-10",
+        "festival": "釜山国际电影节",
+        "festivalEn": "Busan International Film Festival",
+        "checked": "2026-11-25",
+        "dateNote": "第26届釜山国际电影节新浪潮竞赛单元世界首映（10月6日至15日）",
+        "dateNoteEn": "26th Busan International Film Festival New Currents World Premiere (6–15 October)"
       },
       "bio": "王尔卓毕业于中央戏剧学院电影电视系，先做《母亲的乐园》，再以《再见，乐园》把同一创作关切扩展成三代女性的故事。",
       "st": "王尔卓从短片延伸到多代女性的故事，这部长片获得釜山新浪潮奖。",
@@ -2583,11 +2595,14 @@
       "contentNote": "公开简介涉及青少年困境；声光强度待核实。",
       "editorial": "留意边境空间怎样把少年想要离开的愿望变成一个具体的方向。",
       "worldPremiere": {
-        "status": "pending",
-        "kind": "unknown",
-        "date": null,
-        "festival": null,
-        "festivalEn": null
+        "status": "partial",
+        "kind": "festival",
+        "date": "2018-05",
+        "festival": "戛纳国际电影节",
+        "festivalEn": "Cannes Film Festival",
+        "checked": "2026-11-25",
+        "dateNote": "第71届戛纳国际电影节短片竞赛单元（5月8日至19日）",
+        "dateNoteEn": "71st Cannes Film Festival Short Films Competition (8–19 May)"
       },
       "bio": "魏书钧凭短片《延边少年》进入戛纳短片竞赛，随后执导《野马分鬃》《永安镇故事集》等长片。",
       "st": "魏书钧执导，王阶宏担任摄影。",
@@ -2703,11 +2718,14 @@
       "contentNote": "公开简介涉及生育与经济压力；声光强度待核实。",
       "editorial": "留意朵丽如何在城市里处理身体、报酬与家庭责任之间的冲突。",
       "worldPremiere": {
-        "status": "pending",
-        "kind": "unknown",
-        "date": null,
-        "festival": null,
-        "festivalEn": null
+        "status": "partial",
+        "kind": "festival",
+        "date": "2021-07",
+        "festival": "戛纳国际影评人周",
+        "festivalEn": "La Semaine de la Critique (Cannes)",
+        "checked": "2026-11-25",
+        "dateNote": "第60届戛纳国际影评人周短片竞赛单元（7月7日至15日）",
+        "dateNoteEn": "60th La Semaine de la Critique Short Films Competition (7–15 July)"
       },
       "bio": "邹静以短片《朵丽》参加戛纳影评人周，此后创作首部长片《无名女孩》。",
       "st": "邹静编剧并执导，梁子担任摄影。",
