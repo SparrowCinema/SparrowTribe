@@ -24,7 +24,9 @@ const target=page.data.venueRows.find(r=>/待映/.test(r.cntText))||page.data.ve
 page.selectVenue({currentTarget:{dataset:{id:target.id}}});
 assert.equal(page.data.activeId,target.id);assert(page.data.panel&&page.data.panel.id===target.id,'panel opens for the tapped venue');
 assert.equal(page.data.intoView,'vc-'+target.domIdx,'list scrolls to the card');
-if(target.geo)assert(moved.length===1&&moved[0].latitude===target.geo.lat,'map pans to the venue');
+if(target.geo)assert(Math.abs(page.data.venueMap.lat-target.geo.lat)<1e-6&&page.data.venueMap.lng===target.geo.lng,'map pans to the venue');
+assert.equal(moved.length,0,'never calls moveToLocation (it needs the precise-location permission)');
+assert(!/moveToLocation\(/.test(fs.readFileSync(path.join(dir,'venues.js'),'utf8')),'no moveToLocation in venues page');
 const shows=data.shows.filter(s=>s.v===target.id&&idx.F[s.id]&&U.progForShow(s,idx).id===pick.id);
 const P=page.data.panel,upRows=P.up.flatMap(g=>g.rows);
 const live=shows.filter(s=>!U.ended(s,idx)),dayN=P.days.length?P.days.slice(1).reduce((n,d)=>n+parseInt(d.n,10),0):upRows.length;
