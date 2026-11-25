@@ -1080,7 +1080,13 @@
         4.17
       ],
       "posterDb": "p2935488630",
-      "poster": "https://0.soompi.io/wp-content/uploads/2026/09/02200607/possible-love.jpg",
+      "poster": "posters/possible-love-main.jpg",
+      "posterLabel": "英文海报",
+      "stills": [
+        {"url": "posters/possible-love-venice.jpg", "label": "人物海报"},
+        {"url": "posters/possible-love-illustrated.jpg", "label": "插画海报"},
+        {"url": "posters/possible-love-korean.jpg", "label": "韩文海报"}
+      ],
       "ratingChecked": "2026-11-21",
       "bio": "李沧东1954年生于韩国大邱，写过小说、当过教师，也曾任韩国文化部长。《薄荷糖》以倒叙把个人生命放回韩国近代史，《绿洲》为他赢得威尼斯最佳导演奖，《密阳》让全度妍获戛纳最佳女演员，《诗》获戛纳最佳编剧。《燃烧》与吴贞美合作，将阶级差异放进人物对同一件事的不同叙述。《可能的爱》是《燃烧》八年之后的长片，他再与吴贞美编剧，也再与全度妍、薛景求合作。",
       "language": "韩语 / 英语",
