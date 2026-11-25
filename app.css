@@ -11,7 +11,7 @@
   --px:2px;  /* Gantt scale: 2px per minute */
   /* Design scale (方向 A 放映檔案, 2026-11-25). New styles use these; values are shared by light & dark. */
   --r-s:6px; --r-m:12px; --r-l:18px; --r-pill:999px;
-  --t-xs:12px; --t-s:13px; --t-m:15px; --t-l:18px; --t-xl:24px;
+  --t-xs:11px; --t-s:12px; --t-m:13px; --t-l:16px; --t-xl:20px;
   --gold:#b8892f;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
