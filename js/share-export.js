@@ -3,7 +3,7 @@
 /* 二级页面（个人排片、趣味图谱、海报墙、添加到手机、使用统计）左上角的返回按钮：44px 触控区、带底色的胶囊，比原来右上角的灰色小字更醒目 */
 function subBackHTML(){return '<button class="sub-back" data-tab="my" aria-label="'+esc(tr("返回我的"))+'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m15 5-7 7 7 7"/></svg><span>'+esc(tr("我的"))+'</span></button>';}
 function planPage(){const all=selectedRows(),list=scopedRows(),st=planStats(list);
-  main.innerHTML='<section class="view gut">'+subBackHTML()+'<div class="page-heading"><div><small>MY PROGRAMME</small><h2 class="sec">个人排片</h2></div></div>'+planGoneHTML()+
+  main.innerHTML='<section class="view gut">'+subBackHTML()+'<div class="page-heading"><div><small>MY PROGRAMME</small><h1 class="sec">个人排片</h1></div></div>'+planGoneHTML()+
   (all.length?planProgChips(all)+(!list.length?'<div class="empty-plan"><h3>这个专题还没有加入场次</h3><p>可以切换到「全部专题」，或去排片表挑选。</p><button class="primary-button" data-prog-sched="'+esc(selList(planFilt)[0]||'')+'">去看这个专题的排片</button></div>':statsHTML(st)+'<div class="plan-toolbar"><button class="primary-button" data-tab="export">导出与分享</button>'+smartPlanButtonHTML('secondary-button')+'<button class="secondary-button" data-action="group-start">'+tr('多人凑场')+'</button><button class="secondary-button" data-tab="schedule">继续选片</button><button class="text-button" data-action="clear-plan">清空排片</button></div>'+(st.clash?'<div class="conflict" role="status"><b>有 '+st.clash+' 组场次时间重叠</b><p>重叠处已在日程中标红，可一键换场或移出其中一场。</p>'+conflictSwapsHTML(list)+'</div>':'')+'<div class="plan-days">'+planRowsHTML(list,true)+'</div>')
   :'<div class="empty-plan"><span>＋</span><h3>还没有加入场次</h3><p>在排片表或影片详情里，点击“加入排片”，或根据想看清单自动排片。</p><div class="empty-plan-acts"><button class="primary-button" data-tab="schedule">去选电影</button>'+(wantFilmIds().length?smartPlanButtonHTML('secondary-button'):'')+(wantFilmIds().length?'<button class="secondary-button" data-action="group-start">'+tr('多人凑场')+'</button>':'')+'</div></div>')+
   '<p class="local-note">散场时间以排片表为准，未公布时按影片片长计算。含映后活动的场次已按约 30 分钟纳入转场提醒，跨影院用时按距离估算。</p></section>';}
@@ -35,15 +35,15 @@ function overlapHTML(list,missing){
 }
 function exportPage(shared){let list;
   let missing=0;
-  if(shared!==undefined){try{const raw=decodeURIComponent(shared);const keys=raw.split('~').filter(Boolean),ok=[...new Set(keys.map(resolveKey).filter(k=>validKeys.has(k)))]; /* 改期的场次按变更记录换成新场次 *//* 部分场次已改期 / 取消时仍显示其余场次，并提示少了几场 */if(!ok.length)throw Error();missing=keys.length-ok.length;list=selectedRows(ok);}catch{main.innerHTML='<section class="view gut"><h2 class="sec">这个分享链接无法读取</h2><p>链接可能不完整，或其中场次已更新。</p><button class="primary-button" data-tab="my">打开我的影展</button></section>';currentExport=[];return;}}
+  if(shared!==undefined){try{const raw=decodeURIComponent(shared);const keys=raw.split('~').filter(Boolean),ok=[...new Set(keys.map(resolveKey).filter(k=>validKeys.has(k)))]; /* 改期的场次按变更记录换成新场次 *//* 部分场次已改期 / 取消时仍显示其余场次，并提示少了几场 */if(!ok.length)throw Error();missing=keys.length-ok.length;list=selectedRows(ok);}catch{main.innerHTML='<section class="view gut"><h1 class="sec">这个分享链接无法读取</h1><p>链接可能不完整，或其中场次已更新。</p><button class="primary-button" data-tab="my">打开我的影展</button></section>';currentExport=[];return;}}
   else list=scopedRows();
   currentExport=list;const isShared=shared!==undefined,st=planStats(list);
-  if(!list.length){main.innerHTML='<section class="view gut export-view"><div class="page-heading"><div><small>TAKE CINEMA WITH YOU</small><h2 class="sec">导出与分享</h2></div><button class="text-button" data-tab="plan">我的排片</button></div><div class="share-empty">'+(selectedRows().length?planProgChips(selectedRows())+'<div class="empty-plan"><h3>这个专题还没有加入场次</h3><p>请切换到「全部专题」或其他专题，再导出与分享。</p></div>':'<div class="empty-plan"><h3>先为自己选几场电影</h3><p>加入场次后，就能生成带二维码的分享日程。</p><button class="primary-button" data-tab="schedule">去选电影</button></div>')+'</div></section>';return;}
+  if(!list.length){main.innerHTML='<section class="view gut export-view"><div class="page-heading"><div><small>TAKE CINEMA WITH YOU</small><h1 class="sec">导出与分享</h1></div><button class="text-button" data-tab="plan">我的排片</button></div><div class="share-empty">'+(selectedRows().length?planProgChips(selectedRows())+'<div class="empty-plan"><h3>这个专题还没有加入场次</h3><p>请切换到「全部专题」或其他专题，再导出与分享。</p></div>':'<div class="empty-plan"><h3>先为自己选几场电影</h3><p>加入场次后，就能生成带二维码的分享日程。</p><button class="primary-button" data-tab="schedule">去选电影</button></div>')+'</div></section>';return;}
   const qr=qrSVG(homeURL()),canShare=!!navigator.share;
   const chips=isShared?'':planProgChips(selectedRows());
   const tile=(act,ic,t,s,cls='')=>'<button class="xtile '+cls+'" data-action="'+act+'"><span class="xt-ic">'+ic+'</span><b>'+t+'</b><small>'+s+'</small></button>';
   const IC={img:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-5-5L5 21"/></svg>',cal:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M9 15h6"/></svg>',pdf:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 9V3h12v6M6 18H4v-7h16v7h-2M7 14h10v7H7z"/></svg>',add:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 5v14M5 12h14"/></svg>',share:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/></svg>'};
-  main.innerHTML='<section class="view gut export-view"><div class="page-heading"><div><small>'+(isShared?'SHARED PROGRAMME':'TAKE CINEMA WITH YOU')+'</small><h2 class="sec">'+(isShared?'朋友分享的排片':'导出与分享')+'</h2></div><button class="text-button" data-tab="plan">我的排片</button></div>'+chips+
+  main.innerHTML='<section class="view gut export-view"><div class="page-heading"><div><small>'+(isShared?'SHARED PROGRAMME':'TAKE CINEMA WITH YOU')+'</small><h1 class="sec">'+(isShared?'朋友分享的排片':'导出与分享')+'</h1></div><button class="text-button" data-tab="plan">我的排片</button></div>'+chips+
   (isShared?'<div class="shared-banner"><b>'+st.n+' 场电影 · '+st.days+' 天</b><p>这是一份别人分享给你的观影日程。加入后会和你自己的排片合并。</p><button class="primary-button" data-action="import-plan">全部加入我的排片</button></div>'+overlapHTML(list,missing):'')+
   '<div class="share-panel">'+(qr?'<div class="qr-box">'+qr+'</div>':'')+'<div class="share-body"><b>扫码直达排片首页</b><small>二维码打开网站首页，查看完整片目与最新排片。下方链接可分享这份个人日程。</small><div class="link-row"><input id="share-url" readonly value="'+esc(shareURL(list))+'" aria-label="分享链接"><button class="secondary-button" data-action="copy-link">复制链接</button></div>'+(canShare?'<button class="text-button share-sys" data-action="system-share">'+IC.share+' 通过手机分享…</button>':'')+'</div></div>'+
   '<div class="export-grid">'+tile('png',IC.img,'排片长图','含海报与二维码 · PNG','main')+tile('calendar',IC.cal,'导入日历','.ics · 手机/电脑日历')+tile('print',IC.pdf,'打印 / PDF','A4 排版')+'</div>'+
@@ -55,7 +55,7 @@ function wrapCanvas(ctx,text,x,y,maxWidth,lineHeight){const ls=wrapLines(ctx,tex
 /* 影片 / 专题分享海报：与小程序同一套版式（shared/share-poster.js）；网站页脚二维码指向该页的分享链接 */
 let sposterBusy=false;
 async function makeSharePoster(k,id){
- const SP=window.SparrowSharePoster;if(!SP||sposterBusy)return;sposterBusy=true;toast(tr('正在生成分享海报…'));
+ if(sposterBusy)return;try{await loadLib("sharePoster");}catch(e){toast(tr("分享海报加载失败，请检查网络后重试"));return;}const SP=window.SparrowSharePoster;if(!SP)return;sposterBusy=true;toast(tr('正在生成分享海报…'));
  try{try{await Promise.all(['900 60px "Noto Serif SC"','500 28px "Noto Sans SC"','600 24px "IBM Plex Mono"'].map(f=>document.fonts.load(f,'麻雀观影护照0123')));}catch(e){}
   const marks=await Promise.all(['brand/mark-movies.png','brand/mark-tribe.png'].map(loadImg)),url=pageShareURL(k,id);let o;
   const place=x=>{const v=VN[x.v]||{},h=(v.halls||[]).find(y=>y.id===x.h);return (LANG==='en'?vShort(v):v.name)+(h?' · '+tr(h.name):'');};
@@ -167,7 +167,7 @@ function myGroupEntry(nick,withWant){
 function groupPage(encoded){
   let members=encoded?SparrowOverlap.decodeRelay(encoded):null;
   if(encoded&&!members){
-    main.innerHTML='<section class="view gut"><h2 class="sec">'+tr('这个多人接龙链接无法读取')+'</h2><p>'+tr('链接可能不完整，请让朋友重新复制发送。')+'</p><button class="primary-button" data-action="group-start">'+tr('新建我的多人凑场')+'</button></section>';
+    main.innerHTML='<section class="view gut"><h1 class="sec">'+tr('这个多人接龙链接无法读取')+'</h1><p>'+tr('链接可能不完整，请让朋友重新复制发送。')+'</p><button class="primary-button" data-action="group-start">'+tr('新建我的多人凑场')+'</button></section>';
     currentGroupMembers=[];return;
   }
   if(!members){
@@ -248,7 +248,7 @@ function groupPage(encoded){
       '</details></div>';
 
   main.innerHTML='<section class="view gut export-view group-view">'+
-    '<div class="page-heading"><div><small>GROUP PLAN MATCH</small><h2 class="sec">'+tr('多人一起排片')+'</h2></div><button class="text-button" data-tab="plan">'+tr('我的排片')+'</button></div>'+
+    '<div class="page-heading"><div><small>GROUP PLAN MATCH</small><h1 class="sec">'+tr('多人一起排片')+'</h1></div><button class="text-button" data-tab="plan">'+tr('我的排片')+'</button></div>'+
     '<div class="grp-members"><span class="grp-mlab">'+tr('已加入接龙')+' ('+N+'/'+SparrowOverlap.MAX_MEMBERS+')</span><div class="grp-chips">'+memberChips+'</div></div>'+
     '<div class="grp-join">'+
       '<div class="grp-jrow"><input id="grp-name" type="text" maxlength="16" value="'+esc(nick)+'" placeholder="'+esc(tr('输入你的昵称（如：阿明）'))+'" aria-label="'+esc(tr('你的昵称'))+'"><button type="button" class="primary-button" data-action="group-join">'+tr(alreadyIn?'更新我的排片':'加入接龙')+'</button></div>'+

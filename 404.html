@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>页面不存在 · 麻雀观影护照</title>
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png?v=3">
+<!-- GitHub Pages 找不到文件时显示这一页（如已下架影片的独立页、旧分享链接）。只用系统字体与内联样式，不依赖站点其他文件。 -->
+<style>
+:root{--bg:#f4ecdf;--surface:#fbf6ee;--fg:#2b2117;--muted:#7a6a58;--line:#e2d6c4;--accent:#8c2b23;color-scheme:light}
+@media (prefers-color-scheme:dark){:root{--bg:#17120e;--surface:#211a14;--fg:#f1e7d8;--muted:#b3a38f;--line:#3a2f25;--accent:#e0705f;color-scheme:dark}}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--bg);color:var(--fg);font:16px/1.7 -apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",sans-serif;padding:24px 16px}
+main{width:100%;max-width:440px;background:var(--surface);border:1px solid var(--line);border-top:3px solid var(--accent);border-radius:14px;padding:28px 24px}
+small{display:block;font:600 12px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.15em;color:var(--accent)}
+h1{font:900 24px/1.35 "Songti SC","Noto Serif SC",serif;margin:10px 0 8px}
+p{margin:0 0 8px;color:var(--muted);font-size:15px}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+a.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 18px;border-radius:999px;text-decoration:none;font-weight:700;font-size:15px;border:1px solid var(--accent)}
+a.primary{background:var(--accent);color:#fffaf0}
+a.secondary{color:var(--accent)}
+</style>
+</head>
+<body>
+<main>
+  <small>404 · NOT FOUND</small>
+  <h1 id="t">这个页面不存在</h1>
+  <p id="d">链接里的影片或页面可能已更名、合并或下架。可以回到排片表，或在片目里搜索。</p>
+  <div class="actions">
+    <a class="btn primary" id="go" href="/#films">去片目搜索</a>
+    <a class="btn secondary" id="home" href="/">回到排片表</a>
+  </div>
+</main>
+<script>
+(function(){
+  /* 旧的影片独立页 /film/<id>.html、分享页 /s/f/<id>.html：先试着在网站里打开这部影片（找不到时网站会提示） */
+  var p=location.pathname, m=/\/(?:en\/)?(?:film|s\/f)\/([^\/]+)\.html$/.exec(p), q=/\/(?:en\/)?(?:programme|s\/p)\/([^\/]+)\.html$/.exec(p);
+  var go=document.getElementById("go");
+  if(m) go.href="/#film-"+encodeURIComponent(decodeURIComponent(m[1]));
+  else if(q) go.href="/#prog-"+encodeURIComponent(decodeURIComponent(q[1]));
+  if(m||q) go.textContent=m?"在网站里查找这部影片":"在网站里查找这个专题";
+  var en=/^\/en\//.test(p)||(!/^zh/i.test(navigator.language||"")&&!/[?&]lang=zh/.test(location.search));
+  try{var s=localStorage.getItem("sparrow-lang")||localStorage.getItem("sk-lang");if(s==="zh")en=false;if(s==="en")en=true;}catch(e){}
+  if(en){
+    document.documentElement.lang="en";document.title="Page not found · Sparrow Film Passport";
+    document.getElementById("t").textContent="This page doesn’t exist";
+    document.getElementById("d").textContent="The film or page in this link may have been renamed, merged or removed. Go back to the schedule or search the film list.";
+    go.textContent=m?"Find this film on the site":q?"Find this programme on the site":"Search films";
+    document.getElementById("home").textContent="Back to schedule";
+  }
+})();
+</script>
+</body>
+</html>

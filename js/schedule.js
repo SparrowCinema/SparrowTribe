@@ -224,7 +224,7 @@ function schedule(){
   const tzNote = (vTz && !SparrowTZ.sameOffset(vTz, dayTz, now())) ? ` · ${tr("当地时间")} ${SparrowTZ.tzShort(dayTz, now())}` : "";
   main.innerHTML = `<section class="view gut">
     ${myTodayHTML()}
-    <h2 class="sec">排片表</h2><p class="sub">${cur?`${esc(cur.name)}${cur.city?` · ${esc(cur.city)}`:""} · `:""}${list.length?`${dateSpan(list)} · ${list.length} 场 · `:""}按日期查看，点击色块看影片</p>
+    <h1 class="sec">排片表</h1><p class="sub">${cur?`${esc(cur.name)}${cur.city?` · ${esc(cur.city)}`:""} · `:""}${list.length?`${dateSpan(list)} · ${list.length} 场 · `:""}按日期查看，点击色块看影片</p>
     ${scheduleFiltersHTML()}
     ${scheduleViewsHTML()}
     ${schedContextBarHTML(restN, accN)}

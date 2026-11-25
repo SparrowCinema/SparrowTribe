@@ -15461,6 +15461,16 @@
     "戛纳短片竞赛版海报": "Cannes short-film competition poster",
     "戛纳一种关注国际版海报": "Un Certain Regard international poster",
     "导演官网 · 单片海报": "Director’s site · individual film poster",
-    "戛纳影评人周入围海报": "Cannes Critics’ Week selection poster"
+    "戛纳影评人周入围海报": "Cannes Critics’ Week selection poster",
+    "加载中…": "Loading…",
+    "加载失败，请检查网络后刷新": "Couldn't load. Check your connection and refresh.",
+    "分享海报加载失败，请检查网络后重试": "Couldn't load the share poster. Check your connection and try again.",
+    "找不到这部影片": "Film not found",
+    "找不到这个专题": "Programme not found",
+    "链接里的影片可能已更名、合并或下架。可以在片目里搜索，或回到排片表。": "The film in this link may have been renamed, merged or removed. Search the film list or go back to the schedule.",
+    "链接里的专题可能已更名或下架。可以在专题页查看全部专题。": "The programme in this link may have been renamed or removed. See all programmes on the Programmes page.",
+    "去片目搜索": "Search films",
+    "查看全部专题": "All programmes",
+    "回到排片表": "Back to schedule"
   }
 }

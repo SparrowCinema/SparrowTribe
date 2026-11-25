@@ -1,0 +1,22 @@
+name: PR checks
+# 与发布工作流（pages.yml）相同的数据与兼容性检查，在 PR 合并之前就跑，
+# 避免合并后才发现部署失败（2026-11-25 曾连续 3 次合并后检查不过）。
+on:
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate film guidance and personal archive compatibility
+        run: |
+          node tools/check-content.js
+          node tools/check-library.js
+          node tools/check-companion.js
+          node tools/check-taste.js
+      - name: Check JavaScript syntax
+        run: |
+          for f in js/*.js shared/*.js sw.js; do node --check "$f"; done
