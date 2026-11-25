@@ -66,19 +66,6 @@
       <scroll-view scroll-y class="selector-results"><view wx:for="{{selRows}}" wx:key="id" class="selector-option {{item.selected?'selected':''}}" data-id="{{item.id}}" bindtap="chooseSel"><view class="selector-copy"><text class="b">{{item.name}}</text><text class="small muted">{{item.sub}}</text></view><text class="selector-check">{{item.selected?'✓':''}}</text></view><view wx:if="{{!selRows.length}}" class="selector-empty">{{L.t(i,'没有匹配的结果')}}</view></scroll-view>
     </view>
   </view>
-  <page-container show="{{venueOpen}}" position="bottom" round="{{true}}" z-index="1100" custom-style="background:transparent" overlay-style="background:rgba(24,16,8,0.45)" bind:afterleave="closeVenues">
-    <view wx:if="{{venueOpen}}" class="vn-sheet" style="{{ps}}">
-      <view class="vn-head"><view><text class="vn-k mono">{{'VENUES & TRANSIT'}}</text><text class="vn-t">{{L.t(i,'影院地图与交通')}}</text></view><view class="selector-close" bindtap="closeVenues">×</view></view>
-      <map wx:if="{{venueMap}}" class="vn-map" latitude="{{venueMap.lat}}" longitude="{{venueMap.lng}}" markers="{{venueMap.markers}}" include-points="{{venueMap.points}}" scale="{{venueMap.scale}}" />
-      <scroll-view scroll-y class="vn-list">
-        <view wx:for="{{venueRows}}" wx:key="id" class="vn-card">
-          <view class="vn-ch"><text class="vn-idx mono">{{item.idx}}</text><view class="vn-ct"><text class="vn-nm">{{item.name}}</text><text wx:if="{{item.addr}}" class="vn-ad">{{item.addr}}</text></view><view wx:if="{{item.geo}}" class="vn-go" data-id="{{item.id}}" bindtap="openVenueMap">{{L.t(i,'地图导航')}} ↗</view></view>
-          <view class="vn-halls"><text wx:for="{{item.halls}}" wx:for-item="h" wx:key="name" class="vn-hall">{{h.name}}{{h.acc?' · '+L.t(i,'无障碍'):''}}</text><text class="vn-cnt mono">{{item.total}} {{L.t(i,'场')}}</text></view>
-          <view wx:if="{{item.trs.length}}" class="vn-tr"><view wx:for="{{item.trs}}" wx:for-item="tr" wx:key="k" class="vn-trl"><text class="vn-tk">{{tr.k}}</text><text class="vn-tv">{{tr.v}}</text></view></view>
-        </view>
-      </scroll-view>
-    </view>
-  </page-container>
 </view>
 <view class="to-top {{topOn ? 'show' : ''}}" hover-class="to-top-hv" bindtap="toTop"><view class="tt-arr" /></view>
 
