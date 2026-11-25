@@ -13,7 +13,7 @@
 - **微信小程序**：
   - `cloudfunctions/ticketOcr`：转发 `ticket_ocr`，不可用时自动回退微信官方 `ocr.printedText`。
   - `cloudfunctions/taste`：新增 `action: 'portrait'` 转发 `taste_portrait`，小程序分包 `packages/collect/taste-map` 使用本机 `sk-ai-portrait-v1` 缓存。
-- **隐私与成本保护**：图片与片单摘要仅在 Edge Function 内存中转发给 Gemini，不落盘、不存库、不打日志；Edge Function 内置来源白名单（CORS）、单图 2 MB / 摘要 14 KB 上限、固定任务白名单与每 IP 滑动窗口限流。
+- **隐私与成本保护**：图片与片单摘要仅在 Edge Function 内存中转发给 Gemini，不落盘、不存库、不打日志；Edge Function 内置来源白名单（CORS）、单图 2 MB / 摘要 18 KB 上限、固定任务白名单与每 IP 滑动窗口限流。
 
 ---
 
@@ -22,7 +22,7 @@
 1. 访问 [Google AI Studio](https://aistudio.google.com/) 并登录 Google 账号。
 2. 点击 **API 密钥 → 创建 API 密钥**，生成一把 Gemini API Key。
 3. 建议在对应结算账户中设置**月度支出上限（Spend Cap）**，防止异常流量产生超额费用。
-4. 默认模型为 `gemini-3.5-flash-lite`（支持多模态图文与 JSON Schema 输出，默认极简思考、速度快且成本极低）。
+4. 默认模型为 `gemini-3.5-flash-lite`（识票保持默认 `minimal` 极速模式；观影画像启用轻量 `low` 思考模式 + 全量深度统计信号，提升影评专栏风洞察力，单次仍约 1–2 分钱）。
 
 ---
 
