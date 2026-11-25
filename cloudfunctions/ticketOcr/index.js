@@ -15,7 +15,7 @@ function callTicketAi(body) {
     const data = JSON.stringify(body);
     const req = https.request({
       host: SB_HOST,
-      path: '/functions/v1/ticket-ai',
+      path: '/functions/v1/smooth-processor', // Supabase Edge Function 显示名 ticket-ai
       method: 'POST',
       headers: {
         apikey: SB_KEY,

@@ -852,7 +852,8 @@ function ticketChange(event){
 /* ===== 拍照识票 OCR（2026-11-24，2026-11-25 新增 AI 识票增强）：本机离线 Tesseract.js 为默认，可选 Gemini AI 增强（经 Supabase Edge Function 中转，失败自动回退离线） ===== */
 let ticketOcrWorkerP=null,ticketOcrBusy=false,ticketOcrMode="local",ticketOcrLastFile=null;
 function ticketAiEndpoint(){
-  return typeof SB_API==="string"&&SB_API?SB_API.replace(/\/rest\/v1\/rpc\/?$/,"/functions/v1/ticket-ai"):"";
+  // Supabase Edge Function 显示名 ticket-ai，线上 slug 为 smooth-processor
+  return typeof SB_API==="string"&&SB_API?SB_API.replace(/\/rest\/v1\/rpc\/?$/,"/functions/v1/smooth-processor"):"";
 }
 function ticketOcrButtons(disabled){
   main.querySelectorAll('[data-ticket-action="ocr-scan"],[data-ticket-action="ocr-ai"]').forEach(b=>{b.disabled=!!disabled;});

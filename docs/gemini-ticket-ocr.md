@@ -54,11 +54,13 @@ supabase functions deploy ticket-ai --workdir backend --no-verify-jwt
 
 ## 第三步：验证接口是否生效
 
+> 当前项目在线上通过网页编辑器部署的函数显示名为 `ticket-ai`，实际 endpoint slug 为 `smooth-processor`（网页端与小程序云函数均指向 `/functions/v1/smooth-processor`）。
+
 用一张测试票根图片转为 base64 后验证（或直接在本地/线上页面点击「AI 识票」）：
 
 ```bash
 IMG_B64=$(base64 -w 0 your-ticket.jpg)
-curl -X POST "https://dclxhxxjktegyiwafmsv.supabase.co/functions/v1/ticket-ai" \
+curl -X POST "https://dclxhxxjktegyiwafmsv.supabase.co/functions/v1/smooth-processor" \
   -H "Content-Type: application/json" \
   -H "apikey: sb_publishable_2K9O3h8nn2I_I-cIAdks8A_QZ98xwZ2" \
   -H "Authorization: Bearer sb_publishable_2K9O3h8nn2I_I-cIAdks8A_QZ98xwZ2" \
