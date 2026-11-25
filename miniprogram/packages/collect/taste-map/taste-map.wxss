@@ -29,11 +29,17 @@
 
 /* AI 观影画像 / 评语卡片（2026-11-25） */
 .ai-portrait{margin:0 0 calc(28 * var(--r));padding:calc(28 * var(--r));border-radius:calc(32 * var(--r));background:var(--surface);border:calc(2 * var(--r)) solid rgba(47,111,108,.35)}
+.ai-portrait.folded{padding:calc(22 * var(--r)) calc(28 * var(--r))}
 .aip-head{display:flex;align-items:flex-start;justify-content:space-between;gap:calc(14 * var(--r));margin-bottom:calc(16 * var(--r))}
+.ai-portrait.folded .aip-head{margin-bottom:0}
 .aip-title-box{min-width:0;flex:1}
 .aip-title{display:block;font-size:calc(27 * var(--fr));font-weight:700;color:var(--teal);letter-spacing:calc(1 * var(--r))}
 .aip-meta{display:block;margin-top:calc(6 * var(--r));font-size:calc(19 * var(--fr));color:var(--muted)}
+.aip-head-r{display:flex;align-items:center;gap:calc(10 * var(--r));flex:none}
 .aip-badge{flex:none;padding:calc(6 * var(--r)) calc(16 * var(--r));border-radius:999px;border:calc(2 * var(--r)) solid rgba(47,111,108,.4);background:rgba(47,111,108,.09);color:var(--teal);font-size:calc(18 * var(--fr));font-weight:600}
+.aip-toggle{flex:none;padding:calc(6 * var(--r)) calc(18 * var(--r));border-radius:999px;border:calc(2 * var(--r)) solid var(--line);background:var(--bg);color:var(--muted);font-size:calc(18 * var(--fr));font-weight:600}
+.aip-fold-bar{margin-top:calc(14 * var(--r));padding:calc(14 * var(--r)) calc(18 * var(--r));border-radius:calc(18 * var(--r));border:calc(2 * var(--r)) solid var(--line-soft);background:var(--bg)}
+.aip-fold-txt{display:block;font-size:calc(23 * var(--fr));font-weight:700;color:var(--fg);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .aip-desc{display:block;margin-bottom:calc(22 * var(--r));font-size:calc(21 * var(--fr));line-height:1.65;color:var(--muted)}
 .aip-cta{display:flex;flex-direction:column;align-items:stretch;gap:calc(12 * var(--r))}
 .aip-headline{display:block;margin:calc(6 * var(--r)) 0 calc(16 * var(--r));font-size:calc(32 * var(--fr));font-weight:700;line-height:1.35;color:var(--fg)}

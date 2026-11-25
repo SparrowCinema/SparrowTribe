@@ -152,6 +152,9 @@ function tasteYearRows(){const ys=window.SparrowTasteReport.years(watchEntries()
 function tastePortraitEndpoint(){
  return typeof SB_API==='string'&&SB_API?SB_API.replace(/\/rest\/v1\/rpc\/?$/,'/functions/v1/smooth-processor'):'';
 }
+const AI_PORTRAIT_FOLD_KEY='sparrow-ai-portrait-fold';
+function aiPortraitFolded(){try{return localStorage.getItem(AI_PORTRAIT_FOLD_KEY)==='1';}catch(e){return false;}}
+function setAiPortraitFold(v){try{localStorage.setItem(AI_PORTRAIT_FOLD_KEY,v?'1':'0');}catch(e){}}
 let aiPortraitBusy=false,aiPortraitMsg='',aiPortraitTone='';
 function tastePortraitBuild(){
  const TP=window.SparrowTastePortrait,TR=window.SparrowTasteReport;
@@ -163,22 +166,29 @@ function tastePortraitBuild(){
 }
 function tastePortraitHTML(){
  const ctx=tastePortraitBuild();if(!ctx)return '';
- const {built,hit}=ctx,en=LANG==='en',p=hit&&hit.portrait;
+ const {built,hit}=ctx,en=LANG==='en',p=hit&&hit.portrait,folded=!!(p&&aiPortraitFolded());
  const scopeMeta=built.payload.scope+' · '+(en?(built.watchedCount+' watched'+(built.ratedCount?' · '+built.ratedCount+' taste-rated':'')):(built.watchedCount+' 部看过'+(built.ratedCount?' · '+built.ratedCount+' 部已评趣味':'')));
  let body='';
  if(p){
-  const tagsHTML=p.tags&&p.tags.length?'<div class="aip-tags">'+p.tags.map(t=>'<span>'+esc(t)+'</span>').join('')+'</div>':'';
-  const parasHTML=p.paragraphs.map(line=>'<p class="aip-p">'+esc(line)+'</p>').join('');
-  const nextHTML=p.nextHint?'<div class="aip-next"><b>'+esc(tr('下一步建议'))+'</b><span>'+esc(p.nextHint)+'</span></div>':'';
-  body=(p.headline?'<h3 class="aip-headline">'+esc(p.headline)+'</h3>':'')+tagsHTML+'<div class="aip-text">'+parasHTML+'</div>'+nextHTML+
-   '<div class="aip-foot"><button type="button" class="aip-btn aip-btn-ghost" data-aip="copy">'+esc(tr('复制评语'))+'</button><button type="button" class="aip-btn aip-btn-ghost" data-aip="refresh"'+(aiPortraitBusy?' disabled':'')+'>'+esc(aiPortraitBusy?tr('生成中…'):tr('重新生成'))+'</button></div>';
+  if(folded){
+   body=p.headline?'<button type="button" class="aip-fold-bar" data-aip="toggle" aria-expanded="false"><span>'+esc(p.headline)+'</span></button>':'';
+  }else{
+   const tagsHTML=p.tags&&p.tags.length?'<div class="aip-tags">'+p.tags.map(t=>'<span>'+esc(t)+'</span>').join('')+'</div>':'';
+   const parasHTML=p.paragraphs.map(line=>'<p class="aip-p">'+esc(line)+'</p>').join('');
+   const nextHTML=p.nextHint?'<div class="aip-next"><b>'+esc(tr('下一步建议'))+'</b><span>'+esc(p.nextHint)+'</span></div>':'';
+   body=(p.headline?'<h3 class="aip-headline">'+esc(p.headline)+'</h3>':'')+tagsHTML+'<div class="aip-text">'+parasHTML+'</div>'+nextHTML+
+    '<div class="aip-foot"><button type="button" class="aip-btn aip-btn-ghost" data-aip="copy">'+esc(tr('复制评语'))+'</button><button type="button" class="aip-btn aip-btn-ghost" data-aip="refresh"'+(aiPortraitBusy?' disabled':'')+'>'+esc(aiPortraitBusy?tr('生成中…'):tr('重新生成'))+'</button></div>';
+  }
  }else{
   body='<p class="aip-desc">'+esc(tr('结合当前范围看过的片单、星级评分与趣味四象限摘要，由 AI 生成 200–300 字专属观影评语。结果缓存在本机，观影记录未变动时不重复请求。'))+'</p>'+
    '<div class="aip-cta"><button type="button" class="aip-btn aip-btn-primary" data-aip="gen"'+(built.ok&&!aiPortraitBusy?'':' disabled')+'>'+esc(aiPortraitBusy?tr('正在生成观影评语…'):tr('生成 AI 观影评语'))+'</button>'+
    (!built.ok?'<small>'+esc(tr('当前范围至少标记 3 部看过影片后即可生成'))+'</small>':'')+'</div>';
  }
+ const headRight=p
+  ?'<div class="aip-head-r">'+(hit.cached&&!folded?'<span class="aip-badge">'+esc(tr('本机已缓存'))+'</span>':'')+'<button type="button" class="aip-toggle" data-aip="toggle" aria-expanded="'+(!folded)+'">'+esc(folded?tr('展开')+' ▾':tr('收起')+' ▴')+'</button></div>'
+  :'';
  const msgHTML=aiPortraitMsg?'<p class="aip-msg'+(aiPortraitTone?' '+aiPortraitTone:'')+'" role="status">'+esc(aiPortraitMsg)+'</p>':'';
- return '<section class="ai-portrait" id="ai-portrait"><header class="aip-head"><div><b>✦ '+esc(tr('AI 观影画像'))+'</b><small>'+esc(scopeMeta)+'</small></div>'+(p&&hit.cached?'<span class="aip-badge">'+esc(tr('本机已缓存'))+'</span>':'')+'</header>'+body+msgHTML+'</section>';
+ return '<section class="ai-portrait'+(folded?' folded':'')+'" id="ai-portrait"><header class="aip-head"><div><b>✦ '+esc(tr('AI 观影画像'))+'</b><small>'+esc(scopeMeta)+'</small></div>'+headRight+'</header>'+body+msgHTML+'</section>';
 }
 function refreshAiPortraitCard(){
  const box=main.querySelector('#ai-portrait');if(!box)return;
@@ -190,11 +200,13 @@ function bindAiPortraitCard(){
  const g=box.querySelector('[data-aip="gen"]');if(g)g.onclick=()=>runAiPortrait(false);
  const rf=box.querySelector('[data-aip="refresh"]');if(rf)rf.onclick=()=>runAiPortrait(true);
  const cp=box.querySelector('[data-aip="copy"]');if(cp)cp.onclick=copyAiPortrait;
+ box.querySelectorAll('[data-aip="toggle"]').forEach(el=>{el.onclick=()=>{setAiPortraitFold(!aiPortraitFolded());refreshAiPortraitCard();};});
 }
 async function runAiPortrait(force){
  if(aiPortraitBusy)return;
  const ctx=tastePortraitBuild();if(!ctx||!ctx.built.ok)return;
  const {TP,built,fp,hit}=ctx;
+ setAiPortraitFold(false);
  if(!force&&hit&&hit.portrait){aiPortraitMsg='';aiPortraitTone='';refreshAiPortraitCard();return;}
  const endpoint=tastePortraitEndpoint();
  if(!endpoint){aiPortraitMsg=tr('AI 观影画像暂不可用，请稍后再试；上方离线趣味图谱仍可正常使用。');aiPortraitTone='warn';refreshAiPortraitCard();return;}
