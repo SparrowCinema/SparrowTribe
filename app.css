@@ -1541,7 +1541,7 @@ button,summary,a,label,select,[role=button],[data-pp],.my-entry{touch-action:man
 .vm-num{fill:var(--on-block);font:600 9.5px/1 var(--f-mono);pointer-events:none}
 .vm-lab{fill:var(--fg);font:600 11px/1 var(--f-body);paint-order:stroke;stroke:var(--surface);stroke-width:3.8px;stroke-linejoin:round;pointer-events:none}
 .vm-stage.sketch .vm-lab{font-family:var(--f-display);font-weight:700}
-.vm-pin:hover .vm-halo,.vm-pin:focus-visible .vm-halo{r:21}
+@media(hover:hover){.vm-pin:hover .vm-halo{r:21}}.vm-pin:focus-visible .vm-halo{r:21} /* 只在有鼠标的设备上悬停放大：触屏「悬停」会让 iPhone 吞掉第一次点击 */
 .vm-compass circle{fill:color-mix(in srgb,var(--surface) 86%,transparent);stroke:var(--line);stroke-width:1}
 .vm-compass .vm-cn{fill:var(--accent)}
 .vm-compass .vm-cs{fill:var(--muted);opacity:.55}
@@ -1582,19 +1582,19 @@ button,summary,a,label,select,[role=button],[data-pp],.my-entry{touch-action:man
 @media(max-width:480px){.vm-ch{flex-wrap:wrap}.vm-nav{margin-left:40px}.vm-xrow{flex-direction:column;align-items:flex-start;gap:3px}}
 /* 影院地图与交通（2026-11-26）：地图吸在顶栏下方，只有影院列表滚动（--vm-top 由 vmPinTop 按顶栏实际高度设置）；宽屏左右分栏。
    点影院展开「本院影片与排片」（只显示即将放映和正在放映的）：海报条、日期条、按日期分组的场次（可加入排片） */
-.vm-pin{position:sticky;top:var(--vm-top,calc(env(safe-area-inset-top,0px) + 61px));z-index:6;margin:10px 0 12px;padding:6px 0 10px;background:var(--bg)}
-.vm-pin::after{content:"";position:absolute;left:0;right:0;top:100%;height:12px;background:linear-gradient(var(--bg),color-mix(in srgb,var(--bg) 0%,transparent));pointer-events:none}
-.vm-pin .vm-wrap{margin:0}
-.vm-pin .vm-stage{height:40vh;height:40svh;min-height:210px;max-height:320px}
-.vm-pin .vm-wrap figcaption{padding:8px 14px}
-@media(min-width:680px){.vm-pin .vm-stage{height:42vh;height:42svh;min-height:260px;max-height:380px}}
-@media(max-height:560px){.vm-pin{position:relative;top:auto}.vm-pin::after{display:none}} /* 横屏手机等矮屏：地图不吸顶，免得挡住列表 */
+.vm-dock{position:sticky;top:var(--vm-top,calc(env(safe-area-inset-top,0px) + 61px));z-index:6;margin:10px 0 12px;padding:6px 0 10px;background:var(--bg)}
+.vm-dock::after{content:"";position:absolute;left:0;right:0;top:100%;height:12px;background:linear-gradient(var(--bg),color-mix(in srgb,var(--bg) 0%,transparent));pointer-events:none}
+.vm-dock .vm-wrap{margin:0}
+.vm-dock .vm-stage{height:40vh;height:40svh;min-height:210px;max-height:320px}
+.vm-dock .vm-wrap figcaption{padding:8px 14px}
+@media(min-width:680px){.vm-dock .vm-stage{height:42vh;height:42svh;min-height:260px;max-height:380px}}
+@media(max-height:560px){.vm-dock{position:relative;top:auto}.vm-dock::after{display:none}} /* 横屏手机等矮屏：地图不吸顶，免得挡住列表 */
 @media(min-width:900px){
   .vm-split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.12fr);gap:26px;align-items:start;margin-top:16px}
   .vm-split>.vm-cards{grid-column:1;grid-row:1}
-  .vm-split>.vm-pin{grid-column:2;grid-row:1;top:calc(var(--vm-top,calc(env(safe-area-inset-top,0px) + 61px)) + 14px);margin:0;padding:0}
-  .vm-split>.vm-pin::after{display:none}
-  .vm-pin .vm-stage{height:calc(100vh - 220px);height:calc(100svh - 220px);min-height:380px;max-height:720px}
+  .vm-split>.vm-dock{grid-column:2;grid-row:1;top:calc(var(--vm-top,calc(env(safe-area-inset-top,0px) + 61px)) + 14px);margin:0;padding:0}
+  .vm-split>.vm-dock::after{display:none}
+  .vm-dock .vm-stage{height:calc(100vh - 220px);height:calc(100svh - 220px);min-height:380px;max-height:720px}
 }
 .vm-ch[data-vsel]{cursor:pointer}
 .vm-name{all:unset;cursor:pointer;overflow-wrap:anywhere}
