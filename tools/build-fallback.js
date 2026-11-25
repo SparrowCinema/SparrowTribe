@@ -84,6 +84,8 @@ fs.copyFileSync(path.join(root,'shared/growth.js'),path.join(root,'miniprogram/u
 {const s=fs.readFileSync(path.join(root,'shared/curl.js'),'utf8');fs.writeFileSync(path.join(root,'miniprogram/utils/curl.wxs'),'/* 由 tools/build-fallback.js 从 shared/curl.js 生成，请改 shared/curl.js 后重新运行。 */\n'+s.slice(0,s.indexOf('if (typeof module'))+'module.exports = SparrowCurl;\n');}
 // 对排片：shared/overlap.js 复制给小程序（pages/share）
 fs.writeFileSync(path.join(root,'miniprogram/utils/overlap.js'),'/* 由 tools/build-fallback.js 从 shared/overlap.js 复制，请改 shared/overlap.js 后重新运行。 */\n'+fs.readFileSync(path.join(root,'shared/overlap.js'),'utf8'));
+// 影院排片面板：shared/venue-board.js 复制给小程序（pages/venues）
+fs.copyFileSync(path.join(root,'shared/venue-board.js'),path.join(root,'miniprogram/utils/venue-board.js'));
 
 fs.copyFileSync(path.join(root,'shared/premiere.js'),path.join(root,'miniprogram/utils/premiere.js'));
 

@@ -16,6 +16,7 @@ assert.equal(fs.readFileSync(path.join(root,'shared/ticket-sketch.js'),'utf8'),f
 assert.equal(fs.readFileSync(path.join(root,'shared/tz.js'),'utf8'),fs.readFileSync(path.join(root,'miniprogram/utils/tz.js'),'utf8'));
 assert.equal(fs.readFileSync(path.join(root,'shared/tz.js'),'utf8'),fs.readFileSync(path.join(root,'cloudfunctions/remind/tz.js'),'utf8'));
 assert.equal(fs.readFileSync(path.join(root,'shared/planner.js'),'utf8'),fs.readFileSync(path.join(root,'miniprogram/utils/planner.js'),'utf8'));
+assert.equal(fs.readFileSync(path.join(root,'shared/venue-board.js'),'utf8'),fs.readFileSync(path.join(root,'miniprogram/utils/venue-board.js'),'utf8'));
 console.log('PASS: backup round trip, no credentials, merge semantics, deletions, malformed imports, city-scoped selection and JavaScript parsing.');
 
 require('./check-recap.js');
@@ -38,6 +39,8 @@ require('./check-taste-report.js');
 require('./check-taste-portrait.js');
 require('./check-remind.js');
 require('./check-overlap.js');
+require('./check-venue-board.js');
+require('./check-venues-mp.js');
 require('./check-planner-tz.js');
 require('./check-recommend.js');
 require('./check-handbook.js');
