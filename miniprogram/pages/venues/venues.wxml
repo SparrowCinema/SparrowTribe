@@ -44,9 +44,9 @@
             <text class="vo-c">{{activeId === item.id ? '▴' : '▾'}}</text>
           </view>
           <view wx:if="{{activeId === item.id && panel && panel.id === item.id}}" class="vp">
-            <view wx:if="{{panel.empty}}" class="vp-empty">{{L.t(i,'暂无排片')}}</view>
+            <view wx:if="{{panel.empty}}" class="vp-empty">{{L.t(i,'暂无待映场次')}}</view>
             <scroll-view wx:if="{{panel.films.length}}" class="vp-films" scroll-x="{{true}}" enhanced="{{true}}" show-scrollbar="{{false}}">
-              <view wx:for="{{panel.films}}" wx:for-item="f" wx:key="id" class="vp-film {{f.on ? 'on' : ''}} {{f.gone ? 'gone' : ''}}" data-id="{{f.id}}" bindtap="pickFilm">
+              <view wx:for="{{panel.films}}" wx:for-item="f" wx:key="id" class="vp-film {{f.on ? 'on' : ''}}" data-id="{{f.id}}" bindtap="pickFilm">
                 <image wx:if="{{f.poster}}" class="vp-img" src="{{f.poster}}" mode="aspectFill" lazy-load="{{true}}" />
                 <view wx:else class="vp-img vp-ph">{{f.ph}}</view>
                 <text class="vp-ft">{{f.cn}}</text>
@@ -60,7 +60,6 @@
             <scroll-view wx:if="{{panel.days.length}}" class="vp-days" scroll-x="{{true}}" enhanced="{{true}}" show-scrollbar="{{false}}">
               <view wx:for="{{panel.days}}" wx:for-item="d" wx:key="key" class="vp-day {{d.on ? 'on' : ''}}" data-key="{{d.key}}" bindtap="pickDay"><text class="vd-l mono">{{d.label}}</text><text class="vd-n">{{d.n}}</text></view>
             </scroll-view>
-            <view wx:if="{{panel.upEmpty && !panel.empty}}" class="vp-empty">{{panel.upEmpty}}</view>
             <view wx:for="{{panel.up}}" wx:for-item="g" wx:key="key" class="vp-dg">
               <view class="vp-dh"><text class="mono">{{g.label}}</text><text class="vp-dn">{{g.n}}</text></view>
               <view wx:for="{{g.rows}}" wx:for-item="r" wx:key="key" class="vp-row">
@@ -72,19 +71,6 @@
                 <view class="vp-pick {{r.picked ? 'on' : ''}}" data-key="{{r.key}}" catchtap="toggle">{{r.picked ? L.t(i,'✓ 已加入') : L.t(i,'+ 加入排片')}}</view>
               </view>
             </view>
-            <block wx:if="{{panel.pastN}}">
-              <view class="vp-past" hover-class="hv" bindtap="togglePast"><text>{{panel.pastLabel}}</text><text>{{pastOpen ? '▴' : '▾'}}</text></view>
-              <view wx:for="{{panel.past}}" wx:for-item="g" wx:key="key" class="vp-dg past">
-                <view class="vp-dh"><text class="mono">{{g.label}}</text><text class="vp-dn">{{g.n}}</text></view>
-                <view wx:for="{{g.rows}}" wx:for-item="r" wx:key="key" class="vp-row">
-                  <view class="vp-go" data-id="{{r.id}}" bindtap="openFilm">
-                    <view class="vp-tm mono"><text class="vp-st">{{r.t}}</text><text class="vp-et">{{r.end}}</text></view>
-                    <view class="vp-bar" style="background:{{r.tone.bar}}" />
-                    <view class="vp-ti"><text class="vp-b">{{r.cn}}<text wx:if="{{r.version}}" class="vp-ed">{{r.version}}</text></text><view class="vp-tags"><text class="vp-hall">{{r.hall}}</text></view></view>
-                  </view>
-                </view>
-              </view>
-            </block>
           </view>
         </view>
       </view>

@@ -19,7 +19,6 @@ Page({
     canReset: false,
     transfers: [],
     panel: null,
-    pastOpen: false,
     intoView: ''
   },
   onLoad(q) {
@@ -89,8 +88,8 @@ Page({
           .map(x => ({ k: t(x[0]), v: x[1] }))
         : [];
       const geo = U.geoOf(v);
-      const filmN = new Set(vs.filter(x => !idx.F[x.id].ev).map(x => x.id)).size;
-      const cntText = [filmN ? t(filmN + ' 部') : '', up.length ? t('待映 ' + up.length + ' 场') : t('已放映 ' + vs.length + ' 场')].filter(Boolean).join(' · ');
+      const filmN = new Set(up.filter(x => !idx.F[x.id].ev).map(x => x.id)).size; // 只数还有待映场次的影片
+      const cntText = up.length ? [filmN ? t(filmN + ' 部') : '', t('待映 ' + up.length + ' 场')].filter(Boolean).join(' · ') : t('暂无待映场次');
       return {
         id: v.id,
         domIdx: i,
@@ -172,13 +171,13 @@ Page({
     this._idx = idx; this._shows = shows;
     this.buildPanel();
   },
-  // 选中 / 取消一家影院：地图移到它并高亮，卡片展开本院影片与排片（规则 utils/venue-board.js，与网站一致），列表滚到这张卡片
+  // 选中 / 取消一家影院：地图移到它并高亮，卡片展开本院影片与排片（只显示即将放映和正在放映的；规则 utils/venue-board.js，与网站一致），列表滚到这张卡片
   select(id, o) {
     o = o || {};
     const row = (this.data.venueRows || []).find(r => r.id === id);
     const on = !!row && (o.force || this.data.activeId !== id);
     this.pick = { film: '', day: undefined };
-    const up = { activeId: on ? id : '', pastOpen: false, canReset: true };
+    const up = { activeId: on ? id : '', canReset: true };
     if (this._geoRows && this.data.venueMap) up['venueMap.markers'] = this.makeMarkers(this._geoRows, on ? id : '');
     if (on && row.geo && o.zoom) Object.assign(up, { 'venueMap.lat': row.geo.lat, 'venueMap.lng': row.geo.lng, 'venueMap.scale': 15, 'venueMap.points': [] });
     this.setData(up, () => {
@@ -205,18 +204,15 @@ Page({
     const groups = gs => gs.map(g => ({ key: g.key, label: g.first.d + ' ' + U.wk(g.first.d, g.first.year), n: t(g.shows.length + ' 场'), rows: g.shows.map(row) }));
     const fsel = b.film ? idx.F[b.film] : null;
     this.setData({ panel: {
-      id, empty: !b.upN && !b.pastN,
-      films: b.films.map(x => { const f = idx.F[x.id]; return { id: x.id, cn: title(f), poster: U.thumb(f), ph: (title(f) || '').slice(0, 1), sub: [t(f.version || ''), x.next ? x.next.d + ' ' + x.next.t : t('已放映')].filter(Boolean).join(' · '), on: b.film === x.id, gone: !x.up }; }),
+      id, empty: !b.upN,
+      films: b.films.map(x => { const f = idx.F[x.id]; return { id: x.id, cn: title(f), poster: U.thumb(f), ph: (title(f) || '').slice(0, 1), sub: [t(f.version || ''), x.next.d + ' ' + x.next.t].filter(Boolean).join(' · '), on: b.film === x.id }; }),
       filmName: fsel ? (en ? '“' + title(fsel) + '”' : '《' + title(fsel) + '》') : '',
       days: b.days.length > 1 ? [{ key: '', label: t('全部日期'), n: t(b.days.reduce((n, d) => n + d.n, 0) + ' 场'), on: !b.day }].concat(b.days.map(d => ({ key: d.key, label: d.first.d + ' ' + U.wk(d.first.d, d.first.year), n: t(d.n + ' 场'), on: b.day === d.key }))) : [],
-      up: groups(b.up), upEmpty: b.upShown ? '' : t(b.film ? '这部影片在本院没有待映场次' : '本院在本专题的场次已全部放映'),
-      pastN: b.pastShown, pastLabel: t('已放映 ' + b.pastShown + ' 场'),
-      past: this.data.pastOpen ? groups(b.past) : []
+      up: groups(b.up)
     } });
   },
   pickFilm(e) { const id = e.currentTarget.dataset.id; this.pick = { film: this.pick.film === id ? '' : id, day: undefined }; this.buildPanel(); },
   pickDay(e) { this.pick.day = e.currentTarget.dataset.key; this.buildPanel(); },
-  togglePast() { this.setData({ pastOpen: !this.data.pastOpen }, () => this.buildPanel()); },
   openFilm(e) { wx.navigateTo({ url: '/pages/film/film?id=' + e.currentTarget.dataset.id }); },
   toggle(e) {
     const key = e.currentTarget.dataset.key, on = plan.toggle(key);

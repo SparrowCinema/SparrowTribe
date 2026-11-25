@@ -11,32 +11,33 @@ const shows = [
 ];
 const o = (pick, allMax) => ({ film: id => films[id], start: s => T0 + s.h * H, past: s => s.h < 0, pick, allMax });
 let b = B.board(shows, o({}));
-assert.deepStrictEqual(b.films.map(f => [f.id, f.n, f.up]), [['a', 2, 2], ['b', 2, 1], ['c', 2, 0]]); // 有待映的按下一场先后，只剩已放映的在后；活动不列
-assert.equal(b.films[1].next.h, 5); assert.equal(b.films[2].last.h, -20);                          // 下一场 / 最近放映过的一场
-assert.equal(b.filmN, 3); assert.equal(b.upN, 4); assert.equal(b.pastN, 3);                        // 待映含活动场次
+assert.deepStrictEqual(b.films.map(f => [f.id, f.n]), [['a', 2], ['b', 1]]); // 只列还有待映场次的影片，按下一场先后；已放完的 c 与活动不列
+assert.equal(b.films[1].next.h, 5);
+assert.equal(b.filmN, 2); assert.equal(b.upN, 4); assert.equal(b.pastN, 3);                        // 待映含活动场次
 assert.deepStrictEqual(b.days.map(d => [d.key, d.n]), [['11/26', 3], ['11/27', 1]]);
 assert.deepStrictEqual(b.up.map(g => [g.key, g.shows.map(s => s.id + s.h)]), [['11/26', ['a3', 'b5', 'e8']], ['11/27', ['a30']]]); // 同一天按时间先后
-assert.deepStrictEqual(b.past.map(g => [g.key, g.shows.map(s => s.id + s.h)]), [['11/25', ['b-22', 'c-20']], ['11/24', ['c-40']]]); // 日期由近及远
-assert.equal(b.film, ''); assert.equal(b.day, ''); assert.equal(b.upShown, 4); assert.equal(b.pastShown, 3);
+assert(!('past' in b), 'screened shows are never listed');
+assert.equal(b.film, ''); assert.equal(b.day, ''); assert.equal(b.upShown, 4);
 // 只看一部影片：待映与已放映都按影片筛，日期条只剩这部影片的日期
 b = B.board(shows, o({ film: 'b' }));
 assert.equal(b.film, 'b'); assert.deepStrictEqual(b.days.map(d => d.key), ['11/26']);
-assert.deepStrictEqual(b.up.map(g => g.shows.map(s => s.h)), [[5]]); assert.deepStrictEqual(b.past.map(g => g.shows.map(s => s.h)), [[-22]]);
-assert.equal(b.filmN, 3); assert.equal(b.upN, 4);                                                    // 总数不受筛选影响
+assert.deepStrictEqual(b.up.map(g => g.shows.map(s => s.h)), [[5]]);
+assert.equal(b.filmN, 2); assert.equal(b.upN, 4);                                                    // 总数不受筛选影响
 // 选一天
 b = B.board(shows, o({ day: '11/27' }));
-assert.equal(b.day, '11/27'); assert.deepStrictEqual(b.up.map(g => g.key), ['11/27']); assert.equal(b.upShown, 1); assert.equal(b.pastShown, 3);
+assert.equal(b.day, '11/27'); assert.deepStrictEqual(b.up.map(g => g.key), ['11/27']); assert.equal(b.upShown, 1);
 // 默认规则：待映超过 allMax 场时只看最近一天；用户选过「全部日期」（''）则看全部；所选日期 / 影片不存在时回到默认
 assert.equal(B.board(shows, o({}, 3)).day, '11/26');
 assert.equal(B.board(shows, o({ day: '' }, 3)).day, '');
 assert.equal(B.board(shows, o({ day: '11/20' }, 3)).day, '11/26');
 assert.equal(B.board(shows, o({ day: '11/20' })).day, '');
 assert.equal(B.board(shows, o({ film: 'zz' })).film, '');
+assert.equal(B.board(shows, o({ film: 'c' })).film, '');                                            // 已放完的影片不能再筛
 assert.equal(B.board(shows, o({ film: 'e' })).film, '');                                            // 活动不作为影片筛选
 assert.equal(B.board(shows, o({ film: 'a' }, 1)).day, '');                                           // 只看一部影片时默认看全部日期
 // 空数据
 b = B.board([], o({}));
-assert.deepStrictEqual([b.films.length, b.days.length, b.up.length, b.past.length, b.upN, b.pastN], [0, 0, 0, 0, 0, 0]);
+assert.deepStrictEqual([b.films.length, b.days.length, b.up.length, b.upN, b.pastN], [0, 0, 0, 0, 0]);
 
 // 真实片库：每家影院的面板场次数与专题场次一致，分组顺序正确
 const data = require('./full-data.js'), TZ = require('../shared/tz.js');
@@ -52,12 +53,11 @@ data.programmes.forEach(p => {
     const r = B.board(vs, { film: id => F[id], start: ms, past: s => ms(s) + (F[s.id].min || 0) * 6e4 < now, pick: { day: '' } });
     assert.equal(r.upN + r.pastN, vs.length, p.id + '/' + v);
     assert.equal(r.up.reduce((n, g) => n + g.shows.length, 0), r.upN);
-    assert.equal(r.past.reduce((n, g) => n + g.shows.length, 0), r.pastN);
     const upT = r.up.flatMap(g => g.shows).map(ms); assert(upT.every((t, i) => !i || t >= upT[i - 1]), 'upcoming sorted ' + p.id + '/' + v);
-    const pd = r.past.map(g => ms(g.first)); assert(pd.every((t, i) => !i || t <= pd[i - 1]), 'past days newest first ' + p.id + '/' + v);
+    assert(r.films.every(f => f.n > 0 && vs.some(s => s.id === f.id && ms(s) + (F[s.id].min || 0) * 6e4 >= now)), 'only films still to screen ' + p.id + '/' + v);
     assert.equal(new Set(r.films.map(f => f.id)).size, r.filmN);
     venues++;
   });
 });
 assert(venues > 10);
-console.log('PASS: venue board — film order, counts, day groups, film/day filters, default day rule, real catalogue (' + venues + ' venue panels).');
+console.log('PASS: venue board — upcoming-only films, counts, day groups, film/day filters, default day rule, real catalogue (' + venues + ' venue panels).');
