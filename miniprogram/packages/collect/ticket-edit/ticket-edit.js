@@ -44,11 +44,11 @@ function image(node,src){
 
 Page({
   data:{i:{},ps:'',ok:false,draft:{},front:true,frontImg:'',backImg:'',turnReq:{side:'front',n:0},edge:'',shine:'metal',fx:'none',layersF:[],layersB:[],custom:false,revealing:false,
-    arts:[],artIndex:0,artStyleLabels:[],artStyleIndex:0,shows:[],showIdx:-1,existing:false,linked:false,loading:false,busy:true,artDirty:false},
+    arts:[],artIndex:0,artStyleLabels:[],artStyleIndex:0,shows:[],showIdx:-1,existing:false,linked:false,loading:false,busy:true,artDirty:false,ocrBusy:false,ocrMode:'wx',ocrTone:'',ocrMsg:'',ocrCanRetryAi:false},
   onLoad(q){
     this._albumArtStyle=Art.normalize();
     try{this._albumArtStyle=Art.normalize(readArtPreference(Art.storageKey));}catch(_){}
-    this._ready=true;this._turn=0;this._cache=new Map();
+    this._ready=true;this._turn=0;this._cache=new Map();this._lastOcrImg=null;
     CFG.bind(this);this.setData({i:I.dict(),artStyleLabels:Art.filmStyleOptions.map(style=>I.tr(style.label))});
     this.data_=app.globalData.data;this.idx=U.index(this.data_);this.base=Tix.baseFor(this.data_,this.idx);
     const key=q.key?decodeURIComponent(q.key):'',film=q.film?decodeURIComponent(q.film):'';
@@ -80,7 +80,7 @@ Page({
     wx.setNavigationBarTitle({title:I.tr(original?'编辑票根':'新票根')});
   },
   onShow(){CFG.chrome();},
-  onUnload(){this._ready=false;this._turn++;this.__cfgOff&&this.__cfgOff();},
+  onUnload(){this._ready=false;this._turn++;this._lastOcrImg=null;this.__cfgOff&&this.__cfgOff();},
   setup(row){
     if(row.art)row.art=artworkUrl(row.art);
     this._draft=row;
@@ -220,54 +220,87 @@ Page({
     Object.assign(d,{time:x.time,venue:x.venue,hall:x.hall,city:x.city});
     this.setData({draft:d,showIdx:Number(e.detail.value)});this.renderFaces();
   },
-  // 拍照识票（2026-11-24）：选纸质票拍照或电子票截图 → 调 ticketOcr 云函数 → 解析日期、时间、影院、影厅、座位、版本；失败时提示手动填写
-  scanTicket(){
+  // 拍照识票（2026-11-24，2026-11-25 新增 AI 识票增强）：支持微信识字（默认）与 Gemini AI 增强，AI 不可用时云函数自动回退微信识字
+  scanTicket(e){
     if(this.data.ocrBusy||!this._draft)return;
-    const en=I.isEn();
-    const fail=(msg)=>{this.setData({ocrBusy:false,ocrTone:'warn',ocrMsg:msg||I.tr('未能识别票面文字，请直接在下方手动填写。')});};
-    if(!wx.cloud){fail(I.tr('当前环境暂不支持云端识票，请直接在下方手动填写。'));return;}
+    const mode=(e&&e.currentTarget&&e.currentTarget.dataset&&e.currentTarget.dataset.mode)==='ai'?'ai':'wx';
+    if(!wx.cloud){
+      this.setData({ocrBusy:false,ocrMode:mode,ocrTone:'warn',ocrCanRetryAi:false,ocrMsg:I.tr('当前环境暂不支持云端识票，请直接在下方手动填写。')});
+      return;
+    }
     wx.chooseMedia({
       count:1,mediaType:['image'],sizeType:['compressed'],sourceType:['camera','album'],
       success:res=>{
         const file=res&&res.tempFiles&&res.tempFiles[0];if(!file||!file.tempFilePath)return;
-        this.setData({ocrBusy:true,ocrTone:'',ocrMsg:I.tr('正在识别票面文字…')});
+        this.setData({ocrBusy:true,ocrMode:mode,ocrTone:'',ocrCanRetryAi:false,ocrMsg:I.tr(mode==='ai'?'正在通过 AI 识别票面信息（仅本次识别，不保存图片）…':'正在识别票面文字…')});
         wx.getFileSystemManager().readFile({
           filePath:file.tempFilePath,encoding:'base64',
           success:rf=>{
             const ext=(file.tempFilePath.split('.').pop()||'jpg').toLowerCase();
             const contentType=ext==='png'?'image/png':ext==='webp'?'image/webp':'image/jpeg';
-            wx.cloud.callFunction({name:'ticketOcr',data:{imgBase64:rf.data,contentType}}).then(cr=>{
-              const out=cr&&cr.result;
-              if(!out||!out.ok||!out.text){fail();return;}
-              const TicketOcr=require('../utils/ticket-ocr.js');
-              const d=this._draft,data=app.globalData.data||{};
-              const parsed=TicketOcr.parseTicketText(out.text,{
-                venues:data.venues||[],
-                shows:this._shows||[],
-                defaultYear:Number((d.date||'').slice(0,4))||new Date().getFullYear()
-              });
-              const labels={date:I.tr('日期'),time:I.tr('时间'),venue:I.tr('影院'),hall:I.tr('影厅'),seat:I.tr('座位'),format:I.tr('版本')};
-              const filled=[];
-              ['date','time','venue','hall','seat','format'].forEach(k=>{
-                if(!parsed[k])return;
-                if(k==='date'&&d.linked)return;
-                d[k]=parsed[k];filled.push(labels[k]);
-              });
-              if(parsed.matchedShow&&parsed.matchedShow.city)d.city=parsed.matchedShow.city;
-              if(filled.length){
-                const sep=en?', ':'、';
-                this.setData({draft:d,showIdx:this.showIndex(),ocrBusy:false,ocrTone:'ok',ocrMsg:I.tr('已自动填入：')+filled.join(sep)+I.tr('（可继续核对修改）')});
-                this.renderFaces();
-                say(I.tr('已识别并填入')+' '+filled.join(sep));
-              }else{
-                fail(I.tr('未能从图片中提取到场次或座位信息，请直接在下方手动填写。'));
-              }
-            }).catch(()=>fail());
+            this._lastOcrImg={imgBase64:rf.data,contentType};
+            this.runOcrCall(rf.data,contentType,mode);
           },
-          fail:()=>fail()
+          fail:()=>{this.setData({ocrBusy:false,ocrTone:'warn',ocrCanRetryAi:false,ocrMsg:I.tr('未能识别票面文字，请直接在下方手动填写。')});}
         });
       }
     });
+  },
+  retryAiScan(){
+    if(this.data.ocrBusy||!this._draft||!this._lastOcrImg)return;
+    this.setData({ocrBusy:true,ocrMode:'ai',ocrTone:'',ocrCanRetryAi:false,ocrMsg:I.tr('正在通过 AI 识别票面信息（仅本次识别，不保存图片）…')});
+    this.runOcrCall(this._lastOcrImg.imgBase64,this._lastOcrImg.contentType,'ai');
+  },
+  runOcrCall(imgBase64,contentType,mode){
+    const en=I.isEn();
+    const d=this._draft,data=app.globalData.data||{};
+    const defaultYear=Number((d.date||'').slice(0,4))||new Date().getFullYear();
+    const fail=(msg,canRetry)=>{
+      if(!this._ready)return;
+      this.setData({ocrBusy:false,ocrTone:'warn',ocrCanRetryAi:!!canRetry,ocrMsg:msg||I.tr('未能识别票面文字，请直接在下方手动填写。')});
+    };
+    wx.cloud.callFunction({
+      name:'ticketOcr',
+      data:{imgBase64,contentType,mode,hint:{title:d.title||'',defaultYear}}
+    }).then(cr=>{
+      if(!this._ready)return;
+      const out=cr&&cr.result;
+      if(!out||!out.ok){fail('',mode==='wx'&&!!this._lastOcrImg);return;}
+      const TicketOcr=require('../utils/ticket-ocr.js');
+      const ctx={venues:data.venues||[],shows:this._shows||[],defaultYear};
+      const viaAi=out.mode==='ai'&&out.fields;
+      let parsed=null;
+      if(viaAi){
+        parsed=TicketOcr.normalizeAiResult({fields:out.fields,raw:out.text||''},ctx);
+      }else if(out.text){
+        parsed=TicketOcr.parseTicketText(out.text,ctx);
+      }else{
+        fail('',mode==='wx'&&!!this._lastOcrImg);return;
+      }
+      const labels={date:I.tr('日期'),time:I.tr('时间'),venue:I.tr('影院'),hall:I.tr('影厅'),seat:I.tr('座位'),format:I.tr('版本')};
+      const filled=[];
+      ['date','time','venue','hall','seat','format'].forEach(k=>{
+        if(!parsed[k])return;
+        if(k==='date'&&d.linked)return;
+        d[k]=parsed[k];filled.push(labels[k]);
+      });
+      if(parsed.matchedShow&&parsed.matchedShow.city)d.city=parsed.matchedShow.city;
+      const fbPrefix=out.fallback
+        ?(out.fallbackReason==='rate_limited'
+          ?I.tr('AI 识票请求过于频繁，已自动改用微信识字。')+' '
+          :I.tr('AI 识票暂不可用，已自动改用微信识字。')+' ')
+        :'';
+      const canRetry=mode==='wx'&&!!this._lastOcrImg;
+      if(filled.length){
+        const sep=en?', ':'、';
+        const tag=viaAi?I.tr('AI 已自动填入：'):I.tr('已自动填入：');
+        this.setData({draft:d,showIdx:this.showIndex(),ocrBusy:false,ocrTone:'ok',ocrCanRetryAi:canRetry,ocrMsg:fbPrefix+tag+filled.join(sep)+I.tr('（可继续核对修改）')});
+        this.renderFaces();
+        say((viaAi?I.tr('AI 已识别并填入'):I.tr('已识别并填入'))+' '+filled.join(sep));
+      }else{
+        fail(fbPrefix+I.tr('未能从图片中提取到场次或座位信息，请直接在下方手动填写。'),canRetry);
+      }
+    }).catch(()=>fail('',mode==='wx'&&!!this._lastOcrImg));
   },
   pickArtStyle(e){
     const artStyleIndex=Number(e.detail.value),style=Art.filmStyleOptions[artStyleIndex];

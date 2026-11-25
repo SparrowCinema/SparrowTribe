@@ -170,8 +170,11 @@
     "共同想看": "Shared wants",
     "多人一起排片（接龙凑场）": "Multi-friend group relay planning",
     "拍照识票": "Scan ticket",
+    "AI 识票": "AI scan",
+    "用 AI 重新识别": "Retry with AI",
     "识票中…": "Scanning…",
     "拍照识票自动填票根": "Scan paper or e-tickets via OCR",
+    "拍照识票新增 AI 增强": "AI-enhanced ticket scanning",
     "平遥": "Pingyao",
     "平遥电影宫": "Pingyao Film Palace",
     "藏龙": "Hidden Dragons",
@@ -15578,6 +15581,20 @@
     "链接里的专题可能已更名或下架。可以在专题页查看全部专题。": "The programme in this link may have been renamed or removed. See all programmes on the Programmes page.",
     "去片目搜索": "Search films",
     "查看全部专题": "All programmes",
-    "回到排片表": "Back to schedule"
+    "回到排片表": "Back to schedule",
+    "AI 识票": "AI scan",
+    "用 AI 重新识别": "Retry with AI",
+    "使用 AI 增强识别复杂纸质票、海外票或电子票截图（仅本次识别，不保存图片）": "Use AI vision for faded paper stubs, overseas festival tickets, or screenshots (processed once, never saved)",
+    "正在通过 AI 识别票面信息（仅本次识别，不保存图片）…": "Analyzing ticket with AI (processed once, photo not saved)…",
+    "AI 已自动填入：": "AI auto-filled: ",
+    "AI 已识别并填入": "AI filled from ticket:",
+    "AI 识票暂不可用，已改用本机离线识票。": "AI scan unavailable — switched to on-device OCR.",
+    "AI 识票暂不可用，已自动改用本机离线识票。": "AI scan unavailable — fell back to on-device OCR.",
+    "AI 识票请求过于频繁，已自动改用本机离线识票。": "AI scan rate limit reached — fell back to on-device OCR.",
+    "AI 识票暂不可用，已自动改用微信识字。": "AI scan unavailable — fell back to WeChat OCR.",
+    "AI 识票请求过于频繁，已自动改用微信识字。": "AI scan rate limit reached — fell back to WeChat OCR.",
+    "拍照识票新增 AI 增强": "AI-enhanced ticket scanning",
+    "编辑典藏票根时，在原有离线识票 / 微信识字旁新增「AI 识票」，可更精准识别褪色纸质票、海外影展票与复杂电子票截图；图片仅用于本次识别、不保存，服务不可用时自动回退常规识票。": "Added an optional AI scan mode alongside on-device / WeChat OCR in the ticket editor for faded thermal stubs, overseas festival tickets, and complex e-ticket screenshots. Photos are used once and never stored, with automatic fallback when unavailable.",
+    "编辑票根时点「拍照识票」，选择纸质票照片或电子票截图，会自动识别日期、开场时间、影院、影厅、座位和版本并填入表单（同时尝试匹配片库排片）。网页端默认在本机离线识别，图片不上传服务器；小程序端默认走微信识字。遇到褪色热敏纸、海外影展票或复杂截图时，也可点「AI 识票」或识别后的「用 AI 重新识别」启用 AI 增强（图片仅用于本次识别，不保存；服务不可用时自动回退常规识票）。": "Tap Scan ticket in the ticket editor to pick a paper stub photo or e-ticket screenshot and auto-fill date, start time, venue, hall, seat, and format (snapping to matching screenings when found). Web defaults to on-device OCR so photos never leave your device; the mini-program defaults to WeChat OCR. For faded thermal stubs, international festival tickets, or tricky screenshots, tap AI scan or Retry with AI (photos are processed once and never saved, with automatic fallback)."
   }
 }

@@ -541,10 +541,12 @@ function ticketOpen(row){
 // 从收藏册打开单张票根前记下滚动位置，保存 / 取消 / 移出后回到原来的位置（不再回到顶部）
 let ticketAlbumY=0;
 function ticketShowDraft(){
+  ticketOcrLastFile=null;
   if(!document.querySelector(".te-body"))ticketAlbumY=ticketMode==="album"?window.scrollY:0;
   ticketPrepareReveal();ticketRender();window.scrollTo(0,0);
 }
 function ticketBackToAlbum(){
+  ticketOcrLastFile=null;
   ticketDraft=null;ticketMode="album";ticketRender();
   const y=ticketAlbumY;window.scrollTo(0,y);requestAnimationFrame(()=>window.scrollTo(0,y)); // 第二次等布局（图片占位）稳定后再校正
 }
@@ -606,7 +608,7 @@ function ticketEditor(row){
           ${ticketDraft.original?`<button type="button" class="te-action te-action-remove" data-ticket-action="remove">${ticketDict("移出收藏册")}</button>`:""}
         </div>
       </div>
-      <div class="te-sec-row"><h4 class="te-sec">${ticketDict("放映信息")}</h4><button type="button" class="te-ocr-btn" data-ticket-action="ocr-scan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h3l2-2h6l2 2h3a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2Z"/><circle cx="12" cy="13" r="3.5"/></svg><span>${ticketDict("拍照识票")}</span></button><input type="file" id="te-ocr-file" accept="image/*" hidden></div>
+      <div class="te-sec-row"><h4 class="te-sec">${ticketDict("放映信息")}</h4><div class="te-ocr-btns"><button type="button" class="te-ocr-btn" data-ticket-action="ocr-scan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h3l2-2h6l2 2h3a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2Z"/><circle cx="12" cy="13" r="3.5"/></svg><span>${ticketDict("拍照识票")}</span></button><button type="button" class="te-ocr-btn te-ocr-ai" data-ticket-action="ocr-ai" title="${ticketDict("使用 AI 增强识别复杂纸质票、海外票或电子票截图（仅本次识别，不保存图片）")}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 5.6L19.5 10.5l-5.6 1.9L12 18l-1.9-5.6-5.6-1.9 5.6-1.9Z"/><path d="M19 3v3M20.5 4.5h-3M5 18v2.5M6.25 19.25h-2.5"/></svg><span>${ticketDict("AI 识票")}</span></button></div><input type="file" id="te-ocr-file" accept="image/*" hidden></div>
       <div id="te-ocr-status" class="te-ocr-status" role="status" hidden></div>
       <div class="te-card">${ticketShowRow(row)}${dateRow}${input("time","开场时间","","time")}${input("venue","影院","影院名称")}${input("hall","影厅","如 1号厅")}${input("seat","座位","选填，如 5排8座")}${input("format","放映版本","如 4K修复")}</div>
       <div class="te-acts"><button type="button" class="te-save" data-ticket-action="save">${ticketDict(ticketDraft.original?"保存修改":"加入收藏册")}</button></div>
@@ -828,7 +830,15 @@ function ticketInput(event){
 }
 function ticketChange(event){
   const t=event.target,{name,value}=t;
-  if(t.id==="te-ocr-file"){const f=t.files&&t.files[0];t.value="";if(f)ticketRunOcr(f);return;}
+  if(t.id==="te-ocr-file"){
+    const f=t.files&&t.files[0];t.value="";
+    if(f){
+      ticketOcrLastFile=f;
+      if(ticketOcrMode==="ai")ticketRunAiOcr(f);
+      else ticketRunOcr(f);
+    }
+    return;
+  }
   if(t.matches("[data-ticket-back]")){ticketSide=t.checked?"back":"front";ticketPaintList();return;}
   if(!ticketDraft)return;
   const row=ticketDraft.row;
@@ -839,8 +849,14 @@ function ticketChange(event){
     ticketDrawEditor();ticketArtSaveState();
   }
 }
-/* ===== 拍照识票 OCR（2026-11-24）：自托管 Tesseract.js + 中英文轻量模型，仅在点击时按需加载，图片不出手机 ===== */
-let ticketOcrWorkerP=null,ticketOcrBusy=false;
+/* ===== 拍照识票 OCR（2026-11-24，2026-11-25 新增 AI 识票增强）：本机离线 Tesseract.js 为默认，可选 Gemini AI 增强（经 Supabase Edge Function 中转，失败自动回退离线） ===== */
+let ticketOcrWorkerP=null,ticketOcrBusy=false,ticketOcrMode="local",ticketOcrLastFile=null;
+function ticketAiEndpoint(){
+  return typeof SB_API==="string"&&SB_API?SB_API.replace(/\/rest\/v1\/rpc\/?$/,"/functions/v1/ticket-ai"):"";
+}
+function ticketOcrButtons(disabled){
+  main.querySelectorAll('[data-ticket-action="ocr-scan"],[data-ticket-action="ocr-ai"]').forEach(b=>{b.disabled=!!disabled;});
+}
 function ticketOcrStatus(html,cls){
   const el=main.querySelector("#te-ocr-status");if(!el)return;
   el.hidden=!html;el.className="te-ocr-status"+(cls?" "+cls:"");el.innerHTML=html||"";
@@ -871,25 +887,61 @@ async function ticketGetOcrWorker(onProgress){
   }
   return ticketOcrWorkerP;
 }
-async function ticketRunOcr(file){
+function ticketLoadImageFile(file){
+  const imgUrl=URL.createObjectURL(file);
+  return new Promise((ok,bad)=>{
+    const i=new Image();
+    i.onload=()=>{URL.revokeObjectURL(imgUrl);ok(i);};
+    i.onerror=err=>{URL.revokeObjectURL(imgUrl);bad(err);};
+    i.src=imgUrl;
+  });
+}
+function ticketApplyOcr(parsed,raw,opts){
+  opts=opts||{};
+  if(!ticketDraft)return;
+  const row=ticketDraft.row;
+  const labels={date:tr("日期"),time:tr("时间"),venue:tr("影院"),hall:tr("影厅"),seat:tr("座位"),format:tr("版本")};
+  const filled=[];
+  ["date","time","venue","hall","seat","format"].forEach(k=>{
+    if(!parsed[k])return;
+    if(k==="date"&&row.linked)return;
+    row[k]=parsed[k];
+    filled.push(labels[k]);
+    const inp=main.querySelector(`.te-card [name="${k}"]`);
+    if(inp)inp.value=parsed[k];
+  });
+  if(parsed.matchedShow&&parsed.matchedShow.city)row.city=parsed.matchedShow.city;
+  const sep=LANG==="en"?", ":"、";
+  const retryBtn=(opts.offerAi&&ticketOcrLastFile&&ticketAiEndpoint())
+    ?` <button type="button" class="te-ocr-retry" data-ticket-action="ocr-retry-ai">${esc(tr("用 AI 重新识别"))}</button>`:"";
+  const rawNote=raw&&raw.trim()?`<details><summary>${esc(tr("查看识别原文"))}</summary><pre>${esc(raw.trim())}</pre></details>`:"";
+  const prefix=opts.prefix?esc(opts.prefix)+" ":"";
+  if(filled.length){
+    ticketDrawEditor();
+    ticketArtSaveState();
+    const tag=opts.viaAi?tr("AI 已自动填入："):tr("已自动填入：");
+    ticketOcrStatus(prefix+esc(tag+filled.join(sep)+tr("（可继续核对修改）"))+retryBtn+rawNote,"ok");
+    toast((opts.viaAi?tr("AI 已识别并填入"):tr("已识别并填入"))+" "+filled.join(sep));
+  }else{
+    ticketOcrStatus(prefix+esc(tr("未能从图片中提取到场次或座位信息，请直接在下方手动填写。"))+retryBtn+rawNote,"warn");
+  }
+}
+async function ticketRunOcr(file,opts){
+  opts=opts||{};
   if(!ticketDraft||ticketOcrBusy)return;
   try{await loadLib("ticketOcr");}catch(e){}const OCR=window.SparrowTicketOcr;if(!OCR)return;
   ticketOcrBusy=true;
-  const btn=main.querySelector('[data-ticket-action="ocr-scan"]');
-  if(btn)btn.disabled=true;
-  ticketOcrStatus(esc(tr("正在本地加载中英文识票模型（约 7MB，首次稍候，图片不出手机）…")));
+  ticketOcrButtons(true);
+  const pre=opts.fallbackMsg?esc(opts.fallbackMsg)+"<br>":"";
+  ticketOcrStatus(pre+esc(tr("正在本地加载中英文识票模型（约 7MB，首次稍候，图片不出手机）…")));
   try{
-    const imgUrl=URL.createObjectURL(file);
-    let cv;
-    try{
-      const im=await new Promise((ok,bad)=>{const i=new Image();i.onload=()=>ok(i);i.onerror=bad;i.src=imgUrl;});
-      cv=OCR.preprocessImage(im);
-    }finally{URL.revokeObjectURL(imgUrl);}
+    const im=await ticketLoadImageFile(file);
+    const cv=OCR.preprocessImage(im);
     let lastPct=-1;
     const worker=await ticketGetOcrWorker(pct=>{
-      if(pct!==lastPct){lastPct=pct;ticketOcrStatus(esc(tr("正在识别票面文字…"))+" "+pct+"%");}
+      if(pct!==lastPct){lastPct=pct;ticketOcrStatus(pre+esc(tr("正在识别票面文字…"))+" "+pct+"%");}
     });
-    ticketOcrStatus(esc(tr("正在识别票面文字…")));
+    ticketOcrStatus(pre+esc(tr("正在识别票面文字…")));
     const res=await worker.recognize(cv);
     const raw=(res&&res.data&&res.data.text)||"";
     const row=ticketDraft.row;
@@ -898,34 +950,71 @@ async function ticketRunOcr(file){
       shows:ticketShows(row),
       defaultYear:Number((row.date||"").slice(0,4))||new Date().getFullYear()
     });
-    const labels={date:tr("日期"),time:tr("时间"),venue:tr("影院"),hall:tr("影厅"),seat:tr("座位"),format:tr("版本")};
-    const filled=[];
-    ["date","time","venue","hall","seat","format"].forEach(k=>{
-      if(!parsed[k])return;
-      if(k==="date"&&row.linked)return;
-      row[k]=parsed[k];
-      filled.push(labels[k]);
-      const inp=main.querySelector(`.te-card [name="${k}"]`);
-      if(inp)inp.value=parsed[k];
-    });
-    if(parsed.matchedShow&&parsed.matchedShow.city)row.city=parsed.matchedShow.city;
-    if(filled.length){
-      ticketDrawEditor();
-      ticketArtSaveState();
-      const rawNote=raw.trim()?`<details><summary>${esc(tr("查看识别原文"))}</summary><pre>${esc(raw.trim())}</pre></details>`:"";
-      ticketOcrStatus(esc(tr("已自动填入：")+filled.join(LANG==="en"?", ":"、")+tr("（可继续核对修改）"))+rawNote,"ok");
-      toast(tr("已识别并填入")+" "+filled.join(LANG==="en"?", ":"、"));
-    }else{
-      const rawNote=raw.trim()?`<details><summary>${esc(tr("查看识别原文"))}</summary><pre>${esc(raw.trim())}</pre></details>`:"";
-      ticketOcrStatus(esc(tr("未能从图片中提取到场次或座位信息，请直接在下方手动填写。"))+rawNote,"warn");
-    }
+    ticketApplyOcr(parsed,raw,{offerAi:!opts.noAiRetry,prefix:opts.fallbackMsg||""});
   }catch(err){
     console.warn("ticket ocr failed",err);
     ticketOcrStatus(esc(tr("识票未能完成，请检查网络后重试，或直接在下方手动填写。")),"warn");
   }finally{
     ticketOcrBusy=false;
-    const b2=main.querySelector('[data-ticket-action="ocr-scan"]');
-    if(b2)b2.disabled=false;
+    ticketOcrButtons(false);
+  }
+}
+async function ticketRunAiOcr(file){
+  if(!ticketDraft||ticketOcrBusy)return;
+  try{await loadLib("ticketOcr");}catch(e){}const OCR=window.SparrowTicketOcr;if(!OCR)return;
+  const endpoint=ticketAiEndpoint();
+  if(!endpoint){ticketRunOcr(file,{fallbackMsg:tr("AI 识票暂不可用，已改用本机离线识票。"),noAiRetry:true});return;}
+  ticketOcrBusy=true;
+  ticketOcrButtons(true);
+  ticketOcrStatus(esc(tr("正在通过 AI 识别票面信息（仅本次识别，不保存图片）…")));
+  let fallbackMsg="";
+  try{
+    const im=await ticketLoadImageFile(file);
+    const dataUrl=OCR.prepareUploadImage(im,1280);
+    const row=ticketDraft.row;
+    const defaultYear=Number((row.date||"").slice(0,4))||new Date().getFullYear();
+    const ctrl=new AbortController();
+    const timer=setTimeout(()=>ctrl.abort(),20000);
+    let res,j=null;
+    try{
+      res=await fetch(endpoint,{
+        method:"POST",
+        signal:ctrl.signal,
+        headers:{
+          "Content-Type":"application/json",
+          ...(typeof SB_KEY==="string"&&SB_KEY?{apikey:SB_KEY,Authorization:"Bearer "+SB_KEY}:{})
+        },
+        body:JSON.stringify({
+          action:"ticket_ocr",
+          imageBase64:dataUrl,
+          contentType:"image/jpeg",
+          hint:{title:row.title||"",defaultYear}
+        })
+      });
+      j=await res.json().catch(()=>null);
+    }finally{clearTimeout(timer);}
+    if(res&&res.ok&&j&&j.ok&&j.fields){
+      const parsed=OCR.normalizeAiResult(j,{
+        venues:Object.values(VN),
+        shows:ticketShows(row),
+        defaultYear
+      });
+      ticketApplyOcr(parsed,parsed.raw||"",{viaAi:true});
+      return;
+    }
+    const reason=(j&&j.reason)||(res&&res.status===429?"rate_limited":"unavailable");
+    fallbackMsg=reason==="rate_limited"
+      ?tr("AI 识票请求过于频繁，已自动改用本机离线识票。")
+      :tr("AI 识票暂不可用，已自动改用本机离线识票。");
+  }catch(err){
+    console.warn("ticket ai ocr failed",err);
+    fallbackMsg=tr("AI 识票暂不可用，已自动改用本机离线识票。");
+  }finally{
+    ticketOcrBusy=false;
+    ticketOcrButtons(false);
+  }
+  if(fallbackMsg&&ticketDraft){
+    await ticketRunOcr(file,{fallbackMsg,noAiRetry:true});
   }
 }
 function ticketClick(e){
@@ -967,7 +1056,9 @@ function ticketClick(e){
     case "pick-cancel":ticketPick=null;ticketPaintList();break;
     case "flip":ticketFlipTo(ticketDraft.side==="front"?"back":"front");break;
     case "reset":ticketDraft.row.look=TE.sanitize({...ticketDraft.row,look:null}).look;ticketDrawEditor();break;
-    case "ocr-scan":{const f=main.querySelector("#te-ocr-file");if(f&&!ticketOcrBusy)f.click();break;}
+    case "ocr-scan":{const f=main.querySelector("#te-ocr-file");if(f&&!ticketOcrBusy){ticketOcrMode="local";f.click();}break;}
+    case "ocr-ai":{const f=main.querySelector("#te-ocr-file");if(f&&!ticketOcrBusy){ticketOcrMode="ai";f.click();}break;}
+    case "ocr-retry-ai":{if(ticketOcrLastFile&&!ticketOcrBusy)ticketRunAiOcr(ticketOcrLastFile);break;}
     case "save":ticketSave();break;
     case "save-here":ticketSave(true);break;
     case "remove":

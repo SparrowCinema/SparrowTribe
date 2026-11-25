@@ -28,6 +28,8 @@
   function validYmd(y, m, d) {
     y = +y; m = +m; d = +d;
     if (y < 1990 || y > 2099 || m < 1 || m > 12 || d < 1 || d > 31) return '';
+    const dt = new Date(Date.UTC(y, m - 1, d));
+    if (dt.getUTCFullYear() !== y || dt.getUTCMonth() + 1 !== m || dt.getUTCDate() !== d) return '';
     return y + '-' + pad2(m) + '-' + pad2(d);
   }
 
@@ -297,5 +299,95 @@
     return cv;
   }
 
-  return { parseTicketText, preprocessImage };
+  function cleanAiText(v, maxLen) {
+    return String(v || '').replace(/\s+/g, ' ').trim().slice(0, maxLen);
+  }
+
+  function matchKnownVenue(text, venues) {
+    if (!text || !Array.isArray(venues) || !venues.length) return '';
+    const nkText = normKey(text);
+    if (nkText.length < 2) return '';
+    const cands = [];
+    venues.forEach(v => {
+      if (!v) return;
+      [v.name, v.short].filter(Boolean).forEach(nm => {
+        const nk = normKey(nm);
+        if (nk.length >= 2 && (nkText.includes(nk) || nk.includes(nkText))) {
+          cands.push({ name: v.name || nm, score: nkText.includes(nk) ? nk.length + 100 : nkText.length });
+        }
+      });
+    });
+    if (!cands.length) return '';
+    cands.sort((a, b) => b.score - a.score);
+    return cands[0].name;
+  }
+
+  // 归一化 Gemini AI 识票返回的结构化字段，结合片库影院与本片场次补全（网站与小程序共用）
+  function normalizeAiResult(aiData, ctx) {
+    ctx = ctx || {};
+    const src = (aiData && typeof aiData === 'object') ? (aiData.fields && typeof aiData.fields === 'object' ? aiData.fields : aiData) : {};
+    const raw = String((aiData && aiData.raw) || src.raw || ctx.raw || '').replace(/\r\n/g, '\n').trim();
+    const fallback = raw ? parseTicketText(raw, ctx) : null;
+
+    let date = '';
+    const rawDate = cleanAiText(src.date, 24);
+    if (rawDate) {
+      const m = rawDate.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);
+      date = m ? validYmd(m[1], m[2], m[3]) : extractDate([norm(rawDate)], ctx.defaultYear);
+    }
+    if (!date && fallback && fallback.date) date = fallback.date;
+
+    let time = '';
+    const rawTime = cleanAiText(src.time, 20);
+    if (rawTime) {
+      const m = rawTime.match(/^([01]?\d|2[0-3]):([0-5]\d)$/);
+      time = m ? (pad2(m[1]) + ':' + pad2(m[2])) : extractTime([norm(rawTime)]);
+    }
+    if (!time && fallback && fallback.time) time = fallback.time;
+
+    const rawVenue = cleanAiText(src.venue, 48);
+    let venue = matchKnownVenue(rawVenue, ctx.venues) || rawVenue;
+    if (!venue && fallback && fallback.venue) venue = fallback.venue;
+
+    let hall = cleanAiText(src.hall, 32);
+    if (!hall && fallback && fallback.hall) hall = fallback.hall;
+
+    const rawSeat = cleanAiText(src.seat, 32);
+    let seat = rawSeat ? (extractSeat([norm(rawSeat)]) || rawSeat) : '';
+    if (!seat && fallback && fallback.seat) seat = fallback.seat;
+
+    const rawFormat = cleanAiText(src.format, 28);
+    let format = rawFormat ? (extractFormat(norm(rawFormat)) || rawFormat) : '';
+    if (!format && fallback && fallback.format) format = fallback.format;
+
+    const result = { date, time, venue, hall, seat, format, raw };
+    const matched = matchShow(result, ctx.shows);
+    if (matched) {
+      result.matchedShow = matched;
+      if (!result.date && matched.date) result.date = matched.date;
+      if (!result.time && matched.time) result.time = matched.time;
+      if (matched.venue) result.venue = matched.venue;
+      if (matched.hall && !result.hall) result.hall = matched.hall;
+      if (matched.format && !result.format) result.format = matched.format;
+    }
+    result.fields = ['date', 'time', 'venue', 'hall', 'seat', 'format'].filter(k => !!result[k]);
+    return result;
+  }
+
+  // 浏览器端 AI 识票图像缩放：保留色彩与细节，最长边缩至 1280px 并导出轻量 JPEG DataURL
+  function prepareUploadImage(img, maxDim) {
+    const limit = Number(maxDim) > 0 ? Number(maxDim) : 1280;
+    const iw = img.naturalWidth || img.width || 1, ih = img.naturalHeight || img.height || 1;
+    const scale = Math.max(iw, ih) > limit ? limit / Math.max(iw, ih) : 1;
+    const w = Math.max(1, Math.round(iw * scale)), h = Math.max(1, Math.round(ih * scale));
+    const cv = document.createElement('canvas');
+    cv.width = w; cv.height = h;
+    const ctx = cv.getContext('2d');
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, w, h);
+    ctx.drawImage(img, 0, 0, w, h);
+    return cv.toDataURL('image/jpeg', 0.82);
+  }
+
+  return { parseTicketText, normalizeAiResult, preprocessImage, prepareUploadImage };
 });
