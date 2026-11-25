@@ -289,6 +289,7 @@ insert into sparrow_taste.films(id) values
 ('let-us-through-dear-ancestors'),
 ('linka-linka'),
 ('long-live-the-missus'),
+('love-test'),
 ('lover-not-a-fighter-2026'),
 ('master-rezwan-shahriar-sumit-2026'),
 ('memento'),

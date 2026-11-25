@@ -1629,6 +1629,11 @@
           "id": "imax",
           "short": "激光IMAX厅",
           "name": "激光IMAX厅"
+        },
+        {
+          "id": "hall-1",
+          "short": "1号厅",
+          "name": "1号厅（1楼）"
         }
       ],
       "city": "杭州",
