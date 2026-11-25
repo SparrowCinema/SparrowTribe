@@ -123,28 +123,38 @@ function buildTicketPrompt(hint?: { title?: string; defaultYear?: number }): str
 function buildPortraitPrompt(summaryJson: string, lang: 'zh' | 'en'): string {
   if (lang === 'en') {
     return [
-      'You are an insightful film festival curator and critic writing a personal cinema-taste portrait for a filmgoer.',
-      'Write strictly based on the JSON data provided below (watched films, star ratings out of 10, Interesting/Boring quadrant scores out of 5, and taste persona summary).',
-      'Rules:',
-      '1. NEVER invent or cite films, directors, or ratings that are not present in the provided JSON.',
-      '2. headline: a vivid, literary 3–7 word portrait title (no quotes).',
-      '3. tags: 3–4 short taste keywords (2–3 words each).',
-      '4. commentary: 150–210 words in crisp, warm, specific prose (2 short paragraphs separated by a newline). Name 2–4 standout films from the list, notice any fascinating contrast between star ratings and Interesting/Boring scores (e.g. films rated high in artistry yet tiring, or guilty delights), and highlight genre/region/era habits. Avoid generic flattery or robotic bullet lists.',
-      '5. nextHint: one concrete, inviting 1-sentence suggestion (15–30 words) on what kind of film or festival strand to try next.',
+      'You are a seasoned film-magazine columnist and festival programmer (in the vein of Sight & Sound / Film Comment).',
+      'Write a sharp, wry, perceptive personal cinema-taste portrait strictly from the JSON data below (full-scope signals, Taste Quadrants summary, and representative watched films).',
+      'Core mission:',
+      '- Do NOT recite the list or hand out generic flattery. Read the data like a critic reading an auteur: hunt for tensions, fixations, and telling contrasts.',
+      '- Look first at `signals.paradoxes` (films both captivating and tiring, high-star films found boring, guilty pleasures rated low despite high fun, rating highs vs lows), `signals.funBoreCorr` / `signals.starFunCorr` (does enjoyment drive their star ratings, or do they admire films they suffer through?), `signals.rewatched`, `signals.topDirectors` / `topDecades` / `topCountries`, `signals.star` (strict vs generous grader), and `tasteSummary.shift` if present.',
+      '- Include one affectionate, razor-sharp observation about a subtle blind spot or contradiction in their viewing habits—witty and insightful, never mean-spirited.',
+      'Style & strict rules:',
+      '1. NEVER invent or cite any film, director, year, country, or number not present in the JSON. In `nextHint`, recommend a concrete viewing direction (genre/era/region/experiment) without fabricating film titles outside the JSON.',
+      '2. Strictly avoid AI clichés and filler phrases: "a testament to", "delicate balance", "rich tapestry", "intertwines", "nuanced", "overall", "it is clear that", "not only ... but also", "fellow cinephile". Never open with "Based on your list...". Start straight with a vivid concrete observation.',
+      '3. headline: a punchy, memorable 4–8 word magazine-column title (no quotes, no trailing period).',
+      '4. tags: 3–4 distinctive cinephile tags (2–3 words each, specific rather than generic).',
+      '5. commentary: 160–220 words in crisp, rhythmic prose (2 paragraphs separated by a newline). Paragraph 1 nails their sharpest taste signature by naming 2–4 specific films from the JSON and linking obsessions/contrasts; Paragraph 2 unpacks the psychology behind their star ratings vs Interesting/Boring scores, playfully calls out a quirk or blind spot, and ends on a memorable closing line.',
+      '6. nextHint: 1 concrete, columnist-style viewing challenge or strand to try next (16–32 words).',
       '',
       'Viewer data (JSON):',
       summaryJson,
     ].join('\n');
   }
   return [
-    '你是一位品味敏锐、文风克制而有温度的影展策展人兼影评人，正在为「麻雀观影护照」的影迷撰写一份个人观影画像评语。',
-    '请严格基于下方提供的 JSON 数据（看过片单、十分制星级评分、0–5 分有趣度/无聊度四象限分布及趣味人格摘要）来写。',
-    '写作要求：',
-    '1. 绝对不要编造清单里不存在的影片、导演、年代或评分；引用片名时加中文书名号《》。',
-    '2. headline：8–18 字有画面感的观影画像标题，不带引号或句号。',
-    '3. tags：3–4 个简短口味标签（每个 3–6 字，如「慢镜头拥护者」「爱憎分明派」）。',
-    '4. commentary：200–300 字连贯中文评语（可分 2 段，用换行分隔）。请点名 2–4 部清单里有代表性的影片，捕捉观众在「打星」与「有趣/无聊四象限」之间的微妙张力（例如又迷人又折磨、耐闷力强、偏爱重刷等），并自然带出其导演/地区/年代或类型偏好。语气温和犀利、像懂电影的老友聊天，避免空洞夸赞和模板套话。',
-    '5. nextHint：1 句具体可落地的下一步选片建议（20–45 字）。',
+    '你是一位资深影评专栏作者兼影展选片人，文字老练、犀利、有克制的幽默感（接近优质影评专栏而非客服夸奖），正在为「麻雀观影护照」的影迷写一篇个人观影画像。',
+    '请严格基于下方提供的 JSON 数据（全量观影统计 `signals`、四象限与人格摘要 `tasteSummary`、代表影片 `topFilms`）来写。',
+    '洞察要求：',
+    '- 不要做流水账复述或端水式夸赞，要像拆解一部作者电影一样，抓出这份片单里最有意思的**反差、隐秘执念与观影心理**：',
+    '- 优先挖掘 `signals.paradoxes`（比如「又迷人又折磨」`captivatingTiring`、「嫌闷却诚实打高星」`respectedTiring`、「看得很上头但打星克制」`guiltyPleasure`、高低分落差）、`signals.funBoreCorr` / `signals.starFunCorr`（打星跟着爽感走，还是把“好电影”和“好玩”拆得一清二楚）、`signals.rewatched`（反复重刷）、`signals.topDirectors` / `topDecades` / `topCountries`、`signals.star`（打分偏严还是偏宽）以及 `tasteSummary.shift`（专题或年度口味偏移，如有）。',
+    '- 顺带轻巧点出一个善意而精准的小盲区或反差吐槽（老友间的幽默调侃，犀利但不刻薄、耐读有余味）。',
+    '文风与硬性约束：',
+    '1. 绝对禁止编造 JSON 中不存在的片名、导演、年代、地区或数字；引用片名一律用中文书名号《》。`nextHint` 给具体的选片方向或观影实验，不要虚构清单外片名。',
+    '2. 严禁 AI 腔与空洞套话：禁用「细腻」「独特」「交织」「勾勒」「碰撞」「平衡」「多元」「不难看出」「整体来看」「总的来说」「展现出」「影迷朋友」「既……又……」「不仅……而且……」「在……与……之间」。不要以「从你的片单来看」开头，落笔直接切入具体片名或犀利观察。',
+    '3. headline：8–18 字，像影评专栏标题一样有画面感或反差张力，不带引号和句号。',
+    '4. tags：3–4 个有辨识度的影迷标签（每个 3–6 字，具体鲜活，不要泛泛而谈）。',
+    '5. commentary：220–320 字，长短句错落，分 2 段以换行分隔。第 1 段直击最鲜明的口味切面与片名对比（点名 2–4 部清单里的影片，串起导演/年代/重刷或反差体验）；第 2 段拆解打星尺度与四象限背后的观影心理，带一句幽默精准的盲区吐槽，并以一句干净利落的金句收尾。',
+    '6. nextHint：1 句具体、像老选片人随手递来的挑片建议或观影实验（22–48 字）。',
     '',
     '观众数据（JSON）：',
     summaryJson,
@@ -167,6 +177,7 @@ async function callGemini(
   parts: Record<string, unknown>[],
   responseSchema: Record<string, unknown>,
   maxOutputTokens: number,
+  thinkingLevel?: 'minimal' | 'low' | 'medium' | 'high',
 ): Promise<{ ok: true; data: Record<string, unknown> } | { ok: false; status: number; reason: string; upstreamStatus?: number }> {
   const generationConfig: Record<string, unknown> = {
     maxOutputTokens,
@@ -175,6 +186,8 @@ async function callGemini(
   };
   if (/^gemini-2\.5-flash/i.test(model)) {
     generationConfig.thinkingConfig = { thinkingBudget: 0 };
+  } else if (thinkingLevel && /^gemini-(?:3|4)/i.test(model)) {
+    generationConfig.thinkingConfig = { thinkingLevel };
   }
 
   const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent`;
@@ -205,7 +218,10 @@ async function callGemini(
     const data = await upstream.json();
     const outParts = data?.candidates?.[0]?.content?.parts;
     const text = Array.isArray(outParts)
-      ? outParts.map((p: { text?: string }) => (typeof p?.text === 'string' ? p.text : '')).join('')
+      ? outParts
+          .filter((p: { thought?: boolean; text?: string }) => !p?.thought && typeof p?.text === 'string')
+          .map((p: { text?: string }) => p.text || '')
+          .join('')
       : '';
     const parsed = parseJsonBody(text);
     if (!parsed) {
@@ -284,6 +300,109 @@ async function handleTicketOcr(payload: Record<string, unknown>, apiKey: string,
   return jsonResp({ ok: true, fields, raw, model }, 200, origin);
 }
 
+function num2OrNull(v: unknown, min: number, max: number): number | null {
+  const n = Number(v);
+  if (!Number.isFinite(n) || n < min || n > max) return null;
+  return Math.round(n * 100) / 100;
+}
+
+function sanitizeBriefFilms(raw: unknown, maxItems: number): Record<string, unknown>[] {
+  if (!Array.isArray(raw)) return [];
+  return raw.slice(0, maxItems).map((item) => {
+    const x = item && typeof item === 'object' ? (item as Record<string, unknown>) : {};
+    const t = clampStr(x.t, 60);
+    if (!t) return null;
+    const out: Record<string, unknown> = { t };
+    const r = numOrNull(x.r, 0.5, 10); if (r !== null) out.r = r;
+    const fun = numOrNull(x.fun, 0, 5); if (fun !== null) out.fun = fun;
+    const bore = numOrNull(x.bore, 0, 5); if (bore !== null) out.bore = bore;
+    const v = numOrNull(x.v, 2, 99); if (v !== null) out.v = Math.round(v);
+    return out;
+  }).filter((x): x is Record<string, unknown> => Boolean(x));
+}
+
+function sanitizeSignals(raw: unknown): Record<string, unknown> | null {
+  if (!raw || typeof raw !== 'object' || Array.isArray(raw)) return null;
+  const s = raw as Record<string, unknown>;
+  const out: Record<string, unknown> = {};
+
+  if (s.star && typeof s.star === 'object') {
+    const st = s.star as Record<string, unknown>;
+    const n = Math.max(0, Math.min(10000, Math.round(Number(st.n) || 0)));
+    const avg = numOrNull(st.avg, 0.5, 10);
+    if (n >= 2 && avg !== null) {
+      out.star = {
+        n,
+        avg,
+        high: Math.max(0, Math.min(n, Math.round(Number(st.high) || 0))),
+        low: Math.max(0, Math.min(n, Math.round(Number(st.low) || 0))),
+        min: numOrNull(st.min, 0.5, 10),
+        max: numOrNull(st.max, 0.5, 10),
+      };
+    }
+  }
+
+  const fb = num2OrNull(s.funBoreCorr, -1, 1); if (fb !== null) out.funBoreCorr = fb;
+  const sf = num2OrNull(s.starFunCorr, -1, 1); if (sf !== null) out.starFunCorr = sf;
+
+  const sanitizeNamedCounts = (arr: unknown, maxItems: number, withAvgR = false) => {
+    if (!Array.isArray(arr)) return [];
+    return arr.slice(0, maxItems).map((item) => {
+      const x = item && typeof item === 'object' ? (item as Record<string, unknown>) : {};
+      const name = clampStr(x.name, 36);
+      const n = Math.max(0, Math.min(10000, Math.round(Number(x.n) || 0)));
+      if (!name || n < 2) return null;
+      const entry: Record<string, unknown> = { name, n };
+      if (withAvgR) {
+        const avgR = numOrNull(x.avgR, 0.5, 10);
+        if (avgR !== null) entry.avgR = avgR;
+      }
+      return entry;
+    }).filter((x): x is Record<string, unknown> => Boolean(x));
+  };
+
+  const dirs = sanitizeNamedCounts(s.topDirectors, 4, true); if (dirs.length) out.topDirectors = dirs;
+  const countries = sanitizeNamedCounts(s.topCountries, 4); if (countries.length) out.topCountries = countries;
+  const genres = sanitizeNamedCounts(s.topGenres, 4); if (genres.length) out.topGenres = genres;
+
+  if (Array.isArray(s.topDecades)) {
+    const decs = s.topDecades.slice(0, 3).map((item) => {
+      const x = item && typeof item === 'object' ? (item as Record<string, unknown>) : {};
+      const d = clampStr(x.d, 10);
+      const n = Math.max(0, Math.min(10000, Math.round(Number(x.n) || 0)));
+      return d && n >= 2 ? { d, n } : null;
+    }).filter((x): x is { d: string; n: number } => Boolean(x));
+    if (decs.length) out.topDecades = decs;
+  }
+
+  const yearSpan = clampStr(s.yearSpan, 20);
+  if (yearSpan) out.yearSpan = yearSpan;
+
+  const rewatched = sanitizeBriefFilms(s.rewatched, 4);
+  if (rewatched.length) out.rewatched = rewatched;
+
+  if (s.paradoxes && typeof s.paradoxes === 'object') {
+    const p = s.paradoxes as Record<string, unknown>;
+    const px: Record<string, unknown> = {};
+    const keys: [string, number][] = [
+      ['captivatingTiring', 3],
+      ['respectedTiring', 2],
+      ['guiltyPleasure', 2],
+      ['mostFun', 2],
+      ['mostBore', 2],
+      ['highestRated', 2],
+      ['lowestRated', 2],
+    ];
+    for (const [k, lim] of keys) {
+      const list = sanitizeBriefFilms(p[k], lim);
+      if (list.length) px[k] = list;
+    }
+    if (Object.keys(px).length) out.paradoxes = px;
+  }
+
+  return Object.keys(out).length ? out : null;
+}
+
 async function handleTastePortrait(payload: Record<string, unknown>, apiKey: string, model: string, origin: string | null): Promise<Response> {
   const lang: 'zh' | 'en' = payload.lang === 'en' ? 'en' : 'zh';
   const rawFilms = Array.isArray(payload.topFilms) ? payload.topFilms : [];
@@ -318,7 +437,7 @@ async function handleTastePortrait(payload: Record<string, unknown>, apiKey: str
   if (payload.tasteSummary && typeof payload.tasteSummary === 'object') {
     const ts = payload.tasteSummary as Record<string, unknown>;
     const qs = ts.quadrants && typeof ts.quadrants === 'object' ? (ts.quadrants as Record<string, unknown>) : null;
-    summary.tasteSummary = {
+    const tsOut: Record<string, unknown> = {
       ratedCount: Math.max(0, Math.min(10000, Math.round(Number(ts.ratedCount) || 0))),
       code: clampStr(ts.code, 8),
       persona: clampStr(ts.persona, 40),
@@ -333,10 +452,21 @@ async function handleTastePortrait(payload: Record<string, unknown>, apiKey: str
         unsure: Math.max(0, Math.round(Number(qs.unsure) || 0)),
       } : undefined,
     };
+    if (ts.mode && typeof ts.mode === 'object') {
+      const m = ts.mode as Record<string, unknown>;
+      const mf = numOrNull(m.fun, 0, 5), mb = numOrNull(m.bore, 0, 5), mn = Math.max(0, Math.round(Number(m.n) || 0));
+      if (mf !== null && mb !== null && mn >= 3) tsOut.mode = { fun: mf, bore: mb, n: mn };
+    }
+    const shift = clampStr(ts.shift, 80);
+    if (shift) tsOut.shift = shift;
+    summary.tasteSummary = tsOut;
   }
 
+  const signals = sanitizeSignals(payload.signals);
+  if (signals) summary.signals = signals;
+
   const summaryJson = JSON.stringify(summary);
-  if (summaryJson.length > 14_000) {
+  if (summaryJson.length > 18_000) {
     return jsonResp({ ok: false, reason: 'too_large' }, 413, origin);
   }
 
@@ -356,7 +486,8 @@ async function handleTastePortrait(payload: Record<string, unknown>, apiKey: str
     model,
     [{ text: buildPortraitPrompt(summaryJson, lang) }],
     schema,
-    900,
+    1800,
+    'low',
   );
   if (!res.ok) {
     const body: Record<string, unknown> = { ok: false, reason: res.reason };

@@ -21,6 +21,27 @@
   const validTaste = v => typeof v === 'number' && !Number.isNaN(v) && v >= 0 && v <= 5;
   const clamp = (s, n) => String(s || '').replace(/\s+/g, ' ').trim().slice(0, n);
   const round1 = v => Math.round(Number(v) * 10) / 10;
+  const round2 = v => Math.round(Number(v) * 100) / 100;
+  const splitList = v => (Array.isArray(v) ? v : String(v || '').split(/\s*[\/、,，;；|]\s*/)).map(x => clamp(x, 36)).filter(Boolean);
+  const filmTitle = (e, en) => {
+    const f = (e && e.f) || {};
+    return clamp(en ? (f.en || f.cn || f.title) : (f.cn || f.title || f.en), 60);
+  };
+  const filmViews = e => (e && e.rec && Array.isArray(e.rec.v) ? Math.max(1, e.rec.v.length) : 1);
+
+  function pearson(pairs) {
+    if (!pairs || pairs.length < 4) return null;
+    let sx = 0, sy = 0;
+    for (let i = 0; i < pairs.length; i++) { sx += pairs[i][0]; sy += pairs[i][1]; }
+    const mx = sx / pairs.length, my = sy / pairs.length;
+    let num = 0, dx2 = 0, dy2 = 0;
+    for (let i = 0; i < pairs.length; i++) {
+      const dx = pairs[i][0] - mx, dy = pairs[i][1] - my;
+      num += dx * dy; dx2 += dx * dx; dy2 += dy * dy;
+    }
+    if (dx2 <= 1e-9 || dy2 <= 1e-9) return null;
+    return round2(num / Math.sqrt(dx2 * dy2));
+  }
 
   function fnv1a(str, seed) {
     let h = seed >>> 0;
@@ -62,14 +83,16 @@
       sc += Math.abs(rec.fun - 3) * 4 + Math.abs(rec.bore - 3) * 4;
       if (rec.fun >= 3.5 && rec.bore >= 3.5) sc += 12; // 迷人又折磨
     }
-    const views = Array.isArray(rec.v) ? Math.max(1, rec.v.length) : 1;
+    if (rec.r >= 8 && hasBore && rec.bore >= 3.5) sc += 14; // 高星但难熬
+    if (hasFun && rec.fun >= 4 && rec.r > 0 && rec.r <= 7) sc += 10; // 看爽但打分克制
+    const views = filmViews(e);
     if (views > 1) sc += Math.min(20, (views - 1) * 8);
     return sc;
   }
 
   function compactFilm(e, en) {
     const f = e.f || {}, rec = e.rec || {};
-    const title = clamp(en ? (f.en || f.cn || f.title) : (f.cn || f.title || f.en), 60);
+    const title = filmTitle(e, en);
     const out = { t: title };
     if (f.y) out.y = clamp(String(f.y), 8);
     if (f.c) out.c = clamp(f.c, 28);
@@ -78,8 +101,152 @@
     if (typeof rec.r === 'number' && rec.r > 0) out.r = round1(rec.r);
     if (validTaste(rec.fun)) out.fun = round1(rec.fun);
     if (validTaste(rec.bore)) out.bore = round1(rec.bore);
-    const views = Array.isArray(rec.v) ? Math.max(1, rec.v.length) : 1;
+    const views = filmViews(e);
     if (views > 1) out.v = views;
+    return out;
+  }
+
+  function buildSignals(scoped, en) {
+    const list = (scoped || []).slice().sort((a, b) => String(a.id || '').localeCompare(String(b.id || '')));
+    const out = {};
+
+    // 1. 十分制星级分布
+    const starRows = list.filter(e => typeof e.rec.r === 'number' && e.rec.r > 0);
+    if (starRows.length >= 2) {
+      let sum = 0, high = 0, low = 0, min = 10, max = 0;
+      starRows.forEach(e => {
+        const r = e.rec.r;
+        sum += r;
+        if (r >= 9) high++;
+        if (r <= 5) low++;
+        if (r < min) min = r;
+        if (r > max) max = r;
+      });
+      out.star = { n: starRows.length, avg: round1(sum / starRows.length), high, low, min: round1(min), max: round1(max) };
+    }
+
+    // 2. 有趣/无聊相关性 & 星级/有趣相关性
+    const fbPairs = list.filter(e => validTaste(e.rec.fun) && validTaste(e.rec.bore)).map(e => [e.rec.fun, e.rec.bore]);
+    const rFB = pearson(fbPairs);
+    if (rFB !== null) out.funBoreCorr = rFB;
+    const sfPairs = list.filter(e => typeof e.rec.r === 'number' && e.rec.r > 0 && validTaste(e.rec.fun)).map(e => [e.rec.r, e.rec.fun]);
+    const rSF = pearson(sfPairs);
+    if (rSF !== null) out.starFunCorr = rSF;
+
+    // 3. 全量导演 / 国家地区 / 类型 / 年代版图
+    const dirMap = new Map(), cMap = new Map(), gMap = new Map(), decMap = new Map();
+    let minY = 9999, maxY = 0;
+    list.forEach(e => {
+      const f = e.f || {}, rec = e.rec || {};
+      const r = typeof rec.r === 'number' && rec.r > 0 ? rec.r : 0;
+      splitList(f.dir).slice(0, 2).forEach(d => {
+        const cur = dirMap.get(d) || { n: 0, rSum: 0, rN: 0 };
+        cur.n++;
+        if (r) { cur.rSum += r; cur.rN++; }
+        dirMap.set(d, cur);
+      });
+      splitList(f.c).slice(0, 2).forEach(c => { cMap.set(c, (cMap.get(c) || 0) + 1); });
+      splitList(f.genre).slice(0, 3).forEach(g => { gMap.set(g, (gMap.get(g) || 0) + 1); });
+      const y = parseInt(String(f.y || ''), 10);
+      if (y >= 1888 && y <= 2099) {
+        if (y < minY) minY = y;
+        if (y > maxY) maxY = y;
+        const dec = Math.floor(y / 10) * 10 + 's';
+        decMap.set(dec, (decMap.get(dec) || 0) + 1);
+      }
+    });
+
+    const topDirectors = [...dirMap.entries()]
+      .filter(([, v]) => v.n >= 2)
+      .sort((a, b) => b[1].n - a[1].n || ((b[1].rN ? b[1].rSum / b[1].rN : 0) - (a[1].rN ? a[1].rSum / a[1].rN : 0)) || a[0].localeCompare(b[0]))
+      .slice(0, 4)
+      .map(([name, v]) => {
+        const item = { name, n: v.n };
+        if (v.rN) item.avgR = round1(v.rSum / v.rN);
+        return item;
+      });
+    if (topDirectors.length) out.topDirectors = topDirectors;
+
+    const topCountries = [...cMap.entries()]
+      .filter(([, n]) => n >= 2)
+      .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+      .slice(0, 4)
+      .map(([name, n]) => ({ name, n }));
+    if (topCountries.length) out.topCountries = topCountries;
+
+    const topGenres = [...gMap.entries()]
+      .filter(([, n]) => n >= 2)
+      .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+      .slice(0, 4)
+      .map(([name, n]) => ({ name, n }));
+    if (topGenres.length) out.topGenres = topGenres;
+
+    const topDecades = [...decMap.entries()]
+      .filter(([, n]) => n >= 2)
+      .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+      .slice(0, 3)
+      .map(([d, n]) => ({ d, n }));
+    if (topDecades.length) out.topDecades = topDecades;
+    if (minY < 9999 && maxY > minY) out.yearSpan = minY + '–' + maxY;
+
+    // 4. 重刷执念
+    const rewatched = list
+      .filter(e => filmViews(e) >= 2 && filmTitle(e, en))
+      .sort((a, b) => filmViews(b) - filmViews(a) || (b.rec.r || 0) - (a.rec.r || 0) || String(a.id || '').localeCompare(String(b.id || '')))
+      .slice(0, 4)
+      .map(e => {
+        const item = { t: filmTitle(e, en), v: filmViews(e) };
+        if (typeof e.rec.r === 'number' && e.rec.r > 0) item.r = round1(e.rec.r);
+        return item;
+      });
+    if (rewatched.length) out.rewatched = rewatched;
+
+    // 5. 反差与极端片（影评最有戏的切入点）
+    const pickBrief = e => {
+      const item = { t: filmTitle(e, en) };
+      if (typeof e.rec.r === 'number' && e.rec.r > 0) item.r = round1(e.rec.r);
+      if (validTaste(e.rec.fun)) item.fun = round1(e.rec.fun);
+      if (validTaste(e.rec.bore)) item.bore = round1(e.rec.bore);
+      return item;
+    };
+    const paradoxes = {};
+    const capTire = list
+      .filter(e => validTaste(e.rec.fun) && validTaste(e.rec.bore) && e.rec.fun >= 3.5 && e.rec.bore >= 3.5 && filmTitle(e, en))
+      .sort((a, b) => (b.rec.fun + b.rec.bore) - (a.rec.fun + a.rec.bore) || String(a.id || '').localeCompare(String(b.id || '')))
+      .slice(0, 3).map(pickBrief);
+    if (capTire.length) paradoxes.captivatingTiring = capTire;
+
+    const respTire = list
+      .filter(e => typeof e.rec.r === 'number' && e.rec.r >= 8 && validTaste(e.rec.bore) && e.rec.bore >= 3.5 && filmTitle(e, en))
+      .sort((a, b) => (b.rec.r / 2 + b.rec.bore) - (a.rec.r / 2 + a.rec.bore) || String(a.id || '').localeCompare(String(b.id || '')))
+      .slice(0, 2).map(pickBrief);
+    if (respTire.length) paradoxes.respectedTiring = respTire;
+
+    const guilty = list
+      .filter(e => validTaste(e.rec.fun) && e.rec.fun >= 4 && typeof e.rec.r === 'number' && e.rec.r > 0 && e.rec.r <= 7 && filmTitle(e, en))
+      .sort((a, b) => (b.rec.fun - b.rec.r / 2) - (a.rec.fun - a.rec.r / 2) || String(a.id || '').localeCompare(String(b.id || '')))
+      .slice(0, 2).map(pickBrief);
+    if (guilty.length) paradoxes.guiltyPleasure = guilty;
+
+    const mostFun = list
+      .filter(e => validTaste(e.rec.fun) && e.rec.fun >= 3.5 && filmTitle(e, en))
+      .sort((a, b) => (b.rec.fun - (validTaste(b.rec.bore) ? b.rec.bore * 0.05 : 0)) - (a.rec.fun - (validTaste(a.rec.bore) ? a.rec.bore * 0.05 : 0)) || String(a.id || '').localeCompare(String(b.id || '')))
+      .slice(0, 2).map(pickBrief);
+    if (mostFun.length) paradoxes.mostFun = mostFun;
+
+    const mostBore = list
+      .filter(e => validTaste(e.rec.bore) && e.rec.bore >= 3.5 && filmTitle(e, en))
+      .sort((a, b) => (b.rec.bore - (validTaste(b.rec.fun) ? b.rec.fun * 0.05 : 0)) - (a.rec.bore - (validTaste(a.rec.fun) ? a.rec.fun * 0.05 : 0)) || String(a.id || '').localeCompare(String(b.id || '')))
+      .slice(0, 2).map(pickBrief);
+    if (mostBore.length) paradoxes.mostBore = mostBore;
+
+    if (out.star && out.star.n >= 4 && out.star.max - out.star.min >= 2) {
+      const byStar = starRows.filter(e => filmTitle(e, en));
+      paradoxes.highestRated = byStar.slice().sort((a, b) => b.rec.r - a.rec.r || String(a.id || '').localeCompare(String(b.id || ''))).slice(0, 2).map(pickBrief);
+      paradoxes.lowestRated = byStar.slice().sort((a, b) => a.rec.r - b.rec.r || String(a.id || '').localeCompare(String(b.id || ''))).slice(0, 2).map(pickBrief);
+    }
+
+    if (Object.keys(paradoxes).length) out.paradoxes = paradoxes;
     return out;
   }
 
@@ -118,6 +285,14 @@
               unsure: a.unsure || 0
             }
           };
+          if (a.mode && a.mode.n >= 3) {
+            tasteSummary.mode = { fun: round1(a.mode.fun), bore: round1(a.mode.bore), n: a.mode.n };
+          }
+          if (a.base && a.base.code && a.base.code !== a.code) {
+            tasteSummary.shift = clamp((en ? 'Overall ' : '平时 ') + a.base.code + ' ' + a.base.name + ' -> ' + a.code + ' ' + ((a.type && a.type.name) || ''), 80);
+          } else if (a.prev && a.prev.code && a.prev.code !== a.code) {
+            tasteSummary.shift = clamp(a.prev.year + ' ' + a.prev.code + ' ' + a.prev.name + ' -> ' + a.code + ' ' + ((a.type && a.type.name) || ''), 80);
+          }
         }
       } catch (e) {}
     }
@@ -132,6 +307,7 @@
     }).slice(0, MAX_FILMS).sort((a, b) => String(a.id || '').localeCompare(String(b.id || '')));
 
     const topFilms = picked.map(e => compactFilm(e, en)).filter(x => !!x.t);
+    const signals = buildSignals(scoped, en);
     const payload = {
       action: 'taste_portrait',
       lang: en ? 'en' : 'zh',
@@ -140,12 +316,13 @@
       topFilms
     };
     if (tasteSummary) payload.tasteSummary = tasteSummary;
+    if (Object.keys(signals).length) payload.signals = signals;
     return { ok: topFilms.length >= MIN_FILMS, watchedCount: scoped.length, ratedCount: tasteSummary ? tasteSummary.ratedCount : 0, payload };
   }
 
   function fingerprint(payload) {
     const s = JSON.stringify(payload || {});
-    return 'tp1-' + fnv1a(s, 2166136261).toString(36) + '-' + fnv1a(s, 3735928559).toString(36);
+    return 'tp2-' + fnv1a(s, 2166136261).toString(36) + '-' + fnv1a(s, 3735928559).toString(36);
   }
 
   function normalizePortrait(raw) {
