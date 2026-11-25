@@ -23,7 +23,9 @@ for (const group of pingyao) {
  for (const [i, id] of group.screeningParts.entries()) {
   const film = data.films.find(f => f.id === id);
   assert(film && L.catalogueFilm(film), id + ' must have an independent catalogue entry');
-  assert.equal(film.min, group.parts[i].min);
+  assert.equal(film.cn, group.parts[i].cn);
+  // Existing records can have programme-specific runtimes (the pair keeps its own runtime).
+  if (film.prog === 'pingyao-2026') assert.equal(film.min, group.parts[i].min);
   assert.deepStrictEqual(L.screeningGroups(id, [...data.films, group]).map(f => f.id), [group.id]);
  }
 }
