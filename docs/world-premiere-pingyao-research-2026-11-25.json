@@ -310,6 +310,101 @@
       "sources": [
         "https://www.festival-cannes.com/en/f/he-bian-de-cuo-wu/"
       ]
+    },
+    "py26-journey-to-the-west": {
+      "status": "verified",
+      "kind": "festival",
+      "date": "2021-10-17",
+      "festival": "平遥国际电影展",
+      "festivalEn": "Pingyao International Film Festival",
+      "checked": "2026-11-25",
+      "sources": [
+        "https://www.midnightblurfilms.com/journey-to-the-west",
+        "https://www.thepaper.cn/newsDetail_forward_15001084",
+        "https://letterboxd.com/film/journey-to-the-west-2021/releases/",
+        "https://www.imdb.com/title/tt15072612/",
+        "https://www.cnfilmrank.com/zh/movies/1334"
+      ]
+    },
+    "py26-mother-eden": {
+      "status": "partial",
+      "kind": "festival",
+      "date": "2018-07",
+      "festival": "FIRST青年电影展",
+      "festivalEn": "FIRST International Film Festival",
+      "checked": "2026-11-25",
+      "dateNote": "第12届FIRST青年电影展竞赛单元世界首映",
+      "dateNoteEn": "12th FIRST International Film Festival Competition World Premiere",
+      "sources": [
+        "https://www.firstfilm.org.cn/movies/film-library/muqindeleyuan/",
+        "https://festival.south.org.tw/film/mother-eden",
+        "https://www.firstfilm.org.cn/news/firsttimingyoujingxiyoukongqueyoutansuoyouwunai/",
+        "https://2021stff.weebly.com/201824471295182031621697.html"
+      ]
+    },
+    "py26-farewell-my-hometown": {
+      "status": "partial",
+      "kind": "festival",
+      "date": "2021-10",
+      "festival": "釜山国际电影节",
+      "festivalEn": "Busan International Film Festival",
+      "checked": "2026-11-25",
+      "dateNote": "第26届釜山国际电影节新浪潮竞赛单元世界首映（10月6日至15日）",
+      "dateNoteEn": "26th Busan International Film Festival New Currents World Premiere (6–15 October)",
+      "sources": [
+        "https://www.biff.kr/eng/html/archive/arc_history_view.asp?kind=history&m_idx=56014&pyear=2021",
+        "https://www.lifeweek.com.cn/h5/article/detail?artId=188083",
+        "https://www.chntheatre.edu.cn/cn/xiao/detail/14731.html",
+        "https://www.filmaffinity.com/us/movieimage.php?imageId=919601823"
+      ]
+    },
+    "py26-lili-alone": {
+      "status": "partial",
+      "kind": "festival",
+      "date": "2021-07",
+      "festival": "戛纳国际影评人周",
+      "festivalEn": "La Semaine de la Critique (Cannes)",
+      "checked": "2026-11-25",
+      "dateNote": "第60届戛纳国际影评人周短片竞赛单元（7月7日至15日）",
+      "dateNoteEn": "60th La Semaine de la Critique Short Films Competition (7–15 July)",
+      "sources": [
+        "https://www.semainedelacritique.com/en/edition/2021/movie/duo-li",
+        "https://www.semainedelacritique.com/en/articles/about-duo-li-lili-alone",
+        "https://zoujingfilms.com/duoli",
+        "https://mulanfestival.com/zh/lili-alone/",
+        "https://www.imdb.com/title/tt14812814/"
+      ]
+    },
+    "gr26-013": {
+      "status": "verified",
+      "date": "2026-09-04",
+      "festival": "威尼斯国际影评人周",
+      "festivalEn": "Venice International Critics’ Week",
+      "kind": "festival",
+      "checked": "2026-11-25",
+      "sources": [
+        "https://bydongjie.com/work/zoom-in-zoom-out/",
+        "https://bydongjie.com/media/deepfocus-zoom-in-zoom-out-interview/",
+        "https://bydongjie.com/media/tuoluo-zoom-in-zoom-out-interview/",
+        "https://venezianews.it/en/what/zoom-in-zoom-out-dong-jie/",
+        "https://sicvenezia.it/en/line-up/"
+      ]
+    },
+    "gr26-021": {
+      "status": "verified",
+      "date": "2026-05-15",
+      "festival": "戛纳影评人周",
+      "festivalEn": "Cannes Critics’ Week",
+      "kind": "festival",
+      "checked": "2026-11-25",
+      "sources": [
+        "https://www.semainedelacritique.com/en/edition/2026/movie/a-girl-unknown_1147",
+        "https://www.semainedelacritique.com/en/screenings-programme",
+        "https://cdn.festival-cannes.com/media/uploads/2026/05/horaires-des-projections-2026.pdf",
+        "https://zoujingfilms.com/",
+        "https://www.memoria-films.com/production/a-girl-unknown",
+        "https://inter.pyramidefilms.com/pyramidefilms-international-catalogue/a-girl-unknown.html"
+      ]
     }
   },
   "films": {
@@ -1516,7 +1611,7 @@
       "parts": [
         {
           "title": "朵丽",
-          "history": "2021年7月 · 戛纳影评人周（短片金铁轨奖）",
+          "history": "2021年7月 · 戛纳影评人周（徕兹电影短片发现奖）",
           "credits": "邹静编导，梁子摄影，黄丽丽、胡玲、于世学等出演。",
           "sources": [
             "https://www.semainedelacritique.com/en/edition/2021/movie/duo-li"
@@ -1564,12 +1659,14 @@
     "py26-break": {
       "title": "课间休息",
       "programmeImage": "posters/pingyao-py26-014.jpg",
-      "history": "2019年6月北京电影学院毕业作品汇报展映；同年第三届平遥一角",
+      "history": "展映｜2019 北京电影学院导演系毕业作品展映；展映｜2019 第3届平遥国际电影展 · 平遥一角；展映｜北京国际短片联展",
       "credits": "董劼等出演，郭境熙声音指导。",
       "sources": [
         "https://bydongjie.com/practice/directing/?archiveView=world&from=archive",
         "https://www.yedianyang.com/break",
-        "https://www.sohu.com/a/321897821_391339"
+        "https://www.sohu.com/a/321897821_391339",
+        "https://bydongjie.com/work/break/",
+        "https://bydongjie.com/practice/directing/"
       ],
       "platforms": {
         "scores": [
@@ -1583,15 +1680,21 @@
           "imdb": "https://www.imdb.com/title/tt11312110/",
           "lb": "https://letterboxd.com/film/break-2019-1/"
         }
+      },
+      "individualPoster": {
+        "source": "https://bydongjie.com/media/works/break/poster.jpg",
+        "label": "导演作品档案 · 单片海报"
       }
     },
     "py26-ray-of-sunshine": {
       "title": "明天会更好",
       "programmeImage": "posters/pingyao-py26-017.jpg",
-      "history": "2019 第十三届FIRST青年电影展及第三届平遥一角（已知展映）",
+      "history": "入围｜2019 第13届 FIRST 青年电影展 · 短片竞赛；展映｜2019 第3届平遥国际电影展 · 平遥一角",
       "credits": "耿子涵兼任制片与剪辑，郝嘉越摄影，林宇瀚美术，孙铭君音效。",
       "sources": [
-        "https://www.firstfilm.org.cn/movies/film-library/%E6%98%8E%E5%A4%A9%E4%BC%9A%E6%9B%B4%E5%A5%BD/"
+        "https://www.firstfilm.org.cn/movies/film-library/%E6%98%8E%E5%A4%A9%E4%BC%9A%E6%9B%B4%E5%A5%BD/",
+        "https://www.firstfilm.org.cn/wp-content/uploads/2019/12/2019%E4%B8%BB%E5%8A%A8%E6%94%BE%E6%98%A0-%E5%86%AC%E5%AD%A3%E7%89%87%E5%8D%95.pdf",
+        "https://mulanfestival.com/zh/festival-2024/a-song-sung-blue/"
       ],
       "platforms": {
         "scores": [
@@ -1602,20 +1705,27 @@
           null
         ],
         "urls": {}
-      }
+      },
+      "individualPoster": null,
+      "posterResearch": "FIRST 冬季巡展 PDF 有独立海报，官网影片页提供剧照；现沿用联映海报。"
     },
     "py26-a-song-sung-blue": {
       "title": "小白船",
       "programmeImage": "posters/pingyao-py26-017.jpg",
-      "history": "2023-05-23 · 戛纳导演双周（全球首映）",
+      "history": "首映｜2023 第76届戛纳电影节 · 导演双周；获奖｜2023 第7届平遥国际电影展 · 费穆荣誉最佳导演；展映｜2024 木兰国际电影节；展映｜2024 山一国际女性电影展特别放映；公映｜2025年7月4日 中国内地",
       "credits": "郝嘉越摄影，梁静、梁龙分饰刘娴母亲和父亲。",
       "sources": [
-        "https://www.quinzaine-cineastes.fr/en/film/a-song-sung-blue"
+        "https://www.quinzaine-cineastes.fr/en/film/a-song-sung-blue",
+        "https://www.thepaper.cn/newsDetail_forward_29657404",
+        "https://mulanfestival.com/zh/festival-2024/a-song-sung-blue/",
+        "https://www.imdb.com/title/tt27540911/",
+        "https://www.rottentomatoes.com/m/a_song_sung_blue",
+        "https://m.1905.com/m/film/info/2254683.shtml"
       ],
       "platforms": {
         "scores": [
           null,
-          null,
+          6,
           60,
           null,
           null
@@ -1625,15 +1735,29 @@
           "rt": "https://www.rottentomatoes.com/m/a_song_sung_blue",
           "lb": "https://letterboxd.com/film/a-song-sung-blue/"
         }
+      },
+      "individualPoster": {
+        "source": "https://m.media-amazon.com/images/M/MV5BYTYwMWM3NTQtZDE5OS00ZmZmLTg3MmUtY2JmYTYxOTQ5OGI2XkEyXkFqcGc%40._V1_.jpg",
+        "label": "中国内地公映海报"
+      },
+      "premiere": {
+        "status": "verified",
+        "kind": "festival",
+        "date": "2023-05-23",
+        "festival": "戛纳导演双周",
+        "festivalEn": "Cannes Directors’ Fortnight",
+        "checked": "2026-11-25"
       }
     },
     "py26-goodbye-mr-kong": {
       "title": "春天，老师们走了",
       "programmeImage": "posters/pingyao-py26-020.jpg",
-      "history": "2017 首届平遥国际电影展 · 平遥一角（已知展映）",
+      "history": "入选｜2017 第7届九分钟电影锦标赛；展映｜2017 第1届平遥国际电影展 · 平遥一角；展映｜2023 中国电影资料馆 · 孔大山短片合集",
       "credits": "孔大山编导，孔繁刚主演，孙晓晨摄影。",
       "sources": [
-        "https://www.sohu.com/a/151171846_758222"
+        "https://www.sohu.com/a/151171846_758222",
+        "https://www.sohu.com/a/775858387_100048878",
+        "https://www.wavefilmfestival.org/selection-2023/journey-to-the-west"
       ],
       "platforms": {
         "scores": [
@@ -1646,15 +1770,21 @@
         "urls": {
           "lb": "https://letterboxd.com/film/film%3A1009248/details/"
         }
-      }
+      },
+      "individualPoster": null,
+      "posterResearch": "九分钟电影锦标赛导演专访及导筒展映资料可查；影像为剧照或合集物料，现沿用联映海报。"
     },
     "py26-journey-to-the-west": {
       "title": "宇宙探索编辑部",
       "programmeImage": "posters/pingyao-py26-020.jpg",
-      "history": "2021年10月 · 第五届平遥国际电影展 · 藏龙",
+      "history": "首映｜2021 第5届平遥国际电影展 · 藏龙；获奖｜2021 第5届平遥国际电影展 · 费穆荣誉最佳影片；获奖｜2023 第36届中国电影金鸡奖 · 最佳编剧；公映｜2023年4月1日 中国内地",
       "credits": "马蒂厄·德尔沃摄影，蒋奇明、盛晨晨也参与演出。",
       "sources": [
-        "https://www.midnightblurfilms.com/journey-to-the-west"
+        "https://www.midnightblurfilms.com/journey-to-the-west",
+        "https://www.thepaper.cn/newsDetail_forward_15001084",
+        "https://letterboxd.com/film/journey-to-the-west-2021/releases/",
+        "https://www.imdb.com/title/tt15072612/",
+        "https://www.cnfilmrank.com/zh/movies/1334"
       ],
       "platforms": {
         "scores": [
@@ -1667,18 +1797,33 @@
         "urls": {
           "imdb": "https://www.imdb.com/title/tt15072612/",
           "rt": "https://www.rottentomatoes.com/m/journey_to_the_west_2021",
-          "doubanSnapshot": "https://www.cnfilmrank.com/zh/movies/1334"
+          "doubanSnapshot": "https://www.cnfilmrank.com/zh/movies/1334",
+          "lb": "https://letterboxd.com/film/journey-to-the-west-2021/"
         }
+      },
+      "premiere": {
+        "status": "verified",
+        "kind": "festival",
+        "date": "2021-10-17",
+        "festival": "平遥国际电影展",
+        "festivalEn": "Pingyao International Film Festival",
+        "checked": "2026-11-25"
+      },
+      "individualPoster": {
+        "source": "https://obj.shine.cn/files/2023/08/22/fddf19d5-d8fb-43cc-b41d-2028d2bc5eb0_0.jpeg",
+        "label": "中国内地 CINITY 公映海报"
       }
     },
     "py26-mother-eden": {
       "title": "母亲的乐园",
       "programmeImage": "posters/pingyao-py26-024.jpg",
-      "history": "2018 第十二届FIRST青年电影展竞赛（已知展映）",
+      "history": "首映｜2018 第12届 FIRST 青年电影展 · 短片竞赛；提名｜2018 第12届 FIRST 青年电影展 · 最佳短片；获奖｜2018 第18届南方影展 · 最佳剧情短片",
       "credits": "王尔卓编导、剪辑，李林翰摄影，姚望喜、王恒明出演。",
       "sources": [
         "https://www.firstfilm.org.cn/movies/film-library/muqindeleyuan/",
-        "https://festival.south.org.tw/film/mother-eden"
+        "https://festival.south.org.tw/film/mother-eden",
+        "https://www.firstfilm.org.cn/news/firsttimingyoujingxiyoukongqueyoutansuoyouwunai/",
+        "https://2021stff.weebly.com/201824471295182031621697.html"
       ],
       "platforms": {
         "scores": [
@@ -1689,16 +1834,33 @@
           null
         ],
         "urls": {}
+      },
+      "premiere": {
+        "status": "partial",
+        "kind": "festival",
+        "date": "2018-07",
+        "festival": "FIRST青年电影展",
+        "festivalEn": "FIRST International Film Festival",
+        "checked": "2026-11-25",
+        "dateNote": "第12届FIRST青年电影展竞赛单元世界首映",
+        "dateNoteEn": "12th FIRST International Film Festival Competition World Premiere"
+      },
+      "individualPoster": {
+        "source": "https://cdn.firstfilm.org.cn/wp-content/uploads/2019/04/img_276.jpeg",
+        "label": "FIRST 青年电影展 · 单片海报"
       }
     },
     "py26-farewell-my-hometown": {
       "title": "再见，乐园",
       "programmeImage": "posters/pingyao-py26-024.jpg",
-      "history": "2021年10月 · 釜山国际电影节新浪潮",
+      "history": "首映｜2021 第26届釜山国际电影节 · 新浪潮；获奖｜2021 第26届釜山国际电影节 · 新浪潮奖；获奖｜2021 第5届平遥国际电影展 · 费穆荣誉特别表扬",
       "credits": "在釜山新浪潮获奖后，于第五届平遥藏龙获费穆荣誉特别表扬。",
       "sources": [
         "https://www.biff.kr/eng/html/archive/arc_history_view.asp?kind=history&m_idx=56014&pyear=2021",
-        "https://www.firstfilm.org.cn/movies/film-library/%E5%86%8D%E8%A7%81%EF%BC%8C%E4%B9%90%E5%9B%AD/"
+        "https://www.firstfilm.org.cn/movies/film-library/%E5%86%8D%E8%A7%81%EF%BC%8C%E4%B9%90%E5%9B%AD/",
+        "https://www.lifeweek.com.cn/h5/article/detail?artId=188083",
+        "https://www.chntheatre.edu.cn/cn/xiao/detail/14731.html",
+        "https://www.filmaffinity.com/us/movieimage.php?imageId=919601823"
       ],
       "platforms": {
         "scores": [
@@ -1711,16 +1873,33 @@
         "urls": {
           "lb": "https://letterboxd.com/film/farewell-my-hometown/"
         }
+      },
+      "premiere": {
+        "status": "partial",
+        "kind": "festival",
+        "date": "2021-10",
+        "festival": "釜山国际电影节",
+        "festivalEn": "Busan International Film Festival",
+        "checked": "2026-11-25",
+        "dateNote": "第26届釜山国际电影节新浪潮竞赛单元世界首映（10月6日至15日）",
+        "dateNoteEn": "26th Busan International Film Festival New Currents World Premiere (6–15 October)"
+      },
+      "individualPoster": {
+        "source": "https://pics.filmaffinity.com/farewell_my_hometown-919601823-large.jpg",
+        "label": "单片展映海报"
       }
     },
     "py26-on-the-border": {
       "title": "延边少年",
       "programmeImage": "posters/pingyao-py26-027.jpg",
-      "history": "2018年5月 · 戛纳短片竞赛（特别提及）",
+      "history": "入围｜2018 第71届戛纳电影节 · 短片主竞赛；获奖｜2018 第71届戛纳电影节 · 短片评审团特别提及",
       "credits": "摄影王阶宏，李振铭、崔瑜娜出演。",
       "sources": [
         "https://cinemadedemain.festival-cannes.com/en/f/yan-bian-shao-nian/",
-        "https://www.filmaker.cn/thread-115502-1-1.html"
+        "https://www.filmaker.cn/thread-115502-1-1.html",
+        "https://world.people.com.cn/n1/2018/0419/c1002-29936684.html",
+        "https://media.people.com.cn/n1/2018/0521/c40606-30001576.html",
+        "https://by.cuc.edu.cn/news/_t114/2018/0508/c1902a59359/page.psp"
       ],
       "platforms": {
         "scores": [
@@ -1734,15 +1913,33 @@
           "imdb": "https://www.imdb.com/title/tt8296620/",
           "lb": "https://letterboxd.com/film/on-the-border-2018/"
         }
+      },
+      "individualPoster": {
+        "source": "https://m.media-amazon.com/images/M/MV5BOWQ2MzljMDgtYzUyOC00MWYyLWE5YzAtMmYzYzBjYzIwZmE2XkEyXkFqcGc%40._V1_.jpg",
+        "label": "戛纳短片竞赛版海报"
+      },
+      "premiere": {
+        "status": "partial",
+        "kind": "festival",
+        "date": "2018-05",
+        "festival": "戛纳国际电影节",
+        "festivalEn": "Cannes Film Festival",
+        "checked": "2026-11-25",
+        "dateNote": "第71届戛纳国际电影节短片竞赛单元（5月8日至19日）",
+        "dateNoteEn": "71st Cannes Film Festival Short Films Competition (8–19 May)"
       }
     },
     "py26-only-the-river-flows": {
       "title": "河边的错误",
       "programmeImage": "posters/pingyao-py26-027.jpg",
-      "history": "2023-05-20 · 戛纳一种关注（首映）",
+      "history": "首映｜2023 第76届戛纳电影节 · 一种关注；公映｜2023年10月21日 中国内地",
       "credits": "摄影风格与派出所临时迁至旧电影院的情节相呼应。",
       "sources": [
-        "https://www.festival-cannes.com/en/f/he-bian-de-cuo-wu/"
+        "https://www.festival-cannes.com/en/f/he-bian-de-cuo-wu/",
+        "https://mk2films.com/wp-content/uploads/sites/4/2023/04/only-the-river-flows-press-notes.pdf",
+        "https://ent.ifeng.com/c/8Q7wz8WHcsX",
+        "https://www.thepaper.cn/newsDetail_forward_25015109",
+        "https://m.1905.com/m/news/vivo/1622532.shtml"
       ],
       "platforms": {
         "scores": [
@@ -1759,15 +1956,31 @@
           "mc": "https://www.metacritic.com/movie/only-the-river-flows/",
           "doubanSnapshot": "https://www.cnfilmrank.com/zh/movies/1369"
         }
+      },
+      "individualPoster": {
+        "source": "https://p6.itc.cn/q_70/images01/20230521/de497dbb975c451ca29c9d73c4c0966c.jpeg",
+        "label": "戛纳一种关注国际版海报"
+      },
+      "premiere": {
+        "status": "verified",
+        "kind": "festival",
+        "date": "2023-05-20",
+        "festival": "戛纳电影节",
+        "festivalEn": "Cannes Film Festival",
+        "checked": "2026-11-25"
       }
     },
     "py26-lili-alone": {
       "title": "朵丽",
       "programmeImage": "posters/pingyao-py26-031.jpg",
-      "history": "2021年7月 · 戛纳影评人周（短片金铁轨奖）",
+      "history": "首映｜2021 第74届戛纳电影节 · 影评人周短片竞赛；获奖｜2021 戛纳影评人周 · 徕兹电影短片发现奖；展映｜木兰国际电影节",
       "credits": "邹静编导，梁子摄影，黄丽丽、胡玲、于世学等出演。",
       "sources": [
-        "https://www.semainedelacritique.com/en/edition/2021/movie/duo-li"
+        "https://www.semainedelacritique.com/en/edition/2021/movie/duo-li",
+        "https://www.semainedelacritique.com/en/articles/about-duo-li-lili-alone",
+        "https://zoujingfilms.com/duoli",
+        "https://mulanfestival.com/zh/lili-alone/",
+        "https://www.imdb.com/title/tt14812814/"
       ],
       "platforms": {
         "scores": [
@@ -1781,6 +1994,20 @@
           "imdb": "https://www.imdb.com/title/tt14812814/",
           "lb": "https://letterboxd.com/film/lili-alone/"
         }
+      },
+      "premiere": {
+        "status": "partial",
+        "kind": "festival",
+        "date": "2021-07",
+        "festival": "戛纳国际影评人周",
+        "festivalEn": "La Semaine de la Critique (Cannes)",
+        "checked": "2026-11-25",
+        "dateNote": "第60届戛纳国际影评人周短片竞赛单元（7月7日至15日）",
+        "dateNoteEn": "60th La Semaine de la Critique Short Films Competition (7–15 July)"
+      },
+      "individualPoster": {
+        "source": "https://images.squarespace-cdn.com/content/v1/56b97e1d40261d81b96d1716/d0ca059d-aacf-495c-8e5a-67b0733ab94f/%E6%9C%B5%E4%B8%BD%E6%AD%A3%E5%BC%8F%E6%B5%B7%E6%8A%A5%E5%B0%8F%E6%A1%A3.jpg?format=1500w",
+        "label": "导演官网 · 单片海报"
       }
     }
   },
@@ -2003,12 +2230,12 @@
         "ratings"
       ],
       "premiere": {
-        "status": "partial",
-        "date": "2026-09",
-        "festival": "威尼斯国际电影节",
-        "festivalEn": "Venice International Film Festival",
+        "status": "verified",
+        "date": "2026-09-04",
+        "festival": "威尼斯国际影评人周",
+        "festivalEn": "Venice International Critics’ Week",
         "kind": "festival",
-        "checked": "2026-11-07"
+        "checked": "2026-11-25"
       },
       "platforms": {
         "urls": {
@@ -2025,7 +2252,17 @@
         ],
         "refreshedIndexes": []
       },
-      "sources": []
+      "sources": [
+        "https://bydongjie.com/work/zoom-in-zoom-out/",
+        "https://bydongjie.com/media/deepfocus-zoom-in-zoom-out-interview/",
+        "https://bydongjie.com/media/tuoluo-zoom-in-zoom-out-interview/",
+        "https://venezianews.it/en/what/zoom-in-zoom-out-dong-jie/",
+        "https://sicvenezia.it/en/line-up/"
+      ],
+      "individualPoster": {
+        "source": "https://bydongjie.com/media/works/zoom-in-zoom-out/poster.jpg",
+        "label": "导演作品档案 · 单片海报"
+      }
     },
     "gr26-018": {
       "title": "寒夜灯柱",
@@ -2078,12 +2315,12 @@
         "ratings"
       ],
       "premiere": {
-        "status": "partial",
-        "date": "2026-05",
+        "status": "verified",
+        "date": "2026-05-15",
         "festival": "戛纳影评人周",
         "festivalEn": "Cannes Critics’ Week",
         "kind": "festival",
-        "checked": "2026-11-07"
+        "checked": "2026-11-25"
       },
       "platforms": {
         "urls": {
@@ -2101,7 +2338,18 @@
         ],
         "refreshedIndexes": []
       },
-      "sources": []
+      "sources": [
+        "https://www.semainedelacritique.com/en/edition/2026/movie/a-girl-unknown_1147",
+        "https://www.semainedelacritique.com/en/screenings-programme",
+        "https://cdn.festival-cannes.com/media/uploads/2026/05/horaires-des-projections-2026.pdf",
+        "https://zoujingfilms.com/",
+        "https://www.memoria-films.com/production/a-girl-unknown",
+        "https://inter.pyramidefilms.com/pyramidefilms-international-catalogue/a-girl-unknown.html"
+      ],
+      "individualPoster": {
+        "source": "https://x0.ifengimg.com/ucms/2026_16/5AE8C869E46BCED37CA5B240A940D2BF37CED2B8_size1128_w1268_h1903.jpg",
+        "label": "戛纳影评人周入围海报"
+      }
     },
     "gr26-029": {
       "title": "我阿爹想旅行",

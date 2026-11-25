@@ -193,20 +193,30 @@
       "dir": "DONG Jie",
       "c": "China",
       "genre": [
-        "Drama"
+        "Drama",
+        "Mockumentary"
       ],
-      "syn": "Teacher Sheng's monotonous life is interrupted by the filming of a documentary. Can they find what they are trying to find during the short vacation?",
+      "syn": "Dong Jie returns to film his former middle-school politics teacher Sheng Liming over the National Day holiday. The assignment changes direction when they hear that Li Yanwu, one of Dong’s former classmates, has disappeared. Sheng grows increasingly invested in the search, and Dong begins to reconsider what keeping the camera running means.",
       "honors": [
-        "2019 Beijing Film Academy graduation showcase and Pingyao Corner"
+        "Screened | 2019 Beijing Film Academy graduation showcase",
+        "Screened | 2019 Pingyao International Film Festival · Pingyao Corner",
+        "Screened | Beijing International Short Film Festival",
+        "Screened | 2026 Pingyao International Film Festival · Pingyao 10 Years"
       ],
       "warnings": [
         "Interpersonal strain"
       ],
       "contentNote": "The published synopsis touches on interpersonal strain. Sound and light intensity await verification.",
-      "editorial": "Watch how a pause in the school day exposes the distance between the characters.",
-      "bio": "Dong Jie graduated from Beijing Film Academy and edited films before directing his first feature.",
-      "st": "Dong Jie also appears in the film; Guo Jingxi supervised sound.",
+      "editorial": "Notice when Sheng volunteers a memory and when the camera waits for one. The teacher and pupil’s relationship changes with the direction of the filming.",
+      "bio": "Dong Jie studied directing at Beijing Film Academy and also works as a writer and editor. His graduation film Break screened at Pingyao Corner and the Beijing International Short Film Festival. He later explored virtual models and physical streets in Beijing Mushroom and returned to a missing-person story in his feature debut Zoom In, Zoom Out.",
+      "st": "Dong wrote, directed and edited the film, and plays the camera-carrying student under his own name. The assignment provides an in-story reason to film the teacher’s routines and the search. Because the filmmaker within the story also knew the missing student, his decision to keep recording has a personal stake.",
       "cast": [
+        "Dong Jie"
+      ],
+      "highlights": [
+        "Pair it with Zoom In, Zoom Out to compare a search through the memories of former classmates with a search through a networked game."
+      ],
+      "writers": [
         "Dong Jie"
       ]
     },
@@ -218,17 +228,22 @@
       "genre": [
         "Drama"
       ],
-      "syn": "Tomorrow is coming, while we are still stuck at this time.",
+      "syn": "A young restaurant cook loses his job after a fight. He accompanies his girlfriend, a server at the same restaurant, to the hospital for a check-up. Employment and uncertainty about her health collide over a single day, as both come to understand what the other is facing.",
       "honors": [
-        "2019 FIRST International Film Festival and Pingyao Corner"
+        "Official Selection | 2019 FIRST International Film Festival · Short Competition",
+        "Screened | 2019 Pingyao International Film Festival · Pingyao Corner",
+        "Screened | 2026 Pingyao International Film Festival · Pingyao 10 Years"
       ],
       "warnings": [
-        "Coming of age and emotional strain"
+        "Job loss, medical examination and financial strain"
       ],
-      "contentNote": "The published synopsis touches on coming of age and emotional strain. Sound and light intensity await verification.",
-      "editorial": "Watch what the characters do with the time they spend waiting.",
-      "bio": "Geng Zihan made The Ray of Sunshine before her feature debut, A Song Sung Blue, screened in Cannes Directors' Fortnight.",
-      "st": "Geng Zihan also produced and edited. Hao Jiayue photographed the film, with production design by Lin Yuhan and sound effects by Sun Mingjun."
+      "contentNote": "The story involves job loss, a visit for a medical check-up and the couple’s financial strain.",
+      "editorial": "Compare the restaurant with the hospital: one can take away a livelihood, the other forces the couple to stop and wait. Both spaces keep pushing the film’s promised tomorrow away.",
+      "bio": "Beijing-born Geng Zihan graduated from the Central Academy of Drama. The Ray of Sunshine played in FIRST’s short-film competition and Green Screen later screened at LA Shorts. Her debut feature A Song Sung Blue premiered in Directors’ Fortnight and earned her Pingyao’s Fei Mu directing award.",
+      "st": "Geng also produced and edited this short. Hao Jiayue, who returned for A Song Sung Blue, shot it. Lin Yuhan handled production design and Sun Mingjun sound effects. In her FIRST statement Geng focused on how the lovers get through a day of uncertainty. FIRST dates production to 2018 and lists its 2019 screenings as non-premiere engagements.",
+      "highlights": [
+        "Paired with A Song Sung Blue, the short reveals Geng’s interest in people whose needs and feelings are out of step, and in their willingness to wait for each other."
+      ]
     },
     "py26-a-song-sung-blue": {
       "title": "A Song Sung Blue",
@@ -236,19 +251,26 @@
       "dir": "GENG Zihan",
       "c": "China",
       "genre": [
-        "Drama"
+        "Drama",
+        "Coming of Age",
+        "Romance"
       ],
-      "syn": "During the loneliest of summers, 15-year-old Liu Xian meets Jin Mingmei, a Korean-Chinese girl whose exuberant youthful vigor leads her into a new world.",
+      "syn": "When her mother leaves to work abroad, fifteen-year-old Liu Xian moves in with her estranged father, who runs a struggling photo studio. She meets Jin Mingmei, the eighteen-year-old daughter of his assistant. Mingmei gives Liu Xian a reason to venture out, but the two girls have different ideas of what closeness and the future might hold.",
       "honors": [
-        "2023 Cannes Directors’ Fortnight"
+        "World Premiere | 2023 Cannes Directors’ Fortnight",
+        "Award | 2023 Pingyao International Film Festival · Fei Mu Award for Best Director",
+        "Screened | 2024 Mulan International Film Festival",
+        "Screened | 2024 ONE International Women’s Film Festival special screening",
+        "Release | Mainland China · 4 July 2025",
+        "Screened | 2026 Pingyao International Film Festival · Pingyao 10 Years"
       ],
       "warnings": [
         "Family conflict and adolescent loneliness"
       ],
       "contentNote": "The published synopsis touches on family conflict and adolescent loneliness. Sound and light intensity await verification.",
-      "editorial": "Watch how Liu Xian looks at Mingmei and how that gaze changes the pace of a long summer.",
-      "bio": "Geng Zihan made The Ray of Sunshine before her feature debut, A Song Sung Blue, screened in Cannes Directors' Fortnight.",
-      "st": "Geng Zihan’s debut feature was shot by Hao Jiayue. Liang Jing and Liang Long play Liu Xian’s parents.",
+      "editorial": "Notice what the image and soundtrack reveal when Liu Xian watches Mingmei. The more closely she looks, the easier it is for her to project a possible future onto Mingmei.",
+      "bio": "Born in Beijing, Geng studied directing at the Central Academy of Drama. She made The Ray of Sunshine and Green Screen before taking her feature debut to Directors’ Fortnight. The performances of Zhou Meijun and Huang Ziqi anchor the film. Geng won Best Director at Pingyao for the feature.",
+      "st": "Liu Yining’s undergraduate feature script became the project, which took shape through a development market with producers Liang Jing and Jane Zheng. In post-screening discussions Geng described staying close to Liu Xian’s experience. Cinematographer Hao Jiayue and the sound department helped shape that subjectivity. Huang and Geng had already collaborated as students.",
       "cast": [
         "Zhou Meijun",
         "Huang Ziqi",
@@ -257,7 +279,11 @@
       ],
       "writers": [
         "Liu Yining"
-      ]
+      ],
+      "highlights": [
+        "The photo studio is worth watching as a space: it produces neatly arranged memories for strangers while housing the untidiest relationships in Liu Xian’s family."
+      ],
+      "language": "Mandarin / Korean"
     },
     "py26-goodbye-mr-kong": {
       "title": "Goodbye, Mr. Kong",
@@ -267,22 +293,28 @@
       "genre": [
         "Drama"
       ],
-      "syn": "After teaching for thirty years, Mr. Kong prepares for early retirement after his son starts a family in Beijing, returning to school for one final goodbye.",
+      "syn": "Mr Kong has taught at an elementary school in Qufu, Shandong, for thirty years. With his son now starting a family in Beijing, he takes early retirement to care for his grandchild. The film spends his last day at school with him, as familiar places, people and small routines take on the weight of a final visit.",
       "honors": [
-        "2017 Pingyao International Film Festival, Pingyao Corner"
+        "Official Selection | 2017 Nine-Minute Film Championship",
+        "Screened | 2017 Pingyao International Film Festival · Pingyao Corner",
+        "Screened | 2023 China Film Archive · Kong Dashan shorts programme",
+        "Screened | 2026 Pingyao International Film Festival · Pingyao 10 Years"
       ],
       "warnings": [
         "Farewells and relationships"
       ],
       "contentNote": "The published synopsis touches on farewells and relationships. Sound and light intensity await verification.",
-      "editorial": "Watch how Kong Dashan uses a farewell to establish the characters’ circumstances in just a few minutes.",
-      "bio": "Kong Dashan moved from short films to the mockumentary Journey to the West, his first feature.",
-      "st": "Kong Dashan wrote and directed, Kong Fangang stars, and Sun Xiaochen is the cinematographer.",
+      "editorial": "Watch the small things that still happen on schedule. The institution keeps running while the teacher’s place within it changes.",
+      "bio": "Kong Dashan graduated from the directing department of Beijing Film Academy. His early shorts include The Long Night and his mock news report on a young cinephile. Goodbye, Mr. Kong takes him back to Qufu for a schoolteacher’s last day. He later directed his debut feature Journey to the West, co-written with Wang Yitong.",
+      "st": "Made for the seventh Nine-Minute Film Championship, the short was written and directed by Kong, produced by Kong Xiaoxia and shot by Sun Xiaochen, with sound by Qiao Mingzi and colour by Liu Pai. Kong Fangang plays a man leaving a professional role and taking on an unpaid role within his family.",
       "cast": [
         "Kong Fangang"
       ],
       "writers": [
         "Kong Dashan"
+      ],
+      "highlights": [
+        "Compare it with Journey to the West: both begin a trip after years of familiar routines, but the pivotal journey here may be the walk Mr Kong has already taken countless times."
       ]
     },
     "py26-journey-to-the-west": {
@@ -291,19 +323,25 @@
       "dir": "KONG Dashan",
       "c": "China",
       "genre": [
-        "Drama"
+        "Drama",
+        "Science Fiction",
+        "Comedy"
       ],
-      "syn": "A down-and-out science fiction magazine editor receives a mysterious signal that may come from deep space and sets out with companions in search of aliens and an answer.",
+      "syn": "Tang Zhijun’s science-fiction magazine is failing, but he is still looking for extraterrestrial life. A report from a village in southwestern China sends him and a small crew on the road, where they meet Sun Yitong, a young man who wears a pot and speaks like a poet. As improbable clues accumulate, the search brings a private grief into view.",
       "honors": [
-        "2021 Pingyao International Film Festival, Crouching Tigers; Fei Mu Award for Best Film"
+        "World Premiere | 2021 Pingyao International Film Festival · Crouching Tigers",
+        "Award | 2021 Pingyao International Film Festival · Fei Mu Award for Best Film",
+        "Award | 2023 Golden Rooster Awards · Best Screenplay",
+        "Release | Mainland China · 1 April 2023",
+        "Screened | 2026 Pingyao International Film Festival · Pingyao 10 Years"
       ],
       "warnings": [
         "Bereavement and psychological distress"
       ],
       "contentNote": "The published synopsis touches on bereavement and psychological distress. Sound and light intensity await verification.",
-      "editorial": "Watch how the mockumentary camera takes absurd clues seriously and makes room for Tang Zhijun’s loneliness.",
-      "bio": "Kong Dashan moved from short films to the mockumentary Journey to the West, his first feature.",
-      "st": "Kong Dashan and Wang Yitong co-wrote the film. Matthias Delvaux is the cinematographer.",
+      "editorial": "Note the moments when the camera hesitates, fails to keep up or loses focus. The viewer can often establish even less than Tang believes he knows.",
+      "bio": "Kong graduated from Beijing Film Academy and experimented with fictional television reportage in his short films. His feature debut carried that interest into a road movie and won Best Film in Pingyao’s Fei Mu awards. Kong and co-writer Wang Yitong later won the Golden Rooster screenplay award.",
+      "st": "Kong and Wang Yitong co-wrote the film. Yang Haoyu plays Tang and Wang plays Sun. The cinematographer is Matthias Delvaux. Kong told The Paper after Pingyao that the team dispensed with conventional slates, lighting and shot breakdowns. The apparent spontaneity comes from a practical shooting method and the room it leaves for performance.",
       "cast": [
         "Yang Haoyu",
         "Ai Liya",
@@ -314,7 +352,11 @@
       "writers": [
         "Kong Dashan",
         "Wang Yitong"
-      ]
+      ],
+      "highlights": [
+        "Listen to Sun’s poetry alongside Tang’s delight in evidence. Each uses an earnest language to approach things that cannot be proved."
+      ],
+      "language": "Mandarin"
     },
     "py26-mother-eden": {
       "title": "Mother Eden",
@@ -324,23 +366,29 @@
       "genre": [
         "Drama"
       ],
-      "syn": "Listen to a mother tell the story of a generation's vanished youth.",
+      "syn": "Teacher Yao hears that two colleagues at her school have left town after an affair. The news sends her back to her own youth as an idealistic student in the 1980s. Now middle-aged, she reassesses the ambitions and compromises of the life she has built in a small city.",
       "honors": [
-        "2018 FIRST International Film Festival competition; South Taiwan Film Festival"
+        "World Premiere | 2018 FIRST International Film Festival · Short Competition",
+        "Nomination | 2018 FIRST International Film Festival · Best Short Film",
+        "Award | 2018 South Taiwan Film Festival · Best Fiction Short",
+        "Screened | 2026 Pingyao International Film Festival · Pingyao 10 Years"
       ],
       "warnings": [
-        "Family strain"
+        "An affair and family strain"
       ],
-      "contentNote": "The published synopsis touches on family strain. Sound and light intensity await verification.",
-      "editorial": "Notice how everyday gestures and pauses at home let mother and son respond to each other.",
-      "bio": "Wang Erzhuo, a Central Academy of Drama graduate, expanded a short film's interest in a mother's life into a feature about three generations.",
-      "st": "Wang Erzhuo also wrote and edited the film. Li Linhan is the cinematographer.",
+      "contentNote": "The story involves an affair and the departures of two colleagues, as well as memories of work and family.",
+      "editorial": "Start with the two absent colleagues. Yao’s interpretation of their departure offers a way to hear how she imagines an alternative to her own life.",
+      "bio": "Hunan-born Wang Erzhuo earned a master’s degree at the Central Academy of Drama. An early documentary screened at Yamagata, and Mother Eden won Best Fiction Short at South Taiwan Film Festival. His first feature went on to win a New Currents award at Busan. Both dramas approach generational change through women’s memories.",
+      "st": "Wang traced the film to accounts by his mother and her generation in his FIRST director’s statement. He wrote, directed and edited it, with cinematography by Li Linhan, production design by Yun Dan and sound effects by Wang Xueying. FIRST’s nomination notes drew attention to the way the narration and images lend ordinary life a longer historical reach.\n\nFIRST lists production in 2017 and the premiere in 2018. South Taiwan Film Festival catalogues the film under 2018.",
       "cast": [
         "Yao Wangxi",
         "Wang Hengming"
       ],
       "writers": [
         "Wang Erzhuo"
+      ],
+      "highlights": [
+        "Notice when the narration takes an image back in time and when it leaves a gap. An individual life here becomes part of a three-generation structure in Farewell, My Hometown."
       ]
     },
     "py26-farewell-my-hometown": {
@@ -351,17 +399,20 @@
       "genre": [
         "Drama"
       ],
-      "syn": "Drawing from the private memories of an aging rural grandmother, a mother holding fast in a county town, and a daughter adrift in the city, the film traces a family across seventy years.",
+      "syn": "An older woman in the mountains recalls poverty, labour and the loss of a child. A young woman in the city thinks back to the solitude of dance school in Beijing. A middle-aged teacher takes to the stage and remembers her college years in the 1980s and an earlier love. Mountains, apartments and a stage hold three accounts of leaving and belonging.",
       "honors": [
-        "2021 Busan International Film Festival New Currents Award; Pingyao Fei Mu Special Mention"
+        "World Premiere | 2021 Busan International Film Festival · New Currents",
+        "Award | 2021 Busan International Film Festival · New Currents Award",
+        "Award | 2021 Pingyao International Film Festival · Fei Mu Special Mention",
+        "Screened | 2026 Pingyao International Film Festival · Pingyao 10 Years"
       ],
       "warnings": [
-        "Family relationships and migration"
+        "Death of a child, poverty and personal strain"
       ],
-      "contentNote": "The published synopsis touches on family relationships and migration. Sound and light intensity await verification.",
-      "editorial": "Watch the women of different generations together and notice how the same hometown is left, revisited and understood anew.",
-      "bio": "Wang Erzhuo, a Central Academy of Drama graduate, expanded a short film's interest in a mother's life into a feature about three generations.",
-      "st": "Wang Erzhuo moves from the short form to a story about several generations of women. The feature won a New Currents Award in Busan.",
+      "contentNote": "The accounts involve poverty, hard labour, the death of a child and loneliness after moving away.",
+      "editorial": "Listen to each episode as a kind of move. What changes the way a person speaks of home may be less the distance travelled than the rooms she has lived in since.",
+      "bio": "Wang Erzhuo grew up in Hunan and received a master’s degree from the Central Academy of Drama. The small-town teacher in Mother Eden gave him a starting point for looking at an older generation. In his debut feature he set three generations alongside one another, winning a New Currents award at Busan.",
+      "st": "Wang has said in interview that some of the memories that moved him most were told by women. Busan describes three episodes, placing recollection against mountain scenery, urban apartments and a stage. Spoken memories and visible spaces do not always line up. Busan records an 83-minute world-premiere cut, while this Pingyao listing records 90 minutes.",
       "cast": [
         "Zeng Fengjie",
         "He Yuhe",
@@ -369,6 +420,9 @@
       ],
       "writers": [
         "Wang Erzhuo"
+      ],
+      "highlights": [
+        "After Mother Eden, return to the teacher’s episode. An inward recollection in the short becomes one voice in the feature’s conversation across three generations."
       ]
     },
     "py26-on-the-border": {
@@ -379,20 +433,25 @@
       "genre": [
         "Drama"
       ],
-      "syn": "A young Korean-Chinese boy travels to the city to seek help from his father, hoping to go to South Korea.",
+      "syn": "Hua Dongxing, a Korean-Chinese teenager in the China–North Korea border region, hopes to get to South Korea. He travels from his village to town to ask his father for money, only to find him absent. The planned departure gives way to time spent in a half-familiar border town and the question of whom he can turn to.",
       "honors": [
-        "2018 Cannes Film Festival Short Film Competition Special Mention"
+        "Official Selection | 2018 Festival de Cannes · Short Film Competition",
+        "Award | 2018 Festival de Cannes · Short Film Jury Special Distinction",
+        "Screened | 2026 Pingyao International Film Festival · Pingyao 10 Years"
       ],
       "warnings": [
         "Adolescent distress"
       ],
       "contentNote": "The published synopsis touches on adolescent distress. Sound and light intensity await verification.",
-      "editorial": "Notice how the border gives the teenager’s desire to leave a concrete direction.",
-      "bio": "Wei Shujun moved from Cannes short On the Border to features including Striding into the Wind and Ripples of Life.",
-      "st": "Wei Shujun directed the short, with cinematography by Wang Jiehong.",
+      "editorial": "Notice which places allow Hua to linger and which he can only pass through. The border is both his everyday setting and a direction in which he dreams of leaving.",
+      "bio": "Wei Shujun worked as an actor and studied sound direction at Communication University of China. Duck Neck screened at Busan, and On the Border received a Cannes short-film jury distinction. His later features include Striding into the Wind, Ripples of Life and Only the River Flows.",
+      "st": "In Cannes-era interviews Wei traced the idea to a trip through Yanji, where he noticed how many young people left for work while older residents stayed behind. Li Zhenming and Cui Yuna star, with cinematography by Wang Jiehong and editing by Chen Shikong. The wider movement of people comes into view through one search for a father.",
       "cast": [
         "Li Zhenming",
         "Cui Yuna"
+      ],
+      "highlights": [
+        "Pair it with Only the River Flows: the teenager searches for someone who might fund the journey, while a detective searches for evidence. Neither finds a ready explanation in the people he encounters."
       ]
     },
     "py26-only-the-river-flows": {
@@ -401,48 +460,61 @@
       "dir": "WEI Shujun",
       "c": "China",
       "genre": [
-        "Drama"
+        "Drama",
+        "Crime",
+        "Mystery"
       ],
-      "syn": "A bizarre murder case triggers an undercurrent of destiny as police detective Ma Zhe falls into absurdity, unease, and moments where reality and fantasy blur. Adapted from Yu Hua’s novella.",
+      "syn": "In a southern Chinese town in the 1990s, a body is found by the river. Detective Ma Zhe sets up in a disused cinema and follows leads into the private lives and rumours of the town. While colleagues want the case closed, each new piece of information unsettles an explanation that had seemed secure.",
       "honors": [
-        "2023 Cannes Film Festival, Un Certain Regard"
+        "World Premiere | 2023 Festival de Cannes · Un Certain Regard",
+        "Release | Mainland China · 21 October 2023",
+        "Screened | 2026 Pingyao International Film Festival · Pingyao 10 Years"
       ],
       "warnings": [
         "Murder investigation and violent themes"
       ],
       "contentNote": "The published synopsis touches on murder investigation and violent themes. Sound and light intensity await verification.",
-      "editorial": "Notice the cinema repurposed as a police station and how its light and spaces deepen Ma Zhe’s uncertainty.",
-      "bio": "Wei Shujun moved from Cannes short On the Border to features including Striding into the Wind and Ripples of Life.",
-      "st": "Wei Shujun and Kang Chunlei adapted Yu Hua’s novel into a feature.",
+      "editorial": "Watch the disused cinema. The detectives arrange leads there almost as if editing the town into a coherent movie. Notice when Ma starts filling in the gaps himself.",
+      "bio": "Wei studied sound direction at Communication University of China and began in performance. After the Cannes distinction for On the Border, Striding into the Wind was named in the Cannes Official Selection and Ripples of Life played Directors’ Fortnight. Only the River Flows brought his attention to small-town life into a crime narrative and premiered in Un Certain Regard.",
+      "st": "Wei and Kang Chunlei adapted Yu Hua’s story. Wei has said that the script went through several major versions from 2020, and that he and cinematographer Chengma chose 16mm at the script stage. The team shot in story order. The dream sequence grew out of location scouting and gives the detective a space to arrange what he has seen outside the rules of evidence.",
       "cast": [
         "Zhu Yilong",
         "Chloe Maayan",
-        "Hou Tianlai"
+        "Hou Tianlai",
+        "Tong Linkai"
       ],
       "writers": [
         "Wei Shujun",
         "Kang Chunlei"
-      ]
+      ],
+      "highlights": [
+        "Watch how film grain, night scenes and the water limit what can be seen. Much of the suspense comes from the film taking away things the viewer thought were visible."
+      ],
+      "book": "Mistakes by the River by Yu Hua",
+      "language": "Mandarin"
     },
     "py26-lili-alone": {
       "title": "Lili Alone",
       "o": "Lili Alone",
       "dir": "ZOU Jing",
-      "c": "China",
+      "c": "Mainland China / Hong Kong / Singapore",
       "genre": [
         "Drama"
       ],
-      "syn": "Lili, a young mother living with her gambler husband in remote Sichuan, heads south to the city to earn money to save her dying father.",
+      "syn": "Lili, a young mother in a remote part of Sichuan, lives with a husband who gambles. With her father gravely ill, she heads alone for a southern city and considers becoming a surrogate to pay for his care. The city opens one possible source of income and places her choices within rules set by other people.",
       "honors": [
-        "2021 Cannes Critics’ Week, Rail d’Or for Best Short Film"
+        "World Premiere | 2021 Cannes Critics’ Week · Short Film Competition",
+        "Award | 2021 Cannes Critics’ Week · Leitz Cine Discovery Prize for Short Film",
+        "Screened | Mulan International Film Festival",
+        "Screened | 2026 Pingyao International Film Festival · Pingyao 10 Years"
       ],
       "warnings": [
-        "Reproductive and financial pressures"
+        "Grave illness in the family, gambling and surrogacy"
       ],
-      "contentNote": "The published synopsis touches on reproductive and financial pressures. Sound and light intensity await verification.",
-      "editorial": "Watch how Lili navigates conflicts between her body, her earnings and her obligations to her family.",
-      "bio": "Zou Jing's short Lili Alone and feature debut A Girl Unknown both screened at Cannes Critics' Week.",
-      "st": "Zou Jing wrote and directed; Liang Zi is the cinematographer.",
+      "contentNote": "The story involves grave illness, gambling, surrogacy and financial pressure.",
+      "editorial": "Notice whom Lili can speak to at home and in the city, and which decisions she must carry alone. The film renders financial pressure through movement, waiting and her body.",
+      "bio": "Zou Jing worked as a writer and made documentaries for Shanghai television before moving into fiction. She wrote and directed Lili Alone, which competed in Cannes Critics’ Week and won the Leitz Cine Discovery Prize. Her debut feature A Girl Unknown returned to Critics’ Week.",
+      "st": "Wang Yang and Qiu Yang are credited as producers, with Liangzi as cinematographer, Hsu Yen Ching as editor and Xing Jun in production design. A Critics’ Week essay connects Lili’s opening prayer with a later upward glance on a boat at night. The recurring gesture carries her between two circumstances and gives her a life of attention beyond the financial stakes.",
       "cast": [
         "Huang Lili",
         "Hu Ling",
@@ -450,7 +522,11 @@
       ],
       "writers": [
         "Zou Jing"
-      ]
+      ],
+      "highlights": [
+        "Notice Lili’s gaze at the opening and on the night boat. The film gives her room to look and gives the viewer time without demanding an immediate explanation for her feelings."
+      ],
+      "language": "Sichuan dialect / Mandarin"
     },
     "bleda-y-rosa-a-place-an-image": {
       "title": "Bleda y Rosa. A Place, an Image",
@@ -1985,15 +2061,12 @@
     },
     "gr26-013": {
       "title": "Zoom In, Zoom Out",
-      "syn": "Game designer Shi Zi'an searches for the truth behind his missing roommate's death and meets YY through a clue left in a game. Their search crosses city streets, chat records and playable spaces, revealing very different versions of the person they thought they knew.",
-      "bio": "Dong Jie, born in the 1990s, graduated from the Beijing Film Academy in 2019; his graduation short Recess showed at the third Pingyao International Film Festival. Zoom In, Zoom Out (发现之旅) is his first feature.",
+      "syn": "When his roommate Gao Kehan disappears, Shi Zi’an learns of his death and meets Gao’s girlfriend Waiwai. Each knows a different part of the story. The pair enter a game world beyond their ordinary city routes, and Shi begins to question whether he knew his roommate or a version of him preserved on screens and in other people’s memories.",
+      "bio": "Born in Wuhan and raised in Shanghai, Dong studied directing at Beijing Film Academy and also works as an editor and writer. Break follows a missing classmate in mockumentary form, while Beijing Mushroom juxtaposes virtual models with the city. His feature debut won an innovation award at Venice Critics’ Week.",
       "highlights": [
-        "World premiere in the Venice Critics' Week competition, winning Best Innovative Film and best first feature.",
-        "The crew built the film's game themselves; key creatives are mostly university classmates.",
-        "At Pingyao: Fei Mu Honour Jury Prize and Cinephile Choice Award.",
-        "Dong Jie's first feature."
+        "Paired with Break, watch for the point in each film when the purpose of the search changes. Finding where someone went becomes a question of who can tell that person’s story."
       ],
-      "st": "A game designer, Shi Zi'an, travels between the real world and a game world to find the truth about a missing roommate, meeting an online friend, Yaya. Dong says the core search thread never changed, but the game elements grew in the course of writing; the team decided to build an interactive game scene with a game engine themselves, developing the game a year ahead and testing it repeatedly, because merely imitating how a game looks would not feel real. The key crew in cinematography, sound and game development are his university classmates.\n\nThe project was a top-ten Qingcong Project entry and was in the Shanghai International Film Festival's film project pitch. Shooting began on 1 November 2024 at Songjiang's Haopu studios and wrapped in early December; editing took most of a year, the final cut came in September 2025 and post-production was completed in July 2026.\n\nIt had its world premiere in the Critics' Week competition at the 83rd Venice Film Festival in September 2026, winning the Best Innovative Film award and the Bisato d'Oro for best first feature from Italian independent critics; the Critics' Week artistic director called it a manifesto film for Gen Z. Its Asian premiere followed on 27 September at the 10th Pingyao International Film Festival, where it won the Fei Mu Honour Jury Prize and the Cinephile Choice Award.\n\nProduced by Cao Shanshan with Wang Hongwei as executive producer, the film was shot by Li Zhong and edited by Qin Yanan. Guo Jingxi worked on its interactive game. Dong Jie previously worked in editing on The Day Is Over and Are You Lonesome Tonight?",
+      "st": "Dong told DeepFocus that the team built and tested playable game environments. Cinematographer Li Zhong, production designer Yao Jiaqi and editor Qin Yanan helped connect the city and the game. Dong also described a cut from an in-game instruction to a real beach. As the story moves into more tangible encounters, including the delivery rider, the digital sounds of the first half recede.",
       "dir": "Dong Jie",
       "honors": [
         "入选｜2026 Golden Rooster Film Festival · Chinese New Films",
@@ -2009,7 +2082,7 @@
         "11/7-13:00-xm-gr26-1-hall-2": "Post-screening event · Director / Writer: Dong Jie; Producer: Cao Shanshan; Cinematographer: Li Zhong (subject to who actually attends)",
         "11/23-15:30-jx-jygh-helecheng-hall-5": "Post-screening event · Discussion approximately 30 minutes · Industry screening · not open to the public · no public tickets"
       },
-      "editorial": "Compare how bodies move in the city with how a change of viewpoint opens a new path in the game. The playable game has rules of its own, and gives the film a way to make someone's absence felt.",
+      "editorial": "Listen to how the mix changes the weight of the two spaces: digital textures stand out early, then make more room for the street and the people in it.",
       "warnings": [
         "Missing loved ones",
         "Psychological distress or uncertainty"
@@ -2200,24 +2273,24 @@
     },
     "gr26-021": {
       "title": "A Girl Unknown",
-      "syn": "A girl's upbringing links three families, raising questions about blood ties, care, identity and women's place in society.",
-      "bio": "Zou Jing, born in 1984, worked in documentary direction and editing at Shanghai Television before her debut short Lili Alone was selected for Cannes Critics' Week in 2021 and won the Discovery Prize. A Girl Unknown is her first feature, a China–France co-production registered by Emei Film Group, Xiamen Xixi Pictures' Shanghai branch and France's Maneki Films.",
+      "syn": "Between the ages of six and eighteen, a girl is taken into three households. Each gives her a new name and a different set of relationships to learn. Tenderness and loss teach her that being called someone and deciding who to become are different questions. Three chapters trace her growing ability to interpret her past and choose a future.",
+      "bio": "Zou Jing made documentaries for Shanghai television before her narrative short Lili Alone played in Cannes Critics’ Week. Her first feature grew from a long interest in stories of children placed with other families. Developed through the Next Step workshop, it returned to Critics’ Week in competition and received the distribution award and the parallel-section FIPRESCI prize.",
       "highlights": [
-        "Selected for the 2026 Cannes Critics' Week feature competition, also eligible for the Caméra d'Or.",
-        "Script won the Next Step prize at Cannes Critics' Week in 2024.",
-        "Starring Li Gengxi: one girl, three names, three families.",
-        "Zou Jing's first feature, a China–France co-production; closing film of the Golden Rooster festival."
+        "Follow her attention to objects and rooms. The specific moments when she gains or loses a place to herself give the idea of home its shape."
       ],
-      "st": "Zou Jing's own grandmother was given up for adoption, and before writing she interviewed several women with similar experiences and drew on news reports; the script took nearly four years from 2021, though the story itself is fictional. Li Gengxi's Juan passes through three adoptive families and three names, and the film uses this drifting life to ask about identity and belonging, ending with the renaming as a new beginning. Shen Jiani, Zu Feng and Cao Ruofan also appear.\n\nThe script won the Next Step feature screenplay workshop prize at Cannes Critics' Week in May 2024, reportedly the first Chinese-language script to win it, and was selected for Shanghai's 'young director recommendation' project that year; Pyramide holds international sales and French distribution. The film was registered in March 2025 and began shooting on 21 April.\n\nIn April 2026 it was selected for the Cannes Critics' Week feature competition of the 79th festival, automatically eligible for the Caméra d'Or, and is the first Sichuan-produced film selected for Cannes. It closes the 2026 Golden Rooster festival.",
+      "st": "Zou has discussed a family elder’s experience of being placed with another family and spoke with women who had related experiences while writing. The screenplay is fiction and takes the form of three chapters. Zou co-edited with Tina Baz; Cannes lists Liang Zhongqiang as cinematographer and Valentin Hadjadj as composer. The Cannes programme lists 128 minutes and the Golden Rooster record retains its 125-minute listing.",
       "dir": "Zou Jing",
       "honors": [
-        "入选｜2026 Golden Rooster Film Screening · 国产新片展映"
+        "入选｜2026 Golden Rooster Film Screening · 国产新片展映",
+        "Award | 2026 Cannes Critics’ Week · Gan Foundation Award for Distribution",
+        "Award | 2026 Festival de Cannes · FIPRESCI Prize, Parallel Sections",
+        "Official Selection | 2026 Busan International Film Festival · A Window on Asian Cinema"
       ],
       "screeningNotes": {
         "11/7-19:50-xm-gr26-1-hall-6": "Post-screening event · Director / Writer: Zou Jing; Starring: Li Gengxi, Shen Jiani; Producer: Wang Yang, Cao Xi (subject to who actually attends)",
         "11/9-19:40-xm-gr26-1-hall-6": "Post-screening event · Director / Writer: Zou Jing; Starring: Zu Feng, Shen Jiani; Producer: Wang Yang, Cao Xi (subject to who actually attends)"
       },
-      "editorial": "A women's coming-of-age film about adoption, naming and belonging. Compare the three families without rushing to pick the 'right' home for her.",
+      "editorial": "Notice who first uses each new name and how she responds. Much of what a household imagines for a child can be heard in an ordinary act of address.",
       "warnings": [
         "Family conflict or separation",
         "Social or professional pressure"
@@ -12359,7 +12432,7 @@
       "contentNote": "Double bill pairing Cannes Critics’ Week short Lili Alone with feature A Girl Unknown, dealing with poverty, a dying father, and difficult identity struggles; audiovisual intensity awaits verification.",
       "editorial": "Follow how being addressed by a different name can reshape the relationship between a girl and her family.",
       "bio": "Zou Jing's short Lili Alone and feature debut A Girl Unknown both screened at Cannes Critics' Week.",
-      "st": "Lili Alone received the short-film Rail d'Or. A Girl Unknown received the Critics' Week distribution and FIPRESCI prizes before its selection for Pingyao.\n\nLili Alone | July 2021 · Cannes Critics’ Week (short-film Rail d’Or). Written and directed by Zou Jing, shot by Liangzi and featuring Huang Lili, Hu Ling and Yu Shixue. Ratings: IMDb 6.9/10.\n\nA Girl Unknown | May 2026 · Cannes Critics’ Week (world premiere). The feature received both the distribution and FIPRESCI awards in Cannes Critics' Week. Ratings: IMDb 6.9/10, Letterboxd 3.78/5.",
+      "st": "Lili Alone received the short-film Leitz Cine Discovery Prize. A Girl Unknown received the Critics' Week distribution and FIPRESCI prizes before its selection for Pingyao.\n\nLili Alone | July 2021 · Cannes Critics’ Week (short-film Leitz Cine Discovery Prize). Written and directed by Zou Jing, shot by Liangzi and featuring Huang Lili, Hu Ling and Yu Shixue. Ratings: IMDb 6.9/10.\n\nA Girl Unknown | May 2026 · Cannes Critics’ Week (world premiere). The feature received both the distribution and FIPRESCI awards in Cannes Critics' Week. Ratings: IMDb 6.9/10, Letterboxd 3.78/5.",
       "highlights": [
         "A Pingyao 10 Years double bill connecting Zou Jing’s 2021 short Lili Alone with her 2026 feature A Girl Unknown."
       ],
@@ -15379,6 +15452,15 @@
     "拍照识票自动填票根": "Scan paper or e-tickets via OCR",
     "制作或编辑典藏票根时，点放映信息旁的「拍照识票」，拍一张纸质电影票或选一张电子票截图，自动识别日期、时间、影院、影厅、座位和放映版本。网页端在本机离线识别，图片不出手机；小程序走微信识字，识别不了可随时手动修改。": "Tap Scan ticket in the ticket editor to pick a paper stub photo or e-ticket screenshot and auto-fill date, time, cinema, hall, seat, and format. Web runs fully on-device with self-hosted OCR (photos never leave your phone); mini-program uses WeChat OCR with manual fallback.",
     "编辑票根时点「拍照识票」，选择纸质票照片或电子票截图，会自动识别日期、开场时间、影院、影厅、座位和版本并填入表单（同时尝试匹配片库排片）。网页端使用本站自托管的中英文轻量模型在本机识别，图片不上传服务器；小程序端走微信识字，识别失败时可直接在下方手动填写。": "Tap Scan ticket in the ticket editor to pick a paper ticket photo or e-ticket screenshot and auto-fill date, start time, venue, hall, seat, and format (snapping to matching screenings when found). Web uses our self-hosted on-device OCR model so photos never leave your device; the mini-program uses WeChat OCR with instant manual fallback.",
-    "第十届平遥国际电影展（9月24日–30日，平遥电影宫）完整专题已补录：涵盖藏龙、卧虎、首映、特别展映、平遥十年及汾酒中秋之夜共 48 项片目、86 场放映记录、双官方荣誉评审团与单元导读，已跨展关联《小城之春》《寒夜灯柱》《刚果男孩》《菲律宾女孩》等 16 部同展影片，并新增平遥官网片单抓取适配器。": "Added the complete 10th Pingyao International Film Festival (Sep 24–30, Pingyao Film Palace): 48 official programmes and events across Hidden Dragons, Crouching Tigers, Galas, Special Presentations, Pingyao 10 Years, and Fenjiu Night, 86 screenings, both official juries, curatorial section notes, cross-festival links for 16 shared titles, and a reusable PYIFF official API importer adapter."
+    "第十届平遥国际电影展（9月24日–30日，平遥电影宫）完整专题已补录：涵盖藏龙、卧虎、首映、特别展映、平遥十年及汾酒中秋之夜共 48 项片目、86 场放映记录、双官方荣誉评审团与单元导读，已跨展关联《小城之春》《寒夜灯柱》《刚果男孩》《菲律宾女孩》等 16 部同展影片，并新增平遥官网片单抓取适配器。": "Added the complete 10th Pingyao International Film Festival (Sep 24–30, Pingyao Film Palace): 48 official programmes and events across Hidden Dragons, Crouching Tigers, Galas, Special Presentations, Pingyao 10 Years, and Fenjiu Night, 86 screenings, both official juries, curatorial section notes, cross-festival links for 16 shared titles, and a reusable PYIFF official API importer adapter.",
+    "导演作品档案 · 单片海报": "Director’s archive · individual film poster",
+    "中国内地公映海报": "Mainland China theatrical poster",
+    "中国内地 CINITY 公映海报": "Mainland China CINITY theatrical poster",
+    "FIRST 青年电影展 · 单片海报": "FIRST International Film Festival · individual film poster",
+    "单片展映海报": "Individual festival poster",
+    "戛纳短片竞赛版海报": "Cannes short-film competition poster",
+    "戛纳一种关注国际版海报": "Un Certain Regard international poster",
+    "导演官网 · 单片海报": "Director’s site · individual film poster",
+    "戛纳影评人周入围海报": "Cannes Critics’ Week selection poster"
   }
 }
