@@ -1,93 +1,81 @@
-# 拍照识票 AI 增强部署指南（Google AI Studio + Supabase Edge Function）
+# 麻雀观影护照 AI 能力部署指南（Google AI Studio + Supabase Edge Function）
 
-本文档说明如何将麻雀观影护照的「AI 识票」功能接入 Google AI Studio（Gemini API）。
+本文档说明如何将麻雀观影护照的「AI 识票」与「AI 观影画像 / 评语」接入 Google AI Studio（Gemini API）。两个功能共用同一个 Supabase Edge Function（显示名 `ticket-ai`，线上 slug `smooth-processor`），通过白名单 `action` 区分：
+
+- `ticket_ocr`：典藏票根编辑页「AI 识票」（纸质票 / 电子票截图结构化识别）
+- `taste_portrait`：趣味图谱页「AI 观影画像」（基于看过清单、星级与四象限摘要生成 200–300 字评语，前端按指纹本机缓存）
 
 ## 架构说明
 
-- **网页端**（`js/tickets.js`）：保留原有本机离线 Tesseract.js（`拍照识票`，图片不出手机）作为默认；点击「AI 识票」或「用 AI 重新识别」时，将缩放后的 JPEG 发送到现有 Supabase 项目的 Edge Function `ticket-ai`。
-- **微信小程序**（`miniprogram/packages/collect/ticket-edit/` + `cloudfunctions/ticketOcr`）：保留微信官方 `ocr.printedText`（`拍照识票`）；点击「AI 识票」时，由 `ticketOcr` 云函数携带 `mode: 'ai'` 转发给同一个 Supabase Edge Function `ticket-ai`，无需在微信后台配置 Google 域名。
-- **自动回退**：在未部署 `ticket-ai`、未配置 `GEMINI_API_KEY`、请求限流或网络超时时，网页端自动回退本机离线识票，小程序自动回退微信识字，不会中断用户流程。
-- **隐私与成本保护**：图片仅在 Edge Function 内存中转发给 Gemini，不写入数据库或对象存储、不记录日志；Edge Function 内置来源白名单（CORS）、单图 2 MB 上限、固定结构化提取任务与每 IP 滑动窗口限流。
+- **网页端**：
+  - `js/tickets.js`：保留本机离线 Tesseract.js（`拍照识票`，图片不出手机）作为默认；点「AI 识票」或「用 AI 重新识别」时调用 `/functions/v1/smooth-processor`（`action: 'ticket_ocr'`），不可用时自动回退离线识票。
+  - `js/my.js` + `shared/taste-portrait.js`：在「我的电影趣味图谱」（`#taste-map`）提供「AI 观影画像」，调用同一接口（`action: 'taste_portrait'`），结果按片单指纹缓存在本机 `sparrow-ai-portrait-v1`，记录未变动时不重复请求。
+- **微信小程序**：
+  - `cloudfunctions/ticketOcr`：转发 `ticket_ocr`，不可用时自动回退微信官方 `ocr.printedText`。
+  - `cloudfunctions/taste`：新增 `action: 'portrait'` 转发 `taste_portrait`，小程序分包 `packages/collect/taste-map` 使用本机 `sk-ai-portrait-v1` 缓存。
+- **隐私与成本保护**：图片与片单摘要仅在 Edge Function 内存中转发给 Gemini，不落盘、不存库、不打日志；Edge Function 内置来源白名单（CORS）、单图 2 MB / 摘要 14 KB 上限、固定任务白名单与每 IP 滑动窗口限流。
 
 ---
 
 ## 第一步：在 Google AI Studio 创建 API Key
 
 1. 访问 [Google AI Studio](https://aistudio.google.com/) 并登录 Google 账号。
-2. 点击右上角或左侧菜单的 **Get API key → Create API key**，生成一把 Gemini API Key。
-3. 建议在对应 Google Cloud 项目中设置**预算提醒 / 每日配额上限**，防止异常流量产生超额费用。
-4. 默认模型为 `gemini-2.5-flash`（支持多模态图文与 JSON Schema 输出，速度快且单次识票成本极低）。
+2. 点击 **API 密钥 → 创建 API 密钥**，生成一把 Gemini API Key。
+3. 建议在对应结算账户中设置**月度支出上限（Spend Cap）**，防止异常流量产生超额费用。
+4. 默认模型为 `gemini-3.5-flash-lite`（支持多模态图文与 JSON Schema 输出，默认极简思考、速度快且成本极低）。
 
 ---
 
-## 第二步：部署 Supabase Edge Function（`ticket-ai`）
+## 第二步：部署 / 更新 Supabase Edge Function
 
 函数代码位于 [`backend/supabase/functions/ticket-ai/index.ts`](../backend/supabase/functions/ticket-ai/index.ts)。
 
-### 方式 A：使用 Supabase CLI（推荐）
-
-```bash
-# 1. 登录并关联现有项目
-supabase login
-supabase link --project-ref dclxhxxjktegyiwafmsv
-
-# 2. 写入 Gemini API Key（仅存放在 Supabase 服务端 Secrets，切勿提交到 Git）
-supabase secrets set GEMINI_API_KEY="你的_GEMINI_API_KEY"
-
-# 可选：自定义模型或限流参数（不设则使用默认值）
-# supabase secrets set GEMINI_MODEL="gemini-2.5-flash"
-# supabase secrets set AI_RATE_LIMIT="12"
-# supabase secrets set AI_RATE_WINDOW_MS="600000"
-
-# 3. 部署 Edge Function（允许使用项目公开 publishable key 调用）
-supabase functions deploy ticket-ai --workdir backend --no-verify-jwt
-```
-
-### 方式 B：在 Supabase 网页后台直接部署
+### 方式 A：在 Supabase 网页后台更新（推荐，零安装）
 
 1. 打开 Supabase 控制台 → 选中项目 `dclxhxxjktegyiwafmsv`。
-2. 进入 **Edge Functions → Secrets**，新增 `GEMINI_API_KEY` 并填入第一步拿到的 Key。
-3. 进入 **Edge Functions → Deploy a new function**，函数名填写 `ticket-ai`，把 `backend/supabase/functions/ticket-ai/index.ts` 的内容完整粘贴进去。
-4. 在函数设置中关闭 **Verify JWT**（与现有公开 `publishable` key 调用方式一致），点击 **Deploy**。
+2. 确认 **Edge Functions → Secrets** 中已保存 `GEMINI_API_KEY`（可选设 `GEMINI_MODEL=gemini-3.5-flash-lite`）。
+3. 进入 **Edge Functions**，点进已有的 `ticket-ai`（URL 为 `/functions/v1/smooth-processor`）→ **Code** 标签页，把 `backend/supabase/functions/ticket-ai/index.ts` 的内容完整粘贴替换 → 点 **Deploy updates**。
+4. 确认 **Details** 中的 **Verify JWT with legacy secret** 保持关闭状态。
+
+### 方式 B：使用 Supabase CLI
+
+```bash
+supabase login
+supabase link --project-ref dclxhxxjktegyiwafmsv
+supabase secrets set GEMINI_API_KEY="你的_GEMINI_API_KEY"
+supabase functions deploy smooth-processor --workdir backend --no-verify-jwt
+```
 
 ---
 
 ## 第三步：验证接口是否生效
 
-> 当前项目在线上通过网页编辑器部署的函数显示名为 `ticket-ai`，实际 endpoint slug 为 `smooth-processor`（网页端与小程序云函数均指向 `/functions/v1/smooth-processor`）。
+### 验证 `taste_portrait`（AI 观影画像）
 
-用一张测试票根图片转为 base64 后验证（或直接在本地/线上页面点击「AI 识票」）：
+```bash
+curl -X POST "https://dclxhxxjktegyiwafmsv.supabase.co/functions/v1/smooth-processor" \
+  -H "Content-Type: application/json" \
+  -H "Origin: https://sparrowcinema.org" \
+  -H "apikey: sb_publishable_2K9O3h8nn2I_I-cIAdks8A_QZ98xwZ2" \
+  -H "Authorization: Bearer sb_publishable_2K9O3h8nn2I_I-cIAdks8A_QZ98xwZ2" \
+  -d '{"action":"taste_portrait","lang":"zh","scope":"全部观影","watchedCount":3,"topFilms":[{"t":"花样年华","y":"2000","r":10,"fun":4.5,"bore":1},{"t":"潜行者","y":"1979","r":9,"fun":4,"bore":4},{"t":"小城之春","y":"1948","r":8,"fun":3.5,"bore":2}]}'
+```
+
+### 验证 `ticket_ocr`（AI 识票）
 
 ```bash
 IMG_B64=$(base64 -w 0 your-ticket.jpg)
 curl -X POST "https://dclxhxxjktegyiwafmsv.supabase.co/functions/v1/smooth-processor" \
   -H "Content-Type: application/json" \
+  -H "Origin: https://sparrowcinema.org" \
   -H "apikey: sb_publishable_2K9O3h8nn2I_I-cIAdks8A_QZ98xwZ2" \
   -H "Authorization: Bearer sb_publishable_2K9O3h8nn2I_I-cIAdks8A_QZ98xwZ2" \
   -d "{\"action\":\"ticket_ocr\",\"contentType\":\"image/jpeg\",\"imageBase64\":\"$IMG_B64\"}"
-```
-
-正常返回示例：
-
-```json
-{
-  "ok": true,
-  "fields": {
-    "date": "2026-11-28",
-    "time": "19:30",
-    "venue": "杭州百美汇影城",
-    "hall": "3号杜比全景声厅",
-    "seat": "5排8座",
-    "format": "4K修复"
-  },
-  "raw": "...",
-  "model": "gemini-2.5-flash"
-}
 ```
 
 ---
 
 ## 第四步：同步微信小程序
 
-1. 在微信开发者工具中右键 `cloudfunctions/ticketOcr`，选择 **上传并部署：云端安装依赖**。
-2. 票根编辑页（`miniprogram/packages/collect/ticket-edit/`）已同步新增「AI 识票」按钮与失败回退提示；发版前按常规流程上传体验版/提交审核即可生效。
+1. 在微信开发者工具中右键 `cloudfunctions/ticketOcr` 与 `cloudfunctions/taste`，分别选择 **上传并部署：云端安装依赖**。
+2. 票根编辑页（`packages/collect/ticket-edit`）与趣味图谱页（`packages/collect/taste-map`）已同步更新，按常规流程上传体验版 / 提交审核即可生效。

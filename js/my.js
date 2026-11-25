@@ -149,7 +149,98 @@ let tasteYear='',tasteProg='';function tasteIn(pid){const ctx=libraryContext();r
 function tasteProgRows(){const TR=window.SparrowTasteReport,all=TR.validRows(watchEntries());return [{id:'',name:tr('全部专题'),sub:tr(all.length+' 部影片'),selected:!tasteProg},...progOrdered().map(p=>{const t=tasteIn(p.id);return {id:p.id,name:p.name,n:all.filter(x=>t(x.f)).length};}).filter(x=>x.n).map(x=>({id:x.id,name:x.name,sub:tr(x.n+' 部影片'),selected:tasteProg===x.id}))];}
 function tasteScope(){return tasteProg&&PG[tasteProg]?{programme:PG[tasteProg].name,inProg:tasteIn(tasteProg)}:{year:tasteYear};}
 function tasteYearRows(){const ys=window.SparrowTasteReport.years(watchEntries());return [{id:'',name:tr('全部年份'),sub:tr(ys.reduce((s,x)=>s+x.n,0)+' 部影片'),selected:!tasteYear},...ys.map(x=>({id:x.y,name:x.y,sub:tr(x.n+' 部影片'),selected:tasteYear===x.y}))];}
-function tasteMapPage(){const TRy=window.SparrowTasteReport.years(watchEntries());if(tasteYear&&!TRy.some(x=>x.y===tasteYear))tasteYear='';if(tasteProg&&!PG[tasteProg])tasteProg='';const rn=window.SparrowTasteReport.analyze(watchEntries(),{en:LANG==='en',...tasteScope()}).n;main.innerHTML='<section class="view gut taste-map-page">'+subBackHTML()+'<div class="page-heading"><div><small>MY FILM TASTE MAP</small><h1 class="sec">我的电影趣味图谱</h1></div></div><p class="pw-hint">'+tr('横轴是有趣度，纵轴是无聊度。在影片页「趣味」一栏给两项都打分，影片就会出现在图上。')+'</p><div class="schedule-filterbar tr-filterbar" aria-label="'+tr('图谱范围')+'">'+[['tprog','专题',tasteProg?PG[tasteProg].name:tr('全部专题'),!!tasteProg],['tyear','年份',tasteYear||tr('全部年份'),!!tasteYear]].map(([k,l,v,on])=>'<button type="button" class="schedule-filter'+(on?' active':'')+'" data-'+k+' aria-haspopup="dialog" aria-label="'+esc(tr(l)+'：'+v)+'"><span><small>'+tr(l)+'</small><b>'+esc(v)+'</b></span>'+filterChevron+'</button>').join('')+'</div><p class="pw-hint tr-note">'+tr('专题和年份二选一，选一个会自动重置另一个。')+'</p><div class="tr-acts2"><button type="button" id="tr-make" class="tr-make"'+(rn>=3?'':' disabled')+'>'+tr('生成我的趣味图谱')+'</button><small>'+(rn>=3?tr('长图含趣味人格命名、四象限与分析'):tr('至少给 3 部电影的有趣度和无聊度都打分后才能生成'))+'</small></div>'+tasteMapHTML()+'</section>';const mk=main.querySelector('#tr-make');if(mk)mk.onclick=makeTasteReport;if(tasteMapMode==='community')loadCommunity();}
+function tastePortraitEndpoint(){
+ return typeof SB_API==='string'&&SB_API?SB_API.replace(/\/rest\/v1\/rpc\/?$/,'/functions/v1/smooth-processor'):'';
+}
+let aiPortraitBusy=false,aiPortraitMsg='',aiPortraitTone='';
+function tastePortraitBuild(){
+ const TP=window.SparrowTastePortrait,TR=window.SparrowTasteReport;
+ if(!TP)return null;
+ const built=TP.buildPayload(watchEntries(),{en:LANG==='en',...tasteScope(),tasteReport:TR});
+ const fp=TP.fingerprint(built.payload);
+ const hit=built.ok?TP.readCache(k=>localStorage.getItem(k),TP.WEB_CACHE_KEY,fp):null;
+ return {TP,built,fp,hit};
+}
+function tastePortraitHTML(){
+ const ctx=tastePortraitBuild();if(!ctx)return '';
+ const {built,hit}=ctx,en=LANG==='en',p=hit&&hit.portrait;
+ const scopeMeta=built.payload.scope+' · '+(en?(built.watchedCount+' watched'+(built.ratedCount?' · '+built.ratedCount+' taste-rated':'')):(built.watchedCount+' 部看过'+(built.ratedCount?' · '+built.ratedCount+' 部已评趣味':'')));
+ let body='';
+ if(p){
+  const tagsHTML=p.tags&&p.tags.length?'<div class="aip-tags">'+p.tags.map(t=>'<span>'+esc(t)+'</span>').join('')+'</div>':'';
+  const parasHTML=p.paragraphs.map(line=>'<p class="aip-p">'+esc(line)+'</p>').join('');
+  const nextHTML=p.nextHint?'<div class="aip-next"><b>'+esc(tr('下一步建议'))+'</b><span>'+esc(p.nextHint)+'</span></div>':'';
+  body=(p.headline?'<h3 class="aip-headline">'+esc(p.headline)+'</h3>':'')+tagsHTML+'<div class="aip-text">'+parasHTML+'</div>'+nextHTML+
+   '<div class="aip-foot"><button type="button" class="aip-btn aip-btn-ghost" data-aip="copy">'+esc(tr('复制评语'))+'</button><button type="button" class="aip-btn aip-btn-ghost" data-aip="refresh"'+(aiPortraitBusy?' disabled':'')+'>'+esc(aiPortraitBusy?tr('生成中…'):tr('重新生成'))+'</button></div>';
+ }else{
+  body='<p class="aip-desc">'+esc(tr('结合当前范围看过的片单、星级评分与趣味四象限摘要，由 AI 生成 200–300 字专属观影评语。结果缓存在本机，观影记录未变动时不重复请求。'))+'</p>'+
+   '<div class="aip-cta"><button type="button" class="aip-btn aip-btn-primary" data-aip="gen"'+(built.ok&&!aiPortraitBusy?'':' disabled')+'>'+esc(aiPortraitBusy?tr('正在生成观影评语…'):tr('生成 AI 观影评语'))+'</button>'+
+   (!built.ok?'<small>'+esc(tr('当前范围至少标记 3 部看过影片后即可生成'))+'</small>':'')+'</div>';
+ }
+ const msgHTML=aiPortraitMsg?'<p class="aip-msg'+(aiPortraitTone?' '+aiPortraitTone:'')+'" role="status">'+esc(aiPortraitMsg)+'</p>':'';
+ return '<section class="ai-portrait" id="ai-portrait"><header class="aip-head"><div><b>✦ '+esc(tr('AI 观影画像'))+'</b><small>'+esc(scopeMeta)+'</small></div>'+(p&&hit.cached?'<span class="aip-badge">'+esc(tr('本机已缓存'))+'</span>':'')+'</header>'+body+msgHTML+'</section>';
+}
+function refreshAiPortraitCard(){
+ const box=main.querySelector('#ai-portrait');if(!box)return;
+ box.outerHTML=tastePortraitHTML();
+ bindAiPortraitCard();
+}
+function bindAiPortraitCard(){
+ const box=main.querySelector('#ai-portrait');if(!box)return;
+ const g=box.querySelector('[data-aip="gen"]');if(g)g.onclick=()=>runAiPortrait(false);
+ const rf=box.querySelector('[data-aip="refresh"]');if(rf)rf.onclick=()=>runAiPortrait(true);
+ const cp=box.querySelector('[data-aip="copy"]');if(cp)cp.onclick=copyAiPortrait;
+}
+async function runAiPortrait(force){
+ if(aiPortraitBusy)return;
+ const ctx=tastePortraitBuild();if(!ctx||!ctx.built.ok)return;
+ const {TP,built,fp,hit}=ctx;
+ if(!force&&hit&&hit.portrait){aiPortraitMsg='';aiPortraitTone='';refreshAiPortraitCard();return;}
+ const endpoint=tastePortraitEndpoint();
+ if(!endpoint){aiPortraitMsg=tr('AI 观影画像暂不可用，请稍后再试；上方离线趣味图谱仍可正常使用。');aiPortraitTone='warn';refreshAiPortraitCard();return;}
+ aiPortraitBusy=true;aiPortraitMsg=tr('正在结合你的片单与四象限撰写评语…');aiPortraitTone='';refreshAiPortraitCard();
+ const ctrl=new AbortController(),timer=setTimeout(()=>ctrl.abort(),22000);
+ try{
+  const res=await fetch(endpoint,{
+   method:'POST',signal:ctrl.signal,
+   headers:{'Content-Type':'application/json',...(typeof SB_KEY==='string'&&SB_KEY?{apikey:SB_KEY,Authorization:'Bearer '+SB_KEY}:{})},
+   body:JSON.stringify(built.payload)
+  });
+  const j=await res.json().catch(()=>null);
+  if(res.ok&&j&&j.ok&&j.portrait){
+   const saved=TP.writeCache(k=>localStorage.getItem(k),(k,v)=>localStorage.setItem(k,v),TP.WEB_CACHE_KEY,fp,j.portrait);
+   if(saved){
+    aiPortraitMsg='';aiPortraitTone='';
+    toast(tr('AI 观影评语已生成并缓存在本机'));
+   }else{
+    aiPortraitMsg=tr('AI 返回内容格式异常，请稍后重试。');aiPortraitTone='warn';
+   }
+  }else{
+   const reason=(j&&j.reason)||(res.status===429?'rate_limited':'unavailable');
+   aiPortraitMsg=reason==='rate_limited'
+    ?tr('AI 请求过于频繁，请稍后再试；已生成的评语会保存在本机。')
+    :tr('AI 观影画像暂不可用，请稍后再试；上方离线趣味图谱仍可正常使用。');
+   aiPortraitTone='warn';
+  }
+ }catch(err){
+  console.warn('ai portrait failed',err);
+  aiPortraitMsg=tr('AI 观影画像暂不可用，请检查网络后重试；上方离线趣味图谱仍可正常使用。');
+  aiPortraitTone='warn';
+ }finally{
+  clearTimeout(timer);aiPortraitBusy=false;refreshAiPortraitCard();
+ }
+}
+function copyAiPortrait(){
+ const ctx=tastePortraitBuild();if(!ctx||!ctx.hit||!ctx.hit.portrait)return;
+ const txt=ctx.TP.formatCopyText(ctx.hit.portrait,ctx.built.payload.scope,LANG==='en');if(!txt)return;
+ const ok=()=>toast(tr('已复制观影评语'));
+ if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(ok).catch(()=>fallbackCopy(txt,ok));}
+ else fallbackCopy(txt,ok);
+}
+function fallbackCopy(txt,onOk){
+ try{const ta=document.createElement('textarea');ta.value=txt;ta.style.cssText='position:fixed;left:-9999px;top:0;font-size:16px';document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();onOk();}catch(e){toast(tr('复制失败，请手动长按选中文字'));}
+}
+function tasteMapPage(){aiPortraitMsg='';aiPortraitTone='';const TRy=window.SparrowTasteReport.years(watchEntries());if(tasteYear&&!TRy.some(x=>x.y===tasteYear))tasteYear='';if(tasteProg&&!PG[tasteProg])tasteProg='';const rn=window.SparrowTasteReport.analyze(watchEntries(),{en:LANG==='en',...tasteScope()}).n;main.innerHTML='<section class="view gut taste-map-page">'+subBackHTML()+'<div class="page-heading"><div><small>MY FILM TASTE MAP</small><h1 class="sec">我的电影趣味图谱</h1></div></div><p class="pw-hint">'+tr('横轴是有趣度，纵轴是无聊度。在影片页「趣味」一栏给两项都打分，影片就会出现在图上。')+'</p><div class="schedule-filterbar tr-filterbar" aria-label="'+tr('图谱范围')+'">'+[['tprog','专题',tasteProg?PG[tasteProg].name:tr('全部专题'),!!tasteProg],['tyear','年份',tasteYear||tr('全部年份'),!!tasteYear]].map(([k,l,v,on])=>'<button type="button" class="schedule-filter'+(on?' active':'')+'" data-'+k+' aria-haspopup="dialog" aria-label="'+esc(tr(l)+'：'+v)+'"><span><small>'+tr(l)+'</small><b>'+esc(v)+'</b></span>'+filterChevron+'</button>').join('')+'</div><p class="pw-hint tr-note">'+tr('专题和年份二选一，选一个会自动重置另一个。')+'</p><div class="tr-acts2"><button type="button" id="tr-make" class="tr-make"'+(rn>=3?'':' disabled')+'>'+tr('生成我的趣味图谱')+'</button><small>'+(rn>=3?tr('长图含趣味人格命名、四象限与分析'):tr('至少给 3 部电影的有趣度和无聊度都打分后才能生成'))+'</small></div>'+tastePortraitHTML()+tasteMapHTML()+'</section>';const mk=main.querySelector('#tr-make');if(mk)mk.onclick=makeTasteReport;bindAiPortraitCard();if(tasteMapMode==='community')loadCommunity();}
 /* 生成我的趣味图谱长图：命名与分析由 shared/taste-report.js 按评分规则组合生成（离线、同样的评分得到同样的结果） */
 let trBusy=false;async function makeTasteReport(){if(trBusy)return;trBusy=true;toast('正在生成趣味图谱…');
  try{try{await Promise.all(['900 64px "Noto Serif SC"','700 30px "Noto Sans SC"','500 24px "IBM Plex Mono"'].map(f=>document.fonts.load(f,'麻雀趣味图谱0123')));}catch(e){}

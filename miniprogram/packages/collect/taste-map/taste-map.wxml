@@ -9,6 +9,40 @@
     </view>
     <view class="tr-note">{{i.__en?'Programme or year: pick one. Choosing one resets the other.':'专题和年份二选一，选一个会自动重置另一个。'}}</view>
     <view class="tr-acts2"><button class="tr-make" disabled="{{reportN<3}}" bindtap="makeReport" hover-class="tr-hv">{{i.__en?'Create my taste map':'生成我的趣味图谱'}}</button><text class="tr-sub">{{reportN>=3?(i.__en?'A long image with your taste persona, quadrants and reading':'长图含趣味人格命名、四象限与分析'):(i.__en?'Rate both scales for at least 3 films to create it':'至少给 3 部电影的有趣度和无聊度都打分后才能生成')}}</text></view>
+    <view class="ai-portrait">
+      <view class="aip-head">
+        <view class="aip-title-box">
+          <text class="aip-title">✦ {{L.t(i,'AI 观影画像')}}</text>
+          <text class="aip-meta">{{aipMeta}}</text>
+        </view>
+        <text wx:if="{{aipPortrait && aipCached}}" class="aip-badge">{{L.t(i,'本机已缓存')}}</text>
+      </view>
+      <block wx:if="{{aipPortrait}}">
+        <text wx:if="{{aipPortrait.headline}}" class="aip-headline">{{aipPortrait.headline}}</text>
+        <view wx:if="{{aipPortrait.tags.length}}" class="aip-tags">
+          <text wx:for="{{aipPortrait.tags}}" wx:key="index" class="aip-tag">{{item}}</text>
+        </view>
+        <view class="aip-text">
+          <text wx:for="{{aipPortrait.paragraphs}}" wx:key="index" class="aip-p" user-select="true">{{item}}</text>
+        </view>
+        <view wx:if="{{aipPortrait.nextHint}}" class="aip-next">
+          <text class="aip-next-k">{{L.t(i,'下一步建议')}}</text>
+          <text class="aip-next-v" user-select="true">{{aipPortrait.nextHint}}</text>
+        </view>
+        <view class="aip-foot">
+          <button class="aip-btn aip-btn-ghost" hover-class="tr-hv" bindtap="copyAiPortrait">{{L.t(i,'复制评语')}}</button>
+          <button class="aip-btn aip-btn-ghost" hover-class="tr-hv" disabled="{{aipBusy}}" data-force="1" bindtap="makeAiPortrait">{{aipBusy ? L.t(i,'生成中…') : L.t(i,'重新生成')}}</button>
+        </view>
+      </block>
+      <block wx:else>
+        <text class="aip-desc">{{L.t(i,'结合当前范围看过的片单、星级评分与趣味四象限摘要，由 AI 生成 200–300 字专属观影评语。结果缓存在本机，观影记录未变动时不重复请求。')}}</text>
+        <view class="aip-cta">
+          <button class="aip-btn aip-btn-primary" hover-class="tr-hv" disabled="{{!aipOk || aipBusy}}" bindtap="makeAiPortrait">{{aipBusy ? L.t(i,'正在生成观影评语…') : L.t(i,'生成 AI 观影评语')}}</button>
+          <text wx:if="{{!aipOk}}" class="tr-sub">{{L.t(i,'当前范围至少标记 3 部看过影片后即可生成')}}</text>
+        </view>
+      </block>
+      <text wx:if="{{aipMsg}}" class="aip-msg {{aipTone}}">{{aipMsg}}</text>
+    </view>
     <view class="taste-map gs">
       <view class="gs-h"><text class="gs-t">{{i.__en?'Quadrants':'四象限'}}</text><text class="gs-s">{{tasteMap.n}} {{i.__en?'films':'部电影'}}</text></view>
       <view class="taste-switch"><button data-mode="mine" class="{{tasteMode!=='community'?'on':''}}" bindtap="setTasteMode">{{i.__en?'My quadrants':'我的四象限'}}</button><button data-mode="community" class="{{tasteMode==='community'?'on':''}}" bindtap="setTasteMode">{{i.__en?'Community quadrants':'社区四象限'}}</button></view>

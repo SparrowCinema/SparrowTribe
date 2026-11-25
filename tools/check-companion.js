@@ -35,6 +35,7 @@ require('./check-film-details.js');
 require('./check-mini-ended.js');
 
 require('./check-taste-report.js');
+require('./check-taste-portrait.js');
 require('./check-remind.js');
 require('./check-overlap.js');
 require('./check-planner-tz.js');
