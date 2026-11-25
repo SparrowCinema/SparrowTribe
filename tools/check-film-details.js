@@ -25,5 +25,7 @@ console.log('PASS: cinema film screening filters render only for 院线 films');
 // An individually recorded film links back to the original double-bill showtimes.
 current=Date.parse('2026-12-01T00:00:00+08:00');
 main.innerHTML='';sandbox.detail('py26-a-song-sung-blue');
-assert(main.innerHTML.includes('href="#film-py26-017"'));
+assert(!main.innerHTML.includes('href="#film-py26-017"'));
+assert(main.innerHTML.includes('href="#film-py26-ray-of-sunshine"'));
+for(const show of SH.filter(s=>s.id==='py26-017'))assert(main.innerHTML.includes(sandbox.pastRowHTML(show,F[show.id])));
 assert(!main.innerHTML.includes('上映信息待公布'));
