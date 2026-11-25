@@ -359,7 +359,7 @@ Claude 与 GPT 可能使用同一 GitHub 身份，审批人数可先设为0；�
   | `js/router.js` | 路由、数据加载与自动更新、定位、启动（必须最后加载） |
 
 - 这些都是普通脚本（不是 ES module），共用全局作用域，和拆分前的单文件一样；拆分只是按原顺序切开，没有改写或调换代码。**顶层立即执行的代码不能调用排在后面文件里才定义的函数**（单文件里函数声明会提升，拆开后不会）；放在事件回调、`boot()` 里调用不受影响。新功能放进对应文件，跨端共用的纯逻辑继续放 `shared/`。
-- 部署时 `node tools/build-assets.js` 按同样顺序把 `js/*.js` 合并成一个 `app.js`（生成物，已在 `.gitignore`，不要提交），并把 `index.html` 的这一段换成 `<script src="app.js?v=内容哈希">`；`app.css` 也加哈希。service worker 对带哈希的文件缓存优先，本地预览逐个加载 `js/*.js` 时网络优先，所以改脚本**不需要**升级 `sw.js` 的缓存名。
+- 部署时 `node tools/build-assets.js` 按同样顺序把 `js/*.js` 合并成一个 `app.js`（生成物，已在 `.gitignore`，不要提交），并把 `index.html` 的这一段换成 `<script src="app.js?v=内容哈希">`；`app.css` 也加哈希。service worker 对带哈希的文件缓存优先，本地预览逐个加载 `js/*.js` 时网络优先，所以改脚本**不需要**升级 `sw.js` 的缓存名。部署时 `build-assets.js` 还会把代码哈希写进 `sw.js` 的 `BUILD`：代码一变 `sw.js` 就变，已装到桌面的 App（iOS 常从后台恢复、不重新打开页面）切回前台时会装上新 service worker 并自动刷新（`js/install.js` 的 `controllerchange`），不会一直跑旧代码（2026-11-26：桌面 App 里影院地图修复不生效就是这个原因）。
 - 检查脚本需要「整页源码」时用 `require('./web-source').read()`（把 `app.css` 和全部 `js/*.js` 按原位置内嵌回 `index.html`），只要主脚本用 `appJS()`。新写检查脚本时不要直接读某一个 js 文件找函数。
 - 本文档其他小节里说的「`index.html` / `app.js` 里的某函数」，现在在对应的 `js/*.js` 里（可用编辑器全局搜索函数名）。
 

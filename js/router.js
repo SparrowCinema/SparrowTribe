@@ -48,7 +48,7 @@ function route(){
   const fwd=navFwd,bk=navBack;navFwd=false;navBack=false;
   const returning=changing&&viewPositions.has(h)&&(bk||!fwd||(activeRoute.startsWith("film-")&&h===filmReturn));
   activeRoute=h;
-  main.classList.toggle("prog-scale",h==="programmes"||h.startsWith("prog-")||h.startsWith("events-")||h.startsWith("venues-"));
+  main.classList.toggle("prog-scale",h==="programmes"||h.startsWith("prog-")||h.startsWith("events-")); /* 影院地图页不整体缩放：各浏览器（尤其微信内置）对 zoom 下吸顶位置的算法不一致，会让地图和标题条错位悬空 */
   const tab = ["plan","export","about","install","poster-wall","ticket-wall","taste-map","guide"].includes(h)||h.startsWith("share=")||h.startsWith("group")||h.startsWith("verify=")||h.startsWith("checkin=")||h==="checkin-host" ? "my" : h==="gantt" ? "schedule" : h.startsWith("prog-")||h.startsWith("events-")||h.startsWith("venues-") ? "programmes" : h.startsWith("film-") ? null : h;
   document.querySelectorAll(".tab").forEach(t=>t.setAttribute("aria-current", t.dataset.tab===(tab||lastList)?"page":"false"));
   if(tab){ lastList = tab; topEl.innerHTML = brandBar(); }

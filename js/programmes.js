@@ -332,9 +332,18 @@ function venuesPage(pid){
   }
 }
 // 地图吸顶的位置：紧贴顶栏底边（顶栏高度随内容变化，量一下再定）
+/* 实际量一下：这个浏览器会不会把 #main 里的 CSS 长度（含吸顶 top）乘上 zoom。新版 Chrome / Safari 会（量到 90），
+   微信内置浏览器等旧内核不会（量到 100）——按 computed zoom 一律去除会多除，标题条就悬空一条。按页面缓存结果 */
+function vmZoom(){
+  const pg=document.querySelector(".vm-page"); if(!pg)return 1;
+  if(pg._vz)return pg._vz;
+  const d=document.createElement("div"); d.style.cssText="position:absolute;visibility:hidden;pointer-events:none;width:1px;height:100px;top:0;left:0";
+  pg.appendChild(d); const h=d.getBoundingClientRect().height; d.remove();
+  return pg._vz=(h>40&&h<160?h/100:1);
+}
 function vmPinTop(){
   const pg=document.querySelector(".vm-page"),pin=document.querySelector(".vm-dock"),tb=document.getElementById("topbar");if(!pg||!tb)return;
-  const b=tb.getBoundingClientRect().bottom,z=parseFloat(getComputedStyle(main).zoom)||1; // 专题类页面整体缩放（#main.prog-scale{zoom:.9}），吸顶位置要换算回缩放前的长度
+  const b=tb.getBoundingClientRect().bottom,z=vmZoom(); // 专题类页面整体缩放（#main.prog-scale{zoom:.9}），吸顶位置要换算回缩放前的长度
   if(pin&&b>0)pin.style.setProperty("--vm-top",(b/z).toFixed(2)+"px");
   const v=(vmListTop()/z).toFixed(2)+"px"; if(pg.style.getPropertyValue("--vm-list")!==v)pg.style.setProperty("--vm-list",v); // 展开的影院标题条吸在地图下沿
 }
