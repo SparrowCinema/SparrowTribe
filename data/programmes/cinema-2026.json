@@ -3043,7 +3043,13 @@
     "mc": "https://www.metacritic.com/movie/clayface/"
    },
    "ratingChecked": "2026-11-17",
-   "poster": "posters/clayface.jpg",
+   "poster": "posters/clayface-jp-main.jpg",
+   "stills": [
+    {
+     "url": "posters/clayface-jp-dolby.jpg",
+     "label": "Dolby Cinema"
+    }
+   ],
    "worldPremiere": {
     "status": "verified",
     "date": "2026-10-13",
