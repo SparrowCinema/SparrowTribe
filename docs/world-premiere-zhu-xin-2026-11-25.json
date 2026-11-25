@@ -1,0 +1,56 @@
+{
+ "checked": "2026-11-25",
+ "scope": "cinema-2026 新增祝新导演两部院线新片：世界日出时 / 凤凰山下·词",
+ "ratingOrder": [
+  "Douban",
+  "IMDb",
+  "Rotten Tomatoes Tomatometer",
+  "Metacritic critic score",
+  "Letterboxd"
+ ],
+ "ratingNotes": "2026-11-25 检索：豆瓣两片均显示「暂无评分」（世界日出时 982人看过/1131人想看；凤凰山下·词 690人看过/922人想看）；Letterboxd 页面无平均分；IMDb 页面需人机验证未能读取，未见公开聚合分，烂番茄、Metacritic 无条目。全部保留 null。",
+ "verifiedRecords": {
+  "all-quiet-at-sunrise": {
+   "cn": "世界日出时",
+   "status": "verified",
+   "date": "2025-02-18",
+   "festival": "柏林影评人周",
+   "festivalEn": "Berlin Critics' Week",
+   "kind": "festival",
+   "checked": "2026-11-25",
+   "sources": [
+    "https://wochederkritik.de/en_US/termine-und-tickets-der-woche-der-kritik-2025/",
+    "https://wochederkritik.de/en_US/unsigned/",
+    "https://movie.douban.com/subject/36146246/",
+    "https://www.midnightblurfilms.com/sunrise",
+    "https://mulanfestival.com/festival-2025/all-quiet-at-sunrise/",
+    "https://news.cgtn.com/news/2025-04-15/All-Quiet-at-Sunrise-1CAExRVl2Le/share_amp.html",
+    "https://oaff.jp/en/programs/2025expo-co02/",
+    "https://www.sohu.com/a/1105148651_121627717"
+   ],
+   "note": "柏林影评人周官方日程：2025年2月18日19:00「Unsigned」场次，标注 World Premiere；豆瓣上映日期同为2025-02-18(柏林电影节)。获奖：香港国际电影节新秀竞赛（华语）最佳男演员王科、火鸟大奖提名，FIRST主竞赛最佳剧情长片提名（豆瓣获奖页）；大阪亚洲电影节特别提及、丝绸之路金丝路奖最佳摄影、达卡观众选择奖据潮新闻（搜狐转载）报道，丝路奖届次年份未查实故不写年份。片长豆瓣/发行方100分钟，木兰与大阪场刊101分钟。"
+  },
+  "a-song-river": {
+   "cn": "凤凰山下·词",
+   "status": "verified",
+   "date": "2024-09-27",
+   "festival": "平遥国际电影展",
+   "festivalEn": "Pingyao International Film Festival",
+   "kind": "festival",
+   "checked": "2026-11-25",
+   "sources": [
+    "https://movie.douban.com/subject/36941224/",
+    "https://www.dianyingjie.com.cn/2024/0927/390934.shtml",
+    "https://www.hzsc.com.cn/content/content_9721737.html",
+    "https://www.screendaily.com/news/karst-the-sparrow-in-the-chimney-win-top-prizes-at-pingyao-film-festival/5197630.article",
+    "https://www.westlakeidf.com/en/movie/1155",
+    "https://www.sohu.com/a/1105148651_121627717"
+   ],
+   "note": "第八届平遥国际电影展藏龙单元首映；豆瓣登记上映日期2024-09-27(平遥国际电影展)，豆瓣最早观影短评同日发布于山西，1905电影网首映报道同日刊发。Screen Daily 获奖名单：Youth Jury Award、Cinephilia Critics' Award。HKIFF49、纪录之光2024、第37届金鸡奖金鸡影展展映依据用户提供的海报月桂标识；北京国际电影节展映据潮新闻报道。片长豆瓣97分钟，西湖纪录片大会95分钟。"
+  }
+ },
+ "poster": {
+  "all-quiet-at-sunrise": "用户上传正式海报（4370×6201 JPG），缩至1080宽，posters/all-quiet-at-sunrise.jpg",
+  "a-song-river": "用户上传正式海报（7087×10630 PNG，74.6MB），缩至1080宽，posters/a-song-river.jpg"
+ }
+}
