@@ -262,7 +262,7 @@ function ticketRender(){
 }
 // 页面结构与「我的海报墙」一致：标题 → 检索条 → 工具栏 → 列表；筛选、年份、显示、手绘风格和导出使用弹层
 function ticketHeading(album,title){
-  return `<div class="page-heading ticket-page-heading"><div><small>COLLECTOR'S TICKET BOOK</small><h2 class="sec">${ticketDict(title||"我的典藏票根册")}</h2></div>
+  return `<div class="page-heading ticket-page-heading"><div><small>COLLECTOR'S TICKET BOOK</small><h1 class="sec">${ticketDict(title||"我的典藏票根册")}</h1></div>
     ${album?`<button type="button" class="text-button ticket-make" data-ticket-action="new">＋ ${ticketDict("制作票根")}</button>`:`<button type="button" class="text-button ticket-make" data-ticket-action="cancel">‹ ${ticketDict("返回收藏册")}</button>`}</div>`;
 }
 function ticketEmptyHTML(pending){
@@ -873,7 +873,7 @@ async function ticketGetOcrWorker(onProgress){
 }
 async function ticketRunOcr(file){
   if(!ticketDraft||ticketOcrBusy)return;
-  const OCR=window.SparrowTicketOcr;if(!OCR)return;
+  try{await loadLib("ticketOcr");}catch(e){}const OCR=window.SparrowTicketOcr;if(!OCR)return;
   ticketOcrBusy=true;
   const btn=main.querySelector('[data-ticket-action="ocr-scan"]');
   if(btn)btn.disabled=true;
@@ -1015,7 +1015,7 @@ function verifyCode(raw){
   return c;
 }
 async function verifyPage(raw){
-  const code=verifyCode(decodeURIComponent(raw||"")),head='<section class="view gut vf-view">'+subBackHTML()+'<div class="page-heading"><div><small>CERTIFICATE · VERIFY</small><h2 class="sec">'+tr("典藏验真")+'</h2></div></div>';
+  const code=verifyCode(decodeURIComponent(raw||"")),head='<section class="view gut vf-view">'+subBackHTML()+'<div class="page-heading"><div><small>CERTIFICATE · VERIFY</small><h1 class="sec">'+tr("典藏验真")+'</h1></div></div>';
   const box=(cls,html)=>{if(location.hash.slice(1)!=="verify="+raw)return;main.innerHTML=head+'<div class="vf-card '+cls+'">'+html+'</div></section>';};
   if(!TE.serialValid(code)){box("vf-bad",'<b>'+tr("编号格式不正确")+'</b><p>'+tr("典藏编号是 SP 加年份后的 15 位字母与数字，请核对票根背面的编号。")+'</p>');return;}
   box("vf-wait",'<p>'+tr("正在查询发行记录…")+'</p>');
@@ -1047,7 +1047,7 @@ async function verifyPage(raw){
 // 观众：扫放映现场的签到码打开 #checkin=影片~场次~时间窗~签到码 → 一键盖章、做票根、发号并记下现场认证。
 // 主办方：隐藏页 #checkin-host，输入主办密钥、选场次，全屏显示每分钟刷新的签到码（签名在服务器，backend/tickets-checkin-v1.sql）。
 function checkinShowLine(s){const v=VN[s.v],h=v?.halls?.find(x=>x.id===s.h);return [showIso(s).slice(5).replace("-","/")+" "+s.t,v?vShort(v):"",h?.name||""].filter(Boolean).join(" · ");}
-function checkinHead(){return '<section class="view gut vf-view">'+subBackHTML()+'<div class="page-heading"><div><small>CHECK-IN · ON SITE</small><h2 class="sec">'+tr("现场认证")+'</h2></div></div>';}
+function checkinHead(){return '<section class="view gut vf-view">'+subBackHTML()+'<div class="page-heading"><div><small>CHECK-IN · ON SITE</small><h1 class="sec">'+tr("现场认证")+'</h1></div></div>';}
 async function checkinPage(raw){
   const c=TE.checkinParse("#checkin="+raw),hash=location.hash;
   const box=(cls,html)=>{if(location.hash!==hash)return;main.innerHTML=checkinHead()+'<div class="vf-card '+cls+'">'+html+'</div></section>';};
@@ -1084,7 +1084,7 @@ function checkinDone(box,top,key){
 // 主办方页面
 let ciHostTimer=0;
 function checkinHostPage(){
-  clearInterval(ciHostTimer);
+  clearInterval(ciHostTimer);loadLib("trace").catch(()=>{});
   let pin="";try{pin=sessionStorage.getItem("sparrow-host-key")||"";}catch(e){}
   const t=now(),shows=SH.filter(s=>{const st=showDate(s).getTime();return st>t-4*36e5&&st<t+14*36e5;}).sort((a,b)=>showDate(a)-showDate(b));
   main.innerHTML=checkinHead()+'<div class="vf-card ci-host">'+

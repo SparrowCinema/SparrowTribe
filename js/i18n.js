@@ -67,7 +67,7 @@ function trNode(n){
 async function startI18n(){
   if(LANG!=="en") return;
   document.documentElement.lang="en";
-  try{ const r=await fetch("data/i18n/en.json",{cache:"no-store"}); if(r.ok){ const j=await r.json(); EN={ui:j.ui||{},exact:j.exact||{},films:j.films||{},programmes:j.programmes||{},venues:j.venues||{}}; UIK=Object.keys(EN.ui).sort((a,b)=>b.length-a.length); } }catch(e){ console.warn("English layer unavailable",e); }
+  try{ const r=await fetch("data/i18n/en.json",{cache:"no-cache"}); if(r.ok){ const j=await r.json(); EN={ui:j.ui||{},exact:j.exact||{},films:j.films||{},programmes:j.programmes||{},venues:j.venues||{}}; UIK=Object.keys(EN.ui).sort((a,b)=>b.length-a.length); } }catch(e){ console.warn("English layer unavailable",e); }
   const P=CanvasRenderingContext2D.prototype,ft=P.fillText,mt=P.measureText;   // 长图画布里的中文也走词典
   P.fillText=function(t,...a){ return ft.call(this,tr(String(t)),...a); };
   P.measureText=function(t){ return mt.call(this,tr(String(t))); };

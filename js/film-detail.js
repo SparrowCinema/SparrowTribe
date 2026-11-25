@@ -79,7 +79,7 @@ function recommendHTML(f){
   }).join("")}</div></section>`;
 }
 function detail(id){
-  const f=F[id]; if(!f){ go("films"); return; }
+  const f=F[id]; if(!f){ notFoundPage("film"); return; }
   id=f.id;
   const col = REG[f.reg].c, P = pst(id);
   const allShows = SH.filter(x=>x.id===id), shows = allShows.filter(x=>!isPast(x));
@@ -112,7 +112,7 @@ function detail(id){
   </header>
   <div class="fd-body gut">
     <aside class="fd-side">
-      ${/* 顺序：先看场次、加入排片，再购票、记录观影，最后才是各家评分 */""}<section class="fd-block"><h3 class="fd-h">放映场次 <small id="fd-showcount">${shows.length?showCountText(f,shows):(screeningGroups.length?tr("联映场次"):f.ended&&!allShows.length?"已下映":"排片待公布")}</small></h3>${shows.length?showFilterHTML(f,shows)+`<div id="fd-showlist">${showListHTML(f,shows)}</div>`+pastShowsHTML(allShows,f,true):(allShows.length||!groupLinks)?`<div class="fd-noshow"><b>${allShows.length?"本片场次已全部放映结束":(f.ended?"已下映":f.release?esc(f.release):"上映信息待公布")}</b><span>${allShows.length?(pastShowsHTML(allShows,f,false)?"":"已放映的场次不再显示在这里。"):(f.ended?"本片院线放映已结束，麻雀观影护照未收录具体场次。":"麻雀观影护照收录的场次公布后会更新到这里，也可以先在各影院售票平台查看。")}</span></div>`+pastShowsHTML(allShows,f,false):""}${groupLinks}</section>
+      ${/* 顺序：先看场次、加入排片，再购票、记录观影，最后才是各家评分 */""}<section class="fd-block"><h3 class="fd-h">放映场次 <small id="fd-showcount">${shows.length?showCountText(f,shows):(screeningGroups.length?tr("联映场次"):allShows.length?"已放映":f.ended?"已下映":"排片待公布")}</small></h3>${shows.length?showFilterHTML(f,shows)+`<div id="fd-showlist">${showListHTML(f,shows)}</div>`+pastShowsHTML(allShows,f,true):(allShows.length||!groupLinks)?`<div class="fd-noshow"><b>${allShows.length?"本片场次已全部放映结束":(f.ended?"已下映":f.release?esc(f.release):"上映信息待公布")}</b><span>${allShows.length?(pastShowsHTML(allShows,f,false)?"":"已放映的场次不再显示在这里。"):(f.ended?"本片院线放映已结束，麻雀观影护照未收录具体场次。":"麻雀观影护照收录的场次公布后会更新到这里，也可以先在各影院售票平台查看。")}</span></div>`+pastShowsHTML(allShows,f,false):""}${groupLinks}</section>
       ${ticketHTML(f)}
       ${f.ev?"":myRateHTML(f)}
       ${f.ev?"":ratingsHTML(f)}
