@@ -6,8 +6,14 @@
  const has=(v,id)=>{const a=list(v);return !a.length||a.includes(String(id));};
  const toggle=(v,id)=>{const a=list(v),i=a.indexOf(String(id));if(i<0)a.push(String(id));else a.splice(i,1);return a.length?a.join(','):'all';};
  function matches(f,query){const hay=[f.cn,f.cnZh,f.cnDb,...(f.titleAliases||[]),f.en,f.o,f.dir,f.dirO,f.c,(f.cast||[]).join(' '),f.version].filter(Boolean).join(' ').toLocaleLowerCase();return String(query||'').toLocaleLowerCase().split(/\s+/).filter(Boolean).every(w=>hay.includes(w));}
+ function catalogueFilm(f){return !f.ev&&!f.screeningParts?.length;}
+ function screeningGroups(id,films){
+  const groups=new Map();
+  for(const f of films)if(f.screeningParts?.includes(id))groups.set(f.id,f);
+  return [...groups.values()];
+ }
  function inProgramme(f,id,ctx){const a=list(id);return !a.length||a.some(p=>(f.prog||ctx.programmeOf?.(f))===p||(ctx.programmeIds?.(f)||[]).includes(p)||ctx.shows.some(s=>s.id===f.id&&ctx.showProgramme(s)===p));}
- function inCity(f,city,ctx){const c=list(city);return !c.length||ctx.shows.some(s=>s.id===f.id&&ctx.cityOfShow&&c.includes(ctx.cityOfShow(s))&&has(ctx.programme,ctx.showProgramme(s)));}
+ function inCity(f,city,ctx){const c=list(city);if(!c.length)return true;const ids=[f.id,...screeningGroups(f.id,ctx.films||[]).map(x=>x.id)];return ctx.shows.some(s=>ids.includes(s.id)&&ctx.cityOfShow&&c.includes(ctx.cityOfShow(s))&&has(ctx.programme,ctx.showProgramme(s)));}
  const DECADES=[
   ['d:2020','2020年代',2020,2029],
   ['d:2010','2010年代',2010,2019],
@@ -163,5 +169,5 @@
   years.forEach((g,i)=>{g.defOpen=!byYear||i===0||opened<PAST_OPEN_MIN;opened+=g.defOpen?g.items.length:0;});
   return {byYear,years,batchSize};
  }
- const api={matches,inProgramme,inCity,status,category,list,has,toggle,DECADES,TRAITS,decadeLabel,yearMatches,traitStatus,matchesTraits,isFestivalWorldPremiere,featuredProgrammes,posterColumns,posterPeriod,posterPeriods,posterEntries,posterPeriodLabel,posterTitle,SPINE_PALETTES,spineStyle,spineTitle,progEndYear,PAST_YEAR_BATCH,groupPastByYear};if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.SparrowLibrary=api;
+ const api={catalogueFilm,screeningGroups,matches,inProgramme,inCity,status,category,list,has,toggle,DECADES,TRAITS,decadeLabel,yearMatches,traitStatus,matchesTraits,isFestivalWorldPremiere,featuredProgrammes,posterColumns,posterPeriod,posterPeriods,posterEntries,posterPeriodLabel,posterTitle,SPINE_PALETTES,spineStyle,spineTitle,progEndYear,PAST_YEAR_BATCH,groupPastByYear};if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.SparrowLibrary=api;
 })(typeof window!=='undefined'?window:this);

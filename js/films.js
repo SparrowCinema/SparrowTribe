@@ -10,26 +10,27 @@ const regOk=(f,k=freg)=>selHas(k,f.reg);
 const LIBRARY_MODES=[['all','全部影片','浏览完整片目'],['want','想看','标记了想看的影片 · 有新场次会标出'],['planned','已加入排片','已保存在个人排片中的影片'],['watched','已看过','收进观影护照的影片'],['unwatched','还没看过','继续探索新的银幕相遇'],['qa','主创映后场','有主创映后活动的影片'],['sub','字幕机','配有字幕机放映场次的影片'],['last','仅剩最后一场','当前仅余最后一场待映的影片'],['wp','全球首映','在本影展举行全球首映的影片'],['fit','可凑空档','与已选排片不冲突的待映影片']];
 const mineModeLabel=id=>id==='fit'&&picked.size?'零冲突凑空档':((LIBRARY_MODES.find(x=>x[0]===id)||[0,id])[1]);
 function showsOverlap(a,b){if(!a||!b)return false;const sa=showDate(a),sb=showDate(b),da=typeof durationOf==="function"?durationOf(a):(F[a.id]?.min||120),db=typeof durationOf==="function"?durationOf(b):(F[b.id]?.min||120);return sa<sb+db*60000-120000&&sb<sa+da*60000-120000;}
-function libraryContext(){return {shows:SH,programmes:PROGRAMMES,picked,watched,want,keyOf,isPast,overlaps:showsOverlap,city:fcity,cityOfShow:s=>VN[s.v]?.city,programme:ffilt,programmeOf:f=>f.prog,programmeIds:f=>filmProgsOf(f).map(x=>x.p.id),showProgramme:s=>s.p||F[s.id]?.prog};}
+function catalogueFilms(){return FILMS.filter(window.SparrowLibrary.catalogueFilm);}
+function libraryContext(){return {films:FILMS,shows:SH,programmes:PROGRAMMES,picked,watched,want,keyOf,isPast,overlaps:showsOverlap,city:fcity,cityOfShow:s=>VN[s.v]?.city,programme:ffilt,programmeOf:f=>f.prog,programmeIds:f=>filmProgsOf(f).map(x=>x.p.id),showProgramme:s=>s.p||F[s.id]?.prog};}
 function filmSelectorOptions(type,query=''){
  const ctx=libraryContext(),q=query.trim().toLocaleLowerCase();let rows;
  if(type==='programme'){
   const ordered=progGroupOrder().sort((a,b)=>(progStatus(a)==='ended'?1:0)-(progStatus(b)==='ended'?1:0)||(progStatus(a)==='ended'?((progRange(b)[1]||0)-(progRange(a)[1]||0)):0));
   rows=[{id:'all',name:tr('全部专题'),sub:tr('浏览完整片目'),selected:!selList(ffilt).length},...ordered.map(p=>{
    const ended=progStatus(p)==='ended', yr=ended&&window.SparrowLibrary?.progEndYear?window.SparrowLibrary.progEndYear(p,progRange(p)[1]):'';
-   return {id:p.id,name:p.name,sub:[ended?tr('往期')+(yr&&yr!=='其他'?' · '+yr:''):'',tr(FILMS.filter(f=>window.SparrowLibrary.inProgramme(f,p.id,ctx)).length+' 部影片'),p.city].filter(Boolean).join(' · '),selected:selList(ffilt).includes(p.id)};
+   return {id:p.id,name:p.name,sub:[ended?tr('往期')+(yr&&yr!=='其他'?' · '+yr:''):'',tr(catalogueFilms().filter(f=>window.SparrowLibrary.inProgramme(f,p.id,ctx)).length+' 部影片'),p.city].filter(Boolean).join(' · '),selected:selList(ffilt).includes(p.id)};
   })];
  }
- else if(type==='region'){const base=FILMS.filter(f=>window.SparrowLibrary.inProgramme(f,ffilt,ctx));rows=[{id:'all',name:tr('全部地区'),sub:tr(base.length+' 部影片'),selected:!selList(freg).length},...Object.keys(REG).map(k=>({id:k,name:tr(REG[k].n),sub:tr(base.filter(f=>f.reg===k).length+' 部影片'),selected:selList(freg).includes(k)})).filter(x=>!x.sub.startsWith('0'))];}
- else if(type==='length'){const base=FILMS.filter(f=>window.SparrowLibrary.inProgramme(f,ffilt,ctx));rows=[{id:'all',name:tr('全部片长'),sub:tr(base.length+' 部影片'),selected:!selList(flen).length},...LEN_BINS.map(([k,n])=>({id:k,name:tr(n),sub:tr(base.filter(f=>lenOk(f,k)).length+' 部影片'),selected:selList(flen).includes(k)}))];}
+ else if(type==='region'){const base=catalogueFilms().filter(f=>window.SparrowLibrary.inProgramme(f,ffilt,ctx));rows=[{id:'all',name:tr('全部地区'),sub:tr(base.length+' 部影片'),selected:!selList(freg).length},...Object.keys(REG).map(k=>({id:k,name:tr(REG[k].n),sub:tr(base.filter(f=>f.reg===k).length+' 部影片'),selected:selList(freg).includes(k)})).filter(x=>!x.sub.startsWith('0'))];}
+ else if(type==='length'){const base=catalogueFilms().filter(f=>window.SparrowLibrary.inProgramme(f,ffilt,ctx));rows=[{id:'all',name:tr('全部片长'),sub:tr(base.length+' 部影片'),selected:!selList(flen).length},...LEN_BINS.map(([k,n])=>({id:k,name:tr(n),sub:tr(base.filter(f=>lenOk(f,k)).length+' 部影片'),selected:selList(flen).includes(k)}))];}
  else if(type==='year'){
-  const base=FILMS.filter(f=>window.SparrowLibrary.inProgramme(f,ffilt,ctx));
+  const base=catalogueFilms().filter(f=>window.SparrowLibrary.inProgramme(f,ffilt,ctx));
   const decades=window.SparrowLibrary.DECADES.map(([id,name])=>({id,name:tr(name),n:base.filter(f=>window.SparrowLibrary.yearMatches(f,id)).length,selected:selList(fyear).includes(id)})).filter(x=>x.n).map(x=>({id:x.id,name:x.name,sub:tr(x.n+' 部影片'),selected:x.selected}));
   const ys=[...new Set(base.map(f=>f.y).filter(Boolean))].sort((a,b)=>b-a);
   rows=[{id:'all',name:tr('全部年份'),sub:tr(base.length+' 部影片'),selected:!selList(fyear).length},...decades,...ys.map(y=>({id:String(y),name:String(y),sub:tr(base.filter(f=>String(f.y)===String(y)).length+' 部影片'),selected:selList(fyear).includes(String(y))}))];
  }
- else if(type==='city')rows=[{id:'all',name:tr('全部城市'),sub:tr('按已收录场次所在城市筛选'),selected:!selList(fcity).length},...[...new Set(VENUES.map(v=>v.city).filter(Boolean))].map(c=>({id:c,name:tr(c),sub:tr(FILMS.filter(f=>window.SparrowLibrary.inProgramme(f,ffilt,ctx)&&window.SparrowLibrary.inCity(f,c,ctx)).length+' 部影片'),selected:selList(fcity).includes(c)}))];
- else rows=LIBRARY_MODES.map(([id,,sub])=>({id,name:tr(mineModeLabel(id)),sub:tr(sub)+' · '+tr(FILMS.filter(f=>window.SparrowLibrary.inProgramme(f,ffilt,ctx)&&window.SparrowLibrary.category(f,id,ctx)).length+' 部影片'),selected:id==='all'?!selList(fmine).length:selList(fmine).includes(id)}));
+ else if(type==='city')rows=[{id:'all',name:tr('全部城市'),sub:tr('按已收录场次所在城市筛选'),selected:!selList(fcity).length},...[...new Set(VENUES.map(v=>v.city).filter(Boolean))].map(c=>({id:c,name:tr(c),sub:tr(catalogueFilms().filter(f=>window.SparrowLibrary.inProgramme(f,ffilt,ctx)&&window.SparrowLibrary.inCity(f,c,ctx)).length+' 部影片'),selected:selList(fcity).includes(c)}))];
+ else rows=LIBRARY_MODES.map(([id,,sub])=>({id,name:tr(mineModeLabel(id)),sub:tr(sub)+' · '+tr(catalogueFilms().filter(f=>window.SparrowLibrary.inProgramme(f,ffilt,ctx)&&window.SparrowLibrary.category(f,id,ctx)).length+' 部影片'),selected:id==='all'?!selList(fmine).length:selList(fmine).includes(id)}));
  return rows.filter(x=>!q||(x.name+' '+x.sub).toLocaleLowerCase().includes(q)).map(x=>`<button class="selector-option" role="option" aria-selected="${x.selected}" data-filter-value="${esc(x.id)}"><span><b>${esc(x.name)}</b><small>${esc(x.sub)}</small></span><span class="selector-check" aria-hidden="true">${x.selected?'✓':''}</span></button>`).join('')||'<p class="selector-empty" role="status">没有匹配的结果</p>';
 }
 function libraryFiltersHTML(){return `<div class="schedule-filterbar library-filterbar" aria-label="片目筛选">${[['programme','专题',selLabel(ffilt,'全部专题',i=>PG[i]?.name||i,'个专题'),ffilt],['year','年代/年份',selLabel(fyear,'全部年份',i=>tr(window.SparrowLibrary.decadeLabel(i)),'项年份'),fyear],['city','城市',selLabel(fcity,'全部城市',i=>tr(i),'座城市'),fcity],['region','地区',selLabel(freg,'全部地区',i=>REG[i]?.n||i,'个地区'),freg],['length','片长',selLabel(flen,'全部片长',i=>(LEN_BINS.find(x=>x[0]===i)||[0,i])[1],'档片长'),flen],['personal','我的',selLabel(fmine,LIBRARY_MODES[0][1],i=>tr(mineModeLabel(i)),'个分类'),fmine]].map(([type,label,value,id])=>`<button class="schedule-filter${id!=='all'?' active':''}" data-film-filter="${type}" aria-haspopup="dialog" aria-label="${esc(label+'：'+value)}"><span><small>${label}</small><b>${esc(value||'')}</b></span>${filterChevron}</button>`).join('')}</div>${ffilt!=='all'||fcity!=='all'||fyear!=='all'||freg!=='all'||flen!=='all'||fmine!=='all'||fq?'<div class="filter-reset-row"><button class="filter-reset" data-reset-library>重置筛选 ↺</button></div>':''}`;}
@@ -149,7 +150,7 @@ function filmsListHTML(){
   const showPid=s=>s.p||F[s.id]?.prog;
   const nextIn=(f,pid)=>SH.find(s=>s.id===f.id&&!isPast(s)&&selHas(fcity,VN[s.v]?.city)&&showPid(s)===pid);
   const orderIn=pid=>(a,b)=>{const x=nextIn(a,pid),y=nextIn(b,pid);return x&&y?showDate(x)-showDate(y)||a.cn.localeCompare(b.cn,"zh"):x?-1:y?1:filmOrder(a,b);};
-  const base = FILMS.filter(f=>window.SparrowLibrary.inProgramme(f,ffilt,ctx)&&window.SparrowLibrary.inCity(f,fcity,ctx)&&yearOk(f)&&regOk(f)&&lenOk(f)&&window.SparrowLibrary.category(f,fmine,ctx)&&filmMatches(f,fq));
+  const base = catalogueFilms().filter(f=>window.SparrowLibrary.inProgramme(f,ffilt,ctx)&&window.SparrowLibrary.inCity(f,fcity,ctx)&&yearOk(f)&&regOk(f)&&lenOk(f)&&window.SparrowLibrary.category(f,fmine,ctx)&&filmMatches(f,fq));
   const members=p=>!selHas(ffilt,p.id)?[]:base.filter(f=>filmProgsOf(f).some(x=>x.p.id===p.id)||SH.some(s=>s.id===f.id&&showPid(s)===p.id));
   const isLiveIn=(f,p)=>!!nextIn(f,p.id)||(!endedIn(f,p.id)&&!SH.some(s=>s.id===f.id&&showPid(s)===p.id)&&progStatus(p)!=="ended");
   const endedP=p=>progStatus(p)==="ended";
@@ -184,7 +185,7 @@ document.addEventListener("click",e=>{
   const b=e.target.closest("[data-fold]");if(!b)return;const sec=b.closest(".fsec"),open=!sec.classList.toggle("closed");folds[b.dataset.fold]=open?1:0;saveFolds();b.setAttribute("aria-expanded",open);b.setAttribute("aria-label",tr(open?"收起":"展开")+" "+sec.querySelector("h3").textContent);
   if(!open){const top=sec.getBoundingClientRect().top;if(top<0)window.scrollTo({top:window.scrollY+top-(document.getElementById("topbar")?.offsetHeight||0)-8,behavior:"instant"});}});
 /* 片目顶部介绍：总片目数随专题增加自动更新；文案按当前规划（按专题分组、可折叠、结束后归往期）*/
-function filmsIntroHTML(){const total=FILMS.length,live=FILMS.filter(f=>nextShow(f)).length,progs=PROGRAMMES.filter(p=>FILMS.some(f=>f.prog===p.id||p.sections?.[f.id]||p.members?.includes(f.id))).length;
+function filmsIntroHTML(){const total=catalogueFilms().length,live=catalogueFilms().filter(f=>nextShow(f)).length,progs=PROGRAMMES.filter(p=>catalogueFilms().some(f=>f.prog===p.id||p.sections?.[f.id]||p.members?.includes(f.id))).length;
   return '<div class="fi-stats" aria-label="片目概览"><span><b>'+total+'</b>部影片</span><span><b>'+progs+'</b>个专题</span><span><b>'+live+'</b>部待映</span></div>'+
     '<p class="sub fi-sub">按专题分组，每个专题可收起；已放映的收进专题内，专题结束后归入「往期专题」。右侧为豆瓣评分。</p>';}
 function films(){
