@@ -1761,7 +1761,7 @@ button,summary,a,label,select,[role=button],[data-pp],.my-entry{touch-action:man
 .pwi-dl dt{font-size:9.5px;letter-spacing:.14em;color:var(--muted)}
 .pwi-dl dd{margin:0;text-align:right;font-size:12px}
 .pwi-me{display:flex;align-items:baseline;gap:6px;margin-top:12px}
-.pwi-me b{font-size:20px}.pwi-me small{color:var(--muted);font-size:10.5px}
+.pwi-me .pwi-score{font-size:20px}.pwi-me>small{color:var(--muted);font-size:10.5px}
 .pwi-me .pw-stars{display:inline-flex;width:auto;margin:0;justify-content:flex-start;font-size:14px}
 .pwi-seen{margin-top:4px;font-size:11px;color:var(--muted)}
 .pw-ring-ctrl{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:4px}
