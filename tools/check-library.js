@@ -13,7 +13,8 @@ assert.equal(fs.readFileSync(path.join(root,'miniprogram/utils/library.js'),'utf
 // Exercise the mini-program page with real catalogue/utility data and reversible in-memory records.
 const data=require('./full-data.js'),U=require('../miniprogram/utils/util.js');let page;
 // Double-bill containers stay eligible for schedule and history lookup, but leave the catalogue.
-const pingyao = data.films.filter(f => f.prog === 'pingyao-2026' && f.screeningParts?.length);
+const pingyaoPack = JSON.parse(fs.readFileSync(path.join(root,'data/programmes/pingyao-2026.json'),'utf8'));
+const pingyao = pingyaoPack.films.filter(f => f.screeningParts?.length);
 assert.equal(pingyao.length, 6);
 const splitIds = pingyao.flatMap(f => f.screeningParts);
 assert.equal(new Set(splitIds).size, 12);
