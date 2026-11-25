@@ -34,7 +34,13 @@ function routeMeta(h){
 }
 function route(){
   if(!READY) return;
-  const h = location.hash.slice(1) || "schedule";
+  let h = location.hash.slice(1) || "schedule";
+  const parts = h.startsWith("film-") ? F[h.slice(5)]?.screeningParts : null;
+  if(parts?.length){
+    const id = parts[parts.length-1];
+    h = F[id] ? "film-"+id : "films";
+    history.replaceState(history.state,"","#"+h);
+  }
   try{ routeMeta(h); }catch(e){}
   const changing=activeRoute!==h;
   if(changing){ stat('pv',statRouteKind(h)); if(h.startsWith('film-')) stat('film',h.slice(5)); else if(h.startsWith('prog-')) stat('prog',h.slice(5)); }

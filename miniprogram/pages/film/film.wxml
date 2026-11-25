@@ -34,10 +34,10 @@
     <view wx:if="{{sf.filtered}}" class="sf-note">{{L.t(i,'已筛选')}} <text class="mono b">{{shows.length}} / {{sfAll}}</text> {{L.t(i,'场')}} · <text class="sf-clear" bindtap="sfTap">{{L.t(i,'清除')}}</text></view>
     <view wx:if="{{sf.filtered && !shows.length}}" class="noshow card"><text class="b">{{L.t(i,'所选日期和影院暂无场次')}}</text><text class="sf-clear" bindtap="sfTap">{{L.t(i,'清除筛选')}}</text></view>
     <view wx:if="{{!shows.length && !sf.filtered && (!screeningGroups.length || goneShows.length)}}" class="noshow card"><text class="b">{{ended ? L.t(i,'本片场次已全部放映结束') : (f.ended ? L.t(i,'已下映') : (f.release || L.t(i,'上映信息待公布')))}}</text><text class="muted small">{{ended ? L.t(i,'已放映的场次不再显示在这里。') : (f.ended ? L.t(i,'本片院线放映已结束，麻雀观影护照未收录具体场次。') : L.t(i,'场次公布后会更新到这里，也可以先在各影院售票平台查看。'))}}</text></view>
-    <view wx:if="{{screeningGroups.length}}" class="noshow card">
+    <view wx:for="{{screeningGroups}}" wx:for-item="group" wx:key="id" class="noshow card">
       <text class="b">{{L.t(i,'联映场次')}}</text>
-      <text class="muted small">{{L.t(i,'本片的平遥展映为联映。开场时间见联映场次。')}}</text>
-      <navigator wx:for="{{screeningGroups}}" wx:key="id" class="sf-clear" url="/pages/film/film?id={{item.id}}">{{item.cn}}</navigator>
+      <scroll-view wx:for="{{group.rows}}" wx:key="key" class="gs-row" scroll-x="{{true}}" show-scrollbar="{{false}}"><view class="gs-line"><text class="gs-d mono">{{item.d}}</text><text class="gs-t mono">{{item.t}}</text><text class="gs-p">{{item.place}}</text></view></scroll-view>
+      <navigator wx:for="{{group.partners}}" wx:key="id" class="sf-clear" url="/pages/film/film?id={{item.id}}">{{item.cn}}</navigator>
     </view>
     <view wx:for="{{shows}}" wx:key="key" class="ticket card">
       <view class="td" style="background:{{item.tone.bg}};color:{{item.tone.ink}};border-right:calc(2 * var(--r)) solid {{item.tone.line}}"><text class="tm">{{item.mon}}</text><text class="tdd mono">{{item.dd}}</text><text class="tw">{{item.wk}}</text></view>

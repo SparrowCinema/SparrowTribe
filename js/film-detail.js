@@ -62,7 +62,7 @@ document.addEventListener('click',e=>{const b=e.target.closest('[data-ticket]');
 function recommendHTML(f){
   if(!f||f.ev||typeof SparrowRecommend==="undefined"||typeof FILMS==="undefined")return "";
   const items=SparrowRecommend.forFilm(f,{
-    films:FILMS,shows:SH,programmes:PROGRAMMES,watched,want,picked,keyOf,isPast,showDate,
+    films:FILMS.filter(SparrowLibrary.catalogueFilm),shows:SH,programmes:PROGRAMMES,watched,want,picked,keyOf,isPast,showDate,
     overlaps:typeof showsOverlap==="function"?showsOverlap:null,
     tasteGet:typeof TC!=="undefined"&&TC&&typeof TC.get==="function"?id=>TC.get(id):null
   },4);
@@ -84,8 +84,12 @@ function detail(id){
   const col = REG[f.reg].c, P = pst(id);
   const allShows = SH.filter(x=>x.id===id), shows = allShows.filter(x=>!isPast(x));
   const screeningGroups = window.SparrowLibrary.screeningGroups(f.id,FILMS);
-  const groupLinks = screeningGroups.length ? `<div class="fd-noshow"><b>${esc(tr("联映场次"))}</b><span>${esc(tr("本片的平遥展映为联映。开场时间见联映场次。"))}</span>${screeningGroups.map(group=>`<span><a class="text-button" href="#film-${esc(group.id)}">${esc(group.cn)}</a></span>`).join("")}</div>` : "";
-  const sib = FILMS.filter(x=>x.prog===f.prog||PG[f.prog]?.sections?.[x.id]||PG[f.prog]?.members?.includes(x.id)), idx = sib.indexOf(f), prev = sib[idx-1], next = sib[idx+1];
+  const groupLinks = screeningGroups.map(group=>{
+    const rows = SH.filter(x=>x.id===group.id).sort((a,b)=>showDate(a)-showDate(b));
+    const partners = group.screeningParts.filter(id=>id!==f.id&&F[id]);
+    return `<div class="fd-noshow"><b>${esc(tr("联映场次"))}</b>${rows.map(x=>pastRowHTML(x,group)).join("")}${partners.map(id=>`<span><a class="text-button" href="#film-${esc(id)}">${esc(F[id].cn)}</a></span>`).join("")}</div>`;
+  }).join("");
+  const sib = FILMS.filter(x=>!x.screeningParts?.length&&(x.prog===f.prog||PG[f.prog]?.sections?.[x.id]||PG[f.prog]?.members?.includes(x.id))), idx = sib.indexOf(f), prev = sib[idx-1], next = sib[idx+1];
   topEl.innerHTML = `<div class="row"><button class="back" data-back><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m15 6-6 6 6 6"/></svg>返回</button><span class="sp"></span><span class="pill">${f.ev?esc(tr("活动场次")):String(idx+1).padStart(2,"0")+" / "+sib.length}</span></div>`;
   const syn = String(f.syn||""), long = syn.length > 220;
   const has = {syn:!!syn, watch:!!f.editorial||f.highlights.length>0, hon:f.honors.length>0, dir:!!(f.dir&&(f.bio||f.dirO||f.dirLife)), ctx:!!f.st};

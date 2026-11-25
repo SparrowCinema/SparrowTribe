@@ -53,6 +53,12 @@ Page({
   build() {
     const data = app.globalData.data, idx = U.index(data);
     if (this.id && !idx.F[this.id]) { const hit = Object.keys(idx.F).find(k => k.startsWith(this.id)); if (hit) this.id = hit; } // 扫码 scene 只含 id 前 32 字符
+    const parts = idx.F[this.id]?.screeningParts;
+    if (parts?.length) {
+      const id = parts[parts.length - 1];
+      if (!idx.F[id]) return;
+      this.id = id;
+    }
     const f = idx.F[this.id];
     if (!f) { wx.showToast({ title: t('没有找到这部影片'), icon: 'none' }); return; }
     wx.setNavigationBarTitle({ title: f.cn });
@@ -75,10 +81,12 @@ Page({
     const showsAllN = shows.length;
     if (sf.show) shows.splice(0, shows.length, ...shows.filter(x => (!sfSt.d.length || sfSt.d.includes(x.sd)) && (!sfSt.v.length || sfSt.v.includes(x.vid))));
     // 影展内已放映的场次：窄条保留（黑白、无操作按钮）；院线片不显示
-    const goneShows = allShows.filter(s => U.ended(s, idx) && U.keepPast(U.progForShow(s, idx))).sort((a, b) => U.showDate(a, idx) - U.showDate(b, idx)).map(s => {
+    const pastRow = s => {
       const v = idx.VN[s.v] || {}, h = (v.halls || []).find(x => x.id === s.h), nm = (v.short || v.brand || v.name || '').replace(new RegExp('^' + (v.city || '@@') + '\\s*[·・]?\\s*'), '');
       return { key: U.keyOf(s), d: U.year(s.d, s.year)+'.'+s.d.split('/').map(n=>n.padStart(2,'0')).join('.'), t: s.t, place: [v.city, nm, h && (h.short || h.name), U.progForShow(s,idx).name].filter(Boolean).join(' · ') };
-    });
+    };
+    const chronological = (a, b) => U.showDate(a, idx) - U.showDate(b, idx);
+    const goneShows = allShows.filter(s => U.ended(s, idx) && U.keepPast(U.progForShow(s, idx))).sort(chronological).map(pastRow);
     const ratings = (f.r || []).map((v, i) => ({
       l: t(RT[i][0]), na: v == null,
       v: v == null ? '—' : i === 2 ? v + '%' : i === 4 ? Number(v).toFixed(1) : i < 2 ? Number(v).toFixed(1) : v,
@@ -87,9 +95,13 @@ Page({
     const credits = [...Premiere.rows(f,I.isEn()), ['导演', f.dir], ['联合导演', f.coDirector], [f.writerLabel || '编剧', (f.writers || []).join(' / ')], ['原著', t(f.book || '')],
       [(f.genre || []).includes('纪录片') ? '出镜' : '主演', (f.cast || []).join(' / ')], ['影片版权', (I.isEn() && f.printSourceEn) || f.printSource], ['类型', (f.genre || []).map(t).join(' / ')], ['原始语言', t(f.language)], ['海报说明', t(f.posterNote || '')]]
       .filter(x => x[1]).map(x => ({ k: t(x[0]), v: x[1] }));
-    const all = data.films.filter(x => !x.ev), i = all.indexOf(f);
+    const all = data.films.filter(Library.catalogueFilm), i = all.indexOf(f);
     const nav = (f.ev ? [null, null] : [all[i - 1], all[i + 1]]).map(x => x ? { id: x.id, cn: x.cn, poster: U.thumb(x) } : null);
-    const screeningGroups = Library.screeningGroups(f.id, data.films).map(({id, cn}) => ({id, cn}));
+    const screeningGroups = Library.screeningGroups(f.id, data.films).map(group => ({
+      id: group.id,
+      rows: data.shows.filter(s => s.id === group.id).sort(chronological).map(pastRow),
+      partners: group.screeningParts.filter(id => id !== f.id && idx.F[id]).map(id => ({ id, cn: idx.F[id].cn }))
+    }));
     const para = s => String(s || '').split(/\n{2,}/).filter(Boolean);
     // 购票码：影片自带 + 所属各专题的购票码（跨影展影片可有多张，按专题标注）
     const SITE = 'https://sparrowcinema.org/', tks = [], seenTk = {};
@@ -153,7 +165,7 @@ Page({
     if (!f || f.ev) { this.setData({ recs: [] }); return; }
     const overlaps = (a, b) => { const sa = U.showDate(a, idx), sb = U.showDate(b, idx), da = (idx.F[a.id] && idx.F[a.id].min) || 120, db = (idx.F[b.id] && idx.F[b.id].min) || 120; return sa < sb + db * 60000 - 120000 && sb < sa + da * 60000 - 120000; };
     const items = Recommend.forFilm(f, {
-      films: data.films, shows: data.shows, programmes: data.programmes, watched: W.all(), want: Want.all(), picked: plan.get(),
+      films: data.films.filter(Library.catalogueFilm), shows: data.shows, programmes: data.programmes, watched: W.all(), want: Want.all(), picked: plan.get(),
       keyOf: U.keyOf, isPast: s => U.ended(s, idx), showDate: s => U.showDate(s, idx), overlaps, tasteGet: id => C.get(id)
     }, 4);
     const recs = items.map(it => ({

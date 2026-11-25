@@ -46,10 +46,18 @@ const page = ({ L, kind, id, ttl, desc, img, wide, hash, bare }) => {
 ${img ? `<img src="${esc(img)}" alt="">` : ''}<h1>${esc(ttl)}</h1><p>${esc(desc)}</p><p><a href="${home}">${lang(L) ? 'Open in Sparrow Film Passport →' : '在麻雀观影护照中打开 →'}</a></p>
 <script>location.replace(${JSON.stringify(home)})</script></body></html>`;
 };
+const filmRedirect = (f, L) => {
+  const parts = f.screeningParts;
+  if (!parts || !parts.length) return '';
+  const url = docURL('film', parts[parts.length - 1], L);
+  return `<!doctype html><html lang="${L}"><meta charset="utf-8"><meta http-equiv="refresh" content="0;url=${esc(url)}"><link rel="canonical" href="${esc(url)}"><a href="${esc(url)}">${lang(L) ? 'Open film' : '打开影片'}</a></html>`;
+};
 const now = Date.now();
 let nShare = 0;
 for (const L of ['zh', 'en']) {
   Object.values(films).forEach(f => {
+    const redirect = filmRedirect(f, L);
+    if (redirect) { out(`s/${lang(L) ? 'en/' : ''}f/${f.id}.html`, redirect); return; }
     const p = filmProg[f.id], e = enF(f.id, L), ttl0 = title(f, L);
     const dirs = lang(L) ? (e.dir || f.dirO || f.dir) : f.dir;
     const upcoming = shows.filter(s => s.id === f.id && showTime(s) > now).slice(0, 2)
@@ -100,6 +108,8 @@ const docUrls = [];
 for (const L of ['zh', 'en']) {
   Object.values(films).forEach(f => {
     if (f.ev) return;
+    const redirect = filmRedirect(f, L);
+    if (redirect) { out(`${lang(L) ? 'en/' : ''}film/${f.id}.html`, redirect); return; }
     const e = enF(f.id, L), t = title(f, L), orig = lang(L) ? (f.cn !== t ? f.cn : f.o) : (f.en || f.o);
     const dirs = lang(L) ? (e.dir || f.dirO || f.dir) : f.dir, country = lang(L) ? trW(f.c) : f.c;
     const genre = (f.genre || []).map(g => lang(L) ? trW(g) : g).filter(Boolean).join(' / ');
@@ -130,7 +140,7 @@ ${up.length ? `<h2>${lang(L) ? 'Upcoming screenings' : '近期放映'}</h2><ul>$
   progs.forEach(p => {
     const o = lang(L) && EN.programmes[p.id] || {}, nm = o.name || p.name, blurb = o.blurb || p.blurb || o.sub || p.sub || '';
     const ids = new Set([...(p.pk.films || []).map(f => f.id), ...shows.filter(s => s.p === p.id).map(s => s.id)]);
-    const list = [...ids].map(id => films[id]).filter(f => f && !f.ev);
+    const list = [...ids].map(id => films[id]).filter(f => f && !f.ev && !f.screeningParts?.length);
     const img = abs(o.cover || p.cardCover || p.cover);
     const body = `<h1>${esc(nm)}</h1><p class="meta">${esc([p.period, lang(L) ? '' : p.city].filter(Boolean).join(' · '))}</p>${img ? `<p><img src="${esc(img)}" alt="" style="width:100%;border-radius:8px"></p>` : ''}
 ${blurb ? `<p>${esc(blurb)}</p>` : ''}${list.length ? `<h2>${lang(L) ? 'Films' : '片单'}（${list.length}）</h2><ul>${list.map(f => `<li><a href="${docURL('film', f.id, L)}">${esc(title(f, L))}</a>${f.y ? ` <span class="note">${f.y}</span>` : ''}</li>`).join('')}</ul>` : ''}`;
