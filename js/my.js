@@ -232,7 +232,7 @@ function pwrInfo(force){const S=PWR;const i=pwrFrontIdx(),far=S.tT>.5;if(!force&
  const rows=[['导演',f.dir],['年份',f.y],['地区',f.c&&tr(f.c)]].filter(x=>x[1]);
  const seen=[e.rec.d,e.venue,n>1?(en?'Seen '+n+' times':'看过 '+n+' 次'):''].filter(Boolean).join(' · ');
  S.info.innerHTML='<div class="pwi-k mono">'+(en?'MY FILM ARCHIVE':'MY FILM ARCHIVE · 观影档案')+'</div><h3 class="pwi-t">'+esc(f.cn)+(f.version?' <small>'+esc(f.version)+'</small>':'')+'</h3>'+(f.en&&f.en!==f.cn?'<div class="pwi-o">'+esc(f.en)+'</div>':'')+
-  '<dl class="pwi-dl">'+rows.map(([k,v])=>'<div><dt>'+tr(k)+'</dt><dd>'+esc(String(v))+'</dd></div>').join('')+'</dl><div class="pwi-me">'+stars+(r?'<b class="mono">'+r+'</b><small>/10</small>':'<small>'+tr('未评分')+'</small>')+'</div><div class="pwi-seen">'+esc(seen)+'</div>';
+  '<dl class="pwi-dl">'+rows.map(([k,v])=>'<div><dt>'+tr(k)+'</dt><dd>'+esc(String(v))+'</dd></div>').join('')+'</dl><div class="pwi-me">'+stars+(r?'<b class="mono pwi-score">'+r+'</b><small>/10</small>':'<small>'+tr('未评分')+'</small>')+'</div><div class="pwi-seen">'+esc(seen)+'</div>';
  S.el.querySelector('.pwr-pos').textContent=(i+1)+' / '+S.L;
  S.el.querySelector('.pwr-zoom').textContent=tr(far?'近看':'全景');
  S.el.querySelector('.pwr-tip').textContent=tr(far?'点任意一张拉近查看':'左右拖动转动，点正面的海报查看影片');
