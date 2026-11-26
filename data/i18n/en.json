@@ -204,6 +204,39 @@
   },
   "_readme": "English layer for the site. films/programmes/venues overlay data fields when ?lang=en; ui is the zh→en dictionary used by tr(). Missing entries fall back to the Chinese text.",
   "films": {
+    "ice-age-boiling-point-2027": {
+      "title": "Ice Age: Boiling Point",
+      "dir": "John C. Donkin",
+      "dirLife": "United States",
+      "release": "North American and Hong Kong theatrical release on 5 February 2027. Mainland China date to be announced.",
+      "cast": [
+        "Ray Romano",
+        "John Leguizamo",
+        "Denis Leary",
+        "Simon Pegg",
+        "Queen Latifah",
+        "Ashley Park",
+        "Josh Peck",
+        "Vincent Tong",
+        "Adam DeVine",
+        "Coco Jones",
+        "Chris Wedge",
+        "Kari Wahlgren",
+        "Dee Bradley Baker"
+      ],
+      "syn": "Manny, Sid, Diego and Ellie return to the dinosaur country of the Lost World, with Buck helping the herd navigate. They have a dinosaur egg to protect on a route where ice gives way to lava. Meanwhile, Scrat finds two new rivals for his acorn: a smaller squirrel and a huge prehistoric one.",
+      "bio": "John C. Donkin has long worked on the Ice Age films and directed The Ice Age Adventures of Buck Wild. The new film puts the fast-moving scout back among the slower and heavier animals of the main herd. Producer Lori Forte returns after work on the original Ice Age and Collision Course.",
+      "st": "Dawn of the Dinosaurs introduced Buck and the world beneath the ice. Boiling Point returns to that setting and follows the herd into volcanic regions that audiences have not seen before. Ray Romano, John Leguizamo, Denis Leary, Queen Latifah and Simon Pegg return as the central voices. Ashley Park voices Zee, and Chris Wedge, Kari Wahlgren and Dee Bradley Baker voice the three Scrats.\n\nThe North American and Hong Kong cinema opening is 5 February 2027. Disney’s Mainland China promotion has announced a provisional Chinese title, while the local release date and formats await confirmation.",
+      "editorial": "Dawn of the Dinosaurs is enough of a refresher. It gives you Buck’s introduction and a useful point of comparison for the new underground terrain. Notice how an ice ledge or a patch of solid ground poses a different problem for a mammoth, a sloth and a squirrel. Scrat’s scene partners make those differences even more visible.",
+      "highlights": [
+        "Buck returns to the Lost World introduced in the third film.",
+        "Protecting a dinosaur egg gives the whole herd a shared task.",
+        "Three differently sized squirrels compete for the same acorn.",
+        "The core English-language voice cast returns."
+      ],
+      "warnings": [],
+      "contentNote": "The trailer shows animated volcanic peril and pursuits. The film has yet to open, and the official rating, intensity, flashing imagery and sound levels are unverified."
+    },
     "narnia-the-magicians-nephew-2027": {
       "title": "Narnia: The Magician’s Nephew",
       "dir": "Greta Gerwig",
