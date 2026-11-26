@@ -90,4 +90,99 @@ assert.ok(copyZh.includes('#慢节奏友好'));
 assert.ok(copyZh.includes('下一步建议：'));
 assert.strictEqual(TP.normalizePortrait({ headline: 'x', commentary: '' }), null);
 
-console.log('PASS: AI taste portrait (payload, signals, paradoxes, scope filter, tp2 fingerprint stability, LRU cache, normalization, copy text)');
+// 6. 短时间（每小时 3 次）与每日（24 小时 5 次）生成配额 + 服务端冷却锁定
+const qMem = {};
+const qGet = k => qMem[k] || '';
+const qSet = (k, v) => { qMem[k] = v; };
+const T0 = 1_700_000_000_000;
+let q = TP.checkQuota(qGet, TP.WEB_QUOTA_KEY, T0);
+assert.strictEqual(q.ok, true);
+assert.strictEqual(q.remain, 3);
+assert.strictEqual(TP.quotaBtnLabel(q, false, false), '重新生成');
+
+TP.recordQuota(qGet, qSet, TP.WEB_QUOTA_KEY, T0);
+q = TP.recordQuota(qGet, qSet, TP.WEB_QUOTA_KEY, T0 + 10_000);
+assert.strictEqual(q.ok, true);
+assert.strictEqual(q.remain, 1);
+assert.strictEqual(TP.quotaBtnLabel(q, false, false), '重新生成（余1次）');
+
+q = TP.recordQuota(qGet, qSet, TP.WEB_QUOTA_KEY, T0 + 20_000);
+assert.strictEqual(q.ok, false);
+assert.strictEqual(q.scope, 'hour');
+assert.ok(q.waitMs > 50 * 60 * 1000);
+assert.ok(TP.formatQuotaMsg(q, false).includes('每小时最多 3 次'));
+assert.ok(TP.formatQuotaMsg(q, true).includes('3 per hour'));
+assert.ok(TP.quotaBtnLabel(q, false, false).includes('后再试'));
+
+// 1 小时后小时窗口释放，再生成 2 次触发 24 小时 5 次上限
+const T1 = T0 + TP.HOUR_MS + 60_000;
+assert.strictEqual(TP.checkQuota(qGet, TP.WEB_QUOTA_KEY, T1).ok, true);
+TP.recordQuota(qGet, qSet, TP.WEB_QUOTA_KEY, T1);
+q = TP.recordQuota(qGet, qSet, TP.WEB_QUOTA_KEY, T1 + 5000);
+assert.strictEqual(q.ok, false);
+assert.strictEqual(q.scope, 'day');
+assert.ok(TP.formatQuotaMsg(q, false).includes('24 小时内已达生成上限'));
+assert.ok(TP.formatQuotaMsg(q, true).includes('5 per 24h'));
+
+// 24 小时后全部释放；服务端返回 rate_limited 时同步锁定
+const T2 = T1 + TP.DAY_MS + 60_000;
+assert.strictEqual(TP.checkQuota(qGet, TP.WEB_QUOTA_KEY, T2).ok, true);
+const locked = TP.lockQuota(qGet, qSet, TP.WEB_QUOTA_KEY, 900, 'hour', T2);
+assert.strictEqual(locked.ok, false);
+assert.strictEqual(TP.checkQuota(qGet, TP.WEB_QUOTA_KEY, T2 + 60_000).ok, false);
+assert.strictEqual(TP.checkQuota(qGet, TP.WEB_QUOTA_KEY, T2 + 901_000).ok, true);
+
+// 7. 分享图片画布尺寸与绘制（中/英文、带/不带趣味人格、页脚小程序码回调）
+function mockCtx() {
+  const texts = [];
+  return {
+    texts,
+    font: '400 32px sans-serif',
+    fillStyle: '',
+    strokeStyle: '',
+    lineWidth: 1,
+    globalAlpha: 1,
+    textAlign: 'left',
+    textBaseline: 'alphabetic',
+    measureText(s) {
+      const m = String(this.font || '').match(/(\d+(?:\.\d+)?)px/);
+      const fs = m ? Number(m[1]) : 24;
+      let w = 0;
+      for (const ch of String(s || '')) w += /[^\x00-\x7f]/.test(ch) ? fs : fs * 0.56;
+      return { width: w };
+    },
+    createLinearGradient() { return { addColorStop() {} }; },
+    beginPath() {}, moveTo() {}, lineTo() {}, arcTo() {}, arc() {}, closePath() {},
+    fillRect() {}, strokeRect() {}, fill() {}, stroke() {}, save() {}, restore() {}, clip() {},
+    fillText(t) { texts.push(String(t)); }
+  };
+}
+
+let footerCalled = null;
+const cZh = mockCtx();
+const cardOptsZh = {
+  en: false,
+  holder: '麻雀影迷',
+  scope: '全部观影',
+  watchedCount: 4,
+  ratedCount: 4,
+  date: '2026.11.26',
+  tasteSummary: b1.payload.tasteSummary,
+  footer: (cc, y, H) => { footerCalled = { y, H }; }
+};
+const hZh = TP.cardHeight(cZh, saved, cardOptsZh);
+assert.ok(hZh >= 900 && hZh <= 3000, 'unexpected card height: ' + hZh);
+TP.drawCard(cZh, saved, cardOptsZh);
+assert.ok(footerCalled && footerCalled.H === hZh && footerCalled.y < hZh);
+assert.ok(cZh.texts.some(t => t.includes('麻雀影迷的 AI 观影画像')));
+assert.ok(cZh.texts.some(t => t.includes('慢镜头里的暗房拾光人')));
+assert.ok(cZh.texts.some(t => t.includes('#慢节奏友好')));
+assert.ok(cZh.texts.some(t => t.includes('下一步建议')));
+
+const cEn = mockCtx();
+const hEn = TP.cardHeight(cEn, { headline: 'Night Owl of Slow Cinema', tags: ['Slow burn', 'Rewatcher'], commentary: 'You linger inside Stalker and replay In the Mood for Love.\n\nYour star ratings stay disciplined even when you are thrilled.', nextHint: 'Try an Eastern European 4K restoration next.' }, { en: true, scope: 'All watched films', watchedCount: 12 });
+assert.ok(hEn >= 600);
+TP.drawCard(cEn, { headline: 'Night Owl of Slow Cinema', tags: ['Slow burn', 'Rewatcher'], commentary: 'You linger inside Stalker and replay In the Mood for Love.\n\nYour star ratings stay disciplined even when you are thrilled.', nextHint: 'Try an Eastern European 4K restoration next.' }, { en: true, scope: 'All watched films', watchedCount: 12 });
+assert.ok(cEn.texts.some(t => t.includes('My AI Taste Portrait')));
+
+console.log('PASS: AI taste portrait (payload, signals, paradoxes, scope filter, tp2 fingerprint stability, LRU cache, quota limits, share card canvas, copy text)');

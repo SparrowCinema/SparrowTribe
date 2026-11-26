@@ -37,19 +37,19 @@
             <text class="aip-next-v" user-select="true">{{aipPortrait.nextHint}}</text>
           </view>
           <view class="aip-foot">
-            <button class="aip-btn aip-btn-ghost" hover-class="tr-hv" bindtap="copyAiPortrait">{{L.t(i,'复制评语')}}</button>
-            <button class="aip-btn aip-btn-ghost" hover-class="tr-hv" disabled="{{aipBusy}}" data-force="1" bindtap="makeAiPortrait">{{aipBusy ? L.t(i,'生成中…') : L.t(i,'重新生成')}}</button>
+            <button class="aip-btn aip-btn-share" hover-class="tr-hv" disabled="{{aipShareBusy}}" bindtap="shareAiPortrait">{{aipShareBusy ? L.t(i,'正在生成分享图片…') : L.t(i,'生成分享图片')}}</button>
+            <button class="aip-btn aip-btn-ghost" hover-class="tr-hv" disabled="{{aipBusy || aipLocked}}" data-force="1" bindtap="makeAiPortrait">{{aipRefreshLabel}}</button>
           </view>
         </block>
       </block>
       <block wx:else>
         <text class="aip-desc">{{L.t(i,'结合当前范围看过的片单、星级评分与趣味四象限摘要，由 AI 生成 200–300 字专属观影评语。结果缓存在本机，观影记录未变动时不重复请求。')}}</text>
         <view class="aip-cta">
-          <button class="aip-btn aip-btn-primary" hover-class="tr-hv" disabled="{{!aipOk || aipBusy}}" bindtap="makeAiPortrait">{{aipBusy ? L.t(i,'正在生成观影评语…') : L.t(i,'生成 AI 观影评语')}}</button>
+          <button class="aip-btn aip-btn-primary" hover-class="tr-hv" disabled="{{!aipOk || aipBusy || aipLocked}}" bindtap="makeAiPortrait">{{aipGenLabel}}</button>
           <text wx:if="{{!aipOk}}" class="tr-sub">{{L.t(i,'当前范围至少标记 3 部看过影片后即可生成')}}</text>
         </view>
       </block>
-      <text wx:if="{{aipMsg}}" class="aip-msg {{aipTone}}">{{aipMsg}}</text>
+      <text wx:if="{{aipMsg || (aipLockedMsg && !aipFold)}}" class="aip-msg {{aipMsg ? aipTone : 'warn'}}">{{aipMsg || aipLockedMsg}}</text>
     </view>
     <view class="taste-map gs">
       <view class="gs-h"><text class="gs-t">{{i.__en?'Quadrants':'四象限'}}</text><text class="gs-s">{{tasteMap.n}} {{i.__en?'films':'部电影'}}</text></view>

@@ -12,8 +12,8 @@
   - `js/my.js` + `shared/taste-portrait.js`：在「我的电影趣味图谱」（`#taste-map`）提供「AI 观影画像」，调用同一接口（`action: 'taste_portrait'`），结果按片单指纹缓存在本机 `sparrow-ai-portrait-v1`，记录未变动时不重复请求。
 - **微信小程序**：
   - `cloudfunctions/ticketOcr`：转发 `ticket_ocr`，不可用时自动回退微信官方 `ocr.printedText`。
-  - `cloudfunctions/taste`：新增 `action: 'portrait'` 转发 `taste_portrait`，小程序分包 `packages/collect/taste-map` 使用本机 `sk-ai-portrait-v1` 缓存。
-- **隐私与成本保护**：图片与片单摘要仅在 Edge Function 内存中转发给 Gemini，不落盘、不存库、不打日志；Edge Function 内置来源白名单（CORS）、单图 2 MB / 摘要 18 KB 上限、固定任务白名单与每 IP 滑动窗口限流。
+  - `cloudfunctions/taste`：`action: 'portrait'` 转发 `taste_portrait`，按微信号 `OPENID` 在云数据库集合 `ai_portrait_rl` 记录滑动窗口次数（默认每小时最多 3 次、24 小时最多 5 次，可用云函数环境变量 `PORTRAIT_HOUR_LIMIT` / `PORTRAIT_DAY_LIMIT` 调整），并向 Edge Function 传递去标识化哈希 `clientKey`；小程序分包 `packages/collect/taste-map` 使用本机 `sk-ai-portrait-v1` 缓存与 `sk-ai-portrait-rl-v1` 配额记录。
+- **隐私与成本保护**：图片与片单摘要仅在 Edge Function 内存中转发给 Gemini，不落盘、不存库、不打日志；Edge Function 内置来源白名单（CORS）、单图 2 MB / 摘要 18 KB 上限、固定任务白名单与独立限流桶（`ticket_ocr` 默认每 IP 10 分钟 12 次；`taste_portrait` 默认每账号/IP 1 小时 3 次、24 小时 5 次，可用 `AI_PORTRAIT_HOUR_LIMIT` / `AI_PORTRAIT_DAY_LIMIT` 覆盖）。
 
 ---
 

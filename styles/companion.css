@@ -236,8 +236,10 @@ button:focus-visible,summary:focus-visible,a:focus-visible{outline:3px solid var
 .aip-btn{padding:10px 16px;border-radius:999px;font:700 var(--t-m) var(--f-body);cursor:pointer;line-height:1.25;text-align:center}
 .aip-btn-primary{border:1px solid var(--teal);background:var(--teal);color:#fff}
 .aip-btn-primary:disabled{background:var(--surface);border-color:var(--line);color:var(--muted);cursor:default}
+.aip-btn-share{padding:7px 15px;border:1px solid var(--teal);background:var(--teal);color:#fff;font-size:var(--t-s);font-weight:700}
+.aip-btn-share:disabled{opacity:.55;cursor:default}
 .aip-btn-ghost{padding:7px 14px;border:1px solid var(--line);background:var(--bg);color:var(--fg);font-size:var(--t-s);font-weight:600}
-.aip-btn-ghost:disabled{opacity:.55;cursor:wait}
+.aip-btn-ghost:disabled{opacity:.55;cursor:default}
 .aip-msg{margin:10px 0 0;padding:8px 11px;border-radius:10px;border:1px solid var(--line);background:var(--bg);font-size:var(--t-s);line-height:1.5;color:var(--muted)}
 .aip-msg.warn{border-color:color-mix(in srgb,var(--ochre) 50%,var(--line));color:var(--ochre)}
 

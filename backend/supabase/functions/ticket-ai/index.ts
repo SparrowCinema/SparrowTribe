@@ -15,6 +15,13 @@ const RATE_LIMIT = Math.max(1, Number(Deno.env.get('AI_RATE_LIMIT') || 12));
 const RATE_WINDOW_MS = Math.max(10_000, Number(Deno.env.get('AI_RATE_WINDOW_MS') || 10 * 60 * 1000));
 const hits = new Map<string, number[]>();
 
+const PORTRAIT_HOUR_LIMIT = Math.max(1, Number(Deno.env.get('AI_PORTRAIT_HOUR_LIMIT') || 3));
+const PORTRAIT_HOUR_MS = Math.max(60_000, Number(Deno.env.get('AI_PORTRAIT_HOUR_MS') || 60 * 60 * 1000));
+const PORTRAIT_DAY_LIMIT = Math.max(PORTRAIT_HOUR_LIMIT, Number(Deno.env.get('AI_PORTRAIT_DAY_LIMIT') || 5));
+const PORTRAIT_DAY_MS = Math.max(PORTRAIT_HOUR_MS, Number(Deno.env.get('AI_PORTRAIT_DAY_MS') || 24 * 60 * 60 * 1000));
+const portraitHits = new Map<string, number[]>();
+const portraitInFlight = new Set<string>();
+
 const ALLOWED_EXACT = new Set([
   'https://sparrowcinema.org',
   'https://www.sparrowcinema.org',
@@ -43,13 +50,14 @@ function corsHeaders(origin: string | null): Record<string, string> {
   };
 }
 
-function jsonResp(body: Record<string, unknown>, status: number, origin: string | null): Response {
+function jsonResp(body: Record<string, unknown>, status: number, origin: string | null, extraHeaders?: Record<string, string>): Response {
   return new Response(JSON.stringify(body), {
     status,
     headers: {
       ...corsHeaders(origin),
       'Content-Type': 'application/json; charset=utf-8',
       'Cache-Control': 'no-store',
+      ...(extraHeaders || {}),
     },
   });
 }
@@ -78,6 +86,40 @@ function checkRateLimit(key: string): boolean {
     }
   }
   return true;
+}
+
+function checkPortraitRateLimit(key: string): { ok: true } | { ok: false; scope: 'hour' | 'day'; retryAfterSec: number; limit: number } {
+  const now = Date.now();
+  if (portraitInFlight.has(key)) {
+    return { ok: false, scope: 'hour', retryAfterSec: 60, limit: PORTRAIT_HOUR_LIMIT };
+  }
+  const dayCutoff = now - PORTRAIT_DAY_MS;
+  const hourCutoff = now - PORTRAIT_HOUR_MS;
+  const list = (portraitHits.get(key) || []).filter((t) => t > dayCutoff);
+  portraitHits.set(key, list);
+  const hourList = list.filter((t) => t > hourCutoff);
+  if (hourList.length >= PORTRAIT_HOUR_LIMIT) {
+    return { ok: false, scope: 'hour', retryAfterSec: Math.max(60, Math.ceil((hourList[0] + PORTRAIT_HOUR_MS - now) / 1000)), limit: PORTRAIT_HOUR_LIMIT };
+  }
+  if (list.length >= PORTRAIT_DAY_LIMIT) {
+    return { ok: false, scope: 'day', retryAfterSec: Math.max(60, Math.ceil((list[0] + PORTRAIT_DAY_MS - now) / 1000)), limit: PORTRAIT_DAY_LIMIT };
+  }
+  return { ok: true };
+}
+
+function recordPortraitHit(key: string): void {
+  const now = Date.now();
+  const dayCutoff = now - PORTRAIT_DAY_MS;
+  const list = (portraitHits.get(key) || []).filter((t) => t > dayCutoff);
+  list.push(now);
+  portraitHits.set(key, list);
+  if (portraitHits.size > 2000) {
+    for (const [k, v] of portraitHits) {
+      const kept = v.filter((t) => t > dayCutoff);
+      if (kept.length) portraitHits.set(k, kept);
+      else portraitHits.delete(k);
+    }
+  }
 }
 
 function clampStr(v: unknown, maxLen: number): string {
@@ -528,10 +570,6 @@ Deno.serve(async (req: Request) => {
     return jsonResp({ ok: false, reason: 'not_configured' }, 503, origin);
   }
 
-  if (!checkRateLimit(clientIp(req))) {
-    return jsonResp({ ok: false, reason: 'rate_limited' }, 429, origin);
-  }
-
   let payload: Record<string, unknown>;
   try {
     payload = await req.json();
@@ -543,10 +581,35 @@ Deno.serve(async (req: Request) => {
   const action = typeof payload.action === 'string' ? payload.action : 'ticket_ocr';
 
   if (action === 'ticket_ocr') {
+    if (!checkRateLimit(clientIp(req))) {
+      return jsonResp({ ok: false, reason: 'rate_limited' }, 429, origin);
+    }
     return await handleTicketOcr(payload, apiKey, model, origin);
   }
   if (action === 'taste_portrait') {
-    return await handleTastePortrait(payload, apiKey, model, origin);
+    const rawKey = typeof payload.clientKey === 'string' ? payload.clientKey.trim() : '';
+    const rlKey = !origin && /^[a-f0-9]{16,64}$/i.test(rawKey)
+      ? ('wx:' + rawKey.toLowerCase())
+      : ('ip:' + clientIp(req));
+    const rl = checkPortraitRateLimit(rlKey);
+    if (!rl.ok) {
+      return jsonResp(
+        { ok: false, reason: 'rate_limited', scope: rl.scope, retryAfterSec: rl.retryAfterSec, limit: rl.limit },
+        429,
+        origin,
+        { 'Retry-After': String(rl.retryAfterSec) },
+      );
+    }
+    portraitInFlight.add(rlKey);
+    try {
+      const resp = await handleTastePortrait(payload, apiKey, model, origin);
+      if (resp.status >= 200 && resp.status < 300) {
+        recordPortraitHit(rlKey);
+      }
+      return resp;
+    } finally {
+      portraitInFlight.delete(rlKey);
+    }
   }
   return jsonResp({ ok: false, reason: 'unsupported_action' }, 400, origin);
 });
