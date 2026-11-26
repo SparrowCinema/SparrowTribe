@@ -37,6 +37,20 @@
       ]
     },
     {
+      "id": "cinema-2027",
+      "name": "2027院线新片",
+      "sub": "2027 年度院线上映与重映",
+      "en": "NOW SHOWING & COMING SOON",
+      "kind": "院线",
+      "period": "2027.01 – 2027.12",
+      "cover": "programmes/cinema-2027.jpg",
+      "blurb": "收录 2027 年度院线新片与重映。已确认引进、尚未定档的影片可先查看资料，具体上映日期与放映场次以发行方和影院公告为准。",
+      "start": "2027-01-01",
+      "end": "2027-12-31",
+      "city": "杭州",
+      "file": "data/programmes/cinema-2027.json"
+    },
+    {
       "id": "sparrow-tribe-space",
       "name": "麻雀部落电影空间",
       "sub": "线下艺术电影空间",
