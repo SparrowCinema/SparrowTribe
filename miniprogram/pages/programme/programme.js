@@ -51,7 +51,7 @@ Page({
         at: next ? U.showDate(next).getTime() : Infinity, lastAt: last ? U.showDate(last).getTime() : (U.endedIn(f, p) ? U.relTime(f) : 0), gone: (!!mine.length || U.endedIn(f, p)) && !next };
     };
     const membership=new Set(Object.keys(p.sections||{}).concat(p.members||[]));
-    const all = data.films.filter(f => Library.catalogueFilm(f) && (idx.progOf(f).id === p.id || membership.has(f.id))).filter(f => !this.data.section || [f, ...groups(f)].some(x => p.sections?.[x.id] === this.data.section)).map(mk);
+    const all = data.films.filter(f => Library.catalogueFilm(f) && (idx.progOf(f).id === p.id || membership.has(f.id))).filter(f => !this.data.section || [f, ...groups(f)].some(x => Library.inSection(p, x.id, this.data.section))).map(mk);
     // 即将放映（含场次待公布）按下一场先后；已结束按最近一场由近及远（与网站一致）
     const films = all.filter(f => !f.gone).sort((x, y) => (x.at === y.at ? 0 : x.at < y.at ? -1 : 1) || x.cn.localeCompare(y.cn, I.isEn() ? 'en' : 'zh'));
     const gone = all.filter(f => f.gone).sort((x, y) => y.lastAt - x.lastAt || x.cn.localeCompare(y.cn, I.isEn() ? 'en' : 'zh'));
@@ -77,7 +77,7 @@ Page({
   selRowsFor(q) {
     const data = app.globalData.data, idx = U.index(data), p = idx.PG[this.id], sec = (p && p.sections) || {}, cur = this.data.section, m = (q || '').trim().toLocaleLowerCase();
     const films = data.films.filter(f => !f.ev && (idx.progOf(f).id === p.id || sec[f.id])), names = Array.from(new Set(Object.values(sec)));
-    const rows = [{ id: '', name: t('全部单元'), sub: t(films.length + ' 部影片'), selected: cur === '' }, ...names.map(n => ({ id: n, name: t(n), sub: t(films.filter(f => sec[f.id] === n).length + ' 部影片'), selected: cur === n }))];
+    const rows = [{ id: '', name: t('全部单元'), sub: t(films.length + ' 部影片'), selected: cur === '' }, ...names.map(n => ({ id: n, name: t(n), sub: t(films.filter(f => Library.inSection(p, f.id, n)).length + ' 部影片'), selected: cur === n }))];
     return rows.filter(x => !m || (x.name + ' ' + x.sub).toLocaleLowerCase().includes(m));
   },
   openSec() { this.setData({ selOpen: true, selQuery: '', selTitle: t('选择单元'), selPlaceholder: t('搜索单元'), selRows: this.selRowsFor('') }); },

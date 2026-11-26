@@ -12,6 +12,14 @@ assert(!L.inProgramme(films[3],'festival',{...ctx,programmeIds:()=>['other','cin
 assert.equal(fs.readFileSync(path.join(root,'miniprogram/utils/library.js'),'utf8'),fs.readFileSync(path.join(root,'shared/library.js'),'utf8'));
 // Exercise the mini-program page with real catalogue/utility data and reversible in-memory records.
 const data=require('./full-data.js'),U=require('../miniprogram/utils/util.js');let page;
+// A film can be listed in two sections of one festival without duplicating its catalogue entry.
+const hainan=data.programmes.find(p=>p.id==='hainan-2026');
+const sectionIds=section=>data.films.filter(f=>L.inSection(hainan,f.id,section)).map(f=>f.id);
+const hkiff=sectionIds('香港国际电影节特别展映');
+const asianHorizon=sectionIds('海上明月');
+assert.equal(hkiff.length,9);
+assert.equal(asianHorizon.length,11);
+assert.deepStrictEqual(hkiff.filter(id=>asianHorizon.includes(id)).sort(),['9-temples-to-heaven-2026','cassowary-2026','gr26-011']);
 // Double-bill containers stay eligible for schedule and history lookup, but leave the catalogue.
 const pingyaoPack = JSON.parse(fs.readFileSync(path.join(root,'data/programmes/pingyao-2026.json'),'utf8'));
 const pingyao = pingyaoPack.films.filter(f => f.screeningParts?.length);

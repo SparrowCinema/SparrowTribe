@@ -9,8 +9,8 @@ function programmeFilmShows(f,pid){
 }
 function programmeFilmInSection(f,pid,section){
   if(!section)return true;
-  const sections=PG[pid].sections;
-  return sections?.[f.id]===section||SparrowLibrary.screeningGroups(f.id,FILMS).some(x=>sections?.[x.id]===section);
+  const programme=PG[pid];
+  return [f,...SparrowLibrary.screeningGroups(f.id,FILMS)].some(x=>SparrowLibrary.inSection(programme,x.id,section));
 }
 function progFilmSub(f,pid,ended){ // 与小程序一致：版本 · 下一场日期时间，单行
   const ed=editionOf(f), mine=programmeFilmShows(f,pid), next=ended?null:localFirst(mine.filter(x=>!isPast(x)));
