@@ -31,7 +31,7 @@ Page({
     this.build();
   },
   onUnload() {
-    clearTimeout(this._homeTipT);
+    clearTimeout(this._homeTipT); clearTimeout(this._intoT);
     this.off && this.off();
     this.off2 && this.off2();
   },
@@ -39,7 +39,11 @@ Page({
   homeTipClose() { HT.close(this); },
   // 地图固定在上方（页面不滚动，venues.json disableScroll），只有下面的影院列表（scroll-view）滚动
   onListScroll(e) { T.scroll(this, { scrollTop: e.detail.scrollTop }); },
-  scrollInto(id) { this.setData({ intoView: '' }, () => this.setData({ intoView: id })); },
+  // 滚到某张卡片后马上清掉 scroll-into-view：不清的话，之后点日期 / 海报重画面板时会再次执行，跳回影院顶部
+  scrollInto(id) { this.setData({ intoView: '' }, () => this.setData({ intoView: id }, () => { clearTimeout(this._intoT); this._intoT = setTimeout(() => this.setData({ intoView: '' }), 450); })); },
+  // 横向海报条 / 日期条：记住滚到哪里，重画后用 scroll-left 原样恢复（不用 scroll-into-view，免得带着外层列表一起滚）
+  onFilmsScroll(e) { this._fx = e.detail.scrollLeft; },
+  onDaysScroll(e) { this._dx = e.detail.scrollLeft; },
   toTop() { this.scrollInto('vn-head'); },
   makeMarkers(geoRows, activeId) {
     return geoRows.map((r, i) => {
@@ -176,7 +180,7 @@ Page({
     o = o || {};
     const row = (this.data.venueRows || []).find(r => r.id === id);
     const on = !!row && (o.force || this.data.activeId !== id);
-    this.pick = { film: '', day: undefined };
+    this.pick = { film: '', day: undefined }; this._fx = 0; this._dx = 0;
     const up = { activeId: on ? id : '', canReset: true };
     if (this._geoRows && this.data.venueMap) up['venueMap.markers'] = this.makeMarkers(this._geoRows, on ? id : '');
     // 地图移到这家影院：只改绑定的中心坐标。不要用 MapContext.moveToLocation——它会检查精确定位权限，弹「需要在 app.json 中声明 scope.userLocation」
@@ -213,12 +217,10 @@ Page({
       filmName: fsel ? (en ? '“' + title(fsel) + '”' : '《' + title(fsel) + '》') : '',
       days: b.days.length > 1 ? [{ key: '', label: t('全部日期'), n: t(b.days.reduce((n, d) => n + d.n, 0) + ' 场'), on: !b.day }].concat(b.days.map(d => ({ key: d.key, label: d.first.d + ' ' + U.wk(d.first.d, d.first.year), n: t(d.n + ' 场'), on: b.day === d.key }))) : [],
       up: groups(b.up),
-      // 横向海报条 / 日期条停在选中的那一项（setData 重画后不会跳回最前面）
-      filmInto: b.film ? 'vf-' + b.films.findIndex(x => x.id === b.film) : '',
-      dayInto: b.day && b.days.length > 1 ? 'vd-' + (b.days.findIndex(d => d.key === b.day) + 1) : ''
+      filmLeft: this._fx || 0, dayLeft: this._dx || 0
     } });
   },
-  pickFilm(e) { const id = e.currentTarget.dataset.id; this.pick = { film: this.pick.film === id ? '' : id, day: undefined }; this.buildPanel(); },
+  pickFilm(e) { this._dx = 0; const id = e.currentTarget.dataset.id; this.pick = { film: this.pick.film === id ? '' : id, day: undefined }; this.buildPanel(); },
   pickDay(e) { this.pick.day = e.currentTarget.dataset.key; this.buildPanel(); },
   openFilm(e) { wx.navigateTo({ url: '/pages/film/film?id=' + e.currentTarget.dataset.id }); },
   toggle(e) {
