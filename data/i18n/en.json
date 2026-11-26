@@ -13340,6 +13340,48 @@
         "Death"
       ],
       "contentNote": "Public plot information indicates emotional manipulation, shootings, death. The depiction and sensory intensity have yet to be verified."
+    },
+    "a-day-in-the-life-of-jo-chapter-phaedra-2026": {
+      "title": "A Day in the Life of Jo: Chapter Phaedra",
+      "dir": "Jacqueline Lentzou",
+      "c": "Greece / Germany / France",
+      "dirLife": "1989– · Greece",
+      "release": "Hainan screening unconfirmed",
+      "cast": [
+        "Evita Andriopoulou",
+        "Eleni Vergeti",
+        "Anastasia Gouliamou",
+        "Ektoras Lygizos"
+      ],
+      "writers": [
+        "Jacqueline Lentzou"
+      ],
+      "genre": [
+        "Drama",
+        "Coming of age"
+      ],
+      "language": "Greek",
+      "syn": "Fifteen-year-old Jo misses the school bus again on a Friday, quarrels with her mother, and walks to school. She is looking forward to the choir audition, in part because she wants to sing and in part because Phaedra, the girl she likes, has a voice and a tie she cannot stop thinking about. Jo hopes to ask her out. A sudden event alters the course of a day spent crossing suburban Athens.",
+      "bio": "Born in Athens in 1989, Jacqueline Lentzou made shorts including Fox and Hector Malot: The Last Day of the Year, the latter winning the 2018 Cannes Critics’ Week Discovery Prize. Her feature debut, Moon, 66 Questions, premiered in the Berlinale’s Encounters section in 2021. This is her second feature.",
+      "st": "The project took part in TorinoFilmLab’s 2024 FeatureLab. Lentzou wrote, directed and co-edited the finished film, photographed by Grimm Vandekerckhove and scored by Colin Stetson. School and the streets of suburban Athens give Jo a clear route, while sounds outside the frame, shifts in colour and unexpected glances leave a second set of clues.\n\nThe choir audition gives Jo and the viewer a reason to listen closely. Sounds and images of ordinary things take on a different texture as the day progresses, preparing for the film’s final sensory shift.",
+      "editorial": "Use the choir audition as a starting point for listening. When Phaedra sings, notice how the scene measures her distance from Jo. Later, when Jo looks up at the sky, listen for what is outside the frame. Those two moments offer a way into the final passage.",
+      "highlights": [
+        "The choir audition gives Jo a reason to listen to others and notice her own voice.",
+        "Offscreen sounds and warped images transform suburban Athens.",
+        "Colin Stetson’s score stays close to the film’s interest in breath, touch and loneliness."
+      ],
+      "honors": [
+        "获奖｜83rd Venice International Film Festival · Orizzonti Best Director (Jacqueline Lentzou)",
+        "获奖｜83rd Venice International Film Festival · Edipo Re Award (collateral award)",
+        "获奖｜67th Thessaloniki International Film Festival · Golden Alexander and Special Mention (Evita Andriopoulou)",
+        "入选｜64th New York Film Festival · Currents (North American premiere)",
+        "入选｜31st Busan International Film Festival"
+      ],
+      "warnings": [
+        "Family conflict",
+        "Sudden death"
+      ],
+      "contentNote": "Published plot information indicates family conflict and sudden death. Detailed depiction and sensory intensity have yet to be verified."
     }
   },
   "programmes": {
@@ -16448,6 +16490,8 @@
     "香港国际电影节特别展映": "Hong Kong International Film Festival Special Screenings",
     "海南岛国际电影节新增香港国际电影节特别展映": "HIIFF adds a Hong Kong International Film Festival showcase",
     "在海南影展专题的「选择单元」里打开「香港国际电影节特别展映」，查看九部影片、荐片笔记与各家评分。": "Choose Hong Kong International Film Festival Special Screenings in the HIIFF programme for nine film pages, viewing notes and review scores.",
-    "海南岛国际电影节专题可按单元浏览。三部当代新作同时列在「海上明月」与「香港国际电影节特别展映」，进入同一个影片页。": "Browse the HIIFF programme by section. Three recent releases appear in both Asian Horizon and Hong Kong International Film Festival Special Screenings and share the same film pages."
+    "海南岛国际电影节专题可按单元浏览。三部当代新作同时列在「海上明月」与「香港国际电影节特别展映」，进入同一个影片页。": "Browse the HIIFF programme by section. Three recent releases appear in both Asian Horizon and Hong Kong International Film Festival Special Screenings and share the same film pages.",
+    "延伸片单": "Further Viewing",
+    "海南放映待确认": "Hainan screening unconfirmed"
   }
 }
