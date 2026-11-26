@@ -204,6 +204,41 @@
   },
   "_readme": "English layer for the site. films/programmes/venues overlay data fields when ?lang=en; ui is the zh→en dictionary used by tr(). Missing entries fall back to the Chinese text.",
   "films": {
+    "narnia-the-magicians-nephew-2027": {
+      "title": "Narnia: The Magician’s Nephew",
+      "dir": "Greta Gerwig",
+      "dirLife": "1983– · United States",
+      "release": "Overseas theatrical release on 12 February 2027. Mainland China release to be announced.",
+      "writers": [
+        "Greta Gerwig"
+      ],
+      "book": "The Magician’s Nephew by C. S. Lewis",
+      "cast": [
+        "David McKenna",
+        "Beatrice Campbell",
+        "Emma Mackey",
+        "Carey Mulligan",
+        "Ciarán Hinds",
+        "Daniel Craig",
+        "Meryl Streep",
+        "Kobna Holdbrook-Smith",
+        "Denise Gough",
+        "Susan Wokoma"
+      ],
+      "syn": "Two children in London, Digory Kirke and Polly Plummer, become friends. In the novel, a pair of magic rings leads them to a wood with pools that open onto other worlds. The children awaken Queen Jadis in the ruined world of Charn and arrive in another world before its stars have come out. There they hear Aslan begin to sing. Digory also wants to know whether the new world might have something that could save his mother at home.\n\nThe film’s official synopsis confirms that it follows the creation of Narnia. The story details above draw on the novel and released material.",
+      "bio": "Born in Sacramento in 1983, Greta Gerwig began in independent cinema as an actor, writer and co-director. She co-wrote and starred in Frances Ha and Mistress America before directing Lady Bird, Little Women and Barbie. Those films make large turns in a story legible through small actions: a family argument, a letter, or the decision to leave home.\n\nLittle Women moves between different periods in its characters’ lives. Here Gerwig begins a screen adaptation at the earliest point in Narnia’s timeline, using a book that was published late in the series. At the trailer launch she discussed rereading Lewis and writers who influenced him, and visiting Oxford, Cambridge and Belfast as part of her research.",
+      "st": "Published in 1955, The Magician’s Nephew was the sixth of the seven novels to appear and is set earliest in Narnia’s chronology. The Lion, the Witch and the Wardrobe introduced Aslan and the White Witch in 1950. This story returns to the origins of both the world and those figures. Gerwig wrote and directed the novel’s first film adaptation.\n\nDavid McKenna and Beatrice Campbell are the young leads. Gerwig recalled that during a screen test she noticed McKenna quietly signal to someone off camera that Campbell needed a tissue. Seamus McGarvey is the cinematographer, James Chinlund the production designer, and Jacqueline Durran the costume designer. Mark Ronson and Andrew Wyatt, who worked with Gerwig on Barbie, wrote the score. The trailer separately uses Led Zeppelin’s Stairway to Heaven.\n\nNetflix announced exclusive IMAX previews from 10 February 2027, theatrical release on 12 February, and streaming on 2 April. Sony Pictures Entertainment distributes theatrically outside North America. Mainland China distribution, dates and formats await confirmation.",
+      "editorial": "Look at what each character wants to do with magic. Andrew treats the children as test subjects, Jadis sees power as a claim to rule, and Digory wants a way to help his mother. The shift from an ordinary London home to a world coming into being also makes this a film to listen to. What would change if you heard a new world before you saw it?",
+      "highlights": [
+        "The sixth book published is the earliest story in the series.",
+        "The rings and the world between worlds turn curiosity into a responsibility.",
+        "Notice how Digory and Polly look after each other when they are unsure what to do.",
+        "Mark Ronson and Andrew Wyatt composed the score. Led Zeppelin’s song appears in the trailer.",
+        "Overseas IMAX previews and theatrical release have separate dates. Mainland showtimes await confirmation."
+      ],
+      "warnings": [],
+      "contentNote": "The film has yet to open. Details of the depiction, age guidance and sensory effects are unverified. The novel involves a parent’s serious illness, children in peril and fantasy threats."
+    },
     "twilight-2008": {
       "title": "Twilight",
       "dir": "Catherine Hardwicke",
