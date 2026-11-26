@@ -1169,7 +1169,9 @@
         "september-afternoon-2026": "采珠拾贝",
         "the-birds-tell-me-all-there-is-to-know": "采珠拾贝",
         "the-mirage-bingham-bryant-2026": "采珠拾贝",
+        "gr26-011": "海上明月",
         "another-green-world-2026": "海上明月",
+        "cassowary-2026": "海上明月",
         "four-seasons-in-java-2026": "海上明月",
         "head-to-head-2026": "海上明月",
         "master-rezwan-shahriar-sumit-2026": "海上明月",
@@ -1177,6 +1179,7 @@
         "water-of-the-sea-2026": "海上明月",
         "whispers-in-may-2026": "海上明月",
         "gr26-013": "海上明月",
+        "9-temples-to-heaven-2026": "海上明月",
         "a-good-little-soldier-2026": "天涯海角",
         "gr26-038": "天涯海角",
         "gh63-102": "天涯海角",
@@ -1193,10 +1196,7 @@
         "my-heart-is-that-eternal-rose-1989": "香港国际电影节特别展映",
         "full-alert-1997": "香港国际电影节特别展映",
         "shanghai-blues-1984": "香港国际电影节特别展映",
-        "days-of-being-wild-1990": "香港国际电影节特别展映",
-        "gr26-011": "香港国际电影节特别展映",
-        "cassowary-2026": "香港国际电影节特别展映",
-        "9-temples-to-heaven-2026": "香港国际电影节特别展映"
+        "days-of-being-wild-1990": "香港国际电影节特别展映"
       },
       "sectionNotes": {
         "天涯海角": {
@@ -1213,7 +1213,7 @@
         "gh63-116": "当地最孤单的男人"
       },
       "extraSections": {
-        "海上明月": [
+        "香港国际电影节特别展映": [
           "gr26-011",
           "cassowary-2026",
           "9-temples-to-heaven-2026"
