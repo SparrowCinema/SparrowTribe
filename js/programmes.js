@@ -372,7 +372,14 @@ function vmSelect(id,zoom){
   const box=document.querySelector(".vm-cards"); if(box)box.innerHTML=venueCardsHTML(vmPid,progVenuesOf(vmPid));
   if(vmSel)vmScrollTo(vmSel);
 }
-function vmBoardRefresh(){const box=document.getElementById("vb-"+vmSel);if(box)box.innerHTML=venueBoardHTML(vmPid,vmSel);}
+// 重画排片面板时保留海报条、日期条的横向滚动位置（影片多时点后面的海报，不会跳回最前面），并让选中的那张露在可视范围内
+function vmBoardRefresh(){
+  const box=document.getElementById("vb-"+vmSel);if(!box)return;
+  const keep=[".vb-films",".vb-days"].map(q=>[q,box.querySelector(q)?.scrollLeft||0]);
+  box.innerHTML=venueBoardHTML(vmPid,vmSel);
+  keep.forEach(([q,x])=>{const el=box.querySelector(q);if(!el)return;el.scrollLeft=x;
+    const on=el.querySelector(".on");if(on){const l=on.offsetLeft-el.offsetLeft,r=l+on.offsetWidth;if(l<el.scrollLeft)el.scrollLeft=l-12;else if(r>el.scrollLeft+el.clientWidth)el.scrollLeft=r-el.clientWidth+12;}});
+}
 window.addEventListener("resize",()=>{if(!document.querySelector(".vm-page"))return;vmPinTop();if(document.getElementById("vm-stage")&&vmState)renderVenueMap();});
 /* 手机浏览器工具栏收起 / 展开会改变视口高度（地图高度用 vh），微信内置浏览器等不一定发 resize：
    滚动时和地图、顶栏尺寸变化时都重新量一次，展开的影院标题条始终贴着地图下沿，不会悬空一条 */
