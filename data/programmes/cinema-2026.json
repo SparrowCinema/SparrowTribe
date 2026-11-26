@@ -3626,6 +3626,10 @@
   },
  {
   "id": "love-test",
+   "ticket": "tickets/love-test.jpg",
+   "ticketLabel": "报名",
+   "ticketPlatform": "微信",
+   "ticketHint": "免费场 · 11月26日 19:00 · 杭州浙影西广",
   "cn": "试探",
   "o": "试探",
   "en": "Love Test",
