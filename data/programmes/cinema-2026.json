@@ -3225,6 +3225,9 @@
   },
   {
    "id": "dune-part-two",
+   "ticket": "tickets/dune-part-two.jpg",
+   "ticketPlatform": "微信",
+   "ticketHint": "12月4日 19:00 · 杭州浙影西广 · 激光IMAX 4K",
    "cn": "沙丘2",
    "o": "Dune: Part Two",
    "en": "Dune: Part Two",
