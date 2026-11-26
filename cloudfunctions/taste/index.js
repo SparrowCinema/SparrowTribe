@@ -1,12 +1,13 @@
 // The same aggregate RPC used by the website; never reads other users' plans.
 // 2026-11-25：新增 action:'portrait'，将个人看过摘要转发到 Supabase Edge Function (smooth-processor) 生成 AI 观影评语，不存库。
 // 2026-11-26：按微信号 OPENID 限制短时间生成次数（默认 1 小时最多 3 次、24 小时最多 5 次），防刷 API。
-const cloud=require('wx-server-sdk'),https=require('https'),crypto=require('crypto');
+const cloud=require('wx-server-sdk'),https=require('https');
 cloud.init({env:cloud.DYNAMIC_CURRENT_ENV});
 const HOST='dclxhxxjktegyiwafmsv.supabase.co',KEY='sb_publishable_2K9O3h8nn2I_I-cIAdks8A_QZ98xwZ2';
 const HOUR_MS=60*60*1000,DAY_MS=24*60*60*1000;
-const HOUR_LIMIT=Math.max(1,Number(process.env.PORTRAIT_HOUR_LIMIT||3));
-const DAY_LIMIT=Math.max(HOUR_LIMIT,Number(process.env.PORTRAIT_DAY_LIMIT||5));
+const ENV=(typeof process!=='undefined'&&process&&process.env)||{};
+const HOUR_LIMIT=Math.max(1,Number(ENV.PORTRAIT_HOUR_LIMIT||3));
+const DAY_LIMIT=Math.max(HOUR_LIMIT,Number(ENV.PORTRAIT_DAY_LIMIT||5));
 const memHits=new Map(),inFlight=new Set();
 
 function postJson(path,body,timeoutMs){
@@ -62,7 +63,8 @@ exports.main=async event=>{try{
   if(!quota.ok)return {ok:false,reason:'rate_limited',scope:quota.scope,retryAfterSec:quota.retryAfterSec,limit:quota.limit};
   inFlight.add(uid);
   try{
-   const clientKey=OPENID?crypto.createHash('sha256').update('sparrow-portrait:'+OPENID).digest('hex').slice(0,32):'';
+   let clientKey='';
+   if(OPENID){try{const cr=require('crypto');if(cr&&typeof cr.createHash==='function')clientKey=cr.createHash('sha256').update('sparrow-portrait:'+OPENID).digest('hex').slice(0,32);}catch(e){}}
    const reqBody=Object.assign({},p,{action:'taste_portrait'});
    if(clientKey)reqBody.clientKey=clientKey;
    const r=await postJson('/functions/v1/smooth-processor',reqBody,22000);
