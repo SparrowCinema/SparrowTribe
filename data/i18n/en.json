@@ -200,7 +200,10 @@
     "本院影片": "Films at this venue",
     "只看": "Only",
     "看全部影片": "Show all films",
-    "影院地图固定，点影院看排片": "Venue map stays put; tap a venue for its screenings"
+    "影院地图固定，点影院看排片": "Venue map stays put; tap a venue for its screenings",
+    "发现新版本": "New version available",
+    "马上重启": "Restart now",
+    "稍后": "Later"
   },
   "_readme": "English layer for the site. films/programmes/venues overlay data fields when ?lang=en; ui is the zh→en dictionary used by tr(). Missing entries fall back to the Chinese text.",
   "films": {
@@ -16181,6 +16184,7 @@
     "长按识别，生成你的 AI 观影画像": "Long-press to create your AI Taste Portrait",
     "AI 观影画像支持生成分享图": "Shareable AI Taste Portrait cards & rate limits",
     "「AI 观影画像」可将专属影评、标签与下一步建议一键生成带小程序码的分享图片，方便发朋友圈或微信好友；同时为保护生成额度，每个账号短时间内最多生成 3 次（每小时 3 次、每日 5 次），已生成的画像缓存在本机可随时查看与导图。": "AI Taste Portrait now exports your commentary, tags, and next-watch suggestion as a shareable card with the Mini Program QR code. To keep API usage sustainable, each account is limited to 3 generations per hour and 5 per 24 hours; generated portraits stay cached locally for viewing and exporting anytime.",
-    "当前范围标记至少 3 部看过影片后，可点击「生成 AI 观影评语」，结合看过片单、星级评分与趣味四象限摘要生成 200–300 字专属评语、口味标签与下一步选片建议。评语按片单指纹缓存在本机，记录未变动时直接读取、不重复请求；支持一键生成带小程序码的分享图片。为防高频刷新消耗接口，每个账号每小时最多生成 3 次、24 小时内最多 5 次。": "With at least 3 watched films in the selected scope, tap Generate AI portrait to get a bespoke cinephile commentary, tags, and next-watch suggestion from your watched list, star ratings, and Taste Quadrants. Results are cached locally by fingerprint and can be exported as a share card with the Mini Program QR code. Each account is limited to 3 generations per hour and 5 per 24 hours."
+    "当前范围标记至少 3 部看过影片后，可点击「生成 AI 观影评语」，结合看过片单、星级评分与趣味四象限摘要生成 200–300 字专属评语、口味标签与下一步选片建议。评语按片单指纹缓存在本机，记录未变动时直接读取、不重复请求；支持一键生成带小程序码的分享图片。为防高频刷新消耗接口，每个账号每小时最多生成 3 次、24 小时内最多 5 次。": "With at least 3 watched films in the selected scope, tap Generate AI portrait to get a bespoke cinephile commentary, tags, and next-watch suggestion from your watched list, star ratings, and Taste Quadrants. Results are cached locally by fingerprint and can be exported as a share card with the Mini Program QR code. Each account is limited to 3 generations per hour and 5 per 24 hours.",
+    "新版本已经准备好，重启小程序就能用上。现在重启吗？": "A new version is ready. Restart the mini-program to use it now?"
   }
 }

@@ -40,6 +40,7 @@ App({
   onLaunch() {
     try { const g = wx.getStorageSync('sk-guide-v1'); if (g && g.chapters) this.globalData.guide = g; } catch (e) { }
     I.init(); this.globalData.data = withEnded(I.localize(LOCAL)); this.chrome();
+    try { require('./utils/update.js').check(wx, I.tr); } catch (e) { } // 新版本下载好后提示重启（utils/update.js）
     // 场次变更：个人排片一变就记下各场次的影片与时间（utils/planchange.js），之后数据里找不到时才能提示
     try { const PC = require('./utils/planchange.js'), P = require('./utils/plan.js'); P.onChange(() => PC.track(this.globalData.data)); PC.track(this.globalData.data); } catch (e) { } try { watched.migrate(LOCAL.aliases); } catch (e) { }
     if (wx.cloud) {
