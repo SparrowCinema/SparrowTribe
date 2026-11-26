@@ -32,7 +32,9 @@ Page({
   if(!force){const hit=TP.readCache(getSt,TP.MINI_CACHE_KEY,fp);if(hit&&hit.portrait){this.setData({aipPortrait:hit.portrait,aipCached:true,aipFold:false,aipMsg:'',aipTone:''});return;}}
   if(!wx.cloud){this.setData({aipFold:false,aipMsg:I.tr('AI 观影画像暂不可用，请稍后再试；上方离线趣味图谱仍可正常使用。'),aipTone:'warn'});return;}
   this.setData({aipBusy:true,aipFold:false,aipMsg:I.tr('正在结合你的片单与四象限撰写评语…'),aipTone:''});
-  wx.cloud.callFunction({name:'taste',data:{action:'portrait',payload:built.payload}}).then(cr=>{
+  // 云函数冷启动加 AI 生成可能较久：调用本身失败（超时 / 网络）时自动再试一次
+  const call=()=>wx.cloud.callFunction({name:'taste',data:{action:'portrait',payload:built.payload}});
+  call().catch(()=>{if(!this._ready)throw Error('gone');return call();}).then(cr=>{
    if(!this._ready)return;
    const out=cr&&cr.result;
    if(out&&out.ok&&out.portrait){
