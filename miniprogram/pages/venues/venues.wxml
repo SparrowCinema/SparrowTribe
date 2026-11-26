@@ -45,7 +45,7 @@
           </view>
           <view wx:if="{{activeId === item.id && panel && panel.id === item.id}}" class="vp">
             <view wx:if="{{panel.empty}}" class="vp-empty">{{L.t(i,'暂无待映场次')}}</view>
-            <scroll-view wx:if="{{panel.films.length}}" class="vp-films" scroll-x="{{true}}" enhanced="{{true}}" show-scrollbar="{{false}}" scroll-into-view="{{panel.filmInto}}">
+            <scroll-view wx:if="{{panel.films.length}}" class="vp-films" scroll-x="{{true}}" enhanced="{{true}}" show-scrollbar="{{false}}" scroll-left="{{panel.filmLeft}}" bindscroll="onFilmsScroll">
               <view wx:for="{{panel.films}}" wx:for-item="f" wx:key="id" id="vf-{{index}}" class="vp-film {{f.on ? 'on' : ''}}" data-id="{{f.id}}" bindtap="pickFilm">
                 <image wx:if="{{f.poster}}" class="vp-img" src="{{f.poster}}" mode="aspectFill" lazy-load="{{true}}" />
                 <view wx:else class="vp-img vp-ph">{{f.ph}}</view>
@@ -57,7 +57,7 @@
               <text class="vp-fl"><text class="vp-fk">{{L.t(i,'只看')}}</text>{{panel.filmName}}</text>
               <text class="vp-fx" data-id="" bindtap="pickFilm">{{L.t(i,'看全部影片')}}</text>
             </view>
-            <scroll-view wx:if="{{panel.days.length}}" class="vp-days" scroll-x="{{true}}" enhanced="{{true}}" show-scrollbar="{{false}}" scroll-into-view="{{panel.dayInto}}">
+            <scroll-view wx:if="{{panel.days.length}}" class="vp-days" scroll-x="{{true}}" enhanced="{{true}}" show-scrollbar="{{false}}" scroll-left="{{panel.dayLeft}}" bindscroll="onDaysScroll">
               <view wx:for="{{panel.days}}" wx:for-item="d" wx:key="key" id="vd-{{index}}" class="vp-day {{d.on ? 'on' : ''}}" data-key="{{d.key}}" bindtap="pickDay"><text class="vd-l mono">{{d.label}}</text><text class="vd-n">{{d.n}}</text></view>
             </scroll-view>
             <view wx:for="{{panel.up}}" wx:for-item="g" wx:key="key" class="vp-dg">
