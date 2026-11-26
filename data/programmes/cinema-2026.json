@@ -424,7 +424,7 @@
    "en": "Dune: Part Three",
    "y": 2026,
    "c": "美国 / 加拿大",
-   "min": null,
+   "min": 150,
    "reg": "us",
    "release": "2026年12月31日 内地上映",
    "dir": "丹尼斯·维伦纽瓦",
@@ -3244,6 +3244,9 @@
     4.4
    ],
    "version": "重映",
+   "screeningNotes": {
+    "12/4-19:00-hz-zy-xiguang-imax": "激光IMAX 4K"
+   },
    "poster": "posters/dune-part-two-main.jpg",
    "stills": [
     {"url": "posters/dune-part-two-eye.jpg", "label": "插画海报"},
@@ -4483,6 +4486,14 @@
    "hz-mixc-yaao",
    "hall-4",
    "s1vwhhljs"
+  ],
+  [
+   "12/4",
+   "19:00",
+   "dune-part-two",
+   "hz-zy-xiguang",
+   "imax",
+   "s4u21dbv2"
   ]
  ]
 }
