@@ -212,7 +212,10 @@ Page({
       films: b.films.map(x => { const f = idx.F[x.id]; return { id: x.id, cn: title(f), poster: U.thumb(f), ph: (title(f) || '').slice(0, 1), sub: [t(f.version || ''), x.next.d + ' ' + x.next.t].filter(Boolean).join(' · '), on: b.film === x.id }; }),
       filmName: fsel ? (en ? '“' + title(fsel) + '”' : '《' + title(fsel) + '》') : '',
       days: b.days.length > 1 ? [{ key: '', label: t('全部日期'), n: t(b.days.reduce((n, d) => n + d.n, 0) + ' 场'), on: !b.day }].concat(b.days.map(d => ({ key: d.key, label: d.first.d + ' ' + U.wk(d.first.d, d.first.year), n: t(d.n + ' 场'), on: b.day === d.key }))) : [],
-      up: groups(b.up)
+      up: groups(b.up),
+      // 横向海报条 / 日期条停在选中的那一项（setData 重画后不会跳回最前面）
+      filmInto: b.film ? 'vf-' + b.films.findIndex(x => x.id === b.film) : '',
+      dayInto: b.day && b.days.length > 1 ? 'vd-' + (b.days.findIndex(d => d.key === b.day) + 1) : ''
     } });
   },
   pickFilm(e) { const id = e.currentTarget.dataset.id; this.pick = { film: this.pick.film === id ? '' : id, day: undefined }; this.buildPanel(); },
