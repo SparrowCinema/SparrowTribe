@@ -1,0 +1,99 @@
+{
+  "checked": "2026-11-26",
+  "notes": [
+    "Mainland acquisition announced 24 November; exact dates and technical format remain unannounced at time of entry. No sessions added for Twilight titles. Premiere dates refer to Los Angeles red-carpet screenings, separate from wide theatrical release.",
+    "Douban values use public indexed snapshots because the direct subject pages require browser verification. The Rotten Tomatoes column records the critics’ Tomatometer. For Les Misérables, release date and the two Hangzhou previews were supplied by the catalogue owner."
+  ],
+  "mainlandAnnouncement": [
+    "https://www.sina.cn/news/detail/5368749776703318.html",
+    "https://www.sina.cn/news/detail/5368794348257778.html",
+    "https://www.fathomentertainment.com/news/the-twilight-saga-to-return-to-theaters-this-fall/"
+  ],
+  "verifiedRecords": {
+    "twilight-2008": {
+      "sources": [
+        "https://catalog.afi.com/Film/64791-",
+        "https://letterboxd.com/film/twilight-2008/",
+        "https://www.rottentomatoes.com/m/twilight",
+        "https://www.metacritic.com/movie/twilight/"
+      ],
+      "ratings": {
+        "douban": "https://movie.douban.com/subject/2268359/",
+        "doubanSnapshot": "https://letterboxd.com/deb555/list/filmlist%3A66635751/detail/page/2/",
+        "imdb": "https://www.imdb.com/title/tt1099212/ratings/",
+        "rt": "https://www.rottentomatoes.com/m/twilight",
+        "metacritic": "https://www.metacritic.com/movie/twilight/",
+        "letterboxd": "https://mooveedb.com/movie/2008/twilight-tt1099212"
+      },
+      "awards": "https://www.imdb.com/title/tt1099212/awards/"
+    },
+    "twilight-new-moon-2009": {
+      "sources": [
+        "https://www.eonline.com/ca/news/1095072/look-back-at-the-premiere-of-twilight-new-moon-10-years-later",
+        "https://letterboxd.com/film/the-twilight-saga-new-moon/",
+        "https://www.rottentomatoes.com/m/twilight_saga_new_moon",
+        "https://www.metacritic.com/movie/the-twilight-saga-new-moon/"
+      ],
+      "ratings": {
+        "douban": "https://movie.douban.com/subject/3148027/",
+        "doubanSnapshot": "https://letterboxd.com/deb555/list/filmlist%3A66635751/detail/page/2/",
+        "imdb": "https://www.imdb.com/title/tt1259571/ratings/",
+        "rt": "https://www.rottentomatoes.com/m/twilight_saga_new_moon",
+        "metacritic": "https://www.metacritic.com/movie/the-twilight-saga-new-moon/",
+        "letterboxd": "https://www.flicks.us/movie/the-twilight-saga-new-moon/"
+      },
+      "awards": "https://www.imdb.com/title/tt1259571/awards/"
+    },
+    "twilight-eclipse-2010": {
+      "sources": [
+        "https://catalog.afi.com/Catalog/moviedetails/66614",
+        "https://letterboxd.com/film/the-twilight-saga-eclipse/",
+        "https://www.rottentomatoes.com/m/1210749-eclipse",
+        "https://www.metacritic.com/movie/the-twilight-saga-eclipse/"
+      ],
+      "ratings": {
+        "douban": "https://movie.douban.com/subject/3289086/",
+        "doubanSnapshot": "https://letterboxd.com/deb555/list/filmlist%3A66635751/detail/page/2/",
+        "imdb": "https://www.imdb.com/title/tt1325004/ratings/",
+        "rt": "https://www.rottentomatoes.com/m/1210749-eclipse",
+        "metacritic": "https://www.metacritic.com/movie/the-twilight-saga-eclipse/",
+        "letterboxd": "https://www.flicks.us/movie/the-twilight-saga-eclipse/"
+      },
+      "awards": "https://www.imdb.com/title/tt1325004/awards/"
+    },
+    "twilight-breaking-dawn-part-1-2011": {
+      "sources": [
+        "https://letterboxd.com/film/the-twilight-saga-breaking-dawn-part-1/releases/",
+        "https://letterboxd.com/film/the-twilight-saga-breaking-dawn-part-1/",
+        "https://www.rottentomatoes.com/m/the_twilight_saga_breaking_dawn_part_1",
+        "https://www.metacritic.com/movie/the-twilight-saga-breaking-dawn---part-1/"
+      ],
+      "ratings": {
+        "douban": "https://movie.douban.com/subject/3289081/",
+        "doubanSnapshot": "https://letterboxd.com/deb555/list/filmlist%3A66635751/detail/page/2/",
+        "imdb": "https://www.imdb.com/title/tt1324999/ratings/",
+        "rt": "https://www.rottentomatoes.com/m/the_twilight_saga_breaking_dawn_part_1",
+        "metacritic": "https://www.metacritic.com/movie/the-twilight-saga-breaking-dawn---part-1/",
+        "letterboxd": "https://www.flicks.us/movie/the-twilight-saga-breaking-dawn-part-1/"
+      },
+      "awards": "https://www.imdb.com/title/tt1324999/awards/"
+    },
+    "twilight-breaking-dawn-part-2-2012": {
+      "sources": [
+        "https://www.cbsnews.com/pictures/breaking-dawn-part-2-premieres-in-los-angeles/",
+        "https://letterboxd.com/film/the-twilight-saga-breaking-dawn-part-2/",
+        "https://www.rottentomatoes.com/m/the_twilight_saga_breaking_dawn_part_2",
+        "https://www.metacritic.com/movie/the-twilight-saga-breaking-dawn---part-2/"
+      ],
+      "ratings": {
+        "douban": "https://movie.douban.com/subject/4889554/",
+        "doubanSnapshot": "https://letterboxd.com/deb555/list/filmlist%3A66635751/detail/page/2/",
+        "imdb": "https://www.imdb.com/title/tt1673434/ratings/",
+        "rt": "https://www.rottentomatoes.com/m/the_twilight_saga_breaking_dawn_part_2",
+        "metacritic": "https://www.metacritic.com/movie/the-twilight-saga-breaking-dawn---part-2/",
+        "letterboxd": "https://www.flicks.us/movie/the-twilight-saga-breaking-dawn-part-2/"
+      },
+      "awards": "https://www.imdb.com/title/tt1673434/awards/"
+    }
+  }
+}

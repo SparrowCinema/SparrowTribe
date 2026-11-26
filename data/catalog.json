@@ -32,7 +32,8 @@
         "gr26-032",
         "gr26-002",
         "hideaway-the-dossiers",
-        "never-too-late-2024"
+        "never-too-late-2024",
+        "gr26-023"
       ]
     },
     {
@@ -1582,6 +1583,11 @@
           "id": "dolby",
           "short": "6号杜比巨幕厅",
           "name": "6号杜比巨幕4K激光厅"
+        },
+        {
+          "id": "hall-4",
+          "short": "4号厅",
+          "name": "4号厅"
         }
       ],
       "city": "杭州",
