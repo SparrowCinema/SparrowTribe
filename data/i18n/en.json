@@ -13013,6 +13013,13 @@
     }
   },
   "programmes": {
+    "cinema-2027": {
+      "name": "2027 Now Showing",
+      "cover": "programmes/cinema-2027-en.jpg",
+      "sub": "2027 cinema releases & re-releases",
+      "city": "Hangzhou",
+      "blurb": "2027 theatrical releases and reissues. Films confirmed for Mainland release can be browsed before they have dates. Consult the distributor or cinema for official release dates and showtimes."
+    },
     "style-kaleidoscope": {
       "name": "Style Kaleidoscope",
       "sub": "Chinese & World Classics",
