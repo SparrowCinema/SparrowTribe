@@ -14,12 +14,32 @@ function postJson(path,body,timeoutMs){
   req.on('error',reject);req.end(data);
  });
 }
+// AI 画像生成次数：按微信账号（OPENID）计数，1 小时最多 3 次、24 小时最多 8 次（与 shared/taste-portrait.js 的 QUOTA 一致）。
+// 记录在云数据库集合 ai_quota（文档 _id = OPENID，ts = 最近 24 小时的调用时间）；集合不存在时自动创建。AI 调用失败会退回这一次。
+const QUOTA={hour:3,day:8},HOUR=36e5,DAY=864e5;
+async function quotaTake(openid){
+ const db=cloud.database(),col=db.collection('ai_quota'),now=Date.now();
+ let ts=[];
+ try{const r=await col.doc(openid).get();ts=(r.data&&r.data.ts)||[];}
+ catch(e){if(/not exist|DATABASE_COLLECTION_NOT_EXIST|-502005/i.test(String(e&&(e.errMsg||e.message||e.errCode)))){try{await db.createCollection('ai_quota');}catch(e2){}}}
+ ts=ts.filter(t=>typeof t==='number'&&t>now-DAY).sort((a,b)=>a-b);
+ const inHour=ts.filter(t=>t>now-HOUR);let wait=0;
+ if(inHour.length>=QUOTA.hour)wait=Math.max(wait,inHour[inHour.length-QUOTA.hour]+HOUR-now);
+ if(ts.length>=QUOTA.day)wait=Math.max(wait,ts[ts.length-QUOTA.day]+DAY-now);
+ if(wait>0)return {ok:false,waitMs:Math.ceil(wait)};
+ ts.push(now);await col.doc(openid).set({data:{ts}});
+ return {ok:true,at:now,left:Math.min(QUOTA.hour-inHour.length-1,QUOTA.day-ts.length)};
+}
+async function quotaRefund(openid,at){try{const col=cloud.database().collection('ai_quota'),r=await col.doc(openid).get();const ts=((r.data&&r.data.ts)||[]).filter(t=>t!==at);await col.doc(openid).set({data:{ts}});}catch(e){}}
 exports.main=async event=>{try{
  if(event&&event.action==='portrait'){
   const p=event.payload&&typeof event.payload==='object'?event.payload:null;
   if(!p||!Array.isArray(p.topFilms)||p.topFilms.length<3)return {ok:false,reason:'too_few_films'};
-  const r=await postJson('/functions/v1/smooth-processor',Object.assign({},p,{action:'taste_portrait'}),45000); // 云函数超时 50 秒（config.json），留 5 秒把结果交回去
-  if(r.status>=200&&r.status<300&&r.json&&r.json.ok&&r.json.portrait)return {ok:true,portrait:r.json.portrait,model:r.json.model||''};
+  const {OPENID}=cloud.getWXContext();if(!OPENID)return {ok:false,reason:'identity'};
+  const q=await quotaTake(OPENID);if(!q.ok)return {ok:false,reason:'quota',waitMs:q.waitMs};
+  let r;try{r=await postJson('/functions/v1/smooth-processor',Object.assign({},p,{action:'taste_portrait'}),45000);}catch(e){await quotaRefund(OPENID,q.at);throw e;} // 云函数超时 50 秒（config.json），留 5 秒把结果交回去
+  if(r.status>=200&&r.status<300&&r.json&&r.json.ok&&r.json.portrait)return {ok:true,portrait:r.json.portrait,model:r.json.model||'',left:q.left};
+  await quotaRefund(OPENID,q.at);
   return {ok:false,reason:(r.json&&r.json.reason)||(r.status===429?'rate_limited':'unavailable')};
  }
  const read=event.action==='read';if(!read&&event.action!=='vote')return {ok:false,reason:'invalid'};

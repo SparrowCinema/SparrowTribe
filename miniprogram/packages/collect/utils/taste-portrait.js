@@ -392,7 +392,117 @@
     return lines.join('\n');
   }
 
+  // ===== 生成次数限制（2026-11-26）=====
+  // 每次真正调用 AI 都计一次（读本机缓存不算）：1 小时内最多 QUOTA.hour 次、24 小时内最多 QUOTA.day 次。
+  // 小程序以 taste 云函数按微信账号计数为准（cloudfunctions/taste，同样的数字），本机记录只用于显示剩余次数；网站没有账号，按本机计数。
+  const QUOTA = { hour: 3, day: 8 };
+  const WEB_QUOTA_KEY = 'sparrow-ai-portrait-log';
+  const MINI_QUOTA_KEY = 'sk-ai-portrait-log';
+  const HOUR = 36e5, DAY = 864e5;
+  function quotaState(log, nowMs) {
+    const now = Number(nowMs) || Date.now();
+    const ts = (Array.isArray(log) ? log : []).filter(t => typeof t === 'number' && t > now - DAY && t <= now + 6e4).sort((a, b) => a - b);
+    const inHour = ts.filter(t => t > now - HOUR);
+    let waitMs = 0;
+    if (inHour.length >= QUOTA.hour) waitMs = Math.max(waitMs, inHour[inHour.length - QUOTA.hour] + HOUR - now);
+    if (ts.length >= QUOTA.day) waitMs = Math.max(waitMs, ts[ts.length - QUOTA.day] + DAY - now);
+    const hourLeft = Math.max(0, QUOTA.hour - inHour.length), dayLeft = Math.max(0, QUOTA.day - ts.length);
+    return { ok: waitMs <= 0, left: Math.min(hourLeft, dayLeft), hourLeft, dayLeft, waitMs: Math.max(0, Math.ceil(waitMs)), log: ts };
+  }
+  function quotaAdd(log, nowMs) { const now = Number(nowMs) || Date.now(); return quotaState(log, now).log.concat(now); }
+  function waitText(ms, en) {
+    const m = Math.max(1, Math.ceil((Number(ms) || 0) / 6e4));
+    if (m < 60) return en ? 'about ' + m + ' min' : '约 ' + m + ' 分钟';
+    const h = Math.ceil(m / 60);
+    return en ? 'about ' + h + ' h' : '约 ' + h + ' 小时';
+  }
+  function quotaText(st, en) {
+    if (!st) return '';
+    if (!st.ok) return en ? 'Generation limit reached — try again in ' + waitText(st.waitMs, true) + '.' : '生成次数已达上限，' + waitText(st.waitMs, false) + '后可再生成。';
+    return en ? 'You can regenerate ' + st.left + ' more time' + (st.left === 1 ? '' : 's') + ' this hour (up to ' + QUOTA.day + ' a day).'
+      : '1 小时内还可重新生成 ' + st.left + ' 次（每天最多 ' + QUOTA.day + ' 次）';
+  }
+
+  // ===== 分享图片（2026-11-26）：画像 + 小程序码，网站与小程序共用同一套排版 =====
+  // shareHeight(c, o) / drawShare(c, o) 的 o：portrait、scope、count（影片数）、holder、date、qrImg（小程序码图片）、en
+  const SW = 1080, SP = 72, FOOT = 330;
+  const SERIF = '"Noto Serif SC","Songti SC","STSong",serif', SANS = '"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif', MONO = '"IBM Plex Mono",Menlo,monospace';
+  const PC = { paper: '#efe6d4', card: '#f8f2e6', ink: '#2b2117', muted: '#7a6a55', line: '#d8cbb1', red: '#8e2a22', gold: '#d9bc80', teal: '#2f6f6c', dark: '#2b2117' };
+  const CJKR = /[　-〿㐀-鿿＀-￯]/;
+  function wrap(c, text, max) {
+    text = String(text || ''); const out = []; let line = '';
+    if (!CJKR.test(text) && /\s/.test(text)) text.split(/\s+/).forEach(w => { const t = line ? line + ' ' + w : w; if (c.measureText(t).width > max && line) { out.push(line); line = w; } else line = t; });
+    else for (const ch of text) { if (c.measureText(line + ch).width > max && line) { out.push(line); line = ch; } else line += ch; }
+    if (line) out.push(line);
+    for (let i = 1; i < out.length; i++) { const m = out[i].match(/^[：:，,、。.！!？?）)」』”·]+/); if (m) { out[i - 1] += m[0]; out[i] = out[i].slice(m[0].length); } }
+    return out.filter(Boolean);
+  }
+  function rrect(c, x, y, w, h, r) { c.beginPath(); c.moveTo(x + r, y); c.arcTo(x + w, y, x + w, y + h, r); c.arcTo(x + w, y + h, x, y + h, r); c.arcTo(x, y + h, x, y, r); c.arcTo(x, y, x + w, y, r); c.closePath(); }
+  // 先排版（只量不画）再按同一结果绘制，保证高度与画面一致
+  function paintShare(c, o, draw) {
+    const p = normalizePortrait(o && o.portrait); if (!p) return 0;
+    const en = !!o.en, inner = SW - SP * 2, put = (fn) => { if (draw) fn(); };
+    let y = 120;
+    put(() => { c.fillStyle = PC.paper; c.fillRect(0, 0, SW, 10000); });
+    const ops = [];
+    const text = (str, x, yy, font, color, align) => ops.push(() => { c.font = font; c.fillStyle = color; c.textAlign = align || 'left'; c.textBaseline = 'alphabetic'; c.fillText(str, x, yy); });
+    text('AI FILM PORTRAIT', SP, y, '600 26px ' + MONO, PC.red);
+    y += 74;
+    const holder = clamp(o.holder, 16);
+    const title = en ? (holder ? holder + "'s AI Film Portrait" : 'My AI Film Portrait') : (holder ? holder + '的 AI 观影画像' : '我的 AI 观影画像');
+    c.font = '900 56px ' + SERIF; wrap(c, title, inner).slice(0, 2).forEach((l, i) => { text(l, SP, y + i * 70, '900 56px ' + SERIF, PC.ink); y += i ? 70 : 0; });
+    y += 54;
+    const meta = [clamp(o.scope, 30), o.count ? (en ? o.count + ' film' + (o.count === 1 ? '' : 's') : o.count + ' 部影片') : '', clamp(o.date, 12)].filter(Boolean).join(' · ');
+    text(meta, SP, y, '400 28px ' + SANS, PC.muted);
+    y += 40; const lineY = y; ops.push(() => { c.strokeStyle = PC.line; c.lineWidth = 2; c.beginPath(); c.moveTo(SP, lineY); c.lineTo(SW - SP, lineY); c.stroke(); });
+    y += 74;
+    if (p.headline) { c.font = '900 50px ' + SERIF; const hl = wrap(c, p.headline, inner); hl.forEach((l, i) => text(l, SP, y + i * 68, '900 50px ' + SERIF, PC.red)); y += (hl.length - 1) * 68 + 40; }
+    if (p.tags.length) {
+      c.font = '500 26px ' + SANS; let x = SP, ty = y + 6;
+      p.tags.forEach(t => { const w = c.measureText('#' + t).width + 40; if (x + w > SW - SP) { x = SP; ty += 64; } const xx = x, yy = ty; ops.push(() => { c.fillStyle = 'rgba(47,111,108,.10)'; rrect(c, xx, yy, w, 48, 24); c.fill(); c.font = '500 26px ' + SANS; c.fillStyle = PC.teal; c.textAlign = 'left'; c.fillText('#' + t, xx + 20, yy + 33); }); x += w + 14; });
+      y = ty + 48 + 66;
+    }
+    c.font = '400 32px ' + SANS;
+    p.paragraphs.forEach((para, pi) => { const ls = wrap(c, para, inner); ls.forEach((l, i) => text(l, SP, y + i * 54, '400 32px ' + SANS, PC.ink)); y += ls.length * 54 + (pi < p.paragraphs.length - 1 ? 24 : 0); });
+    if (p.nextHint) {
+      y += 6; c.font = '400 30px ' + SANS; const nl = wrap(c, p.nextHint, inner - 64), bh = 40 + 40 + nl.length * 48 + 22, by = y;
+      ops.push(() => { c.fillStyle = 'rgba(217,188,128,.28)'; rrect(c, SP, by, inner, bh, 20); c.fill(); });
+      text(en ? 'NEXT TO TRY' : '下一步建议', SP + 32, by + 56, '700 26px ' + SANS, PC.teal);
+      nl.forEach((l, i) => text(l, SP + 32, by + 108 + i * 48, '400 30px ' + SANS, PC.ink));
+      y = by + bh;
+    }
+    y += 52;
+    text(en ? 'Written by AI from my watch history · for fun' : '由 AI 根据我的观影记录生成 · 仅供娱乐', SP, y, '400 24px ' + SANS, PC.muted);
+    y += 56;
+    const H = y + FOOT;
+    if (!draw) return H;
+    c.fillStyle = PC.paper; c.fillRect(0, 0, SW, H);
+    ops.forEach(f => f());
+    // 页脚深色通栏：小程序码 + 说明
+    const fy = y; c.fillStyle = PC.dark; c.fillRect(0, fy, SW, FOOT);
+    const qs = 220, qx = SP, qy = fy + (FOOT - qs) / 2;
+    c.fillStyle = '#ffffff'; rrect(c, qx - 12, qy - 12, qs + 24, qs + 24, 24); c.fill();
+    if (o.qrImg) { try { c.drawImage(o.qrImg, qx, qy, qs, qs); } catch (e) {} }
+    const tx = qx + qs + 56;
+    c.textAlign = 'left'; c.fillStyle = PC.card; c.font = '900 42px ' + SERIF; c.fillText(en ? 'Scan for your own portrait' : '扫码生成你的 AI 观影画像', tx, fy + 124);
+    c.fillStyle = PC.gold; c.font = '400 28px ' + SANS; c.fillText(en ? 'WeChat mini-program: 麻雀观影护照' : '微信小程序「麻雀观影护照」', tx, fy + 178);
+    c.fillStyle = '#b7a68b'; c.font = '400 24px ' + SANS; c.fillText(en ? 'Sparrow Movies × Sparrow Tribe' : '麻雀映画 × 麻雀部落', tx, fy + 222);
+    return H;
+  }
+  const shareHeight = (c, o) => paintShare(c, o, false);
+  const drawShare = (c, o) => paintShare(c, o, true);
+
   return {
+    QUOTA,
+    WEB_QUOTA_KEY,
+    MINI_QUOTA_KEY,
+    quotaState,
+    quotaAdd,
+    quotaText,
+    waitText,
+    SHARE_W: SW,
+    shareHeight,
+    drawShare,
     MIN_FILMS,
     MAX_FILMS,
     CACHE_MAX,

@@ -80,3 +80,11 @@ curl -X POST "https://dclxhxxjktegyiwafmsv.supabase.co/functions/v1/smooth-proce
 1. 在微信开发者工具中右键 `cloudfunctions/ticketOcr` 与 `cloudfunctions/taste`，分别选择 **上传并部署：云端安装依赖**。
    - 两个云函数的 `config.json` 都设了 `"timeout": 50`（2026-11-26；云函数里等 AI 的时间：画像 45 秒、识票 40 秒）：微信云函数默认 3 秒就会被强制结束，而 AI 生成评语 / 识票要等 10–20 秒，不设超时小程序会一直显示「AI 观影画像暂不可用」。上传部署时会一并带上这个设置；部署后可在云开发控制台 → 云函数 → 配置里确认超时时间为 50 秒。
 2. 票根编辑页（`packages/collect/ticket-edit`）与趣味图谱页（`packages/collect/taste-map`）已同步更新，按常规流程上传体验版 / 提交审核即可生效。
+
+## AI 观影画像：分享图片与生成次数（2026-11-26）
+
+- 「复制评语」改为「生成分享图片」：画像 + 小程序码的长图，排版在 `shared/taste-portrait.js` 的 `shareHeight` / `drawShare`（网站与小程序共用）。网站用通用小程序码 `brand/miniprogram-code.jpg`；小程序先用 `wxacode` 云函数取趣味图谱页的小程序码，失败时用通用小程序码。
+- 生成次数：每次真正调用 AI 计一次（读本机缓存不算），1 小时最多 3 次、24 小时最多 8 次（`QUOTA`）。
+  - 小程序以 `taste` 云函数按微信账号（OPENID）计数为准，记录在云数据库集合 `ai_quota`（不存在时自动创建；AI 调用失败会退回这一次），超限返回 `reason:'quota'` 与 `waitMs`。**改动后需重新部署 `taste` 云函数。**
+  - 网站没有账号，按本机计数（localStorage `sparrow-ai-portrait-log`），清浏览器数据可绕过；Edge Function 另有按 IP 的总限流（`AI_RATE_LIMIT`，默认 10 分钟 12 次）兜底。
+

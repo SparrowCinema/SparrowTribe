@@ -37,9 +37,10 @@
             <text class="aip-next-v" user-select="true">{{aipPortrait.nextHint}}</text>
           </view>
           <view class="aip-foot">
-            <button class="aip-btn aip-btn-ghost" hover-class="tr-hv" bindtap="copyAiPortrait">{{L.t(i,'复制评语')}}</button>
-            <button class="aip-btn aip-btn-ghost" hover-class="tr-hv" disabled="{{aipBusy}}" data-force="1" bindtap="makeAiPortrait">{{aipBusy ? L.t(i,'生成中…') : L.t(i,'重新生成')}}</button>
+            <button class="aip-btn aip-btn-ghost" hover-class="tr-hv" bindtap="shareAiPortrait">{{L.t(i,'生成分享图片')}}</button>
+            <button class="aip-btn aip-btn-ghost" hover-class="tr-hv" disabled="{{aipBusy || !aipQuotaOk}}" data-force="1" bindtap="makeAiPortrait">{{aipBusy ? L.t(i,'生成中…') : L.t(i,'重新生成')}}</button>
           </view>
+          <text wx:if="{{aipQuotaTxt}}" class="aip-quota">{{aipQuotaTxt}}</text>
         </block>
       </block>
       <block wx:else>

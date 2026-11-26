@@ -1850,3 +1850,5 @@ button,summary,a,label,select,[role=button],[data-pp],.my-entry{touch-action:man
 
 /* Visual refresh A (2026-11-25): narrow phones get to the film list sooner — the intro sentence repeats what the filters already say. */
 @media (max-width:420px){.fi-sub{display:none}}
+/* AI 观影画像：重新生成次数提示（2026-11-26） */
+.aip-quota{margin:8px 0 0;text-align:right;font-size:var(--t-xs);color:var(--muted)}

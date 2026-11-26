@@ -200,7 +200,10 @@
     "本院影片": "Films at this venue",
     "只看": "Only",
     "看全部影片": "Show all films",
-    "影院地图固定，点影院看排片": "Venue map stays put; tap a venue for its screenings"
+    "影院地图固定，点影院看排片": "Venue map stays put; tap a venue for its screenings",
+    "生成分享图片": "Share as image",
+    "正在生成分享图片…": "Creating share image…",
+    "AI 观影画像可生成分享图片": "Share your AI film portrait as an image"
   },
   "_readme": "English layer for the site. films/programmes/venues overlay data fields when ?lang=en; ui is the zh→en dictionary used by tr(). Missing entries fall back to the Chinese text.",
   "films": {
@@ -15903,6 +15906,9 @@
     "当前范围标记至少 3 部看过影片后，可点击「生成 AI 观影评语」，结合看过片单、星级评分与趣味四象限摘要生成 200–300 字专属评语、口味标签与下一步选片建议。评语按片单指纹缓存在本机，记录未变动时直接读取、不重复请求；支持一键复制或手动重新生成。": "With at least 3 watched films in the selected scope, tap Generate AI portrait to get a concise personal film-taste commentary, tags, and a next-watch suggestion based on your watched list, star ratings, and Taste Quadrants. Results are cached locally by fingerprint so unchanged records reuse the cache without repeat API calls.",
     "拖动或缩放地图 · 点击影院查看影片与排片": "Drag or zoom the map · Tap a venue for its films & screenings",
     "影展专题的「影院地图与交通」里，上滑时地图固定不动，只有影院列表滚动。点影院卡片或地图上的编号，展开这家影院在本专题的影片海报和按日期的排片：点海报只看这部影片，点日期只看当天，每一场都能直接加入排片。": "On a festival's Venues & Transit page the map now stays fixed while only the venue list scrolls. Tap a venue card or its number on the map to open that venue's films and day-by-day screenings: tap a poster to show just that film, tap a date for that day, and add any screening to your plan.",
-    "影展专题页的「影院地图与交通」在地图上标出全部影院，列出影厅和交通，点「地图导航」打开地图。上滑时地图固定，只有影院列表滚动；点影院或地图上的编号，看这家影院的影片与排片，可直接加入排片。": "Venues & Transit on a festival page pins every venue on a map with its screens and transport; tap Directions to open a map app. The map stays fixed while the venue list scrolls; tap a venue or its map number to see its films and screenings and add them to your plan."
+    "影展专题页的「影院地图与交通」在地图上标出全部影院，列出影厅和交通，点「地图导航」打开地图。上滑时地图固定，只有影院列表滚动；点影院或地图上的编号，看这家影院的影片与排片，可直接加入排片。": "Venues & Transit on a festival page pins every venue on a map with its screens and transport; tap Directions to open a map app. The map stays fixed while the venue list scrolls; tap a venue or its map number to see its films and screenings and add them to your plan.",
+    "分享图片生成失败，请稍后再试": "Couldn't create the share image — please try again later",
+    "「我的电影趣味图谱」的 AI 观影画像生成后，点「生成分享图片」得到一张带小程序码的长图，可以发给朋友或保存。为控制 AI 调用，重新生成每小时最多 3 次、每天最多 8 次（小程序按微信账号计算，网站按设备计算），按钮下方会显示剩余次数。": "After your AI film portrait is generated on My Film Taste Map, tap Share as image for a long image with the mini-program code to send or save. To keep AI usage in check, regenerating is limited to 3 times an hour and 8 times a day (per WeChat account in the mini-program, per device on the website); the remaining count shows under the button.",
+    "当前范围标记至少 3 部看过影片后，可点击「生成 AI 观影评语」，结合看过片单、星级评分与趣味四象限摘要生成 200–300 字专属评语、口味标签与下一步选片建议。评语按片单指纹缓存在本机，记录未变动时直接读取、不重复请求。生成后可点「生成分享图片」得到带小程序码的长图；「重新生成」每小时最多 3 次、每天最多 8 次。": "Once at least 3 films in the current scope are marked as watched, tap Generate AI film portrait to get a 200–300-word personal review, taste tags and a next-pick suggestion based on your watch list, star ratings and taste quadrants. The portrait is cached on this device by a fingerprint of your list and reused while your records stay the same. Afterwards, tap Share as image for a long image with the mini-program code; Regenerate is limited to 3 times an hour and 8 a day."
   }
 }
