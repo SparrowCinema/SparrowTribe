@@ -4,7 +4,7 @@ const REG = {cn:{n:"华语",c:"var(--oxblood)"},eu:{n:"欧洲",c:"var(--teal)"},
 /* 影片、影院、专题与排片数据在 data/ 目录：data/catalog.json（专题与影院）+ data/programmes/<专题id>.json（片目与排片）。新增影展只需新增一个专题文件并在 catalog 中登记。 */
 let FILMS=[], VENUES=[], PROGRAMMES=[], SH=[], VN={}, F={}, PG={}, days=[];
 /* 只在个别页面用到的共用脚本（趣味图谱、分享海报、识票、签名描摹）不在首屏加载，进入对应功能时再加载（2026-11-25） */
-const LAZY_LIBS={tasteReport:"shared/taste-report.js",tastePortrait:"shared/taste-portrait.js?v=2",sharePoster:"shared/share-poster.js",ticketOcr:"shared/ticket-ocr.js?v=2",trace:"shared/autograph-trace.js?v=1"},lazyLibP={};
+const LAZY_LIBS={tasteReport:"shared/taste-report.js",tastePortrait:"shared/taste-portrait.js?v=3",sharePoster:"shared/share-poster.js",ticketOcr:"shared/ticket-ocr.js?v=2",trace:"shared/autograph-trace.js?v=1"},lazyLibP={};
 /* 链接里的影片 / 专题已不存在（改名、合并、下架）时给出提示，不再悄悄跳到别的页面 */
 function notFoundPage(kind){const film=kind==="film";main.innerHTML='<section class="view gut nf-view"><h1 class="sec">'+tr(film?"找不到这部影片":"找不到这个专题")+'</h1><p class="sub">'+tr(film?"链接里的影片可能已更名、合并或下架。可以在片目里搜索，或回到排片表。":"链接里的专题可能已更名或下架。可以在专题页查看全部专题。")+'</p><div class="nf-actions"><button type="button" class="primary-button" data-tab="'+(film?"films":"programmes")+'">'+tr(film?"去片目搜索":"查看全部专题")+'</button><button type="button" class="secondary-button" data-tab="schedule">'+tr("回到排片表")+'</button></div></section>';window.scrollTo(0,0);}
 function loadLib(name){const src=LAZY_LIBS[name]||name;return lazyLibP[src]||(lazyLibP[src]=new Promise((ok,no)=>{const s=document.createElement("script");s.src=src;s.onload=()=>ok();s.onerror=()=>{delete lazyLibP[src];no(new Error(src));};document.head.appendChild(s);}));}

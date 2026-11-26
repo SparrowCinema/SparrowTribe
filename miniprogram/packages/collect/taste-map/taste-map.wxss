@@ -55,6 +55,8 @@
 .aip-btn::after{border:0}
 .aip-btn-primary{width:100% !important;padding:calc(22 * var(--r)) calc(32 * var(--r)) !important;background:var(--teal) !important;border:calc(2 * var(--r)) solid var(--teal);color:#fff !important;font-size:calc(25 * var(--fr)) !important;text-align:center}
 .aip-btn-primary[disabled]{background:var(--surface) !important;border-color:var(--line);color:var(--muted) !important}
+.aip-btn-share{padding:calc(12 * var(--r)) calc(26 * var(--r)) !important;background:var(--teal) !important;border:calc(2 * var(--r)) solid var(--teal);color:#fff !important;font-size:calc(21 * var(--fr)) !important;font-weight:700}
+.aip-btn-share[disabled]{opacity:.55}
 .aip-btn-ghost{padding:calc(12 * var(--r)) calc(24 * var(--r)) !important;background:var(--bg) !important;border:calc(2 * var(--r)) solid var(--line);color:var(--fg) !important;font-size:calc(21 * var(--fr)) !important;font-weight:600}
 .aip-btn-ghost[disabled]{opacity:.55}
 .aip-msg{display:block;margin-top:calc(16 * var(--r));padding:calc(14 * var(--r)) calc(18 * var(--r));border-radius:calc(16 * var(--r));border:calc(2 * var(--r)) solid var(--line);background:var(--bg);font-size:calc(20 * var(--fr));line-height:1.55;color:var(--muted)}

@@ -15903,6 +15903,16 @@
     "当前范围标记至少 3 部看过影片后，可点击「生成 AI 观影评语」，结合看过片单、星级评分与趣味四象限摘要生成 200–300 字专属评语、口味标签与下一步选片建议。评语按片单指纹缓存在本机，记录未变动时直接读取、不重复请求；支持一键复制或手动重新生成。": "With at least 3 watched films in the selected scope, tap Generate AI portrait to get a concise personal film-taste commentary, tags, and a next-watch suggestion based on your watched list, star ratings, and Taste Quadrants. Results are cached locally by fingerprint so unchanged records reuse the cache without repeat API calls.",
     "拖动或缩放地图 · 点击影院查看影片与排片": "Drag or zoom the map · Tap a venue for its films & screenings",
     "影展专题的「影院地图与交通」里，上滑时地图固定不动，只有影院列表滚动。点影院卡片或地图上的编号，展开这家影院在本专题的影片海报和按日期的排片：点海报只看这部影片，点日期只看当天，每一场都能直接加入排片。": "On a festival's Venues & Transit page the map now stays fixed while only the venue list scrolls. Tap a venue card or its number on the map to open that venue's films and day-by-day screenings: tap a poster to show just that film, tap a date for that day, and add any screening to your plan.",
-    "影展专题页的「影院地图与交通」在地图上标出全部影院，列出影厅和交通，点「地图导航」打开地图。上滑时地图固定，只有影院列表滚动；点影院或地图上的编号，看这家影院的影片与排片，可直接加入排片。": "Venues & Transit on a festival page pins every venue on a map with its screens and transport; tap Directions to open a map app. The map stays fixed while the venue list scrolls; tap a venue or its map number to see its films and screenings and add them to your plan."
+    "影展专题页的「影院地图与交通」在地图上标出全部影院，列出影厅和交通，点「地图导航」打开地图。上滑时地图固定，只有影院列表滚动；点影院或地图上的编号，看这家影院的影片与排片，可直接加入排片。": "Venues & Transit on a festival page pins every venue on a map with its screens and transport; tap Directions to open a map app. The map stays fixed while the venue list scrolls; tap a venue or its map number to see its films and screenings and add them to your plan.",
+    "生成分享图片": "Share image",
+    "正在生成分享图片…": "Generating share image…",
+    "AI 观影画像已生成": "AI portrait image ready",
+    "AI 观影画像分享图": "AI Taste Portrait share card",
+    "扫码生成你的 AI 观影画像": "Scan to create your AI Taste Portrait",
+    "长按识别小程序码，生成你的 AI 观影画像": "Long-press the Mini Program code to create your AI Taste Portrait",
+    "长按识别，生成你的 AI 观影画像": "Long-press to create your AI Taste Portrait",
+    "AI 观影画像支持生成分享图": "Shareable AI Taste Portrait cards & rate limits",
+    "「AI 观影画像」可将专属影评、标签与下一步建议一键生成带小程序码的分享图片，方便发朋友圈或微信好友；同时为保护生成额度，每个账号短时间内最多生成 3 次（每小时 3 次、每日 5 次），已生成的画像缓存在本机可随时查看与导图。": "AI Taste Portrait now exports your commentary, tags, and next-watch suggestion as a shareable card with the Mini Program QR code. To keep API usage sustainable, each account is limited to 3 generations per hour and 5 per 24 hours; generated portraits stay cached locally for viewing and exporting anytime.",
+    "当前范围标记至少 3 部看过影片后，可点击「生成 AI 观影评语」，结合看过片单、星级评分与趣味四象限摘要生成 200–300 字专属评语、口味标签与下一步选片建议。评语按片单指纹缓存在本机，记录未变动时直接读取、不重复请求；支持一键生成带小程序码的分享图片。为防高频刷新消耗接口，每个账号每小时最多生成 3 次、24 小时内最多 5 次。": "With at least 3 watched films in the selected scope, tap Generate AI portrait to get a bespoke cinephile commentary, tags, and next-watch suggestion from your watched list, star ratings, and Taste Quadrants. Results are cached locally by fingerprint and can be exported as a share card with the Mini Program QR code. Each account is limited to 3 generations per hour and 5 per 24 hours."
   }
 }

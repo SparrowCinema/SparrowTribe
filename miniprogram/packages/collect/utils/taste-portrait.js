@@ -4,7 +4,8 @@
  * 职责：
  * 1. 从本机看过记录与趣味四象限中提取精简、无隐私的摘要（不含同步码、私人笔记、排片）；
  * 2. 计算稳定指纹用于本机缓存（记录未变动时不重复调用 AI 接口）；
- * 3. 归一化 AI 返回的结构化画像并生成可复制文本。 */
+ * 3. 本机短时间 / 每日生成配额检查（配合服务端按账号 / IP 限流，避免高频重复刷新消耗 API）；
+ * 4. 归一化 AI 返回的结构化画像并绘制带小程序二维码的分享长图（画布 2D，不碰 DOM / wx）。 */
 (function (root, factory) {
   const api = factory();
   if (typeof module === 'object' && module.exports) module.exports = api;
@@ -17,6 +18,20 @@
   const CACHE_MAX = 12;
   const WEB_CACHE_KEY = 'sparrow-ai-portrait-v1';
   const MINI_CACHE_KEY = 'sk-ai-portrait-v1';
+  const WEB_QUOTA_KEY = 'sparrow-ai-portrait-rl-v1';
+  const MINI_QUOTA_KEY = 'sk-ai-portrait-rl-v1';
+  const HOUR_LIMIT = 3;
+  const HOUR_MS = 60 * 60 * 1000;
+  const DAY_LIMIT = 5;
+  const DAY_MS = 24 * 60 * 60 * 1000;
+  const CARD_W = 1080;
+  const CARD_P = 64;
+  const CARD_FOOT = 420;
+  const SERIF = '"Noto Serif SC","Songti SC",serif';
+  const SANS = '"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif';
+  const MONO = '"IBM Plex Mono",Menlo,monospace';
+  const CJK = /[　-〿㐀-鿿＀-￯]/;
+  const COL = { paper: '#efe6d4', card: '#f8f2e6', tint: '#f1e7d5', ink: '#2b2117', muted: '#7a6a55', line: '#d8cbb1', teal: '#2f6f6c', gold: '#d9bc80' };
 
   const validTaste = v => typeof v === 'number' && !Number.isNaN(v) && v >= 0 && v <= 5;
   const clamp = (s, n) => String(s || '').replace(/\s+/g, ' ').trim().slice(0, n);
@@ -392,17 +407,425 @@
     return lines.join('\n');
   }
 
+  // ---- 短时间 / 每日生成配额（前端同步拦截 + 配合服务端按账号/IP限流） ----
+  function loadQuota(getItem, key) {
+    const raw = loadStore(getItem, key);
+    const ts = Array.isArray(raw.ts) ? raw.ts.map(Number).filter(n => Number.isFinite(n) && n > 0).sort((a, b) => a - b) : [];
+    const until = Number.isFinite(Number(raw.until)) ? Number(raw.until) : 0;
+    const scope = raw.scope === 'day' ? 'day' : 'hour';
+    return { ts, until, scope };
+  }
+
+  function evalQuota(st, nowMs) {
+    const now = Number(nowMs) || Date.now();
+    const dayHits = st.ts.filter(t => t > now - DAY_MS && t <= now + 60000);
+    const hourHits = dayHits.filter(t => t > now - HOUR_MS);
+    const hourLeft = Math.max(0, HOUR_LIMIT - hourHits.length);
+    const dayLeft = Math.max(0, DAY_LIMIT - dayHits.length);
+    const remain = Math.min(hourLeft, dayLeft);
+    if (st.until > now) {
+      return { ok: false, scope: st.scope || 'hour', waitMs: st.until - now, hourLeft: 0, dayLeft, remain: 0, usedHour: hourHits.length, usedDay: dayHits.length, hourLimit: HOUR_LIMIT, dayLimit: DAY_LIMIT };
+    }
+    if (hourHits.length >= HOUR_LIMIT) {
+      const waitMs = Math.max(1000, hourHits[0] + HOUR_MS - now);
+      return { ok: false, scope: 'hour', waitMs, hourLeft: 0, dayLeft, remain: 0, usedHour: hourHits.length, usedDay: dayHits.length, hourLimit: HOUR_LIMIT, dayLimit: DAY_LIMIT };
+    }
+    if (dayHits.length >= DAY_LIMIT) {
+      const waitMs = Math.max(1000, dayHits[0] + DAY_MS - now);
+      return { ok: false, scope: 'day', waitMs, hourLeft, dayLeft: 0, remain: 0, usedHour: hourHits.length, usedDay: dayHits.length, hourLimit: HOUR_LIMIT, dayLimit: DAY_LIMIT };
+    }
+    return { ok: true, scope: 'hour', waitMs: 0, hourLeft, dayLeft, remain, usedHour: hourHits.length, usedDay: dayHits.length, hourLimit: HOUR_LIMIT, dayLimit: DAY_LIMIT };
+  }
+
+  function checkQuota(getItem, key, nowMs) {
+    return evalQuota(loadQuota(getItem, key), nowMs);
+  }
+
+  function recordQuota(getItem, setItem, key, nowMs) {
+    const now = Number(nowMs) || Date.now();
+    const st = loadQuota(getItem, key);
+    const ts = st.ts.filter(t => t > now - DAY_MS && t <= now + 60000);
+    ts.push(now);
+    const next = { ts, until: st.until > now ? st.until : 0, scope: st.scope };
+    try { setItem(key, JSON.stringify(next)); } catch (e) {}
+    return evalQuota(next, now);
+  }
+
+  function lockQuota(getItem, setItem, key, retryAfterSec, scope, nowMs) {
+    const now = Number(nowMs) || Date.now();
+    const st = loadQuota(getItem, key);
+    const ts = st.ts.filter(t => t > now - DAY_MS && t <= now + 60000);
+    const sec = Math.max(60, Math.min(24 * 3600, Math.round(Number(retryAfterSec) || 600)));
+    const next = { ts, until: Math.max(st.until || 0, now + sec * 1000), scope: scope === 'day' ? 'day' : 'hour' };
+    try { setItem(key, JSON.stringify(next)); } catch (e) {}
+    return evalQuota(next, now);
+  }
+
+  function formatQuotaWait(waitMs, en) {
+    const mins = Math.max(1, Math.ceil((Number(waitMs) || 0) / 60000));
+    if (mins < 60) return en ? (mins + ' min') : (mins + ' 分钟');
+    const hrs = Math.ceil(mins / 60);
+    return en ? (hrs + 'h') : (hrs + ' 小时');
+  }
+
+  function formatQuotaMsg(q, en) {
+    if (!q || q.ok) return '';
+    const wait = formatQuotaWait(q.waitMs, en);
+    if (q.scope === 'day') {
+      return en
+        ? ('Daily generation limit reached (' + DAY_LIMIT + ' per 24h). Try again in ~' + wait + '; saved portraits stay cached on this device.')
+        : ('24 小时内已达生成上限（最多 ' + DAY_LIMIT + ' 次），请约 ' + wait + '后再试；已生成的画像已缓存在本机。');
+    }
+    return en
+      ? ('Hourly generation limit reached (' + HOUR_LIMIT + ' per hour). Try again in ~' + wait + '; saved portraits stay cached on this device.')
+      : ('短时间内已达生成上限（每小时最多 ' + HOUR_LIMIT + ' 次），请约 ' + wait + '后再试；已生成的画像已缓存在本机。');
+  }
+
+  function quotaBtnLabel(q, busy, en) {
+    if (busy) return en ? 'Generating…' : '生成中…';
+    if (q && !q.ok) {
+      const wait = formatQuotaWait(q.waitMs, en);
+      return en ? ('Retry in ' + wait) : ('约 ' + wait + '后再试');
+    }
+    if (q && q.remain === 1) return en ? 'Regenerate (1 left)' : '重新生成（余1次）';
+    return en ? 'Regenerate' : '重新生成';
+  }
+
+  // ---- 分享图片画布绘制（1080px 宽，复用 shared/recap.js 的小程序码页脚） ----
+  function rr(c, x, y, w, h, r) {
+    c.beginPath();
+    c.moveTo(x + r, y);
+    c.arcTo(x + w, y, x + w, y + h, r);
+    c.arcTo(x + w, y + h, x, y + h, r);
+    c.arcTo(x, y + h, x, y, r);
+    c.arcTo(x, y, x + w, y, r);
+    c.closePath();
+  }
+
+  function wrapCard(c, text, max) {
+    text = String(text || '');
+    const out = [];
+    let line = '';
+    if (!CJK.test(text) && /\s/.test(text)) {
+      text.split(/\s+/).forEach(w => {
+        const t = line ? line + ' ' + w : w;
+        if (c.measureText(t).width > max && line) { out.push(line); line = w; }
+        else line = t;
+      });
+    } else {
+      for (const ch of text) {
+        if (c.measureText(line + ch).width > max && line) { out.push(line); line = ch; }
+        else line += ch;
+      }
+    }
+    if (line) out.push(line);
+    for (let i = 1; i < out.length; i++) {
+      const m = out[i].match(/^[：:，,、。.！!？?）)」』·；;]+/);
+      if (m) { out[i - 1] += m[0]; out[i] = out[i].slice(m[0].length); }
+    }
+    return out.filter(Boolean);
+  }
+
+  function layoutTagRows(c, tags, maxW) {
+    const rows = [];
+    let cur = [], x = 0;
+    c.font = '600 22px ' + SANS;
+    (tags || []).forEach(tag => {
+      const text = '#' + tag;
+      const w = c.measureText(text).width + 30;
+      if (cur.length && x + w > maxW) {
+        rows.push(cur);
+        cur = [];
+        x = 0;
+      }
+      cur.push({ text, w });
+      x += w + 12;
+    });
+    if (cur.length) rows.push(cur);
+    return rows;
+  }
+
+  function cardLayout(c, portrait, o) {
+    o = o || {};
+    const p = normalizePortrait(portrait);
+    if (!p) return null;
+    const en = !!o.en;
+    const innerW = CARD_W - 2 * CARD_P;
+    const headTextW = innerW - 24;
+
+    // 标题自动选字号并折行
+    let headFs = en ? 48 : 54;
+    let headLines = [];
+    if (p.headline) {
+      c.font = '900 ' + headFs + 'px ' + SERIF;
+      headLines = wrapCard(c, p.headline, headTextW);
+      if (headLines.length > 2) {
+        headFs = en ? 40 : 44;
+        c.font = '900 ' + headFs + 'px ' + SERIF;
+        headLines = wrapCard(c, p.headline, headTextW);
+      }
+    }
+    const headLH = Math.round(headFs * 1.32);
+    const tagRows = layoutTagRows(c, p.tags, headTextW);
+
+    // 页眉总高：上边距 + kicker + 归属/日期 + 标题 + 标签行 + 统计行 + 下边距
+    let headH = 196;
+    if (headLines.length) headH += headLines.length * headLH + 26;
+    if (tagRows.length) headH += tagRows.length * 52 + 16;
+    headH += 94;
+
+    // 趣味人格条（可选）
+    const ts = o.tasteSummary && o.tasteSummary.code && o.tasteSummary.persona ? o.tasteSummary : null;
+    const personaH = ts ? 112 : 0;
+
+    // 评语卡片
+    const bodyTextW = innerW - 88;
+    const bodyFs = en ? 29 : 32;
+    const bodyLH = en ? 48 : 54;
+    c.font = '400 ' + bodyFs + 'px ' + SANS;
+    const paras = p.paragraphs.map(par => wrapCard(c, par, bodyTextW));
+    const parasContentH = paras.reduce((s, ls, i) => s + ls.length * bodyLH + (i ? 26 : 0), 0);
+
+    // 下一步建议卡片（嵌在评语卡底部，与页面视觉一致）
+    let nextLines = [];
+    const nextFs = en ? 25 : 27;
+    const nextLH = en ? 40 : 44;
+    if (p.nextHint) {
+      c.font = '400 ' + nextFs + 'px ' + SANS;
+      nextLines = wrapCard(c, p.nextHint, bodyTextW - 56);
+    }
+    const nextBoxH = nextLines.length ? (76 + nextLines.length * nextLH + 24) : 0;
+    const bodyCardH = 74 + parasContentH + (nextBoxH ? (36 + nextBoxH) : 0) + 52;
+
+    const gap1 = 36;
+    const gap2 = ts ? 24 : 0;
+    const footH = o.footer ? CARD_FOOT : 40;
+    const totalH = headH + gap1 + personaH + gap2 + bodyCardH + 20 + footH;
+
+    return {
+      p, en, innerW, headTextW, headFs, headLH, headLines, tagRows, headH,
+      ts, personaH, bodyTextW, bodyFs, bodyLH, paras,
+      nextFs, nextLH, nextLines, nextBoxH, bodyCardH, gap1, gap2, totalH
+    };
+  }
+
+  function cardHeight(c, portrait, o) {
+    const g = cardLayout(c, portrait, o);
+    return g ? g.totalH : 0;
+  }
+
+  function drawCard(c, portrait, o) {
+    o = o || {};
+    const g = cardLayout(c, portrait, o);
+    if (!g) return;
+    const { p, en, innerW, headTextW, headFs, headLH, headLines, tagRows, headH, ts, personaH, bodyFs, bodyLH, paras, nextFs, nextLH, nextLines, nextBoxH, bodyCardH, gap1, gap2, totalH } = g;
+
+    c.textBaseline = 'alphabetic';
+    c.textAlign = 'left';
+    c.fillStyle = COL.paper;
+    c.fillRect(0, 0, CARD_W, totalH);
+
+    // 1. 深海青渐变页眉 + 双层金边
+    const gr = c.createLinearGradient(0, 0, CARD_W, headH);
+    gr.addColorStop(0, '#1f3534');
+    gr.addColorStop(1, '#121c1c');
+    c.fillStyle = gr;
+    c.fillRect(0, 0, CARD_W, headH);
+    const glow = c.createLinearGradient(0, 0, CARD_W, headH);
+    glow.addColorStop(0, 'rgba(47,111,108,0.45)');
+    glow.addColorStop(1, 'rgba(0,0,0,0)');
+    c.fillStyle = glow;
+    c.fillRect(0, 0, CARD_W, headH);
+
+    c.strokeStyle = COL.gold;
+    c.globalAlpha = 0.72;
+    c.lineWidth = 2;
+    c.strokeRect(28, 28, CARD_W - 56, headH - 56);
+    c.lineWidth = 1;
+    c.strokeRect(38, 38, CARD_W - 76, headH - 76);
+    c.globalAlpha = 1;
+
+    const hx = CARD_P + 12;
+    c.fillStyle = COL.gold;
+    c.font = '600 22px ' + MONO;
+    c.fillText('SPARROW FILM PASSPORT · AI TASTE PORTRAIT', hx, 98);
+
+    const holder = clamp(o.holder, 24);
+    const ownerTitle = en
+      ? (holder ? holder + "'s AI Taste Portrait" : 'My AI Taste Portrait')
+      : ((holder || '我') + '的 AI 观影画像');
+    c.fillStyle = 'rgba(255,250,240,0.88)';
+    c.font = '700 28px ' + SANS;
+    c.fillText(ownerTitle, hx, 148);
+    if (o.date) {
+      c.fillStyle = 'rgba(217,188,128,0.85)';
+      c.font = '500 22px ' + MONO;
+      c.textAlign = 'right';
+      c.fillText(String(o.date), CARD_W - CARD_P - 12, 148);
+      c.textAlign = 'left';
+    }
+
+    let hy = 196;
+    if (headLines.length) {
+      c.fillStyle = '#fffaf0';
+      c.font = '900 ' + headFs + 'px ' + SERIF;
+      headLines.forEach((line, idx) => {
+        c.fillText(line, hx, hy + headFs + idx * headLH);
+      });
+      hy += headLines.length * headLH + 26;
+    }
+
+    if (tagRows.length) {
+      c.font = '600 22px ' + SANS;
+      tagRows.forEach(row => {
+        let tx = hx;
+        row.forEach(item => {
+          c.strokeStyle = COL.gold;
+          c.lineWidth = 1.6;
+          rr(c, tx, hy, item.w, 40, 20);
+          c.stroke();
+          c.fillStyle = COL.gold;
+          c.fillText(item.text, tx + 15, hy + 28);
+          tx += item.w + 12;
+        });
+        hy += 52;
+      });
+    }
+
+    const scopeStr = clamp(o.scope, 40) || (en ? 'All watched films' : '全部观影');
+    const wc = Number(o.watchedCount) || 0;
+    const rc = Number(o.ratedCount) || 0;
+    const statText = scopeStr
+      + (wc ? (en ? ' · ' + wc + ' watched' : ' · ' + wc + ' 部看过') : '')
+      + (rc ? (en ? ' · ' + rc + ' taste-rated' : ' · ' + rc + ' 部已评趣味') : '');
+    c.fillStyle = 'rgba(255,250,240,0.68)';
+    c.font = '400 22px ' + SANS;
+    c.fillText(statText, hx, headH - 54);
+
+    let y = headH + gap1;
+
+    // 2. 趣味人格条（可选）
+    if (ts) {
+      c.fillStyle = COL.card;
+      rr(c, CARD_P, y, innerW, personaH, 20);
+      c.fill();
+      c.strokeStyle = COL.line;
+      c.lineWidth = 2;
+      c.stroke();
+
+      c.font = '800 26px ' + MONO;
+      const cw = c.measureText(ts.code).width + 36;
+      c.fillStyle = COL.teal;
+      rr(c, CARD_P + 28, y + 30, cw, 52, 26);
+      c.fill();
+      c.fillStyle = '#fffaf0';
+      c.fillText(ts.code, CARD_P + 46, y + 65);
+
+      c.fillStyle = COL.ink;
+      c.font = '700 28px ' + SANS;
+      c.fillText(clamp(ts.persona, 26), CARD_P + 46 + cw, y + 65);
+
+      if (typeof ts.avgFun === 'number' && typeof ts.avgBore === 'number') {
+        c.fillStyle = COL.muted;
+        c.font = '500 22px ' + MONO;
+        c.textAlign = 'right';
+        const ab = en
+          ? ('FUN ' + ts.avgFun.toFixed(1) + ' · BORE ' + ts.avgBore.toFixed(1))
+          : ('有趣 ' + ts.avgFun.toFixed(1) + ' · 无聊 ' + ts.avgBore.toFixed(1));
+        c.fillText(ab, CARD_W - CARD_P - 28, y + 64);
+        c.textAlign = 'left';
+      }
+      y += personaH + gap2;
+    }
+
+    // 3. 影评正文卡片
+    c.fillStyle = COL.card;
+    rr(c, CARD_P, y, innerW, bodyCardH, 22);
+    c.fill();
+    c.strokeStyle = COL.line;
+    c.lineWidth = 2;
+    c.stroke();
+
+    // 顶部细饰线与引言符
+    c.save();
+    rr(c, CARD_P, y, innerW, bodyCardH, 22);
+    c.clip();
+    c.fillStyle = COL.teal;
+    c.fillRect(CARD_P, y, innerW, 8);
+    c.restore();
+
+    c.fillStyle = 'rgba(47,111,108,0.18)';
+    c.font = '900 84px ' + SERIF;
+    c.fillText('“', CARD_P + 36, y + 86);
+
+    let ty = y + 74 + bodyFs;
+    c.fillStyle = COL.ink;
+    c.font = '400 ' + bodyFs + 'px ' + SANS;
+    paras.forEach((lines, idx) => {
+      if (idx > 0) ty += 26;
+      lines.forEach(line => {
+        c.fillText(line, CARD_P + 44, ty);
+        ty += bodyLH;
+      });
+    });
+
+    // 4. 下一步建议
+    if (nextLines.length) {
+      const ny = y + bodyCardH - 52 - nextBoxH;
+      const nx = CARD_P + 40;
+      const nw = innerW - 80;
+      c.fillStyle = COL.tint;
+      rr(c, nx, ny, nw, nextBoxH, 16);
+      c.fill();
+      c.save();
+      rr(c, nx, ny, nw, nextBoxH, 16);
+      c.clip();
+      c.fillStyle = COL.teal;
+      c.fillRect(nx, ny, 8, nextBoxH);
+      c.restore();
+
+      c.fillStyle = COL.teal;
+      c.font = '700 22px ' + SANS;
+      c.fillText(en ? '✦ NEXT TO TRY' : '✦ 下一步建议', nx + 28, ny + 44);
+      c.fillStyle = COL.ink;
+      c.font = '400 ' + nextFs + 'px ' + SANS;
+      nextLines.forEach((line, i) => {
+        c.fillText(line, nx + 28, ny + 82 + i * nextLH);
+      });
+    }
+
+    y += bodyCardH + 20;
+    if (o.footer) o.footer(c, y, totalH);
+  }
+
   return {
     MIN_FILMS,
     MAX_FILMS,
     CACHE_MAX,
     WEB_CACHE_KEY,
     MINI_CACHE_KEY,
+    WEB_QUOTA_KEY,
+    MINI_QUOTA_KEY,
+    HOUR_LIMIT,
+    HOUR_MS,
+    DAY_LIMIT,
+    DAY_MS,
+    CARD_W,
+    CARD_FOOT,
     buildPayload,
     fingerprint,
     normalizePortrait,
     readCache,
     writeCache,
-    formatCopyText
+    formatCopyText,
+    checkQuota,
+    recordQuota,
+    lockQuota,
+    formatQuotaWait,
+    formatQuotaMsg,
+    quotaBtnLabel,
+    cardHeight,
+    drawCard
   };
 });
+
