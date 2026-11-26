@@ -41,6 +41,7 @@ require('./check-remind.js');
 require('./check-overlap.js');
 require('./check-venue-board.js');
 require('./check-venues-mp.js');
+require('./check-mp-update.js');
 require('./check-planner-tz.js');
 require('./check-recommend.js');
 require('./check-handbook.js');
