@@ -33,7 +33,7 @@ function callTicketAi(body) {
         resolve({ status: res.statusCode || 0, json: j });
       });
     });
-    req.setTimeout(18000, () => req.destroy(new Error('timeout')));
+    req.setTimeout(40000, () => req.destroy(new Error('timeout'))); // 云函数超时 50 秒（config.json）
     req.on('error', reject);
     req.write(data);
     req.end();

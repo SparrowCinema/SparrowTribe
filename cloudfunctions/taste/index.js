@@ -18,7 +18,7 @@ exports.main=async event=>{try{
  if(event&&event.action==='portrait'){
   const p=event.payload&&typeof event.payload==='object'?event.payload:null;
   if(!p||!Array.isArray(p.topFilms)||p.topFilms.length<3)return {ok:false,reason:'too_few_films'};
-  const r=await postJson('/functions/v1/smooth-processor',Object.assign({},p,{action:'taste_portrait'}),22000);
+  const r=await postJson('/functions/v1/smooth-processor',Object.assign({},p,{action:'taste_portrait'}),45000); // 云函数超时 50 秒（config.json），留 5 秒把结果交回去
   if(r.status>=200&&r.status<300&&r.json&&r.json.ok&&r.json.portrait)return {ok:true,portrait:r.json.portrait,model:r.json.model||''};
   return {ok:false,reason:(r.json&&r.json.reason)||(r.status===429?'rate_limited':'unavailable')};
  }
