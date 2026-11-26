@@ -1190,17 +1190,34 @@
         "gr26-006": "天涯海角",
         "gh63-116": "天涯海角",
         "variations-on-a-theme-2026": "天涯海角",
-        "gr26-064": "天涯海角"
+        "gr26-064": "天涯海角",
+        "july-rhapsody-2002": "香港国际电影节特别展映",
+        "echoes-of-the-rainbow-2010": "香港国际电影节特别展映",
+        "my-heart-is-that-eternal-rose-1989": "香港国际电影节特别展映",
+        "full-alert-1997": "香港国际电影节特别展映",
+        "shanghai-blues-1984": "香港国际电影节特别展映",
+        "days-of-being-wild-1990": "香港国际电影节特别展映"
       },
       "sectionNotes": {
         "天涯海角": {
           "intro": "当我们试图拼凑一张属于电影艺术的、流动的世界版图，会发现经纬度从来不止于坐标、更是人类命运交错的节点：从南美的旧日幻影，到当代两性关系的午夜回响。这里有边缘人的孤寂，有直面故土的凝视，也有陌生人之间命运的交汇。\n\n「天涯海角」试图在来自不同地理位置与文化的影像中，捕捉这个时代的某种怀旧式的惆怅：人们似乎总是在千帆过尽后，对所致终结的事物念念不忘，这种怀旧往往来自于对时下现状的无能为力、无可奈何，于是只好转过身背对时代、旧事重提。所幸，在这个被距离不断切割着的世界里，我们可以在银幕上拥抱彼此、一同逃离。",
           "en": "When we try to piece together a fluid world map of cinema, latitude and longitude turn out to be more than coordinates: they are points where human destinies cross, from old phantoms of South America to the midnight echoes of present-day relationships. Here are the loneliness of people on the margins, a steady gaze at the homeland, and strangers whose fates meet.\n\nWorld Cinema looks for a nostalgic melancholy of our time in films from different places and cultures: after everything has passed, people cannot let go of what has ended, often because they feel powerless about the present and turn their backs on it to revisit the past. Fortunately, in a world cut apart by distance, we can still embrace one another on screen and escape together."
+        },
+        "香港国际电影节特别展映": {
+          "intro": "为纪念香港国际电影节创办五十周年，第八届海南岛国际电影节与香港国际电影节合作推出九部影片，共迎2027年香港回归祖国30周年。香港电影新浪潮导演许鞍华担任特别展映嘉宾。她执导的《男人四十》和客串的《岁月神偷》提供了两个入口，一边是中年夫妻守了多年的家事，一边是孩子眼里的六十年代香港。\n\n从谭家明、林岭东的警匪与江湖故事，到徐克、王家卫重访的旧上海和香港，六部经典跨越不同年代。洪玉桔的《泡泡糖女孩》、张撼依的《吉光》与索波特·智德瓜索泼瑟的《九庙上天堂》都曾获香港亚洲电影投资会项目支持，带来新加坡、中国及泰国等地的创作者对家庭、地方与信仰的观察。",
+          "en": "Marking fifty years of the Hong Kong International Film Festival and looking ahead to the thirtieth anniversary of Hong Kong’s return to China in 2027, HIIFF and HKIFF present nine films with Hong Kong New Wave director Ann Hui as special guest. Her direction of July Rhapsody and her cameo in Echoes of the Rainbow offer two ways into the programme, through a long-held family secret and a child’s view of 1960s Hong Kong.\n\nSix classics include crime stories from Patrick Tam and Ringo Lam and returns to earlier eras from Tsui Hark and Wong Kar Wai. Three titles supported by the Hong Kong–Asia Film Financing Forum, Ah Girl, Cassowary and 9 Temples to Heaven, extend the programme into contemporary Asian cinema."
         }
       },
       "filmTitles": {
         "gh63-102": "15/18",
         "gh63-116": "当地最孤单的男人"
+      },
+      "extraSections": {
+        "香港国际电影节特别展映": [
+          "gr26-011",
+          "cassowary-2026",
+          "9-temples-to-heaven-2026"
+        ]
       }
     },
     {

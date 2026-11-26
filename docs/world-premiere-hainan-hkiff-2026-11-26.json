@@ -1,0 +1,336 @@
+{
+  "checked": "2026-11-26",
+  "programme": "香港国际电影节特别展映",
+  "announcement": [
+    "第八届海南岛国际电影节单元发布稿（用户提供）",
+    "https://hnxwfbt.hinews.cn/xinwen/show-3378.html"
+  ],
+  "scores": "评分顺序为豆瓣、IMDb、烂番茄 Tomatometer、Metacritic Metascore、Letterboxd。公开聚合值有波动，未能核实的项目留空。豆瓣或 Letterboxd 无法直接读取数字时，使用可辨识同一影片且明确注明平台的公开快照。烂番茄观众分另记于此。",
+  "verifiedRecords": {
+    "july-rhapsody-2002": {
+      "date": "2002-02",
+      "context": "柏林国际电影节",
+      "sources": [
+        "https://www.filmarchive.gov.hk/en/web/hkfa/pe-event-2023-tw-fs-film03.html",
+        "https://filmforum.org/film/july-rhapsody",
+        "https://www.hkfaa.com/winnerlist21.html",
+        "https://www.goldenhorse.org.tw/awards/nw/?r=en&sc=8&search_regist_year=2002&serach_type=award",
+        "https://www.labiennale.org/en/news/ann-hui-and-tilda-swinton-golden-lions-lifetime-achievement",
+        "https://www.berlinale.de/media/download/presse/dossier/52ifb/pressedossier_2002.pdf"
+      ]
+    },
+    "echoes-of-the-rainbow-2010": {
+      "date": "2010-02-14",
+      "context": "柏林国际电影节",
+      "sources": [
+        "https://www.berlinale.de/en/2010/programme/20105594.html",
+        "https://www.fdc.gov.hk/en/archive_detail.php?id=2022051664000000000",
+        "https://www.filmarchive.gov.hk/en/web/hkfa/pe-event-2021-mna-fs-film03.html",
+        "https://www.hkfaa.com/winnerlist29.html"
+      ]
+    },
+    "my-heart-is-that-eternal-rose-1989": {
+      "date": "1989-04-20",
+      "context": "香港公映",
+      "sources": [
+        "https://www.kani-releasing.com/film/my-heart-is-that-eternal-rose/39RX8QNte95H5H",
+        "https://www.hkfaa.com/winnerlist09.html",
+        "https://www.imdb.com/title/tt0093944/releaseinfo/",
+        "https://letterboxd.com/film/my-heart-is-that-eternal-rose/details/"
+      ]
+    },
+    "full-alert-1997": {
+      "date": "1997-07-18",
+      "context": "香港公映",
+      "sources": [
+        "https://iffr.com/en/iffr/1998/films/full-alert",
+        "https://www.lib.cuhk.edu.hk/sites/cuhk/files/page/libraries/uc/Slide%20Show%2020170304.pdf",
+        "https://zh.wikipedia.org/wiki/%E9%AB%98%E5%BA%A6%E6%88%92%E5%82%99",
+        "https://www.lovehkfilm.com/reviews/full_alert.htm"
+      ]
+    },
+    "shanghai-blues-1984": {
+      "date": "1984-10-11",
+      "context": "香港公映",
+      "sources": [
+        "https://www.filmarchive.gov.hk/sc/web/hkfa/pe-event-2020-1-1-1.html",
+        "https://www.festival-cannes.com/en/f/shanghai-blues/",
+        "https://www.hkfaa.com/winnerlist04.html",
+        "https://www.goldenhorse.org.tw/film/programme/films/detail/4228?search_category=FF",
+        "https://tube.hk/en/movie/titles/11860/"
+      ]
+    },
+    "days-of-being-wild-1990": {
+      "date": "1990-12-15",
+      "context": "香港公映",
+      "sources": [
+        "https://cinefan.hkiff.org.hk/movie/days-of-being-wild-26",
+        "https://www.criterion.com/films/29477-days-of-being-wild",
+        "https://www.hkfaa.com/winnerlist10.html",
+        "https://www.goldenhorse.org.tw/awards/nw/?ins=23&r=en&sc=8&search_regist_year=1991&serach_type=award",
+        "https://www.the-numbers.com/movie/Days-of-Being-Wild-%281990-Hong-Kong%29"
+      ]
+    },
+    "cassowary-2026": {
+      "date": "2026-06-18",
+      "context": "上海国际电影节亚洲新人单元世界首映",
+      "sources": [
+        "https://www.siff.com/content?aid=101260610123517834371701482459141981",
+        "https://letterboxd.com/film/cassowary-2026/"
+      ]
+    }
+  },
+  "filmResearch": {
+    "july-rhapsody-2002": {
+      "sources": [
+        "https://www.filmarchive.gov.hk/en/web/hkfa/pe-event-2023-tw-fs-film03.html",
+        "https://filmforum.org/film/july-rhapsody",
+        "https://www.hkfaa.com/winnerlist21.html",
+        "https://www.goldenhorse.org.tw/awards/nw/?r=en&sc=8&search_regist_year=2002&serach_type=award",
+        "https://www.labiennale.org/en/news/ann-hui-and-tilda-swinton-golden-lions-lifetime-achievement",
+        "https://www.berlinale.de/media/download/presse/dossier/52ifb/pressedossier_2002.pdf"
+      ],
+      "ratingLinks": {
+        "douban": "https://movie.douban.com/subject/1304530/",
+        "imdb": "https://www.imdb.com/title/tt0312886/",
+        "rottenTomatoes": "https://www.rottentomatoes.com/m/july_rhapsody",
+        "metacritic": "https://www.metacritic.com/movie/july-rhapsody-2002/",
+        "letterboxd": "https://letterboxd.com/film/july-rhapsody/"
+      },
+      "scores": [
+        8.1,
+        7.1,
+        94,
+        null,
+        3.7
+      ],
+      "scoreEvidence": [
+        "https://moviecool.asia/film/qGG4Bs-1BEF",
+        "https://bingebase.com/movies/july-rhapsody-2002"
+      ],
+      "notes": "烂番茄影评人 94%（16 篇），观众 84%。Metacritic 未形成综合分。",
+      "poster": "https://www.laemmle.com/sites/default/files/images/2024/07/25120_0.jpg"
+    },
+    "echoes-of-the-rainbow-2010": {
+      "sources": [
+        "https://www.berlinale.de/en/2010/programme/20105594.html",
+        "https://www.fdc.gov.hk/en/archive_detail.php?id=2022051664000000000",
+        "https://www.filmarchive.gov.hk/en/web/hkfa/pe-event-2021-mna-fs-film03.html",
+        "https://www.hkfaa.com/winnerlist29.html"
+      ],
+      "ratingLinks": {
+        "douban": "https://movie.douban.com/subject/3792799/",
+        "imdb": "https://www.imdb.com/title/tt1602572/",
+        "rottenTomatoes": "https://www.rottentomatoes.com/m/echoes_of_the_rainbow",
+        "letterboxd": "https://letterboxd.com/film/echoes-of-the-rainbow/"
+      },
+      "scores": [
+        8.7,
+        7.4,
+        null,
+        null,
+        3.7
+      ],
+      "scoreEvidence": [
+        "https://moviecool.asia/film/gwqU8_sCwBkc",
+        "https://mdblist.com/movie/nep-echoes-of-the-rainbow?cache=1"
+      ],
+      "notes": "烂番茄 1 篇影评，未显示 Tomatometer，观众 80%。 片长依柏林及国际发行的117分钟口径，香港电影资料馆35毫米拷贝记为118分钟。",
+      "poster": "https://images.justwatch.com/poster/309763713/s718/echoes-of-the-rainbow.jpg"
+    },
+    "my-heart-is-that-eternal-rose-1989": {
+      "sources": [
+        "https://www.kani-releasing.com/film/my-heart-is-that-eternal-rose/39RX8QNte95H5H",
+        "https://www.hkfaa.com/winnerlist09.html",
+        "https://www.imdb.com/title/tt0093944/releaseinfo/",
+        "https://letterboxd.com/film/my-heart-is-that-eternal-rose/details/"
+      ],
+      "ratingLinks": {
+        "douban": "https://movie.douban.com/subject/1306313/",
+        "imdb": "https://www.imdb.com/title/tt0093944/",
+        "rottenTomatoes": "https://www.rottentomatoes.com/m/my_heart_is_that_eternal_love",
+        "letterboxd": "https://letterboxd.com/film/my-heart-is-that-eternal-rose/"
+      },
+      "scores": [
+        6.9,
+        7,
+        null,
+        null,
+        3.8
+      ],
+      "scoreEvidence": [
+        "https://www.hdbd.vip/forum.php?mod=viewthread&tid=18829",
+        "https://mdblist.com/movie/48yu-my-heart-is-that-eternal-rose?cache=1"
+      ],
+      "notes": "烂番茄以 My Heart Is That Eternal Love 收录此片，未显示 Tomatometer。",
+      "poster": "https://m.media-amazon.com/images/M/MV5BNzZmN2NmMjMtNDViNi00ODkxLWExZjctNWNmYmMwNzM5MzUwXkEyXkFqcGc%40._V1_FMjpg_UX1000_.jpg"
+    },
+    "full-alert-1997": {
+      "sources": [
+        "https://iffr.com/en/iffr/1998/films/full-alert",
+        "https://www.lib.cuhk.edu.hk/sites/cuhk/files/page/libraries/uc/Slide%20Show%2020170304.pdf",
+        "https://zh.wikipedia.org/wiki/%E9%AB%98%E5%BA%A6%E6%88%92%E5%82%99",
+        "https://www.lovehkfilm.com/reviews/full_alert.htm"
+      ],
+      "ratingLinks": {
+        "douban": "https://movie.douban.com/subject/1298492/",
+        "imdb": "https://www.imdb.com/title/tt0134664/",
+        "rottenTomatoes": "https://www.rottentomatoes.com/m/full_alert",
+        "letterboxd": "https://letterboxd.com/film/full-alert/"
+      },
+      "scores": [
+        7.1,
+        6.8,
+        null,
+        null,
+        3.68
+      ],
+      "scoreEvidence": [
+        "https://moviecool.asia/film/qGdJWefwBSF",
+        "https://www.search-criteria.com/films/8097"
+      ],
+      "notes": "烂番茄 1 篇影评，未显示 Tomatometer，观众 76%。",
+      "poster": "https://m.media-amazon.com/images/M/MV5BNDc4Mzg1ZDUtZjllOS00Njk0LWIyYWQtNzUyNTg3ZmFlZGE0XkEyXkFqcGc%40._V1_FMjpg_UX1000_.jpg"
+    },
+    "shanghai-blues-1984": {
+      "sources": [
+        "https://www.filmarchive.gov.hk/sc/web/hkfa/pe-event-2020-1-1-1.html",
+        "https://www.festival-cannes.com/en/f/shanghai-blues/",
+        "https://www.hkfaa.com/winnerlist04.html",
+        "https://www.goldenhorse.org.tw/film/programme/films/detail/4228?search_category=FF",
+        "https://tube.hk/en/movie/titles/11860/"
+      ],
+      "ratingLinks": {
+        "douban": "https://movie.douban.com/subject/1299523/",
+        "imdb": "https://www.imdb.com/title/tt0088097/",
+        "rottenTomatoes": "https://www.rottentomatoes.com/m/shanghai_blues",
+        "metacritic": "https://www.metacritic.com/movie/shanghai-blues/",
+        "letterboxd": "https://letterboxd.com/film/shanghai-blues/"
+      },
+      "scores": [
+        7.6,
+        7,
+        null,
+        70,
+        3.8
+      ],
+      "scoreEvidence": [
+        "https://moviecool.asia/film/gGEAInI-d9Ec",
+        "https://www.flicks.com.au/movie/shanghai-blues/",
+        "https://mdblist.com/movie/1ki8-shanghai-blues?cache=1"
+      ],
+      "notes": "烂番茄以 2025 年发行版本建档，未显示 Tomatometer，观众 64%。Metacritic 的 70 分来自复映影评。Letterboxd 快照在 3.8–3.9 间变动，采用 Flicks 的 3.8。 上海之夜的片长采用戛纳经典所列的102分钟，其他发行记录有103分钟。",
+      "poster": "https://fr.web.img3.acsta.net/img/8b/29/8b293b0b93a60b9e83eedc82610384d8.jpg"
+    },
+    "days-of-being-wild-1990": {
+      "sources": [
+        "https://cinefan.hkiff.org.hk/movie/days-of-being-wild-26",
+        "https://www.criterion.com/films/29477-days-of-being-wild",
+        "https://www.hkfaa.com/winnerlist10.html",
+        "https://www.goldenhorse.org.tw/awards/nw/?ins=23&r=en&sc=8&search_regist_year=1991&serach_type=award",
+        "https://www.the-numbers.com/movie/Days-of-Being-Wild-%281990-Hong-Kong%29"
+      ],
+      "ratingLinks": {
+        "douban": "https://movie.douban.com/subject/1305690/",
+        "imdb": "https://www.imdb.com/title/tt0101258/",
+        "rottenTomatoes": "https://www.rottentomatoes.com/m/days_of_being_wild",
+        "metacritic": "https://www.metacritic.com/movie/days-of-being-wild-re-release/",
+        "letterboxd": "https://letterboxd.com/film/days-of-being-wild/"
+      },
+      "scores": [
+        8.5,
+        7.4,
+        90,
+        93,
+        3.82
+      ],
+      "scoreEvidence": [
+        "https://moviecool.asia/film/g1jNs-GOEc",
+        "https://moviebara.com/en/movie/266481"
+      ],
+      "notes": "烂番茄影评人 90%（31 篇），观众 88%。Metacritic 为复映条目的 93 分。 片长依香港国际电影节 Cine Fan 的95分钟，Criterion 发行资料为94分钟。",
+      "poster": "https://image.tmdb.org/t/p/original/teF4GkOhywlu88CVa7XuyGs9FIl.jpg"
+    },
+    "gr26-011": {
+      "sources": [
+        "https://industry.hkiff.org.hk/image/catalog/173917081109159000.pdf",
+        "https://iffr.com/en/iffr/2026/films/ah-girl",
+        "https://kfa.kcg.gov.tw/tw/movies-content/d817078dEE52",
+        "https://sgiff.com/film/ah-girl/",
+        "https://www.ntu.edu.sg/adm/news-events/news/detail/ah-girl-by-adm-alumna-ang-geck-geck-priscilla-wins-best-asia-feature-film-at-sgiff-silver-screen-awards",
+        "https://www.thestar.com.my/aseanplus/aseanplus-news/2026/07/27/ong-xuan-jing-9-wins-best-actress-at-malaysia-international-film-festival-for-singapore-movie-ah-girl"
+      ],
+      "scores": [
+        8.5,
+        7.4,
+        100,
+        null,
+        3.79
+      ],
+      "ratingLinks": {
+        "douban": "https://movie.douban.com/subject/37030720/",
+        "imdb": "https://www.imdb.com/title/tt35683770/",
+        "rottenTomatoes": "https://www.rottentomatoes.com/m/ah_girl",
+        "metacritic": "https://www.metacritic.com/movie/ah-girl/",
+        "letterboxd": "https://letterboxd.com/film/ah-girl/"
+      },
+      "scoreEvidence": [
+        "https://www.douban.com/doulist/165148655/?start=0&sort=seq&playable=0&sub_type=",
+        "https://filmdraft.co/movies/ah-girl/reviews"
+      ],
+      "notes": "保留仓库可溯源的豆瓣 8.5。IMDb 条目快照显示 7.4，单独评分页的另一快照为 7.3。烂番茄 100%（11 篇）。Letterboxd 更新至 3.79。",
+      "poster": "posters/hainan26-asian-gr26-011-poster.jpg"
+    },
+    "cassowary-2026": {
+      "sources": [
+        "https://www.hiiff.net/films/206/",
+        "https://www.siff.com/content?aid=101260530160203830437469399814149170",
+        "https://m.thepaper.cn/newsDetail_forward_33632950",
+        "https://industry.hkiff.org.hk/en/haf/wip/year/Selected-Projects?year=2024",
+        "https://movie.douban.com/awards/hkiff/40/nominees"
+      ],
+      "scores": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "ratingLinks": {
+        "imdb": "https://www.imdb.com/title/tt41142184/",
+        "letterboxd": "https://letterboxd.com/film/cassowary-2026/"
+      },
+      "scoreEvidence": [
+        "https://auteurgraph.com/movie/cassowary-2"
+      ],
+      "notes": "已确认 IMDb 及 Letterboxd 影片条目，未核实可引用的综合评分。",
+      "poster": "posters/hainan26-asian-cassowary-2026-poster.jpg"
+    },
+    "9-temples-to-heaven-2026": {
+      "sources": [
+        "https://www.hiiff.net/films/214/",
+        "https://industry.hkiff.org.hk/en/haf/idp/year/Selected-Projects?year=2020",
+        "https://www.quinzaine-cineastes.fr/en/film/9-temples-to-heaven",
+        "https://www.filmlinc.org/nyff2026/films/9-temples-to-heaven/"
+      ],
+      "scores": [
+        null,
+        6.7,
+        92,
+        79,
+        3.54
+      ],
+      "ratingLinks": {
+        "imdb": "https://www.imdb.com/title/tt37740247/",
+        "rottenTomatoes": "https://www.rottentomatoes.com/m/9_temples_to_heaven",
+        "metacritic": "https://www.metacritic.com/movie/9-temples-to-heaven/",
+        "letterboxd": "https://letterboxd.com/film/9-temples-to-heaven/"
+      },
+      "scoreEvidence": [
+        "https://www.filmdraft.co/movies/9-temples-to-heaven"
+      ],
+      "notes": "IMDb 6.7，烂番茄 92%（12 篇），Metacritic 79，Letterboxd 3.54。未核实可引用的豆瓣分。",
+      "poster": "posters/hainan26-asian-9-temples-to-heaven-2026-poster.jpg"
+    }
+  }
+}
