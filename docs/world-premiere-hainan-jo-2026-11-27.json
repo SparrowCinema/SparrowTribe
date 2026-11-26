@@ -1,0 +1,52 @@
+{
+  "checked": "2026-11-27",
+  "programme": "2026 海南岛国际电影节 · 延伸片单",
+  "hainan": {
+    "status": "unconfirmed",
+    "sources": [
+      "https://www.hiiff.net/screenings/2026/",
+      "https://www.hiiff.net/screenings/archive/"
+    ],
+    "note": "公开片单尚未核实本片入选海南。用户提供豆瓣条目截图作为影片识别线索。"
+  },
+  "verifiedRecords": {
+    "a-day-in-the-life-of-jo-chapter-phaedra-2026": {
+      "date": "2026-09-08",
+      "context": "威尼斯国际电影节地平线单元世界首映",
+      "sources": [
+        "https://www.labiennale.org/en/cinema/2026/orizzonti/mia-mera-sti-zoi-tis-tzo-kefalaio-faidra-day-life-jo-chapter-phaedra",
+        "https://www.labiennale.org/en/cinema/2026/program-cinema-2026-public/mia-mera-sti-zoi-tis-tzo-kefalaio-faidra-day-life-jo-chapter-phaedra",
+        "https://letterboxd.com/film/a-day-in-the-life-of-jo-chapter-phaedra/"
+      ]
+    }
+  },
+  "filmResearch": {
+    "a-day-in-the-life-of-jo-chapter-phaedra-2026": {
+      "sources": [
+        "https://www.labiennale.org/en/cinema/2026/orizzonti/mia-mera-sti-zoi-tis-tzo-kefalaio-faidra-day-life-jo-chapter-phaedra",
+        "https://www.labiennale.org/en/news/official-awards-83rd-venice-international-film-festival",
+        "https://www.labiennale.org/en/news/collateral-awards-and-events-83rd-venice-film-festival",
+        "https://vp.eventival.com/thessaloniki/tiff67/film/1325350",
+        "https://www.filmlinc.org/nyff2026/films/a-day-in-the-life-of-jo/",
+        "https://www.biff.kr/eng/html/program/prog_view.asp?c_idx=435&idx=91234",
+        "https://www.torinofilmlab.it/projects/970378/feature-lab-2024/A-Day-in-the-Life-of-Jo%3A-Chapter-Phaedra"
+      ],
+      "runtime": "威尼斯、纽约和釜山使用 88 分钟。用户提供的豆瓣页面列 90 分钟，海南版本尚待核实。",
+      "poster": "https://www.alicenellacitta.com/film/a-day-in-the-life-of-jo-chapter-phaedra",
+      "scores": {
+        "douban": null,
+        "imdb": 6.7,
+        "rottenTomatoes": null,
+        "metacritic": null,
+        "letterboxd": 3.44
+      },
+      "scoreEvidence": {
+        "douban": "https://www.douban.com/doulist/154546194/?playable=0&sort=seq&start=100&sub_type=",
+        "imdb": "https://watch.plex.tv/en-GB/movie/a-day-in-the-life-of-jo-chapter-phaedra-2026?context.unit=HE",
+        "rottenTomatoes": "https://www.rottentomatoes.com/m/a_day_in_the_life_of_jo_chapter_phaedra",
+        "letterboxd": "https://www.filmdraft.co/movies/a-day-in-the-life-of-jo-chapter-phaedra"
+      },
+      "notes": "豆瓣尚无综合分。IMDb 使用 Plex 明确注明为 IMDb 的公开快照。烂番茄有 3 条影评，未显示 Tomatometer。未核实 Metascore。Letterboxd 使用 FilmDraft 的 11 月 9 日快照。"
+    }
+  }
+}

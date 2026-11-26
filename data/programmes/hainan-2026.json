@@ -4015,6 +4015,88 @@
         "kind": "theatrical",
         "checked": "2026-11-26"
       }
+    },
+    {
+      "id": "a-day-in-the-life-of-jo-chapter-phaedra-2026",
+      "cn": "JO的一天：菲德拉篇",
+      "o": "Mia mera sti zoi tis tzo: kefalaio Faidra",
+      "en": "A Day in the Life of Jo: Chapter Phaedra",
+      "y": 2026,
+      "c": "希腊 / 德国 / 法国",
+      "min": 88,
+      "reg": "eu",
+      "dir": "杰奎琳·伦佐",
+      "dirO": "Jacqueline Lentzou",
+      "dirLife": "1989– · 希腊",
+      "r": [
+        null,
+        6.7,
+        null,
+        null,
+        3.44
+      ],
+      "syn": "星期五，十五岁的乔又错过了校车，和母亲索菲亚吵了一架，只好步行上学。她惦记着学校的合唱团试音。她暗自想成为歌手，也喜欢那个唱得很好、总戴着一条酷领带的菲德拉。乔想趁今天约她出去。她从学校走进雅典郊区的街道，又遇见父亲，原本熟悉的一天在一场突发事件后改了方向。",
+      "writers": [
+        "杰奎琳·伦佐"
+      ],
+      "cast": [
+        "埃维塔·安德里奥普卢",
+        "埃莱妮·韦尔盖蒂",
+        "阿纳斯塔西娅·古利亚穆",
+        "埃克托拉斯·利吉索斯"
+      ],
+      "genre": [
+        "剧情",
+        "成长"
+      ],
+      "language": "希腊语",
+      "section": "延伸片单",
+      "release": "海南放映待确认",
+      "titleAliases": [
+        "乔的一天：菲德拉篇"
+      ],
+      "honors": [
+        "获奖｜第83届威尼斯国际电影节 · 地平线单元最佳导演（杰奎琳·伦佐）",
+        "获奖｜第83届威尼斯国际电影节 · Edipo Re 奖（独立奖项）",
+        "获奖｜第67届塞萨洛尼基国际电影节 · 国际竞赛金亚历山大奖、表演特别提及（埃维塔·安德里奥普卢）",
+        "入选｜第64届纽约电影节 · Currents 单元（北美首映）",
+        "入选｜第31届釜山国际电影节"
+      ],
+      "highlights": [
+        "一场合唱试音让暗自想唱歌的乔开始认真听别人，也开始留意自己的声音。",
+        "扭曲的画面、画外音与不寻常的构图让雅典郊区带上梦境的尺度。",
+        "科林·斯特森的配乐与影片关于呼吸、触碰和孤独的主题相互呼应。"
+      ],
+      "bio": "杰奎琳·伦佐1989年生于雅典。她先拍了《狐狸》《埃克托尔·马洛：一年的最后一天》等短片，后者在2018年戛纳影评人周获发现奖。她的首部长片《月亮，66个问题》于2021年在柏林国际电影节邂逅单元首映。《JO的一天：菲德拉篇》是她的第二部长片。",
+      "st": "影片在2024年进入都灵电影实验室 FeatureLab。伦佐兼任编剧、导演和剪辑，格里姆·范德克霍芬掌镜，科林·斯特森作曲。乔错过校车、去学校和走在雅典郊区街上，给影片提供了清楚的日常路线。走完这条路线的同时，观众会逐渐发现另一套由画外声、色彩和目光构成的线索。\n\n片中很早就出现与梦有关的细节。它们很少被解释，往往只是让某段声音持续久一点，或让一处普通景物看起来有些陌生。合唱试音把声音变成了可以寻找的东西，也为最后一段感官经验做了准备。",
+      "editorial": "把合唱试音当成一个听觉上的起点。菲德拉唱歌时，留意乔靠什么判断自己和她的距离。后来乔抬头看天，试着听一听画面外还有什么。两处看起来毫不相干的动作，会让片尾的变化更容易体会。",
+      "warnings": [
+        "家庭争执",
+        "突发死亡"
+      ],
+      "contentNote": "公开剧情涉及家庭争执和突发死亡。具体画面及声光强度待核实。",
+      "contentReview": {
+        "status": "synopsis-reviewed",
+        "checked": "2026-11-27",
+        "sensory": "unverified"
+      },
+      "links": {
+        "douban": "36308267",
+        "imdb": "tt43704171",
+        "rt": "https://www.rottentomatoes.com/m/a_day_in_the_life_of_jo_chapter_phaedra",
+        "lb": "a-day-in-the-life-of-jo-chapter-phaedra"
+      },
+      "poster": "https://cdn.sanity.io/images/h875o3pw/production/366939e63bf69a44d4443bc00f3153c5fcbeb1fa-518x780.png?auto=format&w=900",
+      "worldPremiere": {
+        "status": "verified",
+        "date": "2026-09-08",
+        "festival": "威尼斯国际电影节",
+        "festivalEn": "Venice International Film Festival",
+        "kind": "festival",
+        "checked": "2026-11-27"
+      },
+      "ratingChecked": "2026-11-27",
+      "metadataChecked": "2026-11-27"
     }
   ],
   "shows": []

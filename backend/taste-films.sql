@@ -3,6 +3,7 @@ insert into sparrow_taste.films(id) values
 ('24-flavors'),
 ('9-temples-to-heaven-2026'),
 ('a-better-tomorrow'),
+('a-day-in-the-life-of-jo-chapter-phaedra-2026'),
 ('a-good-little-soldier-2026'),
 ('a-song-river'),
 ('all-quiet-at-sunrise'),
