@@ -332,5 +332,16 @@
       "notes": "IMDb 6.7，烂番茄 92%（12 篇），Metacritic 79，Letterboxd 3.54。未核实可引用的豆瓣分。",
       "poster": "posters/hainan26-asian-9-temples-to-heaven-2026-poster.jpg"
     }
+  },
+  "hainanScreeningEditions": {
+    "checked": "2026-11-27",
+    "source": "海南岛国际电影节「香港国际电影节特别展映」官方片单海报（用户提供）",
+    "films": {
+      "days-of-being-wild-1990": "4K修复",
+      "full-alert-1997": "2K修复",
+      "july-rhapsody-2002": "4K修复",
+      "my-heart-is-that-eternal-rose-1989": "4K修复",
+      "shanghai-blues-1984": "4K重制"
+    }
   }
 }

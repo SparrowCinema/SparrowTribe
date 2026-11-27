@@ -3620,7 +3620,8 @@
         "festivalEn": "Berlin International Film Festival",
         "kind": "festival",
         "checked": "2026-11-26"
-      }
+      },
+      "version": "4K修复"
     },
     {
       "id": "echoes-of-the-rainbow-2010",
@@ -3775,7 +3776,8 @@
         "festivalEn": null,
         "kind": "theatrical",
         "checked": "2026-11-26"
-      }
+      },
+      "version": "4K修复"
     },
     {
       "id": "full-alert-1997",
@@ -3855,7 +3857,8 @@
         "festivalEn": null,
         "kind": "theatrical",
         "checked": "2026-11-26"
-      }
+      },
+      "version": "2K修复"
     },
     {
       "id": "shanghai-blues-1984",
@@ -3935,7 +3938,8 @@
         "festivalEn": null,
         "kind": "theatrical",
         "checked": "2026-11-26"
-      }
+      },
+      "version": "4K重制"
     },
     {
       "id": "days-of-being-wild-1990",
@@ -4014,7 +4018,8 @@
         "festivalEn": null,
         "kind": "theatrical",
         "checked": "2026-11-26"
-      }
+      },
+      "version": "4K修复"
     },
     {
       "id": "a-day-in-the-life-of-jo-chapter-phaedra-2026",
