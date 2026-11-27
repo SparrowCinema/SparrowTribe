@@ -3732,7 +3732,8 @@
    "reg": "us",
    "release": "已确认引进中国内地，档期待公布",
    "version": "20周年重逢版",
-   "poster": "https://resizing.flixster.com/eEt4EB0ECmPuEvgeMrm0utuRwoI=/ems.cHJkLWVtcy1hc3NldHMvbW92aWVzLzQ0ZmFlZmNiLWUxNmYtNDBmNi1iMTQ5LTRkOTcwZTU0MzIwYy5qcGc=",
+   "poster": "posters/twilight-2008-reunion.jpg",
+   "posterLabel": "重映海报",
    "dir": "凯瑟琳·哈德威克",
    "dirO": "Catherine Hardwicke",
    "dirLife": "1955– · 美国",
@@ -3826,7 +3827,11 @@
    "reg": "us",
    "release": "已确认引进中国内地，档期待公布 · 2026年11月20日北美及英国上映",
    "version": "",
-   "poster": "posters/josephine-2026.jpg",
+   "poster": "posters/josephine-2026-en.jpg",
+   "posterLabel": "英文海报",
+   "stills": [
+    {"url": "posters/josephine-2026.jpg", "label": "中文海报"}
+   ],
    "dir": "贝丝·德阿拉霍",
    "dirO": "Beth de Araújo",
    "dirLife": "美国 / 巴西",

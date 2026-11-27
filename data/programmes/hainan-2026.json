@@ -1944,7 +1944,15 @@
         "checked": "2026-11-07"
       },
       "dirLife": "新加坡",
-      "posterUrl": "https://sparrowcinema.org/posters/hainan26-asian-gr26-011-poster.jpg"
+      "posterUrl": "https://sparrowcinema.org/posters/hainan26-asian-gr26-011-poster.jpg",
+      "tickets": [
+        {
+          "prog": "golden-rooster-2026",
+          "ticket": "tickets/golden-rooster-2026.jpg",
+          "ticketPlatform": "淘票票",
+          "ticketHint": "购票城市选择厦门"
+        }
+      ]
     },
     {
       "id": "another-green-world-2026",
