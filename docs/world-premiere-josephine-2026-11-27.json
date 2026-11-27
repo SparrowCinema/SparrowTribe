@@ -1,0 +1,66 @@
+{
+  "checked": "2026-11-27",
+  "programme": "2026院线新片",
+  "verifiedRecords": {
+    "josephine-2026": {
+      "date": "2026-01-23",
+      "context": "第42届圣丹斯电影节美国剧情片竞赛单元世界首映",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Josephine_(2026_film)",
+        "https://www.sundance.org/blogs/2026-sundance-film-festival-announces-award-winners/",
+        "https://www.berlinale.de/en/2026/programme/202609270.html"
+      ]
+    }
+  },
+  "filmResearch": {
+    "josephine-2026": {
+      "sources": [
+        "https://en.wikipedia.org/wiki/Josephine_(2026_film)",
+        "https://en.wikipedia.org/wiki/Beth_de_Ara%C3%BAjo",
+        "https://www.sundance.org/blogs/2026-sundance-film-festival-announces-award-winners/",
+        "https://www.sundance.org/blogs/the-invite-josephine-closure-and-more-sundance-institute-supported-films-nominated-for-36th-gotham-awards/",
+        "https://www.berlinale.de/en/2026/programme/202609270.html",
+        "https://www.tiff.net/events/josephine",
+        "https://whatson.bfi.org.uk/lff/Online/default.asp?BOparam::WScontent::loadArticle::permalink=josephine-lff26&BOparam::WScontent::context_id=",
+        "https://fest.afi.com/2026/special-screenings-2026/josephine/",
+        "https://www.theguardian.com/film/2026/nov/25/josephine-movie-true-story",
+        "https://www.hammertonail.com/interviews/de-araujo/",
+        "https://www.163.com/dy/article/LC41NIHV0517DNB8.html"
+      ],
+      "runtime": "沿用用户提供的豆瓣页面片长 114 分钟（与 Metacritic 1h 54m、MovieMeter 114 分钟一致）；圣丹斯、柏林及北美/英国院线资料标示 119–121 分钟，中国内地最终公映版片长以发行方公布为准。",
+      "poster": "https://k.sinaimg.cn/n/sinakd20261119s/100/w1000h1500/20261119/7646-7fcae2e4a977a66b69d4110148749c26.jpg/w700d1q75cms.jpg (本地保存为 posters/josephine-2026.jpg)",
+      "mpa": {
+        "rating": "R",
+        "reason": "rape, graphic nudity, some language and sexual content",
+        "sources": [
+          "https://www.latimes.com/entertainment-arts/movies/story/2026-11-19/josephine-review-channing-tatum-gemma-chan-mason-reeves-beth-de-araujo",
+          "https://apnews.com/article/josephine-movie-review-10c52d3b3d692e918365404a9699f317"
+        ]
+      },
+      "sensory": {
+        "flashing": true,
+        "note": "英国多家影院及发行提示明确标注片中含闪烁灯光段落，可能影响光敏性癫痫观众。",
+        "sources": [
+          "https://plymouthartscinema.org/whats-on/josephine-18/",
+          "https://www.thegardencinema.co.uk/film/josephine/",
+          "https://thelexicinema.co.uk/TheLexiCinema.dll/WhatsOn?f=10368080",
+          "https://riversidestudios.co.uk/whats-on/uRH-josephine/"
+        ]
+      },
+      "scores": {
+        "douban": 8.3,
+        "imdb": 8.0,
+        "rottenTomatoes": 97,
+        "metacritic": 87,
+        "letterboxd": 4.0
+      },
+      "scoreEvidence": {
+        "douban": "用户提供的豆瓣条目截图（subject/36963105，8.3 分 / 790 人评价，2026-11-27）",
+        "imdb": "https://watch.plex.tv/movie/josephine-2026/ratings-and-reviews & https://www.moviemeter.nl/film/1176665 (IMDb tt32321285: 8.0 / 1,218 votes)",
+        "rottenTomatoes": "https://www.rottentomatoes.com/m/josephine (97% Certified Fresh, 133 critic reviews)",
+        "metacritic": "https://www.metacritic.com/movie/josephine/ (87 / 100 Universal Acclaim, 29 critic reviews)",
+        "letterboxd": "https://www.atomtickets.com/movies/josephine/373739 (Letterboxd live feed for josephine-2026: 4.0 / 5)"
+      }
+    }
+  }
+}

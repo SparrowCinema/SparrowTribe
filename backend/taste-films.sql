@@ -283,6 +283,7 @@ insert into sparrow_taste.films(id) values
 ('involuntary-2008'),
 ('isabel'),
 ('john-wick'),
+('josephine-2026'),
 ('july-rhapsody-2002'),
 ('karla'),
 ('kill-bill-whole-bloody-affair'),
