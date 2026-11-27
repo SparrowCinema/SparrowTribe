@@ -63,6 +63,7 @@
 .stt { font-size: calc(22.9 * var(--fr)); font-weight: 900; }
 .ste { margin-left: auto; font-size: calc(16 * var(--fr)); letter-spacing: calc(6 * var(--r)); color: var(--muted); }
 .p { font-size: calc(19.3 * var(--fr)); line-height: 1.85; margin-bottom: calc(20 * var(--r)); }
+.dl-wait { color: var(--muted); }
 .syn.clamp { max-height: calc(340 * var(--r)); overflow: hidden; -webkit-mask-image: linear-gradient(#000 55%, transparent); }
 .more { font-size: calc(18.7 * var(--fr)); font-weight: 700; color: var(--accent); padding: calc(8 * var(--r)) 0; }
 .hl { display: flex; gap: calc(24 * var(--r)); padding: calc(28 * var(--r)); margin-bottom: calc(16 * var(--r)); }

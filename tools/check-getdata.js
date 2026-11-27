@@ -44,6 +44,23 @@ const scenarios = [['today', p => p], ['all-ended', p => (p.end && !p.ongoing ? 
     assert.strictEqual(zh.shows.length + packs.reduce((n, p) => n + p.shows.length, 0), shows.length, name + ': 场次应不重不漏');
     const big = [['首屏(中文)', zh], ['首屏(英文)', enr]].concat(packs.map(p => ['往期 ' + p.prog, p]), parts.map((p, i) => ['长文 ' + i, p]));
     big.forEach(([label, x]) => assert.ok(size(x) < LIMIT, `${name}: ${label} ${Math.round(size(x) / 1024)}KB 超过 900KB——云函数返回上限约 1MB，需要继续拆分`));
+    if (name === 'today') { // 影片页按需取单部长文：{v:2, film:id}
+      console.log = () => { };
+      const sample = films.filter(f => f.syn || f.bio).filter((f, i) => i % 7 === 0).concat(films.filter(f => f.cn === '将军号'));
+      for (const f of sample) {
+        const zr = await gd.main({ v: 2, film: f.id, lang: 'zh' }, {}), er = await gd.main({ v: 2, film: f.id, lang: 'en' }, {});
+        console.log = quiet;
+        assert.ok(zr.ok && zr.film === f.id, 'film detail ok: ' + f.id);
+        assert.strictEqual(zr.d.syn, f.syn, 'film detail syn: ' + f.id); assert.strictEqual(zr.d.bio, f.bio, 'film detail bio: ' + f.id);
+        assert.ok(!zr.e, '中文单片不带英文: ' + f.id);
+        if (en.films && en.films[f.id] && en.films[f.id].syn) assert.strictEqual(er.e.syn, en.films[f.id].syn, 'film detail en syn: ' + f.id);
+        assert.ok(size(er) < LIMIT, 'film detail size: ' + f.id);
+        console.log = () => { };
+      }
+      const miss = await gd.main({ v: 2, film: 'no-such-film', lang: 'zh' }, {});
+      console.log = quiet;
+      assert.ok(!miss.ok, 'unknown film → ok:false');
+    }
     report.push(`${name}: 首屏 中文 ${Math.round(size(zh) / 1024)}KB / 英文 ${Math.round(size(enr) / 1024)}KB，往期包最大 ${Math.round(Math.max(0, ...packs.map(size)) / 1024)}KB，长文段最大 ${Math.round(Math.max(...parts.map(size)) / 1024)}KB`);
   }
   console.log('check-getdata ok · ' + report.join(' · '));
