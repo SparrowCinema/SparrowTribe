@@ -8,8 +8,10 @@ const cat=JSON.parse(fs.readFileSync(path.join(root,'data/catalog.json'),'utf8')
 for(const p of cat.programmes){if(!p.file)continue;const pack=JSON.parse(fs.readFileSync(path.join(root,p.file),'utf8'));for(const original of pack.films||[]){if(F[original.id])continue;const f=JSON.parse(JSON.stringify(original));f.prog=f.prog||p.id;for(const k of ['highlights','honors','genre'])if(!Array.isArray(f[k]))f[k]=[];F[f.id]=f;}for(const row of pack.shows||[]){if(!Array.isArray(row))continue;const [d,t,id,v,h]=row;SH.push({d,t,id,v,h,p:p.id});}}
 const date=s=>{const [m,d]=s.d.split('/').map(Number),[h,mi]=s.t.split(':').map(Number);return new Date(m>=10?2026:2027,m-1,d,h,mi);};
 let current=Date.parse('2026-11-07T23:59:00+08:00');const isPast=s=>date(s).getTime()+(F[s.id]?.min||120)*60000<current,keepPast=p=>!!p&&/影展|festival|艺术电影空间/i.test(p.kind||'');
-const main={innerHTML:''},topEl={innerHTML:''},sandbox={main,topEl,F,PG,VN,SH,FILMS:Object.values(F).filter(f=>!f.ev),LANG:'zh',REG:new Proxy({},{get:()=>({c:'#888'})}),go:()=>assert.fail('Unexpected redirect'),pst:()=>null,showDate:date,isPast,keepPast,tr:s=>s,esc:s=>String(s??''),stripCity:(s,v)=>s.replace(v.city||'@@',''),hShort:h=>h.short||h.name,filmProgsOf:f=>[{p:PG[f.prog],sec:''}],progRange:()=>[1,2],progStatus:()=> 'live',window:{SparrowLibrary:require('../shared/library.js')},document:{addEventListener(){}},VENUES:cat.venues,filterChevron:'',WK:['周日','周一','周二','周三','周四','周五','周六'],fitHero(){}};
+const picked=new Set(),keyOf=s=>[s.d,s.t,s.v,s.h].join('-');
+const main={innerHTML:''},topEl={innerHTML:''},sandbox={main,topEl,F,PG,VN,SH,FILMS:Object.values(F).filter(f=>!f.ev),LANG:'zh',REG:new Proxy({},{get:()=>({c:'#888'})}),go:()=>assert.fail('Unexpected redirect'),pst:()=>null,showDate:date,isPast,keepPast,picked,keyOf,tr:s=>s,esc:s=>String(s??''),stripCity:(s,v)=>s.replace(v.city||'@@',''),hShort:h=>h.short||h.name,filmProgsOf:f=>[{p:PG[f.prog],sec:''}],progRange:()=>[1,2],progStatus:()=> 'live',window:{SparrowLibrary:require('../shared/library.js')},document:{addEventListener(){}},VENUES:cat.venues,filterChevron:'',WK:['周日','周一','周二','周三','周四','周五','周六'],fitHero(){}};
 for(const name of ['ratingsHTML','extLinksHTML','myRateHTML','noticeHTML','qaPanelHTML','giftsHTML','creditsHTML','partsHTML','presentersHTML','screeningHTML','ticketHTML','editionHTML'])sandbox[name]=()=>'';
+sandbox.screeningHTML=s=>`<div class="fd-ticket" data-k="${keyOf(s)}"></div>`;
 Object.assign(sandbox,{paragraphsHTML:s=>s||'',honorHTML:s=>s,minText:f=>f.min+' min'});
 vm.createContext(sandbox);const sfStart=src.indexOf('let FSF='),sfEnd=src.indexOf('function screeningHTML(',sfStart);assert(sfStart>0&&sfEnd>sfStart);
 vm.runInContext(line('pastRowHTML')+'\n'+line('pastShowsHTML')+'\n'+src.slice(sfStart,sfEnd)+'\n'+src.slice(detailStart,detailEnd),sandbox);
@@ -17,10 +19,17 @@ assert(!('showPid' in sandbox));let renders=0;
 for(const at of ['2026-11-07T23:59:00+08:00','2027-12-31T23:59:00+08:00']){current=Date.parse(at);for(const f of Object.values(F)){const rows=SH.filter(s=>s.id===f.id&&isPast(s)&&keepPast(PG[s.p]));if(!rows.length)continue;main.innerHTML='';sandbox.detail(f.id);assert(main.innerHTML.includes('fd-title'));assert(main.innerHTML.includes('fd-prow'));for(const s of rows){const row=sandbox.pastRowHTML(s,f);assert(row.includes(PG[s.p].name));assert(row.includes(s.t));assert(!row.includes('–'));}renders++;}}
 const f=Object.values(F)[0],s={d:'11/7',t:'14:00',id:f.id,v:cat.venues[0].id,h:cat.venues[0].halls[0].id};assert(sandbox.pastRowHTML(s,f).includes(PG[f.prog].name));
 console.log('PASS: '+renders+' real detail-page renders with past screenings across all programmes, actual programme labels, start time only, and no injected showPid helper.');
-// 院线片：放映场次出现日期 / 影院多选筛选；影展片不出现
-current=Date.parse('2026-11-07T23:59:00+08:00');main.innerHTML='';sandbox.detail('legend-of-1900');assert(main.innerHTML.includes('class="fd-sf"'),'院线片应有场次筛选');assert(main.innerHTML.includes('data-showf-filter="venue"'));
-const fest=Object.values(F).find(f=>PG[f.prog]&&PG[f.prog].kind!=='院线'&&SH.filter(s=>s.id===f.id&&!isPast(s)).length>1);if(fest){main.innerHTML='';sandbox.detail(fest.id);assert(!main.innerHTML.includes('class="fd-sf"'),'影展片不应有场次筛选');}
-console.log('PASS: cinema film screening filters render only for 院线 films');
+// 院线片：放映场次出现日期 / 影院多选筛选；影展片不出现；两类有待映场次的影片均出现「只看我的」
+current=Date.parse('2026-11-07T23:59:00+08:00');main.innerHTML='';sandbox.detail('legend-of-1900');assert(main.innerHTML.includes('class="fd-sf"'),'院线片应有场次筛选');assert(main.innerHTML.includes('data-showf-filter="venue"'));assert(main.innerHTML.includes('data-sf-mine'),'院线片应有只看我的开关');
+const cinUp=SH.filter(x=>x.id==='legend-of-1900'&&!isPast(x));assert(cinUp.length>=2);
+picked.add(keyOf(cinUp[0]));
+sandbox.sfState(F['legend-of-1900']).mine=true;main.innerHTML='';sandbox.detail('legend-of-1900');
+assert(main.innerHTML.includes(`1 / ${cinUp.length} 场`),'开启只看我的应只保留已选场次');
+assert(main.innerHTML.includes(`data-k="${keyOf(cinUp[0])}"`)&&!main.innerHTML.includes(`data-k="${keyOf(cinUp[1])}"`));
+picked.clear();main.innerHTML='';sandbox.detail('legend-of-1900');
+assert(main.innerHTML.includes('你还没有加入本片的排片')&&main.innerHTML.includes('查看全部场次'),'未选任何场次时应显示友好空状态');
+const fest=Object.values(F).find(f=>PG[f.prog]&&PG[f.prog].kind!=='院线'&&SH.filter(s=>s.id===f.id&&!isPast(s)).length>1);if(fest){main.innerHTML='';sandbox.detail(fest.id);assert(!main.innerHTML.includes('class="fd-sf"'),'影展片不应有场次筛选');assert(main.innerHTML.includes('data-sf-mine'),'影展片有待映场次时也应有只看我的开关');assert(!sandbox.sfState(fest).mine,'切换影片后只看我的应自动重置');}
+console.log('PASS: cinema film screening filters render only for 院线 films, and per-film "只看我的" toggle works across cinema and festival films');
 
 // An individually recorded film links back to the original double-bill showtimes.
 current=Date.parse('2026-12-01T00:00:00+08:00');
@@ -29,3 +38,4 @@ assert(!main.innerHTML.includes('href="#film-py26-017"'));
 assert(main.innerHTML.includes('href="#film-py26-ray-of-sunshine"'));
 for(const show of SH.filter(s=>s.id==='py26-017'))assert(main.innerHTML.includes(sandbox.pastRowHTML(show,F[show.id])));
 assert(!main.innerHTML.includes('上映信息待公布'));
+assert(!main.innerHTML.includes('data-sf-mine'),'无待映场次时不应显示只看我的开关');
