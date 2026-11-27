@@ -847,11 +847,11 @@
    "dirO": "Francis Lawrence",
    "dirLife": "1970– · 美国",
    "r": [
-    null,
-    null,
-    72,
-    56,
-    3.7
+    6.3,
+    7.5,
+    67,
+    55,
+    4.0
    ],
    "syn": "故事回到凯特尼斯参加饥饿游戏的24年前。第50届饥饿游戏迎来第二次「世纪极限赛」，参赛贡品人数翻倍，来自第十二区的少年黑密斯·阿伯纳西被迫踏入竞技场。\n\n面对48人争夺唯一生还名额的残酷规则，他必须在生存、信任和反抗之间作出选择。后来那位看似玩世不恭的导师，在这里还是一个想回家的年轻人。",
    "bio": "弗朗西斯·劳伦斯1970年生于维也纳，早年拍摄音乐录影带，之后执导《康斯坦丁》《我是传奇》和《间谍》等影片。自《饥饿游戏：星火燎原》起，他执导了系列此后的每一部，包括2023年的《鸣鸟与蛇的歌》。《收获日出》是他又一次回到潘姆。",
@@ -908,7 +908,7 @@
     "rt": "https://www.rottentomatoes.com/m/the_hunger_games_sunrise_on_the_reaping",
     "mc": "https://www.metacritic.com/movie/the-hunger-games-sunrise-on-the-reaping/"
    },
-   "ratingChecked": "2026-11-18",
+   "ratingChecked": "2026-11-27",
    "poster": "posters/hunger-games-sunrise-on-the-reaping-2026-art.jpg",
    "worldPremiere": {
     "status": "verified",

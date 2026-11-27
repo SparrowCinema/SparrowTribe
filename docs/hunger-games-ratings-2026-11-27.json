@@ -1,0 +1,70 @@
+{
+ "film": "hunger-games-sunrise-on-the-reaping",
+ "checked": "2026-11-27",
+ "before": [
+  null,
+  null,
+  72,
+  56,
+  3.7
+ ],
+ "after": [
+  6.3,
+  7.5,
+  67,
+  55,
+  4.0
+ ],
+ "order": [
+  "Douban /10",
+  "IMDb /10",
+  "Rotten Tomatoes critics %",
+  "Metacritic /100",
+  "Letterboxd /5"
+ ],
+ "platforms": {
+  "douban": {
+   "value": 6.3,
+   "status": "verified",
+   "url": "https://movie.douban.com/subject/36915988/",
+   "evidence": "https://m.douban.com/movie/subject/36915988/",
+   "note": "Verified on mobile Douban subject snippet ('饥饿游戏：收获日出豆瓣评分：6.3')."
+  },
+  "imdb": {
+   "value": 7.5,
+   "votes": 29676,
+   "status": "verified",
+   "url": "https://www.imdb.com/title/tt32558705/",
+   "evidence": [
+    "https://www.moviemeter.nl/film/1176031",
+    "https://berkreviews.com/2026/11/25/hungergamessunrise/"
+   ],
+   "note": "Verified 7.5/10 (29,676 votes) via live MovieMeter IMDb feed and corroborated by 2026-11-25 review."
+  },
+  "rt": {
+   "value": 67,
+   "reviews": 200,
+   "status": "verified",
+   "url": "https://www.rottentomatoes.com/m/the_hunger_games_sunrise_on_the_reaping",
+   "note": "Direct page check on 2026-11-27: 67% Tomatometer across 200 critic reviews (Popcornmeter 94% across 5,000+ verified ratings is not mixed into critic column)."
+  },
+  "mc": {
+   "value": 55,
+   "reviews": 43,
+   "status": "verified",
+   "url": "https://www.metacritic.com/movie/the-hunger-games-sunrise-on-the-reaping/",
+   "note": "Direct page check on 2026-11-27: 55 Metascore based on 43 critic reviews (User Score 7.1 across 373 ratings)."
+  },
+  "lb": {
+   "value": 4.0,
+   "ratings": "621.8K",
+   "status": "verified",
+   "url": "https://letterboxd.com/film/the-hunger-games-sunrise-on-the-reaping/",
+   "evidence": [
+    "https://www.atomtickets.com/movies/the-hunger-games-sunrise-on-the-reaping-the-imax-experience/409689",
+    "https://berkreviews.com/2026/11/25/hungergamessunrise/"
+   ],
+   "note": "Verified 4.0/5 via live Atom Tickets Letterboxd feed (1.2M watches, 621.8K ratings, 511.6K likes) and corroborated by 2026-11-25 review."
+  }
+ }
+}

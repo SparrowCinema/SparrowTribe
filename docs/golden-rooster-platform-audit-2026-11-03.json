@@ -1577,9 +1577,10 @@
       },
       "douban": {
         "url": "https://movie.douban.com/subject/36778103/",
-        "source": "https://www.douban.com/doulist/165148655/?start=75&sort=seq&playable=0&sub_type=",
+        "source": "https://m.douban.com/movie/subject/36778103/",
         "status": "verified",
-        "rating": null
+        "rating": 8.3,
+        "refreshed": "2026-11-27"
       },
       "letterboxd": {
         "url": "https://letterboxd.com/film/les-miserables-2026/",
@@ -1595,36 +1596,43 @@
         "identitySource": "https://letterboxd.com/film/les-miserables-2026/",
         "status": "verified",
         "rating": 7.1,
-        "votes": 486
+        "votes": 736,
+        "refreshed": "2026-11-27"
       },
       "critics": {
         "rt": {
-          "url": "https://www.rottentomatoes.com/m/les_miserables",
-          "status": "director-mismatch",
+          "url": "https://www.rottentomatoes.com/m/les_miserables_2",
+          "status": "verified-no-score",
           "name": "Les Misérables",
           "directors": [
-            "Henri Fescourt"
+            "Fred Cavayé"
           ],
-          "rating": null
+          "reviews": 5,
+          "rating": null,
+          "refreshed": "2026-11-27"
         },
         "mc": {
-          "url": "https://www.metacritic.com/movie/les-miserables/",
-          "status": "year-mismatch",
-          "name": "Les Miserables",
+          "url": "https://www.metacritic.com/movie/les-miserables-2026/",
+          "status": "verified-tbd",
+          "name": "Les Misérables",
           "directors": [
-            "Tom Hooper"
+            "Fred Cavayé"
           ],
-          "rating": null
+          "reviews": 1,
+          "rating": null,
+          "refreshed": "2026-11-27"
         }
       },
       "after": {
         "links": {
           "douban": "36778103",
           "lb": "les-miserables-2026",
-          "imdb": "tt35518109"
+          "imdb": "tt35518109",
+          "rt": "https://www.rottentomatoes.com/m/les_miserables_2",
+          "mc": "https://www.metacritic.com/movie/les-miserables-2026/"
         },
         "r": [
-          null,
+          8.3,
           7.1,
           null,
           null,
