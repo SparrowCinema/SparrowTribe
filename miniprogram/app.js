@@ -101,9 +101,9 @@ App({
     try { require('./utils/planchange.js').track(this.globalData.data); } catch (e) { }
     try { watched.migrate(this.globalData.raw.aliases); } catch (e) { }
     this._waiters.forEach(fn => fn(this.globalData.data));
+    if (r.detailParts) this.loadDetail(r.detailParts, this._en, lang); // 长文和往期专题同时取（合并时按 id 找当前影片，往期专题换成新对象也不丢）
     this.loadPast(r.past || [], lang).then(() => {
       DataCache.save(this.globalData.raw); // 往期专题补齐后再存本机缓存，避免把不完整的数据存进去
-      if (r.detailParts) this.loadDetail(r.detailParts, this._en, lang);
     });
   },
   // 往期专题：每次取一个专题（单个专题远小于云函数返回上限），两个一组并行
@@ -129,16 +129,36 @@ App({
   },
 
   // 剧情简介、影人介绍、获奖等长文字段分段取回（云函数单次返回有大小上限），取到一段合并一段
+  // 合并时按 id 找当前的影片对象（往期专题补齐时会换成新对象）；失败的分段再试一次
   loadDetail(n, en, lang) {
-    const raw = this.globalData.raw, byId = {}; raw.films.forEach(f => { byId[f.id] = f; });
+    const raw = this.globalData.raw;
     let done = 0;
-    const merge = r => {
-      Object.keys(r.d || {}).forEach(id => { if (byId[id]) Object.assign(byId[id], r.d[id]); });
-      const ef = en && en.films; if (ef) Object.keys(r.e || {}).forEach(id => { ef[id] = Object.assign(ef[id] || {}, r.e[id]); });
-    };
-    const refresh = () => { if (en) I.setEN(en); this.globalData.data = withEnded(I.localize(raw)); this._waiters.forEach(fn => fn(this.globalData.data)); };
-    const one = i => wx.cloud.callFunction({ name: 'getData', data: lang ? { v: 2, part: i, lang } : { part: i } }).then(res => { const r = res.result || {}; if (r.ok) { merge(r); if (++done % 2 === 0) refresh(); } }).catch(() => {});
+    const merge = r => { this.mergeDetail(raw, r.d, en, r.e); };
+    const refresh = () => { if (this.globalData.raw !== raw) return; if (en) I.setEN(en); this.globalData.data = withEnded(I.localize(raw)); this._waiters.forEach(fn => fn(this.globalData.data)); };
+    const call = i => wx.cloud.callFunction({ name: 'getData', data: lang ? { v: 2, part: i, lang } : { part: i } }).then(res => res.result || {});
+    const one = i => call(i).catch(() => call(i)).then(r => { if (r && r.ok) { merge(r); if (++done % 2 === 0) refresh(); } }).catch(() => {});
     (async () => { for (let i = 0; i < n; i += 2) await Promise.all([one(i), i + 1 < n ? one(i + 1) : null]); refresh(); })();
+  },
+  mergeDetail(raw, d, en, e) {
+    const byId = {}; (raw.films || []).forEach(f => { byId[f.id] = f; });
+    Object.keys(d || {}).forEach(id => { if (byId[id]) { Object.assign(byId[id], d[id]); byId[id]._full = 1; } });
+    const ef = en && en.films; if (ef) Object.keys(e || {}).forEach(id => { ef[id] = Object.assign(ef[id] || {}, e[id]); });
+  },
+  // 影片页打开时：这部片的长文还没取到，就单独取一次（云函数还没重新部署时取不到，照旧等分段）。不需要取时返回 null
+  ensureDetail(id) {
+    const raw = this.globalData.raw, f = raw && (raw.films || []).find(x => x.id === id);
+    if (!f || f._full || f.syn || f.bio || f.st || this.globalData.source !== 'cloud') return null;
+    this._detailReq = this._detailReq || {};
+    if (this._detailReq[id]) return this._detailReq[id];
+    const lang = I.isEn() ? 'en' : 'zh', en = this._en;
+    const p = wx.cloud.callFunction({ name: 'getData', data: { v: 2, film: id, lang } }).then(res => {
+      const r = res.result || {}; if (!r.ok || r.film !== id) return false;
+      this.mergeDetail(raw, { [id]: r.d || {} }, en, r.e ? { [id]: r.e } : null);
+      if (this.globalData.raw === raw) { if (en) I.setEN(en); this.globalData.data = withEnded(I.localize(raw)); this._waiters.forEach(fn => fn(this.globalData.data)); }
+      return true;
+    }).catch(() => false).then(ok => { if (!ok) delete this._detailReq[id]; return ok; });
+    this._detailReq[id] = p;
+    return p;
   },
 
   // 底部标签栏文字随语言切换（页面标题由各页 onShow 设置）

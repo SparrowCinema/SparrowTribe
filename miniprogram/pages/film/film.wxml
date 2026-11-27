@@ -147,6 +147,7 @@
     <view class="st"><text class="stt">{{L.t(i,'剧情简介')}}</text><text class="ste mono">SYNOPSIS</text></view>
     <view class="syn {{f.long && !open ? 'clamp' : ''}}">
       <view wx:for="{{f.syn}}" wx:key="index" class="p">{{item}}</view>
+      <view wx:if="{{detailLoading && !f.syn.length}}" class="p dl-wait">{{L.t(i,'影片介绍加载中…')}}</view>
     </view>
     <view wx:if="{{f.long}}" class="more" bindtap="more">{{open ? L.t(i,'收起') : L.t(i,'展开全文')}}</view>
 

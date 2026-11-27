@@ -53,6 +53,8 @@ Page({
   build() {
     const data = app.globalData.data, idx = U.index(data);
     if (this.id && !idx.F[this.id]) { const hit = Object.keys(idx.F).find(k => k.startsWith(this.id)); if (hit) this.id = hit; } // 扫码 scene 只含 id 前 32 字符
+    const dp = app.ensureDetail && app.ensureDetail(this.id); // 长文还没取到时单独取这一部
+    if (dp && !this._dlWait) { this._dlWait = 1; this.setData({ detailLoading: true }); dp.then(() => { this._dlWait = 0; this.setData({ detailLoading: false }); }); }
     const parts = idx.F[this.id]?.screeningParts;
     if (parts?.length) {
       const id = parts[parts.length - 1];

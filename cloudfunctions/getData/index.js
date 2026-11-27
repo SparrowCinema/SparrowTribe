@@ -206,6 +206,7 @@ function detailPart(data, i, en = true) {
 //   {v:2}            → 当期专题的影片（不含长文）+ 场次 + 全部影院 / 专题目录 + 当期影片的英文名；past 列出其余专题 id
 //   {v:2, prog:id}   → 某个往期专题的影片与场次（小程序在后台逐个补齐，补齐后存本机缓存）
 //   {v:2, part:i}    → 长文分段，与旧版相同
+//   {v:2, film:id}   → 单部影片的长文（影片页按需取）
 // 另带 lang：'zh' 时不返回英文层 en（中文界面用不到，约 200KB；切到英文时小程序再按 lang:'en' 取一次，期间用安装包里的英文兜底）。
 // 不带 v 的旧版小程序仍拿到原来的格式，不受影响。
 const todayBJ = () => new Date(Date.now() + 8 * 3600e3).toISOString().slice(0, 10);
@@ -222,10 +223,17 @@ function leanV2(data, en) {
   if (data.en && en) out.en = Object.assign({}, data.en, { films: pk.e }); else { delete out.en; out.enOmitted = true; }
   return out;
 }
+// {v:2, film:id}：单部影片的长文（影片页打开时按需取，不用等全部分段取完）
+function filmDetail(data, id, en) {
+  const f = (data.films || []).find(x => x.id === id); if (!f) return { ok: false, film: id };
+  const x = en && data.en && data.en.films && data.en.films[id];
+  return { ok: true, film: id, d: pick(f, HEAVY), e: x ? pick(x, HEAVY) : null };
+}
 function progPack(data, id, en) { const pk = packOf(data, p => p === id); return { ok: true, prog: id, films: pk.films, shows: pk.shows, e: en ? pk.e : {} }; }
 const shape = (data, event) => {
   const v2 = event && +event.v >= 2, en = !v2 || event.lang === 'en';
   if (event && event.part !== undefined) return detailPart(data, +event.part || 0, en);
+  if (v2 && event.film) return filmDetail(data, String(event.film), en);
   if (v2) return event.prog ? progPack(data, String(event.prog), en) : leanV2(data, en);
   return slim(data);
 };
