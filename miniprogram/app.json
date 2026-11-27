@@ -9,7 +9,8 @@
     "pages/events/events",
     "pages/venues/venues",
     "pages/share/share",
-    "pages/plan/plan"
+    "pages/plan/plan",
+    "pages/checkin/checkin"
   ],
   "subPackages": [
     {
@@ -20,7 +21,8 @@
         "ticket-edit/ticket-edit",
         "poster-wall/poster-wall",
         "taste-map/taste-map",
-        "guide/guide"
+        "guide/guide",
+        "checkin-host/checkin-host"
       ]
     }
   ],

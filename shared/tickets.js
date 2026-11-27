@@ -544,6 +544,25 @@ function checkinParse(text) {
   if (!/^[\w-]{1,80}$/.test(f) || !/^[\w:\/.-]{1,120}$/.test(h) || !/^\d{1,12}$/.test(w) || !/^[0-9a-f]{12}$/i.test(k)) return null;
   return {f,h,w:Number(w),k:k.toLowerCase()};
 }
+// 小程序码（wxacode.getUnlimited）scene 上限 32 字符：用每场唯一的短编号 sid + base36 时间窗 + 12 位签到码（共约 30 字符）。
+// 微信「扫一扫」直接进小程序 pages/checkin/checkin，再由 sid 反查影片 id。
+function checkinScene(sid,w,k) {
+  const h=String(sid||""), wn=Number(w), kk=String(k||"").toLowerCase();
+  if (!/^[A-Za-z0-9_-]{1,12}$/.test(h) || !Number.isInteger(wn) || wn<=0 || wn>=1e12 || !/^[0-9a-f]{12}$/.test(kk)) return "";
+  const out="c~"+h+"~"+wn.toString(36)+"~"+kk;
+  return out.length<=32 ? out : "";
+}
+function checkinSceneParse(raw) {
+  let s=String(raw||"").trim();
+  const sm=s.match(/(?:^|[?&])scene=([^&#\s]+)/);
+  if (sm) s=sm[1];
+  try {s=decodeURIComponent(s);} catch (e) {}
+  const m=s.match(/^c~([A-Za-z0-9_-]{1,12})~([0-9a-z]{1,8})~([0-9a-f]{12})$/i);
+  if (!m) return null;
+  const w=parseInt(m[2],36);
+  if (!Number.isSafeInteger(w) || w<=0 || w>=1e12) return null;
+  return {h:m[1],w,k:m[3].toLowerCase()};
+}
 // 把这次现场观影记进观影记录：同一天同一场已经记过就用那一次，没有场次的同日记录补上场次，否则新增一次观影。
 // G＝shared/growth.js；返回 {rec: 更新后的记录（没变化为 null）, key: 这次观影的票根键}
 function checkinPlan(rec,G,filmId,date,showKey,now) {
@@ -1966,6 +1985,6 @@ function drawWall(surface,records,side,images,caption,createCanvas,title,maxWidt
 }
 
 const shineOf=key=>{const f=finishes[key]||finishes.matte;return {kind:f.kind,fx:fxOf(key),highlight:f.stops[f.stops.length-2]};};
-return {autographKey,pendingAutograph,applyAutograph,attachAutographs,collectSig,guestLine,drawAutographs,checkinURL,checkinParse,checkinPlan,applyCheckin,isHidden,HIDDEN_RATE,editionClose,EDITION_GRACE,pendingEdition,applyEdition,decorate,setQR,verifyURL,editionLines,badgesOf,drawShowcase,bakeSheen,SHOW_W,SHOW_H,serialOf,serialValid,formatSerial,entrySerial,pendingIssue,applyIssue,issueText,ISSUE_BATCH,W,H,TITLE_FAMILY,edgeOf,foilMask,fxOf,artMask,backMask,parseCraft,craftLabel,lookSig,foilLayers,WALL_PAGE,MOSAIC_MAX,FACETS,BADGES,badgeKeys,options:labelOptions(),sanitize,read,sorted,defaults,randomLook,shineOf,draw,wallLayout,drawWall,
+return {autographKey,pendingAutograph,applyAutograph,attachAutographs,collectSig,guestLine,drawAutographs,checkinURL,checkinParse,checkinScene,checkinSceneParse,checkinPlan,applyCheckin,isHidden,HIDDEN_RATE,editionClose,EDITION_GRACE,pendingEdition,applyEdition,decorate,setQR,verifyURL,editionLines,badgesOf,drawShowcase,bakeSheen,SHOW_W,SHOW_H,serialOf,serialValid,formatSerial,entrySerial,pendingIssue,applyIssue,issueText,ISSUE_BATCH,W,H,TITLE_FAMILY,edgeOf,foilMask,fxOf,artMask,backMask,parseCraft,craftLabel,lookSig,foilLayers,WALL_PAGE,MOSAIC_MAX,FACETS,BADGES,badgeKeys,options:labelOptions(),sanitize,read,sorted,defaults,randomLook,shineOf,draw,wallLayout,drawWall,
   ticketKey,parseKey,cleanStore,mergeStore,packLook,unpackLook,normArt,viewings,build,reconcile,draft,entryFrom,migrateV1,filterTickets,facetCounts,groupByMonth,swatch};
 });

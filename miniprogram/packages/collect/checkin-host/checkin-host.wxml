@@ -1,0 +1,62 @@
+<page-meta page-style="{{ps}}" />
+<wxs src="../../../utils/l.wxs" module="L" />
+<view class="wrap ch-wrap {{full ? 'ch-full' : ''}}">
+  <block wx:if="{{!full}}">
+    <view class="ch-head">
+      <text class="ch-k mono">CHECK-IN HOST · MINI PROGRAM</text>
+      <text class="h1 ch-h1">{{L.t(i,'现场认证 · 主办方')}}</text>
+      <text class="ch-sub">{{L.t(i,'生成动态微信小程序码，观众用微信「扫一扫」直接进小程序完成现场认证。')}}</text>
+    </view>
+
+    <view class="card ch-form">
+      <view class="ch-field">
+        <view class="ch-flab">
+          <text>{{L.t(i,'主办密钥')}}</text>
+          <text wx:if="{{pin}}" class="ch-clr" bindtap="clearPin">{{L.t(i,'清除')}}</text>
+        </view>
+        <input class="ch-inp" password="true" value="{{pin}}" placeholder="{{L.t(i,'输入主办密钥')}}" bindinput="onPinInput" bindblur="onPinCommit" bindconfirm="onPinCommit" />
+      </view>
+
+      <view class="ch-field">
+        <view class="ch-flab">
+          <text>{{L.t(i,'放映场次')}}</text>
+          <text class="ch-clr" bindtap="toggleShowAll">{{showAll ? L.t(i,'只看近 14 小时') : L.t(i,'显示全部待映')}}</text>
+        </view>
+        <picker wx:if="{{labels.length}}" mode="selector" range="{{labels}}" value="{{pickIdx >= 0 ? pickIdx : 0}}" bindchange="pickShow">
+          <view class="ch-pick {{cur ? '' : 'ph'}}">
+            <text class="ch-pick-t">{{cur ? cur.shortLine : L.t(i,'选择一场放映')}}</text>
+            <text class="ch-pick-a">▾</text>
+          </view>
+        </picker>
+        <text wx:else class="ch-empty">{{L.t(i,'前后 14 小时内没有场次，可点右上角切换「显示全部待映」。')}}</text>
+      </view>
+    </view>
+  </block>
+
+  <view wx:if="{{err}}" class="card ch-err-card">
+    <text class="ch-err-t">{{err}}</text>
+    <view class="btn ghost ch-smbtn" bindtap="tapRefresh">{{L.t(i,'重试')}}</view>
+  </view>
+
+  <view wx:if="{{cur && pin}}" class="card ch-stage {{full ? 'ch-stage-full' : ''}}">
+    <view wx:if="{{env !== 'release'}}" class="ch-env mono">{{env === 'trial' ? L.t(i,'体验版小程序码') : L.t(i,'开发版小程序码')}}</view>
+    <view class="ch-qr-box">
+      <image wx:if="{{qr}}" class="ch-qr" src="{{qr}}" mode="aspectFit" />
+      <text wx:else class="ch-qr-wait">{{loading ? L.t(i,'正在生成小程序签到码…') : L.t(i,'等待生成签到码')}}</text>
+    </view>
+    <view class="ch-title">{{cur.cn}}<text wx:if="{{cur.version}}" class="ed">{{cur.version}}</text></view>
+    <text class="ch-meta mono">{{cur.time}}</text>
+    <text class="ch-meta">{{cur.place}}</text>
+    <text class="ch-tip">{{L.t(i,'微信「扫一扫」直接进入小程序完成现场认证')}}</text>
+    <view class="ch-stat">
+      <text>{{L.t(i,'已签到')}} </text>
+      <text class="ch-num mono">{{count}}</text>
+      <text>{{i.__en ? '' : ' 人'}} · {{L.t(i,'签到码每分钟更新')}}</text>
+    </view>
+    <text wx:if="{{updated}}" class="ch-upd mono">{{L.t(i,'更新于')}} {{updated}}</text>
+    <view class="ch-acts">
+      <view class="btn ch-act" bindtap="toggleFull">{{full ? L.t(i,'退出全屏') : L.t(i,'全屏投屏')}}</view>
+      <view class="btn ghost ch-act" bindtap="tapRefresh">{{L.t(i,'立即刷新')}}</view>
+    </view>
+  </view>
+</view>

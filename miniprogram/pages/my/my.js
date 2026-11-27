@@ -26,6 +26,13 @@ Page({
   data: {collectionOpen:true,cuCfg:null,cuCmd:null,friendOpen:false,friends:[{u:'https://sparrowcinema.github.io/michelin-guide/',img:'/images/brand/friend-michelin.png',n:'全球米其林餐厅名录',g:'去全球看电影，别忘了顺路吃点美食。',d:'收录全球米其林餐厅，可标记想去、记录去过，让每座城市的电影与美味同行。'}],collectionOpen:false,todayExpanded:false,careOpen:false,todayRows:[], i: {}, pp: {}, ppOpen: false, ppPage: 0, ppVol: 0, ppShelf: false, ppTab: 'stamps', lvAll: false, gt: 'level', cAll: false, gOpen: null, mcat: '', gr: {}, wide: false, ppSp: 0, ppK: 1, ppH: 0, ppCH: 0, ppCK: 1, spreads: [], ppLabel: '', rc: {}, rcOpen: false, rcY: [], rcM: [], rcP: [], rcSections: R.SECTIONS.map(x=>x[0]), rcIncludeNotes: false, fbOpen: false},
   switchLang() { app.switchLang(); },
   setTheme(e) { CFG.setTheme(e.currentTarget.dataset.p); },
+  // 隐藏入口：连续轻点右上角「观影护照」5 次打开主办方现场签到投屏页（生成小程序码）
+  tapHostBadge() {
+    const now = Date.now();
+    if (!this._hostTapT || now - this._hostTapT > 2500) this._hostTapN = 0;
+    this._hostTapT = now;
+    if (++this._hostTapN >= 5) { this._hostTapN = 0; wx.navigateTo({ url: '/packages/collect/checkin-host/checkin-host' }); }
+  },
   onLoad() { try{const v=wx.getStorageSync('sk-recap-sections-v1');if(Array.isArray(v))this.setData({rcSections:R.SECTIONS.map(x=>x[0]).filter(k=>v.includes(k))});}catch(e){} this.setData({ i: I.dict(), en: I.isEn() }); this.measure(); this._rz = () => { this.cuReset(); this.measure(); this.buildSpreads(); }; wx.onWindowResize && wx.onWindowResize(this._rz); this.off1 = plan.onChange(() => this.build()); this.off2 = app.onData(() => { this.build(); this.buildPassport(); }); this.off3 = W.onChange(() => this.buildPassport()); },
   onUnload() { this.offC&&this.offC();this._rz && wx.offWindowResize && wx.offWindowResize(this._rz); this.off1 && this.off1(); this.off2 && this.off2(); this.off3 && this.off3(); },
   // 使用手册有没看过的更新（app.guideLatest 来自 getData 带回的 data/guide.json）时，「使用指南」一行显示「新」

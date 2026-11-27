@@ -52,4 +52,31 @@ assert(T.badgesOf(row).includes('现场认证'));
 assert.equal(T.entryFrom({...row,seat:'1排1座'},base('f1',{},'2026-11-08')).ci,e.ci,'editing keeps ci');
 const merged=S.mergeTix(store,S.cleanTix({'f1|2026-11-08':{t:e.t+9,n,st:'2排'}}));
 assert.equal(merged['f1|2026-11-08'].ci,e.ci,'merge fills ci back');
-console.log('PASS: on-site check-in — code parse, passport merge, ticket write-back, ticket marks, sync.');
+
+// ——— 小程序码 scene（wxacode.getUnlimited ≤32 字符） ———
+const sc=T.checkinScene('s15aaok04',14949570,'0123456789AB');
+assert(sc.length>0 && sc.length<=32,'scene fits 32-char wxacode limit: '+sc);
+assert(/^[0-9A-Za-z!#$&'()*+,/:;=?@\-._~]+$/.test(sc),'scene uses wxacode-safe chars');
+assert.deepStrictEqual(T.checkinSceneParse(sc),{h:'s15aaok04',w:14949570,k:'0123456789ab'});
+assert.deepStrictEqual(T.checkinSceneParse(encodeURIComponent(sc)),{h:'s15aaok04',w:14949570,k:'0123456789ab'});
+assert.deepStrictEqual(T.checkinSceneParse('pages/checkin/checkin?scene='+encodeURIComponent(sc)),{h:'s15aaok04',w:14949570,k:'0123456789ab'});
+assert.equal(T.checkinScene('too_long_sid_12345',14949570,'0123456789ab'),'','rejects sid > 12 chars');
+assert.equal(T.checkinScene('s15aaok04',0,'0123456789ab'),'','rejects non-positive window');
+assert.equal(T.checkinScene('s15aaok04',14949570,'nothex123456'),'','rejects non-hex token');
+for (const bad of ['','c~s1~0~0123456789ab','c~s1~8wex2~zzzzzzzzzzzz','x~s1~8wex2~0123456789ab','#checkin=f~h~1~0123456789ab']) {
+  assert.equal(T.checkinSceneParse(bad),null,'rejects invalid scene: '+bad);
+}
+
+// ——— 小程序页面与云函数接线检查 ———
+const fs=require('fs'),path=require('path'),vm=require('vm'),root=path.resolve(__dirname,'..');
+const appJson=JSON.parse(fs.readFileSync(path.join(root,'miniprogram/app.json'),'utf8'));
+assert(appJson.pages.includes('pages/checkin/checkin'),'pages/checkin/checkin registered in main package');
+assert(appJson.subPackages.some(sp=>sp.root==='packages/collect' && sp.pages.includes('checkin-host/checkin-host')),'checkin-host registered in collect subpackage');
+for (const rel of ['cloudfunctions/psync/index.js','cloudfunctions/wxacode/index.js']) {
+  const src=fs.readFileSync(path.join(root,rel),'utf8');
+  new vm.Script(src,{filename:rel});
+}
+assert(fs.readFileSync(path.join(root,'cloudfunctions/psync/index.js'),'utf8').includes("action === 'checkinCode'"),'psync handles checkinCode');
+assert(fs.readFileSync(path.join(root,'cloudfunctions/wxacode/index.js'),'utf8').includes("'pages/checkin/checkin'"),'wxacode allows pages/checkin/checkin');
+
+console.log('PASS: on-site check-in — code parse, wxacode scene, passport merge, ticket write-back, ticket marks, sync, mini-program wiring.');
