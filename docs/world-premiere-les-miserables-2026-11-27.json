@@ -1,0 +1,90 @@
+{
+ "checked": "2026-11-27",
+ "purpose": "Verify exact world premiere date, five-platform rating refresh, and production details for Les Misérables (2026, gr26-023).",
+ "verifiedRecords": {
+  "gr26-023": {
+   "cn": "悲惨世界",
+   "date": "2026-09-18",
+   "festival": "圣塞巴斯蒂安国际电影节",
+   "festivalEn": "San Sebastián International Film Festival",
+   "kind": "festival",
+   "sources": [
+    "https://www.sansebastianfestival.com/2026/sections_and_films/official_selection/7/741088/in",
+    "https://en.wikipedia.org/wiki/Les_Mis%C3%A9rables_(2026_film)",
+    "https://fr.wikipedia.org/wiki/Les_Mis%C3%A9rables_(film,_2026)"
+   ],
+   "note": "World premiere in Main Competition at the 74th San Sebastián International Film Festival on 2026-09-18 (TIFF Market screening on 2026-09-10 was industry-only, not a public premiere)."
+  }
+ },
+ "ratingAudit": {
+  "film": "gr26-023",
+  "checked": "2026-11-27",
+  "before": [
+   null,
+   7.1,
+   null,
+   null,
+   3.44
+  ],
+  "after": [
+   8.3,
+   7.1,
+   null,
+   null,
+   3.44
+  ],
+  "order": [
+   "Douban /10",
+   "IMDb /10",
+   "Rotten Tomatoes critics %",
+   "Metacritic /100",
+   "Letterboxd /5"
+  ],
+  "platforms": {
+   "douban": {
+    "value": 8.3,
+    "url": "https://movie.douban.com/subject/36778103/",
+    "evidence": [
+     "https://m.douban.com/movie/subject/36778103/",
+     "https://www.thepaper.cn/newsDetail_forward_34559923"
+    ],
+    "note": "Verified Douban rating 8.3 on mobile subject snippet and corroborated by The Paper report on 2026-11-26."
+   },
+   "imdb": {
+    "value": 7.1,
+    "url": "https://www.imdb.com/title/tt35518109/",
+    "evidence": [
+     "https://www.filmvandaag.nl/film/150786-les-miserables",
+     "https://www.moviemeter.nl/film/1177474"
+    ],
+    "note": "Verified 7.1/10 (708-736 votes across IMDb-synced aggregators)."
+   },
+   "rt": {
+    "value": null,
+    "reviews": 5,
+    "url": "https://www.rottentomatoes.com/m/les_miserables_2",
+    "note": "Direct page check on 2026-11-27 shows 5 critic reviews (4 Fresh, 1 Rotten) with explicit 'No score yet'; link added."
+   },
+   "mc": {
+    "value": null,
+    "reviews": 1,
+    "url": "https://www.metacritic.com/movie/les-miserables-2026/",
+    "note": "Direct page check on 2026-11-27 shows 1 critic review (Variety, 40) with explicit 'tbd' (requires 4 critic reviews); link added."
+   },
+   "lb": {
+    "value": 3.44,
+    "url": "https://letterboxd.com/film/les-miserables-2026/",
+    "note": "Direct Letterboxd crawl blocked; retained previously verified 3.44 average from 2026-11-03 audit."
+   }
+  }
+ },
+ "contentSources": [
+  "https://www.sansebastianfestival.com/2026/sections_and_films/official_selection/7/741088/in",
+  "https://en.wikipedia.org/wiki/Les_Mis%C3%A9rables_(2026_film)",
+  "https://fr.wikipedia.org/wiki/Les_Mis%C3%A9rables_(film,_2026)",
+  "https://cineuropa.org/en/newsdetail/495932/",
+  "https://deadline.com/2025/05/les-miserables-fred-cavaye-vincent-lindon-tahar-rahim-1236391871/",
+  "https://www.thepaper.cn/newsDetail_forward_34508972",
+  "https://www.thepaper.cn/newsDetail_forward_34559923"
+ ]
+}
