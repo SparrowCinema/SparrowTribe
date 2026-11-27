@@ -1921,6 +1921,7 @@ function drawShowcase(surface,record,art,createCanvas,opts={}) {
   const fy=vq ? SHOW_H-110 : SHOW_H-210;
   surface.fillStyle=white(.18);surface.fillRect(L,fy,R-L,1.5);
   surface.fillStyle=white(.6);surface.textAlign="left";surface.font=`500 24px ${SANS}`;surface.fillText("麻雀观影护照 · 麻雀映画 × 麻雀部落",L,fy+56);
+  surface.fillStyle=white(.46);surface.textAlign="right";surface.font=`400 22px ${SANS}`;surface.fillText("找到下一场电影，收藏看过的每一场。",R,fy+56);
   surface.restore();
 }
 
@@ -1952,7 +1953,7 @@ function drawWall(surface,records,side,images,caption,createCanvas,title,maxWidt
   text(surface,title||"我的典藏票根册",62,144,{size:58,font:SERIF,ink:"#f5ebd5",weight:900,max:width-125});
   text(surface,caption||`${records.length} 张 · ${side==="back" ? "背面" : "正面"}`,width-64,178,{size:22,align:"right",ink:"#e5d6bc",max:width-128});
   rule(surface,height-66,"#d5bb895c",64,width-64);
-  text(surface,"SPARROW CINEMA",width/2,height-32,{size:17,font:MONO,ink:"#e5d6bc",align:"center"});
+  text(surface,"SPARROW CINEMA  ·  找到下一场电影，收藏看过的每一场。",width/2,height-32,{size:17,font:SANS,ink:"#e5d6bc",align:"center",max:width-128});
   records.forEach((record,i)=>{
     const rect=rects[i];
     surface.save();

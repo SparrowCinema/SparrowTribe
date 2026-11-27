@@ -126,7 +126,8 @@ async function exportPNG(){const list=currentExport;if(!list.length||pngBusy)ret
   const m=qrMatrix(homeURL()),qs=264,qx=P+36,qy=fy+36;
   if(m){c.fillStyle='#fff';rr(c,qx,qy,qs,qs,10);c.fill();const n=m.length,cell=(qs-24)/(n+8);c.fillStyle='#1d1712';for(let r=0;r<n;r++)for(let k=0;k<n;k++)if(m[r][k])c.fillRect(Math.floor(qx+12+(k+4)*cell),Math.floor(qy+12+(r+4)*cell),Math.ceil(cell),Math.ceil(cell));}
   const fx=m?qx+qs+40:P+36;c.fillStyle='#fffaf0';c.font='700 38px '+SANS;c.fillText('扫码进入排片首页',fx,fy+100);c.font='400 24px '+SANS;c.globalAlpha=.8;wrapCanvas(c,'查看完整片目 · 选择想看的电影',fx,fy+150,W-P-36-fx,34);c.globalAlpha=.6;c.font='400 20px '+MONO;c.fillText(location.host+location.pathname,fx,fy+226);c.globalAlpha=1;
-  c.fillStyle='#e0b9a6';c.font='italic 900 30px '+SERIF;const brandW=c.measureText('麻雀观影护照').width;c.fillText('麻雀观影护照',fx,fy+280);c.fillStyle='#fffaf0';c.globalAlpha=.7;c.font='400 20px '+SANS;if(LANG==='en')c.fillText('麻雀映画 × 麻雀部落',fx,fy+318);else c.fillText('麻雀映画 × 麻雀部落',fx+brandW+40,fy+278);c.globalAlpha=1;
+  c.fillStyle='#e0b9a6';c.font='italic 900 30px '+SERIF;const brandW=c.measureText('麻雀观影护照').width;c.fillText('麻雀观影护照',fx,fy+280);c.fillStyle='#fffaf0';c.globalAlpha=.7;c.font='400 20px '+SANS;if(LANG==='en')c.fillText('麻雀映画 × 麻雀部落',fx,fy+318);else c.fillText('麻雀映画 × 麻雀部落',fx+brandW+40,fy+278);
+  c.fillStyle='#7a6a55';c.globalAlpha=.78;c.font='400 18px '+SANS;c.textAlign='center';c.fillText('找到下一场电影，收藏看过的每一场。',W/2,H-24);c.textAlign='left';c.globalAlpha=1;
   const blob=await new Promise(r=>cv.toBlob(r,'image/png'));if(!blob){toast('图片生成失败，请使用打印导出');return;}
   showImageSheet(blob);}finally{pngBusy=false;}}
 /* opt.extra：[{label, run}]，保存按钮下方的一排次要操作（如票根合成图的「也导出正面 / 背面」），点了先关掉这张再运行 */

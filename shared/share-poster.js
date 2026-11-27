@@ -20,7 +20,7 @@
 (function (root) {
   const SERIF = '"Noto Serif SC","Songti SC","STSong",serif', SANS = '"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif', MONO = '"IBM Plex Mono",Menlo,monospace';
   const C = { paper: '#efe6d4', card: '#f8f2e6', ink: '#2b2117', muted: '#7a6a55', line: '#d8cbb1', red: '#8e2a22', gold: '#d9bc80', teal: '#2f6f6c' };
-  const W = 1080, P = 64, FOOT = 380, CJK = /[　-〿㐀-鿿＀-￯]/;
+  const W = 1080, P = 64, FOOT = 410, CJK = /[　-〿㐀-鿿＀-￯]/, SLOGAN = '找到下一场电影，收藏看过的每一场。';
 
   function wrapLines(c, text, max) {
     text = String(text || ''); const out = []; let line = '';
@@ -88,15 +88,16 @@
         if (!it.list.length) { c.fillStyle = C.muted; c.font = '400 26px ' + SANS; c.fillText(T('排片公布后会在麻雀观影护照更新'), P, it.y + 70); }
       }
     });
-    // 页脚：深色通栏 + 页面二维码
+    // 页脚：深色通栏 + 页面二维码 + 底部口号
     const fy = L.footY, hb = L.H - fy; c.fillStyle = C.ink; c.fillRect(0, fy, W, hb);
-    const Q = 260, qx = W - P - Q, qy = fy + (hb - Q) / 2; c.fillStyle = '#fff'; rr(c, qx - 14, qy - 14, Q + 28, Q + 28, 18); c.fill();
+    const Q = 260, qx = W - P - Q, qy = fy + (hb - 40 - Q) / 2; c.fillStyle = '#fff'; rr(c, qx - 14, qy - 14, Q + 28, Q + 28, 18); c.fill();
     if (o.qrImg) c.drawImage(o.qrImg, qx, qy, Q, Q);
     else if (o.qr) { const m = o.qr, n = m.length, s = Q / n; c.fillStyle = C.ink; for (let r = 0; r < n; r++) for (let k = 0; k < n; k++) if (m[r][k]) c.fillRect(qx + k * s, qy + r * s, Math.ceil(s), Math.ceil(s)); }
-    const tx = P, tw = qx - P - 50; c.fillStyle = '#fffaf0'; c.font = '900 40px ' + SERIF; wrapLines(c, o.qrText || T('长按识别，查看详情'), tw).slice(0, 2).forEach((l, i) => c.fillText(l, tx, fy + 100 + i * 54));
-    c.globalAlpha = 0.72; c.font = '400 24px ' + SANS; c.fillText(clamp(c, o.qrSub || '', tw, 1)[0] || '', tx, fy + 200); if (o.url) { c.font = '400 20px ' + MONO; c.fillText(o.url, tx, fy + 236); } c.globalAlpha = 1;
-    const my = fy + hb - 92; (o.marks || []).forEach((im, i) => { const R = 34, cx = tx + R + i * (R * 2 + 14), cy = my + R; c.fillStyle = '#fffaf0'; c.beginPath(); c.arc(cx, cy, R, 0, Math.PI * 2); c.fill(); if (im) c.drawImage(im, cx - R + 6, cy - R + 6, 2 * R - 12, 2 * R - 12); });
-    const bx = tx + 2 * 68 + 14 + 22; c.fillStyle = '#e0b9a6'; c.font = 'italic 900 28px ' + SERIF; c.fillText(T('麻雀观影护照'), bx, my + 30); c.fillStyle = '#fffaf0'; c.globalAlpha = 0.7; c.font = '400 20px ' + SANS; c.fillText(T('麻雀映画 × 麻雀部落'), bx, my + 60); c.globalAlpha = 1;
+    const tx = P, tw = qx - P - 50; c.fillStyle = '#fffaf0'; c.font = '900 40px ' + SERIF; wrapLines(c, o.qrText || T('长按识别，查看详情'), tw).slice(0, 2).forEach((l, i) => c.fillText(l, tx, fy + 92 + i * 54));
+    c.globalAlpha = 0.72; c.font = '400 24px ' + SANS; c.fillText(clamp(c, o.qrSub || '', tw, 1)[0] || '', tx, fy + 192); if (o.url) { c.font = '400 20px ' + MONO; c.fillText(o.url, tx, fy + 228); } c.globalAlpha = 1;
+    const my = fy + hb - 122; (o.marks || []).forEach((im, i) => { const R = 34, cx = tx + R + i * (R * 2 + 14), cy = my + R; c.fillStyle = '#fffaf0'; c.beginPath(); c.arc(cx, cy, R, 0, Math.PI * 2); c.fill(); if (im) c.drawImage(im, cx - R + 6, cy - R + 6, 2 * R - 12, 2 * R - 12); });
+    const bx = tx + 2 * 68 + 14 + 22; c.fillStyle = '#e0b9a6'; c.font = 'italic 900 28px ' + SERIF; c.fillText(T('麻雀观影护照'), bx, my + 30); c.fillStyle = '#fffaf0'; c.globalAlpha = 0.7; c.font = '400 20px ' + SANS; c.fillText(T('麻雀映画 × 麻雀部落'), bx, my + 60);
+    c.globalAlpha = 0.5; c.font = '400 18px ' + SANS; c.textAlign = 'center'; c.fillText(T(SLOGAN), W / 2, L.H - 22); c.textAlign = 'left'; c.globalAlpha = 1;
   }
 
   const api = { W, heightOf, draw, layout };
