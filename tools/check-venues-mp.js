@@ -21,7 +21,7 @@ const pick=data.programmes.find(p=>{const sh=data.shows.filter(s=>idx.F[s.id]&&U
 page.onLoad({id:pick.id});
 assert(page.data.venueRows.length>1);assert.equal(page.data.activeId,'');assert.equal(page.data.panel,null);
 assert(page.data.venueRows.every(r=>/部|场/.test(r.cntText)),'each card shows film / screening counts');
-const target=page.data.venueRows.find(r=>/待映/.test(r.cntText))||page.data.venueRows[0];
+const target=page.data.venueRows.find(r=>data.shows.some(s=>s.v===r.id&&idx.F[s.id]&&U.progForShow(s,idx).id===pick.id&&!U.ended(s,idx)))||page.data.venueRows[0];
 page.selectVenue({currentTarget:{dataset:{id:target.id}}});
 assert.equal(page.data.activeId,target.id);assert(page.data.panel&&page.data.panel.id===target.id,'panel opens for the tapped venue');
 assert.equal(page.data.intoView,'vc-'+target.domIdx,'list scrolls to the card');
