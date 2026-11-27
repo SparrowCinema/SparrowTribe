@@ -103,6 +103,7 @@ async function issueRun() {
   } catch (e) { issueOff = true; }
   finally { issueBusy = false; }
   editionRun();
+  autographRun();
 }
 function showOf(key) { const row = ctx && ctx.byKey && ctx.byKey.get(key); return (row && row.showId) || ''; }
 // 封版总数：已封版影片的票根经 psync 云函数的 edition 动作向 tk_edition 取「共发行 N 张」；云函数或后端还没升级时本次启动内不再请求
@@ -118,13 +119,14 @@ async function editionRun() {
     else { const changes = T.applyEdition(all(), res.items); if (changes) put(Object.assign({}, all(), changes), true); }
   } catch (e) { editionOff = true; }
   finally { editionBusy = false; }
-  autographRun();
 }
 // 映后嘉宾签名（2026-11-23）：现场认证过的票根经 psync 云函数的 autograph 动作向 tk_autograph 取这一场的嘉宾签名，
-// 缓存在本机 sk-autograph-v1（不随档案同步）。取到新签名只增加版本号（页面下次显示时刷新），不触发档案同步。
+// 缓存在本机 sk-autograph-v1（不随档案同步）。取到新签名只增加版本号并通知当前票根页重绘，不触发档案同步。
 const AG_KEY = 'sk-autograph-v1';
 let agStore = null, agOff = false, agBusy = false;
+const agListeners = [];
 function agCache() { if (!agStore) { try { agStore = wx.getStorageSync(AG_KEY) || {}; } catch (e) { agStore = {}; } } return agStore; }
+function onAutograph(fn) { agListeners.push(fn); return () => { const i = agListeners.indexOf(fn); if (i >= 0) agListeners.splice(i, 1); }; }
 async function autographRun() {
   if (agOff || agBusy || !wx.cloud || !ctx) return;
   const rows = Array.from(ctx.byKey.values()), items = T.pendingAutograph(rows, agCache(), Date.now());
@@ -138,7 +140,7 @@ async function autographRun() {
     const before = sig(agCache());
     agStore = T.applyAutograph(agCache(), rows, items, res.items, Date.now());
     try { wx.setStorageSync(AG_KEY, agStore); } catch (e) { }
-    if (sig(agStore) !== before) rev++;
+    if (sig(agStore) !== before) { rev++; agListeners.forEach(fn => { try { fn(); } catch (e) { } }); }
   } catch (e) { agOff = true; }
   finally { agBusy = false; }
 }
@@ -162,6 +164,7 @@ function build(data, idx) {
   });
   ctx = { data, idx, byKey: new Map(built.tickets.map(r => [r.key, r])) };
   issueSoon(800);
+  autographRun();
   return built;
 }
 function freeKey(filmId, date, idx, except) {
@@ -189,4 +192,4 @@ async function checkin(c) {
   put(Object.assign({}, all(), { [plan.key]: next }));
   return { ok: true, key: plan.key, film: f, no: next.q || 0, sno: next.sq || 0, ci: next.ci || 0 };
 }
-module.exports = { issueSoon, issueNow: () => issueRun(), checkin, all, put, set, snapshot, replaceAll, onChange, nudge, build, baseFor, viewings, freeKey, rev: () => rev + require('./notes.js').rev() };
+module.exports = { issueSoon, issueNow: () => issueRun(), checkin, all, put, set, snapshot, replaceAll, onChange, onAutograph, nudge, build, baseFor, viewings, freeKey, rev: () => rev + require('./notes.js').rev() };

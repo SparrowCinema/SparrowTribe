@@ -56,6 +56,7 @@ Page({
       artStyle,artStyleLabels:Art.styles.map(style=>I.tr(style.label)),artStyleIndex:Art.styles.findIndex(style=>style.id===artStyle)});wx.setNavigationBarTitle({title:I.tr('我的典藏票根册')});
     this.load();
     this.album();
+    this._agOff=Tix.onAutograph&&Tix.onAutograph(()=>{if(this._ready&&this.data.mode==='album')this.refreshAlbum();});
     if(params.id)this.openEditor('film='+encodeURIComponent(params.id));
   },
   onShow(){
@@ -76,7 +77,7 @@ Page({
     }
     this._shownOnce=true;
   },
-  onUnload(){this._ready=false;this._render++;this.__cfgOff?.();},
+  onUnload(){this._ready=false;this._render++;this.__cfgOff?.();this._agOff?.();},
   onPageScroll(e){this._scrollTop=e.scrollTop;},
   onReachBottom(){if(this.data.mode==='album'&&this.data.more){this._limit+=STEP;this.paint('more');}},
   load(){
