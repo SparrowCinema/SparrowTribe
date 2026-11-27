@@ -16867,6 +16867,13 @@
     "小程序码生成失败，请确认 wxacode 云函数已重新部署": "Failed to generate Mini Program code. Check that the wxacode cloud function is deployed.",
     "致敬·经典": "Tribute",
     "海南岛国际电影节新增「致敬·经典」单元": "HIIFF adds Tribute section",
-    "海南影展专题新增「致敬·经典」单元，收录居伊·吉尔、肯·洛奇与侯孝贤五部2K/4K修复经典。": "The Hainan festival programme adds the Tribute section featuring five 2K/4K restored classics by Guy Gilles, Ken Loach and Hou Hsiao-hsien."
+    "海南影展专题新增「致敬·经典」单元，收录居伊·吉尔、肯·洛奇与侯孝贤五部2K/4K修复经典。": "The Hainan festival programme adds the Tribute section featuring five 2K/4K restored classics by Guy Gilles, Ken Loach and Hou Hsiao-hsien.",
+    "只看我的": "Only mine",
+    "查看全部场次": "Show all screenings",
+    "你还没有加入本片的排片": "No screenings of this film in your plan yet",
+    "当前筛选下没有你加入的场次": "None of your planned screenings match these filters",
+    "影片页放映场次支持「只看我的」": "Film pages add an “Only mine” screening filter",
+    "每部影片详情页的「放映场次」旁新增「只看我的」开关，一键只看自己已加入排片的场次。": "Every film page now has an “Only mine” toggle beside Screenings to filter down to the showtimes in your plan.",
+    "场次、购票码、简介、荣誉、内容提示和各站评分都在这里；放映场次旁可切「只看我的」，快速查看已加入排片的场次。": "Screenings, ticket codes, synopses, awards, content notes and ratings all live here; toggle “Only mine” beside Screenings to focus on showtimes in your plan."
   }
 }

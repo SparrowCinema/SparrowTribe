@@ -70,18 +70,20 @@ Page({
       const v = U.showView(s, idx, data, picked); const [m, d] = s.d.split('/');
       return Object.assign(v, { progTag: multi ? U.progForShow(s, idx).name : '', m, dd: d, mon: U.year(s.d, s.year) + '.' + m, vid: s.v, sd: s.d, geo: !!U.geoOf(idx.VN[s.v]) });
     });
-    // 院线片：放映场次按日期、影院多选筛选（只影响本页显示，与网站 showFilterHTML 一致）
-    const sfSt = this.sf || (this.sf = { d: [], v: [] }), cinema = idx.progsOf(f).some(x => x.p && x.p.kind === '院线') || allShows.some(s => (U.progForShow(s, idx) || {}).kind === '院线');
+    // 影片页放映场次筛选：「只看我的」适用所有有待映场次的影片；院线片另可按日期、影院多选筛选（只影响本页显示，与网站一致）
+    const sfSt = this.sf || (this.sf = { d: [], v: [], mine: false }), cinema = idx.progsOf(f).some(x => x.p && x.p.kind === '院线') || allShows.some(s => (U.progForShow(s, idx) || {}).kind === '院线');
     const sfDates = [...new Set(shows.map(x => x.sd))], sfVs = [...new Set(shows.map(x => x.vid))], sfCities = new Set(sfVs.map(v => (idx.VN[v] || {}).city));
     const vLabel = id => { const v = idx.VN[id] || {}, n = String(v.short || v.brand || v.name || id).replace(new RegExp('^(' + [v.city, t(v.city || '')].filter(Boolean).join('|') + ')\\s*[·・]?\\s*'), ''); return sfCities.size > 1 && v.city ? t(v.city) + ' · ' + n : n; };
     const sfShow = cinema && (sfDates.length > 1 || sfVs.length > 1);
     const sum = (sel, all, lab, unit) => !sel.length ? t(all) : sel.length === 1 ? lab(sel[0]) : lab(sel[0]) + (I.isEn() ? ' +' + (sel.length - 1) : ' 等 ' + sel.length + ' ' + unit);
     const dLabel = d => d + ' ' + U.wk(d);
-    const sf = { show: sfShow, filtered: sfShow && (sfSt.d.length + sfSt.v.length > 0), hasD: sfDates.length > 1, hasV: sfVs.length > 1,
-      dText: sum(sfSt.d, '全部日期', dLabel, '天'), vText: sum(sfSt.v, '全部影院', vLabel, '家'), dOn: !!sfSt.d.length, vOn: !!sfSt.v.length };
+    const showsAllN = shows.length, mineN = shows.filter(x => x.picked).length;
     this._sf = { shows: shows.slice(), dates: sfDates, vs: sfVs, dLabel, vLabel, cities: sfCities };
-    const showsAllN = shows.length;
-    if (sf.show) shows.splice(0, shows.length, ...shows.filter(x => (!sfSt.d.length || sfSt.d.includes(x.sd)) && (!sfSt.v.length || sfSt.v.includes(x.vid))));
+    if (sfShow || sfSt.mine) shows.splice(0, shows.length, ...shows.filter(x => (!sfSt.mine || x.picked) && (!sfShow || ((!sfSt.d.length || sfSt.d.includes(x.sd)) && (!sfSt.v.length || sfSt.v.includes(x.vid))))));
+    const sfFiltered = sfShow && (sfSt.d.length + sfSt.v.length > 0), sfActive = sfFiltered || !!sfSt.mine;
+    const sfEmpty = showsAllN > 0 && !shows.length ? (sfSt.mine && !mineN ? t('你还没有加入本片的排片') : sfSt.mine ? t('当前筛选下没有你加入的场次') : t('所选日期和影院暂无场次')) : '';
+    const sf = { show: sfShow, filtered: sfFiltered, active: sfActive, mine: !!sfSt.mine, mineN, empty: sfEmpty, emptyBtn: sfEmpty ? t(sfSt.mine && !mineN ? '查看全部场次' : '清除筛选') : '', hasD: sfDates.length > 1, hasV: sfVs.length > 1,
+      dText: sum(sfSt.d, '全部日期', dLabel, '天'), vText: sum(sfSt.v, '全部影院', vLabel, '家'), dOn: !!sfSt.d.length, vOn: !!sfSt.v.length };
     // 影展内已放映的场次：窄条保留（黑白、无操作按钮）；院线片不显示
     const pastRow = s => {
       const v = idx.VN[s.v] || {}, h = (v.halls || []).find(x => x.id === s.h), nm = (v.short || v.brand || v.name || '').replace(new RegExp('^' + (v.city || '@@') + '\\s*[·・]?\\s*'), '');
@@ -133,8 +135,8 @@ Page({
         gifts: (f.gifts || []).map((g, k) => ({ k, label: t(g.label || ''), items: (g.items || []).map(t) }))
       },
       qa: (q => q ? { label: f.qaStart + ' – ' + f.qaEnd, guest: t(f.qaGuest) } : null)(U.qaOf(f)),
-      sfAll: showsAllN, cnt: !allShows.length && screeningGroups.length ? t('联映场次') : !showsAllN && f.ended ? t('已下映') : sf.filtered && shows.length !== showsAllN ? t(shows.length + ' / ' + showsAllN + ' 场') : t(showsAllN + ' 场'), sf,
-      shows, goneShows, goneN: t(goneShows.length + ' 场'), goneOpen: this.data.goneOpen === undefined ? !showsAllN : this.data.goneOpen, ratings, credits, nav, screeningGroups, splitScreening: !!f.screeningParts?.length, parts: (f.parts || []).map((m, i) => { const en = I.isEn(); return { id: idx.F[f.screeningParts?.[i]]?.id || '', n: en ? m.en : m.cn, sub: [en ? m.cn : m.en, m.y, m.min ? m.min + t('分钟') : '', m.c].filter(Boolean).join(' · '), dir: (en && m.dirO) || m.dir || '', src: (en && m.printSourceEn) || m.printSource || '', syn: (en ? m.synEn : m.syn) || '', bio:(en?m.bioEn:m.bio)||'', honors: (m.honors || []).map(honor) }; }), ended: allShows.length > 0 && !shows.length
+      sfAll: showsAllN, cnt: !allShows.length && screeningGroups.length ? t('联映场次') : !showsAllN && f.ended ? t('已下映') : sf.active && shows.length !== showsAllN ? t(shows.length + ' / ' + showsAllN + ' 场') : t(showsAllN + ' 场'), sf,
+      shows, goneShows, goneN: t(goneShows.length + ' 场'), goneOpen: this.data.goneOpen === undefined ? !showsAllN : this.data.goneOpen, ratings, credits, nav, screeningGroups, splitScreening: !!f.screeningParts?.length, parts: (f.parts || []).map((m, i) => { const en = I.isEn(); return { id: idx.F[f.screeningParts?.[i]]?.id || '', n: en ? m.en : m.cn, sub: [en ? m.cn : m.en, m.y, m.min ? m.min + t('分钟') : '', m.c].filter(Boolean).join(' · '), dir: (en && m.dirO) || m.dir || '', src: (en && m.printSourceEn) || m.printSource || '', syn: (en ? m.synEn : m.syn) || '', bio:(en?m.bioEn:m.bio)||'', honors: (m.honors || []).map(honor) }; }), ended: allShows.length > 0 && !showsAllN
     });
     this.buildMine();
     Want.markSeen(this.id, this.wantKeys());
@@ -329,14 +331,15 @@ Page({
   openProg(e) { wx.navigateTo({ url: '/pages/programme/programme?id=' + ((e && e.currentTarget.dataset.id) || this.data.f.prog.id) }); },
   toSchedule() { wx.switchTab({ url: '/pages/schedule/schedule' }); },
   seeDay(e) { app.globalData.jumpDay = e.currentTarget.dataset.d; wx.switchTab({ url: '/pages/schedule/schedule' }); },
-  sfTap(e) { const st = this.sf || (this.sf = { d: [], v: [] }); st.d = []; st.v = []; this.build(); },
-  sfRows(type, q) { const x = this._sf; if (!x) return []; const st = this.sf || { d: [], v: [] }, all = x.shows;
+  toggleMine() { const st = this.sf || (this.sf = { d: [], v: [], mine: false }); st.mine = !st.mine; this.build(); },
+  sfTap(e) { const st = this.sf || (this.sf = { d: [], v: [], mine: false }); st.d = []; st.v = []; st.mine = false; this.build(); },
+  sfRows(type, q) { const x = this._sf; if (!x) return []; const st = this.sf || { d: [], v: [], mine: false }, all = x.shows;
     const rows = type === 'date' ? [{ id: 'all', name: t('全部日期'), sub: t(all.length + ' 场'), selected: !st.d.length }, ...x.dates.map(d => { const xs = all.filter(s => s.sd === d); return { id: d, name: x.dLabel(d), sub: t(xs.length + ' 场') + ' · ' + xs.map(s => s.t || '').join(' '), selected: st.d.includes(d) }; })]
       : [{ id: 'all', name: t('全部影院'), sub: t(all.length + ' 场'), selected: !st.v.length }, ...x.vs.map(v => { const xs = all.filter(s => s.vid === v); return { id: v, name: x.vLabel(v), sub: t(xs.length + ' 场'), selected: st.v.includes(v) }; })];
     const m = String(q || '').trim().toLowerCase(); return m ? rows.filter(r => (r.name + ' ' + r.sub).toLowerCase().includes(m)) : rows; },
   sfOpen(e) { const type = e.currentTarget.dataset.type; this.setData({ sfSel: type, sfQ: '', sfTitle: t(type === 'date' ? '选择放映日期' : '选择影院'), sfPh: t(type === 'date' ? '搜索日期' : '搜索影院或城市'), sfRowsV: this.sfRows(type, '') }); },
   sfSearch(e) { this.setData({ sfQ: e.detail.value, sfRowsV: this.sfRows(this.data.sfSel, e.detail.value) }); },
-  sfPick(e) { const id = e.currentTarget.dataset.id, st = this.sf || (this.sf = { d: [], v: [] }), k = this.data.sfSel === 'date' ? 'd' : 'v'; if (id === 'all') st[k] = []; else { const i = st[k].indexOf(id); if (i >= 0) st[k].splice(i, 1); else st[k].push(id); } this.setData({ sfRowsV: this.sfRows(this.data.sfSel, this.data.sfQ) }); },
+  sfPick(e) { const id = e.currentTarget.dataset.id, st = this.sf || (this.sf = { d: [], v: [], mine: false }), k = this.data.sfSel === 'date' ? 'd' : 'v'; if (id === 'all') st[k] = []; else { const i = st[k].indexOf(id); if (i >= 0) st[k].splice(i, 1); else st[k].push(id); } this.setData({ sfRowsV: this.sfRows(this.data.sfSel, this.data.sfQ) }); },
   sfClose() { this.setData({ sfSel: '' }); this.build(); },
   sfStop() {},
   sharePoster() {

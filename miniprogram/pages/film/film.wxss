@@ -40,6 +40,14 @@
 .rb { width: 70%; height: calc(6 * var(--r)); border-radius: calc(4 * var(--r)); background: var(--line-soft); overflow: hidden; }
 .ri { height: 100%; background: var(--fc); }
 .sec-h { display: flex; align-items: baseline; gap: calc(12 * var(--r)); font-size: calc(18.7 * var(--fr)); font-weight: 700; letter-spacing: calc(2 * var(--r)); margin: calc(40 * var(--r)) 0 calc(16 * var(--r)); }
+.sec-h-shows { align-items: center; flex-wrap: wrap; gap: calc(12 * var(--r)) calc(18 * var(--r)); }
+.sec-h-l { display: inline-flex; align-items: baseline; gap: calc(12 * var(--r)); }
+.fd-mine-chip { margin-left: auto; display: inline-flex; align-items: center; gap: calc(10 * var(--r)); height: calc(56 * var(--r)); padding: 0 calc(20 * var(--r)); border: calc(2.5 * var(--r)) solid var(--line); border-radius: calc(99 * var(--r)); background: var(--surface); font-size: calc(19 * var(--fr)); font-weight: 700; letter-spacing: 0; color: var(--fg); white-space: nowrap; flex: none; }
+.fd-mine-chip .mc-i { width: calc(26 * var(--r)); height: calc(26 * var(--r)); border-radius: 50%; border: calc(2.5 * var(--r)) solid var(--muted); display: flex; align-items: center; justify-content: center; font-size: calc(14 * var(--r)); color: transparent; box-sizing: border-box; }
+.fd-mine-chip .mc-n { font-size: calc(17.5 * var(--fr)); color: var(--muted); }
+.fd-mine-chip.on { background: var(--accent); border-color: var(--accent); color: #fffaf0; }
+.fd-mine-chip.on .mc-i { background: #fffaf0; border-color: #fffaf0; color: var(--accent); }
+.fd-mine-chip.on .mc-n { color: #fffaf0; opacity: .85; }
 .ticket { position: relative; display: flex; overflow: hidden; margin-bottom: calc(12 * var(--r)); border-radius: calc(20 * var(--r)); }
 .td { position: relative; flex: none; width: calc(116 * var(--r)); background: var(--fc); color: #fffaf0; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: calc(16 * var(--r)) 0; }
 .td::after { content: ''; position: absolute; right: calc(-2 * var(--r)); top: calc(16 * var(--r)); bottom: calc(16 * var(--r)); border-right: calc(4 * var(--r)) dashed var(--surface); }

@@ -422,6 +422,11 @@ html.sheet-open,html.sheet-open body{overflow:hidden}
 .fd-block{margin-top:22px}
 .fd-h{font:700 var(--t-m) var(--f-body);letter-spacing:.06em;margin:0 0 10px;display:flex;align-items:baseline;gap:8px;color:var(--fg)}
 .fd-h small{font-weight:400;color:var(--muted);font-size:var(--t-xs)}
+.fd-h-shows{align-items:center;flex-wrap:wrap;gap:8px 12px}
+.fd-h-shows>span{display:inline-flex;align-items:baseline;gap:8px}
+.mine-chip.fd-mine-chip{margin-left:auto;height:30px;padding:0 11px;gap:6px;font-size:var(--t-xs);letter-spacing:0;white-space:nowrap;flex:none}
+.mine-chip.fd-mine-chip i{width:14px;height:14px;font-size:9px}
+.mine-chip.fd-mine-chip small{font-size:var(--t-xs)}
 .fd-ticket{display:grid;grid-template-columns:76px 1fr;border-radius:var(--r-m);background:var(--surface);border:1px solid var(--line);overflow:hidden;position:relative}
 .fd-ticket+.fd-ticket{margin-top:8px}
 .fd-tdate{background:var(--fc);color:var(--on-block);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:12px 4px;position:relative}
