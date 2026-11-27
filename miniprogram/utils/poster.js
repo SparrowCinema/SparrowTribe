@@ -1,6 +1,6 @@
 // 个人排片长图：与网站「排片长图」同一套版式（1080 宽），可在浏览器画布与小程序 2d 画布里运行。
 // 入参 days 与「我的」页的 days 结构一致：[{ d, wk, range, items:[{ id, t, end, cn, version, dir, min, venue, hall, color, gap }] }]
-const D = { W: 1080, P: 64, ROW: 196, GAP: 52, DAYH: 104, HEAD: 360, STATS: 150, FOOT: 364 };
+const D = { W: 1080, P: 64, ROW: 196, GAP: 52, DAYH: 104, HEAD: 360, STATS: 150, FOOT: 392 };
 // 画布无法加载网站的网页字体，按系统字体就近匹配：苹果用 Songti / PingFang / Menlo，安卓用思源系
 const SERIF = '"Noto Serif SC","Songti SC","STSong","Source Han Serif SC","Noto Serif CJK SC",serif', SANS = '"Noto Sans SC","PingFang SC","Source Han Sans SC","Noto Sans CJK SC","Microsoft YaHei",sans-serif', MONO = '"IBM Plex Mono",Menlo,"SF Mono",Consolas,monospace';
 
@@ -120,7 +120,7 @@ function draw(c, o) {
   });
 
   // 页脚：深色通栏，左右与底边铺满（与顶部色带呼应）；内容仍按页边距 P 对齐
-  const BH = 340, PY = 52, fy = y + 24; c.fillStyle = '#2b2117'; c.fillRect(0, fy, W, H - fy);
+  const BH = 340, PY = 48, fy = y + 24; c.fillStyle = '#2b2117'; c.fillRect(0, fy, W, H - fy);
   const fx = P; c.fillStyle = '#fffaf0'; c.font = '700 38px ' + SANS; c.fillText(EN ? 'Search “麻雀观影护照” on WeChat' : '微信搜索「麻雀观影护照」', fx, fy + PY + 36);
   c.font = '400 24px ' + SANS; c.globalAlpha = .8; wrapCanvas(c, T('小程序里查看完整片目 · 最新排片 · 选择想看的电影'), fx, fy + PY + 82, W - 2 * P - (o.qr ? 270 : 0), 34); c.globalAlpha = 1;
   if (o.qr) { // 右侧：小程序码（圆形码，白底垫底，与卡片等内边距）
@@ -136,7 +136,8 @@ function draw(c, o) {
   });
   const tx2 = fx + 4 * R + 20 + 36;
   c.fillStyle = '#e0b9a6'; c.font = 'italic 900 30px ' + SERIF; c.fillText(T('麻雀观影护照'), tx2, cy - 2);
-  c.fillStyle = '#fffaf0'; c.globalAlpha = .7; c.font = '400 22px ' + SANS; c.fillText(T('麻雀映画 × 麻雀部落'), tx2, cy + 34); c.globalAlpha = 1;
+  c.fillStyle = '#fffaf0'; c.globalAlpha = .7; c.font = '400 22px ' + SANS; c.fillText(T('麻雀映画 × 麻雀部落'), tx2, cy + 34);
+  c.globalAlpha = .5; c.font = '400 18px ' + SANS; c.textAlign = 'center'; c.fillText(T('找到下一场电影，收藏看过的每一场。'), W / 2, H - 20); c.textAlign = 'left'; c.globalAlpha = 1;
 }
 
 module.exports = { D, heightOf, layout, draw };
