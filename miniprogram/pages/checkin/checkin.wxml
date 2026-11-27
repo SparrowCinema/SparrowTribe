@@ -1,0 +1,89 @@
+<page-meta page-style="{{ps}}" />
+<wxs src="../../utils/l.wxs" module="L" />
+<view wx:if="{{homeTip}}" class="home-tip" bindtap="dismissHomeTip">
+  <view class="home-tip-arrow" />
+  <text class="home-tip-i">⌂</text>
+  <view class="home-tip-copy">
+    <text class="home-tip-t">{{L.t(i,'点左上角进入首页')}}</text>
+    <text class="home-tip-s">{{L.t(i,'查看全部排片、专题与观影护照')}}</text>
+  </view>
+  <text class="home-tip-x">×</text>
+</view>
+<view class="wrap ci-wrap">
+  <view class="ci-head">
+    <text class="ci-k mono">CHECK-IN · ON SITE</text>
+    <text class="h1 ci-h1">{{L.t(i,'现场认证')}}</text>
+  </view>
+
+  <view wx:if="{{state === 'loading' || state === 'working'}}" class="card ci-card">
+    <view wx:if="{{film}}" class="ci-film">
+      <image wx:if="{{film.poster}}" class="ci-poster" src="{{film.poster}}" mode="aspectFill" />
+      <view class="ci-finfo">
+        <view class="ci-ftitle">{{film.cn}}<text wx:if="{{film.version}}" class="ed">{{film.version}}</text></view>
+        <text class="ci-fmeta mono">{{film.time}}</text>
+        <text class="ci-fmeta">{{film.place}}</text>
+      </view>
+    </view>
+    <text class="ci-status">{{state === 'working' ? L.t(i,'正在为你办理现场认证…') : L.t(i,'正在加载场次信息…')}}</text>
+    <text class="ci-desc">{{L.t(i,'观影护照自动盖章，同时领取本场典藏票根。')}}</text>
+  </view>
+
+  <view wx:elif="{{state === 'ok'}}" class="card ci-card ci-ok">
+    <view class="ci-seal">✓ {{again ? L.t(i,'已现场认证') : L.t(i,'现场认证成功')}}</view>
+    <view wx:if="{{film}}" class="ci-film" bindtap="openFilm">
+      <image wx:if="{{film.poster}}" class="ci-poster" src="{{film.poster}}" mode="aspectFill" />
+      <view class="ci-finfo">
+        <view class="ci-ftitle">{{film.cn}}<text wx:if="{{film.version}}" class="ed">{{film.version}}</text></view>
+        <text class="ci-fmeta mono">{{film.time}}</text>
+        <text class="ci-fmeta">{{film.place}}</text>
+      </view>
+    </view>
+    <view wx:if="{{ed}}" class="ci-ed">
+      <view class="ci-ed-row"><text class="ci-ed-k">{{L.t(i,'发行序号')}}</text><text class="ci-ed-v mono">{{ed.no}}{{ed.total}}</text></view>
+      <text class="ci-ed-line">{{ed.line1}}</text>
+      <text wx:if="{{ed.line2}}" class="ci-ed-line ci-ed-hi">{{ed.line2}}</text>
+    </view>
+    <text class="ci-desc">{{L.t(i,'观影护照已盖章，这一场的典藏票根烫印「现场认证」。')}}</text>
+    <view class="ci-acts">
+      <view class="btn ci-btn" bindtap="openTicket">{{L.t(i,'查看我的典藏票根')}}</view>
+      <view class="btn ghost ci-btn" bindtap="goHome">{{L.t(i,'进入首页')}}</view>
+    </view>
+  </view>
+
+  <view wx:elif="{{state === 'error'}}" class="card ci-card ci-bad">
+    <view wx:if="{{film}}" class="ci-film">
+      <image wx:if="{{film.poster}}" class="ci-poster" src="{{film.poster}}" mode="aspectFill" />
+      <view class="ci-finfo">
+        <view class="ci-ftitle">{{film.cn}}<text wx:if="{{film.version}}" class="ed">{{film.version}}</text></view>
+        <text class="ci-fmeta mono">{{film.time}}</text>
+        <text class="ci-fmeta">{{film.place}}</text>
+      </view>
+    </view>
+    <text class="ci-err-t">{{reason === 'expired' ? L.t(i,'签到码已过期') : reason === 'bad' ? L.t(i,'签到码无效') : L.t(i,'暂时无法认证')}}</text>
+    <text class="ci-desc">{{reason === 'expired' ? L.t(i,'请扫描现场屏幕上最新的签到码。') : reason === 'bad' ? L.t(i,'请扫描放映现场屏幕上的签到码。') : L.t(i,'网络或服务暂时不可用，请稍后再扫一次。')}}</text>
+    <text class="ci-desc muted">{{L.t(i,'观影护照已盖章，票根也已放进典藏票根册。')}}</text>
+    <view class="ci-acts">
+      <view class="btn ci-btn" bindtap="rescan">{{L.t(i,'重新扫码签到')}}</view>
+      <view wx:if="{{reason === 'offline'}}" class="btn ghost ci-btn" bindtap="retry">{{L.t(i,'重试')}}</view>
+      <view wx:elif="{{ticketKey}}" class="btn ghost ci-btn" bindtap="openTicket">{{L.t(i,'查看我的典藏票根')}}</view>
+    </view>
+  </view>
+
+  <view wx:elif="{{state === 'noshow'}}" class="card ci-card ci-bad">
+    <text class="ci-err-t">{{L.t(i,'找不到这场放映')}}</text>
+    <text class="ci-desc">{{L.t(i,'排片可能刚更新，请刷新排片后再试，或重新扫描现场屏幕上的签到码。')}}</text>
+    <view class="ci-acts">
+      <view class="btn ci-btn" bindtap="retry">{{L.t(i,'刷新并重试')}}</view>
+      <view class="btn ghost ci-btn" bindtap="rescan">{{L.t(i,'重新扫码签到')}}</view>
+    </view>
+  </view>
+
+  <view wx:else class="card ci-card ci-bad">
+    <text class="ci-err-t">{{L.t(i,'签到码无效')}}</text>
+    <text class="ci-desc">{{L.t(i,'请用微信扫描放映现场屏幕上的小程序签到码。')}}</text>
+    <view class="ci-acts">
+      <view class="btn ci-btn" bindtap="rescan">{{L.t(i,'扫码现场签到')}}</view>
+      <view class="btn ghost ci-btn" bindtap="goHome">{{L.t(i,'进入首页')}}</view>
+    </view>
+  </view>
+</view>

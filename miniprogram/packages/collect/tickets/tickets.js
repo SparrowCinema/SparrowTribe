@@ -198,10 +198,10 @@ Page({
   clearFacets(){R.FACETS.forEach(k=>{this._q[k]=[];});this._q.badge=[];const film=this._q.film;this._q.film='';if(film){this._limit=STEP;this.album();return;}this._limit=STEP;this.paint(false);},
   setDensity(e){const d=e.currentTarget.dataset.v;try{wx.setStorageSync(DENS,d);}catch(_){}this.setData({density:d});this.paint(false);},
   flipWall(){this.setData({front:!this.data.front});this.paint(false);},
-  // 现场认证（2026-11-22）：扫放映现场屏幕上的签到码
+  // 现场认证（2026-11-22 / 2026-11-27 兼容小程序码与网页码）：扫放映现场屏幕上的签到码
   scanCheckin(){
-    wx.scanCode({onlyFromCamera:true,scanType:['qrCode'],success:async res=>{
-      const c=R.checkinParse(res.result||'');
+    wx.scanCode({onlyFromCamera:true,success:async res=>{
+      const c=R.checkinSceneParse(res.path||'')||R.checkinSceneParse(res.result||'')||R.checkinParse(res.result||'');
       if(!c){wx.showToast({title:I.tr('这不是现场签到码'),icon:'none'});return;}
       wx.showLoading({title:I.tr('正在签到…'),mask:true});
       const r=await Tix.checkin(c);wx.hideLoading();

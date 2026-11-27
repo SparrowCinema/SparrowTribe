@@ -7,7 +7,7 @@
   <image class="sq" src="{{dk ? '/images/brand/sparrow-tribe-sq-dark.png' : '/images/brand/sparrow-tribe-sq.png'}}" mode="aspectFit" />
   <view class="bb-sp" />
   <view class="lang" hover-class="hv" bindtap="switchLang"><text class="{{en ? '' : 'on'}}">中</text><text class="{{en ? 'on' : ''}}">EN</text></view>
-  <view class="tag"><text>{{L.t(i,'观影')}}\n{{L.t(i,'护照')}}</text></view>
+  <view class="tag" bindtap="tapHostBadge"><text>{{L.t(i,'观影')}}\n{{L.t(i,'护照')}}</text></view>
 </view>
 <view class="wrap">
  <view class="h1">{{L.t(i,'我的')}}</view><view class="sub">{{L.t(i,'带着日程出发，带着电影回来。')}}</view>

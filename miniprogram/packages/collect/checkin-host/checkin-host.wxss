@@ -1,0 +1,34 @@
+.ch-wrap { padding-top: calc(32 * var(--r)); }
+.ch-full { padding: calc(24 * var(--r)) calc(24 * var(--r)) calc(48 * var(--r)); }
+.ch-head { margin-bottom: calc(24 * var(--r)); }
+.ch-k { display: block; font-size: calc(16 * var(--fr)); letter-spacing: calc(4 * var(--r)); color: var(--muted); }
+.ch-h1 { display: block; font-size: calc(40 * var(--fr)); line-height: 1.25; margin-top: calc(6 * var(--r)); }
+.ch-sub { display: block; font-size: calc(17.5 * var(--fr)); color: var(--muted); margin-top: calc(10 * var(--r)); line-height: 1.55; }
+.ch-form { padding: calc(28 * var(--r)); display: flex; flex-direction: column; gap: calc(24 * var(--r)); margin-bottom: calc(24 * var(--r)); }
+.ch-field { display: flex; flex-direction: column; gap: calc(10 * var(--r)); }
+.ch-flab { display: flex; justify-content: space-between; align-items: baseline; font-size: calc(18 * var(--fr)); font-weight: 700; color: var(--fg); }
+.ch-clr { font-size: calc(16.5 * var(--fr)); font-weight: 600; color: var(--accent); }
+.ch-inp { height: calc(76 * var(--r)); padding: 0 calc(22 * var(--r)); border-radius: calc(14 * var(--r)); border: calc(2 * var(--r)) solid var(--line); background: var(--bg); font-size: calc(19 * var(--fr)); box-sizing: border-box; }
+.ch-pick { min-height: calc(76 * var(--r)); padding: calc(14 * var(--r)) calc(22 * var(--r)); border-radius: calc(14 * var(--r)); border: calc(2 * var(--r)) solid var(--line); background: var(--bg); display: flex; align-items: center; justify-content: space-between; gap: calc(14 * var(--r)); box-sizing: border-box; }
+.ch-pick.ph .ch-pick-t { color: var(--muted); }
+.ch-pick-t { flex: 1; font-size: calc(18.5 * var(--fr)); line-height: 1.4; color: var(--fg); }
+.ch-pick-a { flex: none; font-size: calc(22 * var(--fr)); color: var(--muted); }
+.ch-empty { font-size: calc(17.5 * var(--fr)); color: var(--muted); padding: calc(12 * var(--r)) 0; }
+.ch-err-card { padding: calc(24 * var(--r)) calc(28 * var(--r)); margin-bottom: calc(24 * var(--r)); border-color: var(--bad-fg); background: var(--bad-bg); display: flex; align-items: center; justify-content: space-between; gap: calc(18 * var(--r)); }
+.ch-err-t { flex: 1; font-size: calc(18 * var(--fr)); color: var(--bad-fg); font-weight: 600; line-height: 1.45; }
+.ch-smbtn { height: calc(60 * var(--r)); padding: 0 calc(22 * var(--r)); font-size: calc(17 * var(--fr)); flex: none; }
+.ch-stage { padding: calc(36 * var(--r)) calc(28 * var(--r)); display: flex; flex-direction: column; align-items: center; text-align: center; gap: calc(12 * var(--r)); }
+.ch-stage-full { padding: calc(44 * var(--r)) calc(28 * var(--r)); min-height: calc(100vh - 72 * var(--r)); justify-content: center; box-sizing: border-box; }
+.ch-env { font-size: calc(15 * var(--fr)); color: var(--ochre); border: calc(2 * var(--r)) solid var(--ochre); padding: calc(4 * var(--r)) calc(14 * var(--r)); border-radius: calc(999 * var(--r)); margin-bottom: calc(6 * var(--r)); }
+.ch-qr-box { width: calc(460 * var(--r)); height: calc(460 * var(--r)); border-radius: calc(28 * var(--r)); background: #ffffff; padding: calc(24 * var(--r)); box-sizing: border-box; display: flex; align-items: center; justify-content: center; box-shadow: 0 calc(10 * var(--r)) calc(32 * var(--r)) rgba(43, 33, 23, .12); margin-bottom: calc(10 * var(--r)); }
+.ch-stage-full .ch-qr-box { width: calc(540 * var(--r)); height: calc(540 * var(--r)); padding: calc(28 * var(--r)); }
+.ch-qr { width: 100%; height: 100%; }
+.ch-qr-wait { font-size: calc(18 * var(--fr)); color: #7a6a55; }
+.ch-title { font-family: var(--f-display); font-size: calc(32 * var(--fr)); font-weight: 900; line-height: 1.3; color: var(--fg); }
+.ch-meta { font-size: calc(18.5 * var(--fr)); color: var(--muted); line-height: 1.4; }
+.ch-tip { font-size: calc(19 * var(--fr)); font-weight: 700; color: var(--teal); margin-top: calc(8 * var(--r)); }
+.ch-stat { font-size: calc(18 * var(--fr)); color: var(--fg); margin-top: calc(4 * var(--r)); }
+.ch-num { font-size: calc(24 * var(--fr)); font-weight: 900; color: var(--accent); }
+.ch-upd { font-size: calc(15.5 * var(--fr)); color: var(--muted); }
+.ch-acts { display: flex; gap: calc(16 * var(--r)); width: 100%; margin-top: calc(18 * var(--r)); }
+.ch-act { flex: 1; height: calc(78 * var(--r)); }

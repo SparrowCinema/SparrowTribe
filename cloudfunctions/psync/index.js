@@ -66,6 +66,16 @@ exports.main = async (event) => {
     try { const r = await rpc('tk_autograph', { items }); return { ok: true, items: Array.isArray(r) ? r : [] }; }
     catch (e) { return { ok: false, msg: String((e && e.message) || e) }; }
   }
+  // 'checkinCode' { pin, f, h }：主办方在小程序取当前现场认证签到码（tk_checkin_code）；主办密钥由服务器校验，不落库不带 openid
+  if (event.action === 'checkinCode') {
+    const pin = String(event.pin || ''), f = String(event.f || ''), h = String(event.h || '');
+    if (pin.length < 8 || pin.length > 80 || !/^[\w-]{1,80}$/.test(f) || !/^[\w:\/.-]{1,120}$/.test(h)) return { ok: false, reason: 'bad' };
+    try {
+      const r = await rpc('tk_checkin_code', { pin, f, h });
+      if (!r || !r.k) return { ok: false, reason: 'bad' };
+      return { ok: true, w: r.w, k: r.k, n: r.n || 0, sec: r.sec || 0 };
+    } catch (e) { return { ok: false, reason: 'offline', msg: String((e && e.message) || e) }; }
+  }
   // 'checkin' { item:{s,f,h,w,k} }：现场认证，转发给 tk_checkin（backend/tickets-checkin-v1.sql）；签到码由服务器校验，不带 openid
   if (event.action === 'checkin') {
     const it = event.item || {};

@@ -564,10 +564,11 @@ Claude 与 GPT 可能使用同一 GitHub 身份，审批人数可先设为0；�
 放映现场扫签到码：观影护照盖章 + 这一场的典藏票根 + 发号（含本场第几张）+ 记下现场认证时间。票根背面撕线下方第二行以「现场认证」开头，表头写「现场认证」（隐藏款优先），验真页显示签到时间。
 
 - **后端**：`backend/tickets-checkin-v1.sql`（在 `tickets-issue-v1.sql`、`tickets-collect-v1.sql` 之上执行，可重复执行）。签到码＝服务器密钥（`sparrow_issue.secrets`，执行时随机生成）对「影片|场次|时间窗」的 HMAC，取 12 位十六进制；时间窗 2 分钟，前后各容忍一个窗口。`tk_checkin_code(pin, f, h)` 给主办方取当前签到码（主办密钥只存 SHA-256，在 `sparrow_issue.hosts`，密钥不对等 1 秒再返回 null）；`tk_checkin(item)` 校验签到码 → 发号 → 记入 `sparrow_issue.checkins`（同一张票根重复签到返回同一结果）；`tk_verify` 多返回 `ci`。新增 / 更换主办密钥：`insert into sparrow_issue.hosts(label, key_hash) values ('名字', encode(extensions.digest('新密钥','sha256'),'hex'));`，停用就删掉那一行。
-- **主办方**：网站隐藏页 `#checkin-host`（不在菜单里）：输入主办密钥（只存本次会话 `sessionStorage`）、选前后 14 小时内的场次，显示签到二维码与已签到人数，每分钟刷新。投到放映厅大屏或放在入口。
+- **主办方（网站）**：网站隐藏页 `#checkin-host`（不在菜单里）：输入主办密钥（只存本次会话 `sessionStorage`）、选前后 14 小时内的场次，显示签到二维码与已签到人数，每分钟刷新。投到放映厅大屏或放在入口。
+- **主办方（小程序 · 2026-11-27 动态小程序码）**：分包页 `/packages/collect/checkin-host/checkin-host`（隐藏入口：在「我的」页连续轻点右上角「观影护照」徽章 5 次，或打开 `pages/checkin/checkin?host=1`）。输入主办密钥、选场次后经 `psync` 的 `checkinCode` 动作取服务器签名，再调 `wxacode` 云函数（`page: 'pages/checkin/checkin', ephemeral: true`，直接返回 base64 不落云存储）展示每分钟刷新的动态**微信小程序码**（支持全屏投屏与屏幕常亮）。`scene` 编码 `c~<sid>~<w_base36>~<k12>`（≤32 字符，由 `shared/tickets.js` 的 `checkinScene` / `checkinSceneParse` 生成与解析）。
+- **观众（微信直接扫码进小程序）**：用微信「扫一扫」扫主办方小程序码，直接打开主包页 `pages/checkin/checkin`；冷启动等待场次数据就绪后自动执行 `ticketstore.checkin` 完成盖章 + 典藏票根 + 发号 + 现场认证（免去网页再同步小程序的步骤）。典藏票根册右上「现场签到」（`tickets.js` 的 `scanCheckin`）同样兼容扫小程序码和网页二维码。**`psync` 与 `wxacode` 云函数均需重新部署，小程序需重新上传发布。**
 - **观众（网站）**：用手机相机或微信扫码打开 `#checkin=影片~场次~时间窗~签到码`（`checkinPage`），点「签到 · 盖章 · 领取典藏票根」。先在本机记好观影与票根（离线也不丢），再向服务器认证；过期 / 无效时提示扫最新的码。
-- **观众（小程序）**：典藏票根册右上「现场签到」（`tickets.js` 的 `scanCheckin`，`wx.scanCode`）→ `utils/ticketstore.js` 的 `checkin` → `psync` 云函数的 `checkin` 动作 → `tk_checkin`。**`psync` 云函数需要重新部署。**微信「扫一扫」直接扫码打开的是网站页面。
-- **共用逻辑**：`shared/tickets.js` 的 `checkinURL` / `checkinParse` / `checkinPlan`（同一天同一场已记过就沿用，同日无场次的补场次，否则新增一次观影；同日第二场票根键带 `|2`）/ `applyCheckin`。票根字段 `ci`（签到时间毫秒），`shared/psync.js` 保留并在合并时补回。测试 `tools/check-checkin.js`（随 check-companion 运行）。
+- **共用逻辑**：`shared/tickets.js` 的 `checkinURL` / `checkinParse` / `checkinScene` / `checkinSceneParse` / `checkinPlan`（同一天同一场已记过就沿用，同日无场次的补场次，否则新增一次观影；同日第二场票根键带 `|2`）/ `applyCheckin`。票根字段 `ci`（签到时间毫秒），`shared/psync.js` 保留并在合并时补回。测试 `tools/check-checkin.js`（随 check-companion 运行）。
 
 ## 映后嘉宾签名（2026-11-23）
 
