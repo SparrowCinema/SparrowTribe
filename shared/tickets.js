@@ -594,14 +594,15 @@ function applyCheckin(entry,key,result) {
 // ——— 映后嘉宾签名（2026-11-23）：只有在这一场现场认证过的票根，服务器才给签名（backend/tickets-autograph-v1.sql）———
 // 签名笔画：[[x,y,x,y,…], …]，坐标 0–1000 × 0–500（签名板 2:1）。缓存按「影片|场次」存在本机，不随档案同步，每台设备凭典藏编号自取。
 const autographKey=row=>row && row.checkedIn && row.showId ? row.filmId+"|"+row.showId : "";
-// 需要向服务器取签名的票根（最多 50 张）：没取过；取过但还没有签名、6 小时前取的、签到在 30 天内（主办方可能事后补传）；已有签名的 3 天复查一次（主办方可能改）
+// 需要向服务器取签名的票根（最多 50 张）：没取过；取过但还没有签名时，签到 24 小时内隔 5 分钟复查（映后嘉宾刚签完），1–30 天内隔 6 小时复查；已有签名的 3 天复查一次（主办方可能改）
 function pendingAutograph(rows,cache,now) {
   const t=now||Date.now(),out=[],seen=new Set();
   for (const row of rows||[]) {
     const key=autographKey(row);
     if (!key || !serialValid(row.serial) || seen.has(key)) continue;
     const c=cache && cache[key];
-    const due=!c || (c.g && c.g.length ? t-c.at>3*864e5 : t-c.at>6*36e5 && t-row.checkedIn<30*864e5);
+    const wait=t-row.checkedIn<864e5 ? 5*60e3 : 6*36e5;
+    const due=!c || (c.g && c.g.length ? t-c.at>3*864e5 : t-c.at>wait && t-row.checkedIn<30*864e5);
     if (due) {seen.add(key);out.push(row.serial);}
     if (out.length>=50) break;
   }
@@ -717,7 +718,7 @@ function record(key,filmId,view,entry,base,date) {
   const b=base(filmId,view,date);
   if (!b) return null;
   const pick=(field,value)=>value===undefined ? b[field] : value;
-  const row=sanitize({...b,id:key,time:pick("time",entry.tm),venue:pick("venue",entry.vn),hall:pick("hall",entry.hl),
+  const row=sanitize({...b,showId:b.showId||(entry.sh&&entry.sh!=="-"?entry.sh:""),id:key,time:pick("time",entry.tm),venue:pick("venue",entry.vn),hall:pick("hall",entry.hl),
     city:pick("city",entry.cy),format:pick("format",entry.fm),seat:entry.st||"",art:pickArt(b.arts,entry.a) || b.art,
     crop:entry.c===undefined ? 50 : entry.c,sketch:entry.sk===1,savedAt:entry.t,serial:entrySerial(key,entry),issue:entry.q||0,look:{...unpackLook(entry.l),craft:entry.x}});
   row._entry={sh:entry.sh,sq:entry.sq,o:entry.o,ci:entry.ci};

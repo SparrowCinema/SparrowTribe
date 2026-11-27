@@ -77,10 +77,11 @@ Page({
     const item=row.linked?views.find(x=>x.key===row.key):null;
     this._view=item?item.view:null;this._original=original;
     this.setup(row);
+    this._agOff=Tix.onAutograph&&Tix.onAutograph(()=>{if(!this._ready||!this._draft)return;const fresh=Tix.build(this.data_,this.idx).tickets.find(r=>r.key===this._draft.key);if(fresh){this._draft.autographs=fresh.autographs||[];this.renderFaces();}});
     wx.setNavigationBarTitle({title:I.tr(original?'编辑票根':'新票根')});
   },
   onShow(){CFG.chrome();},
-  onUnload(){this._ready=false;this._turn++;this._lastOcrImg=null;this.__cfgOff&&this.__cfgOff();},
+  onUnload(){this._ready=false;this._turn++;this._lastOcrImg=null;this.__cfgOff&&this.__cfgOff();this._agOff&&this._agOff();},
   setup(row){
     if(row.art)row.art=artworkUrl(row.art);
     this._draft=row;

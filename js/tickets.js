@@ -64,6 +64,7 @@ async function ticketIssueRun(){
   }catch(e){ticketIssueOff=true;}
   finally{ticketIssueBusy=false;}
   ticketEditionRun();
+  ticketAutographRun();
 }
 // 封版总数（2026-11-22）：已封版影片的票根向 tk_edition 取「共发行 N 张」，写进票根 o；后端还没升级（404）时本次打开内不再请求
 let ticketEditionOff=false,ticketEditionBusy=false;
@@ -74,7 +75,6 @@ async function ticketEditionRun(){
   try{const got=await sbRpc("tk_edition",{items});const changes=TE.applyEdition(ticketStore(),got);if(changes)ticketStorePut({...ticketStore(),...changes},true);}
   catch(e){ticketEditionOff=true;}
   finally{ticketEditionBusy=false;}
-  ticketAutographRun();
 }
 // 映后嘉宾签名（2026-11-23）：现场认证过的票根向 tk_autograph 取这一场的嘉宾签名，缓存在本机 sparrow-autograph-v1（不随档案同步）
 const TICKET_AG_KEY="sparrow-autograph-v1";let ticketAgStore=null,ticketAgOff=false,ticketAgBusy=false;
@@ -89,7 +89,16 @@ async function ticketAutographRun(){
     ticketAgStore=TE.applyAutograph(ticketAgCache(),rows,items,got,now());
     try{localStorage.setItem(TICKET_AG_KEY,JSON.stringify(ticketAgStore));}catch{}
     const after=JSON.stringify(Object.fromEntries(Object.entries(ticketAgStore).map(([k,v])=>[k,v.g])));
-    if(before!==after){ticketRev++;if(location.hash==="#ticket-wall"&&!ticketDraft)ticketWallPage();}
+    if(before!==after){
+      ticketRev++;
+      if(location.hash==="#ticket-wall"){
+        if(!ticketDraft)ticketWallPage();
+        else{
+          const fresh=ticketAll().tickets.find(x=>x.key===ticketDraft.row.key);
+          if(fresh){ticketDraft.row.autographs=fresh.autographs||[];ticketRenderCard(main.querySelector("#ticket-preview-front"),ticketDraft.row,"front");ticketRenderCard(main.querySelector("#ticket-preview-back"),ticketDraft.row,"back");}
+        }
+      }
+    }
   }catch(e){ticketAgOff=true;}
   finally{ticketAgBusy=false;}
 }
@@ -242,6 +251,8 @@ function ticketOpenFilm(id){ticketClearFacets();ticketQ.text="";ticketQ.year="";
   if(location.hash==="#ticket-wall"){ticketFilmJump=false;ticketWallPage();}else location.hash="#ticket-wall";}
 function ticketWallPage(){
   ticketAll();
+  ticketIssueSoon(400);
+  ticketAutographRun();
   main.innerHTML=`<section class="view gut ticket-page">${subBackHTML()}<div id="ticket-body"></div></section>`;
   const panel=main.querySelector(".ticket-page");
   panel.addEventListener("click",ticketClick);

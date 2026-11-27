@@ -37,4 +37,22 @@ assert(calls.filter(c=>c[0]==='quadraticCurveTo').length>=2,'signature strokes d
 calls.length=0;T.draw(fake(420,864).getContext(),rec,'back',null,{x:0,y:0,w:420,h:864},fake);
 assert(calls.some(c=>c[0]==='fillText'&&/映后签名 · 导演 毕赣、演员 汤唯/.test(c[1][0])),'guest names on back');
 assert(T.badgesOf(rec).some(b=>b.startsWith('嘉宾签名')),'badge');
+// 签到 24 小时内（映后当晚）：空结果 5 分钟后再查，不锁 6 小时
+const tonight=[{key:'f4|2026-11-27',filmId:'f4',showId:'s2fkzmu1o',serial:n1,checkedIn:now-2*3600e3}];
+const emptyTonight=T.applyAutograph({},tonight,[n1],[{s:n1,g:[]}],now);
+assert.deepStrictEqual(T.pendingAutograph(tonight,emptyTonight,now+2*60e3),[],'same-day: throttle within 5m');
+assert.deepStrictEqual(T.pendingAutograph(tonight,emptyTonight,now+6*60e3),[n1],'same-day: recheck after 5m');
+// base.showId 缺失时应回退到服务器签到记下的 entry.sh，确保 autographKey 与本场序号生效
+const built=T.build([{key:'f4|2026-11-27',filmId:'f4',view:{d:'2026-11-27'}}],{'f4|2026-11-27':{t:now,n:n1,q:3,sh:'s2fkzmu1o',sq:2,ci:now}},(id,v,d)=>({filmId:id,title:'夫妻一场',subtitle:'',showId:'',date:d,time:'',city:'',venue:'',hall:'',format:'',art:'',arts:[]}));
+assert.equal(built.tickets[0].showId,'s2fkzmu1o','showId falls back to entry.sh');
+assert.equal(built.tickets[0].showNo,2,'showNo preserved via entry.sh fallback');
+assert.equal(T.autographKey(built.tickets[0]),'f4|s2fkzmu1o','autographKey works even when base.showId is empty');
+// 防回归：web 与小程序取签名都不能卡在 editionRun 的空列表早退之后
+const fs=require('fs'),path=require('path');
+const webSrc=fs.readFileSync(path.join(__dirname,'../js/tickets.js'),'utf8');
+const mpSrc=fs.readFileSync(path.join(__dirname,'../miniprogram/utils/ticketstore.js'),'utf8');
+assert(/ticketEditionRun\(\);\s*ticketAutographRun\(\);/.test(webSrc),'web must invoke ticketAutographRun independently of ticketEditionRun');
+assert(/function ticketWallPage\(\)\{[\s\S]{0,120}ticketAutographRun\(\)/.test(webSrc),'web ticketWallPage must trigger ticketAutographRun');
+assert(/editionRun\(\);\s*autographRun\(\);/.test(mpSrc),'mp must invoke autographRun independently of editionRun');
+assert(/onAutograph/.test(mpSrc),'mp ticketstore must expose onAutograph for live repaint');
 console.log('PASS: guest autographs — fetch rules, cache, attach, ticket drawing, thumbnail signature.');
