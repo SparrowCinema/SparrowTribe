@@ -1,0 +1,150 @@
+{
+  "checked": "2026-11-27",
+  "scope": "第八届海南岛国际电影节「致敬·经典」（Tribute）单元五部修复经典（4部新增 + 1部关联已有条目 gr26-058）",
+  "ratingOrder": [
+    "Douban",
+    "IMDb",
+    "Rotten Tomatoes Tomatometer",
+    "Metacritic critic score",
+    "Letterboxd"
+  ],
+  "verifiedRecords": {
+    "love-at-sea-1963": {
+      "cn": "海上的爱",
+      "status": "partial",
+      "date": "1965",
+      "festival": "洛迦诺国际电影节",
+      "festivalEn": "Locarno Film Festival",
+      "kind": "festival",
+      "checked": "2026-11-27",
+      "sources": [
+        "https://en.unifrance.org/movie/10455/love-at-sea",
+        "https://fr.wikipedia.org/wiki/L%27Amour_%C3%A0_la_mer",
+        "https://www.wikidata.org/wiki/Q3201908",
+        "https://events.musicofourdesire.com/person/guy-gilles/filmography"
+      ],
+      "ratingLinks": {
+        "douban": "https://movie.douban.com/subject/5116552/",
+        "imdb": "https://www.imdb.com/title/tt0193715/",
+        "letterboxd": "https://letterboxd.com/film/love-at-sea-1964/"
+      },
+      "scores": [
+        8.0,
+        7.1,
+        null,
+        null,
+        3.9
+      ],
+      "notes": "海南岛国际电影节官方海报标示 1963 | 法国 France、2K修复、中国大陆首映及 1965年洛迦诺电影节。公开文献中洛迦诺首映年份存在1964年7月与1965年差异，法国院线发行日为1965-05-05，故 worldPremiere 保守登记为 partial 1965。豆瓣 8.0（subject/5116552），IMDb 7.1（tt0193715），Letterboxd 3.9（Mood 聚合 8.5k 标记）。片长采用 Unifrance/豆瓣/修复发行常见的73分钟。",
+      "poster": "https://image.tmdb.org/t/p/original/vl6tu2lx6ZoVM2JnWT754fwCbi0.jpg"
+    },
+    "wall-engravings-1968": {
+      "cn": "墙上的雕刻",
+      "status": "verified",
+      "date": "1967-09-12",
+      "festival": "贝加莫作者电影节",
+      "festivalEn": "Bergamo Film Festival",
+      "kind": "festival",
+      "checked": "2026-11-27",
+      "sources": [
+        "https://www.wikidata.org/wiki/Q2870435",
+        "https://fr.wikipedia.org/wiki/Au_pan_coup%C3%A9",
+        "https://en.unifrance.org/movie/4415/au-pan-coupe",
+        "https://www.filmladder.nl/film/au-pan-coupe-1968",
+        "https://www.moviemeter.com/movies/drama/au-pan-coupe"
+      ],
+      "ratingLinks": {
+        "douban": "https://movie.douban.com/subject/24704409/",
+        "imdb": "https://www.imdb.com/title/tt0290137/",
+        "rottenTomatoes": "https://www.rottentomatoes.com/m/au_pan_coupe_2012",
+        "letterboxd": "https://letterboxd.com/film/wall-engravings/"
+      },
+      "scores": [
+        null,
+        7.1,
+        null,
+        null,
+        null
+      ],
+      "notes": "Wikidata Q2870435 记录 1967-09-12 贝加莫首映、1968-02-07 法国公映；海南岛国际电影节官方海报标示 1968 | 法国 France、2K修复、中国首映。IMDb 7.1（tt0290137，Filmladder/MovieMeter 核实约 530 票）；豆瓣（24704409）、烂番茄暂无可核实综合分，Letterboxd 聚合均值未核实故保留 null。片长采用 Wikidata/MovieMeter/修复版对应的68分钟（Unifrance 记80分钟）。",
+      "poster": "https://assets-filmladder-nl.b-cdn.net/uploads/tmdb_asset/asset/000/119/522/119522/large_2865bfb1db6064ce.jpg"
+    },
+    "earth-light-1970": {
+      "cn": "大地之光",
+      "status": "verified",
+      "date": "1970-11-18",
+      "festival": null,
+      "festivalEn": null,
+      "kind": "theatrical",
+      "checked": "2026-11-27",
+      "sources": [
+        "https://fr.wikipedia.org/wiki/Le_Clair_de_terre_(film)",
+        "https://www.filmdienst.de/film/details/617578/le-clair-de-terre",
+        "https://events.musicofourdesire.com/person/guy-gilles/filmography"
+      ],
+      "ratingLinks": {
+        "imdb": "https://www.imdb.com/title/tt0252330/",
+        "letterboxd": "https://letterboxd.com/film/earth-light/"
+      },
+      "scores": [
+        null,
+        7.2,
+        null,
+        null,
+        null
+      ],
+      "notes": "1970年获法国耶尔青年电影节大奖（Grand Prix），1970-11-18 法国院线公映；海南岛国际电影节官方海报标示 2K修复、中国首映。IMDb 7.2（tt0252330）；豆瓣、烂番茄、MC、Letterboxd 综合分未核实故保留 null。片长采用法语维基与 Filmdienst 的98分钟。",
+      "poster": "https://image.tmdb.org/t/p/original/dSIVw62F54s6U64jeeRBr73Fqy2.jpg"
+    },
+    "land-and-freedom-1995": {
+      "cn": "土地与自由",
+      "status": "verified",
+      "date": "1995-04-07",
+      "festival": null,
+      "festivalEn": null,
+      "kind": "theatrical",
+      "checked": "2026-11-27",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Land_and_Freedom",
+        "https://www.wikidata.org/wiki/Q643805",
+        "https://www.rottentomatoes.com/m/land_and_freedom",
+        "https://movie.douban.com/subject/1301866/",
+        "https://www.festival-cannes.com/en/f/land-and-freedom/"
+      ],
+      "ratingLinks": {
+        "douban": "https://movie.douban.com/subject/1301866/",
+        "imdb": "https://www.imdb.com/title/tt0114671/",
+        "rottenTomatoes": "https://www.rottentomatoes.com/m/land_and_freedom",
+        "letterboxd": "https://letterboxd.com/film/land-and-freedom/"
+      },
+      "scores": [
+        8.0,
+        7.5,
+        77,
+        null,
+        null
+      ],
+      "notes": "1995-04-07 西班牙院线公映，同年5月入围第48届戛纳主竞赛并获费比西奖与天主教人道精神奖，另获第8届欧洲电影奖最佳影片、第21届凯撒奖最佳外语片、第10届戈雅奖最佳新人女演员（罗莎娜·帕斯托尔）及 BAFTA 最佳英国电影提名；4K修复版入选2026年第79届戛纳海滩放映，在海南岛国际电影节作亚洲首映。豆瓣 8.0（7477人评分），IMDb 7.5（约13007票），烂番茄 77%（13篇影评，观众 94%）。Metacritic 无条目录分，Letterboxd 聚合均值未核实故保留 null。",
+      "poster": "https://i0.wp.com/www.rarefilmposters.com/wp-content/uploads/Land-and-Freedom-GB2.jpg?fit=1198%2C1800&ssl=1"
+    }
+  },
+  "linkedExistingFilms": {
+    "gr26-058": {
+      "cn": "南国再见，南国",
+      "hainanVersion": "4K修复",
+      "catalogVersion": "30周年全新4K数字修复版",
+      "note": "已在 golden-rooster-2026.json 建档，通过 catalog.json 的 hainan-2026.sections 关联至「致敬·经典」，避免重复 ID。"
+    }
+  },
+  "hainanScreeningEditions": {
+    "checked": "2026-11-27",
+    "source": "第八届海南岛国际电影节「致敬·经典」官方片单海报（用户提供）",
+    "films": {
+      "love-at-sea-1963": "2K修复",
+      "wall-engravings-1968": "2K修复",
+      "earth-light-1970": "2K修复",
+      "land-and-freedom-1995": "4K修复",
+      "gr26-058": "4K修复"
+    }
+  }
+}

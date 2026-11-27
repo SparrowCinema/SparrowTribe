@@ -3674,20 +3674,44 @@
     },
     "gr26-058": {
       "title": "Goodbye South, Goodbye",
-      "syn": "A man and his young companions pursue elusive business opportunities across Taiwan, caught between family, friendship and an uncertain future.",
-      "bio": "Hou Hsiao-hsien is a leading director of Taiwan New Cinema, known for long takes and static camera positions, with works such as A City of Sadness, The Puppetmaster and Good Men, Good Women drawing on history or personal memory. Goodbye South, Goodbye was the first film set in the present day since 1987's Daughter of the Nile.",
-      "highlights": [
-        "In the 1996 Cannes competition; Hou's first contemporary-set film since 1987.",
-        "Written by Chu T'ien-wen, starring Jack Kao, Lim Giong and Annie Shizuka Inoh.",
-        "A Taiwan–Japan (Shochiku) co-production.",
-        "Cahiers du cinéma once named it among the best films of the 1990s."
-      ],
-      "st": "Written by Chu T'ien-wen from a story by Jack Kao and King Jieh-wen, the film was produced by Hou's 3H Films with Japan's Shochiku as a Taiwan–Japan co-production. Jack Kao plays Gao, Lim Giong plays Flat Head, and Annie Shizuka Inoh plays Pretzel, with Lim also providing music. A group of small-time Taipei hoodlums hope to change their lives through business schemes: Gao plans to go to Shanghai to open a nightclub with a friend, while his girlfriend Ying wants him to stay in Taiwan and open a restaurant.\n\nIt premiered in the official competition at Cannes on 12 May 1996, the year the Palme d'Or went to Secrets & Lies. Sources give running times from 107 to 124 minutes. Cahiers du cinéma later named it, with The Bridges of Madison County and Carlito's Way, the best film of the 1990s.\n\nHou had seldom filmed present-day stories before; here he observes the paradoxical effects of modernisation on Taiwan, with characters who have neither a past nor a clear future.",
+      "c": "Taiwan, China",
       "dir": "Hou Hsiao-hsien",
-      "honors": [
-        "入选｜2026 Golden Rooster Film Screening · 功夫·功夫：华语经典展映"
+      "dirLife": "1947– · Taiwan",
+      "cast": [
+        "Jack Kao",
+        "Lim Giong",
+        "Vicky Wei",
+        "Annie Shizuka Inoh",
+        "Hsu Kuei-ying",
+        "Lien Pi-tung"
       ],
-      "editorial": "Hou's long takes and open spaces, watching a group of drifters wander between southern Taiwan and Shanghai; slow-paced, for patient viewers.",
+      "writers": [
+        "Chu T'ien-wen"
+      ],
+      "genre": [
+        "Crime",
+        "Drama"
+      ],
+      "language": "Mandarin Chinese",
+      "syn": "A man and his young companions pursue elusive business opportunities across Taiwan, caught between family, friendship and an uncertain future.",
+      "bio": "Born in 1947, Hou Hsiao-hsien is one of the defining masters of Taiwan New Cinema, celebrated for his measured long takes, deep-focus framing and natural-light poetics. After his historical “Taiwan Trilogy” (A City of Sadness, The Puppetmaster, Good Men, Good Women), he turned his camera back to rapidly urbanising contemporary Taiwan in 1996 with Goodbye South, Goodbye, paving the way for the nocturnal drift of Millennium Mambo.",
+      "highlights": [
+        "In the 1996 Cannes Official Competition; Hou’s landmark return to contemporary urbanising Taiwan after nearly a decade of historical works.",
+        "Written by Chu T'ien-wen, shot by Mark Lee Ping-bing and recorded by Tu Duu-chih, with Jack Kao, Lim Giong and Annie Shizuka Inoh drifting south through humid neon.",
+        "Propulsive Taiwanese rock and electronic soundscape by Lim Giong, Wu Bai and collaborators, winning Best Original Film Song at the 33rd Golden Horse Awards.",
+        "Named among the best films of the 1990s by Cahiers du cinéma; newly presented in its 30th-anniversary 4K digital restoration."
+      ],
+      "st": "Written by Chu T'ien-wen from stories by Jack Kao and King Jieh-wen, Goodbye South, Goodbye was co-produced by Hou’s 3H Films and Japan’s Shochiku, reuniting his core creative team: cinematographer Mark Lee Ping-bing, editor Liao Ching-sung and sound designer Tu Duu-chih, with co-star Lim Giong collaborating with Wu Bai and Summer Lei on the score. Jack Kao plays middle-aged small-time fixer Gao, Lim Giong his impulsive sidekick Flat Head, and Annie Shizuka Inoh Flat Head’s girlfriend Pretzel.\n\nPremiering in Official Competition at the 1996 Cannes Film Festival, it screened at Toronto and Tokyo, won Best Original Film Song at the 33rd Golden Horse Awards, and was later named one of the best films of the 1990s by Cahiers du cinéma. While release runtimes have varied between 107 and 124 minutes, its 30th-anniversary 4K restoration restores the humid glow of southern Taiwan’s neon lounges, train carriages and mountain highways.\n\nSetting aside his trademark static historical compositions, Hou puts the camera aboard rushing trains, sedans and motorbikes as three marginal figures ride south—trying to live by old-school brotherhood and speculative schemes, only to witness their world quietly unravel in the tide of modernisation.",
+      "honors": [
+        "入选｜2026 8th Hainan Island International Film Festival · Tribute",
+        "入选｜2026 Golden Rooster Film Screening · Kung Fu: Chinese Cinema Classics",
+        "入选｜2000 Cahiers du cinéma Best Films of the 1990s",
+        "获奖｜1996 33rd Golden Horse Awards · Best Original Film Song",
+        "入选｜1996 49th Cannes Film Festival · Official Competition",
+        "入选｜1996 Toronto International Film Festival",
+        "入选｜1996 Tokyo International Film Festival"
+      ],
+      "editorial": "Seeing the 4K restoration in a cinema, let go of conventional plot hooks and surrender to the sway of the train carriages, motorbike engines and Lim Giong’s guitar pulse. Watch how Hou’s travelling long takes—through Chiayi hills, winding backroads and neon-lit KTV rooms—capture the restless drift and quiet hopelessness of outsiders caught in modernisation.",
       "warnings": [
         "Violence or injury",
         "Family conflict or separation"
@@ -3695,12 +3719,7 @@
       "contentNote": "Available story information indicates: Violence or injury; Family conflict or separation. Detailed depiction and intensity have not been verified; consider your individual needs.",
       "screeningNotes": {
         "11/14-15:20-tp-muvie-titan-titan": "Post-screening event · Filmmakers attending (guests to be announced)"
-      },
-      "language": "Mandarin Chinese",
-      "writers": [
-        "Chu Tien-Wen"
-      ],
-      "dirLife": "1947– · Taiwan"
+      }
     },
     "gr26-059": {
       "title": "What Belongs to Others",
@@ -13531,6 +13550,180 @@
         "Sudden death"
       ],
       "contentNote": "Published plot information indicates family conflict and sudden death. Detailed depiction and sensory intensity have yet to be verified."
+    },
+    "love-at-sea-1963": {
+      "title": "Love at Sea",
+      "c": "France",
+      "dir": "Guy Gilles",
+      "dirLife": "1938–1996 · France",
+      "cast": [
+        "Daniel Moosmann",
+        "Geneviève Thénier",
+        "Guy Gilles",
+        "Josette Krief",
+        "Patrick Jouané",
+        "Juliette Gréco",
+        "Alain Delon",
+        "Jean-Pierre Léaud",
+        "Jean-Claude Brialy",
+        "Bernard Verley"
+      ],
+      "writers": [
+        "Guy Gilles"
+      ],
+      "genre": [
+        "Drama",
+        "Romance"
+      ],
+      "language": "French",
+      "syn": "A young Parisian woman falls in love with a sailor she meets on holiday. Summer brings them together and autumn separates them. Exchanging letters, they lead parallel lives—he in Brest with his friends, she in Paris waiting for their reunion. Depicting an impossible romance alongside portraits of Paris and Brest, the film alternates between black-and-white, sepia and colour.",
+      "editorial": "Watch this as more than a long-distance romance: notice when the film shifts between black-and-white, sepia and colour. Rather than following strict chronology, the palette moves with longing, memory and seasonal change, weaving Parisian walks, Brest harbour winds and voiceover letters into a private album.",
+      "bio": "Born in Algiers in 1938, Guy Gilles worked as a journalist, studied art and made early shorts before settling in Paris in 1960. Mentored by producer Pierre Braunberger, he worked across editing, cinematography and assistant directing, including for Jacques Demy and François Reichenbach. Working on the margins of the French New Wave, he built a singular poetic cinema blending autobiography, fiction and documentary street observation.",
+      "st": "Shot independently over three years between 1962 and 1965, Love at Sea is Guy Gilles’s debut feature, photographed by Jean-Marc Ripert, edited by Noun Serra and scored by Gilles’s cousin Jean-Pierre Stora alongside Vivaldi. Initially unable to find mainstream distribution, it won the Critics’ Prize at the 1965 Locarno Film Festival and established the Director’s signature language of fragmented montage and epistolary narration.\n\nPart love story and part semi-autobiographical portrait of Gilles’s early years in Paris, the film features the director on screen and marks his first collaboration with lifelong alter ego Patrick Jouané, alongside brief appearances by Alain Delon, Jean-Pierre Léaud, Jean-Claude Brialy and Juliette Gréco. Restored in 2K by Lobster Films, it receives its Mainland China premiere at HIIFF.",
+      "honors": [
+        "获奖｜1965 Locarno Film Festival · Critics' Prize",
+        "入选｜2005 Cannes Film Festival · ACID Reprise",
+        "入选｜2026 8th Hainan Island International Film Festival · Tribute (Mainland China Premiere)"
+      ],
+      "highlights": [
+        "Black-and-white, sepia and Eastmancolor stocks alternate to compose a dual lyric portrait of autumn Paris and Brest harbour.",
+        "Guy Gilles appears on screen and begins his lifelong partnership with Patrick Jouané, joined by cameos from Alain Delon, Jean-Pierre Léaud and Juliette Gréco.",
+        "Rediscovered in a 2K restoration, its poetic montage and epistolary voiceover define an auteur working at the edge of the French New Wave."
+      ],
+      "warnings": [
+        "Emotional estrangement and separation"
+      ],
+      "contentNote": "Public plot information indicates emotional estrangement and romantic separation, with a restrained lyric tone. Sensory intensity has yet to be verified."
+    },
+    "wall-engravings-1968": {
+      "title": "Wall Engravings",
+      "c": "France",
+      "dir": "Guy Gilles",
+      "dirLife": "1938–1996 · France",
+      "cast": [
+        "Macha Méril",
+        "Patrick Jouané",
+        "Bernard Verley",
+        "Frédéric Ditis",
+        "Lili Bontemps",
+        "Élina Labourdette",
+        "Orane Demazis"
+      ],
+      "writers": [
+        "Guy Gilles"
+      ],
+      "genre": [
+        "Drama",
+        "Romance"
+      ],
+      "language": "French",
+      "syn": "Lost in memory, a young woman relives her love for a rebellious young man—a former runaway and juvenile offender who, to the very end of his life, refused to accept the world as it was.",
+      "editorial": "Notice how the camera returns again and again to Macha Méril’s face before cutting abruptly to brief flashes of southern sunlight and restless youth. Gilles edits grief like a musical refrain: the ache surfaces not through speeches, but through the collision of stark monochrome Paris streets and vivid colour memories.",
+      "bio": "Guy Gilles (1938–1996) described cinema as “first a poetic act, and only second a spectacle.” Working outside mainstream New Wave conventions, he fused rapid-fire montage, colour shifts and intimate narration to trace fleeting youth and outsiders. Following Love at Sea, he collaborated with star-producer Macha Méril and muse Patrick Jouané on Wall Engravings.",
+      "st": "Guy Gilles’s second feature was filmed in 1967 with star Macha Méril’s company Machafilms, premiering at the Bergamo Film Festival in September 1967 before opening in France in February 1968. Photographed by Jean-Marc Ripert and Willy Kurant, edited by Jean-Pierre Desfosse and scored by Jean-Pierre Stora, its French title Au pan coupé refers to a chamfered architectural corner where young rebel Jean leaves his mark.\n\nCalled “a film of dreams” by Gilles, the work contrasts Jeanne’s (Méril) monochrome present of mourning in Paris against luminous Eastmancolor flashbacks of her summer in Provence with Jean (Patrick Jouané). Though overlooked at the box office, its radical rhythmic editing and repeated close-ups drew ardent praise from Marguerite Duras. Restored in 2K by Lobster Films, it receives its China premiere at HIIFF.",
+      "honors": [
+        "入选｜2026 8th Hainan Island International Film Festival · Tribute (China Premiere)"
+      ],
+      "highlights": [
+        "Black-and-white frames anchor a grieving Parisian present while Eastmancolor ignites sun-drenched memories of Provence.",
+        "Co-produced by star Macha Méril alongside Patrick Jouané in what Gilles called “a film of dreams.”",
+        "Its rapid jump cuts and recurring close-ups shattered linear narration and won early praise from Marguerite Duras."
+      ],
+      "warnings": [
+        "Character death and bereavement",
+        "Youth marginalisation"
+      ],
+      "contentNote": "Public plot information indicates a character's death, bereavement and youth marginalisation, with a melancholic tone. Sensory intensity has yet to be verified."
+    },
+    "earth-light-1970": {
+      "title": "Earth Light",
+      "c": "France",
+      "dir": "Guy Gilles",
+      "dirLife": "1938–1996 · France",
+      "cast": [
+        "Patrick Jouané",
+        "Edwige Feuillère",
+        "Annie Girardot",
+        "Roger Hanin",
+        "Élina Labourdette",
+        "Micheline Presle",
+        "Jacques Zanetti",
+        "Carole Lange"
+      ],
+      "writers": [
+        "Guy Gilles"
+      ],
+      "genre": [
+        "Drama"
+      ],
+      "language": "French",
+      "syn": "Twenty-year-old Pierre lives a drifting life in overcast Paris with his piano-teacher father after losing his mother in Tunisia as a young child. Haunted by her absence, he journeys back to North Africa in search of childhood memories, traces of his mother and echoes of a vanished past.",
+      "editorial": "Paired with Love at Sea and Wall Engravings, Earth Light opens Gilles’s enclosed urban melancholy onto the blinding Mediterranean glare of North Africa. Watch how the muted indoor light of Pierre’s Parisian apartment gives way to whitewashed Tunisian walls and sunlit seas—the brighter the memory, the sharper the distance from what cannot return.",
+      "bio": "Born in Algiers in 1938, Guy Gilles carried the light and memory of North Africa throughout his career. Earth Light (1970) marked his closest autobiographical return to those roots and brought him his widest critical and popular recognition in France. Despite later commercial setbacks and an unfinished final project, his restored early trilogy is now being rediscovered worldwide.",
+      "st": "Guy Gilles’s third feature, co-produced with Claude Lelouch’s Les Films 13, won the Grand Prix at the 1970 Hyères Young Cinema Festival before its French theatrical release in November 1970, becoming Gilles’s greatest critical and commercial success. Photographed by Gilles alongside a young Philippe Rousselot (later an Academy Award winner for A River Runs Through It), it was edited by Jean-Pierre Desfosse and scored by Jean-Pierre Stora, featuring Hervé Vilard singing Le temps perdu.\n\nSet in Tunisia as a poetic mirror of Gilles’s own childhood in Algiers, the film follows Patrick Jouané’s Pierre as he encounters figures of French cinema—Edwige Feuillère, Annie Girardot, Micheline Presle and Roger Hanin—embodying exile, nostalgia and generational change. Restored in 2K by Lobster Films, it has its China premiere at HIIFF.",
+      "honors": [
+        "获奖｜1970 Hyères Young Cinema Festival · Grand Prix",
+        "入选｜2026 8th Hainan Island International Film Festival · Tribute (China Premiere)"
+      ],
+      "highlights": [
+        "Guy Gilles’s breakthrough success in France and winner of the 1970 Hyères Young Cinema Festival Grand Prix.",
+        "Early cinematography by future Oscar winner Philippe Rousselot contrasts wintry Parisian interiors with blazing North African light.",
+        "Patrick Jouané is joined by French screen icons Annie Girardot, Edwige Feuillère and Micheline Presle in a lyrical elegy of exile."
+      ],
+      "warnings": [
+        "Bereavement and grief",
+        "Displacement and nostalgia"
+      ],
+      "contentNote": "Public plot information indicates bereavement over a lost mother and feelings of displacement. Sensory intensity has yet to be verified."
+    },
+    "land-and-freedom-1995": {
+      "title": "Land and Freedom",
+      "c": "United Kingdom / Spain / Germany",
+      "dir": "Ken Loach",
+      "dirLife": "1936– · United Kingdom",
+      "cast": [
+        "Ian Hart",
+        "Rosana Pastor",
+        "Frédéric Pierrot",
+        "Tom Gilroy",
+        "Icíar Bollaín",
+        "Marc Martínez",
+        "Suzanne Maddock"
+      ],
+      "writers": [
+        "Jim Allen"
+      ],
+      "genre": [
+        "Drama",
+        "History",
+        "War"
+      ],
+      "language": "English / Spanish / Catalan",
+      "syn": "In 1936, unemployed young Liverpudlian David leaves home to join the anti-fascist struggle in the early days of the Spanish Civil War. On the Aragon front, he joins an international unit of Republican militia and shares the fervour and camaraderie of the conflict.\n\nReturning to Barcelona, he finds himself painfully torn between loyalty to the Communist Party and an unexpected love. The resolution of that conflict, and David’s decision to return to his comrades at the front, may carry tragedy, yet his dream of revolutionary change never fades.",
+      "editorial": "Seeing the 4K restoration on a cinema screen, pay special attention to the unscripted village collectivisation debate midway through the film. Without score or rehearsed speeches, international volunteers and Aragon villagers clash over land and survival—making the final handful of red earth and raised fists all the more devastating.",
+      "bio": "Born in Warwickshire in 1936, Ken Loach has spent more than half a century training his social-realist camera on workers, the unemployed, migrants and ordinary people ground down by systems of power. A two-time Palme d’Or winner for The Wind That Shakes the Barley (2006) and I, Daniel Blake (2016), his 1995 Land and Freedom stands among his most sweeping political dramas.",
+      "st": "Written by longtime collaborator Jim Allen in their final feature together, produced by Rebecca O’Brien, photographed by Barry Ackroyd and scored by George Fenton, Land and Freedom is a European co-production spanning the UK, Spain and Germany (with Italian and French partners). Framed by a granddaughter uncovering old letters and a fistful of red soil after David’s death, the story echoes George Orwell’s Homage to Catalonia as it follows a POUM militia unit on the Aragon front.\n\nLoach filmed chronologically and kept key script twists from the cast to capture genuine shock under fire and political betrayal; the celebrated village assembly mixes professional actors with local residents debating land collectivisation in real time. Premiering in competition at the 1995 Cannes Film Festival, it won the FIPRESCI and Ecumenical Jury Prizes, the European Film Award for Best Film and the César for Best Foreign Film. Newly restored in 4K for Cannes Classics / Cinéma de la Plage in 2026, it makes its Asia premiere at HIIFF.",
+      "honors": [
+        "获奖｜1995 48th Cannes Film Festival · FIPRESCI Prize & Prize of the Ecumenical Jury",
+        "入选｜1995 48th Cannes Film Festival · Official Competition",
+        "获奖｜1995 8th European Film Awards · Best Film",
+        "获奖｜1996 21st César Awards · Best Foreign Film",
+        "获奖｜1996 10th Goya Awards · Best New Actress (Rosana Pastor)",
+        "提名｜1996 49th BAFTA Film Awards · Best British Film",
+        "入选｜2026 79th Cannes Film Festival · Cinéma de la Plage (4K Restoration)",
+        "入选｜2026 8th Hainan Island International Film Festival · Tribute (Asia Premiere)"
+      ],
+      "highlights": [
+        "Winner of the 1995 Cannes FIPRESCI Prize and European Film Award for Best Film, confronting the Spanish Civil War in the spirit of Homage to Catalonia.",
+        "Its celebrated village land-collectivisation debate was shot largely unscripted, pitting actors and Aragon locals in raw political argument.",
+        "Newly restored in 4K and screened on the beach at the 2026 Cannes Film Festival ahead of its Asia premiere in Hainan."
+      ],
+      "warnings": [
+        "War violence and shootings",
+        "Character death",
+        "Political conflict and executions"
+      ],
+      "contentNote": "Public plot information indicates frontline combat, shootings, deaths of comrades and factional armed conflict during the Spanish Civil War. Detailed depiction and sensory intensity have yet to be verified."
     }
   },
   "programmes": {
@@ -16671,6 +16864,9 @@
     "主办密钥不对，或该场次未启用签到": "Wrong host key, or check-in isn't enabled for this screening",
     "无法连接签到服务，请检查网络或确认 psync 云函数已部署": "Couldn't reach check-in service. Check your network or verify psync cloud function is deployed.",
     "场次编号无法生成小程序码": "This screening ID cannot be encoded into a Mini Program code",
-    "小程序码生成失败，请确认 wxacode 云函数已重新部署": "Failed to generate Mini Program code. Check that the wxacode cloud function is deployed."
+    "小程序码生成失败，请确认 wxacode 云函数已重新部署": "Failed to generate Mini Program code. Check that the wxacode cloud function is deployed.",
+    "致敬·经典": "Tribute",
+    "海南岛国际电影节新增「致敬·经典」单元": "HIIFF adds Tribute section",
+    "海南影展专题新增「致敬·经典」单元，收录居伊·吉尔、肯·洛奇与侯孝贤五部2K/4K修复经典。": "The Hainan festival programme adds the Tribute section featuring five 2K/4K restored classics by Guy Gilles, Ken Loach and Hou Hsiao-hsien."
   }
 }
