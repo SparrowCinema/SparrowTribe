@@ -3153,6 +3153,7 @@
    },
    "posterLabel": "IMAX海报",
    "poster": "posters/dune-2021-imax.jpg",
+   "ticket": "tickets/dune-2021.png",
    "stills": [
     {"url": "posters/dune-2021.jpg", "label": "插画海报"}
    ],
@@ -3231,7 +3232,6 @@
    "id": "dune-part-two",
    "ticket": "tickets/dune-part-two.jpg",
    "ticketPlatform": "微信",
-   "ticketHint": "12月6日 19:00 · 杭州浙影西广 · 激光IMAX 4K",
    "cn": "沙丘2",
    "o": "Dune: Part Two",
    "en": "Dune: Part Two",
@@ -3457,6 +3457,7 @@
    ],
    "version": "",
    "poster": "posters/all-quiet-at-sunrise.jpg",
+   "ticket": "tickets/all-quiet-at-sunrise.png",
    "qaStart": "20:40",
    "qaEnd": "21:00",
    "qaGuest": "导演祝新与主创演员（映后见面会）",
@@ -3552,6 +3553,7 @@
    ],
    "version": "",
    "poster": "posters/a-song-river.jpg",
+   "ticket": "tickets/a-song-river.png",
    "qaStart": "17:10",
    "qaEnd": "17:30",
    "qaGuest": "导演祝新与主创演员（映后见面会）",
@@ -3633,9 +3635,8 @@
  {
   "id": "love-test",
    "ticket": "tickets/love-test.jpg",
-   "ticketLabel": "报名",
+   "ticketLabel": "免费报名",
    "ticketPlatform": "微信",
-   "ticketHint": "免费场 · 11月26日 19:00 · 杭州浙影西广",
   "cn": "试探",
   "o": "试探",
   "en": "Love Test",

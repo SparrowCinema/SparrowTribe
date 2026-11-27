@@ -116,7 +116,7 @@ Page({
     const filmLive = tkLive(idx.progOf(f));
     if (filmLive) addTk(U.ticket(f), f.ticketPlatform, f.ticketLabel, f.ticketHint, idx.progOf(f));
     (f.tickets || []).forEach(x => { const pp = (idx.progsOf(f).find(y => y.p && y.p.id === x.prog) || {}).p; if (pp && x.ticket && tkLive(pp)) addTk(/^https?:|^\//.test(x.ticket) ? x.ticket : SITE + x.ticket, x.ticketPlatform, x.ticketLabel, x.ticketHint, pp); }); // 同一部影片在其他专题另有报名码（与网站 ticketsOf 一致）
-    if (!f.ev) idx.progsOf(f).forEach(x => { if (x.p.ticket && tkLive(x.p)) addTk(/^https?:|^\//.test(x.p.ticket) ? x.p.ticket : SITE + x.p.ticket, x.p.ticketPlatform, '', x.p.ticketHint, x.p); });
+    if (!f.ev) idx.progsOf(f).forEach(x => { if (x.p.ticket && tkLive(x.p) && !(f.hideProgTickets || []).includes(x.p.id)) addTk(/^https?:|^\//.test(x.p.ticket) ? x.p.ticket : SITE + x.p.ticket, x.p.ticketPlatform, '', x.p.ticketHint, x.p); });
     if (tks.length < 2) tks.forEach(x => { x.prog = ''; });
     this.setData({
       tickets: tks,
