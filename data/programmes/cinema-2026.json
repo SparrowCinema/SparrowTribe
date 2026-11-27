@@ -3147,6 +3147,10 @@
     3.9
    ],
    "version": "重映",
+   "screeningNotes": {
+    "12/5-13:00-hz-xflh-qibao-imax": "沙丘1-2马拉松",
+    "12/6-13:00-hz-xflh-qibao-imax": "沙丘1-2马拉松"
+   },
    "posterLabel": "IMAX海报",
    "poster": "posters/dune-2021-imax.jpg",
    "stills": [
@@ -3227,7 +3231,7 @@
    "id": "dune-part-two",
    "ticket": "tickets/dune-part-two.jpg",
    "ticketPlatform": "微信",
-   "ticketHint": "12月4日 19:00 · 杭州浙影西广 · 激光IMAX 4K",
+   "ticketHint": "12月6日 19:00 · 杭州浙影西广 · 激光IMAX 4K",
    "cn": "沙丘2",
    "o": "Dune: Part Two",
    "en": "Dune: Part Two",
@@ -3248,7 +3252,9 @@
    ],
    "version": "重映",
    "screeningNotes": {
-    "12/4-19:00-hz-zy-xiguang-imax": "激光IMAX 4K"
+    "12/6-19:00-hz-zy-xiguang-imax": "激光IMAX 4K",
+    "12/5-15:55-hz-xflh-qibao-imax": "沙丘1-2马拉松",
+    "12/6-16:00-hz-xflh-qibao-imax": "沙丘1-2马拉松"
    },
    "poster": "posters/dune-part-two-main.jpg",
    "stills": [
@@ -4144,7 +4150,7 @@
    "sspyd4c7f"
   ],
   [
-   "12/1",
+   "11/30",
    "19:00",
    "dune-2021",
    "hz-zy-xiguang",
@@ -4248,12 +4254,44 @@
    "s1vwhhljs"
   ],
   [
-   "12/4",
+   "12/6",
    "19:00",
    "dune-part-two",
    "hz-zy-xiguang",
    "imax",
    "s4u21dbv2"
+  ],
+  [
+   "12/5",
+   "13:00",
+   "dune-2021",
+   "hz-xflh-qibao",
+   "imax",
+   "svydqqqkh"
+  ],
+  [
+   "12/5",
+   "15:55",
+   "dune-part-two",
+   "hz-xflh-qibao",
+   "imax",
+   "s1syjzf10"
+  ],
+  [
+   "12/6",
+   "13:00",
+   "dune-2021",
+   "hz-xflh-qibao",
+   "imax",
+   "s9j5gbzqa"
+  ],
+  [
+   "12/6",
+   "16:00",
+   "dune-part-two",
+   "hz-xflh-qibao",
+   "imax",
+   "s1gtl042s"
   ]
  ]
 }

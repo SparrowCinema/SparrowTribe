@@ -10275,7 +10275,11 @@
         "Fictional hallucinogens and some language",
         "Flashing images"
       ],
-      "contentNote": "Based on UK BBFC theatrical advice and international sensory notices: combat, blade injuries, death, some bloody images, poison gas, threatening sandworms and storms, fictional hallucinogens and some language. International releases carry a flashing-image notice for photosensitive viewers. These are not Mainland Chinese classifications; specific editing or sensory differences in the 2026 rerelease remain unverified."
+      "contentNote": "Based on UK BBFC theatrical advice and international sensory notices: combat, blade injuries, death, some bloody images, poison gas, threatening sandworms and storms, fictional hallucinogens and some language. International releases carry a flashing-image notice for photosensitive viewers. These are not Mainland Chinese classifications; specific editing or sensory differences in the 2026 rerelease remain unverified.",
+      "screeningNotes": {
+        "12/5-13:00-hz-xflh-qibao-imax": "Dune 1–2 Marathon",
+        "12/6-13:00-hz-xflh-qibao-imax": "Dune 1–2 Marathon"
+      }
     },
     "dune-part-two": {
       "title": "Dune: Part Two",
@@ -10332,7 +10336,12 @@
         "Sexual references and some language",
         "Flashing images"
       ],
-      "contentNote": "Based on UK BBFC theatrical advice: war, blade combat, death, executions, some bloody images and sustained threat, alongside fictional hallucinogens, sexual references and some language. BBFC also warns about flashing images that may affect photosensitive viewers. These are not Mainland Chinese classifications. Editing, bonus material and sensory differences in the 2026 rerelease remain unverified."
+      "contentNote": "Based on UK BBFC theatrical advice: war, blade combat, death, executions, some bloody images and sustained threat, alongside fictional hallucinogens, sexual references and some language. BBFC also warns about flashing images that may affect photosensitive viewers. These are not Mainland Chinese classifications. Editing, bonus material and sensory differences in the 2026 rerelease remain unverified.",
+      "screeningNotes": {
+        "12/6-19:00-hz-zy-xiguang-imax": "IMAX with Laser 4K",
+        "12/5-15:55-hz-xflh-qibao-imax": "Dune 1–2 Marathon",
+        "12/6-16:00-hz-xflh-qibao-imax": "Dune 1–2 Marathon"
+      }
     },
     "all-quiet-at-sunrise": {
       "title": "All Quiet at Sunrise",
