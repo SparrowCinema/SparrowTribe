@@ -52,7 +52,7 @@ function ticketsOf(f){
   const out=[],seen=new Set(),add=(t,p)=>{if(!t.ticket||seen.has(t.ticket))return;seen.add(t.ticket);out.push(Object.assign({},t,{p}));};
   if(f.ticket&&ticketLive(f)) add({ticket:f.ticket,ticketPlatform:f.ticketPlatform,ticketHint:f.ticketHint,ticketLabel:f.ticketLabel},PG[f.prog]);
   (f.tickets||[]).forEach(t=>{const p=PG[t.prog];if(p&&ticketLive(f,p))add(t,p);}); // 同一部影片在其他专题另有报名码：{prog,ticket,ticketLabel,ticketHint,ticketPlatform}
-  (typeof filmProgsOf==="function"&&F[f.id]?filmProgsOf(f):[]).forEach(({p})=>{if(p.ticket&&ticketLive(f,p))add({ticket:p.ticket,ticketPlatform:p.ticketPlatform,ticketHint:p.ticketHint},p);});
+  (typeof filmProgsOf==="function"&&F[f.id]?filmProgsOf(f):[]).forEach(({p})=>{if(p.ticket&&ticketLive(f,p)&&!(f.hideProgTickets||[]).includes(p.id))add({ticket:p.ticket,ticketPlatform:p.ticketPlatform,ticketHint:p.ticketHint},p);});
   return out;
 }
 function ticketCardHTML(t,cn,key,tag){TK[key]=Object.assign({cn},t);const w=t.ticketLabel||'购票';return `<section class="ticket-card" aria-label="${esc(cn)}${w}"><div class="ticket-copy"><small>BOOK YOUR SEAT${tag?` · ${esc(tag)}`:""}</small><h2>银幕见</h2><p>${esc(t.ticketPlatform||"微信")}扫码${w}<br>${esc((t.ticketHint||"麻雀映画小程序").replace(/^淘票票扫码购票\s*[·・]?\s*/,""))}</p><button class="ticket-expand" data-ticket="${esc(key)}">查看${w}码 ↗</button></div><button class="ticket-code" data-ticket="${esc(key)}" aria-label="放大${esc(cn)}${w}码"><img src="${t.ticket}" alt="${esc(cn)}${w}码" width="430" height="430"></button></section>`;}
