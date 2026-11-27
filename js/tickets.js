@@ -548,6 +548,7 @@ function ticketFreeKey(filmId,date,except){
 function ticketOpen(row){
   const item=row.linked?ticketViewings().find(x=>x.key===row.key):null;
   ticketDraft={row:{...row,look:{...row.look}},original:row.key,side:ticketSide,view:item?.view||null};ticketShowDraft();
+  if(row.checkedIn)ticketAutographRun();
 }
 // 从收藏册打开单张票根前记下滚动位置，保存 / 取消 / 移出后回到原来的位置（不再回到顶部）
 let ticketAlbumY=0;
