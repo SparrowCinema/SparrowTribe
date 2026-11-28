@@ -43,7 +43,7 @@ function image(node,src){
 }
 
 Page({
-  data:{i:{},ps:'',ok:false,draft:{},seatMode:'num',seatRow:'',seatCol:'',seatLetters:R.SEAT_LETTERS,seatLetterIdx:0,seatColFocus:false,front:true,frontImg:'',backImg:'',turnReq:{side:'front',n:0},tiltReq:{n:0},edge:'',shine:'metal',fx:'none',layersF:[],layersB:[],craftChips:[],custom:false,revealing:false,
+  data:{i:{},ps:'',ok:false,draft:{},seatMode:'num',seatRow:'',seatCol:'',seatLetters:R.SEAT_LETTERS,seatPresets:R.SEAT_PRESETS,seatLetterIdx:0,seatColFocus:false,front:true,frontImg:'',backImg:'',turnReq:{side:'front',n:0},tiltReq:{n:0},edge:'',shine:'metal',fx:'none',layersF:[],layersB:[],craftChips:[],custom:false,revealing:false,
     arts:[],artIndex:0,artStyleLabels:[],artStyleIndex:0,shows:[],showIdx:-1,existing:false,linked:false,loading:false,busy:true,artDirty:false,ocrBusy:false,ocrMode:'wx',ocrTone:'',ocrMsg:'',ocrCanRetryAi:false},
   seatStateOf(seat){
     const sp=R.parseSeat(seat);
@@ -283,6 +283,14 @@ Page({
     const col=sp.col||this.data.seatCol||'';
     const idx=mode==='alpha'?Math.max(0,R.SEAT_LETTERS.indexOf(row)):0;
     this.setData({seatMode:mode,seatRow:row,seatCol:col,seatLetterIdx:idx,seatColFocus:false});
+  },
+  tapSeatPreset(e){
+    if(!this._draft)return;
+    const preset=e.currentTarget.dataset.preset;
+    const next=R.applySeatPreset(this._draft.seat,preset,I.tr);
+    this._draft.seat=next;
+    this.setData({'draft.seat':next});
+    this.soon(200);
   },
   chooseShow(e){
     const x=this._shows[Number(e.detail.value)],d=this._draft;if(!x)return;
