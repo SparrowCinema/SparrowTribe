@@ -357,7 +357,7 @@ Page({
     } catch (e) { res = null; }
     if (seq !== this._agSeq || !this._active) return;
     if (!res || !res.ok || !Array.isArray(res.items)) {
-      const outdated = res && res.msg === 'bad action';
+      const outdated = !!(res && (res.msg === 'unknown action' || res.msg === 'bad action'));
       this.setData({
         agLoading: false,
         agReady: false,

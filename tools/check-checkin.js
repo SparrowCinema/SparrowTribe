@@ -240,6 +240,13 @@ if (!process.argv.includes('--runtime')) {
     await new Promise(r => setTimeout(r, 20));
     assert.equal(host.data.agList.length, 1, 'deleted guest removed from list');
     assert.equal(host.data.agList[0].name, '张艺谋');
+    // 旧版 psync 云函数返回 unknown action 时，明确提示重新部署 psync 云函数
+    const origCall = wx.cloud.callFunction;
+    wx.cloud.callFunction = async ({ name, data }) => name === 'psync' && data.action === 'autographList' ? { result: { ok: false, msg: 'unknown action' } } : origCall({ name, data });
+    await host.loadAutographs(true);
+    wx.cloud.callFunction = origCall;
+    assert.equal(host.data.agReady, false);
+    assert.equal(host.data.agErr, '请重新部署 psync 云函数以在小程序使用主创签名', 'unknown action shows redeploy psync hint');
     host.onUnload();
 
     // 2) 观众扫码现场认证页：onLoad(scene)、showMeta、签到写回、关闭首页提示
