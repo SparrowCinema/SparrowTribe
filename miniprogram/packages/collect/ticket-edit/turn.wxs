@@ -29,12 +29,19 @@ function pct(v) { return Math.round(v) + '%'; }
 function fxStyle(fx, a, b, lit) {
   var o = lit ? Math.min(1, Math.abs(a) * 3 + Math.abs(b) * 2) : 0, pos = '50% 50%', peak = 0;
   if (fx === 'holo') { pos = pct(50 + a * 60) + ' ' + pct(50 + b * 60); peak = 0.6; }
+  else if (fx === 'holo-aurora') { pos = pct(50 + a * 65) + ' ' + pct(50 + b * 55); peak = 0.64; }
+  else if (fx === 'holo-prism') { pos = pct(50 + a * 70) + ' ' + pct(50 + b * 60); peak = 0.7; }
+  else if (fx === 'holo-solar') { pos = pct(50 + a * 60) + ' ' + pct(50 + b * 55); peak = 0.66; }
+  else if (fx === 'holo-opal') { pos = pct(50 + a * 55) + ' ' + pct(50 + b * 65); peak = 0.62; }
+  else if (fx === 'holo-cobalt') { pos = pct(50 + a * 65) + ' ' + pct(50 + b * 55); peak = 0.66; }
+  else if (fx === 'holo-unique') { pos = pct(50 + a * 72) + ' ' + pct(50 + b * 64); peak = 0.72; }
   else if (fx === 'cast') { pos = pct(50 - a * 45) + ' ' + pct(50 - b * 45) + ', ' + pct(50 + a * 60) + ' ' + pct(50 + b * 60); peak = 0.75; }
   else if (fx === 'crystal') { pos = pct(50 + a * 70) + ' ' + pct(50 + b * 50) + ', ' + pct(50 - a * 60) + ' 0%'; peak = 0.75; }
   else if (fx === 'sweep') { pos = pct(50 - a * 60) + ' 0%'; peak = 0.9; }
   else if (fx === 'glitter') { pos = pct(50 - a * 60) + ' 0%, ' + pct(50 + a * 50) + ' 0%'; peak = 0.95; }
   else if (fx === 'gloss') { pos = pct(50 - a * 90) + ' ' + pct(50 + b * 90); peak = 0.75; }
   else if (fx === 'sense') { pos = pct(50 - a * 90) + ' ' + pct(50 + b * 90) + ', ' + pct(50 - a * 60) + ' 0%'; peak = 0.9; }
+  else if (fx === 'blind') { pos = pct(50 - a * 75) + ' 0%'; peak = 0.72; }
   // 海报 / 背面的隐形工艺：静止时完全看不见，转动时浮现；2026-11-22 再调强并改用 hard-light（亮处、暗处都看得出）
   else if (fx === 'a-gloss') { pos = pct(50 - a * 90) + ' ' + pct(50 + b * 90); peak = 0.78; }
   else if (fx === 'a-rim') { pos = pct(50 - a * 90) + ' ' + pct(50 + b * 90); peak = 0.85; }
@@ -75,6 +82,7 @@ function paint(owner, s, ms, lit) {
 
 function settle(owner, s, target) {
   var ms = Math.round(Math.min(900, 380 + Math.abs(target - s.ry) * 1.6));
+  s.until = now() + ms + 60;
   s.ry = target; s.rx = REST_X;
   paint(owner, s, ms, false);
   owner.callMethod('turned', { front: sideOf(target) === 'front' });
@@ -134,4 +142,15 @@ function request(value, old, owner, ins) {
   settle(owner, s, (faceIndex(s.ry) + 1) * 180 + REST_Y);
 }
 
-module.exports = { start: start, move: move, end: end, request: request, sideOf: sideOf, glow: glow, fxStyle: fxStyle };
+// 手机轻微倾斜时的陀螺仪微光（不抢手势、不影响翻面）
+function tilt(value, old, owner, ins) {
+  if (!value || !value.n) return;
+  var s = state(ins);
+  if (s.x0 !== undefined || (s.until && now() < s.until)) return;
+  var base = faceIndex(s.ry) * 180 + REST_Y;
+  s.ry = base + clamp(value.dy || 0, -10, 10);
+  s.rx = REST_X + clamp(value.dx || 0, -8, 8);
+  paint(owner, s, 110, !!value.lit);
+}
+
+module.exports = { start: start, move: move, end: end, request: request, tilt: tilt, sideOf: sideOf, glow: glow, fxStyle: fxStyle };

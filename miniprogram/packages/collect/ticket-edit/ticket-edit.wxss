@@ -84,12 +84,19 @@
 /* 工艺反光（参考视高迪数字增效）：遮罩来自票面的烫印 / 镭射 / 光油区域，位置与强度由 turn.wxs 按角度写入；与网页 styles/tickets.css 一致 */
 .te-fx{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;opacity:0;background-repeat:no-repeat;-webkit-mask-size:100% 100%;mask-size:100% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;mix-blend-mode:screen}
 .fx-holo{background-image:linear-gradient(115deg,#ff8ad8,#ffd36e,#7dffcf,#6fc3ff,#c49bff,#ff8ad8,#ffd36e,#7dffcf,#6fc3ff);background-size:300% 300%;mix-blend-mode:color-dodge}
+.fx-holo-aurora{background-image:linear-gradient(118deg,#1f7e8e,#7dffe0,#cefcb2,#8ca9ff,#f6a4fd,#1f7e8e,#7dffe0,#cefcb2,#8ca9ff);background-size:300% 300%;mix-blend-mode:color-dodge}
+.fx-holo-prism{background-image:linear-gradient(128deg,#eef3ff,#ffffff,#ffc2f3,#c4f6ff,#d2c8ff,#ffffff,#eef3ff,#ffc2f3,#c4f6ff);background-size:280% 280%;mix-blend-mode:color-dodge}
+.fx-holo-solar{background-image:linear-gradient(115deg,#d85a7a,#ff9b7d,#ffe07d,#fff7dc,#f3a2e6,#d85a7a,#ff9b7d,#ffe07d,#fff7dc);background-size:300% 300%;mix-blend-mode:color-dodge}
+.fx-holo-opal{background-image:linear-gradient(122deg,#e6c8f5,#ffe5f5,#fff8d8,#a6ece7,#dfd7ff,#ffe5f5,#fff8d8,#a6ece7);background-size:300% 300%;mix-blend-mode:color-dodge}
+.fx-holo-cobalt{background-image:linear-gradient(115deg,#4f7ee0,#7ccbff,#e8fbff,#9e9eff,#df9eff,#4f7ee0,#7ccbff,#e8fbff,#9e9eff);background-size:300% 300%;mix-blend-mode:color-dodge}
+.fx-holo-unique{background-image:linear-gradient(120deg,#3d68d8,#7cf3ff,#fff6c9,#ff9be6,#b6a4ff,#8dffd1,#3d68d8,#7cf3ff,#fff6c9);background-size:320% 320%;mix-blend-mode:color-dodge}
 .fx-cast{background-image:repeating-radial-gradient(circle at 50% 50%,rgba(255,255,255,.55) 0 1.5px,rgba(255,255,255,0) 2px 5px),linear-gradient(115deg,#ff8ad8,#ffd36e,#7dffcf,#6fc3ff,#c49bff,#ff8ad8,#ffd36e,#7dffcf,#6fc3ff);background-size:200% 200%,300% 300%;mix-blend-mode:color-dodge}
 .fx-crystal{background-image:linear-gradient(135deg,#ffc2ec,#fff4c2,#c2fbff,#d9c8ff,#ffc2ec,#fff4c2,#c2fbff),linear-gradient(105deg,rgba(255,255,255,0) 42%,rgba(255,255,255,.9) 50%,rgba(255,255,255,0) 58%);background-size:250% 250%,300% 100%}
 .fx-sweep{background-image:linear-gradient(105deg,rgba(255,255,255,0) 40%,rgba(255,255,255,.95) 50%,rgba(255,255,255,0) 60%);background-size:300% 100%}
 .fx-glitter{background-image:linear-gradient(105deg,rgba(255,255,255,0) 44%,rgba(255,255,255,.95) 50%,rgba(255,255,255,0) 56%),linear-gradient(75deg,rgba(255,255,255,0) 46%,rgba(255,247,214,.7) 50%,rgba(255,255,255,0) 54%);background-size:300% 100%,300% 100%}
 .fx-gloss{background-image:radial-gradient(ellipse 45% 30% at 50% 50%,rgba(255,255,255,.85),rgba(255,255,255,0));background-size:200% 200%}
 .fx-sense{background-image:radial-gradient(ellipse 30% 18% at 50% 50%,rgba(255,255,255,.95),rgba(255,255,255,0)),linear-gradient(105deg,rgba(255,255,255,0) 40%,rgba(255,255,255,.5) 50%,rgba(255,255,255,0) 60%);background-size:200% 200%,300% 100%}
+.fx-blind{background-image:linear-gradient(125deg,rgba(90,76,59,0) 32%,rgba(90,76,59,.36) 44%,rgba(255,254,248,.95) 50%,rgba(90,76,59,.28) 56%,rgba(90,76,59,0) 68%);background-size:300% 100%;mix-blend-mode:hard-light}
 /* 海报 / 背面的隐形工艺：静止时看不见，转动时浮现；hard-light 混合，亮部暗部都看得出 */
 .fx-a-gloss{background-image:radial-gradient(ellipse 52% 36% at 50% 50%,#ffffff 0%,rgba(255,255,255,0.7) 34%,rgba(127,140,163,0.4) 60%,rgba(127,140,163,0.0) 82%);background-size:220% 220%;mix-blend-mode:hard-light}
 .fx-a-rim{background-image:radial-gradient(ellipse 42% 28% at 50% 50%,#ffffff 0%,rgba(255,255,255,0.8) 30%,rgba(118,131,156,0.5) 58%,rgba(118,131,156,0.0) 80%);background-size:220% 220%;mix-blend-mode:hard-light}
@@ -100,6 +107,12 @@
 .fx-a-rainbow{background-image:linear-gradient(115deg,#ff4fb8,#ffb300,#2fe0a8,#3a8cff,#a45cff,#ff4fb8,#ffb300,#2fe0a8,#3a8cff,#a45cff);background-size:400% 400%;mix-blend-mode:hard-light}
 .fx-a-cateye{background-image:linear-gradient(100deg,rgba(127,140,163,0.0) 38%,rgba(159,196,255,0.6) 46%,#ffffff 50%,rgba(255,217,163,0.6) 54%,rgba(127,140,163,0.0) 62%);background-size:300% 100%;mix-blend-mode:hard-light}
 .te-r1,.te-r2{left:100%}
+.te-craft{width:100%;max-width:340px;display:flex;flex-direction:column;align-items:center;gap:calc(10 * var(--r));padding-top:calc(16 * var(--r));border-top:calc(2 * var(--r)) solid var(--line-soft)}
+.te-craft-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:calc(10 * var(--r))}
+.te-craft-chip{font-size:calc(18 * var(--fr));line-height:1.35;padding:calc(5 * var(--r)) calc(14 * var(--r));border-radius:999px;border:calc(2 * var(--r)) solid var(--line-soft);background:var(--surface);color:var(--muted)}
+.te-craft-chip.k-finish,.te-craft-chip.k-extra{color:var(--fg);border-color:rgba(142,42,34,.35)}
+.te-craft-chip.k-format{color:var(--teal);border-color:rgba(47,111,108,.45);background:rgba(47,111,108,.08)}
+.te-craft-tip{font-size:calc(17 * var(--fr));color:var(--muted);opacity:.78;text-align:center}
 .te-wait{aspect-ratio:420/864;display:flex;align-items:center;justify-content:center;border-radius:calc(8 * var(--r));background:var(--surface);border:calc(2 * var(--r)) dashed var(--line);color:var(--muted);font-size:calc(21 * var(--fr))}
 .te-hidden{position:fixed;left:-3000px;top:0;width:2px;height:2px;pointer-events:none}
 @media(min-width:700px){.te-page{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);column-gap:calc(36 * var(--r));align-items:start}.te-stage{grid-row:1 / span 7;position:sticky;top:calc(20 * var(--r))}.te-heading,.te-sec,.te-sec-row,.te-ocr-status,.te-card,.te-acts{grid-column:2}}

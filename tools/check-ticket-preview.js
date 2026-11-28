@@ -58,19 +58,36 @@ assert(!fs.existsSync(path.join(__dirname,'../miniprogram/utils/ticket-font.js')
   assert.equal(T.sideOf(-184),'back');assert.equal(T.sideOf(-364),'front');
   // 拆盲盒：snap 请求无动画地停到背面
   T.request({side:'back',n:3,snap:1},null,owner,inst);assert.deepEqual(rot(),[-2,176]);assert.equal(styles['.te-rot'].transition,'none');assert.deepEqual(calls.pop(),['turned',{front:false}]);
-  // 工艺反光：小程序 turn.wxs 与网页 ticketFxStyle 同一张表
+  // 工艺反光：小程序 turn.wxs 与网页 ticketFxStyle 同一张表（含 6 色光谱分色、无色击凸与隐形工艺）
   const web=fs.readFileSync(path.join(__dirname,'../js/tickets.js'),'utf8'),a=web.indexOf('function ticketFxStyle('),b=web.indexOf('\nfunction ticketTurner(',a);
   const webFx=vm.runInNewContext(web.slice(a,b)+';ticketFxStyle',{Math});
-  for(const fx of ['holo','cast','crystal','sweep','glitter','gloss','sense','a-gloss','a-rim','a-holo','a-pearl','a-guilloche','a-matte','a-rainbow','a-cateye','none'])for(const [x,y,lit] of [[.3,-.2,true],[-.8,.5,true],[.5,.1,false]]){
+  for(const fx of ['holo','holo-aurora','holo-prism','holo-solar','holo-opal','holo-cobalt','holo-unique','cast','crystal','sweep','glitter','gloss','sense','blind','a-gloss','a-rim','a-holo','a-pearl','a-guilloche','a-matte','a-rainbow','a-cateye','none'])for(const [x,y,lit] of [[.3,-.2,true],[-.8,.5,true],[.5,.1,false]]){
     assert.equal(JSON.stringify(T.fxStyle(fx,x,y,lit)),JSON.stringify(webFx(fx,x,y,lit)),'foil effect table matches the website: '+fx);
   }
   assert.equal(webFx('none',.5,.5,true).o,0,'matte has no foil effect');
-  // 工艺分类：新加的视高迪式工艺 + 原有工艺
+  // 陀螺仪微光：不在拖动且未在翻面过渡时响应轻微倾斜
+  clock+=2000;
+  T.tilt({n:1,dy:5,dx:-3,lit:true},null,owner,inst);
+  assert.deepEqual(rot(),[-5,181],'tilt gently shifts card angle without flipping');
+  assert(styles['.te-fx0'].opacity>0,'tilt activates foil shimmer');
+  // 工艺分类：分色光谱底箔 + 视高迪增效 + 无色击凸 + 银盐/炭纹特种纸 + 制式联动工艺 + 工艺铭牌
   const fxOf=tickets.fxOf;
-  assert.deepEqual(['holo','gold','varnish','matte','cast','crystal','glitter','sense'].map(fxOf),['holo','sweep','gloss','none','cast','crystal','glitter','sense']);
-  assert(['cast','crystal','glitter','sense'].every(k=>tickets.options.finish.some(o=>o.id===k)),'new finishes are selectable');
+  assert.deepEqual(['holo','aurora','prism','solar','opal','cobalt','gold','varnish','matte','blind','cast','crystal','glitter','sense','unique'].map(fxOf),
+    ['holo','holo-aurora','holo-prism','holo-solar','holo-opal','holo-cobalt','sweep','gloss','none','blind','cast','crystal','glitter','sense','holo-unique']);
+  assert(['cast','crystal','glitter','sense','blind'].every(k=>tickets.options.finish.some(o=>o.id===k)),'new finishes including blind emboss are selectable');
+  assert(['silvergel','charcoal'].every(k=>tickets.options.texture.some(o=>o.id===k)),'new cinema papers are selectable');
+  assert.equal(tickets.formatCraft({format:'35mm胶片'}).id,'film');
+  assert.equal(tickets.formatCraft({format:'IMAX 激光'}).id,'plf');
+  assert.equal(tickets.formatCraft({format:'4K修复'}).id,'restored');
+  assert.equal(tickets.formatCraft({format:'普通数字'}),null);
+  const spec=tickets.craftSpec({format:'35mm胶片',look:{texture:'silvergel',finish:'blind',craft:'gs-nfBv'}});
+  assert(spec.chips.some(c=>c.k==='paper'&&c.t==='银盐相纸'));
+  assert(spec.chips.some(c=>c.k==='finish'&&c.t==='无色击凸'));
+  assert(spec.chips.some(c=>c.k==='format'&&c.t==='胶片齿孔烫银'));
+  assert(spec.summary.includes('银盐相纸')&&spec.summary.includes('无色击凸')&&spec.summary.includes('胶片齿孔烫银'));
 }
 assert.match(wxml,/<image[^>]*class="te-face"/);
+assert.match(wxml,/class="te-craft"/,'ticket editor displays craft nameplate');
 assert.match(wxml,/<picker[^>]*range="{{artStyleLabels}}"[^>]*bindchange="pickArtStyle"/,'ticket details offer hand-drawn styles');
 assert.match(tixWxml,/bindchange="pickArtStyle"/,'the album keeps its own entry to the same styles');
 assert(!/canvas[^>]*id="te-worker"[^>]*bindtap/.test(wxml),'visible preview is an image, the canvas stays hidden');
