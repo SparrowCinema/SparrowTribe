@@ -7,6 +7,7 @@
 .ch-form { padding: calc(28 * var(--r)); display: flex; flex-direction: column; gap: calc(24 * var(--r)); margin-bottom: calc(24 * var(--r)); }
 .ch-field { display: flex; flex-direction: column; gap: calc(10 * var(--r)); }
 .ch-flab { display: flex; justify-content: space-between; align-items: baseline; font-size: calc(18 * var(--fr)); font-weight: 700; color: var(--fg); }
+.ch-fops { display: flex; align-items: baseline; gap: calc(22 * var(--r)); }
 .ch-clr { font-size: calc(16.5 * var(--fr)); font-weight: 600; color: var(--accent); }
 .ch-inp { height: calc(76 * var(--r)); padding: 0 calc(22 * var(--r)); border-radius: calc(14 * var(--r)); border: calc(2 * var(--r)) solid var(--line); background: var(--bg); font-size: calc(19 * var(--fr)); box-sizing: border-box; }
 .ch-pick { min-height: calc(76 * var(--r)); padding: calc(14 * var(--r)) calc(22 * var(--r)); border-radius: calc(14 * var(--r)); border: calc(2 * var(--r)) solid var(--line); background: var(--bg); display: flex; align-items: center; justify-content: space-between; gap: calc(14 * var(--r)); box-sizing: border-box; }
