@@ -51,6 +51,7 @@ function fxStyle(fx, a, b, lit) {
   else if (fx === 'a-rainbow') { pos = pct(50 + a * 80) + ' ' + pct(50 + b * 80); peak = 0.55; }
   else if (fx === 'a-cateye') { pos = pct(50 - a * 110) + ' 0%'; peak = 0.85; }
   else if (fx === 'a-matte') { pos = pct(50 - a * 90) + ' ' + pct(50 + b * 90); peak = 0.72; }
+  else if (fx === 'a-stub') { pos = pct(50 - a * 70) + ' 0%'; peak = 0.58; }
   return { pos: pos, o: Math.round(o * peak * 1000) / 1000 };
 }
 

@@ -602,7 +602,7 @@ function ticketEditor(row){
   const dateRow=row.linked?`<div class="te-row"><span class="te-k">${ticketDict("观影日期")}</span><span class="te-v"><b class="te-mono">${esc(row.date.replace(/-/g,"."))}</b><small class="te-note">${ticketDict("来自观影记录")}</small></span></div>`:input("date","观影日期","","date");
   return `<div class="te">
     <div class="te-stage"><button type="button" data-ticket-action="flip" class="ticket-flip" data-side="${ticketDraft.side}" aria-label="${ticketDict("翻面")}">
-      <span class="ticket-turn"><span class="ticket-face ticket-front"><canvas width="630" height="1296" id="ticket-preview-front" aria-hidden="true"></canvas><span class="ticket-fx" aria-hidden="true" hidden></span><span class="ticket-fx" aria-hidden="true" hidden></span><span class="ticket-fx" aria-hidden="true" hidden></span><span class="ticket-fx" aria-hidden="true" hidden></span></span>
+      <span class="ticket-turn"><span class="ticket-face ticket-front"><canvas width="630" height="1296" id="ticket-preview-front" aria-hidden="true"></canvas><span class="ticket-fx" aria-hidden="true" hidden></span><span class="ticket-fx" aria-hidden="true" hidden></span><span class="ticket-fx" aria-hidden="true" hidden></span><span class="ticket-fx" aria-hidden="true" hidden></span><span class="ticket-fx" aria-hidden="true" hidden></span></span>
       <span class="ticket-face ticket-back"><canvas width="630" height="1296" id="ticket-preview-back" aria-hidden="true"></canvas><span class="ticket-fx" aria-hidden="true" hidden></span><span class="ticket-fx" aria-hidden="true" hidden></span><span class="ticket-fx" aria-hidden="true" hidden></span><span class="ticket-fx" aria-hidden="true" hidden></span></span>
       <span class="ticket-edge te-l1"></span><span class="ticket-edge te-l2"></span><span class="ticket-edge te-r1"></span><span class="ticket-edge te-r2"></span></span></button>
       ${assets.length?`<div class="te-art">
@@ -668,7 +668,8 @@ function ticketFxStyle(fx,s,t,lit){
     "a-guilloche":[`${p(50-s*60)} 0%`,.8],
     "a-matte":[`${p(50-s*90)} ${p(50+t*90)}`,.72],
     "a-rainbow":[`${p(50+s*80)} ${p(50+t*80)}`,.55],
-    "a-cateye":[`${p(50-s*110)} 0%`,.85]
+    "a-cateye":[`${p(50-s*110)} 0%`,.85],
+    "a-stub":[`${p(50-s*70)} 0%`,.58]
   };
   const [pos,peak]=table[fx]||["50% 50%",0];
   return {pos,o:+(o*peak).toFixed(3)};
@@ -759,8 +760,7 @@ async function ticketRenderCard(canvas,row,side){
   draw(null);
   if(side==="front"&&row.art){const image=await ticketPoster(row,false);if(canvas.isConnected&&canvas.ticketPainting===rendering&&image)draw(image);}
 }
-// 工艺反光层（只在详情页用）：每面最多四层——底箔反光、最多两项烫印增效、隐形底纹（正面在海报上，背面铺满背面）。
-// 前三层用工艺遮罩（烫印 / 镭射 / 光油 / 无色击凸 / 盲文 / 可变数据烫印 / 制式专属区域），海报层用从海报算出的遮罩；转动时按角度移动（ticketTurner）。
+// 工艺反光层（只在详情页用）：正面最多五层（底箔 + 最多两项增效 + 海报隐形工艺 + 副券隐形防伪光油与盲压暗记），背面最多四层。
 function ticketFxMask(canvas,row,side,image){
   const spans=[...(canvas.parentElement?.querySelectorAll(".ticket-fx")||[])];if(!spans.length)return;
   const w=315,h=Math.round(w*TE.H/TE.W),layers=[];
@@ -774,6 +774,7 @@ function ticketFxMask(canvas,row,side,image){
     }
   }
   if(side==="front"&&image){const art=TE.artMask(row,image,ticketCanvas,w);if(art)layers.push({fx:art.fx,k:1,url:`url(${art.toDataURL("image/png")})`});}
+  if(side==="front"){const stub=TE.stubMask(row,ticketCanvas,w);if(stub)layers.push({fx:stub.fx,k:1,url:`url(${stub.toDataURL("image/png")})`});}
   if(side==="back"){const back=TE.backMask(row,ticketCanvas,w);if(back)layers.push({fx:back.fx,k:1,url:`url(${back.toDataURL("image/png")})`});}
   spans.forEach((el,i)=>{
     const layer=layers[i];el.hidden=!layer;

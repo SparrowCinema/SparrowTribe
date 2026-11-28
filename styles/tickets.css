@@ -79,6 +79,7 @@
 .ticket-fx[data-fx=a-matte]{background-image:radial-gradient(ellipse 60% 40% at 50% 50%,#ffffff 0%,#ffffffa6 36%,#7f8ca359 62%,#7f8ca300 84%);background-size:220% 220%;mix-blend-mode:hard-light}
 .ticket-fx[data-fx=a-rainbow]{background-image:linear-gradient(115deg,#ff4fb8,#ffb300,#2fe0a8,#3a8cff,#a45cff,#ff4fb8,#ffb300,#2fe0a8,#3a8cff,#a45cff);background-size:400% 400%;mix-blend-mode:hard-light}
 .ticket-fx[data-fx=a-cateye]{background-image:linear-gradient(100deg,#7f8ca300 38%,#9fc4ff99 46%,#ffffff 50%,#ffd9a399 54%,#7f8ca300 62%);background-size:300% 100%;mix-blend-mode:hard-light}
+.ticket-fx[data-fx=a-stub]{background-image:linear-gradient(108deg,#7c869600 34%,#7c869652 44%,#fffef8eb 50%,#7c869645 56%,#7c869600 66%);background-size:300% 100%;mix-blend-mode:hard-light}
 .te-craft{width:100%;max-width:340px;display:grid;gap:6px;padding-top:10px;border-top:1px solid var(--line-soft,var(--line));text-align:center}
 .te-craft-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:5px}
 .te-craft-chip{font-size:.72rem;line-height:1.3;padding:3px 9px;border-radius:999px;border:1px solid var(--line-soft,var(--line));background:var(--surface);color:var(--muted)}
