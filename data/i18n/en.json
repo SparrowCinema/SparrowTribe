@@ -16881,6 +16881,16 @@
     "剪贴板为空": "Clipboard is empty",
     "暂无待映场次。": "No upcoming screenings.",
     "查看全部排片、专题与观影护照": "Browse all screenings, programmes & passport",
-    "点左上角进入首页": "Tap top-left to go home"
+    "点左上角进入首页": "Tap top-left to go home",
+    "正在读取本场主创签名…": "Loading guest autographs…",
+    "填写嘉宾姓名": "Enter guest name",
+    "撤销": "Undo",
+    "保存中…": "Saving…",
+    "删除": "Delete",
+    "删除签名": "Delete autograph",
+    "删除失败，请检查网络": "Delete failed. Please check your network.",
+    "主办密钥不对，无法读取主创签名": "Wrong host key — couldn't load guest autographs.",
+    "主创签名服务暂时不可用，请稍后重试": "Autograph service temporarily unavailable. Please retry.",
+    "请重新部署 psync 云函数以在小程序使用主创签名": "Please redeploy the psync cloud function to manage guest autographs here."
   }
 }
