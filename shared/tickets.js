@@ -2289,25 +2289,42 @@ function drawWall(surface,records,side,images,caption,createCanvas,title,maxWidt
   return layout;
 }
 
-// 座位快捷输入解析与合成（2026-11-28）：支持数字排（5排8座）、字母排（G排12座 / AA排5座）与自定义文本三种模式
-const SEAT_LETTERS=[..."ABCDEFGHIJKLMNOPQRSTUVWXYZ","AA","BB","CC","DD","EE","FF"];
+// 座位快捷输入解析与合成（2026-11-28）：支持全球主流影院规则——数字排（5排8座）、字母排（G排12座 / AA-LL）、国际排座文案（Row/Rang/Reihe/Fila、繁体號）与自定义/无固定座预设
+const SEAT_LETTERS=[..."ABCDEFGHIJKLMNOPQRSTUVWXYZ","AA","BB","CC","DD","EE","FF","GG","HH","JJ","KK","LL"];
+const SEAT_PRESETS=[
+  {t:"一楼",k:"pre",g:"floor"},
+  {t:"二楼",k:"pre",g:"floor"},
+  {t:"三楼",k:"pre",g:"floor"},
+  {t:"自由入座",k:"set"},
+  {t:"情侣座",k:"pre"},
+  {t:"包厢",k:"pre"},
+  {t:"无障碍席",k:"set"}
+];
 function parseSeat(raw) {
   const s=String(raw||"").trim();
   if (!s) return {mode:"num",row:"",col:""};
-  let m=s.match(/^(\d{1,3})\s*排\s*(\d{1,3})\s*[座号]?$/);
-  if (m) return {mode:"num",row:m[1],col:m[2]};
-  m=s.match(/^(\d{1,3})\s*排$/);
-  if (m) return {mode:"num",row:m[1],col:""};
-  m=s.match(/^(\d{1,3})\s*[座号]$/);
-  if (m) return {mode:"num",row:"",col:m[1]};
+  const numOf=x=>String(x||"").replace(/^0+(?=\d)/,"");
+  let m=s.match(/^第?\s*(\d{1,3})\s*排\s*第?\s*(\d{1,3})\s*[座号號位]?$/);
+  if (m) return {mode:"num",row:numOf(m[1]),col:numOf(m[2])};
+  m=s.match(/^第?\s*(\d{1,3})\s*排$/);
+  if (m) return {mode:"num",row:numOf(m[1]),col:""};
+  m=s.match(/^第?\s*(\d{1,3})\s*[座号號位]$/);
+  if (m) return {mode:"num",row:"",col:numOf(m[1])};
   m=s.match(/^(\d{1,3})\s*[-·,，\/\s]\s*(\d{1,3})$/);
-  if (m) return {mode:"num",row:m[1],col:m[2]};
-  m=s.match(/^([A-Za-z]{1,2})\s*排\s*(\d{1,3})\s*[座号]?$/);
-  if (m && SEAT_LETTERS.includes(m[1].toUpperCase())) return {mode:"alpha",row:m[1].toUpperCase(),col:m[2]};
-  m=s.match(/^([A-Za-z]{1,2})\s*排$/);
+  if (m) return {mode:"num",row:numOf(m[1]),col:numOf(m[2])};
+  m=s.match(/^第?\s*([A-Za-z]{1,2})\s*排\s*第?\s*(\d{1,3})\s*[座号號位]?$/);
+  if (m && SEAT_LETTERS.includes(m[1].toUpperCase())) return {mode:"alpha",row:m[1].toUpperCase(),col:numOf(m[2])};
+  m=s.match(/^第?\s*([A-Za-z]{1,2})\s*排$/);
   if (m && SEAT_LETTERS.includes(m[1].toUpperCase())) return {mode:"alpha",row:m[1].toUpperCase(),col:""};
   m=s.match(/^([A-Za-z]{1,2})\s*[-·,，\/\s]?\s*(\d{1,3})$/);
-  if (m && SEAT_LETTERS.includes(m[1].toUpperCase())) return {mode:"alpha",row:m[1].toUpperCase(),col:m[2]};
+  if (m && SEAT_LETTERS.includes(m[1].toUpperCase())) return {mode:"alpha",row:m[1].toUpperCase(),col:numOf(m[2])};
+  // 国际影院标准排座（英文 Row/Seat、法文 Rang/Place/Siège、德文 Reihe/Platz、意/西文 Fila/Posto/Butaca、简写 R/S）
+  m=s.match(/^(?:Row|Rang|Reihe|Fila|R\.?)\s*[:#]?\s*([A-Za-z]{1,2}|\d{1,3})[\s,·\/-]+(?:Seat|Place|Si[eè]ge|Platz|Posto|Butaca|Asiento|No\.?|S\.?|P\.?|#)\s*[:#]?\s*(\d{1,3})$/i);
+  if (m) {
+    const r=m[1].toUpperCase(),c=numOf(m[2]);
+    if (/^\d+$/.test(r)) return {mode:"num",row:numOf(r),col:c};
+    if (SEAT_LETTERS.includes(r)) return {mode:"alpha",row:r,col:c};
+  }
   return {mode:"custom",row:"",col:"",raw:s};
 }
 function composeSeat(row,col,mode="num") {
@@ -2320,8 +2337,33 @@ function composeSeat(row,col,mode="num") {
   if (c) return `${c}座`;
   return "";
 }
+function applySeatPreset(current,preset,tr=x=>x) {
+  const p=typeof preset==="string" ? SEAT_PRESETS.find(x=>x.t===preset) : preset;
+  if (!p) return String(current||"");
+  const label=tr(p.t),cur=String(current||"").trim();
+  if (p.k==="set") return label;
+  const spaced=/^[A-Za-z0-9]/.test(label);
+  const pre=spaced ? label+" " : label;
+  if (cur.startsWith(pre)) return cur.slice(pre.length).trim();
+  if (cur.startsWith(label)) return cur.slice(label.length).trim();
+  // 同组前缀（如 一楼 / 二楼 / 三楼）互斥替换，避免叠成「三楼二楼5排8座」
+  let base=cur;
+  if (p.g) {
+    for (const o of SEAT_PRESETS) {
+      if (o.g!==p.g) continue;
+      for (const l of [tr(o.t),o.t]) {
+        const sp=/^[A-Za-z0-9]/.test(l) ? l+" " : l;
+        if (base.startsWith(sp)) {base=base.slice(sp.length).trim();break;}
+        if (base.startsWith(l)) {base=base.slice(l.length).trim();break;}
+      }
+    }
+  }
+  const isSet=SEAT_PRESETS.some(x=>x.k==="set" && (base===x.t || base===tr(x.t)));
+  if (!base || isSet) return label;
+  return (pre+base).slice(0,36);
+}
 
 const shineOf=key=>{const f=finishes[key]||finishes.matte;return {kind:f.kind,fx:fxOf(key),highlight:f.stops[f.stops.length-2]};};
-return {autographKey,pendingAutograph,applyAutograph,attachAutographs,collectSig,guestLine,drawAutographs,checkinURL,checkinParse,checkinScene,checkinSceneParse,checkinPlan,applyCheckin,isHidden,HIDDEN_RATE,editionClose,EDITION_GRACE,pendingEdition,applyEdition,decorate,setQR,verifyURL,editionLines,badgesOf,drawShowcase,bakeSheen,SHOW_W,SHOW_H,serialOf,serialValid,formatSerial,entrySerial,pendingIssue,applyIssue,issueText,ISSUE_BATCH,W,H,TITLE_FAMILY,edgeOf,foilMask,fxOf,artMask,stubMask,backMask,parseCraft,formatCraft,stubCraft,blindMarkOf,craftLabel,craftSpec,lookSig,foilLayers,WALL_PAGE,MOSAIC_MAX,FACETS,BADGES,badgeKeys,options:labelOptions(),sanitize,read,sorted,defaults,randomLook,shineOf,draw,wallLayout,drawWall,SEAT_LETTERS,parseSeat,composeSeat,
+return {autographKey,pendingAutograph,applyAutograph,attachAutographs,collectSig,guestLine,drawAutographs,checkinURL,checkinParse,checkinScene,checkinSceneParse,checkinPlan,applyCheckin,isHidden,HIDDEN_RATE,editionClose,EDITION_GRACE,pendingEdition,applyEdition,decorate,setQR,verifyURL,editionLines,badgesOf,drawShowcase,bakeSheen,SHOW_W,SHOW_H,serialOf,serialValid,formatSerial,entrySerial,pendingIssue,applyIssue,issueText,ISSUE_BATCH,W,H,TITLE_FAMILY,edgeOf,foilMask,fxOf,artMask,stubMask,backMask,parseCraft,formatCraft,stubCraft,blindMarkOf,craftLabel,craftSpec,lookSig,foilLayers,WALL_PAGE,MOSAIC_MAX,FACETS,BADGES,badgeKeys,options:labelOptions(),sanitize,read,sorted,defaults,randomLook,shineOf,draw,wallLayout,drawWall,SEAT_LETTERS,SEAT_PRESETS,parseSeat,composeSeat,applySeatPreset,
   ticketKey,parseKey,cleanStore,mergeStore,packLook,unpackLook,normArt,viewings,build,reconcile,draft,entryFrom,migrateV1,filterTickets,facetCounts,groupByMonth,swatch};
 });

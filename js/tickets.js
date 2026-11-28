@@ -598,7 +598,8 @@ function ticketSeatRowHTML(row,forceMode){
   const sp=TE.parseSeat(row.seat);
   const mode=forceMode||sp.mode;
   if(mode==="custom"){
-    return `<div class="te-row te-seat-row" data-seat-mode="custom"><span class="te-k">${ticketDict("座位")}</span><div class="te-seat-custom"><input class="te-in" type="text" name="seat" value="${esc(row.seat)}" placeholder="${ticketDict("如 二楼3排5座 / 自由入座")}"><button type="button" class="te-seat-mode" data-ticket-action="seat-mode" data-mode="num">123</button><button type="button" class="te-seat-mode" data-ticket-action="seat-mode" data-mode="alpha">A-Z</button></div></div>`;
+    const chips=TE.SEAT_PRESETS.map(p=>`<button type="button" class="te-seat-chip" data-ticket-action="seat-preset" data-preset="${esc(p.t)}">${esc(ticketDict(p.t))}</button>`).join("");
+    return `<div class="te-row te-seat-row te-seat-stack" data-seat-mode="custom"><div class="te-seat-top"><span class="te-k">${ticketDict("座位")}</span><div class="te-seat-custom"><input class="te-in" type="text" name="seat" value="${esc(row.seat)}" placeholder="${ticketDict("如 二楼3排5座 / 7排5-6座 / Balcony B12")}"><button type="button" class="te-seat-mode" data-ticket-action="seat-mode" data-mode="num">123</button><button type="button" class="te-seat-mode" data-ticket-action="seat-mode" data-mode="alpha">A-Z</button></div></div><div class="te-seat-presets">${chips}</div></div>`;
   }
   const rowVal=mode===sp.mode?sp.row:"",colVal=sp.col||"";
   const rowCtrl=mode==="alpha"
@@ -1155,6 +1156,15 @@ function ticketClick(e){
         const inp=main.querySelector(mode==="custom"?'.te-card [name="seat"]':'.te-card [name="seat-row"]');
         if(inp)inp.focus();
       }
+      break;
+    }
+    case "seat-preset":{
+      if(!ticketDraft)break;
+      const next=TE.applySeatPreset(ticketDraft.row.seat,b.dataset.preset,ticketDict);
+      ticketDraft.row.seat=next;
+      const inp=main.querySelector('.te-card [name="seat"]');
+      if(inp){inp.value=next;inp.focus();}
+      ticketDrawEditor();
       break;
     }
     case "save":ticketSave();break;

@@ -74,25 +74,35 @@
     <picker mode="time" value="{{draft.time}}" data-field="time" bindchange="changeField"><view class="te-row"><text class="te-k">{{L.t(i,'开场时间')}}</text><view class="te-v"><text class="te-mono {{draft.time?'':'te-ph'}}">{{draft.time || L.t(i,'选择时间')}}</text><text class="te-go">›</text></view></view></picker>
     <view class="te-row"><text class="te-k">{{L.t(i,'影院')}}</text><input class="te-in" value="{{draft.venue}}" placeholder="{{L.t(i,'影院名称')}}" placeholder-class="te-ph" data-field="venue" bindinput="changeField" /></view>
     <view class="te-row"><text class="te-k">{{L.t(i,'影厅')}}</text><input class="te-in" value="{{draft.hall}}" placeholder="{{L.t(i,'如 1号厅')}}" placeholder-class="te-ph" data-field="hall" bindinput="changeField" /></view>
-    <view class="te-row te-seat-row">
-      <text class="te-k">{{L.t(i,'座位')}}</text>
-      <view wx:if="{{seatMode==='custom'}}" class="te-seat-custom">
-        <input class="te-in" value="{{draft.seat}}" placeholder="{{L.t(i,'如 二楼3排5座 / 自由入座')}}" placeholder-class="te-ph" data-field="seat" bindinput="changeField" />
-        <text class="te-seat-mode" hover-class="te-hv" bindtap="toggleSeatMode" data-mode="num" role="button">123</text>
-        <text class="te-seat-mode" hover-class="te-hv" bindtap="toggleSeatMode" data-mode="alpha" role="button">A-Z</text>
+    <view class="te-row te-seat-row {{seatMode==='custom'?'te-seat-stack':''}}">
+      <view wx:if="{{seatMode==='custom'}}" class="te-seat-wrap">
+        <view class="te-seat-top">
+          <text class="te-k">{{L.t(i,'座位')}}</text>
+          <view class="te-seat-custom">
+            <input class="te-in" value="{{draft.seat}}" placeholder="{{L.t(i,'如 二楼3排5座 / 7排5-6座 / Balcony B12')}}" placeholder-class="te-ph" data-field="seat" bindinput="changeField" />
+            <text class="te-seat-mode" hover-class="te-hv" bindtap="toggleSeatMode" data-mode="num" role="button">123</text>
+            <text class="te-seat-mode" hover-class="te-hv" bindtap="toggleSeatMode" data-mode="alpha" role="button">A-Z</text>
+          </view>
+        </view>
+        <view class="te-seat-presets">
+          <text wx:for="{{seatPresets}}" wx:key="t" class="te-seat-chip" hover-class="te-hv" data-preset="{{item.t}}" bindtap="tapSeatPreset" role="button">{{L.t(i,item.t)}}</text>
+        </view>
       </view>
-      <view wx:else class="te-seat-quick">
-        <picker wx:if="{{seatMode==='alpha'}}" mode="selector" range="{{seatLetters}}" value="{{seatLetterIdx}}" bindchange="pickSeatLetter">
-          <view class="te-seat-n te-seat-alpha {{seatRow?'':'te-ph'}}"><text>{{seatRow || 'A-Z'}}</text><text class="te-seat-caret">▾</text></view>
-        </picker>
-        <input wx:else class="te-seat-n" type="number" maxlength="3" confirm-type="next" value="{{seatRow}}" placeholder="5" placeholder-class="te-ph" data-part="row" bindinput="changeSeatPart" bindconfirm="focusSeatCol" />
-        <text class="te-seat-u">{{L.t(i,'排')}}</text>
-        <input class="te-seat-n" type="number" maxlength="3" confirm-type="done" focus="{{seatColFocus}}" value="{{seatCol}}" placeholder="8" placeholder-class="te-ph" data-part="col" bindinput="changeSeatPart" bindblur="blurSeatCol" />
-        <text class="te-seat-u">{{L.t(i,'座')}}</text>
-        <text wx:if="{{seatMode==='alpha'}}" class="te-seat-mode" hover-class="te-hv" bindtap="toggleSeatMode" data-mode="num" role="button">123</text>
-        <text wx:else class="te-seat-mode" hover-class="te-hv" bindtap="toggleSeatMode" data-mode="alpha" role="button">A-Z</text>
-        <text class="te-seat-mode" hover-class="te-hv" bindtap="toggleSeatMode" data-mode="custom" role="button">{{L.t(i,'自填')}}</text>
-      </view>
+      <block wx:else>
+        <text class="te-k">{{L.t(i,'座位')}}</text>
+        <view class="te-seat-quick">
+          <picker wx:if="{{seatMode==='alpha'}}" mode="selector" range="{{seatLetters}}" value="{{seatLetterIdx}}" bindchange="pickSeatLetter">
+            <view class="te-seat-n te-seat-alpha {{seatRow?'':'te-ph'}}"><text>{{seatRow || 'A-Z'}}</text><text class="te-seat-caret">▾</text></view>
+          </picker>
+          <input wx:else class="te-seat-n" type="number" maxlength="3" confirm-type="next" value="{{seatRow}}" placeholder="5" placeholder-class="te-ph" data-part="row" bindinput="changeSeatPart" bindconfirm="focusSeatCol" />
+          <text class="te-seat-u">{{L.t(i,'排')}}</text>
+          <input class="te-seat-n" type="number" maxlength="3" confirm-type="done" focus="{{seatColFocus}}" value="{{seatCol}}" placeholder="8" placeholder-class="te-ph" data-part="col" bindinput="changeSeatPart" bindblur="blurSeatCol" />
+          <text class="te-seat-u">{{L.t(i,'座')}}</text>
+          <text wx:if="{{seatMode==='alpha'}}" class="te-seat-mode" hover-class="te-hv" bindtap="toggleSeatMode" data-mode="num" role="button">123</text>
+          <text wx:else class="te-seat-mode" hover-class="te-hv" bindtap="toggleSeatMode" data-mode="alpha" role="button">A-Z</text>
+          <text class="te-seat-mode" hover-class="te-hv" bindtap="toggleSeatMode" data-mode="custom" role="button">{{L.t(i,'自填')}}</text>
+        </view>
+      </block>
     </view>
     <view class="te-row"><text class="te-k">{{L.t(i,'放映版本')}}</text><input class="te-in" value="{{draft.format}}" placeholder="{{L.t(i,'如 4K修复')}}" placeholder-class="te-ph" data-field="format" bindinput="changeField" /></view>
   </view>

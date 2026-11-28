@@ -62,6 +62,11 @@
 .te-seat-caret{font-size:calc(16 * var(--fr));color:var(--muted)}
 .te-seat-u{flex:none;font-size:calc(20 * var(--fr));color:var(--muted)}
 .te-seat-mode{flex:none;margin-left:calc(2 * var(--r));padding:calc(8 * var(--r)) calc(12 * var(--r));border:calc(2 * var(--r)) solid var(--line-soft);border-radius:999px;background:var(--bg);color:var(--muted);font-family:Menlo,sans-serif;font-size:calc(17 * var(--fr));font-weight:600;line-height:1.2}
+.te-seat-stack{display:block;padding-bottom:calc(18 * var(--r))}
+.te-seat-wrap{width:100%}
+.te-seat-top{display:flex;align-items:center;gap:calc(20 * var(--r));min-height:calc(88 * var(--r))}
+.te-seat-presets{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:calc(10 * var(--r));padding-top:calc(4 * var(--r))}
+.te-seat-chip{padding:calc(8 * var(--r)) calc(16 * var(--r));border:calc(2 * var(--r)) solid var(--line-soft);border-radius:999px;background:var(--bg);color:var(--muted);font-size:calc(18 * var(--fr));line-height:1.25}
 .te-crop .te-slider{flex:1;margin:0 0 0 calc(10 * var(--r))}
 .te-acts{margin-top:calc(40 * var(--r))}
 .te-save{width:100%;box-sizing:border-box;text-align:center;padding:calc(24 * var(--r)) 0;border-radius:999px;background:var(--accent);color:#fffaf0;font-size:calc(26 * var(--fr));font-weight:700}

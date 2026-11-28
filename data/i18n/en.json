@@ -16935,6 +16935,15 @@
     "排/座": "Row/Seat",
     "选择排号": "Select row",
     "如 A排8座 / 自由入座": "e.g. Row A Seat 8 / Open seating",
-    "如 二楼3排5座 / 自由入座": "e.g. Balcony Row 3 Seat 5 / Open seating"
+    "如 二楼3排5座 / 自由入座": "e.g. Balcony Row 3 Seat 5 / Open seating",
+    "如 二楼3排5座 / 7排5-6座 / Balcony B12": "e.g. Balcony B12 / 7-5~6 / Open seating",
+    "自由入座": "Open seating",
+    "一楼": "1F",
+    "二楼": "2F",
+    "三楼": "3F",
+    "楼座": "Mezzanine",
+    "情侣座": "Couple seat",
+    "包厢": "Box",
+    "无障碍席": "Accessible"
   }
 }
