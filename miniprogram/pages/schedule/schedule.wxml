@@ -30,7 +30,13 @@
       <view class="tt-ic"><view class="tt-ar" /></view>
     </view>
   </view>
-  <view class="h2">{{L.t(i,'排片表')}}</view>
+  <view class="sched-head">
+    <view class="h2">{{L.t(i,'排片表')}}</view>
+    <view class="ci-home-btn" hover-class="hv" bindtap="scanCheckin" role="button">
+      <view class="ci-scan-ic"><view class="ci-c ci-tl"/><view class="ci-c ci-tr"/><view class="ci-c ci-bl"/><view class="ci-c ci-br"/><view class="ci-bar"/></view>
+      <text>{{L.t(i,'现场签到')}}</text>
+    </view>
+  </view>
   <view class="sub">{{span}} · {{L.n(i,count,'sc')}} · {{L.t(i,'按日期查看，点击色块看影片')}}</view>
 
   <view class="schedule-filterbar">

@@ -260,6 +260,50 @@ if (!process.argv.includes('--runtime')) {
     page.dismissHomeTip();
     assert.equal(page.data.homeTip, false, 'dismissHomeTip calls HT.close cleanly');
     page.onUnload();
+
+    // 3) 首页「排片表」右侧「现场签到」快捷入口：小程序直连 wx.scanCode + 网页扫码弹窗 + jsQR 解码闭环
+    const schedWxml = fs.readFileSync(path.join(root, 'miniprogram/pages/schedule/schedule.wxml'), 'utf8');
+    assert(schedWxml.includes('bindtap="scanCheckin"'), 'mini-program schedule homepage wires scanCheckin button');
+    const webSched = fs.readFileSync(path.join(root, 'js/schedule.js'), 'utf8');
+    const webTickets = fs.readFileSync(path.join(root, 'js/tickets.js'), 'utf8');
+    assert(webSched.includes('data-checkin-scan'), 'web schedule homepage renders on-site check-in scan button');
+    assert(webTickets.includes('function openCheckinScanner('), 'web tickets.js provides openCheckinScanner modal');
+    let navUrl = '';
+    wx.navigateTo = o => { navUrl = (o && o.url) || ''; };
+    const sched = loadPage('miniprogram/pages/schedule/schedule.js');
+    // 扫方案 A 小程序码
+    wx.scanCode = o => o.success({ path: 'pages/checkin/checkin?scene=' + encodeURIComponent(scene) });
+    sched.scanCheckin();
+    assert(navUrl.startsWith('/pages/checkin/checkin?q='), 'scanCheckin routes wxacode path to checkin page');
+    assert.deepEqual(T.checkinSceneParse(decodeURIComponent(navUrl.split('?q=')[1])), { h: sampleShow.sid, w: 14949570, k: '0123456789ab' });
+    // 扫方案 B 网页二维码
+    navUrl = '';
+    const webQrUrl = T.checkinURL(sampleShow.id, sampleShow.sid, 14949570, '0123456789ab');
+    wx.scanCode = o => o.success({ result: webQrUrl });
+    sched.scanCheckin();
+    assert(navUrl.startsWith('/pages/checkin/checkin?q='), 'scanCheckin routes web QR URL to checkin page');
+    assert.deepEqual(T.checkinParse(decodeURIComponent(navUrl.split('?q=')[1])), { f: sampleShow.id, h: sampleShow.sid, w: 14949570, k: '0123456789ab' });
+    // 扫无关二维码
+    navUrl = ''; lastToast = '';
+    wx.scanCode = o => o.success({ result: 'https://example.com/unrelated' });
+    sched.scanCheckin();
+    assert.equal(navUrl, '', 'unrelated QR does not navigate');
+    assert.equal(lastToast, '这不是现场签到码');
+    // 网页端 vendor/qrcode.js 生成方案 B 二维码 → vendor/jsqr.js 解码还原
+    const qrMod = {};
+    require('vm').runInNewContext(fs.readFileSync(path.join(root, 'vendor/qrcode.js'), 'utf8'), { window: qrMod });
+    const jsQR = require('../vendor/jsqr.js');
+    const q = new qrMod.QRCodeLib.QRCode(-1, qrMod.QRCodeLib.ECL.L); q.addData(webQrUrl); q.make();
+    const nMod = q.getModuleCount(), pad = 4, cell = 4, side = (nMod + pad * 2) * cell;
+    const rgba = new Uint8ClampedArray(side * side * 4).fill(255);
+    for (let r = 0; r < nMod; r++) for (let c = 0; c < nMod; c++) if (q.isDark(r, c)) {
+      for (let dy = 0; dy < cell; dy++) for (let dx = 0; dx < cell; dx++) {
+        const idx4 = (((r + pad) * cell + dy) * side + ((c + pad) * cell + dx)) * 4;
+        rgba[idx4] = rgba[idx4 + 1] = rgba[idx4 + 2] = 0;
+      }
+    }
+    const decoded = jsQR(rgba, side, side, { inversionAttempts: 'dontInvert' });
+    assert(decoded && decoded.data === webQrUrl, 'vendor/jsqr.js decodes Scheme B check-in QR code cleanly');
   } finally {
     Date.now = realNow;
   }

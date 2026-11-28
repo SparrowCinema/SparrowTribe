@@ -253,3 +253,32 @@ html.ticket-style-dialog-open{overflow:hidden;overscroll-behavior:none;scrollbar
 .schedule-filterbar.ticket-style-filterbar{grid-template-columns:repeat(4,minmax(0,1fr))}
 .ticket-style-filterbar [data-ticket-filter="art-style"] b{white-space:normal;overflow-wrap:anywhere}
 @media(max-width:400px){.ticket-style-filterbar .schedule-filter{padding-inline:7px;gap:3px}.ticket-style-filterbar .schedule-filter svg{width:10px;height:10px}}
+/* 首页「排片表」右侧现场签到快捷入口 + 网页扫码弹窗（2026-11-28） */
+.sched-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 4px}
+.sched-head .sec{margin:0}
+.ci-home-btn{flex:none;display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 13px;border:1px solid color-mix(in srgb,var(--accent) 42%,var(--line));border-radius:999px;background:color-mix(in srgb,var(--accent) 7%,var(--surface));color:var(--accent);font:700 .8rem var(--f-body,inherit);line-height:1;cursor:pointer;white-space:nowrap;transition:background .18s,border-color .18s,transform .12s}
+.ci-home-btn svg{width:15px;height:15px;flex:none}
+.ci-home-btn:hover{background:color-mix(in srgb,var(--accent) 13%,var(--surface));border-color:var(--accent)}
+.ci-home-btn:active{transform:scale(.97)}
+.ci-home-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.ci-scan-modal{box-sizing:border-box;width:min(420px,calc(100vw - 32px));max-height:calc(100dvh - 32px);overflow:auto;padding:18px;border:1px solid var(--line);border-radius:18px;background:var(--surface);color:var(--fg);box-shadow:0 20px 80px #0005}
+.ci-scan-modal::backdrop{background:rgba(23,16,11,.68);backdrop-filter:blur(4px)}
+.ci-scan-modal header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+.ci-scan-modal h2{margin:0;font:800 1.15rem/1.3 var(--f-display,serif)}
+.ci-scan-close{flex:none;width:32px;height:32px;border:0;border-radius:50%;background:var(--chip,var(--bg));color:var(--muted);font-size:1.2rem;line-height:1;cursor:pointer}
+.ci-scan-box{position:relative;width:100%;aspect-ratio:4/3;border-radius:12px;overflow:hidden;background:#16120e;display:grid;place-items:center}
+.ci-scan-box video{width:100%;height:100%;object-fit:cover;display:block}
+.ci-scan-box.no-cam video,.ci-scan-box.no-cam .ci-scan-frame{display:none}
+.ci-scan-frame{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}
+.ci-scan-frame i{display:block;width:min(58%,200px);aspect-ratio:1;border:2px solid rgba(255,250,240,.85);border-radius:14px;box-shadow:0 0 0 999px rgba(16,12,8,.36)}
+.ci-scan-stat{position:absolute;inset:12px;display:grid;place-items:center;text-align:center;padding:12px;color:#fffaf0;font-size:.84rem;line-height:1.6;background:rgba(22,18,14,.72);border-radius:10px}
+.ci-scan-stat[hidden]{display:none}
+.ci-scan-hint{margin:10px 0 0;font-size:.8rem;line-height:1.6;color:var(--muted)}
+.ci-scan-acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.ci-scan-acts>*{flex:1 1 140px;justify-content:center;text-align:center}
+.ci-scan-file{display:inline-flex;align-items:center;justify-content:center;cursor:pointer;box-sizing:border-box}
+.ci-scan-tip{margin-top:14px;padding:11px 13px;border-radius:12px;border:1px dashed color-mix(in srgb,var(--teal) 50%,var(--line));background:color-mix(in srgb,var(--teal) 7%,var(--bg));font-size:.78rem;line-height:1.6;color:var(--muted)}
+.ci-scan-tip b{display:block;color:var(--teal);font-weight:700;margin-bottom:2px}
+.ci-scan-tip p{margin:0}
+@media(max-width:360px){.ci-home-btn{height:31px;padding:0 10px;font-size:.75rem}}
+

@@ -224,7 +224,7 @@ function schedule(){
   const tzNote = (vTz && !SparrowTZ.sameOffset(vTz, dayTz, now())) ? ` · ${tr("当地时间")} ${SparrowTZ.tzShort(dayTz, now())}` : "";
   main.innerHTML = `<section class="view gut">
     ${myTodayHTML()}
-    <h1 class="sec">排片表</h1><p class="sub">${cur?`${esc(cur.name)}${cur.city?` · ${esc(cur.city)}`:""} · `:""}${list.length?`${dateSpan(list)} · ${list.length} 场 · `:""}按日期查看，点击色块看影片</p>
+    <div class="sched-head"><h1 class="sec">排片表</h1><button type="button" class="ci-home-btn" data-checkin-scan aria-label="现场签到"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3"/><line x1="6" y1="12" x2="18" y2="12"/></svg><span>现场签到</span></button></div><p class="sub">${cur?`${esc(cur.name)}${cur.city?` · ${esc(cur.city)}`:""} · `:""}${list.length?`${dateSpan(list)} · ${list.length} 场 · `:""}按日期查看，点击色块看影片</p>
     ${scheduleFiltersHTML()}
     ${scheduleViewsHTML()}
     ${schedContextBarHTML(restN, accN)}
