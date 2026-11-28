@@ -43,7 +43,7 @@ function image(node,src){
 }
 
 Page({
-  data:{i:{},ps:'',ok:false,draft:{},front:true,frontImg:'',backImg:'',turnReq:{side:'front',n:0},edge:'',shine:'metal',fx:'none',layersF:[],layersB:[],custom:false,revealing:false,
+  data:{i:{},ps:'',ok:false,draft:{},front:true,frontImg:'',backImg:'',turnReq:{side:'front',n:0},tiltReq:{n:0},edge:'',shine:'metal',fx:'none',layersF:[],layersB:[],craftChips:[],custom:false,revealing:false,
     arts:[],artIndex:0,artStyleLabels:[],artStyleIndex:0,shows:[],showIdx:-1,existing:false,linked:false,loading:false,busy:true,artDirty:false,ocrBusy:false,ocrMode:'wx',ocrTone:'',ocrMsg:'',ocrCanRetryAi:false},
   onLoad(q){
     this._albumArtStyle=Art.normalize();
@@ -80,8 +80,30 @@ Page({
     this._agOff=Tix.onAutograph&&Tix.onAutograph(()=>{if(!this._ready||!this._draft)return;const fresh=Tix.build(this.data_,this.idx).tickets.find(r=>r.key===this._draft.key);if(fresh){this._draft.autographs=fresh.autographs||[];this.renderFaces();}});
     wx.setNavigationBarTitle({title:I.tr(original?'编辑票根':'新票根')});
   },
-  onShow(){CFG.chrome();},
-  onUnload(){this._ready=false;this._turn++;this._lastOcrImg=null;this.__cfgOff&&this.__cfgOff();this._agOff&&this._agOff();},
+  onShow(){CFG.chrome();this.startTilt();},
+  onHide(){this.stopTilt();},
+  onUnload(){this.stopTilt();this._ready=false;this._turn++;this._lastOcrImg=null;this.__cfgOff&&this.__cfgOff();this._agOff&&this._agOff();},
+  startTilt(){
+    if(!wx.startAccelerometer||!wx.onAccelerometerChange||this._tiltOn)return;
+    this._tiltOn=true;this._tiltN=0;this._tiltBx=null;this._tiltBy=null;this._tiltAt=0;
+    this._tiltCb=res=>{
+      if(!this._ready||!res)return;
+      const now=Date.now();if(now-this._tiltAt<110)return;this._tiltAt=now;
+      const x=Number(res.x)||0,y=Number(res.y)||0;
+      if(this._tiltBx===null){this._tiltBx=x;this._tiltBy=y;return;}
+      const dx=x-this._tiltBx,dy=y-this._tiltBy;
+      this._tiltBx+=dx*0.03;this._tiltBy+=dy*0.03;
+      const lit=Math.hypot(dx,dy)>0.06;
+      this.setData({tiltReq:{n:++this._tiltN,dy:Math.round(dx*26*10)/10,dx:Math.round(dy*20*10)/10,lit}});
+    };
+    try{wx.onAccelerometerChange(this._tiltCb);wx.startAccelerometer({interval:'ui'});}catch(e){this._tiltOn=false;}
+  },
+  stopTilt(){
+    if(!this._tiltOn)return;
+    this._tiltOn=false;
+    try{if(wx.offAccelerometerChange&&this._tiltCb)wx.offAccelerometerChange(this._tiltCb);wx.stopAccelerometer&&wx.stopAccelerometer();}catch(e){}
+    this._tiltCb=null;
+  },
   setup(row){
     if(row.art)row.art=artworkUrl(row.art);
     this._draft=row;
@@ -99,6 +121,7 @@ Page({
       artStyleIndex:Art.filmStyleOptions.findIndex(option=>option.id===style),
       arts:this._art.map((a,i)=>{const l=MyP.label(this.idx.F[row.filmId],a)||'海报 '+(i+1);return /^海报 \d+$/.test(l)?I.tr('海报')+' '+l.slice(3):I.tr(l);}),artIndex:Math.max(0,this._art.indexOf(row.art)),
       shows:this._shows.map(x=>`${x.date.slice(5).replace('-','/')} ${x.time} · ${x.venue}${x.hall?' '+x.hall:''}`),showIdx:this.showIndex(),
+      craftChips:R.craftSpec(row,I.tr).chips,
       shine:R.shineOf(row.look.finish).kind},()=>this.renderFaces());
   },
   showIndex(){const d=this._draft;return this._shows.findIndex(x=>x.date===d.date&&x.time===d.time&&x.venue===d.venue);},
@@ -122,19 +145,19 @@ Page({
     if(path&&turn===this._turn&&this._ready){this._cache.set(sig,path);if(this._cache.size>24)this._cache.delete(this._cache.keys().next().value);}
     return path;
   },
-  // 工艺反光层：每面最多三层——底箔反光、工艺组合里的烫印增效（同一张工艺遮罩）、隐形底纹（正面在海报上、遮罩从海报算出；背面铺满背面）。
+  // 工艺反光层：每面最多四层——底箔反光、最多两项烫印增效（同一张工艺遮罩）、隐形底纹（正面在海报上、遮罩从海报算出；背面铺满背面）。
   // 遮罩画在隐藏画布上转成 data URI 给 .te-fx 当 mask-image；尺寸小即可（210px 宽）
   async fxLayers(node,side,turn){
-    const row={...this._draft,artStyle:this._artStyle},base=R.fxOf(row.look.finish),extra=R.parseCraft(row.look.craft).foil.find(fx=>fx!==base);
+    const row={...this._draft,artStyle:this._artStyle},base=R.fxOf(row.look.finish),extras=R.parseCraft(row.look.craft).foil.filter(fx=>fx!==base);
     const sig=sigOf(row,side)+'¦fx';
     if(this._cache.has(sig))return this._cache.get(sig);
     const art=side==='front'&&row.art?await this._artImage:null;
     if(turn!==this._turn||!this._ready)return [];
     const w=210,h=Math.round(w*R.H/R.W),layers=[];
     const snap=paint=>{node.width=w;node.height=h;const ctx=node.getContext('2d');ctx.clearRect(0,0,w,h);try{return paint(ctx)?node.toDataURL('image/png'):'';}catch(e){return '';}};
-    if(base!=='none'||extra){
+    if(base!=='none'||extras.length){
       const m=snap(ctx=>R.foilMask(ctx,row,side,{x:0,y:0,w,h},stock,!!art));
-      if(m){if(base!=='none')layers.push({i:'b',fx:base,k:1,m});if(extra)layers.push({i:'e',fx:extra,k:.7,m});}
+      if(m){if(base!=='none')layers.push({i:'b',fx:base,k:1,m});extras.forEach((fx,idx)=>layers.push({i:'e'+idx,fx,k:idx?.6:.72,m}));}
     }
     if(art){
       let mask=null;try{mask=R.artMask(row,art,stock,w);}catch(e){mask=null;}
@@ -168,7 +191,7 @@ Page({
     const layersF=await this.fxLayers(node,'front',turn),layersB=await this.fxLayers(node,'back',turn);
     if(turn!==this._turn||!this._ready)return;
     const custom=R.lookSig(this._draft.look)!==R.lookSig(R.sanitize({...this._draft,look:null}).look);
-    const patch={busy:false,shine:kind,fx,layersF,layersB,custom,edge:R.edgeOf(this._draft),turnReq:{...this.data.turnReq,kind,fx}};
+    const patch={busy:false,shine:kind,fx,layersF,layersB,craftChips:R.craftSpec(this._draft,I.tr).chips,custom,edge:R.edgeOf(this._draft),turnReq:{...this.data.turnReq,kind,fx}};
     if(this._reveal==='pending'){
       this._reveal='running';this._turnN=(this._turnN||0)+1;patch.turnReq={side:'back',n:this._turnN,kind,fx,snap:1};patch.front=false;
       const key=this._draft.key;
@@ -362,7 +385,7 @@ Page({
       const node=await canvas(this,'te-export');if(!node)throw Error('canvas');
       const [art]=await Promise.all([side==='front'||both?image(node,row.art):null,TitleFont.ready()]);
       if(both){node.width=1440;node.height=Math.round(1440*R.SHOW_H/R.SHOW_W);R.drawShowcase(node.getContext('2d'),row,art,stock,{width:1440});}
-      else{node.width=R.W*3;node.height=R.H*3;const rect={x:0,y:0,w:node.width,h:node.height},ctx=node.getContext('2d');R.draw(ctx,row,side,art,rect,stock);R.bakeSheen(ctx,row,side,rect,stock,side==='front'&&!!art);}
+      else{node.width=R.W*3;node.height=R.H*3;const rect={x:0,y:0,w:node.width,h:node.height},ctx=node.getContext('2d');R.draw(ctx,row,side,art,rect,stock);R.bakeSheen(ctx,row,side,rect,stock,side==='front'&&!!art,-.62,side==='front'?art:null);}
       const file=await new Promise((resolve,reject)=>wx.canvasToTempFilePath({canvas:node,fileType:both?'jpg':'png',quality:.92,success:r=>resolve(r.tempFilePath),fail:reject},this));
       wx.hideLoading();this.setData({loading:false});
       if((side==='front'||both)&&row.art&&!art)say('海报读取失败，已用片名代替');

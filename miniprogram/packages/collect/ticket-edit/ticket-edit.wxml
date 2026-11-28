@@ -4,7 +4,7 @@
 <view wx:if="{{ok}}" class="wrap te-page">
   <view class="te-stage">
     <!-- 360° 转动：左右随便转、上下最多 65°，松手转回最近的正面或背面，轻点翻面（turn.wxs 在视图层跟手） -->
-    <view id="te-card" class="te-card3d {{revealing?'te-reveal':''}}" data-shine="{{shine}}" data-fx="{{fx}}" turn="{{turnReq}}" change:turn="{{T.request}}"
+    <view id="te-card" class="te-card3d {{revealing?'te-reveal':''}}" data-shine="{{shine}}" data-fx="{{fx}}" turn="{{turnReq}}" change:turn="{{T.request}}" tilt="{{tiltReq}}" change:tilt="{{T.tilt}}"
       bindtouchstart="{{T.start}}" catchtouchmove="{{T.move}}" bindtouchend="{{T.end}}" bindtouchcancel="{{T.end}}"
       aria-role="button" aria-label="{{L.t(i,'翻面')}}">
       <view class="te-rot" style="--edge:{{edge}}">
@@ -38,6 +38,12 @@
       <picker mode="selector" range="{{artStyleLabels}}" value="{{artStyleIndex}}" bindchange="pickArtStyle">
         <view class="te-style" hover-class="te-hv" role="button">{{L.t(i,'手绘风格')}}<text class="te-style-chevron" aria-hidden="true">⌄</text></view>
       </picker>
+    </view>
+    <view wx:if="{{craftChips.length}}" class="te-craft">
+      <view class="te-craft-chips">
+        <text wx:for="{{craftChips}}" wx:key="t" class="te-craft-chip k-{{item.k}}">{{item.t}}</text>
+      </view>
+      <text class="te-craft-tip">{{L.t(i,'转动或晃动票根可看隐形工艺与烫印流光')}}</text>
     </view>
     <text wx:if="{{custom}}" class="te-reset" bindtap="reset" role="button">{{L.t(i,'恢复盲盒款')}}</text>
   </view>

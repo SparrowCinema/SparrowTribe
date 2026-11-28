@@ -57,12 +57,19 @@
 /* 2026-11-22 工艺反光（参考视高迪数字增效）：只在工艺遮罩里显示，位置与强度由 ticketTurner 按角度写入 */
 .ticket-fx{position:absolute;inset:0;pointer-events:none;opacity:0;background-repeat:no-repeat;-webkit-mask-size:100% 100%;mask-size:100% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;mix-blend-mode:screen}
 .ticket-fx[data-fx=holo]{background-image:linear-gradient(115deg,#ff8ad8,#ffd36e,#7dffcf,#6fc3ff,#c49bff,#ff8ad8,#ffd36e,#7dffcf,#6fc3ff);background-size:300% 300%;mix-blend-mode:color-dodge}
+.ticket-fx[data-fx=holo-aurora]{background-image:linear-gradient(118deg,#1f7e8e,#7dffe0,#cefcb2,#8ca9ff,#f6a4fd,#1f7e8e,#7dffe0,#cefcb2,#8ca9ff);background-size:300% 300%;mix-blend-mode:color-dodge}
+.ticket-fx[data-fx=holo-prism]{background-image:linear-gradient(128deg,#eef3ff,#ffffff,#ffc2f3,#c4f6ff,#d2c8ff,#ffffff,#eef3ff,#ffc2f3,#c4f6ff);background-size:280% 280%;mix-blend-mode:color-dodge}
+.ticket-fx[data-fx=holo-solar]{background-image:linear-gradient(115deg,#d85a7a,#ff9b7d,#ffe07d,#fff7dc,#f3a2e6,#d85a7a,#ff9b7d,#ffe07d,#fff7dc);background-size:300% 300%;mix-blend-mode:color-dodge}
+.ticket-fx[data-fx=holo-opal]{background-image:linear-gradient(122deg,#e6c8f5,#ffe5f5,#fff8d8,#a6ece7,#dfd7ff,#ffe5f5,#fff8d8,#a6ece7);background-size:300% 300%;mix-blend-mode:color-dodge}
+.ticket-fx[data-fx=holo-cobalt]{background-image:linear-gradient(115deg,#4f7ee0,#7ccbff,#e8fbff,#9e9eff,#df9eff,#4f7ee0,#7ccbff,#e8fbff,#9e9eff);background-size:300% 300%;mix-blend-mode:color-dodge}
+.ticket-fx[data-fx=holo-unique]{background-image:linear-gradient(120deg,#3d68d8,#7cf3ff,#fff6c9,#ff9be6,#b6a4ff,#8dffd1,#3d68d8,#7cf3ff,#fff6c9);background-size:320% 320%;mix-blend-mode:color-dodge}
 .ticket-fx[data-fx=cast]{background-image:repeating-radial-gradient(circle at 50% 50%,#ffffff8c 0 1.5px,#fff0 2px 5px),linear-gradient(115deg,#ff8ad8,#ffd36e,#7dffcf,#6fc3ff,#c49bff,#ff8ad8,#ffd36e,#7dffcf,#6fc3ff);background-size:200% 200%,300% 300%;mix-blend-mode:color-dodge}
 .ticket-fx[data-fx=crystal]{background-image:linear-gradient(135deg,#ffc2ec,#fff4c2,#c2fbff,#d9c8ff,#ffc2ec,#fff4c2,#c2fbff),linear-gradient(105deg,#fff0 42%,#ffffffe6 50%,#fff0 58%);background-size:250% 250%,300% 100%}
 .ticket-fx[data-fx=sweep]{background-image:linear-gradient(105deg,#fff0 40%,#fffffff2 50%,#fff0 60%);background-size:300% 100%}
 .ticket-fx[data-fx=glitter]{background-image:linear-gradient(105deg,#fff0 44%,#fffffff2 50%,#fff0 56%),linear-gradient(75deg,#fff0 46%,#fff7d6b3 50%,#fff0 54%);background-size:300% 100%,300% 100%}
 .ticket-fx[data-fx=gloss]{background-image:radial-gradient(ellipse 45% 30% at 50% 50%,#ffffffd9,#fff0);background-size:200% 200%}
 .ticket-fx[data-fx=sense]{background-image:radial-gradient(ellipse 30% 18% at 50% 50%,#fffffff2,#fff0),linear-gradient(105deg,#fff0 40%,#ffffff80 50%,#fff0 60%);background-size:200% 200%,300% 100%}
+.ticket-fx[data-fx=blind]{background-image:linear-gradient(125deg,#5a4c3b00 32%,#5a4c3b5c 44%,#fffef8f2 50%,#5a4c3b47 56%,#5a4c3b00 68%);background-size:300% 100%;mix-blend-mode:hard-light}
 /* 海报 / 背面的隐形工艺（2026-11-22）：静止时看不见，转动时浮现；hard-light 混合，亮部暗部都看得出 */
 .ticket-fx[data-fx=a-gloss]{background-image:radial-gradient(ellipse 52% 36% at 50% 50%,#ffffff 0%,#ffffffb3 34%,#7f8ca366 60%,#7f8ca300 82%);background-size:220% 220%;mix-blend-mode:hard-light}
 .ticket-fx[data-fx=a-rim]{background-image:radial-gradient(ellipse 42% 28% at 50% 50%,#ffffff 0%,#ffffffcc 30%,#76839c80 58%,#76839c00 80%);background-size:220% 220%;mix-blend-mode:hard-light}
@@ -72,6 +79,12 @@
 .ticket-fx[data-fx=a-matte]{background-image:radial-gradient(ellipse 60% 40% at 50% 50%,#ffffff 0%,#ffffffa6 36%,#7f8ca359 62%,#7f8ca300 84%);background-size:220% 220%;mix-blend-mode:hard-light}
 .ticket-fx[data-fx=a-rainbow]{background-image:linear-gradient(115deg,#ff4fb8,#ffb300,#2fe0a8,#3a8cff,#a45cff,#ff4fb8,#ffb300,#2fe0a8,#3a8cff,#a45cff);background-size:400% 400%;mix-blend-mode:hard-light}
 .ticket-fx[data-fx=a-cateye]{background-image:linear-gradient(100deg,#7f8ca300 38%,#9fc4ff99 46%,#ffffff 50%,#ffd9a399 54%,#7f8ca300 62%);background-size:300% 100%;mix-blend-mode:hard-light}
+.te-craft{width:100%;max-width:340px;display:grid;gap:6px;padding-top:10px;border-top:1px solid var(--line-soft,var(--line));text-align:center}
+.te-craft-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:5px}
+.te-craft-chip{font-size:.72rem;line-height:1.3;padding:3px 9px;border-radius:999px;border:1px solid var(--line-soft,var(--line));background:var(--surface);color:var(--muted)}
+.te-craft-chip[data-k=finish],.te-craft-chip[data-k=extra]{color:var(--fg);border-color:color-mix(in srgb,var(--accent) 32%,var(--line))}
+.te-craft-chip[data-k=format]{color:var(--teal);border-color:color-mix(in srgb,var(--teal) 45%,var(--line));background:color-mix(in srgb,var(--teal) 8%,var(--surface))}
+.te-craft-tip{font-size:.7rem;color:var(--muted);opacity:.78}
 .ticket-blind-box{margin:0;padding:0;border:0;min-width:0;display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
 .ticket-blind-box legend{padding:0;margin:0 auto 8px;color:#f4ead4;font-size:.82rem;font-weight:700}
 .ticket-edit-head{margin:0 0 12px}

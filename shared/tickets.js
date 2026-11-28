@@ -21,11 +21,11 @@ const LATIN='"Barlow","Helvetica Neue",Arial,sans-serif';
 const WALL_PAGE=12;
 const finishes = {
   holo:    {label:"虹彩镭射箔", kind:"spectrum", stops:["#b58a59","#f5c1e6","#81ece0","#b5b9ff","#fff1a8","#c99aaa"], width:2.05},
-  aurora:  {label:"极光幻变箔", kind:"spectrum", stops:["#12516c","#7dffe0","#cefcb2","#8ca9ff","#f6a4fd","#296684"], width:2.6},
-  prism:   {label:"钻石棱镜箔", kind:"spectrum", stops:["#adb7db","#fffefd","#ffa8f4","#c1f5ff","#baacf9","#fffdf3","#8493b5"], width:2.45},
-  solar:   {label:"日珥赤焰箔", kind:"spectrum", stops:["#9f3660","#f68b8e","#ffdd82","#fff5d7","#ec9de9","#b65272"], width:2.35},
-  opal:    {label:"欧泊幻彩箔", kind:"spectrum", stops:["#ad8bbe","#ffdef2","#fdf6d0","#8de2dd","#d9d1ff","#849fb3"], width:2.1},
-  cobalt:  {label:"钴蓝电光箔", kind:"spectrum", stops:["#405eaa","#83cbff","#e1faff","#a6a4ff","#e4a3ff","#596dcc"], width:2.2},
+  aurora:  {label:"极光幻变箔", kind:"spectrum", fx:"holo-aurora", stops:["#12516c","#7dffe0","#cefcb2","#8ca9ff","#f6a4fd","#296684"], width:2.6},
+  prism:   {label:"钻石棱镜箔", kind:"spectrum", fx:"holo-prism", stops:["#adb7db","#fffefd","#ffa8f4","#c1f5ff","#baacf9","#fffdf3","#8493b5"], width:2.45},
+  solar:   {label:"日珥赤焰箔", kind:"spectrum", fx:"holo-solar", stops:["#9f3660","#f68b8e","#ffdd82","#fff5d7","#ec9de9","#b65272"], width:2.35},
+  opal:    {label:"欧泊幻彩箔", kind:"spectrum", fx:"holo-opal", stops:["#ad8bbe","#ffdef2","#fdf6d0","#8de2dd","#d9d1ff","#849fb3"], width:2.1},
+  cobalt:  {label:"钴蓝电光箔", kind:"spectrum", fx:"holo-cobalt", stops:["#405eaa","#83cbff","#e1faff","#a6a4ff","#e4a3ff","#596dcc"], width:2.2},
   gold:    {label:"香槟金箔", kind:"metal", stops:["#805535","#dfb974","#fff0bf","#a47544"], width:1.52},
   silver:  {label:"镜面银箔", kind:"metal", stops:["#72818f","#c1d5e0","#fafbfb","#8393a1"], width:1.62},
   copper:  {label:"玫瑰铜箔", kind:"metal", stops:["#7b4050","#d8898b","#ffdec2","#af676d"], width:1.7},
@@ -36,34 +36,38 @@ const finishes = {
   glitter: {label:"金葱闪粉", kind:"metal", fx:"glitter", stops:["#7d5a2e","#e9c77c","#fff6d6","#a87b3f"], width:1.7},
   sense:   {label:"立体光油", kind:"soft", fx:"sense", stops:["#a69f92","#e6e0d3","#fffdf6","#bdb5a5"], width:2.1},
   varnish: {label:"滴晶亮釉", kind:"soft", stops:["#8495a6","#b1c4c6","#f6f1e4","#9bb2a9"], width:1.95},
+  // 2026-11-28 新增物理工艺：无色击凸（Blind Emboss），不烫箔，只靠纸面浮雕与强侧光斜阴影成型
+  blind:   {label:"无色击凸", kind:"soft", fx:"blind", stops:["#8a7e6e","#d8cfc0","#fffaf0","#9c907f"], width:1.35},
   matte:   {label:"哑光压纹", kind:"soft", stops:["#9d8969","#c1ae8d","#a69273"], width:1.08},
   // 隐藏款专用（2026-11-22）：不进盲盒、不出现在款式选择里，只由典藏编号抽中（isHidden）
-  unique:  {label:"孤品流光箔", kind:"spectrum", hidden:true, stops:["#1d2b5e","#7cf3ff","#fff6c9","#ff9be6","#b6a4ff","#8dffd1","#1d2b5e"], width:2.5}
+  unique:  {label:"孤品流光箔", kind:"spectrum", fx:"holo-unique", hidden:true, stops:["#1d2b5e","#7cf3ff","#fff6c9","#ff9be6","#b6a4ff","#8dffd1","#1d2b5e"], width:2.5}
 };
 
-// 纸张（2026-11-21 重做）：只用柔和的高光与暖灰阴影，不再撒黑点、黑纤维。键名保留旧的 14 个（已保存的款式不失效），另加 6 种。
+// 纸张（2026-11-21 重做，2026-11-28 拉开手机端触感对比并新增银盐相纸 / 炭纹棉卡）：只用柔和的高光与暖灰阴影，不再撒黑点、黑纤维。
 // layers 里每一层是一种纸面工艺；strength 是整体浓淡；tint/warmth 是正面的纸色。
 const papers = {
-  cotton:     {label:"冷压水彩纸", strength:1, layers:[["mottle",{count:22,min:22,max:52,light:.55,hi:.08,sh:.035}],["tooth",{count:700,hi:.16}]]},
-  silk:       {label:"丝光绢纸", strength:1, layers:[["sheen",{hi:.10}],["lines",{dir:"d2",step:4,hi:.07,sh:.018}]]},
-  linen:      {label:"亚麻纹艺术纸", strength:1, layers:[["weave",{step:4,hi:.13,sh:.05}],["mottle",{count:10,min:30,max:60,light:.5,hi:.05,sh:.025}]]},
-  satin:      {label:"缎光珠光纸", strength:1, layers:[["sheen",{hi:.09,bands:2}],["tooth",{count:300,hi:.10}]]},
-  washi:      {label:"楮皮和纸", strength:1, layers:[["mottle",{count:12,min:26,max:56,light:.6,hi:.08,sh:.025}],["fibers",{count:46,len:46,hi:.22,sh:.03,width:.55,curl:.5}]]},
-  kraft:      {label:"精制牛皮卡", strength:1, tint:"#b28452", warmth:.16, layers:[["mottle",{count:16,min:20,max:44,light:.45,hi:.07,sh:.05}],["fibers",{count:70,len:12,hi:.16,sh:.035,width:.5,curl:.2}]]},
-  parchment:  {label:"小羊皮纸", strength:1, tint:"#d3ac6c", warmth:.12, layers:[["mottle",{count:26,min:18,max:60,light:.5,hi:.06,sh:.04}]]},
-  deckle:     {label:"手抄棉浆纸", strength:1, layers:[["mottle",{count:30,min:14,max:40,light:.55,hi:.08,sh:.04}],["fibers",{count:24,len:20,hi:.16,sh:0,width:.5,curl:.6}],["tooth",{count:500,hi:.14}]]},
-  leather:    {label:"荔枝压纹纸", strength:1, layers:[["cells",{step:10,size:4.4,hi:.20,sh:.07}]]},
-  crosshatch: {label:"斜纹布面纸", strength:1, layers:[["lines",{dir:"d1",step:5,hi:.12,sh:.04}],["lines",{dir:"d2",step:5,hi:.07,sh:.025}]]},
-  ribbed:     {label:"罗纹压线纸", strength:1, layers:[["ribs",{step:5,hi:.20,sh:.06}]]},
-  fleck:      {label:"洒金宣纸", strength:1, tint:"#efe2c4", warmth:.12, layers:[["fibers",{count:26,len:40,hi:.14,sh:0,width:.45,curl:.4}],["flakes",{count:16,size:2.6,colors:["#f3d58b","#d8a64a","#fff1c2"],alpha:.85}]]},
-  laid:       {label:"帘纹书纸", strength:1, layers:[["laid",{step:4,chain:40,hi:.14,sh:.035}],["mottle",{count:8,min:30,max:60,light:.5,hi:.05,sh:.02}]]},
-  frost:      {label:"霜面珠光卡", strength:1, tint:"#e1eaf1", warmth:.2, layers:[["sheen",{hi:.08,bands:1}],["tooth",{count:900,hi:.12}]]},
-  mica:       {label:"云母银箔纸", strength:1, layers:[["mottle",{count:12,min:24,max:50,light:.6,hi:.07,sh:.02}],["flakes",{count:30,size:1.8,colors:["#ffffff","#e7eef4","#d6dde4"],alpha:.8}]]},
-  xuan:       {label:"生宣", strength:1, tint:"#f3ead6", warmth:.14, layers:[["mottle",{count:14,min:28,max:64,light:.65,hi:.09,sh:.02}],["fibers",{count:30,len:60,hi:.12,sh:.02,width:.4,curl:.7}]]},
-  moire:      {label:"水印波纹纸", strength:1, layers:[["moire",{gap:8,hi:.10,sh:.03}]]},
-  velvet:     {label:"丝绒雾面纸", strength:1, layers:[["tooth",{count:2600,hi:.09,size:.7}],["mottle",{count:8,min:40,max:70,light:.5,hi:.04,sh:.02}]]},
-  felt:       {label:"毛毡纹水彩纸", strength:1, layers:[["felt",{count:150,hi:.13,sh:.05}],["mottle",{count:10,min:30,max:60,light:.5,hi:.05,sh:.02}]]},
-  vellum:     {label:"半透描图纸", strength:1, tint:"#e8eef0", warmth:.18, layers:[["sheen",{hi:.08,bands:1}],["mottle",{count:8,min:40,max:70,light:.7,hi:.06,sh:.015}]]}
+  cotton:     {label:"冷压水彩纸", strength:1, layers:[["mottle",{count:24,min:22,max:52,light:.55,hi:.10,sh:.05}],["tooth",{count:760,hi:.18}]]},
+  silk:       {label:"丝光绢纸", strength:1, layers:[["sheen",{hi:.13}],["lines",{dir:"d2",step:4,hi:.09,sh:.028}]]},
+  linen:      {label:"亚麻纹艺术纸", strength:1, layers:[["weave",{step:4,hi:.19,sh:.08}],["mottle",{count:10,min:30,max:60,light:.5,hi:.06,sh:.03}]]},
+  satin:      {label:"缎光珠光纸", strength:1, layers:[["sheen",{hi:.12,bands:2}],["tooth",{count:360,hi:.12}]]},
+  washi:      {label:"楮皮和纸", strength:1, layers:[["mottle",{count:12,min:26,max:56,light:.6,hi:.09,sh:.03}],["fibers",{count:56,len:48,hi:.26,sh:.04,width:.6,curl:.55}]]},
+  kraft:      {label:"精制牛皮卡", strength:1, tint:"#b28452", warmth:.24, layers:[["mottle",{count:18,min:20,max:44,light:.45,hi:.08,sh:.065}],["fibers",{count:84,len:14,hi:.18,sh:.055,width:.55,curl:.25}]]},
+  parchment:  {label:"小羊皮纸", strength:1, tint:"#d3ac6c", warmth:.16, layers:[["mottle",{count:28,min:18,max:60,light:.5,hi:.08,sh:.055}]]},
+  deckle:     {label:"手抄棉浆纸", strength:1, layers:[["mottle",{count:30,min:14,max:40,light:.55,hi:.10,sh:.05}],["fibers",{count:32,len:22,hi:.18,sh:.02,width:.55,curl:.6}],["tooth",{count:540,hi:.16}]]},
+  leather:    {label:"荔枝压纹纸", strength:1, layers:[["cells",{step:10,size:4.4,hi:.26,sh:.11}]]},
+  crosshatch: {label:"斜纹布面纸", strength:1, layers:[["lines",{dir:"d1",step:5,hi:.15,sh:.055}],["lines",{dir:"d2",step:5,hi:.09,sh:.035}]]},
+  ribbed:     {label:"罗纹压线纸", strength:1, layers:[["ribs",{step:5,hi:.28,sh:.11}]]},
+  fleck:      {label:"洒金宣纸", strength:1, tint:"#efe0be", warmth:.18, layers:[["fibers",{count:32,len:42,hi:.16,sh:.015,width:.45,curl:.45}],["flakes",{count:28,size:3.1,colors:["#f4d47c","#d8a23d","#fff3c6"],alpha:.92}]]},
+  laid:       {label:"帘纹书纸", strength:1, layers:[["laid",{step:4,chain:36,hi:.18,sh:.055}],["mottle",{count:8,min:30,max:60,light:.5,hi:.06,sh:.025}]]},
+  frost:      {label:"霜面珠光卡", strength:1, tint:"#dde8f1", warmth:.24, layers:[["sheen",{hi:.11,bands:1}],["tooth",{count:1100,hi:.16}]]},
+  mica:       {label:"云母银箔纸", strength:1, layers:[["mottle",{count:12,min:24,max:50,light:.6,hi:.08,sh:.025}],["flakes",{count:48,size:2.2,colors:["#ffffff","#e7eff6","#cfd9e3"],alpha:.9}]]},
+  xuan:       {label:"生宣", strength:1, tint:"#f3e8d0", warmth:.18, layers:[["mottle",{count:16,min:28,max:64,light:.65,hi:.11,sh:.03}],["fibers",{count:38,len:60,hi:.16,sh:.03,width:.45,curl:.7}]]},
+  moire:      {label:"水印波纹纸", strength:1, layers:[["moire",{gap:8,hi:.16,sh:.06}]]},
+  velvet:     {label:"丝绒雾面纸", strength:1, layers:[["tooth",{count:3000,hi:.12,size:.75}],["mottle",{count:10,min:40,max:70,light:.5,hi:.06,sh:.035}]]},
+  felt:       {label:"毛毡纹水彩纸", strength:1, layers:[["felt",{count:170,hi:.18,sh:.075}],["mottle",{count:10,min:30,max:60,light:.5,hi:.06,sh:.03}]]},
+  vellum:     {label:"半透描图纸", strength:1, tint:"#e4ecef", warmth:.24, layers:[["sheen",{hi:.11,bands:1}],["mottle",{count:8,min:40,max:70,light:.7,hi:.08,sh:.02}]]},
+  silvergel:  {label:"银盐相纸", strength:1, tint:"#e6eaee", warmth:.14, layers:[["sheen",{hi:.13,bands:2}],["tooth",{count:1500,hi:.15,size:.8}]]},
+  charcoal:   {label:"炭纹棉卡", strength:1, tint:"#d6cfc3", warmth:.22, layers:[["mottle",{count:18,min:20,max:48,light:.45,hi:.10,sh:.07}],["lines",{dir:"h",step:6,hi:.11,sh:.045}]]}
 };
 
 // Label, back shadow/midtone/edge/ink, front paper/stub/ink.
@@ -100,11 +104,11 @@ const motifs = {
 };
 
 const families = {
-  festival: {palette:["burgundy","honey","ember","rust","peach","crimson"], finish:["holo","gold","copper","solar","glitter","cast"], texture:["cotton","laid","parchment","deckle","fleck","felt"], motif:["rosette","rays","arches"]},
-  region: {palette:["jade","navy","cyan","teal","fern","cobalt"], finish:["silver","aurora","opal","pearl","crystal"], texture:["silk","washi","frost","xuan","moire","vellum"], motif:["waves","orbit","contour"]},
-  theme: {palette:["violet","indigo","rose","iris","plum","cobalt"], finish:["prism","opal","cobalt","varnish","cast","crystal","sense"], texture:["linen","crosshatch","satin","leather","velvet","mica"], motif:["facets","rays","orbit"]},
-  venue: {palette:["moss","clay","olive","peach","sepia","rust"], finish:["copper","gold","varnish","matte","sense","glitter"], texture:["kraft","washi","cotton","felt","xuan","laid"], motif:["arches","contour","frames"]},
-  cinema: {palette:["ink","graphite","navy","lemon","sepia","indigo"], finish:["silver","matte","cobalt","pearl","sense"], texture:["ribbed","frost","satin","velvet","vellum","mica"], motif:["frames","rays","facets"]}
+  festival: {palette:["burgundy","honey","ember","rust","peach","crimson"], finish:["holo","gold","copper","solar","glitter","cast","blind"], texture:["cotton","laid","parchment","deckle","fleck","felt"], motif:["rosette","rays","arches"]},
+  region: {palette:["jade","navy","cyan","teal","fern","cobalt"], finish:["silver","aurora","opal","pearl","crystal"], texture:["silk","washi","frost","xuan","moire","vellum","silvergel"], motif:["waves","orbit","contour"]},
+  theme: {palette:["violet","indigo","rose","iris","plum","cobalt"], finish:["prism","opal","cobalt","varnish","cast","crystal","sense"], texture:["linen","crosshatch","satin","leather","velvet","mica","charcoal"], motif:["facets","rays","orbit"]},
+  venue: {palette:["moss","clay","olive","peach","sepia","rust"], finish:["copper","gold","varnish","matte","sense","glitter","blind"], texture:["kraft","washi","cotton","felt","xuan","laid","charcoal"], motif:["arches","contour","frames"]},
+  cinema: {palette:["ink","graphite","navy","lemon","sepia","indigo"], finish:["silver","matte","cobalt","pearl","sense","blind"], texture:["ribbed","frost","satin","velvet","vellum","mica","silvergel"], motif:["frames","rays","facets"]}
 };
 
 const programmeLooks = {
@@ -283,9 +287,9 @@ function frame(surface) {
 // 盲盒搭配规则（2026-11-22）：配色分冷暖，底箔只从和配色调子相配的里面抽（暖色配金铜、冷色配银与冷调镭射、紫粉配珠光棱镜）
 const TONE={warm:["burgundy","honey","ember","rust","peach","crimson","clay","sepia","lemon","olive","moss"],
   cool:["jade","navy","cyan","teal","fern","cobalt","ink","graphite","indigo"],mauve:["violet","rose","iris","plum"]};
-const TONE_FINISH={warm:["gold","copper","solar","holo","glitter","sense","varnish","matte","pearl"],
-  cool:["silver","aurora","opal","pearl","cobalt","crystal","prism","cast","sense","varnish","matte"],
-  mauve:["prism","opal","pearl","crystal","copper","holo","cast","sense","varnish"]};
+const TONE_FINISH={warm:["gold","copper","solar","holo","glitter","sense","varnish","blind","matte","pearl"],
+  cool:["silver","aurora","opal","pearl","cobalt","crystal","prism","cast","sense","varnish","blind","matte"],
+  mauve:["prism","opal","pearl","crystal","copper","holo","cast","sense","varnish","blind"]};
 const toneOf=palette=>Object.keys(TONE).find(t=>TONE[t].includes(palette))||"cool";
 function matchFinish(list,palette) {const ok=TONE_FINISH[toneOf(palette)];const hit=list.filter(f=>ok.includes(f));return hit.length?hit:list;}
 function defaults(record) {
@@ -309,7 +313,7 @@ const options={finish:finishes,texture:papers,palette:palettes,motif:motifs};
 // 编码 craft = "<烫印增效字母>-<海报字母>[<背面字母>]<开关>"，如 "gs-uaBv"：闪粉 + 立体光油；海报隐形高光UV；背面隐形菱格纹；盲文；日期可变数据烫印。
 // 背面字母省略时（2026-11-22 之前的编码）背面跟海报同一个字母。2026-11-22 起海报与背面各自独立抽，25 × 25 种隐形组合。
 // 默认按票根 id 稳定随机（同一张票根永远一样），「随机换一款」会一起换；改过的存在票根的 x 字段（shared/psync.js）。
-// 组合数：11 种烫印增效 × 7 种海报增效 × 4 种开关 = 308 种，再乘 16 种底箔、各家族的配色 / 纸张 / 纹样。
+// 组合数：11 种烫印增效 × 7 种海报增效 × 4 种开关 = 308 种，再乘 17 种底箔、各家族的配色 / 纸张 / 纹样。
 const CRAFT_FOIL={s:"sense",g:"glitter",c:"crystal",h:"cast"};
 const CRAFT_ART={u:"uv",r:"rim",o:"holo",k:"sparkle",b:"band",d:"dust",w:"rainbow",p:"pixel",q:"ripple",m:"moire",l:"lenticular",i:"glint",n:"cateye",
   a:"argyle",c:"cloud",e:"meander",f:"perf",g:"firework",h:"honeycomb",j:"caustic",s:"beam",t:"diag",x:"contour",y:"postmark",z:"frames"};
@@ -340,11 +344,42 @@ function parseCraft(code) {
   const art=CRAFT_ART[rest[0]]||null,back=CRAFT_ART[rest[1]]||art;
   return {foil:[...foil].map(c=>CRAFT_FOIL[c]),art,back,braille:rest.includes("B"),vde:rest.includes("v")};
 }
+// 放映制式联动工艺（2026-11-28）：按放映版本自动附带专属物理细节，不额外占存储
+function formatCraft(record) {
+  const fmt=String((record && record.format) || "");
+  if (!fmt) return null;
+  if (/35mm|70mm|16mm|胶片|film/i.test(fmt)) return {id:"film",label:"胶片齿孔烫银"};
+  if (/imax|杜比|dolby|cinity|luxe|巨幕|laser|激光/i.test(fmt)) return {id:"plf",label:"巨幕棱镜微边"};
+  if (/4k|2k|修复|restor|remaster/i.test(fmt)) return {id:"restored",label:"银盐微粒压纹"};
+  return null;
+}
 function craftLabel(look,tr=x=>x) {
   const c=parseCraft(look?.craft),parts=[finishes[look?.finish]?.label||""];
   c.foil.forEach(k=>parts.push(CRAFT_LABEL[k]));if (c.art) parts.push("海报"+CRAFT_LABEL[c.art]);if (c.back) parts.push("背面"+(CRAFT_LABEL["back-"+c.back]||CRAFT_LABEL[c.back]));
   if (c.braille) parts.push(CRAFT_LABEL.braille);if (c.vde) parts.push(CRAFT_LABEL.vde);
   return parts.filter(Boolean).map(tr).join(" + ");
+}
+// 工艺铭牌结构化信息（网页 / 小程序详情页与导出海报共用）
+function craftSpec(record,tr=x=>x) {
+  const look=(record && record.look) || {},c=parseCraft(look.craft);
+  const paper=papers[look.texture]?.label ? tr(papers[look.texture].label) : "";
+  const finish=finishes[look.finish]?.label ? tr(finishes[look.finish].label) : "";
+  const extras=c.foil.map(k=>tr(CRAFT_LABEL[k]||"")).filter(Boolean);
+  const art=c.art ? tr(CRAFT_LABEL[c.art]||"") : "";
+  const back=c.back ? tr(CRAFT_LABEL["back-"+c.back]||CRAFT_LABEL[c.back]||"") : "";
+  const fx=formatCraft(record);
+  const formatFx=fx ? {id:fx.id,label:tr(fx.label)} : null;
+  const chips=[];
+  if (paper) chips.push({k:"paper",t:paper});
+  if (finish) chips.push({k:"finish",t:finish});
+  for (const e of extras) chips.push({k:"extra",t:e});
+  if (formatFx) chips.push({k:"format",t:formatFx.label});
+  if (art) chips.push({k:"art",t:tr("正面")+" · "+art});
+  if (back) chips.push({k:"back",t:tr("背面")+" · "+back});
+  if (c.braille) chips.push({k:"opt",t:tr(CRAFT_LABEL.braille)});
+  if (c.vde) chips.push({k:"opt",t:tr(CRAFT_LABEL.vde)});
+  const summary=[paper,finish,...extras,formatFx?.label,art?tr("正面")+art:"",back?tr("背面")+back:"",c.braille?tr(CRAFT_LABEL.braille):""].filter(Boolean).join(" · ");
+  return {paper,finish,extras,art,back,braille:c.braille,vde:c.vde,formatFx,chips,summary};
 }
 const lookSig=look=>packLook(look)+"|"+(look?.craft||"");
 
@@ -917,7 +952,7 @@ function glowBand(grad,peak,center=.5,spread=.16,rgb="255,255,255") {
   for (let k=0;k<=24;k++) {const t=k/24,a=peak*Math.exp(-(((t-center)/spread)**2));grad.addColorStop(t,`rgba(${rgb},${a.toFixed(3)})`);}
   return grad;
 }
-function embossTitle(surface,title,x,y,{accent,dark,finish,scale=1,createCanvas}) {
+function embossTitle(surface,title,x,y,{accent,dark,finish,scale=1,createCanvas,stock}) {
   const value=title.replace(/\s+/gu," ").trim(),max=359,metal=finishes[finish]||finishes.matte;
   let size=55;
   surface.save();
@@ -928,6 +963,21 @@ function embossTitle(surface,title,x,y,{accent,dark,finish,scale=1,createCanvas}
   const width=Math.min(max,surface.measureText(value).width),left=x-width/2,top=y-size*.86,bottom=y+size*.12;
   const fill=(color,dx,dy)=>{surface.fillStyle=color;surface.fillText(value,x+dx,y+dy,max);};
   if (surface.__foilMask) {surface.__solid("#fff");surface.fillText(value,x,y,max);surface.restore();return;}
+  if (finish==="blind") {
+    // 无色击凸：不印油墨，只靠纸面本色 + 强烈斜侧光浮雕（右下深阴影 + 左上纸面亮脊）成型
+    const paperBase=stock||"#f3ecdd";
+    surface.shadowColor="rgba(35,24,14,.32)";surface.shadowBlur=6*scale;surface.shadowOffsetX=2*scale;surface.shadowOffsetY=3.2*scale;
+    fill(mixHex(dark,paperBase,.42),0,0);
+    surface.shadowColor="transparent";surface.shadowBlur=0;surface.shadowOffsetX=0;surface.shadowOffsetY=0;
+    surface.globalAlpha=.72;fill(dark,1.1,2);
+    surface.globalAlpha=.96;fill("rgba(255,253,246,.98)",-1.1,-1.4);
+    surface.globalAlpha=1;
+    const face=smoothGradient(surface.createLinearGradient(left,top,left+width*.35,bottom+size*.2),[[0,"#fffdf7"],[.45,paperBase],[1,mixHex(paperBase,dark,.82)]]);
+    fill(face,0,0);
+    surface.lineJoin="round";surface.strokeStyle=dark;surface.globalAlpha=.24;surface.lineWidth=.8;
+    surface.strokeText(value,x,y,max);
+    surface.restore();return;
+  }
   // 1 柔和投影（shadowBlur 以设备像素计，按缩放换算）
   surface.shadowColor="rgba(46,32,20,.34)";surface.shadowBlur=5*scale;surface.shadowOffsetX=1.2*scale;surface.shadowOffsetY=2.6*scale;
   fill(dark,0,0);
@@ -1239,10 +1289,11 @@ function draw(surface,record,side,image,rect,createCanvas,light) {
     surface.strokeStyle=foilGradient(surface,x,y+h,x+w,y,finish);
     surface.lineWidth=metal.width;surface.strokeRect(x-.8,y-.8,w+1.6,h+1.6);
     surface.lineWidth=.48;surface.strokeRect(x-3,y-3,w+6,h+6);
+    drawFormatCraft(surface,record,x,y,w,h,finish);
     drawAutographs(surface,record,x,y,w,h);
     if (record.limited) drawLimitedSeal(surface,record,x+w-46,y+h-46,dark);
     if (record.hidden) drawHiddenTag(surface,x+12,y+12,dark);
-    embossTitle(surface,record.title,W/2,506,{accent,dark,finish,scale:rect.w/W,createCanvas});
+    embossTitle(surface,record.title,W/2,506,{accent,dark,finish,scale:rect.w/W,createCanvas,stock});
     if (record.subtitle && record.subtitle.toLowerCase()!==record.title.toLowerCase()) {
       text(surface,record.subtitle.toUpperCase(),W/2,540,{size:12.5,weight:600,font:LATIN,spacing:2.2,align:"center",ink:"#5b5046",max:340});
     }
@@ -1261,6 +1312,7 @@ function draw(surface,record,side,image,rect,createCanvas,light) {
       text(surface,value,left,768,{size:20,weight:700,max:width-10});
     });
     if (fields.length) rule(surface,792,accent+"58");
+    if (record.slam) drawDrySeal(surface,W-34,H-34,accent,dark);
     // 底部专题 / 影展标签：烫印细框胶囊，单元名跟在后面
     const tag=[record.programme,record.section].filter(Boolean).join(" · ");
     if (tag) {
@@ -1283,12 +1335,58 @@ function draw(surface,record,side,image,rect,createCanvas,light) {
   if (!surface.__foilMask && createCanvas && rect.w>=CRAFT_MIN && foilLayers(record.look).length) foilTexture(surface,record,side,rect,createCanvas,!!image);
 }
 
+// 放映制式联动工艺细节（2026-11-28）：胶片场带烫银齿孔、巨幕场带棱镜角标、修复版带银盐微刻角线
+function drawFormatCraft(surface,record,x,y,w,h,finish) {
+  const fc=formatCraft(record);
+  if (!fc) return;
+  surface.save();
+  if (fc.id==="film") {
+    const foil=foilGradient(surface,x-14,y,x+w+14,y+h,"silver");
+    surface.fillStyle=foil;surface.strokeStyle=foil;surface.globalAlpha=.86;
+    for (let py=y+16;py<=y+h-24;py+=24) {
+      for (const px of [x-11,x+w+6]) {
+        surface.beginPath();
+        if (surface.roundRect) surface.roundRect(px,py,5,9,1.2); else surface.rect(px,py,5,9);
+        surface.fill();
+      }
+    }
+  } else if (fc.id==="plf") {
+    const foil=foilGradient(surface,x-8,y-8,x+w+8,y+h+8,"cobalt");
+    surface.strokeStyle=foil;surface.lineWidth=1.9;surface.globalAlpha=.92;
+    const arm=15,o=6.5;
+    for (const [cx,cy,sx,sy] of [[x-o,y-o,1,1],[x+w+o,y-o,-1,1],[x-o,y+h+o,1,-1],[x+w+o,y+h+o,-1,-1]]) {
+      surface.beginPath();surface.moveTo(cx+sx*arm,cy);surface.lineTo(cx,cy);surface.lineTo(cx,cy+sy*arm);surface.stroke();
+    }
+  } else if (fc.id==="restored") {
+    const foil=foilGradient(surface,x-6,y-6,x+w+6,y+h+6,finish==="blind"?"pearl":finish);
+    surface.strokeStyle=foil;surface.fillStyle=foil;surface.lineWidth=.9;surface.globalAlpha=.78;
+    for (const [cx,cy,sx,sy] of [[x-6,y-6,1,1],[x+w+6,y-6,-1,1],[x-6,y+h+6,1,-1],[x+w+6,y+h+6,-1,-1]]) {
+      surface.beginPath();surface.moveTo(cx+sx*9,cy);surface.lineTo(cx,cy);surface.lineTo(cx,cy+sy*9);surface.stroke();
+      surface.beginPath();surface.arc(cx-sx*2.5,cy-sy*2.5,1.1,0,Math.PI*2);surface.fill();
+    }
+  }
+  surface.restore();
+}
+// 满贯正面钢印压痕（无色干压圆环，不遮文字）
+function drawDrySeal(surface,cx,cy,accent,dark) {
+  if (surface.__foilMask) return;
+  surface.save();surface.translate(cx,cy);
+  for (const [dx,dy,c,a] of [[-.8,-.8,"rgba(255,253,246,.85)",.85],[.9,.9,dark,.24]]) {
+    surface.strokeStyle=c;surface.globalAlpha=a;
+    surface.lineWidth=1.2;surface.beginPath();surface.arc(dx,dy,18,0,Math.PI*2);surface.stroke();
+    surface.lineWidth=.6;surface.beginPath();surface.arc(dx,dy,13.5,0,Math.PI*2);surface.stroke();
+  }
+  surface.globalAlpha=.34;surface.fillStyle=accent;surface.textAlign="center";surface.textBaseline="middle";
+  surface.font=`700 7.5px ${SERIF}`;surface.fillText("满贯",0,0.5);
+  surface.restore();
+}
+
 // 工艺遮罩：把票根再画一遍，只留下用烫印渐变画的部分（烫印框线、纹章、专题胶囊）和压凸片名，涂成白色，其余全透明。
 // 用 Proxy 包住画布：烫印渐变换成白色，其他颜色换成透明，不画图片和阴影，所以版式永远和票面一致，不用另写一份。
 // 网页 / 小程序转动时在这个范围里叠随角度变化的工艺反光；闪粉、水晶、全息纹理的静态纹理也画在这里面。
 function foilMask(ctx,record,side,rect,createCanvas,hasArt) {
   const craft=parseCraft(record.look?.craft);
-  if (typeof Proxy!=="function" || !FOIL || (fxOf(record.look?.finish)==="none" && !foilLayers(record.look).length && !craft.braille && !craft.vde)) return false;
+  if (typeof Proxy!=="function" || !FOIL || (fxOf(record.look?.finish)==="none" && !foilLayers(record.look).length && !craft.braille && !craft.vde && !formatCraft(record))) return false;
   const styles={fillStyle:"#000",strokeStyle:"#000"},stack=[],bound={};
   const clear="rgba(0,0,0,0)",map=v=>v && typeof v==="object" && FOIL.has(v) ? "#fff" : clear;
   const proxy=new Proxy(ctx,{
@@ -1312,9 +1410,9 @@ function foilMask(ctx,record,side,rect,createCanvas,hasArt) {
   try {draw(proxy,record,side,null,rect,createCanvas);return true;} catch (error) {return false;}
 }
 
-// 静态工艺纹理（导出图里也有）：底箔自带的（闪粉 / 水晶 / 全息纹理）+ 工艺组合里的烫印增效，逐层画在工艺遮罩范围里。
+// 静态工艺纹理（导出图里也有）：底箔自带的（闪粉 / 水晶 / 全息纹理 / 无色击凸）+ 工艺组合里的烫印增效，逐层画在工艺遮罩范围里。
 // 缩略图（宽 < CRAFT_MIN，收藏册的格子都小于它）看不出纹理，不画，省得收藏册几百张票根多画一遍。
-const TEXTURED={glitter:1,crystal:1,cast:1},CRAFT_MIN=320;
+const TEXTURED={glitter:1,crystal:1,cast:1,sense:1,blind:1},CRAFT_MIN=320;
 function foilLayers(look) {
   const own=fxOf(look?.finish),list=TEXTURED[own]?[own]:[];
   for (const key of parseCraft(look?.craft).foil) if (!list.includes(key)) list.push(key);
@@ -1331,15 +1429,24 @@ function foilTexture(surface,record,side,rect,createCanvas,hasArt) {
     try {layer=createCanvas(w,h);} catch (error) {return;}
     const ctx=layer.getContext("2d"),rand=seeded(hashAppearance((record.id||record.key||"")+side+fx));
     ctx.save();ctx.scale(k,k);
-    if (fx==="sense") {
-      // 立体光油：遮罩往左上错开一点留下亮边、往右下留暗边，中间再罩一层薄光
+    if (fx==="sense" || fx==="blind") {
+      // 立体光油 / 无色击凸：左上留亮边 + 右下留暗边（双边浮雕），立体光油额外罩一层薄亮光
+      const d=fx==="blind"?1.2:1;
       ctx.restore();ctx.save();
-      ctx.globalAlpha=.75;ctx.drawImage(mask,-1,-1);ctx.globalCompositeOperation="destination-out";ctx.drawImage(mask,0,0);
-      ctx.globalCompositeOperation="source-over";ctx.globalAlpha=.28;ctx.drawImage(mask,0,0);
+      ctx.globalAlpha=fx==="blind"?.85:.78;ctx.drawImage(mask,-d,-d);ctx.globalCompositeOperation="destination-out";ctx.drawImage(mask,0,0);
+      let shade;
+      try {shade=createCanvas(w,h);} catch (e) {shade=null;}
+      if (shade) {
+        const sc=shade.getContext("2d");
+        sc.drawImage(mask,d,d);sc.globalCompositeOperation="source-in";sc.fillStyle="#1c140e";sc.fillRect(0,0,w,h);
+        sc.globalCompositeOperation="destination-out";sc.drawImage(mask,0,0);
+        ctx.globalCompositeOperation="source-over";ctx.globalAlpha=fx==="blind"?.42:.32;ctx.drawImage(shade,0,0);
+      }
+      if (fx==="sense") {ctx.globalCompositeOperation="source-over";ctx.globalAlpha=.24;ctx.drawImage(mask,0,0);}
     } else craftTexture(ctx,fx,rand);
     ctx.restore();
-    if (fx!=="sense") {ctx.globalCompositeOperation="destination-in";ctx.drawImage(mask,0,0);}
-    surface.save();surface.globalAlpha=fx==="cast"?.6:fx==="sense"?.9:.85;surface.drawImage(layer,rect.x,rect.y,rect.w,rect.h);surface.restore();
+    if (fx!=="sense" && fx!=="blind") {ctx.globalCompositeOperation="destination-in";ctx.drawImage(mask,0,0);}
+    surface.save();surface.globalAlpha=fx==="cast"?.6:fx==="sense"?.9:fx==="blind"?.92:.85;surface.drawImage(layer,rect.x,rect.y,rect.w,rect.h);surface.restore();
   }
 }
 // 纹理本身（票根坐标，W × H）：全息纹理＝同心衍射环 + 斜纹；闪粉＝明暗相间的亮片 + 星芒；水晶＝彩色钻面
@@ -1663,17 +1770,28 @@ function drawGoldLeaf(surface,record) {
   }
   surface.restore();
 }
-// 影展限定：正面海报右下角的烫金圆形限定章
+// 影展限定：正面海报右下角的火漆浮雕烫金限定章
 function drawLimitedSeal(surface,record,cx,cy,dark) {
   const year=(record.programme.match(/^\d{4}/)||[])[0]||record.date.slice(0,4);
   surface.save();surface.translate(cx,cy);surface.rotate(-.18);
-  surface.fillStyle=dark+"d8";surface.beginPath();surface.arc(0,0,34,0,Math.PI*2);surface.fill();
+  // 火漆外缘（柔和波浪厚边 + 立体投影，不进工艺遮罩）
+  surface.save();
+  surface.shadowColor="rgba(16,8,6,.42)";surface.shadowBlur=6;surface.shadowOffsetX=1.5;surface.shadowOffsetY=2.5;
+  surface.fillStyle=dark+"e6";surface.beginPath();
+  for (let i=0;i<=48;i++) {
+    const a=i/48*Math.PI*2,r=34.5+1.4*Math.sin(a*12)+.7*Math.cos(a*5);
+    if (i) surface.lineTo(Math.cos(a)*r,Math.sin(a)*r); else surface.moveTo(Math.cos(a)*r,Math.sin(a)*r);
+  }
+  surface.closePath();surface.fill();
+  surface.shadowColor="transparent";surface.shadowBlur=0;surface.shadowOffsetX=0;surface.shadowOffsetY=0;
+  surface.strokeStyle="rgba(255,244,214,.28)";surface.lineWidth=1;surface.beginPath();surface.arc(-.6,-.6,33.2,Math.PI*.85,Math.PI*1.85);surface.stroke();
+  surface.restore();
   const foil=foilGradient(surface,-34,-34,34,34,"gold");
   surface.strokeStyle=foil;surface.fillStyle=foil;
-  surface.lineWidth=1.4;surface.beginPath();surface.arc(0,0,32,0,Math.PI*2);surface.stroke();
-  surface.lineWidth=.6;surface.beginPath();surface.arc(0,0,28,0,Math.PI*2);surface.stroke();
-  arcText(surface,record.limitedName||"影展",22.5,false,6.6,Math.PI*1.05,SERIF);
-  arcText(surface,"LIMITED · "+year,22.5,true,5,Math.PI*.8,MONO);
+  surface.lineWidth=1.4;surface.beginPath();surface.arc(0,0,31.5,0,Math.PI*2);surface.stroke();
+  surface.lineWidth=.6;surface.beginPath();surface.arc(0,0,27.5,0,Math.PI*2);surface.stroke();
+  arcText(surface,record.limitedName||"影展",22.2,false,6.6,Math.PI*1.05,SERIF);
+  arcText(surface,"LIMITED · "+year,22.2,true,5,Math.PI*.8,MONO);
   surface.textAlign="center";surface.font=`900 15px ${SERIF}`;surface.fillText("限定",0,5.5);
   surface.restore();
 }
@@ -1806,36 +1924,71 @@ function drawEmblem(surface,record,finish,year) {
   surface.restore();
 }
 
-// ——— 导出：烘焙金属反光（2026-11-22）———
-// 静止图片看不出转动时的闪光，导出时固定一个角度，把反光烘焙进烫印范围（工艺遮罩）：
-// 烫金 / 烫银 / 烫铜是一道斜向亮带，镭射类是一道彩虹光，闪粉 / 亮釉 / 立体光油是柔和的白光，哑光不加。海报和纸面不受影响。
+// ——— 导出：烘焙金属与隐形工艺反光（2026-11-22 / 2026-11-28 升级）———
+// 静止图片看不出转动时的闪光，导出时固定一个角度，把反光烘焙进烫印范围（工艺遮罩）以及隐形工艺范围（海报/背面隐形底纹）：
+// 各光谱底箔按自身色系出光；哑光底箔叠加闪粉/光油时也会烘焙增效光；海报与背面的隐形光油/全息纹以柔和斜光隐约浮现。
 const SHEEN_RAINBOW=["#ff8fd8","#ffe27a","#9dffb0","#8ff0ff","#b9a2ff","#ff8fd8"];
-function bakeSheen(surface,record,side,rect,createCanvas,hasArt,angle=-.62) {
-  const fx=fxOf(record.look?.finish);
-  if (fx==="none" || !createCanvas || rect.w<CRAFT_MIN) return;
+const SHEEN_PALETTES={
+  "holo-aurora":["#54d8c8","#8dffdc","#d8ffb8","#8eb8ff","#ebadff","#54d8c8"],
+  "holo-prism":["#ffffff","#f6f8ff","#ffc6f2","#c6f8ff","#d5ccff","#ffffff"],
+  "holo-solar":["#ff7d8e","#ffba6b","#fff0a8","#fff9df","#f2a3e8","#ff7d8e"],
+  "holo-opal":["#ffdef2","#fdf6d0","#9cebe5","#dcd4ff","#ffe5f4","#fdf6d0"],
+  "holo-cobalt":["#5d9dff","#8ad8ff","#e8fbff","#a8a6ff","#dc9eff","#5d9dff"],
+  "holo-unique":["#68e8ff","#fff6c9","#ff9be6","#b8a6ff","#8effd2","#68e8ff"]
+};
+function bakeSheen(surface,record,side,rect,createCanvas,hasArt,angle=-.62,image=null) {
+  if (!createCanvas || rect.w<CRAFT_MIN) return;
+  const baseFx=fxOf(record.look?.finish),extraFx=parseCraft(record.look?.craft).foil[0]||"none";
+  const fx=baseFx!=="none"?baseFx:extraFx;
   const w=Math.max(1,Math.round(Math.min(rect.w,1100))),h=Math.max(1,Math.round(w*H/W));
-  let mask,layer;
-  try {mask=createCanvas(w,h);layer=createCanvas(w,h);} catch (error) {return;}
-  if (!foilMask(mask.getContext("2d"),record,side,{x:0,y:0,w,h},createCanvas,hasArt)) return;
-  const ctx=layer.getContext("2d"),len=Math.hypot(w,h),cx=w*(side==="front"?.36:.62),cy=h*(side==="front"?.42:.38);
+  const len=Math.hypot(w,h),cx=w*(side==="front"?.36:.62),cy=h*(side==="front"?.42:.38);
   const dx=Math.cos(angle)*len/2,dy=Math.sin(angle)*len/2;
-  const g=ctx.createLinearGradient(cx-dx,cy-dy,cx+dx,cy+dy);
-  if (fx==="holo" || fx==="cast" || fx==="crystal") {
-    g.addColorStop(0,"rgba(255,255,255,0)");
-    SHEEN_RAINBOW.forEach((c,i)=>g.addColorStop(.3+i*.08,c));
-    g.addColorStop(.82,"rgba(255,255,255,0)");g.addColorStop(1,"rgba(255,255,255,0)");
-  } else {
-    const soft=fx!=="sweep";
-    g.addColorStop(0,"rgba(255,255,255,0)");g.addColorStop(.38,"rgba(255,255,255,0)");
-    g.addColorStop(.47,`rgba(255,255,255,${soft?.35:.75})`);g.addColorStop(.5,`rgba(255,255,255,${soft?.5:1})`);g.addColorStop(.54,`rgba(255,255,255,${soft?.3:.6})`);
-    g.addColorStop(.66,"rgba(255,255,255,0)");g.addColorStop(1,"rgba(255,255,255,0)");
+  if (fx!=="none") {
+    let mask,layer;
+    try {mask=createCanvas(w,h);layer=createCanvas(w,h);} catch (error) {mask=null;layer=null;}
+    if (mask && layer && foilMask(mask.getContext("2d"),record,side,{x:0,y:0,w,h},createCanvas,hasArt)) {
+      const ctx=layer.getContext("2d"),g=ctx.createLinearGradient(cx-dx,cy-dy,cx+dx,cy+dy);
+      const pal=SHEEN_PALETTES[fx]||((fx==="holo"||fx==="cast"||fx==="crystal")?SHEEN_RAINBOW:null);
+      if (pal) {
+        g.addColorStop(0,"rgba(255,255,255,0)");
+        pal.forEach((c,i)=>g.addColorStop(.3+i*.08,c));
+        g.addColorStop(.82,"rgba(255,255,255,0)");g.addColorStop(1,"rgba(255,255,255,0)");
+      } else {
+        const soft=fx!=="sweep" && fx!=="blind";
+        g.addColorStop(0,"rgba(255,255,255,0)");g.addColorStop(.38,"rgba(255,255,255,0)");
+        g.addColorStop(.47,`rgba(255,255,255,${soft?.35:.75})`);g.addColorStop(.5,`rgba(255,255,255,${soft?.5:1})`);g.addColorStop(.54,`rgba(255,255,255,${soft?.3:.6})`);
+        g.addColorStop(.66,"rgba(255,255,255,0)");g.addColorStop(1,"rgba(255,255,255,0)");
+      }
+      ctx.fillStyle=g;ctx.fillRect(0,0,w,h);
+      ctx.fillStyle=fx==="blind"?"rgba(255,253,245,.08)":"rgba(255,255,255,.12)";ctx.fillRect(0,0,w,h);
+      ctx.globalCompositeOperation="destination-in";ctx.drawImage(mask,0,0);
+      surface.save();surface.globalCompositeOperation="screen";surface.globalAlpha=fx==="sweep"?.85:pal?.64:fx==="blind"?.42:.52;
+      surface.drawImage(layer,rect.x,rect.y,rect.w,rect.h);surface.restore();
+    }
   }
-  ctx.fillStyle=g;ctx.fillRect(0,0,w,h);
-  // 亮带外还留一层很淡的底光，整片烫印都带一点金属的亮
-  ctx.fillStyle="rgba(255,255,255,.12)";ctx.fillRect(0,0,w,h);
-  ctx.globalCompositeOperation="destination-in";ctx.drawImage(mask,0,0);
-  surface.save();surface.globalCompositeOperation="screen";surface.globalAlpha=fx==="sweep"?.85:fx==="holo"||fx==="cast"||fx==="crystal"?.6:.5;
-  surface.drawImage(layer,rect.x,rect.y,rect.w,rect.h);surface.restore();
+  // 隐形工艺（正面海报 / 背面底纹）在导出图里烘焙一道柔和斜光，让静止晒图也能看到若隐若现的猫眼光/全息水印/胶片齿孔
+  try {
+    const iw=Math.max(120,Math.round(Math.min(w,420))),ih=Math.round(iw*H/W);
+    const invMask=side==="front" ? (image ? artMask(record,image,createCanvas,iw) : null) : backMask(record,createCanvas,iw);
+    if (invMask) {
+      const inv=createCanvas(iw,ih),ic=inv.getContext("2d"),ilen=Math.hypot(iw,ih);
+      const icx=iw*(side==="front"?.54:.44),icy=ih*(side==="front"?.34:.48),idx=Math.cos(angle+.28)*ilen/2,idy=Math.sin(angle+.28)*ilen/2;
+      const ig=ic.createLinearGradient(icx-idx,icy-idy,icx+idx,icy+idy);
+      const holoInv=/holo|rainbow|pearl/.test(invMask.fx||"");
+      if (holoInv) {
+        ig.addColorStop(0,"rgba(255,255,255,0)");
+        SHEEN_RAINBOW.forEach((c,i)=>ig.addColorStop(.28+i*.085,c));
+        ig.addColorStop(.82,"rgba(255,255,255,0)");ig.addColorStop(1,"rgba(255,255,255,0)");
+      } else {
+        ig.addColorStop(0,"rgba(255,255,255,0)");ig.addColorStop(.32,"rgba(255,255,255,0)");
+        ig.addColorStop(.5,"rgba(255,255,255,.92)");ig.addColorStop(.68,"rgba(255,255,255,0)");ig.addColorStop(1,"rgba(255,255,255,0)");
+      }
+      ic.fillStyle=ig;ic.fillRect(0,0,iw,ih);
+      ic.globalCompositeOperation="destination-in";ic.drawImage(invMask,0,0,iw,ih);
+      surface.save();surface.globalCompositeOperation=side==="front"?"hard-light":"screen";surface.globalAlpha=side==="front"?(holoInv?.32:.36):(holoInv?.26:.28);
+      surface.drawImage(inv,rect.x,rect.y,rect.w,rect.h);surface.restore();
+    }
+  } catch (error) {}
 }
 
 // ——— 导出：正反面合成图「片名海报」（2026-11-22）———
@@ -1892,7 +2045,7 @@ function drawShowcase(surface,record,art,createCanvas,opts={}) {
     frame(surface);surface.fillStyle="#000";surface.fillRect(0,0,W,H);surface.restore();
     const hasArt=r.side==="front" && !!art;
     draw(surface,record,r.side,r.side==="front"?art:null,{x:r.x,y:r.y,w:r.w,h:r.h},createCanvas);
-    bakeSheen(surface,record,r.side,{x:r.x,y:r.y,w:r.w,h:r.h},createCanvas,hasArt);
+    bakeSheen(surface,record,r.side,{x:r.x,y:r.y,w:r.w,h:r.h},createCanvas,hasArt,-.62,r.side==="front"?art:null);
   }
   // 撕线缺口处重画底图（缺口在票根坐标 (0,TEAR) 与 (W,TEAR)，半径 NOTCH）
   surface.save();surface.beginPath();
@@ -1915,6 +2068,13 @@ function drawShowcase(surface,record,art,createCanvas,opts={}) {
   // 徽记（隐藏款 / 影展限定 / 满贯）：片名信息下方一行金色小字
   const badges=badgesOf(record);
   if (badges.length) {surface.textAlign="left";surface.fillStyle="#e9c77c";fitFont(surface,"✦ "+badges.join("  ✦ "),600,30,SANS,1000);surface.fillText("✦ "+badges.join("  ✦ "),L,ty+135);}
+  // 工艺铭牌：纸张 · 底箔 · 增效 · 隐形工艺
+  const spec=craftSpec(record);
+  if (spec.summary) {
+    surface.textAlign="left";surface.fillStyle=white(.46);
+    fitFont(surface,spec.summary,400,24,SANS,1000);
+    surface.fillText(spec.summary,L,ty+(badges.length?188:132));
+  }
   surface.textAlign="right";
   const serial=formatSerial(record),ed=editionLines(record);
   if (record.issue) {
@@ -1986,6 +2146,6 @@ function drawWall(surface,records,side,images,caption,createCanvas,title,maxWidt
 }
 
 const shineOf=key=>{const f=finishes[key]||finishes.matte;return {kind:f.kind,fx:fxOf(key),highlight:f.stops[f.stops.length-2]};};
-return {autographKey,pendingAutograph,applyAutograph,attachAutographs,collectSig,guestLine,drawAutographs,checkinURL,checkinParse,checkinScene,checkinSceneParse,checkinPlan,applyCheckin,isHidden,HIDDEN_RATE,editionClose,EDITION_GRACE,pendingEdition,applyEdition,decorate,setQR,verifyURL,editionLines,badgesOf,drawShowcase,bakeSheen,SHOW_W,SHOW_H,serialOf,serialValid,formatSerial,entrySerial,pendingIssue,applyIssue,issueText,ISSUE_BATCH,W,H,TITLE_FAMILY,edgeOf,foilMask,fxOf,artMask,backMask,parseCraft,craftLabel,lookSig,foilLayers,WALL_PAGE,MOSAIC_MAX,FACETS,BADGES,badgeKeys,options:labelOptions(),sanitize,read,sorted,defaults,randomLook,shineOf,draw,wallLayout,drawWall,
+return {autographKey,pendingAutograph,applyAutograph,attachAutographs,collectSig,guestLine,drawAutographs,checkinURL,checkinParse,checkinScene,checkinSceneParse,checkinPlan,applyCheckin,isHidden,HIDDEN_RATE,editionClose,EDITION_GRACE,pendingEdition,applyEdition,decorate,setQR,verifyURL,editionLines,badgesOf,drawShowcase,bakeSheen,SHOW_W,SHOW_H,serialOf,serialValid,formatSerial,entrySerial,pendingIssue,applyIssue,issueText,ISSUE_BATCH,W,H,TITLE_FAMILY,edgeOf,foilMask,fxOf,artMask,backMask,parseCraft,formatCraft,craftLabel,craftSpec,lookSig,foilLayers,WALL_PAGE,MOSAIC_MAX,FACETS,BADGES,badgeKeys,options:labelOptions(),sanitize,read,sorted,defaults,randomLook,shineOf,draw,wallLayout,drawWall,
   ticketKey,parseKey,cleanStore,mergeStore,packLook,unpackLook,normArt,viewings,build,reconcile,draft,entryFrom,migrateV1,filterTickets,facetCounts,groupByMonth,swatch};
 });
