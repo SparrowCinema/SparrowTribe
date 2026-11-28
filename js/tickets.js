@@ -1218,6 +1218,121 @@ function checkinDone(box,top,key){
     '<button class="primary-button vf-go" id="ci-open">'+tr("查看我的典藏票根")+'</button>');
   document.getElementById("ci-open")?.addEventListener("click",()=>{location.hash="#ticket-wall";setTimeout(()=>{const r=ticketAll().tickets.find(x=>x.key===key);if(r)ticketOpen(r);},450);});
 }
+// 首页「现场签到」扫码弹窗（2026-11-28）：支持浏览器摄像头/相册识别方案 B 方形二维码，并提示圆形微信小程序码请直接用微信扫一扫
+let ciQrDetP=null;
+function ciQrDetector(){
+  if(ciQrDetP)return ciQrDetP;
+  ciQrDetP=(async()=>{
+    if(typeof window.BarcodeDetector==="function"){
+      try{
+        const fmts=await window.BarcodeDetector.getSupportedFormats();
+        if(Array.isArray(fmts)&&fmts.includes("qr_code")){
+          const bd=new window.BarcodeDetector({formats:["qr_code"]});
+          return async src=>{const hits=await bd.detect(src);return hits&&hits[0]&&hits[0].rawValue||"";};
+        }
+      }catch(e){}
+    }
+    await loadLib("jsqr");
+    const cv=document.createElement("canvas"),cx=cv.getContext("2d",{willReadFrequently:true});
+    return async src=>{
+      if(typeof window.jsQR!=="function")return "";
+      const sw=src.videoWidth||src.naturalWidth||src.width||0,sh=src.videoHeight||src.naturalHeight||src.height||0;
+      if(!sw||!sh)return "";
+      const sc=Math.min(1,720/Math.max(sw,sh)),w=Math.max(1,Math.round(sw*sc)),h=Math.max(1,Math.round(sh*sc));
+      if(cv.width!==w||cv.height!==h){cv.width=w;cv.height=h;}
+      cx.drawImage(src,0,0,w,h);
+      const hit=window.jsQR(cx.getImageData(0,0,w,h).data,w,h,{inversionAttempts:"dontInvert"});
+      return hit&&hit.data||"";
+    };
+  })().catch(()=>{ciQrDetP=null;return null;});
+  return ciQrDetP;
+}
+function openCheckinScanner(){
+  let dlg=document.getElementById("ci-scan-modal");
+  if(dlg)dlg.remove();
+  dlg=document.createElement("dialog");
+  dlg.id="ci-scan-modal";
+  dlg.className="ci-scan-modal";
+  dlg.setAttribute("aria-labelledby","ci-scan-title");
+  dlg.innerHTML=`<header><h2 id="ci-scan-title">${esc(tr("现场签到"))}</h2><button type="button" class="ci-scan-close" aria-label="${esc(tr("关闭"))}">×</button></header>
+    <div class="ci-scan-box"><video playsinline muted autoplay></video><div class="ci-scan-frame" aria-hidden="true"><i></i></div><div class="ci-scan-stat">${esc(tr("正在启动相机…"))}</div></div>
+    <p class="ci-scan-hint">${esc(tr("对准现场屏幕上的方形签到二维码，识别后自动跳转完成盖章与领票。"))}</p>
+    <div class="ci-scan-acts"><button type="button" class="secondary-button" data-ci-cam hidden>${esc(tr("重新开启相机"))}</button><label class="secondary-button ci-scan-file">${esc(tr("从相册识别二维码"))}<input type="file" accept="image/*" hidden></label></div>
+    <div class="ci-scan-tip"><b>${esc(tr("现场若是圆形微信小程序码"))}</b><p>${esc(tr("浏览器无法识别微信小程序码，请直接打开微信「扫一扫」扫描大屏，一步进入小程序完成签到。"))}</p></div>`;
+  document.body.appendChild(dlg);
+  const video=dlg.querySelector("video"),stat=dlg.querySelector(".ci-scan-stat"),box=dlg.querySelector(".ci-scan-box"),camBtn=dlg.querySelector("[data-ci-cam]"),fileIn=dlg.querySelector('input[type="file"]');
+  let stream=null,timer=0,closed=false,busy=false,badAt=0;
+  const setStat=(msg,hideVideo)=>{stat.textContent=msg;stat.hidden=!msg;if(hideVideo!==undefined)box.classList.toggle("no-cam",!!hideVideo);};
+  const stop=()=>{if(timer){clearTimeout(timer);timer=0;}if(stream){stream.getTracks().forEach(t=>{try{t.stop();}catch(e){}});stream=null;}try{video.srcObject=null;}catch(e){}};
+  const handleCode=raw=>{
+    const c=TE.checkinParse(raw);
+    if(!c){
+      const nowMs=Date.now();
+      if(nowMs-badAt>1600){badAt=nowMs;toast(tr("这不是现场签到码"));}
+      return false;
+    }
+    const target="#checkin="+[c.f,c.h,c.w,c.k].map(encodeURIComponent).join("~");
+    dlg.close();
+    location.hash=target;
+    return true;
+  };
+  const loop=async detect=>{
+    if(closed||!stream)return;
+    if(!busy&&video.readyState>=2){
+      busy=true;
+      try{const raw=await detect(video);if(raw&&handleCode(raw))return;}catch(e){}
+      busy=false;
+    }
+    if(!closed&&stream)timer=setTimeout(()=>loop(detect),200);
+  };
+  const startCam=async()=>{
+    stop();camBtn.hidden=true;setStat(tr("正在启动相机…"),false);
+    if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){
+      setStat(tr("当前浏览器不支持直接调用相机，可点下方从相册识别二维码，或用微信/手机相机直接扫大屏。"),true);
+      return;
+    }
+    try{
+      const [s,detect]=await Promise.all([
+        navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:"environment"}},audio:false}),
+        ciQrDetector()
+      ]);
+      if(closed){s.getTracks().forEach(t=>t.stop());return;}
+      stream=s;video.srcObject=s;await video.play().catch(()=>{});
+      if(!detect){setStat(tr("扫码组件加载失败，请稍后重试或用微信扫一扫。"),true);stop();camBtn.hidden=false;return;}
+      setStat("",false);
+      loop(detect);
+    }catch(e){
+      if(closed)return;
+      setStat(tr("未能开启相机（可能未授权或非安全连接），可从相册选图识别，或直接用微信扫一扫。"),true);
+      camBtn.hidden=false;
+    }
+  };
+  camBtn.addEventListener("click",startCam);
+  fileIn.addEventListener("change",async()=>{
+    const f=fileIn.files&&fileIn.files[0];fileIn.value="";
+    if(!f)return;
+    const detect=await ciQrDetector();
+    if(!detect){toast(tr("扫码组件加载失败，请稍后重试"));return;}
+    const url=URL.createObjectURL(f);
+    try{
+      const img=await new Promise((ok,no)=>{const im=new Image();im.onload=()=>ok(im);im.onerror=no;im.src=url;});
+      const raw=await detect(img);
+      if(!raw){toast(tr("未在图片中识别到方形二维码；若为圆形小程序码请用微信扫一扫"));return;}
+      handleCode(raw);
+    }catch(e){toast(tr("无法读取这张图片"));}
+    finally{URL.revokeObjectURL(url);}
+  });
+  const onHash=()=>{if(dlg.open)dlg.close();};
+  window.addEventListener("hashchange",onHash);
+  dlg.querySelector(".ci-scan-close").addEventListener("click",()=>dlg.close());
+  dlg.addEventListener("click",e=>{if(e.target===dlg)dlg.close();});
+  dlg.addEventListener("close",()=>{closed=true;stop();window.removeEventListener("hashchange",onHash);dlg.remove();});
+  dlg.showModal();
+  startCam();
+}
+document.addEventListener("click",e=>{
+  if(e.target.closest("[data-checkin-scan]")){openCheckinScanner();}
+});
 // 主办方页面
 let ciHostTimer=0;
 function checkinHostPage(){

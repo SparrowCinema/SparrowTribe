@@ -6,6 +6,7 @@ const Lib = require('../../utils/library.js');
 const Screenings = require('../../utils/screenings.js');
 const Stats = require('../../utils/stats.js');
 const Remind = require('../../utils/remind.js');
+const TixCheck = require('../../utils/tickets.js');
 const t = I.tr;
 // 多选：pf / city / vf 是 'all' 或逗号连接的多个 id（同一筛选内为「或」）
 const sl = Lib.list, sh = Lib.has;
@@ -197,6 +198,21 @@ Page({
     const key = e.currentTarget.dataset.key, on = plan.toggle(key);
     wx.showToast({ title: t(on ? '已加入排片' : '已移出排片'), icon: 'none' });
     if (on) { const s = ((app.globalData.data || {}).shows || []).find(x => U.keyOf(x) === key); if (s) Remind.ask({ kind: 'show', key, film: s.id }, true); }
+  },
+  // 首页「现场签到」快捷扫码（2026-11-28）：兼容方案 A 微信小程序码与方案 B 网页二维码，识别后直接进入现场认证页
+  scanCheckin() {
+    wx.scanCode({
+      onlyFromCamera: true,
+      success: res => {
+        const path = (res && res.path) || '', result = (res && res.result) || '';
+        const raw = (TixCheck.checkinSceneParse(path) && path)
+          || (TixCheck.checkinSceneParse(result) && result)
+          || (TixCheck.checkinParse(result) && result)
+          || '';
+        if (!raw) { wx.showToast({ title: t('这不是现场签到码'), icon: 'none' }); return; }
+        wx.navigateTo({ url: '/pages/checkin/checkin?q=' + encodeURIComponent(raw) });
+      }
+    });
   },
   onShareAppMessage() { return { title: t('麻雀观影护照 · 影展排片与观影日程'), path: '/pages/schedule/schedule' }; },
   onShareTimeline() { return { title: t('麻雀观影护照 · 影展排片与观影日程') }; }

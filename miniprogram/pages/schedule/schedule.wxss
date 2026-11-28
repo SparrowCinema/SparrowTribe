@@ -164,3 +164,16 @@
 .ctx-chip .ctx-n{font-size:calc(18 * var(--fr));color:var(--muted)}
 .ctx-chip.on{background:var(--fg);color:var(--bg);border-color:var(--fg)}
 .ctx-chip.on .ctx-n{color:var(--bg);opacity:.72}
+/* 首页「排片表」右侧现场签到快捷入口（2026-11-28） */
+.sched-head{display:flex;align-items:center;justify-content:space-between;gap:calc(16 * var(--r));margin:calc(32 * var(--r)) 0 calc(4 * var(--r))}
+.sched-head .h2{margin:0}
+.ci-home-btn{flex:none;display:inline-flex;align-items:center;gap:calc(10 * var(--r));height:calc(62 * var(--r));padding:0 calc(22 * var(--r));border:calc(2 * var(--r)) solid rgba(142,42,34,.42);border-radius:calc(99 * var(--r));background:rgba(142,42,34,.07);color:var(--accent);font-size:calc(21 * var(--fr));font-weight:700;line-height:1;box-sizing:border-box}
+.ci-home-btn.hv{background:rgba(142,42,34,.15)}
+.ci-scan-ic{position:relative;width:calc(26 * var(--r));height:calc(26 * var(--r));flex:none}
+.ci-c{position:absolute;width:calc(8 * var(--r));height:calc(8 * var(--r));border-color:currentColor;border-style:solid;border-width:0;box-sizing:border-box}
+.ci-tl{left:0;top:0;border-top-width:calc(3 * var(--r));border-left-width:calc(3 * var(--r));border-top-left-radius:calc(3 * var(--r))}
+.ci-tr{right:0;top:0;border-top-width:calc(3 * var(--r));border-right-width:calc(3 * var(--r));border-top-right-radius:calc(3 * var(--r))}
+.ci-bl{left:0;bottom:0;border-bottom-width:calc(3 * var(--r));border-left-width:calc(3 * var(--r));border-bottom-left-radius:calc(3 * var(--r))}
+.ci-br{right:0;bottom:0;border-bottom-width:calc(3 * var(--r));border-right-width:calc(3 * var(--r));border-bottom-right-radius:calc(3 * var(--r))}
+.ci-bar{position:absolute;left:calc(2 * var(--r));right:calc(2 * var(--r));top:50%;height:calc(3 * var(--r));margin-top:calc(-1.5 * var(--r));background:currentColor;border-radius:calc(2 * var(--r))}
+

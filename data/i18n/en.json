@@ -16912,6 +16912,20 @@
     "盲压画幅角标": "Blind-pressed frame marks",
     "典藏票根正面新增防伪光油、凹压针孔与盲压暗记": "Collector's ticket front adds security varnish, perforated tear line & blind mark",
     "票根正面非海报区域新增副券隐形防伪光油、撕线凹压针孔、右上角徽标烫印统一与信息区无色盲压暗记，转动观摩与导出图均同步呈现。": "Non-poster front areas now feature invisible stub security varnish, debossed tear perforations, matching top-right foil badges, and a paper-tone blind-pressed info mark — visible both when tilting and in exported images.",
-    "拖动或轻晃手机看烫印流光与副券防伪光油等隐形工艺，轻点翻面；票根下方可看纸张、底箔、副券光油、盲压暗记与制式专属工艺铭牌。": "Drag or tilt your phone to see color-matched foil sheen and invisible finishes including stub security varnish, tap to flip, and inspect the paper, foil, stub varnish, blind mark, and format craft nameplate below."
+    "拖动或轻晃手机看烫印流光与副券防伪光油等隐形工艺，轻点翻面；票根下方可看纸张、底箔、副券光油、盲压暗记与制式专属工艺铭牌。": "Drag or tilt your phone to see color-matched foil sheen and invisible finishes including stub security varnish, tap to flip, and inspect the paper, foil, stub varnish, blind mark, and format craft nameplate below.",
+    "正在启动相机…": "Starting camera…",
+    "对准现场屏幕上的方形签到二维码，识别后自动跳转完成盖章与领票。": "Point at the square check-in QR code on the venue screen to stamp your passport and claim your ticket.",
+    "重新开启相机": "Restart camera",
+    "从相册识别二维码": "Scan QR from photo",
+    "现场若是圆形微信小程序码": "Seeing a round WeChat Mini Program code?",
+    "浏览器无法识别微信小程序码，请直接打开微信「扫一扫」扫描大屏，一步进入小程序完成签到。": "Web browsers can't scan WeChat Mini Program codes. Open WeChat Scan directly to check in in one step.",
+    "当前浏览器不支持直接调用相机，可点下方从相册识别二维码，或用微信/手机相机直接扫大屏。": "Camera access isn't available in this browser. Pick a QR photo below, or scan the screen with WeChat / your phone camera.",
+    "扫码组件加载失败，请稍后重试或用微信扫一扫。": "QR scanner failed to load. Please try again or scan with WeChat.",
+    "未能开启相机（可能未授权或非安全连接），可从相册选图识别，或直接用微信扫一扫。": "Couldn't open the camera (permission denied or non-HTTPS). Pick a QR photo below or scan directly with WeChat.",
+    "扫码组件加载失败，请稍后重试": "QR scanner failed to load. Please try again.",
+    "未在图片中识别到方形二维码；若为圆形小程序码请用微信扫一扫": "No square QR code found in this photo. For round Mini Program codes, scan with WeChat.",
+    "首页「排片表」新增「现场签到」快捷入口": "Homepage Schedule adds On-site Check-in shortcut",
+    "小程序与网站首页「排片表」右侧新增「现场签到」扫码按钮：小程序一键扫小程序码或网页码直接认证，网站支持相机或相册识别方形签到二维码并提示圆形小程序码用微信直扫。": "A new On-site Check-in scan button sits next to the Schedule heading on both Mini Program and Web: scan Mini Program or web codes in one tap in WeChat, or use the browser camera/photo QR scanner on the web.",
+    "在放映现场可直接用微信扫主办方的签到小程序码，或在首页「排片表」右侧点「现场签到」扫码认证：自动盖章、出票根并标「现场认证」，映后嘉宾的签名也会出现在票面上。": "Scan the host's check-in code directly with WeChat or tap On-site Check-in next to Schedule on the home screen to stamp your passport, issue a foil-marked ticket, and receive post-screening guest autographs."
   }
 }
