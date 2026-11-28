@@ -209,7 +209,25 @@ const flush=async()=>{for(let n=0;n<20;n++){await new Promise(r=>setImmediate(r)
   assert(page.data.shows.length>0);
   page.chooseShow({detail:{value:0}});await flush();
   assert(page.data.draft.time&&page.data.draft.venue);assert.equal(page.data.showIdx,0);
-  page.changeField({currentTarget:{dataset:{field:'seat'}},detail:{value:'7排7座'}});
+  // 座位快捷数字输入（排 / 座 + 自定义切换）
+  assert.deepEqual(tickets.parseSeat(''),{mode:'num',row:'',col:''});
+  assert.deepEqual(tickets.parseSeat('5排8座'),{mode:'num',row:'5',col:'8'});
+  assert.deepEqual(tickets.parseSeat('12-6'),{mode:'num',row:'12',col:'6'});
+  assert.equal(tickets.parseSeat('A排8座').mode,'custom');
+  assert.equal(tickets.composeSeat('7','12'),'7排12座');
+  assert.equal(tickets.composeSeat('7',''),'7排');
+  assert.equal(tickets.composeSeat('','12'),'12座');
+  assert.equal(tickets.composeSeat('',''),'');
+  page.changeSeatPart({currentTarget:{dataset:{part:'row'}},detail:{value:'7'}});
+  page.focusSeatCol();
+  assert.equal(page.data.seatColFocus,true,'confirming row focuses seat number');
+  page.changeSeatPart({currentTarget:{dataset:{part:'col'}},detail:{value:'7'}});
+  assert.equal(page.data.draft.seat,'7排7座','numeric row/col composes 7排7座');
+  assert.equal(page.data.seatRow,'7');assert.equal(page.data.seatCol,'7');
+  page.toggleSeatMode({currentTarget:{dataset:{mode:'custom'}}});
+  assert.equal(page.data.seatCustom,true);
+  page.toggleSeatMode({currentTarget:{dataset:{mode:'num'}}});
+  assert.equal(page.data.seatCustom,false);assert.equal(page.data.seatRow,'7');assert.equal(page.data.seatCol,'7');
   // 保存：写入本机存储并返回收藏册
   page.store();
   const saved=Object.entries(store['sk-tickets-v2']||{}).find(([k])=>k.startsWith(film.id+'|'));

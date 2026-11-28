@@ -43,8 +43,12 @@ function image(node,src){
 }
 
 Page({
-  data:{i:{},ps:'',ok:false,draft:{},front:true,frontImg:'',backImg:'',turnReq:{side:'front',n:0},tiltReq:{n:0},edge:'',shine:'metal',fx:'none',layersF:[],layersB:[],craftChips:[],custom:false,revealing:false,
+  data:{i:{},ps:'',ok:false,draft:{},seatRow:'',seatCol:'',seatCustom:false,seatColFocus:false,front:true,frontImg:'',backImg:'',turnReq:{side:'front',n:0},tiltReq:{n:0},edge:'',shine:'metal',fx:'none',layersF:[],layersB:[],craftChips:[],custom:false,revealing:false,
     arts:[],artIndex:0,artStyleLabels:[],artStyleIndex:0,shows:[],showIdx:-1,existing:false,linked:false,loading:false,busy:true,artDirty:false,ocrBusy:false,ocrMode:'wx',ocrTone:'',ocrMsg:'',ocrCanRetryAi:false},
+  seatStateOf(seat){
+    const sp=R.parseSeat(seat);
+    return {seatRow:sp.row,seatCol:sp.col,seatCustom:sp.mode==='custom'};
+  },
   onLoad(q){
     this._albumArtStyle=Art.normalize();
     try{this._albumArtStyle=Art.normalize(readArtPreference(Art.storageKey));}catch(_){}
@@ -117,7 +121,7 @@ Page({
     // 场次：手工票根列出本片全部场次；来自观影记录的只列当天
     this._shows=(this.data_.shows||[]).filter(x=>x.id===row.filmId).map(x=>{const v=this.idx.VN[x.v];return {date:iso(U.showDate(x)),time:x.t,venue:(v&&v.name)||'',hall:this.idx.hallName(x)||'',city:(v&&v.city)||''};})
       .filter(x=>!row.linked||x.date===row.date).sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time));
-    this.setData({ok:true,draft:row,existing:!!this._original,artDirty:!this._original,linked:!!row.linked,
+    this.setData({ok:true,draft:row,...this.seatStateOf(row.seat),seatColFocus:false,existing:!!this._original,artDirty:!this._original,linked:!!row.linked,
       artStyleIndex:Art.filmStyleOptions.findIndex(option=>option.id===style),
       arts:this._art.map((a,i)=>{const l=MyP.label(this.idx.F[row.filmId],a)||'海报 '+(i+1);return /^海报 \d+$/.test(l)?I.tr('海报')+' '+l.slice(3):I.tr(l);}),artIndex:Math.max(0,this._art.indexOf(row.art)),
       shows:this._shows.map(x=>`${x.date.slice(5).replace('-','/')} ${x.time} · ${x.venue}${x.hall?' '+x.hall:''}`),showIdx:this.showIndex(),
@@ -237,11 +241,33 @@ Page({
     d[name]=name==='crop'?Number(e.detail.value):e.detail.value;
     const patch={['draft.'+name]:d[name]};
     if(['date','time','venue'].includes(name))patch.showIdx=this.showIndex();
+    if(name==='seat'){const sp=R.parseSeat(d.seat);patch.seatRow=sp.row;patch.seatCol=sp.col;}
     this.setData(patch);
     // 裁切只作用于正面海报：在看背面时拖动先翻回正面
     if(name==='crop'){this.artState();if(!this.data.front)this.turnTo('front');}
     if(name==='crop'&&e.type==='changing'){clearTimeout(this._soonT);this.liveCrop();return;}
     this.soon(name==='crop'?120:350);
+  },
+  // 座位快捷数字输入（排 / 座）：仅输入数字序号，自动拼接「X排Y座」并实时重画票面
+  changeSeatPart(e){
+    if(!this._draft)return;
+    const part=e.currentTarget.dataset.part;
+    const val=String((e.detail&&e.detail.value)||'').replace(/\D/g,'').slice(0,3);
+    const row=part==='row'?val:this.data.seatRow;
+    const col=part==='col'?val:this.data.seatCol;
+    const seat=R.composeSeat(row,col);
+    this._draft.seat=seat;
+    this.setData({seatRow:row,seatCol:col,'draft.seat':seat});
+    this.soon(300);
+  },
+  focusSeatCol(){this.setData({seatColFocus:true});},
+  blurSeatCol(){if(this.data.seatColFocus)this.setData({seatColFocus:false});},
+  toggleSeatMode(e){
+    if(!this._draft)return;
+    const custom=e.currentTarget.dataset.mode==='custom';
+    if(custom){this.setData({seatCustom:true,seatColFocus:false});return;}
+    const sp=R.parseSeat(this._draft.seat);
+    this.setData({seatCustom:false,seatRow:sp.row,seatCol:sp.col,seatColFocus:false});
   },
   chooseShow(e){
     const x=this._shows[Number(e.detail.value)],d=this._draft;if(!x)return;
@@ -323,7 +349,7 @@ Page({
       if(filled.length){
         const sep=en?', ':'、';
         const tag=viaAi?I.tr('AI 已自动填入：'):I.tr('已自动填入：');
-        this.setData({draft:d,showIdx:this.showIndex(),ocrBusy:false,ocrTone:'ok',ocrCanRetryAi:canRetry,ocrMsg:fbPrefix+tag+filled.join(sep)+I.tr('（可继续核对修改）')});
+        this.setData({draft:d,...this.seatStateOf(d.seat),showIdx:this.showIndex(),ocrBusy:false,ocrTone:'ok',ocrCanRetryAi:canRetry,ocrMsg:fbPrefix+tag+filled.join(sep)+I.tr('（可继续核对修改）')});
         this.renderFaces();
         say((viaAi?I.tr('AI 已识别并填入'):I.tr('已识别并填入'))+' '+filled.join(sep));
       }else{

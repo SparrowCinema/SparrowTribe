@@ -16926,6 +16926,13 @@
     "未在图片中识别到方形二维码；若为圆形小程序码请用微信扫一扫": "No square QR code found in this photo. For round Mini Program codes, scan with WeChat.",
     "首页「排片表」新增「现场签到」快捷入口": "Homepage Schedule adds On-site Check-in shortcut",
     "小程序与网站首页「排片表」右侧新增「现场签到」扫码按钮：小程序一键扫小程序码或网页码直接认证，网站支持相机或相册识别方形签到二维码并提示圆形小程序码用微信直扫。": "A new On-site Check-in scan button sits next to the Schedule heading on both Mini Program and Web: scan Mini Program or web codes in one tap in WeChat, or use the browser camera/photo QR scanner on the web.",
-    "在放映现场可直接用微信扫主办方的签到小程序码，或在首页「排片表」右侧点「现场签到」扫码认证：自动盖章、出票根并标「现场认证」，映后嘉宾的签名也会出现在票面上。": "Scan the host's check-in code directly with WeChat or tap On-site Check-in next to Schedule on the home screen to stamp your passport, issue a foil-marked ticket, and receive post-screening guest autographs."
+    "在放映现场可直接用微信扫主办方的签到小程序码，或在首页「排片表」右侧点「现场签到」扫码认证：自动盖章、出票根并标「现场认证」，映后嘉宾的签名也会出现在票面上。": "Scan the host's check-in code directly with WeChat or tap On-site Check-in next to Schedule on the home screen to stamp your passport, issue a foil-marked ticket, and receive post-screening guest autographs.",
+    "排": "Row",
+    "座": "Seat",
+    "排号": "Row number",
+    "座号": "Seat number",
+    "自定义": "Custom",
+    "排/座": "Row/Seat",
+    "如 A排8座 / 自由入座": "e.g. Row A Seat 8 / Open seating"
   }
 }
