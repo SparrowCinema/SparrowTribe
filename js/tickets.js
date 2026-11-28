@@ -799,6 +799,7 @@ function ticketFxMask(canvas,row,side,image){
 function ticketSave(stay){
   const d=ticketDraft,row=TE.sanitize({...d.row});
   if(!row.date){toast(tr("请填写放映日期"));return;}
+  const wasExisting=!!d.original,wasLinked=!!d.row.linked;
   let key=d.row.key,stamped=false;
   // 和护照同步：给还没盖章的电影做票根，同时在护照里盖章（观影日期＝票根日期）
   const rec=watched[row.filmId];
@@ -817,11 +818,15 @@ function ticketSave(stay){
   const changes={[key]:entry};
   if(d.original&&d.original!==key)changes[d.original]={del:1,t:Date.now()};
   if(!ticketSet(changes))return;
-  if(stay){
-    d.original=key;d.row.key=key;d.artSig=ticketArtSig(d.row);
-    const y=window.scrollY;ticketRender();window.scrollTo(0,y);toast(tr(stamped?"已同时盖章 · 加入观影护照":"已保存"));return;
+  // 保存后保留在票根详情页，方便继续核对、翻面观摩或直接导出，不再自动退回收藏册
+  d.original=key;d.row.key=key;d.artSig=ticketArtSig(d.row);
+  clearTimeout(ticketSearchTimer);
+  if(!wasExisting||wasLinked!==!!d.row.linked){
+    const y=window.scrollY;ticketRender();window.scrollTo(0,y);
+  }else{
+    ticketDrawEditor();ticketArtSaveState();
   }
-  ticketBackToAlbum();toast(tr(stamped?"已同时盖章 · 加入观影护照":"已收进典藏票根册"));
+  toast(tr(stamped?"已同时盖章 · 加入观影护照":wasExisting||stay?"已保存":"已收进典藏票根册"));
 }
 
 // ——— 导出 ———
