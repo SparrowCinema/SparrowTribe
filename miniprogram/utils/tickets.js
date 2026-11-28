@@ -353,6 +353,19 @@ function formatCraft(record) {
   if (/4k|2k|修复|restor|remaster/i.test(fmt)) return {id:"restored",label:"银盐微粒压纹"};
   return null;
 }
+// 正面非海报区克制工艺（2026-11-28）：副券隐形防伪光油 + 信息区无色盲压暗记（按票根 id 固定，不占额外存储）
+const STUB_KINDS=["guilloche","micro","wave","grating"];
+const STUB_LABEL={guilloche:"隐形防伪扭索",micro:"隐形微缩水印",wave:"隐形防伪波纹",grating:"隐形斜纹光油"};
+function stubCraft(record) {
+  const id=STUB_KINDS[hashAppearance("stub|"+((record && (record.id||record.key))||""))%STUB_KINDS.length];
+  return {id,label:STUB_LABEL[id]};
+}
+const BLIND_MARKS=["aperture","scale","seal","frame"];
+const BLIND_MARK_LABEL={aperture:"盲压光圈暗记",scale:"盲压胶片刻度",seal:"盲压干压钢印",frame:"盲压画幅角标"};
+function blindMarkOf(record) {
+  const id=BLIND_MARKS[hashAppearance("bmark|"+((record && (record.id||record.key))||""))%BLIND_MARKS.length];
+  return {id,label:BLIND_MARK_LABEL[id]};
+}
 function craftLabel(look,tr=x=>x) {
   const c=parseCraft(look?.craft),parts=[finishes[look?.finish]?.label||""];
   c.foil.forEach(k=>parts.push(CRAFT_LABEL[k]));if (c.art) parts.push("海报"+CRAFT_LABEL[c.art]);if (c.back) parts.push("背面"+(CRAFT_LABEL["back-"+c.back]||CRAFT_LABEL[c.back]));
@@ -369,17 +382,21 @@ function craftSpec(record,tr=x=>x) {
   const back=c.back ? tr(CRAFT_LABEL["back-"+c.back]||CRAFT_LABEL[c.back]||"") : "";
   const fx=formatCraft(record);
   const formatFx=fx ? {id:fx.id,label:tr(fx.label)} : null;
+  const st=stubCraft(record),bm=blindMarkOf(record);
+  const stubFx={id:st.id,label:tr(st.label)},blindMark={id:bm.id,label:tr(bm.label)};
   const chips=[];
   if (paper) chips.push({k:"paper",t:paper});
   if (finish) chips.push({k:"finish",t:finish});
   for (const e of extras) chips.push({k:"extra",t:e});
   if (formatFx) chips.push({k:"format",t:formatFx.label});
   if (art) chips.push({k:"art",t:tr("正面")+" · "+art});
+  chips.push({k:"stub",t:tr("副券")+" · "+stubFx.label});
+  chips.push({k:"opt",t:blindMark.label});
   if (back) chips.push({k:"back",t:tr("背面")+" · "+back});
   if (c.braille) chips.push({k:"opt",t:tr(CRAFT_LABEL.braille)});
   if (c.vde) chips.push({k:"opt",t:tr(CRAFT_LABEL.vde)});
-  const summary=[paper,finish,...extras,formatFx?.label,art?tr("正面")+art:"",back?tr("背面")+back:"",c.braille?tr(CRAFT_LABEL.braille):""].filter(Boolean).join(" · ");
-  return {paper,finish,extras,art,back,braille:c.braille,vde:c.vde,formatFx,chips,summary};
+  const summary=[paper,finish,...extras,formatFx?.label,tr("副券")+stubFx.label,blindMark.label,art?tr("正面")+art:"",back?tr("背面")+back:"",c.braille?tr(CRAFT_LABEL.braille):""].filter(Boolean).join(" · ");
+  return {paper,finish,extras,art,back,braille:c.braille,vde:c.vde,formatFx,stubFx,blindMark,chips,summary};
 }
 const lookSig=look=>packLook(look)+"|"+(look?.craft||"");
 
@@ -1273,7 +1290,7 @@ function draw(surface,record,side,image,rect,createCanvas,light) {
     paper(surface,texture,"front",createCanvas);
     text(surface,"麻雀观影护照",28,52,{size:13,weight:700,ink:accent});
     const tagline=headTag(record);
-    text(surface,tagline||"纪念票根",W-28,52,{size:12,weight:700,align:"right",ink:accent});
+    text(surface,tagline||"纪念票根",W-28,52,{size:12,weight:700,align:"right",ink:tagline?foilGradient(surface,W-130,42,W-28,56,record.slam?"gold":finish):accent});
     rule(surface,73,accent+"62");
     const {x,y,w,h}=SOURCE;
     surface.fillStyle=dark;surface.fillRect(x,y,w,h);
@@ -1298,12 +1315,13 @@ function draw(surface,record,side,image,rect,createCanvas,light) {
       text(surface,record.subtitle.toUpperCase(),W/2,540,{size:12.5,weight:600,font:LATIN,spacing:2.2,align:"center",ink:"#5b5046",max:340});
     }
     rule(surface,561,accent+"58");
+    drawBlindMark(surface,record,dark);
     text(surface,"放映日期",28,587,{size:12});
     text(surface,record.date.replace(/-/g,".") || "日期待定",28,624,{size:25,font:MONO,max:223,...(craft.vde?{ink:foilGradient(surface,28,600,250,628,finish)}:{})});
     text(surface,"开场",W-28,587,{size:12,align:"right"});
     text(surface,record.time || "—",W-28,624,{size:26,font:MONO,align:"right",max:120,ink:accent});
     text(surface,[record.city,record.venue].filter(Boolean).join(" / ") || "影院未填",28,667,{size:16,weight:650});
-    rule(surface,TEAR,accent+"83",17,W-17,true);
+    drawTearPerforation(surface,accent,dark);
     const fields=[["影厅",record.hall],["座位",record.seat],["放映版本",record.format]].filter(row=>row[1]);
     const width=(W-56)/Math.max(1,fields.length);
     fields.forEach(([heading,value],i)=>{
@@ -1333,6 +1351,73 @@ function draw(surface,record,side,image,rect,createCanvas,light) {
   if (light) previewSheen(surface,metal,side,light);
   surface.restore();
   if (!surface.__foilMask && createCanvas && rect.w>=CRAFT_MIN && foilLayers(record.look).length) foilTexture(surface,record,side,rect,createCanvas,!!image);
+}
+
+// 撕线凹压针孔（2026-11-28）：实体票根的凹陷冲孔感（上缘暗槽 + 下缘亮脊 + 两侧缺口微压边），不进烫印遮罩
+function drawTearPerforation(surface,accent,dark) {
+  if (surface.__foilMask) return;
+  surface.save();
+  for (let px=20;px<=W-24;px+=9.5) {
+    const pw=4.8,ph=1.6;
+    // 上壁内阴
+    surface.fillStyle=dark;surface.globalAlpha=.34;
+    surface.beginPath();if (surface.roundRect) surface.roundRect(px,TEAR-1.05,pw,ph*.75,.8); else surface.rect(px,TEAR-1.05,pw,ph*.75);surface.fill();
+    // 凹槽本体
+    surface.fillStyle=accent;surface.globalAlpha=.26;
+    surface.beginPath();if (surface.roundRect) surface.roundRect(px,TEAR-.6,pw,ph,.8); else surface.rect(px,TEAR-.6,pw,ph);surface.fill();
+    // 下缘纸脊高光
+    surface.fillStyle="rgba(255,253,246,.92)";surface.globalAlpha=.9;
+    surface.fillRect(px+.3,TEAR+.95,pw-.6,.85);
+  }
+  // 两侧撕线半圆缺口边缘压痕
+  surface.lineWidth=.8;
+  for (const [nx,a1,a2] of [[0,-Math.PI/2,Math.PI/2],[W,Math.PI/2,Math.PI*1.5]]) {
+    surface.strokeStyle=dark;surface.globalAlpha=.2;surface.beginPath();surface.arc(nx,TEAR-.4,NOTCH+.6,a1,a2);surface.stroke();
+    surface.strokeStyle="rgba(255,253,246,.8)";surface.globalAlpha=.75;surface.beginPath();surface.arc(nx,TEAR+.7,NOTCH+.9,a1,a2);surface.stroke();
+  }
+  surface.restore();
+}
+// 信息区无色盲压暗记（2026-11-28）：纯纸色干压微浮雕，不印彩色油墨，不压正文；同时供 stubMask 捕捉侧光微亮
+function paintBlindMarkShape(ctx,kind) {
+  ctx.lineCap="round";ctx.lineJoin="round";
+  if (kind==="aperture") {
+    const cx=360,cy=660,r=21;
+    ctx.lineWidth=1.1;ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);ctx.stroke();
+    ctx.lineWidth=.75;ctx.beginPath();ctx.arc(cx,cy,r*.46,0,Math.PI*2);ctx.stroke();
+    for (let i=0;i<6;i++) {
+      const a=i*Math.PI/3,a2=a+Math.PI/2.4;
+      ctx.beginPath();ctx.moveTo(cx+Math.cos(a)*r*.46,cy+Math.sin(a)*r*.46);ctx.lineTo(cx+Math.cos(a2)*r*.96,cy+Math.sin(a2)*r*.96);ctx.stroke();
+    }
+  } else if (kind==="scale") {
+    ctx.lineWidth=.85;
+    ctx.beginPath();ctx.moveTo(395,576);ctx.lineTo(395,686);ctx.stroke();
+    for (let i=0,y=576;y<=686;y+=5.5,i++) {
+      const len=i%4===0?9:i%2===0?5.5:3.2;
+      ctx.beginPath();ctx.moveTo(395-len,y);ctx.lineTo(395,y);ctx.stroke();
+    }
+  } else if (kind==="seal") {
+    const cx=360,cy=660;
+    ctx.lineWidth=1.1;ctx.beginPath();ctx.arc(cx,cy,20,0,Math.PI*2);ctx.stroke();
+    ctx.lineWidth=.65;ctx.beginPath();ctx.arc(cx,cy,15,0,Math.PI*2);ctx.stroke();
+    ctx.lineWidth=.85;
+    for (let i=0;i<4;i++) {const a=i*Math.PI/2;ctx.beginPath();ctx.moveTo(cx+Math.cos(a)*3,cy+Math.sin(a)*3);ctx.lineTo(cx+Math.cos(a)*9,cy+Math.sin(a)*9);ctx.stroke();}
+  } else {
+    ctx.lineWidth=1.1;
+    const x1=328,y1=644,x2=390,y2=678,arm=8;
+    for (const [cx,cy,sx,sy] of [[x1,y1,1,1],[x2,y1,-1,1],[x1,y2,1,-1],[x2,y2,-1,-1]]) {
+      ctx.beginPath();ctx.moveTo(cx+sx*arm,cy);ctx.lineTo(cx,cy);ctx.lineTo(cx,cy+sy*arm);ctx.stroke();
+    }
+    ctx.lineWidth=.75;ctx.beginPath();ctx.moveTo(355,661);ctx.lineTo(363,661);ctx.moveTo(359,657);ctx.lineTo(359,665);ctx.stroke();
+  }
+}
+function drawBlindMark(surface,record,dark) {
+  if (surface.__foilMask) return;
+  const {id}=blindMarkOf(record);
+  surface.save();
+  // 左上亮脊 + 右下暗影：纸面干压微浮雕，文字压在上面依然完全清晰
+  surface.save();surface.translate(-.75,-.75);surface.strokeStyle="rgba(255,253,246,.82)";surface.globalAlpha=.85;paintBlindMarkShape(surface,id);surface.restore();
+  surface.save();surface.translate(.85,.95);surface.strokeStyle=dark;surface.globalAlpha=.17;paintBlindMarkShape(surface,id);surface.restore();
+  surface.restore();
 }
 
 // 放映制式联动工艺细节（2026-11-28）：胶片场带烫银齿孔、巨幕场带棱镜角标、修复版带银盐微刻角线
@@ -1669,6 +1754,50 @@ function artMask(record,image,createCanvas,w) {
   full.fx=ART_FX[mask.kind];
   return full;
 }
+// 副券隐形防伪光油 + 信息区无色盲压暗记遮罩（2026-11-28）：静止时不可见，转动或导出烘焙时在撕线下方与盲压暗记处泛起克制的透明亮油/珠光微光
+function stubMask(record,createCanvas,w) {
+  if (!createCanvas) return null;
+  const h=Math.round(w*H/W),k=w/W;let full;
+  try {full=createCanvas(w,h);} catch (error) {return null;}
+  const m=full.getContext("2d"),{id:kind}=stubCraft(record),{id:bmark}=blindMarkOf(record);
+  const rand=seeded(hashAppearance("stubmask|"+((record && (record.id||record.key))||"")));
+  m.save();m.scale(k,k);
+  frame(m);
+  // 1 信息区无色盲压暗记的侧光微亮
+  m.save();m.strokeStyle="#fff";m.globalAlpha=.72;paintBlindMarkShape(m,bmark);m.restore();
+  // 2 副券区隐形防伪光油（只在撕线以下，不干扰影厅/座位/版本正文）
+  m.save();
+  m.beginPath();m.rect(14,TEAR+4,W-28,H-TEAR-14);m.clip();
+  m.strokeStyle="#fff";m.fillStyle="#fff";m.lineCap="round";
+  if (kind==="guilloche") {
+    m.lineWidth=.95;
+    for (let row=0;row<6;row++) {
+      const y0=TEAR+16+row*25,amp=4.2+(row%2)*1.6,ph=row*.9+rand()*2;
+      m.globalAlpha=.68;m.beginPath();
+      for (let x=14;x<=W-14;x+=4) {
+        const y=y0+Math.sin(x/22+ph)*amp+Math.cos(x/11-ph)*amp*.35;
+        if (x===14) m.moveTo(x,y); else m.lineTo(x,y);
+      }
+      m.stroke();
+    }
+  } else if (kind==="micro") {
+    m.save();m.translate(W/2,TEAR+(H-TEAR)/2);m.rotate(-Math.PI*.06);
+    m.font=`600 9.5px ${MONO}`;m.textAlign="center";m.textBaseline="middle";m.globalAlpha=.74;
+    const word="SPARROW · CINEMA · ARCHIVE",gap=195;
+    for (let y=-90,row=0;y<=90;y+=24,row++) for (let x=-260+(row%2)*96;x<=260;x+=gap) m.fillText(word,x,y);
+    m.restore();
+  } else if (kind==="wave") {
+    m.lineWidth=1.05;m.globalAlpha=.66;
+    for (const cx of [0,W]) for (let r=24;r<220;r+=11) {m.beginPath();m.arc(cx,TEAR,r,0,Math.PI);m.stroke();}
+  } else {
+    m.lineWidth=.85;m.globalAlpha=.62;
+    for (let x=-180;x<W+180;x+=9) {m.beginPath();m.moveTo(x,TEAR+2);m.lineTo(x+170,H);m.stroke();}
+  }
+  m.restore();
+  m.restore();
+  full.fx="a-stub";
+  return full;
+}
 
 // ——— 背面隐形底纹（2026-11-22）———
 // 和海报增效用同一个字母，背面换成另一种底纹，铺满背面边框以内；静止时看不见，转动时在深色底上浮现：
@@ -1966,7 +2095,7 @@ function bakeSheen(surface,record,side,rect,createCanvas,hasArt,angle=-.62,image
       surface.drawImage(layer,rect.x,rect.y,rect.w,rect.h);surface.restore();
     }
   }
-  // 隐形工艺（正面海报 / 背面底纹）在导出图里烘焙一道柔和斜光，让静止晒图也能看到若隐若现的猫眼光/全息水印/胶片齿孔
+  // 隐形工艺（正面海报 / 正面副券防伪光油与盲压暗记 / 背面底纹）在导出图里烘焙一道柔和斜光
   try {
     const iw=Math.max(120,Math.round(Math.min(w,420))),ih=Math.round(iw*H/W);
     const invMask=side==="front" ? (image ? artMask(record,image,createCanvas,iw) : null) : backMask(record,createCanvas,iw);
@@ -1987,6 +2116,21 @@ function bakeSheen(surface,record,side,rect,createCanvas,hasArt,angle=-.62,image
       ic.globalCompositeOperation="destination-in";ic.drawImage(invMask,0,0,iw,ih);
       surface.save();surface.globalCompositeOperation=side==="front"?"hard-light":"screen";surface.globalAlpha=side==="front"?(holoInv?.32:.36):(holoInv?.26:.28);
       surface.drawImage(inv,rect.x,rect.y,rect.w,rect.h);surface.restore();
+    }
+    if (side==="front") {
+      const sm=stubMask(record,createCanvas,iw);
+      if (sm) {
+        const sl=createCanvas(iw,ih),sc=sl.getContext("2d"),slen=Math.hypot(iw,ih);
+        const scx=iw*.58,scy=ih*.86,sdx=Math.cos(angle+.18)*slen/2,sdy=Math.sin(angle+.18)*slen/2;
+        const sg=sc.createLinearGradient(scx-sdx,scy-sdy,scx+sdx,scy+sdy);
+        sg.addColorStop(0,"rgba(127,140,163,0)");sg.addColorStop(.32,"rgba(127,140,163,0)");
+        sg.addColorStop(.45,"rgba(127,140,163,.35)");sg.addColorStop(.5,"rgba(255,254,248,.92)");sg.addColorStop(.55,"rgba(127,140,163,.35)");
+        sg.addColorStop(.68,"rgba(127,140,163,0)");sg.addColorStop(1,"rgba(127,140,163,0)");
+        sc.fillStyle=sg;sc.fillRect(0,0,iw,ih);
+        sc.globalCompositeOperation="destination-in";sc.drawImage(sm,0,0,iw,ih);
+        surface.save();surface.globalCompositeOperation="hard-light";surface.globalAlpha=.30;
+        surface.drawImage(sl,rect.x,rect.y,rect.w,rect.h);surface.restore();
+      }
     }
   } catch (error) {}
 }
@@ -2146,6 +2290,6 @@ function drawWall(surface,records,side,images,caption,createCanvas,title,maxWidt
 }
 
 const shineOf=key=>{const f=finishes[key]||finishes.matte;return {kind:f.kind,fx:fxOf(key),highlight:f.stops[f.stops.length-2]};};
-return {autographKey,pendingAutograph,applyAutograph,attachAutographs,collectSig,guestLine,drawAutographs,checkinURL,checkinParse,checkinScene,checkinSceneParse,checkinPlan,applyCheckin,isHidden,HIDDEN_RATE,editionClose,EDITION_GRACE,pendingEdition,applyEdition,decorate,setQR,verifyURL,editionLines,badgesOf,drawShowcase,bakeSheen,SHOW_W,SHOW_H,serialOf,serialValid,formatSerial,entrySerial,pendingIssue,applyIssue,issueText,ISSUE_BATCH,W,H,TITLE_FAMILY,edgeOf,foilMask,fxOf,artMask,backMask,parseCraft,formatCraft,craftLabel,craftSpec,lookSig,foilLayers,WALL_PAGE,MOSAIC_MAX,FACETS,BADGES,badgeKeys,options:labelOptions(),sanitize,read,sorted,defaults,randomLook,shineOf,draw,wallLayout,drawWall,
+return {autographKey,pendingAutograph,applyAutograph,attachAutographs,collectSig,guestLine,drawAutographs,checkinURL,checkinParse,checkinScene,checkinSceneParse,checkinPlan,applyCheckin,isHidden,HIDDEN_RATE,editionClose,EDITION_GRACE,pendingEdition,applyEdition,decorate,setQR,verifyURL,editionLines,badgesOf,drawShowcase,bakeSheen,SHOW_W,SHOW_H,serialOf,serialValid,formatSerial,entrySerial,pendingIssue,applyIssue,issueText,ISSUE_BATCH,W,H,TITLE_FAMILY,edgeOf,foilMask,fxOf,artMask,stubMask,backMask,parseCraft,formatCraft,stubCraft,blindMarkOf,craftLabel,craftSpec,lookSig,foilLayers,WALL_PAGE,MOSAIC_MAX,FACETS,BADGES,badgeKeys,options:labelOptions(),sanitize,read,sorted,defaults,randomLook,shineOf,draw,wallLayout,drawWall,
   ticketKey,parseKey,cleanStore,mergeStore,packLook,unpackLook,normArt,viewings,build,reconcile,draft,entryFrom,migrateV1,filterTickets,facetCounts,groupByMonth,swatch};
 });

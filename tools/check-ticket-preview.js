@@ -61,7 +61,7 @@ assert(!fs.existsSync(path.join(__dirname,'../miniprogram/utils/ticket-font.js')
   // 工艺反光：小程序 turn.wxs 与网页 ticketFxStyle 同一张表（含 6 色光谱分色、无色击凸与隐形工艺）
   const web=fs.readFileSync(path.join(__dirname,'../js/tickets.js'),'utf8'),a=web.indexOf('function ticketFxStyle('),b=web.indexOf('\nfunction ticketTurner(',a);
   const webFx=vm.runInNewContext(web.slice(a,b)+';ticketFxStyle',{Math});
-  for(const fx of ['holo','holo-aurora','holo-prism','holo-solar','holo-opal','holo-cobalt','holo-unique','cast','crystal','sweep','glitter','gloss','sense','blind','a-gloss','a-rim','a-holo','a-pearl','a-guilloche','a-matte','a-rainbow','a-cateye','none'])for(const [x,y,lit] of [[.3,-.2,true],[-.8,.5,true],[.5,.1,false]]){
+  for(const fx of ['holo','holo-aurora','holo-prism','holo-solar','holo-opal','holo-cobalt','holo-unique','cast','crystal','sweep','glitter','gloss','sense','blind','a-gloss','a-rim','a-holo','a-pearl','a-guilloche','a-matte','a-rainbow','a-cateye','a-stub','none'])for(const [x,y,lit] of [[.3,-.2,true],[-.8,.5,true],[.5,.1,false]]){
     assert.equal(JSON.stringify(T.fxStyle(fx,x,y,lit)),JSON.stringify(webFx(fx,x,y,lit)),'foil effect table matches the website: '+fx);
   }
   assert.equal(webFx('none',.5,.5,true).o,0,'matte has no foil effect');
@@ -70,7 +70,7 @@ assert(!fs.existsSync(path.join(__dirname,'../miniprogram/utils/ticket-font.js')
   T.tilt({n:1,dy:5,dx:-3,lit:true},null,owner,inst);
   assert.deepEqual(rot(),[-5,181],'tilt gently shifts card angle without flipping');
   assert(styles['.te-fx0'].opacity>0,'tilt activates foil shimmer');
-  // 工艺分类：分色光谱底箔 + 视高迪增效 + 无色击凸 + 银盐/炭纹特种纸 + 制式联动工艺 + 工艺铭牌
+  // 工艺分类：分色光谱底箔 + 视高迪增效 + 无色击凸 + 银盐/炭纹特种纸 + 制式联动工艺 + 副券防伪光油 + 信息区盲压暗记 + 工艺铭牌
   const fxOf=tickets.fxOf;
   assert.deepEqual(['holo','aurora','prism','solar','opal','cobalt','gold','varnish','matte','blind','cast','crystal','glitter','sense','unique'].map(fxOf),
     ['holo','holo-aurora','holo-prism','holo-solar','holo-opal','holo-cobalt','sweep','gloss','none','blind','cast','crystal','glitter','sense','holo-unique']);
@@ -80,11 +80,15 @@ assert(!fs.existsSync(path.join(__dirname,'../miniprogram/utils/ticket-font.js')
   assert.equal(tickets.formatCraft({format:'IMAX 激光'}).id,'plf');
   assert.equal(tickets.formatCraft({format:'4K修复'}).id,'restored');
   assert.equal(tickets.formatCraft({format:'普通数字'}),null);
-  const spec=tickets.craftSpec({format:'35mm胶片',look:{texture:'silvergel',finish:'blind',craft:'gs-nfBv'}});
+  const spec=tickets.craftSpec({id:'demo-film|2026-11-28',format:'35mm胶片',look:{texture:'silvergel',finish:'blind',craft:'gs-nfBv'}});
   assert(spec.chips.some(c=>c.k==='paper'&&c.t==='银盐相纸'));
   assert(spec.chips.some(c=>c.k==='finish'&&c.t==='无色击凸'));
   assert(spec.chips.some(c=>c.k==='format'&&c.t==='胶片齿孔烫银'));
-  assert(spec.summary.includes('银盐相纸')&&spec.summary.includes('无色击凸')&&spec.summary.includes('胶片齿孔烫银'));
+  assert(spec.stubFx&&spec.chips.some(c=>c.k==='stub'&&c.t==='副券 · '+spec.stubFx.label),'craft nameplate includes stub invisible security varnish');
+  assert(spec.blindMark&&spec.chips.some(c=>c.k==='opt'&&c.t===spec.blindMark.label),'craft nameplate includes info-zone blind mark');
+  assert(spec.summary.includes('银盐相纸')&&spec.summary.includes('无色击凸')&&spec.summary.includes('胶片齿孔烫银')&&spec.summary.includes(spec.stubFx.label)&&spec.summary.includes(spec.blindMark.label));
+  const stubM=tickets.stubMask({id:'demo-film|2026-11-28'},(w,h)=>({width:w,height:h,getContext:()=>ctx2d()}),240);
+  assert(stubM&&stubM.fx==='a-stub','stubMask produces an a-stub invisible varnish & blind-mark mask');
 }
 assert.match(wxml,/<image[^>]*class="te-face"/);
 assert.match(wxml,/class="te-craft"/,'ticket editor displays craft nameplate');

@@ -164,6 +164,11 @@ Page({
       const m=mask&&snap(ctx=>{ctx.drawImage(mask,0,0,w,h);return true;});
       if(m)layers.push({i:'a',fx:mask.fx,k:1,m});
     }
+    if(side==='front'){
+      let mask=null;try{mask=R.stubMask(row,stock,w);}catch(e){mask=null;}
+      const m=mask&&snap(ctx=>{ctx.drawImage(mask,0,0,w,h);return true;});
+      if(m)layers.push({i:'s',fx:mask.fx,k:1,m});
+    }
     if(side==='back'){
       let mask=null;try{mask=R.backMask(row,stock,w);}catch(e){mask=null;}
       const m=mask&&snap(ctx=>{ctx.drawImage(mask,0,0,w,h);return true;});
