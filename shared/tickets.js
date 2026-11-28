@@ -2292,9 +2292,10 @@ function drawWall(surface,records,side,images,caption,createCanvas,title,maxWidt
 // 座位快捷输入解析与合成（2026-11-28）：支持全球主流影院规则——数字排（5排8座）、字母排（G排12座 / AA-LL）、国际排座文案（Row/Rang/Reihe/Fila、繁体號）与自定义/无固定座预设
 const SEAT_LETTERS=[..."ABCDEFGHIJKLMNOPQRSTUVWXYZ","AA","BB","CC","DD","EE","FF","GG","HH","JJ","KK","LL"];
 const SEAT_PRESETS=[
+  {t:"一楼",k:"pre",g:"floor"},
+  {t:"二楼",k:"pre",g:"floor"},
+  {t:"三楼",k:"pre",g:"floor"},
   {t:"自由入座",k:"set"},
-  {t:"二楼",k:"pre"},
-  {t:"楼座",k:"pre"},
   {t:"情侣座",k:"pre"},
   {t:"包厢",k:"pre"},
   {t:"无障碍席",k:"set"}
@@ -2341,13 +2342,25 @@ function applySeatPreset(current,preset,tr=x=>x) {
   if (!p) return String(current||"");
   const label=tr(p.t),cur=String(current||"").trim();
   if (p.k==="set") return label;
-  const spaced=/^[A-Za-z]/.test(label);
+  const spaced=/^[A-Za-z0-9]/.test(label);
   const pre=spaced ? label+" " : label;
   if (cur.startsWith(pre)) return cur.slice(pre.length).trim();
   if (cur.startsWith(label)) return cur.slice(label.length).trim();
-  const isSet=SEAT_PRESETS.some(x=>x.k==="set" && (cur===x.t || cur===tr(x.t)));
-  if (!cur || isSet) return label;
-  return (pre+cur).slice(0,36);
+  // 同组前缀（如 一楼 / 二楼 / 三楼）互斥替换，避免叠成「三楼二楼5排8座」
+  let base=cur;
+  if (p.g) {
+    for (const o of SEAT_PRESETS) {
+      if (o.g!==p.g) continue;
+      for (const l of [tr(o.t),o.t]) {
+        const sp=/^[A-Za-z0-9]/.test(l) ? l+" " : l;
+        if (base.startsWith(sp)) {base=base.slice(sp.length).trim();break;}
+        if (base.startsWith(l)) {base=base.slice(l.length).trim();break;}
+      }
+    }
+  }
+  const isSet=SEAT_PRESETS.some(x=>x.k==="set" && (base===x.t || base===tr(x.t)));
+  if (!base || isSet) return label;
+  return (pre+base).slice(0,36);
 }
 
 const shineOf=key=>{const f=finishes[key]||finishes.matte;return {kind:f.kind,fx:fxOf(key),highlight:f.stops[f.stops.length-2]};};

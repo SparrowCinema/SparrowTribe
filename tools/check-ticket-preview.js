@@ -232,7 +232,9 @@ const flush=async()=>{for(let n=0;n<20;n++){await new Promise(r=>setImmediate(r)
   assert.equal(tickets.composeSeat('',''),'');
   assert.equal(tickets.applySeatPreset('','自由入座'),'自由入座');
   assert.equal(tickets.applySeatPreset('5排8座','二楼'),'二楼5排8座');
-  assert.equal(tickets.applySeatPreset('二楼5排8座','二楼'),'5排8座');
+  assert.equal(tickets.applySeatPreset('二楼5排8座','三楼'),'三楼5排8座');
+  assert.equal(tickets.applySeatPreset('三楼5排8座','一楼'),'一楼5排8座');
+  assert.equal(tickets.applySeatPreset('一楼5排8座','一楼'),'5排8座');
   // 字母排：切到 A-Z → 选 G 排（自动聚焦座号框）→ 输 12 座 → 拼成 G排12座
   page.toggleSeatMode({currentTarget:{dataset:{mode:'alpha'}}});
   assert.equal(page.data.seatMode,'alpha');
@@ -241,11 +243,13 @@ const flush=async()=>{for(let n=0;n<20;n++){await new Promise(r=>setImmediate(r)
   assert.equal(page.data.seatColFocus,true,'picking a letter row focuses numeric seat box');
   page.changeSeatPart({currentTarget:{dataset:{part:'col'}},detail:{value:'12'}});
   assert.equal(page.data.draft.seat,'G排12座','alpha row + numeric seat composes G排12座');
-  // 自填快捷预设：加前缀「二楼」→ 二楼G排12座；点「自由入座」→ 自由入座
+  // 自填快捷预设：楼层互斥切换（二楼 → 三楼）+ 点「自由入座」
   page.toggleSeatMode({currentTarget:{dataset:{mode:'custom'}}});
   assert.equal(page.data.seatMode,'custom');
   page.tapSeatPreset({currentTarget:{dataset:{preset:'二楼'}}});
   assert.equal(page.data.draft.seat,'二楼G排12座');
+  page.tapSeatPreset({currentTarget:{dataset:{preset:'三楼'}}});
+  assert.equal(page.data.draft.seat,'三楼G排12座');
   page.tapSeatPreset({currentTarget:{dataset:{preset:'自由入座'}}});
   assert.equal(page.data.draft.seat,'自由入座');
   // 切回数字排：输 7 排 7 座 → 拼成 7排7座
