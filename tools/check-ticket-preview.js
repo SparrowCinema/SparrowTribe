@@ -261,10 +261,12 @@ const flush=async()=>{for(let n=0;n<20;n++){await new Promise(r=>setImmediate(r)
   page.changeSeatPart({currentTarget:{dataset:{part:'col'}},detail:{value:'7'}});
   assert.equal(page.data.draft.seat,'7排7座','numeric row/col composes 7排7座');
   assert.equal(page.data.seatRow,'7');assert.equal(page.data.seatCol,'7');
-  // 保存：写入本机存储并返回收藏册
+  // 保存：写入本机存储并保留在票根详情页（不自动退回收藏册）
   page.store();
   const saved=Object.entries(store['sk-tickets-v2']||{}).find(([k])=>k.startsWith(film.id+'|'));
-  assert(saved&&saved[1].st==='7排7座'&&saved[1].tm&&saved[1].sk===undefined,'saved only the changed fields');assert.equal(navigatedBack,1);
+  assert(saved&&saved[1].st==='7排7座'&&saved[1].tm&&saved[1].sk===undefined,'saved only the changed fields');
+  assert.equal(navigatedBack,0,'saving stays on the ticket detail page');
+  assert.equal(page.data.existing,true,'ticket transitions to existing state in place');
   // 一部电影一张票根、和护照同步：给没盖章的电影做票根时同时盖章，票根键就是这次观影的键
   const stampRec=(store['sk-watched-v1']||{})[film.id];
   assert(stampRec&&!stampRec.del,'saving a ticket stamps the passport');assert.equal(saved[0],film.id+'|'+stampRec.d);
@@ -282,7 +284,13 @@ const flush=async()=>{for(let n=0;n<20;n++){await new Promise(r=>setImmediate(r)
   page2.changeField({currentTarget:{dataset:{field:'crop'}},detail:{value:83}});await flush();
   assert.equal(page2.data.artDirty,true,'crop change lights up the save button');
   page2.saveHere();await flush();
-  assert.equal(page2.data.artDirty,false);assert.equal(navigatedBack,1,'save-in-place stays on the page');
+  assert.equal(page2.data.artDirty,false);assert.equal(navigatedBack,0,'save-in-place stays on the page');
+  // 修改座位后点「保存修改」同样保留在详情页，且提示「已保存」
+  page2.changeSeatPart({currentTarget:{dataset:{part:'col'}},detail:{value:'9'}});
+  page2.store();await flush();
+  assert.equal(navigatedBack,0,'store on existing ticket stays on the page');
+  assert.equal(store['sk-tickets-v2'][saved[0]].st,'7排9座');
+  assert.equal(toasts[toasts.length-1],'已保存');
   assert.equal(store['sk-tickets-v2'][saved[0]].c,83,'crop persisted');
   const page3={...options,data:JSON.parse(JSON.stringify(options.data)),setData:page.setData};
   page3.onLoad({key:encodeURIComponent(saved[0])});await flush();assert.equal(page3.data.draft.crop,83);

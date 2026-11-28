@@ -399,6 +399,7 @@ Page({
   store(stay){
     const d=this._draft,row=R.sanitize({...d});
     if(!row.date){say('请填写放映日期');return;}
+    const wasExisting=!!this._original;
     let key=d.key,stamped=false;
     // 给还没盖章的电影做票根时同时盖章（观影日期＝票根日期），票根与观影护照保持一部一张
     const rec=W.get(row.filmId);
@@ -412,8 +413,13 @@ Page({
     const changes={[key]:base?R.entryFrom({...row,id:key},{...base,id:key}):{t:Date.now(),...(R.serialValid(row.serial)?{n:row.serial}:{})}};
     if(this._original&&this._original!==key)changes[this._original]={del:1,t:Date.now()};
     if(!Tix.set(changes,this.data_,this.idx))return;
-    if(stay===true){this._original=key;this._draft.key=key;this._artSaved=artSig(this._draft);this.setData({existing:true,artDirty:false});say(stamped?'已同时盖章 · 加入观影护照':'已保存');return;}
-    wx.navigateBack({success:()=>say(stamped?'已同时盖章 · 加入观影护照':'已收进典藏票根册'),fail:()=>wx.redirectTo({url:'/packages/collect/tickets/tickets'})});
+    // 保存后保留在票根详情页，方便继续核对、翻面或直接导出，不再自动退回收藏册
+    this._original=key;this._draft.key=key;this._artSaved=artSig(this._draft);
+    clearTimeout(this._soonT);
+    this.setData({existing:true,artDirty:false});
+    if(!wasExisting)wx.setNavigationBarTitle({title:I.tr('编辑票根')});
+    this.renderFaces();
+    say(stamped?'已同时盖章 · 加入观影护照':(wasExisting||stay===true?'已保存':'已收进典藏票根册'));
   },
   remove(){
     const linked=this._draft&&this._draft.linked;
