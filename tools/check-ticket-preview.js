@@ -209,15 +209,30 @@ const flush=async()=>{for(let n=0;n<20;n++){await new Promise(r=>setImmediate(r)
   assert(page.data.shows.length>0);
   page.chooseShow({detail:{value:0}});await flush();
   assert(page.data.draft.time&&page.data.draft.venue);assert.equal(page.data.showIdx,0);
-  // 座位快捷数字输入（排 / 座 + 自定义切换）
+  // 座位快捷数字 / 字母排输入（123 / A-Z / 自填切换）
   assert.deepEqual(tickets.parseSeat(''),{mode:'num',row:'',col:''});
   assert.deepEqual(tickets.parseSeat('5排8座'),{mode:'num',row:'5',col:'8'});
   assert.deepEqual(tickets.parseSeat('12-6'),{mode:'num',row:'12',col:'6'});
-  assert.equal(tickets.parseSeat('A排8座').mode,'custom');
+  assert.deepEqual(tickets.parseSeat('G排12座'),{mode:'alpha',row:'G',col:'12'});
+  assert.deepEqual(tickets.parseSeat('g12'),{mode:'alpha',row:'G',col:'12'});
+  assert.deepEqual(tickets.parseSeat('AA排5座'),{mode:'alpha',row:'AA',col:'5'});
+  assert.equal(tickets.parseSeat('自由入座').mode,'custom');
   assert.equal(tickets.composeSeat('7','12'),'7排12座');
+  assert.equal(tickets.composeSeat('g','12','alpha'),'G排12座');
   assert.equal(tickets.composeSeat('7',''),'7排');
   assert.equal(tickets.composeSeat('','12'),'12座');
   assert.equal(tickets.composeSeat('',''),'');
+  // 字母排：切到 A-Z → 选 G 排（自动聚焦座号框）→ 输 12 座 → 拼成 G排12座
+  page.toggleSeatMode({currentTarget:{dataset:{mode:'alpha'}}});
+  assert.equal(page.data.seatMode,'alpha');
+  page.pickSeatLetter({detail:{value:String(tickets.SEAT_LETTERS.indexOf('G'))}});
+  assert.equal(page.data.seatRow,'G');
+  assert.equal(page.data.seatColFocus,true,'picking a letter row focuses numeric seat box');
+  page.changeSeatPart({currentTarget:{dataset:{part:'col'}},detail:{value:'12'}});
+  assert.equal(page.data.draft.seat,'G排12座','alpha row + numeric seat composes G排12座');
+  // 切回数字排：输 7 排 7 座 → 拼成 7排7座
+  page.toggleSeatMode({currentTarget:{dataset:{mode:'num'}}});
+  assert.equal(page.data.seatMode,'num');
   page.changeSeatPart({currentTarget:{dataset:{part:'row'}},detail:{value:'7'}});
   page.focusSeatCol();
   assert.equal(page.data.seatColFocus,true,'confirming row focuses seat number');
@@ -225,9 +240,9 @@ const flush=async()=>{for(let n=0;n<20;n++){await new Promise(r=>setImmediate(r)
   assert.equal(page.data.draft.seat,'7排7座','numeric row/col composes 7排7座');
   assert.equal(page.data.seatRow,'7');assert.equal(page.data.seatCol,'7');
   page.toggleSeatMode({currentTarget:{dataset:{mode:'custom'}}});
-  assert.equal(page.data.seatCustom,true);
+  assert.equal(page.data.seatMode,'custom');
   page.toggleSeatMode({currentTarget:{dataset:{mode:'num'}}});
-  assert.equal(page.data.seatCustom,false);assert.equal(page.data.seatRow,'7');assert.equal(page.data.seatCol,'7');
+  assert.equal(page.data.seatMode,'num');assert.equal(page.data.seatRow,'7');assert.equal(page.data.seatCol,'7');
   // 保存：写入本机存储并返回收藏册
   page.store();
   const saved=Object.entries(store['sk-tickets-v2']||{}).find(([k])=>k.startsWith(film.id+'|'));

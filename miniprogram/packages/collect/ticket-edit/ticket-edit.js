@@ -43,11 +43,12 @@ function image(node,src){
 }
 
 Page({
-  data:{i:{},ps:'',ok:false,draft:{},seatRow:'',seatCol:'',seatCustom:false,seatColFocus:false,front:true,frontImg:'',backImg:'',turnReq:{side:'front',n:0},tiltReq:{n:0},edge:'',shine:'metal',fx:'none',layersF:[],layersB:[],craftChips:[],custom:false,revealing:false,
+  data:{i:{},ps:'',ok:false,draft:{},seatMode:'num',seatRow:'',seatCol:'',seatLetters:R.SEAT_LETTERS,seatLetterIdx:0,seatColFocus:false,front:true,frontImg:'',backImg:'',turnReq:{side:'front',n:0},tiltReq:{n:0},edge:'',shine:'metal',fx:'none',layersF:[],layersB:[],craftChips:[],custom:false,revealing:false,
     arts:[],artIndex:0,artStyleLabels:[],artStyleIndex:0,shows:[],showIdx:-1,existing:false,linked:false,loading:false,busy:true,artDirty:false,ocrBusy:false,ocrMode:'wx',ocrTone:'',ocrMsg:'',ocrCanRetryAi:false},
   seatStateOf(seat){
     const sp=R.parseSeat(seat);
-    return {seatRow:sp.row,seatCol:sp.col,seatCustom:sp.mode==='custom'};
+    const idx=sp.mode==='alpha'?Math.max(0,R.SEAT_LETTERS.indexOf(sp.row)):0;
+    return {seatMode:sp.mode,seatRow:sp.row,seatCol:sp.col,seatLetterIdx:idx};
   },
   onLoad(q){
     this._albumArtStyle=Art.normalize();
@@ -248,26 +249,40 @@ Page({
     if(name==='crop'&&e.type==='changing'){clearTimeout(this._soonT);this.liveCrop();return;}
     this.soon(name==='crop'?120:350);
   },
-  // 座位快捷数字输入（排 / 座）：仅输入数字序号，自动拼接「X排Y座」并实时重画票面
+  // 座位快捷数字 / 字母排输入（123 / A-Z / 自填）：排号支持数字键盘或 A–Z 滚轮，座号直弹数字键盘，自动拼接「X排Y座」
   changeSeatPart(e){
     if(!this._draft)return;
     const part=e.currentTarget.dataset.part;
     const val=String((e.detail&&e.detail.value)||'').replace(/\D/g,'').slice(0,3);
+    const mode=this.data.seatMode==='alpha'?'alpha':'num';
     const row=part==='row'?val:this.data.seatRow;
     const col=part==='col'?val:this.data.seatCol;
-    const seat=R.composeSeat(row,col);
+    const seat=R.composeSeat(row,col,mode);
     this._draft.seat=seat;
     this.setData({seatRow:row,seatCol:col,'draft.seat':seat});
     this.soon(300);
+  },
+  pickSeatLetter(e){
+    if(!this._draft)return;
+    const idx=Number(e.detail&&e.detail.value);
+    const letter=R.SEAT_LETTERS[idx]||'';
+    const col=this.data.seatCol;
+    const seat=R.composeSeat(letter,col,'alpha');
+    this._draft.seat=seat;
+    this.setData({seatMode:'alpha',seatRow:letter,seatLetterIdx:idx>=0?idx:0,'draft.seat':seat,seatColFocus:!!(letter&&!col)});
+    this.soon(200);
   },
   focusSeatCol(){this.setData({seatColFocus:true});},
   blurSeatCol(){if(this.data.seatColFocus)this.setData({seatColFocus:false});},
   toggleSeatMode(e){
     if(!this._draft)return;
-    const custom=e.currentTarget.dataset.mode==='custom';
-    if(custom){this.setData({seatCustom:true,seatColFocus:false});return;}
+    const mode=e.currentTarget.dataset.mode==='custom'?'custom':e.currentTarget.dataset.mode==='alpha'?'alpha':'num';
+    if(mode==='custom'){this.setData({seatMode:'custom',seatColFocus:false});return;}
     const sp=R.parseSeat(this._draft.seat);
-    this.setData({seatCustom:false,seatRow:sp.row,seatCol:sp.col,seatColFocus:false});
+    const row=sp.mode===mode?sp.row:'';
+    const col=sp.col||this.data.seatCol||'';
+    const idx=mode==='alpha'?Math.max(0,R.SEAT_LETTERS.indexOf(row)):0;
+    this.setData({seatMode:mode,seatRow:row,seatCol:col,seatLetterIdx:idx,seatColFocus:false});
   },
   chooseShow(e){
     const x=this._shows[Number(e.detail.value)],d=this._draft;if(!x)return;

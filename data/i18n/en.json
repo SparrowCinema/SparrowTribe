@@ -16933,6 +16933,8 @@
     "座号": "Seat number",
     "自定义": "Custom",
     "排/座": "Row/Seat",
-    "如 A排8座 / 自由入座": "e.g. Row A Seat 8 / Open seating"
+    "选择排号": "Select row",
+    "如 A排8座 / 自由入座": "e.g. Row A Seat 8 / Open seating",
+    "如 二楼3排5座 / 自由入座": "e.g. Balcony Row 3 Seat 5 / Open seating"
   }
 }

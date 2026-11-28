@@ -596,11 +596,16 @@ function ticketArtDirty(){
 function ticketArtSaveState(){const b=main.querySelector(".te-art-save");if(b)b.disabled=!ticketArtDirty();}
 function ticketSeatRowHTML(row,forceMode){
   const sp=TE.parseSeat(row.seat);
-  const custom=forceMode?forceMode==="custom":sp.mode==="custom";
-  if(custom){
-    return `<div class="te-row te-seat-row" data-seat-mode="custom"><span class="te-k">${ticketDict("座位")}</span><div class="te-seat-custom"><input class="te-in" type="text" name="seat" value="${esc(row.seat)}" placeholder="${ticketDict("如 A排8座 / 自由入座")}"><button type="button" class="te-seat-mode" data-ticket-action="seat-mode" data-mode="num">${ticketDict("排/座")}</button></div></div>`;
+  const mode=forceMode||sp.mode;
+  if(mode==="custom"){
+    return `<div class="te-row te-seat-row" data-seat-mode="custom"><span class="te-k">${ticketDict("座位")}</span><div class="te-seat-custom"><input class="te-in" type="text" name="seat" value="${esc(row.seat)}" placeholder="${ticketDict("如 二楼3排5座 / 自由入座")}"><button type="button" class="te-seat-mode" data-ticket-action="seat-mode" data-mode="num">123</button><button type="button" class="te-seat-mode" data-ticket-action="seat-mode" data-mode="alpha">A-Z</button></div></div>`;
   }
-  return `<div class="te-row te-seat-row" data-seat-mode="num"><span class="te-k">${ticketDict("座位")}</span><div class="te-seat-quick"><input class="te-seat-n" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="3" name="seat-row" value="${esc(sp.row)}" placeholder="5" aria-label="${ticketDict("排号")}"><span class="te-seat-u">${ticketDict("排")}</span><input class="te-seat-n" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="3" name="seat-col" value="${esc(sp.col)}" placeholder="8" aria-label="${ticketDict("座号")}"><span class="te-seat-u">${ticketDict("座")}</span><button type="button" class="te-seat-mode" data-ticket-action="seat-mode" data-mode="custom">${ticketDict("自定义")}</button></div></div>`;
+  const rowVal=mode===sp.mode?sp.row:"",colVal=sp.col||"";
+  const rowCtrl=mode==="alpha"
+    ? `<select class="te-seat-n te-seat-alpha" name="seat-row" aria-label="${ticketDict("选择排号")}"><option value="">A-Z</option>${TE.SEAT_LETTERS.map(l=>`<option value="${l}"${rowVal===l?" selected":""}>${l}</option>`).join("")}</select>`
+    : `<input class="te-seat-n" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="3" name="seat-row" value="${esc(rowVal)}" placeholder="5" aria-label="${ticketDict("排号")}">`;
+  const alt=mode==="alpha"?`<button type="button" class="te-seat-mode" data-ticket-action="seat-mode" data-mode="num">123</button>`:`<button type="button" class="te-seat-mode" data-ticket-action="seat-mode" data-mode="alpha">A-Z</button>`;
+  return `<div class="te-row te-seat-row" data-seat-mode="${mode}"><span class="te-k">${ticketDict("座位")}</span><div class="te-seat-quick">${rowCtrl}<span class="te-seat-u">${ticketDict("排")}</span><input class="te-seat-n" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="3" name="seat-col" value="${esc(colVal)}" placeholder="8" aria-label="${ticketDict("座号")}"><span class="te-seat-u">${ticketDict("座")}</span>${alt}<button type="button" class="te-seat-mode" data-ticket-action="seat-mode" data-mode="custom">${ticketDict("自填")}</button></div></div>`;
 }
 function ticketEditor(row){
   const assets=[...(row.arts||[])];
@@ -880,10 +885,13 @@ function ticketInput(event){
   else if(t.name==="crop"&&ticketDraft){ticketDraft.row.crop=Number(t.value);if(ticketDraft.side!=="front")ticketFlipTo("front");ticketDrawEditor();ticketArtSaveState();}
   // 边输入边更新预览（停顿 250ms 再画）
   else if(ticketDraft&&(t.name==="seat-row"||t.name==="seat-col")){
-    const clean=t.value.replace(/\D/g,"").slice(0,3);
-    if(clean!==t.value)t.value=clean;
+    const srow=t.closest(".te-seat-row"),mode=srow?.dataset.seatMode||"num";
+    if(t.tagName!=="SELECT"){
+      const clean=t.value.replace(/\D/g,"").slice(0,3);
+      if(clean!==t.value)t.value=clean;
+    }
     const rowEl=main.querySelector('.te-card [name="seat-row"]'),colEl=main.querySelector('.te-card [name="seat-col"]');
-    ticketDraft.row.seat=TE.composeSeat(rowEl?rowEl.value:"",colEl?colEl.value:"");
+    ticketDraft.row.seat=TE.composeSeat(rowEl?rowEl.value:"",colEl?colEl.value:"",mode);
     clearTimeout(ticketSearchTimer);ticketSearchTimer=setTimeout(ticketDrawEditor,250);
   }
   else if(ticketDraft&&["time","venue","hall","seat","format"].includes(t.name)){ticketDraft.row[t.name]=t.value;clearTimeout(ticketSearchTimer);ticketSearchTimer=setTimeout(ticketDrawEditor,250);}
@@ -908,6 +916,13 @@ function ticketChange(event){
   if(t.matches("[data-ticket-back]")){ticketSide=t.checked?"back":"front";ticketPaintList();return;}
   if(!ticketDraft)return;
   const row=ticketDraft.row;
+  if(name==="seat-row"&&t.tagName==="SELECT"){
+    const colEl=main.querySelector('.te-card [name="seat-col"]');
+    row.seat=TE.composeSeat(value,colEl?colEl.value:"","alpha");
+    ticketDrawEditor();
+    if(value&&colEl&&!colEl.value)colEl.focus();
+    return;
+  }
   if(name==="show"){if(Number(value)>=0)ticketPickShow(Number(value));return;}
   if(["date","time","venue","hall","seat","format","art"].includes(name)){
     row[name]=value;
@@ -1133,7 +1148,7 @@ function ticketClick(e){
     case "ocr-retry-ai":{if(ticketOcrLastFile&&!ticketOcrBusy)ticketRunAiOcr(ticketOcrLastFile);break;}
     case "seat-mode":{
       if(!ticketDraft)break;
-      const mode=b.dataset.mode==="custom"?"custom":"num";
+      const mode=b.dataset.mode==="custom"?"custom":b.dataset.mode==="alpha"?"alpha":"num";
       const srow=main.querySelector(".te-card .te-seat-row");
       if(srow){
         srow.outerHTML=ticketSeatRowHTML(ticketDraft.row,mode);
