@@ -594,6 +594,14 @@ function ticketArtDirty(){
   return ticketArtSig(d.row)!==d.artSig;
 }
 function ticketArtSaveState(){const b=main.querySelector(".te-art-save");if(b)b.disabled=!ticketArtDirty();}
+function ticketSeatRowHTML(row,forceMode){
+  const sp=TE.parseSeat(row.seat);
+  const custom=forceMode?forceMode==="custom":sp.mode==="custom";
+  if(custom){
+    return `<div class="te-row te-seat-row" data-seat-mode="custom"><span class="te-k">${ticketDict("座位")}</span><div class="te-seat-custom"><input class="te-in" type="text" name="seat" value="${esc(row.seat)}" placeholder="${ticketDict("如 A排8座 / 自由入座")}"><button type="button" class="te-seat-mode" data-ticket-action="seat-mode" data-mode="num">${ticketDict("排/座")}</button></div></div>`;
+  }
+  return `<div class="te-row te-seat-row" data-seat-mode="num"><span class="te-k">${ticketDict("座位")}</span><div class="te-seat-quick"><input class="te-seat-n" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="3" name="seat-row" value="${esc(sp.row)}" placeholder="5" aria-label="${ticketDict("排号")}"><span class="te-seat-u">${ticketDict("排")}</span><input class="te-seat-n" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="3" name="seat-col" value="${esc(sp.col)}" placeholder="8" aria-label="${ticketDict("座号")}"><span class="te-seat-u">${ticketDict("座")}</span><button type="button" class="te-seat-mode" data-ticket-action="seat-mode" data-mode="custom">${ticketDict("自定义")}</button></div></div>`;
+}
 function ticketEditor(row){
   const assets=[...(row.arts||[])];
   if(row.art&&!assets.includes(row.art))assets.unshift(row.art);
@@ -623,7 +631,7 @@ function ticketEditor(row){
       </div>
       <div class="te-sec-row"><h4 class="te-sec">${ticketDict("放映信息")}</h4><div class="te-ocr-btns"><button type="button" class="te-ocr-btn" data-ticket-action="ocr-scan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h3l2-2h6l2 2h3a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2Z"/><circle cx="12" cy="13" r="3.5"/></svg><span>${ticketDict("拍照识票")}</span></button><button type="button" class="te-ocr-btn te-ocr-ai" data-ticket-action="ocr-ai" title="${ticketDict("使用 AI 增强识别复杂纸质票、海外票或电子票截图（仅本次识别，不保存图片）")}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 5.6L19.5 10.5l-5.6 1.9L12 18l-1.9-5.6-5.6-1.9 5.6-1.9Z"/><path d="M19 3v3M20.5 4.5h-3M5 18v2.5M6.25 19.25h-2.5"/></svg><span>${ticketDict("AI 识票")}</span></button></div><input type="file" id="te-ocr-file" accept="image/*" hidden></div>
       <div id="te-ocr-status" class="te-ocr-status" role="status" hidden></div>
-      <div class="te-card">${ticketShowRow(row)}${dateRow}${input("time","开场时间","","time")}${input("venue","影院","影院名称")}${input("hall","影厅","如 1号厅")}${input("seat","座位","选填，如 5排8座")}${input("format","放映版本","如 4K修复")}</div>
+      <div class="te-card">${ticketShowRow(row)}${dateRow}${input("time","开场时间","","time")}${input("venue","影院","影院名称")}${input("hall","影厅","如 1号厅")}${ticketSeatRowHTML(row)}${input("format","放映版本","如 4K修复")}</div>
       <div class="te-acts"><button type="button" class="te-save" data-ticket-action="save">${ticketDict(ticketDraft.original?"保存修改":"加入收藏册")}</button></div>
     </div></div>`;
 }
@@ -871,8 +879,21 @@ function ticketInput(event){
   if(t.id==="ticket-search")ticketSearch(t.value);
   else if(t.name==="crop"&&ticketDraft){ticketDraft.row.crop=Number(t.value);if(ticketDraft.side!=="front")ticketFlipTo("front");ticketDrawEditor();ticketArtSaveState();}
   // 边输入边更新预览（停顿 250ms 再画）
+  else if(ticketDraft&&(t.name==="seat-row"||t.name==="seat-col")){
+    const clean=t.value.replace(/\D/g,"").slice(0,3);
+    if(clean!==t.value)t.value=clean;
+    const rowEl=main.querySelector('.te-card [name="seat-row"]'),colEl=main.querySelector('.te-card [name="seat-col"]');
+    ticketDraft.row.seat=TE.composeSeat(rowEl?rowEl.value:"",colEl?colEl.value:"");
+    clearTimeout(ticketSearchTimer);ticketSearchTimer=setTimeout(ticketDrawEditor,250);
+  }
   else if(ticketDraft&&["time","venue","hall","seat","format"].includes(t.name)){ticketDraft.row[t.name]=t.value;clearTimeout(ticketSearchTimer);ticketSearchTimer=setTimeout(ticketDrawEditor,250);}
 }
+document.addEventListener("keydown",e=>{
+  const t=e.target;
+  if(!t||!t.matches||!t.matches(".te-seat-n"))return;
+  if(e.key==="Enter"&&t.name==="seat-row"){e.preventDefault();const c=main.querySelector('.te-card [name="seat-col"]');if(c)c.focus();}
+  else if(e.key==="Backspace"&&t.name==="seat-col"&&!t.value){const r=main.querySelector('.te-card [name="seat-row"]');if(r)r.focus();}
+});
 function ticketChange(event){
   const t=event.target,{name,value}=t;
   if(t.id==="te-ocr-file"){
@@ -953,6 +974,11 @@ function ticketApplyOcr(parsed,raw,opts){
     if(k==="date"&&row.linked)return;
     row[k]=parsed[k];
     filled.push(labels[k]);
+    if(k==="seat"){
+      const srow=main.querySelector(".te-card .te-seat-row");
+      if(srow)srow.outerHTML=ticketSeatRowHTML(row);
+      return;
+    }
     const inp=main.querySelector(`.te-card [name="${k}"]`);
     if(inp)inp.value=parsed[k];
   });
@@ -1105,6 +1131,17 @@ function ticketClick(e){
     case "ocr-scan":{const f=main.querySelector("#te-ocr-file");if(f&&!ticketOcrBusy){ticketOcrMode="local";f.click();}break;}
     case "ocr-ai":{const f=main.querySelector("#te-ocr-file");if(f&&!ticketOcrBusy){ticketOcrMode="ai";f.click();}break;}
     case "ocr-retry-ai":{if(ticketOcrLastFile&&!ticketOcrBusy)ticketRunAiOcr(ticketOcrLastFile);break;}
+    case "seat-mode":{
+      if(!ticketDraft)break;
+      const mode=b.dataset.mode==="custom"?"custom":"num";
+      const srow=main.querySelector(".te-card .te-seat-row");
+      if(srow){
+        srow.outerHTML=ticketSeatRowHTML(ticketDraft.row,mode);
+        const inp=main.querySelector(mode==="custom"?'.te-card [name="seat"]':'.te-card [name="seat-row"]');
+        if(inp)inp.focus();
+      }
+      break;
+    }
     case "save":ticketSave();break;
     case "save-here":ticketSave(true);break;
     case "remove":

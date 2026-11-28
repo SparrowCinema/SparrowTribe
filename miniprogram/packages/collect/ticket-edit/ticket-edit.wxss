@@ -56,6 +56,10 @@
 .te-go{flex:none;color:var(--muted);font-size:calc(26 * var(--fr))}
 .te-in{flex:1;min-width:0;height:calc(96 * var(--r));text-align:right;font-size:calc(24 * var(--fr));color:var(--fg)}
 .te-ph{color:#b3a48c}
+.te-seat-quick,.te-seat-custom{flex:1;min-width:0;display:flex;align-items:center;justify-content:flex-end;gap:calc(10 * var(--r))}
+.te-seat-n{width:calc(94 * var(--r));height:calc(62 * var(--r));padding:0 calc(8 * var(--r));box-sizing:border-box;border:calc(2 * var(--r)) solid var(--line);border-radius:calc(14 * var(--r));background:var(--bg);color:var(--fg);text-align:center;font-family:Menlo,monospace;font-size:calc(25 * var(--fr));font-weight:700}
+.te-seat-u{flex:none;font-size:calc(21 * var(--fr));color:var(--muted)}
+.te-seat-mode{flex:none;margin-left:calc(6 * var(--r));padding:calc(8 * var(--r)) calc(14 * var(--r));border:calc(2 * var(--r)) solid var(--line-soft);border-radius:999px;background:var(--bg);color:var(--muted);font-size:calc(18 * var(--fr));line-height:1.2}
 .te-crop .te-slider{flex:1;margin:0 0 0 calc(10 * var(--r))}
 .te-acts{margin-top:calc(40 * var(--r))}
 .te-save{width:100%;box-sizing:border-box;text-align:center;padding:calc(24 * var(--r)) 0;border-radius:999px;background:var(--accent);color:#fffaf0;font-size:calc(26 * var(--fr));font-weight:700}
