@@ -2289,7 +2289,8 @@ function drawWall(surface,records,side,images,caption,createCanvas,title,maxWidt
   return layout;
 }
 
-// 座位快捷输入解析与合成（2026-11-28）：数字排/座用两个数字框（自动拼「X排Y座」），字母排或自由文案自动保持自定义文本模式
+// 座位快捷输入解析与合成（2026-11-28）：支持数字排（5排8座）、字母排（G排12座 / AA排5座）与自定义文本三种模式
+const SEAT_LETTERS=[..."ABCDEFGHIJKLMNOPQRSTUVWXYZ","AA","BB","CC","DD","EE","FF"];
 function parseSeat(raw) {
   const s=String(raw||"").trim();
   if (!s) return {mode:"num",row:"",col:""};
@@ -2301,10 +2302,18 @@ function parseSeat(raw) {
   if (m) return {mode:"num",row:"",col:m[1]};
   m=s.match(/^(\d{1,3})\s*[-·,，\/\s]\s*(\d{1,3})$/);
   if (m) return {mode:"num",row:m[1],col:m[2]};
+  m=s.match(/^([A-Za-z]{1,2})\s*排\s*(\d{1,3})\s*[座号]?$/);
+  if (m && SEAT_LETTERS.includes(m[1].toUpperCase())) return {mode:"alpha",row:m[1].toUpperCase(),col:m[2]};
+  m=s.match(/^([A-Za-z]{1,2})\s*排$/);
+  if (m && SEAT_LETTERS.includes(m[1].toUpperCase())) return {mode:"alpha",row:m[1].toUpperCase(),col:""};
+  m=s.match(/^([A-Za-z]{1,2})\s*[-·,，\/\s]?\s*(\d{1,3})$/);
+  if (m && SEAT_LETTERS.includes(m[1].toUpperCase())) return {mode:"alpha",row:m[1].toUpperCase(),col:m[2]};
   return {mode:"custom",row:"",col:"",raw:s};
 }
-function composeSeat(row,col) {
-  const r=String(row||"").replace(/\D/g,"").slice(0,3);
+function composeSeat(row,col,mode="num") {
+  const r=mode==="alpha"
+    ? String(row||"").toUpperCase().replace(/[^A-Z]/g,"").slice(0,2)
+    : String(row||"").replace(/\D/g,"").slice(0,3);
   const c=String(col||"").replace(/\D/g,"").slice(0,3);
   if (r && c) return `${r}排${c}座`;
   if (r) return `${r}排`;
@@ -2313,6 +2322,6 @@ function composeSeat(row,col) {
 }
 
 const shineOf=key=>{const f=finishes[key]||finishes.matte;return {kind:f.kind,fx:fxOf(key),highlight:f.stops[f.stops.length-2]};};
-return {autographKey,pendingAutograph,applyAutograph,attachAutographs,collectSig,guestLine,drawAutographs,checkinURL,checkinParse,checkinScene,checkinSceneParse,checkinPlan,applyCheckin,isHidden,HIDDEN_RATE,editionClose,EDITION_GRACE,pendingEdition,applyEdition,decorate,setQR,verifyURL,editionLines,badgesOf,drawShowcase,bakeSheen,SHOW_W,SHOW_H,serialOf,serialValid,formatSerial,entrySerial,pendingIssue,applyIssue,issueText,ISSUE_BATCH,W,H,TITLE_FAMILY,edgeOf,foilMask,fxOf,artMask,stubMask,backMask,parseCraft,formatCraft,stubCraft,blindMarkOf,craftLabel,craftSpec,lookSig,foilLayers,WALL_PAGE,MOSAIC_MAX,FACETS,BADGES,badgeKeys,options:labelOptions(),sanitize,read,sorted,defaults,randomLook,shineOf,draw,wallLayout,drawWall,parseSeat,composeSeat,
+return {autographKey,pendingAutograph,applyAutograph,attachAutographs,collectSig,guestLine,drawAutographs,checkinURL,checkinParse,checkinScene,checkinSceneParse,checkinPlan,applyCheckin,isHidden,HIDDEN_RATE,editionClose,EDITION_GRACE,pendingEdition,applyEdition,decorate,setQR,verifyURL,editionLines,badgesOf,drawShowcase,bakeSheen,SHOW_W,SHOW_H,serialOf,serialValid,formatSerial,entrySerial,pendingIssue,applyIssue,issueText,ISSUE_BATCH,W,H,TITLE_FAMILY,edgeOf,foilMask,fxOf,artMask,stubMask,backMask,parseCraft,formatCraft,stubCraft,blindMarkOf,craftLabel,craftSpec,lookSig,foilLayers,WALL_PAGE,MOSAIC_MAX,FACETS,BADGES,badgeKeys,options:labelOptions(),sanitize,read,sorted,defaults,randomLook,shineOf,draw,wallLayout,drawWall,SEAT_LETTERS,parseSeat,composeSeat,
   ticketKey,parseKey,cleanStore,mergeStore,packLook,unpackLook,normArt,viewings,build,reconcile,draft,entryFrom,migrateV1,filterTickets,facetCounts,groupByMonth,swatch};
 });
