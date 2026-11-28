@@ -66,6 +66,45 @@ exports.main = async (event) => {
     try { const r = await rpc('tk_autograph', { items }); return { ok: true, items: Array.isArray(r) ? r : [] }; }
     catch (e) { return { ok: false, msg: String((e && e.message) || e) }; }
   }
+  // 'autographList' { pin, f, h }：主办方在小程序读取本场映后嘉宾签名列表（tk_autograph_list）；密钥由服务器校验，不落库不带 openid
+  if (event.action === 'autographList') {
+    const pin = String(event.pin || ''), f = String(event.f || ''), h = String(event.h || '');
+    if (pin.length < 8 || pin.length > 80 || !/^[\w-]{1,80}$/.test(f) || !/^[\w:\/.-]{1,120}$/.test(h)) return { ok: false, reason: 'bad' };
+    try {
+      const r = await rpc('tk_autograph_list', { pin, f, h });
+      if (!Array.isArray(r)) return { ok: false, reason: 'bad' };
+      return { ok: true, items: r };
+    } catch (e) { return { ok: false, reason: 'offline', msg: String((e && e.message) || e) }; }
+  }
+  // 'autographPut' { pin, f, h, i, nm, rl, st }：主办方在小程序保存或删除一位嘉宾签名（st 为 null 即删除，tk_autograph_put）
+  if (event.action === 'autographPut') {
+    const pin = String(event.pin || ''), f = String(event.f || ''), h = String(event.h || ''), i = Number(event.i);
+    if (pin.length < 8 || pin.length > 80 || !/^[\w-]{1,80}$/.test(f) || !/^[\w:\/.-]{1,120}$/.test(h) || !Number.isInteger(i) || i < 0 || i > 3) {
+      return { ok: false, reason: 'bad' };
+    }
+    const del = event.st === null || event.st === undefined;
+    let payload = { pin, f, h, i, nm: null, rl: null, st: null };
+    if (!del) {
+      const nm = String(event.nm || '').trim(), rl = String(event.rl || '').trim(), st = event.st;
+      if (!nm || nm.length > 24 || rl.length > 12 || !Array.isArray(st) || !st.length || st.length > 80) return { ok: false, reason: 'bad' };
+      let pts = 0;
+      for (const s of st) {
+        if (!Array.isArray(s) || s.length < 2 || s.length % 2 !== 0) return { ok: false, reason: 'bad' };
+        for (let k = 0; k < s.length; k++) {
+          const v = s[k], lim = k % 2 === 0 ? 1000 : 500;
+          if (!Number.isInteger(v) || v < 0 || v > lim) return { ok: false, reason: 'bad' };
+        }
+        pts += s.length / 2;
+        if (pts > 4000) return { ok: false, reason: 'bad' };
+      }
+      payload = { pin, f, h, i, nm, rl, st };
+    }
+    try {
+      const r = await rpc('tk_autograph_put', payload);
+      if (!Array.isArray(r)) return { ok: false, reason: 'bad' };
+      return { ok: true, items: r };
+    } catch (e) { return { ok: false, reason: 'offline', msg: String((e && e.message) || e) }; }
+  }
   // 'checkinCode' { pin, f, h }：主办方在小程序取当前现场认证签到码（tk_checkin_code）；主办密钥由服务器校验，不落库不带 openid
   if (event.action === 'checkinCode') {
     const pin = String(event.pin || ''), f = String(event.f || ''), h = String(event.h || '');

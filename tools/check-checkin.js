@@ -76,16 +76,20 @@ for (const rel of ['cloudfunctions/psync/index.js','cloudfunctions/wxacode/index
   const src=fs.readFileSync(path.join(root,rel),'utf8');
   new vm.Script(src,{filename:rel});
 }
-assert(fs.readFileSync(path.join(root,'cloudfunctions/psync/index.js'),'utf8').includes("action === 'checkinCode'"),'psync handles checkinCode');
+const psyncSrc=fs.readFileSync(path.join(root,'cloudfunctions/psync/index.js'),'utf8');
+assert(psyncSrc.includes("action === 'checkinCode'"),'psync handles checkinCode');
+assert(psyncSrc.includes("action === 'autographList'"),'psync handles autographList');
+assert(psyncSrc.includes("action === 'autographPut'"),'psync handles autographPut');
 assert(fs.readFileSync(path.join(root,'cloudfunctions/wxacode/index.js'),'utf8').includes("'pages/checkin/checkin'"),'wxacode allows pages/checkin/checkin');
 const hostWxml=fs.readFileSync(path.join(root,'miniprogram/packages/collect/checkin-host/checkin-host.wxml'),'utf8');
 assert(!/password\s*=\s*"true"/.test(hostWxml),'host PIN input must not hardcode password="true" (blocks WeChat paste)');
 assert(hostWxml.includes('bindtap="pastePin"'),'host page exposes one-tap clipboard paste');
+assert(hostWxml.includes('id="ch-ag-pad"') && hostWxml.includes('bindtap="agPickPhoto"'),'host page exposes guest autograph pad & photo trace');
 
-// ——— 小程序页面运行时回归（捕获 U.showYmd / HT.dismiss 等导出名错误与剪贴板粘贴） ———
+// ——— 小程序页面运行时回归（捕获 U.showYmd / HT.dismiss 等导出名错误与剪贴板粘贴、主创签名） ———
 if (!process.argv.includes('--runtime')) {
   require('child_process').execFileSync(process.execPath, [__filename, '--runtime'], { stdio: 'inherit' });
-  console.log('PASS: on-site check-in — code parse, wxacode scene, passport merge, ticket write-back, ticket marks, sync, mini-program wiring & page runtime.');
+  console.log('PASS: on-site check-in — code parse, wxacode scene, passport merge, ticket write-back, ticket marks, sync, mini-program wiring, host autographs & page runtime.');
 } else (async () => {
   const fullData = require('./full-data.js');
   const sampleShow = fullData.shows.find(s => s.sid && fullData.films.some(f => f.id === s.id));
@@ -93,18 +97,36 @@ if (!process.argv.includes('--runtime')) {
   const storage = new Map();
   let clipboard = '  HOST-PIN-2026  ';
   let lastToast = '';
+  let agStore = [{ i: 0, name: '旧嘉宾', role: '导演', st: [[100, 200, 400, 220]] }];
+  const makeFakeCanvas = () => ({
+    width: 300,
+    height: 150,
+    getContext: () => ({
+      clearRect: () => {}, beginPath: () => {}, moveTo: () => {}, lineTo: () => {},
+      quadraticCurveTo: () => {}, stroke: () => {}, fillRect: () => {}, drawImage: () => {},
+      scale: () => {}, setTransform: () => {}
+    }),
+    toDataURL: () => 'data:image/png;base64,SIG'
+  });
 
   global.wx = {
     env: { USER_DATA_PATH: '/tmp' },
     getStorageSync: k => (storage.has(k) ? storage.get(k) : ''),
     setStorageSync: (k, v) => { storage.set(k, v); },
     removeStorageSync: k => { storage.delete(k); },
-    getSystemInfoSync: () => ({ language: 'zh_CN' }),
+    getSystemInfoSync: () => ({ language: 'zh_CN', pixelRatio: 2 }),
     getAccountInfoSync: () => ({ miniProgram: { envVersion: 'release' } }),
     setNavigationBarTitle: () => {},
     setKeepScreenOn: () => {},
     showToast: o => { lastToast = (o && o.title) || ''; },
+    showModal: o => { o && o.success && o.success({ confirm: true }); },
     getClipboardData: o => { o && o.success && o.success({ data: clipboard }); },
+    createSelectorQuery: () => ({
+      in() { return this; },
+      select() { return this; },
+      fields() { return this; },
+      exec(cb) { cb([{ node: makeFakeCanvas(), width: 300, height: 150, left: 0, top: 0 }]); }
+    }),
     getFileSystemManager: () => ({
       writeFileSync: () => {},
       unlinkSync: () => {}
@@ -113,6 +135,17 @@ if (!process.argv.includes('--runtime')) {
       callFunction: async ({ name, data }) => {
         if (name === 'psync' && data.action === 'checkinCode') {
           return { result: { ok: true, w: 14949570, k: '0123456789ab', n: 5 } };
+        }
+        if (name === 'psync' && data.action === 'autographList') {
+          return { result: { ok: true, items: agStore.slice() } };
+        }
+        if (name === 'psync' && data.action === 'autographPut') {
+          if (data.st === null) {
+            agStore = agStore.filter(g => g.i !== data.i);
+          } else {
+            agStore = agStore.filter(g => g.i !== data.i).concat([{ i: data.i, name: data.nm, role: data.rl, st: data.st }]).sort((a, b) => a.i - b.i);
+          }
+          return { result: { ok: true, items: agStore.slice() } };
         }
         if (name === 'wxacode') {
           return { result: { ok: true, dataUrl: 'data:image/png;base64,AAAA' } };
@@ -138,12 +171,12 @@ if (!process.argv.includes('--runtime')) {
     assert(def, 'Page() registered for ' + rel);
     const inst = Object.assign({}, def, {
       data: JSON.parse(JSON.stringify(def.data || {})),
-      setData(patch) { Object.assign(this.data, patch); }
+      setData(patch, cb) { Object.assign(this.data, patch); if (typeof cb === 'function') cb(); }
     });
     return inst;
   }
 
-  // 1) 主办方动态小程序码页：场次列表、自动回落「全部待映」、粘贴密钥、出码
+  // 1) 主办方动态小程序码页：场次列表、自动回落「全部待映」、粘贴密钥、出码、主创签名手写/描摹/保存/删除
   const U = require('../miniprogram/utils/util.js');
   const idx = U.index(fullData);
   const sampleMs = U.showDate(sampleShow, idx).getTime();
@@ -166,12 +199,47 @@ if (!process.argv.includes('--runtime')) {
     host.toggleHidePin();
     assert.equal(host.data.hidePin, true, 'toggleHidePin masks pin');
 
-    // 选择场次并生成小程序码
+    // 选择场次并生成小程序码 + 自动加载主创签名列表
     host.pickShow({ detail: { value: 0 } });
-    await new Promise(r => setTimeout(r, 20));
+    await new Promise(r => setTimeout(r, 30));
     assert.equal(host.data.err, '', 'host refresh succeeds without error');
     assert.equal(host.data.count, 5, 'host count updated');
     assert(host.data.qr, 'host qr image populated');
+    assert.equal(host.data.agReady, true, 'autograph panel loaded');
+    assert.equal(host.data.agList.length, 1, 'existing autograph rendered');
+    assert.equal(host.data.agFree, 1, 'next free slot computed');
+    assert.equal(host.data.agList[0].img, 'data:image/png;base64,SIG', 'autograph preview generated');
+
+    // 手写签名 + 撤销 + 保存
+    host.agStart({ touches: [{ x: 30, y: 40 }] });
+    host.agMove({ touches: [{ x: 90, y: 70 }] });
+    host.agMove({ touches: [{ x: 160, y: 60 }] });
+    host.agEnd();
+    assert.equal(host._agStrokes.length, 1, 'hand-drawn stroke recorded');
+    assert.equal(host.data.agHasInk, true, 'pad detects ink');
+    host.agUndo();
+    assert.equal(host._agStrokes.length, 0, 'agUndo removes last stroke');
+    // 照片描摹：白底黑线合成图 → 识别出笔画
+    const pw = 120, ph = 60, px = new Uint8ClampedArray(pw * ph * 4).fill(255);
+    for (let x = 20; x < 100; x++) for (let dy = -1; dy <= 1; dy++) {
+      const k = ((30 + dy) * pw + x) * 4;
+      px[k] = px[k + 1] = px[k + 2] = 15;
+    }
+    host._agPhoto = { width: pw, height: ph, data: px };
+    host.agRetrace(0);
+    assert(host._agStrokes.length >= 1, 'photo trace extracts strokes');
+    host.onAgName({ detail: { value: '张艺谋' } });
+    host.onAgRole({ detail: { value: '导演' } });
+    await host.agSave();
+    assert.equal(lastToast, '签名已保存');
+    assert.equal(host.data.agList.length, 2, 'saved guest appended to list');
+    assert.equal(host.data.agName, '', 'name reset after save');
+
+    // 删除旧签名
+    host.agDelete({ currentTarget: { dataset: { idx: 0 } } });
+    await new Promise(r => setTimeout(r, 20));
+    assert.equal(host.data.agList.length, 1, 'deleted guest removed from list');
+    assert.equal(host.data.agList[0].name, '张艺谋');
     host.onUnload();
 
     // 2) 观众扫码现场认证页：onLoad(scene)、showMeta、签到写回、关闭首页提示

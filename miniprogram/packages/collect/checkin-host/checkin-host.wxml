@@ -63,4 +63,64 @@
       <view class="btn ghost ch-act" bindtap="tapRefresh">{{L.t(i,'立即刷新')}}</view>
     </view>
   </view>
+
+  <view wx:if="{{!full && cur && pin && (agReady || agLoading || agErr)}}" class="card ch-ag">
+    <view class="ch-ag-head">
+      <text class="ch-ag-h">{{L.t(i,'映后嘉宾签名')}}</text>
+      <text class="ch-ag-sub">{{L.t(i,'只有在这一场现场认证过的典藏票根才会出现嘉宾签名。每场最多 4 位。')}}</text>
+    </view>
+
+    <view wx:if="{{agErr}}" class="ch-ag-err">
+      <text class="ch-ag-err-t">{{agErr}}</text>
+      <view class="btn ghost ch-smbtn" bindtap="retryAutographs">{{L.t(i,'重试')}}</view>
+    </view>
+    <text wx:elif="{{agLoading && !agReady}}" class="ch-ag-wait">{{L.t(i,'正在读取本场主创签名…')}}</text>
+
+    <block wx:if="{{agReady}}">
+      <view wx:if="{{agList.length}}" class="ch-ag-list">
+        <view wx:for="{{agList}}" wx:key="i" class="ch-ag-item">
+          <image wx:if="{{item.img}}" class="ch-ag-img" src="{{item.img}}" mode="aspectFit" />
+          <view class="ch-ag-meta">
+            <text class="ch-ag-who">{{item.label}}</text>
+            <text class="ch-ag-del" data-idx="{{item.i}}" bindtap="agDelete">{{L.t(i,'删除')}}</text>
+          </view>
+        </view>
+      </view>
+
+      <text wx:if="{{agFree < 0}}" class="ch-ag-full">{{L.t(i,'已满 4 位嘉宾。')}}</text>
+      <block wx:else>
+        <view class="ch-ag-inputs">
+          <view class="ch-field">
+            <text class="ch-flab">{{L.t(i,'嘉宾姓名')}}</text>
+            <input class="ch-inp" maxlength="24" value="{{agName}}" placeholder="{{L.t(i,'填写嘉宾姓名')}}" bindinput="onAgName" />
+          </view>
+          <view class="ch-field">
+            <text class="ch-flab">{{L.t(i,'身份')}}</text>
+            <input class="ch-inp" maxlength="12" value="{{agRole}}" placeholder="{{L.t(i,'如：导演')}}" bindinput="onAgRole" />
+          </view>
+        </view>
+
+        <view class="ch-ag-pad-wrap">
+          <canvas type="2d" id="ch-ag-pad" class="ch-ag-pad" disable-scroll="true" bindtouchstart="agStart" bindtouchmove="agMove" bindtouchend="agEnd" bindtouchcancel="agEnd" />
+          <text wx:if="{{!agHasInk}}" class="ch-ag-hint">{{L.t(i,'请嘉宾在这里签名')}}</text>
+        </view>
+
+        <view class="ch-ag-up">
+          <view class="btn ghost ch-ag-upbtn" bindtap="agPickPhoto">{{L.t(i,'上传签名照片')}}</view>
+          <view wx:if="{{agHasPhoto}}" class="ch-ag-shade">
+            <text class="ch-ag-shlab">{{L.t(i,'深浅')}}</text>
+            <slider class="ch-ag-slider" min="-60" max="60" step="5" value="{{agShade}}" block-size="18" activeColor="#8e2a22" bindchanging="agShadeChange" bindchange="agShadeChange" />
+          </view>
+          <text class="ch-ag-note">{{L.t(i,'请只上传嘉宾本人为这一场签的签名，并事先告知会用于观众的电子票根。照片只在本机识别，不会上传，只保存描出的笔画。')}}</text>
+        </view>
+
+        <view class="ch-acts">
+          <view class="btn ghost ch-ag-sm" bindtap="agUndo">{{L.t(i,'撤销')}}</view>
+          <view class="btn ghost ch-ag-sm" bindtap="agClear">{{L.t(i,'清除')}}</view>
+          <view class="btn ch-act {{agSaving?'ch-dis':''}}" bindtap="agSave">{{agSaving ? L.t(i,'保存中…') : L.t(i,'保存签名')}}</view>
+        </view>
+      </block>
+    </block>
+  </view>
 </view>
+<canvas type="2d" id="ch-ag-work" class="ch-hidden" />
