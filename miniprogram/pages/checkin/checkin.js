@@ -44,17 +44,17 @@ Page({
     if (this._waitTimer) clearTimeout(this._waitTimer);
     if (this.offData) this.offData();
   },
-  dismissHomeTip() { HT.dismiss(this); },
+  dismissHomeTip() { HT.close(this); },
   showMeta(s, data) {
     const idx = U.index(data), f = idx.F[s.id] || {};
     const venue = idx.venueName(s), hall = idx.hallName(s);
     const place = [venue, hall].filter(Boolean).join(' · ');
-    const time = [U.showYmd(s), U.wk(s.d, s.year), s.t].filter(Boolean).join(' ');
+    const time = [U.ymd(s), U.wk(s.d, s.year), s.t].filter(Boolean).join(' ');
     return {
       id: s.id,
       cn: f.cn || s.id,
       version: f.version ? t(f.version) : '',
-      poster: f.posterUrl ? U.thumb(f) : '',
+      poster: U.thumb(f),
       time,
       place
     };

@@ -78,5 +78,119 @@ for (const rel of ['cloudfunctions/psync/index.js','cloudfunctions/wxacode/index
 }
 assert(fs.readFileSync(path.join(root,'cloudfunctions/psync/index.js'),'utf8').includes("action === 'checkinCode'"),'psync handles checkinCode');
 assert(fs.readFileSync(path.join(root,'cloudfunctions/wxacode/index.js'),'utf8').includes("'pages/checkin/checkin'"),'wxacode allows pages/checkin/checkin');
+const hostWxml=fs.readFileSync(path.join(root,'miniprogram/packages/collect/checkin-host/checkin-host.wxml'),'utf8');
+assert(!/password\s*=\s*"true"/.test(hostWxml),'host PIN input must not hardcode password="true" (blocks WeChat paste)');
+assert(hostWxml.includes('bindtap="pastePin"'),'host page exposes one-tap clipboard paste');
 
-console.log('PASS: on-site check-in — code parse, wxacode scene, passport merge, ticket write-back, ticket marks, sync, mini-program wiring.');
+// ——— 小程序页面运行时回归（捕获 U.showYmd / HT.dismiss 等导出名错误与剪贴板粘贴） ———
+if (!process.argv.includes('--runtime')) {
+  require('child_process').execFileSync(process.execPath, [__filename, '--runtime'], { stdio: 'inherit' });
+  console.log('PASS: on-site check-in — code parse, wxacode scene, passport merge, ticket write-back, ticket marks, sync, mini-program wiring & page runtime.');
+} else (async () => {
+  const fullData = require('./full-data.js');
+  const sampleShow = fullData.shows.find(s => s.sid && fullData.films.some(f => f.id === s.id));
+  assert(sampleShow, 'full-data has a show with sid');
+  const storage = new Map();
+  let clipboard = '  HOST-PIN-2026  ';
+  let lastToast = '';
+
+  global.wx = {
+    env: { USER_DATA_PATH: '/tmp' },
+    getStorageSync: k => (storage.has(k) ? storage.get(k) : ''),
+    setStorageSync: (k, v) => { storage.set(k, v); },
+    removeStorageSync: k => { storage.delete(k); },
+    getSystemInfoSync: () => ({ language: 'zh_CN' }),
+    getAccountInfoSync: () => ({ miniProgram: { envVersion: 'release' } }),
+    setNavigationBarTitle: () => {},
+    setKeepScreenOn: () => {},
+    showToast: o => { lastToast = (o && o.title) || ''; },
+    getClipboardData: o => { o && o.success && o.success({ data: clipboard }); },
+    getFileSystemManager: () => ({
+      writeFileSync: () => {},
+      unlinkSync: () => {}
+    }),
+    cloud: {
+      callFunction: async ({ name, data }) => {
+        if (name === 'psync' && data.action === 'checkinCode') {
+          return { result: { ok: true, w: 14949570, k: '0123456789ab', n: 5 } };
+        }
+        if (name === 'wxacode') {
+          return { result: { ok: true, dataUrl: 'data:image/png;base64,AAAA' } };
+        }
+        if (name === 'psync' && data.action === 'checkin') {
+          return { result: { ok: true, no: 11, h: data.item.h, sno: 4, ci: '2026-11-28T05:00:00Z' } };
+        }
+        return { result: { ok: true } };
+      }
+    }
+  };
+  global.getApp = () => ({
+    globalData: { data: fullData, source: 'cloud', full: true },
+    onData: () => () => {},
+    loadRemote: () => {}
+  });
+  function loadPage(rel) {
+    let def = null;
+    global.Page = o => { def = o; };
+    const abs = path.join(root, rel);
+    delete require.cache[require.resolve(abs)];
+    require(abs);
+    assert(def, 'Page() registered for ' + rel);
+    const inst = Object.assign({}, def, {
+      data: JSON.parse(JSON.stringify(def.data || {})),
+      setData(patch) { Object.assign(this.data, patch); }
+    });
+    return inst;
+  }
+
+  // 1) 主办方动态小程序码页：场次列表、自动回落「全部待映」、粘贴密钥、出码
+  const U = require('../miniprogram/utils/util.js');
+  const idx = U.index(fullData);
+  const sampleMs = U.showDate(sampleShow, idx).getTime();
+  const realNow = Date.now;
+  try {
+    // 场景 A：不在任何场次前后 14 小时内 → 自动切到 showAll，不空列表
+    Date.now = () => sampleMs - 72 * 36e5;
+    const host = loadPage('miniprogram/packages/collect/checkin-host/checkin-host.js');
+    host.onLoad();
+    assert(host.data.labels.length > 0, 'checkin-host renders upcoming screenings');
+    assert.equal(host.data.showAll, true, 'auto-enables showAll when no show within 14h');
+    assert(/^\d{4}\/\d{2}\/\d{2}/.test(host._shows[0].time), 'showMeta time formatted via U.ymd: ' + host._shows[0].time);
+    assert.equal(host.data.hidePin, false, 'PIN input starts unmasked so native paste works');
+
+    // 粘贴密钥 + 显隐切换
+    host.pastePin();
+    assert.equal(host.data.pin, 'HOST-PIN-2026', 'pastePin trims and sets pin');
+    assert.equal(storage.get('sk-host-key'), 'HOST-PIN-2026', 'pastePin persists pin');
+    assert.equal(lastToast, '已粘贴主办密钥');
+    host.toggleHidePin();
+    assert.equal(host.data.hidePin, true, 'toggleHidePin masks pin');
+
+    // 选择场次并生成小程序码
+    host.pickShow({ detail: { value: 0 } });
+    await new Promise(r => setTimeout(r, 20));
+    assert.equal(host.data.err, '', 'host refresh succeeds without error');
+    assert.equal(host.data.count, 5, 'host count updated');
+    assert(host.data.qr, 'host qr image populated');
+    host.onUnload();
+
+    // 2) 观众扫码现场认证页：onLoad(scene)、showMeta、签到写回、关闭首页提示
+    const scene = T.checkinScene(sampleShow.sid, 14949570, '0123456789ab');
+    const page = loadPage('miniprogram/pages/checkin/checkin.js');
+    page.onLoad({ scene });
+    await new Promise(r => setTimeout(r, 30));
+    assert.equal(page.data.state, 'ok', 'audience checkin completes');
+    assert(page.data.film && /^\d{4}\/\d{2}\/\d{2}/.test(page.data.film.time), 'audience film.time formatted via U.ymd');
+    assert(page.data.ed && page.data.ed.line2.includes('现场认证'), 'edition line shows 现场认证');
+    page.dismissHomeTip();
+    assert.equal(page.data.homeTip, false, 'dismissHomeTip calls HT.close cleanly');
+    page.onUnload();
+  } finally {
+    Date.now = realNow;
+  }
+
+  process.exit(0);
+})().catch(err => {
+  console.error(err);
+  process.exit(1);
+});

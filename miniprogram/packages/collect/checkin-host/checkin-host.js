@@ -9,6 +9,7 @@ Page({
   data: {
     i: {},
     pin: '',
+    hidePin: false,
     showAll: false,
     labels: [],
     pickIdx: -1,
@@ -27,10 +28,12 @@ Page({
     try { env = wx.getAccountInfoSync().miniProgram.envVersion || 'release'; } catch (e) {}
     this.setData({ i: I.dict(), pin, env });
     wx.setNavigationBarTitle({ title: t('现场签到 · 主办方') });
+    this._active = true;
     this._seq = 0;
     this._tmpFile = '';
     this._lastScene = '';
     this._shows = [];
+    this._userScope = false;
     this.offData = app.onData(() => this.buildShows());
     this.buildShows();
   },
@@ -71,7 +74,7 @@ Page({
     const f = idx.F[s.id] || {};
     const venue = idx.venueName(s), hall = idx.hallName(s);
     const place = [venue, hall].filter(Boolean).join(' · ');
-    const time = [U.showYmd(s), U.wk(s.d, s.year), s.t].filter(Boolean).join(' ');
+    const time = [U.ymd(s), U.wk(s.d, s.year), s.t].filter(Boolean).join(' ');
     const shortLine = [s.d + ' ' + s.t, f.cn || s.id, venue, hall].filter(Boolean).join(' · ');
     return {
       sid: s.sid || '',
@@ -87,21 +90,24 @@ Page({
   buildShows() {
     const data = app.globalData.data || {}, idx = U.index(data), now = Date.now();
     const prevSid = this.data.cur && this.data.cur.sid;
-    const list = (data.shows || []).filter(s => {
+    const upcoming = (data.shows || []).filter(s => {
       if (!idx.F[s.id] || !s.sid) return false;
-      const st = U.showDate(s, idx).getTime();
-      if (this.data.showAll) return st > now - 4 * 36e5;
-      return st > now - 4 * 36e5 && st < now + 14 * 36e5;
+      return U.showDate(s, idx).getTime() > now - 4 * 36e5;
     }).sort((a, b) => U.showDate(a, idx) - U.showDate(b, idx));
+    const near = upcoming.filter(s => U.showDate(s, idx).getTime() < now + 14 * 36e5);
+    let showAll = this.data.showAll;
+    if (!this._userScope && !showAll && !near.length && upcoming.length) showAll = true;
+    const list = showAll ? upcoming : near;
     const metas = list.map(s => this.showMeta(s, idx));
     this._shows = metas;
     let pickIdx = prevSid ? metas.findIndex(x => x.sid === prevSid) : -1;
     if (pickIdx < 0 && metas.length === 1) pickIdx = 0;
     const cur = pickIdx >= 0 ? metas[pickIdx] : null;
-    this.setData({ labels: metas.map(x => x.shortLine), pickIdx, cur });
+    this.setData({ showAll, labels: metas.map(x => x.shortLine), pickIdx, cur });
     if (cur && this.data.pin && (!this.data.qr || cur.sid !== prevSid)) this.refresh(false);
   },
   toggleShowAll() {
+    this._userScope = true;
     this.setData({ showAll: !this.data.showAll });
     this.buildShows();
   },
@@ -113,6 +119,21 @@ Page({
     this.setData({ pin });
     try { wx.setStorageSync(PIN_KEY, pin); } catch (e) {}
     if (pin && this.data.cur) this.refresh(true);
+  },
+  pastePin() {
+    wx.getClipboardData({
+      success: res => {
+        const pin = String((res && res.data) || '').trim();
+        if (!pin) { wx.showToast({ title: t('剪贴板为空'), icon: 'none' }); return; }
+        this.setData({ pin });
+        try { wx.setStorageSync(PIN_KEY, pin); } catch (e) {}
+        wx.showToast({ title: t('已粘贴主办密钥'), icon: 'none' });
+        if (this.data.cur) this.refresh(true);
+      }
+    });
+  },
+  toggleHidePin() {
+    this.setData({ hidePin: !this.data.hidePin });
   },
   clearPin() {
     this.cleanTmp();

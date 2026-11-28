@@ -12,9 +12,13 @@
       <view class="ch-field">
         <view class="ch-flab">
           <text>{{L.t(i,'主办密钥')}}</text>
-          <text wx:if="{{pin}}" class="ch-clr" bindtap="clearPin">{{L.t(i,'清除')}}</text>
+          <view class="ch-fops">
+            <text class="ch-clr" bindtap="pastePin">{{L.t(i,'粘贴')}}</text>
+            <text wx:if="{{pin}}" class="ch-clr" bindtap="toggleHidePin">{{hidePin ? L.t(i,'显示') : L.t(i,'隐藏')}}</text>
+            <text wx:if="{{pin}}" class="ch-clr" bindtap="clearPin">{{L.t(i,'清除')}}</text>
+          </view>
         </view>
-        <input class="ch-inp" password="true" value="{{pin}}" placeholder="{{L.t(i,'输入主办密钥')}}" bindinput="onPinInput" bindblur="onPinCommit" bindconfirm="onPinCommit" />
+        <input class="ch-inp" type="text" password="{{hidePin}}" value="{{pin}}" placeholder="{{L.t(i,'输入或粘贴主办密钥')}}" bindinput="onPinInput" bindblur="onPinCommit" bindconfirm="onPinCommit" />
       </view>
 
       <view class="ch-field">
@@ -28,7 +32,7 @@
             <text class="ch-pick-a">▾</text>
           </view>
         </picker>
-        <text wx:else class="ch-empty">{{L.t(i,'前后 14 小时内没有场次，可点右上角切换「显示全部待映」。')}}</text>
+        <text wx:else class="ch-empty">{{showAll ? L.t(i,'暂无待映场次。') : L.t(i,'前后 14 小时内没有场次，可点右上角切换「显示全部待映」。')}}</text>
       </view>
     </view>
   </block>

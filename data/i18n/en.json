@@ -16874,6 +16874,13 @@
     "当前筛选下没有你加入的场次": "None of your planned screenings match these filters",
     "影片页放映场次支持「只看我的」": "Film pages add an “Only mine” screening filter",
     "每部影片详情页的「放映场次」旁新增「只看我的」开关，一键只看自己已加入排片的场次。": "Every film page now has an “Only mine” toggle beside Screenings to filter down to the showtimes in your plan.",
-    "场次、购票码、简介、荣誉、内容提示和各站评分都在这里；放映场次旁可切「只看我的」，快速查看已加入排片的场次。": "Screenings, ticket codes, synopses, awards, content notes and ratings all live here; toggle “Only mine” beside Screenings to focus on showtimes in your plan."
+    "场次、购票码、简介、荣誉、内容提示和各站评分都在这里；放映场次旁可切「只看我的」，快速查看已加入排片的场次。": "Screenings, ticket codes, synopses, awards, content notes and ratings all live here; toggle “Only mine” beside Screenings to focus on showtimes in your plan.",
+    "粘贴": "Paste",
+    "输入或粘贴主办密钥": "Enter or paste host key",
+    "已粘贴主办密钥": "Host key pasted",
+    "剪贴板为空": "Clipboard is empty",
+    "暂无待映场次。": "No upcoming screenings.",
+    "查看全部排片、专题与观影护照": "Browse all screenings, programmes & passport",
+    "点左上角进入首页": "Tap top-left to go home"
   }
 }
